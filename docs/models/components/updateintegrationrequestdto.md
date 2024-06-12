@@ -1,0 +1,14 @@
+# UpdateIntegrationRequestDto
+
+
+## Fields
+
+| Field                                                                         | Type                                                                          | Required                                                                      | Description                                                                   |
+| ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `name`                                                                        | *string*                                                                      | :heavy_minus_sign:                                                            | N/A                                                                           |
+| `identifier`                                                                  | *string*                                                                      | :heavy_minus_sign:                                                            | N/A                                                                           |
+| `environmentId`                                                               | *string*                                                                      | :heavy_minus_sign:                                                            | N/A                                                                           |
+| `active`                                                                      | *boolean*                                                                     | :heavy_minus_sign:                                                            | If the integration is active the validation on the credentials field will run |
+| `credentials`                                                                 | [components.CredentialsDto](../../models/components/credentialsdto.md)        | :heavy_minus_sign:                                                            | N/A                                                                           |
+| `check`                                                                       | *boolean*                                                                     | :heavy_minus_sign:                                                            | N/A                                                                           |
+| `conditions`                                                                  | [components.StepFilter](../../models/components/stepfilter.md)[]              | :heavy_minus_sign:                                                            | N/A                                                                           |

@@ -1,0 +1,14 @@
+# MemberResponseDto
+
+
+## Fields
+
+| Field                                                                    | Type                                                                     | Required                                                                 | Description                                                              |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| `id`                                                                     | *string*                                                                 | :heavy_check_mark:                                                       | N/A                                                                      |
+| `userId`                                                                 | *string*                                                                 | :heavy_check_mark:                                                       | N/A                                                                      |
+| `user`                                                                   | [components.MemberUserDto](../../models/components/memberuserdto.md)     | :heavy_minus_sign:                                                       | N/A                                                                      |
+| `roles`                                                                  | [components.Roles](../../models/components/roles.md)                     | :heavy_minus_sign:                                                       | N/A                                                                      |
+| `invite`                                                                 | [components.MemberInviteDTO](../../models/components/memberinvitedto.md) | :heavy_minus_sign:                                                       | N/A                                                                      |
+| `memberStatus`                                                           | [components.MemberStatus](../../models/components/memberstatus.md)       | :heavy_minus_sign:                                                       | N/A                                                                      |
+| `organizationId`                                                         | *string*                                                                 | :heavy_check_mark:                                                       | N/A                                                                      |

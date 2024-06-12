@@ -1,0 +1,30 @@
+speakeasyVersion: 1.305.0
+sources:
+    json-development:
+        sourceNamespace: json-development
+        sourceRevisionDigest: sha256:c8c82075cadf812937b445cfedf0221361a784730667145fd4844d02ed7e943f
+        sourceBlobDigest: sha256:9cb52cdff5e3e19a8166e7c1a99f7d8fd22729215ce950e147f5423076c15c1c
+        tags:
+            - latest
+targets:
+    my-first-target:
+        source: json-development
+        sourceNamespace: json-development
+        sourceRevisionDigest: sha256:c8c82075cadf812937b445cfedf0221361a784730667145fd4844d02ed7e943f
+        sourceBlobDigest: sha256:9cb52cdff5e3e19a8166e7c1a99f7d8fd22729215ce950e147f5423076c15c1c
+        outLocation: /Users/galtidhar/Documents/GitHub/novu-ts-sdk
+workflow:
+    workflowVersion: 1.0.0
+    speakeasyVersion: latest
+    sources:
+        json-development:
+            inputs:
+                - location: http://127.0.0.1:3000/openapi-hoisted.json
+            overlays:
+                - location: /Users/galtidhar/WebstormProjects/novu-sdk/sources/remove-headers-overlay.yaml
+            registry:
+                location: registry.speakeasyapi.dev/novu/novu/json-development
+    targets:
+        my-first-target:
+            target: typescript
+            source: json-development

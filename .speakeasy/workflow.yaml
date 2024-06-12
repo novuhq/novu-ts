@@ -1,0 +1,14 @@
+workflowVersion: 1.0.0
+speakeasyVersion: latest
+sources:
+    json-development:
+        inputs:
+            - location: http://127.0.0.1:3000/openapi-hoisted.json
+        overlays:
+            - location: /Users/galtidhar/WebstormProjects/novu-sdk/sources/remove-headers-overlay.yaml
+        registry:
+            location: registry.speakeasyapi.dev/novu/novu/json-development
+targets:
+    my-first-target:
+        target: typescript
+        source: json-development

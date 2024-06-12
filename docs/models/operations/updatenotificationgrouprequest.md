@@ -1,0 +1,9 @@
+# UpdateNotificationGroupRequest
+
+
+## Fields
+
+| Field                                                                                                        | Type                                                                                                         | Required                                                                                                     | Description                                                                                                  |
+| ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
+| `id`                                                                                                         | *string*                                                                                                     | :heavy_check_mark:                                                                                           | N/A                                                                                                          |
+| `createNotificationGroupRequestDto`                                                                          | [components.CreateNotificationGroupRequestDto](../../models/components/createnotificationgrouprequestdto.md) | :heavy_check_mark:                                                                                           | N/A                                                                                                          |
