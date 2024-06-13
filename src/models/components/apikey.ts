@@ -6,16 +6,16 @@ import { remap as remap$ } from "../../lib/primitives";
 import * as z from "zod";
 
 export type ApiKey = {
-    key: string;
     userId: string;
+    key: string;
 };
 
 /** @internal */
 export namespace ApiKey$ {
     export const inboundSchema: z.ZodType<ApiKey, z.ZodTypeDef, unknown> = z
         .object({
-            key: z.string(),
             _userId: z.string(),
+            key: z.string(),
         })
         .transform((v) => {
             return remap$(v, {
@@ -24,14 +24,14 @@ export namespace ApiKey$ {
         });
 
     export type Outbound = {
-        key: string;
         _userId: string;
+        key: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ApiKey> = z
         .object({
-            key: z.string(),
             userId: z.string(),
+            key: z.string(),
         })
         .transform((v) => {
             return remap$(v, {

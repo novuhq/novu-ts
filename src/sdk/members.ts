@@ -42,7 +42,7 @@ export class Members extends ClientSDK {
     /**
      * Remove a member from organization using memberId
      */
-    async organizationControllerRemove(
+    async delete(
         memberId: string,
         options?: RequestOptions
     ): Promise<components.MemberResponseDto> {
@@ -113,9 +113,7 @@ export class Members extends ClientSDK {
     /**
      * Fetch all members of current organizations
      */
-    async organizationControllerMe(
-        options?: RequestOptions
-    ): Promise<Array<components.MemberResponseDto>> {
+    async list(options?: RequestOptions): Promise<Array<components.MemberResponseDto>> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
@@ -133,7 +131,7 @@ export class Members extends ClientSDK {
             security$ = {};
         }
         const context = {
-            operationID: "OrganizationController_me",
+            operationID: "OrganizationController_listOrganizationMembers",
             oAuth2Scopes: [],
             securitySource: this.options$.apiKey,
         };

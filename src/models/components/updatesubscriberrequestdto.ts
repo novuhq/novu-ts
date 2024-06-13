@@ -7,13 +7,13 @@ import * as z from "zod";
 export type UpdateSubscriberRequestDtoData = {};
 
 export type UpdateSubscriberRequestDto = {
+    avatar?: string | undefined;
+    data?: UpdateSubscriberRequestDtoData | undefined;
     email?: string | undefined;
     firstName?: string | undefined;
     lastName?: string | undefined;
-    phone?: string | undefined;
-    avatar?: string | undefined;
     locale?: string | undefined;
-    data?: UpdateSubscriberRequestDtoData | undefined;
+    phone?: string | undefined;
 };
 
 /** @internal */
@@ -31,33 +31,33 @@ export namespace UpdateSubscriberRequestDtoData$ {
 export namespace UpdateSubscriberRequestDto$ {
     export const inboundSchema: z.ZodType<UpdateSubscriberRequestDto, z.ZodTypeDef, unknown> =
         z.object({
+            avatar: z.string().optional(),
+            data: z.lazy(() => UpdateSubscriberRequestDtoData$.inboundSchema).optional(),
             email: z.string().optional(),
             firstName: z.string().optional(),
             lastName: z.string().optional(),
-            phone: z.string().optional(),
-            avatar: z.string().optional(),
             locale: z.string().optional(),
-            data: z.lazy(() => UpdateSubscriberRequestDtoData$.inboundSchema).optional(),
+            phone: z.string().optional(),
         });
 
     export type Outbound = {
+        avatar?: string | undefined;
+        data?: UpdateSubscriberRequestDtoData$.Outbound | undefined;
         email?: string | undefined;
         firstName?: string | undefined;
         lastName?: string | undefined;
-        phone?: string | undefined;
-        avatar?: string | undefined;
         locale?: string | undefined;
-        data?: UpdateSubscriberRequestDtoData$.Outbound | undefined;
+        phone?: string | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, UpdateSubscriberRequestDto> =
         z.object({
+            avatar: z.string().optional(),
+            data: z.lazy(() => UpdateSubscriberRequestDtoData$.outboundSchema).optional(),
             email: z.string().optional(),
             firstName: z.string().optional(),
             lastName: z.string().optional(),
-            phone: z.string().optional(),
-            avatar: z.string().optional(),
             locale: z.string().optional(),
-            data: z.lazy(() => UpdateSubscriberRequestDtoData$.outboundSchema).optional(),
+            phone: z.string().optional(),
         });
 }

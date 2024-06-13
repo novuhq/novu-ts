@@ -43,56 +43,6 @@ export class Environments extends ClientSDK {
     }
 
     /**
-     * Get current environment
-     */
-    async retrieve(options?: RequestOptions): Promise<components.EnvironmentResponseDto> {
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "application/json");
-
-        const path$ = this.templateURLComponent("/environments/me")();
-
-        const query$ = "";
-
-        let security$;
-        if (typeof this.options$.apiKey === "function") {
-            security$ = { apiKey: await this.options$.apiKey() };
-        } else if (this.options$.apiKey) {
-            security$ = { apiKey: this.options$.apiKey };
-        } else {
-            security$ = {};
-        }
-        const context = {
-            operationID: "EnvironmentsController_getCurrentEnvironment",
-            oAuth2Scopes: [],
-            securitySource: this.options$.apiKey,
-        };
-        const securitySettings$ = this.resolveGlobalSecurity(security$);
-
-        const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
-        const request$ = this.createRequest$(
-            context,
-            {
-                security: securitySettings$,
-                method: "GET",
-                path: path$,
-                headers: headers$,
-                query: query$,
-            },
-            options
-        );
-
-        const response = await this.do$(request$, doOptions);
-
-        const [result$] = await this.matcher<components.EnvironmentResponseDto>()
-            .json(200, components.EnvironmentResponseDto$)
-            .fail([409, 429, "4XX", 503, "5XX"])
-            .match(response);
-
-        return result$;
-    }
-
-    /**
      * Get environments
      */
     async list(options?: RequestOptions): Promise<Array<components.EnvironmentResponseDto>> {
@@ -143,16 +93,14 @@ export class Environments extends ClientSDK {
     }
 
     /**
-     * Regenerate api keys
+     * Get current environment
      */
-    async environmentsControllerRegenerateOrganizationApiKeys(
-        options?: RequestOptions
-    ): Promise<Array<components.ApiKey>> {
+    async retrieve(options?: RequestOptions): Promise<components.EnvironmentResponseDto> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
-        const path$ = this.templateURLComponent("/environments/api-keys/regenerate")();
+        const path$ = this.templateURLComponent("/environments/me")();
 
         const query$ = "";
 
@@ -165,7 +113,7 @@ export class Environments extends ClientSDK {
             security$ = {};
         }
         const context = {
-            operationID: "EnvironmentsController_regenerateOrganizationApiKeys",
+            operationID: "EnvironmentsController_getCurrentEnvironment",
             oAuth2Scopes: [],
             securitySource: this.options$.apiKey,
         };
@@ -176,7 +124,7 @@ export class Environments extends ClientSDK {
             context,
             {
                 security: securitySettings$,
-                method: "POST",
+                method: "GET",
                 path: path$,
                 headers: headers$,
                 query: query$,
@@ -186,8 +134,8 @@ export class Environments extends ClientSDK {
 
         const response = await this.do$(request$, doOptions);
 
-        const [result$] = await this.matcher<Array<components.ApiKey>>()
-            .json(201, z.array(components.ApiKey$.inboundSchema))
+        const [result$] = await this.matcher<components.EnvironmentResponseDto>()
+            .json(200, components.EnvironmentResponseDto$)
             .fail([409, 429, "4XX", 503, "5XX"])
             .match(response);
 

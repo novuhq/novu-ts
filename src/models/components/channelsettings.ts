@@ -36,21 +36,21 @@ export type ChannelSettingsProviderId = ClosedEnum<typeof ChannelSettingsProvide
 
 export type ChannelSettings = {
     /**
-     * The provider identifier for the credentials
+     * Id of the integration that is used for this channel
      */
-    providerId: ChannelSettingsProviderId;
-    /**
-     * The integration identifier
-     */
-    integrationIdentifier?: string | undefined;
+    integrationId: string;
     /**
      * Credentials payload for the specified provider
      */
     credentials: ChannelCredentials;
     /**
-     * Id of the integration that is used for this channel
+     * The integration identifier
      */
-    integrationId: string;
+    integrationIdentifier?: string | undefined;
+    /**
+     * The provider identifier for the credentials
+     */
+    providerId: ChannelSettingsProviderId;
 };
 
 /** @internal */
@@ -63,10 +63,10 @@ export namespace ChannelSettingsProviderId$ {
 export namespace ChannelSettings$ {
     export const inboundSchema: z.ZodType<ChannelSettings, z.ZodTypeDef, unknown> = z
         .object({
-            providerId: ChannelSettingsProviderId$.inboundSchema,
-            integrationIdentifier: z.string().optional(),
-            credentials: ChannelCredentials$.inboundSchema,
             _integrationId: z.string(),
+            credentials: ChannelCredentials$.inboundSchema,
+            integrationIdentifier: z.string().optional(),
+            providerId: ChannelSettingsProviderId$.inboundSchema,
         })
         .transform((v) => {
             return remap$(v, {
@@ -75,18 +75,18 @@ export namespace ChannelSettings$ {
         });
 
     export type Outbound = {
-        providerId: string;
-        integrationIdentifier?: string | undefined;
-        credentials: ChannelCredentials$.Outbound;
         _integrationId: string;
+        credentials: ChannelCredentials$.Outbound;
+        integrationIdentifier?: string | undefined;
+        providerId: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ChannelSettings> = z
         .object({
-            providerId: ChannelSettingsProviderId$.outboundSchema,
-            integrationIdentifier: z.string().optional(),
-            credentials: ChannelCredentials$.outboundSchema,
             integrationId: z.string(),
+            credentials: ChannelCredentials$.outboundSchema,
+            integrationIdentifier: z.string().optional(),
+            providerId: ChannelSettingsProviderId$.outboundSchema,
         })
         .transform((v) => {
             return remap$(v, {

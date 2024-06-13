@@ -1,6 +1,4 @@
-# MessageResponseDtoOverrides
-
-Provider specific overrides used when triggering the notification
+# WorkflowResponseData
 
 
 ## Fields

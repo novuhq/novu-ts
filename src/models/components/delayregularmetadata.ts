@@ -5,7 +5,12 @@
 import { ClosedEnum } from "../../types";
 import * as z from "zod";
 
-export const DelayRegularMetadataUnit = {
+export const DelayRegularMetadataType = {
+    Regular: "regular",
+} as const;
+export type DelayRegularMetadataType = ClosedEnum<typeof DelayRegularMetadataType>;
+
+export const Unit = {
     Seconds: "seconds",
     Minutes: "minutes",
     Hours: "hours",
@@ -13,24 +18,13 @@ export const DelayRegularMetadataUnit = {
     Weeks: "weeks",
     Months: "months",
 } as const;
-export type DelayRegularMetadataUnit = ClosedEnum<typeof DelayRegularMetadataUnit>;
-
-export const DelayRegularMetadataType = {
-    Regular: "regular",
-} as const;
-export type DelayRegularMetadataType = ClosedEnum<typeof DelayRegularMetadataType>;
+export type Unit = ClosedEnum<typeof Unit>;
 
 export type DelayRegularMetadata = {
     amount?: number | undefined;
-    unit?: DelayRegularMetadataUnit | undefined;
     type: DelayRegularMetadataType;
+    unit?: Unit | undefined;
 };
-
-/** @internal */
-export namespace DelayRegularMetadataUnit$ {
-    export const inboundSchema = z.nativeEnum(DelayRegularMetadataUnit);
-    export const outboundSchema = inboundSchema;
-}
 
 /** @internal */
 export namespace DelayRegularMetadataType$ {
@@ -39,24 +33,30 @@ export namespace DelayRegularMetadataType$ {
 }
 
 /** @internal */
+export namespace Unit$ {
+    export const inboundSchema = z.nativeEnum(Unit);
+    export const outboundSchema = inboundSchema;
+}
+
+/** @internal */
 export namespace DelayRegularMetadata$ {
     export const inboundSchema: z.ZodType<DelayRegularMetadata, z.ZodTypeDef, unknown> = z.object({
         amount: z.number().optional(),
-        unit: DelayRegularMetadataUnit$.inboundSchema.optional(),
         type: DelayRegularMetadataType$.inboundSchema,
+        unit: Unit$.inboundSchema.optional(),
     });
 
     export type Outbound = {
         amount?: number | undefined;
-        unit?: string | undefined;
         type: string;
+        unit?: string | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, DelayRegularMetadata> = z.object(
         {
             amount: z.number().optional(),
-            unit: DelayRegularMetadataUnit$.outboundSchema.optional(),
             type: DelayRegularMetadataType$.outboundSchema,
+            unit: Unit$.outboundSchema.optional(),
         }
     );
 }

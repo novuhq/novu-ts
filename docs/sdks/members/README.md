@@ -3,10 +3,10 @@
 
 ### Available Operations
 
-* [organizationControllerRemove](#organizationcontrollerremove) - Remove a member from organization using memberId
-* [organizationControllerMe](#organizationcontrollerme) - Fetch all members of current organizations
+* [delete](#delete) - Remove a member from organization using memberId
+* [list](#list) - Fetch all members of current organizations
 
-## organizationControllerRemove
+## delete
 
 Remove a member from organization using memberId
 
@@ -20,7 +20,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.organizations.members.organizationControllerRemove("<value>");
+  const result = await novu.organizations.members.delete("<value>");
 
   // Handle the result
   console.log(result)
@@ -47,7 +47,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
 
-## organizationControllerMe
+## list
 
 Fetch all members of current organizations
 
@@ -61,7 +61,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.organizations.members.organizationControllerMe();
+  const result = await novu.organizations.members.list();
 
   // Handle the result
   console.log(result)

@@ -3,9 +3,9 @@
 
 ### Available Operations
 
-* [organizationControllerUpdateBrandingDetails](#organizationcontrollerupdatebrandingdetails) - Update organization branding details
+* [update](#update) - Update organization branding details
 
-## organizationControllerUpdateBrandingDetails
+## update
 
 Update organization branding details
 
@@ -19,11 +19,11 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.organizations.branding.organizationControllerUpdateBrandingDetails({
-    logo: "<value>",
-    color: "ivory",
-    fontColor: "<value>",
+  const result = await novu.organizations.branding.update({
+    color: "fuchsia",
     contentBackground: "<value>",
+    fontColor: "<value>",
+    logo: "<value>",
   });
 
   // Handle the result

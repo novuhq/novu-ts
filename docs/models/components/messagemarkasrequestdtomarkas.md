@@ -1,6 +1,4 @@
-# MarkAllMessageAsRequestDtoMarkAs
-
-Mark all subscriber messages as read, unread, seen or unseen
+# MessageMarkAsRequestDtoMarkAs
 
 
 ## Values

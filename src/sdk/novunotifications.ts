@@ -152,8 +152,8 @@ export class NovuNotifications extends ClientSDK {
         );
 
         const query$ = encodeFormQuery$({
-            seen: payload$.seen,
             limit: payload$.limit,
+            seen: payload$.seen,
         });
 
         let security$;

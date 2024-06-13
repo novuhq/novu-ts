@@ -8,12 +8,6 @@ import { MemberInviteDTO, MemberInviteDTO$ } from "./memberinvitedto";
 import { MemberUserDto, MemberUserDto$ } from "./memberuserdto";
 import * as z from "zod";
 
-export const Roles = {
-    Admin: "admin",
-    Member: "member",
-} as const;
-export type Roles = ClosedEnum<typeof Roles>;
-
 export const MemberStatus = {
     New: "new",
     Active: "active",
@@ -21,21 +15,21 @@ export const MemberStatus = {
 } as const;
 export type MemberStatus = ClosedEnum<typeof MemberStatus>;
 
+export const Roles = {
+    Admin: "admin",
+    Member: "member",
+} as const;
+export type Roles = ClosedEnum<typeof Roles>;
+
 export type MemberResponseDto = {
     id: string;
+    organizationId: string;
     userId: string;
-    user?: MemberUserDto | undefined;
-    roles?: Roles | undefined;
     invite?: MemberInviteDTO | undefined;
     memberStatus?: MemberStatus | undefined;
-    organizationId: string;
+    roles?: Roles | undefined;
+    user?: MemberUserDto | undefined;
 };
-
-/** @internal */
-export namespace Roles$ {
-    export const inboundSchema = z.nativeEnum(Roles);
-    export const outboundSchema = inboundSchema;
-}
 
 /** @internal */
 export namespace MemberStatus$ {
@@ -44,50 +38,56 @@ export namespace MemberStatus$ {
 }
 
 /** @internal */
+export namespace Roles$ {
+    export const inboundSchema = z.nativeEnum(Roles);
+    export const outboundSchema = inboundSchema;
+}
+
+/** @internal */
 export namespace MemberResponseDto$ {
     export const inboundSchema: z.ZodType<MemberResponseDto, z.ZodTypeDef, unknown> = z
         .object({
             _id: z.string(),
+            _organizationId: z.string(),
             _userId: z.string(),
-            user: MemberUserDto$.inboundSchema.optional(),
-            roles: Roles$.inboundSchema.optional(),
             invite: MemberInviteDTO$.inboundSchema.optional(),
             memberStatus: MemberStatus$.inboundSchema.optional(),
-            _organizationId: z.string(),
+            roles: Roles$.inboundSchema.optional(),
+            user: MemberUserDto$.inboundSchema.optional(),
         })
         .transform((v) => {
             return remap$(v, {
                 _id: "id",
-                _userId: "userId",
                 _organizationId: "organizationId",
+                _userId: "userId",
             });
         });
 
     export type Outbound = {
         _id: string;
+        _organizationId: string;
         _userId: string;
-        user?: MemberUserDto$.Outbound | undefined;
-        roles?: string | undefined;
         invite?: MemberInviteDTO$.Outbound | undefined;
         memberStatus?: string | undefined;
-        _organizationId: string;
+        roles?: string | undefined;
+        user?: MemberUserDto$.Outbound | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, MemberResponseDto> = z
         .object({
             id: z.string(),
+            organizationId: z.string(),
             userId: z.string(),
-            user: MemberUserDto$.outboundSchema.optional(),
-            roles: Roles$.outboundSchema.optional(),
             invite: MemberInviteDTO$.outboundSchema.optional(),
             memberStatus: MemberStatus$.outboundSchema.optional(),
-            organizationId: z.string(),
+            roles: Roles$.outboundSchema.optional(),
+            user: MemberUserDto$.outboundSchema.optional(),
         })
         .transform((v) => {
             return remap$(v, {
                 id: "_id",
-                userId: "_userId",
                 organizationId: "_organizationId",
+                userId: "_userId",
             });
         });
 }

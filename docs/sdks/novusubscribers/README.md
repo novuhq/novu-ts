@@ -4,8 +4,8 @@
 ### Available Operations
 
 * [topicsControllerAddSubscribers](#topicscontrolleraddsubscribers) - Subscribers addition
+* [delete](#delete) - Subscribers removal
 * [retrieve](#retrieve) - Check topic subscriber
-* [topicsControllerRemoveSubscribers](#topicscontrollerremovesubscribers) - Subscribers removal
 
 ## topicsControllerAddSubscribers
 
@@ -39,6 +39,51 @@ run();
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `topicKey`                                                                                                                                                                     | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
 | `addSubscribersRequestDto`                                                                                                                                                     | [components.AddSubscribersRequestDto](../../models/components/addsubscribersrequestdto.md)                                                                                     | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+
+
+### Response
+
+**Promise\<void\>**
+### Errors
+
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4xx-5xx         | */*             |
+
+## delete
+
+Remove subscribers from a topic
+
+### Example Usage
+
+```typescript
+import { Novu } from "novu-typescript";
+
+const novu = new Novu({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  await novu.topics.subscribers.delete("<value>", {
+    subscribers: [
+      "<value>",
+    ],
+  });
+
+  
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `topicKey`                                                                                                                                                                     | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
+| `removeSubscribersRequestDto`                                                                                                                                                  | [components.RemoveSubscribersRequestDto](../../models/components/removesubscribersrequestdto.md)                                                                               | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 
@@ -88,51 +133,6 @@ run();
 ### Response
 
 **Promise\<[components.TopicSubscriberDto](../../models/components/topicsubscriberdto.md)\>**
-### Errors
-
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
-## topicsControllerRemoveSubscribers
-
-Remove subscribers from a topic
-
-### Example Usage
-
-```typescript
-import { Novu } from "novu-typescript";
-
-const novu = new Novu({
-  apiKey: "<YOUR_API_KEY_HERE>",
-});
-
-async function run() {
-  await novu.topics.subscribers.topicsControllerRemoveSubscribers("<value>", {
-    subscribers: [
-      "<value>",
-    ],
-  });
-
-  
-}
-
-run();
-```
-
-### Parameters
-
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `topicKey`                                                                                                                                                                     | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
-| `removeSubscribersRequestDto`                                                                                                                                                  | [components.RemoveSubscribersRequestDto](../../models/components/removesubscribersrequestdto.md)                                                                               | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-
-
-### Response
-
-**Promise\<void\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

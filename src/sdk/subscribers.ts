@@ -15,8 +15,10 @@ import { ClientSDK, RequestOptions } from "../lib/sdks";
 import * as components from "../models/components";
 import * as operations from "../models/operations";
 import { createPageIterator, PageIterator, Paginator } from "../types";
+import { Credentials } from "./credentials";
 import { NovuNotifications } from "./novunotifications";
 import { Preferences } from "./preferences";
+import { Properties } from "./properties";
 import jp from "jsonpath";
 import * as z from "zod";
 
@@ -47,14 +49,632 @@ export class Subscribers extends ClientSDK {
         void this.options$;
     }
 
-    private _preferences?: Preferences;
-    get preferences(): Preferences {
-        return (this._preferences ??= new Preferences(this.options$));
+    private _credentials?: Credentials;
+    get credentials(): Credentials {
+        return (this._credentials ??= new Credentials(this.options$));
     }
 
     private _notifications?: NovuNotifications;
     get notifications(): NovuNotifications {
         return (this._notifications ??= new NovuNotifications(this.options$));
+    }
+
+    private _properties?: Properties;
+    get properties(): Properties {
+        return (this._properties ??= new Properties(this.options$));
+    }
+
+    private _preferences?: Preferences;
+    get preferences(): Preferences {
+        return (this._preferences ??= new Preferences(this.options$));
+    }
+
+    /**
+     * Handle chat oauth
+     */
+    async subscribersControllerChatAccessOauth(
+        request: operations.SubscribersControllerChatAccessOauthRequest,
+        options?: RequestOptions
+    ): Promise<void> {
+        const input$ = request;
+        const headers$ = new Headers();
+        headers$.set("user-agent", SDK_METADATA.userAgent);
+        headers$.set("Accept", "*/*");
+
+        const payload$ = schemas$.parse(
+            input$,
+            (value$) =>
+                operations.SubscribersControllerChatAccessOauthRequest$.outboundSchema.parse(
+                    value$
+                ),
+            "Input validation failed"
+        );
+        const body$ = null;
+
+        const pathParams$ = {
+            providerId: encodeSimple$("providerId", payload$.providerId, {
+                explode: false,
+                charEncoding: "percent",
+            }),
+            subscriberId: encodeSimple$("subscriberId", payload$.subscriberId, {
+                explode: false,
+                charEncoding: "percent",
+            }),
+        };
+        const path$ = this.templateURLComponent(
+            "/subscribers/{subscriberId}/credentials/{providerId}/oauth"
+        )(pathParams$);
+
+        const query$ = encodeFormQuery$({
+            hmacHash: payload$.hmacHash,
+            environmentId: payload$.environmentId,
+            integrationIdentifier: payload$.integrationIdentifier,
+        });
+
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "SubscribersController_chatAccessOauth",
+            oAuth2Scopes: [],
+            securitySource: this.options$.apiKey,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
+
+        const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
+        const request$ = this.createRequest$(
+            context,
+            {
+                security: securitySettings$,
+                method: "GET",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                body: body$,
+            },
+            options
+        );
+
+        const response = await this.do$(request$, doOptions);
+
+        const [result$] = await this.matcher<void>()
+            .void(200, z.void())
+            .fail([409, 429, "4XX", 503, "5XX"])
+            .match(response);
+
+        return result$;
+    }
+
+    /**
+     * Handle providers oauth redirect
+     */
+    async subscribersControllerChatOauthCallback(
+        request: operations.SubscribersControllerChatOauthCallbackRequest,
+        options?: RequestOptions
+    ): Promise<operations.SubscribersControllerChatOauthCallbackResponseBody> {
+        const input$ = request;
+        const headers$ = new Headers();
+        headers$.set("user-agent", SDK_METADATA.userAgent);
+        headers$.set("Accept", "application/json");
+
+        const payload$ = schemas$.parse(
+            input$,
+            (value$) =>
+                operations.SubscribersControllerChatOauthCallbackRequest$.outboundSchema.parse(
+                    value$
+                ),
+            "Input validation failed"
+        );
+        const body$ = null;
+
+        const pathParams$ = {
+            providerId: encodeSimple$("providerId", payload$.providerId, {
+                explode: false,
+                charEncoding: "percent",
+            }),
+            subscriberId: encodeSimple$("subscriberId", payload$.subscriberId, {
+                explode: false,
+                charEncoding: "percent",
+            }),
+        };
+        const path$ = this.templateURLComponent(
+            "/subscribers/{subscriberId}/credentials/{providerId}/oauth/callback"
+        )(pathParams$);
+
+        const query$ = encodeFormQuery$({
+            code: payload$.code,
+            hmacHash: payload$.hmacHash,
+            environmentId: payload$.environmentId,
+            integrationIdentifier: payload$.integrationIdentifier,
+        });
+
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "SubscribersController_chatOauthCallback",
+            oAuth2Scopes: [],
+            securitySource: this.options$.apiKey,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
+
+        const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
+        const request$ = this.createRequest$(
+            context,
+            {
+                security: securitySettings$,
+                method: "GET",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                body: body$,
+            },
+            options
+        );
+
+        const response = await this.do$(request$, doOptions);
+
+        const [result$] =
+            await this.matcher<operations.SubscribersControllerChatOauthCallbackResponseBody>()
+                .json(200, operations.SubscribersControllerChatOauthCallbackResponseBody$)
+                .fail([409, 429, "4XX", 503, "5XX"])
+                .match(response);
+
+        return result$;
+    }
+
+    /**
+     * Mark message action as seen
+     */
+    async subscribersControllerMarkActionAsSeen(
+        request: operations.SubscribersControllerMarkActionAsSeenRequest,
+        options?: RequestOptions
+    ): Promise<components.MessageResponseDto> {
+        const input$ = request;
+        const headers$ = new Headers();
+        headers$.set("user-agent", SDK_METADATA.userAgent);
+        headers$.set("Content-Type", "application/json");
+        headers$.set("Accept", "application/json");
+
+        const payload$ = schemas$.parse(
+            input$,
+            (value$) =>
+                operations.SubscribersControllerMarkActionAsSeenRequest$.outboundSchema.parse(
+                    value$
+                ),
+            "Input validation failed"
+        );
+        const body$ = encodeJSON$("body", payload$.MarkMessageActionAsSeenDto, { explode: true });
+
+        const pathParams$ = {
+            messageId: encodeSimple$("messageId", payload$.messageId, {
+                explode: false,
+                charEncoding: "percent",
+            }),
+            subscriberId: encodeSimple$("subscriberId", payload$.subscriberId, {
+                explode: false,
+                charEncoding: "percent",
+            }),
+            type: encodeSimple$("type", payload$.type, { explode: false, charEncoding: "percent" }),
+        };
+        const path$ = this.templateURLComponent(
+            "/subscribers/{subscriberId}/messages/{messageId}/actions/{type}"
+        )(pathParams$);
+
+        const query$ = "";
+
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "SubscribersController_markActionAsSeen",
+            oAuth2Scopes: [],
+            securitySource: this.options$.apiKey,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
+
+        const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
+        const request$ = this.createRequest$(
+            context,
+            {
+                security: securitySettings$,
+                method: "POST",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                body: body$,
+            },
+            options
+        );
+
+        const response = await this.do$(request$, doOptions);
+
+        const [result$] = await this.matcher<components.MessageResponseDto>()
+            .json(201, components.MessageResponseDto$)
+            .fail([409, 429, "4XX", 503, "5XX"])
+            .match(response);
+
+        return result$;
+    }
+
+    /**
+     * Marks all the subscriber messages as read, unread, seen or unseen. Optionally you can pass feed id (or array) to mark messages of a particular feed.
+     */
+    async subscribersControllerMarkAllUnreadAsRead(
+        subscriberId: string,
+        markAllMessageAsRequestDto: components.MarkAllMessageAsRequestDto,
+        options?: RequestOptions
+    ): Promise<number> {
+        const input$: operations.SubscribersControllerMarkAllUnreadAsReadRequest = {
+            subscriberId: subscriberId,
+            markAllMessageAsRequestDto: markAllMessageAsRequestDto,
+        };
+        const headers$ = new Headers();
+        headers$.set("user-agent", SDK_METADATA.userAgent);
+        headers$.set("Content-Type", "application/json");
+        headers$.set("Accept", "application/json");
+
+        const payload$ = schemas$.parse(
+            input$,
+            (value$) =>
+                operations.SubscribersControllerMarkAllUnreadAsReadRequest$.outboundSchema.parse(
+                    value$
+                ),
+            "Input validation failed"
+        );
+        const body$ = encodeJSON$("body", payload$.MarkAllMessageAsRequestDto, { explode: true });
+
+        const pathParams$ = {
+            subscriberId: encodeSimple$("subscriberId", payload$.subscriberId, {
+                explode: false,
+                charEncoding: "percent",
+            }),
+        };
+        const path$ = this.templateURLComponent("/subscribers/{subscriberId}/messages/mark-all")(
+            pathParams$
+        );
+
+        const query$ = "";
+
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "SubscribersController_markAllUnreadAsRead",
+            oAuth2Scopes: [],
+            securitySource: this.options$.apiKey,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
+
+        const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
+        const request$ = this.createRequest$(
+            context,
+            {
+                security: securitySettings$,
+                method: "POST",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                body: body$,
+            },
+            options
+        );
+
+        const response = await this.do$(request$, doOptions);
+
+        const [result$] = await this.matcher<number>()
+            .json(201, z.number())
+            .fail([409, 429, "4XX", 503, "5XX"])
+            .match(response);
+
+        return result$;
+    }
+
+    /**
+     * Mark a subscriber messages as seen, read, unseen or unread
+     */
+    async subscribersControllerMarkMessagesAs(
+        subscriberId: string,
+        messageMarkAsRequestDto: components.MessageMarkAsRequestDto,
+        options?: RequestOptions
+    ): Promise<Array<components.MessageEntity>> {
+        const input$: operations.SubscribersControllerMarkMessagesAsRequest = {
+            subscriberId: subscriberId,
+            messageMarkAsRequestDto: messageMarkAsRequestDto,
+        };
+        const headers$ = new Headers();
+        headers$.set("user-agent", SDK_METADATA.userAgent);
+        headers$.set("Content-Type", "application/json");
+        headers$.set("Accept", "application/json");
+
+        const payload$ = schemas$.parse(
+            input$,
+            (value$) =>
+                operations.SubscribersControllerMarkMessagesAsRequest$.outboundSchema.parse(value$),
+            "Input validation failed"
+        );
+        const body$ = encodeJSON$("body", payload$.MessageMarkAsRequestDto, { explode: true });
+
+        const pathParams$ = {
+            subscriberId: encodeSimple$("subscriberId", payload$.subscriberId, {
+                explode: false,
+                charEncoding: "percent",
+            }),
+        };
+        const path$ = this.templateURLComponent("/subscribers/{subscriberId}/messages/mark-as")(
+            pathParams$
+        );
+
+        const query$ = "";
+
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "SubscribersController_markMessagesAs",
+            oAuth2Scopes: [],
+            securitySource: this.options$.apiKey,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
+
+        const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
+        const request$ = this.createRequest$(
+            context,
+            {
+                security: securitySettings$,
+                method: "POST",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                body: body$,
+            },
+            options
+        );
+
+        const response = await this.do$(request$, doOptions);
+
+        const [result$] = await this.matcher<Array<components.MessageEntity>>()
+            .json(201, z.array(components.MessageEntity$.inboundSchema))
+            .fail([409, 429, "4XX", 503, "5XX"])
+            .match(response);
+
+        return result$;
+    }
+
+    /**
+     * Create subscriber
+     *
+     * @remarks
+     * Creates a subscriber entity, in the Novu platform. The subscriber will be later used to receive notifications, and access notification feeds. Communication credentials such as email, phone number, and 3 rd party credentials i.e slack tokens could be later associated to this entity.
+     */
+    async create(
+        request: components.CreateSubscriberRequestDto,
+        options?: RequestOptions
+    ): Promise<components.SubscriberResponseDto> {
+        const input$ = request;
+        const headers$ = new Headers();
+        headers$.set("user-agent", SDK_METADATA.userAgent);
+        headers$.set("Content-Type", "application/json");
+        headers$.set("Accept", "application/json");
+
+        const payload$ = schemas$.parse(
+            input$,
+            (value$) => components.CreateSubscriberRequestDto$.outboundSchema.parse(value$),
+            "Input validation failed"
+        );
+        const body$ = encodeJSON$("body", payload$, { explode: true });
+
+        const path$ = this.templateURLComponent("/subscribers")();
+
+        const query$ = "";
+
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "SubscribersController_createSubscriber",
+            oAuth2Scopes: [],
+            securitySource: this.options$.apiKey,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
+
+        const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
+        const request$ = this.createRequest$(
+            context,
+            {
+                security: securitySettings$,
+                method: "POST",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                body: body$,
+            },
+            options
+        );
+
+        const response = await this.do$(request$, doOptions);
+
+        const [result$] = await this.matcher<components.SubscriberResponseDto>()
+            .json(201, components.SubscriberResponseDto$)
+            .fail([409, 429, "4XX", 503, "5XX"])
+            .match(response);
+
+        return result$;
+    }
+
+    /**
+     * Bulk create subscribers
+     *
+     * @remarks
+     *
+     *       Using this endpoint you can create multiple subscribers at once, to avoid multiple calls to the API.
+     *       The bulk API is limited to 500 subscribers per request.
+     *
+     */
+    async createBulk(
+        request: components.BulkSubscriberCreateDto,
+        options?: RequestOptions
+    ): Promise<void> {
+        const input$ = request;
+        const headers$ = new Headers();
+        headers$.set("user-agent", SDK_METADATA.userAgent);
+        headers$.set("Content-Type", "application/json");
+        headers$.set("Accept", "*/*");
+
+        const payload$ = schemas$.parse(
+            input$,
+            (value$) => components.BulkSubscriberCreateDto$.outboundSchema.parse(value$),
+            "Input validation failed"
+        );
+        const body$ = encodeJSON$("body", payload$, { explode: true });
+
+        const path$ = this.templateURLComponent("/subscribers/bulk")();
+
+        const query$ = "";
+
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "SubscribersController_bulkCreateSubscribers",
+            oAuth2Scopes: [],
+            securitySource: this.options$.apiKey,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
+
+        const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
+        const request$ = this.createRequest$(
+            context,
+            {
+                security: securitySettings$,
+                method: "POST",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                body: body$,
+            },
+            options
+        );
+
+        const response = await this.do$(request$, doOptions);
+
+        const [result$] = await this.matcher<void>()
+            .void(201, z.void())
+            .fail([409, 429, "4XX", 503, "5XX"])
+            .match(response);
+
+        return result$;
+    }
+
+    /**
+     * Delete subscriber
+     *
+     * @remarks
+     * Deletes a subscriber entity from the Novu platform
+     */
+    async delete(
+        subscriberId: string,
+        options?: RequestOptions
+    ): Promise<components.DeleteSubscriberResponseDto> {
+        const input$: operations.SubscribersControllerRemoveSubscriberRequest = {
+            subscriberId: subscriberId,
+        };
+        const headers$ = new Headers();
+        headers$.set("user-agent", SDK_METADATA.userAgent);
+        headers$.set("Accept", "application/json");
+
+        const payload$ = schemas$.parse(
+            input$,
+            (value$) =>
+                operations.SubscribersControllerRemoveSubscriberRequest$.outboundSchema.parse(
+                    value$
+                ),
+            "Input validation failed"
+        );
+        const body$ = null;
+
+        const pathParams$ = {
+            subscriberId: encodeSimple$("subscriberId", payload$.subscriberId, {
+                explode: false,
+                charEncoding: "percent",
+            }),
+        };
+        const path$ = this.templateURLComponent("/subscribers/{subscriberId}")(pathParams$);
+
+        const query$ = "";
+
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "SubscribersController_removeSubscriber",
+            oAuth2Scopes: [],
+            securitySource: this.options$.apiKey,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
+
+        const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
+        const request$ = this.createRequest$(
+            context,
+            {
+                security: securitySettings$,
+                method: "DELETE",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                body: body$,
+            },
+            options
+        );
+
+        const response = await this.do$(request$, doOptions);
+
+        const [result$] = await this.matcher<components.DeleteSubscriberResponseDto>()
+            .json(200, components.DeleteSubscriberResponseDto$)
+            .fail([409, 429, "4XX", 503, "5XX"])
+            .match(response);
+
+        return result$;
     }
 
     /**
@@ -162,72 +782,6 @@ export class Subscribers extends ClientSDK {
     }
 
     /**
-     * Create subscriber
-     *
-     * @remarks
-     * Creates a subscriber entity, in the Novu platform. The subscriber will be later used to receive notifications, and access notification feeds. Communication credentials such as email, phone number, and 3 rd party credentials i.e slack tokens could be later associated to this entity.
-     */
-    async create(
-        request: components.CreateSubscriberRequestDto,
-        options?: RequestOptions
-    ): Promise<components.SubscriberResponseDto> {
-        const input$ = request;
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Content-Type", "application/json");
-        headers$.set("Accept", "application/json");
-
-        const payload$ = schemas$.parse(
-            input$,
-            (value$) => components.CreateSubscriberRequestDto$.outboundSchema.parse(value$),
-            "Input validation failed"
-        );
-        const body$ = encodeJSON$("body", payload$, { explode: true });
-
-        const path$ = this.templateURLComponent("/subscribers")();
-
-        const query$ = "";
-
-        let security$;
-        if (typeof this.options$.apiKey === "function") {
-            security$ = { apiKey: await this.options$.apiKey() };
-        } else if (this.options$.apiKey) {
-            security$ = { apiKey: this.options$.apiKey };
-        } else {
-            security$ = {};
-        }
-        const context = {
-            operationID: "SubscribersController_createSubscriber",
-            oAuth2Scopes: [],
-            securitySource: this.options$.apiKey,
-        };
-        const securitySettings$ = this.resolveGlobalSecurity(security$);
-
-        const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
-        const request$ = this.createRequest$(
-            context,
-            {
-                security: securitySettings$,
-                method: "POST",
-                path: path$,
-                headers: headers$,
-                query: query$,
-                body: body$,
-            },
-            options
-        );
-
-        const response = await this.do$(request$, doOptions);
-
-        const [result$] = await this.matcher<components.SubscriberResponseDto>()
-            .json(201, components.SubscriberResponseDto$)
-            .fail([409, 429, "4XX", 503, "5XX"])
-            .match(response);
-
-        return result$;
-    }
-
-    /**
      * Get subscriber
      *
      * @remarks
@@ -307,7 +861,7 @@ export class Subscribers extends ClientSDK {
      * @remarks
      * Used to update the subscriber entity with new information
      */
-    async subscribersControllerUpdateSubscriber(
+    async update(
         subscriberId: string,
         updateSubscriberRequestDto: components.UpdateSubscriberRequestDto,
         options?: RequestOptions
@@ -374,1043 +928,6 @@ export class Subscribers extends ClientSDK {
 
         const [result$] = await this.matcher<components.SubscriberResponseDto>()
             .json(200, components.SubscriberResponseDto$)
-            .fail([409, 429, "4XX", 503, "5XX"])
-            .match(response);
-
-        return result$;
-    }
-
-    /**
-     * Delete subscriber
-     *
-     * @remarks
-     * Deletes a subscriber entity from the Novu platform
-     */
-    async subscribersControllerRemoveSubscriber(
-        subscriberId: string,
-        options?: RequestOptions
-    ): Promise<components.DeleteSubscriberResponseDto> {
-        const input$: operations.SubscribersControllerRemoveSubscriberRequest = {
-            subscriberId: subscriberId,
-        };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "application/json");
-
-        const payload$ = schemas$.parse(
-            input$,
-            (value$) =>
-                operations.SubscribersControllerRemoveSubscriberRequest$.outboundSchema.parse(
-                    value$
-                ),
-            "Input validation failed"
-        );
-        const body$ = null;
-
-        const pathParams$ = {
-            subscriberId: encodeSimple$("subscriberId", payload$.subscriberId, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-        };
-        const path$ = this.templateURLComponent("/subscribers/{subscriberId}")(pathParams$);
-
-        const query$ = "";
-
-        let security$;
-        if (typeof this.options$.apiKey === "function") {
-            security$ = { apiKey: await this.options$.apiKey() };
-        } else if (this.options$.apiKey) {
-            security$ = { apiKey: this.options$.apiKey };
-        } else {
-            security$ = {};
-        }
-        const context = {
-            operationID: "SubscribersController_removeSubscriber",
-            oAuth2Scopes: [],
-            securitySource: this.options$.apiKey,
-        };
-        const securitySettings$ = this.resolveGlobalSecurity(security$);
-
-        const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
-        const request$ = this.createRequest$(
-            context,
-            {
-                security: securitySettings$,
-                method: "DELETE",
-                path: path$,
-                headers: headers$,
-                query: query$,
-                body: body$,
-            },
-            options
-        );
-
-        const response = await this.do$(request$, doOptions);
-
-        const [result$] = await this.matcher<components.DeleteSubscriberResponseDto>()
-            .json(200, components.DeleteSubscriberResponseDto$)
-            .fail([409, 429, "4XX", 503, "5XX"])
-            .match(response);
-
-        return result$;
-    }
-
-    /**
-     * Bulk create subscribers
-     *
-     * @remarks
-     *
-     *       Using this endpoint you can create multiple subscribers at once, to avoid multiple calls to the API.
-     *       The bulk API is limited to 500 subscribers per request.
-     *
-     */
-    async subscribersControllerBulkCreateSubscribers(
-        request: components.BulkSubscriberCreateDto,
-        options?: RequestOptions
-    ): Promise<void> {
-        const input$ = request;
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Content-Type", "application/json");
-        headers$.set("Accept", "*/*");
-
-        const payload$ = schemas$.parse(
-            input$,
-            (value$) => components.BulkSubscriberCreateDto$.outboundSchema.parse(value$),
-            "Input validation failed"
-        );
-        const body$ = encodeJSON$("body", payload$, { explode: true });
-
-        const path$ = this.templateURLComponent("/subscribers/bulk")();
-
-        const query$ = "";
-
-        let security$;
-        if (typeof this.options$.apiKey === "function") {
-            security$ = { apiKey: await this.options$.apiKey() };
-        } else if (this.options$.apiKey) {
-            security$ = { apiKey: this.options$.apiKey };
-        } else {
-            security$ = {};
-        }
-        const context = {
-            operationID: "SubscribersController_bulkCreateSubscribers",
-            oAuth2Scopes: [],
-            securitySource: this.options$.apiKey,
-        };
-        const securitySettings$ = this.resolveGlobalSecurity(security$);
-
-        const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
-        const request$ = this.createRequest$(
-            context,
-            {
-                security: securitySettings$,
-                method: "POST",
-                path: path$,
-                headers: headers$,
-                query: query$,
-                body: body$,
-            },
-            options
-        );
-
-        const response = await this.do$(request$, doOptions);
-
-        const [result$] = await this.matcher<void>()
-            .void(201, z.void())
-            .fail([409, 429, "4XX", 503, "5XX"])
-            .match(response);
-
-        return result$;
-    }
-
-    /**
-     * Update subscriber credentials
-     *
-     * @remarks
-     * Subscriber credentials associated to the delivery methods such as slack and push tokens.
-     */
-    async subscribersControllerUpdateSubscriberChannel(
-        subscriberId: string,
-        updateSubscriberChannelRequestDto: components.UpdateSubscriberChannelRequestDto,
-        options?: RequestOptions
-    ): Promise<components.SubscriberResponseDto> {
-        const input$: operations.SubscribersControllerUpdateSubscriberChannelRequest = {
-            subscriberId: subscriberId,
-            updateSubscriberChannelRequestDto: updateSubscriberChannelRequestDto,
-        };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Content-Type", "application/json");
-        headers$.set("Accept", "application/json");
-
-        const payload$ = schemas$.parse(
-            input$,
-            (value$) =>
-                operations.SubscribersControllerUpdateSubscriberChannelRequest$.outboundSchema.parse(
-                    value$
-                ),
-            "Input validation failed"
-        );
-        const body$ = encodeJSON$("body", payload$.UpdateSubscriberChannelRequestDto, {
-            explode: true,
-        });
-
-        const pathParams$ = {
-            subscriberId: encodeSimple$("subscriberId", payload$.subscriberId, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-        };
-        const path$ = this.templateURLComponent("/subscribers/{subscriberId}/credentials")(
-            pathParams$
-        );
-
-        const query$ = "";
-
-        let security$;
-        if (typeof this.options$.apiKey === "function") {
-            security$ = { apiKey: await this.options$.apiKey() };
-        } else if (this.options$.apiKey) {
-            security$ = { apiKey: this.options$.apiKey };
-        } else {
-            security$ = {};
-        }
-        const context = {
-            operationID: "SubscribersController_updateSubscriberChannel",
-            oAuth2Scopes: [],
-            securitySource: this.options$.apiKey,
-        };
-        const securitySettings$ = this.resolveGlobalSecurity(security$);
-
-        const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
-        const request$ = this.createRequest$(
-            context,
-            {
-                security: securitySettings$,
-                method: "PUT",
-                path: path$,
-                headers: headers$,
-                query: query$,
-                body: body$,
-            },
-            options
-        );
-
-        const response = await this.do$(request$, doOptions);
-
-        const [result$] = await this.matcher<components.SubscriberResponseDto>()
-            .json(200, components.SubscriberResponseDto$)
-            .fail([409, 429, "4XX", 503, "5XX"])
-            .match(response);
-
-        return result$;
-    }
-
-    /**
-     * Modify subscriber credentials
-     *
-     * @remarks
-     * Subscriber credentials associated to the delivery methods such as slack and push tokens.
-     *     This endpoint appends provided credentials and deviceTokens to the existing ones.
-     */
-    async subscribersControllerModifySubscriberChannel(
-        subscriberId: string,
-        updateSubscriberChannelRequestDto: components.UpdateSubscriberChannelRequestDto,
-        options?: RequestOptions
-    ): Promise<components.SubscriberResponseDto> {
-        const input$: operations.SubscribersControllerModifySubscriberChannelRequest = {
-            subscriberId: subscriberId,
-            updateSubscriberChannelRequestDto: updateSubscriberChannelRequestDto,
-        };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Content-Type", "application/json");
-        headers$.set("Accept", "application/json");
-
-        const payload$ = schemas$.parse(
-            input$,
-            (value$) =>
-                operations.SubscribersControllerModifySubscriberChannelRequest$.outboundSchema.parse(
-                    value$
-                ),
-            "Input validation failed"
-        );
-        const body$ = encodeJSON$("body", payload$.UpdateSubscriberChannelRequestDto, {
-            explode: true,
-        });
-
-        const pathParams$ = {
-            subscriberId: encodeSimple$("subscriberId", payload$.subscriberId, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-        };
-        const path$ = this.templateURLComponent("/subscribers/{subscriberId}/credentials")(
-            pathParams$
-        );
-
-        const query$ = "";
-
-        let security$;
-        if (typeof this.options$.apiKey === "function") {
-            security$ = { apiKey: await this.options$.apiKey() };
-        } else if (this.options$.apiKey) {
-            security$ = { apiKey: this.options$.apiKey };
-        } else {
-            security$ = {};
-        }
-        const context = {
-            operationID: "SubscribersController_modifySubscriberChannel",
-            oAuth2Scopes: [],
-            securitySource: this.options$.apiKey,
-        };
-        const securitySettings$ = this.resolveGlobalSecurity(security$);
-
-        const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
-        const request$ = this.createRequest$(
-            context,
-            {
-                security: securitySettings$,
-                method: "PATCH",
-                path: path$,
-                headers: headers$,
-                query: query$,
-                body: body$,
-            },
-            options
-        );
-
-        const response = await this.do$(request$, doOptions);
-
-        const [result$] = await this.matcher<components.SubscriberResponseDto>()
-            .json(200, components.SubscriberResponseDto$)
-            .fail([409, 429, "4XX", 503, "5XX"])
-            .match(response);
-
-        return result$;
-    }
-
-    /**
-     * Delete subscriber credentials by providerId
-     *
-     * @remarks
-     * Delete subscriber credentials such as slack and expo tokens.
-     */
-    async delete(
-        subscriberId: string,
-        providerId: string,
-        options?: RequestOptions
-    ): Promise<void> {
-        const input$: operations.SubscribersControllerDeleteSubscriberCredentialsRequest = {
-            subscriberId: subscriberId,
-            providerId: providerId,
-        };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "*/*");
-
-        const payload$ = schemas$.parse(
-            input$,
-            (value$) =>
-                operations.SubscribersControllerDeleteSubscriberCredentialsRequest$.outboundSchema.parse(
-                    value$
-                ),
-            "Input validation failed"
-        );
-        const body$ = null;
-
-        const pathParams$ = {
-            providerId: encodeSimple$("providerId", payload$.providerId, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-            subscriberId: encodeSimple$("subscriberId", payload$.subscriberId, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-        };
-        const path$ = this.templateURLComponent(
-            "/subscribers/{subscriberId}/credentials/{providerId}"
-        )(pathParams$);
-
-        const query$ = "";
-
-        let security$;
-        if (typeof this.options$.apiKey === "function") {
-            security$ = { apiKey: await this.options$.apiKey() };
-        } else if (this.options$.apiKey) {
-            security$ = { apiKey: this.options$.apiKey };
-        } else {
-            security$ = {};
-        }
-        const context = {
-            operationID: "SubscribersController_deleteSubscriberCredentials",
-            oAuth2Scopes: [],
-            securitySource: this.options$.apiKey,
-        };
-        const securitySettings$ = this.resolveGlobalSecurity(security$);
-
-        const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
-        const request$ = this.createRequest$(
-            context,
-            {
-                security: securitySettings$,
-                method: "DELETE",
-                path: path$,
-                headers: headers$,
-                query: query$,
-                body: body$,
-            },
-            options
-        );
-
-        const response = await this.do$(request$, doOptions);
-
-        const [result$] = await this.matcher<void>()
-            .void(204, z.void())
-            .fail([409, 429, "4XX", 503, "5XX"])
-            .match(response);
-
-        return result$;
-    }
-
-    /**
-     * Update subscriber online status
-     *
-     * @remarks
-     * Used to update the subscriber isOnline flag.
-     */
-    async subscribersControllerUpdateSubscriberOnlineFlag(
-        subscriberId: string,
-        updateSubscriberOnlineFlagRequestDto: components.UpdateSubscriberOnlineFlagRequestDto,
-        options?: RequestOptions
-    ): Promise<components.SubscriberResponseDto> {
-        const input$: operations.SubscribersControllerUpdateSubscriberOnlineFlagRequest = {
-            subscriberId: subscriberId,
-            updateSubscriberOnlineFlagRequestDto: updateSubscriberOnlineFlagRequestDto,
-        };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Content-Type", "application/json");
-        headers$.set("Accept", "application/json");
-
-        const payload$ = schemas$.parse(
-            input$,
-            (value$) =>
-                operations.SubscribersControllerUpdateSubscriberOnlineFlagRequest$.outboundSchema.parse(
-                    value$
-                ),
-            "Input validation failed"
-        );
-        const body$ = encodeJSON$("body", payload$.UpdateSubscriberOnlineFlagRequestDto, {
-            explode: true,
-        });
-
-        const pathParams$ = {
-            subscriberId: encodeSimple$("subscriberId", payload$.subscriberId, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-        };
-        const path$ = this.templateURLComponent("/subscribers/{subscriberId}/online-status")(
-            pathParams$
-        );
-
-        const query$ = "";
-
-        let security$;
-        if (typeof this.options$.apiKey === "function") {
-            security$ = { apiKey: await this.options$.apiKey() };
-        } else if (this.options$.apiKey) {
-            security$ = { apiKey: this.options$.apiKey };
-        } else {
-            security$ = {};
-        }
-        const context = {
-            operationID: "SubscribersController_updateSubscriberOnlineFlag",
-            oAuth2Scopes: [],
-            securitySource: this.options$.apiKey,
-        };
-        const securitySettings$ = this.resolveGlobalSecurity(security$);
-
-        const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
-        const request$ = this.createRequest$(
-            context,
-            {
-                security: securitySettings$,
-                method: "PATCH",
-                path: path$,
-                headers: headers$,
-                query: query$,
-                body: body$,
-            },
-            options
-        );
-
-        const response = await this.do$(request$, doOptions);
-
-        const [result$] = await this.matcher<components.SubscriberResponseDto>()
-            .json(200, components.SubscriberResponseDto$)
-            .fail([409, 429, "4XX", 503, "5XX"])
-            .match(response);
-
-        return result$;
-    }
-
-    /**
-     * Update subscriber global preferences
-     */
-    async subscribersControllerUpdateSubscriberGlobalPreferences(
-        subscriberId: string,
-        updateSubscriberGlobalPreferencesRequestDto: components.UpdateSubscriberGlobalPreferencesRequestDto,
-        options?: RequestOptions
-    ): Promise<components.UpdateSubscriberPreferenceResponseDto> {
-        const input$: operations.SubscribersControllerUpdateSubscriberGlobalPreferencesRequest = {
-            subscriberId: subscriberId,
-            updateSubscriberGlobalPreferencesRequestDto:
-                updateSubscriberGlobalPreferencesRequestDto,
-        };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Content-Type", "application/json");
-        headers$.set("Accept", "application/json");
-
-        const payload$ = schemas$.parse(
-            input$,
-            (value$) =>
-                operations.SubscribersControllerUpdateSubscriberGlobalPreferencesRequest$.outboundSchema.parse(
-                    value$
-                ),
-            "Input validation failed"
-        );
-        const body$ = encodeJSON$("body", payload$.UpdateSubscriberGlobalPreferencesRequestDto, {
-            explode: true,
-        });
-
-        const pathParams$ = {
-            subscriberId: encodeSimple$("subscriberId", payload$.subscriberId, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-        };
-        const path$ = this.templateURLComponent("/subscribers/{subscriberId}/preferences")(
-            pathParams$
-        );
-
-        const query$ = "";
-
-        let security$;
-        if (typeof this.options$.apiKey === "function") {
-            security$ = { apiKey: await this.options$.apiKey() };
-        } else if (this.options$.apiKey) {
-            security$ = { apiKey: this.options$.apiKey };
-        } else {
-            security$ = {};
-        }
-        const context = {
-            operationID: "SubscribersController_updateSubscriberGlobalPreferences",
-            oAuth2Scopes: [],
-            securitySource: this.options$.apiKey,
-        };
-        const securitySettings$ = this.resolveGlobalSecurity(security$);
-
-        const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
-        const request$ = this.createRequest$(
-            context,
-            {
-                security: securitySettings$,
-                method: "PATCH",
-                path: path$,
-                headers: headers$,
-                query: query$,
-                body: body$,
-            },
-            options
-        );
-
-        const response = await this.do$(request$, doOptions);
-
-        const [result$] = await this.matcher<components.UpdateSubscriberPreferenceResponseDto>()
-            .json(200, components.UpdateSubscriberPreferenceResponseDto$)
-            .fail([409, 429, "4XX", 503, "5XX"])
-            .match(response);
-
-        return result$;
-    }
-
-    /**
-     * Update subscriber preference
-     */
-    async subscribersControllerUpdateSubscriberPreference(
-        request: operations.SubscribersControllerUpdateSubscriberPreferenceRequest,
-        options?: RequestOptions
-    ): Promise<components.UpdateSubscriberPreferenceResponseDto> {
-        const input$ = request;
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Content-Type", "application/json");
-        headers$.set("Accept", "application/json");
-
-        const payload$ = schemas$.parse(
-            input$,
-            (value$) =>
-                operations.SubscribersControllerUpdateSubscriberPreferenceRequest$.outboundSchema.parse(
-                    value$
-                ),
-            "Input validation failed"
-        );
-        const body$ = encodeJSON$("body", payload$.UpdateSubscriberPreferenceRequestDto, {
-            explode: true,
-        });
-
-        const pathParams$ = {
-            parameter: encodeSimple$("parameter", payload$.parameter, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-            subscriberId: encodeSimple$("subscriberId", payload$.subscriberId, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-        };
-        const path$ = this.templateURLComponent(
-            "/subscribers/{subscriberId}/preferences/{parameter}"
-        )(pathParams$);
-
-        const query$ = "";
-
-        let security$;
-        if (typeof this.options$.apiKey === "function") {
-            security$ = { apiKey: await this.options$.apiKey() };
-        } else if (this.options$.apiKey) {
-            security$ = { apiKey: this.options$.apiKey };
-        } else {
-            security$ = {};
-        }
-        const context = {
-            operationID: "SubscribersController_updateSubscriberPreference",
-            oAuth2Scopes: [],
-            securitySource: this.options$.apiKey,
-        };
-        const securitySettings$ = this.resolveGlobalSecurity(security$);
-
-        const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
-        const request$ = this.createRequest$(
-            context,
-            {
-                security: securitySettings$,
-                method: "PATCH",
-                path: path$,
-                headers: headers$,
-                query: query$,
-                body: body$,
-            },
-            options
-        );
-
-        const response = await this.do$(request$, doOptions);
-
-        const [result$] = await this.matcher<components.UpdateSubscriberPreferenceResponseDto>()
-            .json(200, components.UpdateSubscriberPreferenceResponseDto$)
-            .fail([409, 429, "4XX", 503, "5XX"])
-            .match(response);
-
-        return result$;
-    }
-
-    /**
-     * Mark a subscriber messages as seen, read, unseen or unread
-     */
-    async subscribersControllerMarkMessagesAs(
-        subscriberId: string,
-        messageMarkAsRequestDto: components.MessageMarkAsRequestDto,
-        options?: RequestOptions
-    ): Promise<Array<components.MessageEntity>> {
-        const input$: operations.SubscribersControllerMarkMessagesAsRequest = {
-            subscriberId: subscriberId,
-            messageMarkAsRequestDto: messageMarkAsRequestDto,
-        };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Content-Type", "application/json");
-        headers$.set("Accept", "application/json");
-
-        const payload$ = schemas$.parse(
-            input$,
-            (value$) =>
-                operations.SubscribersControllerMarkMessagesAsRequest$.outboundSchema.parse(value$),
-            "Input validation failed"
-        );
-        const body$ = encodeJSON$("body", payload$.MessageMarkAsRequestDto, { explode: true });
-
-        const pathParams$ = {
-            subscriberId: encodeSimple$("subscriberId", payload$.subscriberId, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-        };
-        const path$ = this.templateURLComponent("/subscribers/{subscriberId}/messages/mark-as")(
-            pathParams$
-        );
-
-        const query$ = "";
-
-        let security$;
-        if (typeof this.options$.apiKey === "function") {
-            security$ = { apiKey: await this.options$.apiKey() };
-        } else if (this.options$.apiKey) {
-            security$ = { apiKey: this.options$.apiKey };
-        } else {
-            security$ = {};
-        }
-        const context = {
-            operationID: "SubscribersController_markMessagesAs",
-            oAuth2Scopes: [],
-            securitySource: this.options$.apiKey,
-        };
-        const securitySettings$ = this.resolveGlobalSecurity(security$);
-
-        const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
-        const request$ = this.createRequest$(
-            context,
-            {
-                security: securitySettings$,
-                method: "POST",
-                path: path$,
-                headers: headers$,
-                query: query$,
-                body: body$,
-            },
-            options
-        );
-
-        const response = await this.do$(request$, doOptions);
-
-        const [result$] = await this.matcher<Array<components.MessageEntity>>()
-            .json(201, z.array(components.MessageEntity$.inboundSchema))
-            .fail([409, 429, "4XX", 503, "5XX"])
-            .match(response);
-
-        return result$;
-    }
-
-    /**
-     * Marks all the subscriber messages as read, unread, seen or unseen. Optionally you can pass feed id (or array) to mark messages of a particular feed.
-     */
-    async subscribersControllerMarkAllUnreadAsRead(
-        subscriberId: string,
-        markAllMessageAsRequestDto: components.MarkAllMessageAsRequestDto,
-        options?: RequestOptions
-    ): Promise<number> {
-        const input$: operations.SubscribersControllerMarkAllUnreadAsReadRequest = {
-            subscriberId: subscriberId,
-            markAllMessageAsRequestDto: markAllMessageAsRequestDto,
-        };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Content-Type", "application/json");
-        headers$.set("Accept", "application/json");
-
-        const payload$ = schemas$.parse(
-            input$,
-            (value$) =>
-                operations.SubscribersControllerMarkAllUnreadAsReadRequest$.outboundSchema.parse(
-                    value$
-                ),
-            "Input validation failed"
-        );
-        const body$ = encodeJSON$("body", payload$.MarkAllMessageAsRequestDto, { explode: true });
-
-        const pathParams$ = {
-            subscriberId: encodeSimple$("subscriberId", payload$.subscriberId, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-        };
-        const path$ = this.templateURLComponent("/subscribers/{subscriberId}/messages/mark-all")(
-            pathParams$
-        );
-
-        const query$ = "";
-
-        let security$;
-        if (typeof this.options$.apiKey === "function") {
-            security$ = { apiKey: await this.options$.apiKey() };
-        } else if (this.options$.apiKey) {
-            security$ = { apiKey: this.options$.apiKey };
-        } else {
-            security$ = {};
-        }
-        const context = {
-            operationID: "SubscribersController_markAllUnreadAsRead",
-            oAuth2Scopes: [],
-            securitySource: this.options$.apiKey,
-        };
-        const securitySettings$ = this.resolveGlobalSecurity(security$);
-
-        const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
-        const request$ = this.createRequest$(
-            context,
-            {
-                security: securitySettings$,
-                method: "POST",
-                path: path$,
-                headers: headers$,
-                query: query$,
-                body: body$,
-            },
-            options
-        );
-
-        const response = await this.do$(request$, doOptions);
-
-        const [result$] = await this.matcher<number>()
-            .json(201, z.number())
-            .fail([409, 429, "4XX", 503, "5XX"])
-            .match(response);
-
-        return result$;
-    }
-
-    /**
-     * Mark message action as seen
-     */
-    async subscribersControllerMarkActionAsSeen(
-        request: operations.SubscribersControllerMarkActionAsSeenRequest,
-        options?: RequestOptions
-    ): Promise<components.MessageResponseDto> {
-        const input$ = request;
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Content-Type", "application/json");
-        headers$.set("Accept", "application/json");
-
-        const payload$ = schemas$.parse(
-            input$,
-            (value$) =>
-                operations.SubscribersControllerMarkActionAsSeenRequest$.outboundSchema.parse(
-                    value$
-                ),
-            "Input validation failed"
-        );
-        const body$ = encodeJSON$("body", payload$.MarkMessageActionAsSeenDto, { explode: true });
-
-        const pathParams$ = {
-            messageId: encodeSimple$("messageId", payload$.messageId, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-            subscriberId: encodeSimple$("subscriberId", payload$.subscriberId, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-            type: encodeSimple$("type", payload$.type, { explode: false, charEncoding: "percent" }),
-        };
-        const path$ = this.templateURLComponent(
-            "/subscribers/{subscriberId}/messages/{messageId}/actions/{type}"
-        )(pathParams$);
-
-        const query$ = "";
-
-        let security$;
-        if (typeof this.options$.apiKey === "function") {
-            security$ = { apiKey: await this.options$.apiKey() };
-        } else if (this.options$.apiKey) {
-            security$ = { apiKey: this.options$.apiKey };
-        } else {
-            security$ = {};
-        }
-        const context = {
-            operationID: "SubscribersController_markActionAsSeen",
-            oAuth2Scopes: [],
-            securitySource: this.options$.apiKey,
-        };
-        const securitySettings$ = this.resolveGlobalSecurity(security$);
-
-        const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
-        const request$ = this.createRequest$(
-            context,
-            {
-                security: securitySettings$,
-                method: "POST",
-                path: path$,
-                headers: headers$,
-                query: query$,
-                body: body$,
-            },
-            options
-        );
-
-        const response = await this.do$(request$, doOptions);
-
-        const [result$] = await this.matcher<components.MessageResponseDto>()
-            .json(201, components.MessageResponseDto$)
-            .fail([409, 429, "4XX", 503, "5XX"])
-            .match(response);
-
-        return result$;
-    }
-
-    /**
-     * Handle providers oauth redirect
-     */
-    async subscribersControllerChatOauthCallback(
-        request: operations.SubscribersControllerChatOauthCallbackRequest,
-        options?: RequestOptions
-    ): Promise<operations.SubscribersControllerChatOauthCallbackResponseBody> {
-        const input$ = request;
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "application/json");
-
-        const payload$ = schemas$.parse(
-            input$,
-            (value$) =>
-                operations.SubscribersControllerChatOauthCallbackRequest$.outboundSchema.parse(
-                    value$
-                ),
-            "Input validation failed"
-        );
-        const body$ = null;
-
-        const pathParams$ = {
-            providerId: encodeSimple$("providerId", payload$.providerId, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-            subscriberId: encodeSimple$("subscriberId", payload$.subscriberId, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-        };
-        const path$ = this.templateURLComponent(
-            "/subscribers/{subscriberId}/credentials/{providerId}/oauth/callback"
-        )(pathParams$);
-
-        const query$ = encodeFormQuery$({
-            hmacHash: payload$.hmacHash,
-            environmentId: payload$.environmentId,
-            integrationIdentifier: payload$.integrationIdentifier,
-            code: payload$.code,
-        });
-
-        let security$;
-        if (typeof this.options$.apiKey === "function") {
-            security$ = { apiKey: await this.options$.apiKey() };
-        } else if (this.options$.apiKey) {
-            security$ = { apiKey: this.options$.apiKey };
-        } else {
-            security$ = {};
-        }
-        const context = {
-            operationID: "SubscribersController_chatOauthCallback",
-            oAuth2Scopes: [],
-            securitySource: this.options$.apiKey,
-        };
-        const securitySettings$ = this.resolveGlobalSecurity(security$);
-
-        const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
-        const request$ = this.createRequest$(
-            context,
-            {
-                security: securitySettings$,
-                method: "GET",
-                path: path$,
-                headers: headers$,
-                query: query$,
-                body: body$,
-            },
-            options
-        );
-
-        const response = await this.do$(request$, doOptions);
-
-        const [result$] =
-            await this.matcher<operations.SubscribersControllerChatOauthCallbackResponseBody>()
-                .json(200, operations.SubscribersControllerChatOauthCallbackResponseBody$)
-                .fail([409, 429, "4XX", 503, "5XX"])
-                .match(response);
-
-        return result$;
-    }
-
-    /**
-     * Handle chat oauth
-     */
-    async subscribersControllerChatAccessOauth(
-        request: operations.SubscribersControllerChatAccessOauthRequest,
-        options?: RequestOptions
-    ): Promise<void> {
-        const input$ = request;
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "*/*");
-
-        const payload$ = schemas$.parse(
-            input$,
-            (value$) =>
-                operations.SubscribersControllerChatAccessOauthRequest$.outboundSchema.parse(
-                    value$
-                ),
-            "Input validation failed"
-        );
-        const body$ = null;
-
-        const pathParams$ = {
-            providerId: encodeSimple$("providerId", payload$.providerId, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-            subscriberId: encodeSimple$("subscriberId", payload$.subscriberId, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-        };
-        const path$ = this.templateURLComponent(
-            "/subscribers/{subscriberId}/credentials/{providerId}/oauth"
-        )(pathParams$);
-
-        const query$ = encodeFormQuery$({
-            integrationIdentifier: payload$.integrationIdentifier,
-            hmacHash: payload$.hmacHash,
-            environmentId: payload$.environmentId,
-        });
-
-        let security$;
-        if (typeof this.options$.apiKey === "function") {
-            security$ = { apiKey: await this.options$.apiKey() };
-        } else if (this.options$.apiKey) {
-            security$ = { apiKey: this.options$.apiKey };
-        } else {
-            security$ = {};
-        }
-        const context = {
-            operationID: "SubscribersController_chatAccessOauth",
-            oAuth2Scopes: [],
-            securitySource: this.options$.apiKey,
-        };
-        const securitySettings$ = this.resolveGlobalSecurity(security$);
-
-        const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
-        const request$ = this.createRequest$(
-            context,
-            {
-                security: securitySettings$,
-                method: "GET",
-                path: path$,
-                headers: headers$,
-                query: query$,
-                body: body$,
-            },
-            options
-        );
-
-        const response = await this.do$(request$, doOptions);
-
-        const [result$] = await this.matcher<void>()
-            .void(200, z.void())
             .fail([409, 429, "4XX", 503, "5XX"])
             .match(response);
 

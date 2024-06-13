@@ -6,7 +6,9 @@ import { remap as remap$ } from "../../lib/primitives";
 import { ClosedEnum } from "../../types";
 import * as z from "zod";
 
-export const ChangeResponseDtoType = {
+export type Change = {};
+
+export const Type = {
     Feed: "Feed",
     MessageTemplate: "MessageTemplate",
     Layout: "Layout",
@@ -16,28 +18,20 @@ export const ChangeResponseDtoType = {
     TranslationGroup: "TranslationGroup",
     Translation: "Translation",
 } as const;
-export type ChangeResponseDtoType = ClosedEnum<typeof ChangeResponseDtoType>;
-
-export type Change = {};
+export type Type = ClosedEnum<typeof Type>;
 
 export type ChangeResponseDto = {
-    id?: string | undefined;
     creatorId: string;
-    environmentId: string;
-    organizationId: string;
     entityId: string;
-    enabled: boolean;
-    type: ChangeResponseDtoType;
+    environmentId: string;
+    id?: string | undefined;
+    organizationId: string;
+    parentId?: string | undefined;
     change: Change;
     createdAt: string;
-    parentId?: string | undefined;
+    enabled: boolean;
+    type: Type;
 };
-
-/** @internal */
-export namespace ChangeResponseDtoType$ {
-    export const inboundSchema = z.nativeEnum(ChangeResponseDtoType);
-    export const outboundSchema = inboundSchema;
-}
 
 /** @internal */
 export namespace Change$ {
@@ -49,64 +43,70 @@ export namespace Change$ {
 }
 
 /** @internal */
+export namespace Type$ {
+    export const inboundSchema = z.nativeEnum(Type);
+    export const outboundSchema = inboundSchema;
+}
+
+/** @internal */
 export namespace ChangeResponseDto$ {
     export const inboundSchema: z.ZodType<ChangeResponseDto, z.ZodTypeDef, unknown> = z
         .object({
-            _id: z.string().optional(),
             _creatorId: z.string(),
-            _environmentId: z.string(),
-            _organizationId: z.string(),
             _entityId: z.string(),
-            enabled: z.boolean(),
-            type: ChangeResponseDtoType$.inboundSchema,
+            _environmentId: z.string(),
+            _id: z.string().optional(),
+            _organizationId: z.string(),
+            _parentId: z.string().optional(),
             change: z.lazy(() => Change$.inboundSchema),
             createdAt: z.string(),
-            _parentId: z.string().optional(),
+            enabled: z.boolean(),
+            type: Type$.inboundSchema,
         })
         .transform((v) => {
             return remap$(v, {
-                _id: "id",
                 _creatorId: "creatorId",
-                _environmentId: "environmentId",
-                _organizationId: "organizationId",
                 _entityId: "entityId",
+                _environmentId: "environmentId",
+                _id: "id",
+                _organizationId: "organizationId",
                 _parentId: "parentId",
             });
         });
 
     export type Outbound = {
-        _id?: string | undefined;
         _creatorId: string;
-        _environmentId: string;
-        _organizationId: string;
         _entityId: string;
-        enabled: boolean;
-        type: string;
+        _environmentId: string;
+        _id?: string | undefined;
+        _organizationId: string;
+        _parentId?: string | undefined;
         change: Change$.Outbound;
         createdAt: string;
-        _parentId?: string | undefined;
+        enabled: boolean;
+        type: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ChangeResponseDto> = z
         .object({
-            id: z.string().optional(),
             creatorId: z.string(),
-            environmentId: z.string(),
-            organizationId: z.string(),
             entityId: z.string(),
-            enabled: z.boolean(),
-            type: ChangeResponseDtoType$.outboundSchema,
+            environmentId: z.string(),
+            id: z.string().optional(),
+            organizationId: z.string(),
+            parentId: z.string().optional(),
             change: z.lazy(() => Change$.outboundSchema),
             createdAt: z.string(),
-            parentId: z.string().optional(),
+            enabled: z.boolean(),
+            type: Type$.outboundSchema,
         })
         .transform((v) => {
             return remap$(v, {
-                id: "_id",
                 creatorId: "_creatorId",
-                environmentId: "_environmentId",
-                organizationId: "_organizationId",
                 entityId: "_entityId",
+                environmentId: "_environmentId",
+                id: "_id",
+                organizationId: "_organizationId",
                 parentId: "_parentId",
             });
         });

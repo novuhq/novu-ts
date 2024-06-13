@@ -40,59 +40,6 @@ export class WorkflowGroups extends ClientSDK {
     }
 
     /**
-     * Get workflow groups
-     *
-     * @remarks
-     * workflow group was previously named notification group
-     */
-    async list(options?: RequestOptions): Promise<Array<components.NotificationGroupResponseDto>> {
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "application/json");
-
-        const path$ = this.templateURLComponent("/notification-groups")();
-
-        const query$ = "";
-
-        let security$;
-        if (typeof this.options$.apiKey === "function") {
-            security$ = { apiKey: await this.options$.apiKey() };
-        } else if (this.options$.apiKey) {
-            security$ = { apiKey: this.options$.apiKey };
-        } else {
-            security$ = {};
-        }
-        const context = {
-            operationID: "NotificationGroupsController_listNotificationGroups",
-            oAuth2Scopes: [],
-            securitySource: this.options$.apiKey,
-        };
-        const securitySettings$ = this.resolveGlobalSecurity(security$);
-
-        const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
-        const request$ = this.createRequest$(
-            context,
-            {
-                security: securitySettings$,
-                method: "GET",
-                path: path$,
-                headers: headers$,
-                query: query$,
-            },
-            options
-        );
-
-        const response = await this.do$(request$, doOptions);
-
-        const [result$] = await this.matcher<Array<components.NotificationGroupResponseDto>>()
-            .json(200, z.array(components.NotificationGroupResponseDto$.inboundSchema))
-            .fail([409, 429, "4XX", 503, "5XX"])
-            .match(response);
-
-        return result$;
-    }
-
-    /**
      * Create workflow group
      *
      * @remarks
@@ -152,79 +99,6 @@ export class WorkflowGroups extends ClientSDK {
 
         const [result$] = await this.matcher<components.NotificationGroupResponseDto>()
             .json(201, components.NotificationGroupResponseDto$)
-            .fail([409, 429, "4XX", 503, "5XX"])
-            .match(response);
-
-        return result$;
-    }
-
-    /**
-     * Get workflow group
-     *
-     * @remarks
-     * workflow group was previously named notification group
-     */
-    async retrieve(
-        id: string,
-        options?: RequestOptions
-    ): Promise<components.NotificationGroupResponseDto> {
-        const input$: operations.NotificationGroupsControllerGetNotificationGroupRequest = {
-            id: id,
-        };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "application/json");
-
-        const payload$ = schemas$.parse(
-            input$,
-            (value$) =>
-                operations.NotificationGroupsControllerGetNotificationGroupRequest$.outboundSchema.parse(
-                    value$
-                ),
-            "Input validation failed"
-        );
-        const body$ = null;
-
-        const pathParams$ = {
-            id: encodeSimple$("id", payload$.id, { explode: false, charEncoding: "percent" }),
-        };
-        const path$ = this.templateURLComponent("/notification-groups/{id}")(pathParams$);
-
-        const query$ = "";
-
-        let security$;
-        if (typeof this.options$.apiKey === "function") {
-            security$ = { apiKey: await this.options$.apiKey() };
-        } else if (this.options$.apiKey) {
-            security$ = { apiKey: this.options$.apiKey };
-        } else {
-            security$ = {};
-        }
-        const context = {
-            operationID: "NotificationGroupsController_getNotificationGroup",
-            oAuth2Scopes: [],
-            securitySource: this.options$.apiKey,
-        };
-        const securitySettings$ = this.resolveGlobalSecurity(security$);
-
-        const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
-        const request$ = this.createRequest$(
-            context,
-            {
-                security: securitySettings$,
-                method: "GET",
-                path: path$,
-                headers: headers$,
-                query: query$,
-                body: body$,
-            },
-            options
-        );
-
-        const response = await this.do$(request$, doOptions);
-
-        const [result$] = await this.matcher<components.NotificationGroupResponseDto>()
-            .json(200, components.NotificationGroupResponseDto$)
             .fail([409, 429, "4XX", 503, "5XX"])
             .match(response);
 
@@ -305,12 +179,138 @@ export class WorkflowGroups extends ClientSDK {
     }
 
     /**
+     * Get workflow groups
+     *
+     * @remarks
+     * workflow group was previously named notification group
+     */
+    async list(options?: RequestOptions): Promise<Array<components.NotificationGroupResponseDto>> {
+        const headers$ = new Headers();
+        headers$.set("user-agent", SDK_METADATA.userAgent);
+        headers$.set("Accept", "application/json");
+
+        const path$ = this.templateURLComponent("/notification-groups")();
+
+        const query$ = "";
+
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "NotificationGroupsController_listNotificationGroups",
+            oAuth2Scopes: [],
+            securitySource: this.options$.apiKey,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
+
+        const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
+        const request$ = this.createRequest$(
+            context,
+            {
+                security: securitySettings$,
+                method: "GET",
+                path: path$,
+                headers: headers$,
+                query: query$,
+            },
+            options
+        );
+
+        const response = await this.do$(request$, doOptions);
+
+        const [result$] = await this.matcher<Array<components.NotificationGroupResponseDto>>()
+            .json(200, z.array(components.NotificationGroupResponseDto$.inboundSchema))
+            .fail([409, 429, "4XX", 503, "5XX"])
+            .match(response);
+
+        return result$;
+    }
+
+    /**
+     * Get workflow group
+     *
+     * @remarks
+     * workflow group was previously named notification group
+     */
+    async retrieve(
+        id: string,
+        options?: RequestOptions
+    ): Promise<components.NotificationGroupResponseDto> {
+        const input$: operations.NotificationGroupsControllerGetNotificationGroupRequest = {
+            id: id,
+        };
+        const headers$ = new Headers();
+        headers$.set("user-agent", SDK_METADATA.userAgent);
+        headers$.set("Accept", "application/json");
+
+        const payload$ = schemas$.parse(
+            input$,
+            (value$) =>
+                operations.NotificationGroupsControllerGetNotificationGroupRequest$.outboundSchema.parse(
+                    value$
+                ),
+            "Input validation failed"
+        );
+        const body$ = null;
+
+        const pathParams$ = {
+            id: encodeSimple$("id", payload$.id, { explode: false, charEncoding: "percent" }),
+        };
+        const path$ = this.templateURLComponent("/notification-groups/{id}")(pathParams$);
+
+        const query$ = "";
+
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "NotificationGroupsController_getNotificationGroup",
+            oAuth2Scopes: [],
+            securitySource: this.options$.apiKey,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
+
+        const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
+        const request$ = this.createRequest$(
+            context,
+            {
+                security: securitySettings$,
+                method: "GET",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                body: body$,
+            },
+            options
+        );
+
+        const response = await this.do$(request$, doOptions);
+
+        const [result$] = await this.matcher<components.NotificationGroupResponseDto>()
+            .json(200, components.NotificationGroupResponseDto$)
+            .fail([409, 429, "4XX", 503, "5XX"])
+            .match(response);
+
+        return result$;
+    }
+
+    /**
      * Update workflow group
      *
      * @remarks
      * workflow group was previously named notification group
      */
-    async notificationGroupsControllerUpdateNotificationGroup(
+    async update(
         id: string,
         createNotificationGroupRequestDto: components.CreateNotificationGroupRequestDto,
         options?: RequestOptions

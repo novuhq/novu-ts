@@ -18,20 +18,20 @@ export const IntegrationResponseDtoChannel = {
 export type IntegrationResponseDtoChannel = ClosedEnum<typeof IntegrationResponseDtoChannel>;
 
 export type IntegrationResponseDto = {
-    id?: string | undefined;
     environmentId: string;
+    id?: string | undefined;
     organizationId: string;
-    name: string;
-    identifier: string;
-    providerId: string;
-    channel: IntegrationResponseDtoChannel;
-    credentials: CredentialsDto;
     active: boolean;
+    channel: IntegrationResponseDtoChannel;
+    conditions?: Array<StepFilter> | undefined;
+    credentials: CredentialsDto;
     deleted: boolean;
     deletedAt: string;
     deletedBy: string;
+    identifier: string;
+    name: string;
     primary: boolean;
-    conditions?: Array<StepFilter> | undefined;
+    providerId: string;
 };
 
 /** @internal */
@@ -44,67 +44,67 @@ export namespace IntegrationResponseDtoChannel$ {
 export namespace IntegrationResponseDto$ {
     export const inboundSchema: z.ZodType<IntegrationResponseDto, z.ZodTypeDef, unknown> = z
         .object({
-            _id: z.string().optional(),
             _environmentId: z.string(),
+            _id: z.string().optional(),
             _organizationId: z.string(),
-            name: z.string(),
-            identifier: z.string(),
-            providerId: z.string(),
-            channel: IntegrationResponseDtoChannel$.inboundSchema,
-            credentials: CredentialsDto$.inboundSchema,
             active: z.boolean(),
+            channel: IntegrationResponseDtoChannel$.inboundSchema,
+            conditions: z.array(StepFilter$.inboundSchema).optional(),
+            credentials: CredentialsDto$.inboundSchema,
             deleted: z.boolean(),
             deletedAt: z.string(),
             deletedBy: z.string(),
+            identifier: z.string(),
+            name: z.string(),
             primary: z.boolean(),
-            conditions: z.array(StepFilter$.inboundSchema).optional(),
+            providerId: z.string(),
         })
         .transform((v) => {
             return remap$(v, {
-                _id: "id",
                 _environmentId: "environmentId",
+                _id: "id",
                 _organizationId: "organizationId",
             });
         });
 
     export type Outbound = {
-        _id?: string | undefined;
         _environmentId: string;
+        _id?: string | undefined;
         _organizationId: string;
-        name: string;
-        identifier: string;
-        providerId: string;
-        channel: string;
-        credentials: CredentialsDto$.Outbound;
         active: boolean;
+        channel: string;
+        conditions?: Array<StepFilter$.Outbound> | undefined;
+        credentials: CredentialsDto$.Outbound;
         deleted: boolean;
         deletedAt: string;
         deletedBy: string;
+        identifier: string;
+        name: string;
         primary: boolean;
-        conditions?: Array<StepFilter$.Outbound> | undefined;
+        providerId: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, IntegrationResponseDto> = z
         .object({
-            id: z.string().optional(),
             environmentId: z.string(),
+            id: z.string().optional(),
             organizationId: z.string(),
-            name: z.string(),
-            identifier: z.string(),
-            providerId: z.string(),
-            channel: IntegrationResponseDtoChannel$.outboundSchema,
-            credentials: CredentialsDto$.outboundSchema,
             active: z.boolean(),
+            channel: IntegrationResponseDtoChannel$.outboundSchema,
+            conditions: z.array(StepFilter$.outboundSchema).optional(),
+            credentials: CredentialsDto$.outboundSchema,
             deleted: z.boolean(),
             deletedAt: z.string(),
             deletedBy: z.string(),
+            identifier: z.string(),
+            name: z.string(),
             primary: z.boolean(),
-            conditions: z.array(StepFilter$.outboundSchema).optional(),
+            providerId: z.string(),
         })
         .transform((v) => {
             return remap$(v, {
-                id: "_id",
                 environmentId: "_environmentId",
+                id: "_id",
                 organizationId: "_organizationId",
             });
         });

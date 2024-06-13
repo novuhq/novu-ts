@@ -7,9 +7,9 @@ import * as z from "zod";
 
 export type MemberUserDto = {
     id: string;
+    email: string;
     firstName: string;
     lastName: string;
-    email: string;
 };
 
 /** @internal */
@@ -17,9 +17,9 @@ export namespace MemberUserDto$ {
     export const inboundSchema: z.ZodType<MemberUserDto, z.ZodTypeDef, unknown> = z
         .object({
             _id: z.string(),
+            email: z.string(),
             firstName: z.string(),
             lastName: z.string(),
-            email: z.string(),
         })
         .transform((v) => {
             return remap$(v, {
@@ -29,17 +29,17 @@ export namespace MemberUserDto$ {
 
     export type Outbound = {
         _id: string;
+        email: string;
         firstName: string;
         lastName: string;
-        email: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, MemberUserDto> = z
         .object({
             id: z.string(),
+            email: z.string(),
             firstName: z.string(),
             lastName: z.string(),
-            email: z.string(),
         })
         .transform((v) => {
             return remap$(v, {

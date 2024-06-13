@@ -6,27 +6,25 @@ import { remap as remap$ } from "../../lib/primitives";
 import { ClosedEnum } from "../../types";
 import * as z from "zod";
 
-export const ActivityGraphStatesResponseChannels = {
+export const Channels = {
     InApp: "in_app",
     Email: "email",
     Sms: "sms",
     Chat: "chat",
     Push: "push",
 } as const;
-export type ActivityGraphStatesResponseChannels = ClosedEnum<
-    typeof ActivityGraphStatesResponseChannels
->;
+export type Channels = ClosedEnum<typeof Channels>;
 
 export type ActivityGraphStatesResponse = {
     id: string;
+    channels: Array<Channels>;
     count: number;
     templates: Array<string>;
-    channels: Array<ActivityGraphStatesResponseChannels>;
 };
 
 /** @internal */
-export namespace ActivityGraphStatesResponseChannels$ {
-    export const inboundSchema = z.nativeEnum(ActivityGraphStatesResponseChannels);
+export namespace Channels$ {
+    export const inboundSchema = z.nativeEnum(Channels);
     export const outboundSchema = inboundSchema;
 }
 
@@ -35,9 +33,9 @@ export namespace ActivityGraphStatesResponse$ {
     export const inboundSchema: z.ZodType<ActivityGraphStatesResponse, z.ZodTypeDef, unknown> = z
         .object({
             _id: z.string(),
+            channels: z.array(Channels$.inboundSchema),
             count: z.number(),
             templates: z.array(z.string()),
-            channels: z.array(ActivityGraphStatesResponseChannels$.inboundSchema),
         })
         .transform((v) => {
             return remap$(v, {
@@ -47,17 +45,17 @@ export namespace ActivityGraphStatesResponse$ {
 
     export type Outbound = {
         _id: string;
+        channels: Array<string>;
         count: number;
         templates: Array<string>;
-        channels: Array<string>;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ActivityGraphStatesResponse> = z
         .object({
             id: z.string(),
+            channels: z.array(Channels$.outboundSchema),
             count: z.number(),
             templates: z.array(z.string()),
-            channels: z.array(ActivityGraphStatesResponseChannels$.outboundSchema),
         })
         .transform((v) => {
             return remap$(v, {

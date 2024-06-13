@@ -8,50 +8,10 @@ An organization serves as a separate entity within your Novu account. Each organ
 <https://docs.novu.co/platform/organizations>
 ### Available Operations
 
-* [list](#list) - Fetch all organizations
 * [create](#create) - Create an organization
-* [organizationControllerRename](#organizationcontrollerrename) - Rename organization name
-* [organizationControllerSelf](#organizationcontrollerself) - Fetch current organization details
-
-## list
-
-Fetch all organizations
-
-### Example Usage
-
-```typescript
-import { Novu } from "novu-typescript";
-
-const novu = new Novu({
-  apiKey: "<YOUR_API_KEY_HERE>",
-});
-
-async function run() {
-  const result = await novu.organizations.list();
-
-  // Handle the result
-  console.log(result)
-}
-
-run();
-```
-
-### Parameters
-
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-
-
-### Response
-
-**Promise\<[components.OrganizationResponseDto[]](../../models/.md)\>**
-### Errors
-
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+* [list](#list) - Fetch all organizations
+* [rename](#rename) - Rename organization name
+* [retrieve](#retrieve) - Fetch current organization details
 
 ## create
 
@@ -96,7 +56,47 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
 
-## organizationControllerRename
+## list
+
+Fetch all organizations
+
+### Example Usage
+
+```typescript
+import { Novu } from "novu-typescript";
+
+const novu = new Novu({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await novu.organizations.list();
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+
+
+### Response
+
+**Promise\<[components.OrganizationResponseDto[]](../../models/.md)\>**
+### Errors
+
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4xx-5xx         | */*             |
+
+## rename
 
 Rename organization name
 
@@ -110,7 +110,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.organizations.organizationControllerRename({
+  const result = await novu.organizations.rename({
     name: "<value>",
   });
 
@@ -139,7 +139,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
 
-## organizationControllerSelf
+## retrieve
 
 Fetch current organization details
 
@@ -153,7 +153,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.organizations.organizationControllerSelf();
+  const result = await novu.organizations.retrieve();
 
   // Handle the result
   console.log(result)

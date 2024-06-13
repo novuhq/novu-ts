@@ -8,13 +8,98 @@ With the help of the Integration Store, you can easily integrate your favorite d
 <https://docs.novu.co/channels-and-providers/integration-store>
 ### Available Operations
 
-* [list](#list) - Get integrations
 * [create](#create) - Create integration
+* [delete](#delete) - Delete integration
+* [list](#list) - Get integrations
 * [listActive](#listactive) - Get active integrations
-* [retrieve](#retrieve) - Get webhook support status for provider
-* [integrationsControllerUpdateIntegrationById](#integrationscontrollerupdateintegrationbyid) - Update integration
-* [integrationsControllerRemoveIntegration](#integrationscontrollerremoveintegration) - Delete integration
-* [integrationsControllerSetIntegrationAsPrimary](#integrationscontrollersetintegrationasprimary) - Set integration as primary
+* [setAsPrimary](#setasprimary) - Set integration as primary
+* [update](#update) - Update integration
+
+## create
+
+Create an integration for the current environment the user is based on the API key provided
+
+### Example Usage
+
+```typescript
+import { Novu } from "novu-typescript";
+import { Channel } from "novu-typescript/models/components";
+
+const novu = new Novu({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await novu.integrations.create({
+    channel: Channel.Sms,
+    providerId: "<value>",
+  });
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [components.CreateIntegrationRequestDto](../../models/components/createintegrationrequestdto.md)                                                                               | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+
+
+### Response
+
+**Promise\<[components.IntegrationResponseDto](../../models/components/integrationresponsedto.md)\>**
+### Errors
+
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4xx-5xx         | */*             |
+
+## delete
+
+Delete integration
+
+### Example Usage
+
+```typescript
+import { Novu } from "novu-typescript";
+
+const novu = new Novu({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await novu.integrations.delete("<value>");
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `integrationId`                                                                                                                                                                | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+
+
+### Response
+
+**Promise\<[components.IntegrationResponseDto[]](../../models/.md)\>**
+### Errors
+
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4xx-5xx         | */*             |
 
 ## list
 
@@ -50,51 +135,6 @@ run();
 ### Response
 
 **Promise\<[components.IntegrationResponseDto[]](../../models/.md)\>**
-### Errors
-
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
-## create
-
-Create an integration for the current environment the user is based on the API key provided
-
-### Example Usage
-
-```typescript
-import { Novu } from "novu-typescript";
-import { CreateIntegrationRequestDtoChannel } from "novu-typescript/models/components";
-
-const novu = new Novu({
-  apiKey: "<YOUR_API_KEY_HERE>",
-});
-
-async function run() {
-  const result = await novu.integrations.create({
-    providerId: "<value>",
-    channel: CreateIntegrationRequestDtoChannel.Sms,
-  });
-
-  // Handle the result
-  console.log(result)
-}
-
-run();
-```
-
-### Parameters
-
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [components.CreateIntegrationRequestDto](../../models/components/createintegrationrequestdto.md)                                                                               | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-
-
-### Response
-
-**Promise\<[components.IntegrationResponseDto](../../models/components/integrationresponsedto.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -141,9 +181,9 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
 
-## retrieve
+## setAsPrimary
 
-Return the status of the webhook for this provider, if it is supported or if it is not based on a boolean value
+Set integration as primary
 
 ### Example Usage
 
@@ -155,7 +195,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.integrations.retrieve("<value>");
+  const result = await novu.integrations.setAsPrimary("<value>");
 
   // Handle the result
   console.log(result)
@@ -168,21 +208,21 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `providerOrIntegrationId`                                                                                                                                                      | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
+| `integrationId`                                                                                                                                                                | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 
 
 ### Response
 
-**Promise\<[boolean](../../models/.md)\>**
+**Promise\<[components.IntegrationResponseDto](../../models/components/integrationresponsedto.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
 
-## integrationsControllerUpdateIntegrationById
+## update
 
 Update integration
 
@@ -196,7 +236,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.integrations.integrationsControllerUpdateIntegrationById("<value>", {});
+  const result = await novu.integrations.update("<value>", {});
 
   // Handle the result
   console.log(result)
@@ -211,88 +251,6 @@ run();
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `integrationId`                                                                                                                                                                | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
 | `updateIntegrationRequestDto`                                                                                                                                                  | [components.UpdateIntegrationRequestDto](../../models/components/updateintegrationrequestdto.md)                                                                               | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-
-
-### Response
-
-**Promise\<[components.IntegrationResponseDto](../../models/components/integrationresponsedto.md)\>**
-### Errors
-
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
-## integrationsControllerRemoveIntegration
-
-Delete integration
-
-### Example Usage
-
-```typescript
-import { Novu } from "novu-typescript";
-
-const novu = new Novu({
-  apiKey: "<YOUR_API_KEY_HERE>",
-});
-
-async function run() {
-  const result = await novu.integrations.integrationsControllerRemoveIntegration("<value>");
-
-  // Handle the result
-  console.log(result)
-}
-
-run();
-```
-
-### Parameters
-
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `integrationId`                                                                                                                                                                | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-
-
-### Response
-
-**Promise\<[components.IntegrationResponseDto[]](../../models/.md)\>**
-### Errors
-
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
-## integrationsControllerSetIntegrationAsPrimary
-
-Set integration as primary
-
-### Example Usage
-
-```typescript
-import { Novu } from "novu-typescript";
-
-const novu = new Novu({
-  apiKey: "<YOUR_API_KEY_HERE>",
-});
-
-async function run() {
-  const result = await novu.integrations.integrationsControllerSetIntegrationAsPrimary("<value>");
-
-  // Handle the result
-  console.log(result)
-}
-
-run();
-```
-
-### Parameters
-
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `integrationId`                                                                                                                                                                | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 

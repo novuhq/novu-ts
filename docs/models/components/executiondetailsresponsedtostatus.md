@@ -1,4 +1,4 @@
-# ActivityNotificationExecutionDetailResponseDtoStatus
+# ExecutionDetailsResponseDtoStatus
 
 
 ## Values

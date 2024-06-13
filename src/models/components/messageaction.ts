@@ -14,9 +14,9 @@ export const MessageActionStatus = {
 export type MessageActionStatus = ClosedEnum<typeof MessageActionStatus>;
 
 export type MessageAction = {
-    status?: MessageActionStatus | undefined;
     buttons?: Array<MessageButton> | undefined;
     result?: MessageActionResult | undefined;
+    status?: MessageActionStatus | undefined;
 };
 
 /** @internal */
@@ -28,20 +28,20 @@ export namespace MessageActionStatus$ {
 /** @internal */
 export namespace MessageAction$ {
     export const inboundSchema: z.ZodType<MessageAction, z.ZodTypeDef, unknown> = z.object({
-        status: MessageActionStatus$.inboundSchema.optional(),
         buttons: z.array(MessageButton$.inboundSchema).optional(),
         result: MessageActionResult$.inboundSchema.optional(),
+        status: MessageActionStatus$.inboundSchema.optional(),
     });
 
     export type Outbound = {
-        status?: string | undefined;
         buttons?: Array<MessageButton$.Outbound> | undefined;
         result?: MessageActionResult$.Outbound | undefined;
+        status?: string | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, MessageAction> = z.object({
-        status: MessageActionStatus$.outboundSchema.optional(),
         buttons: z.array(MessageButton$.outboundSchema).optional(),
         result: MessageActionResult$.outboundSchema.optional(),
+        status: MessageActionStatus$.outboundSchema.optional(),
     });
 }

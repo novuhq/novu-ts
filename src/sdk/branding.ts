@@ -40,7 +40,7 @@ export class Branding extends ClientSDK {
     /**
      * Update organization branding details
      */
-    async organizationControllerUpdateBrandingDetails(
+    async update(
         request: components.UpdateBrandingDetailsDto,
         options?: RequestOptions
     ): Promise<components.OrganizationBrandingResponseDto> {

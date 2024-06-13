@@ -1,4 +1,4 @@
-# CreateSubscriberRequestDtoData
+# SubscriberChannelDtoProviderId
 
 
 ## Fields

@@ -8,13 +8,13 @@ import * as z from "zod";
 
 export type GetSubscriberPreferencesResponseDto = {
     /**
-     * The workflow information and if it is critical or not
-     */
-    template?: TemplateResponse | undefined;
-    /**
      * The preferences of the subscriber regarding the related workflow
      */
     preference: Preference;
+    /**
+     * The workflow information and if it is critical or not
+     */
+    template?: TemplateResponse | undefined;
 };
 
 /** @internal */
@@ -24,13 +24,13 @@ export namespace GetSubscriberPreferencesResponseDto$ {
         z.ZodTypeDef,
         unknown
     > = z.object({
-        template: TemplateResponse$.inboundSchema.optional(),
         preference: Preference$.inboundSchema,
+        template: TemplateResponse$.inboundSchema.optional(),
     });
 
     export type Outbound = {
-        template?: TemplateResponse$.Outbound | undefined;
         preference: Preference$.Outbound;
+        template?: TemplateResponse$.Outbound | undefined;
     };
 
     export const outboundSchema: z.ZodType<
@@ -38,7 +38,7 @@ export namespace GetSubscriberPreferencesResponseDto$ {
         z.ZodTypeDef,
         GetSubscriberPreferencesResponseDto
     > = z.object({
-        template: TemplateResponse$.outboundSchema.optional(),
         preference: Preference$.outboundSchema,
+        template: TemplateResponse$.outboundSchema.optional(),
     });
 }

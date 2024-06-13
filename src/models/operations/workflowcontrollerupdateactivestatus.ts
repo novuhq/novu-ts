@@ -6,15 +6,15 @@ import { remap as remap$ } from "../../lib/primitives";
 import * as components from "../components";
 import * as z from "zod";
 
-export type WorkflowControllerChangeActiveStatusRequest = {
+export type WorkflowControllerUpdateActiveStatusRequest = {
     workflowId: string;
     changeWorkflowStatusRequestDto: components.ChangeWorkflowStatusRequestDto;
 };
 
 /** @internal */
-export namespace WorkflowControllerChangeActiveStatusRequest$ {
+export namespace WorkflowControllerUpdateActiveStatusRequest$ {
     export const inboundSchema: z.ZodType<
-        WorkflowControllerChangeActiveStatusRequest,
+        WorkflowControllerUpdateActiveStatusRequest,
         z.ZodTypeDef,
         unknown
     > = z
@@ -37,7 +37,7 @@ export namespace WorkflowControllerChangeActiveStatusRequest$ {
     export const outboundSchema: z.ZodType<
         Outbound,
         z.ZodTypeDef,
-        WorkflowControllerChangeActiveStatusRequest
+        WorkflowControllerUpdateActiveStatusRequest
     > = z
         .object({
             workflowId: z.string(),

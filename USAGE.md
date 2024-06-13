@@ -7,7 +7,7 @@ const novu = new Novu({
 });
 
 async function run() {
-    const result = await novu.organizations.list();
+    const result = await novu.changes.apply("<value>");
 
     // Handle the result
     console.log(result);

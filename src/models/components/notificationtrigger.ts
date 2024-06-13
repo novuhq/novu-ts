@@ -15,10 +15,10 @@ export const NotificationTriggerType = {
 export type NotificationTriggerType = ClosedEnum<typeof NotificationTriggerType>;
 
 export type NotificationTrigger = {
-    type: NotificationTriggerType;
     identifier: string;
-    variables: Array<NotificationTriggerVariable>;
     subscriberVariables?: Array<NotificationTriggerVariable> | undefined;
+    type: NotificationTriggerType;
+    variables: Array<NotificationTriggerVariable>;
 };
 
 /** @internal */
@@ -30,23 +30,23 @@ export namespace NotificationTriggerType$ {
 /** @internal */
 export namespace NotificationTrigger$ {
     export const inboundSchema: z.ZodType<NotificationTrigger, z.ZodTypeDef, unknown> = z.object({
-        type: NotificationTriggerType$.inboundSchema,
         identifier: z.string(),
-        variables: z.array(NotificationTriggerVariable$.inboundSchema),
         subscriberVariables: z.array(NotificationTriggerVariable$.inboundSchema).optional(),
+        type: NotificationTriggerType$.inboundSchema,
+        variables: z.array(NotificationTriggerVariable$.inboundSchema),
     });
 
     export type Outbound = {
-        type: string;
         identifier: string;
-        variables: Array<NotificationTriggerVariable$.Outbound>;
         subscriberVariables?: Array<NotificationTriggerVariable$.Outbound> | undefined;
+        type: string;
+        variables: Array<NotificationTriggerVariable$.Outbound>;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, NotificationTrigger> = z.object({
-        type: NotificationTriggerType$.outboundSchema,
         identifier: z.string(),
-        variables: z.array(NotificationTriggerVariable$.outboundSchema),
         subscriberVariables: z.array(NotificationTriggerVariable$.outboundSchema).optional(),
+        type: NotificationTriggerType$.outboundSchema,
+        variables: z.array(NotificationTriggerVariable$.outboundSchema),
     });
 }

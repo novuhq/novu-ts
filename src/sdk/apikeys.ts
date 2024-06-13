@@ -85,4 +85,54 @@ export class ApiKeys extends ClientSDK {
 
         return result$;
     }
+
+    /**
+     * Regenerate api keys
+     */
+    async regenerate(options?: RequestOptions): Promise<Array<components.ApiKey>> {
+        const headers$ = new Headers();
+        headers$.set("user-agent", SDK_METADATA.userAgent);
+        headers$.set("Accept", "application/json");
+
+        const path$ = this.templateURLComponent("/environments/api-keys/regenerate")();
+
+        const query$ = "";
+
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "EnvironmentsController_regenerateOrganizationApiKeys",
+            oAuth2Scopes: [],
+            securitySource: this.options$.apiKey,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
+
+        const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
+        const request$ = this.createRequest$(
+            context,
+            {
+                security: securitySettings$,
+                method: "POST",
+                path: path$,
+                headers: headers$,
+                query: query$,
+            },
+            options
+        );
+
+        const response = await this.do$(request$, doOptions);
+
+        const [result$] = await this.matcher<Array<components.ApiKey>>()
+            .json(201, z.array(components.ApiKey$.inboundSchema))
+            .fail([409, 429, "4XX", 503, "5XX"])
+            .match(response);
+
+        return result$;
+    }
 }

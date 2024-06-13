@@ -15,19 +15,19 @@ import * as z from "zod";
 
 export type Digest = {};
 
-export type ActivityNotificationJobResponseDtoPayload = {};
+export type Payload = {};
 
 export type ActivityNotificationJobResponseDtoProviderId = {};
 
 export type ActivityNotificationJobResponseDto = {
     id: string;
-    type: string;
     digest?: Digest | undefined;
     executionDetails: Array<ActivityNotificationExecutionDetailResponseDto>;
-    step: ActivityNotificationStepResponseDto;
-    payload?: ActivityNotificationJobResponseDtoPayload | undefined;
+    payload?: Payload | undefined;
     providerId: ActivityNotificationJobResponseDtoProviderId;
     status: string;
+    step: ActivityNotificationStepResponseDto;
+    type: string;
 };
 
 /** @internal */
@@ -40,20 +40,12 @@ export namespace Digest$ {
 }
 
 /** @internal */
-export namespace ActivityNotificationJobResponseDtoPayload$ {
-    export const inboundSchema: z.ZodType<
-        ActivityNotificationJobResponseDtoPayload,
-        z.ZodTypeDef,
-        unknown
-    > = z.object({});
+export namespace Payload$ {
+    export const inboundSchema: z.ZodType<Payload, z.ZodTypeDef, unknown> = z.object({});
 
     export type Outbound = {};
 
-    export const outboundSchema: z.ZodType<
-        Outbound,
-        z.ZodTypeDef,
-        ActivityNotificationJobResponseDtoPayload
-    > = z.object({});
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Payload> = z.object({});
 }
 
 /** @internal */
@@ -82,17 +74,15 @@ export namespace ActivityNotificationJobResponseDto$ {
     > = z
         .object({
             _id: z.string(),
-            type: z.string(),
             digest: z.lazy(() => Digest$.inboundSchema).optional(),
             executionDetails: z.array(
                 ActivityNotificationExecutionDetailResponseDto$.inboundSchema
             ),
-            step: ActivityNotificationStepResponseDto$.inboundSchema,
-            payload: z
-                .lazy(() => ActivityNotificationJobResponseDtoPayload$.inboundSchema)
-                .optional(),
+            payload: z.lazy(() => Payload$.inboundSchema).optional(),
             providerId: z.lazy(() => ActivityNotificationJobResponseDtoProviderId$.inboundSchema),
             status: z.string(),
+            step: ActivityNotificationStepResponseDto$.inboundSchema,
+            type: z.string(),
         })
         .transform((v) => {
             return remap$(v, {
@@ -102,13 +92,13 @@ export namespace ActivityNotificationJobResponseDto$ {
 
     export type Outbound = {
         _id: string;
-        type: string;
         digest?: Digest$.Outbound | undefined;
         executionDetails: Array<ActivityNotificationExecutionDetailResponseDto$.Outbound>;
-        step: ActivityNotificationStepResponseDto$.Outbound;
-        payload?: ActivityNotificationJobResponseDtoPayload$.Outbound | undefined;
+        payload?: Payload$.Outbound | undefined;
         providerId: ActivityNotificationJobResponseDtoProviderId$.Outbound;
         status: string;
+        step: ActivityNotificationStepResponseDto$.Outbound;
+        type: string;
     };
 
     export const outboundSchema: z.ZodType<
@@ -118,17 +108,15 @@ export namespace ActivityNotificationJobResponseDto$ {
     > = z
         .object({
             id: z.string(),
-            type: z.string(),
             digest: z.lazy(() => Digest$.outboundSchema).optional(),
             executionDetails: z.array(
                 ActivityNotificationExecutionDetailResponseDto$.outboundSchema
             ),
-            step: ActivityNotificationStepResponseDto$.outboundSchema,
-            payload: z
-                .lazy(() => ActivityNotificationJobResponseDtoPayload$.outboundSchema)
-                .optional(),
+            payload: z.lazy(() => Payload$.outboundSchema).optional(),
             providerId: z.lazy(() => ActivityNotificationJobResponseDtoProviderId$.outboundSchema),
             status: z.string(),
+            step: ActivityNotificationStepResponseDto$.outboundSchema,
+            type: z.string(),
         })
         .transform((v) => {
             return remap$(v, {

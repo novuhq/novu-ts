@@ -18,22 +18,22 @@ export type UpdateLayoutResponseDtoChannel = ClosedEnum<typeof UpdateLayoutRespo
 export type UpdateLayoutResponseDtoVariables = {};
 
 export type UpdateLayoutResponseDto = {
+    creatorId: string;
+    environmentId: string;
     id?: string | undefined;
     organizationId: string;
-    environmentId: string;
-    creatorId: string;
-    name: string;
-    identifier: string;
-    description?: string | undefined;
+    parentId?: string | undefined;
     channel: UpdateLayoutResponseDtoChannel;
     content: string;
     contentType: string;
-    variables?: Array<UpdateLayoutResponseDtoVariables> | undefined;
+    createdAt?: string | undefined;
+    description?: string | undefined;
+    identifier: string;
     isDefault: boolean;
     isDeleted: boolean;
-    createdAt?: string | undefined;
+    name: string;
     updatedAt?: string | undefined;
-    parentId?: string | undefined;
+    variables?: Array<UpdateLayoutResponseDtoVariables> | undefined;
 };
 
 /** @internal */
@@ -60,81 +60,81 @@ export namespace UpdateLayoutResponseDtoVariables$ {
 export namespace UpdateLayoutResponseDto$ {
     export const inboundSchema: z.ZodType<UpdateLayoutResponseDto, z.ZodTypeDef, unknown> = z
         .object({
+            _creatorId: z.string(),
+            _environmentId: z.string(),
             _id: z.string().optional(),
             _organizationId: z.string(),
-            _environmentId: z.string(),
-            _creatorId: z.string(),
-            name: z.string(),
-            identifier: z.string(),
-            description: z.string().optional(),
+            _parentId: z.string().optional(),
             channel: UpdateLayoutResponseDtoChannel$.inboundSchema,
             content: z.string(),
             contentType: z.string(),
+            createdAt: z.string().optional(),
+            description: z.string().optional(),
+            identifier: z.string(),
+            isDefault: z.boolean(),
+            isDeleted: z.boolean(),
+            name: z.string(),
+            updatedAt: z.string().optional(),
             variables: z
                 .array(z.lazy(() => UpdateLayoutResponseDtoVariables$.inboundSchema))
                 .optional(),
-            isDefault: z.boolean(),
-            isDeleted: z.boolean(),
-            createdAt: z.string().optional(),
-            updatedAt: z.string().optional(),
-            _parentId: z.string().optional(),
         })
         .transform((v) => {
             return remap$(v, {
+                _creatorId: "creatorId",
+                _environmentId: "environmentId",
                 _id: "id",
                 _organizationId: "organizationId",
-                _environmentId: "environmentId",
-                _creatorId: "creatorId",
                 _parentId: "parentId",
             });
         });
 
     export type Outbound = {
+        _creatorId: string;
+        _environmentId: string;
         _id?: string | undefined;
         _organizationId: string;
-        _environmentId: string;
-        _creatorId: string;
-        name: string;
-        identifier: string;
-        description?: string | undefined;
+        _parentId?: string | undefined;
         channel: string;
         content: string;
         contentType: string;
-        variables?: Array<UpdateLayoutResponseDtoVariables$.Outbound> | undefined;
+        createdAt?: string | undefined;
+        description?: string | undefined;
+        identifier: string;
         isDefault: boolean;
         isDeleted: boolean;
-        createdAt?: string | undefined;
+        name: string;
         updatedAt?: string | undefined;
-        _parentId?: string | undefined;
+        variables?: Array<UpdateLayoutResponseDtoVariables$.Outbound> | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, UpdateLayoutResponseDto> = z
         .object({
+            creatorId: z.string(),
+            environmentId: z.string(),
             id: z.string().optional(),
             organizationId: z.string(),
-            environmentId: z.string(),
-            creatorId: z.string(),
-            name: z.string(),
-            identifier: z.string(),
-            description: z.string().optional(),
+            parentId: z.string().optional(),
             channel: UpdateLayoutResponseDtoChannel$.outboundSchema,
             content: z.string(),
             contentType: z.string(),
+            createdAt: z.string().optional(),
+            description: z.string().optional(),
+            identifier: z.string(),
+            isDefault: z.boolean(),
+            isDeleted: z.boolean(),
+            name: z.string(),
+            updatedAt: z.string().optional(),
             variables: z
                 .array(z.lazy(() => UpdateLayoutResponseDtoVariables$.outboundSchema))
                 .optional(),
-            isDefault: z.boolean(),
-            isDeleted: z.boolean(),
-            createdAt: z.string().optional(),
-            updatedAt: z.string().optional(),
-            parentId: z.string().optional(),
         })
         .transform((v) => {
             return remap$(v, {
+                creatorId: "_creatorId",
+                environmentId: "_environmentId",
                 id: "_id",
                 organizationId: "_organizationId",
-                environmentId: "_environmentId",
-                creatorId: "_creatorId",
                 parentId: "_parentId",
             });
         });

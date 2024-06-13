@@ -6,6 +6,11 @@ import { ClosedEnum } from "../../types";
 import * as z from "zod";
 
 /**
+ * Message action payload
+ */
+export type MarkMessageActionAsSeenDtoPayload = {};
+
+/**
  * Message action status
  */
 export const MarkMessageActionAsSeenDtoStatus = {
@@ -17,27 +22,16 @@ export const MarkMessageActionAsSeenDtoStatus = {
  */
 export type MarkMessageActionAsSeenDtoStatus = ClosedEnum<typeof MarkMessageActionAsSeenDtoStatus>;
 
-/**
- * Message action payload
- */
-export type MarkMessageActionAsSeenDtoPayload = {};
-
 export type MarkMessageActionAsSeenDto = {
-    /**
-     * Message action status
-     */
-    status: MarkMessageActionAsSeenDtoStatus;
     /**
      * Message action payload
      */
     payload?: MarkMessageActionAsSeenDtoPayload | undefined;
+    /**
+     * Message action status
+     */
+    status: MarkMessageActionAsSeenDtoStatus;
 };
-
-/** @internal */
-export namespace MarkMessageActionAsSeenDtoStatus$ {
-    export const inboundSchema = z.nativeEnum(MarkMessageActionAsSeenDtoStatus);
-    export const outboundSchema = inboundSchema;
-}
 
 /** @internal */
 export namespace MarkMessageActionAsSeenDtoPayload$ {
@@ -57,21 +51,27 @@ export namespace MarkMessageActionAsSeenDtoPayload$ {
 }
 
 /** @internal */
+export namespace MarkMessageActionAsSeenDtoStatus$ {
+    export const inboundSchema = z.nativeEnum(MarkMessageActionAsSeenDtoStatus);
+    export const outboundSchema = inboundSchema;
+}
+
+/** @internal */
 export namespace MarkMessageActionAsSeenDto$ {
     export const inboundSchema: z.ZodType<MarkMessageActionAsSeenDto, z.ZodTypeDef, unknown> =
         z.object({
-            status: MarkMessageActionAsSeenDtoStatus$.inboundSchema,
             payload: z.lazy(() => MarkMessageActionAsSeenDtoPayload$.inboundSchema).optional(),
+            status: MarkMessageActionAsSeenDtoStatus$.inboundSchema,
         });
 
     export type Outbound = {
-        status: string;
         payload?: MarkMessageActionAsSeenDtoPayload$.Outbound | undefined;
+        status: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, MarkMessageActionAsSeenDto> =
         z.object({
-            status: MarkMessageActionAsSeenDtoStatus$.outboundSchema,
             payload: z.lazy(() => MarkMessageActionAsSeenDtoPayload$.outboundSchema).optional(),
+            status: MarkMessageActionAsSeenDtoStatus$.outboundSchema,
         });
 }

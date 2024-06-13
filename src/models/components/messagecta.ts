@@ -13,9 +13,9 @@ export const MessageCTAType = {
 export type MessageCTAType = ClosedEnum<typeof MessageCTAType>;
 
 export type MessageCTA = {
-    type?: MessageCTAType | undefined;
-    data: MessageCTAData;
     action?: MessageAction | undefined;
+    data: MessageCTAData;
+    type?: MessageCTAType | undefined;
 };
 
 /** @internal */
@@ -27,20 +27,20 @@ export namespace MessageCTAType$ {
 /** @internal */
 export namespace MessageCTA$ {
     export const inboundSchema: z.ZodType<MessageCTA, z.ZodTypeDef, unknown> = z.object({
-        type: MessageCTAType$.inboundSchema.optional(),
-        data: MessageCTAData$.inboundSchema,
         action: MessageAction$.inboundSchema.optional(),
+        data: MessageCTAData$.inboundSchema,
+        type: MessageCTAType$.inboundSchema.optional(),
     });
 
     export type Outbound = {
-        type?: string | undefined;
-        data: MessageCTAData$.Outbound;
         action?: MessageAction$.Outbound | undefined;
+        data: MessageCTAData$.Outbound;
+        type?: string | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, MessageCTA> = z.object({
-        type: MessageCTAType$.outboundSchema.optional(),
-        data: MessageCTAData$.outboundSchema,
         action: MessageAction$.outboundSchema.optional(),
+        data: MessageCTAData$.outboundSchema,
+        type: MessageCTAType$.outboundSchema.optional(),
     });
 }

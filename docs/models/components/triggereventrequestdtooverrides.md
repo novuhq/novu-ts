@@ -1,4 +1,6 @@
-# ActivityNotificationJobResponseDtoPayload
+# TriggerEventRequestDtoOverrides
+
+This could be used to override provider specific configurations
 
 
 ## Fields

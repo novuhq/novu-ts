@@ -9,41 +9,45 @@ import { NotificationTrigger, NotificationTrigger$ } from "./notificationtrigger
 import { PreferenceChannels, PreferenceChannels$ } from "./preferencechannels";
 import * as z from "zod";
 
-export type Data = {};
+export type WorkflowResponseData = {};
 
 export type WorkflowIntegrationStatus = {};
 
 export type WorkflowResponse = {
-    id?: string | undefined;
-    name: string;
-    description: string;
-    active: boolean;
-    draft: boolean;
-    preferenceSettings: PreferenceChannels;
-    critical: boolean;
-    tags: Array<string>;
-    steps: Array<NotificationStep>;
-    organizationId: string;
     creatorId: string;
     environmentId: string;
-    triggers: Array<NotificationTrigger>;
+    id?: string | undefined;
     notificationGroupId: string;
+    organizationId: string;
     parentId?: string | undefined;
+    active: boolean;
+    critical: boolean;
+    data?: WorkflowResponseData | undefined;
     deleted: boolean;
     deletedAt: string;
     deletedBy: string;
+    description: string;
+    draft: boolean;
+    name: string;
     notificationGroup?: NotificationGroup | undefined;
-    data?: Data | undefined;
+    preferenceSettings: PreferenceChannels;
+    steps: Array<NotificationStep>;
+    tags: Array<string>;
+    triggers: Array<NotificationTrigger>;
     workflowIntegrationStatus?: WorkflowIntegrationStatus | undefined;
 };
 
 /** @internal */
-export namespace Data$ {
-    export const inboundSchema: z.ZodType<Data, z.ZodTypeDef, unknown> = z.object({});
+export namespace WorkflowResponseData$ {
+    export const inboundSchema: z.ZodType<WorkflowResponseData, z.ZodTypeDef, unknown> = z.object(
+        {}
+    );
 
     export type Outbound = {};
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Data> = z.object({});
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, WorkflowResponseData> = z.object(
+        {}
+    );
 }
 
 /** @internal */
@@ -61,98 +65,98 @@ export namespace WorkflowIntegrationStatus$ {
 export namespace WorkflowResponse$ {
     export const inboundSchema: z.ZodType<WorkflowResponse, z.ZodTypeDef, unknown> = z
         .object({
-            _id: z.string().optional(),
-            name: z.string(),
-            description: z.string(),
-            active: z.boolean(),
-            draft: z.boolean(),
-            preferenceSettings: PreferenceChannels$.inboundSchema,
-            critical: z.boolean(),
-            tags: z.array(z.string()),
-            steps: z.array(NotificationStep$.inboundSchema),
-            _organizationId: z.string(),
             _creatorId: z.string(),
             _environmentId: z.string(),
-            triggers: z.array(NotificationTrigger$.inboundSchema),
+            _id: z.string().optional(),
             _notificationGroupId: z.string(),
+            _organizationId: z.string(),
             _parentId: z.string().optional(),
+            active: z.boolean(),
+            critical: z.boolean(),
+            data: z.lazy(() => WorkflowResponseData$.inboundSchema).optional(),
             deleted: z.boolean(),
             deletedAt: z.string(),
             deletedBy: z.string(),
+            description: z.string(),
+            draft: z.boolean(),
+            name: z.string(),
             notificationGroup: NotificationGroup$.inboundSchema.optional(),
-            data: z.lazy(() => Data$.inboundSchema).optional(),
+            preferenceSettings: PreferenceChannels$.inboundSchema,
+            steps: z.array(NotificationStep$.inboundSchema),
+            tags: z.array(z.string()),
+            triggers: z.array(NotificationTrigger$.inboundSchema),
             workflowIntegrationStatus: z
                 .lazy(() => WorkflowIntegrationStatus$.inboundSchema)
                 .optional(),
         })
         .transform((v) => {
             return remap$(v, {
-                _id: "id",
-                _organizationId: "organizationId",
                 _creatorId: "creatorId",
                 _environmentId: "environmentId",
+                _id: "id",
                 _notificationGroupId: "notificationGroupId",
+                _organizationId: "organizationId",
                 _parentId: "parentId",
             });
         });
 
     export type Outbound = {
-        _id?: string | undefined;
-        name: string;
-        description: string;
-        active: boolean;
-        draft: boolean;
-        preferenceSettings: PreferenceChannels$.Outbound;
-        critical: boolean;
-        tags: Array<string>;
-        steps: Array<NotificationStep$.Outbound>;
-        _organizationId: string;
         _creatorId: string;
         _environmentId: string;
-        triggers: Array<NotificationTrigger$.Outbound>;
+        _id?: string | undefined;
         _notificationGroupId: string;
+        _organizationId: string;
         _parentId?: string | undefined;
+        active: boolean;
+        critical: boolean;
+        data?: WorkflowResponseData$.Outbound | undefined;
         deleted: boolean;
         deletedAt: string;
         deletedBy: string;
+        description: string;
+        draft: boolean;
+        name: string;
         notificationGroup?: NotificationGroup$.Outbound | undefined;
-        data?: Data$.Outbound | undefined;
+        preferenceSettings: PreferenceChannels$.Outbound;
+        steps: Array<NotificationStep$.Outbound>;
+        tags: Array<string>;
+        triggers: Array<NotificationTrigger$.Outbound>;
         workflowIntegrationStatus?: WorkflowIntegrationStatus$.Outbound | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, WorkflowResponse> = z
         .object({
-            id: z.string().optional(),
-            name: z.string(),
-            description: z.string(),
-            active: z.boolean(),
-            draft: z.boolean(),
-            preferenceSettings: PreferenceChannels$.outboundSchema,
-            critical: z.boolean(),
-            tags: z.array(z.string()),
-            steps: z.array(NotificationStep$.outboundSchema),
-            organizationId: z.string(),
             creatorId: z.string(),
             environmentId: z.string(),
-            triggers: z.array(NotificationTrigger$.outboundSchema),
+            id: z.string().optional(),
             notificationGroupId: z.string(),
+            organizationId: z.string(),
             parentId: z.string().optional(),
+            active: z.boolean(),
+            critical: z.boolean(),
+            data: z.lazy(() => WorkflowResponseData$.outboundSchema).optional(),
             deleted: z.boolean(),
             deletedAt: z.string(),
             deletedBy: z.string(),
+            description: z.string(),
+            draft: z.boolean(),
+            name: z.string(),
             notificationGroup: NotificationGroup$.outboundSchema.optional(),
-            data: z.lazy(() => Data$.outboundSchema).optional(),
+            preferenceSettings: PreferenceChannels$.outboundSchema,
+            steps: z.array(NotificationStep$.outboundSchema),
+            tags: z.array(z.string()),
+            triggers: z.array(NotificationTrigger$.outboundSchema),
             workflowIntegrationStatus: z
                 .lazy(() => WorkflowIntegrationStatus$.outboundSchema)
                 .optional(),
         })
         .transform((v) => {
             return remap$(v, {
-                id: "_id",
-                organizationId: "_organizationId",
                 creatorId: "_creatorId",
                 environmentId: "_environmentId",
+                id: "_id",
                 notificationGroupId: "_notificationGroupId",
+                organizationId: "_organizationId",
                 parentId: "_parentId",
             });
         });

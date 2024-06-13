@@ -6,32 +6,32 @@ import { ChangeResponseDto, ChangeResponseDto$ } from "./changeresponsedto";
 import * as z from "zod";
 
 export type ChangesResponseDto = {
-    totalCount: number;
     data: Array<ChangeResponseDto>;
-    pageSize: number;
     page: number;
+    pageSize: number;
+    totalCount: number;
 };
 
 /** @internal */
 export namespace ChangesResponseDto$ {
     export const inboundSchema: z.ZodType<ChangesResponseDto, z.ZodTypeDef, unknown> = z.object({
-        totalCount: z.number(),
         data: z.array(ChangeResponseDto$.inboundSchema),
-        pageSize: z.number(),
         page: z.number(),
+        pageSize: z.number(),
+        totalCount: z.number(),
     });
 
     export type Outbound = {
-        totalCount: number;
         data: Array<ChangeResponseDto$.Outbound>;
-        pageSize: number;
         page: number;
+        pageSize: number;
+        totalCount: number;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ChangesResponseDto> = z.object({
-        totalCount: z.number(),
         data: z.array(ChangeResponseDto$.outboundSchema),
-        pageSize: z.number(),
         page: z.number(),
+        pageSize: z.number(),
+        totalCount: z.number(),
     });
 }

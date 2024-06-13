@@ -6,7 +6,17 @@ import { remap as remap$ } from "../../lib/primitives";
 import { ClosedEnum } from "../../types";
 import * as z from "zod";
 
-export const ActivityNotificationExecutionDetailResponseDtoStatus = {
+export type ProviderId = {};
+
+export const Source = {
+    Credentials: "Credentials",
+    Internal: "Internal",
+    Payload: "Payload",
+    Webhook: "Webhook",
+} as const;
+export type Source = ClosedEnum<typeof Source>;
+
+export const Status = {
     Success: "Success",
     Warning: "Warning",
     Failed: "Failed",
@@ -14,60 +24,38 @@ export const ActivityNotificationExecutionDetailResponseDtoStatus = {
     Queued: "Queued",
     ReadConfirmation: "ReadConfirmation",
 } as const;
-export type ActivityNotificationExecutionDetailResponseDtoStatus = ClosedEnum<
-    typeof ActivityNotificationExecutionDetailResponseDtoStatus
->;
-
-export type ActivityNotificationExecutionDetailResponseDtoProviderId = {};
-
-export const ActivityNotificationExecutionDetailResponseDtoSource = {
-    Credentials: "Credentials",
-    Internal: "Internal",
-    Payload: "Payload",
-    Webhook: "Webhook",
-} as const;
-export type ActivityNotificationExecutionDetailResponseDtoSource = ClosedEnum<
-    typeof ActivityNotificationExecutionDetailResponseDtoSource
->;
+export type Status = ClosedEnum<typeof Status>;
 
 export type ActivityNotificationExecutionDetailResponseDto = {
     id: string;
     jobId: string;
-    status: ActivityNotificationExecutionDetailResponseDtoStatus;
     detail: string;
     isRetry: boolean;
     isTest: boolean;
-    providerId: ActivityNotificationExecutionDetailResponseDtoProviderId;
+    providerId: ProviderId;
     raw?: string | undefined;
-    source: ActivityNotificationExecutionDetailResponseDtoSource;
+    source: Source;
+    status: Status;
 };
 
 /** @internal */
-export namespace ActivityNotificationExecutionDetailResponseDtoStatus$ {
-    export const inboundSchema = z.nativeEnum(ActivityNotificationExecutionDetailResponseDtoStatus);
+export namespace ProviderId$ {
+    export const inboundSchema: z.ZodType<ProviderId, z.ZodTypeDef, unknown> = z.object({});
+
+    export type Outbound = {};
+
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ProviderId> = z.object({});
+}
+
+/** @internal */
+export namespace Source$ {
+    export const inboundSchema = z.nativeEnum(Source);
     export const outboundSchema = inboundSchema;
 }
 
 /** @internal */
-export namespace ActivityNotificationExecutionDetailResponseDtoProviderId$ {
-    export const inboundSchema: z.ZodType<
-        ActivityNotificationExecutionDetailResponseDtoProviderId,
-        z.ZodTypeDef,
-        unknown
-    > = z.object({});
-
-    export type Outbound = {};
-
-    export const outboundSchema: z.ZodType<
-        Outbound,
-        z.ZodTypeDef,
-        ActivityNotificationExecutionDetailResponseDtoProviderId
-    > = z.object({});
-}
-
-/** @internal */
-export namespace ActivityNotificationExecutionDetailResponseDtoSource$ {
-    export const inboundSchema = z.nativeEnum(ActivityNotificationExecutionDetailResponseDtoSource);
+export namespace Status$ {
+    export const inboundSchema = z.nativeEnum(Status);
     export const outboundSchema = inboundSchema;
 }
 
@@ -81,15 +69,13 @@ export namespace ActivityNotificationExecutionDetailResponseDto$ {
         .object({
             _id: z.string(),
             _jobId: z.string(),
-            status: ActivityNotificationExecutionDetailResponseDtoStatus$.inboundSchema,
             detail: z.string(),
             isRetry: z.boolean(),
             isTest: z.boolean(),
-            providerId: z.lazy(
-                () => ActivityNotificationExecutionDetailResponseDtoProviderId$.inboundSchema
-            ),
+            providerId: z.lazy(() => ProviderId$.inboundSchema),
             raw: z.string().optional(),
-            source: ActivityNotificationExecutionDetailResponseDtoSource$.inboundSchema,
+            source: Source$.inboundSchema,
+            status: Status$.inboundSchema,
         })
         .transform((v) => {
             return remap$(v, {
@@ -101,13 +87,13 @@ export namespace ActivityNotificationExecutionDetailResponseDto$ {
     export type Outbound = {
         _id: string;
         _jobId: string;
-        status: string;
         detail: string;
         isRetry: boolean;
         isTest: boolean;
-        providerId: ActivityNotificationExecutionDetailResponseDtoProviderId$.Outbound;
+        providerId: ProviderId$.Outbound;
         raw?: string | undefined;
         source: string;
+        status: string;
     };
 
     export const outboundSchema: z.ZodType<
@@ -118,15 +104,13 @@ export namespace ActivityNotificationExecutionDetailResponseDto$ {
         .object({
             id: z.string(),
             jobId: z.string(),
-            status: ActivityNotificationExecutionDetailResponseDtoStatus$.outboundSchema,
             detail: z.string(),
             isRetry: z.boolean(),
             isTest: z.boolean(),
-            providerId: z.lazy(
-                () => ActivityNotificationExecutionDetailResponseDtoProviderId$.outboundSchema
-            ),
+            providerId: z.lazy(() => ProviderId$.outboundSchema),
             raw: z.string().optional(),
-            source: ActivityNotificationExecutionDetailResponseDtoSource$.outboundSchema,
+            source: Source$.outboundSchema,
+            status: Status$.outboundSchema,
         })
         .transform((v) => {
             return remap$(v, {

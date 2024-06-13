@@ -10,6 +10,7 @@ import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
 import * as components from "../models/components";
 import * as operations from "../models/operations";
+import { Webhooks } from "./webhooks";
 import * as z from "zod";
 
 export class Integrations extends ClientSDK {
@@ -39,57 +40,9 @@ export class Integrations extends ClientSDK {
         void this.options$;
     }
 
-    /**
-     * Get integrations
-     *
-     * @remarks
-     * Return all the integrations the user has created for that organization. Review v.0.17.0 changelog for a breaking change
-     */
-    async list(options?: RequestOptions): Promise<Array<components.IntegrationResponseDto>> {
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "application/json");
-
-        const path$ = this.templateURLComponent("/integrations")();
-
-        const query$ = "";
-
-        let security$;
-        if (typeof this.options$.apiKey === "function") {
-            security$ = { apiKey: await this.options$.apiKey() };
-        } else if (this.options$.apiKey) {
-            security$ = { apiKey: this.options$.apiKey };
-        } else {
-            security$ = {};
-        }
-        const context = {
-            operationID: "IntegrationsController_listIntegrations",
-            oAuth2Scopes: [],
-            securitySource: this.options$.apiKey,
-        };
-        const securitySettings$ = this.resolveGlobalSecurity(security$);
-
-        const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
-        const request$ = this.createRequest$(
-            context,
-            {
-                security: securitySettings$,
-                method: "GET",
-                path: path$,
-                headers: headers$,
-                query: query$,
-            },
-            options
-        );
-
-        const response = await this.do$(request$, doOptions);
-
-        const [result$] = await this.matcher<Array<components.IntegrationResponseDto>>()
-            .json(200, z.array(components.IntegrationResponseDto$.inboundSchema))
-            .fail([409, 429, "4XX", 503, "5XX"])
-            .match(response);
-
-        return result$;
+    private _webhooks?: Webhooks;
+    get webhooks(): Webhooks {
+        return (this._webhooks ??= new Webhooks(this.options$));
     }
 
     /**
@@ -159,214 +112,9 @@ export class Integrations extends ClientSDK {
     }
 
     /**
-     * Get active integrations
-     *
-     * @remarks
-     * Return all the active integrations the user has created for that organization. Review v.0.17.0 changelog for a breaking change
-     */
-    async listActive(options?: RequestOptions): Promise<Array<components.IntegrationResponseDto>> {
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "application/json");
-
-        const path$ = this.templateURLComponent("/integrations/active")();
-
-        const query$ = "";
-
-        let security$;
-        if (typeof this.options$.apiKey === "function") {
-            security$ = { apiKey: await this.options$.apiKey() };
-        } else if (this.options$.apiKey) {
-            security$ = { apiKey: this.options$.apiKey };
-        } else {
-            security$ = {};
-        }
-        const context = {
-            operationID: "IntegrationsController_getActiveIntegrations",
-            oAuth2Scopes: [],
-            securitySource: this.options$.apiKey,
-        };
-        const securitySettings$ = this.resolveGlobalSecurity(security$);
-
-        const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
-        const request$ = this.createRequest$(
-            context,
-            {
-                security: securitySettings$,
-                method: "GET",
-                path: path$,
-                headers: headers$,
-                query: query$,
-            },
-            options
-        );
-
-        const response = await this.do$(request$, doOptions);
-
-        const [result$] = await this.matcher<Array<components.IntegrationResponseDto>>()
-            .json(200, z.array(components.IntegrationResponseDto$.inboundSchema))
-            .fail([409, 429, "4XX", 503, "5XX"])
-            .match(response);
-
-        return result$;
-    }
-
-    /**
-     * Get webhook support status for provider
-     *
-     * @remarks
-     * Return the status of the webhook for this provider, if it is supported or if it is not based on a boolean value
-     */
-    async retrieve(providerOrIntegrationId: string, options?: RequestOptions): Promise<boolean> {
-        const input$: operations.IntegrationsControllerGetWebhookSupportStatusRequest = {
-            providerOrIntegrationId: providerOrIntegrationId,
-        };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "application/json");
-
-        const payload$ = schemas$.parse(
-            input$,
-            (value$) =>
-                operations.IntegrationsControllerGetWebhookSupportStatusRequest$.outboundSchema.parse(
-                    value$
-                ),
-            "Input validation failed"
-        );
-        const body$ = null;
-
-        const pathParams$ = {
-            providerOrIntegrationId: encodeSimple$(
-                "providerOrIntegrationId",
-                payload$.providerOrIntegrationId,
-                { explode: false, charEncoding: "percent" }
-            ),
-        };
-        const path$ = this.templateURLComponent(
-            "/integrations/webhook/provider/{providerOrIntegrationId}/status"
-        )(pathParams$);
-
-        const query$ = "";
-
-        let security$;
-        if (typeof this.options$.apiKey === "function") {
-            security$ = { apiKey: await this.options$.apiKey() };
-        } else if (this.options$.apiKey) {
-            security$ = { apiKey: this.options$.apiKey };
-        } else {
-            security$ = {};
-        }
-        const context = {
-            operationID: "IntegrationsController_getWebhookSupportStatus",
-            oAuth2Scopes: [],
-            securitySource: this.options$.apiKey,
-        };
-        const securitySettings$ = this.resolveGlobalSecurity(security$);
-
-        const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
-        const request$ = this.createRequest$(
-            context,
-            {
-                security: securitySettings$,
-                method: "GET",
-                path: path$,
-                headers: headers$,
-                query: query$,
-                body: body$,
-            },
-            options
-        );
-
-        const response = await this.do$(request$, doOptions);
-
-        const [result$] = await this.matcher<boolean>()
-            .json(200, z.boolean())
-            .fail([409, 429, "4XX", 503, "5XX"])
-            .match(response);
-
-        return result$;
-    }
-
-    /**
-     * Update integration
-     */
-    async integrationsControllerUpdateIntegrationById(
-        integrationId: string,
-        updateIntegrationRequestDto: components.UpdateIntegrationRequestDto,
-        options?: RequestOptions
-    ): Promise<components.IntegrationResponseDto> {
-        const input$: operations.IntegrationsControllerUpdateIntegrationByIdRequest = {
-            integrationId: integrationId,
-            updateIntegrationRequestDto: updateIntegrationRequestDto,
-        };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Content-Type", "application/json");
-        headers$.set("Accept", "application/json");
-
-        const payload$ = schemas$.parse(
-            input$,
-            (value$) =>
-                operations.IntegrationsControllerUpdateIntegrationByIdRequest$.outboundSchema.parse(
-                    value$
-                ),
-            "Input validation failed"
-        );
-        const body$ = encodeJSON$("body", payload$.UpdateIntegrationRequestDto, { explode: true });
-
-        const pathParams$ = {
-            integrationId: encodeSimple$("integrationId", payload$.integrationId, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-        };
-        const path$ = this.templateURLComponent("/integrations/{integrationId}")(pathParams$);
-
-        const query$ = "";
-
-        let security$;
-        if (typeof this.options$.apiKey === "function") {
-            security$ = { apiKey: await this.options$.apiKey() };
-        } else if (this.options$.apiKey) {
-            security$ = { apiKey: this.options$.apiKey };
-        } else {
-            security$ = {};
-        }
-        const context = {
-            operationID: "IntegrationsController_updateIntegrationById",
-            oAuth2Scopes: [],
-            securitySource: this.options$.apiKey,
-        };
-        const securitySettings$ = this.resolveGlobalSecurity(security$);
-
-        const doOptions = { context, errorCodes: ["404", "409", "429", "4XX", "503", "5XX"] };
-        const request$ = this.createRequest$(
-            context,
-            {
-                security: securitySettings$,
-                method: "PUT",
-                path: path$,
-                headers: headers$,
-                query: query$,
-                body: body$,
-            },
-            options
-        );
-
-        const response = await this.do$(request$, doOptions);
-
-        const [result$] = await this.matcher<components.IntegrationResponseDto>()
-            .json(200, components.IntegrationResponseDto$)
-            .fail([404, 409, 429, "4XX", 503, "5XX"])
-            .match(response);
-
-        return result$;
-    }
-
-    /**
      * Delete integration
      */
-    async integrationsControllerRemoveIntegration(
+    async delete(
         integrationId: string,
         options?: RequestOptions
     ): Promise<Array<components.IntegrationResponseDto>> {
@@ -437,9 +185,115 @@ export class Integrations extends ClientSDK {
     }
 
     /**
+     * Get integrations
+     *
+     * @remarks
+     * Return all the integrations the user has created for that organization. Review v.0.17.0 changelog for a breaking change
+     */
+    async list(options?: RequestOptions): Promise<Array<components.IntegrationResponseDto>> {
+        const headers$ = new Headers();
+        headers$.set("user-agent", SDK_METADATA.userAgent);
+        headers$.set("Accept", "application/json");
+
+        const path$ = this.templateURLComponent("/integrations")();
+
+        const query$ = "";
+
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "IntegrationsController_listIntegrations",
+            oAuth2Scopes: [],
+            securitySource: this.options$.apiKey,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
+
+        const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
+        const request$ = this.createRequest$(
+            context,
+            {
+                security: securitySettings$,
+                method: "GET",
+                path: path$,
+                headers: headers$,
+                query: query$,
+            },
+            options
+        );
+
+        const response = await this.do$(request$, doOptions);
+
+        const [result$] = await this.matcher<Array<components.IntegrationResponseDto>>()
+            .json(200, z.array(components.IntegrationResponseDto$.inboundSchema))
+            .fail([409, 429, "4XX", 503, "5XX"])
+            .match(response);
+
+        return result$;
+    }
+
+    /**
+     * Get active integrations
+     *
+     * @remarks
+     * Return all the active integrations the user has created for that organization. Review v.0.17.0 changelog for a breaking change
+     */
+    async listActive(options?: RequestOptions): Promise<Array<components.IntegrationResponseDto>> {
+        const headers$ = new Headers();
+        headers$.set("user-agent", SDK_METADATA.userAgent);
+        headers$.set("Accept", "application/json");
+
+        const path$ = this.templateURLComponent("/integrations/active")();
+
+        const query$ = "";
+
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "IntegrationsController_getActiveIntegrations",
+            oAuth2Scopes: [],
+            securitySource: this.options$.apiKey,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
+
+        const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
+        const request$ = this.createRequest$(
+            context,
+            {
+                security: securitySettings$,
+                method: "GET",
+                path: path$,
+                headers: headers$,
+                query: query$,
+            },
+            options
+        );
+
+        const response = await this.do$(request$, doOptions);
+
+        const [result$] = await this.matcher<Array<components.IntegrationResponseDto>>()
+            .json(200, z.array(components.IntegrationResponseDto$.inboundSchema))
+            .fail([409, 429, "4XX", 503, "5XX"])
+            .match(response);
+
+        return result$;
+    }
+
+    /**
      * Set integration as primary
      */
-    async integrationsControllerSetIntegrationAsPrimary(
+    async setAsPrimary(
         integrationId: string,
         options?: RequestOptions
     ): Promise<components.IntegrationResponseDto> {
@@ -505,6 +359,82 @@ export class Integrations extends ClientSDK {
 
         const [result$] = await this.matcher<components.IntegrationResponseDto>()
             .json([200, 201], components.IntegrationResponseDto$)
+            .fail([404, 409, 429, "4XX", 503, "5XX"])
+            .match(response);
+
+        return result$;
+    }
+
+    /**
+     * Update integration
+     */
+    async update(
+        integrationId: string,
+        updateIntegrationRequestDto: components.UpdateIntegrationRequestDto,
+        options?: RequestOptions
+    ): Promise<components.IntegrationResponseDto> {
+        const input$: operations.IntegrationsControllerUpdateIntegrationByIdRequest = {
+            integrationId: integrationId,
+            updateIntegrationRequestDto: updateIntegrationRequestDto,
+        };
+        const headers$ = new Headers();
+        headers$.set("user-agent", SDK_METADATA.userAgent);
+        headers$.set("Content-Type", "application/json");
+        headers$.set("Accept", "application/json");
+
+        const payload$ = schemas$.parse(
+            input$,
+            (value$) =>
+                operations.IntegrationsControllerUpdateIntegrationByIdRequest$.outboundSchema.parse(
+                    value$
+                ),
+            "Input validation failed"
+        );
+        const body$ = encodeJSON$("body", payload$.UpdateIntegrationRequestDto, { explode: true });
+
+        const pathParams$ = {
+            integrationId: encodeSimple$("integrationId", payload$.integrationId, {
+                explode: false,
+                charEncoding: "percent",
+            }),
+        };
+        const path$ = this.templateURLComponent("/integrations/{integrationId}")(pathParams$);
+
+        const query$ = "";
+
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "IntegrationsController_updateIntegrationById",
+            oAuth2Scopes: [],
+            securitySource: this.options$.apiKey,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
+
+        const doOptions = { context, errorCodes: ["404", "409", "429", "4XX", "503", "5XX"] };
+        const request$ = this.createRequest$(
+            context,
+            {
+                security: securitySettings$,
+                method: "PUT",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                body: body$,
+            },
+            options
+        );
+
+        const response = await this.do$(request$, doOptions);
+
+        const [result$] = await this.matcher<components.IntegrationResponseDto>()
+            .json(200, components.IntegrationResponseDto$)
             .fail([404, 409, 429, "4XX", 503, "5XX"])
             .match(response);
 
