@@ -12,3 +12,6 @@ targets:
     my-first-target:
         target: typescript
         source: json-development
+        publish:
+            npm:
+                token: $npm_token
