@@ -5,26 +5,26 @@
 import * as z from "zod";
 
 export type ActivityStatsResponseDto = {
-    monthlySent: number;
     weeklySent: number;
+    monthlySent: number;
 };
 
 /** @internal */
 export namespace ActivityStatsResponseDto$ {
     export const inboundSchema: z.ZodType<ActivityStatsResponseDto, z.ZodTypeDef, unknown> =
         z.object({
-            monthlySent: z.number(),
             weeklySent: z.number(),
+            monthlySent: z.number(),
         });
 
     export type Outbound = {
-        monthlySent: number;
         weeklySent: number;
+        monthlySent: number;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ActivityStatsResponseDto> =
         z.object({
-            monthlySent: z.number(),
             weeklySent: z.number(),
+            monthlySent: z.number(),
         });
 }

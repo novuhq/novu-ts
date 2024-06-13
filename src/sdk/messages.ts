@@ -9,6 +9,7 @@ import {
     encodeSimple as encodeSimple$,
 } from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
+import * as retries$ from "../lib/retries";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
 import * as components from "../models/components";
@@ -43,6 +44,96 @@ export class Messages extends ClientSDK {
     }
 
     /**
+     * Get messages
+     *
+     * @remarks
+     * Returns a list of messages, could paginate using the `page` query parameter
+     */
+    async retrieve(
+        request: operations.MessagesControllerGetMessagesRequest,
+        options?: RequestOptions & { retries?: retries$.RetryConfig }
+    ): Promise<components.ActivitiesResponseDto> {
+        const input$ = typeof request === "undefined" ? {} : request;
+        const headers$ = new Headers();
+        headers$.set("user-agent", SDK_METADATA.userAgent);
+        headers$.set("Accept", "application/json");
+
+        const payload$ = schemas$.parse(
+            input$,
+            (value$) =>
+                operations.MessagesControllerGetMessagesRequest$.outboundSchema.parse(value$),
+            "Input validation failed"
+        );
+        const body$ = null;
+
+        const path$ = this.templateURLComponent("/messages")();
+
+        const query$ = encodeFormQuery$({
+            channel: payload$.channel,
+            limit: payload$.limit,
+            page: payload$.page,
+            subscriberId: payload$.subscriberId,
+            transactionId: payload$.transactionId,
+        });
+
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "MessagesController_getMessages",
+            oAuth2Scopes: [],
+            securitySource: this.options$.apiKey,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
+
+        const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
+        const request$ = this.createRequest$(
+            context,
+            {
+                security: securitySettings$,
+                method: "GET",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                body: body$,
+            },
+            options
+        );
+
+        const retryConfig = options?.retries ||
+            this.options$.retryConfig || {
+                strategy: "backoff",
+                backoff: {
+                    initialInterval: 500,
+                    maxInterval: 30000,
+                    exponent: 1.5,
+                    maxElapsedTime: 3600000,
+                },
+                retryConnectionErrors: true,
+            };
+
+        const response = await retries$.retry(
+            () => {
+                const cloned = request$.clone();
+                return this.do$(cloned, doOptions);
+            },
+            { config: retryConfig, statusCodes: ["408", "409", "429", "5XX"] }
+        );
+
+        const [result$] = await this.matcher<components.ActivitiesResponseDto>()
+            .json(200, components.ActivitiesResponseDto$)
+            .fail([409, 429, "4XX", 503, "5XX"])
+            .match(response);
+
+        return result$;
+    }
+
+    /**
      * Delete message
      *
      * @remarks
@@ -50,7 +141,7 @@ export class Messages extends ClientSDK {
      */
     async delete(
         messageId: string,
-        options?: RequestOptions
+        options?: RequestOptions & { retries?: retries$.RetryConfig }
     ): Promise<components.DeleteMessageResponseDto> {
         const input$: operations.MessagesControllerDeleteMessageRequest = {
             messageId: messageId,
@@ -106,7 +197,25 @@ export class Messages extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request$, doOptions);
+        const retryConfig = options?.retries ||
+            this.options$.retryConfig || {
+                strategy: "backoff",
+                backoff: {
+                    initialInterval: 500,
+                    maxInterval: 30000,
+                    exponent: 1.5,
+                    maxElapsedTime: 3600000,
+                },
+                retryConnectionErrors: true,
+            };
+
+        const response = await retries$.retry(
+            () => {
+                const cloned = request$.clone();
+                return this.do$(cloned, doOptions);
+            },
+            { config: retryConfig, statusCodes: ["408", "409", "429", "5XX"] }
+        );
 
         const [result$] = await this.matcher<components.DeleteMessageResponseDto>()
             .json(200, components.DeleteMessageResponseDto$)
@@ -124,8 +233,8 @@ export class Messages extends ClientSDK {
      */
     async deleteByTransactionId(
         transactionId: string,
-        channel?: operations.Channel | undefined,
-        options?: RequestOptions
+        channel?: operations.QueryParamChannel | undefined,
+        options?: RequestOptions & { retries?: retries$.RetryConfig }
     ): Promise<void> {
         const input$: operations.MessagesControllerDeleteMessagesByTransactionIdRequest = {
             channel: channel,
@@ -188,82 +297,28 @@ export class Messages extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request$, doOptions);
+        const retryConfig = options?.retries ||
+            this.options$.retryConfig || {
+                strategy: "backoff",
+                backoff: {
+                    initialInterval: 500,
+                    maxInterval: 30000,
+                    exponent: 1.5,
+                    maxElapsedTime: 3600000,
+                },
+                retryConnectionErrors: true,
+            };
+
+        const response = await retries$.retry(
+            () => {
+                const cloned = request$.clone();
+                return this.do$(cloned, doOptions);
+            },
+            { config: retryConfig, statusCodes: ["408", "409", "429", "5XX"] }
+        );
 
         const [result$] = await this.matcher<void>()
             .void(204, z.void())
-            .fail([409, 429, "4XX", 503, "5XX"])
-            .match(response);
-
-        return result$;
-    }
-
-    /**
-     * Get messages
-     *
-     * @remarks
-     * Returns a list of messages, could paginate using the `page` query parameter
-     */
-    async retrieve(
-        request: operations.MessagesControllerGetMessagesRequest,
-        options?: RequestOptions
-    ): Promise<components.ActivitiesResponseDto> {
-        const input$ = typeof request === "undefined" ? {} : request;
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "application/json");
-
-        const payload$ = schemas$.parse(
-            input$,
-            (value$) =>
-                operations.MessagesControllerGetMessagesRequest$.outboundSchema.parse(value$),
-            "Input validation failed"
-        );
-        const body$ = null;
-
-        const path$ = this.templateURLComponent("/messages")();
-
-        const query$ = encodeFormQuery$({
-            channel: payload$.channel,
-            subscriberId: payload$.subscriberId,
-            transactionId: payload$.transactionId,
-            page: payload$.page,
-            limit: payload$.limit,
-        });
-
-        let security$;
-        if (typeof this.options$.apiKey === "function") {
-            security$ = { apiKey: await this.options$.apiKey() };
-        } else if (this.options$.apiKey) {
-            security$ = { apiKey: this.options$.apiKey };
-        } else {
-            security$ = {};
-        }
-        const context = {
-            operationID: "MessagesController_getMessages",
-            oAuth2Scopes: [],
-            securitySource: this.options$.apiKey,
-        };
-        const securitySettings$ = this.resolveGlobalSecurity(security$);
-
-        const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
-        const request$ = this.createRequest$(
-            context,
-            {
-                security: securitySettings$,
-                method: "GET",
-                path: path$,
-                headers: headers$,
-                query: query$,
-                body: body$,
-            },
-            options
-        );
-
-        const response = await this.do$(request$, doOptions);
-
-        const [result$] = await this.matcher<components.ActivitiesResponseDto>()
-            .json(200, components.ActivitiesResponseDto$)
             .fail([409, 429, "4XX", 503, "5XX"])
             .match(response);
 

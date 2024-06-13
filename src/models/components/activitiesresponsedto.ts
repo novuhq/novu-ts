@@ -9,33 +9,33 @@ import {
 import * as z from "zod";
 
 export type ActivitiesResponseDto = {
-    data: Array<ActivityNotificationResponseDto>;
     hasMore: boolean;
-    page: number;
+    data: Array<ActivityNotificationResponseDto>;
     pageSize: number;
+    page: number;
 };
 
 /** @internal */
 export namespace ActivitiesResponseDto$ {
     export const inboundSchema: z.ZodType<ActivitiesResponseDto, z.ZodTypeDef, unknown> = z.object({
-        data: z.array(ActivityNotificationResponseDto$.inboundSchema),
         hasMore: z.boolean(),
-        page: z.number(),
+        data: z.array(ActivityNotificationResponseDto$.inboundSchema),
         pageSize: z.number(),
+        page: z.number(),
     });
 
     export type Outbound = {
-        data: Array<ActivityNotificationResponseDto$.Outbound>;
         hasMore: boolean;
-        page: number;
+        data: Array<ActivityNotificationResponseDto$.Outbound>;
         pageSize: number;
+        page: number;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ActivitiesResponseDto> =
         z.object({
-            data: z.array(ActivityNotificationResponseDto$.outboundSchema),
             hasMore: z.boolean(),
-            page: z.number(),
+            data: z.array(ActivityNotificationResponseDto$.outboundSchema),
             pageSize: z.number(),
+            page: z.number(),
         });
 }

@@ -9,11 +9,11 @@ export type ApiKeys = {};
 
 export type EnvironmentResponseDto = {
     id?: string | undefined;
-    organizationId: string;
-    parentId: string;
-    apiKeys?: Array<ApiKeys> | undefined;
-    identifier: string;
     name: string;
+    organizationId: string;
+    identifier: string;
+    apiKeys?: Array<ApiKeys> | undefined;
+    parentId: string;
 };
 
 /** @internal */
@@ -30,11 +30,11 @@ export namespace EnvironmentResponseDto$ {
     export const inboundSchema: z.ZodType<EnvironmentResponseDto, z.ZodTypeDef, unknown> = z
         .object({
             _id: z.string().optional(),
-            _organizationId: z.string(),
-            _parentId: z.string(),
-            apiKeys: z.array(z.lazy(() => ApiKeys$.inboundSchema)).optional(),
-            identifier: z.string(),
             name: z.string(),
+            _organizationId: z.string(),
+            identifier: z.string(),
+            apiKeys: z.array(z.lazy(() => ApiKeys$.inboundSchema)).optional(),
+            _parentId: z.string(),
         })
         .transform((v) => {
             return remap$(v, {
@@ -46,21 +46,21 @@ export namespace EnvironmentResponseDto$ {
 
     export type Outbound = {
         _id?: string | undefined;
-        _organizationId: string;
-        _parentId: string;
-        apiKeys?: Array<ApiKeys$.Outbound> | undefined;
-        identifier: string;
         name: string;
+        _organizationId: string;
+        identifier: string;
+        apiKeys?: Array<ApiKeys$.Outbound> | undefined;
+        _parentId: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, EnvironmentResponseDto> = z
         .object({
             id: z.string().optional(),
-            organizationId: z.string(),
-            parentId: z.string(),
-            apiKeys: z.array(z.lazy(() => ApiKeys$.outboundSchema)).optional(),
-            identifier: z.string(),
             name: z.string(),
+            organizationId: z.string(),
+            identifier: z.string(),
+            apiKeys: z.array(z.lazy(() => ApiKeys$.outboundSchema)).optional(),
+            parentId: z.string(),
         })
         .transform((v) => {
             return remap$(v, {

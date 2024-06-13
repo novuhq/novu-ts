@@ -6,38 +6,27 @@ import { NotificationStep, NotificationStep$ } from "./notificationstep";
 import { PreferenceChannels, PreferenceChannels$ } from "./preferencechannels";
 import * as z from "zod";
 
-export type CreateWorkflowRequestDtoData = {};
-
 export type CreateWorkflowRequestDtoNotificationGroup = {};
 
+export type CreateWorkflowRequestDtoData = {};
+
 export type CreateWorkflowRequestDto = {
-    active?: boolean | undefined;
-    blueprintId?: string | undefined;
-    critical?: boolean | undefined;
-    data?: CreateWorkflowRequestDtoData | undefined;
+    name: string;
+    notificationGroupId: string;
+    notificationGroup?: CreateWorkflowRequestDtoNotificationGroup | undefined;
+    tags?: Array<string> | undefined;
     description?: string | undefined;
+    steps: Array<NotificationStep>;
+    active?: boolean | undefined;
     /**
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     draft?: boolean | undefined;
-    name: string;
-    notificationGroup?: CreateWorkflowRequestDtoNotificationGroup | undefined;
-    notificationGroupId: string;
+    critical?: boolean | undefined;
     preferenceSettings?: PreferenceChannels | undefined;
-    steps: Array<NotificationStep>;
-    tags?: Array<string> | undefined;
+    blueprintId?: string | undefined;
+    data?: CreateWorkflowRequestDtoData | undefined;
 };
-
-/** @internal */
-export namespace CreateWorkflowRequestDtoData$ {
-    export const inboundSchema: z.ZodType<CreateWorkflowRequestDtoData, z.ZodTypeDef, unknown> =
-        z.object({});
-
-    export type Outbound = {};
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateWorkflowRequestDtoData> =
-        z.object({});
-}
 
 /** @internal */
 export namespace CreateWorkflowRequestDtoNotificationGroup$ {
@@ -57,55 +46,66 @@ export namespace CreateWorkflowRequestDtoNotificationGroup$ {
 }
 
 /** @internal */
+export namespace CreateWorkflowRequestDtoData$ {
+    export const inboundSchema: z.ZodType<CreateWorkflowRequestDtoData, z.ZodTypeDef, unknown> =
+        z.object({});
+
+    export type Outbound = {};
+
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateWorkflowRequestDtoData> =
+        z.object({});
+}
+
+/** @internal */
 export namespace CreateWorkflowRequestDto$ {
     export const inboundSchema: z.ZodType<CreateWorkflowRequestDto, z.ZodTypeDef, unknown> =
         z.object({
-            active: z.boolean().optional(),
-            blueprintId: z.string().optional(),
-            critical: z.boolean().optional(),
-            data: z.lazy(() => CreateWorkflowRequestDtoData$.inboundSchema).optional(),
-            description: z.string().optional(),
-            draft: z.boolean().optional(),
             name: z.string(),
+            notificationGroupId: z.string(),
             notificationGroup: z
                 .lazy(() => CreateWorkflowRequestDtoNotificationGroup$.inboundSchema)
                 .optional(),
-            notificationGroupId: z.string(),
-            preferenceSettings: PreferenceChannels$.inboundSchema.optional(),
-            steps: z.array(NotificationStep$.inboundSchema),
             tags: z.array(z.string()).optional(),
+            description: z.string().optional(),
+            steps: z.array(NotificationStep$.inboundSchema),
+            active: z.boolean().optional(),
+            draft: z.boolean().optional(),
+            critical: z.boolean().optional(),
+            preferenceSettings: PreferenceChannels$.inboundSchema.optional(),
+            blueprintId: z.string().optional(),
+            data: z.lazy(() => CreateWorkflowRequestDtoData$.inboundSchema).optional(),
         });
 
     export type Outbound = {
-        active?: boolean | undefined;
-        blueprintId?: string | undefined;
-        critical?: boolean | undefined;
-        data?: CreateWorkflowRequestDtoData$.Outbound | undefined;
-        description?: string | undefined;
-        draft?: boolean | undefined;
         name: string;
-        notificationGroup?: CreateWorkflowRequestDtoNotificationGroup$.Outbound | undefined;
         notificationGroupId: string;
-        preferenceSettings?: PreferenceChannels$.Outbound | undefined;
-        steps: Array<NotificationStep$.Outbound>;
+        notificationGroup?: CreateWorkflowRequestDtoNotificationGroup$.Outbound | undefined;
         tags?: Array<string> | undefined;
+        description?: string | undefined;
+        steps: Array<NotificationStep$.Outbound>;
+        active?: boolean | undefined;
+        draft?: boolean | undefined;
+        critical?: boolean | undefined;
+        preferenceSettings?: PreferenceChannels$.Outbound | undefined;
+        blueprintId?: string | undefined;
+        data?: CreateWorkflowRequestDtoData$.Outbound | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateWorkflowRequestDto> =
         z.object({
-            active: z.boolean().optional(),
-            blueprintId: z.string().optional(),
-            critical: z.boolean().optional(),
-            data: z.lazy(() => CreateWorkflowRequestDtoData$.outboundSchema).optional(),
-            description: z.string().optional(),
-            draft: z.boolean().optional(),
             name: z.string(),
+            notificationGroupId: z.string(),
             notificationGroup: z
                 .lazy(() => CreateWorkflowRequestDtoNotificationGroup$.outboundSchema)
                 .optional(),
-            notificationGroupId: z.string(),
-            preferenceSettings: PreferenceChannels$.outboundSchema.optional(),
-            steps: z.array(NotificationStep$.outboundSchema),
             tags: z.array(z.string()).optional(),
+            description: z.string().optional(),
+            steps: z.array(NotificationStep$.outboundSchema),
+            active: z.boolean().optional(),
+            draft: z.boolean().optional(),
+            critical: z.boolean().optional(),
+            preferenceSettings: PreferenceChannels$.outboundSchema.optional(),
+            blueprintId: z.string().optional(),
+            data: z.lazy(() => CreateWorkflowRequestDtoData$.outboundSchema).optional(),
         });
 }

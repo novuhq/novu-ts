@@ -6,6 +6,7 @@ import { SDKHooks } from "../hooks";
 import { SDK_METADATA, SDKOptions, serverURLFromOptions } from "../lib/config";
 import { encodeJSON as encodeJSON$, encodeSimple as encodeSimple$ } from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
+import * as retries$ from "../lib/retries";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
 import * as components from "../models/components";
@@ -40,6 +41,79 @@ export class WorkflowGroups extends ClientSDK {
     }
 
     /**
+     * Get workflow groups
+     *
+     * @remarks
+     * workflow group was previously named notification group
+     */
+    async list(
+        options?: RequestOptions & { retries?: retries$.RetryConfig }
+    ): Promise<Array<components.NotificationGroupResponseDto>> {
+        const headers$ = new Headers();
+        headers$.set("user-agent", SDK_METADATA.userAgent);
+        headers$.set("Accept", "application/json");
+
+        const path$ = this.templateURLComponent("/notification-groups")();
+
+        const query$ = "";
+
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "NotificationGroupsController_listNotificationGroups",
+            oAuth2Scopes: [],
+            securitySource: this.options$.apiKey,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
+
+        const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
+        const request$ = this.createRequest$(
+            context,
+            {
+                security: securitySettings$,
+                method: "GET",
+                path: path$,
+                headers: headers$,
+                query: query$,
+            },
+            options
+        );
+
+        const retryConfig = options?.retries ||
+            this.options$.retryConfig || {
+                strategy: "backoff",
+                backoff: {
+                    initialInterval: 500,
+                    maxInterval: 30000,
+                    exponent: 1.5,
+                    maxElapsedTime: 3600000,
+                },
+                retryConnectionErrors: true,
+            };
+
+        const response = await retries$.retry(
+            () => {
+                const cloned = request$.clone();
+                return this.do$(cloned, doOptions);
+            },
+            { config: retryConfig, statusCodes: ["408", "409", "429", "5XX"] }
+        );
+
+        const [result$] = await this.matcher<Array<components.NotificationGroupResponseDto>>()
+            .json(200, z.array(components.NotificationGroupResponseDto$.inboundSchema))
+            .fail([409, 429, "4XX", 503, "5XX"])
+            .match(response);
+
+        return result$;
+    }
+
+    /**
      * Create workflow group
      *
      * @remarks
@@ -47,7 +121,7 @@ export class WorkflowGroups extends ClientSDK {
      */
     async create(
         request: components.CreateNotificationGroupRequestDto,
-        options?: RequestOptions
+        options?: RequestOptions & { retries?: retries$.RetryConfig }
     ): Promise<components.NotificationGroupResponseDto> {
         const input$ = request;
         const headers$ = new Headers();
@@ -95,136 +169,28 @@ export class WorkflowGroups extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request$, doOptions);
+        const retryConfig = options?.retries ||
+            this.options$.retryConfig || {
+                strategy: "backoff",
+                backoff: {
+                    initialInterval: 500,
+                    maxInterval: 30000,
+                    exponent: 1.5,
+                    maxElapsedTime: 3600000,
+                },
+                retryConnectionErrors: true,
+            };
+
+        const response = await retries$.retry(
+            () => {
+                const cloned = request$.clone();
+                return this.do$(cloned, doOptions);
+            },
+            { config: retryConfig, statusCodes: ["408", "409", "429", "5XX"] }
+        );
 
         const [result$] = await this.matcher<components.NotificationGroupResponseDto>()
             .json(201, components.NotificationGroupResponseDto$)
-            .fail([409, 429, "4XX", 503, "5XX"])
-            .match(response);
-
-        return result$;
-    }
-
-    /**
-     * Delete workflow group
-     *
-     * @remarks
-     * workflow group was previously named notification group
-     */
-    async delete(
-        id: string,
-        options?: RequestOptions
-    ): Promise<components.DeleteNotificationGroupResponseDto> {
-        const input$: operations.NotificationGroupsControllerDeleteNotificationGroupRequest = {
-            id: id,
-        };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "application/json");
-
-        const payload$ = schemas$.parse(
-            input$,
-            (value$) =>
-                operations.NotificationGroupsControllerDeleteNotificationGroupRequest$.outboundSchema.parse(
-                    value$
-                ),
-            "Input validation failed"
-        );
-        const body$ = null;
-
-        const pathParams$ = {
-            id: encodeSimple$("id", payload$.id, { explode: false, charEncoding: "percent" }),
-        };
-        const path$ = this.templateURLComponent("/notification-groups/{id}")(pathParams$);
-
-        const query$ = "";
-
-        let security$;
-        if (typeof this.options$.apiKey === "function") {
-            security$ = { apiKey: await this.options$.apiKey() };
-        } else if (this.options$.apiKey) {
-            security$ = { apiKey: this.options$.apiKey };
-        } else {
-            security$ = {};
-        }
-        const context = {
-            operationID: "NotificationGroupsController_deleteNotificationGroup",
-            oAuth2Scopes: [],
-            securitySource: this.options$.apiKey,
-        };
-        const securitySettings$ = this.resolveGlobalSecurity(security$);
-
-        const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
-        const request$ = this.createRequest$(
-            context,
-            {
-                security: securitySettings$,
-                method: "DELETE",
-                path: path$,
-                headers: headers$,
-                query: query$,
-                body: body$,
-            },
-            options
-        );
-
-        const response = await this.do$(request$, doOptions);
-
-        const [result$] = await this.matcher<components.DeleteNotificationGroupResponseDto>()
-            .json(200, components.DeleteNotificationGroupResponseDto$)
-            .fail([409, 429, "4XX", 503, "5XX"])
-            .match(response);
-
-        return result$;
-    }
-
-    /**
-     * Get workflow groups
-     *
-     * @remarks
-     * workflow group was previously named notification group
-     */
-    async list(options?: RequestOptions): Promise<Array<components.NotificationGroupResponseDto>> {
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "application/json");
-
-        const path$ = this.templateURLComponent("/notification-groups")();
-
-        const query$ = "";
-
-        let security$;
-        if (typeof this.options$.apiKey === "function") {
-            security$ = { apiKey: await this.options$.apiKey() };
-        } else if (this.options$.apiKey) {
-            security$ = { apiKey: this.options$.apiKey };
-        } else {
-            security$ = {};
-        }
-        const context = {
-            operationID: "NotificationGroupsController_listNotificationGroups",
-            oAuth2Scopes: [],
-            securitySource: this.options$.apiKey,
-        };
-        const securitySettings$ = this.resolveGlobalSecurity(security$);
-
-        const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
-        const request$ = this.createRequest$(
-            context,
-            {
-                security: securitySettings$,
-                method: "GET",
-                path: path$,
-                headers: headers$,
-                query: query$,
-            },
-            options
-        );
-
-        const response = await this.do$(request$, doOptions);
-
-        const [result$] = await this.matcher<Array<components.NotificationGroupResponseDto>>()
-            .json(200, z.array(components.NotificationGroupResponseDto$.inboundSchema))
             .fail([409, 429, "4XX", 503, "5XX"])
             .match(response);
 
@@ -239,7 +205,7 @@ export class WorkflowGroups extends ClientSDK {
      */
     async retrieve(
         id: string,
-        options?: RequestOptions
+        options?: RequestOptions & { retries?: retries$.RetryConfig }
     ): Promise<components.NotificationGroupResponseDto> {
         const input$: operations.NotificationGroupsControllerGetNotificationGroupRequest = {
             id: id,
@@ -294,10 +260,119 @@ export class WorkflowGroups extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request$, doOptions);
+        const retryConfig = options?.retries ||
+            this.options$.retryConfig || {
+                strategy: "backoff",
+                backoff: {
+                    initialInterval: 500,
+                    maxInterval: 30000,
+                    exponent: 1.5,
+                    maxElapsedTime: 3600000,
+                },
+                retryConnectionErrors: true,
+            };
+
+        const response = await retries$.retry(
+            () => {
+                const cloned = request$.clone();
+                return this.do$(cloned, doOptions);
+            },
+            { config: retryConfig, statusCodes: ["408", "409", "429", "5XX"] }
+        );
 
         const [result$] = await this.matcher<components.NotificationGroupResponseDto>()
             .json(200, components.NotificationGroupResponseDto$)
+            .fail([409, 429, "4XX", 503, "5XX"])
+            .match(response);
+
+        return result$;
+    }
+
+    /**
+     * Delete workflow group
+     *
+     * @remarks
+     * workflow group was previously named notification group
+     */
+    async delete(
+        id: string,
+        options?: RequestOptions & { retries?: retries$.RetryConfig }
+    ): Promise<components.DeleteNotificationGroupResponseDto> {
+        const input$: operations.NotificationGroupsControllerDeleteNotificationGroupRequest = {
+            id: id,
+        };
+        const headers$ = new Headers();
+        headers$.set("user-agent", SDK_METADATA.userAgent);
+        headers$.set("Accept", "application/json");
+
+        const payload$ = schemas$.parse(
+            input$,
+            (value$) =>
+                operations.NotificationGroupsControllerDeleteNotificationGroupRequest$.outboundSchema.parse(
+                    value$
+                ),
+            "Input validation failed"
+        );
+        const body$ = null;
+
+        const pathParams$ = {
+            id: encodeSimple$("id", payload$.id, { explode: false, charEncoding: "percent" }),
+        };
+        const path$ = this.templateURLComponent("/notification-groups/{id}")(pathParams$);
+
+        const query$ = "";
+
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "NotificationGroupsController_deleteNotificationGroup",
+            oAuth2Scopes: [],
+            securitySource: this.options$.apiKey,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
+
+        const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
+        const request$ = this.createRequest$(
+            context,
+            {
+                security: securitySettings$,
+                method: "DELETE",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                body: body$,
+            },
+            options
+        );
+
+        const retryConfig = options?.retries ||
+            this.options$.retryConfig || {
+                strategy: "backoff",
+                backoff: {
+                    initialInterval: 500,
+                    maxInterval: 30000,
+                    exponent: 1.5,
+                    maxElapsedTime: 3600000,
+                },
+                retryConnectionErrors: true,
+            };
+
+        const response = await retries$.retry(
+            () => {
+                const cloned = request$.clone();
+                return this.do$(cloned, doOptions);
+            },
+            { config: retryConfig, statusCodes: ["408", "409", "429", "5XX"] }
+        );
+
+        const [result$] = await this.matcher<components.DeleteNotificationGroupResponseDto>()
+            .json(200, components.DeleteNotificationGroupResponseDto$)
             .fail([409, 429, "4XX", 503, "5XX"])
             .match(response);
 
@@ -313,7 +388,7 @@ export class WorkflowGroups extends ClientSDK {
     async update(
         id: string,
         createNotificationGroupRequestDto: components.CreateNotificationGroupRequestDto,
-        options?: RequestOptions
+        options?: RequestOptions & { retries?: retries$.RetryConfig }
     ): Promise<components.NotificationGroupResponseDto> {
         const input$: operations.NotificationGroupsControllerUpdateNotificationGroupRequest = {
             id: id,
@@ -372,7 +447,25 @@ export class WorkflowGroups extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request$, doOptions);
+        const retryConfig = options?.retries ||
+            this.options$.retryConfig || {
+                strategy: "backoff",
+                backoff: {
+                    initialInterval: 500,
+                    maxInterval: 30000,
+                    exponent: 1.5,
+                    maxElapsedTime: 3600000,
+                },
+                retryConnectionErrors: true,
+            };
+
+        const response = await retries$.retry(
+            () => {
+                const cloned = request$.clone();
+                return this.do$(cloned, doOptions);
+            },
+            { config: retryConfig, statusCodes: ["408", "409", "429", "5XX"] }
+        );
 
         const [result$] = await this.matcher<components.NotificationGroupResponseDto>()
             .json(200, components.NotificationGroupResponseDto$)

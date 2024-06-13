@@ -18,7 +18,7 @@ import {
 } from "./activitynotificationtemplateresponsedto";
 import * as z from "zod";
 
-export const ActivityNotificationResponseDtoChannels = {
+export const Channels = {
     InApp: "in_app",
     Email: "email",
     Sms: "sms",
@@ -29,25 +29,23 @@ export const ActivityNotificationResponseDtoChannels = {
     Delay: "delay",
     Custom: "custom",
 } as const;
-export type ActivityNotificationResponseDtoChannels = ClosedEnum<
-    typeof ActivityNotificationResponseDtoChannels
->;
+export type Channels = ClosedEnum<typeof Channels>;
 
 export type ActivityNotificationResponseDto = {
-    environmentId: string;
     id?: string | undefined;
+    environmentId: string;
     organizationId: string;
-    channels?: ActivityNotificationResponseDtoChannels | undefined;
+    transactionId: string;
     createdAt?: string | undefined;
-    jobs?: Array<ActivityNotificationJobResponseDto> | undefined;
+    channels?: Channels | undefined;
     subscriber?: ActivityNotificationSubscriberResponseDto | undefined;
     template?: ActivityNotificationTemplateResponseDto | undefined;
-    transactionId: string;
+    jobs?: Array<ActivityNotificationJobResponseDto> | undefined;
 };
 
 /** @internal */
-export namespace ActivityNotificationResponseDtoChannels$ {
-    export const inboundSchema = z.nativeEnum(ActivityNotificationResponseDtoChannels);
+export namespace Channels$ {
+    export const inboundSchema = z.nativeEnum(Channels);
     export const outboundSchema = inboundSchema;
 }
 
@@ -56,34 +54,34 @@ export namespace ActivityNotificationResponseDto$ {
     export const inboundSchema: z.ZodType<ActivityNotificationResponseDto, z.ZodTypeDef, unknown> =
         z
             .object({
-                _environmentId: z.string(),
                 _id: z.string().optional(),
+                _environmentId: z.string(),
                 _organizationId: z.string(),
-                channels: ActivityNotificationResponseDtoChannels$.inboundSchema.optional(),
+                transactionId: z.string(),
                 createdAt: z.string().optional(),
-                jobs: z.array(ActivityNotificationJobResponseDto$.inboundSchema).optional(),
+                channels: Channels$.inboundSchema.optional(),
                 subscriber: ActivityNotificationSubscriberResponseDto$.inboundSchema.optional(),
                 template: ActivityNotificationTemplateResponseDto$.inboundSchema.optional(),
-                transactionId: z.string(),
+                jobs: z.array(ActivityNotificationJobResponseDto$.inboundSchema).optional(),
             })
             .transform((v) => {
                 return remap$(v, {
-                    _environmentId: "environmentId",
                     _id: "id",
+                    _environmentId: "environmentId",
                     _organizationId: "organizationId",
                 });
             });
 
     export type Outbound = {
-        _environmentId: string;
         _id?: string | undefined;
+        _environmentId: string;
         _organizationId: string;
-        channels?: string | undefined;
+        transactionId: string;
         createdAt?: string | undefined;
-        jobs?: Array<ActivityNotificationJobResponseDto$.Outbound> | undefined;
+        channels?: string | undefined;
         subscriber?: ActivityNotificationSubscriberResponseDto$.Outbound | undefined;
         template?: ActivityNotificationTemplateResponseDto$.Outbound | undefined;
-        transactionId: string;
+        jobs?: Array<ActivityNotificationJobResponseDto$.Outbound> | undefined;
     };
 
     export const outboundSchema: z.ZodType<
@@ -92,20 +90,20 @@ export namespace ActivityNotificationResponseDto$ {
         ActivityNotificationResponseDto
     > = z
         .object({
-            environmentId: z.string(),
             id: z.string().optional(),
+            environmentId: z.string(),
             organizationId: z.string(),
-            channels: ActivityNotificationResponseDtoChannels$.outboundSchema.optional(),
+            transactionId: z.string(),
             createdAt: z.string().optional(),
-            jobs: z.array(ActivityNotificationJobResponseDto$.outboundSchema).optional(),
+            channels: Channels$.outboundSchema.optional(),
             subscriber: ActivityNotificationSubscriberResponseDto$.outboundSchema.optional(),
             template: ActivityNotificationTemplateResponseDto$.outboundSchema.optional(),
-            transactionId: z.string(),
+            jobs: z.array(ActivityNotificationJobResponseDto$.outboundSchema).optional(),
         })
         .transform((v) => {
             return remap$(v, {
-                environmentId: "_environmentId",
                 id: "_id",
+                environmentId: "_environmentId",
                 organizationId: "_organizationId",
             });
         });

@@ -12,12 +12,12 @@ export const Direction = {
 export type Direction = ClosedEnum<typeof Direction>;
 
 export type OrganizationBrandingResponseDto = {
-    color: string;
-    contentBackground: string;
     direction?: Direction | undefined;
-    fontColor: string;
-    fontFamily?: string | undefined;
     logo: string;
+    color: string;
+    fontColor: string;
+    contentBackground: string;
+    fontFamily?: string | undefined;
 };
 
 /** @internal */
@@ -30,21 +30,21 @@ export namespace Direction$ {
 export namespace OrganizationBrandingResponseDto$ {
     export const inboundSchema: z.ZodType<OrganizationBrandingResponseDto, z.ZodTypeDef, unknown> =
         z.object({
-            color: z.string(),
-            contentBackground: z.string(),
             direction: Direction$.inboundSchema.optional(),
-            fontColor: z.string(),
-            fontFamily: z.string().optional(),
             logo: z.string(),
+            color: z.string(),
+            fontColor: z.string(),
+            contentBackground: z.string(),
+            fontFamily: z.string().optional(),
         });
 
     export type Outbound = {
-        color: string;
-        contentBackground: string;
         direction?: string | undefined;
-        fontColor: string;
-        fontFamily?: string | undefined;
         logo: string;
+        color: string;
+        fontColor: string;
+        contentBackground: string;
+        fontFamily?: string | undefined;
     };
 
     export const outboundSchema: z.ZodType<
@@ -52,11 +52,11 @@ export namespace OrganizationBrandingResponseDto$ {
         z.ZodTypeDef,
         OrganizationBrandingResponseDto
     > = z.object({
-        color: z.string(),
-        contentBackground: z.string(),
         direction: Direction$.outboundSchema.optional(),
-        fontColor: z.string(),
-        fontFamily: z.string().optional(),
         logo: z.string(),
+        color: z.string(),
+        fontColor: z.string(),
+        contentBackground: z.string(),
+        fontFamily: z.string().optional(),
     });
 }

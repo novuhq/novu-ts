@@ -6,22 +6,22 @@ import { remap as remap$ } from "../../lib/primitives";
 import * as z from "zod";
 
 export type PreferenceChannels = {
-    chat?: boolean | undefined;
     email?: boolean | undefined;
-    inApp?: boolean | undefined;
-    push?: boolean | undefined;
     sms?: boolean | undefined;
+    inApp?: boolean | undefined;
+    chat?: boolean | undefined;
+    push?: boolean | undefined;
 };
 
 /** @internal */
 export namespace PreferenceChannels$ {
     export const inboundSchema: z.ZodType<PreferenceChannels, z.ZodTypeDef, unknown> = z
         .object({
-            chat: z.boolean().optional(),
             email: z.boolean().optional(),
-            in_app: z.boolean().optional(),
-            push: z.boolean().optional(),
             sms: z.boolean().optional(),
+            in_app: z.boolean().optional(),
+            chat: z.boolean().optional(),
+            push: z.boolean().optional(),
         })
         .transform((v) => {
             return remap$(v, {
@@ -30,20 +30,20 @@ export namespace PreferenceChannels$ {
         });
 
     export type Outbound = {
-        chat?: boolean | undefined;
         email?: boolean | undefined;
-        in_app?: boolean | undefined;
-        push?: boolean | undefined;
         sms?: boolean | undefined;
+        in_app?: boolean | undefined;
+        chat?: boolean | undefined;
+        push?: boolean | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, PreferenceChannels> = z
         .object({
-            chat: z.boolean().optional(),
             email: z.boolean().optional(),
-            inApp: z.boolean().optional(),
-            push: z.boolean().optional(),
             sms: z.boolean().optional(),
+            inApp: z.boolean().optional(),
+            chat: z.boolean().optional(),
+            push: z.boolean().optional(),
         })
         .transform((v) => {
             return remap$(v, {

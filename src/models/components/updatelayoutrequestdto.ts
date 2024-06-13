@@ -8,29 +8,29 @@ export type UpdateLayoutRequestDtoVariables = {};
 
 export type UpdateLayoutRequestDto = {
     /**
-     * User defined content for the layout.
+     * User defined custom name and provided by the user that will name the Layout updated.
      */
-    content?: string | undefined;
-    /**
-     * User defined description of the layout
-     */
-    description?: string | undefined;
+    name?: string | undefined;
     /**
      * User defined custom key that will be a unique identifier for the Layout updated.
      */
     identifier: string;
     /**
-     * Variable that defines if the layout is chosen as default when creating a layout.
+     * User defined description of the layout
      */
-    isDefault?: boolean | undefined;
+    description?: string | undefined;
     /**
-     * User defined custom name and provided by the user that will name the Layout updated.
+     * User defined content for the layout.
      */
-    name?: string | undefined;
+    content?: string | undefined;
     /**
      * User defined variables to render in the layout placeholders.
      */
     variables?: Array<UpdateLayoutRequestDtoVariables> | undefined;
+    /**
+     * Variable that defines if the layout is chosen as default when creating a layout.
+     */
+    isDefault?: boolean | undefined;
 };
 
 /** @internal */
@@ -51,35 +51,35 @@ export namespace UpdateLayoutRequestDtoVariables$ {
 export namespace UpdateLayoutRequestDto$ {
     export const inboundSchema: z.ZodType<UpdateLayoutRequestDto, z.ZodTypeDef, unknown> = z.object(
         {
-            content: z.string().optional(),
-            description: z.string().optional(),
-            identifier: z.string(),
-            isDefault: z.boolean().optional(),
             name: z.string().optional(),
+            identifier: z.string(),
+            description: z.string().optional(),
+            content: z.string().optional(),
             variables: z
                 .array(z.lazy(() => UpdateLayoutRequestDtoVariables$.inboundSchema))
                 .optional(),
+            isDefault: z.boolean().optional(),
         }
     );
 
     export type Outbound = {
-        content?: string | undefined;
-        description?: string | undefined;
-        identifier: string;
-        isDefault?: boolean | undefined;
         name?: string | undefined;
+        identifier: string;
+        description?: string | undefined;
+        content?: string | undefined;
         variables?: Array<UpdateLayoutRequestDtoVariables$.Outbound> | undefined;
+        isDefault?: boolean | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, UpdateLayoutRequestDto> =
         z.object({
-            content: z.string().optional(),
-            description: z.string().optional(),
-            identifier: z.string(),
-            isDefault: z.boolean().optional(),
             name: z.string().optional(),
+            identifier: z.string(),
+            description: z.string().optional(),
+            content: z.string().optional(),
             variables: z
                 .array(z.lazy(() => UpdateLayoutRequestDtoVariables$.outboundSchema))
                 .optional(),
+            isDefault: z.boolean().optional(),
         });
 }

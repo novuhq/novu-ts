@@ -9,6 +9,7 @@ import {
     encodeSimple as encodeSimple$,
 } from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
+import * as retries$ from "../lib/retries";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
 import * as components from "../models/components";
@@ -52,7 +53,7 @@ export class Notifications extends ClientSDK {
      */
     async list(
         request: operations.NotificationsControllerListNotificationsRequest,
-        options?: RequestOptions
+        options?: RequestOptions & { retries?: retries$.RetryConfig }
     ): Promise<components.ActivitiesResponseDto> {
         const input$ = request;
         const headers$ = new Headers();
@@ -73,11 +74,11 @@ export class Notifications extends ClientSDK {
 
         const query$ = encodeFormQuery$({
             channels: payload$.channels,
-            templates: payload$.templates,
             emails: payload$.emails,
+            page: payload$.page,
             search: payload$.search,
             subscriberIds: payload$.subscriberIds,
-            page: payload$.page,
+            templates: payload$.templates,
             transactionId: payload$.transactionId,
         });
 
@@ -110,7 +111,25 @@ export class Notifications extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request$, doOptions);
+        const retryConfig = options?.retries ||
+            this.options$.retryConfig || {
+                strategy: "backoff",
+                backoff: {
+                    initialInterval: 500,
+                    maxInterval: 30000,
+                    exponent: 1.5,
+                    maxElapsedTime: 3600000,
+                },
+                retryConnectionErrors: true,
+            };
+
+        const response = await retries$.retry(
+            () => {
+                const cloned = request$.clone();
+                return this.do$(cloned, doOptions);
+            },
+            { config: retryConfig, statusCodes: ["408", "409", "429", "5XX"] }
+        );
 
         const [result$] = await this.matcher<components.ActivitiesResponseDto>()
             .json(200, components.ActivitiesResponseDto$)
@@ -125,7 +144,7 @@ export class Notifications extends ClientSDK {
      */
     async retrieve(
         notificationId: string,
-        options?: RequestOptions
+        options?: RequestOptions & { retries?: retries$.RetryConfig }
     ): Promise<components.ActivityNotificationResponseDto> {
         const input$: operations.NotificationsControllerGetNotificationRequest = {
             notificationId: notificationId,
@@ -183,7 +202,25 @@ export class Notifications extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request$, doOptions);
+        const retryConfig = options?.retries ||
+            this.options$.retryConfig || {
+                strategy: "backoff",
+                backoff: {
+                    initialInterval: 500,
+                    maxInterval: 30000,
+                    exponent: 1.5,
+                    maxElapsedTime: 3600000,
+                },
+                retryConnectionErrors: true,
+            };
+
+        const response = await retries$.retry(
+            () => {
+                const cloned = request$.clone();
+                return this.do$(cloned, doOptions);
+            },
+            { config: retryConfig, statusCodes: ["408", "409", "429", "5XX"] }
+        );
 
         const [result$] = await this.matcher<components.ActivityNotificationResponseDto>()
             .json(200, components.ActivityNotificationResponseDto$)

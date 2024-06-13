@@ -1,5 +1,7 @@
 # QueryParamChannel
 
+The channel of the message to be deleted
+
 
 ## Values
 

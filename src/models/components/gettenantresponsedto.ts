@@ -8,12 +8,12 @@ import * as z from "zod";
 export type GetTenantResponseDtoData = {};
 
 export type GetTenantResponseDto = {
-    environmentId: string;
     id: string;
-    createdAt: string;
-    data?: GetTenantResponseDtoData | undefined;
     identifier: string;
     name?: string | undefined;
+    data?: GetTenantResponseDtoData | undefined;
+    environmentId: string;
+    createdAt: string;
     updatedAt: string;
 };
 
@@ -32,45 +32,45 @@ export namespace GetTenantResponseDtoData$ {
 export namespace GetTenantResponseDto$ {
     export const inboundSchema: z.ZodType<GetTenantResponseDto, z.ZodTypeDef, unknown> = z
         .object({
-            _environmentId: z.string(),
             _id: z.string(),
-            createdAt: z.string(),
-            data: z.lazy(() => GetTenantResponseDtoData$.inboundSchema).optional(),
             identifier: z.string(),
             name: z.string().optional(),
+            data: z.lazy(() => GetTenantResponseDtoData$.inboundSchema).optional(),
+            _environmentId: z.string(),
+            createdAt: z.string(),
             updatedAt: z.string(),
         })
         .transform((v) => {
             return remap$(v, {
-                _environmentId: "environmentId",
                 _id: "id",
+                _environmentId: "environmentId",
             });
         });
 
     export type Outbound = {
-        _environmentId: string;
         _id: string;
-        createdAt: string;
-        data?: GetTenantResponseDtoData$.Outbound | undefined;
         identifier: string;
         name?: string | undefined;
+        data?: GetTenantResponseDtoData$.Outbound | undefined;
+        _environmentId: string;
+        createdAt: string;
         updatedAt: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetTenantResponseDto> = z
         .object({
-            environmentId: z.string(),
             id: z.string(),
-            createdAt: z.string(),
-            data: z.lazy(() => GetTenantResponseDtoData$.outboundSchema).optional(),
             identifier: z.string(),
             name: z.string().optional(),
+            data: z.lazy(() => GetTenantResponseDtoData$.outboundSchema).optional(),
+            environmentId: z.string(),
+            createdAt: z.string(),
             updatedAt: z.string(),
         })
         .transform((v) => {
             return remap$(v, {
-                environmentId: "_environmentId",
                 id: "_id",
+                environmentId: "_environmentId",
             });
         });
 }

@@ -1,17 +1,17 @@
-speakeasyVersion: 1.306.0
+speakeasyVersion: 1.307.0
 sources:
     json-development:
         sourceNamespace: json-development
-        sourceRevisionDigest: sha256:c0b342dbbf100801690bab5893c2b702cf6ce385907f9dfd4dff9e4be3f16ea4
-        sourceBlobDigest: sha256:d05c36ee8256ef6a58c73c1314b632be48981b84738a6c9a9230e823e27307de
+        sourceRevisionDigest: sha256:738cdbabfd7cab7dcad9bf7e6870a7740d373604c149582bdc09bc00e9b890e2
+        sourceBlobDigest: sha256:c28d79771a186a89ce3d2d92ef16d28aad6e7ad21137082bed94c8b87efc0773
         tags:
             - latest
 targets:
     my-first-target:
         source: json-development
         sourceNamespace: json-development
-        sourceRevisionDigest: sha256:c0b342dbbf100801690bab5893c2b702cf6ce385907f9dfd4dff9e4be3f16ea4
-        sourceBlobDigest: sha256:d05c36ee8256ef6a58c73c1314b632be48981b84738a6c9a9230e823e27307de
+        sourceRevisionDigest: sha256:738cdbabfd7cab7dcad9bf7e6870a7740d373604c149582bdc09bc00e9b890e2
+        sourceBlobDigest: sha256:c28d79771a186a89ce3d2d92ef16d28aad6e7ad21137082bed94c8b87efc0773
         outLocation: /Users/galtidhar/Documents/GitHub/novu-ts-sdk
 workflow:
     workflowVersion: 1.0.0
@@ -19,7 +19,7 @@ workflow:
     sources:
         json-development:
             inputs:
-                - location: http://127.0.0.1:3000/openapi-hoisted.json
+                - location: http://127.0.0.1:3000/openapi.sdk.json
             overlays:
                 - location: /Users/galtidhar/WebstormProjects/novu-sdk/sources/remove-headers-overlay.yaml
             registry:

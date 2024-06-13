@@ -5,6 +5,7 @@
 import { SDKHooks } from "../hooks";
 import { SDK_METADATA, SDKOptions, serverURLFromOptions } from "../lib/config";
 import { HTTPClient } from "../lib/http";
+import * as retries$ from "../lib/retries";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
 import * as components from "../models/components";
 
@@ -41,7 +42,9 @@ export class Variables extends ClientSDK {
      * @remarks
      * Get the variables that can be used in the workflow
      */
-    async retrieve(options?: RequestOptions): Promise<components.VariablesResponseDto> {
+    async retrieve(
+        options?: RequestOptions & { retries?: retries$.RetryConfig }
+    ): Promise<components.VariablesResponseDto> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
@@ -78,7 +81,25 @@ export class Variables extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request$, doOptions);
+        const retryConfig = options?.retries ||
+            this.options$.retryConfig || {
+                strategy: "backoff",
+                backoff: {
+                    initialInterval: 500,
+                    maxInterval: 30000,
+                    exponent: 1.5,
+                    maxElapsedTime: 3600000,
+                },
+                retryConnectionErrors: true,
+            };
+
+        const response = await retries$.retry(
+            () => {
+                const cloned = request$.clone();
+                return this.do$(cloned, doOptions);
+            },
+            { config: retryConfig, statusCodes: ["408", "409", "429", "5XX"] }
+        );
 
         const [result$] = await this.matcher<components.VariablesResponseDto>()
             .json(200, components.VariablesResponseDto$)

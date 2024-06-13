@@ -6,6 +6,7 @@ import { SDKHooks } from "../hooks";
 import { SDK_METADATA, SDKOptions, serverURLFromOptions } from "../lib/config";
 import { encodeJSON as encodeJSON$, encodeSimple as encodeSimple$ } from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
+import * as retries$ from "../lib/retries";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
 import * as components from "../models/components";
@@ -48,7 +49,7 @@ export class NovuSubscribers extends ClientSDK {
     async assign(
         topicKey: string,
         addSubscribersRequestDto: components.AddSubscribersRequestDto,
-        options?: RequestOptions
+        options?: RequestOptions & { retries?: retries$.RetryConfig }
     ): Promise<void> {
         const input$: operations.TopicsControllerAddSubscribersRequest = {
             topicKey: topicKey,
@@ -106,89 +107,28 @@ export class NovuSubscribers extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request$, doOptions);
+        const retryConfig = options?.retries ||
+            this.options$.retryConfig || {
+                strategy: "backoff",
+                backoff: {
+                    initialInterval: 500,
+                    maxInterval: 30000,
+                    exponent: 1.5,
+                    maxElapsedTime: 3600000,
+                },
+                retryConnectionErrors: true,
+            };
+
+        const response = await retries$.retry(
+            () => {
+                const cloned = request$.clone();
+                return this.do$(cloned, doOptions);
+            },
+            { config: retryConfig, statusCodes: ["408", "409", "429", "5XX"] }
+        );
 
         const [result$] = await this.matcher<void>()
             .void([200, 204], z.void())
-            .fail([409, 429, "4XX", 503, "5XX"])
-            .match(response);
-
-        return result$;
-    }
-
-    /**
-     * Subscribers removal
-     *
-     * @remarks
-     * Remove subscribers from a topic
-     */
-    async delete(
-        topicKey: string,
-        removeSubscribersRequestDto: components.RemoveSubscribersRequestDto,
-        options?: RequestOptions
-    ): Promise<void> {
-        const input$: operations.TopicsControllerRemoveSubscribersRequest = {
-            topicKey: topicKey,
-            removeSubscribersRequestDto: removeSubscribersRequestDto,
-        };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Content-Type", "application/json");
-        headers$.set("Accept", "*/*");
-
-        const payload$ = schemas$.parse(
-            input$,
-            (value$) =>
-                operations.TopicsControllerRemoveSubscribersRequest$.outboundSchema.parse(value$),
-            "Input validation failed"
-        );
-        const body$ = encodeJSON$("body", payload$.RemoveSubscribersRequestDto, { explode: true });
-
-        const pathParams$ = {
-            topicKey: encodeSimple$("topicKey", payload$.topicKey, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-        };
-        const path$ = this.templateURLComponent("/topics/{topicKey}/subscribers/removal")(
-            pathParams$
-        );
-
-        const query$ = "";
-
-        let security$;
-        if (typeof this.options$.apiKey === "function") {
-            security$ = { apiKey: await this.options$.apiKey() };
-        } else if (this.options$.apiKey) {
-            security$ = { apiKey: this.options$.apiKey };
-        } else {
-            security$ = {};
-        }
-        const context = {
-            operationID: "TopicsController_removeSubscribers",
-            oAuth2Scopes: [],
-            securitySource: this.options$.apiKey,
-        };
-        const securitySettings$ = this.resolveGlobalSecurity(security$);
-
-        const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
-        const request$ = this.createRequest$(
-            context,
-            {
-                security: securitySettings$,
-                method: "POST",
-                path: path$,
-                headers: headers$,
-                query: query$,
-                body: body$,
-            },
-            options
-        );
-
-        const response = await this.do$(request$, doOptions);
-
-        const [result$] = await this.matcher<void>()
-            .void(204, z.void())
             .fail([409, 429, "4XX", 503, "5XX"])
             .match(response);
 
@@ -204,7 +144,7 @@ export class NovuSubscribers extends ClientSDK {
     async retrieve(
         topicKey: string,
         externalSubscriberId: string,
-        options?: RequestOptions
+        options?: RequestOptions & { retries?: retries$.RetryConfig }
     ): Promise<components.TopicSubscriberDto> {
         const input$: operations.TopicsControllerGetTopicSubscriberRequest = {
             topicKey: topicKey,
@@ -268,10 +208,125 @@ export class NovuSubscribers extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request$, doOptions);
+        const retryConfig = options?.retries ||
+            this.options$.retryConfig || {
+                strategy: "backoff",
+                backoff: {
+                    initialInterval: 500,
+                    maxInterval: 30000,
+                    exponent: 1.5,
+                    maxElapsedTime: 3600000,
+                },
+                retryConnectionErrors: true,
+            };
+
+        const response = await retries$.retry(
+            () => {
+                const cloned = request$.clone();
+                return this.do$(cloned, doOptions);
+            },
+            { config: retryConfig, statusCodes: ["408", "409", "429", "5XX"] }
+        );
 
         const [result$] = await this.matcher<components.TopicSubscriberDto>()
             .json(200, components.TopicSubscriberDto$)
+            .fail([409, 429, "4XX", 503, "5XX"])
+            .match(response);
+
+        return result$;
+    }
+
+    /**
+     * Subscribers removal
+     *
+     * @remarks
+     * Remove subscribers from a topic
+     */
+    async delete(
+        topicKey: string,
+        removeSubscribersRequestDto: components.RemoveSubscribersRequestDto,
+        options?: RequestOptions & { retries?: retries$.RetryConfig }
+    ): Promise<void> {
+        const input$: operations.TopicsControllerRemoveSubscribersRequest = {
+            topicKey: topicKey,
+            removeSubscribersRequestDto: removeSubscribersRequestDto,
+        };
+        const headers$ = new Headers();
+        headers$.set("user-agent", SDK_METADATA.userAgent);
+        headers$.set("Content-Type", "application/json");
+        headers$.set("Accept", "*/*");
+
+        const payload$ = schemas$.parse(
+            input$,
+            (value$) =>
+                operations.TopicsControllerRemoveSubscribersRequest$.outboundSchema.parse(value$),
+            "Input validation failed"
+        );
+        const body$ = encodeJSON$("body", payload$.RemoveSubscribersRequestDto, { explode: true });
+
+        const pathParams$ = {
+            topicKey: encodeSimple$("topicKey", payload$.topicKey, {
+                explode: false,
+                charEncoding: "percent",
+            }),
+        };
+        const path$ = this.templateURLComponent("/topics/{topicKey}/subscribers/removal")(
+            pathParams$
+        );
+
+        const query$ = "";
+
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "TopicsController_removeSubscribers",
+            oAuth2Scopes: [],
+            securitySource: this.options$.apiKey,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
+
+        const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
+        const request$ = this.createRequest$(
+            context,
+            {
+                security: securitySettings$,
+                method: "POST",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                body: body$,
+            },
+            options
+        );
+
+        const retryConfig = options?.retries ||
+            this.options$.retryConfig || {
+                strategy: "backoff",
+                backoff: {
+                    initialInterval: 500,
+                    maxInterval: 30000,
+                    exponent: 1.5,
+                    maxElapsedTime: 3600000,
+                },
+                retryConnectionErrors: true,
+            };
+
+        const response = await retries$.retry(
+            () => {
+                const cloned = request$.clone();
+                return this.do$(cloned, doOptions);
+            },
+            { config: retryConfig, statusCodes: ["408", "409", "429", "5XX"] }
+        );
+
+        const [result$] = await this.matcher<void>()
+            .void(204, z.void())
             .fail([409, 429, "4XX", 503, "5XX"])
             .match(response);
 

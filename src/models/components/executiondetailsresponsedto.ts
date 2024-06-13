@@ -6,7 +6,7 @@ import { remap as remap$ } from "../../lib/primitives";
 import { ClosedEnum } from "../../types";
 import * as z from "zod";
 
-export const ExecutionDetailsResponseDtoChannel = {
+export const Channel = {
     InApp: "in_app",
     Email: "email",
     Sms: "sms",
@@ -17,21 +17,17 @@ export const ExecutionDetailsResponseDtoChannel = {
     Delay: "delay",
     Custom: "custom",
 } as const;
-export type ExecutionDetailsResponseDtoChannel = ClosedEnum<
-    typeof ExecutionDetailsResponseDtoChannel
->;
+export type Channel = ClosedEnum<typeof Channel>;
 
-export const ExecutionDetailsResponseDtoSource = {
+export const Source = {
     Credentials: "Credentials",
     Internal: "Internal",
     Payload: "Payload",
     Webhook: "Webhook",
 } as const;
-export type ExecutionDetailsResponseDtoSource = ClosedEnum<
-    typeof ExecutionDetailsResponseDtoSource
->;
+export type Source = ClosedEnum<typeof Source>;
 
-export const ExecutionDetailsResponseDtoStatus = {
+export const Status = {
     Success: "Success",
     Warning: "Warning",
     Failed: "Failed",
@@ -39,45 +35,43 @@ export const ExecutionDetailsResponseDtoStatus = {
     Queued: "Queued",
     ReadConfirmation: "ReadConfirmation",
 } as const;
-export type ExecutionDetailsResponseDtoStatus = ClosedEnum<
-    typeof ExecutionDetailsResponseDtoStatus
->;
+export type Status = ClosedEnum<typeof Status>;
 
 export type ExecutionDetailsResponseDto = {
-    environmentId: string;
     id?: string | undefined;
+    organizationId: string;
     jobId: string;
-    messageId?: string | undefined;
+    environmentId: string;
     notificationId: string;
     notificationTemplateId: string;
-    organizationId: string;
     subscriberId: string;
-    channel: ExecutionDetailsResponseDtoChannel;
-    createdAt?: string | undefined;
-    detail: string;
-    isRetry: boolean;
-    isTest: boolean;
+    messageId?: string | undefined;
     providerId?: string | undefined;
-    source: ExecutionDetailsResponseDtoSource;
-    status: ExecutionDetailsResponseDtoStatus;
     transactionId: string;
+    channel: Channel;
+    detail: string;
+    source: Source;
+    status: Status;
+    isTest: boolean;
+    isRetry: boolean;
+    createdAt?: string | undefined;
 };
 
 /** @internal */
-export namespace ExecutionDetailsResponseDtoChannel$ {
-    export const inboundSchema = z.nativeEnum(ExecutionDetailsResponseDtoChannel);
+export namespace Channel$ {
+    export const inboundSchema = z.nativeEnum(Channel);
     export const outboundSchema = inboundSchema;
 }
 
 /** @internal */
-export namespace ExecutionDetailsResponseDtoSource$ {
-    export const inboundSchema = z.nativeEnum(ExecutionDetailsResponseDtoSource);
+export namespace Source$ {
+    export const inboundSchema = z.nativeEnum(Source);
     export const outboundSchema = inboundSchema;
 }
 
 /** @internal */
-export namespace ExecutionDetailsResponseDtoStatus$ {
-    export const inboundSchema = z.nativeEnum(ExecutionDetailsResponseDtoStatus);
+export namespace Status$ {
+    export const inboundSchema = z.nativeEnum(Status);
     export const outboundSchema = inboundSchema;
 }
 
@@ -85,87 +79,87 @@ export namespace ExecutionDetailsResponseDtoStatus$ {
 export namespace ExecutionDetailsResponseDto$ {
     export const inboundSchema: z.ZodType<ExecutionDetailsResponseDto, z.ZodTypeDef, unknown> = z
         .object({
-            _environmentId: z.string(),
             _id: z.string().optional(),
+            _organizationId: z.string(),
             _jobId: z.string(),
-            _messageId: z.string().optional(),
+            _environmentId: z.string(),
             _notificationId: z.string(),
             _notificationTemplateId: z.string(),
-            _organizationId: z.string(),
             _subscriberId: z.string(),
-            channel: ExecutionDetailsResponseDtoChannel$.inboundSchema,
-            createdAt: z.string().optional(),
-            detail: z.string(),
-            isRetry: z.boolean(),
-            isTest: z.boolean(),
+            _messageId: z.string().optional(),
             providerId: z.string().optional(),
-            source: ExecutionDetailsResponseDtoSource$.inboundSchema,
-            status: ExecutionDetailsResponseDtoStatus$.inboundSchema,
             transactionId: z.string(),
+            channel: Channel$.inboundSchema,
+            detail: z.string(),
+            source: Source$.inboundSchema,
+            status: Status$.inboundSchema,
+            isTest: z.boolean(),
+            isRetry: z.boolean(),
+            createdAt: z.string().optional(),
         })
         .transform((v) => {
             return remap$(v, {
-                _environmentId: "environmentId",
                 _id: "id",
+                _organizationId: "organizationId",
                 _jobId: "jobId",
-                _messageId: "messageId",
+                _environmentId: "environmentId",
                 _notificationId: "notificationId",
                 _notificationTemplateId: "notificationTemplateId",
-                _organizationId: "organizationId",
                 _subscriberId: "subscriberId",
+                _messageId: "messageId",
             });
         });
 
     export type Outbound = {
-        _environmentId: string;
         _id?: string | undefined;
+        _organizationId: string;
         _jobId: string;
-        _messageId?: string | undefined;
+        _environmentId: string;
         _notificationId: string;
         _notificationTemplateId: string;
-        _organizationId: string;
         _subscriberId: string;
-        channel: string;
-        createdAt?: string | undefined;
-        detail: string;
-        isRetry: boolean;
-        isTest: boolean;
+        _messageId?: string | undefined;
         providerId?: string | undefined;
+        transactionId: string;
+        channel: string;
+        detail: string;
         source: string;
         status: string;
-        transactionId: string;
+        isTest: boolean;
+        isRetry: boolean;
+        createdAt?: string | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ExecutionDetailsResponseDto> = z
         .object({
-            environmentId: z.string(),
             id: z.string().optional(),
+            organizationId: z.string(),
             jobId: z.string(),
-            messageId: z.string().optional(),
+            environmentId: z.string(),
             notificationId: z.string(),
             notificationTemplateId: z.string(),
-            organizationId: z.string(),
             subscriberId: z.string(),
-            channel: ExecutionDetailsResponseDtoChannel$.outboundSchema,
-            createdAt: z.string().optional(),
-            detail: z.string(),
-            isRetry: z.boolean(),
-            isTest: z.boolean(),
+            messageId: z.string().optional(),
             providerId: z.string().optional(),
-            source: ExecutionDetailsResponseDtoSource$.outboundSchema,
-            status: ExecutionDetailsResponseDtoStatus$.outboundSchema,
             transactionId: z.string(),
+            channel: Channel$.outboundSchema,
+            detail: z.string(),
+            source: Source$.outboundSchema,
+            status: Status$.outboundSchema,
+            isTest: z.boolean(),
+            isRetry: z.boolean(),
+            createdAt: z.string().optional(),
         })
         .transform((v) => {
             return remap$(v, {
-                environmentId: "_environmentId",
                 id: "_id",
+                organizationId: "_organizationId",
                 jobId: "_jobId",
-                messageId: "_messageId",
+                environmentId: "_environmentId",
                 notificationId: "_notificationId",
                 notificationTemplateId: "_notificationTemplateId",
-                organizationId: "_organizationId",
                 subscriberId: "_subscriberId",
+                messageId: "_messageId",
             });
         });
 }

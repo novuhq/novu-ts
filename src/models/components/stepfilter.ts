@@ -6,7 +6,7 @@ import { ClosedEnum } from "../../types";
 import { FieldFilterPart, FieldFilterPart$ } from "./fieldfilterpart";
 import * as z from "zod";
 
-export const StepFilterType = {
+export const Type = {
     Boolean: "BOOLEAN",
     Text: "TEXT",
     Date: "DATE",
@@ -16,7 +16,7 @@ export const StepFilterType = {
     MultiList: "MULTI_LIST",
     Group: "GROUP",
 } as const;
-export type StepFilterType = ClosedEnum<typeof StepFilterType>;
+export type Type = ClosedEnum<typeof Type>;
 
 export const Value = {
     And: "AND",
@@ -25,15 +25,15 @@ export const Value = {
 export type Value = ClosedEnum<typeof Value>;
 
 export type StepFilter = {
-    children: Array<FieldFilterPart>;
     isNegated: boolean;
-    type: StepFilterType;
+    type: Type;
     value: Value;
+    children: Array<FieldFilterPart>;
 };
 
 /** @internal */
-export namespace StepFilterType$ {
-    export const inboundSchema = z.nativeEnum(StepFilterType);
+export namespace Type$ {
+    export const inboundSchema = z.nativeEnum(Type);
     export const outboundSchema = inboundSchema;
 }
 
@@ -46,23 +46,23 @@ export namespace Value$ {
 /** @internal */
 export namespace StepFilter$ {
     export const inboundSchema: z.ZodType<StepFilter, z.ZodTypeDef, unknown> = z.object({
-        children: z.array(FieldFilterPart$.inboundSchema),
         isNegated: z.boolean(),
-        type: StepFilterType$.inboundSchema,
+        type: Type$.inboundSchema,
         value: Value$.inboundSchema,
+        children: z.array(FieldFilterPart$.inboundSchema),
     });
 
     export type Outbound = {
-        children: Array<FieldFilterPart$.Outbound>;
         isNegated: boolean;
         type: string;
         value: string;
+        children: Array<FieldFilterPart$.Outbound>;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, StepFilter> = z.object({
-        children: z.array(FieldFilterPart$.outboundSchema),
         isNegated: z.boolean(),
-        type: StepFilterType$.outboundSchema,
+        type: Type$.outboundSchema,
         value: Value$.outboundSchema,
+        children: z.array(FieldFilterPart$.outboundSchema),
     });
 }

@@ -8,29 +8,29 @@ import { StepFilter, StepFilter$ } from "./stepfilter";
 import * as z from "zod";
 
 export type UpdateIntegrationRequestDto = {
+    name?: string | undefined;
+    identifier?: string | undefined;
     environmentId?: string | undefined;
     /**
      * If the integration is active the validation on the credentials field will run
      */
     active?: boolean | undefined;
+    credentials?: CredentialsDto | undefined;
     check?: boolean | undefined;
     conditions?: Array<StepFilter> | undefined;
-    credentials?: CredentialsDto | undefined;
-    identifier?: string | undefined;
-    name?: string | undefined;
 };
 
 /** @internal */
 export namespace UpdateIntegrationRequestDto$ {
     export const inboundSchema: z.ZodType<UpdateIntegrationRequestDto, z.ZodTypeDef, unknown> = z
         .object({
+            name: z.string().optional(),
+            identifier: z.string().optional(),
             _environmentId: z.string().optional(),
             active: z.boolean().optional(),
+            credentials: CredentialsDto$.inboundSchema.optional(),
             check: z.boolean().optional(),
             conditions: z.array(StepFilter$.inboundSchema).optional(),
-            credentials: CredentialsDto$.inboundSchema.optional(),
-            identifier: z.string().optional(),
-            name: z.string().optional(),
         })
         .transform((v) => {
             return remap$(v, {
@@ -39,24 +39,24 @@ export namespace UpdateIntegrationRequestDto$ {
         });
 
     export type Outbound = {
+        name?: string | undefined;
+        identifier?: string | undefined;
         _environmentId?: string | undefined;
         active?: boolean | undefined;
+        credentials?: CredentialsDto$.Outbound | undefined;
         check?: boolean | undefined;
         conditions?: Array<StepFilter$.Outbound> | undefined;
-        credentials?: CredentialsDto$.Outbound | undefined;
-        identifier?: string | undefined;
-        name?: string | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, UpdateIntegrationRequestDto> = z
         .object({
+            name: z.string().optional(),
+            identifier: z.string().optional(),
             environmentId: z.string().optional(),
             active: z.boolean().optional(),
+            credentials: CredentialsDto$.outboundSchema.optional(),
             check: z.boolean().optional(),
             conditions: z.array(StepFilter$.outboundSchema).optional(),
-            credentials: CredentialsDto$.outboundSchema.optional(),
-            identifier: z.string().optional(),
-            name: z.string().optional(),
         })
         .transform((v) => {
             return remap$(v, {

@@ -28,13 +28,13 @@ export type TriggerEventResponseDto = {
      */
     acknowledged: boolean;
     /**
-     * In case of an error, this field will contain the error message
-     */
-    error?: Array<string> | undefined;
-    /**
      * Status for trigger
      */
     status: TriggerEventResponseDtoStatus;
+    /**
+     * In case of an error, this field will contain the error message
+     */
+    error?: Array<string> | undefined;
     /**
      * Transaction id for trigger
      */
@@ -52,23 +52,23 @@ export namespace TriggerEventResponseDto$ {
     export const inboundSchema: z.ZodType<TriggerEventResponseDto, z.ZodTypeDef, unknown> =
         z.object({
             acknowledged: z.boolean(),
-            error: z.array(z.string()).optional(),
             status: TriggerEventResponseDtoStatus$.inboundSchema,
+            error: z.array(z.string()).optional(),
             transactionId: z.string().optional(),
         });
 
     export type Outbound = {
         acknowledged: boolean;
-        error?: Array<string> | undefined;
         status: string;
+        error?: Array<string> | undefined;
         transactionId?: string | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TriggerEventResponseDto> =
         z.object({
             acknowledged: z.boolean(),
-            error: z.array(z.string()).optional(),
             status: TriggerEventResponseDtoStatus$.outboundSchema,
+            error: z.array(z.string()).optional(),
             transactionId: z.string().optional(),
         });
 }

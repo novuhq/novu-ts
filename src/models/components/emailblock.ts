@@ -13,10 +13,10 @@ export const EmailBlockType = {
 export type EmailBlockType = ClosedEnum<typeof EmailBlockType>;
 
 export type EmailBlock = {
-    content: string;
-    styles?: EmailBlockStyles | undefined;
     type: EmailBlockType;
+    content: string;
     url?: string | undefined;
+    styles?: EmailBlockStyles | undefined;
 };
 
 /** @internal */
@@ -28,23 +28,23 @@ export namespace EmailBlockType$ {
 /** @internal */
 export namespace EmailBlock$ {
     export const inboundSchema: z.ZodType<EmailBlock, z.ZodTypeDef, unknown> = z.object({
-        content: z.string(),
-        styles: EmailBlockStyles$.inboundSchema.optional(),
         type: EmailBlockType$.inboundSchema,
+        content: z.string(),
         url: z.string().optional(),
+        styles: EmailBlockStyles$.inboundSchema.optional(),
     });
 
     export type Outbound = {
-        content: string;
-        styles?: EmailBlockStyles$.Outbound | undefined;
         type: string;
+        content: string;
         url?: string | undefined;
+        styles?: EmailBlockStyles$.Outbound | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, EmailBlock> = z.object({
-        content: z.string(),
-        styles: EmailBlockStyles$.outboundSchema.optional(),
         type: EmailBlockType$.outboundSchema,
+        content: z.string(),
         url: z.string().optional(),
+        styles: EmailBlockStyles$.outboundSchema.optional(),
     });
 }

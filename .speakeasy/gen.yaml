@@ -1,6 +1,7 @@
 configVersion: 2.0.0
 generation:
   sdkClassName: Novu
+  maintainOpenAPIOrder: true
   usageSnippets:
     optionalPropertyRendering: withExample
   useClassNamesForArrayFields: true
@@ -17,7 +18,7 @@ typescript:
     devDependencies: {}
     peerDependencies: {}
   additionalPackageJSON: {}
-  author: Speakeasy
+  author: Novu
   clientServerStatusCodesAsErrors: true
   enumFormat: union
   flattenGlobalSecurity: true
@@ -33,6 +34,6 @@ typescript:
   maxMethodParams: 2
   methodArguments: require-security-and-request
   outputModelSuffix: output
-  packageName: novu-typescript
+  packageName: novu-node
   responseFormat: flat
   templateVersion: v2

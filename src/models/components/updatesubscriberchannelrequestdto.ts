@@ -37,17 +37,17 @@ export type UpdateSubscriberChannelRequestDtoProviderId = ClosedEnum<
 
 export type UpdateSubscriberChannelRequestDto = {
     /**
-     * Credentials payload for the specified provider
+     * The provider identifier for the credentials
      */
-    credentials: ChannelCredentials;
+    providerId: UpdateSubscriberChannelRequestDtoProviderId;
     /**
      * The integration identifier
      */
     integrationIdentifier?: string | undefined;
     /**
-     * The provider identifier for the credentials
+     * Credentials payload for the specified provider
      */
-    providerId: UpdateSubscriberChannelRequestDtoProviderId;
+    credentials: ChannelCredentials;
 };
 
 /** @internal */
@@ -63,15 +63,15 @@ export namespace UpdateSubscriberChannelRequestDto$ {
         z.ZodTypeDef,
         unknown
     > = z.object({
-        credentials: ChannelCredentials$.inboundSchema,
-        integrationIdentifier: z.string().optional(),
         providerId: UpdateSubscriberChannelRequestDtoProviderId$.inboundSchema,
+        integrationIdentifier: z.string().optional(),
+        credentials: ChannelCredentials$.inboundSchema,
     });
 
     export type Outbound = {
-        credentials: ChannelCredentials$.Outbound;
-        integrationIdentifier?: string | undefined;
         providerId: string;
+        integrationIdentifier?: string | undefined;
+        credentials: ChannelCredentials$.Outbound;
     };
 
     export const outboundSchema: z.ZodType<
@@ -79,8 +79,8 @@ export namespace UpdateSubscriberChannelRequestDto$ {
         z.ZodTypeDef,
         UpdateSubscriberChannelRequestDto
     > = z.object({
-        credentials: ChannelCredentials$.outboundSchema,
-        integrationIdentifier: z.string().optional(),
         providerId: UpdateSubscriberChannelRequestDtoProviderId$.outboundSchema,
+        integrationIdentifier: z.string().optional(),
+        credentials: ChannelCredentials$.outboundSchema,
     });
 }

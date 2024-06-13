@@ -7,29 +7,29 @@ import * as z from "zod";
 
 export type Preference = {
     /**
-     * Subscriber preferences for the different channels regarding this workflow
-     */
-    channels: PreferenceChannels;
-    /**
      * Sets if the workflow is fully enabled for all channels or not for the subscriber.
      */
     enabled: boolean;
+    /**
+     * Subscriber preferences for the different channels regarding this workflow
+     */
+    channels: PreferenceChannels;
 };
 
 /** @internal */
 export namespace Preference$ {
     export const inboundSchema: z.ZodType<Preference, z.ZodTypeDef, unknown> = z.object({
-        channels: PreferenceChannels$.inboundSchema,
         enabled: z.boolean(),
+        channels: PreferenceChannels$.inboundSchema,
     });
 
     export type Outbound = {
-        channels: PreferenceChannels$.Outbound;
         enabled: boolean;
+        channels: PreferenceChannels$.Outbound;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Preference> = z.object({
-        channels: PreferenceChannels$.outboundSchema,
         enabled: z.boolean(),
+        channels: PreferenceChannels$.outboundSchema,
     });
 }

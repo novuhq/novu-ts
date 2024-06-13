@@ -11,8 +11,8 @@ export const DelayScheduledMetadataType = {
 export type DelayScheduledMetadataType = ClosedEnum<typeof DelayScheduledMetadataType>;
 
 export type DelayScheduledMetadata = {
-    delayPath: string;
     type: DelayScheduledMetadataType;
+    delayPath: string;
 };
 
 /** @internal */
@@ -25,19 +25,19 @@ export namespace DelayScheduledMetadataType$ {
 export namespace DelayScheduledMetadata$ {
     export const inboundSchema: z.ZodType<DelayScheduledMetadata, z.ZodTypeDef, unknown> = z.object(
         {
-            delayPath: z.string(),
             type: DelayScheduledMetadataType$.inboundSchema,
+            delayPath: z.string(),
         }
     );
 
     export type Outbound = {
-        delayPath: string;
         type: string;
+        delayPath: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, DelayScheduledMetadata> =
         z.object({
-            delayPath: z.string(),
             type: DelayScheduledMetadataType$.outboundSchema,
+            delayPath: z.string(),
         });
 }

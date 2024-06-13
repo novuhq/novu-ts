@@ -6,6 +6,7 @@ import { SDKHooks } from "../hooks";
 import { SDK_METADATA, SDKOptions, serverURLFromOptions } from "../lib/config";
 import { encodeJSON as encodeJSON$, encodeSimple as encodeSimple$ } from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
+import * as retries$ from "../lib/retries";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
 import * as components from "../models/components";
@@ -44,7 +45,7 @@ export class Preferences extends ClientSDK {
      */
     async list(
         subscriberId: string,
-        options?: RequestOptions
+        options?: RequestOptions & { retries?: retries$.RetryConfig }
     ): Promise<Array<components.UpdateSubscriberPreferenceResponseDto>> {
         const input$: operations.SubscribersControllerListSubscriberPreferencesRequest = {
             subscriberId: subscriberId,
@@ -104,7 +105,25 @@ export class Preferences extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request$, doOptions);
+        const retryConfig = options?.retries ||
+            this.options$.retryConfig || {
+                strategy: "backoff",
+                backoff: {
+                    initialInterval: 500,
+                    maxInterval: 30000,
+                    exponent: 1.5,
+                    maxElapsedTime: 3600000,
+                },
+                retryConnectionErrors: true,
+            };
+
+        const response = await retries$.retry(
+            () => {
+                const cloned = request$.clone();
+                return this.do$(cloned, doOptions);
+            },
+            { config: retryConfig, statusCodes: ["408", "409", "429", "5XX"] }
+        );
 
         const [result$] = await this.matcher<
             Array<components.UpdateSubscriberPreferenceResponseDto>
@@ -117,175 +136,12 @@ export class Preferences extends ClientSDK {
     }
 
     /**
-     * Get subscriber preferences by level
-     */
-    async retrieveByLevel(
-        parameter: string,
-        subscriberId: string,
-        options?: RequestOptions
-    ): Promise<Array<components.GetSubscriberPreferencesResponseDto>> {
-        const input$: operations.SubscribersControllerGetSubscriberPreferenceByLevelRequest = {
-            parameter: parameter,
-            subscriberId: subscriberId,
-        };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "application/json");
-
-        const payload$ = schemas$.parse(
-            input$,
-            (value$) =>
-                operations.SubscribersControllerGetSubscriberPreferenceByLevelRequest$.outboundSchema.parse(
-                    value$
-                ),
-            "Input validation failed"
-        );
-        const body$ = null;
-
-        const pathParams$ = {
-            parameter: encodeSimple$("parameter", payload$.parameter, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-            subscriberId: encodeSimple$("subscriberId", payload$.subscriberId, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-        };
-        const path$ = this.templateURLComponent(
-            "/subscribers/{subscriberId}/preferences/{parameter}"
-        )(pathParams$);
-
-        const query$ = "";
-
-        let security$;
-        if (typeof this.options$.apiKey === "function") {
-            security$ = { apiKey: await this.options$.apiKey() };
-        } else if (this.options$.apiKey) {
-            security$ = { apiKey: this.options$.apiKey };
-        } else {
-            security$ = {};
-        }
-        const context = {
-            operationID: "SubscribersController_getSubscriberPreferenceByLevel",
-            oAuth2Scopes: [],
-            securitySource: this.options$.apiKey,
-        };
-        const securitySettings$ = this.resolveGlobalSecurity(security$);
-
-        const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
-        const request$ = this.createRequest$(
-            context,
-            {
-                security: securitySettings$,
-                method: "GET",
-                path: path$,
-                headers: headers$,
-                query: query$,
-                body: body$,
-            },
-            options
-        );
-
-        const response = await this.do$(request$, doOptions);
-
-        const [result$] = await this.matcher<
-            Array<components.GetSubscriberPreferencesResponseDto>
-        >()
-            .json(200, z.array(components.GetSubscriberPreferencesResponseDto$.inboundSchema))
-            .fail([409, 429, "4XX", 503, "5XX"])
-            .match(response);
-
-        return result$;
-    }
-
-    /**
-     * Update subscriber preference
-     */
-    async update(
-        request: operations.SubscribersControllerUpdateSubscriberPreferenceRequest,
-        options?: RequestOptions
-    ): Promise<components.UpdateSubscriberPreferenceResponseDto> {
-        const input$ = request;
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Content-Type", "application/json");
-        headers$.set("Accept", "application/json");
-
-        const payload$ = schemas$.parse(
-            input$,
-            (value$) =>
-                operations.SubscribersControllerUpdateSubscriberPreferenceRequest$.outboundSchema.parse(
-                    value$
-                ),
-            "Input validation failed"
-        );
-        const body$ = encodeJSON$("body", payload$.UpdateSubscriberPreferenceRequestDto, {
-            explode: true,
-        });
-
-        const pathParams$ = {
-            parameter: encodeSimple$("parameter", payload$.parameter, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-            subscriberId: encodeSimple$("subscriberId", payload$.subscriberId, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-        };
-        const path$ = this.templateURLComponent(
-            "/subscribers/{subscriberId}/preferences/{parameter}"
-        )(pathParams$);
-
-        const query$ = "";
-
-        let security$;
-        if (typeof this.options$.apiKey === "function") {
-            security$ = { apiKey: await this.options$.apiKey() };
-        } else if (this.options$.apiKey) {
-            security$ = { apiKey: this.options$.apiKey };
-        } else {
-            security$ = {};
-        }
-        const context = {
-            operationID: "SubscribersController_updateSubscriberPreference",
-            oAuth2Scopes: [],
-            securitySource: this.options$.apiKey,
-        };
-        const securitySettings$ = this.resolveGlobalSecurity(security$);
-
-        const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
-        const request$ = this.createRequest$(
-            context,
-            {
-                security: securitySettings$,
-                method: "PATCH",
-                path: path$,
-                headers: headers$,
-                query: query$,
-                body: body$,
-            },
-            options
-        );
-
-        const response = await this.do$(request$, doOptions);
-
-        const [result$] = await this.matcher<components.UpdateSubscriberPreferenceResponseDto>()
-            .json(200, components.UpdateSubscriberPreferenceResponseDto$)
-            .fail([409, 429, "4XX", 503, "5XX"])
-            .match(response);
-
-        return result$;
-    }
-
-    /**
      * Update subscriber global preferences
      */
     async updateGlobal(
         subscriberId: string,
         updateSubscriberGlobalPreferencesRequestDto: components.UpdateSubscriberGlobalPreferencesRequestDto,
-        options?: RequestOptions
+        options?: RequestOptions & { retries?: retries$.RetryConfig }
     ): Promise<components.UpdateSubscriberPreferenceResponseDto> {
         const input$: operations.SubscribersControllerUpdateSubscriberGlobalPreferencesRequest = {
             subscriberId: subscriberId,
@@ -350,7 +206,224 @@ export class Preferences extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request$, doOptions);
+        const retryConfig = options?.retries ||
+            this.options$.retryConfig || {
+                strategy: "backoff",
+                backoff: {
+                    initialInterval: 500,
+                    maxInterval: 30000,
+                    exponent: 1.5,
+                    maxElapsedTime: 3600000,
+                },
+                retryConnectionErrors: true,
+            };
+
+        const response = await retries$.retry(
+            () => {
+                const cloned = request$.clone();
+                return this.do$(cloned, doOptions);
+            },
+            { config: retryConfig, statusCodes: ["408", "409", "429", "5XX"] }
+        );
+
+        const [result$] = await this.matcher<components.UpdateSubscriberPreferenceResponseDto>()
+            .json(200, components.UpdateSubscriberPreferenceResponseDto$)
+            .fail([409, 429, "4XX", 503, "5XX"])
+            .match(response);
+
+        return result$;
+    }
+
+    /**
+     * Get subscriber preferences by level
+     */
+    async retrieveByLevel(
+        parameter: string,
+        subscriberId: string,
+        options?: RequestOptions & { retries?: retries$.RetryConfig }
+    ): Promise<Array<components.GetSubscriberPreferencesResponseDto>> {
+        const input$: operations.SubscribersControllerGetSubscriberPreferenceByLevelRequest = {
+            parameter: parameter,
+            subscriberId: subscriberId,
+        };
+        const headers$ = new Headers();
+        headers$.set("user-agent", SDK_METADATA.userAgent);
+        headers$.set("Accept", "application/json");
+
+        const payload$ = schemas$.parse(
+            input$,
+            (value$) =>
+                operations.SubscribersControllerGetSubscriberPreferenceByLevelRequest$.outboundSchema.parse(
+                    value$
+                ),
+            "Input validation failed"
+        );
+        const body$ = null;
+
+        const pathParams$ = {
+            parameter: encodeSimple$("parameter", payload$.parameter, {
+                explode: false,
+                charEncoding: "percent",
+            }),
+            subscriberId: encodeSimple$("subscriberId", payload$.subscriberId, {
+                explode: false,
+                charEncoding: "percent",
+            }),
+        };
+        const path$ = this.templateURLComponent(
+            "/subscribers/{subscriberId}/preferences/{parameter}"
+        )(pathParams$);
+
+        const query$ = "";
+
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "SubscribersController_getSubscriberPreferenceByLevel",
+            oAuth2Scopes: [],
+            securitySource: this.options$.apiKey,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
+
+        const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
+        const request$ = this.createRequest$(
+            context,
+            {
+                security: securitySettings$,
+                method: "GET",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                body: body$,
+            },
+            options
+        );
+
+        const retryConfig = options?.retries ||
+            this.options$.retryConfig || {
+                strategy: "backoff",
+                backoff: {
+                    initialInterval: 500,
+                    maxInterval: 30000,
+                    exponent: 1.5,
+                    maxElapsedTime: 3600000,
+                },
+                retryConnectionErrors: true,
+            };
+
+        const response = await retries$.retry(
+            () => {
+                const cloned = request$.clone();
+                return this.do$(cloned, doOptions);
+            },
+            { config: retryConfig, statusCodes: ["408", "409", "429", "5XX"] }
+        );
+
+        const [result$] = await this.matcher<
+            Array<components.GetSubscriberPreferencesResponseDto>
+        >()
+            .json(200, z.array(components.GetSubscriberPreferencesResponseDto$.inboundSchema))
+            .fail([409, 429, "4XX", 503, "5XX"])
+            .match(response);
+
+        return result$;
+    }
+
+    /**
+     * Update subscriber preference
+     */
+    async update(
+        request: operations.SubscribersControllerUpdateSubscriberPreferenceRequest,
+        options?: RequestOptions & { retries?: retries$.RetryConfig }
+    ): Promise<components.UpdateSubscriberPreferenceResponseDto> {
+        const input$ = request;
+        const headers$ = new Headers();
+        headers$.set("user-agent", SDK_METADATA.userAgent);
+        headers$.set("Content-Type", "application/json");
+        headers$.set("Accept", "application/json");
+
+        const payload$ = schemas$.parse(
+            input$,
+            (value$) =>
+                operations.SubscribersControllerUpdateSubscriberPreferenceRequest$.outboundSchema.parse(
+                    value$
+                ),
+            "Input validation failed"
+        );
+        const body$ = encodeJSON$("body", payload$.UpdateSubscriberPreferenceRequestDto, {
+            explode: true,
+        });
+
+        const pathParams$ = {
+            parameter: encodeSimple$("parameter", payload$.parameter, {
+                explode: false,
+                charEncoding: "percent",
+            }),
+            subscriberId: encodeSimple$("subscriberId", payload$.subscriberId, {
+                explode: false,
+                charEncoding: "percent",
+            }),
+        };
+        const path$ = this.templateURLComponent(
+            "/subscribers/{subscriberId}/preferences/{parameter}"
+        )(pathParams$);
+
+        const query$ = "";
+
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "SubscribersController_updateSubscriberPreference",
+            oAuth2Scopes: [],
+            securitySource: this.options$.apiKey,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
+
+        const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
+        const request$ = this.createRequest$(
+            context,
+            {
+                security: securitySettings$,
+                method: "PATCH",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                body: body$,
+            },
+            options
+        );
+
+        const retryConfig = options?.retries ||
+            this.options$.retryConfig || {
+                strategy: "backoff",
+                backoff: {
+                    initialInterval: 500,
+                    maxInterval: 30000,
+                    exponent: 1.5,
+                    maxElapsedTime: 3600000,
+                },
+                retryConnectionErrors: true,
+            };
+
+        const response = await retries$.retry(
+            () => {
+                const cloned = request$.clone();
+                return this.do$(cloned, doOptions);
+            },
+            { config: retryConfig, statusCodes: ["408", "409", "429", "5XX"] }
+        );
 
         const [result$] = await this.matcher<components.UpdateSubscriberPreferenceResponseDto>()
             .json(200, components.UpdateSubscriberPreferenceResponseDto$)

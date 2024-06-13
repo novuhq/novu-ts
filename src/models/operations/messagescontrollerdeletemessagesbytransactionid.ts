@@ -8,7 +8,7 @@ import * as z from "zod";
 /**
  * The channel of the message to be deleted
  */
-export const Channel = {
+export const QueryParamChannel = {
     InApp: "in_app",
     Email: "email",
     Sms: "sms",
@@ -18,19 +18,19 @@ export const Channel = {
 /**
  * The channel of the message to be deleted
  */
-export type Channel = ClosedEnum<typeof Channel>;
+export type QueryParamChannel = ClosedEnum<typeof QueryParamChannel>;
 
 export type MessagesControllerDeleteMessagesByTransactionIdRequest = {
     /**
      * The channel of the message to be deleted
      */
-    channel?: Channel | undefined;
+    channel?: QueryParamChannel | undefined;
     transactionId: string;
 };
 
 /** @internal */
-export namespace Channel$ {
-    export const inboundSchema = z.nativeEnum(Channel);
+export namespace QueryParamChannel$ {
+    export const inboundSchema = z.nativeEnum(QueryParamChannel);
     export const outboundSchema = inboundSchema;
 }
 
@@ -41,7 +41,7 @@ export namespace MessagesControllerDeleteMessagesByTransactionIdRequest$ {
         z.ZodTypeDef,
         unknown
     > = z.object({
-        channel: Channel$.inboundSchema.optional(),
+        channel: QueryParamChannel$.inboundSchema.optional(),
         transactionId: z.string(),
     });
 
@@ -55,7 +55,7 @@ export namespace MessagesControllerDeleteMessagesByTransactionIdRequest$ {
         z.ZodTypeDef,
         MessagesControllerDeleteMessagesByTransactionIdRequest
     > = z.object({
-        channel: Channel$.outboundSchema.optional(),
+        channel: QueryParamChannel$.outboundSchema.optional(),
         transactionId: z.string(),
     });
 }

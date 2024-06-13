@@ -6,56 +6,56 @@ import { remap as remap$ } from "../../lib/primitives";
 import * as z from "zod";
 
 export type TopicSubscriberDto = {
-    environmentId: string;
     organizationId: string;
+    environmentId: string;
     subscriberId: string;
     topicId: string;
-    externalSubscriberId: string;
     topicKey: string;
+    externalSubscriberId: string;
 };
 
 /** @internal */
 export namespace TopicSubscriberDto$ {
     export const inboundSchema: z.ZodType<TopicSubscriberDto, z.ZodTypeDef, unknown> = z
         .object({
-            _environmentId: z.string(),
             _organizationId: z.string(),
+            _environmentId: z.string(),
             _subscriberId: z.string(),
             _topicId: z.string(),
-            externalSubscriberId: z.string(),
             topicKey: z.string(),
+            externalSubscriberId: z.string(),
         })
         .transform((v) => {
             return remap$(v, {
-                _environmentId: "environmentId",
                 _organizationId: "organizationId",
+                _environmentId: "environmentId",
                 _subscriberId: "subscriberId",
                 _topicId: "topicId",
             });
         });
 
     export type Outbound = {
-        _environmentId: string;
         _organizationId: string;
+        _environmentId: string;
         _subscriberId: string;
         _topicId: string;
-        externalSubscriberId: string;
         topicKey: string;
+        externalSubscriberId: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TopicSubscriberDto> = z
         .object({
-            environmentId: z.string(),
             organizationId: z.string(),
+            environmentId: z.string(),
             subscriberId: z.string(),
             topicId: z.string(),
-            externalSubscriberId: z.string(),
             topicKey: z.string(),
+            externalSubscriberId: z.string(),
         })
         .transform((v) => {
             return remap$(v, {
-                environmentId: "_environmentId",
                 organizationId: "_organizationId",
+                environmentId: "_environmentId",
                 subscriberId: "_subscriberId",
                 topicId: "_topicId",
             });

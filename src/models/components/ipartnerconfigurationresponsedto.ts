@@ -17,14 +17,14 @@ export const PartnerType = {
 export type PartnerType = ClosedEnum<typeof PartnerType>;
 
 export type IPartnerConfigurationResponseDto = {
+    projectIds?: Array<string> | undefined;
     accessToken: string;
     configurationId: string;
+    teamId?: string | undefined;
     /**
      * Partner Type Enum
      */
     partnerType: PartnerType;
-    projectIds?: Array<string> | undefined;
-    teamId?: string | undefined;
 };
 
 /** @internal */
@@ -37,19 +37,19 @@ export namespace PartnerType$ {
 export namespace IPartnerConfigurationResponseDto$ {
     export const inboundSchema: z.ZodType<IPartnerConfigurationResponseDto, z.ZodTypeDef, unknown> =
         z.object({
+            projectIds: z.array(z.string()).optional(),
             accessToken: z.string(),
             configurationId: z.string(),
-            partnerType: PartnerType$.inboundSchema,
-            projectIds: z.array(z.string()).optional(),
             teamId: z.string().optional(),
+            partnerType: PartnerType$.inboundSchema,
         });
 
     export type Outbound = {
+        projectIds?: Array<string> | undefined;
         accessToken: string;
         configurationId: string;
-        partnerType: string;
-        projectIds?: Array<string> | undefined;
         teamId?: string | undefined;
+        partnerType: string;
     };
 
     export const outboundSchema: z.ZodType<
@@ -57,10 +57,10 @@ export namespace IPartnerConfigurationResponseDto$ {
         z.ZodTypeDef,
         IPartnerConfigurationResponseDto
     > = z.object({
+        projectIds: z.array(z.string()).optional(),
         accessToken: z.string(),
         configurationId: z.string(),
-        partnerType: PartnerType$.outboundSchema,
-        projectIds: z.array(z.string()).optional(),
         teamId: z.string().optional(),
+        partnerType: PartnerType$.outboundSchema,
     });
 }

@@ -6,11 +6,6 @@ import { ClosedEnum } from "../../types";
 import { TimedConfig, TimedConfig$ } from "./timedconfig";
 import * as z from "zod";
 
-export const DigestTimedMetadataType = {
-    Timed: "timed",
-} as const;
-export type DigestTimedMetadataType = ClosedEnum<typeof DigestTimedMetadataType>;
-
 export const DigestTimedMetadataUnit = {
     Seconds: "seconds",
     Minutes: "minutes",
@@ -21,19 +16,18 @@ export const DigestTimedMetadataUnit = {
 } as const;
 export type DigestTimedMetadataUnit = ClosedEnum<typeof DigestTimedMetadataUnit>;
 
+export const DigestTimedMetadataType = {
+    Timed: "timed",
+} as const;
+export type DigestTimedMetadataType = ClosedEnum<typeof DigestTimedMetadataType>;
+
 export type DigestTimedMetadata = {
     amount?: number | undefined;
-    digestKey?: string | undefined;
-    timed?: TimedConfig | undefined;
-    type: DigestTimedMetadataType;
     unit?: DigestTimedMetadataUnit | undefined;
+    digestKey?: string | undefined;
+    type: DigestTimedMetadataType;
+    timed?: TimedConfig | undefined;
 };
-
-/** @internal */
-export namespace DigestTimedMetadataType$ {
-    export const inboundSchema = z.nativeEnum(DigestTimedMetadataType);
-    export const outboundSchema = inboundSchema;
-}
 
 /** @internal */
 export namespace DigestTimedMetadataUnit$ {
@@ -42,28 +36,34 @@ export namespace DigestTimedMetadataUnit$ {
 }
 
 /** @internal */
+export namespace DigestTimedMetadataType$ {
+    export const inboundSchema = z.nativeEnum(DigestTimedMetadataType);
+    export const outboundSchema = inboundSchema;
+}
+
+/** @internal */
 export namespace DigestTimedMetadata$ {
     export const inboundSchema: z.ZodType<DigestTimedMetadata, z.ZodTypeDef, unknown> = z.object({
         amount: z.number().optional(),
-        digestKey: z.string().optional(),
-        timed: TimedConfig$.inboundSchema.optional(),
-        type: DigestTimedMetadataType$.inboundSchema,
         unit: DigestTimedMetadataUnit$.inboundSchema.optional(),
+        digestKey: z.string().optional(),
+        type: DigestTimedMetadataType$.inboundSchema,
+        timed: TimedConfig$.inboundSchema.optional(),
     });
 
     export type Outbound = {
         amount?: number | undefined;
-        digestKey?: string | undefined;
-        timed?: TimedConfig$.Outbound | undefined;
-        type: string;
         unit?: string | undefined;
+        digestKey?: string | undefined;
+        type: string;
+        timed?: TimedConfig$.Outbound | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, DigestTimedMetadata> = z.object({
         amount: z.number().optional(),
-        digestKey: z.string().optional(),
-        timed: TimedConfig$.outboundSchema.optional(),
-        type: DigestTimedMetadataType$.outboundSchema,
         unit: DigestTimedMetadataUnit$.outboundSchema.optional(),
+        digestKey: z.string().optional(),
+        type: DigestTimedMetadataType$.outboundSchema,
+        timed: TimedConfig$.outboundSchema.optional(),
     });
 }

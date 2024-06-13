@@ -12,19 +12,19 @@ export type SubscribersControllerListSubscribersRequest = {
 };
 
 export type SubscribersControllerListSubscribersResponseBody = {
-    data: Array<components.SubscriberResponseDto>;
-    /**
-     * Does the list have more items to fetch
-     */
-    hasMore: boolean;
     /**
      * The current page of the paginated response
      */
     page: number;
     /**
+     * Does the list have more items to fetch
+     */
+    hasMore: boolean;
+    /**
      * Number of items on each page
      */
     pageSize: number;
+    data: Array<components.SubscriberResponseDto>;
 };
 
 export type SubscribersControllerListSubscribersResponse = {
@@ -64,17 +64,17 @@ export namespace SubscribersControllerListSubscribersResponseBody$ {
         z.ZodTypeDef,
         unknown
     > = z.object({
-        data: z.array(components.SubscriberResponseDto$.inboundSchema),
-        hasMore: z.boolean(),
         page: z.number(),
+        hasMore: z.boolean(),
         pageSize: z.number(),
+        data: z.array(components.SubscriberResponseDto$.inboundSchema),
     });
 
     export type Outbound = {
-        data: Array<components.SubscriberResponseDto$.Outbound>;
-        hasMore: boolean;
         page: number;
+        hasMore: boolean;
         pageSize: number;
+        data: Array<components.SubscriberResponseDto$.Outbound>;
     };
 
     export const outboundSchema: z.ZodType<
@@ -82,10 +82,10 @@ export namespace SubscribersControllerListSubscribersResponseBody$ {
         z.ZodTypeDef,
         SubscribersControllerListSubscribersResponseBody
     > = z.object({
-        data: z.array(components.SubscriberResponseDto$.outboundSchema),
-        hasMore: z.boolean(),
         page: z.number(),
+        hasMore: z.boolean(),
         pageSize: z.number(),
+        data: z.array(components.SubscriberResponseDto$.outboundSchema),
     });
 }
 

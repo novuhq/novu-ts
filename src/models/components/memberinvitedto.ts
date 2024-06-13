@@ -6,29 +6,29 @@ import { remap as remap$ } from "../../lib/primitives";
 import * as z from "zod";
 
 export type MemberInviteDTO = {
-    inviterId: string;
-    answerDate?: Date | undefined;
     email: string;
-    invitationDate: Date;
     token: string;
+    invitationDate: Date;
+    answerDate?: Date | undefined;
+    inviterId: string;
 };
 
 /** @internal */
 export namespace MemberInviteDTO$ {
     export const inboundSchema: z.ZodType<MemberInviteDTO, z.ZodTypeDef, unknown> = z
         .object({
-            _inviterId: z.string(),
+            email: z.string(),
+            token: z.string(),
+            invitationDate: z
+                .string()
+                .datetime({ offset: true })
+                .transform((v) => new Date(v)),
             answerDate: z
                 .string()
                 .datetime({ offset: true })
                 .transform((v) => new Date(v))
                 .optional(),
-            email: z.string(),
-            invitationDate: z
-                .string()
-                .datetime({ offset: true })
-                .transform((v) => new Date(v)),
-            token: z.string(),
+            _inviterId: z.string(),
         })
         .transform((v) => {
             return remap$(v, {
@@ -37,23 +37,23 @@ export namespace MemberInviteDTO$ {
         });
 
     export type Outbound = {
-        _inviterId: string;
-        answerDate?: string | undefined;
         email: string;
-        invitationDate: string;
         token: string;
+        invitationDate: string;
+        answerDate?: string | undefined;
+        _inviterId: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, MemberInviteDTO> = z
         .object({
-            inviterId: z.string(),
+            email: z.string(),
+            token: z.string(),
+            invitationDate: z.date().transform((v) => v.toISOString()),
             answerDate: z
                 .date()
                 .transform((v) => v.toISOString())
                 .optional(),
-            email: z.string(),
-            invitationDate: z.date().transform((v) => v.toISOString()),
-            token: z.string(),
+            inviterId: z.string(),
         })
         .transform((v) => {
             return remap$(v, {

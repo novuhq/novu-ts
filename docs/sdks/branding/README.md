@@ -12,7 +12,7 @@ Update organization branding details
 ### Example Usage
 
 ```typescript
-import { Novu } from "novu-typescript";
+import { Novu } from "novu-node";
 
 const novu = new Novu({
   apiKey: "<YOUR_API_KEY_HERE>",
@@ -20,10 +20,10 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.organizations.branding.update({
-    color: "fuchsia",
-    contentBackground: "<value>",
-    fontColor: "<value>",
     logo: "<value>",
+    color: "fuchsia",
+    fontColor: "<value>",
+    contentBackground: "<value>",
   });
 
   // Handle the result
@@ -40,6 +40,7 @@ run();
 | `request`                                                                                                                                                                      | [components.UpdateBrandingDetailsDto](../../models/components/updatebrandingdetailsdto.md)                                                                                     | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 
 ### Response

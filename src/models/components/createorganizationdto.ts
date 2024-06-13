@@ -20,10 +20,10 @@ export type JobTitle = ClosedEnum<typeof JobTitle>;
 export type ProductUseCases = {};
 
 export type CreateOrganizationDto = {
-    domain?: string | undefined;
-    jobTitle?: JobTitle | undefined;
-    logo?: string | undefined;
     name: string;
+    logo?: string | undefined;
+    jobTitle?: JobTitle | undefined;
+    domain?: string | undefined;
     productUseCases?: ProductUseCases | undefined;
 };
 
@@ -45,27 +45,27 @@ export namespace ProductUseCases$ {
 /** @internal */
 export namespace CreateOrganizationDto$ {
     export const inboundSchema: z.ZodType<CreateOrganizationDto, z.ZodTypeDef, unknown> = z.object({
-        domain: z.string().optional(),
-        jobTitle: JobTitle$.inboundSchema.optional(),
-        logo: z.string().optional(),
         name: z.string(),
+        logo: z.string().optional(),
+        jobTitle: JobTitle$.inboundSchema.optional(),
+        domain: z.string().optional(),
         productUseCases: z.lazy(() => ProductUseCases$.inboundSchema).optional(),
     });
 
     export type Outbound = {
-        domain?: string | undefined;
-        jobTitle?: string | undefined;
-        logo?: string | undefined;
         name: string;
+        logo?: string | undefined;
+        jobTitle?: string | undefined;
+        domain?: string | undefined;
         productUseCases?: ProductUseCases$.Outbound | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateOrganizationDto> =
         z.object({
-            domain: z.string().optional(),
-            jobTitle: JobTitle$.outboundSchema.optional(),
-            logo: z.string().optional(),
             name: z.string(),
+            logo: z.string().optional(),
+            jobTitle: JobTitle$.outboundSchema.optional(),
+            domain: z.string().optional(),
             productUseCases: z.lazy(() => ProductUseCases$.outboundSchema).optional(),
         });
 }

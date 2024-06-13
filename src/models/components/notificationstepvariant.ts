@@ -23,21 +23,21 @@ export type NotificationStepVariantReplyCallback = {};
 
 export type NotificationStepVariant = {
     id?: string | undefined;
-    parentId?: NotificationStepVariantParentId | undefined;
+    uuid?: string | undefined;
+    name?: string | undefined;
     templateId?: string | undefined;
     active?: boolean | undefined;
+    shouldStopOnFail?: boolean | undefined;
+    template?: MessageTemplate | undefined;
     filters?: Array<StepFilter> | undefined;
+    parentId?: NotificationStepVariantParentId | undefined;
     metadata?:
         | DelayScheduledMetadata
         | DelayRegularMetadata
         | DigestTimedMetadata
         | DigestRegularMetadata
         | undefined;
-    name?: string | undefined;
     replyCallback?: NotificationStepVariantReplyCallback | undefined;
-    shouldStopOnFail?: boolean | undefined;
-    template?: MessageTemplate | undefined;
-    uuid?: string | undefined;
 };
 
 /** @internal */
@@ -103,10 +103,14 @@ export namespace NotificationStepVariant$ {
     export const inboundSchema: z.ZodType<NotificationStepVariant, z.ZodTypeDef, unknown> = z
         .object({
             _id: z.string().optional(),
-            _parentId: z.lazy(() => NotificationStepVariantParentId$.inboundSchema).optional(),
+            uuid: z.string().optional(),
+            name: z.string().optional(),
             _templateId: z.string().optional(),
             active: z.boolean().optional(),
+            shouldStopOnFail: z.boolean().optional(),
+            template: MessageTemplate$.inboundSchema.optional(),
             filters: z.array(StepFilter$.inboundSchema).optional(),
+            _parentId: z.lazy(() => NotificationStepVariantParentId$.inboundSchema).optional(),
             metadata: z
                 .union([
                     DelayScheduledMetadata$.inboundSchema,
@@ -115,48 +119,48 @@ export namespace NotificationStepVariant$ {
                     DigestRegularMetadata$.inboundSchema,
                 ])
                 .optional(),
-            name: z.string().optional(),
             replyCallback: z
                 .lazy(() => NotificationStepVariantReplyCallback$.inboundSchema)
                 .optional(),
-            shouldStopOnFail: z.boolean().optional(),
-            template: MessageTemplate$.inboundSchema.optional(),
-            uuid: z.string().optional(),
         })
         .transform((v) => {
             return remap$(v, {
                 _id: "id",
-                _parentId: "parentId",
                 _templateId: "templateId",
+                _parentId: "parentId",
             });
         });
 
     export type Outbound = {
         _id?: string | undefined;
-        _parentId?: NotificationStepVariantParentId$.Outbound | undefined;
+        uuid?: string | undefined;
+        name?: string | undefined;
         _templateId?: string | undefined;
         active?: boolean | undefined;
+        shouldStopOnFail?: boolean | undefined;
+        template?: MessageTemplate$.Outbound | undefined;
         filters?: Array<StepFilter$.Outbound> | undefined;
+        _parentId?: NotificationStepVariantParentId$.Outbound | undefined;
         metadata?:
             | DelayScheduledMetadata$.Outbound
             | DelayRegularMetadata$.Outbound
             | DigestTimedMetadata$.Outbound
             | DigestRegularMetadata$.Outbound
             | undefined;
-        name?: string | undefined;
         replyCallback?: NotificationStepVariantReplyCallback$.Outbound | undefined;
-        shouldStopOnFail?: boolean | undefined;
-        template?: MessageTemplate$.Outbound | undefined;
-        uuid?: string | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, NotificationStepVariant> = z
         .object({
             id: z.string().optional(),
-            parentId: z.lazy(() => NotificationStepVariantParentId$.outboundSchema).optional(),
+            uuid: z.string().optional(),
+            name: z.string().optional(),
             templateId: z.string().optional(),
             active: z.boolean().optional(),
+            shouldStopOnFail: z.boolean().optional(),
+            template: MessageTemplate$.outboundSchema.optional(),
             filters: z.array(StepFilter$.outboundSchema).optional(),
+            parentId: z.lazy(() => NotificationStepVariantParentId$.outboundSchema).optional(),
             metadata: z
                 .union([
                     DelayScheduledMetadata$.outboundSchema,
@@ -165,19 +169,15 @@ export namespace NotificationStepVariant$ {
                     DigestRegularMetadata$.outboundSchema,
                 ])
                 .optional(),
-            name: z.string().optional(),
             replyCallback: z
                 .lazy(() => NotificationStepVariantReplyCallback$.outboundSchema)
                 .optional(),
-            shouldStopOnFail: z.boolean().optional(),
-            template: MessageTemplate$.outboundSchema.optional(),
-            uuid: z.string().optional(),
         })
         .transform((v) => {
             return remap$(v, {
                 id: "_id",
-                parentId: "_parentId",
                 templateId: "_templateId",
+                parentId: "_parentId",
             });
         });
 }

@@ -49,9 +49,9 @@ export class Novu extends ClientSDK {
         void this.options$;
     }
 
-    private _changes?: Changes;
-    get changes(): Changes {
-        return (this._changes ??= new Changes(this.options$));
+    private _organizations?: Organizations;
+    get organizations(): Organizations {
+        return (this._organizations ??= new Organizations(this.options$));
     }
 
     private _environments?: Environments;
@@ -59,24 +59,49 @@ export class Novu extends ClientSDK {
         return (this._environments ??= new Environments(this.options$));
     }
 
-    private _events?: Events;
-    get events(): Events {
-        return (this._events ??= new Events(this.options$));
-    }
-
     private _executionDetails?: ExecutionDetails;
     get executionDetails(): ExecutionDetails {
         return (this._executionDetails ??= new ExecutionDetails(this.options$));
     }
 
-    private _feeds?: Feeds;
-    get feeds(): Feeds {
-        return (this._feeds ??= new Feeds(this.options$));
+    private _workflows?: Workflows;
+    get workflows(): Workflows {
+        return (this._workflows ??= new Workflows(this.options$));
+    }
+
+    private _events?: Events;
+    get events(): Events {
+        return (this._events ??= new Events(this.options$));
+    }
+
+    private _notifications?: Notifications;
+    get notifications(): Notifications {
+        return (this._notifications ??= new Notifications(this.options$));
+    }
+
+    private _workflowGroups?: WorkflowGroups;
+    get workflowGroups(): WorkflowGroups {
+        return (this._workflowGroups ??= new WorkflowGroups(this.options$));
     }
 
     private _integrations?: Integrations;
     get integrations(): Integrations {
         return (this._integrations ??= new Integrations(this.options$));
+    }
+
+    private _changes?: Changes;
+    get changes(): Changes {
+        return (this._changes ??= new Changes(this.options$));
+    }
+
+    private _subscribers?: Subscribers;
+    get subscribers(): Subscribers {
+        return (this._subscribers ??= new Subscribers(this.options$));
+    }
+
+    private _feeds?: Feeds;
+    get feeds(): Feeds {
+        return (this._feeds ??= new Feeds(this.options$));
     }
 
     private _layouts?: Layouts;
@@ -89,38 +114,13 @@ export class Novu extends ClientSDK {
         return (this._messages ??= new Messages(this.options$));
     }
 
-    private _workflowGroups?: WorkflowGroups;
-    get workflowGroups(): WorkflowGroups {
-        return (this._workflowGroups ??= new WorkflowGroups(this.options$));
-    }
-
-    private _notifications?: Notifications;
-    get notifications(): Notifications {
-        return (this._notifications ??= new Notifications(this.options$));
-    }
-
-    private _organizations?: Organizations;
-    get organizations(): Organizations {
-        return (this._organizations ??= new Organizations(this.options$));
-    }
-
-    private _subscribers?: Subscribers;
-    get subscribers(): Subscribers {
-        return (this._subscribers ??= new Subscribers(this.options$));
-    }
-
-    private _tenants?: Tenants;
-    get tenants(): Tenants {
-        return (this._tenants ??= new Tenants(this.options$));
-    }
-
     private _topics?: Topics;
     get topics(): Topics {
         return (this._topics ??= new Topics(this.options$));
     }
 
-    private _workflows?: Workflows;
-    get workflows(): Workflows {
-        return (this._workflows ??= new Workflows(this.options$));
+    private _tenants?: Tenants;
+    get tenants(): Tenants {
+        return (this._tenants ??= new Tenants(this.options$));
     }
 }

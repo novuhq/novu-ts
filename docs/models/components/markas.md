@@ -1,7 +1,5 @@
 # MarkAs
 
-Mark all subscriber messages as read, unread, seen or unseen
-
 
 ## Values
 

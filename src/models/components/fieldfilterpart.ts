@@ -5,12 +5,6 @@
 import { ClosedEnum } from "../../types";
 import * as z from "zod";
 
-export const On = {
-    Subscriber: "subscriber",
-    Payload: "payload",
-} as const;
-export type On = ClosedEnum<typeof On>;
-
 export const Operator = {
     Larger: "LARGER",
     Smaller: "SMALLER",
@@ -29,18 +23,18 @@ export const Operator = {
 } as const;
 export type Operator = ClosedEnum<typeof Operator>;
 
+export const On = {
+    Subscriber: "subscriber",
+    Payload: "payload",
+} as const;
+export type On = ClosedEnum<typeof On>;
+
 export type FieldFilterPart = {
     field: string;
-    on: On;
-    operator: Operator;
     value: string;
+    operator: Operator;
+    on: On;
 };
-
-/** @internal */
-export namespace On$ {
-    export const inboundSchema = z.nativeEnum(On);
-    export const outboundSchema = inboundSchema;
-}
 
 /** @internal */
 export namespace Operator$ {
@@ -49,25 +43,31 @@ export namespace Operator$ {
 }
 
 /** @internal */
+export namespace On$ {
+    export const inboundSchema = z.nativeEnum(On);
+    export const outboundSchema = inboundSchema;
+}
+
+/** @internal */
 export namespace FieldFilterPart$ {
     export const inboundSchema: z.ZodType<FieldFilterPart, z.ZodTypeDef, unknown> = z.object({
         field: z.string(),
-        on: On$.inboundSchema,
-        operator: Operator$.inboundSchema,
         value: z.string(),
+        operator: Operator$.inboundSchema,
+        on: On$.inboundSchema,
     });
 
     export type Outbound = {
         field: string;
-        on: string;
-        operator: string;
         value: string;
+        operator: string;
+        on: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, FieldFilterPart> = z.object({
         field: z.string(),
-        on: On$.outboundSchema,
-        operator: Operator$.outboundSchema,
         value: z.string(),
+        operator: Operator$.outboundSchema,
+        on: On$.outboundSchema,
     });
 }

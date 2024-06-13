@@ -6,52 +6,52 @@ import { remap as remap$ } from "../../lib/primitives";
 import * as z from "zod";
 
 export type NotificationGroup = {
-    environmentId: string;
     id?: string | undefined;
+    name: string;
+    environmentId: string;
     organizationId: string;
     parentId?: string | undefined;
-    name: string;
 };
 
 /** @internal */
 export namespace NotificationGroup$ {
     export const inboundSchema: z.ZodType<NotificationGroup, z.ZodTypeDef, unknown> = z
         .object({
-            _environmentId: z.string(),
             _id: z.string().optional(),
+            name: z.string(),
+            _environmentId: z.string(),
             _organizationId: z.string(),
             _parentId: z.string().optional(),
-            name: z.string(),
         })
         .transform((v) => {
             return remap$(v, {
-                _environmentId: "environmentId",
                 _id: "id",
+                _environmentId: "environmentId",
                 _organizationId: "organizationId",
                 _parentId: "parentId",
             });
         });
 
     export type Outbound = {
-        _environmentId: string;
         _id?: string | undefined;
+        name: string;
+        _environmentId: string;
         _organizationId: string;
         _parentId?: string | undefined;
-        name: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, NotificationGroup> = z
         .object({
-            environmentId: z.string(),
             id: z.string().optional(),
+            name: z.string(),
+            environmentId: z.string(),
             organizationId: z.string(),
             parentId: z.string().optional(),
-            name: z.string(),
         })
         .transform((v) => {
             return remap$(v, {
-                environmentId: "_environmentId",
                 id: "_id",
+                environmentId: "_environmentId",
                 organizationId: "_organizationId",
                 parentId: "_parentId",
             });

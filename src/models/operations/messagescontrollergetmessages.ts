@@ -5,17 +5,17 @@
 import { ClosedEnum } from "../../types";
 import * as z from "zod";
 
-export const QueryParamChannel = {
+export const Channel = {
     InApp: "in_app",
     Email: "email",
     Sms: "sms",
     Chat: "chat",
     Push: "push",
 } as const;
-export type QueryParamChannel = ClosedEnum<typeof QueryParamChannel>;
+export type Channel = ClosedEnum<typeof Channel>;
 
 export type MessagesControllerGetMessagesRequest = {
-    channel?: QueryParamChannel | undefined;
+    channel?: Channel | undefined;
     subscriberId?: string | undefined;
     transactionId?: Array<string> | undefined;
     page?: number | undefined;
@@ -23,8 +23,8 @@ export type MessagesControllerGetMessagesRequest = {
 };
 
 /** @internal */
-export namespace QueryParamChannel$ {
-    export const inboundSchema = z.nativeEnum(QueryParamChannel);
+export namespace Channel$ {
+    export const inboundSchema = z.nativeEnum(Channel);
     export const outboundSchema = inboundSchema;
 }
 
@@ -35,7 +35,7 @@ export namespace MessagesControllerGetMessagesRequest$ {
         z.ZodTypeDef,
         unknown
     > = z.object({
-        channel: QueryParamChannel$.inboundSchema.optional(),
+        channel: Channel$.inboundSchema.optional(),
         subscriberId: z.string().optional(),
         transactionId: z.array(z.string()).optional(),
         page: z.number().default(0),
@@ -55,7 +55,7 @@ export namespace MessagesControllerGetMessagesRequest$ {
         z.ZodTypeDef,
         MessagesControllerGetMessagesRequest
     > = z.object({
-        channel: QueryParamChannel$.outboundSchema.optional(),
+        channel: Channel$.outboundSchema.optional(),
         subscriberId: z.string().optional(),
         transactionId: z.array(z.string()).optional(),
         page: z.number().default(0),

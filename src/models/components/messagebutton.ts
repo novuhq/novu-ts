@@ -13,9 +13,9 @@ export const MessageButtonType = {
 export type MessageButtonType = ClosedEnum<typeof MessageButtonType>;
 
 export type MessageButton = {
+    type: MessageButtonType;
     content: string;
     resultContent?: string | undefined;
-    type: MessageButtonType;
 };
 
 /** @internal */
@@ -27,20 +27,20 @@ export namespace MessageButtonType$ {
 /** @internal */
 export namespace MessageButton$ {
     export const inboundSchema: z.ZodType<MessageButton, z.ZodTypeDef, unknown> = z.object({
+        type: MessageButtonType$.inboundSchema,
         content: z.string(),
         resultContent: z.string().optional(),
-        type: MessageButtonType$.inboundSchema,
     });
 
     export type Outbound = {
+        type: string;
         content: string;
         resultContent?: string | undefined;
-        type: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, MessageButton> = z.object({
+        type: MessageButtonType$.outboundSchema,
         content: z.string(),
         resultContent: z.string().optional(),
-        type: MessageButtonType$.outboundSchema,
     });
 }

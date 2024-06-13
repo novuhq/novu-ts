@@ -9,6 +9,7 @@ import {
     encodeSimple as encodeSimple$,
 } from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
+import * as retries$ from "../lib/retries";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
 import * as components from "../models/components";
@@ -46,7 +47,7 @@ export class NovuNotifications extends ClientSDK {
      */
     async retrieve(
         request: operations.SubscribersControllerGetNotificationsFeedRequest,
-        options?: RequestOptions
+        options?: RequestOptions & { retries?: retries$.RetryConfig }
     ): Promise<operations.SubscribersControllerGetNotificationsFeedResponseBody> {
         const input$ = request;
         const headers$ = new Headers();
@@ -75,10 +76,10 @@ export class NovuNotifications extends ClientSDK {
 
         const query$ = encodeFormQuery$({
             limit: payload$.limit,
+            page: payload$.page,
+            payload: payload$.payload,
             read: payload$.read,
             seen: payload$.seen,
-            payload: payload$.payload,
-            page: payload$.page,
         });
 
         let security$;
@@ -110,7 +111,25 @@ export class NovuNotifications extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request$, doOptions);
+        const retryConfig = options?.retries ||
+            this.options$.retryConfig || {
+                strategy: "backoff",
+                backoff: {
+                    initialInterval: 500,
+                    maxInterval: 30000,
+                    exponent: 1.5,
+                    maxElapsedTime: 3600000,
+                },
+                retryConnectionErrors: true,
+            };
+
+        const response = await retries$.retry(
+            () => {
+                const cloned = request$.clone();
+                return this.do$(cloned, doOptions);
+            },
+            { config: retryConfig, statusCodes: ["408", "409", "429", "5XX"] }
+        );
 
         const [result$] =
             await this.matcher<operations.SubscribersControllerGetNotificationsFeedResponseBody>()
@@ -126,7 +145,7 @@ export class NovuNotifications extends ClientSDK {
      */
     async unseenCount(
         request: operations.SubscribersControllerGetUnseenCountRequest,
-        options?: RequestOptions
+        options?: RequestOptions & { retries?: retries$.RetryConfig }
     ): Promise<components.UnseenCountResponse> {
         const input$ = request;
         const headers$ = new Headers();
@@ -185,7 +204,25 @@ export class NovuNotifications extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request$, doOptions);
+        const retryConfig = options?.retries ||
+            this.options$.retryConfig || {
+                strategy: "backoff",
+                backoff: {
+                    initialInterval: 500,
+                    maxInterval: 30000,
+                    exponent: 1.5,
+                    maxElapsedTime: 3600000,
+                },
+                retryConnectionErrors: true,
+            };
+
+        const response = await retries$.retry(
+            () => {
+                const cloned = request$.clone();
+                return this.do$(cloned, doOptions);
+            },
+            { config: retryConfig, statusCodes: ["408", "409", "429", "5XX"] }
+        );
 
         const [result$] = await this.matcher<components.UnseenCountResponse>()
             .json(200, components.UnseenCountResponse$)

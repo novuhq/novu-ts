@@ -3,7 +3,7 @@ speakeasyVersion: latest
 sources:
     json-development:
         inputs:
-            - location: http://127.0.0.1:3000/openapi-hoisted.json
+            - location: http://127.0.0.1:3000/openapi.sdk.json
         overlays:
             - location: /Users/galtidhar/WebstormProjects/novu-sdk/sources/remove-headers-overlay.yaml
         registry:

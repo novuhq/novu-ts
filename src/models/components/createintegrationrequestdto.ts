@@ -8,33 +8,35 @@ import { CredentialsDto, CredentialsDto$ } from "./credentialsdto";
 import { StepFilter, StepFilter$ } from "./stepfilter";
 import * as z from "zod";
 
-export const Channel = {
+export const CreateIntegrationRequestDtoChannel = {
     InApp: "in_app",
     Email: "email",
     Sms: "sms",
     Chat: "chat",
     Push: "push",
 } as const;
-export type Channel = ClosedEnum<typeof Channel>;
+export type CreateIntegrationRequestDtoChannel = ClosedEnum<
+    typeof CreateIntegrationRequestDtoChannel
+>;
 
 export type CreateIntegrationRequestDto = {
+    name?: string | undefined;
+    identifier?: string | undefined;
     environmentId?: string | undefined;
+    providerId: string;
+    channel: CreateIntegrationRequestDtoChannel;
+    credentials?: CredentialsDto | undefined;
     /**
      * If the integration is active the validation on the credentials field will run
      */
     active?: boolean | undefined;
-    channel: Channel;
     check?: boolean | undefined;
     conditions?: Array<StepFilter> | undefined;
-    credentials?: CredentialsDto | undefined;
-    identifier?: string | undefined;
-    name?: string | undefined;
-    providerId: string;
 };
 
 /** @internal */
-export namespace Channel$ {
-    export const inboundSchema = z.nativeEnum(Channel);
+export namespace CreateIntegrationRequestDtoChannel$ {
+    export const inboundSchema = z.nativeEnum(CreateIntegrationRequestDtoChannel);
     export const outboundSchema = inboundSchema;
 }
 
@@ -42,15 +44,15 @@ export namespace Channel$ {
 export namespace CreateIntegrationRequestDto$ {
     export const inboundSchema: z.ZodType<CreateIntegrationRequestDto, z.ZodTypeDef, unknown> = z
         .object({
+            name: z.string().optional(),
+            identifier: z.string().optional(),
             _environmentId: z.string().optional(),
+            providerId: z.string(),
+            channel: CreateIntegrationRequestDtoChannel$.inboundSchema,
+            credentials: CredentialsDto$.inboundSchema.optional(),
             active: z.boolean().optional(),
-            channel: Channel$.inboundSchema,
             check: z.boolean().optional(),
             conditions: z.array(StepFilter$.inboundSchema).optional(),
-            credentials: CredentialsDto$.inboundSchema.optional(),
-            identifier: z.string().optional(),
-            name: z.string().optional(),
-            providerId: z.string(),
         })
         .transform((v) => {
             return remap$(v, {
@@ -59,28 +61,28 @@ export namespace CreateIntegrationRequestDto$ {
         });
 
     export type Outbound = {
+        name?: string | undefined;
+        identifier?: string | undefined;
         _environmentId?: string | undefined;
-        active?: boolean | undefined;
+        providerId: string;
         channel: string;
+        credentials?: CredentialsDto$.Outbound | undefined;
+        active?: boolean | undefined;
         check?: boolean | undefined;
         conditions?: Array<StepFilter$.Outbound> | undefined;
-        credentials?: CredentialsDto$.Outbound | undefined;
-        identifier?: string | undefined;
-        name?: string | undefined;
-        providerId: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateIntegrationRequestDto> = z
         .object({
+            name: z.string().optional(),
+            identifier: z.string().optional(),
             environmentId: z.string().optional(),
+            providerId: z.string(),
+            channel: CreateIntegrationRequestDtoChannel$.outboundSchema,
+            credentials: CredentialsDto$.outboundSchema.optional(),
             active: z.boolean().optional(),
-            channel: Channel$.outboundSchema,
             check: z.boolean().optional(),
             conditions: z.array(StepFilter$.outboundSchema).optional(),
-            credentials: CredentialsDto$.outboundSchema.optional(),
-            identifier: z.string().optional(),
-            name: z.string().optional(),
-            providerId: z.string(),
         })
         .transform((v) => {
             return remap$(v, {

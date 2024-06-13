@@ -1,18 +1,19 @@
 lockVersion: 2.0.0
-id: 4f7dea41-e7f4-47c3-bc21-dc29e5f1b0fc
+id: f50499c4-d106-4975-983f-ead3a386ec53
 management:
-  docChecksum: aaf3e3d3e5632feabea59226e6c592e6
+  docChecksum: f3d84cb9626af086d1487b9d854ddf07
   docVersion: "1.0"
-  speakeasyVersion: 1.306.0
-  generationVersion: 2.340.3
+  speakeasyVersion: 1.307.0
+  generationVersion: 2.342.0
   releaseVersion: 0.16.5
-  configChecksum: d766089b31e8d64ab1e9207244a0dc4f
+  configChecksum: a273af25ccf5cd98ba724182b16d9eea
 features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.5
-    core: 3.9.13
+    core: 3.9.14
     deprecations: 2.81.1
+    examples: 2.81.4
     flattening: 2.81.1
     globalSecurity: 2.82.9
     globalSecurityCallbacks: 0.1.0
@@ -23,38 +24,39 @@ features:
     nullables: 0.1.0
     pagination: 2.82.2
     responseFormat: 0.2.3
+    retries: 2.83.0
     sdkHooks: 0.1.0
     unions: 2.85.5
 generatedFiles:
-  - src/sdk/changes.ts
+  - src/sdk/members.ts
+  - src/sdk/branding.ts
+  - src/sdk/organizations.ts
   - src/sdk/apikeys.ts
   - src/sdk/environments.ts
-  - src/sdk/events.ts
   - src/sdk/executiondetails.ts
-  - src/sdk/feeds.ts
-  - src/sdk/webhooks.ts
-  - src/sdk/integrations.ts
-  - src/sdk/layouts.ts
-  - src/sdk/messages.ts
-  - src/sdk/workflowgroups.ts
-  - src/sdk/stats.ts
-  - src/sdk/notifications.ts
-  - src/sdk/branding.ts
-  - src/sdk/members.ts
-  - src/sdk/organizations.ts
-  - src/sdk/credentials.ts
-  - src/sdk/authentication.ts
-  - src/sdk/novumessages.ts
-  - src/sdk/novunotifications.ts
-  - src/sdk/properties.ts
-  - src/sdk/preferences.ts
-  - src/sdk/subscribers.ts
-  - src/sdk/tenants.ts
-  - src/sdk/novusubscribers.ts
-  - src/sdk/topics.ts
   - src/sdk/variables.ts
   - src/sdk/status.ts
   - src/sdk/workflows.ts
+  - src/sdk/events.ts
+  - src/sdk/stats.ts
+  - src/sdk/notifications.ts
+  - src/sdk/workflowgroups.ts
+  - src/sdk/webhooks.ts
+  - src/sdk/integrations.ts
+  - src/sdk/changes.ts
+  - src/sdk/credentials.ts
+  - src/sdk/properties.ts
+  - src/sdk/preferences.ts
+  - src/sdk/novunotifications.ts
+  - src/sdk/novumessages.ts
+  - src/sdk/authentication.ts
+  - src/sdk/subscribers.ts
+  - src/sdk/feeds.ts
+  - src/sdk/layouts.ts
+  - src/sdk/messages.ts
+  - src/sdk/novusubscribers.ts
+  - src/sdk/topics.ts
+  - src/sdk/tenants.ts
   - src/sdk/sdk.ts
   - .eslintrc.js
   - .npmignore
@@ -82,235 +84,369 @@ generatedFiles:
   - src/types/operations.ts
   - src/types/rfcdate.ts
   - tsconfig.json
-  - src/models/components/changeresponsedto.ts
-  - src/models/components/bulkapplychangedto.ts
-  - src/models/components/datanumberdto.ts
-  - src/models/components/changesresponsedto.ts
-  - src/models/components/environmentresponsedto.ts
-  - src/models/components/apikey.ts
-  - src/models/components/databooleandto.ts
-  - src/models/components/triggereventresponsedto.ts
-  - src/models/components/triggereventrequestdto.ts
-  - src/models/components/subscriberpayloaddto.ts
-  - src/models/components/subscriberchanneldto.ts
-  - src/models/components/channelcredentialsdto.ts
-  - src/models/components/topicpayloaddto.ts
-  - src/models/components/tenantpayloaddto.ts
-  - src/models/components/triggereventtoallrequestdto.ts
-  - src/models/components/bulktriggereventdto.ts
-  - src/models/components/executiondetailsresponsedto.ts
-  - src/models/components/feedresponsedto.ts
-  - src/models/components/createfeedrequestdto.ts
-  - src/models/components/integrationresponsedto.ts
-  - src/models/components/credentialsdto.ts
-  - src/models/components/stepfilter.ts
-  - src/models/components/fieldfilterpart.ts
-  - src/models/components/createintegrationrequestdto.ts
-  - src/models/components/updateintegrationrequestdto.ts
-  - src/models/components/createlayoutresponsedto.ts
-  - src/models/components/getlayoutresponsedto.ts
-  - src/models/components/updatelayoutresponsedto.ts
-  - src/models/components/updatelayoutrequestdto.ts
-  - src/models/components/deletemessageresponsedto.ts
-  - src/models/components/activitiesresponsedto.ts
-  - src/models/components/activitynotificationresponsedto.ts
-  - src/models/components/activitynotificationtemplateresponsedto.ts
-  - src/models/components/notificationtrigger.ts
-  - src/models/components/notificationtriggervariable.ts
-  - src/models/components/activitynotificationsubscriberresponsedto.ts
-  - src/models/components/activitynotificationjobresponsedto.ts
-  - src/models/components/activitynotificationstepresponsedto.ts
-  - src/models/components/messagetemplatedto.ts
-  - src/models/components/activitynotificationexecutiondetailresponsedto.ts
-  - src/models/components/notificationgroupresponsedto.ts
-  - src/models/components/createnotificationgrouprequestdto.ts
-  - src/models/components/deletenotificationgroupresponsedto.ts
-  - src/models/components/activitygraphstatesresponse.ts
-  - src/models/components/activitystatsresponsedto.ts
   - src/models/components/organizationresponsedto.ts
   - src/models/components/ipartnerconfigurationresponsedto.ts
   - src/models/components/organizationbrandingresponsedto.ts
   - src/models/components/createorganizationdto.ts
   - src/models/components/renameorganizationdto.ts
-  - src/models/components/updatebrandingdetailsdto.ts
   - src/models/components/memberresponsedto.ts
-  - src/models/components/memberuserdto.ts
   - src/models/components/memberinvitedto.ts
-  - src/models/components/subscriberresponsedto.ts
-  - src/models/components/channelsettings.ts
-  - src/models/components/channelcredentials.ts
-  - src/models/components/createsubscriberrequestdto.ts
-  - src/models/components/bulksubscribercreatedto.ts
-  - src/models/components/deletesubscriberresponsedto.ts
-  - src/models/components/updatesubscriberrequestdto.ts
-  - src/models/components/updatesubscriberchannelrequestdto.ts
-  - src/models/components/markallmessageasrequestdto.ts
-  - src/models/components/messageentity.ts
-  - src/models/components/messagemarkasrequestdto.ts
-  - src/models/components/messageresponsedto.ts
+  - src/models/components/memberuserdto.ts
+  - src/models/components/updatebrandingdetailsdto.ts
+  - src/models/components/environmentresponsedto.ts
+  - src/models/components/apikey.ts
+  - src/models/components/executiondetailsresponsedto.ts
+  - src/models/components/workflowsresponsedto.ts
   - src/models/components/workflowresponse.ts
+  - src/models/components/notificationgroup.ts
+  - src/models/components/notificationtrigger.ts
+  - src/models/components/notificationtriggervariable.ts
   - src/models/components/notificationstep.ts
   - src/models/components/notificationstepvariant.ts
-  - src/models/components/messagetemplate.ts
   - src/models/components/digestregularmetadata.ts
   - src/models/components/digesttimedmetadata.ts
   - src/models/components/timedconfig.ts
   - src/models/components/delayregularmetadata.ts
   - src/models/components/delayscheduledmetadata.ts
+  - src/models/components/stepfilter.ts
+  - src/models/components/fieldfilterpart.ts
+  - src/models/components/messagetemplate.ts
   - src/models/components/preferencechannels.ts
-  - src/models/components/notificationgroup.ts
+  - src/models/components/createworkflowrequestdto.ts
+  - src/models/components/updateworkflowrequestdto.ts
+  - src/models/components/databooleandto.ts
+  - src/models/components/variablesresponsedto.ts
+  - src/models/components/changeworkflowstatusrequestdto.ts
+  - src/models/components/triggereventresponsedto.ts
+  - src/models/components/triggereventrequestdto.ts
+  - src/models/components/tenantpayloaddto.ts
+  - src/models/components/subscriberpayloaddto.ts
+  - src/models/components/subscriberchanneldto.ts
+  - src/models/components/channelcredentialsdto.ts
+  - src/models/components/topicpayloaddto.ts
+  - src/models/components/bulktriggereventdto.ts
+  - src/models/components/triggereventtoallrequestdto.ts
+  - src/models/components/activitiesresponsedto.ts
+  - src/models/components/activitynotificationresponsedto.ts
+  - src/models/components/activitynotificationjobresponsedto.ts
+  - src/models/components/activitynotificationstepresponsedto.ts
+  - src/models/components/messagetemplatedto.ts
+  - src/models/components/activitynotificationexecutiondetailresponsedto.ts
+  - src/models/components/activitynotificationtemplateresponsedto.ts
+  - src/models/components/activitynotificationsubscriberresponsedto.ts
+  - src/models/components/activitystatsresponsedto.ts
+  - src/models/components/activitygraphstatesresponse.ts
+  - src/models/components/notificationgroupresponsedto.ts
+  - src/models/components/createnotificationgrouprequestdto.ts
+  - src/models/components/deletenotificationgroupresponsedto.ts
+  - src/models/components/integrationresponsedto.ts
+  - src/models/components/credentialsdto.ts
+  - src/models/components/createintegrationrequestdto.ts
+  - src/models/components/updateintegrationrequestdto.ts
+  - src/models/components/changesresponsedto.ts
+  - src/models/components/changeresponsedto.ts
+  - src/models/components/datanumberdto.ts
+  - src/models/components/bulkapplychangedto.ts
+  - src/models/components/subscriberresponsedto.ts
+  - src/models/components/channelsettings.ts
+  - src/models/components/channelcredentials.ts
+  - src/models/components/createsubscriberrequestdto.ts
+  - src/models/components/updatesubscriberrequestdto.ts
+  - src/models/components/deletesubscriberresponsedto.ts
+  - src/models/components/bulksubscribercreatedto.ts
+  - src/models/components/updatesubscriberchannelrequestdto.ts
+  - src/models/components/updatesubscriberonlineflagrequestdto.ts
+  - src/models/components/updatesubscriberpreferenceresponsedto.ts
+  - src/models/components/preference.ts
+  - src/models/components/templateresponse.ts
+  - src/models/components/updatesubscriberglobalpreferencesrequestdto.ts
+  - src/models/components/channelpreference.ts
+  - src/models/components/getsubscriberpreferencesresponsedto.ts
+  - src/models/components/updatesubscriberpreferencerequestdto.ts
+  - src/models/components/feedresponsedto.ts
+  - src/models/components/unseencountresponse.ts
+  - src/models/components/messageentity.ts
+  - src/models/components/messagemarkasrequestdto.ts
+  - src/models/components/markallmessageasrequestdto.ts
+  - src/models/components/messageresponsedto.ts
   - src/models/components/messagecta.ts
-  - src/models/components/messagectadata.ts
   - src/models/components/messageaction.ts
   - src/models/components/messageactionresult.ts
   - src/models/components/messagebutton.ts
+  - src/models/components/messagectadata.ts
   - src/models/components/emailblock.ts
   - src/models/components/emailblockstyles.ts
   - src/models/components/markmessageactionasseendto.ts
-  - src/models/components/unseencountresponse.ts
-  - src/models/components/updatesubscriberonlineflagrequestdto.ts
-  - src/models/components/updatesubscriberpreferenceresponsedto.ts
-  - src/models/components/templateresponse.ts
-  - src/models/components/preference.ts
-  - src/models/components/getsubscriberpreferencesresponsedto.ts
-  - src/models/components/updatesubscriberpreferencerequestdto.ts
-  - src/models/components/channelpreference.ts
-  - src/models/components/updatesubscriberglobalpreferencesrequestdto.ts
-  - src/models/components/createtenantresponsedto.ts
-  - src/models/components/createtenantrequestdto.ts
-  - src/models/components/gettenantresponsedto.ts
-  - src/models/components/updatetenantresponsedto.ts
-  - src/models/components/updatetenantrequestdto.ts
-  - src/models/components/createtopicresponsedto.ts
-  - src/models/components/createtopicrequestdto.ts
+  - src/models/components/createfeedrequestdto.ts
+  - src/models/components/createlayoutresponsedto.ts
+  - src/models/components/getlayoutresponsedto.ts
+  - src/models/components/updatelayoutresponsedto.ts
+  - src/models/components/updatelayoutrequestdto.ts
+  - src/models/components/deletemessageresponsedto.ts
   - src/models/components/filtertopicsresponsedto.ts
   - src/models/components/topicdto.ts
+  - src/models/components/createtopicresponsedto.ts
+  - src/models/components/createtopicrequestdto.ts
+  - src/models/components/gettopicresponsedto.ts
   - src/models/components/renametopicresponsedto.ts
   - src/models/components/renametopicrequestdto.ts
-  - src/models/components/gettopicresponsedto.ts
   - src/models/components/addsubscribersrequestdto.ts
-  - src/models/components/removesubscribersrequestdto.ts
   - src/models/components/topicsubscriberdto.ts
-  - src/models/components/createworkflowrequestdto.ts
-  - src/models/components/workflowsresponsedto.ts
-  - src/models/components/updateworkflowrequestdto.ts
-  - src/models/components/variablesresponsedto.ts
-  - src/models/components/changeworkflowstatusrequestdto.ts
+  - src/models/components/removesubscribersrequestdto.ts
+  - src/models/components/gettenantresponsedto.ts
+  - src/models/components/createtenantresponsedto.ts
+  - src/models/components/createtenantrequestdto.ts
+  - src/models/components/updatetenantresponsedto.ts
+  - src/models/components/updatetenantrequestdto.ts
   - src/models/components/security.ts
-  - src/models/operations/changescontrollerapplydiff.ts
-  - src/models/operations/changescontrollergetchanges.ts
-  - src/models/operations/eventscontrollercancel.ts
-  - src/models/operations/executiondetailscontrollergetexecutiondetailsfornotification.ts
-  - src/models/operations/feedscontrollerdeletefeedbyid.ts
-  - src/models/operations/integrationscontrollerremoveintegration.ts
-  - src/models/operations/integrationscontrollersetintegrationasprimary.ts
-  - src/models/operations/integrationscontrollerupdateintegrationbyid.ts
-  - src/models/operations/integrationscontrollergetwebhooksupportstatus.ts
-  - src/models/operations/layoutscontrollerdeletelayout.ts
-  - src/models/operations/layoutscontrollerlistlayouts.ts
-  - src/models/operations/layoutscontrollergetlayout.ts
-  - src/models/operations/layoutscontrollersetdefaultlayout.ts
-  - src/models/operations/layoutscontrollerupdatelayout.ts
-  - src/models/operations/messagescontrollerdeletemessage.ts
-  - src/models/operations/messagescontrollerdeletemessagesbytransactionid.ts
-  - src/models/operations/messagescontrollergetmessages.ts
-  - src/models/operations/notificationgroupscontrollerdeletenotificationgroup.ts
-  - src/models/operations/notificationgroupscontrollergetnotificationgroup.ts
-  - src/models/operations/notificationgroupscontrollerupdatenotificationgroup.ts
-  - src/models/operations/notificationscontrollerlistnotifications.ts
-  - src/models/operations/notificationscontrollergetnotification.ts
-  - src/models/operations/notificationscontrollergetactivitygraphstats.ts
   - src/models/operations/organizationcontrollerremove.ts
-  - src/models/operations/subscriberscontrollerremovesubscriber.ts
-  - src/models/operations/subscriberscontrollerlistsubscribers.ts
-  - src/models/operations/subscriberscontrollergetsubscriber.ts
-  - src/models/operations/subscriberscontrollerupdatesubscriber.ts
-  - src/models/operations/subscriberscontrollermodifysubscriberchannel.ts
-  - src/models/operations/subscriberscontrollerdeletesubscribercredentials.ts
-  - src/models/operations/subscriberscontrollerupdatesubscriberchannel.ts
-  - src/models/operations/subscriberscontrollerchataccessoauth.ts
-  - src/models/operations/subscriberscontrollerchatoauthcallback.ts
-  - src/models/operations/subscriberscontrollermarkallunreadasread.ts
-  - src/models/operations/subscriberscontrollermarkmessagesas.ts
-  - src/models/operations/subscriberscontrollermarkactionasseen.ts
-  - src/models/operations/subscriberscontrollergetnotificationsfeed.ts
-  - src/models/operations/subscriberscontrollergetunseencount.ts
-  - src/models/operations/subscriberscontrollerupdatesubscriberonlineflag.ts
-  - src/models/operations/subscriberscontrollerlistsubscriberpreferences.ts
-  - src/models/operations/subscriberscontrollergetsubscriberpreferencebylevel.ts
-  - src/models/operations/subscriberscontrollerupdatesubscriberpreference.ts
-  - src/models/operations/subscriberscontrollerupdatesubscriberglobalpreferences.ts
-  - src/models/operations/tenantcontrollerremovetenant.ts
-  - src/models/operations/tenantcontrollerlisttenants.ts
-  - src/models/operations/tenantcontrollergettenantbyid.ts
-  - src/models/operations/tenantcontrollerupdatetenant.ts
-  - src/models/operations/topicscontrollerdeletetopic.ts
-  - src/models/operations/topicscontrollerlisttopics.ts
-  - src/models/operations/topicscontrollerrenametopic.ts
-  - src/models/operations/topicscontrollergettopic.ts
-  - src/models/operations/topicscontrolleraddsubscribers.ts
-  - src/models/operations/topicscontrollerremovesubscribers.ts
-  - src/models/operations/topicscontrollergettopicsubscriber.ts
-  - src/models/operations/workflowcontrollerdeleteworkflowbyid.ts
+  - src/models/operations/executiondetailscontrollergetexecutiondetailsfornotification.ts
   - src/models/operations/workflowcontrollerlistworkflows.ts
   - src/models/operations/workflowcontrollergetworkflowbyid.ts
   - src/models/operations/workflowcontrollerupdateworkflowbyid.ts
+  - src/models/operations/workflowcontrollerdeleteworkflowbyid.ts
   - src/models/operations/workflowcontrollerupdateactivestatus.ts
+  - src/models/operations/eventscontrollercancel.ts
+  - src/models/operations/notificationscontrollerlistnotifications.ts
+  - src/models/operations/notificationscontrollergetnotification.ts
+  - src/models/operations/notificationscontrollergetactivitygraphstats.ts
+  - src/models/operations/notificationgroupscontrollergetnotificationgroup.ts
+  - src/models/operations/notificationgroupscontrollerdeletenotificationgroup.ts
+  - src/models/operations/notificationgroupscontrollerupdatenotificationgroup.ts
+  - src/models/operations/integrationscontrollerupdateintegrationbyid.ts
+  - src/models/operations/integrationscontrollerremoveintegration.ts
+  - src/models/operations/integrationscontrollersetintegrationasprimary.ts
+  - src/models/operations/integrationscontrollergetwebhooksupportstatus.ts
+  - src/models/operations/changescontrollergetchanges.ts
+  - src/models/operations/changescontrollerapplydiff.ts
+  - src/models/operations/subscriberscontrollerlistsubscribers.ts
+  - src/models/operations/subscriberscontrollergetsubscriber.ts
+  - src/models/operations/subscriberscontrollerupdatesubscriber.ts
+  - src/models/operations/subscriberscontrollerremovesubscriber.ts
+  - src/models/operations/subscriberscontrollerupdatesubscriberchannel.ts
+  - src/models/operations/subscriberscontrollermodifysubscriberchannel.ts
+  - src/models/operations/subscriberscontrollerdeletesubscribercredentials.ts
+  - src/models/operations/subscriberscontrollerupdatesubscriberonlineflag.ts
+  - src/models/operations/subscriberscontrollerlistsubscriberpreferences.ts
+  - src/models/operations/subscriberscontrollerupdatesubscriberglobalpreferences.ts
+  - src/models/operations/subscriberscontrollergetsubscriberpreferencebylevel.ts
+  - src/models/operations/subscriberscontrollerupdatesubscriberpreference.ts
+  - src/models/operations/subscriberscontrollergetnotificationsfeed.ts
+  - src/models/operations/subscriberscontrollergetunseencount.ts
+  - src/models/operations/subscriberscontrollermarkmessagesas.ts
+  - src/models/operations/subscriberscontrollermarkallunreadasread.ts
+  - src/models/operations/subscriberscontrollermarkactionasseen.ts
+  - src/models/operations/subscriberscontrollerchatoauthcallback.ts
+  - src/models/operations/subscriberscontrollerchataccessoauth.ts
+  - src/models/operations/feedscontrollerdeletefeedbyid.ts
+  - src/models/operations/layoutscontrollerlistlayouts.ts
+  - src/models/operations/layoutscontrollergetlayout.ts
+  - src/models/operations/layoutscontrollerdeletelayout.ts
+  - src/models/operations/layoutscontrollerupdatelayout.ts
+  - src/models/operations/layoutscontrollersetdefaultlayout.ts
+  - src/models/operations/messagescontrollergetmessages.ts
+  - src/models/operations/messagescontrollerdeletemessage.ts
+  - src/models/operations/messagescontrollerdeletemessagesbytransactionid.ts
+  - src/models/operations/topicscontrollerlisttopics.ts
+  - src/models/operations/topicscontrollergettopic.ts
+  - src/models/operations/topicscontrollerdeletetopic.ts
+  - src/models/operations/topicscontrollerrenametopic.ts
+  - src/models/operations/topicscontrolleraddsubscribers.ts
+  - src/models/operations/topicscontrollergettopicsubscriber.ts
+  - src/models/operations/topicscontrollerremovesubscribers.ts
+  - src/models/operations/tenantcontrollerlisttenants.ts
+  - src/models/operations/tenantcontrollergettenantbyid.ts
+  - src/models/operations/tenantcontrollerremovetenant.ts
+  - src/models/operations/tenantcontrollerupdatetenant.ts
   - src/models/errors/index.ts
   - src/models/components/index.ts
   - src/models/operations/index.ts
-  - docs/models/components/change.md
-  - docs/models/components/type.md
-  - docs/models/components/changeresponsedto.md
-  - docs/models/components/bulkapplychangedto.md
-  - docs/models/components/datanumberdto.md
-  - docs/models/components/changesresponsedto.md
+  - docs/models/components/organizationresponsedto.md
+  - docs/models/components/partnertype.md
+  - docs/models/components/ipartnerconfigurationresponsedto.md
+  - docs/models/components/direction.md
+  - docs/models/components/organizationbrandingresponsedto.md
+  - docs/models/components/jobtitle.md
+  - docs/models/components/productusecases.md
+  - docs/models/components/createorganizationdto.md
+  - docs/models/components/renameorganizationdto.md
+  - docs/models/components/roles.md
+  - docs/models/components/memberstatus.md
+  - docs/models/components/memberresponsedto.md
+  - docs/models/components/memberinvitedto.md
+  - docs/models/components/memberuserdto.md
+  - docs/models/components/updatebrandingdetailsdto.md
   - docs/models/components/apikeys.md
   - docs/models/components/environmentresponsedto.md
   - docs/models/components/apikey.md
+  - docs/models/components/channel.md
+  - docs/models/components/source.md
+  - docs/models/components/status.md
+  - docs/models/components/executiondetailsresponsedto.md
+  - docs/models/components/workflowsresponsedto.md
+  - docs/models/components/data.md
+  - docs/models/components/workflowintegrationstatus.md
+  - docs/models/components/workflowresponse.md
+  - docs/models/components/notificationgroup.md
+  - docs/models/components/notificationtriggertype.md
+  - docs/models/components/notificationtrigger.md
+  - docs/models/components/notificationtriggervariable.md
+  - docs/models/components/parentid.md
+  - docs/models/components/metadata.md
+  - docs/models/components/replycallback.md
+  - docs/models/components/notificationstep.md
+  - docs/models/components/notificationstepvariantparentid.md
+  - docs/models/components/notificationstepvariantmetadata.md
+  - docs/models/components/notificationstepvariantreplycallback.md
+  - docs/models/components/notificationstepvariant.md
+  - docs/models/components/unit.md
+  - docs/models/components/digestregularmetadatatype.md
+  - docs/models/components/backoffunit.md
+  - docs/models/components/digestregularmetadata.md
+  - docs/models/components/digesttimedmetadataunit.md
+  - docs/models/components/digesttimedmetadatatype.md
+  - docs/models/components/digesttimedmetadata.md
+  - docs/models/components/weekdays.md
+  - docs/models/components/ordinal.md
+  - docs/models/components/ordinalvalue.md
+  - docs/models/components/monthlytype.md
+  - docs/models/components/timedconfig.md
+  - docs/models/components/delayregularmetadataunit.md
+  - docs/models/components/delayregularmetadatatype.md
+  - docs/models/components/delayregularmetadata.md
+  - docs/models/components/delayscheduledmetadatatype.md
+  - docs/models/components/delayscheduledmetadata.md
+  - docs/models/components/type.md
+  - docs/models/components/value.md
+  - docs/models/components/stepfilter.md
+  - docs/models/components/operator.md
+  - docs/models/components/on.md
+  - docs/models/components/fieldfilterpart.md
+  - docs/models/components/messagetemplate.md
+  - docs/models/components/preferencechannels.md
+  - docs/models/components/createworkflowrequestdtonotificationgroup.md
+  - docs/models/components/createworkflowrequestdtodata.md
+  - docs/models/components/createworkflowrequestdto.md
+  - docs/models/components/updateworkflowrequestdtodata.md
+  - docs/models/components/updateworkflowrequestdto.md
   - docs/models/components/databooleandto.md
+  - docs/models/components/translations.md
+  - docs/models/components/system.md
+  - docs/models/components/variablesresponsedto.md
+  - docs/models/components/changeworkflowstatusrequestdto.md
   - docs/models/components/triggereventresponsedtostatus.md
   - docs/models/components/triggereventresponsedto.md
-  - docs/models/components/actor.md
-  - docs/models/components/triggereventrequestdtooverrides.md
-  - docs/models/components/triggereventrequestdtopayload.md
-  - docs/models/components/tenant.md
+  - docs/models/components/payload.md
+  - docs/models/components/overrides.md
   - docs/models/components/to.md
+  - docs/models/components/actor.md
+  - docs/models/components/tenant.md
   - docs/models/components/triggereventrequestdto.md
+  - docs/models/components/tenantpayloaddtodata.md
+  - docs/models/components/tenantpayloaddto.md
   - docs/models/components/subscriberpayloaddtodata.md
   - docs/models/components/subscriberpayloaddto.md
-  - docs/models/components/subscriberchanneldtoproviderid.md
+  - docs/models/components/providerid.md
   - docs/models/components/subscriberchanneldto.md
   - docs/models/components/channelcredentialsdto.md
   - docs/models/components/topicpayloaddtotype.md
   - docs/models/components/topicpayloaddto.md
-  - docs/models/components/tenantpayloaddtodata.md
-  - docs/models/components/tenantpayloaddto.md
-  - docs/models/components/triggereventtoallrequestdtoactor.md
-  - docs/models/components/triggereventtoallrequestdtooverrides.md
+  - docs/models/components/bulktriggereventdto.md
   - docs/models/components/triggereventtoallrequestdtopayload.md
+  - docs/models/components/triggereventtoallrequestdtooverrides.md
+  - docs/models/components/triggereventtoallrequestdtoactor.md
   - docs/models/components/triggereventtoallrequestdtotenant.md
   - docs/models/components/triggereventtoallrequestdto.md
-  - docs/models/components/bulktriggereventdto.md
-  - docs/models/components/executiondetailsresponsedtochannel.md
-  - docs/models/components/executiondetailsresponsedtosource.md
-  - docs/models/components/executiondetailsresponsedtostatus.md
-  - docs/models/components/executiondetailsresponsedto.md
-  - docs/models/components/feedresponsedto.md
-  - docs/models/components/createfeedrequestdto.md
+  - docs/models/components/activitiesresponsedto.md
+  - docs/models/components/channels.md
+  - docs/models/components/activitynotificationresponsedto.md
+  - docs/models/components/digest.md
+  - docs/models/components/activitynotificationjobresponsedtopayload.md
+  - docs/models/components/activitynotificationjobresponsedtoproviderid.md
+  - docs/models/components/activitynotificationjobresponsedto.md
+  - docs/models/components/activitynotificationstepresponsedto.md
+  - docs/models/components/messagetemplatedto.md
+  - docs/models/components/activitynotificationexecutiondetailresponsedtostatus.md
+  - docs/models/components/activitynotificationexecutiondetailresponsedtoproviderid.md
+  - docs/models/components/activitynotificationexecutiondetailresponsedtosource.md
+  - docs/models/components/activitynotificationexecutiondetailresponsedto.md
+  - docs/models/components/activitynotificationtemplateresponsedto.md
+  - docs/models/components/activitynotificationsubscriberresponsedto.md
+  - docs/models/components/activitystatsresponsedto.md
+  - docs/models/components/activitygraphstatesresponsechannels.md
+  - docs/models/components/activitygraphstatesresponse.md
+  - docs/models/components/notificationgroupresponsedto.md
+  - docs/models/components/createnotificationgrouprequestdto.md
+  - docs/models/components/deletenotificationgroupresponsedtostatus.md
+  - docs/models/components/deletenotificationgroupresponsedto.md
   - docs/models/components/integrationresponsedtochannel.md
   - docs/models/components/integrationresponsedto.md
   - docs/models/components/tlsoptions.md
   - docs/models/components/credentialsdto.md
-  - docs/models/components/stepfiltertype.md
-  - docs/models/components/value.md
-  - docs/models/components/stepfilter.md
-  - docs/models/components/on.md
-  - docs/models/components/operator.md
-  - docs/models/components/fieldfilterpart.md
-  - docs/models/components/channel.md
+  - docs/models/components/createintegrationrequestdtochannel.md
   - docs/models/components/createintegrationrequestdto.md
   - docs/models/components/updateintegrationrequestdto.md
+  - docs/models/components/changesresponsedto.md
+  - docs/models/components/changeresponsedtotype.md
+  - docs/models/components/change.md
+  - docs/models/components/changeresponsedto.md
+  - docs/models/components/datanumberdto.md
+  - docs/models/components/bulkapplychangedto.md
+  - docs/models/components/subscriberresponsedto.md
+  - docs/models/components/channelsettingsproviderid.md
+  - docs/models/components/channelsettings.md
+  - docs/models/components/channelcredentials.md
+  - docs/models/components/createsubscriberrequestdtodata.md
+  - docs/models/components/createsubscriberrequestdto.md
+  - docs/models/components/updatesubscriberrequestdtodata.md
+  - docs/models/components/updatesubscriberrequestdto.md
+  - docs/models/components/deletesubscriberresponsedtostatus.md
+  - docs/models/components/deletesubscriberresponsedto.md
+  - docs/models/components/bulksubscribercreatedto.md
+  - docs/models/components/updatesubscriberchannelrequestdtoproviderid.md
+  - docs/models/components/updatesubscriberchannelrequestdto.md
+  - docs/models/components/updatesubscriberonlineflagrequestdto.md
+  - docs/models/components/updatesubscriberpreferenceresponsedto.md
+  - docs/models/components/preference.md
+  - docs/models/components/templateresponse.md
+  - docs/models/components/updatesubscriberglobalpreferencesrequestdto.md
+  - docs/models/components/channelpreferencetype.md
+  - docs/models/components/channelpreference.md
+  - docs/models/components/getsubscriberpreferencesresponsedto.md
+  - docs/models/components/updatesubscriberpreferencerequestdto.md
+  - docs/models/components/feedresponsedto.md
+  - docs/models/components/unseencountresponse.md
+  - docs/models/components/messageentity.md
+  - docs/models/components/messageid.md
+  - docs/models/components/markas.md
+  - docs/models/components/messagemarkasrequestdto.md
+  - docs/models/components/feedidentifier.md
+  - docs/models/components/markallmessageasrequestdtomarkas.md
+  - docs/models/components/markallmessageasrequestdto.md
+  - docs/models/components/content.md
+  - docs/models/components/messageresponsedtochannel.md
+  - docs/models/components/messageresponsedtostatus.md
+  - docs/models/components/messageresponsedtopayload.md
+  - docs/models/components/messageresponsedtooverrides.md
+  - docs/models/components/messageresponsedto.md
+  - docs/models/components/messagectatype.md
+  - docs/models/components/messagecta.md
+  - docs/models/components/messageactionstatus.md
+  - docs/models/components/messageaction.md
+  - docs/models/components/messageactionresultpayload.md
+  - docs/models/components/messageactionresulttype.md
+  - docs/models/components/messageactionresult.md
+  - docs/models/components/messagebuttontype.md
+  - docs/models/components/messagebutton.md
+  - docs/models/components/messagectadata.md
+  - docs/models/components/emailblocktype.md
+  - docs/models/components/emailblock.md
+  - docs/models/components/textalign.md
+  - docs/models/components/emailblockstyles.md
+  - docs/models/components/markmessageactionasseendtostatus.md
+  - docs/models/components/markmessageactionasseendtopayload.md
+  - docs/models/components/markmessageactionasseendto.md
+  - docs/models/components/createfeedrequestdto.md
   - docs/models/components/createlayoutresponsedto.md
   - docs/models/components/getlayoutresponsedtochannel.md
   - docs/models/components/variables.md
@@ -322,260 +458,127 @@ generatedFiles:
   - docs/models/components/updatelayoutrequestdto.md
   - docs/models/components/deletemessageresponsedtostatus.md
   - docs/models/components/deletemessageresponsedto.md
-  - docs/models/components/activitiesresponsedto.md
-  - docs/models/components/activitynotificationresponsedtochannels.md
-  - docs/models/components/activitynotificationresponsedto.md
-  - docs/models/components/activitynotificationtemplateresponsedto.md
-  - docs/models/components/notificationtriggertype.md
-  - docs/models/components/notificationtrigger.md
-  - docs/models/components/notificationtriggervariable.md
-  - docs/models/components/activitynotificationsubscriberresponsedto.md
-  - docs/models/components/digest.md
-  - docs/models/components/payload.md
-  - docs/models/components/activitynotificationjobresponsedtoproviderid.md
-  - docs/models/components/activitynotificationjobresponsedto.md
-  - docs/models/components/activitynotificationstepresponsedto.md
-  - docs/models/components/messagetemplatedto.md
-  - docs/models/components/providerid.md
-  - docs/models/components/source.md
-  - docs/models/components/status.md
-  - docs/models/components/activitynotificationexecutiondetailresponsedto.md
-  - docs/models/components/notificationgroupresponsedto.md
-  - docs/models/components/createnotificationgrouprequestdto.md
-  - docs/models/components/deletenotificationgroupresponsedtostatus.md
-  - docs/models/components/deletenotificationgroupresponsedto.md
-  - docs/models/components/channels.md
-  - docs/models/components/activitygraphstatesresponse.md
-  - docs/models/components/activitystatsresponsedto.md
-  - docs/models/components/organizationresponsedto.md
-  - docs/models/components/partnertype.md
-  - docs/models/components/ipartnerconfigurationresponsedto.md
-  - docs/models/components/direction.md
-  - docs/models/components/organizationbrandingresponsedto.md
-  - docs/models/components/jobtitle.md
-  - docs/models/components/productusecases.md
-  - docs/models/components/createorganizationdto.md
-  - docs/models/components/renameorganizationdto.md
-  - docs/models/components/updatebrandingdetailsdto.md
-  - docs/models/components/memberstatus.md
-  - docs/models/components/roles.md
-  - docs/models/components/memberresponsedto.md
-  - docs/models/components/memberuserdto.md
-  - docs/models/components/memberinvitedto.md
-  - docs/models/components/subscriberresponsedto.md
-  - docs/models/components/channelsettingsproviderid.md
-  - docs/models/components/channelsettings.md
-  - docs/models/components/channelcredentials.md
-  - docs/models/components/data.md
-  - docs/models/components/createsubscriberrequestdto.md
-  - docs/models/components/bulksubscribercreatedto.md
-  - docs/models/components/deletesubscriberresponsedtostatus.md
-  - docs/models/components/deletesubscriberresponsedto.md
-  - docs/models/components/updatesubscriberrequestdtodata.md
-  - docs/models/components/updatesubscriberrequestdto.md
-  - docs/models/components/updatesubscriberchannelrequestdtoproviderid.md
-  - docs/models/components/updatesubscriberchannelrequestdto.md
-  - docs/models/components/feedidentifier.md
-  - docs/models/components/markas.md
-  - docs/models/components/markallmessageasrequestdto.md
-  - docs/models/components/messageentity.md
-  - docs/models/components/messagemarkasrequestdtomarkas.md
-  - docs/models/components/messageid.md
-  - docs/models/components/messagemarkasrequestdto.md
-  - docs/models/components/messageresponsedtochannel.md
-  - docs/models/components/content.md
-  - docs/models/components/overrides.md
-  - docs/models/components/messageresponsedtopayload.md
-  - docs/models/components/messageresponsedtostatus.md
-  - docs/models/components/messageresponsedto.md
-  - docs/models/components/workflowresponsedata.md
-  - docs/models/components/workflowintegrationstatus.md
-  - docs/models/components/workflowresponse.md
-  - docs/models/components/parentid.md
-  - docs/models/components/metadata.md
-  - docs/models/components/replycallback.md
-  - docs/models/components/notificationstep.md
-  - docs/models/components/notificationstepvariantparentid.md
-  - docs/models/components/notificationstepvariantmetadata.md
-  - docs/models/components/notificationstepvariantreplycallback.md
-  - docs/models/components/notificationstepvariant.md
-  - docs/models/components/messagetemplate.md
-  - docs/models/components/backoffunit.md
-  - docs/models/components/digestregularmetadatatype.md
-  - docs/models/components/digestregularmetadataunit.md
-  - docs/models/components/digestregularmetadata.md
-  - docs/models/components/digesttimedmetadatatype.md
-  - docs/models/components/digesttimedmetadataunit.md
-  - docs/models/components/digesttimedmetadata.md
-  - docs/models/components/monthlytype.md
-  - docs/models/components/ordinal.md
-  - docs/models/components/ordinalvalue.md
-  - docs/models/components/weekdays.md
-  - docs/models/components/timedconfig.md
-  - docs/models/components/delayregularmetadatatype.md
-  - docs/models/components/unit.md
-  - docs/models/components/delayregularmetadata.md
-  - docs/models/components/delayscheduledmetadatatype.md
-  - docs/models/components/delayscheduledmetadata.md
-  - docs/models/components/preferencechannels.md
-  - docs/models/components/notificationgroup.md
-  - docs/models/components/messagectatype.md
-  - docs/models/components/messagecta.md
-  - docs/models/components/messagectadata.md
-  - docs/models/components/messageactionstatus.md
-  - docs/models/components/messageaction.md
-  - docs/models/components/messageactionresultpayload.md
-  - docs/models/components/messageactionresulttype.md
-  - docs/models/components/messageactionresult.md
-  - docs/models/components/messagebuttontype.md
-  - docs/models/components/messagebutton.md
-  - docs/models/components/emailblocktype.md
-  - docs/models/components/emailblock.md
-  - docs/models/components/textalign.md
-  - docs/models/components/emailblockstyles.md
-  - docs/models/components/markmessageactionasseendtopayload.md
-  - docs/models/components/markmessageactionasseendtostatus.md
-  - docs/models/components/markmessageactionasseendto.md
-  - docs/models/components/unseencountresponse.md
-  - docs/models/components/updatesubscriberonlineflagrequestdto.md
-  - docs/models/components/updatesubscriberpreferenceresponsedto.md
-  - docs/models/components/templateresponse.md
-  - docs/models/components/preference.md
-  - docs/models/components/getsubscriberpreferencesresponsedto.md
-  - docs/models/components/updatesubscriberpreferencerequestdto.md
-  - docs/models/components/channelpreferencetype.md
-  - docs/models/components/channelpreference.md
-  - docs/models/components/updatesubscriberglobalpreferencesrequestdto.md
+  - docs/models/components/filtertopicsresponsedto.md
+  - docs/models/components/topicdto.md
+  - docs/models/components/createtopicresponsedto.md
+  - docs/models/components/createtopicrequestdto.md
+  - docs/models/components/gettopicresponsedto.md
+  - docs/models/components/renametopicresponsedto.md
+  - docs/models/components/renametopicrequestdto.md
+  - docs/models/components/addsubscribersrequestdto.md
+  - docs/models/components/topicsubscriberdto.md
+  - docs/models/components/removesubscribersrequestdto.md
+  - docs/models/components/gettenantresponsedtodata.md
+  - docs/models/components/gettenantresponsedto.md
   - docs/models/components/createtenantresponsedtodata.md
   - docs/models/components/createtenantresponsedto.md
   - docs/models/components/createtenantrequestdtodata.md
   - docs/models/components/createtenantrequestdto.md
-  - docs/models/components/gettenantresponsedtodata.md
-  - docs/models/components/gettenantresponsedto.md
   - docs/models/components/updatetenantresponsedtodata.md
   - docs/models/components/updatetenantresponsedto.md
   - docs/models/components/updatetenantrequestdtodata.md
   - docs/models/components/updatetenantrequestdto.md
-  - docs/models/components/createtopicresponsedto.md
-  - docs/models/components/createtopicrequestdto.md
-  - docs/models/components/filtertopicsresponsedto.md
-  - docs/models/components/topicdto.md
-  - docs/models/components/renametopicresponsedto.md
-  - docs/models/components/renametopicrequestdto.md
-  - docs/models/components/gettopicresponsedto.md
-  - docs/models/components/addsubscribersrequestdto.md
-  - docs/models/components/removesubscribersrequestdto.md
-  - docs/models/components/topicsubscriberdto.md
-  - docs/models/components/createworkflowrequestdtodata.md
-  - docs/models/components/createworkflowrequestdtonotificationgroup.md
-  - docs/models/components/createworkflowrequestdto.md
-  - docs/models/components/workflowsresponsedto.md
-  - docs/models/components/updateworkflowrequestdtodata.md
-  - docs/models/components/updateworkflowrequestdto.md
-  - docs/models/components/system.md
-  - docs/models/components/translations.md
-  - docs/models/components/variablesresponsedto.md
-  - docs/models/components/changeworkflowstatusrequestdto.md
   - docs/models/components/security.md
-  - docs/models/operations/changescontrollerapplydiffrequest.md
-  - docs/models/operations/changescontrollergetchangesrequest.md
-  - docs/models/operations/eventscontrollercancelrequest.md
+  - docs/models/operations/organizationcontrollerremoverequest.md
   - docs/models/operations/executiondetailscontrollergetexecutiondetailsfornotificationrequest.md
-  - docs/models/operations/feedscontrollerdeletefeedbyidrequest.md
-  - docs/models/operations/integrationscontrollerremoveintegrationrequest.md
-  - docs/models/operations/integrationscontrollersetintegrationasprimaryrequest.md
-  - docs/models/operations/integrationscontrollerupdateintegrationbyidrequest.md
-  - docs/models/operations/integrationscontrollergetwebhooksupportstatusrequest.md
-  - docs/models/operations/layoutscontrollerdeletelayoutrequest.md
-  - docs/models/operations/orderby.md
-  - docs/models/operations/layoutscontrollerlistlayoutsrequest.md
-  - docs/models/operations/layoutscontrollergetlayoutrequest.md
-  - docs/models/operations/layoutscontrollersetdefaultlayoutrequest.md
-  - docs/models/operations/layoutscontrollerupdatelayoutrequest.md
-  - docs/models/operations/messagescontrollerdeletemessagerequest.md
-  - docs/models/operations/channel.md
-  - docs/models/operations/messagescontrollerdeletemessagesbytransactionidrequest.md
-  - docs/models/operations/queryparamchannel.md
-  - docs/models/operations/messagescontrollergetmessagesrequest.md
-  - docs/models/operations/notificationgroupscontrollerdeletenotificationgrouprequest.md
-  - docs/models/operations/notificationgroupscontrollergetnotificationgrouprequest.md
-  - docs/models/operations/notificationgroupscontrollerupdatenotificationgrouprequest.md
+  - docs/models/operations/workflowcontrollerlistworkflowsrequest.md
+  - docs/models/operations/workflowcontrollergetworkflowbyidrequest.md
+  - docs/models/operations/workflowcontrollerupdateworkflowbyidrequest.md
+  - docs/models/operations/workflowcontrollerdeleteworkflowbyidrequest.md
+  - docs/models/operations/workflowcontrollerupdateactivestatusrequest.md
+  - docs/models/operations/eventscontrollercancelrequest.md
   - docs/models/operations/channels.md
   - docs/models/operations/notificationscontrollerlistnotificationsrequest.md
   - docs/models/operations/notificationscontrollergetnotificationrequest.md
   - docs/models/operations/notificationscontrollergetactivitygraphstatsrequest.md
-  - docs/models/operations/organizationcontrollerremoverequest.md
-  - docs/models/operations/subscriberscontrollerremovesubscriberrequest.md
+  - docs/models/operations/notificationgroupscontrollergetnotificationgrouprequest.md
+  - docs/models/operations/notificationgroupscontrollerdeletenotificationgrouprequest.md
+  - docs/models/operations/notificationgroupscontrollerupdatenotificationgrouprequest.md
+  - docs/models/operations/integrationscontrollerupdateintegrationbyidrequest.md
+  - docs/models/operations/integrationscontrollerremoveintegrationrequest.md
+  - docs/models/operations/integrationscontrollersetintegrationasprimaryrequest.md
+  - docs/models/operations/integrationscontrollergetwebhooksupportstatusrequest.md
+  - docs/models/operations/changescontrollergetchangesrequest.md
+  - docs/models/operations/changescontrollerapplydiffrequest.md
   - docs/models/operations/subscriberscontrollerlistsubscribersrequest.md
   - docs/models/operations/subscriberscontrollerlistsubscribersresponsebody.md
   - docs/models/operations/subscriberscontrollerlistsubscribersresponse.md
   - docs/models/operations/subscriberscontrollergetsubscriberrequest.md
   - docs/models/operations/subscriberscontrollerupdatesubscriberrequest.md
+  - docs/models/operations/subscriberscontrollerremovesubscriberrequest.md
+  - docs/models/operations/subscriberscontrollerupdatesubscriberchannelrequest.md
   - docs/models/operations/subscriberscontrollermodifysubscriberchannelrequest.md
   - docs/models/operations/subscriberscontrollerdeletesubscribercredentialsrequest.md
-  - docs/models/operations/subscriberscontrollerupdatesubscriberchannelrequest.md
-  - docs/models/operations/subscriberscontrollerchataccessoauthrequest.md
-  - docs/models/operations/subscriberscontrollerchatoauthcallbackrequest.md
-  - docs/models/operations/subscriberscontrollerchatoauthcallbackresponsebody.md
-  - docs/models/operations/subscriberscontrollermarkallunreadasreadrequest.md
-  - docs/models/operations/subscriberscontrollermarkmessagesasrequest.md
-  - docs/models/operations/subscriberscontrollermarkactionasseenrequest.md
+  - docs/models/operations/subscriberscontrollerupdatesubscriberonlineflagrequest.md
+  - docs/models/operations/subscriberscontrollerlistsubscriberpreferencesrequest.md
+  - docs/models/operations/subscriberscontrollerupdatesubscriberglobalpreferencesrequest.md
+  - docs/models/operations/subscriberscontrollergetsubscriberpreferencebylevelrequest.md
+  - docs/models/operations/subscriberscontrollerupdatesubscriberpreferencerequest.md
   - docs/models/operations/subscriberscontrollergetnotificationsfeedrequest.md
   - docs/models/operations/subscriberscontrollergetnotificationsfeedresponsebody.md
   - docs/models/operations/subscriberscontrollergetunseencountrequest.md
-  - docs/models/operations/subscriberscontrollerupdatesubscriberonlineflagrequest.md
-  - docs/models/operations/subscriberscontrollerlistsubscriberpreferencesrequest.md
-  - docs/models/operations/subscriberscontrollergetsubscriberpreferencebylevelrequest.md
-  - docs/models/operations/subscriberscontrollerupdatesubscriberpreferencerequest.md
-  - docs/models/operations/subscriberscontrollerupdatesubscriberglobalpreferencesrequest.md
-  - docs/models/operations/tenantcontrollerremovetenantrequest.md
+  - docs/models/operations/subscriberscontrollermarkmessagesasrequest.md
+  - docs/models/operations/subscriberscontrollermarkallunreadasreadrequest.md
+  - docs/models/operations/subscriberscontrollermarkactionasseenrequest.md
+  - docs/models/operations/subscriberscontrollerchatoauthcallbackrequest.md
+  - docs/models/operations/subscriberscontrollerchatoauthcallbackresponsebody.md
+  - docs/models/operations/subscriberscontrollerchataccessoauthrequest.md
+  - docs/models/operations/feedscontrollerdeletefeedbyidrequest.md
+  - docs/models/operations/orderby.md
+  - docs/models/operations/layoutscontrollerlistlayoutsrequest.md
+  - docs/models/operations/layoutscontrollergetlayoutrequest.md
+  - docs/models/operations/layoutscontrollerdeletelayoutrequest.md
+  - docs/models/operations/layoutscontrollerupdatelayoutrequest.md
+  - docs/models/operations/layoutscontrollersetdefaultlayoutrequest.md
+  - docs/models/operations/channel.md
+  - docs/models/operations/messagescontrollergetmessagesrequest.md
+  - docs/models/operations/messagescontrollerdeletemessagerequest.md
+  - docs/models/operations/queryparamchannel.md
+  - docs/models/operations/messagescontrollerdeletemessagesbytransactionidrequest.md
+  - docs/models/operations/topicscontrollerlisttopicsrequest.md
+  - docs/models/operations/topicscontrollergettopicrequest.md
+  - docs/models/operations/topicscontrollerdeletetopicrequest.md
+  - docs/models/operations/topicscontrollerrenametopicrequest.md
+  - docs/models/operations/topicscontrolleraddsubscribersrequest.md
+  - docs/models/operations/topicscontrollergettopicsubscriberrequest.md
+  - docs/models/operations/topicscontrollerremovesubscribersrequest.md
   - docs/models/operations/tenantcontrollerlisttenantsrequest.md
   - docs/models/operations/tenantcontrollerlisttenantsresponsebody.md
   - docs/models/operations/tenantcontrollerlisttenantsresponse.md
   - docs/models/operations/tenantcontrollergettenantbyidrequest.md
+  - docs/models/operations/tenantcontrollerremovetenantrequest.md
   - docs/models/operations/tenantcontrollerupdatetenantrequest.md
-  - docs/models/operations/topicscontrollerdeletetopicrequest.md
-  - docs/models/operations/topicscontrollerlisttopicsrequest.md
-  - docs/models/operations/topicscontrollerrenametopicrequest.md
-  - docs/models/operations/topicscontrollergettopicrequest.md
-  - docs/models/operations/topicscontrolleraddsubscribersrequest.md
-  - docs/models/operations/topicscontrollerremovesubscribersrequest.md
-  - docs/models/operations/topicscontrollergettopicsubscriberrequest.md
-  - docs/models/operations/workflowcontrollerdeleteworkflowbyidrequest.md
-  - docs/models/operations/workflowcontrollerlistworkflowsrequest.md
-  - docs/models/operations/workflowcontrollergetworkflowbyidrequest.md
-  - docs/models/operations/workflowcontrollerupdateworkflowbyidrequest.md
-  - docs/models/operations/workflowcontrollerupdateactivestatusrequest.md
   - docs/sdks/novu/README.md
-  - docs/sdks/changes/README.md
+  - docs/lib/utils/retryconfig.md
+  - docs/sdks/organizations/README.md
+  - docs/sdks/members/README.md
+  - docs/sdks/branding/README.md
   - docs/sdks/environments/README.md
   - docs/sdks/apikeys/README.md
-  - docs/sdks/events/README.md
   - docs/sdks/executiondetails/README.md
-  - docs/sdks/feeds/README.md
-  - docs/sdks/integrations/README.md
-  - docs/sdks/webhooks/README.md
-  - docs/sdks/layouts/README.md
-  - docs/sdks/messages/README.md
-  - docs/sdks/workflowgroups/README.md
-  - docs/sdks/notifications/README.md
-  - docs/sdks/stats/README.md
-  - docs/sdks/organizations/README.md
-  - docs/sdks/branding/README.md
-  - docs/sdks/members/README.md
-  - docs/sdks/subscribers/README.md
-  - docs/sdks/credentials/README.md
-  - docs/sdks/authentication/README.md
-  - docs/sdks/novumessages/README.md
-  - docs/sdks/novunotifications/README.md
-  - docs/sdks/properties/README.md
-  - docs/sdks/preferences/README.md
-  - docs/sdks/tenants/README.md
-  - docs/sdks/topics/README.md
-  - docs/sdks/novusubscribers/README.md
   - docs/sdks/workflows/README.md
   - docs/sdks/variables/README.md
   - docs/sdks/status/README.md
+  - docs/sdks/events/README.md
+  - docs/sdks/notifications/README.md
+  - docs/sdks/stats/README.md
+  - docs/sdks/workflowgroups/README.md
+  - docs/sdks/integrations/README.md
+  - docs/sdks/webhooks/README.md
+  - docs/sdks/changes/README.md
+  - docs/sdks/subscribers/README.md
+  - docs/sdks/credentials/README.md
+  - docs/sdks/properties/README.md
+  - docs/sdks/preferences/README.md
+  - docs/sdks/novunotifications/README.md
+  - docs/sdks/novumessages/README.md
+  - docs/sdks/authentication/README.md
+  - docs/sdks/feeds/README.md
+  - docs/sdks/layouts/README.md
+  - docs/sdks/messages/README.md
+  - docs/sdks/topics/README.md
+  - docs/sdks/novusubscribers/README.md
+  - docs/sdks/tenants/README.md
   - USAGE.md
   - .gitattributes
   - src/hooks/hooks.ts

@@ -6,6 +6,7 @@ import { SDKHooks } from "../hooks";
 import { SDK_METADATA, SDKOptions, serverURLFromOptions } from "../lib/config";
 import { encodeSimple as encodeSimple$ } from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
+import * as retries$ from "../lib/retries";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
 import * as operations from "../models/operations";
@@ -44,7 +45,10 @@ export class Webhooks extends ClientSDK {
      * @remarks
      * Return the status of the webhook for this provider, if it is supported or if it is not based on a boolean value
      */
-    async retrieve(providerOrIntegrationId: string, options?: RequestOptions): Promise<boolean> {
+    async retrieve(
+        providerOrIntegrationId: string,
+        options?: RequestOptions & { retries?: retries$.RetryConfig }
+    ): Promise<boolean> {
         const input$: operations.IntegrationsControllerGetWebhookSupportStatusRequest = {
             providerOrIntegrationId: providerOrIntegrationId,
         };
@@ -104,7 +108,25 @@ export class Webhooks extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request$, doOptions);
+        const retryConfig = options?.retries ||
+            this.options$.retryConfig || {
+                strategy: "backoff",
+                backoff: {
+                    initialInterval: 500,
+                    maxInterval: 30000,
+                    exponent: 1.5,
+                    maxElapsedTime: 3600000,
+                },
+                retryConnectionErrors: true,
+            };
+
+        const response = await retries$.retry(
+            () => {
+                const cloned = request$.clone();
+                return this.do$(cloned, doOptions);
+            },
+            { config: retryConfig, statusCodes: ["408", "409", "429", "5XX"] }
+        );
 
         const [result$] = await this.matcher<boolean>()
             .json(200, z.boolean())

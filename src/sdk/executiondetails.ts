@@ -6,6 +6,7 @@ import { SDKHooks } from "../hooks";
 import { SDK_METADATA, SDKOptions, serverURLFromOptions } from "../lib/config";
 import { encodeFormQuery as encodeFormQuery$ } from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
+import * as retries$ from "../lib/retries";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
 import * as components from "../models/components";
@@ -45,7 +46,7 @@ export class ExecutionDetails extends ClientSDK {
     async retrieve(
         notificationId: string,
         subscriberId: string,
-        options?: RequestOptions
+        options?: RequestOptions & { retries?: retries$.RetryConfig }
     ): Promise<Array<components.ExecutionDetailsResponseDto>> {
         const input$: operations.ExecutionDetailsControllerGetExecutionDetailsForNotificationRequest =
             {
@@ -69,8 +70,8 @@ export class ExecutionDetails extends ClientSDK {
         const path$ = this.templateURLComponent("/execution-details")();
 
         const query$ = encodeFormQuery$({
-            subscriberId: payload$.subscriberId,
             notificationId: payload$.notificationId,
+            subscriberId: payload$.subscriberId,
         });
 
         let security$;
@@ -102,7 +103,25 @@ export class ExecutionDetails extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request$, doOptions);
+        const retryConfig = options?.retries ||
+            this.options$.retryConfig || {
+                strategy: "backoff",
+                backoff: {
+                    initialInterval: 500,
+                    maxInterval: 30000,
+                    exponent: 1.5,
+                    maxElapsedTime: 3600000,
+                },
+                retryConnectionErrors: true,
+            };
+
+        const response = await retries$.retry(
+            () => {
+                const cloned = request$.clone();
+                return this.do$(cloned, doOptions);
+            },
+            { config: retryConfig, statusCodes: ["408", "409", "429", "5XX"] }
+        );
 
         const [result$] = await this.matcher<Array<components.ExecutionDetailsResponseDto>>()
             .json(200, z.array(components.ExecutionDetailsResponseDto$.inboundSchema))

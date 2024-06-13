@@ -13,9 +13,9 @@ import {
 import * as z from "zod";
 
 export type OrganizationResponseDto = {
-    branding: OrganizationBrandingResponseDto;
-    logo?: string | undefined;
     name: string;
+    logo?: string | undefined;
+    branding: OrganizationBrandingResponseDto;
     partnerConfigurations?: Array<IPartnerConfigurationResponseDto> | undefined;
 };
 
@@ -23,26 +23,26 @@ export type OrganizationResponseDto = {
 export namespace OrganizationResponseDto$ {
     export const inboundSchema: z.ZodType<OrganizationResponseDto, z.ZodTypeDef, unknown> =
         z.object({
-            branding: OrganizationBrandingResponseDto$.inboundSchema,
-            logo: z.string().optional(),
             name: z.string(),
+            logo: z.string().optional(),
+            branding: OrganizationBrandingResponseDto$.inboundSchema,
             partnerConfigurations: z
                 .array(IPartnerConfigurationResponseDto$.inboundSchema)
                 .optional(),
         });
 
     export type Outbound = {
-        branding: OrganizationBrandingResponseDto$.Outbound;
-        logo?: string | undefined;
         name: string;
+        logo?: string | undefined;
+        branding: OrganizationBrandingResponseDto$.Outbound;
         partnerConfigurations?: Array<IPartnerConfigurationResponseDto$.Outbound> | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, OrganizationResponseDto> =
         z.object({
-            branding: OrganizationBrandingResponseDto$.outboundSchema,
-            logo: z.string().optional(),
             name: z.string(),
+            logo: z.string().optional(),
+            branding: OrganizationBrandingResponseDto$.outboundSchema,
             partnerConfigurations: z
                 .array(IPartnerConfigurationResponseDto$.outboundSchema)
                 .optional(),

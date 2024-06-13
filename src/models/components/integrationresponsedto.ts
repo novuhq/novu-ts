@@ -18,20 +18,20 @@ export const IntegrationResponseDtoChannel = {
 export type IntegrationResponseDtoChannel = ClosedEnum<typeof IntegrationResponseDtoChannel>;
 
 export type IntegrationResponseDto = {
-    environmentId: string;
     id?: string | undefined;
+    environmentId: string;
     organizationId: string;
-    active: boolean;
+    name: string;
+    identifier: string;
+    providerId: string;
     channel: IntegrationResponseDtoChannel;
-    conditions?: Array<StepFilter> | undefined;
     credentials: CredentialsDto;
+    active: boolean;
     deleted: boolean;
     deletedAt: string;
     deletedBy: string;
-    identifier: string;
-    name: string;
     primary: boolean;
-    providerId: string;
+    conditions?: Array<StepFilter> | undefined;
 };
 
 /** @internal */
@@ -44,67 +44,67 @@ export namespace IntegrationResponseDtoChannel$ {
 export namespace IntegrationResponseDto$ {
     export const inboundSchema: z.ZodType<IntegrationResponseDto, z.ZodTypeDef, unknown> = z
         .object({
-            _environmentId: z.string(),
             _id: z.string().optional(),
+            _environmentId: z.string(),
             _organizationId: z.string(),
-            active: z.boolean(),
+            name: z.string(),
+            identifier: z.string(),
+            providerId: z.string(),
             channel: IntegrationResponseDtoChannel$.inboundSchema,
-            conditions: z.array(StepFilter$.inboundSchema).optional(),
             credentials: CredentialsDto$.inboundSchema,
+            active: z.boolean(),
             deleted: z.boolean(),
             deletedAt: z.string(),
             deletedBy: z.string(),
-            identifier: z.string(),
-            name: z.string(),
             primary: z.boolean(),
-            providerId: z.string(),
+            conditions: z.array(StepFilter$.inboundSchema).optional(),
         })
         .transform((v) => {
             return remap$(v, {
-                _environmentId: "environmentId",
                 _id: "id",
+                _environmentId: "environmentId",
                 _organizationId: "organizationId",
             });
         });
 
     export type Outbound = {
-        _environmentId: string;
         _id?: string | undefined;
+        _environmentId: string;
         _organizationId: string;
-        active: boolean;
+        name: string;
+        identifier: string;
+        providerId: string;
         channel: string;
-        conditions?: Array<StepFilter$.Outbound> | undefined;
         credentials: CredentialsDto$.Outbound;
+        active: boolean;
         deleted: boolean;
         deletedAt: string;
         deletedBy: string;
-        identifier: string;
-        name: string;
         primary: boolean;
-        providerId: string;
+        conditions?: Array<StepFilter$.Outbound> | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, IntegrationResponseDto> = z
         .object({
-            environmentId: z.string(),
             id: z.string().optional(),
+            environmentId: z.string(),
             organizationId: z.string(),
-            active: z.boolean(),
+            name: z.string(),
+            identifier: z.string(),
+            providerId: z.string(),
             channel: IntegrationResponseDtoChannel$.outboundSchema,
-            conditions: z.array(StepFilter$.outboundSchema).optional(),
             credentials: CredentialsDto$.outboundSchema,
+            active: z.boolean(),
             deleted: z.boolean(),
             deletedAt: z.string(),
             deletedBy: z.string(),
-            identifier: z.string(),
-            name: z.string(),
             primary: z.boolean(),
-            providerId: z.string(),
+            conditions: z.array(StepFilter$.outboundSchema).optional(),
         })
         .transform((v) => {
             return remap$(v, {
-                environmentId: "_environmentId",
                 id: "_id",
+                environmentId: "_environmentId",
                 organizationId: "_organizationId",
             });
         });

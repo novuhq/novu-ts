@@ -5,6 +5,7 @@
 import { SDKHooks } from "../hooks";
 import { SDK_METADATA, SDKOptions, serverURLFromOptions } from "../lib/config";
 import { HTTPClient } from "../lib/http";
+import * as retries$ from "../lib/retries";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
 import * as components from "../models/components";
 import * as z from "zod";
@@ -39,7 +40,9 @@ export class ApiKeys extends ClientSDK {
     /**
      * Get api keys
      */
-    async list(options?: RequestOptions): Promise<Array<components.ApiKey>> {
+    async list(
+        options?: RequestOptions & { retries?: retries$.RetryConfig }
+    ): Promise<Array<components.ApiKey>> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
@@ -76,7 +79,25 @@ export class ApiKeys extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request$, doOptions);
+        const retryConfig = options?.retries ||
+            this.options$.retryConfig || {
+                strategy: "backoff",
+                backoff: {
+                    initialInterval: 500,
+                    maxInterval: 30000,
+                    exponent: 1.5,
+                    maxElapsedTime: 3600000,
+                },
+                retryConnectionErrors: true,
+            };
+
+        const response = await retries$.retry(
+            () => {
+                const cloned = request$.clone();
+                return this.do$(cloned, doOptions);
+            },
+            { config: retryConfig, statusCodes: ["408", "409", "429", "5XX"] }
+        );
 
         const [result$] = await this.matcher<Array<components.ApiKey>>()
             .json(200, z.array(components.ApiKey$.inboundSchema))
@@ -89,7 +110,9 @@ export class ApiKeys extends ClientSDK {
     /**
      * Regenerate api keys
      */
-    async regenerate(options?: RequestOptions): Promise<Array<components.ApiKey>> {
+    async regenerate(
+        options?: RequestOptions & { retries?: retries$.RetryConfig }
+    ): Promise<Array<components.ApiKey>> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
@@ -126,7 +149,25 @@ export class ApiKeys extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request$, doOptions);
+        const retryConfig = options?.retries ||
+            this.options$.retryConfig || {
+                strategy: "backoff",
+                backoff: {
+                    initialInterval: 500,
+                    maxInterval: 30000,
+                    exponent: 1.5,
+                    maxElapsedTime: 3600000,
+                },
+                retryConnectionErrors: true,
+            };
+
+        const response = await retries$.retry(
+            () => {
+                const cloned = request$.clone();
+                return this.do$(cloned, doOptions);
+            },
+            { config: retryConfig, statusCodes: ["408", "409", "429", "5XX"] }
+        );
 
         const [result$] = await this.matcher<Array<components.ApiKey>>()
             .json(201, z.array(components.ApiKey$.inboundSchema))

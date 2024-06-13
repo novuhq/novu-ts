@@ -1,7 +1,7 @@
 
 
 {
-  "name": "novu-typescript",
+  "name": "novu-node",
   "version": "0.16.5",
   "exports": {
     ".": "./src/index.ts",    
