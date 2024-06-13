@@ -33,12 +33,12 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.events.trigger({
-    name: "<value>",
+    name: "workflow_identifier",
     payload: {},
     overrides: {},
     to: [
         {
-          topicKey: "<value>",
+          topicKey: "topic_key",
           type: TopicPayloadDtoType.Topic,
         },
     ],
@@ -91,12 +91,12 @@ async function run() {
   const result = await novu.events.triggerBulk({
     events: [
       {
-        name: "<value>",
+        name: "workflow_identifier",
         payload: {},
         overrides: {},
         to: [
             {
-              topicKey: "<value>",
+              topicKey: "topic_key",
               type: TopicPayloadDtoType.Topic,
             },
         ],

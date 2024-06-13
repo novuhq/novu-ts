@@ -1,4 +1,4 @@
-# novu-typescript
+# novu-node
 
 <div align="left">
     <a href="https://speakeasyapi.dev/"><img src="https://custom-icon-badges.demolab.com/badge/-Built%20By%20Speakeasy-212015?style=for-the-badge&logoColor=FBE331&logo=speakeasy&labelColor=545454" /></a>
@@ -7,14 +7,6 @@
     </a>
 </div>
 
-
-## 🏗 **Welcome to your new SDK!** 🏗
-
-It has been generated successfully based on your OpenAPI spec. However, it is not yet ready for production use. Here are some next steps:
-- [ ] 🛠 Make your SDK feel handcrafted by [customizing it](https://www.speakeasyapi.dev/docs/customize-sdks)
-- [ ] ♻️ Refine your SDK quickly by iterating locally with the [Speakeasy CLI](https://github.com/speakeasy-api/speakeasy)
-- [ ] 🎁 Publish your SDK to package managers by [configuring automatic publishing](https://www.speakeasyapi.dev/docs/advanced-setup/publish-sdks)
-- [ ] ✨ When ready to productionize, delete this section from the README
 
 <!-- Start SDK Installation [installation] -->
 ## SDK Installation
@@ -53,12 +45,12 @@ const novu = new Novu({
 
 async function run() {
     const result = await novu.events.trigger({
-        name: "<value>",
+        name: "workflow_identifier",
         payload: {},
         overrides: {},
         to: [
             {
-                topicKey: "<value>",
+                topicKey: "topic_key",
                 type: TopicPayloadDtoType.Topic,
             },
         ],
