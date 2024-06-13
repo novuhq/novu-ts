@@ -2,16 +2,16 @@ speakeasyVersion: 1.306.0
 sources:
     json-development:
         sourceNamespace: json-development
-        sourceRevisionDigest: sha256:e509b81dd77b146738e8be91926e7e802fb4dda5c1373fc9d317bc16b2bf8fc6
-        sourceBlobDigest: sha256:91b4395988ac1f67f1ad3aa63b91db634edc87c19118064517450428494236b2
+        sourceRevisionDigest: sha256:2c763e07a50c799e03e2e18ac2045757c83ce9e6b7fc5d4cbeb9a047e7897d97
+        sourceBlobDigest: sha256:62a481dc346eb00dd9e8d1954e24213967e7729a25b6f12baa7a349557c22384
         tags:
             - latest
 targets:
     my-first-target:
         source: json-development
         sourceNamespace: json-development
-        sourceRevisionDigest: sha256:e509b81dd77b146738e8be91926e7e802fb4dda5c1373fc9d317bc16b2bf8fc6
-        sourceBlobDigest: sha256:91b4395988ac1f67f1ad3aa63b91db634edc87c19118064517450428494236b2
+        sourceRevisionDigest: sha256:2c763e07a50c799e03e2e18ac2045757c83ce9e6b7fc5d4cbeb9a047e7897d97
+        sourceBlobDigest: sha256:62a481dc346eb00dd9e8d1954e24213967e7729a25b6f12baa7a349557c22384
         outLocation: /Users/galtidhar/Documents/GitHub/novu-ts-sdk
 workflow:
     workflowVersion: 1.0.0
