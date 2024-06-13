@@ -17,7 +17,7 @@ export const OrderBy = {
  */
 export type OrderBy = ClosedEnum<typeof OrderBy>;
 
-export type LayoutsControllerFilterLayoutsRequest = {
+export type LayoutsControllerListLayoutsRequest = {
     /**
      * Number of page for pagination
      */
@@ -43,9 +43,9 @@ export namespace OrderBy$ {
 }
 
 /** @internal */
-export namespace LayoutsControllerFilterLayoutsRequest$ {
+export namespace LayoutsControllerListLayoutsRequest$ {
     export const inboundSchema: z.ZodType<
-        LayoutsControllerFilterLayoutsRequest,
+        LayoutsControllerListLayoutsRequest,
         z.ZodTypeDef,
         unknown
     > = z.object({
@@ -65,7 +65,7 @@ export namespace LayoutsControllerFilterLayoutsRequest$ {
     export const outboundSchema: z.ZodType<
         Outbound,
         z.ZodTypeDef,
-        LayoutsControllerFilterLayoutsRequest
+        LayoutsControllerListLayoutsRequest
     > = z.object({
         page: z.number().optional(),
         pageSize: z.number().optional(),
