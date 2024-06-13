@@ -71,13 +71,13 @@ export class Notifications extends ClientSDK {
         const path$ = this.templateURLComponent("/notifications")();
 
         const query$ = encodeFormQuery$({
-            emails: payload$.emails,
-            search: payload$.search,
-            subscriberIds: payload$.subscriberIds,
             page: payload$.page,
             transactionId: payload$.transactionId,
             channels: payload$.channels,
             templates: payload$.templates,
+            emails: payload$.emails,
+            search: payload$.search,
+            subscriberIds: payload$.subscriberIds,
         });
 
         const security$: SecurityInput[][] = [
