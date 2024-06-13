@@ -73,11 +73,11 @@ export class NovuNotifications extends ClientSDK {
         );
 
         const query$ = encodeFormQuery$({
+            seen: payload$.seen,
             payload: payload$.payload,
             page: payload$.page,
             limit: payload$.limit,
             read: payload$.read,
-            seen: payload$.seen,
         });
 
         const security$: SecurityInput[][] = [
@@ -158,8 +158,8 @@ export class NovuNotifications extends ClientSDK {
         );
 
         const query$ = encodeFormQuery$({
-            limit: payload$.limit,
             seen: payload$.seen,
+            limit: payload$.limit,
         });
 
         const security$: SecurityInput[][] = [

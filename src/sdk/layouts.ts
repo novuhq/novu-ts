@@ -70,10 +70,10 @@ export class Layouts extends ClientSDK {
         const path$ = this.templateURLComponent("/layouts")();
 
         const query$ = encodeFormQuery$({
-            pageSize: payload$.pageSize,
             sortBy: payload$.sortBy,
             orderBy: payload$.orderBy,
             page: payload$.page,
+            pageSize: payload$.pageSize,
         });
 
         const security$: SecurityInput[][] = [

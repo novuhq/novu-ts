@@ -1385,10 +1385,10 @@ export class Subscribers extends ClientSDK {
         )(pathParams$);
 
         const query$ = encodeFormQuery$({
-            environmentId: payload$.environmentId,
-            integrationIdentifier: payload$.integrationIdentifier,
             code: payload$.code,
             hmacHash: payload$.hmacHash,
+            environmentId: payload$.environmentId,
+            integrationIdentifier: payload$.integrationIdentifier,
         });
 
         const security$: SecurityInput[][] = [

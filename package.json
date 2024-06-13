@@ -1,6 +1,6 @@
 {
   "name": "novu-typescript",
-  "version": "0.14.0",
+  "version": "0.14.2",
   "author": "Speakeasy",  
   "main": "./index.js",
   "sideEffects": false,

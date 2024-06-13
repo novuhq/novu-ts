@@ -3,10 +3,10 @@ id: 979c13a9-73a9-4a90-a4f7-400df55154c3
 management:
   docChecksum: 86319365d6d836696ef4db2a1e0d4dfd
   docVersion: "1.0"
-  speakeasyVersion: 1.305.0
+  speakeasyVersion: 1.306.0
   generationVersion: 2.340.3
-  releaseVersion: 0.14.0
-  configChecksum: 1d22dd8da1d77b2a83aec19c0e9d9cdc
+  releaseVersion: 0.14.2
+  configChecksum: 2e92a4276023fe697dc50ace96aefb0d
 features:
   typescript:
     additionalDependencies: 0.1.0
@@ -659,6 +659,30 @@ generatedFiles:
   - docs/models/operations/removetenantrequest.md
   - docs/models/operations/updatetenantsecurity.md
   - docs/models/operations/updatetenantrequest.md
+  - docs/sdks/novu/README.md
+  - docs/sdks/organizations/README.md
+  - docs/sdks/members/README.md
+  - docs/sdks/branding/README.md
+  - docs/sdks/environments/README.md
+  - docs/sdks/apikeys/README.md
+  - docs/sdks/executiondetails/README.md
+  - docs/sdks/workflows/README.md
+  - docs/sdks/variables/README.md
+  - docs/sdks/events/README.md
+  - docs/sdks/notifications/README.md
+  - docs/sdks/stats/README.md
+  - docs/sdks/workflowgroups/README.md
+  - docs/sdks/integrations/README.md
+  - docs/sdks/changes/README.md
+  - docs/sdks/subscribers/README.md
+  - docs/sdks/preferences/README.md
+  - docs/sdks/novunotifications/README.md
+  - docs/sdks/feeds/README.md
+  - docs/sdks/layouts/README.md
+  - docs/sdks/messages/README.md
+  - docs/sdks/topics/README.md
+  - docs/sdks/novusubscribers/README.md
+  - docs/sdks/tenants/README.md
   - USAGE.md
   - .gitattributes
   - src/hooks/hooks.ts
