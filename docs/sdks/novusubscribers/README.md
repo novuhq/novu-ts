@@ -3,11 +3,11 @@
 
 ### Available Operations
 
-* [topicsControllerAddSubscribers](#topicscontrolleraddsubscribers) - Subscribers addition
+* [assign](#assign) - Subscribers addition
 * [delete](#delete) - Subscribers removal
 * [retrieve](#retrieve) - Check topic subscriber
 
-## topicsControllerAddSubscribers
+## assign
 
 Add subscribers to a topic by key
 
@@ -21,7 +21,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  await novu.topics.subscribers.topicsControllerAddSubscribers("<value>", {
+  await novu.topics.subscribers.assign("<value>", {
     subscribers: [
       "<value>",
     ],

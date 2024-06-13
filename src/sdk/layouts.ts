@@ -49,9 +49,7 @@ export class Layouts extends ClientSDK {
      * @remarks
      * Create a layout
      */
-    async layoutsControllerPropertyDescriptor(
-        options?: RequestOptions
-    ): Promise<components.CreateLayoutResponseDto> {
+    async create(options?: RequestOptions): Promise<components.CreateLayoutResponseDto> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
@@ -93,151 +91,6 @@ export class Layouts extends ClientSDK {
         const [result$] = await this.matcher<components.CreateLayoutResponseDto>()
             .json(201, components.CreateLayoutResponseDto$)
             .fail([409, 429, "4XX", 503, "5XX"])
-            .match(response);
-
-        return result$;
-    }
-
-    /**
-     * Filter layouts
-     *
-     * @remarks
-     * Returns a list of layouts that can be paginated using the `page` query parameter and filtered by the environment where it is executed from the organization the user belongs to.
-     */
-    async layoutsControllerFilterLayouts(
-        request: operations.LayoutsControllerFilterLayoutsRequest,
-        options?: RequestOptions
-    ): Promise<void> {
-        const input$ = typeof request === "undefined" ? {} : request;
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "*/*");
-
-        const payload$ = schemas$.parse(
-            input$,
-            (value$) =>
-                operations.LayoutsControllerFilterLayoutsRequest$.outboundSchema.parse(value$),
-            "Input validation failed"
-        );
-        const body$ = null;
-
-        const path$ = this.templateURLComponent("/layouts")();
-
-        const query$ = encodeFormQuery$({
-            page: payload$.page,
-            pageSize: payload$.pageSize,
-            sortBy: payload$.sortBy,
-            orderBy: payload$.orderBy,
-        });
-
-        let security$;
-        if (typeof this.options$.apiKey === "function") {
-            security$ = { apiKey: await this.options$.apiKey() };
-        } else if (this.options$.apiKey) {
-            security$ = { apiKey: this.options$.apiKey };
-        } else {
-            security$ = {};
-        }
-        const context = {
-            operationID: "LayoutsController_filterLayouts",
-            oAuth2Scopes: [],
-            securitySource: this.options$.apiKey,
-        };
-        const securitySettings$ = this.resolveGlobalSecurity(security$);
-
-        const doOptions = { context, errorCodes: ["400", "409", "429", "4XX", "503", "5XX"] };
-        const request$ = this.createRequest$(
-            context,
-            {
-                security: securitySettings$,
-                method: "GET",
-                path: path$,
-                headers: headers$,
-                query: query$,
-                body: body$,
-            },
-            options
-        );
-
-        const response = await this.do$(request$, doOptions);
-
-        const [result$] = await this.matcher<void>()
-            .void(200, z.void())
-            .fail([400, 409, 429, "4XX", 503, "5XX"])
-            .match(response);
-
-        return result$;
-    }
-
-    /**
-     * Set default layout
-     *
-     * @remarks
-     * Sets the default layout for the environment and updates to non default to the existing default layout (if any).
-     */
-    async layoutsControllerSetDefaultLayout(
-        layoutId: string,
-        options?: RequestOptions
-    ): Promise<void> {
-        const input$: operations.LayoutsControllerSetDefaultLayoutRequest = {
-            layoutId: layoutId,
-        };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "*/*");
-
-        const payload$ = schemas$.parse(
-            input$,
-            (value$) =>
-                operations.LayoutsControllerSetDefaultLayoutRequest$.outboundSchema.parse(value$),
-            "Input validation failed"
-        );
-        const body$ = null;
-
-        const pathParams$ = {
-            layoutId: encodeSimple$("layoutId", payload$.layoutId, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-        };
-        const path$ = this.templateURLComponent("/layouts/{layoutId}/default")(pathParams$);
-
-        const query$ = "";
-
-        let security$;
-        if (typeof this.options$.apiKey === "function") {
-            security$ = { apiKey: await this.options$.apiKey() };
-        } else if (this.options$.apiKey) {
-            security$ = { apiKey: this.options$.apiKey };
-        } else {
-            security$ = {};
-        }
-        const context = {
-            operationID: "LayoutsController_setDefaultLayout",
-            oAuth2Scopes: [],
-            securitySource: this.options$.apiKey,
-        };
-        const securitySettings$ = this.resolveGlobalSecurity(security$);
-
-        const doOptions = { context, errorCodes: ["404", "409", "429", "4XX", "503", "5XX"] };
-        const request$ = this.createRequest$(
-            context,
-            {
-                security: securitySettings$,
-                method: "POST",
-                path: path$,
-                headers: headers$,
-                query: query$,
-                body: body$,
-            },
-            options
-        );
-
-        const response = await this.do$(request$, doOptions);
-
-        const [result$] = await this.matcher<void>()
-            .void(204, z.void())
-            .fail([404, 409, 429, "4XX", 503, "5XX"])
             .match(response);
 
         return result$;
@@ -315,6 +168,77 @@ export class Layouts extends ClientSDK {
     }
 
     /**
+     * Filter layouts
+     *
+     * @remarks
+     * Returns a list of layouts that can be paginated using the `page` query parameter and filtered by the environment where it is executed from the organization the user belongs to.
+     */
+    async list(
+        request: operations.LayoutsControllerListLayoutsRequest,
+        options?: RequestOptions
+    ): Promise<void> {
+        const input$ = typeof request === "undefined" ? {} : request;
+        const headers$ = new Headers();
+        headers$.set("user-agent", SDK_METADATA.userAgent);
+        headers$.set("Accept", "*/*");
+
+        const payload$ = schemas$.parse(
+            input$,
+            (value$) =>
+                operations.LayoutsControllerListLayoutsRequest$.outboundSchema.parse(value$),
+            "Input validation failed"
+        );
+        const body$ = null;
+
+        const path$ = this.templateURLComponent("/layouts")();
+
+        const query$ = encodeFormQuery$({
+            page: payload$.page,
+            pageSize: payload$.pageSize,
+            sortBy: payload$.sortBy,
+            orderBy: payload$.orderBy,
+        });
+
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "LayoutsController_listLayouts",
+            oAuth2Scopes: [],
+            securitySource: this.options$.apiKey,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
+
+        const doOptions = { context, errorCodes: ["400", "409", "429", "4XX", "503", "5XX"] };
+        const request$ = this.createRequest$(
+            context,
+            {
+                security: securitySettings$,
+                method: "GET",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                body: body$,
+            },
+            options
+        );
+
+        const response = await this.do$(request$, doOptions);
+
+        const [result$] = await this.matcher<void>()
+            .void(200, z.void())
+            .fail([400, 409, 429, "4XX", 503, "5XX"])
+            .match(response);
+
+        return result$;
+    }
+
+    /**
      * Get layout
      *
      * @remarks
@@ -381,6 +305,77 @@ export class Layouts extends ClientSDK {
 
         const [result$] = await this.matcher<components.GetLayoutResponseDto>()
             .json(200, components.GetLayoutResponseDto$)
+            .fail([404, 409, 429, "4XX", 503, "5XX"])
+            .match(response);
+
+        return result$;
+    }
+
+    /**
+     * Set default layout
+     *
+     * @remarks
+     * Sets the default layout for the environment and updates to non default to the existing default layout (if any).
+     */
+    async setAsDefault(layoutId: string, options?: RequestOptions): Promise<void> {
+        const input$: operations.LayoutsControllerSetDefaultLayoutRequest = {
+            layoutId: layoutId,
+        };
+        const headers$ = new Headers();
+        headers$.set("user-agent", SDK_METADATA.userAgent);
+        headers$.set("Accept", "*/*");
+
+        const payload$ = schemas$.parse(
+            input$,
+            (value$) =>
+                operations.LayoutsControllerSetDefaultLayoutRequest$.outboundSchema.parse(value$),
+            "Input validation failed"
+        );
+        const body$ = null;
+
+        const pathParams$ = {
+            layoutId: encodeSimple$("layoutId", payload$.layoutId, {
+                explode: false,
+                charEncoding: "percent",
+            }),
+        };
+        const path$ = this.templateURLComponent("/layouts/{layoutId}/default")(pathParams$);
+
+        const query$ = "";
+
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "LayoutsController_setDefaultLayout",
+            oAuth2Scopes: [],
+            securitySource: this.options$.apiKey,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
+
+        const doOptions = { context, errorCodes: ["404", "409", "429", "4XX", "503", "5XX"] };
+        const request$ = this.createRequest$(
+            context,
+            {
+                security: securitySettings$,
+                method: "POST",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                body: body$,
+            },
+            options
+        );
+
+        const response = await this.do$(request$, doOptions);
+
+        const [result$] = await this.matcher<void>()
+            .void(204, z.void())
             .fail([404, 409, 429, "4XX", 503, "5XX"])
             .match(response);
 

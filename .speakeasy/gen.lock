@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 4f7dea41-e7f4-47c3-bc21-dc29e5f1b0fc
 management:
-  docChecksum: c51dc6935b8c8591c6e798deed074bb7
+  docChecksum: 4a7edc0b5a63de8b148ab712d57fe10e
   docVersion: "1.0"
   speakeasyVersion: 1.306.0
   generationVersion: 2.340.3
-  releaseVersion: 0.16.1
-  configChecksum: 0ea968defedbb22bf8299300f67ea5cf
+  releaseVersion: 0.16.3
+  configChecksum: b6b9de2a8bc405542496aa5cc4c25bb9
 features:
   typescript:
     additionalDependencies: 0.1.0
@@ -43,6 +43,8 @@ generatedFiles:
   - src/sdk/members.ts
   - src/sdk/organizations.ts
   - src/sdk/credentials.ts
+  - src/sdk/authentication.ts
+  - src/sdk/novumessages.ts
   - src/sdk/novunotifications.ts
   - src/sdk/properties.ts
   - src/sdk/preferences.ts
@@ -134,6 +136,17 @@ generatedFiles:
   - src/models/components/memberresponsedto.ts
   - src/models/components/memberuserdto.ts
   - src/models/components/memberinvitedto.ts
+  - src/models/components/messageentity.ts
+  - src/models/components/messagemarkasrequestdto.ts
+  - src/models/components/subscriberresponsedto.ts
+  - src/models/components/channelsettings.ts
+  - src/models/components/channelcredentials.ts
+  - src/models/components/createsubscriberrequestdto.ts
+  - src/models/components/bulksubscribercreatedto.ts
+  - src/models/components/deletesubscriberresponsedto.ts
+  - src/models/components/updatesubscriberrequestdto.ts
+  - src/models/components/updatesubscriberchannelrequestdto.ts
+  - src/models/components/markallmessageasrequestdto.ts
   - src/models/components/messageresponsedto.ts
   - src/models/components/workflowresponse.ts
   - src/models/components/notificationstep.ts
@@ -146,9 +159,6 @@ generatedFiles:
   - src/models/components/delayscheduledmetadata.ts
   - src/models/components/preferencechannels.ts
   - src/models/components/notificationgroup.ts
-  - src/models/components/subscriberresponsedto.ts
-  - src/models/components/channelsettings.ts
-  - src/models/components/channelcredentials.ts
   - src/models/components/messagecta.ts
   - src/models/components/messagectadata.ts
   - src/models/components/messageaction.ts
@@ -157,14 +167,6 @@ generatedFiles:
   - src/models/components/emailblock.ts
   - src/models/components/emailblockstyles.ts
   - src/models/components/markmessageactionasseendto.ts
-  - src/models/components/markallmessageasrequestdto.ts
-  - src/models/components/messageentity.ts
-  - src/models/components/messagemarkasrequestdto.ts
-  - src/models/components/createsubscriberrequestdto.ts
-  - src/models/components/bulksubscribercreatedto.ts
-  - src/models/components/deletesubscriberresponsedto.ts
-  - src/models/components/updatesubscriberrequestdto.ts
-  - src/models/components/updatesubscriberchannelrequestdto.ts
   - src/models/components/unseencountresponse.ts
   - src/models/components/updatesubscriberonlineflagrequestdto.ts
   - src/models/components/updatesubscriberpreferenceresponsedto.ts
@@ -179,12 +181,12 @@ generatedFiles:
   - src/models/components/gettenantresponsedto.ts
   - src/models/components/updatetenantresponsedto.ts
   - src/models/components/updatetenantrequestdto.ts
-  - src/models/components/renametopicresponsedto.ts
-  - src/models/components/renametopicrequestdto.ts
   - src/models/components/createtopicresponsedto.ts
   - src/models/components/createtopicrequestdto.ts
   - src/models/components/filtertopicsresponsedto.ts
   - src/models/components/topicdto.ts
+  - src/models/components/renametopicresponsedto.ts
+  - src/models/components/renametopicrequestdto.ts
   - src/models/components/gettopicresponsedto.ts
   - src/models/components/addsubscribersrequestdto.ts
   - src/models/components/removesubscribersrequestdto.ts
@@ -204,10 +206,10 @@ generatedFiles:
   - src/models/operations/integrationscontrollersetintegrationasprimary.ts
   - src/models/operations/integrationscontrollerupdateintegrationbyid.ts
   - src/models/operations/integrationscontrollergetwebhooksupportstatus.ts
-  - src/models/operations/layoutscontrollerfilterlayouts.ts
-  - src/models/operations/layoutscontrollersetdefaultlayout.ts
   - src/models/operations/layoutscontrollerdeletelayout.ts
+  - src/models/operations/layoutscontrollerlistlayouts.ts
   - src/models/operations/layoutscontrollergetlayout.ts
+  - src/models/operations/layoutscontrollersetdefaultlayout.ts
   - src/models/operations/layoutscontrollerupdatelayout.ts
   - src/models/operations/messagescontrollerdeletemessage.ts
   - src/models/operations/messagescontrollerdeletemessagesbytransactionid.ts
@@ -219,10 +221,6 @@ generatedFiles:
   - src/models/operations/notificationscontrollergetnotification.ts
   - src/models/operations/notificationscontrollergetactivitygraphstats.ts
   - src/models/operations/organizationcontrollerremove.ts
-  - src/models/operations/subscriberscontrollerchataccessoauth.ts
-  - src/models/operations/subscriberscontrollerchatoauthcallback.ts
-  - src/models/operations/subscriberscontrollermarkactionasseen.ts
-  - src/models/operations/subscriberscontrollermarkallunreadasread.ts
   - src/models/operations/subscriberscontrollermarkmessagesas.ts
   - src/models/operations/subscriberscontrollerremovesubscriber.ts
   - src/models/operations/subscriberscontrollerlistsubscribers.ts
@@ -231,6 +229,10 @@ generatedFiles:
   - src/models/operations/subscriberscontrollermodifysubscriberchannel.ts
   - src/models/operations/subscriberscontrollerdeletesubscribercredentials.ts
   - src/models/operations/subscriberscontrollerupdatesubscriberchannel.ts
+  - src/models/operations/subscriberscontrollerchataccessoauth.ts
+  - src/models/operations/subscriberscontrollerchatoauthcallback.ts
+  - src/models/operations/subscriberscontrollermarkallunreadasread.ts
+  - src/models/operations/subscriberscontrollermarkactionasseen.ts
   - src/models/operations/subscriberscontrollergetnotificationsfeed.ts
   - src/models/operations/subscriberscontrollergetunseencount.ts
   - src/models/operations/subscriberscontrollerupdatesubscriberonlineflag.ts
@@ -242,9 +244,9 @@ generatedFiles:
   - src/models/operations/tenantcontrollerlisttenants.ts
   - src/models/operations/tenantcontrollergettenantbyid.ts
   - src/models/operations/tenantcontrollerupdatetenant.ts
-  - src/models/operations/topicscontrollerrenametopic.ts
   - src/models/operations/topicscontrollerdeletetopic.ts
   - src/models/operations/topicscontrollerlisttopics.ts
+  - src/models/operations/topicscontrollerrenametopic.ts
   - src/models/operations/topicscontrollergettopic.ts
   - src/models/operations/topicscontrolleraddsubscribers.ts
   - src/models/operations/topicscontrollerremovesubscribers.ts
@@ -360,6 +362,26 @@ generatedFiles:
   - docs/models/components/memberresponsedto.md
   - docs/models/components/memberuserdto.md
   - docs/models/components/memberinvitedto.md
+  - docs/models/components/messageentity.md
+  - docs/models/components/messagemarkasrequestdtomarkas.md
+  - docs/models/components/messageid.md
+  - docs/models/components/messagemarkasrequestdto.md
+  - docs/models/components/subscriberresponsedto.md
+  - docs/models/components/channelsettingsproviderid.md
+  - docs/models/components/channelsettings.md
+  - docs/models/components/channelcredentials.md
+  - docs/models/components/data.md
+  - docs/models/components/createsubscriberrequestdto.md
+  - docs/models/components/bulksubscribercreatedto.md
+  - docs/models/components/deletesubscriberresponsedtostatus.md
+  - docs/models/components/deletesubscriberresponsedto.md
+  - docs/models/components/updatesubscriberrequestdtodata.md
+  - docs/models/components/updatesubscriberrequestdto.md
+  - docs/models/components/updatesubscriberchannelrequestdtoproviderid.md
+  - docs/models/components/updatesubscriberchannelrequestdto.md
+  - docs/models/components/feedidentifier.md
+  - docs/models/components/markas.md
+  - docs/models/components/markallmessageasrequestdto.md
   - docs/models/components/messageresponsedtochannel.md
   - docs/models/components/content.md
   - docs/models/components/overrides.md
@@ -397,10 +419,6 @@ generatedFiles:
   - docs/models/components/delayscheduledmetadata.md
   - docs/models/components/preferencechannels.md
   - docs/models/components/notificationgroup.md
-  - docs/models/components/subscriberresponsedto.md
-  - docs/models/components/channelsettingsproviderid.md
-  - docs/models/components/channelsettings.md
-  - docs/models/components/channelcredentials.md
   - docs/models/components/messagectatype.md
   - docs/models/components/messagecta.md
   - docs/models/components/messagectadata.md
@@ -418,22 +436,6 @@ generatedFiles:
   - docs/models/components/markmessageactionasseendtopayload.md
   - docs/models/components/markmessageactionasseendtostatus.md
   - docs/models/components/markmessageactionasseendto.md
-  - docs/models/components/feedidentifier.md
-  - docs/models/components/markas.md
-  - docs/models/components/markallmessageasrequestdto.md
-  - docs/models/components/messageentity.md
-  - docs/models/components/messagemarkasrequestdtomarkas.md
-  - docs/models/components/messageid.md
-  - docs/models/components/messagemarkasrequestdto.md
-  - docs/models/components/data.md
-  - docs/models/components/createsubscriberrequestdto.md
-  - docs/models/components/bulksubscribercreatedto.md
-  - docs/models/components/deletesubscriberresponsedtostatus.md
-  - docs/models/components/deletesubscriberresponsedto.md
-  - docs/models/components/updatesubscriberrequestdtodata.md
-  - docs/models/components/updatesubscriberrequestdto.md
-  - docs/models/components/updatesubscriberchannelrequestdtoproviderid.md
-  - docs/models/components/updatesubscriberchannelrequestdto.md
   - docs/models/components/unseencountresponse.md
   - docs/models/components/updatesubscriberonlineflagrequestdto.md
   - docs/models/components/updatesubscriberpreferenceresponsedto.md
@@ -454,12 +456,12 @@ generatedFiles:
   - docs/models/components/updatetenantresponsedto.md
   - docs/models/components/updatetenantrequestdtodata.md
   - docs/models/components/updatetenantrequestdto.md
-  - docs/models/components/renametopicresponsedto.md
-  - docs/models/components/renametopicrequestdto.md
   - docs/models/components/createtopicresponsedto.md
   - docs/models/components/createtopicrequestdto.md
   - docs/models/components/filtertopicsresponsedto.md
   - docs/models/components/topicdto.md
+  - docs/models/components/renametopicresponsedto.md
+  - docs/models/components/renametopicrequestdto.md
   - docs/models/components/gettopicresponsedto.md
   - docs/models/components/addsubscribersrequestdto.md
   - docs/models/components/removesubscribersrequestdto.md
@@ -484,11 +486,11 @@ generatedFiles:
   - docs/models/operations/integrationscontrollersetintegrationasprimaryrequest.md
   - docs/models/operations/integrationscontrollerupdateintegrationbyidrequest.md
   - docs/models/operations/integrationscontrollergetwebhooksupportstatusrequest.md
-  - docs/models/operations/orderby.md
-  - docs/models/operations/layoutscontrollerfilterlayoutsrequest.md
-  - docs/models/operations/layoutscontrollersetdefaultlayoutrequest.md
   - docs/models/operations/layoutscontrollerdeletelayoutrequest.md
+  - docs/models/operations/orderby.md
+  - docs/models/operations/layoutscontrollerlistlayoutsrequest.md
   - docs/models/operations/layoutscontrollergetlayoutrequest.md
+  - docs/models/operations/layoutscontrollersetdefaultlayoutrequest.md
   - docs/models/operations/layoutscontrollerupdatelayoutrequest.md
   - docs/models/operations/messagescontrollerdeletemessagerequest.md
   - docs/models/operations/channel.md
@@ -503,11 +505,6 @@ generatedFiles:
   - docs/models/operations/notificationscontrollergetnotificationrequest.md
   - docs/models/operations/notificationscontrollergetactivitygraphstatsrequest.md
   - docs/models/operations/organizationcontrollerremoverequest.md
-  - docs/models/operations/subscriberscontrollerchataccessoauthrequest.md
-  - docs/models/operations/subscriberscontrollerchatoauthcallbackrequest.md
-  - docs/models/operations/subscriberscontrollerchatoauthcallbackresponsebody.md
-  - docs/models/operations/subscriberscontrollermarkactionasseenrequest.md
-  - docs/models/operations/subscriberscontrollermarkallunreadasreadrequest.md
   - docs/models/operations/subscriberscontrollermarkmessagesasrequest.md
   - docs/models/operations/subscriberscontrollerremovesubscriberrequest.md
   - docs/models/operations/subscriberscontrollerlistsubscribersrequest.md
@@ -518,6 +515,11 @@ generatedFiles:
   - docs/models/operations/subscriberscontrollermodifysubscriberchannelrequest.md
   - docs/models/operations/subscriberscontrollerdeletesubscribercredentialsrequest.md
   - docs/models/operations/subscriberscontrollerupdatesubscriberchannelrequest.md
+  - docs/models/operations/subscriberscontrollerchataccessoauthrequest.md
+  - docs/models/operations/subscriberscontrollerchatoauthcallbackrequest.md
+  - docs/models/operations/subscriberscontrollerchatoauthcallbackresponsebody.md
+  - docs/models/operations/subscriberscontrollermarkallunreadasreadrequest.md
+  - docs/models/operations/subscriberscontrollermarkactionasseenrequest.md
   - docs/models/operations/subscriberscontrollergetnotificationsfeedrequest.md
   - docs/models/operations/subscriberscontrollergetnotificationsfeedresponsebody.md
   - docs/models/operations/subscriberscontrollergetunseencountrequest.md
@@ -532,9 +534,9 @@ generatedFiles:
   - docs/models/operations/tenantcontrollerlisttenantsresponse.md
   - docs/models/operations/tenantcontrollergettenantbyidrequest.md
   - docs/models/operations/tenantcontrollerupdatetenantrequest.md
-  - docs/models/operations/topicscontrollerrenametopicrequest.md
   - docs/models/operations/topicscontrollerdeletetopicrequest.md
   - docs/models/operations/topicscontrollerlisttopicsrequest.md
+  - docs/models/operations/topicscontrollerrenametopicrequest.md
   - docs/models/operations/topicscontrollergettopicrequest.md
   - docs/models/operations/topicscontrolleraddsubscribersrequest.md
   - docs/models/operations/topicscontrollerremovesubscribersrequest.md
@@ -563,6 +565,8 @@ generatedFiles:
   - docs/sdks/members/README.md
   - docs/sdks/subscribers/README.md
   - docs/sdks/credentials/README.md
+  - docs/sdks/authentication/README.md
+  - docs/sdks/novumessages/README.md
   - docs/sdks/novunotifications/README.md
   - docs/sdks/properties/README.md
   - docs/sdks/preferences/README.md

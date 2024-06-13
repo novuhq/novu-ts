@@ -45,7 +45,7 @@ export class NovuSubscribers extends ClientSDK {
      * @remarks
      * Add subscribers to a topic by key
      */
-    async topicsControllerAddSubscribers(
+    async assign(
         topicKey: string,
         addSubscribersRequestDto: components.AddSubscribersRequestDto,
         options?: RequestOptions

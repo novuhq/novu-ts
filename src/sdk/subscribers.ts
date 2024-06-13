@@ -15,7 +15,9 @@ import { ClientSDK, RequestOptions } from "../lib/sdks";
 import * as components from "../models/components";
 import * as operations from "../models/operations";
 import { createPageIterator, PageIterator, Paginator } from "../types";
+import { Authentication } from "./authentication";
 import { Credentials } from "./credentials";
+import { NovuMessages } from "./novumessages";
 import { NovuNotifications } from "./novunotifications";
 import { Preferences } from "./preferences";
 import { Properties } from "./properties";
@@ -54,6 +56,16 @@ export class Subscribers extends ClientSDK {
         return (this._credentials ??= new Credentials(this.options$));
     }
 
+    private _authentication?: Authentication;
+    get authentication(): Authentication {
+        return (this._authentication ??= new Authentication(this.options$));
+    }
+
+    private _messages?: NovuMessages;
+    get messages(): NovuMessages {
+        return (this._messages ??= new NovuMessages(this.options$));
+    }
+
     private _notifications?: NovuNotifications;
     get notifications(): NovuNotifications {
         return (this._notifications ??= new NovuNotifications(this.options$));
@@ -67,327 +79,6 @@ export class Subscribers extends ClientSDK {
     private _preferences?: Preferences;
     get preferences(): Preferences {
         return (this._preferences ??= new Preferences(this.options$));
-    }
-
-    /**
-     * Handle chat oauth
-     */
-    async subscribersControllerChatAccessOauth(
-        request: operations.SubscribersControllerChatAccessOauthRequest,
-        options?: RequestOptions
-    ): Promise<void> {
-        const input$ = request;
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "*/*");
-
-        const payload$ = schemas$.parse(
-            input$,
-            (value$) =>
-                operations.SubscribersControllerChatAccessOauthRequest$.outboundSchema.parse(
-                    value$
-                ),
-            "Input validation failed"
-        );
-        const body$ = null;
-
-        const pathParams$ = {
-            providerId: encodeSimple$("providerId", payload$.providerId, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-            subscriberId: encodeSimple$("subscriberId", payload$.subscriberId, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-        };
-        const path$ = this.templateURLComponent(
-            "/subscribers/{subscriberId}/credentials/{providerId}/oauth"
-        )(pathParams$);
-
-        const query$ = encodeFormQuery$({
-            hmacHash: payload$.hmacHash,
-            environmentId: payload$.environmentId,
-            integrationIdentifier: payload$.integrationIdentifier,
-        });
-
-        let security$;
-        if (typeof this.options$.apiKey === "function") {
-            security$ = { apiKey: await this.options$.apiKey() };
-        } else if (this.options$.apiKey) {
-            security$ = { apiKey: this.options$.apiKey };
-        } else {
-            security$ = {};
-        }
-        const context = {
-            operationID: "SubscribersController_chatAccessOauth",
-            oAuth2Scopes: [],
-            securitySource: this.options$.apiKey,
-        };
-        const securitySettings$ = this.resolveGlobalSecurity(security$);
-
-        const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
-        const request$ = this.createRequest$(
-            context,
-            {
-                security: securitySettings$,
-                method: "GET",
-                path: path$,
-                headers: headers$,
-                query: query$,
-                body: body$,
-            },
-            options
-        );
-
-        const response = await this.do$(request$, doOptions);
-
-        const [result$] = await this.matcher<void>()
-            .void(200, z.void())
-            .fail([409, 429, "4XX", 503, "5XX"])
-            .match(response);
-
-        return result$;
-    }
-
-    /**
-     * Handle providers oauth redirect
-     */
-    async subscribersControllerChatOauthCallback(
-        request: operations.SubscribersControllerChatOauthCallbackRequest,
-        options?: RequestOptions
-    ): Promise<operations.SubscribersControllerChatOauthCallbackResponseBody> {
-        const input$ = request;
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "application/json");
-
-        const payload$ = schemas$.parse(
-            input$,
-            (value$) =>
-                operations.SubscribersControllerChatOauthCallbackRequest$.outboundSchema.parse(
-                    value$
-                ),
-            "Input validation failed"
-        );
-        const body$ = null;
-
-        const pathParams$ = {
-            providerId: encodeSimple$("providerId", payload$.providerId, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-            subscriberId: encodeSimple$("subscriberId", payload$.subscriberId, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-        };
-        const path$ = this.templateURLComponent(
-            "/subscribers/{subscriberId}/credentials/{providerId}/oauth/callback"
-        )(pathParams$);
-
-        const query$ = encodeFormQuery$({
-            code: payload$.code,
-            hmacHash: payload$.hmacHash,
-            environmentId: payload$.environmentId,
-            integrationIdentifier: payload$.integrationIdentifier,
-        });
-
-        let security$;
-        if (typeof this.options$.apiKey === "function") {
-            security$ = { apiKey: await this.options$.apiKey() };
-        } else if (this.options$.apiKey) {
-            security$ = { apiKey: this.options$.apiKey };
-        } else {
-            security$ = {};
-        }
-        const context = {
-            operationID: "SubscribersController_chatOauthCallback",
-            oAuth2Scopes: [],
-            securitySource: this.options$.apiKey,
-        };
-        const securitySettings$ = this.resolveGlobalSecurity(security$);
-
-        const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
-        const request$ = this.createRequest$(
-            context,
-            {
-                security: securitySettings$,
-                method: "GET",
-                path: path$,
-                headers: headers$,
-                query: query$,
-                body: body$,
-            },
-            options
-        );
-
-        const response = await this.do$(request$, doOptions);
-
-        const [result$] =
-            await this.matcher<operations.SubscribersControllerChatOauthCallbackResponseBody>()
-                .json(200, operations.SubscribersControllerChatOauthCallbackResponseBody$)
-                .fail([409, 429, "4XX", 503, "5XX"])
-                .match(response);
-
-        return result$;
-    }
-
-    /**
-     * Mark message action as seen
-     */
-    async subscribersControllerMarkActionAsSeen(
-        request: operations.SubscribersControllerMarkActionAsSeenRequest,
-        options?: RequestOptions
-    ): Promise<components.MessageResponseDto> {
-        const input$ = request;
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Content-Type", "application/json");
-        headers$.set("Accept", "application/json");
-
-        const payload$ = schemas$.parse(
-            input$,
-            (value$) =>
-                operations.SubscribersControllerMarkActionAsSeenRequest$.outboundSchema.parse(
-                    value$
-                ),
-            "Input validation failed"
-        );
-        const body$ = encodeJSON$("body", payload$.MarkMessageActionAsSeenDto, { explode: true });
-
-        const pathParams$ = {
-            messageId: encodeSimple$("messageId", payload$.messageId, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-            subscriberId: encodeSimple$("subscriberId", payload$.subscriberId, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-            type: encodeSimple$("type", payload$.type, { explode: false, charEncoding: "percent" }),
-        };
-        const path$ = this.templateURLComponent(
-            "/subscribers/{subscriberId}/messages/{messageId}/actions/{type}"
-        )(pathParams$);
-
-        const query$ = "";
-
-        let security$;
-        if (typeof this.options$.apiKey === "function") {
-            security$ = { apiKey: await this.options$.apiKey() };
-        } else if (this.options$.apiKey) {
-            security$ = { apiKey: this.options$.apiKey };
-        } else {
-            security$ = {};
-        }
-        const context = {
-            operationID: "SubscribersController_markActionAsSeen",
-            oAuth2Scopes: [],
-            securitySource: this.options$.apiKey,
-        };
-        const securitySettings$ = this.resolveGlobalSecurity(security$);
-
-        const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
-        const request$ = this.createRequest$(
-            context,
-            {
-                security: securitySettings$,
-                method: "POST",
-                path: path$,
-                headers: headers$,
-                query: query$,
-                body: body$,
-            },
-            options
-        );
-
-        const response = await this.do$(request$, doOptions);
-
-        const [result$] = await this.matcher<components.MessageResponseDto>()
-            .json(201, components.MessageResponseDto$)
-            .fail([409, 429, "4XX", 503, "5XX"])
-            .match(response);
-
-        return result$;
-    }
-
-    /**
-     * Marks all the subscriber messages as read, unread, seen or unseen. Optionally you can pass feed id (or array) to mark messages of a particular feed.
-     */
-    async subscribersControllerMarkAllUnreadAsRead(
-        subscriberId: string,
-        markAllMessageAsRequestDto: components.MarkAllMessageAsRequestDto,
-        options?: RequestOptions
-    ): Promise<number> {
-        const input$: operations.SubscribersControllerMarkAllUnreadAsReadRequest = {
-            subscriberId: subscriberId,
-            markAllMessageAsRequestDto: markAllMessageAsRequestDto,
-        };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Content-Type", "application/json");
-        headers$.set("Accept", "application/json");
-
-        const payload$ = schemas$.parse(
-            input$,
-            (value$) =>
-                operations.SubscribersControllerMarkAllUnreadAsReadRequest$.outboundSchema.parse(
-                    value$
-                ),
-            "Input validation failed"
-        );
-        const body$ = encodeJSON$("body", payload$.MarkAllMessageAsRequestDto, { explode: true });
-
-        const pathParams$ = {
-            subscriberId: encodeSimple$("subscriberId", payload$.subscriberId, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-        };
-        const path$ = this.templateURLComponent("/subscribers/{subscriberId}/messages/mark-all")(
-            pathParams$
-        );
-
-        const query$ = "";
-
-        let security$;
-        if (typeof this.options$.apiKey === "function") {
-            security$ = { apiKey: await this.options$.apiKey() };
-        } else if (this.options$.apiKey) {
-            security$ = { apiKey: this.options$.apiKey };
-        } else {
-            security$ = {};
-        }
-        const context = {
-            operationID: "SubscribersController_markAllUnreadAsRead",
-            oAuth2Scopes: [],
-            securitySource: this.options$.apiKey,
-        };
-        const securitySettings$ = this.resolveGlobalSecurity(security$);
-
-        const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
-        const request$ = this.createRequest$(
-            context,
-            {
-                security: securitySettings$,
-                method: "POST",
-                path: path$,
-                headers: headers$,
-                query: query$,
-                body: body$,
-            },
-            options
-        );
-
-        const response = await this.do$(request$, doOptions);
-
-        const [result$] = await this.matcher<number>()
-            .json(201, z.number())
-            .fail([409, 429, "4XX", 503, "5XX"])
-            .match(response);
-
-        return result$;
     }
 
     /**
@@ -709,8 +400,8 @@ export class Subscribers extends ClientSDK {
         const path$ = this.templateURLComponent("/subscribers")();
 
         const query$ = encodeFormQuery$({
-            page: payload$.page,
             limit: payload$.limit,
+            page: payload$.page,
         });
 
         let security$;

@@ -224,11 +224,11 @@ export class Messages extends ClientSDK {
         const path$ = this.templateURLComponent("/messages")();
 
         const query$ = encodeFormQuery$({
+            page: payload$.page,
             limit: payload$.limit,
             channel: payload$.channel,
             subscriberId: payload$.subscriberId,
             transactionId: payload$.transactionId,
-            page: payload$.page,
         });
 
         let security$;

@@ -114,11 +114,11 @@ run();
 
 ### [layouts](docs/sdks/layouts/README.md)
 
-* [layoutsControllerPropertyDescriptor](docs/sdks/layouts/README.md#layoutscontrollerpropertydescriptor) - Layout creation
-* [layoutsControllerFilterLayouts](docs/sdks/layouts/README.md#layoutscontrollerfilterlayouts) - Filter layouts
-* [layoutsControllerSetDefaultLayout](docs/sdks/layouts/README.md#layoutscontrollersetdefaultlayout) - Set default layout
+* [create](docs/sdks/layouts/README.md#create) - Layout creation
 * [delete](docs/sdks/layouts/README.md#delete) - Delete layout
+* [list](docs/sdks/layouts/README.md#list) - Filter layouts
 * [retrieve](docs/sdks/layouts/README.md#retrieve) - Get layout
+* [setAsDefault](docs/sdks/layouts/README.md#setasdefault) - Set default layout
 * [update](docs/sdks/layouts/README.md#update) - Update a layout
 
 ### [messages](docs/sdks/messages/README.md)
@@ -163,10 +163,6 @@ run();
 
 ### [subscribers](docs/sdks/subscribers/README.md)
 
-* [subscribersControllerChatAccessOauth](docs/sdks/subscribers/README.md#subscriberscontrollerchataccessoauth) - Handle chat oauth
-* [subscribersControllerChatOauthCallback](docs/sdks/subscribers/README.md#subscriberscontrollerchatoauthcallback) - Handle providers oauth redirect
-* [subscribersControllerMarkActionAsSeen](docs/sdks/subscribers/README.md#subscriberscontrollermarkactionasseen) - Mark message action as seen
-* [subscribersControllerMarkAllUnreadAsRead](docs/sdks/subscribers/README.md#subscriberscontrollermarkallunreadasread) - Marks all the subscriber messages as read, unread, seen or unseen. Optionally you can pass feed id (or array) to mark messages of a particular feed.
 * [subscribersControllerMarkMessagesAs](docs/sdks/subscribers/README.md#subscriberscontrollermarkmessagesas) - Mark a subscriber messages as seen, read, unseen or unread
 * [create](docs/sdks/subscribers/README.md#create) - Create subscriber
 * [createBulk](docs/sdks/subscribers/README.md#createbulk) - Bulk create subscribers
@@ -180,6 +176,16 @@ run();
 * [append](docs/sdks/credentials/README.md#append) - Modify subscriber credentials
 * [delete](docs/sdks/credentials/README.md#delete) - Delete subscriber credentials by providerId
 * [update](docs/sdks/credentials/README.md#update) - Update subscriber credentials
+
+### [subscribers.authentication](docs/sdks/authentication/README.md)
+
+* [chatAccessOauth](docs/sdks/authentication/README.md#chataccessoauth) - Handle chat oauth
+* [chatAccessOauthCallBack](docs/sdks/authentication/README.md#chataccessoauthcallback) - Handle providers oauth redirect
+
+### [subscribers.messages](docs/sdks/novumessages/README.md)
+
+* [markAll](docs/sdks/novumessages/README.md#markall) - Marks all the subscriber messages as read, unread, seen or unseen. Optionally you can pass feed id (or array) to mark messages of a particular feed.
+* [updateAsSeen](docs/sdks/novumessages/README.md#updateasseen) - Mark message action as seen
 
 ### [subscribers.notifications](docs/sdks/novunotifications/README.md)
 
@@ -207,15 +213,15 @@ run();
 
 ### [topics](docs/sdks/topics/README.md)
 
-* [topicsControllerRenameTopic](docs/sdks/topics/README.md#topicscontrollerrenametopic) - Rename a topic
 * [create](docs/sdks/topics/README.md#create) - Topic creation
 * [delete](docs/sdks/topics/README.md#delete) - Delete topic
 * [list](docs/sdks/topics/README.md#list) - Filter topics
+* [rename](docs/sdks/topics/README.md#rename) - Rename a topic
 * [retrieve](docs/sdks/topics/README.md#retrieve) - Get topic
 
 ### [topics.subscribers](docs/sdks/novusubscribers/README.md)
 
-* [topicsControllerAddSubscribers](docs/sdks/novusubscribers/README.md#topicscontrolleraddsubscribers) - Subscribers addition
+* [assign](docs/sdks/novusubscribers/README.md#assign) - Subscribers addition
 * [delete](docs/sdks/novusubscribers/README.md#delete) - Subscribers removal
 * [retrieve](docs/sdks/novusubscribers/README.md#retrieve) - Check topic subscriber
 
