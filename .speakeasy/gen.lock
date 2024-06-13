@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 4f7dea41-e7f4-47c3-bc21-dc29e5f1b0fc
 management:
-  docChecksum: a4b8eaae06ba7648070e747af369f131
+  docChecksum: aaf3e3d3e5632feabea59226e6c592e6
   docVersion: "1.0"
   speakeasyVersion: 1.306.0
   generationVersion: 2.340.3
-  releaseVersion: 0.16.4
-  configChecksum: fe61c983af59a5914624dd19148da72e
+  releaseVersion: 0.16.5
+  configChecksum: d766089b31e8d64ab1e9207244a0dc4f
 features:
   typescript:
     additionalDependencies: 0.1.0
@@ -136,8 +136,6 @@ generatedFiles:
   - src/models/components/memberresponsedto.ts
   - src/models/components/memberuserdto.ts
   - src/models/components/memberinvitedto.ts
-  - src/models/components/messageentity.ts
-  - src/models/components/messagemarkasrequestdto.ts
   - src/models/components/subscriberresponsedto.ts
   - src/models/components/channelsettings.ts
   - src/models/components/channelcredentials.ts
@@ -147,6 +145,8 @@ generatedFiles:
   - src/models/components/updatesubscriberrequestdto.ts
   - src/models/components/updatesubscriberchannelrequestdto.ts
   - src/models/components/markallmessageasrequestdto.ts
+  - src/models/components/messageentity.ts
+  - src/models/components/messagemarkasrequestdto.ts
   - src/models/components/messageresponsedto.ts
   - src/models/components/workflowresponse.ts
   - src/models/components/notificationstep.ts
@@ -221,7 +221,6 @@ generatedFiles:
   - src/models/operations/notificationscontrollergetnotification.ts
   - src/models/operations/notificationscontrollergetactivitygraphstats.ts
   - src/models/operations/organizationcontrollerremove.ts
-  - src/models/operations/subscriberscontrollermarkmessagesas.ts
   - src/models/operations/subscriberscontrollerremovesubscriber.ts
   - src/models/operations/subscriberscontrollerlistsubscribers.ts
   - src/models/operations/subscriberscontrollergetsubscriber.ts
@@ -232,6 +231,7 @@ generatedFiles:
   - src/models/operations/subscriberscontrollerchataccessoauth.ts
   - src/models/operations/subscriberscontrollerchatoauthcallback.ts
   - src/models/operations/subscriberscontrollermarkallunreadasread.ts
+  - src/models/operations/subscriberscontrollermarkmessagesas.ts
   - src/models/operations/subscriberscontrollermarkactionasseen.ts
   - src/models/operations/subscriberscontrollergetnotificationsfeed.ts
   - src/models/operations/subscriberscontrollergetunseencount.ts
@@ -362,10 +362,6 @@ generatedFiles:
   - docs/models/components/memberresponsedto.md
   - docs/models/components/memberuserdto.md
   - docs/models/components/memberinvitedto.md
-  - docs/models/components/messageentity.md
-  - docs/models/components/messagemarkasrequestdtomarkas.md
-  - docs/models/components/messageid.md
-  - docs/models/components/messagemarkasrequestdto.md
   - docs/models/components/subscriberresponsedto.md
   - docs/models/components/channelsettingsproviderid.md
   - docs/models/components/channelsettings.md
@@ -382,6 +378,10 @@ generatedFiles:
   - docs/models/components/feedidentifier.md
   - docs/models/components/markas.md
   - docs/models/components/markallmessageasrequestdto.md
+  - docs/models/components/messageentity.md
+  - docs/models/components/messagemarkasrequestdtomarkas.md
+  - docs/models/components/messageid.md
+  - docs/models/components/messagemarkasrequestdto.md
   - docs/models/components/messageresponsedtochannel.md
   - docs/models/components/content.md
   - docs/models/components/overrides.md
@@ -505,7 +505,6 @@ generatedFiles:
   - docs/models/operations/notificationscontrollergetnotificationrequest.md
   - docs/models/operations/notificationscontrollergetactivitygraphstatsrequest.md
   - docs/models/operations/organizationcontrollerremoverequest.md
-  - docs/models/operations/subscriberscontrollermarkmessagesasrequest.md
   - docs/models/operations/subscriberscontrollerremovesubscriberrequest.md
   - docs/models/operations/subscriberscontrollerlistsubscribersrequest.md
   - docs/models/operations/subscriberscontrollerlistsubscribersresponsebody.md
@@ -519,6 +518,7 @@ generatedFiles:
   - docs/models/operations/subscriberscontrollerchatoauthcallbackrequest.md
   - docs/models/operations/subscriberscontrollerchatoauthcallbackresponsebody.md
   - docs/models/operations/subscriberscontrollermarkallunreadasreadrequest.md
+  - docs/models/operations/subscriberscontrollermarkmessagesasrequest.md
   - docs/models/operations/subscriberscontrollermarkactionasseenrequest.md
   - docs/models/operations/subscriberscontrollergetnotificationsfeedrequest.md
   - docs/models/operations/subscriberscontrollergetnotificationsfeedresponsebody.md

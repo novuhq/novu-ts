@@ -8,59 +8,12 @@ A subscriber in Novu represents someone who should receive a message. A subscrib
 <https://docs.novu.co/subscribers/subscribers>
 ### Available Operations
 
-* [subscribersControllerMarkMessagesAs](#subscriberscontrollermarkmessagesas) - Mark a subscriber messages as seen, read, unseen or unread
 * [create](#create) - Create subscriber
 * [createBulk](#createbulk) - Bulk create subscribers
 * [delete](#delete) - Delete subscriber
 * [list](#list) - Get subscribers
 * [retrieve](#retrieve) - Get subscriber
 * [update](#update) - Update subscriber
-
-## subscribersControllerMarkMessagesAs
-
-Mark a subscriber messages as seen, read, unseen or unread
-
-### Example Usage
-
-```typescript
-import { Novu } from "novu-typescript";
-import { MessageMarkAsRequestDtoMarkAs } from "novu-typescript/models/components";
-
-const novu = new Novu({
-  apiKey: "<YOUR_API_KEY_HERE>",
-});
-
-async function run() {
-  const result = await novu.subscribers.subscribersControllerMarkMessagesAs("<value>", {
-    markAs: MessageMarkAsRequestDtoMarkAs.Seen,
-  messageId: "<value>",
-  });
-
-  // Handle the result
-  console.log(result)
-}
-
-run();
-```
-
-### Parameters
-
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `subscriberId`                                                                                                                                                                 | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
-| `messageMarkAsRequestDto`                                                                                                                                                      | [components.MessageMarkAsRequestDto](../../models/components/messagemarkasrequestdto.md)                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-
-
-### Response
-
-**Promise\<[components.MessageEntity[]](../../models/.md)\>**
-### Errors
-
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
 
 ## create
 

@@ -163,7 +163,6 @@ run();
 
 ### [subscribers](docs/sdks/subscribers/README.md)
 
-* [subscribersControllerMarkMessagesAs](docs/sdks/subscribers/README.md#subscriberscontrollermarkmessagesas) - Mark a subscriber messages as seen, read, unseen or unread
 * [create](docs/sdks/subscribers/README.md#create) - Create subscriber
 * [createBulk](docs/sdks/subscribers/README.md#createbulk) - Bulk create subscribers
 * [delete](docs/sdks/subscribers/README.md#delete) - Delete subscriber
@@ -185,6 +184,7 @@ run();
 ### [subscribers.messages](docs/sdks/novumessages/README.md)
 
 * [markAll](docs/sdks/novumessages/README.md#markall) - Marks all the subscriber messages as read, unread, seen or unseen. Optionally you can pass feed id (or array) to mark messages of a particular feed.
+* [markAllAs](docs/sdks/novumessages/README.md#markallas) - Mark a subscriber messages as seen, read, unseen or unread
 * [updateAsSeen](docs/sdks/novumessages/README.md#updateasseen) - Mark message action as seen
 
 ### [subscribers.notifications](docs/sdks/novunotifications/README.md)

@@ -78,9 +78,9 @@ export class Authentication extends ClientSDK {
         )(pathParams$);
 
         const query$ = encodeFormQuery$({
+            integrationIdentifier: payload$.integrationIdentifier,
             hmacHash: payload$.hmacHash,
             environmentId: payload$.environmentId,
-            integrationIdentifier: payload$.integrationIdentifier,
         });
 
         let security$;
@@ -159,10 +159,10 @@ export class Authentication extends ClientSDK {
         )(pathParams$);
 
         const query$ = encodeFormQuery$({
+            integrationIdentifier: payload$.integrationIdentifier,
             code: payload$.code,
             hmacHash: payload$.hmacHash,
             environmentId: payload$.environmentId,
-            integrationIdentifier: payload$.integrationIdentifier,
         });
 
         let security$;

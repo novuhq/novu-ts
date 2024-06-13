@@ -219,9 +219,9 @@ export class Workflows extends ClientSDK {
         const path$ = this.templateURLComponent("/workflows")();
 
         const query$ = encodeFormQuery$({
+            query: payload$.query,
             page: payload$.page,
             limit: payload$.limit,
-            query: payload$.query,
         });
 
         let security$;

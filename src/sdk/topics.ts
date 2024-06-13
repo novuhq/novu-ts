@@ -210,9 +210,9 @@ export class Topics extends ClientSDK {
         const path$ = this.templateURLComponent("/topics")();
 
         const query$ = encodeFormQuery$({
-            key: payload$.key,
             page: payload$.page,
             pageSize: payload$.pageSize,
+            key: payload$.key,
         });
 
         let security$;

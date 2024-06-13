@@ -69,8 +69,8 @@ export class ExecutionDetails extends ClientSDK {
         const path$ = this.templateURLComponent("/execution-details")();
 
         const query$ = encodeFormQuery$({
-            notificationId: payload$.notificationId,
             subscriberId: payload$.subscriberId,
+            notificationId: payload$.notificationId,
         });
 
         let security$;
