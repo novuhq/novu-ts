@@ -3,10 +3,10 @@
 
 ### Available Operations
 
-* [remove](#remove) - Remove a member from organization using memberId
-* [me](#me) - Fetch all members of current organizations
+* [organizationControllerRemove](#organizationcontrollerremove) - Remove a member from organization using memberId
+* [organizationControllerMe](#organizationcontrollerme) - Fetch all members of current organizations
 
-## remove
+## organizationControllerRemove
 
 Remove a member from organization using memberId
 
@@ -15,12 +15,12 @@ Remove a member from organization using memberId
 ```typescript
 import { Novu } from "novu-typescript";
 
-const novu = new Novu();
+const novu = new Novu({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
 
 async function run() {
-  const result = await novu.organizations.members.remove({
-    bearer: "<YOUR_BEARER_TOKEN_HERE>",
-  }, "<value>");
+  const result = await novu.organizations.members.organizationControllerRemove("<value>");
 
   // Handle the result
   console.log(result)
@@ -33,7 +33,6 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `security`                                                                                                                                                                     | [operations.RemoveSecurity](../../models/operations/removesecurity.md)                                                                                                         | :heavy_check_mark:                                                                                                                                                             | The security requirements to use for the request.                                                                                                                              |
 | `memberId`                                                                                                                                                                     | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
@@ -48,7 +47,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
 
-## me
+## organizationControllerMe
 
 Fetch all members of current organizations
 
@@ -57,12 +56,12 @@ Fetch all members of current organizations
 ```typescript
 import { Novu } from "novu-typescript";
 
-const novu = new Novu();
+const novu = new Novu({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
 
 async function run() {
-  const result = await novu.organizations.members.me({
-    bearer: "<YOUR_BEARER_TOKEN_HERE>",
-  });
+  const result = await novu.organizations.members.organizationControllerMe();
 
   // Handle the result
   console.log(result)
@@ -75,7 +74,6 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `security`                                                                                                                                                                     | [operations.MeSecurity](../../models/operations/mesecurity.md)                                                                                                                 | :heavy_check_mark:                                                                                                                                                             | The security requirements to use for the request.                                                                                                                              |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 

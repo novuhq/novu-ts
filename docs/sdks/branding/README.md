@@ -3,9 +3,9 @@
 
 ### Available Operations
 
-* [updateBrandingDetails](#updatebrandingdetails) - Update organization branding details
+* [organizationControllerUpdateBrandingDetails](#organizationcontrollerupdatebrandingdetails) - Update organization branding details
 
-## updateBrandingDetails
+## organizationControllerUpdateBrandingDetails
 
 Update organization branding details
 
@@ -14,16 +14,16 @@ Update organization branding details
 ```typescript
 import { Novu } from "novu-typescript";
 
-const novu = new Novu();
+const novu = new Novu({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
 
 async function run() {
-  const result = await novu.organizations.branding.updateBrandingDetails({
+  const result = await novu.organizations.branding.organizationControllerUpdateBrandingDetails({
     logo: "<value>",
-    color: "mint green",
+    color: "ivory",
     fontColor: "<value>",
     contentBackground: "<value>",
-  }, {
-    bearer: "<YOUR_BEARER_TOKEN_HERE>",
   });
 
   // Handle the result
@@ -38,7 +38,6 @@ run();
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `request`                                                                                                                                                                      | [components.UpdateBrandingDetailsDto](../../models/components/updatebrandingdetailsdto.md)                                                                                     | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
-| `security`                                                                                                                                                                     | [operations.UpdateBrandingDetailsSecurity](../../models/operations/updatebrandingdetailssecurity.md)                                                                           | :heavy_check_mark:                                                                                                                                                             | The security requirements to use for the request.                                                                                                                              |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 

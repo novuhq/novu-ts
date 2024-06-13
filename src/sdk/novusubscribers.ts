@@ -8,7 +8,6 @@ import { encodeJSON as encodeJSON$, encodeSimple as encodeSimple$ } from "../lib
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
-import { SecurityInput } from "../lib/security";
 import * as components from "../models/components";
 import * as operations from "../models/operations";
 import * as z from "zod";
@@ -46,13 +45,12 @@ export class NovuSubscribers extends ClientSDK {
      * @remarks
      * Add subscribers to a topic by key
      */
-    async addSubscribers(
-        security: operations.AddSubscribersSecurity,
+    async topicsControllerAddSubscribers(
         topicKey: string,
         addSubscribersRequestDto: components.AddSubscribersRequestDto,
         options?: RequestOptions
     ): Promise<void> {
-        const input$: operations.AddSubscribersRequest = {
+        const input$: operations.TopicsControllerAddSubscribersRequest = {
             topicKey: topicKey,
             addSubscribersRequestDto: addSubscribersRequestDto,
         };
@@ -63,7 +61,8 @@ export class NovuSubscribers extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.AddSubscribersRequest$.outboundSchema.parse(value$),
+            (value$) =>
+                operations.TopicsControllerAddSubscribersRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = encodeJSON$("body", payload$.AddSubscribersRequestDto, { explode: true });
@@ -78,28 +77,20 @@ export class NovuSubscribers extends ClientSDK {
 
         const query$ = "";
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
         const context = {
-            operationID: "addSubscribers",
+            operationID: "TopicsController_addSubscribers",
             oAuth2Scopes: [],
-            securitySource: security$,
+            securitySource: this.options$.apiKey,
         };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(
@@ -131,13 +122,12 @@ export class NovuSubscribers extends ClientSDK {
      * @remarks
      * Check if a subscriber belongs to a certain topic
      */
-    async retrieve(
-        security: operations.GetTopicSubscriberSecurity,
+    async topicsControllerGetTopicSubscriber(
         topicKey: string,
         externalSubscriberId: string,
         options?: RequestOptions
     ): Promise<components.TopicSubscriberDto> {
-        const input$: operations.GetTopicSubscriberRequest = {
+        const input$: operations.TopicsControllerGetTopicSubscriberRequest = {
             topicKey: topicKey,
             externalSubscriberId: externalSubscriberId,
         };
@@ -147,7 +137,8 @@ export class NovuSubscribers extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.GetTopicSubscriberRequest$.outboundSchema.parse(value$),
+            (value$) =>
+                operations.TopicsControllerGetTopicSubscriberRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -169,28 +160,20 @@ export class NovuSubscribers extends ClientSDK {
 
         const query$ = "";
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
         const context = {
-            operationID: "getTopicSubscriber",
+            operationID: "TopicsController_getTopicSubscriber",
             oAuth2Scopes: [],
-            securitySource: security$,
+            securitySource: this.options$.apiKey,
         };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(
@@ -222,13 +205,12 @@ export class NovuSubscribers extends ClientSDK {
      * @remarks
      * Remove subscribers from a topic
      */
-    async removeSubscribers(
-        security: operations.RemoveSubscribersSecurity,
+    async topicsControllerRemoveSubscribers(
         topicKey: string,
         removeSubscribersRequestDto: components.RemoveSubscribersRequestDto,
         options?: RequestOptions
     ): Promise<void> {
-        const input$: operations.RemoveSubscribersRequest = {
+        const input$: operations.TopicsControllerRemoveSubscribersRequest = {
             topicKey: topicKey,
             removeSubscribersRequestDto: removeSubscribersRequestDto,
         };
@@ -239,7 +221,8 @@ export class NovuSubscribers extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.RemoveSubscribersRequest$.outboundSchema.parse(value$),
+            (value$) =>
+                operations.TopicsControllerRemoveSubscribersRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = encodeJSON$("body", payload$.RemoveSubscribersRequestDto, { explode: true });
@@ -256,28 +239,20 @@ export class NovuSubscribers extends ClientSDK {
 
         const query$ = "";
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
         const context = {
-            operationID: "removeSubscribers",
+            operationID: "TopicsController_removeSubscribers",
             oAuth2Scopes: [],
-            securitySource: security$,
+            securitySource: this.options$.apiKey,
         };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(

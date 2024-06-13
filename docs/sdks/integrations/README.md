@@ -8,15 +8,15 @@ With the help of the Integration Store, you can easily integrate your favorite d
 <https://docs.novu.co/channels-and-providers/integration-store>
 ### Available Operations
 
-* [list](#list) - Get integrations
-* [create](#create) - Create integration
+* [integrationsControllerListIntegrations](#integrationscontrollerlistintegrations) - Get integrations
+* [integrationsControllerCreateIntegration](#integrationscontrollercreateintegration) - Create integration
 * [listActive](#listactive) - Get active integrations
-* [retrieve](#retrieve) - Get webhook support status for provider
-* [updateIntegrationById](#updateintegrationbyid) - Update integration
-* [removeIntegration](#removeintegration) - Delete integration
-* [setIntegrationAsPrimary](#setintegrationasprimary) - Set integration as primary
+* [integrationsControllerGetWebhookSupportStatus](#integrationscontrollergetwebhooksupportstatus) - Get webhook support status for provider
+* [integrationsControllerUpdateIntegrationById](#integrationscontrollerupdateintegrationbyid) - Update integration
+* [integrationsControllerRemoveIntegration](#integrationscontrollerremoveintegration) - Delete integration
+* [integrationsControllerSetIntegrationAsPrimary](#integrationscontrollersetintegrationasprimary) - Set integration as primary
 
-## list
+## integrationsControllerListIntegrations
 
 Return all the integrations the user has created for that organization. Review v.0.17.0 changelog for a breaking change
 
@@ -25,12 +25,12 @@ Return all the integrations the user has created for that organization. Review v
 ```typescript
 import { Novu } from "novu-typescript";
 
-const novu = new Novu();
+const novu = new Novu({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
 
 async function run() {
-  const result = await novu.integrations.list({
-    bearer: "<YOUR_BEARER_TOKEN_HERE>",
-  });
+  const result = await novu.integrations.integrationsControllerListIntegrations();
 
   // Handle the result
   console.log(result)
@@ -43,7 +43,6 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `security`                                                                                                                                                                     | [operations.ListIntegrationsSecurity](../../models/operations/listintegrationssecurity.md)                                                                                     | :heavy_check_mark:                                                                                                                                                             | The security requirements to use for the request.                                                                                                                              |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 
@@ -57,7 +56,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
 
-## create
+## integrationsControllerCreateIntegration
 
 Create an integration for the current environment the user is based on the API key provided
 
@@ -67,14 +66,14 @@ Create an integration for the current environment the user is based on the API k
 import { Novu } from "novu-typescript";
 import { CreateIntegrationRequestDtoChannel } from "novu-typescript/models/components";
 
-const novu = new Novu();
+const novu = new Novu({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
 
 async function run() {
-  const result = await novu.integrations.create({
+  const result = await novu.integrations.integrationsControllerCreateIntegration({
     providerId: "<value>",
-    channel: CreateIntegrationRequestDtoChannel.Sms,
-  }, {
-    bearer: "<YOUR_BEARER_TOKEN_HERE>",
+    channel: CreateIntegrationRequestDtoChannel.Push,
   });
 
   // Handle the result
@@ -89,7 +88,6 @@ run();
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `request`                                                                                                                                                                      | [components.CreateIntegrationRequestDto](../../models/components/createintegrationrequestdto.md)                                                                               | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
-| `security`                                                                                                                                                                     | [operations.CreateIntegrationSecurity](../../models/operations/createintegrationsecurity.md)                                                                                   | :heavy_check_mark:                                                                                                                                                             | The security requirements to use for the request.                                                                                                                              |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 
@@ -112,12 +110,12 @@ Return all the active integrations the user has created for that organization. R
 ```typescript
 import { Novu } from "novu-typescript";
 
-const novu = new Novu();
+const novu = new Novu({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
 
 async function run() {
-  const result = await novu.integrations.listActive({
-    bearer: "<YOUR_BEARER_TOKEN_HERE>",
-  });
+  const result = await novu.integrations.listActive();
 
   // Handle the result
   console.log(result)
@@ -130,7 +128,6 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `security`                                                                                                                                                                     | [operations.GetActiveIntegrationsSecurity](../../models/operations/getactiveintegrationssecurity.md)                                                                           | :heavy_check_mark:                                                                                                                                                             | The security requirements to use for the request.                                                                                                                              |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 
@@ -144,7 +141,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
 
-## retrieve
+## integrationsControllerGetWebhookSupportStatus
 
 Return the status of the webhook for this provider, if it is supported or if it is not based on a boolean value
 
@@ -153,12 +150,12 @@ Return the status of the webhook for this provider, if it is supported or if it 
 ```typescript
 import { Novu } from "novu-typescript";
 
-const novu = new Novu();
+const novu = new Novu({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
 
 async function run() {
-  const result = await novu.integrations.retrieve({
-    bearer: "<YOUR_BEARER_TOKEN_HERE>",
-  }, "<value>");
+  const result = await novu.integrations.integrationsControllerGetWebhookSupportStatus("<value>");
 
   // Handle the result
   console.log(result)
@@ -171,7 +168,6 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `security`                                                                                                                                                                     | [operations.GetWebhookSupportStatusSecurity](../../models/operations/getwebhooksupportstatussecurity.md)                                                                       | :heavy_check_mark:                                                                                                                                                             | The security requirements to use for the request.                                                                                                                              |
 | `providerOrIntegrationId`                                                                                                                                                      | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
@@ -186,7 +182,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
 
-## updateIntegrationById
+## integrationsControllerUpdateIntegrationById
 
 Update integration
 
@@ -195,12 +191,12 @@ Update integration
 ```typescript
 import { Novu } from "novu-typescript";
 
-const novu = new Novu();
+const novu = new Novu({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
 
 async function run() {
-  const result = await novu.integrations.updateIntegrationById({
-    bearer: "<YOUR_BEARER_TOKEN_HERE>",
-  }, "<value>", {});
+  const result = await novu.integrations.integrationsControllerUpdateIntegrationById("<value>", {});
 
   // Handle the result
   console.log(result)
@@ -213,7 +209,6 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `security`                                                                                                                                                                     | [operations.UpdateIntegrationByIdSecurity](../../models/operations/updateintegrationbyidsecurity.md)                                                                           | :heavy_check_mark:                                                                                                                                                             | The security requirements to use for the request.                                                                                                                              |
 | `integrationId`                                                                                                                                                                | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
 | `updateIntegrationRequestDto`                                                                                                                                                  | [components.UpdateIntegrationRequestDto](../../models/components/updateintegrationrequestdto.md)                                                                               | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
@@ -229,7 +224,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
 
-## removeIntegration
+## integrationsControllerRemoveIntegration
 
 Delete integration
 
@@ -238,12 +233,12 @@ Delete integration
 ```typescript
 import { Novu } from "novu-typescript";
 
-const novu = new Novu();
+const novu = new Novu({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
 
 async function run() {
-  const result = await novu.integrations.removeIntegration({
-    bearer: "<YOUR_BEARER_TOKEN_HERE>",
-  }, "<value>");
+  const result = await novu.integrations.integrationsControllerRemoveIntegration("<value>");
 
   // Handle the result
   console.log(result)
@@ -256,7 +251,6 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `security`                                                                                                                                                                     | [operations.RemoveIntegrationSecurity](../../models/operations/removeintegrationsecurity.md)                                                                                   | :heavy_check_mark:                                                                                                                                                             | The security requirements to use for the request.                                                                                                                              |
 | `integrationId`                                                                                                                                                                | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
@@ -271,7 +265,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
 
-## setIntegrationAsPrimary
+## integrationsControllerSetIntegrationAsPrimary
 
 Set integration as primary
 
@@ -280,12 +274,12 @@ Set integration as primary
 ```typescript
 import { Novu } from "novu-typescript";
 
-const novu = new Novu();
+const novu = new Novu({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
 
 async function run() {
-  const result = await novu.integrations.setIntegrationAsPrimary({
-    bearer: "<YOUR_BEARER_TOKEN_HERE>",
-  }, "<value>");
+  const result = await novu.integrations.integrationsControllerSetIntegrationAsPrimary("<value>");
 
   // Handle the result
   console.log(result)
@@ -298,7 +292,6 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `security`                                                                                                                                                                     | [operations.SetIntegrationAsPrimarySecurity](../../models/operations/setintegrationasprimarysecurity.md)                                                                       | :heavy_check_mark:                                                                                                                                                             | The security requirements to use for the request.                                                                                                                              |
 | `integrationId`                                                                                                                                                                | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |

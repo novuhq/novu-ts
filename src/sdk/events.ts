@@ -8,7 +8,6 @@ import { encodeJSON as encodeJSON$, encodeSimple as encodeSimple$ } from "../lib
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
-import { SecurityInput } from "../lib/security";
 import * as components from "../models/components";
 import * as operations from "../models/operations";
 import * as z from "zod";
@@ -50,9 +49,8 @@ export class Events extends ClientSDK {
      *     Additional information can be passed according the body interface below.
      *
      */
-    async trigger(
+    async eventsControllerTrigger(
         request: components.TriggerEventRequestDto,
-        security: operations.TriggerSecurity,
         options?: RequestOptions
     ): Promise<components.TriggerEventResponseDto> {
         const input$ = request;
@@ -72,24 +70,20 @@ export class Events extends ClientSDK {
 
         const query$ = "";
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
-        const context = { operationID: "trigger", oAuth2Scopes: [], securitySource: security$ };
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "EventsController_trigger",
+            oAuth2Scopes: [],
+            securitySource: this.options$.apiKey,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(
@@ -124,9 +118,8 @@ export class Events extends ClientSDK {
      *       The bulk API is limited to 100 events per request.
      *
      */
-    async triggerBulk(
+    async eventsControllerTriggerBulk(
         request: components.BulkTriggerEventDto,
-        security: operations.TriggerBulkSecurity,
         options?: RequestOptions
     ): Promise<Array<components.TriggerEventResponseDto>> {
         const input$ = request;
@@ -146,24 +139,20 @@ export class Events extends ClientSDK {
 
         const query$ = "";
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
-        const context = { operationID: "triggerBulk", oAuth2Scopes: [], securitySource: security$ };
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "EventsController_triggerBulk",
+            oAuth2Scopes: [],
+            securitySource: this.options$.apiKey,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(
@@ -196,9 +185,8 @@ export class Events extends ClientSDK {
      * Trigger a broadcast event to all existing subscribers, could be used to send announcements, etc.
      *       In the future could be used to trigger events to a subset of subscribers based on defined filters.
      */
-    async broadcastEventToAll(
+    async eventsControllerBroadcastEventToAll(
         request: components.TriggerEventToAllRequestDto,
-        security: operations.BroadcastEventToAllSecurity,
         options?: RequestOptions
     ): Promise<components.TriggerEventResponseDto> {
         const input$ = request;
@@ -218,28 +206,20 @@ export class Events extends ClientSDK {
 
         const query$ = "";
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
         const context = {
-            operationID: "broadcastEventToAll",
+            operationID: "EventsController_broadcastEventToAll",
             oAuth2Scopes: [],
-            securitySource: security$,
+            securitySource: this.options$.apiKey,
         };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(
@@ -274,12 +254,11 @@ export class Events extends ClientSDK {
      *      will cancel any active or pending workflows. This is useful to cancel active digests, delays etc...
      *
      */
-    async cancel(
-        security: operations.CancelSecurity,
+    async eventsControllerCancel(
         transactionId: string,
         options?: RequestOptions
     ): Promise<components.DataBooleanDto> {
-        const input$: operations.CancelRequest = {
+        const input$: operations.EventsControllerCancelRequest = {
             transactionId: transactionId,
         };
         const headers$ = new Headers();
@@ -288,7 +267,7 @@ export class Events extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.CancelRequest$.outboundSchema.parse(value$),
+            (value$) => operations.EventsControllerCancelRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -303,24 +282,20 @@ export class Events extends ClientSDK {
 
         const query$ = "";
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
-        const context = { operationID: "cancel", oAuth2Scopes: [], securitySource: security$ };
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "EventsController_cancel",
+            oAuth2Scopes: [],
+            securitySource: this.options$.apiKey,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(

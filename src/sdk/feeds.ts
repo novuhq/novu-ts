@@ -8,7 +8,6 @@ import { encodeJSON as encodeJSON$, encodeSimple as encodeSimple$ } from "../lib
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
-import { SecurityInput } from "../lib/security";
 import * as components from "../models/components";
 import * as operations from "../models/operations";
 import * as z from "zod";
@@ -43,8 +42,7 @@ export class Feeds extends ClientSDK {
     /**
      * Get feeds
      */
-    async retrieve(
-        security: operations.GetFeedsSecurity,
+    async feedsControllerGetFeeds(
         options?: RequestOptions
     ): Promise<Array<components.FeedResponseDto>> {
         const headers$ = new Headers();
@@ -55,24 +53,20 @@ export class Feeds extends ClientSDK {
 
         const query$ = "";
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
-        const context = { operationID: "getFeeds", oAuth2Scopes: [], securitySource: security$ };
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "FeedsController_getFeeds",
+            oAuth2Scopes: [],
+            securitySource: this.options$.apiKey,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(
@@ -100,9 +94,8 @@ export class Feeds extends ClientSDK {
     /**
      * Create feed
      */
-    async create(
+    async feedsControllerCreateFeed(
         request: components.CreateFeedRequestDto,
-        security: operations.CreateFeedSecurity,
         options?: RequestOptions
     ): Promise<components.FeedResponseDto> {
         const input$ = request;
@@ -122,24 +115,20 @@ export class Feeds extends ClientSDK {
 
         const query$ = "";
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
-        const context = { operationID: "createFeed", oAuth2Scopes: [], securitySource: security$ };
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "FeedsController_createFeed",
+            oAuth2Scopes: [],
+            securitySource: this.options$.apiKey,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(
@@ -168,12 +157,11 @@ export class Feeds extends ClientSDK {
     /**
      * Delete feed
      */
-    async delete(
-        security: operations.DeleteFeedByIdSecurity,
+    async feedsControllerDeleteFeedById(
         feedId: string,
         options?: RequestOptions
     ): Promise<Array<components.FeedResponseDto>> {
-        const input$: operations.DeleteFeedByIdRequest = {
+        const input$: operations.FeedsControllerDeleteFeedByIdRequest = {
             feedId: feedId,
         };
         const headers$ = new Headers();
@@ -182,7 +170,8 @@ export class Feeds extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.DeleteFeedByIdRequest$.outboundSchema.parse(value$),
+            (value$) =>
+                operations.FeedsControllerDeleteFeedByIdRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -197,28 +186,20 @@ export class Feeds extends ClientSDK {
 
         const query$ = "";
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
         const context = {
-            operationID: "deleteFeedById",
+            operationID: "FeedsController_deleteFeedById",
             oAuth2Scopes: [],
-            securitySource: security$,
+            securitySource: this.options$.apiKey,
         };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(

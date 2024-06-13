@@ -8,11 +8,11 @@ A message in Novu represents a notification delivered to a recipient on a partic
 <https://docs.novu.co/workflows/messages>
 ### Available Operations
 
-* [retrieve](#retrieve) - Get messages
-* [delete](#delete) - Delete message
+* [messagesControllerGetMessages](#messagescontrollergetmessages) - Get messages
+* [messagesControllerDeleteMessage](#messagescontrollerdeletemessage) - Delete message
 * [deleteByTransactionId](#deletebytransactionid) - Delete messages by transactionId
 
-## retrieve
+## messagesControllerGetMessages
 
 Returns a list of messages, could paginate using the `page` query parameter
 
@@ -21,12 +21,12 @@ Returns a list of messages, could paginate using the `page` query parameter
 ```typescript
 import { Novu } from "novu-typescript";
 
-const novu = new Novu();
+const novu = new Novu({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
 
 async function run() {
-  const result = await novu.messages.retrieve({}, {
-    bearer: "<YOUR_BEARER_TOKEN_HERE>",
-  });
+  const result = await novu.messages.messagesControllerGetMessages({});
 
   // Handle the result
   console.log(result)
@@ -39,8 +39,7 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.GetMessagesRequest](../../models/operations/getmessagesrequest.md)                                                                                                 | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
-| `security`                                                                                                                                                                     | [operations.GetMessagesSecurity](../../models/operations/getmessagessecurity.md)                                                                                               | :heavy_check_mark:                                                                                                                                                             | The security requirements to use for the request.                                                                                                                              |
+| `request`                                                                                                                                                                      | [operations.MessagesControllerGetMessagesRequest](../../models/operations/messagescontrollergetmessagesrequest.md)                                                             | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 
@@ -54,7 +53,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
 
-## delete
+## messagesControllerDeleteMessage
 
 Deletes a message entity from the Novu platform
 
@@ -63,12 +62,12 @@ Deletes a message entity from the Novu platform
 ```typescript
 import { Novu } from "novu-typescript";
 
-const novu = new Novu();
+const novu = new Novu({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
 
 async function run() {
-  const result = await novu.messages.delete({
-    bearer: "<YOUR_BEARER_TOKEN_HERE>",
-  }, "<value>");
+  const result = await novu.messages.messagesControllerDeleteMessage("<value>");
 
   // Handle the result
   console.log(result)
@@ -81,7 +80,6 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `security`                                                                                                                                                                     | [operations.DeleteMessageSecurity](../../models/operations/deletemessagesecurity.md)                                                                                           | :heavy_check_mark:                                                                                                                                                             | The security requirements to use for the request.                                                                                                                              |
 | `messageId`                                                                                                                                                                    | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
@@ -106,12 +104,12 @@ Deletes messages entity from the Novu platform using TransactionId of message
 import { Novu } from "novu-typescript";
 import { QueryParamChannel } from "novu-typescript/models/operations";
 
-const novu = new Novu();
+const novu = new Novu({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
 
 async function run() {
-  await novu.messages.deleteByTransactionId({
-    bearer: "<YOUR_BEARER_TOKEN_HERE>",
-  }, "<value>", QueryParamChannel.Push);
+  await novu.messages.deleteByTransactionId("<value>", QueryParamChannel.Push);
 
   
 }
@@ -123,7 +121,6 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `security`                                                                                                                                                                     | [operations.DeleteMessagesByTransactionIdSecurity](../../models/operations/deletemessagesbytransactionidsecurity.md)                                                           | :heavy_check_mark:                                                                                                                                                             | The security requirements to use for the request.                                                                                                                              |
 | `transactionId`                                                                                                                                                                | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
 | `channel`                                                                                                                                                                      | [operations.QueryParamChannel](../../models/operations/queryparamchannel.md)                                                                                                   | :heavy_minus_sign:                                                                                                                                                             | The channel of the message to be deleted                                                                                                                                       |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |

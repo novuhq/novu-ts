@@ -12,7 +12,6 @@ import {
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
-import { SecurityInput } from "../lib/security";
 import * as components from "../models/components";
 import * as operations from "../models/operations";
 import * as z from "zod";
@@ -50,9 +49,8 @@ export class Layouts extends ClientSDK {
      * @remarks
      * Returns a list of layouts that can be paginated using the `page` query parameter and filtered by the environment where it is executed from the organization the user belongs to.
      */
-    async filterLayouts(
-        request: operations.FilterLayoutsRequest,
-        security: operations.FilterLayoutsSecurity,
+    async layoutsControllerFilterLayouts(
+        request: operations.LayoutsControllerFilterLayoutsRequest,
         options?: RequestOptions
     ): Promise<void> {
         const input$ = typeof request === "undefined" ? {} : request;
@@ -62,7 +60,8 @@ export class Layouts extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.FilterLayoutsRequest$.outboundSchema.parse(value$),
+            (value$) =>
+                operations.LayoutsControllerFilterLayoutsRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -76,28 +75,20 @@ export class Layouts extends ClientSDK {
             orderBy: payload$.orderBy,
         });
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
         const context = {
-            operationID: "filterLayouts",
+            operationID: "LayoutsController_filterLayouts",
             oAuth2Scopes: [],
-            securitySource: security$,
+            securitySource: this.options$.apiKey,
         };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["400", "409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(
@@ -129,8 +120,7 @@ export class Layouts extends ClientSDK {
      * @remarks
      * Create a layout
      */
-    async propertyDescriptor(
-        security: operations.PropertyDescriptorSecurity,
+    async layoutsControllerPropertyDescriptor(
         options?: RequestOptions
     ): Promise<components.CreateLayoutResponseDto> {
         const headers$ = new Headers();
@@ -141,28 +131,20 @@ export class Layouts extends ClientSDK {
 
         const query$ = "";
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
         const context = {
-            operationID: "PropertyDescriptor",
+            operationID: "LayoutsController_PropertyDescriptor",
             oAuth2Scopes: [],
-            securitySource: security$,
+            securitySource: this.options$.apiKey,
         };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(
@@ -193,12 +175,11 @@ export class Layouts extends ClientSDK {
      * @remarks
      * Get a layout by its ID
      */
-    async retrieve(
-        security: operations.GetLayoutSecurity,
+    async layoutsControllerGetLayout(
         layoutId: string,
         options?: RequestOptions
     ): Promise<components.GetLayoutResponseDto> {
-        const input$: operations.GetLayoutRequest = {
+        const input$: operations.LayoutsControllerGetLayoutRequest = {
             layoutId: layoutId,
         };
         const headers$ = new Headers();
@@ -207,7 +188,7 @@ export class Layouts extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.GetLayoutRequest$.outboundSchema.parse(value$),
+            (value$) => operations.LayoutsControllerGetLayoutRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -222,24 +203,20 @@ export class Layouts extends ClientSDK {
 
         const query$ = "";
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
-        const context = { operationID: "getLayout", oAuth2Scopes: [], securitySource: security$ };
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "LayoutsController_getLayout",
+            oAuth2Scopes: [],
+            securitySource: this.options$.apiKey,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["404", "409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(
@@ -271,12 +248,8 @@ export class Layouts extends ClientSDK {
      * @remarks
      * Execute a soft delete of a layout given a certain ID.
      */
-    async delete(
-        security: operations.DeleteLayoutSecurity,
-        layoutId: string,
-        options?: RequestOptions
-    ): Promise<void> {
-        const input$: operations.DeleteLayoutRequest = {
+    async layoutsControllerDeleteLayout(layoutId: string, options?: RequestOptions): Promise<void> {
+        const input$: operations.LayoutsControllerDeleteLayoutRequest = {
             layoutId: layoutId,
         };
         const headers$ = new Headers();
@@ -285,7 +258,8 @@ export class Layouts extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.DeleteLayoutRequest$.outboundSchema.parse(value$),
+            (value$) =>
+                operations.LayoutsControllerDeleteLayoutRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -300,28 +274,20 @@ export class Layouts extends ClientSDK {
 
         const query$ = "";
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
         const context = {
-            operationID: "deleteLayout",
+            operationID: "LayoutsController_deleteLayout",
             oAuth2Scopes: [],
-            securitySource: security$,
+            securitySource: this.options$.apiKey,
         };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["404", "409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(
@@ -353,13 +319,12 @@ export class Layouts extends ClientSDK {
      * @remarks
      * Update the name, content and variables of a layout. Also change it to be default or no.
      */
-    async updateLayout(
-        security: operations.UpdateLayoutSecurity,
+    async layoutsControllerUpdateLayout(
         layoutId: string,
         updateLayoutRequestDto: components.UpdateLayoutRequestDto,
         options?: RequestOptions
     ): Promise<components.UpdateLayoutResponseDto> {
-        const input$: operations.UpdateLayoutRequest = {
+        const input$: operations.LayoutsControllerUpdateLayoutRequest = {
             layoutId: layoutId,
             updateLayoutRequestDto: updateLayoutRequestDto,
         };
@@ -370,7 +335,8 @@ export class Layouts extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.UpdateLayoutRequest$.outboundSchema.parse(value$),
+            (value$) =>
+                operations.LayoutsControllerUpdateLayoutRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = encodeJSON$("body", payload$.UpdateLayoutRequestDto, { explode: true });
@@ -385,28 +351,20 @@ export class Layouts extends ClientSDK {
 
         const query$ = "";
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
         const context = {
-            operationID: "updateLayout",
+            operationID: "LayoutsController_updateLayout",
             oAuth2Scopes: [],
-            securitySource: security$,
+            securitySource: this.options$.apiKey,
         };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = {
             context,
@@ -441,12 +399,11 @@ export class Layouts extends ClientSDK {
      * @remarks
      * Sets the default layout for the environment and updates to non default to the existing default layout (if any).
      */
-    async setDefaultLayout(
-        security: operations.SetDefaultLayoutSecurity,
+    async layoutsControllerSetDefaultLayout(
         layoutId: string,
         options?: RequestOptions
     ): Promise<void> {
-        const input$: operations.SetDefaultLayoutRequest = {
+        const input$: operations.LayoutsControllerSetDefaultLayoutRequest = {
             layoutId: layoutId,
         };
         const headers$ = new Headers();
@@ -455,7 +412,8 @@ export class Layouts extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.SetDefaultLayoutRequest$.outboundSchema.parse(value$),
+            (value$) =>
+                operations.LayoutsControllerSetDefaultLayoutRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -470,28 +428,20 @@ export class Layouts extends ClientSDK {
 
         const query$ = "";
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
         const context = {
-            operationID: "setDefaultLayout",
+            operationID: "LayoutsController_setDefaultLayout",
             oAuth2Scopes: [],
-            securitySource: security$,
+            securitySource: this.options$.apiKey,
         };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["404", "409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(

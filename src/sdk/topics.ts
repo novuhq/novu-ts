@@ -12,7 +12,6 @@ import {
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
-import { SecurityInput } from "../lib/security";
 import * as components from "../models/components";
 import * as operations from "../models/operations";
 import { NovuSubscribers } from "./novusubscribers";
@@ -56,9 +55,8 @@ export class Topics extends ClientSDK {
      * @remarks
      * Returns a list of topics that can be paginated using the `page` query parameter and filtered by the topic key with the `key` query parameter
      */
-    async list(
-        request: operations.ListTopicsRequest,
-        security: operations.ListTopicsSecurity,
+    async topicsControllerListTopics(
+        request: operations.TopicsControllerListTopicsRequest,
         options?: RequestOptions
     ): Promise<components.FilterTopicsResponseDto> {
         const input$ = typeof request === "undefined" ? {} : request;
@@ -68,7 +66,7 @@ export class Topics extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.ListTopicsRequest$.outboundSchema.parse(value$),
+            (value$) => operations.TopicsControllerListTopicsRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -81,24 +79,20 @@ export class Topics extends ClientSDK {
             key: payload$.key,
         });
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
-        const context = { operationID: "listTopics", oAuth2Scopes: [], securitySource: security$ };
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "TopicsController_listTopics",
+            oAuth2Scopes: [],
+            securitySource: this.options$.apiKey,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(
@@ -130,9 +124,8 @@ export class Topics extends ClientSDK {
      * @remarks
      * Create a topic
      */
-    async create(
+    async topicsControllerCreateTopic(
         request: components.CreateTopicRequestDto,
-        security: operations.CreateTopicSecurity,
         options?: RequestOptions
     ): Promise<components.CreateTopicResponseDto> {
         const input$ = request;
@@ -152,24 +145,20 @@ export class Topics extends ClientSDK {
 
         const query$ = "";
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
-        const context = { operationID: "createTopic", oAuth2Scopes: [], securitySource: security$ };
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "TopicsController_createTopic",
+            oAuth2Scopes: [],
+            securitySource: this.options$.apiKey,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(
@@ -201,12 +190,11 @@ export class Topics extends ClientSDK {
      * @remarks
      * Get a topic by its topic key
      */
-    async retrieve(
-        security: operations.GetTopicSecurity,
+    async topicsControllerGetTopic(
         topicKey: string,
         options?: RequestOptions
     ): Promise<components.GetTopicResponseDto> {
-        const input$: operations.GetTopicRequest = {
+        const input$: operations.TopicsControllerGetTopicRequest = {
             topicKey: topicKey,
         };
         const headers$ = new Headers();
@@ -215,7 +203,7 @@ export class Topics extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.GetTopicRequest$.outboundSchema.parse(value$),
+            (value$) => operations.TopicsControllerGetTopicRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -230,24 +218,20 @@ export class Topics extends ClientSDK {
 
         const query$ = "";
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
-        const context = { operationID: "getTopic", oAuth2Scopes: [], securitySource: security$ };
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "TopicsController_getTopic",
+            oAuth2Scopes: [],
+            securitySource: this.options$.apiKey,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(
@@ -279,12 +263,8 @@ export class Topics extends ClientSDK {
      * @remarks
      * Delete a topic by its topic key if it has no subscribers
      */
-    async delete(
-        security: operations.DeleteTopicSecurity,
-        topicKey: string,
-        options?: RequestOptions
-    ): Promise<void> {
-        const input$: operations.DeleteTopicRequest = {
+    async topicsControllerDeleteTopic(topicKey: string, options?: RequestOptions): Promise<void> {
+        const input$: operations.TopicsControllerDeleteTopicRequest = {
             topicKey: topicKey,
         };
         const headers$ = new Headers();
@@ -293,7 +273,7 @@ export class Topics extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.DeleteTopicRequest$.outboundSchema.parse(value$),
+            (value$) => operations.TopicsControllerDeleteTopicRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -308,24 +288,20 @@ export class Topics extends ClientSDK {
 
         const query$ = "";
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
-        const context = { operationID: "deleteTopic", oAuth2Scopes: [], securitySource: security$ };
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "TopicsController_deleteTopic",
+            oAuth2Scopes: [],
+            securitySource: this.options$.apiKey,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["404", "409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(
@@ -357,13 +333,12 @@ export class Topics extends ClientSDK {
      * @remarks
      * Rename a topic by providing a new name
      */
-    async renameTopic(
-        security: operations.RenameTopicSecurity,
+    async topicsControllerRenameTopic(
         topicKey: string,
         renameTopicRequestDto: components.RenameTopicRequestDto,
         options?: RequestOptions
     ): Promise<components.RenameTopicResponseDto> {
-        const input$: operations.RenameTopicRequest = {
+        const input$: operations.TopicsControllerRenameTopicRequest = {
             topicKey: topicKey,
             renameTopicRequestDto: renameTopicRequestDto,
         };
@@ -374,7 +349,7 @@ export class Topics extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.RenameTopicRequest$.outboundSchema.parse(value$),
+            (value$) => operations.TopicsControllerRenameTopicRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = encodeJSON$("body", payload$.RenameTopicRequestDto, { explode: true });
@@ -389,24 +364,20 @@ export class Topics extends ClientSDK {
 
         const query$ = "";
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
-        const context = { operationID: "renameTopic", oAuth2Scopes: [], securitySource: security$ };
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "TopicsController_renameTopic",
+            oAuth2Scopes: [],
+            securitySource: this.options$.apiKey,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(

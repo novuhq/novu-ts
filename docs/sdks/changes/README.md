@@ -8,12 +8,12 @@ Changes represent a change in state of an environment. They are analagous to a p
 <https://docs.novu.co/platform/environments#promoting-pending-changes-to-production>
 ### Available Operations
 
-* [retrieve](#retrieve) - Get changes
+* [changesControllerGetChanges](#changescontrollergetchanges) - Get changes
 * [count](#count) - Get changes count
-* [bulkApplyDiff](#bulkapplydiff) - Apply changes
-* [applyDiff](#applydiff) - Apply change
+* [changesControllerBulkApplyDiff](#changescontrollerbulkapplydiff) - Apply changes
+* [changesControllerApplyDiff](#changescontrollerapplydiff) - Apply change
 
-## retrieve
+## changesControllerGetChanges
 
 Get changes
 
@@ -22,13 +22,13 @@ Get changes
 ```typescript
 import { Novu } from "novu-typescript";
 
-const novu = new Novu();
+const novu = new Novu({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
 
 async function run() {
-  const result = await novu.changes.retrieve({
+  const result = await novu.changes.changesControllerGetChanges({
     promoted: "false",
-  }, {
-    bearer: "<YOUR_BEARER_TOKEN_HERE>",
   });
 
   // Handle the result
@@ -42,8 +42,7 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.GetChangesRequest](../../models/operations/getchangesrequest.md)                                                                                                   | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
-| `security`                                                                                                                                                                     | [operations.GetChangesSecurity](../../models/operations/getchangessecurity.md)                                                                                                 | :heavy_check_mark:                                                                                                                                                             | The security requirements to use for the request.                                                                                                                              |
+| `request`                                                                                                                                                                      | [operations.ChangesControllerGetChangesRequest](../../models/operations/changescontrollergetchangesrequest.md)                                                                 | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 
@@ -66,12 +65,12 @@ Get changes count
 ```typescript
 import { Novu } from "novu-typescript";
 
-const novu = new Novu();
+const novu = new Novu({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
 
 async function run() {
-  const result = await novu.changes.count({
-    bearer: "<YOUR_BEARER_TOKEN_HERE>",
-  });
+  const result = await novu.changes.count();
 
   // Handle the result
   console.log(result)
@@ -84,7 +83,6 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `security`                                                                                                                                                                     | [operations.GetChangesCountSecurity](../../models/operations/getchangescountsecurity.md)                                                                                       | :heavy_check_mark:                                                                                                                                                             | The security requirements to use for the request.                                                                                                                              |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 
@@ -98,7 +96,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
 
-## bulkApplyDiff
+## changesControllerBulkApplyDiff
 
 Apply changes
 
@@ -107,15 +105,15 @@ Apply changes
 ```typescript
 import { Novu } from "novu-typescript";
 
-const novu = new Novu();
+const novu = new Novu({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
 
 async function run() {
-  const result = await novu.changes.bulkApplyDiff({
+  const result = await novu.changes.changesControllerBulkApplyDiff({
     changeIds: [
       "<value>",
     ],
-  }, {
-    bearer: "<YOUR_BEARER_TOKEN_HERE>",
   });
 
   // Handle the result
@@ -130,7 +128,6 @@ run();
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `request`                                                                                                                                                                      | [components.BulkApplyChangeDto](../../models/components/bulkapplychangedto.md)                                                                                                 | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
-| `security`                                                                                                                                                                     | [operations.BulkApplyDiffSecurity](../../models/operations/bulkapplydiffsecurity.md)                                                                                           | :heavy_check_mark:                                                                                                                                                             | The security requirements to use for the request.                                                                                                                              |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 
@@ -144,7 +141,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
 
-## applyDiff
+## changesControllerApplyDiff
 
 Apply change
 
@@ -153,12 +150,12 @@ Apply change
 ```typescript
 import { Novu } from "novu-typescript";
 
-const novu = new Novu();
+const novu = new Novu({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
 
 async function run() {
-  const result = await novu.changes.applyDiff({
-    bearer: "<YOUR_BEARER_TOKEN_HERE>",
-  }, "<value>");
+  const result = await novu.changes.changesControllerApplyDiff("<value>");
 
   // Handle the result
   console.log(result)
@@ -171,7 +168,6 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `security`                                                                                                                                                                     | [operations.ApplyDiffSecurity](../../models/operations/applydiffsecurity.md)                                                                                                   | :heavy_check_mark:                                                                                                                                                             | The security requirements to use for the request.                                                                                                                              |
 | `changeId`                                                                                                                                                                     | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |

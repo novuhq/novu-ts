@@ -9,11 +9,11 @@ Novu Documentation
 <https://docs.novu.co>
 ### Available Operations
 
-* [create](#create) - Create workflow
-* [retrieve](#retrieve) - Get workflow
-* [changeActiveStatus](#changeactivestatus) - Update workflow status
+* [workflowControllerCreate](#workflowcontrollercreate) - Create workflow
+* [workflowControllerGetWorkflowById](#workflowcontrollergetworkflowbyid) - Get workflow
+* [workflowControllerChangeActiveStatus](#workflowcontrollerchangeactivestatus) - Update workflow status
 
-## create
+## workflowControllerCreate
 
 Workflow was previously named notification template
 
@@ -22,17 +22,17 @@ Workflow was previously named notification template
 ```typescript
 import { Novu } from "novu-typescript";
 
-const novu = new Novu();
+const novu = new Novu({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
 
 async function run() {
-  const result = await novu.create({
+  const result = await novu.workflowControllerCreate({
     name: "<value>",
     notificationGroupId: "<value>",
     steps: [
       {},
     ],
-  }, {
-    bearer: "<YOUR_BEARER_TOKEN_HERE>",
   });
 
   // Handle the result
@@ -47,7 +47,6 @@ run();
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `request`                                                                                                                                                                      | [components.CreateWorkflowRequestDto](../../models/components/createworkflowrequestdto.md)                                                                                     | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
-| `security`                                                                                                                                                                     | [operations.CreateSecurity](../../models/operations/createsecurity.md)                                                                                                         | :heavy_check_mark:                                                                                                                                                             | The security requirements to use for the request.                                                                                                                              |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 
@@ -61,7 +60,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
 
-## retrieve
+## workflowControllerGetWorkflowById
 
 Workflow was previously named notification template
 
@@ -70,12 +69,12 @@ Workflow was previously named notification template
 ```typescript
 import { Novu } from "novu-typescript";
 
-const novu = new Novu();
+const novu = new Novu({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
 
 async function run() {
-  const result = await novu.retrieve({
-    bearer: "<YOUR_BEARER_TOKEN_HERE>",
-  }, "<value>");
+  const result = await novu.workflowControllerGetWorkflowById("<value>");
 
   // Handle the result
   console.log(result)
@@ -88,7 +87,6 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `security`                                                                                                                                                                     | [operations.GetWorkflowByIdSecurity](../../models/operations/getworkflowbyidsecurity.md)                                                                                       | :heavy_check_mark:                                                                                                                                                             | The security requirements to use for the request.                                                                                                                              |
 | `workflowId`                                                                                                                                                                   | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
@@ -103,7 +101,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
 
-## changeActiveStatus
+## workflowControllerChangeActiveStatus
 
 Workflow was previously named notification template
 
@@ -112,12 +110,12 @@ Workflow was previously named notification template
 ```typescript
 import { Novu } from "novu-typescript";
 
-const novu = new Novu();
+const novu = new Novu({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
 
 async function run() {
-  const result = await novu.changeActiveStatus({
-    bearer: "<YOUR_BEARER_TOKEN_HERE>",
-  }, "<value>", {
+  const result = await novu.workflowControllerChangeActiveStatus("<value>", {
     active: false,
   });
 
@@ -132,7 +130,6 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `security`                                                                                                                                                                     | [operations.ChangeActiveStatusSecurity](../../models/operations/changeactivestatussecurity.md)                                                                                 | :heavy_check_mark:                                                                                                                                                             | The security requirements to use for the request.                                                                                                                              |
 | `workflowId`                                                                                                                                                                   | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
 | `changeWorkflowStatusRequestDto`                                                                                                                                               | [components.ChangeWorkflowStatusRequestDto](../../models/components/changeworkflowstatusrequestdto.md)                                                                         | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |

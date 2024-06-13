@@ -8,7 +8,6 @@ import { encodeFormQuery as encodeFormQuery$ } from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
-import { SecurityInput } from "../lib/security";
 import * as components from "../models/components";
 import * as operations from "../models/operations";
 import * as z from "zod";
@@ -43,16 +42,16 @@ export class ExecutionDetails extends ClientSDK {
     /**
      * Get execution details
      */
-    async retrieve(
-        security: operations.GetExecutionDetailsForNotificationSecurity,
+    async executionDetailsControllerGetExecutionDetailsForNotification(
         notificationId: string,
         subscriberId: string,
         options?: RequestOptions
     ): Promise<Array<components.ExecutionDetailsResponseDto>> {
-        const input$: operations.GetExecutionDetailsForNotificationRequest = {
-            notificationId: notificationId,
-            subscriberId: subscriberId,
-        };
+        const input$: operations.ExecutionDetailsControllerGetExecutionDetailsForNotificationRequest =
+            {
+                notificationId: notificationId,
+                subscriberId: subscriberId,
+            };
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
@@ -60,7 +59,9 @@ export class ExecutionDetails extends ClientSDK {
         const payload$ = schemas$.parse(
             input$,
             (value$) =>
-                operations.GetExecutionDetailsForNotificationRequest$.outboundSchema.parse(value$),
+                operations.ExecutionDetailsControllerGetExecutionDetailsForNotificationRequest$.outboundSchema.parse(
+                    value$
+                ),
             "Input validation failed"
         );
         const body$ = null;
@@ -72,28 +73,20 @@ export class ExecutionDetails extends ClientSDK {
             subscriberId: payload$.subscriberId,
         });
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
         const context = {
-            operationID: "getExecutionDetailsForNotification",
+            operationID: "ExecutionDetailsController_getExecutionDetailsForNotification",
             oAuth2Scopes: [],
-            securitySource: security$,
+            securitySource: this.options$.apiKey,
         };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(

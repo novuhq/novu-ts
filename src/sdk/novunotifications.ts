@@ -11,7 +11,6 @@ import {
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
-import { SecurityInput } from "../lib/security";
 import * as components from "../models/components";
 import * as operations from "../models/operations";
 
@@ -45,11 +44,10 @@ export class NovuNotifications extends ClientSDK {
     /**
      * Get in-app notification feed for a particular subscriber
      */
-    async retrieve(
-        request: operations.GetNotificationsFeedRequest,
-        security: operations.GetNotificationsFeedSecurity,
+    async subscribersControllerGetNotificationsFeed(
+        request: operations.SubscribersControllerGetNotificationsFeedRequest,
         options?: RequestOptions
-    ): Promise<operations.GetNotificationsFeedResponseBody> {
+    ): Promise<operations.SubscribersControllerGetNotificationsFeedResponseBody> {
         const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -57,7 +55,10 @@ export class NovuNotifications extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.GetNotificationsFeedRequest$.outboundSchema.parse(value$),
+            (value$) =>
+                operations.SubscribersControllerGetNotificationsFeedRequest$.outboundSchema.parse(
+                    value$
+                ),
             "Input validation failed"
         );
         const body$ = null;
@@ -80,28 +81,20 @@ export class NovuNotifications extends ClientSDK {
             payload: payload$.payload,
         });
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
         const context = {
-            operationID: "getNotificationsFeed",
+            operationID: "SubscribersController_getNotificationsFeed",
             oAuth2Scopes: [],
-            securitySource: security$,
+            securitySource: this.options$.apiKey,
         };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(
@@ -119,10 +112,11 @@ export class NovuNotifications extends ClientSDK {
 
         const response = await this.do$(request$, doOptions);
 
-        const [result$] = await this.matcher<operations.GetNotificationsFeedResponseBody>()
-            .json(200, operations.GetNotificationsFeedResponseBody$)
-            .fail([409, 429, "4XX", 503, "5XX"])
-            .match(response);
+        const [result$] =
+            await this.matcher<operations.SubscribersControllerGetNotificationsFeedResponseBody>()
+                .json(200, operations.SubscribersControllerGetNotificationsFeedResponseBody$)
+                .fail([409, 429, "4XX", 503, "5XX"])
+                .match(response);
 
         return result$;
     }
@@ -131,8 +125,7 @@ export class NovuNotifications extends ClientSDK {
      * Get the unseen in-app notifications count for subscribers feed
      */
     async unseenCount(
-        request: operations.GetUnseenCountRequest,
-        security: operations.GetUnseenCountSecurity,
+        request: operations.SubscribersControllerGetUnseenCountRequest,
         options?: RequestOptions
     ): Promise<components.UnseenCountResponse> {
         const input$ = request;
@@ -142,7 +135,8 @@ export class NovuNotifications extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.GetUnseenCountRequest$.outboundSchema.parse(value$),
+            (value$) =>
+                operations.SubscribersControllerGetUnseenCountRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -158,32 +152,24 @@ export class NovuNotifications extends ClientSDK {
         );
 
         const query$ = encodeFormQuery$({
-            seen: payload$.seen,
             limit: payload$.limit,
+            seen: payload$.seen,
         });
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
         const context = {
-            operationID: "getUnseenCount",
+            operationID: "SubscribersController_getUnseenCount",
             oAuth2Scopes: [],
-            securitySource: security$,
+            securitySource: this.options$.apiKey,
         };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(

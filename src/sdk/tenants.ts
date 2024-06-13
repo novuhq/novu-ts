@@ -12,7 +12,6 @@ import {
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
-import { SecurityInput } from "../lib/security";
 import * as components from "../models/components";
 import * as operations from "../models/operations";
 import { createPageIterator, PageIterator, Paginator } from "../types";
@@ -52,13 +51,12 @@ export class Tenants extends ClientSDK {
      * @remarks
      * Returns a list of tenants, could paginated using the `page` and `limit` query parameter
      */
-    async list(
-        security: operations.ListTenantsSecurity,
+    async tenantControllerListTenants(
         page?: number | undefined,
         limit?: number | undefined,
         options?: RequestOptions
-    ): Promise<PageIterator<operations.ListTenantsResponse>> {
-        const input$: operations.ListTenantsRequest = {
+    ): Promise<PageIterator<operations.TenantControllerListTenantsResponse>> {
+        const input$: operations.TenantControllerListTenantsRequest = {
             page: page,
             limit: limit,
         };
@@ -68,7 +66,7 @@ export class Tenants extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.ListTenantsRequest$.outboundSchema.parse(value$),
+            (value$) => operations.TenantControllerListTenantsRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -80,31 +78,20 @@ export class Tenants extends ClientSDK {
             limit: payload$.limit,
         });
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer1,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
-        const context = { operationID: "listTenants", oAuth2Scopes: [], securitySource: security$ };
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "TenantController_listTenants",
+            oAuth2Scopes: [],
+            securitySource: this.options$.apiKey,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(
@@ -126,12 +113,14 @@ export class Tenants extends ClientSDK {
             HttpMeta: { Response: response, Request: request$ },
         };
 
-        const [result$, raw$] = await this.matcher<operations.ListTenantsResponse>()
-            .json(200, operations.ListTenantsResponse$, { key: "Result" })
+        const [result$, raw$] = await this.matcher<operations.TenantControllerListTenantsResponse>()
+            .json(200, operations.TenantControllerListTenantsResponse$, { key: "Result" })
             .fail([409, 429, "4XX", 503, "5XX"])
             .match(response, { extraFields: responseFields$ });
 
-        const nextFunc = (responseData: unknown): Paginator<operations.ListTenantsResponse> => {
+        const nextFunc = (
+            responseData: unknown
+        ): Paginator<operations.TenantControllerListTenantsResponse> => {
             const page = input$.page || 0;
             const nextPage = page + 1;
 
@@ -147,7 +136,7 @@ export class Tenants extends ClientSDK {
                 return () => null;
             }
 
-            return () => this.list(security, nextPage, limit, options);
+            return () => this.tenantControllerListTenants(nextPage, limit, options);
         };
 
         const page$ = { ...result$, next: nextFunc(raw$) };
@@ -160,9 +149,8 @@ export class Tenants extends ClientSDK {
      * @remarks
      * Create tenant under the current environment
      */
-    async create(
+    async tenantControllerCreateTenant(
         request: components.CreateTenantRequestDto,
-        security: operations.CreateTenantSecurity,
         options?: RequestOptions
     ): Promise<components.CreateTenantResponseDto> {
         const input$ = request;
@@ -182,28 +170,20 @@ export class Tenants extends ClientSDK {
 
         const query$ = "";
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
         const context = {
-            operationID: "createTenant",
+            operationID: "TenantController_createTenant",
             oAuth2Scopes: [],
-            securitySource: security$,
+            securitySource: this.options$.apiKey,
         };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(
@@ -235,12 +215,11 @@ export class Tenants extends ClientSDK {
      * @remarks
      * Get tenant by your internal id used to identify the tenant
      */
-    async retrieve(
-        security: operations.GetTenantByIdSecurity,
+    async tenantControllerGetTenantById(
         identifier: string,
         options?: RequestOptions
     ): Promise<components.GetTenantResponseDto> {
-        const input$: operations.GetTenantByIdRequest = {
+        const input$: operations.TenantControllerGetTenantByIdRequest = {
             identifier: identifier,
         };
         const headers$ = new Headers();
@@ -249,7 +228,8 @@ export class Tenants extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.GetTenantByIdRequest$.outboundSchema.parse(value$),
+            (value$) =>
+                operations.TenantControllerGetTenantByIdRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -264,28 +244,20 @@ export class Tenants extends ClientSDK {
 
         const query$ = "";
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
         const context = {
-            operationID: "getTenantById",
+            operationID: "TenantController_getTenantById",
             oAuth2Scopes: [],
-            securitySource: security$,
+            securitySource: this.options$.apiKey,
         };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["404", "409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(
@@ -317,12 +289,11 @@ export class Tenants extends ClientSDK {
      * @remarks
      * Deletes a tenant entity from the Novu platform
      */
-    async removeTenant(
-        security: operations.RemoveTenantSecurity,
+    async tenantControllerRemoveTenant(
         identifier: string,
         options?: RequestOptions
     ): Promise<void> {
-        const input$: operations.RemoveTenantRequest = {
+        const input$: operations.TenantControllerRemoveTenantRequest = {
             identifier: identifier,
         };
         const headers$ = new Headers();
@@ -331,7 +302,8 @@ export class Tenants extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.RemoveTenantRequest$.outboundSchema.parse(value$),
+            (value$) =>
+                operations.TenantControllerRemoveTenantRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -346,35 +318,20 @@ export class Tenants extends ClientSDK {
 
         const query$ = "";
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer1,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
         const context = {
-            operationID: "removeTenant",
+            operationID: "TenantController_removeTenant",
             oAuth2Scopes: [],
-            securitySource: security$,
+            securitySource: this.options$.apiKey,
         };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["404", "409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(
@@ -406,13 +363,12 @@ export class Tenants extends ClientSDK {
      * @remarks
      * Update tenant by your internal id used to identify the tenant
      */
-    async updateTenant(
-        security: operations.UpdateTenantSecurity,
+    async tenantControllerUpdateTenant(
         identifier: string,
         updateTenantRequestDto: components.UpdateTenantRequestDto,
         options?: RequestOptions
     ): Promise<components.UpdateTenantResponseDto> {
-        const input$: operations.UpdateTenantRequest = {
+        const input$: operations.TenantControllerUpdateTenantRequest = {
             identifier: identifier,
             updateTenantRequestDto: updateTenantRequestDto,
         };
@@ -423,7 +379,8 @@ export class Tenants extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.UpdateTenantRequest$.outboundSchema.parse(value$),
+            (value$) =>
+                operations.TenantControllerUpdateTenantRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = encodeJSON$("body", payload$.UpdateTenantRequestDto, { explode: true });
@@ -438,28 +395,20 @@ export class Tenants extends ClientSDK {
 
         const query$ = "";
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
         const context = {
-            operationID: "updateTenant",
+            operationID: "TenantController_updateTenant",
             oAuth2Scopes: [],
-            securitySource: security$,
+            securitySource: this.options$.apiKey,
         };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["404", "409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(

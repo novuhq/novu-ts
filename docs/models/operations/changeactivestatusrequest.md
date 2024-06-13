@@ -1,9 +1,0 @@
-# ChangeActiveStatusRequest
-
-
-## Fields
-
-| Field                                                                                                  | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
-| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
-| `workflowId`                                                                                           | *string*                                                                                               | :heavy_check_mark:                                                                                     | N/A                                                                                                    |
-| `changeWorkflowStatusRequestDto`                                                                       | [components.ChangeWorkflowStatusRequestDto](../../models/components/changeworkflowstatusrequestdto.md) | :heavy_check_mark:                                                                                     | N/A                                                                                                    |

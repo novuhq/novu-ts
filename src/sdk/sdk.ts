@@ -8,7 +8,6 @@ import { encodeJSON as encodeJSON$, encodeSimple as encodeSimple$ } from "../lib
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
-import { SecurityInput } from "../lib/security";
 import * as components from "../models/components";
 import * as operations from "../models/operations";
 import { Changes } from "./changes";
@@ -135,9 +134,8 @@ export class Novu extends ClientSDK {
      * @remarks
      * Workflow was previously named notification template
      */
-    async create(
+    async workflowControllerCreate(
         request: components.CreateWorkflowRequestDto,
-        security: operations.CreateSecurity,
         options?: RequestOptions
     ): Promise<components.WorkflowResponse> {
         const input$ = request;
@@ -157,24 +155,20 @@ export class Novu extends ClientSDK {
 
         const query$ = "";
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
-        const context = { operationID: "create", oAuth2Scopes: [], securitySource: security$ };
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "WorkflowController_create",
+            oAuth2Scopes: [],
+            securitySource: this.options$.apiKey,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(
@@ -206,12 +200,11 @@ export class Novu extends ClientSDK {
      * @remarks
      * Workflow was previously named notification template
      */
-    async retrieve(
-        security: operations.GetWorkflowByIdSecurity,
+    async workflowControllerGetWorkflowById(
         workflowId: string,
         options?: RequestOptions
     ): Promise<components.WorkflowResponse> {
-        const input$: operations.GetWorkflowByIdRequest = {
+        const input$: operations.WorkflowControllerGetWorkflowByIdRequest = {
             workflowId: workflowId,
         };
         const headers$ = new Headers();
@@ -220,7 +213,8 @@ export class Novu extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.GetWorkflowByIdRequest$.outboundSchema.parse(value$),
+            (value$) =>
+                operations.WorkflowControllerGetWorkflowByIdRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -235,28 +229,20 @@ export class Novu extends ClientSDK {
 
         const query$ = "";
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
         const context = {
-            operationID: "getWorkflowById",
+            operationID: "WorkflowController_getWorkflowById",
             oAuth2Scopes: [],
-            securitySource: security$,
+            securitySource: this.options$.apiKey,
         };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(
@@ -288,13 +274,12 @@ export class Novu extends ClientSDK {
      * @remarks
      * Workflow was previously named notification template
      */
-    async changeActiveStatus(
-        security: operations.ChangeActiveStatusSecurity,
+    async workflowControllerChangeActiveStatus(
         workflowId: string,
         changeWorkflowStatusRequestDto: components.ChangeWorkflowStatusRequestDto,
         options?: RequestOptions
     ): Promise<components.WorkflowResponse> {
-        const input$: operations.ChangeActiveStatusRequest = {
+        const input$: operations.WorkflowControllerChangeActiveStatusRequest = {
             workflowId: workflowId,
             changeWorkflowStatusRequestDto: changeWorkflowStatusRequestDto,
         };
@@ -305,7 +290,10 @@ export class Novu extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.ChangeActiveStatusRequest$.outboundSchema.parse(value$),
+            (value$) =>
+                operations.WorkflowControllerChangeActiveStatusRequest$.outboundSchema.parse(
+                    value$
+                ),
             "Input validation failed"
         );
         const body$ = encodeJSON$("body", payload$.ChangeWorkflowStatusRequestDto, {
@@ -322,28 +310,20 @@ export class Novu extends ClientSDK {
 
         const query$ = "";
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
         const context = {
-            operationID: "changeActiveStatus",
+            operationID: "WorkflowController_changeActiveStatus",
             oAuth2Scopes: [],
-            securitySource: security$,
+            securitySource: this.options$.apiKey,
         };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(

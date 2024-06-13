@@ -11,7 +11,6 @@ import {
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
-import { SecurityInput } from "../lib/security";
 import * as components from "../models/components";
 import * as operations from "../models/operations";
 import { Stats } from "./stats";
@@ -51,9 +50,8 @@ export class Notifications extends ClientSDK {
     /**
      * Get notifications
      */
-    async list(
-        request: operations.ListNotificationsRequest,
-        security: operations.ListNotificationsSecurity,
+    async notificationsControllerListNotifications(
+        request: operations.NotificationsControllerListNotificationsRequest,
         options?: RequestOptions
     ): Promise<components.ActivitiesResponseDto> {
         const input$ = request;
@@ -63,7 +61,10 @@ export class Notifications extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.ListNotificationsRequest$.outboundSchema.parse(value$),
+            (value$) =>
+                operations.NotificationsControllerListNotificationsRequest$.outboundSchema.parse(
+                    value$
+                ),
             "Input validation failed"
         );
         const body$ = null;
@@ -71,37 +72,29 @@ export class Notifications extends ClientSDK {
         const path$ = this.templateURLComponent("/notifications")();
 
         const query$ = encodeFormQuery$({
+            search: payload$.search,
+            subscriberIds: payload$.subscriberIds,
             page: payload$.page,
             transactionId: payload$.transactionId,
             channels: payload$.channels,
             templates: payload$.templates,
             emails: payload$.emails,
-            search: payload$.search,
-            subscriberIds: payload$.subscriberIds,
         });
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
         const context = {
-            operationID: "listNotifications",
+            operationID: "NotificationsController_listNotifications",
             oAuth2Scopes: [],
-            securitySource: security$,
+            securitySource: this.options$.apiKey,
         };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(
@@ -130,12 +123,11 @@ export class Notifications extends ClientSDK {
     /**
      * Get notification
      */
-    async retrieve(
-        security: operations.GetNotificationSecurity,
+    async notificationsControllerGetNotification(
         notificationId: string,
         options?: RequestOptions
     ): Promise<components.ActivityNotificationResponseDto> {
-        const input$: operations.GetNotificationRequest = {
+        const input$: operations.NotificationsControllerGetNotificationRequest = {
             notificationId: notificationId,
         };
         const headers$ = new Headers();
@@ -144,7 +136,10 @@ export class Notifications extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.GetNotificationRequest$.outboundSchema.parse(value$),
+            (value$) =>
+                operations.NotificationsControllerGetNotificationRequest$.outboundSchema.parse(
+                    value$
+                ),
             "Input validation failed"
         );
         const body$ = null;
@@ -159,28 +154,20 @@ export class Notifications extends ClientSDK {
 
         const query$ = "";
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
         const context = {
-            operationID: "getNotification",
+            operationID: "NotificationsController_getNotification",
             oAuth2Scopes: [],
-            securitySource: security$,
+            securitySource: this.options$.apiKey,
         };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(

@@ -12,7 +12,6 @@ import {
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
-import { SecurityInput } from "../lib/security";
 import * as components from "../models/components";
 import * as operations from "../models/operations";
 import { createPageIterator, PageIterator, Paginator } from "../types";
@@ -64,13 +63,12 @@ export class Subscribers extends ClientSDK {
      * @remarks
      * Returns a list of subscribers, could paginated using the `page` and `limit` query parameter
      */
-    async list(
-        security: operations.ListSubscribersSecurity,
+    async subscribersControllerListSubscribers(
         page?: number | undefined,
         limit?: number | undefined,
         options?: RequestOptions
-    ): Promise<PageIterator<operations.ListSubscribersResponse>> {
-        const input$: operations.ListSubscribersRequest = {
+    ): Promise<PageIterator<operations.SubscribersControllerListSubscribersResponse>> {
+        const input$: operations.SubscribersControllerListSubscribersRequest = {
             page: page,
             limit: limit,
         };
@@ -80,7 +78,10 @@ export class Subscribers extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.ListSubscribersRequest$.outboundSchema.parse(value$),
+            (value$) =>
+                operations.SubscribersControllerListSubscribersRequest$.outboundSchema.parse(
+                    value$
+                ),
             "Input validation failed"
         );
         const body$ = null;
@@ -92,28 +93,20 @@ export class Subscribers extends ClientSDK {
             limit: payload$.limit,
         });
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
         const context = {
-            operationID: "listSubscribers",
+            operationID: "SubscribersController_listSubscribers",
             oAuth2Scopes: [],
-            securitySource: security$,
+            securitySource: this.options$.apiKey,
         };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(
@@ -135,12 +128,17 @@ export class Subscribers extends ClientSDK {
             HttpMeta: { Response: response, Request: request$ },
         };
 
-        const [result$, raw$] = await this.matcher<operations.ListSubscribersResponse>()
-            .json(200, operations.ListSubscribersResponse$, { key: "Result" })
-            .fail([409, 429, "4XX", 503, "5XX"])
-            .match(response, { extraFields: responseFields$ });
+        const [result$, raw$] =
+            await this.matcher<operations.SubscribersControllerListSubscribersResponse>()
+                .json(200, operations.SubscribersControllerListSubscribersResponse$, {
+                    key: "Result",
+                })
+                .fail([409, 429, "4XX", 503, "5XX"])
+                .match(response, { extraFields: responseFields$ });
 
-        const nextFunc = (responseData: unknown): Paginator<operations.ListSubscribersResponse> => {
+        const nextFunc = (
+            responseData: unknown
+        ): Paginator<operations.SubscribersControllerListSubscribersResponse> => {
             const page = input$.page || 0;
             const nextPage = page + 1;
 
@@ -156,7 +154,7 @@ export class Subscribers extends ClientSDK {
                 return () => null;
             }
 
-            return () => this.list(security, nextPage, limit, options);
+            return () => this.subscribersControllerListSubscribers(nextPage, limit, options);
         };
 
         const page$ = { ...result$, next: nextFunc(raw$) };
@@ -169,9 +167,8 @@ export class Subscribers extends ClientSDK {
      * @remarks
      * Creates a subscriber entity, in the Novu platform. The subscriber will be later used to receive notifications, and access notification feeds. Communication credentials such as email, phone number, and 3 rd party credentials i.e slack tokens could be later associated to this entity.
      */
-    async create(
+    async subscribersControllerCreateSubscriber(
         request: components.CreateSubscriberRequestDto,
-        security: operations.CreateSubscriberSecurity,
         options?: RequestOptions
     ): Promise<components.SubscriberResponseDto> {
         const input$ = request;
@@ -191,28 +188,20 @@ export class Subscribers extends ClientSDK {
 
         const query$ = "";
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
         const context = {
-            operationID: "createSubscriber",
+            operationID: "SubscribersController_createSubscriber",
             oAuth2Scopes: [],
-            securitySource: security$,
+            securitySource: this.options$.apiKey,
         };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(
@@ -244,12 +233,11 @@ export class Subscribers extends ClientSDK {
      * @remarks
      * Get subscriber by your internal id used to identify the subscriber
      */
-    async retrieve(
-        security: operations.GetSubscriberSecurity,
+    async subscribersControllerGetSubscriber(
         subscriberId: string,
         options?: RequestOptions
     ): Promise<components.SubscriberResponseDto> {
-        const input$: operations.GetSubscriberRequest = {
+        const input$: operations.SubscribersControllerGetSubscriberRequest = {
             subscriberId: subscriberId,
         };
         const headers$ = new Headers();
@@ -258,7 +246,8 @@ export class Subscribers extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.GetSubscriberRequest$.outboundSchema.parse(value$),
+            (value$) =>
+                operations.SubscribersControllerGetSubscriberRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -273,28 +262,20 @@ export class Subscribers extends ClientSDK {
 
         const query$ = "";
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
         const context = {
-            operationID: "getSubscriber",
+            operationID: "SubscribersController_getSubscriber",
             oAuth2Scopes: [],
-            securitySource: security$,
+            securitySource: this.options$.apiKey,
         };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(
@@ -326,13 +307,12 @@ export class Subscribers extends ClientSDK {
      * @remarks
      * Used to update the subscriber entity with new information
      */
-    async updateSubscriber(
-        security: operations.UpdateSubscriberSecurity,
+    async subscribersControllerUpdateSubscriber(
         subscriberId: string,
         updateSubscriberRequestDto: components.UpdateSubscriberRequestDto,
         options?: RequestOptions
     ): Promise<components.SubscriberResponseDto> {
-        const input$: operations.UpdateSubscriberRequest = {
+        const input$: operations.SubscribersControllerUpdateSubscriberRequest = {
             subscriberId: subscriberId,
             updateSubscriberRequestDto: updateSubscriberRequestDto,
         };
@@ -343,7 +323,10 @@ export class Subscribers extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.UpdateSubscriberRequest$.outboundSchema.parse(value$),
+            (value$) =>
+                operations.SubscribersControllerUpdateSubscriberRequest$.outboundSchema.parse(
+                    value$
+                ),
             "Input validation failed"
         );
         const body$ = encodeJSON$("body", payload$.UpdateSubscriberRequestDto, { explode: true });
@@ -358,28 +341,20 @@ export class Subscribers extends ClientSDK {
 
         const query$ = "";
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
         const context = {
-            operationID: "updateSubscriber",
+            operationID: "SubscribersController_updateSubscriber",
             oAuth2Scopes: [],
-            securitySource: security$,
+            securitySource: this.options$.apiKey,
         };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(
@@ -411,12 +386,11 @@ export class Subscribers extends ClientSDK {
      * @remarks
      * Deletes a subscriber entity from the Novu platform
      */
-    async removeSubscriber(
-        security: operations.RemoveSubscriberSecurity,
+    async subscribersControllerRemoveSubscriber(
         subscriberId: string,
         options?: RequestOptions
     ): Promise<components.DeleteSubscriberResponseDto> {
-        const input$: operations.RemoveSubscriberRequest = {
+        const input$: operations.SubscribersControllerRemoveSubscriberRequest = {
             subscriberId: subscriberId,
         };
         const headers$ = new Headers();
@@ -425,7 +399,10 @@ export class Subscribers extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.RemoveSubscriberRequest$.outboundSchema.parse(value$),
+            (value$) =>
+                operations.SubscribersControllerRemoveSubscriberRequest$.outboundSchema.parse(
+                    value$
+                ),
             "Input validation failed"
         );
         const body$ = null;
@@ -440,28 +417,20 @@ export class Subscribers extends ClientSDK {
 
         const query$ = "";
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
         const context = {
-            operationID: "removeSubscriber",
+            operationID: "SubscribersController_removeSubscriber",
             oAuth2Scopes: [],
-            securitySource: security$,
+            securitySource: this.options$.apiKey,
         };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(
@@ -496,9 +465,8 @@ export class Subscribers extends ClientSDK {
      *       The bulk API is limited to 500 subscribers per request.
      *
      */
-    async bulkCreateSubscribers(
+    async subscribersControllerBulkCreateSubscribers(
         request: components.BulkSubscriberCreateDto,
-        security: operations.BulkCreateSubscribersSecurity,
         options?: RequestOptions
     ): Promise<void> {
         const input$ = request;
@@ -518,28 +486,20 @@ export class Subscribers extends ClientSDK {
 
         const query$ = "";
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
         const context = {
-            operationID: "bulkCreateSubscribers",
+            operationID: "SubscribersController_bulkCreateSubscribers",
             oAuth2Scopes: [],
-            securitySource: security$,
+            securitySource: this.options$.apiKey,
         };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(
@@ -571,13 +531,12 @@ export class Subscribers extends ClientSDK {
      * @remarks
      * Subscriber credentials associated to the delivery methods such as slack and push tokens.
      */
-    async updateSubscriberChannel(
-        security: operations.UpdateSubscriberChannelSecurity,
+    async subscribersControllerUpdateSubscriberChannel(
         subscriberId: string,
         updateSubscriberChannelRequestDto: components.UpdateSubscriberChannelRequestDto,
         options?: RequestOptions
     ): Promise<components.SubscriberResponseDto> {
-        const input$: operations.UpdateSubscriberChannelRequest = {
+        const input$: operations.SubscribersControllerUpdateSubscriberChannelRequest = {
             subscriberId: subscriberId,
             updateSubscriberChannelRequestDto: updateSubscriberChannelRequestDto,
         };
@@ -588,7 +547,10 @@ export class Subscribers extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.UpdateSubscriberChannelRequest$.outboundSchema.parse(value$),
+            (value$) =>
+                operations.SubscribersControllerUpdateSubscriberChannelRequest$.outboundSchema.parse(
+                    value$
+                ),
             "Input validation failed"
         );
         const body$ = encodeJSON$("body", payload$.UpdateSubscriberChannelRequestDto, {
@@ -607,28 +569,20 @@ export class Subscribers extends ClientSDK {
 
         const query$ = "";
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
         const context = {
-            operationID: "updateSubscriberChannel",
+            operationID: "SubscribersController_updateSubscriberChannel",
             oAuth2Scopes: [],
-            securitySource: security$,
+            securitySource: this.options$.apiKey,
         };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(
@@ -661,13 +615,12 @@ export class Subscribers extends ClientSDK {
      * Subscriber credentials associated to the delivery methods such as slack and push tokens.
      *     This endpoint appends provided credentials and deviceTokens to the existing ones.
      */
-    async modifySubscriberChannel(
-        security: operations.ModifySubscriberChannelSecurity,
+    async subscribersControllerModifySubscriberChannel(
         subscriberId: string,
         updateSubscriberChannelRequestDto: components.UpdateSubscriberChannelRequestDto,
         options?: RequestOptions
     ): Promise<components.SubscriberResponseDto> {
-        const input$: operations.ModifySubscriberChannelRequest = {
+        const input$: operations.SubscribersControllerModifySubscriberChannelRequest = {
             subscriberId: subscriberId,
             updateSubscriberChannelRequestDto: updateSubscriberChannelRequestDto,
         };
@@ -678,7 +631,10 @@ export class Subscribers extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.ModifySubscriberChannelRequest$.outboundSchema.parse(value$),
+            (value$) =>
+                operations.SubscribersControllerModifySubscriberChannelRequest$.outboundSchema.parse(
+                    value$
+                ),
             "Input validation failed"
         );
         const body$ = encodeJSON$("body", payload$.UpdateSubscriberChannelRequestDto, {
@@ -697,28 +653,20 @@ export class Subscribers extends ClientSDK {
 
         const query$ = "";
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
         const context = {
-            operationID: "modifySubscriberChannel",
+            operationID: "SubscribersController_modifySubscriberChannel",
             oAuth2Scopes: [],
-            securitySource: security$,
+            securitySource: this.options$.apiKey,
         };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(
@@ -750,13 +698,12 @@ export class Subscribers extends ClientSDK {
      * @remarks
      * Delete subscriber credentials such as slack and expo tokens.
      */
-    async delete(
-        security: operations.DeleteSubscriberCredentialsSecurity,
+    async subscribersControllerDeleteSubscriberCredentials(
         subscriberId: string,
         providerId: string,
         options?: RequestOptions
     ): Promise<void> {
-        const input$: operations.DeleteSubscriberCredentialsRequest = {
+        const input$: operations.SubscribersControllerDeleteSubscriberCredentialsRequest = {
             subscriberId: subscriberId,
             providerId: providerId,
         };
@@ -766,7 +713,10 @@ export class Subscribers extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.DeleteSubscriberCredentialsRequest$.outboundSchema.parse(value$),
+            (value$) =>
+                operations.SubscribersControllerDeleteSubscriberCredentialsRequest$.outboundSchema.parse(
+                    value$
+                ),
             "Input validation failed"
         );
         const body$ = null;
@@ -787,28 +737,20 @@ export class Subscribers extends ClientSDK {
 
         const query$ = "";
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
         const context = {
-            operationID: "deleteSubscriberCredentials",
+            operationID: "SubscribersController_deleteSubscriberCredentials",
             oAuth2Scopes: [],
-            securitySource: security$,
+            securitySource: this.options$.apiKey,
         };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(
@@ -840,13 +782,12 @@ export class Subscribers extends ClientSDK {
      * @remarks
      * Used to update the subscriber isOnline flag.
      */
-    async updateSubscriberOnlineFlag(
-        security: operations.UpdateSubscriberOnlineFlagSecurity,
+    async subscribersControllerUpdateSubscriberOnlineFlag(
         subscriberId: string,
         updateSubscriberOnlineFlagRequestDto: components.UpdateSubscriberOnlineFlagRequestDto,
         options?: RequestOptions
     ): Promise<components.SubscriberResponseDto> {
-        const input$: operations.UpdateSubscriberOnlineFlagRequest = {
+        const input$: operations.SubscribersControllerUpdateSubscriberOnlineFlagRequest = {
             subscriberId: subscriberId,
             updateSubscriberOnlineFlagRequestDto: updateSubscriberOnlineFlagRequestDto,
         };
@@ -857,7 +798,10 @@ export class Subscribers extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.UpdateSubscriberOnlineFlagRequest$.outboundSchema.parse(value$),
+            (value$) =>
+                operations.SubscribersControllerUpdateSubscriberOnlineFlagRequest$.outboundSchema.parse(
+                    value$
+                ),
             "Input validation failed"
         );
         const body$ = encodeJSON$("body", payload$.UpdateSubscriberOnlineFlagRequestDto, {
@@ -876,28 +820,20 @@ export class Subscribers extends ClientSDK {
 
         const query$ = "";
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
         const context = {
-            operationID: "updateSubscriberOnlineFlag",
+            operationID: "SubscribersController_updateSubscriberOnlineFlag",
             oAuth2Scopes: [],
-            securitySource: security$,
+            securitySource: this.options$.apiKey,
         };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(
@@ -926,13 +862,12 @@ export class Subscribers extends ClientSDK {
     /**
      * Update subscriber global preferences
      */
-    async updateSubscriberGlobalPreferences(
-        security: operations.UpdateSubscriberGlobalPreferencesSecurity,
+    async subscribersControllerUpdateSubscriberGlobalPreferences(
         subscriberId: string,
         updateSubscriberGlobalPreferencesRequestDto: components.UpdateSubscriberGlobalPreferencesRequestDto,
         options?: RequestOptions
     ): Promise<components.UpdateSubscriberPreferenceResponseDto> {
-        const input$: operations.UpdateSubscriberGlobalPreferencesRequest = {
+        const input$: operations.SubscribersControllerUpdateSubscriberGlobalPreferencesRequest = {
             subscriberId: subscriberId,
             updateSubscriberGlobalPreferencesRequestDto:
                 updateSubscriberGlobalPreferencesRequestDto,
@@ -945,7 +880,9 @@ export class Subscribers extends ClientSDK {
         const payload$ = schemas$.parse(
             input$,
             (value$) =>
-                operations.UpdateSubscriberGlobalPreferencesRequest$.outboundSchema.parse(value$),
+                operations.SubscribersControllerUpdateSubscriberGlobalPreferencesRequest$.outboundSchema.parse(
+                    value$
+                ),
             "Input validation failed"
         );
         const body$ = encodeJSON$("body", payload$.UpdateSubscriberGlobalPreferencesRequestDto, {
@@ -964,28 +901,20 @@ export class Subscribers extends ClientSDK {
 
         const query$ = "";
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
         const context = {
-            operationID: "updateSubscriberGlobalPreferences",
+            operationID: "SubscribersController_updateSubscriberGlobalPreferences",
             oAuth2Scopes: [],
-            securitySource: security$,
+            securitySource: this.options$.apiKey,
         };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(
@@ -1014,9 +943,8 @@ export class Subscribers extends ClientSDK {
     /**
      * Update subscriber preference
      */
-    async updateSubscriberPreference(
-        request: operations.UpdateSubscriberPreferenceRequest,
-        security: operations.UpdateSubscriberPreferenceSecurity,
+    async subscribersControllerUpdateSubscriberPreference(
+        request: operations.SubscribersControllerUpdateSubscriberPreferenceRequest,
         options?: RequestOptions
     ): Promise<components.UpdateSubscriberPreferenceResponseDto> {
         const input$ = request;
@@ -1027,7 +955,10 @@ export class Subscribers extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.UpdateSubscriberPreferenceRequest$.outboundSchema.parse(value$),
+            (value$) =>
+                operations.SubscribersControllerUpdateSubscriberPreferenceRequest$.outboundSchema.parse(
+                    value$
+                ),
             "Input validation failed"
         );
         const body$ = encodeJSON$("body", payload$.UpdateSubscriberPreferenceRequestDto, {
@@ -1050,28 +981,20 @@ export class Subscribers extends ClientSDK {
 
         const query$ = "";
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
         const context = {
-            operationID: "updateSubscriberPreference",
+            operationID: "SubscribersController_updateSubscriberPreference",
             oAuth2Scopes: [],
-            securitySource: security$,
+            securitySource: this.options$.apiKey,
         };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(
@@ -1100,13 +1023,12 @@ export class Subscribers extends ClientSDK {
     /**
      * Mark a subscriber messages as seen, read, unseen or unread
      */
-    async markMessagesAs(
-        security: operations.MarkMessagesAsSecurity,
+    async subscribersControllerMarkMessagesAs(
         subscriberId: string,
         messageMarkAsRequestDto: components.MessageMarkAsRequestDto,
         options?: RequestOptions
     ): Promise<Array<components.MessageEntity>> {
-        const input$: operations.MarkMessagesAsRequest = {
+        const input$: operations.SubscribersControllerMarkMessagesAsRequest = {
             subscriberId: subscriberId,
             messageMarkAsRequestDto: messageMarkAsRequestDto,
         };
@@ -1117,7 +1039,8 @@ export class Subscribers extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.MarkMessagesAsRequest$.outboundSchema.parse(value$),
+            (value$) =>
+                operations.SubscribersControllerMarkMessagesAsRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = encodeJSON$("body", payload$.MessageMarkAsRequestDto, { explode: true });
@@ -1134,28 +1057,20 @@ export class Subscribers extends ClientSDK {
 
         const query$ = "";
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
         const context = {
-            operationID: "markMessagesAs",
+            operationID: "SubscribersController_markMessagesAs",
             oAuth2Scopes: [],
-            securitySource: security$,
+            securitySource: this.options$.apiKey,
         };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(
@@ -1184,13 +1099,12 @@ export class Subscribers extends ClientSDK {
     /**
      * Marks all the subscriber messages as read, unread, seen or unseen. Optionally you can pass feed id (or array) to mark messages of a particular feed.
      */
-    async markAllUnreadAsRead(
-        security: operations.MarkAllUnreadAsReadSecurity,
+    async subscribersControllerMarkAllUnreadAsRead(
         subscriberId: string,
         markAllMessageAsRequestDto: components.MarkAllMessageAsRequestDto,
         options?: RequestOptions
     ): Promise<number> {
-        const input$: operations.MarkAllUnreadAsReadRequest = {
+        const input$: operations.SubscribersControllerMarkAllUnreadAsReadRequest = {
             subscriberId: subscriberId,
             markAllMessageAsRequestDto: markAllMessageAsRequestDto,
         };
@@ -1201,7 +1115,10 @@ export class Subscribers extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.MarkAllUnreadAsReadRequest$.outboundSchema.parse(value$),
+            (value$) =>
+                operations.SubscribersControllerMarkAllUnreadAsReadRequest$.outboundSchema.parse(
+                    value$
+                ),
             "Input validation failed"
         );
         const body$ = encodeJSON$("body", payload$.MarkAllMessageAsRequestDto, { explode: true });
@@ -1218,28 +1135,20 @@ export class Subscribers extends ClientSDK {
 
         const query$ = "";
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
         const context = {
-            operationID: "markAllUnreadAsRead",
+            operationID: "SubscribersController_markAllUnreadAsRead",
             oAuth2Scopes: [],
-            securitySource: security$,
+            securitySource: this.options$.apiKey,
         };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(
@@ -1268,9 +1177,8 @@ export class Subscribers extends ClientSDK {
     /**
      * Mark message action as seen
      */
-    async markActionAsSeen(
-        request: operations.MarkActionAsSeenRequest,
-        security: operations.MarkActionAsSeenSecurity,
+    async subscribersControllerMarkActionAsSeen(
+        request: operations.SubscribersControllerMarkActionAsSeenRequest,
         options?: RequestOptions
     ): Promise<components.MessageResponseDto> {
         const input$ = request;
@@ -1281,7 +1189,10 @@ export class Subscribers extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.MarkActionAsSeenRequest$.outboundSchema.parse(value$),
+            (value$) =>
+                operations.SubscribersControllerMarkActionAsSeenRequest$.outboundSchema.parse(
+                    value$
+                ),
             "Input validation failed"
         );
         const body$ = encodeJSON$("body", payload$.MarkMessageActionAsSeenDto, { explode: true });
@@ -1303,28 +1214,20 @@ export class Subscribers extends ClientSDK {
 
         const query$ = "";
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
         const context = {
-            operationID: "markActionAsSeen",
+            operationID: "SubscribersController_markActionAsSeen",
             oAuth2Scopes: [],
-            securitySource: security$,
+            securitySource: this.options$.apiKey,
         };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(
@@ -1353,11 +1256,10 @@ export class Subscribers extends ClientSDK {
     /**
      * Handle providers oauth redirect
      */
-    async chatOauthCallback(
-        request: operations.ChatOauthCallbackRequest,
-        security: operations.ChatOauthCallbackSecurity,
+    async subscribersControllerChatOauthCallback(
+        request: operations.SubscribersControllerChatOauthCallbackRequest,
         options?: RequestOptions
-    ): Promise<operations.ChatOauthCallbackResponseBody> {
+    ): Promise<operations.SubscribersControllerChatOauthCallbackResponseBody> {
         const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -1365,7 +1267,10 @@ export class Subscribers extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.ChatOauthCallbackRequest$.outboundSchema.parse(value$),
+            (value$) =>
+                operations.SubscribersControllerChatOauthCallbackRequest$.outboundSchema.parse(
+                    value$
+                ),
             "Input validation failed"
         );
         const body$ = null;
@@ -1385,27 +1290,26 @@ export class Subscribers extends ClientSDK {
         )(pathParams$);
 
         const query$ = encodeFormQuery$({
-            environmentId: payload$.environmentId,
-            integrationIdentifier: payload$.integrationIdentifier,
             code: payload$.code,
             hmacHash: payload$.hmacHash,
+            environmentId: payload$.environmentId,
+            integrationIdentifier: payload$.integrationIdentifier,
         });
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
         const context = {
-            operationID: "chatOauthCallback",
+            operationID: "SubscribersController_chatOauthCallback",
             oAuth2Scopes: [],
-            securitySource: security$,
+            securitySource: this.options$.apiKey,
         };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(
@@ -1423,10 +1327,11 @@ export class Subscribers extends ClientSDK {
 
         const response = await this.do$(request$, doOptions);
 
-        const [result$] = await this.matcher<operations.ChatOauthCallbackResponseBody>()
-            .json(200, operations.ChatOauthCallbackResponseBody$)
-            .fail([409, 429, "4XX", 503, "5XX"])
-            .match(response);
+        const [result$] =
+            await this.matcher<operations.SubscribersControllerChatOauthCallbackResponseBody>()
+                .json(200, operations.SubscribersControllerChatOauthCallbackResponseBody$)
+                .fail([409, 429, "4XX", 503, "5XX"])
+                .match(response);
 
         return result$;
     }
@@ -1434,9 +1339,8 @@ export class Subscribers extends ClientSDK {
     /**
      * Handle chat oauth
      */
-    async chatAccessOauth(
-        request: operations.ChatAccessOauthRequest,
-        security: operations.ChatAccessOauthSecurity,
+    async subscribersControllerChatAccessOauth(
+        request: operations.SubscribersControllerChatAccessOauthRequest,
         options?: RequestOptions
     ): Promise<void> {
         const input$ = request;
@@ -1446,7 +1350,10 @@ export class Subscribers extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.ChatAccessOauthRequest$.outboundSchema.parse(value$),
+            (value$) =>
+                operations.SubscribersControllerChatAccessOauthRequest$.outboundSchema.parse(
+                    value$
+                ),
             "Input validation failed"
         );
         const body$ = null;
@@ -1471,21 +1378,20 @@ export class Subscribers extends ClientSDK {
             integrationIdentifier: payload$.integrationIdentifier,
         });
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
         const context = {
-            operationID: "chatAccessOauth",
+            operationID: "SubscribersController_chatAccessOauth",
             oAuth2Scopes: [],
-            securitySource: security$,
+            securitySource: this.options$.apiKey,
         };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(

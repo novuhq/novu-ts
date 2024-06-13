@@ -8,7 +8,6 @@ import { encodeSimple as encodeSimple$ } from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
-import { SecurityInput } from "../lib/security";
 import * as components from "../models/components";
 import * as operations from "../models/operations";
 import * as z from "zod";
@@ -43,12 +42,11 @@ export class Preferences extends ClientSDK {
     /**
      * Get subscriber preferences
      */
-    async list(
-        security: operations.ListSubscriberPreferencesSecurity,
+    async subscribersControllerListSubscriberPreferences(
         subscriberId: string,
         options?: RequestOptions
     ): Promise<Array<components.UpdateSubscriberPreferenceResponseDto>> {
-        const input$: operations.ListSubscriberPreferencesRequest = {
+        const input$: operations.SubscribersControllerListSubscriberPreferencesRequest = {
             subscriberId: subscriberId,
         };
         const headers$ = new Headers();
@@ -57,7 +55,10 @@ export class Preferences extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.ListSubscriberPreferencesRequest$.outboundSchema.parse(value$),
+            (value$) =>
+                operations.SubscribersControllerListSubscriberPreferencesRequest$.outboundSchema.parse(
+                    value$
+                ),
             "Input validation failed"
         );
         const body$ = null;
@@ -74,28 +75,20 @@ export class Preferences extends ClientSDK {
 
         const query$ = "";
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
         const context = {
-            operationID: "listSubscriberPreferences",
+            operationID: "SubscribersController_listSubscriberPreferences",
             oAuth2Scopes: [],
-            securitySource: security$,
+            securitySource: this.options$.apiKey,
         };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(
@@ -127,12 +120,11 @@ export class Preferences extends ClientSDK {
      * Get subscriber preferences by level
      */
     async retrieveByLevel(
-        security: operations.GetSubscriberPreferenceByLevelSecurity,
         parameter: string,
         subscriberId: string,
         options?: RequestOptions
     ): Promise<Array<components.GetSubscriberPreferencesResponseDto>> {
-        const input$: operations.GetSubscriberPreferenceByLevelRequest = {
+        const input$: operations.SubscribersControllerGetSubscriberPreferenceByLevelRequest = {
             parameter: parameter,
             subscriberId: subscriberId,
         };
@@ -143,7 +135,9 @@ export class Preferences extends ClientSDK {
         const payload$ = schemas$.parse(
             input$,
             (value$) =>
-                operations.GetSubscriberPreferenceByLevelRequest$.outboundSchema.parse(value$),
+                operations.SubscribersControllerGetSubscriberPreferenceByLevelRequest$.outboundSchema.parse(
+                    value$
+                ),
             "Input validation failed"
         );
         const body$ = null;
@@ -164,28 +158,20 @@ export class Preferences extends ClientSDK {
 
         const query$ = "";
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
         const context = {
-            operationID: "getSubscriberPreferenceByLevel",
+            operationID: "SubscribersController_getSubscriberPreferenceByLevel",
             oAuth2Scopes: [],
-            securitySource: security$,
+            securitySource: this.options$.apiKey,
         };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(

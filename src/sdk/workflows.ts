@@ -12,7 +12,6 @@ import {
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
-import { SecurityInput } from "../lib/security";
 import * as components from "../models/components";
 import * as operations from "../models/operations";
 import { Variables } from "./variables";
@@ -55,9 +54,8 @@ export class Workflows extends ClientSDK {
      * @remarks
      * Workflows were previously named notification templates
      */
-    async list(
-        request: operations.ListWorkflowsRequest,
-        security: operations.ListWorkflowsSecurity,
+    async workflowControllerListWorkflows(
+        request: operations.WorkflowControllerListWorkflowsRequest,
         options?: RequestOptions
     ): Promise<components.WorkflowsResponseDto> {
         const input$ = typeof request === "undefined" ? {} : request;
@@ -67,7 +65,8 @@ export class Workflows extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.ListWorkflowsRequest$.outboundSchema.parse(value$),
+            (value$) =>
+                operations.WorkflowControllerListWorkflowsRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -80,28 +79,20 @@ export class Workflows extends ClientSDK {
             query: payload$.query,
         });
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
         const context = {
-            operationID: "listWorkflows",
+            operationID: "WorkflowController_listWorkflows",
             oAuth2Scopes: [],
-            securitySource: security$,
+            securitySource: this.options$.apiKey,
         };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(
@@ -133,13 +124,12 @@ export class Workflows extends ClientSDK {
      * @remarks
      * Workflow was previously named notification template
      */
-    async updateWorkflowById(
-        security: operations.UpdateWorkflowByIdSecurity,
+    async workflowControllerUpdateWorkflowById(
         workflowId: string,
         updateWorkflowRequestDto: components.UpdateWorkflowRequestDto,
         options?: RequestOptions
     ): Promise<components.WorkflowResponse> {
-        const input$: operations.UpdateWorkflowByIdRequest = {
+        const input$: operations.WorkflowControllerUpdateWorkflowByIdRequest = {
             workflowId: workflowId,
             updateWorkflowRequestDto: updateWorkflowRequestDto,
         };
@@ -150,7 +140,10 @@ export class Workflows extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.UpdateWorkflowByIdRequest$.outboundSchema.parse(value$),
+            (value$) =>
+                operations.WorkflowControllerUpdateWorkflowByIdRequest$.outboundSchema.parse(
+                    value$
+                ),
             "Input validation failed"
         );
         const body$ = encodeJSON$("body", payload$.UpdateWorkflowRequestDto, { explode: true });
@@ -165,28 +158,20 @@ export class Workflows extends ClientSDK {
 
         const query$ = "";
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
         const context = {
-            operationID: "updateWorkflowById",
+            operationID: "WorkflowController_updateWorkflowById",
             oAuth2Scopes: [],
-            securitySource: security$,
+            securitySource: this.options$.apiKey,
         };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(
@@ -218,12 +203,11 @@ export class Workflows extends ClientSDK {
      * @remarks
      * Workflow was previously named notification template
      */
-    async delete(
-        security: operations.DeleteWorkflowByIdSecurity,
+    async workflowControllerDeleteWorkflowById(
         workflowId: string,
         options?: RequestOptions
     ): Promise<components.DataBooleanDto> {
-        const input$: operations.DeleteWorkflowByIdRequest = {
+        const input$: operations.WorkflowControllerDeleteWorkflowByIdRequest = {
             workflowId: workflowId,
         };
         const headers$ = new Headers();
@@ -232,7 +216,10 @@ export class Workflows extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.DeleteWorkflowByIdRequest$.outboundSchema.parse(value$),
+            (value$) =>
+                operations.WorkflowControllerDeleteWorkflowByIdRequest$.outboundSchema.parse(
+                    value$
+                ),
             "Input validation failed"
         );
         const body$ = null;
@@ -247,28 +234,20 @@ export class Workflows extends ClientSDK {
 
         const query$ = "";
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
         const context = {
-            operationID: "deleteWorkflowById",
+            operationID: "WorkflowController_deleteWorkflowById",
             oAuth2Scopes: [],
-            securitySource: security$,
+            securitySource: this.options$.apiKey,
         };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(

@@ -8,7 +8,6 @@ import { encodeFormQuery as encodeFormQuery$ } from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
-import { SecurityInput } from "../lib/security";
 import * as components from "../models/components";
 import * as operations from "../models/operations";
 import * as z from "zod";
@@ -43,8 +42,7 @@ export class Stats extends ClientSDK {
     /**
      * Get notification statistics
      */
-    async retrieve(
-        security: operations.GetActivityStatsSecurity,
+    async notificationsControllerGetActivityStats(
         options?: RequestOptions
     ): Promise<components.ActivityStatsResponseDto> {
         const headers$ = new Headers();
@@ -55,28 +53,20 @@ export class Stats extends ClientSDK {
 
         const query$ = "";
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
         const context = {
-            operationID: "getActivityStats",
+            operationID: "NotificationsController_getActivityStats",
             oAuth2Scopes: [],
-            securitySource: security$,
+            securitySource: this.options$.apiKey,
         };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(
@@ -105,11 +95,10 @@ export class Stats extends ClientSDK {
      * Get notification graph statistics
      */
     async graph(
-        security: operations.GetActivityGraphStatsSecurity,
         days?: number | undefined,
         options?: RequestOptions
     ): Promise<Array<components.ActivityGraphStatesResponse>> {
-        const input$: operations.GetActivityGraphStatsRequest = {
+        const input$: operations.NotificationsControllerGetActivityGraphStatsRequest = {
             days: days,
         };
         const headers$ = new Headers();
@@ -118,7 +107,10 @@ export class Stats extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.GetActivityGraphStatsRequest$.outboundSchema.parse(value$),
+            (value$) =>
+                operations.NotificationsControllerGetActivityGraphStatsRequest$.outboundSchema.parse(
+                    value$
+                ),
             "Input validation failed"
         );
         const body$ = null;
@@ -129,28 +121,20 @@ export class Stats extends ClientSDK {
             days: payload$.days,
         });
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
         const context = {
-            operationID: "getActivityGraphStats",
+            operationID: "NotificationsController_getActivityGraphStats",
             oAuth2Scopes: [],
-            securitySource: security$,
+            securitySource: this.options$.apiKey,
         };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(

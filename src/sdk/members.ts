@@ -8,7 +8,6 @@ import { encodeSimple as encodeSimple$ } from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
-import { SecurityInput } from "../lib/security";
 import * as components from "../models/components";
 import * as operations from "../models/operations";
 import * as z from "zod";
@@ -43,12 +42,11 @@ export class Members extends ClientSDK {
     /**
      * Remove a member from organization using memberId
      */
-    async remove(
-        security: operations.RemoveSecurity,
+    async organizationControllerRemove(
         memberId: string,
         options?: RequestOptions
     ): Promise<components.MemberResponseDto> {
-        const input$: operations.RemoveRequest = {
+        const input$: operations.OrganizationControllerRemoveRequest = {
             memberId: memberId,
         };
         const headers$ = new Headers();
@@ -57,7 +55,8 @@ export class Members extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.RemoveRequest$.outboundSchema.parse(value$),
+            (value$) =>
+                operations.OrganizationControllerRemoveRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -72,24 +71,20 @@ export class Members extends ClientSDK {
 
         const query$ = "";
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
-        const context = { operationID: "remove", oAuth2Scopes: [], securitySource: security$ };
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "OrganizationController_remove",
+            oAuth2Scopes: [],
+            securitySource: this.options$.apiKey,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(
@@ -118,8 +113,7 @@ export class Members extends ClientSDK {
     /**
      * Fetch all members of current organizations
      */
-    async me(
-        security: operations.MeSecurity,
+    async organizationControllerMe(
         options?: RequestOptions
     ): Promise<Array<components.MemberResponseDto>> {
         const headers$ = new Headers();
@@ -130,24 +124,20 @@ export class Members extends ClientSDK {
 
         const query$ = "";
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
-        const context = { operationID: "me", oAuth2Scopes: [], securitySource: security$ };
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "OrganizationController_me",
+            oAuth2Scopes: [],
+            securitySource: this.options$.apiKey,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(

@@ -175,8 +175,8 @@ export function resolveGlobalSecurity(
     return resolveSecurity([
         {
             fieldName: "Authorization",
-            type: "http:bearer",
-            value: security?.bearer,
+            type: "apiKey:header",
+            value: security?.apiKey,
         },
     ]);
 }

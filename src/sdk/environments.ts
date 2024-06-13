@@ -6,9 +6,7 @@ import { SDKHooks } from "../hooks";
 import { SDK_METADATA, SDKOptions, serverURLFromOptions } from "../lib/config";
 import { HTTPClient } from "../lib/http";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
-import { SecurityInput } from "../lib/security";
 import * as components from "../models/components";
-import * as operations from "../models/operations";
 import { ApiKeys } from "./apikeys";
 import * as z from "zod";
 
@@ -47,8 +45,7 @@ export class Environments extends ClientSDK {
     /**
      * Get current environment
      */
-    async retrieve(
-        security: operations.GetCurrentEnvironmentSecurity,
+    async environmentsControllerGetCurrentEnvironment(
         options?: RequestOptions
     ): Promise<components.EnvironmentResponseDto> {
         const headers$ = new Headers();
@@ -59,28 +56,20 @@ export class Environments extends ClientSDK {
 
         const query$ = "";
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
         const context = {
-            operationID: "getCurrentEnvironment",
+            operationID: "EnvironmentsController_getCurrentEnvironment",
             oAuth2Scopes: [],
-            securitySource: security$,
+            securitySource: this.options$.apiKey,
         };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(
@@ -108,8 +97,7 @@ export class Environments extends ClientSDK {
     /**
      * Get environments
      */
-    async list(
-        security: operations.ListMyEnvironmentsSecurity,
+    async environmentsControllerListMyEnvironments(
         options?: RequestOptions
     ): Promise<Array<components.EnvironmentResponseDto>> {
         const headers$ = new Headers();
@@ -120,28 +108,20 @@ export class Environments extends ClientSDK {
 
         const query$ = "";
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
         const context = {
-            operationID: "listMyEnvironments",
+            operationID: "EnvironmentsController_listMyEnvironments",
             oAuth2Scopes: [],
-            securitySource: security$,
+            securitySource: this.options$.apiKey,
         };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(
@@ -169,8 +149,7 @@ export class Environments extends ClientSDK {
     /**
      * Regenerate api keys
      */
-    async regenerateOrganizationApiKeys(
-        security: operations.RegenerateOrganizationApiKeysSecurity,
+    async environmentsControllerRegenerateOrganizationApiKeys(
         options?: RequestOptions
     ): Promise<Array<components.ApiKey>> {
         const headers$ = new Headers();
@@ -181,28 +160,20 @@ export class Environments extends ClientSDK {
 
         const query$ = "";
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
         const context = {
-            operationID: "regenerateOrganizationApiKeys",
+            operationID: "EnvironmentsController_regenerateOrganizationApiKeys",
             oAuth2Scopes: [],
-            securitySource: security$,
+            securitySource: this.options$.apiKey,
         };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(

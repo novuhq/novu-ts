@@ -3,10 +3,10 @@
 
 ### Available Operations
 
-* [list](#list) - Get notifications
-* [retrieve](#retrieve) - Get notification
+* [notificationsControllerListNotifications](#notificationscontrollerlistnotifications) - Get notifications
+* [notificationsControllerGetNotification](#notificationscontrollergetnotification) - Get notification
 
-## list
+## notificationsControllerListNotifications
 
 Get notifications
 
@@ -16,12 +16,14 @@ Get notifications
 import { Novu } from "novu-typescript";
 import { Channels } from "novu-typescript/models/operations";
 
-const novu = new Novu();
+const novu = new Novu({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
 
 async function run() {
-  const result = await novu.notifications.list({
+  const result = await novu.notifications.notificationsControllerListNotifications({
     channels: [
-      Channels.Chat,
+      Channels.Sms,
     ],
     templates: [
       "<value>",
@@ -33,8 +35,6 @@ async function run() {
     subscriberIds: [
       "<value>",
     ],
-  }, {
-    apiKey: "<YOUR_API_KEY_HERE>",
   });
 
   // Handle the result
@@ -48,8 +48,7 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.ListNotificationsRequest](../../models/operations/listnotificationsrequest.md)                                                                                     | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
-| `security`                                                                                                                                                                     | [operations.ListNotificationsSecurity](../../models/operations/listnotificationssecurity.md)                                                                                   | :heavy_check_mark:                                                                                                                                                             | The security requirements to use for the request.                                                                                                                              |
+| `request`                                                                                                                                                                      | [operations.NotificationsControllerListNotificationsRequest](../../models/operations/notificationscontrollerlistnotificationsrequest.md)                                       | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 
@@ -63,7 +62,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
 
-## retrieve
+## notificationsControllerGetNotification
 
 Get notification
 
@@ -72,12 +71,12 @@ Get notification
 ```typescript
 import { Novu } from "novu-typescript";
 
-const novu = new Novu();
+const novu = new Novu({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
 
 async function run() {
-  const result = await novu.notifications.retrieve({
-    apiKey: "<YOUR_API_KEY_HERE>",
-  }, "<value>");
+  const result = await novu.notifications.notificationsControllerGetNotification("<value>");
 
   // Handle the result
   console.log(result)
@@ -90,7 +89,6 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `security`                                                                                                                                                                     | [operations.GetNotificationSecurity](../../models/operations/getnotificationsecurity.md)                                                                                       | :heavy_check_mark:                                                                                                                                                             | The security requirements to use for the request.                                                                                                                              |
 | `notificationId`                                                                                                                                                               | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |

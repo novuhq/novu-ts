@@ -11,7 +11,6 @@ import {
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
-import { SecurityInput } from "../lib/security";
 import * as components from "../models/components";
 import * as operations from "../models/operations";
 import * as z from "zod";
@@ -49,9 +48,8 @@ export class Messages extends ClientSDK {
      * @remarks
      * Returns a list of messages, could paginate using the `page` query parameter
      */
-    async retrieve(
-        request: operations.GetMessagesRequest,
-        security: operations.GetMessagesSecurity,
+    async messagesControllerGetMessages(
+        request: operations.MessagesControllerGetMessagesRequest,
         options?: RequestOptions
     ): Promise<components.ActivitiesResponseDto> {
         const input$ = typeof request === "undefined" ? {} : request;
@@ -61,7 +59,8 @@ export class Messages extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.GetMessagesRequest$.outboundSchema.parse(value$),
+            (value$) =>
+                operations.MessagesControllerGetMessagesRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -69,31 +68,27 @@ export class Messages extends ClientSDK {
         const path$ = this.templateURLComponent("/messages")();
 
         const query$ = encodeFormQuery$({
-            channel: payload$.channel,
-            subscriberId: payload$.subscriberId,
             transactionId: payload$.transactionId,
             page: payload$.page,
             limit: payload$.limit,
+            channel: payload$.channel,
+            subscriberId: payload$.subscriberId,
         });
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
-        const context = { operationID: "getMessages", oAuth2Scopes: [], securitySource: security$ };
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "MessagesController_getMessages",
+            oAuth2Scopes: [],
+            securitySource: this.options$.apiKey,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(
@@ -125,12 +120,11 @@ export class Messages extends ClientSDK {
      * @remarks
      * Deletes a message entity from the Novu platform
      */
-    async delete(
-        security: operations.DeleteMessageSecurity,
+    async messagesControllerDeleteMessage(
         messageId: string,
         options?: RequestOptions
     ): Promise<components.DeleteMessageResponseDto> {
-        const input$: operations.DeleteMessageRequest = {
+        const input$: operations.MessagesControllerDeleteMessageRequest = {
             messageId: messageId,
         };
         const headers$ = new Headers();
@@ -139,7 +133,8 @@ export class Messages extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.DeleteMessageRequest$.outboundSchema.parse(value$),
+            (value$) =>
+                operations.MessagesControllerDeleteMessageRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -154,28 +149,20 @@ export class Messages extends ClientSDK {
 
         const query$ = "";
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
         const context = {
-            operationID: "deleteMessage",
+            operationID: "MessagesController_deleteMessage",
             oAuth2Scopes: [],
-            securitySource: security$,
+            securitySource: this.options$.apiKey,
         };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(
@@ -208,12 +195,11 @@ export class Messages extends ClientSDK {
      * Deletes messages entity from the Novu platform using TransactionId of message
      */
     async deleteByTransactionId(
-        security: operations.DeleteMessagesByTransactionIdSecurity,
         transactionId: string,
         channel?: operations.QueryParamChannel | undefined,
         options?: RequestOptions
     ): Promise<void> {
-        const input$: operations.DeleteMessagesByTransactionIdRequest = {
+        const input$: operations.MessagesControllerDeleteMessagesByTransactionIdRequest = {
             channel: channel,
             transactionId: transactionId,
         };
@@ -224,7 +210,9 @@ export class Messages extends ClientSDK {
         const payload$ = schemas$.parse(
             input$,
             (value$) =>
-                operations.DeleteMessagesByTransactionIdRequest$.outboundSchema.parse(value$),
+                operations.MessagesControllerDeleteMessagesByTransactionIdRequest$.outboundSchema.parse(
+                    value$
+                ),
             "Input validation failed"
         );
         const body$ = null;
@@ -243,28 +231,20 @@ export class Messages extends ClientSDK {
             channel: payload$.channel,
         });
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
         const context = {
-            operationID: "deleteMessagesByTransactionId",
+            operationID: "MessagesController_deleteMessagesByTransactionId",
             oAuth2Scopes: [],
-            securitySource: security$,
+            securitySource: this.options$.apiKey,
         };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(

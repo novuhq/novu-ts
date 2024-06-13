@@ -8,7 +8,6 @@ import { encodeJSON as encodeJSON$, encodeSimple as encodeSimple$ } from "../lib
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
-import { SecurityInput } from "../lib/security";
 import * as components from "../models/components";
 import * as operations from "../models/operations";
 import * as z from "zod";
@@ -46,8 +45,7 @@ export class WorkflowGroups extends ClientSDK {
      * @remarks
      * workflow group was previously named notification group
      */
-    async list(
-        security: operations.ListNotificationGroupsSecurity,
+    async notificationGroupsControllerListNotificationGroups(
         options?: RequestOptions
     ): Promise<Array<components.NotificationGroupResponseDto>> {
         const headers$ = new Headers();
@@ -58,28 +56,20 @@ export class WorkflowGroups extends ClientSDK {
 
         const query$ = "";
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
         const context = {
-            operationID: "listNotificationGroups",
+            operationID: "NotificationGroupsController_listNotificationGroups",
             oAuth2Scopes: [],
-            securitySource: security$,
+            securitySource: this.options$.apiKey,
         };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(
@@ -110,9 +100,8 @@ export class WorkflowGroups extends ClientSDK {
      * @remarks
      * workflow group was previously named notification group
      */
-    async create(
+    async notificationGroupsControllerCreateNotificationGroup(
         request: components.CreateNotificationGroupRequestDto,
-        security: operations.CreateNotificationGroupSecurity,
         options?: RequestOptions
     ): Promise<components.NotificationGroupResponseDto> {
         const input$ = request;
@@ -132,28 +121,20 @@ export class WorkflowGroups extends ClientSDK {
 
         const query$ = "";
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
         const context = {
-            operationID: "createNotificationGroup",
+            operationID: "NotificationGroupsController_createNotificationGroup",
             oAuth2Scopes: [],
-            securitySource: security$,
+            securitySource: this.options$.apiKey,
         };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(
@@ -185,12 +166,11 @@ export class WorkflowGroups extends ClientSDK {
      * @remarks
      * workflow group was previously named notification group
      */
-    async retrieve(
-        security: operations.GetNotificationGroupSecurity,
+    async notificationGroupsControllerGetNotificationGroup(
         id: string,
         options?: RequestOptions
     ): Promise<components.NotificationGroupResponseDto> {
-        const input$: operations.GetNotificationGroupRequest = {
+        const input$: operations.NotificationGroupsControllerGetNotificationGroupRequest = {
             id: id,
         };
         const headers$ = new Headers();
@@ -199,7 +179,10 @@ export class WorkflowGroups extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.GetNotificationGroupRequest$.outboundSchema.parse(value$),
+            (value$) =>
+                operations.NotificationGroupsControllerGetNotificationGroupRequest$.outboundSchema.parse(
+                    value$
+                ),
             "Input validation failed"
         );
         const body$ = null;
@@ -211,28 +194,20 @@ export class WorkflowGroups extends ClientSDK {
 
         const query$ = "";
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
         const context = {
-            operationID: "getNotificationGroup",
+            operationID: "NotificationGroupsController_getNotificationGroup",
             oAuth2Scopes: [],
-            securitySource: security$,
+            securitySource: this.options$.apiKey,
         };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(
@@ -264,12 +239,11 @@ export class WorkflowGroups extends ClientSDK {
      * @remarks
      * workflow group was previously named notification group
      */
-    async delete(
-        security: operations.DeleteNotificationGroupSecurity,
+    async notificationGroupsControllerDeleteNotificationGroup(
         id: string,
         options?: RequestOptions
     ): Promise<components.DeleteNotificationGroupResponseDto> {
-        const input$: operations.DeleteNotificationGroupRequest = {
+        const input$: operations.NotificationGroupsControllerDeleteNotificationGroupRequest = {
             id: id,
         };
         const headers$ = new Headers();
@@ -278,7 +252,10 @@ export class WorkflowGroups extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.DeleteNotificationGroupRequest$.outboundSchema.parse(value$),
+            (value$) =>
+                operations.NotificationGroupsControllerDeleteNotificationGroupRequest$.outboundSchema.parse(
+                    value$
+                ),
             "Input validation failed"
         );
         const body$ = null;
@@ -290,28 +267,20 @@ export class WorkflowGroups extends ClientSDK {
 
         const query$ = "";
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
         const context = {
-            operationID: "deleteNotificationGroup",
+            operationID: "NotificationGroupsController_deleteNotificationGroup",
             oAuth2Scopes: [],
-            securitySource: security$,
+            securitySource: this.options$.apiKey,
         };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(
@@ -343,13 +312,12 @@ export class WorkflowGroups extends ClientSDK {
      * @remarks
      * workflow group was previously named notification group
      */
-    async updateNotificationGroup(
-        security: operations.UpdateNotificationGroupSecurity,
+    async notificationGroupsControllerUpdateNotificationGroup(
         id: string,
         createNotificationGroupRequestDto: components.CreateNotificationGroupRequestDto,
         options?: RequestOptions
     ): Promise<components.NotificationGroupResponseDto> {
-        const input$: operations.UpdateNotificationGroupRequest = {
+        const input$: operations.NotificationGroupsControllerUpdateNotificationGroupRequest = {
             id: id,
             createNotificationGroupRequestDto: createNotificationGroupRequestDto,
         };
@@ -360,7 +328,10 @@ export class WorkflowGroups extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.UpdateNotificationGroupRequest$.outboundSchema.parse(value$),
+            (value$) =>
+                operations.NotificationGroupsControllerUpdateNotificationGroupRequest$.outboundSchema.parse(
+                    value$
+                ),
             "Input validation failed"
         );
         const body$ = encodeJSON$("body", payload$.CreateNotificationGroupRequestDto, {
@@ -374,28 +345,20 @@ export class WorkflowGroups extends ClientSDK {
 
         const query$ = "";
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
         const context = {
-            operationID: "updateNotificationGroup",
+            operationID: "NotificationGroupsController_updateNotificationGroup",
             oAuth2Scopes: [],
-            securitySource: security$,
+            securitySource: this.options$.apiKey,
         };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(

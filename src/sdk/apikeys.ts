@@ -6,9 +6,7 @@ import { SDKHooks } from "../hooks";
 import { SDK_METADATA, SDKOptions, serverURLFromOptions } from "../lib/config";
 import { HTTPClient } from "../lib/http";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
-import { SecurityInput } from "../lib/security";
 import * as components from "../models/components";
-import * as operations from "../models/operations";
 import * as z from "zod";
 
 export class ApiKeys extends ClientSDK {
@@ -41,8 +39,7 @@ export class ApiKeys extends ClientSDK {
     /**
      * Get api keys
      */
-    async list(
-        security: operations.ListOrganizationApiKeysSecurity,
+    async environmentsControllerListOrganizationApiKeys(
         options?: RequestOptions
     ): Promise<Array<components.ApiKey>> {
         const headers$ = new Headers();
@@ -53,28 +50,20 @@ export class ApiKeys extends ClientSDK {
 
         const query$ = "";
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
         const context = {
-            operationID: "listOrganizationApiKeys",
+            operationID: "EnvironmentsController_listOrganizationApiKeys",
             oAuth2Scopes: [],
-            securitySource: security$,
+            securitySource: this.options$.apiKey,
         };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(

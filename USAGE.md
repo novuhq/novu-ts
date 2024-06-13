@@ -2,19 +2,16 @@
 ```typescript
 import { Novu } from "novu-typescript";
 
-const novu = new Novu();
+const novu = new Novu({
+    apiKey: "<YOUR_API_KEY_HERE>",
+});
 
 async function run() {
-    const result = await novu.create(
-        {
-            name: "<value>",
-            notificationGroupId: "<value>",
-            steps: [{}],
-        },
-        {
-            bearer: "<YOUR_BEARER_TOKEN_HERE>",
-        }
-    );
+    const result = await novu.workflowControllerCreate({
+        name: "<value>",
+        notificationGroupId: "<value>",
+        steps: [{}],
+    });
 
     // Handle the result
     console.log(result);

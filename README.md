@@ -46,19 +46,16 @@ For supported JavaScript runtimes, please consult [RUNTIMES.md](RUNTIMES.md).
 ```typescript
 import { Novu } from "novu-typescript";
 
-const novu = new Novu();
+const novu = new Novu({
+    apiKey: "<YOUR_API_KEY_HERE>",
+});
 
 async function run() {
-    const result = await novu.create(
-        {
-            name: "<value>",
-            notificationGroupId: "<value>",
-            steps: [{}],
-        },
-        {
-            bearer: "<YOUR_BEARER_TOKEN_HERE>",
-        }
-    );
+    const result = await novu.workflowControllerCreate({
+        name: "<value>",
+        notificationGroupId: "<value>",
+        steps: [{}],
+    });
 
     // Handle the result
     console.log(result);
@@ -74,167 +71,167 @@ run();
 
 ### [Novu SDK](docs/sdks/novu/README.md)
 
-* [create](docs/sdks/novu/README.md#create) - Create workflow
-* [retrieve](docs/sdks/novu/README.md#retrieve) - Get workflow
-* [changeActiveStatus](docs/sdks/novu/README.md#changeactivestatus) - Update workflow status
+* [workflowControllerCreate](docs/sdks/novu/README.md#workflowcontrollercreate) - Create workflow
+* [workflowControllerGetWorkflowById](docs/sdks/novu/README.md#workflowcontrollergetworkflowbyid) - Get workflow
+* [workflowControllerChangeActiveStatus](docs/sdks/novu/README.md#workflowcontrollerchangeactivestatus) - Update workflow status
 
 ### [organizations](docs/sdks/organizations/README.md)
 
-* [list](docs/sdks/organizations/README.md#list) - Fetch all organizations
-* [create](docs/sdks/organizations/README.md#create) - Create an organization
-* [rename](docs/sdks/organizations/README.md#rename) - Rename organization name
-* [self](docs/sdks/organizations/README.md#self) - Fetch current organization details
-* [remove](docs/sdks/organizations/README.md#remove) - Remove a member from organization using memberId
-* [me](docs/sdks/organizations/README.md#me) - Fetch all members of current organizations
-* [updateBrandingDetails](docs/sdks/organizations/README.md#updatebrandingdetails) - Update organization branding details
+* [organizationControllerListOrganizations](docs/sdks/organizations/README.md#organizationcontrollerlistorganizations) - Fetch all organizations
+* [organizationControllerCreateOrganization](docs/sdks/organizations/README.md#organizationcontrollercreateorganization) - Create an organization
+* [organizationControllerRename](docs/sdks/organizations/README.md#organizationcontrollerrename) - Rename organization name
+* [organizationControllerSelf](docs/sdks/organizations/README.md#organizationcontrollerself) - Fetch current organization details
+* [organizationControllerRemove](docs/sdks/organizations/README.md#organizationcontrollerremove) - Remove a member from organization using memberId
+* [organizationControllerMe](docs/sdks/organizations/README.md#organizationcontrollerme) - Fetch all members of current organizations
+* [organizationControllerUpdateBrandingDetails](docs/sdks/organizations/README.md#organizationcontrollerupdatebrandingdetails) - Update organization branding details
 
 ### [organizations.members](docs/sdks/members/README.md)
 
-* [remove](docs/sdks/members/README.md#remove) - Remove a member from organization using memberId
-* [me](docs/sdks/members/README.md#me) - Fetch all members of current organizations
+* [organizationControllerRemove](docs/sdks/members/README.md#organizationcontrollerremove) - Remove a member from organization using memberId
+* [organizationControllerMe](docs/sdks/members/README.md#organizationcontrollerme) - Fetch all members of current organizations
 
 ### [organizations.branding](docs/sdks/branding/README.md)
 
-* [updateBrandingDetails](docs/sdks/branding/README.md#updatebrandingdetails) - Update organization branding details
+* [organizationControllerUpdateBrandingDetails](docs/sdks/branding/README.md#organizationcontrollerupdatebrandingdetails) - Update organization branding details
 
 ### [environments](docs/sdks/environments/README.md)
 
-* [retrieve](docs/sdks/environments/README.md#retrieve) - Get current environment
-* [list](docs/sdks/environments/README.md#list) - Get environments
-* [regenerateOrganizationApiKeys](docs/sdks/environments/README.md#regenerateorganizationapikeys) - Regenerate api keys
+* [environmentsControllerGetCurrentEnvironment](docs/sdks/environments/README.md#environmentscontrollergetcurrentenvironment) - Get current environment
+* [environmentsControllerListMyEnvironments](docs/sdks/environments/README.md#environmentscontrollerlistmyenvironments) - Get environments
+* [environmentsControllerRegenerateOrganizationApiKeys](docs/sdks/environments/README.md#environmentscontrollerregenerateorganizationapikeys) - Regenerate api keys
 
 ### [environments.apiKeys](docs/sdks/apikeys/README.md)
 
-* [list](docs/sdks/apikeys/README.md#list) - Get api keys
+* [environmentsControllerListOrganizationApiKeys](docs/sdks/apikeys/README.md#environmentscontrollerlistorganizationapikeys) - Get api keys
 
 ### [executionDetails](docs/sdks/executiondetails/README.md)
 
-* [retrieve](docs/sdks/executiondetails/README.md#retrieve) - Get execution details
+* [executionDetailsControllerGetExecutionDetailsForNotification](docs/sdks/executiondetails/README.md#executiondetailscontrollergetexecutiondetailsfornotification) - Get execution details
 
 ### [workflows](docs/sdks/workflows/README.md)
 
-* [list](docs/sdks/workflows/README.md#list) - Get workflows
-* [updateWorkflowById](docs/sdks/workflows/README.md#updateworkflowbyid) - Update workflow
-* [delete](docs/sdks/workflows/README.md#delete) - Delete workflow
+* [workflowControllerListWorkflows](docs/sdks/workflows/README.md#workflowcontrollerlistworkflows) - Get workflows
+* [workflowControllerUpdateWorkflowById](docs/sdks/workflows/README.md#workflowcontrollerupdateworkflowbyid) - Update workflow
+* [workflowControllerDeleteWorkflowById](docs/sdks/workflows/README.md#workflowcontrollerdeleteworkflowbyid) - Delete workflow
 
 ### [workflows.variables](docs/sdks/variables/README.md)
 
-* [retrieve](docs/sdks/variables/README.md#retrieve) - Get available variables
+* [workflowControllerGetWorkflowVariables](docs/sdks/variables/README.md#workflowcontrollergetworkflowvariables) - Get available variables
 
 ### [events](docs/sdks/events/README.md)
 
-* [trigger](docs/sdks/events/README.md#trigger) - Trigger event
-* [triggerBulk](docs/sdks/events/README.md#triggerbulk) - Bulk trigger event
-* [broadcastEventToAll](docs/sdks/events/README.md#broadcasteventtoall) - Broadcast event to all
-* [cancel](docs/sdks/events/README.md#cancel) - Cancel triggered event
+* [eventsControllerTrigger](docs/sdks/events/README.md#eventscontrollertrigger) - Trigger event
+* [eventsControllerTriggerBulk](docs/sdks/events/README.md#eventscontrollertriggerbulk) - Bulk trigger event
+* [eventsControllerBroadcastEventToAll](docs/sdks/events/README.md#eventscontrollerbroadcasteventtoall) - Broadcast event to all
+* [eventsControllerCancel](docs/sdks/events/README.md#eventscontrollercancel) - Cancel triggered event
 
 ### [notifications](docs/sdks/notifications/README.md)
 
-* [list](docs/sdks/notifications/README.md#list) - Get notifications
-* [retrieve](docs/sdks/notifications/README.md#retrieve) - Get notification
+* [notificationsControllerListNotifications](docs/sdks/notifications/README.md#notificationscontrollerlistnotifications) - Get notifications
+* [notificationsControllerGetNotification](docs/sdks/notifications/README.md#notificationscontrollergetnotification) - Get notification
 
 ### [notifications.stats](docs/sdks/stats/README.md)
 
-* [retrieve](docs/sdks/stats/README.md#retrieve) - Get notification statistics
+* [notificationsControllerGetActivityStats](docs/sdks/stats/README.md#notificationscontrollergetactivitystats) - Get notification statistics
 * [graph](docs/sdks/stats/README.md#graph) - Get notification graph statistics
 
 ### [workflowGroups](docs/sdks/workflowgroups/README.md)
 
-* [list](docs/sdks/workflowgroups/README.md#list) - Get workflow groups
-* [create](docs/sdks/workflowgroups/README.md#create) - Create workflow group
-* [retrieve](docs/sdks/workflowgroups/README.md#retrieve) - Get workflow group
-* [delete](docs/sdks/workflowgroups/README.md#delete) - Delete workflow group
-* [updateNotificationGroup](docs/sdks/workflowgroups/README.md#updatenotificationgroup) - Update workflow group
+* [notificationGroupsControllerListNotificationGroups](docs/sdks/workflowgroups/README.md#notificationgroupscontrollerlistnotificationgroups) - Get workflow groups
+* [notificationGroupsControllerCreateNotificationGroup](docs/sdks/workflowgroups/README.md#notificationgroupscontrollercreatenotificationgroup) - Create workflow group
+* [notificationGroupsControllerGetNotificationGroup](docs/sdks/workflowgroups/README.md#notificationgroupscontrollergetnotificationgroup) - Get workflow group
+* [notificationGroupsControllerDeleteNotificationGroup](docs/sdks/workflowgroups/README.md#notificationgroupscontrollerdeletenotificationgroup) - Delete workflow group
+* [notificationGroupsControllerUpdateNotificationGroup](docs/sdks/workflowgroups/README.md#notificationgroupscontrollerupdatenotificationgroup) - Update workflow group
 
 ### [integrations](docs/sdks/integrations/README.md)
 
-* [list](docs/sdks/integrations/README.md#list) - Get integrations
-* [create](docs/sdks/integrations/README.md#create) - Create integration
+* [integrationsControllerListIntegrations](docs/sdks/integrations/README.md#integrationscontrollerlistintegrations) - Get integrations
+* [integrationsControllerCreateIntegration](docs/sdks/integrations/README.md#integrationscontrollercreateintegration) - Create integration
 * [listActive](docs/sdks/integrations/README.md#listactive) - Get active integrations
-* [retrieve](docs/sdks/integrations/README.md#retrieve) - Get webhook support status for provider
-* [updateIntegrationById](docs/sdks/integrations/README.md#updateintegrationbyid) - Update integration
-* [removeIntegration](docs/sdks/integrations/README.md#removeintegration) - Delete integration
-* [setIntegrationAsPrimary](docs/sdks/integrations/README.md#setintegrationasprimary) - Set integration as primary
+* [integrationsControllerGetWebhookSupportStatus](docs/sdks/integrations/README.md#integrationscontrollergetwebhooksupportstatus) - Get webhook support status for provider
+* [integrationsControllerUpdateIntegrationById](docs/sdks/integrations/README.md#integrationscontrollerupdateintegrationbyid) - Update integration
+* [integrationsControllerRemoveIntegration](docs/sdks/integrations/README.md#integrationscontrollerremoveintegration) - Delete integration
+* [integrationsControllerSetIntegrationAsPrimary](docs/sdks/integrations/README.md#integrationscontrollersetintegrationasprimary) - Set integration as primary
 
 ### [changes](docs/sdks/changes/README.md)
 
-* [retrieve](docs/sdks/changes/README.md#retrieve) - Get changes
+* [changesControllerGetChanges](docs/sdks/changes/README.md#changescontrollergetchanges) - Get changes
 * [count](docs/sdks/changes/README.md#count) - Get changes count
-* [bulkApplyDiff](docs/sdks/changes/README.md#bulkapplydiff) - Apply changes
-* [applyDiff](docs/sdks/changes/README.md#applydiff) - Apply change
+* [changesControllerBulkApplyDiff](docs/sdks/changes/README.md#changescontrollerbulkapplydiff) - Apply changes
+* [changesControllerApplyDiff](docs/sdks/changes/README.md#changescontrollerapplydiff) - Apply change
 
 ### [subscribers](docs/sdks/subscribers/README.md)
 
-* [list](docs/sdks/subscribers/README.md#list) - Get subscribers
-* [create](docs/sdks/subscribers/README.md#create) - Create subscriber
-* [retrieve](docs/sdks/subscribers/README.md#retrieve) - Get subscriber
-* [updateSubscriber](docs/sdks/subscribers/README.md#updatesubscriber) - Update subscriber
-* [removeSubscriber](docs/sdks/subscribers/README.md#removesubscriber) - Delete subscriber
-* [bulkCreateSubscribers](docs/sdks/subscribers/README.md#bulkcreatesubscribers) - Bulk create subscribers
-* [updateSubscriberChannel](docs/sdks/subscribers/README.md#updatesubscriberchannel) - Update subscriber credentials
-* [modifySubscriberChannel](docs/sdks/subscribers/README.md#modifysubscriberchannel) - Modify subscriber credentials
-* [delete](docs/sdks/subscribers/README.md#delete) - Delete subscriber credentials by providerId
-* [updateSubscriberOnlineFlag](docs/sdks/subscribers/README.md#updatesubscriberonlineflag) - Update subscriber online status
-* [updateSubscriberGlobalPreferences](docs/sdks/subscribers/README.md#updatesubscriberglobalpreferences) - Update subscriber global preferences
-* [updateSubscriberPreference](docs/sdks/subscribers/README.md#updatesubscriberpreference) - Update subscriber preference
-* [markMessagesAs](docs/sdks/subscribers/README.md#markmessagesas) - Mark a subscriber messages as seen, read, unseen or unread
-* [markAllUnreadAsRead](docs/sdks/subscribers/README.md#markallunreadasread) - Marks all the subscriber messages as read, unread, seen or unseen. Optionally you can pass feed id (or array) to mark messages of a particular feed.
-* [markActionAsSeen](docs/sdks/subscribers/README.md#markactionasseen) - Mark message action as seen
-* [chatOauthCallback](docs/sdks/subscribers/README.md#chatoauthcallback) - Handle providers oauth redirect
-* [chatAccessOauth](docs/sdks/subscribers/README.md#chataccessoauth) - Handle chat oauth
+* [subscribersControllerListSubscribers](docs/sdks/subscribers/README.md#subscriberscontrollerlistsubscribers) - Get subscribers
+* [subscribersControllerCreateSubscriber](docs/sdks/subscribers/README.md#subscriberscontrollercreatesubscriber) - Create subscriber
+* [subscribersControllerGetSubscriber](docs/sdks/subscribers/README.md#subscriberscontrollergetsubscriber) - Get subscriber
+* [subscribersControllerUpdateSubscriber](docs/sdks/subscribers/README.md#subscriberscontrollerupdatesubscriber) - Update subscriber
+* [subscribersControllerRemoveSubscriber](docs/sdks/subscribers/README.md#subscriberscontrollerremovesubscriber) - Delete subscriber
+* [subscribersControllerBulkCreateSubscribers](docs/sdks/subscribers/README.md#subscriberscontrollerbulkcreatesubscribers) - Bulk create subscribers
+* [subscribersControllerUpdateSubscriberChannel](docs/sdks/subscribers/README.md#subscriberscontrollerupdatesubscriberchannel) - Update subscriber credentials
+* [subscribersControllerModifySubscriberChannel](docs/sdks/subscribers/README.md#subscriberscontrollermodifysubscriberchannel) - Modify subscriber credentials
+* [subscribersControllerDeleteSubscriberCredentials](docs/sdks/subscribers/README.md#subscriberscontrollerdeletesubscribercredentials) - Delete subscriber credentials by providerId
+* [subscribersControllerUpdateSubscriberOnlineFlag](docs/sdks/subscribers/README.md#subscriberscontrollerupdatesubscriberonlineflag) - Update subscriber online status
+* [subscribersControllerUpdateSubscriberGlobalPreferences](docs/sdks/subscribers/README.md#subscriberscontrollerupdatesubscriberglobalpreferences) - Update subscriber global preferences
+* [subscribersControllerUpdateSubscriberPreference](docs/sdks/subscribers/README.md#subscriberscontrollerupdatesubscriberpreference) - Update subscriber preference
+* [subscribersControllerMarkMessagesAs](docs/sdks/subscribers/README.md#subscriberscontrollermarkmessagesas) - Mark a subscriber messages as seen, read, unseen or unread
+* [subscribersControllerMarkAllUnreadAsRead](docs/sdks/subscribers/README.md#subscriberscontrollermarkallunreadasread) - Marks all the subscriber messages as read, unread, seen or unseen. Optionally you can pass feed id (or array) to mark messages of a particular feed.
+* [subscribersControllerMarkActionAsSeen](docs/sdks/subscribers/README.md#subscriberscontrollermarkactionasseen) - Mark message action as seen
+* [subscribersControllerChatOauthCallback](docs/sdks/subscribers/README.md#subscriberscontrollerchatoauthcallback) - Handle providers oauth redirect
+* [subscribersControllerChatAccessOauth](docs/sdks/subscribers/README.md#subscriberscontrollerchataccessoauth) - Handle chat oauth
 
 ### [subscribers.preferences](docs/sdks/preferences/README.md)
 
-* [list](docs/sdks/preferences/README.md#list) - Get subscriber preferences
+* [subscribersControllerListSubscriberPreferences](docs/sdks/preferences/README.md#subscriberscontrollerlistsubscriberpreferences) - Get subscriber preferences
 * [retrieveByLevel](docs/sdks/preferences/README.md#retrievebylevel) - Get subscriber preferences by level
 
 ### [subscribers.notifications](docs/sdks/novunotifications/README.md)
 
-* [retrieve](docs/sdks/novunotifications/README.md#retrieve) - Get in-app notification feed for a particular subscriber
+* [subscribersControllerGetNotificationsFeed](docs/sdks/novunotifications/README.md#subscriberscontrollergetnotificationsfeed) - Get in-app notification feed for a particular subscriber
 * [unseenCount](docs/sdks/novunotifications/README.md#unseencount) - Get the unseen in-app notifications count for subscribers feed
 
 ### [feeds](docs/sdks/feeds/README.md)
 
-* [retrieve](docs/sdks/feeds/README.md#retrieve) - Get feeds
-* [create](docs/sdks/feeds/README.md#create) - Create feed
-* [delete](docs/sdks/feeds/README.md#delete) - Delete feed
+* [feedsControllerGetFeeds](docs/sdks/feeds/README.md#feedscontrollergetfeeds) - Get feeds
+* [feedsControllerCreateFeed](docs/sdks/feeds/README.md#feedscontrollercreatefeed) - Create feed
+* [feedsControllerDeleteFeedById](docs/sdks/feeds/README.md#feedscontrollerdeletefeedbyid) - Delete feed
 
 ### [layouts](docs/sdks/layouts/README.md)
 
-* [filterLayouts](docs/sdks/layouts/README.md#filterlayouts) - Filter layouts
-* [propertyDescriptor](docs/sdks/layouts/README.md#propertydescriptor) - Layout creation
-* [retrieve](docs/sdks/layouts/README.md#retrieve) - Get layout
-* [delete](docs/sdks/layouts/README.md#delete) - Delete layout
-* [updateLayout](docs/sdks/layouts/README.md#updatelayout) - Update a layout
-* [setDefaultLayout](docs/sdks/layouts/README.md#setdefaultlayout) - Set default layout
+* [layoutsControllerFilterLayouts](docs/sdks/layouts/README.md#layoutscontrollerfilterlayouts) - Filter layouts
+* [layoutsControllerPropertyDescriptor](docs/sdks/layouts/README.md#layoutscontrollerpropertydescriptor) - Layout creation
+* [layoutsControllerGetLayout](docs/sdks/layouts/README.md#layoutscontrollergetlayout) - Get layout
+* [layoutsControllerDeleteLayout](docs/sdks/layouts/README.md#layoutscontrollerdeletelayout) - Delete layout
+* [layoutsControllerUpdateLayout](docs/sdks/layouts/README.md#layoutscontrollerupdatelayout) - Update a layout
+* [layoutsControllerSetDefaultLayout](docs/sdks/layouts/README.md#layoutscontrollersetdefaultlayout) - Set default layout
 
 ### [messages](docs/sdks/messages/README.md)
 
-* [retrieve](docs/sdks/messages/README.md#retrieve) - Get messages
-* [delete](docs/sdks/messages/README.md#delete) - Delete message
+* [messagesControllerGetMessages](docs/sdks/messages/README.md#messagescontrollergetmessages) - Get messages
+* [messagesControllerDeleteMessage](docs/sdks/messages/README.md#messagescontrollerdeletemessage) - Delete message
 * [deleteByTransactionId](docs/sdks/messages/README.md#deletebytransactionid) - Delete messages by transactionId
 
 ### [topics](docs/sdks/topics/README.md)
 
-* [list](docs/sdks/topics/README.md#list) - Filter topics
-* [create](docs/sdks/topics/README.md#create) - Topic creation
-* [retrieve](docs/sdks/topics/README.md#retrieve) - Get topic
-* [delete](docs/sdks/topics/README.md#delete) - Delete topic
-* [renameTopic](docs/sdks/topics/README.md#renametopic) - Rename a topic
+* [topicsControllerListTopics](docs/sdks/topics/README.md#topicscontrollerlisttopics) - Filter topics
+* [topicsControllerCreateTopic](docs/sdks/topics/README.md#topicscontrollercreatetopic) - Topic creation
+* [topicsControllerGetTopic](docs/sdks/topics/README.md#topicscontrollergettopic) - Get topic
+* [topicsControllerDeleteTopic](docs/sdks/topics/README.md#topicscontrollerdeletetopic) - Delete topic
+* [topicsControllerRenameTopic](docs/sdks/topics/README.md#topicscontrollerrenametopic) - Rename a topic
 
 ### [topics.subscribers](docs/sdks/novusubscribers/README.md)
 
-* [addSubscribers](docs/sdks/novusubscribers/README.md#addsubscribers) - Subscribers addition
-* [retrieve](docs/sdks/novusubscribers/README.md#retrieve) - Check topic subscriber
-* [removeSubscribers](docs/sdks/novusubscribers/README.md#removesubscribers) - Subscribers removal
+* [topicsControllerAddSubscribers](docs/sdks/novusubscribers/README.md#topicscontrolleraddsubscribers) - Subscribers addition
+* [topicsControllerGetTopicSubscriber](docs/sdks/novusubscribers/README.md#topicscontrollergettopicsubscriber) - Check topic subscriber
+* [topicsControllerRemoveSubscribers](docs/sdks/novusubscribers/README.md#topicscontrollerremovesubscribers) - Subscribers removal
 
 ### [tenants](docs/sdks/tenants/README.md)
 
-* [list](docs/sdks/tenants/README.md#list) - Get tenants
-* [create](docs/sdks/tenants/README.md#create) - Create tenant
-* [retrieve](docs/sdks/tenants/README.md#retrieve) - Get tenant
-* [removeTenant](docs/sdks/tenants/README.md#removetenant) - Delete tenant
-* [updateTenant](docs/sdks/tenants/README.md#updatetenant) - Update tenant
+* [tenantControllerListTenants](docs/sdks/tenants/README.md#tenantcontrollerlisttenants) - Get tenants
+* [tenantControllerCreateTenant](docs/sdks/tenants/README.md#tenantcontrollercreatetenant) - Create tenant
+* [tenantControllerGetTenantById](docs/sdks/tenants/README.md#tenantcontrollergettenantbyid) - Get tenant
+* [tenantControllerRemoveTenant](docs/sdks/tenants/README.md#tenantcontrollerremovetenant) - Delete tenant
+* [tenantControllerUpdateTenant](docs/sdks/tenants/README.md#tenantcontrollerupdatetenant) - Update tenant
 <!-- End Available Resources and Operations [operations] -->
 
 <!-- Start Pagination [pagination] -->
@@ -252,16 +249,12 @@ Here's an example of one such pagination call:
 ```typescript
 import { Novu } from "novu-typescript";
 
-const novu = new Novu();
+const novu = new Novu({
+    apiKey: "<YOUR_API_KEY_HERE>",
+});
 
 async function run() {
-    const result = await novu.subscribers.list(
-        {
-            bearer: "<YOUR_BEARER_TOKEN_HERE>",
-        },
-        7685.78,
-        10
-    );
+    const result = await novu.subscribers.subscribersControllerListSubscribers(7032.41, 10);
 
     for await (const page of result) {
         // handle page
@@ -289,21 +282,18 @@ Validation errors can also occur when either method arguments or data returned f
 import { Novu } from "novu-typescript";
 import * as errors from "novu-typescript/models/errors";
 
-const novu = new Novu();
+const novu = new Novu({
+    apiKey: "<YOUR_API_KEY_HERE>",
+});
 
 async function run() {
     let result;
     try {
-        result = await novu.create(
-            {
-                name: "<value>",
-                notificationGroupId: "<value>",
-                steps: [{}],
-            },
-            {
-                bearer: "<YOUR_BEARER_TOKEN_HERE>",
-            }
-        );
+        result = await novu.workflowControllerCreate({
+            name: "<value>",
+            notificationGroupId: "<value>",
+            steps: [{}],
+        });
     } catch (err) {
         switch (true) {
             case err instanceof errors.SDKValidationError: {
@@ -344,19 +334,15 @@ import { Novu } from "novu-typescript";
 
 const novu = new Novu({
     serverIdx: 0,
+    apiKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
-    const result = await novu.create(
-        {
-            name: "<value>",
-            notificationGroupId: "<value>",
-            steps: [{}],
-        },
-        {
-            bearer: "<YOUR_BEARER_TOKEN_HERE>",
-        }
-    );
+    const result = await novu.workflowControllerCreate({
+        name: "<value>",
+        notificationGroupId: "<value>",
+        steps: [{}],
+    });
 
     // Handle the result
     console.log(result);
@@ -376,19 +362,15 @@ import { Novu } from "novu-typescript";
 
 const novu = new Novu({
     serverURL: "http://127.0.0.1:3000",
+    apiKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
-    const result = await novu.create(
-        {
-            name: "<value>",
-            notificationGroupId: "<value>",
-            steps: [{}],
-        },
-        {
-            bearer: "<YOUR_BEARER_TOKEN_HERE>",
-        }
-    );
+    const result = await novu.workflowControllerCreate({
+        name: "<value>",
+        notificationGroupId: "<value>",
+        steps: [{}],
+    });
 
     // Handle the result
     console.log(result);
@@ -455,32 +437,24 @@ const sdk = new Novu({ httpClient });
 
 This SDK supports the following security scheme globally:
 
-| Name        | Type        | Scheme      |
-| ----------- | ----------- | ----------- |
-| `bearer`    | http        | HTTP Bearer |
+| Name     | Type     | Scheme   |
+| -------- | -------- | -------- |
+| `apiKey` | apiKey   | API key  |
 
-To authenticate with the API the `bearer` parameter must be set when initializing the SDK client instance. For example:
-
-
-### Per-Operation Security Schemes
-
-Some operations in this SDK require the security scheme to be specified at the request level. For example:
+To authenticate with the API the `apiKey` parameter must be set when initializing the SDK client instance. For example:
 ```typescript
 import { Novu } from "novu-typescript";
 
-const novu = new Novu();
+const novu = new Novu({
+    apiKey: "<YOUR_API_KEY_HERE>",
+});
 
 async function run() {
-    const result = await novu.create(
-        {
-            name: "<value>",
-            notificationGroupId: "<value>",
-            steps: [{}],
-        },
-        {
-            bearer: "<YOUR_BEARER_TOKEN_HERE>",
-        }
-    );
+    const result = await novu.workflowControllerCreate({
+        name: "<value>",
+        notificationGroupId: "<value>",
+        steps: [{}],
+    });
 
     // Handle the result
     console.log(result);

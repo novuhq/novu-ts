@@ -3,11 +3,11 @@
 
 ### Available Operations
 
-* [addSubscribers](#addsubscribers) - Subscribers addition
-* [retrieve](#retrieve) - Check topic subscriber
-* [removeSubscribers](#removesubscribers) - Subscribers removal
+* [topicsControllerAddSubscribers](#topicscontrolleraddsubscribers) - Subscribers addition
+* [topicsControllerGetTopicSubscriber](#topicscontrollergettopicsubscriber) - Check topic subscriber
+* [topicsControllerRemoveSubscribers](#topicscontrollerremovesubscribers) - Subscribers removal
 
-## addSubscribers
+## topicsControllerAddSubscribers
 
 Add subscribers to a topic by key
 
@@ -16,12 +16,12 @@ Add subscribers to a topic by key
 ```typescript
 import { Novu } from "novu-typescript";
 
-const novu = new Novu();
+const novu = new Novu({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
 
 async function run() {
-  await novu.topics.subscribers.addSubscribers({
-    bearer: "<YOUR_BEARER_TOKEN_HERE>",
-  }, "<value>", {
+  await novu.topics.subscribers.topicsControllerAddSubscribers("<value>", {
     subscribers: [
       "<value>",
     ],
@@ -37,7 +37,6 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `security`                                                                                                                                                                     | [operations.AddSubscribersSecurity](../../models/operations/addsubscriberssecurity.md)                                                                                         | :heavy_check_mark:                                                                                                                                                             | The security requirements to use for the request.                                                                                                                              |
 | `topicKey`                                                                                                                                                                     | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
 | `addSubscribersRequestDto`                                                                                                                                                     | [components.AddSubscribersRequestDto](../../models/components/addsubscribersrequestdto.md)                                                                                     | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
@@ -53,7 +52,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
 
-## retrieve
+## topicsControllerGetTopicSubscriber
 
 Check if a subscriber belongs to a certain topic
 
@@ -62,12 +61,12 @@ Check if a subscriber belongs to a certain topic
 ```typescript
 import { Novu } from "novu-typescript";
 
-const novu = new Novu();
+const novu = new Novu({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
 
 async function run() {
-  const result = await novu.topics.subscribers.retrieve({
-    bearer: "<YOUR_BEARER_TOKEN_HERE>",
-  }, "<value>", "<value>");
+  const result = await novu.topics.subscribers.topicsControllerGetTopicSubscriber("<value>", "<value>");
 
   // Handle the result
   console.log(result)
@@ -80,7 +79,6 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `security`                                                                                                                                                                     | [operations.GetTopicSubscriberSecurity](../../models/operations/gettopicsubscribersecurity.md)                                                                                 | :heavy_check_mark:                                                                                                                                                             | The security requirements to use for the request.                                                                                                                              |
 | `topicKey`                                                                                                                                                                     | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
 | `externalSubscriberId`                                                                                                                                                         | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
@@ -96,7 +94,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
 
-## removeSubscribers
+## topicsControllerRemoveSubscribers
 
 Remove subscribers from a topic
 
@@ -105,12 +103,12 @@ Remove subscribers from a topic
 ```typescript
 import { Novu } from "novu-typescript";
 
-const novu = new Novu();
+const novu = new Novu({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
 
 async function run() {
-  await novu.topics.subscribers.removeSubscribers({
-    bearer: "<YOUR_BEARER_TOKEN_HERE>",
-  }, "<value>", {
+  await novu.topics.subscribers.topicsControllerRemoveSubscribers("<value>", {
     subscribers: [
       "<value>",
     ],
@@ -126,7 +124,6 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `security`                                                                                                                                                                     | [operations.RemoveSubscribersSecurity](../../models/operations/removesubscriberssecurity.md)                                                                                   | :heavy_check_mark:                                                                                                                                                             | The security requirements to use for the request.                                                                                                                              |
 | `topicKey`                                                                                                                                                                     | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
 | `removeSubscribersRequestDto`                                                                                                                                                  | [components.RemoveSubscribersRequestDto](../../models/components/removesubscribersrequestdto.md)                                                                               | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |

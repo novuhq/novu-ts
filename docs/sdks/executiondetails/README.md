@@ -8,9 +8,9 @@ Execution details are used to track the execution of a workflow. They provided d
 <https://docs.novu.co/activity-feed>
 ### Available Operations
 
-* [retrieve](#retrieve) - Get execution details
+* [executionDetailsControllerGetExecutionDetailsForNotification](#executiondetailscontrollergetexecutiondetailsfornotification) - Get execution details
 
-## retrieve
+## executionDetailsControllerGetExecutionDetailsForNotification
 
 Get execution details
 
@@ -19,12 +19,12 @@ Get execution details
 ```typescript
 import { Novu } from "novu-typescript";
 
-const novu = new Novu();
+const novu = new Novu({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
 
 async function run() {
-  const result = await novu.executionDetails.retrieve({
-    bearer: "<YOUR_BEARER_TOKEN_HERE>",
-  }, "<value>", "<value>");
+  const result = await novu.executionDetails.executionDetailsControllerGetExecutionDetailsForNotification("<value>", "<value>");
 
   // Handle the result
   console.log(result)
@@ -37,7 +37,6 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `security`                                                                                                                                                                     | [operations.GetExecutionDetailsForNotificationSecurity](../../models/operations/getexecutiondetailsfornotificationsecurity.md)                                                 | :heavy_check_mark:                                                                                                                                                             | The security requirements to use for the request.                                                                                                                              |
 | `notificationId`                                                                                                                                                               | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
 | `subscriberId`                                                                                                                                                                 | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |

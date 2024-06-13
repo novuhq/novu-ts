@@ -8,25 +8,25 @@ A subscriber in Novu represents someone who should receive a message. A subscrib
 <https://docs.novu.co/subscribers/subscribers>
 ### Available Operations
 
-* [list](#list) - Get subscribers
-* [create](#create) - Create subscriber
-* [retrieve](#retrieve) - Get subscriber
-* [updateSubscriber](#updatesubscriber) - Update subscriber
-* [removeSubscriber](#removesubscriber) - Delete subscriber
-* [bulkCreateSubscribers](#bulkcreatesubscribers) - Bulk create subscribers
-* [updateSubscriberChannel](#updatesubscriberchannel) - Update subscriber credentials
-* [modifySubscriberChannel](#modifysubscriberchannel) - Modify subscriber credentials
-* [delete](#delete) - Delete subscriber credentials by providerId
-* [updateSubscriberOnlineFlag](#updatesubscriberonlineflag) - Update subscriber online status
-* [updateSubscriberGlobalPreferences](#updatesubscriberglobalpreferences) - Update subscriber global preferences
-* [updateSubscriberPreference](#updatesubscriberpreference) - Update subscriber preference
-* [markMessagesAs](#markmessagesas) - Mark a subscriber messages as seen, read, unseen or unread
-* [markAllUnreadAsRead](#markallunreadasread) - Marks all the subscriber messages as read, unread, seen or unseen. Optionally you can pass feed id (or array) to mark messages of a particular feed.
-* [markActionAsSeen](#markactionasseen) - Mark message action as seen
-* [chatOauthCallback](#chatoauthcallback) - Handle providers oauth redirect
-* [chatAccessOauth](#chataccessoauth) - Handle chat oauth
+* [subscribersControllerListSubscribers](#subscriberscontrollerlistsubscribers) - Get subscribers
+* [subscribersControllerCreateSubscriber](#subscriberscontrollercreatesubscriber) - Create subscriber
+* [subscribersControllerGetSubscriber](#subscriberscontrollergetsubscriber) - Get subscriber
+* [subscribersControllerUpdateSubscriber](#subscriberscontrollerupdatesubscriber) - Update subscriber
+* [subscribersControllerRemoveSubscriber](#subscriberscontrollerremovesubscriber) - Delete subscriber
+* [subscribersControllerBulkCreateSubscribers](#subscriberscontrollerbulkcreatesubscribers) - Bulk create subscribers
+* [subscribersControllerUpdateSubscriberChannel](#subscriberscontrollerupdatesubscriberchannel) - Update subscriber credentials
+* [subscribersControllerModifySubscriberChannel](#subscriberscontrollermodifysubscriberchannel) - Modify subscriber credentials
+* [subscribersControllerDeleteSubscriberCredentials](#subscriberscontrollerdeletesubscribercredentials) - Delete subscriber credentials by providerId
+* [subscribersControllerUpdateSubscriberOnlineFlag](#subscriberscontrollerupdatesubscriberonlineflag) - Update subscriber online status
+* [subscribersControllerUpdateSubscriberGlobalPreferences](#subscriberscontrollerupdatesubscriberglobalpreferences) - Update subscriber global preferences
+* [subscribersControllerUpdateSubscriberPreference](#subscriberscontrollerupdatesubscriberpreference) - Update subscriber preference
+* [subscribersControllerMarkMessagesAs](#subscriberscontrollermarkmessagesas) - Mark a subscriber messages as seen, read, unseen or unread
+* [subscribersControllerMarkAllUnreadAsRead](#subscriberscontrollermarkallunreadasread) - Marks all the subscriber messages as read, unread, seen or unseen. Optionally you can pass feed id (or array) to mark messages of a particular feed.
+* [subscribersControllerMarkActionAsSeen](#subscriberscontrollermarkactionasseen) - Mark message action as seen
+* [subscribersControllerChatOauthCallback](#subscriberscontrollerchatoauthcallback) - Handle providers oauth redirect
+* [subscribersControllerChatAccessOauth](#subscriberscontrollerchataccessoauth) - Handle chat oauth
 
-## list
+## subscribersControllerListSubscribers
 
 Returns a list of subscribers, could paginated using the `page` and `limit` query parameter
 
@@ -35,12 +35,12 @@ Returns a list of subscribers, could paginated using the `page` and `limit` quer
 ```typescript
 import { Novu } from "novu-typescript";
 
-const novu = new Novu();
+const novu = new Novu({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
 
 async function run() {
-  const result = await novu.subscribers.list({
-    bearer: "<YOUR_BEARER_TOKEN_HERE>",
-  }, 7685.78, 10);
+  const result = await novu.subscribers.subscribersControllerListSubscribers(7032.41, 10);
 
   for await (const page of result) {
     // handle page
@@ -54,7 +54,6 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `security`                                                                                                                                                                     | [operations.ListSubscribersSecurity](../../models/operations/listsubscriberssecurity.md)                                                                                       | :heavy_check_mark:                                                                                                                                                             | The security requirements to use for the request.                                                                                                                              |
 | `page`                                                                                                                                                                         | *number*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | N/A                                                                                                                                                                            |
 | `limit`                                                                                                                                                                        | *number*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | N/A                                                                                                                                                                            |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
@@ -63,14 +62,14 @@ run();
 
 ### Response
 
-**Promise\<[operations.ListSubscribersResponse](../../models/operations/listsubscribersresponse.md)\>**
+**Promise\<[operations.SubscribersControllerListSubscribersResponse](../../models/operations/subscriberscontrollerlistsubscribersresponse.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
 
-## create
+## subscribersControllerCreateSubscriber
 
 Creates a subscriber entity, in the Novu platform. The subscriber will be later used to receive notifications, and access notification feeds. Communication credentials such as email, phone number, and 3 rd party credentials i.e slack tokens could be later associated to this entity.
 
@@ -79,13 +78,13 @@ Creates a subscriber entity, in the Novu platform. The subscriber will be later 
 ```typescript
 import { Novu } from "novu-typescript";
 
-const novu = new Novu();
+const novu = new Novu({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
 
 async function run() {
-  const result = await novu.subscribers.create({
+  const result = await novu.subscribers.subscribersControllerCreateSubscriber({
     subscriberId: "<value>",
-  }, {
-    bearer: "<YOUR_BEARER_TOKEN_HERE>",
   });
 
   // Handle the result
@@ -100,7 +99,6 @@ run();
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `request`                                                                                                                                                                      | [components.CreateSubscriberRequestDto](../../models/components/createsubscriberrequestdto.md)                                                                                 | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
-| `security`                                                                                                                                                                     | [operations.CreateSubscriberSecurity](../../models/operations/createsubscribersecurity.md)                                                                                     | :heavy_check_mark:                                                                                                                                                             | The security requirements to use for the request.                                                                                                                              |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 
@@ -114,7 +112,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
 
-## retrieve
+## subscribersControllerGetSubscriber
 
 Get subscriber by your internal id used to identify the subscriber
 
@@ -123,12 +121,12 @@ Get subscriber by your internal id used to identify the subscriber
 ```typescript
 import { Novu } from "novu-typescript";
 
-const novu = new Novu();
+const novu = new Novu({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
 
 async function run() {
-  const result = await novu.subscribers.retrieve({
-    bearer: "<YOUR_BEARER_TOKEN_HERE>",
-  }, "<value>");
+  const result = await novu.subscribers.subscribersControllerGetSubscriber("<value>");
 
   // Handle the result
   console.log(result)
@@ -141,7 +139,6 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `security`                                                                                                                                                                     | [operations.GetSubscriberSecurity](../../models/operations/getsubscribersecurity.md)                                                                                           | :heavy_check_mark:                                                                                                                                                             | The security requirements to use for the request.                                                                                                                              |
 | `subscriberId`                                                                                                                                                                 | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
@@ -156,7 +153,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
 
-## updateSubscriber
+## subscribersControllerUpdateSubscriber
 
 Used to update the subscriber entity with new information
 
@@ -165,12 +162,12 @@ Used to update the subscriber entity with new information
 ```typescript
 import { Novu } from "novu-typescript";
 
-const novu = new Novu();
+const novu = new Novu({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
 
 async function run() {
-  const result = await novu.subscribers.updateSubscriber({
-    bearer: "<YOUR_BEARER_TOKEN_HERE>",
-  }, "<value>", {});
+  const result = await novu.subscribers.subscribersControllerUpdateSubscriber("<value>", {});
 
   // Handle the result
   console.log(result)
@@ -183,7 +180,6 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `security`                                                                                                                                                                     | [operations.UpdateSubscriberSecurity](../../models/operations/updatesubscribersecurity.md)                                                                                     | :heavy_check_mark:                                                                                                                                                             | The security requirements to use for the request.                                                                                                                              |
 | `subscriberId`                                                                                                                                                                 | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
 | `updateSubscriberRequestDto`                                                                                                                                                   | [components.UpdateSubscriberRequestDto](../../models/components/updatesubscriberrequestdto.md)                                                                                 | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
@@ -199,7 +195,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
 
-## removeSubscriber
+## subscribersControllerRemoveSubscriber
 
 Deletes a subscriber entity from the Novu platform
 
@@ -208,12 +204,12 @@ Deletes a subscriber entity from the Novu platform
 ```typescript
 import { Novu } from "novu-typescript";
 
-const novu = new Novu();
+const novu = new Novu({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
 
 async function run() {
-  const result = await novu.subscribers.removeSubscriber({
-    bearer: "<YOUR_BEARER_TOKEN_HERE>",
-  }, "<value>");
+  const result = await novu.subscribers.subscribersControllerRemoveSubscriber("<value>");
 
   // Handle the result
   console.log(result)
@@ -226,7 +222,6 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `security`                                                                                                                                                                     | [operations.RemoveSubscriberSecurity](../../models/operations/removesubscribersecurity.md)                                                                                     | :heavy_check_mark:                                                                                                                                                             | The security requirements to use for the request.                                                                                                                              |
 | `subscriberId`                                                                                                                                                                 | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
@@ -241,7 +236,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
 
-## bulkCreateSubscribers
+## subscribersControllerBulkCreateSubscribers
 
 
       Using this endpoint you can create multiple subscribers at once, to avoid multiple calls to the API.
@@ -253,17 +248,17 @@ run();
 ```typescript
 import { Novu } from "novu-typescript";
 
-const novu = new Novu();
+const novu = new Novu({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
 
 async function run() {
-  await novu.subscribers.bulkCreateSubscribers({
+  await novu.subscribers.subscribersControllerBulkCreateSubscribers({
     subscribers: [
       {
         subscriberId: "<value>",
       },
     ],
-  }, {
-    bearer: "<YOUR_BEARER_TOKEN_HERE>",
   });
 
   
@@ -277,7 +272,6 @@ run();
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `request`                                                                                                                                                                      | [components.BulkSubscriberCreateDto](../../models/components/bulksubscribercreatedto.md)                                                                                       | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
-| `security`                                                                                                                                                                     | [operations.BulkCreateSubscribersSecurity](../../models/operations/bulkcreatesubscriberssecurity.md)                                                                           | :heavy_check_mark:                                                                                                                                                             | The security requirements to use for the request.                                                                                                                              |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 
@@ -291,7 +285,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
 
-## updateSubscriberChannel
+## subscribersControllerUpdateSubscriberChannel
 
 Subscriber credentials associated to the delivery methods such as slack and push tokens.
 
@@ -301,13 +295,13 @@ Subscriber credentials associated to the delivery methods such as slack and push
 import { Novu } from "novu-typescript";
 import { UpdateSubscriberChannelRequestDtoProviderId } from "novu-typescript/models/components";
 
-const novu = new Novu();
+const novu = new Novu({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
 
 async function run() {
-  const result = await novu.subscribers.updateSubscriberChannel({
-    bearer: "<YOUR_BEARER_TOKEN_HERE>",
-  }, "<value>", {
-    providerId: UpdateSubscriberChannelRequestDtoProviderId.Expo,
+  const result = await novu.subscribers.subscribersControllerUpdateSubscriberChannel("<value>", {
+    providerId: UpdateSubscriberChannelRequestDtoProviderId.WhatsappBusiness,
     credentials: {
       webhookUrl: "<value>",
     },
@@ -324,7 +318,6 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `security`                                                                                                                                                                     | [operations.UpdateSubscriberChannelSecurity](../../models/operations/updatesubscriberchannelsecurity.md)                                                                       | :heavy_check_mark:                                                                                                                                                             | The security requirements to use for the request.                                                                                                                              |
 | `subscriberId`                                                                                                                                                                 | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
 | `updateSubscriberChannelRequestDto`                                                                                                                                            | [components.UpdateSubscriberChannelRequestDto](../../models/components/updatesubscriberchannelrequestdto.md)                                                                   | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
@@ -340,7 +333,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
 
-## modifySubscriberChannel
+## subscribersControllerModifySubscriberChannel
 
 Subscriber credentials associated to the delivery methods such as slack and push tokens.
     This endpoint appends provided credentials and deviceTokens to the existing ones.
@@ -351,13 +344,13 @@ Subscriber credentials associated to the delivery methods such as slack and push
 import { Novu } from "novu-typescript";
 import { UpdateSubscriberChannelRequestDtoProviderId } from "novu-typescript/models/components";
 
-const novu = new Novu();
+const novu = new Novu({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
 
 async function run() {
-  const result = await novu.subscribers.modifySubscriberChannel({
-    bearer: "<YOUR_BEARER_TOKEN_HERE>",
-  }, "<value>", {
-    providerId: UpdateSubscriberChannelRequestDtoProviderId.Ryver,
+  const result = await novu.subscribers.subscribersControllerModifySubscriberChannel("<value>", {
+    providerId: UpdateSubscriberChannelRequestDtoProviderId.Discord,
     credentials: {
       webhookUrl: "<value>",
     },
@@ -374,7 +367,6 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `security`                                                                                                                                                                     | [operations.ModifySubscriberChannelSecurity](../../models/operations/modifysubscriberchannelsecurity.md)                                                                       | :heavy_check_mark:                                                                                                                                                             | The security requirements to use for the request.                                                                                                                              |
 | `subscriberId`                                                                                                                                                                 | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
 | `updateSubscriberChannelRequestDto`                                                                                                                                            | [components.UpdateSubscriberChannelRequestDto](../../models/components/updatesubscriberchannelrequestdto.md)                                                                   | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
@@ -390,7 +382,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
 
-## delete
+## subscribersControllerDeleteSubscriberCredentials
 
 Delete subscriber credentials such as slack and expo tokens.
 
@@ -399,12 +391,12 @@ Delete subscriber credentials such as slack and expo tokens.
 ```typescript
 import { Novu } from "novu-typescript";
 
-const novu = new Novu();
+const novu = new Novu({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
 
 async function run() {
-  await novu.subscribers.delete({
-    bearer: "<YOUR_BEARER_TOKEN_HERE>",
-  }, "<value>", "<value>");
+  await novu.subscribers.subscribersControllerDeleteSubscriberCredentials("<value>", "<value>");
 
   
 }
@@ -416,7 +408,6 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `security`                                                                                                                                                                     | [operations.DeleteSubscriberCredentialsSecurity](../../models/operations/deletesubscribercredentialssecurity.md)                                                               | :heavy_check_mark:                                                                                                                                                             | The security requirements to use for the request.                                                                                                                              |
 | `subscriberId`                                                                                                                                                                 | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
 | `providerId`                                                                                                                                                                   | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
@@ -432,7 +423,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
 
-## updateSubscriberOnlineFlag
+## subscribersControllerUpdateSubscriberOnlineFlag
 
 Used to update the subscriber isOnline flag.
 
@@ -441,12 +432,12 @@ Used to update the subscriber isOnline flag.
 ```typescript
 import { Novu } from "novu-typescript";
 
-const novu = new Novu();
+const novu = new Novu({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
 
 async function run() {
-  const result = await novu.subscribers.updateSubscriberOnlineFlag({
-    bearer: "<YOUR_BEARER_TOKEN_HERE>",
-  }, "<value>", {
+  const result = await novu.subscribers.subscribersControllerUpdateSubscriberOnlineFlag("<value>", {
     isOnline: false,
   });
 
@@ -461,7 +452,6 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `security`                                                                                                                                                                     | [operations.UpdateSubscriberOnlineFlagSecurity](../../models/operations/updatesubscriberonlineflagsecurity.md)                                                                 | :heavy_check_mark:                                                                                                                                                             | The security requirements to use for the request.                                                                                                                              |
 | `subscriberId`                                                                                                                                                                 | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
 | `updateSubscriberOnlineFlagRequestDto`                                                                                                                                         | [components.UpdateSubscriberOnlineFlagRequestDto](../../models/components/updatesubscriberonlineflagrequestdto.md)                                                             | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
@@ -477,7 +467,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
 
-## updateSubscriberGlobalPreferences
+## subscribersControllerUpdateSubscriberGlobalPreferences
 
 Update subscriber global preferences
 
@@ -486,12 +476,12 @@ Update subscriber global preferences
 ```typescript
 import { Novu } from "novu-typescript";
 
-const novu = new Novu();
+const novu = new Novu({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
 
 async function run() {
-  const result = await novu.subscribers.updateSubscriberGlobalPreferences({
-    bearer: "<YOUR_BEARER_TOKEN_HERE>",
-  }, "<value>", {});
+  const result = await novu.subscribers.subscribersControllerUpdateSubscriberGlobalPreferences("<value>", {});
 
   // Handle the result
   console.log(result)
@@ -504,7 +494,6 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `security`                                                                                                                                                                     | [operations.UpdateSubscriberGlobalPreferencesSecurity](../../models/operations/updatesubscriberglobalpreferencessecurity.md)                                                   | :heavy_check_mark:                                                                                                                                                             | The security requirements to use for the request.                                                                                                                              |
 | `subscriberId`                                                                                                                                                                 | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
 | `updateSubscriberGlobalPreferencesRequestDto`                                                                                                                                  | [components.UpdateSubscriberGlobalPreferencesRequestDto](../../models/components/updatesubscriberglobalpreferencesrequestdto.md)                                               | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
@@ -520,7 +509,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
 
-## updateSubscriberPreference
+## subscribersControllerUpdateSubscriberPreference
 
 Update subscriber preference
 
@@ -529,15 +518,15 @@ Update subscriber preference
 ```typescript
 import { Novu } from "novu-typescript";
 
-const novu = new Novu();
+const novu = new Novu({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
 
 async function run() {
-  const result = await novu.subscribers.updateSubscriberPreference({
+  const result = await novu.subscribers.subscribersControllerUpdateSubscriberPreference({
     subscriberId: "<value>",
     parameter: "<value>",
     updateSubscriberPreferenceRequestDto: {},
-  }, {
-    bearer: "<YOUR_BEARER_TOKEN_HERE>",
   });
 
   // Handle the result
@@ -551,8 +540,7 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.UpdateSubscriberPreferenceRequest](../../models/operations/updatesubscriberpreferencerequest.md)                                                                   | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
-| `security`                                                                                                                                                                     | [operations.UpdateSubscriberPreferenceSecurity](../../models/operations/updatesubscriberpreferencesecurity.md)                                                                 | :heavy_check_mark:                                                                                                                                                             | The security requirements to use for the request.                                                                                                                              |
+| `request`                                                                                                                                                                      | [operations.SubscribersControllerUpdateSubscriberPreferenceRequest](../../models/operations/subscriberscontrollerupdatesubscriberpreferencerequest.md)                         | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 
@@ -566,7 +554,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
 
-## markMessagesAs
+## subscribersControllerMarkMessagesAs
 
 Mark a subscriber messages as seen, read, unseen or unread
 
@@ -576,14 +564,14 @@ Mark a subscriber messages as seen, read, unseen or unread
 import { Novu } from "novu-typescript";
 import { MarkAs } from "novu-typescript/models/components";
 
-const novu = new Novu();
+const novu = new Novu({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
 
 async function run() {
-  const result = await novu.subscribers.markMessagesAs({
-    bearer: "<YOUR_BEARER_TOKEN_HERE>",
-  }, "<value>", {
+  const result = await novu.subscribers.subscribersControllerMarkMessagesAs("<value>", {
   messageId: "<value>",
-    markAs: MarkAs.Unseen,
+    markAs: MarkAs.Read,
   });
 
   // Handle the result
@@ -597,7 +585,6 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `security`                                                                                                                                                                     | [operations.MarkMessagesAsSecurity](../../models/operations/markmessagesassecurity.md)                                                                                         | :heavy_check_mark:                                                                                                                                                             | The security requirements to use for the request.                                                                                                                              |
 | `subscriberId`                                                                                                                                                                 | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
 | `messageMarkAsRequestDto`                                                                                                                                                      | [components.MessageMarkAsRequestDto](../../models/components/messagemarkasrequestdto.md)                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
@@ -613,7 +600,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
 
-## markAllUnreadAsRead
+## subscribersControllerMarkAllUnreadAsRead
 
 Marks all the subscriber messages as read, unread, seen or unseen. Optionally you can pass feed id (or array) to mark messages of a particular feed.
 
@@ -623,12 +610,12 @@ Marks all the subscriber messages as read, unread, seen or unseen. Optionally yo
 import { Novu } from "novu-typescript";
 import { MarkAllMessageAsRequestDtoMarkAs } from "novu-typescript/models/components";
 
-const novu = new Novu();
+const novu = new Novu({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
 
 async function run() {
-  const result = await novu.subscribers.markAllUnreadAsRead({
-    bearer: "<YOUR_BEARER_TOKEN_HERE>",
-  }, "<value>", {
+  const result = await novu.subscribers.subscribersControllerMarkAllUnreadAsRead("<value>", {
     markAs: MarkAllMessageAsRequestDtoMarkAs.Seen,
   });
 
@@ -643,7 +630,6 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `security`                                                                                                                                                                     | [operations.MarkAllUnreadAsReadSecurity](../../models/operations/markallunreadasreadsecurity.md)                                                                               | :heavy_check_mark:                                                                                                                                                             | The security requirements to use for the request.                                                                                                                              |
 | `subscriberId`                                                                                                                                                                 | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
 | `markAllMessageAsRequestDto`                                                                                                                                                   | [components.MarkAllMessageAsRequestDto](../../models/components/markallmessageasrequestdto.md)                                                                                 | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
@@ -659,7 +645,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
 
-## markActionAsSeen
+## subscribersControllerMarkActionAsSeen
 
 Mark message action as seen
 
@@ -669,18 +655,18 @@ Mark message action as seen
 import { Novu } from "novu-typescript";
 import { MarkMessageActionAsSeenDtoStatus } from "novu-typescript/models/components";
 
-const novu = new Novu();
+const novu = new Novu({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
 
 async function run() {
-  const result = await novu.subscribers.markActionAsSeen({
+  const result = await novu.subscribers.subscribersControllerMarkActionAsSeen({
     messageId: "<value>",
     type: "<value>",
     subscriberId: "<value>",
     markMessageActionAsSeenDto: {
       status: MarkMessageActionAsSeenDtoStatus.Done,
     },
-  }, {
-    bearer: "<YOUR_BEARER_TOKEN_HERE>",
   });
 
   // Handle the result
@@ -694,8 +680,7 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.MarkActionAsSeenRequest](../../models/operations/markactionasseenrequest.md)                                                                                       | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
-| `security`                                                                                                                                                                     | [operations.MarkActionAsSeenSecurity](../../models/operations/markactionasseensecurity.md)                                                                                     | :heavy_check_mark:                                                                                                                                                             | The security requirements to use for the request.                                                                                                                              |
+| `request`                                                                                                                                                                      | [operations.SubscribersControllerMarkActionAsSeenRequest](../../models/operations/subscriberscontrollermarkactionasseenrequest.md)                                             | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 
@@ -709,7 +694,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
 
-## chatOauthCallback
+## subscribersControllerChatOauthCallback
 
 Handle providers oauth redirect
 
@@ -718,16 +703,18 @@ Handle providers oauth redirect
 ```typescript
 import { Novu } from "novu-typescript";
 
-const novu = new Novu();
+const novu = new Novu({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
 
 async function run() {
-  const result = await novu.subscribers.chatOauthCallback({
+  const result = await novu.subscribers.subscribersControllerChatOauthCallback({
     subscriberId: "<value>",
     providerId: "<value>",
     code: "<value>",
     hmacHash: "<value>",
     environmentId: "<value>",
-  }, "<YOUR_API_KEY_HERE>");
+  });
 
   // Handle the result
   console.log(result)
@@ -740,22 +727,21 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.ChatOauthCallbackRequest](../../models/operations/chatoauthcallbackrequest.md)                                                                                     | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
-| `security`                                                                                                                                                                     | [operations.ChatOauthCallbackSecurity](../../models/operations/chatoauthcallbacksecurity.md)                                                                                   | :heavy_check_mark:                                                                                                                                                             | The security requirements to use for the request.                                                                                                                              |
+| `request`                                                                                                                                                                      | [operations.SubscribersControllerChatOauthCallbackRequest](../../models/operations/subscriberscontrollerchatoauthcallbackrequest.md)                                           | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 
 
 ### Response
 
-**Promise\<[operations.ChatOauthCallbackResponseBody](../../models/operations/chatoauthcallbackresponsebody.md)\>**
+**Promise\<[operations.SubscribersControllerChatOauthCallbackResponseBody](../../models/operations/subscriberscontrollerchatoauthcallbackresponsebody.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
 
-## chatAccessOauth
+## subscribersControllerChatAccessOauth
 
 Handle chat oauth
 
@@ -764,15 +750,17 @@ Handle chat oauth
 ```typescript
 import { Novu } from "novu-typescript";
 
-const novu = new Novu();
+const novu = new Novu({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
 
 async function run() {
-  await novu.subscribers.chatAccessOauth({
+  await novu.subscribers.subscribersControllerChatAccessOauth({
     subscriberId: "<value>",
     providerId: "<value>",
     hmacHash: "<value>",
     environmentId: "<value>",
-  }, "<YOUR_API_KEY_HERE>");
+  });
 
   
 }
@@ -784,8 +772,7 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.ChatAccessOauthRequest](../../models/operations/chataccessoauthrequest.md)                                                                                         | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
-| `security`                                                                                                                                                                     | [operations.ChatAccessOauthSecurity](../../models/operations/chataccessoauthsecurity.md)                                                                                       | :heavy_check_mark:                                                                                                                                                             | The security requirements to use for the request.                                                                                                                              |
+| `request`                                                                                                                                                                      | [operations.SubscribersControllerChatAccessOauthRequest](../../models/operations/subscriberscontrollerchataccessoauthrequest.md)                                               | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 

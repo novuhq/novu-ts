@@ -12,7 +12,6 @@ import {
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
-import { SecurityInput } from "../lib/security";
 import * as components from "../models/components";
 import * as operations from "../models/operations";
 import * as z from "zod";
@@ -47,9 +46,8 @@ export class Changes extends ClientSDK {
     /**
      * Get changes
      */
-    async retrieve(
-        request: operations.GetChangesRequest,
-        security: operations.GetChangesSecurity,
+    async changesControllerGetChanges(
+        request: operations.ChangesControllerGetChangesRequest,
         options?: RequestOptions
     ): Promise<components.ChangesResponseDto> {
         const input$ = request;
@@ -59,7 +57,7 @@ export class Changes extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.GetChangesRequest$.outboundSchema.parse(value$),
+            (value$) => operations.ChangesControllerGetChangesRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -72,24 +70,20 @@ export class Changes extends ClientSDK {
             promoted: payload$.promoted,
         });
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
-        const context = { operationID: "getChanges", oAuth2Scopes: [], securitySource: security$ };
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "ChangesController_getChanges",
+            oAuth2Scopes: [],
+            securitySource: this.options$.apiKey,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(
@@ -118,10 +112,7 @@ export class Changes extends ClientSDK {
     /**
      * Get changes count
      */
-    async count(
-        security: operations.GetChangesCountSecurity,
-        options?: RequestOptions
-    ): Promise<components.DataNumberDto> {
+    async count(options?: RequestOptions): Promise<components.DataNumberDto> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
@@ -130,28 +121,20 @@ export class Changes extends ClientSDK {
 
         const query$ = "";
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
         const context = {
-            operationID: "getChangesCount",
+            operationID: "ChangesController_getChangesCount",
             oAuth2Scopes: [],
-            securitySource: security$,
+            securitySource: this.options$.apiKey,
         };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(
@@ -179,9 +162,8 @@ export class Changes extends ClientSDK {
     /**
      * Apply changes
      */
-    async bulkApplyDiff(
+    async changesControllerBulkApplyDiff(
         request: components.BulkApplyChangeDto,
-        security: operations.BulkApplyDiffSecurity,
         options?: RequestOptions
     ): Promise<Array<components.ChangeResponseDto>> {
         const input$ = request;
@@ -201,28 +183,20 @@ export class Changes extends ClientSDK {
 
         const query$ = "";
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
         const context = {
-            operationID: "bulkApplyDiff",
+            operationID: "ChangesController_bulkApplyDiff",
             oAuth2Scopes: [],
-            securitySource: security$,
+            securitySource: this.options$.apiKey,
         };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(
@@ -251,12 +225,11 @@ export class Changes extends ClientSDK {
     /**
      * Apply change
      */
-    async applyDiff(
-        security: operations.ApplyDiffSecurity,
+    async changesControllerApplyDiff(
         changeId: string,
         options?: RequestOptions
     ): Promise<Array<components.ChangeResponseDto>> {
-        const input$: operations.ApplyDiffRequest = {
+        const input$: operations.ChangesControllerApplyDiffRequest = {
             changeId: changeId,
         };
         const headers$ = new Headers();
@@ -265,7 +238,7 @@ export class Changes extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.ApplyDiffRequest$.outboundSchema.parse(value$),
+            (value$) => operations.ChangesControllerApplyDiffRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -280,24 +253,20 @@ export class Changes extends ClientSDK {
 
         const query$ = "";
 
-        const security$: SecurityInput[][] = [
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "http:bearer",
-                    value: security?.bearer,
-                },
-            ],
-            [
-                {
-                    fieldName: "Authorization",
-                    type: "apiKey:header",
-                    value: security?.apiKey,
-                },
-            ],
-        ];
-        const securitySettings$ = this.resolveSecurity(...security$);
-        const context = { operationID: "applyDiff", oAuth2Scopes: [], securitySource: security$ };
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "ChangesController_applyDiff",
+            oAuth2Scopes: [],
+            securitySource: this.options$.apiKey,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
         const request$ = this.createRequest$(
