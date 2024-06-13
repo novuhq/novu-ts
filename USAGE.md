@@ -7,11 +7,7 @@ const novu = new Novu({
 });
 
 async function run() {
-    const result = await novu.workflowControllerCreate({
-        name: "<value>",
-        notificationGroupId: "<value>",
-        steps: [{}],
-    });
+    const result = await novu.organizations.list();
 
     // Handle the result
     console.log(result);

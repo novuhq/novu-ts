@@ -55,7 +55,7 @@ export class Topics extends ClientSDK {
      * @remarks
      * Returns a list of topics that can be paginated using the `page` query parameter and filtered by the topic key with the `key` query parameter
      */
-    async topicsControllerListTopics(
+    async list(
         request: operations.TopicsControllerListTopicsRequest,
         options?: RequestOptions
     ): Promise<components.FilterTopicsResponseDto> {
@@ -124,7 +124,7 @@ export class Topics extends ClientSDK {
      * @remarks
      * Create a topic
      */
-    async topicsControllerCreateTopic(
+    async create(
         request: components.CreateTopicRequestDto,
         options?: RequestOptions
     ): Promise<components.CreateTopicResponseDto> {
@@ -190,7 +190,7 @@ export class Topics extends ClientSDK {
      * @remarks
      * Get a topic by its topic key
      */
-    async topicsControllerGetTopic(
+    async retrieve(
         topicKey: string,
         options?: RequestOptions
     ): Promise<components.GetTopicResponseDto> {
@@ -263,7 +263,7 @@ export class Topics extends ClientSDK {
      * @remarks
      * Delete a topic by its topic key if it has no subscribers
      */
-    async topicsControllerDeleteTopic(topicKey: string, options?: RequestOptions): Promise<void> {
+    async delete(topicKey: string, options?: RequestOptions): Promise<void> {
         const input$: operations.TopicsControllerDeleteTopicRequest = {
             topicKey: topicKey,
         };

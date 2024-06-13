@@ -3,9 +3,9 @@
 
 ### Available Operations
 
-* [workflowControllerGetWorkflowVariables](#workflowcontrollergetworkflowvariables) - Get available variables
+* [retrieve](#retrieve) - Get available variables
 
-## workflowControllerGetWorkflowVariables
+## retrieve
 
 Get the variables that can be used in the workflow
 
@@ -19,7 +19,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.workflows.variables.workflowControllerGetWorkflowVariables();
+  const result = await novu.workflows.variables.retrieve();
 
   // Handle the result
   console.log(result)

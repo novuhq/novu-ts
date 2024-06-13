@@ -3,10 +3,10 @@
 
 ### Available Operations
 
-* [notificationsControllerGetActivityStats](#notificationscontrollergetactivitystats) - Get notification statistics
+* [retrieve](#retrieve) - Get notification statistics
 * [graph](#graph) - Get notification graph statistics
 
-## notificationsControllerGetActivityStats
+## retrieve
 
 Get notification statistics
 
@@ -20,7 +20,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.notifications.stats.notificationsControllerGetActivityStats();
+  const result = await novu.notifications.stats.retrieve();
 
   // Handle the result
   console.log(result)

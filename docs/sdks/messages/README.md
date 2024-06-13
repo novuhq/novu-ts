@@ -8,11 +8,11 @@ A message in Novu represents a notification delivered to a recipient on a partic
 <https://docs.novu.co/workflows/messages>
 ### Available Operations
 
-* [messagesControllerGetMessages](#messagescontrollergetmessages) - Get messages
-* [messagesControllerDeleteMessage](#messagescontrollerdeletemessage) - Delete message
+* [retrieve](#retrieve) - Get messages
+* [delete](#delete) - Delete message
 * [deleteByTransactionId](#deletebytransactionid) - Delete messages by transactionId
 
-## messagesControllerGetMessages
+## retrieve
 
 Returns a list of messages, could paginate using the `page` query parameter
 
@@ -26,7 +26,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.messages.messagesControllerGetMessages({});
+  const result = await novu.messages.retrieve({});
 
   // Handle the result
   console.log(result)
@@ -53,7 +53,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
 
-## messagesControllerDeleteMessage
+## delete
 
 Deletes a message entity from the Novu platform
 
@@ -67,7 +67,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.messages.messagesControllerDeleteMessage("<value>");
+  const result = await novu.messages.delete("<value>");
 
   // Handle the result
   console.log(result)

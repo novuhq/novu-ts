@@ -175,7 +175,7 @@ export class Layouts extends ClientSDK {
      * @remarks
      * Get a layout by its ID
      */
-    async layoutsControllerGetLayout(
+    async retrieve(
         layoutId: string,
         options?: RequestOptions
     ): Promise<components.GetLayoutResponseDto> {
@@ -248,7 +248,7 @@ export class Layouts extends ClientSDK {
      * @remarks
      * Execute a soft delete of a layout given a certain ID.
      */
-    async layoutsControllerDeleteLayout(layoutId: string, options?: RequestOptions): Promise<void> {
+    async delete(layoutId: string, options?: RequestOptions): Promise<void> {
         const input$: operations.LayoutsControllerDeleteLayoutRequest = {
             layoutId: layoutId,
         };

@@ -39,9 +39,7 @@ export class ApiKeys extends ClientSDK {
     /**
      * Get api keys
      */
-    async environmentsControllerListOrganizationApiKeys(
-        options?: RequestOptions
-    ): Promise<Array<components.ApiKey>> {
+    async list(options?: RequestOptions): Promise<Array<components.ApiKey>> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");

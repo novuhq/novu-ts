@@ -42,9 +42,7 @@ export class Feeds extends ClientSDK {
     /**
      * Get feeds
      */
-    async feedsControllerGetFeeds(
-        options?: RequestOptions
-    ): Promise<Array<components.FeedResponseDto>> {
+    async retrieve(options?: RequestOptions): Promise<Array<components.FeedResponseDto>> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
@@ -94,7 +92,7 @@ export class Feeds extends ClientSDK {
     /**
      * Create feed
      */
-    async feedsControllerCreateFeed(
+    async create(
         request: components.CreateFeedRequestDto,
         options?: RequestOptions
     ): Promise<components.FeedResponseDto> {
@@ -157,7 +155,7 @@ export class Feeds extends ClientSDK {
     /**
      * Delete feed
      */
-    async feedsControllerDeleteFeedById(
+    async delete(
         feedId: string,
         options?: RequestOptions
     ): Promise<Array<components.FeedResponseDto>> {

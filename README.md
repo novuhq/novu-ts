@@ -51,11 +51,7 @@ const novu = new Novu({
 });
 
 async function run() {
-    const result = await novu.workflowControllerCreate({
-        name: "<value>",
-        notificationGroupId: "<value>",
-        steps: [{}],
-    });
+    const result = await novu.organizations.list();
 
     // Handle the result
     console.log(result);
@@ -69,21 +65,12 @@ run();
 <!-- Start Available Resources and Operations [operations] -->
 ## Available Resources and Operations
 
-### [Novu SDK](docs/sdks/novu/README.md)
-
-* [workflowControllerCreate](docs/sdks/novu/README.md#workflowcontrollercreate) - Create workflow
-* [workflowControllerGetWorkflowById](docs/sdks/novu/README.md#workflowcontrollergetworkflowbyid) - Get workflow
-* [workflowControllerChangeActiveStatus](docs/sdks/novu/README.md#workflowcontrollerchangeactivestatus) - Update workflow status
-
 ### [organizations](docs/sdks/organizations/README.md)
 
-* [organizationControllerListOrganizations](docs/sdks/organizations/README.md#organizationcontrollerlistorganizations) - Fetch all organizations
-* [organizationControllerCreateOrganization](docs/sdks/organizations/README.md#organizationcontrollercreateorganization) - Create an organization
+* [list](docs/sdks/organizations/README.md#list) - Fetch all organizations
+* [create](docs/sdks/organizations/README.md#create) - Create an organization
 * [organizationControllerRename](docs/sdks/organizations/README.md#organizationcontrollerrename) - Rename organization name
 * [organizationControllerSelf](docs/sdks/organizations/README.md#organizationcontrollerself) - Fetch current organization details
-* [organizationControllerRemove](docs/sdks/organizations/README.md#organizationcontrollerremove) - Remove a member from organization using memberId
-* [organizationControllerMe](docs/sdks/organizations/README.md#organizationcontrollerme) - Fetch all members of current organizations
-* [organizationControllerUpdateBrandingDetails](docs/sdks/organizations/README.md#organizationcontrollerupdatebrandingdetails) - Update organization branding details
 
 ### [organizations.members](docs/sdks/members/README.md)
 
@@ -96,27 +83,30 @@ run();
 
 ### [environments](docs/sdks/environments/README.md)
 
-* [environmentsControllerGetCurrentEnvironment](docs/sdks/environments/README.md#environmentscontrollergetcurrentenvironment) - Get current environment
-* [environmentsControllerListMyEnvironments](docs/sdks/environments/README.md#environmentscontrollerlistmyenvironments) - Get environments
+* [retrieve](docs/sdks/environments/README.md#retrieve) - Get current environment
+* [list](docs/sdks/environments/README.md#list) - Get environments
 * [environmentsControllerRegenerateOrganizationApiKeys](docs/sdks/environments/README.md#environmentscontrollerregenerateorganizationapikeys) - Regenerate api keys
 
 ### [environments.apiKeys](docs/sdks/apikeys/README.md)
 
-* [environmentsControllerListOrganizationApiKeys](docs/sdks/apikeys/README.md#environmentscontrollerlistorganizationapikeys) - Get api keys
+* [list](docs/sdks/apikeys/README.md#list) - Get api keys
 
 ### [executionDetails](docs/sdks/executiondetails/README.md)
 
-* [executionDetailsControllerGetExecutionDetailsForNotification](docs/sdks/executiondetails/README.md#executiondetailscontrollergetexecutiondetailsfornotification) - Get execution details
+* [retrieve](docs/sdks/executiondetails/README.md#retrieve) - Get execution details
 
 ### [workflows](docs/sdks/workflows/README.md)
 
-* [workflowControllerListWorkflows](docs/sdks/workflows/README.md#workflowcontrollerlistworkflows) - Get workflows
+* [list](docs/sdks/workflows/README.md#list) - Get workflows
+* [create](docs/sdks/workflows/README.md#create) - Create workflow
+* [retrieve](docs/sdks/workflows/README.md#retrieve) - Get workflow
 * [workflowControllerUpdateWorkflowById](docs/sdks/workflows/README.md#workflowcontrollerupdateworkflowbyid) - Update workflow
-* [workflowControllerDeleteWorkflowById](docs/sdks/workflows/README.md#workflowcontrollerdeleteworkflowbyid) - Delete workflow
+* [delete](docs/sdks/workflows/README.md#delete) - Delete workflow
+* [workflowControllerChangeActiveStatus](docs/sdks/workflows/README.md#workflowcontrollerchangeactivestatus) - Update workflow status
 
 ### [workflows.variables](docs/sdks/variables/README.md)
 
-* [workflowControllerGetWorkflowVariables](docs/sdks/variables/README.md#workflowcontrollergetworkflowvariables) - Get available variables
+* [retrieve](docs/sdks/variables/README.md#retrieve) - Get available variables
 
 ### [events](docs/sdks/events/README.md)
 
@@ -127,50 +117,50 @@ run();
 
 ### [notifications](docs/sdks/notifications/README.md)
 
-* [notificationsControllerListNotifications](docs/sdks/notifications/README.md#notificationscontrollerlistnotifications) - Get notifications
-* [notificationsControllerGetNotification](docs/sdks/notifications/README.md#notificationscontrollergetnotification) - Get notification
+* [list](docs/sdks/notifications/README.md#list) - Get notifications
+* [retrieve](docs/sdks/notifications/README.md#retrieve) - Get notification
 
 ### [notifications.stats](docs/sdks/stats/README.md)
 
-* [notificationsControllerGetActivityStats](docs/sdks/stats/README.md#notificationscontrollergetactivitystats) - Get notification statistics
+* [retrieve](docs/sdks/stats/README.md#retrieve) - Get notification statistics
 * [graph](docs/sdks/stats/README.md#graph) - Get notification graph statistics
 
 ### [workflowGroups](docs/sdks/workflowgroups/README.md)
 
-* [notificationGroupsControllerListNotificationGroups](docs/sdks/workflowgroups/README.md#notificationgroupscontrollerlistnotificationgroups) - Get workflow groups
-* [notificationGroupsControllerCreateNotificationGroup](docs/sdks/workflowgroups/README.md#notificationgroupscontrollercreatenotificationgroup) - Create workflow group
-* [notificationGroupsControllerGetNotificationGroup](docs/sdks/workflowgroups/README.md#notificationgroupscontrollergetnotificationgroup) - Get workflow group
-* [notificationGroupsControllerDeleteNotificationGroup](docs/sdks/workflowgroups/README.md#notificationgroupscontrollerdeletenotificationgroup) - Delete workflow group
+* [list](docs/sdks/workflowgroups/README.md#list) - Get workflow groups
+* [create](docs/sdks/workflowgroups/README.md#create) - Create workflow group
+* [retrieve](docs/sdks/workflowgroups/README.md#retrieve) - Get workflow group
+* [delete](docs/sdks/workflowgroups/README.md#delete) - Delete workflow group
 * [notificationGroupsControllerUpdateNotificationGroup](docs/sdks/workflowgroups/README.md#notificationgroupscontrollerupdatenotificationgroup) - Update workflow group
 
 ### [integrations](docs/sdks/integrations/README.md)
 
-* [integrationsControllerListIntegrations](docs/sdks/integrations/README.md#integrationscontrollerlistintegrations) - Get integrations
-* [integrationsControllerCreateIntegration](docs/sdks/integrations/README.md#integrationscontrollercreateintegration) - Create integration
+* [list](docs/sdks/integrations/README.md#list) - Get integrations
+* [create](docs/sdks/integrations/README.md#create) - Create integration
 * [listActive](docs/sdks/integrations/README.md#listactive) - Get active integrations
-* [integrationsControllerGetWebhookSupportStatus](docs/sdks/integrations/README.md#integrationscontrollergetwebhooksupportstatus) - Get webhook support status for provider
+* [retrieve](docs/sdks/integrations/README.md#retrieve) - Get webhook support status for provider
 * [integrationsControllerUpdateIntegrationById](docs/sdks/integrations/README.md#integrationscontrollerupdateintegrationbyid) - Update integration
 * [integrationsControllerRemoveIntegration](docs/sdks/integrations/README.md#integrationscontrollerremoveintegration) - Delete integration
 * [integrationsControllerSetIntegrationAsPrimary](docs/sdks/integrations/README.md#integrationscontrollersetintegrationasprimary) - Set integration as primary
 
 ### [changes](docs/sdks/changes/README.md)
 
-* [changesControllerGetChanges](docs/sdks/changes/README.md#changescontrollergetchanges) - Get changes
+* [retrieve](docs/sdks/changes/README.md#retrieve) - Get changes
 * [count](docs/sdks/changes/README.md#count) - Get changes count
 * [changesControllerBulkApplyDiff](docs/sdks/changes/README.md#changescontrollerbulkapplydiff) - Apply changes
 * [changesControllerApplyDiff](docs/sdks/changes/README.md#changescontrollerapplydiff) - Apply change
 
 ### [subscribers](docs/sdks/subscribers/README.md)
 
-* [subscribersControllerListSubscribers](docs/sdks/subscribers/README.md#subscriberscontrollerlistsubscribers) - Get subscribers
-* [subscribersControllerCreateSubscriber](docs/sdks/subscribers/README.md#subscriberscontrollercreatesubscriber) - Create subscriber
-* [subscribersControllerGetSubscriber](docs/sdks/subscribers/README.md#subscriberscontrollergetsubscriber) - Get subscriber
+* [list](docs/sdks/subscribers/README.md#list) - Get subscribers
+* [create](docs/sdks/subscribers/README.md#create) - Create subscriber
+* [retrieve](docs/sdks/subscribers/README.md#retrieve) - Get subscriber
 * [subscribersControllerUpdateSubscriber](docs/sdks/subscribers/README.md#subscriberscontrollerupdatesubscriber) - Update subscriber
 * [subscribersControllerRemoveSubscriber](docs/sdks/subscribers/README.md#subscriberscontrollerremovesubscriber) - Delete subscriber
 * [subscribersControllerBulkCreateSubscribers](docs/sdks/subscribers/README.md#subscriberscontrollerbulkcreatesubscribers) - Bulk create subscribers
 * [subscribersControllerUpdateSubscriberChannel](docs/sdks/subscribers/README.md#subscriberscontrollerupdatesubscriberchannel) - Update subscriber credentials
 * [subscribersControllerModifySubscriberChannel](docs/sdks/subscribers/README.md#subscriberscontrollermodifysubscriberchannel) - Modify subscriber credentials
-* [subscribersControllerDeleteSubscriberCredentials](docs/sdks/subscribers/README.md#subscriberscontrollerdeletesubscribercredentials) - Delete subscriber credentials by providerId
+* [delete](docs/sdks/subscribers/README.md#delete) - Delete subscriber credentials by providerId
 * [subscribersControllerUpdateSubscriberOnlineFlag](docs/sdks/subscribers/README.md#subscriberscontrollerupdatesubscriberonlineflag) - Update subscriber online status
 * [subscribersControllerUpdateSubscriberGlobalPreferences](docs/sdks/subscribers/README.md#subscriberscontrollerupdatesubscriberglobalpreferences) - Update subscriber global preferences
 * [subscribersControllerUpdateSubscriberPreference](docs/sdks/subscribers/README.md#subscriberscontrollerupdatesubscriberpreference) - Update subscriber preference
@@ -182,54 +172,54 @@ run();
 
 ### [subscribers.preferences](docs/sdks/preferences/README.md)
 
-* [subscribersControllerListSubscriberPreferences](docs/sdks/preferences/README.md#subscriberscontrollerlistsubscriberpreferences) - Get subscriber preferences
+* [list](docs/sdks/preferences/README.md#list) - Get subscriber preferences
 * [retrieveByLevel](docs/sdks/preferences/README.md#retrievebylevel) - Get subscriber preferences by level
 
 ### [subscribers.notifications](docs/sdks/novunotifications/README.md)
 
-* [subscribersControllerGetNotificationsFeed](docs/sdks/novunotifications/README.md#subscriberscontrollergetnotificationsfeed) - Get in-app notification feed for a particular subscriber
+* [retrieve](docs/sdks/novunotifications/README.md#retrieve) - Get in-app notification feed for a particular subscriber
 * [unseenCount](docs/sdks/novunotifications/README.md#unseencount) - Get the unseen in-app notifications count for subscribers feed
 
 ### [feeds](docs/sdks/feeds/README.md)
 
-* [feedsControllerGetFeeds](docs/sdks/feeds/README.md#feedscontrollergetfeeds) - Get feeds
-* [feedsControllerCreateFeed](docs/sdks/feeds/README.md#feedscontrollercreatefeed) - Create feed
-* [feedsControllerDeleteFeedById](docs/sdks/feeds/README.md#feedscontrollerdeletefeedbyid) - Delete feed
+* [retrieve](docs/sdks/feeds/README.md#retrieve) - Get feeds
+* [create](docs/sdks/feeds/README.md#create) - Create feed
+* [delete](docs/sdks/feeds/README.md#delete) - Delete feed
 
 ### [layouts](docs/sdks/layouts/README.md)
 
 * [layoutsControllerFilterLayouts](docs/sdks/layouts/README.md#layoutscontrollerfilterlayouts) - Filter layouts
 * [layoutsControllerPropertyDescriptor](docs/sdks/layouts/README.md#layoutscontrollerpropertydescriptor) - Layout creation
-* [layoutsControllerGetLayout](docs/sdks/layouts/README.md#layoutscontrollergetlayout) - Get layout
-* [layoutsControllerDeleteLayout](docs/sdks/layouts/README.md#layoutscontrollerdeletelayout) - Delete layout
+* [retrieve](docs/sdks/layouts/README.md#retrieve) - Get layout
+* [delete](docs/sdks/layouts/README.md#delete) - Delete layout
 * [layoutsControllerUpdateLayout](docs/sdks/layouts/README.md#layoutscontrollerupdatelayout) - Update a layout
 * [layoutsControllerSetDefaultLayout](docs/sdks/layouts/README.md#layoutscontrollersetdefaultlayout) - Set default layout
 
 ### [messages](docs/sdks/messages/README.md)
 
-* [messagesControllerGetMessages](docs/sdks/messages/README.md#messagescontrollergetmessages) - Get messages
-* [messagesControllerDeleteMessage](docs/sdks/messages/README.md#messagescontrollerdeletemessage) - Delete message
+* [retrieve](docs/sdks/messages/README.md#retrieve) - Get messages
+* [delete](docs/sdks/messages/README.md#delete) - Delete message
 * [deleteByTransactionId](docs/sdks/messages/README.md#deletebytransactionid) - Delete messages by transactionId
 
 ### [topics](docs/sdks/topics/README.md)
 
-* [topicsControllerListTopics](docs/sdks/topics/README.md#topicscontrollerlisttopics) - Filter topics
-* [topicsControllerCreateTopic](docs/sdks/topics/README.md#topicscontrollercreatetopic) - Topic creation
-* [topicsControllerGetTopic](docs/sdks/topics/README.md#topicscontrollergettopic) - Get topic
-* [topicsControllerDeleteTopic](docs/sdks/topics/README.md#topicscontrollerdeletetopic) - Delete topic
+* [list](docs/sdks/topics/README.md#list) - Filter topics
+* [create](docs/sdks/topics/README.md#create) - Topic creation
+* [retrieve](docs/sdks/topics/README.md#retrieve) - Get topic
+* [delete](docs/sdks/topics/README.md#delete) - Delete topic
 * [topicsControllerRenameTopic](docs/sdks/topics/README.md#topicscontrollerrenametopic) - Rename a topic
 
 ### [topics.subscribers](docs/sdks/novusubscribers/README.md)
 
 * [topicsControllerAddSubscribers](docs/sdks/novusubscribers/README.md#topicscontrolleraddsubscribers) - Subscribers addition
-* [topicsControllerGetTopicSubscriber](docs/sdks/novusubscribers/README.md#topicscontrollergettopicsubscriber) - Check topic subscriber
+* [retrieve](docs/sdks/novusubscribers/README.md#retrieve) - Check topic subscriber
 * [topicsControllerRemoveSubscribers](docs/sdks/novusubscribers/README.md#topicscontrollerremovesubscribers) - Subscribers removal
 
 ### [tenants](docs/sdks/tenants/README.md)
 
-* [tenantControllerListTenants](docs/sdks/tenants/README.md#tenantcontrollerlisttenants) - Get tenants
-* [tenantControllerCreateTenant](docs/sdks/tenants/README.md#tenantcontrollercreatetenant) - Create tenant
-* [tenantControllerGetTenantById](docs/sdks/tenants/README.md#tenantcontrollergettenantbyid) - Get tenant
+* [list](docs/sdks/tenants/README.md#list) - Get tenants
+* [create](docs/sdks/tenants/README.md#create) - Create tenant
+* [retrieve](docs/sdks/tenants/README.md#retrieve) - Get tenant
 * [tenantControllerRemoveTenant](docs/sdks/tenants/README.md#tenantcontrollerremovetenant) - Delete tenant
 * [tenantControllerUpdateTenant](docs/sdks/tenants/README.md#tenantcontrollerupdatetenant) - Update tenant
 <!-- End Available Resources and Operations [operations] -->
@@ -254,7 +244,7 @@ const novu = new Novu({
 });
 
 async function run() {
-    const result = await novu.subscribers.subscribersControllerListSubscribers(7032.41, 10);
+    const result = await novu.subscribers.list(7685.78, 10);
 
     for await (const page of result) {
         // handle page
@@ -289,11 +279,7 @@ const novu = new Novu({
 async function run() {
     let result;
     try {
-        result = await novu.workflowControllerCreate({
-            name: "<value>",
-            notificationGroupId: "<value>",
-            steps: [{}],
-        });
+        result = await novu.organizations.list();
     } catch (err) {
         switch (true) {
             case err instanceof errors.SDKValidationError: {
@@ -338,11 +324,7 @@ const novu = new Novu({
 });
 
 async function run() {
-    const result = await novu.workflowControllerCreate({
-        name: "<value>",
-        notificationGroupId: "<value>",
-        steps: [{}],
-    });
+    const result = await novu.organizations.list();
 
     // Handle the result
     console.log(result);
@@ -366,11 +348,7 @@ const novu = new Novu({
 });
 
 async function run() {
-    const result = await novu.workflowControllerCreate({
-        name: "<value>",
-        notificationGroupId: "<value>",
-        steps: [{}],
-    });
+    const result = await novu.organizations.list();
 
     // Handle the result
     console.log(result);
@@ -450,11 +428,7 @@ const novu = new Novu({
 });
 
 async function run() {
-    const result = await novu.workflowControllerCreate({
-        name: "<value>",
-        notificationGroupId: "<value>",
-        steps: [{}],
-    });
+    const result = await novu.organizations.list();
 
     // Handle the result
     console.log(result);

@@ -4,12 +4,11 @@
 
 import { SDKHooks } from "../hooks";
 import { SDK_METADATA, SDKOptions, serverURLFromOptions } from "../lib/config";
-import { encodeJSON as encodeJSON$, encodeSimple as encodeSimple$ } from "../lib/encodings";
+import { encodeJSON as encodeJSON$ } from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
 import * as components from "../models/components";
-import * as operations from "../models/operations";
 import { Branding } from "./branding";
 import { Members } from "./members";
 import * as z from "zod";
@@ -54,9 +53,7 @@ export class Organizations extends ClientSDK {
     /**
      * Fetch all organizations
      */
-    async organizationControllerListOrganizations(
-        options?: RequestOptions
-    ): Promise<Array<components.OrganizationResponseDto>> {
+    async list(options?: RequestOptions): Promise<Array<components.OrganizationResponseDto>> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
@@ -106,7 +103,7 @@ export class Organizations extends ClientSDK {
     /**
      * Create an organization
      */
-    async organizationControllerCreateOrganization(
+    async create(
         request: components.CreateOrganizationDto,
         options?: RequestOptions
     ): Promise<components.OrganizationResponseDto> {
@@ -275,192 +272,6 @@ export class Organizations extends ClientSDK {
 
         const [result$] = await this.matcher<components.OrganizationResponseDto>()
             .json(200, components.OrganizationResponseDto$)
-            .fail([409, 429, "4XX", 503, "5XX"])
-            .match(response);
-
-        return result$;
-    }
-
-    /**
-     * Remove a member from organization using memberId
-     */
-    async organizationControllerRemove(
-        memberId: string,
-        options?: RequestOptions
-    ): Promise<components.MemberResponseDto> {
-        const input$: operations.OrganizationControllerRemoveRequest = {
-            memberId: memberId,
-        };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "application/json");
-
-        const payload$ = schemas$.parse(
-            input$,
-            (value$) =>
-                operations.OrganizationControllerRemoveRequest$.outboundSchema.parse(value$),
-            "Input validation failed"
-        );
-        const body$ = null;
-
-        const pathParams$ = {
-            memberId: encodeSimple$("memberId", payload$.memberId, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-        };
-        const path$ = this.templateURLComponent("/organizations/members/{memberId}")(pathParams$);
-
-        const query$ = "";
-
-        let security$;
-        if (typeof this.options$.apiKey === "function") {
-            security$ = { apiKey: await this.options$.apiKey() };
-        } else if (this.options$.apiKey) {
-            security$ = { apiKey: this.options$.apiKey };
-        } else {
-            security$ = {};
-        }
-        const context = {
-            operationID: "OrganizationController_remove",
-            oAuth2Scopes: [],
-            securitySource: this.options$.apiKey,
-        };
-        const securitySettings$ = this.resolveGlobalSecurity(security$);
-
-        const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
-        const request$ = this.createRequest$(
-            context,
-            {
-                security: securitySettings$,
-                method: "DELETE",
-                path: path$,
-                headers: headers$,
-                query: query$,
-                body: body$,
-            },
-            options
-        );
-
-        const response = await this.do$(request$, doOptions);
-
-        const [result$] = await this.matcher<components.MemberResponseDto>()
-            .json(200, components.MemberResponseDto$)
-            .fail([409, 429, "4XX", 503, "5XX"])
-            .match(response);
-
-        return result$;
-    }
-
-    /**
-     * Fetch all members of current organizations
-     */
-    async organizationControllerMe(
-        options?: RequestOptions
-    ): Promise<Array<components.MemberResponseDto>> {
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "application/json");
-
-        const path$ = this.templateURLComponent("/organizations/members")();
-
-        const query$ = "";
-
-        let security$;
-        if (typeof this.options$.apiKey === "function") {
-            security$ = { apiKey: await this.options$.apiKey() };
-        } else if (this.options$.apiKey) {
-            security$ = { apiKey: this.options$.apiKey };
-        } else {
-            security$ = {};
-        }
-        const context = {
-            operationID: "OrganizationController_me",
-            oAuth2Scopes: [],
-            securitySource: this.options$.apiKey,
-        };
-        const securitySettings$ = this.resolveGlobalSecurity(security$);
-
-        const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
-        const request$ = this.createRequest$(
-            context,
-            {
-                security: securitySettings$,
-                method: "GET",
-                path: path$,
-                headers: headers$,
-                query: query$,
-            },
-            options
-        );
-
-        const response = await this.do$(request$, doOptions);
-
-        const [result$] = await this.matcher<Array<components.MemberResponseDto>>()
-            .json(200, z.array(components.MemberResponseDto$.inboundSchema))
-            .fail([409, 429, "4XX", 503, "5XX"])
-            .match(response);
-
-        return result$;
-    }
-
-    /**
-     * Update organization branding details
-     */
-    async organizationControllerUpdateBrandingDetails(
-        request: components.UpdateBrandingDetailsDto,
-        options?: RequestOptions
-    ): Promise<components.OrganizationBrandingResponseDto> {
-        const input$ = request;
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Content-Type", "application/json");
-        headers$.set("Accept", "application/json");
-
-        const payload$ = schemas$.parse(
-            input$,
-            (value$) => components.UpdateBrandingDetailsDto$.outboundSchema.parse(value$),
-            "Input validation failed"
-        );
-        const body$ = encodeJSON$("body", payload$, { explode: true });
-
-        const path$ = this.templateURLComponent("/organizations/branding")();
-
-        const query$ = "";
-
-        let security$;
-        if (typeof this.options$.apiKey === "function") {
-            security$ = { apiKey: await this.options$.apiKey() };
-        } else if (this.options$.apiKey) {
-            security$ = { apiKey: this.options$.apiKey };
-        } else {
-            security$ = {};
-        }
-        const context = {
-            operationID: "OrganizationController_updateBrandingDetails",
-            oAuth2Scopes: [],
-            securitySource: this.options$.apiKey,
-        };
-        const securitySettings$ = this.resolveGlobalSecurity(security$);
-
-        const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
-        const request$ = this.createRequest$(
-            context,
-            {
-                security: securitySettings$,
-                method: "PUT",
-                path: path$,
-                headers: headers$,
-                query: query$,
-                body: body$,
-            },
-            options
-        );
-
-        const response = await this.do$(request$, doOptions);
-
-        const [result$] = await this.matcher<components.OrganizationBrandingResponseDto>()
-            .json(200, components.OrganizationBrandingResponseDto$)
             .fail([409, 429, "4XX", 503, "5XX"])
             .match(response);
 

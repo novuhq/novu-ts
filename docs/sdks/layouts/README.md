@@ -10,8 +10,8 @@ Novu allows the creation of layouts - a specific HTML design or structure to wra
 
 * [layoutsControllerFilterLayouts](#layoutscontrollerfilterlayouts) - Filter layouts
 * [layoutsControllerPropertyDescriptor](#layoutscontrollerpropertydescriptor) - Layout creation
-* [layoutsControllerGetLayout](#layoutscontrollergetlayout) - Get layout
-* [layoutsControllerDeleteLayout](#layoutscontrollerdeletelayout) - Delete layout
+* [retrieve](#retrieve) - Get layout
+* [delete](#delete) - Delete layout
 * [layoutsControllerUpdateLayout](#layoutscontrollerupdatelayout) - Update a layout
 * [layoutsControllerSetDefaultLayout](#layoutscontrollersetdefaultlayout) - Set default layout
 
@@ -95,7 +95,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
 
-## layoutsControllerGetLayout
+## retrieve
 
 Get a layout by its ID
 
@@ -109,7 +109,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.layouts.layoutsControllerGetLayout("<value>");
+  const result = await novu.layouts.retrieve("<value>");
 
   // Handle the result
   console.log(result)
@@ -136,7 +136,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
 
-## layoutsControllerDeleteLayout
+## delete
 
 Execute a soft delete of a layout given a certain ID.
 
@@ -150,7 +150,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  await novu.layouts.layoutsControllerDeleteLayout("<value>");
+  await novu.layouts.delete("<value>");
 
   
 }

@@ -7,13 +7,13 @@ Workflow groups are used to organize workflows into logical groups.
 
 ### Available Operations
 
-* [notificationGroupsControllerListNotificationGroups](#notificationgroupscontrollerlistnotificationgroups) - Get workflow groups
-* [notificationGroupsControllerCreateNotificationGroup](#notificationgroupscontrollercreatenotificationgroup) - Create workflow group
-* [notificationGroupsControllerGetNotificationGroup](#notificationgroupscontrollergetnotificationgroup) - Get workflow group
-* [notificationGroupsControllerDeleteNotificationGroup](#notificationgroupscontrollerdeletenotificationgroup) - Delete workflow group
+* [list](#list) - Get workflow groups
+* [create](#create) - Create workflow group
+* [retrieve](#retrieve) - Get workflow group
+* [delete](#delete) - Delete workflow group
 * [notificationGroupsControllerUpdateNotificationGroup](#notificationgroupscontrollerupdatenotificationgroup) - Update workflow group
 
-## notificationGroupsControllerListNotificationGroups
+## list
 
 workflow group was previously named notification group
 
@@ -27,7 +27,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.workflowGroups.notificationGroupsControllerListNotificationGroups();
+  const result = await novu.workflowGroups.list();
 
   // Handle the result
   console.log(result)
@@ -53,7 +53,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
 
-## notificationGroupsControllerCreateNotificationGroup
+## create
 
 workflow group was previously named notification group
 
@@ -67,7 +67,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.workflowGroups.notificationGroupsControllerCreateNotificationGroup({
+  const result = await novu.workflowGroups.create({
     name: "<value>",
   });
 
@@ -96,7 +96,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
 
-## notificationGroupsControllerGetNotificationGroup
+## retrieve
 
 workflow group was previously named notification group
 
@@ -110,7 +110,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.workflowGroups.notificationGroupsControllerGetNotificationGroup("<value>");
+  const result = await novu.workflowGroups.retrieve("<value>");
 
   // Handle the result
   console.log(result)
@@ -137,7 +137,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
 
-## notificationGroupsControllerDeleteNotificationGroup
+## delete
 
 workflow group was previously named notification group
 
@@ -151,7 +151,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.workflowGroups.notificationGroupsControllerDeleteNotificationGroup("<value>");
+  const result = await novu.workflowGroups.delete("<value>");
 
   // Handle the result
   console.log(result)

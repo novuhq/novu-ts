@@ -8,11 +8,11 @@ Novu provides a notification activity feed that monitors every outgoing message 
 <https://docs.novu.co/activity-feed>
 ### Available Operations
 
-* [feedsControllerGetFeeds](#feedscontrollergetfeeds) - Get feeds
-* [feedsControllerCreateFeed](#feedscontrollercreatefeed) - Create feed
-* [feedsControllerDeleteFeedById](#feedscontrollerdeletefeedbyid) - Delete feed
+* [retrieve](#retrieve) - Get feeds
+* [create](#create) - Create feed
+* [delete](#delete) - Delete feed
 
-## feedsControllerGetFeeds
+## retrieve
 
 Get feeds
 
@@ -26,7 +26,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.feeds.feedsControllerGetFeeds();
+  const result = await novu.feeds.retrieve();
 
   // Handle the result
   console.log(result)
@@ -52,7 +52,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
 
-## feedsControllerCreateFeed
+## create
 
 Create feed
 
@@ -66,7 +66,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.feeds.feedsControllerCreateFeed({
+  const result = await novu.feeds.create({
     name: "<value>",
   });
 
@@ -95,7 +95,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
 
-## feedsControllerDeleteFeedById
+## delete
 
 Delete feed
 
@@ -109,7 +109,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.feeds.feedsControllerDeleteFeedById("<value>");
+  const result = await novu.feeds.delete("<value>");
 
   // Handle the result
   console.log(result)

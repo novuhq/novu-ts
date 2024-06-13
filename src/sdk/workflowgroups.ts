@@ -45,9 +45,7 @@ export class WorkflowGroups extends ClientSDK {
      * @remarks
      * workflow group was previously named notification group
      */
-    async notificationGroupsControllerListNotificationGroups(
-        options?: RequestOptions
-    ): Promise<Array<components.NotificationGroupResponseDto>> {
+    async list(options?: RequestOptions): Promise<Array<components.NotificationGroupResponseDto>> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
@@ -100,7 +98,7 @@ export class WorkflowGroups extends ClientSDK {
      * @remarks
      * workflow group was previously named notification group
      */
-    async notificationGroupsControllerCreateNotificationGroup(
+    async create(
         request: components.CreateNotificationGroupRequestDto,
         options?: RequestOptions
     ): Promise<components.NotificationGroupResponseDto> {
@@ -166,7 +164,7 @@ export class WorkflowGroups extends ClientSDK {
      * @remarks
      * workflow group was previously named notification group
      */
-    async notificationGroupsControllerGetNotificationGroup(
+    async retrieve(
         id: string,
         options?: RequestOptions
     ): Promise<components.NotificationGroupResponseDto> {
@@ -239,7 +237,7 @@ export class WorkflowGroups extends ClientSDK {
      * @remarks
      * workflow group was previously named notification group
      */
-    async notificationGroupsControllerDeleteNotificationGroup(
+    async delete(
         id: string,
         options?: RequestOptions
     ): Promise<components.DeleteNotificationGroupResponseDto> {

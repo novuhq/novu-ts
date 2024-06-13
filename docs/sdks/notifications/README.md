@@ -3,10 +3,10 @@
 
 ### Available Operations
 
-* [notificationsControllerListNotifications](#notificationscontrollerlistnotifications) - Get notifications
-* [notificationsControllerGetNotification](#notificationscontrollergetnotification) - Get notification
+* [list](#list) - Get notifications
+* [retrieve](#retrieve) - Get notification
 
-## notificationsControllerListNotifications
+## list
 
 Get notifications
 
@@ -21,9 +21,9 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.notifications.notificationsControllerListNotifications({
+  const result = await novu.notifications.list({
     channels: [
-      Channels.Sms,
+      Channels.Chat,
     ],
     templates: [
       "<value>",
@@ -62,7 +62,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
 
-## notificationsControllerGetNotification
+## retrieve
 
 Get notification
 
@@ -76,7 +76,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.notifications.notificationsControllerGetNotification("<value>");
+  const result = await novu.notifications.retrieve("<value>");
 
   // Handle the result
   console.log(result)

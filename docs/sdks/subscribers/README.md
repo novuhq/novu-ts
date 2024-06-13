@@ -8,15 +8,15 @@ A subscriber in Novu represents someone who should receive a message. A subscrib
 <https://docs.novu.co/subscribers/subscribers>
 ### Available Operations
 
-* [subscribersControllerListSubscribers](#subscriberscontrollerlistsubscribers) - Get subscribers
-* [subscribersControllerCreateSubscriber](#subscriberscontrollercreatesubscriber) - Create subscriber
-* [subscribersControllerGetSubscriber](#subscriberscontrollergetsubscriber) - Get subscriber
+* [list](#list) - Get subscribers
+* [create](#create) - Create subscriber
+* [retrieve](#retrieve) - Get subscriber
 * [subscribersControllerUpdateSubscriber](#subscriberscontrollerupdatesubscriber) - Update subscriber
 * [subscribersControllerRemoveSubscriber](#subscriberscontrollerremovesubscriber) - Delete subscriber
 * [subscribersControllerBulkCreateSubscribers](#subscriberscontrollerbulkcreatesubscribers) - Bulk create subscribers
 * [subscribersControllerUpdateSubscriberChannel](#subscriberscontrollerupdatesubscriberchannel) - Update subscriber credentials
 * [subscribersControllerModifySubscriberChannel](#subscriberscontrollermodifysubscriberchannel) - Modify subscriber credentials
-* [subscribersControllerDeleteSubscriberCredentials](#subscriberscontrollerdeletesubscribercredentials) - Delete subscriber credentials by providerId
+* [delete](#delete) - Delete subscriber credentials by providerId
 * [subscribersControllerUpdateSubscriberOnlineFlag](#subscriberscontrollerupdatesubscriberonlineflag) - Update subscriber online status
 * [subscribersControllerUpdateSubscriberGlobalPreferences](#subscriberscontrollerupdatesubscriberglobalpreferences) - Update subscriber global preferences
 * [subscribersControllerUpdateSubscriberPreference](#subscriberscontrollerupdatesubscriberpreference) - Update subscriber preference
@@ -26,7 +26,7 @@ A subscriber in Novu represents someone who should receive a message. A subscrib
 * [subscribersControllerChatOauthCallback](#subscriberscontrollerchatoauthcallback) - Handle providers oauth redirect
 * [subscribersControllerChatAccessOauth](#subscriberscontrollerchataccessoauth) - Handle chat oauth
 
-## subscribersControllerListSubscribers
+## list
 
 Returns a list of subscribers, could paginated using the `page` and `limit` query parameter
 
@@ -40,7 +40,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.subscribers.subscribersControllerListSubscribers(7032.41, 10);
+  const result = await novu.subscribers.list(7685.78, 10);
 
   for await (const page of result) {
     // handle page
@@ -69,7 +69,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
 
-## subscribersControllerCreateSubscriber
+## create
 
 Creates a subscriber entity, in the Novu platform. The subscriber will be later used to receive notifications, and access notification feeds. Communication credentials such as email, phone number, and 3 rd party credentials i.e slack tokens could be later associated to this entity.
 
@@ -83,7 +83,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.subscribers.subscribersControllerCreateSubscriber({
+  const result = await novu.subscribers.create({
     subscriberId: "<value>",
   });
 
@@ -112,7 +112,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
 
-## subscribersControllerGetSubscriber
+## retrieve
 
 Get subscriber by your internal id used to identify the subscriber
 
@@ -126,7 +126,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.subscribers.subscribersControllerGetSubscriber("<value>");
+  const result = await novu.subscribers.retrieve("<value>");
 
   // Handle the result
   console.log(result)
@@ -382,7 +382,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
 
-## subscribersControllerDeleteSubscriberCredentials
+## delete
 
 Delete subscriber credentials such as slack and expo tokens.
 
@@ -396,7 +396,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  await novu.subscribers.subscribersControllerDeleteSubscriberCredentials("<value>", "<value>");
+  await novu.subscribers.delete("<value>", "<value>");
 
   
 }

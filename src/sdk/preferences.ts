@@ -42,7 +42,7 @@ export class Preferences extends ClientSDK {
     /**
      * Get subscriber preferences
      */
-    async subscribersControllerListSubscriberPreferences(
+    async list(
         subscriberId: string,
         options?: RequestOptions
     ): Promise<Array<components.UpdateSubscriberPreferenceResponseDto>> {

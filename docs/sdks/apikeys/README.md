@@ -3,9 +3,9 @@
 
 ### Available Operations
 
-* [environmentsControllerListOrganizationApiKeys](#environmentscontrollerlistorganizationapikeys) - Get api keys
+* [list](#list) - Get api keys
 
-## environmentsControllerListOrganizationApiKeys
+## list
 
 Get api keys
 
@@ -19,7 +19,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.environments.apiKeys.environmentsControllerListOrganizationApiKeys();
+  const result = await novu.environments.apiKeys.list();
 
   // Handle the result
   console.log(result)

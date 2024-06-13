@@ -3,10 +3,10 @@
 
 ### Available Operations
 
-* [subscribersControllerListSubscriberPreferences](#subscriberscontrollerlistsubscriberpreferences) - Get subscriber preferences
+* [list](#list) - Get subscriber preferences
 * [retrieveByLevel](#retrievebylevel) - Get subscriber preferences by level
 
-## subscribersControllerListSubscriberPreferences
+## list
 
 Get subscriber preferences
 
@@ -20,7 +20,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.subscribers.preferences.subscribersControllerListSubscriberPreferences("<value>");
+  const result = await novu.subscribers.preferences.list("<value>");
 
   // Handle the result
   console.log(result)

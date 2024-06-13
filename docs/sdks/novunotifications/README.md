@@ -3,10 +3,10 @@
 
 ### Available Operations
 
-* [subscribersControllerGetNotificationsFeed](#subscriberscontrollergetnotificationsfeed) - Get in-app notification feed for a particular subscriber
+* [retrieve](#retrieve) - Get in-app notification feed for a particular subscriber
 * [unseenCount](#unseencount) - Get the unseen in-app notifications count for subscribers feed
 
-## subscribersControllerGetNotificationsFeed
+## retrieve
 
 Get in-app notification feed for a particular subscriber
 
@@ -20,7 +20,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.subscribers.notifications.subscribersControllerGetNotificationsFeed({
+  const result = await novu.subscribers.notifications.retrieve({
     subscriberId: "<value>",
     payload: "btoa(JSON.stringify({ foo: 123 })) results in base64 encoded string like eyJmb28iOjEyM30=",
   });

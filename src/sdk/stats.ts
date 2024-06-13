@@ -42,9 +42,7 @@ export class Stats extends ClientSDK {
     /**
      * Get notification statistics
      */
-    async notificationsControllerGetActivityStats(
-        options?: RequestOptions
-    ): Promise<components.ActivityStatsResponseDto> {
+    async retrieve(options?: RequestOptions): Promise<components.ActivityStatsResponseDto> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");

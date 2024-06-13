@@ -50,7 +50,7 @@ export class Notifications extends ClientSDK {
     /**
      * Get notifications
      */
-    async notificationsControllerListNotifications(
+    async list(
         request: operations.NotificationsControllerListNotificationsRequest,
         options?: RequestOptions
     ): Promise<components.ActivitiesResponseDto> {
@@ -72,13 +72,13 @@ export class Notifications extends ClientSDK {
         const path$ = this.templateURLComponent("/notifications")();
 
         const query$ = encodeFormQuery$({
+            channels: payload$.channels,
+            templates: payload$.templates,
+            emails: payload$.emails,
             search: payload$.search,
             subscriberIds: payload$.subscriberIds,
             page: payload$.page,
             transactionId: payload$.transactionId,
-            channels: payload$.channels,
-            templates: payload$.templates,
-            emails: payload$.emails,
         });
 
         let security$;
@@ -123,7 +123,7 @@ export class Notifications extends ClientSDK {
     /**
      * Get notification
      */
-    async notificationsControllerGetNotification(
+    async retrieve(
         notificationId: string,
         options?: RequestOptions
     ): Promise<components.ActivityNotificationResponseDto> {

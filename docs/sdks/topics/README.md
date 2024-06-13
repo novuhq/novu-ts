@@ -8,13 +8,13 @@ Topics are a way to group subscribers together so that they can be notified of e
 <https://docs.novu.co/subscribers/topics>
 ### Available Operations
 
-* [topicsControllerListTopics](#topicscontrollerlisttopics) - Filter topics
-* [topicsControllerCreateTopic](#topicscontrollercreatetopic) - Topic creation
-* [topicsControllerGetTopic](#topicscontrollergettopic) - Get topic
-* [topicsControllerDeleteTopic](#topicscontrollerdeletetopic) - Delete topic
+* [list](#list) - Filter topics
+* [create](#create) - Topic creation
+* [retrieve](#retrieve) - Get topic
+* [delete](#delete) - Delete topic
 * [topicsControllerRenameTopic](#topicscontrollerrenametopic) - Rename a topic
 
-## topicsControllerListTopics
+## list
 
 Returns a list of topics that can be paginated using the `page` query parameter and filtered by the topic key with the `key` query parameter
 
@@ -28,7 +28,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.topics.topicsControllerListTopics({});
+  const result = await novu.topics.list({});
 
   // Handle the result
   console.log(result)
@@ -55,7 +55,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
 
-## topicsControllerCreateTopic
+## create
 
 Create a topic
 
@@ -69,7 +69,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.topics.topicsControllerCreateTopic({
+  const result = await novu.topics.create({
     key: "<key>",
     name: "<value>",
   });
@@ -99,7 +99,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
 
-## topicsControllerGetTopic
+## retrieve
 
 Get a topic by its topic key
 
@@ -113,7 +113,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.topics.topicsControllerGetTopic("<value>");
+  const result = await novu.topics.retrieve("<value>");
 
   // Handle the result
   console.log(result)
@@ -140,7 +140,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
 
-## topicsControllerDeleteTopic
+## delete
 
 Delete a topic by its topic key if it has no subscribers
 
@@ -154,7 +154,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  await novu.topics.topicsControllerDeleteTopic("<value>");
+  await novu.topics.delete("<value>");
 
   
 }

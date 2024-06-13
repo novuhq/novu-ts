@@ -45,9 +45,7 @@ export class Integrations extends ClientSDK {
      * @remarks
      * Return all the integrations the user has created for that organization. Review v.0.17.0 changelog for a breaking change
      */
-    async integrationsControllerListIntegrations(
-        options?: RequestOptions
-    ): Promise<Array<components.IntegrationResponseDto>> {
+    async list(options?: RequestOptions): Promise<Array<components.IntegrationResponseDto>> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
@@ -100,7 +98,7 @@ export class Integrations extends ClientSDK {
      * @remarks
      * Create an integration for the current environment the user is based on the API key provided
      */
-    async integrationsControllerCreateIntegration(
+    async create(
         request: components.CreateIntegrationRequestDto,
         options?: RequestOptions
     ): Promise<components.IntegrationResponseDto> {
@@ -219,10 +217,7 @@ export class Integrations extends ClientSDK {
      * @remarks
      * Return the status of the webhook for this provider, if it is supported or if it is not based on a boolean value
      */
-    async integrationsControllerGetWebhookSupportStatus(
-        providerOrIntegrationId: string,
-        options?: RequestOptions
-    ): Promise<boolean> {
+    async retrieve(providerOrIntegrationId: string, options?: RequestOptions): Promise<boolean> {
         const input$: operations.IntegrationsControllerGetWebhookSupportStatusRequest = {
             providerOrIntegrationId: providerOrIntegrationId,
         };

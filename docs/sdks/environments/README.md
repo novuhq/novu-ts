@@ -8,11 +8,11 @@ Novu uses the concept of environments to ensure logical separation of your data 
 <https://docs.novu.co/platform/environments>
 ### Available Operations
 
-* [environmentsControllerGetCurrentEnvironment](#environmentscontrollergetcurrentenvironment) - Get current environment
-* [environmentsControllerListMyEnvironments](#environmentscontrollerlistmyenvironments) - Get environments
+* [retrieve](#retrieve) - Get current environment
+* [list](#list) - Get environments
 * [environmentsControllerRegenerateOrganizationApiKeys](#environmentscontrollerregenerateorganizationapikeys) - Regenerate api keys
 
-## environmentsControllerGetCurrentEnvironment
+## retrieve
 
 Get current environment
 
@@ -26,7 +26,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.environments.environmentsControllerGetCurrentEnvironment();
+  const result = await novu.environments.retrieve();
 
   // Handle the result
   console.log(result)
@@ -52,7 +52,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
 
-## environmentsControllerListMyEnvironments
+## list
 
 Get environments
 
@@ -66,7 +66,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.environments.environmentsControllerListMyEnvironments();
+  const result = await novu.environments.list();
 
   // Handle the result
   console.log(result)

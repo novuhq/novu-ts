@@ -45,9 +45,7 @@ export class Environments extends ClientSDK {
     /**
      * Get current environment
      */
-    async environmentsControllerGetCurrentEnvironment(
-        options?: RequestOptions
-    ): Promise<components.EnvironmentResponseDto> {
+    async retrieve(options?: RequestOptions): Promise<components.EnvironmentResponseDto> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
@@ -97,9 +95,7 @@ export class Environments extends ClientSDK {
     /**
      * Get environments
      */
-    async environmentsControllerListMyEnvironments(
-        options?: RequestOptions
-    ): Promise<Array<components.EnvironmentResponseDto>> {
+    async list(options?: RequestOptions): Promise<Array<components.EnvironmentResponseDto>> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");

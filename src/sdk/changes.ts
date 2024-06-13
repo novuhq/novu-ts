@@ -46,7 +46,7 @@ export class Changes extends ClientSDK {
     /**
      * Get changes
      */
-    async changesControllerGetChanges(
+    async retrieve(
         request: operations.ChangesControllerGetChangesRequest,
         options?: RequestOptions
     ): Promise<components.ChangesResponseDto> {

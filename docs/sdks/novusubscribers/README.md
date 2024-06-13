@@ -4,7 +4,7 @@
 ### Available Operations
 
 * [topicsControllerAddSubscribers](#topicscontrolleraddsubscribers) - Subscribers addition
-* [topicsControllerGetTopicSubscriber](#topicscontrollergettopicsubscriber) - Check topic subscriber
+* [retrieve](#retrieve) - Check topic subscriber
 * [topicsControllerRemoveSubscribers](#topicscontrollerremovesubscribers) - Subscribers removal
 
 ## topicsControllerAddSubscribers
@@ -52,7 +52,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
 
-## topicsControllerGetTopicSubscriber
+## retrieve
 
 Check if a subscriber belongs to a certain topic
 
@@ -66,7 +66,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.topics.subscribers.topicsControllerGetTopicSubscriber("<value>", "<value>");
+  const result = await novu.topics.subscribers.retrieve("<value>", "<value>");
 
   // Handle the result
   console.log(result)

@@ -42,7 +42,7 @@ export class ExecutionDetails extends ClientSDK {
     /**
      * Get execution details
      */
-    async executionDetailsControllerGetExecutionDetailsForNotification(
+    async retrieve(
         notificationId: string,
         subscriberId: string,
         options?: RequestOptions

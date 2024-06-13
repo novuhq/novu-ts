@@ -8,15 +8,15 @@ With the help of the Integration Store, you can easily integrate your favorite d
 <https://docs.novu.co/channels-and-providers/integration-store>
 ### Available Operations
 
-* [integrationsControllerListIntegrations](#integrationscontrollerlistintegrations) - Get integrations
-* [integrationsControllerCreateIntegration](#integrationscontrollercreateintegration) - Create integration
+* [list](#list) - Get integrations
+* [create](#create) - Create integration
 * [listActive](#listactive) - Get active integrations
-* [integrationsControllerGetWebhookSupportStatus](#integrationscontrollergetwebhooksupportstatus) - Get webhook support status for provider
+* [retrieve](#retrieve) - Get webhook support status for provider
 * [integrationsControllerUpdateIntegrationById](#integrationscontrollerupdateintegrationbyid) - Update integration
 * [integrationsControllerRemoveIntegration](#integrationscontrollerremoveintegration) - Delete integration
 * [integrationsControllerSetIntegrationAsPrimary](#integrationscontrollersetintegrationasprimary) - Set integration as primary
 
-## integrationsControllerListIntegrations
+## list
 
 Return all the integrations the user has created for that organization. Review v.0.17.0 changelog for a breaking change
 
@@ -30,7 +30,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.integrations.integrationsControllerListIntegrations();
+  const result = await novu.integrations.list();
 
   // Handle the result
   console.log(result)
@@ -56,7 +56,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
 
-## integrationsControllerCreateIntegration
+## create
 
 Create an integration for the current environment the user is based on the API key provided
 
@@ -71,9 +71,9 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.integrations.integrationsControllerCreateIntegration({
+  const result = await novu.integrations.create({
     providerId: "<value>",
-    channel: CreateIntegrationRequestDtoChannel.Push,
+    channel: CreateIntegrationRequestDtoChannel.Sms,
   });
 
   // Handle the result
@@ -141,7 +141,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
 
-## integrationsControllerGetWebhookSupportStatus
+## retrieve
 
 Return the status of the webhook for this provider, if it is supported or if it is not based on a boolean value
 
@@ -155,7 +155,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.integrations.integrationsControllerGetWebhookSupportStatus("<value>");
+  const result = await novu.integrations.retrieve("<value>");
 
   // Handle the result
   console.log(result)

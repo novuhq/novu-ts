@@ -51,7 +51,7 @@ export class Tenants extends ClientSDK {
      * @remarks
      * Returns a list of tenants, could paginated using the `page` and `limit` query parameter
      */
-    async tenantControllerListTenants(
+    async list(
         page?: number | undefined,
         limit?: number | undefined,
         options?: RequestOptions
@@ -136,7 +136,7 @@ export class Tenants extends ClientSDK {
                 return () => null;
             }
 
-            return () => this.tenantControllerListTenants(nextPage, limit, options);
+            return () => this.list(nextPage, limit, options);
         };
 
         const page$ = { ...result$, next: nextFunc(raw$) };
@@ -149,7 +149,7 @@ export class Tenants extends ClientSDK {
      * @remarks
      * Create tenant under the current environment
      */
-    async tenantControllerCreateTenant(
+    async create(
         request: components.CreateTenantRequestDto,
         options?: RequestOptions
     ): Promise<components.CreateTenantResponseDto> {
@@ -215,7 +215,7 @@ export class Tenants extends ClientSDK {
      * @remarks
      * Get tenant by your internal id used to identify the tenant
      */
-    async tenantControllerGetTenantById(
+    async retrieve(
         identifier: string,
         options?: RequestOptions
     ): Promise<components.GetTenantResponseDto> {

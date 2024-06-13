@@ -8,9 +8,9 @@ Execution details are used to track the execution of a workflow. They provided d
 <https://docs.novu.co/activity-feed>
 ### Available Operations
 
-* [executionDetailsControllerGetExecutionDetailsForNotification](#executiondetailscontrollergetexecutiondetailsfornotification) - Get execution details
+* [retrieve](#retrieve) - Get execution details
 
-## executionDetailsControllerGetExecutionDetailsForNotification
+## retrieve
 
 Get execution details
 
@@ -24,7 +24,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.executionDetails.executionDetailsControllerGetExecutionDetailsForNotification("<value>", "<value>");
+  const result = await novu.executionDetails.retrieve("<value>", "<value>");
 
   // Handle the result
   console.log(result)

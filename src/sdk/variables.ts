@@ -41,9 +41,7 @@ export class Variables extends ClientSDK {
      * @remarks
      * Get the variables that can be used in the workflow
      */
-    async workflowControllerGetWorkflowVariables(
-        options?: RequestOptions
-    ): Promise<components.VariablesResponseDto> {
+    async retrieve(options?: RequestOptions): Promise<components.VariablesResponseDto> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");

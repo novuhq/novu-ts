@@ -122,7 +122,7 @@ export class NovuSubscribers extends ClientSDK {
      * @remarks
      * Check if a subscriber belongs to a certain topic
      */
-    async topicsControllerGetTopicSubscriber(
+    async retrieve(
         topicKey: string,
         externalSubscriberId: string,
         options?: RequestOptions

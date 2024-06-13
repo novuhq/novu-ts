@@ -8,13 +8,13 @@ A tenant represents a group of users. As a developer, when your apps have organi
 <https://docs.novu.co/tenants>
 ### Available Operations
 
-* [tenantControllerListTenants](#tenantcontrollerlisttenants) - Get tenants
-* [tenantControllerCreateTenant](#tenantcontrollercreatetenant) - Create tenant
-* [tenantControllerGetTenantById](#tenantcontrollergettenantbyid) - Get tenant
+* [list](#list) - Get tenants
+* [create](#create) - Create tenant
+* [retrieve](#retrieve) - Get tenant
 * [tenantControllerRemoveTenant](#tenantcontrollerremovetenant) - Delete tenant
 * [tenantControllerUpdateTenant](#tenantcontrollerupdatetenant) - Update tenant
 
-## tenantControllerListTenants
+## list
 
 Returns a list of tenants, could paginated using the `page` and `limit` query parameter
 
@@ -28,7 +28,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.tenants.tenantControllerListTenants(1030.22, 10);
+  const result = await novu.tenants.list(7685.78, 10);
 
   for await (const page of result) {
     // handle page
@@ -57,7 +57,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
 
-## tenantControllerCreateTenant
+## create
 
 Create tenant under the current environment
 
@@ -71,7 +71,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.tenants.tenantControllerCreateTenant({
+  const result = await novu.tenants.create({
     identifier: "<value>",
     name: "<value>",
   });
@@ -101,7 +101,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
 
-## tenantControllerGetTenantById
+## retrieve
 
 Get tenant by your internal id used to identify the tenant
 
@@ -115,7 +115,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.tenants.tenantControllerGetTenantById("<value>");
+  const result = await novu.tenants.retrieve("<value>");
 
   // Handle the result
   console.log(result)

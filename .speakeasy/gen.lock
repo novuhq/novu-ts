@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 4f7dea41-e7f4-47c3-bc21-dc29e5f1b0fc
 management:
-  docChecksum: 6c295f84e9152bfa2fe426c972b59dfc
+  docChecksum: eb4586379c3f118cac58464f960cd631
   docVersion: "1.0"
   speakeasyVersion: 1.306.0
   generationVersion: 2.340.3
-  releaseVersion: 0.15.0
-  configChecksum: 67e15b642103e9e9319b6aebc8180097
+  releaseVersion: 0.16.0
+  configChecksum: 63002be32481431ad9bff0183181055a
 features:
   typescript:
     additionalDependencies: 0.1.0
@@ -18,6 +18,7 @@ features:
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
     globalServerURLs: 2.82.4
+    groups: 2.81.2
     nameOverrides: 2.81.2
     nullables: 0.1.0
     pagination: 2.82.2
@@ -75,6 +76,19 @@ generatedFiles:
   - src/types/operations.ts
   - src/types/rfcdate.ts
   - tsconfig.json
+  - src/models/components/organizationresponsedto.ts
+  - src/models/components/ipartnerconfigurationresponsedto.ts
+  - src/models/components/organizationbrandingresponsedto.ts
+  - src/models/components/createorganizationdto.ts
+  - src/models/components/renameorganizationdto.ts
+  - src/models/components/memberresponsedto.ts
+  - src/models/components/memberinvitedto.ts
+  - src/models/components/memberuserdto.ts
+  - src/models/components/updatebrandingdetailsdto.ts
+  - src/models/components/environmentresponsedto.ts
+  - src/models/components/apikey.ts
+  - src/models/components/executiondetailsresponsedto.ts
+  - src/models/components/workflowsresponsedto.ts
   - src/models/components/workflowresponse.ts
   - src/models/components/notificationgroup.ts
   - src/models/components/notificationtrigger.ts
@@ -91,22 +105,9 @@ generatedFiles:
   - src/models/components/messagetemplate.ts
   - src/models/components/preferencechannels.ts
   - src/models/components/createworkflowrequestdto.ts
-  - src/models/components/changeworkflowstatusrequestdto.ts
-  - src/models/components/organizationresponsedto.ts
-  - src/models/components/ipartnerconfigurationresponsedto.ts
-  - src/models/components/organizationbrandingresponsedto.ts
-  - src/models/components/createorganizationdto.ts
-  - src/models/components/renameorganizationdto.ts
-  - src/models/components/memberresponsedto.ts
-  - src/models/components/memberinvitedto.ts
-  - src/models/components/memberuserdto.ts
-  - src/models/components/updatebrandingdetailsdto.ts
-  - src/models/components/environmentresponsedto.ts
-  - src/models/components/apikey.ts
-  - src/models/components/executiondetailsresponsedto.ts
-  - src/models/components/workflowsresponsedto.ts
   - src/models/components/updateworkflowrequestdto.ts
   - src/models/components/databooleandto.ts
+  - src/models/components/changeworkflowstatusrequestdto.ts
   - src/models/components/variablesresponsedto.ts
   - src/models/components/triggereventresponsedto.ts
   - src/models/components/triggereventrequestdto.ts
@@ -190,13 +191,13 @@ generatedFiles:
   - src/models/components/updatetenantresponsedto.ts
   - src/models/components/updatetenantrequestdto.ts
   - src/models/components/security.ts
-  - src/models/operations/workflowcontrollergetworkflowbyid.ts
-  - src/models/operations/workflowcontrollerchangeactivestatus.ts
   - src/models/operations/organizationcontrollerremove.ts
   - src/models/operations/executiondetailscontrollergetexecutiondetailsfornotification.ts
   - src/models/operations/workflowcontrollerlistworkflows.ts
+  - src/models/operations/workflowcontrollergetworkflowbyid.ts
   - src/models/operations/workflowcontrollerupdateworkflowbyid.ts
   - src/models/operations/workflowcontrollerdeleteworkflowbyid.ts
+  - src/models/operations/workflowcontrollerchangeactivestatus.ts
   - src/models/operations/eventscontrollercancel.ts
   - src/models/operations/notificationscontrollerlistnotifications.ts
   - src/models/operations/notificationscontrollergetnotification.ts
@@ -252,6 +253,29 @@ generatedFiles:
   - src/models/errors/index.ts
   - src/models/components/index.ts
   - src/models/operations/index.ts
+  - docs/models/components/organizationresponsedto.md
+  - docs/models/components/partnertype.md
+  - docs/models/components/ipartnerconfigurationresponsedto.md
+  - docs/models/components/direction.md
+  - docs/models/components/organizationbrandingresponsedto.md
+  - docs/models/components/jobtitle.md
+  - docs/models/components/productusecases.md
+  - docs/models/components/createorganizationdto.md
+  - docs/models/components/renameorganizationdto.md
+  - docs/models/components/roles.md
+  - docs/models/components/memberstatus.md
+  - docs/models/components/memberresponsedto.md
+  - docs/models/components/memberinvitedto.md
+  - docs/models/components/memberuserdto.md
+  - docs/models/components/updatebrandingdetailsdto.md
+  - docs/models/components/apikeys.md
+  - docs/models/components/environmentresponsedto.md
+  - docs/models/components/apikey.md
+  - docs/models/components/channel.md
+  - docs/models/components/source.md
+  - docs/models/components/status.md
+  - docs/models/components/executiondetailsresponsedto.md
+  - docs/models/components/workflowsresponsedto.md
   - docs/models/components/data.md
   - docs/models/components/workflowintegrationstatus.md
   - docs/models/components/workflowresponse.md
@@ -295,33 +319,10 @@ generatedFiles:
   - docs/models/components/createworkflowrequestdtonotificationgroup.md
   - docs/models/components/createworkflowrequestdtodata.md
   - docs/models/components/createworkflowrequestdto.md
-  - docs/models/components/changeworkflowstatusrequestdto.md
-  - docs/models/components/organizationresponsedto.md
-  - docs/models/components/partnertype.md
-  - docs/models/components/ipartnerconfigurationresponsedto.md
-  - docs/models/components/direction.md
-  - docs/models/components/organizationbrandingresponsedto.md
-  - docs/models/components/jobtitle.md
-  - docs/models/components/productusecases.md
-  - docs/models/components/createorganizationdto.md
-  - docs/models/components/renameorganizationdto.md
-  - docs/models/components/roles.md
-  - docs/models/components/memberstatus.md
-  - docs/models/components/memberresponsedto.md
-  - docs/models/components/memberinvitedto.md
-  - docs/models/components/memberuserdto.md
-  - docs/models/components/updatebrandingdetailsdto.md
-  - docs/models/components/apikeys.md
-  - docs/models/components/environmentresponsedto.md
-  - docs/models/components/apikey.md
-  - docs/models/components/channel.md
-  - docs/models/components/source.md
-  - docs/models/components/status.md
-  - docs/models/components/executiondetailsresponsedto.md
-  - docs/models/components/workflowsresponsedto.md
   - docs/models/components/updateworkflowrequestdtodata.md
   - docs/models/components/updateworkflowrequestdto.md
   - docs/models/components/databooleandto.md
+  - docs/models/components/changeworkflowstatusrequestdto.md
   - docs/models/components/translations.md
   - docs/models/components/system.md
   - docs/models/components/variablesresponsedto.md
@@ -470,13 +471,13 @@ generatedFiles:
   - docs/models/components/updatetenantrequestdtodata.md
   - docs/models/components/updatetenantrequestdto.md
   - docs/models/components/security.md
-  - docs/models/operations/workflowcontrollergetworkflowbyidrequest.md
-  - docs/models/operations/workflowcontrollerchangeactivestatusrequest.md
   - docs/models/operations/organizationcontrollerremoverequest.md
   - docs/models/operations/executiondetailscontrollergetexecutiondetailsfornotificationrequest.md
   - docs/models/operations/workflowcontrollerlistworkflowsrequest.md
+  - docs/models/operations/workflowcontrollergetworkflowbyidrequest.md
   - docs/models/operations/workflowcontrollerupdateworkflowbyidrequest.md
   - docs/models/operations/workflowcontrollerdeleteworkflowbyidrequest.md
+  - docs/models/operations/workflowcontrollerchangeactivestatusrequest.md
   - docs/models/operations/eventscontrollercancelrequest.md
   - docs/models/operations/channels.md
   - docs/models/operations/notificationscontrollerlistnotificationsrequest.md

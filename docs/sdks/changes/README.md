@@ -8,12 +8,12 @@ Changes represent a change in state of an environment. They are analagous to a p
 <https://docs.novu.co/platform/environments#promoting-pending-changes-to-production>
 ### Available Operations
 
-* [changesControllerGetChanges](#changescontrollergetchanges) - Get changes
+* [retrieve](#retrieve) - Get changes
 * [count](#count) - Get changes count
 * [changesControllerBulkApplyDiff](#changescontrollerbulkapplydiff) - Apply changes
 * [changesControllerApplyDiff](#changescontrollerapplydiff) - Apply change
 
-## changesControllerGetChanges
+## retrieve
 
 Get changes
 
@@ -27,7 +27,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.changes.changesControllerGetChanges({
+  const result = await novu.changes.retrieve({
     promoted: "false",
   });
 

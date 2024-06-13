@@ -48,7 +48,7 @@ export class Messages extends ClientSDK {
      * @remarks
      * Returns a list of messages, could paginate using the `page` query parameter
      */
-    async messagesControllerGetMessages(
+    async retrieve(
         request: operations.MessagesControllerGetMessagesRequest,
         options?: RequestOptions
     ): Promise<components.ActivitiesResponseDto> {
@@ -68,11 +68,11 @@ export class Messages extends ClientSDK {
         const path$ = this.templateURLComponent("/messages")();
 
         const query$ = encodeFormQuery$({
-            transactionId: payload$.transactionId,
             page: payload$.page,
             limit: payload$.limit,
             channel: payload$.channel,
             subscriberId: payload$.subscriberId,
+            transactionId: payload$.transactionId,
         });
 
         let security$;
@@ -120,7 +120,7 @@ export class Messages extends ClientSDK {
      * @remarks
      * Deletes a message entity from the Novu platform
      */
-    async messagesControllerDeleteMessage(
+    async delete(
         messageId: string,
         options?: RequestOptions
     ): Promise<components.DeleteMessageResponseDto> {

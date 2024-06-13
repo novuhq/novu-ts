@@ -44,7 +44,7 @@ export class NovuNotifications extends ClientSDK {
     /**
      * Get in-app notification feed for a particular subscriber
      */
-    async subscribersControllerGetNotificationsFeed(
+    async retrieve(
         request: operations.SubscribersControllerGetNotificationsFeedRequest,
         options?: RequestOptions
     ): Promise<operations.SubscribersControllerGetNotificationsFeedResponseBody> {
@@ -152,8 +152,8 @@ export class NovuNotifications extends ClientSDK {
         );
 
         const query$ = encodeFormQuery$({
-            limit: payload$.limit,
             seen: payload$.seen,
+            limit: payload$.limit,
         });
 
         let security$;

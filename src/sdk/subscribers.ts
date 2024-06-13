@@ -63,7 +63,7 @@ export class Subscribers extends ClientSDK {
      * @remarks
      * Returns a list of subscribers, could paginated using the `page` and `limit` query parameter
      */
-    async subscribersControllerListSubscribers(
+    async list(
         page?: number | undefined,
         limit?: number | undefined,
         options?: RequestOptions
@@ -154,7 +154,7 @@ export class Subscribers extends ClientSDK {
                 return () => null;
             }
 
-            return () => this.subscribersControllerListSubscribers(nextPage, limit, options);
+            return () => this.list(nextPage, limit, options);
         };
 
         const page$ = { ...result$, next: nextFunc(raw$) };
@@ -167,7 +167,7 @@ export class Subscribers extends ClientSDK {
      * @remarks
      * Creates a subscriber entity, in the Novu platform. The subscriber will be later used to receive notifications, and access notification feeds. Communication credentials such as email, phone number, and 3 rd party credentials i.e slack tokens could be later associated to this entity.
      */
-    async subscribersControllerCreateSubscriber(
+    async create(
         request: components.CreateSubscriberRequestDto,
         options?: RequestOptions
     ): Promise<components.SubscriberResponseDto> {
@@ -233,7 +233,7 @@ export class Subscribers extends ClientSDK {
      * @remarks
      * Get subscriber by your internal id used to identify the subscriber
      */
-    async subscribersControllerGetSubscriber(
+    async retrieve(
         subscriberId: string,
         options?: RequestOptions
     ): Promise<components.SubscriberResponseDto> {
@@ -698,7 +698,7 @@ export class Subscribers extends ClientSDK {
      * @remarks
      * Delete subscriber credentials such as slack and expo tokens.
      */
-    async subscribersControllerDeleteSubscriberCredentials(
+    async delete(
         subscriberId: string,
         providerId: string,
         options?: RequestOptions
@@ -1290,10 +1290,10 @@ export class Subscribers extends ClientSDK {
         )(pathParams$);
 
         const query$ = encodeFormQuery$({
-            code: payload$.code,
             hmacHash: payload$.hmacHash,
             environmentId: payload$.environmentId,
             integrationIdentifier: payload$.integrationIdentifier,
+            code: payload$.code,
         });
 
         let security$;
@@ -1373,9 +1373,9 @@ export class Subscribers extends ClientSDK {
         )(pathParams$);
 
         const query$ = encodeFormQuery$({
+            integrationIdentifier: payload$.integrationIdentifier,
             hmacHash: payload$.hmacHash,
             environmentId: payload$.environmentId,
-            integrationIdentifier: payload$.integrationIdentifier,
         });
 
         let security$;
