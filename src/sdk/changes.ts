@@ -248,9 +248,9 @@ export class Changes extends ClientSDK {
         const path$ = this.templateURLComponent("/changes")();
 
         const query$ = encodeFormQuery$({
-            page: payload$.page,
             limit: payload$.limit,
             promoted: payload$.promoted,
+            page: payload$.page,
         });
 
         let security$;

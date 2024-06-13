@@ -331,13 +331,15 @@ You can override the default server globally by passing a server index to the `s
 
 | # | Server | Variables |
 | - | ------ | --------- |
-| 0 | `http://127.0.0.1:3000` | None |
+| 0 | `https://api.novu.co/v1` | None |
+| 1 | `https://eu.api.novu.co/v1` | None |
+| 2 | `http://localhost:3000/v1` | None |
 
 ```typescript
 import { Novu } from "novu-typescript";
 
 const novu = new Novu({
-    serverIdx: 0,
+    serverIdx: 2,
     apiKey: "<YOUR_API_KEY_HERE>",
 });
 
@@ -361,7 +363,7 @@ The default server can also be overridden globally by passing a URL to the `serv
 import { Novu } from "novu-typescript";
 
 const novu = new Novu({
-    serverURL: "http://127.0.0.1:3000",
+    serverURL: "https://api.novu.co/v1",
     apiKey: "<YOUR_API_KEY_HERE>",
 });
 

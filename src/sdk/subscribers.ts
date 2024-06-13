@@ -400,8 +400,8 @@ export class Subscribers extends ClientSDK {
         const path$ = this.templateURLComponent("/subscribers")();
 
         const query$ = encodeFormQuery$({
-            limit: payload$.limit,
             page: payload$.page,
+            limit: payload$.limit,
         });
 
         let security$;
