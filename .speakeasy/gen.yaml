@@ -33,6 +33,6 @@ typescript:
   maxMethodParams: 2
   methodArguments: require-security-and-request
   outputModelSuffix: output
-  packageName: novu-sdk
+  packageName: @novu/api
   responseFormat: flat
   templateVersion: v2
