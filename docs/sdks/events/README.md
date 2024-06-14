@@ -22,7 +22,7 @@ Events represent a change in state of a subscriber. They are used to trigger wor
 ### Example Usage
 
 ```typescript
-import { Novu } from "novu/api";
+import { Novu } from "@novu/api";
 
 const novu = new Novu({
   apiKey: "<YOUR_API_KEY_HERE>",
@@ -65,7 +65,7 @@ Trigger a broadcast event to all existing subscribers, could be used to send ann
 ### Example Usage
 
 ```typescript
-import { Novu } from "novu/api";
+import { Novu } from "@novu/api";
 
 const novu = new Novu({
   apiKey: "<YOUR_API_KEY_HERE>",
@@ -114,8 +114,8 @@ run();
 ### Example Usage
 
 ```typescript
-import { Novu } from "novu/api";
-import { TopicPayloadDtoType } from "novu/api/models/components";
+import { Novu } from "@novu/api";
+import { TopicPayloadDtoType } from "@novu/api/models/components";
 
 const novu = new Novu({
   apiKey: "<YOUR_API_KEY_HERE>",

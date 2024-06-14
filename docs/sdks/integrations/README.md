@@ -22,8 +22,8 @@ Create an integration for the current environment the user is based on the API k
 ### Example Usage
 
 ```typescript
-import { Novu } from "novu/api";
-import { Channel } from "novu/api/models/components";
+import { Novu } from "@novu/api";
+import { Channel } from "@novu/api/models/components";
 
 const novu = new Novu({
   apiKey: "<YOUR_API_KEY_HERE>",
@@ -68,7 +68,7 @@ Delete integration
 ### Example Usage
 
 ```typescript
-import { Novu } from "novu/api";
+import { Novu } from "@novu/api";
 
 const novu = new Novu({
   apiKey: "<YOUR_API_KEY_HERE>",
@@ -110,7 +110,7 @@ Return all the integrations the user has created for that organization. Review v
 ### Example Usage
 
 ```typescript
-import { Novu } from "novu/api";
+import { Novu } from "@novu/api";
 
 const novu = new Novu({
   apiKey: "<YOUR_API_KEY_HERE>",
@@ -151,7 +151,7 @@ Return all the active integrations the user has created for that organization. R
 ### Example Usage
 
 ```typescript
-import { Novu } from "novu/api";
+import { Novu } from "@novu/api";
 
 const novu = new Novu({
   apiKey: "<YOUR_API_KEY_HERE>",
@@ -192,7 +192,7 @@ Set integration as primary
 ### Example Usage
 
 ```typescript
-import { Novu } from "novu/api";
+import { Novu } from "@novu/api";
 
 const novu = new Novu({
   apiKey: "<YOUR_API_KEY_HERE>",
@@ -234,7 +234,7 @@ Update integration
 ### Example Usage
 
 ```typescript
-import { Novu } from "novu/api";
+import { Novu } from "@novu/api";
 
 const novu = new Novu({
   apiKey: "<YOUR_API_KEY_HERE>",

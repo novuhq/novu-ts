@@ -12,7 +12,7 @@ Get the variables that can be used in the workflow
 ### Example Usage
 
 ```typescript
-import { Novu } from "novu/api";
+import { Novu } from "@novu/api";
 
 const novu = new Novu({
   apiKey: "<YOUR_API_KEY_HERE>",

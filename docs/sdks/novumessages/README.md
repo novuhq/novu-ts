@@ -14,8 +14,8 @@ Marks all the subscriber messages as read, unread, seen or unseen. Optionally yo
 ### Example Usage
 
 ```typescript
-import { Novu } from "novu/api";
-import { MarkAs } from "novu/api/models/components";
+import { Novu } from "@novu/api";
+import { MarkAs } from "@novu/api/models/components";
 
 const novu = new Novu({
   apiKey: "<YOUR_API_KEY_HERE>",
@@ -60,8 +60,8 @@ Mark a subscriber messages as seen, read, unseen or unread
 ### Example Usage
 
 ```typescript
-import { Novu } from "novu/api";
-import { MessageMarkAsRequestDtoMarkAs } from "novu/api/models/components";
+import { Novu } from "@novu/api";
+import { MessageMarkAsRequestDtoMarkAs } from "@novu/api/models/components";
 
 const novu = new Novu({
   apiKey: "<YOUR_API_KEY_HERE>",
@@ -107,8 +107,8 @@ Mark message action as seen
 ### Example Usage
 
 ```typescript
-import { Novu } from "novu/api";
-import { MarkMessageActionAsSeenDtoStatus } from "novu/api/models/components";
+import { Novu } from "@novu/api";
+import { MarkMessageActionAsSeenDtoStatus } from "@novu/api/models/components";
 
 const novu = new Novu({
   apiKey: "<YOUR_API_KEY_HERE>",

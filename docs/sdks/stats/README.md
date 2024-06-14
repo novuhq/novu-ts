@@ -13,7 +13,7 @@ Get notification graph statistics
 ### Example Usage
 
 ```typescript
-import { Novu } from "novu/api";
+import { Novu } from "@novu/api";
 
 const novu = new Novu({
   apiKey: "<YOUR_API_KEY_HERE>",
@@ -55,7 +55,7 @@ Get notification statistics
 ### Example Usage
 
 ```typescript
-import { Novu } from "novu/api";
+import { Novu } from "@novu/api";
 
 const novu = new Novu({
   apiKey: "<YOUR_API_KEY_HERE>",

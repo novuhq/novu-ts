@@ -14,13 +14,13 @@
 ### NPM
 
 ```bash
-npm add novu/api
+npm add @novu/api
 ```
 
 ### Yarn
 
 ```bash
-yarn add novu/api
+yarn add @novu/api
 ```
 <!-- End SDK Installation [installation] -->
 
@@ -36,8 +36,8 @@ For supported JavaScript runtimes, please consult [RUNTIMES.md](RUNTIMES.md).
 ### Trigger Notification Event
 
 ```typescript
-import { Novu } from "novu/api";
-import { TopicPayloadDtoType } from "novu/api/models/components";
+import { Novu } from "@novu/api";
+import { TopicPayloadDtoType } from "@novu/api/models/components";
 
 const novu = new Novu({
     apiKey: "<YOUR_API_KEY_HERE>",
@@ -261,7 +261,7 @@ syntax.
 Here's an example of one such pagination call:
 
 ```typescript
-import { Novu } from "novu/api";
+import { Novu } from "@novu/api";
 
 const novu = new Novu({
     apiKey: "<YOUR_API_KEY_HERE>",
@@ -293,9 +293,9 @@ Validation errors can also occur when either method arguments or data returned f
 
 
 ```typescript
-import { Novu } from "novu/api";
-import { TopicPayloadDtoType } from "novu/api/models/components";
-import * as errors from "novu/api/models/errors";
+import { Novu } from "@novu/api";
+import { TopicPayloadDtoType } from "@novu/api/models/components";
+import * as errors from "@novu/api/models/errors";
 
 const novu = new Novu({
     apiKey: "<YOUR_API_KEY_HERE>",
@@ -352,8 +352,8 @@ You can override the default server globally by passing a server index to the `s
 | 1 | `https://eu.api.novu.co` | None |
 
 ```typescript
-import { Novu } from "novu/api";
-import { TopicPayloadDtoType } from "novu/api/models/components";
+import { Novu } from "@novu/api";
+import { TopicPayloadDtoType } from "@novu/api/models/components";
 
 const novu = new Novu({
     serverIdx: 1,
@@ -387,8 +387,8 @@ run();
 The default server can also be overridden globally by passing a URL to the `serverURL` optional parameter when initializing the SDK client instance. For example:
 
 ```typescript
-import { Novu } from "novu/api";
-import { TopicPayloadDtoType } from "novu/api/models/components";
+import { Novu } from "@novu/api";
+import { TopicPayloadDtoType } from "@novu/api/models/components";
 
 const novu = new Novu({
     serverURL: "https://api.novu.co",
@@ -435,8 +435,8 @@ custom header and a timeout to requests and how to use the `"requestError"` hook
 to log errors:
 
 ```typescript
-import { Novu } from "novu/api";
-import { HTTPClient } from "novu/api/lib/http";
+import { Novu } from "@novu/api";
+import { HTTPClient } from "@novu/api/lib/http";
 
 const httpClient = new HTTPClient({
   // fetcher takes a function that has the same signature as native `fetch`.
@@ -479,8 +479,8 @@ This SDK supports the following security scheme globally:
 
 To authenticate with the API the `apiKey` parameter must be set when initializing the SDK client instance. For example:
 ```typescript
-import { Novu } from "novu/api";
-import { TopicPayloadDtoType } from "novu/api/models/components";
+import { Novu } from "@novu/api";
+import { TopicPayloadDtoType } from "@novu/api/models/components";
 
 const novu = new Novu({
     apiKey: "<YOUR_API_KEY_HERE>",
@@ -515,8 +515,8 @@ Some of the endpoints in this SDK support retries.  If you use the SDK without a
 
 To change the default retry strategy for a single API call, simply provide a retryConfig object to the call:
 ```typescript
-import { Novu } from "novu/api";
-import { TopicPayloadDtoType } from "novu/api/models/components";
+import { Novu } from "@novu/api";
+import { TopicPayloadDtoType } from "@novu/api/models/components";
 
 const novu = new Novu({
     apiKey: "<YOUR_API_KEY_HERE>",
@@ -559,8 +559,8 @@ run();
 
 If you'd like to override the default retry strategy for all operations that support retries, you can provide a retryConfig at SDK initialization:
 ```typescript
-import { Novu } from "novu/api";
-import { TopicPayloadDtoType } from "novu/api/models/components";
+import { Novu } from "@novu/api";
+import { TopicPayloadDtoType } from "@novu/api/models/components";
 
 const novu = new Novu({
     retryConfig: {

@@ -22,8 +22,8 @@ Novu Documentation
 ### Example Usage
 
 ```typescript
-import { Novu } from "novu/api";
-import { TopicPayloadDtoType } from "novu/api/models/components";
+import { Novu } from "@novu/api";
+import { TopicPayloadDtoType } from "@novu/api/models/components";
 
 const novu = new Novu({
   apiKey: "<YOUR_API_KEY_HERE>",
