@@ -50,7 +50,7 @@ export class Stats extends ClientSDK {
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
-        const path$ = this.templateURLComponent("/notifications/stats")();
+        const path$ = this.templateURLComponent("/v1/notifications/stats")();
 
         const query$ = "";
 
@@ -134,7 +134,7 @@ export class Stats extends ClientSDK {
         );
         const body$ = null;
 
-        const path$ = this.templateURLComponent("/notifications/graph/stats")();
+        const path$ = this.templateURLComponent("/v1/notifications/graph/stats")();
 
         const query$ = encodeFormQuery$({
             days: payload$.days,

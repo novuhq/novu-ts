@@ -13,8 +13,8 @@ Get notifications
 ### Example Usage
 
 ```typescript
-import { Novu } from "novu-node";
-import { Channels } from "novu-node/models/operations";
+import { Novu } from "novu-sdk";
+import { Channels } from "novu-sdk/models/operations";
 
 const novu = new Novu({
   apiKey: "<YOUR_API_KEY_HERE>",
@@ -70,7 +70,7 @@ Get notification
 ### Example Usage
 
 ```typescript
-import { Novu } from "novu-node";
+import { Novu } from "novu-sdk";
 
 const novu = new Novu({
   apiKey: "<YOUR_API_KEY_HERE>",

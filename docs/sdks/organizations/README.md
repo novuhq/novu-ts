@@ -20,7 +20,7 @@ Fetch all organizations
 ### Example Usage
 
 ```typescript
-import { Novu } from "novu-node";
+import { Novu } from "novu-sdk";
 
 const novu = new Novu({
   apiKey: "<YOUR_API_KEY_HERE>",
@@ -61,7 +61,7 @@ Create an organization
 ### Example Usage
 
 ```typescript
-import { Novu } from "novu-node";
+import { Novu } from "novu-sdk";
 
 const novu = new Novu({
   apiKey: "<YOUR_API_KEY_HERE>",
@@ -105,7 +105,7 @@ Rename organization name
 ### Example Usage
 
 ```typescript
-import { Novu } from "novu-node";
+import { Novu } from "novu-sdk";
 
 const novu = new Novu({
   apiKey: "<YOUR_API_KEY_HERE>",
@@ -149,7 +149,7 @@ Fetch current organization details
 ### Example Usage
 
 ```typescript
-import { Novu } from "novu-node";
+import { Novu } from "novu-sdk";
 
 const novu = new Novu({
   apiKey: "<YOUR_API_KEY_HERE>",

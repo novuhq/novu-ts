@@ -67,7 +67,7 @@ export class Layouts extends ClientSDK {
         );
         const body$ = null;
 
-        const path$ = this.templateURLComponent("/layouts")();
+        const path$ = this.templateURLComponent("/v1/layouts")();
 
         const query$ = encodeFormQuery$({
             orderBy: payload$.orderBy,
@@ -146,7 +146,7 @@ export class Layouts extends ClientSDK {
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
-        const path$ = this.templateURLComponent("/layouts")();
+        const path$ = this.templateURLComponent("/v1/layouts")();
 
         const query$ = "";
 
@@ -236,7 +236,7 @@ export class Layouts extends ClientSDK {
                 charEncoding: "percent",
             }),
         };
-        const path$ = this.templateURLComponent("/layouts/{layoutId}")(pathParams$);
+        const path$ = this.templateURLComponent("/v1/layouts/{layoutId}")(pathParams$);
 
         const query$ = "";
 
@@ -328,7 +328,7 @@ export class Layouts extends ClientSDK {
                 charEncoding: "percent",
             }),
         };
-        const path$ = this.templateURLComponent("/layouts/{layoutId}")(pathParams$);
+        const path$ = this.templateURLComponent("/v1/layouts/{layoutId}")(pathParams$);
 
         const query$ = "";
 
@@ -423,7 +423,7 @@ export class Layouts extends ClientSDK {
                 charEncoding: "percent",
             }),
         };
-        const path$ = this.templateURLComponent("/layouts/{layoutId}")(pathParams$);
+        const path$ = this.templateURLComponent("/v1/layouts/{layoutId}")(pathParams$);
 
         const query$ = "";
 
@@ -518,7 +518,7 @@ export class Layouts extends ClientSDK {
                 charEncoding: "percent",
             }),
         };
-        const path$ = this.templateURLComponent("/layouts/{layoutId}/default")(pathParams$);
+        const path$ = this.templateURLComponent("/v1/layouts/{layoutId}/default")(pathParams$);
 
         const query$ = "";
 

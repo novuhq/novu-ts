@@ -61,7 +61,7 @@ export class Organizations extends ClientSDK {
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
-        const path$ = this.templateURLComponent("/organizations")();
+        const path$ = this.templateURLComponent("/v1/organizations")();
 
         const query$ = "";
 
@@ -141,7 +141,7 @@ export class Organizations extends ClientSDK {
         );
         const body$ = encodeJSON$("body", payload$, { explode: true });
 
-        const path$ = this.templateURLComponent("/organizations")();
+        const path$ = this.templateURLComponent("/v1/organizations")();
 
         const query$ = "";
 
@@ -222,7 +222,7 @@ export class Organizations extends ClientSDK {
         );
         const body$ = encodeJSON$("body", payload$, { explode: true });
 
-        const path$ = this.templateURLComponent("/organizations")();
+        const path$ = this.templateURLComponent("/v1/organizations")();
 
         const query$ = "";
 
@@ -293,7 +293,7 @@ export class Organizations extends ClientSDK {
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
-        const path$ = this.templateURLComponent("/organizations/me")();
+        const path$ = this.templateURLComponent("/v1/organizations/me")();
 
         const query$ = "";
 

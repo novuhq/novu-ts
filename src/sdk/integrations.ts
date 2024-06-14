@@ -59,7 +59,7 @@ export class Integrations extends ClientSDK {
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
-        const path$ = this.templateURLComponent("/integrations")();
+        const path$ = this.templateURLComponent("/v1/integrations")();
 
         const query$ = "";
 
@@ -142,7 +142,7 @@ export class Integrations extends ClientSDK {
         );
         const body$ = encodeJSON$("body", payload$, { explode: true });
 
-        const path$ = this.templateURLComponent("/integrations")();
+        const path$ = this.templateURLComponent("/v1/integrations")();
 
         const query$ = "";
 
@@ -216,7 +216,7 @@ export class Integrations extends ClientSDK {
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
-        const path$ = this.templateURLComponent("/integrations/active")();
+        const path$ = this.templateURLComponent("/v1/integrations/active")();
 
         const query$ = "";
 
@@ -309,7 +309,7 @@ export class Integrations extends ClientSDK {
                 charEncoding: "percent",
             }),
         };
-        const path$ = this.templateURLComponent("/integrations/{integrationId}")(pathParams$);
+        const path$ = this.templateURLComponent("/v1/integrations/{integrationId}")(pathParams$);
 
         const query$ = "";
 
@@ -400,7 +400,7 @@ export class Integrations extends ClientSDK {
                 charEncoding: "percent",
             }),
         };
-        const path$ = this.templateURLComponent("/integrations/{integrationId}")(pathParams$);
+        const path$ = this.templateURLComponent("/v1/integrations/{integrationId}")(pathParams$);
 
         const query$ = "";
 
@@ -491,7 +491,7 @@ export class Integrations extends ClientSDK {
                 charEncoding: "percent",
             }),
         };
-        const path$ = this.templateURLComponent("/integrations/{integrationId}/set-primary")(
+        const path$ = this.templateURLComponent("/v1/integrations/{integrationId}/set-primary")(
             pathParams$
         );
 

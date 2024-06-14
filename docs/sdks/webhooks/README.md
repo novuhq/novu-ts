@@ -12,7 +12,7 @@ Return the status of the webhook for this provider, if it is supported or if it 
 ### Example Usage
 
 ```typescript
-import { Novu } from "novu-node";
+import { Novu } from "novu-sdk";
 
 const novu = new Novu({
   apiKey: "<YOUR_API_KEY_HERE>",

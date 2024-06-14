@@ -50,7 +50,7 @@ export class Feeds extends ClientSDK {
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
-        const path$ = this.templateURLComponent("/feeds")();
+        const path$ = this.templateURLComponent("/v1/feeds")();
 
         const query$ = "";
 
@@ -130,7 +130,7 @@ export class Feeds extends ClientSDK {
         );
         const body$ = encodeJSON$("body", payload$, { explode: true });
 
-        const path$ = this.templateURLComponent("/feeds")();
+        const path$ = this.templateURLComponent("/v1/feeds")();
 
         const query$ = "";
 
@@ -219,7 +219,7 @@ export class Feeds extends ClientSDK {
                 charEncoding: "percent",
             }),
         };
-        const path$ = this.templateURLComponent("/feeds/{feedId}")(pathParams$);
+        const path$ = this.templateURLComponent("/v1/feeds/{feedId}")(pathParams$);
 
         const query$ = "";
 

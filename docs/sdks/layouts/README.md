@@ -22,7 +22,7 @@ Returns a list of layouts that can be paginated using the `page` query parameter
 ### Example Usage
 
 ```typescript
-import { Novu } from "novu-node";
+import { Novu } from "novu-sdk";
 
 const novu = new Novu({
   apiKey: "<YOUR_API_KEY_HERE>",
@@ -63,7 +63,7 @@ Create a layout
 ### Example Usage
 
 ```typescript
-import { Novu } from "novu-node";
+import { Novu } from "novu-sdk";
 
 const novu = new Novu({
   apiKey: "<YOUR_API_KEY_HERE>",
@@ -104,7 +104,7 @@ Get a layout by its ID
 ### Example Usage
 
 ```typescript
-import { Novu } from "novu-node";
+import { Novu } from "novu-sdk";
 
 const novu = new Novu({
   apiKey: "<YOUR_API_KEY_HERE>",
@@ -146,7 +146,7 @@ Execute a soft delete of a layout given a certain ID.
 ### Example Usage
 
 ```typescript
-import { Novu } from "novu-node";
+import { Novu } from "novu-sdk";
 
 const novu = new Novu({
   apiKey: "<YOUR_API_KEY_HERE>",
@@ -187,7 +187,7 @@ Update the name, content and variables of a layout. Also change it to be default
 ### Example Usage
 
 ```typescript
-import { Novu } from "novu-node";
+import { Novu } from "novu-sdk";
 
 const novu = new Novu({
   apiKey: "<YOUR_API_KEY_HERE>",
@@ -232,7 +232,7 @@ Sets the default layout for the environment and updates to non default to the ex
 ### Example Usage
 
 ```typescript
-import { Novu } from "novu-node";
+import { Novu } from "novu-sdk";
 
 const novu = new Novu({
   apiKey: "<YOUR_API_KEY_HERE>",

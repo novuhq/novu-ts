@@ -72,7 +72,7 @@ export class Tenants extends ClientSDK {
         );
         const body$ = null;
 
-        const path$ = this.templateURLComponent("/tenants")();
+        const path$ = this.templateURLComponent("/v1/tenants")();
 
         const query$ = encodeFormQuery$({
             limit: payload$.limit,
@@ -185,7 +185,7 @@ export class Tenants extends ClientSDK {
         );
         const body$ = encodeJSON$("body", payload$, { explode: true });
 
-        const path$ = this.templateURLComponent("/tenants")();
+        const path$ = this.templateURLComponent("/v1/tenants")();
 
         const query$ = "";
 
@@ -277,7 +277,7 @@ export class Tenants extends ClientSDK {
                 charEncoding: "percent",
             }),
         };
-        const path$ = this.templateURLComponent("/tenants/{identifier}")(pathParams$);
+        const path$ = this.templateURLComponent("/v1/tenants/{identifier}")(pathParams$);
 
         const query$ = "";
 
@@ -369,7 +369,7 @@ export class Tenants extends ClientSDK {
                 charEncoding: "percent",
             }),
         };
-        const path$ = this.templateURLComponent("/tenants/{identifier}")(pathParams$);
+        const path$ = this.templateURLComponent("/v1/tenants/{identifier}")(pathParams$);
 
         const query$ = "";
 
@@ -464,7 +464,7 @@ export class Tenants extends ClientSDK {
                 charEncoding: "percent",
             }),
         };
-        const path$ = this.templateURLComponent("/tenants/{identifier}")(pathParams$);
+        const path$ = this.templateURLComponent("/v1/tenants/{identifier}")(pathParams$);
 
         const query$ = "";
 

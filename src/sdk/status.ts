@@ -77,7 +77,7 @@ export class Status extends ClientSDK {
                 charEncoding: "percent",
             }),
         };
-        const path$ = this.templateURLComponent("/workflows/{workflowId}/status")(pathParams$);
+        const path$ = this.templateURLComponent("/v1/workflows/{workflowId}/status")(pathParams$);
 
         const query$ = "";
 

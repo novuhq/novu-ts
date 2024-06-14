@@ -74,7 +74,7 @@ export class Webhooks extends ClientSDK {
             ),
         };
         const path$ = this.templateURLComponent(
-            "/integrations/webhook/provider/{providerOrIntegrationId}/status"
+            "/v1/integrations/webhook/provider/{providerOrIntegrationId}/status"
         )(pathParams$);
 
         const query$ = "";

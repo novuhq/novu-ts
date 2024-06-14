@@ -72,7 +72,7 @@ export class Topics extends ClientSDK {
         );
         const body$ = null;
 
-        const path$ = this.templateURLComponent("/topics")();
+        const path$ = this.templateURLComponent("/v1/topics")();
 
         const query$ = encodeFormQuery$({
             key: payload$.key,
@@ -160,7 +160,7 @@ export class Topics extends ClientSDK {
         );
         const body$ = encodeJSON$("body", payload$, { explode: true });
 
-        const path$ = this.templateURLComponent("/topics")();
+        const path$ = this.templateURLComponent("/v1/topics")();
 
         const query$ = "";
 
@@ -251,7 +251,7 @@ export class Topics extends ClientSDK {
                 charEncoding: "percent",
             }),
         };
-        const path$ = this.templateURLComponent("/topics/{topicKey}")(pathParams$);
+        const path$ = this.templateURLComponent("/v1/topics/{topicKey}")(pathParams$);
 
         const query$ = "";
 
@@ -342,7 +342,7 @@ export class Topics extends ClientSDK {
                 charEncoding: "percent",
             }),
         };
-        const path$ = this.templateURLComponent("/topics/{topicKey}")(pathParams$);
+        const path$ = this.templateURLComponent("/v1/topics/{topicKey}")(pathParams$);
 
         const query$ = "";
 
@@ -436,7 +436,7 @@ export class Topics extends ClientSDK {
                 charEncoding: "percent",
             }),
         };
-        const path$ = this.templateURLComponent("/topics/{topicKey}")(pathParams$);
+        const path$ = this.templateURLComponent("/v1/topics/{topicKey}")(pathParams$);
 
         const query$ = "";
 

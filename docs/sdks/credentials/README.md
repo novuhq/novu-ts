@@ -14,8 +14,8 @@ Subscriber credentials associated to the delivery methods such as slack and push
 ### Example Usage
 
 ```typescript
-import { Novu } from "novu-node";
-import { UpdateSubscriberChannelRequestDtoProviderId } from "novu-node/models/components";
+import { Novu } from "novu-sdk";
+import { UpdateSubscriberChannelRequestDtoProviderId } from "novu-sdk/models/components";
 
 const novu = new Novu({
   apiKey: "<YOUR_API_KEY_HERE>",
@@ -64,8 +64,8 @@ Subscriber credentials associated to the delivery methods such as slack and push
 ### Example Usage
 
 ```typescript
-import { Novu } from "novu-node";
-import { UpdateSubscriberChannelRequestDtoProviderId } from "novu-node/models/components";
+import { Novu } from "novu-sdk";
+import { UpdateSubscriberChannelRequestDtoProviderId } from "novu-sdk/models/components";
 
 const novu = new Novu({
   apiKey: "<YOUR_API_KEY_HERE>",
@@ -113,7 +113,7 @@ Delete subscriber credentials such as slack and expo tokens.
 ### Example Usage
 
 ```typescript
-import { Novu } from "novu-node";
+import { Novu } from "novu-sdk";
 
 const novu = new Novu({
   apiKey: "<YOUR_API_KEY_HERE>",

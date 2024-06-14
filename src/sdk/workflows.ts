@@ -78,7 +78,7 @@ export class Workflows extends ClientSDK {
         );
         const body$ = null;
 
-        const path$ = this.templateURLComponent("/workflows")();
+        const path$ = this.templateURLComponent("/v1/workflows")();
 
         const query$ = encodeFormQuery$({
             limit: payload$.limit,
@@ -166,7 +166,7 @@ export class Workflows extends ClientSDK {
         );
         const body$ = encodeJSON$("body", payload$, { explode: true });
 
-        const path$ = this.templateURLComponent("/workflows")();
+        const path$ = this.templateURLComponent("/v1/workflows")();
 
         const query$ = "";
 
@@ -258,7 +258,7 @@ export class Workflows extends ClientSDK {
                 charEncoding: "percent",
             }),
         };
-        const path$ = this.templateURLComponent("/workflows/{workflowId}")(pathParams$);
+        const path$ = this.templateURLComponent("/v1/workflows/{workflowId}")(pathParams$);
 
         const query$ = "";
 
@@ -355,7 +355,7 @@ export class Workflows extends ClientSDK {
                 charEncoding: "percent",
             }),
         };
-        const path$ = this.templateURLComponent("/workflows/{workflowId}")(pathParams$);
+        const path$ = this.templateURLComponent("/v1/workflows/{workflowId}")(pathParams$);
 
         const query$ = "";
 
@@ -449,7 +449,7 @@ export class Workflows extends ClientSDK {
                 charEncoding: "percent",
             }),
         };
-        const path$ = this.templateURLComponent("/workflows/{workflowId}")(pathParams$);
+        const path$ = this.templateURLComponent("/v1/workflows/{workflowId}")(pathParams$);
 
         const query$ = "";
 

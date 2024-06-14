@@ -70,9 +70,9 @@ export class NovuNotifications extends ClientSDK {
                 charEncoding: "percent",
             }),
         };
-        const path$ = this.templateURLComponent("/subscribers/{subscriberId}/notifications/feed")(
-            pathParams$
-        );
+        const path$ = this.templateURLComponent(
+            "/v1/subscribers/{subscriberId}/notifications/feed"
+        )(pathParams$);
 
         const query$ = encodeFormQuery$({
             limit: payload$.limit,
@@ -166,9 +166,9 @@ export class NovuNotifications extends ClientSDK {
                 charEncoding: "percent",
             }),
         };
-        const path$ = this.templateURLComponent("/subscribers/{subscriberId}/notifications/unseen")(
-            pathParams$
-        );
+        const path$ = this.templateURLComponent(
+            "/v1/subscribers/{subscriberId}/notifications/unseen"
+        )(pathParams$);
 
         const query$ = encodeFormQuery$({
             limit: payload$.limit,

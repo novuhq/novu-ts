@@ -74,7 +74,7 @@ export class NovuSubscribers extends ClientSDK {
                 charEncoding: "percent",
             }),
         };
-        const path$ = this.templateURLComponent("/topics/{topicKey}/subscribers")(pathParams$);
+        const path$ = this.templateURLComponent("/v1/topics/{topicKey}/subscribers")(pathParams$);
 
         const query$ = "";
 
@@ -174,7 +174,7 @@ export class NovuSubscribers extends ClientSDK {
             }),
         };
         const path$ = this.templateURLComponent(
-            "/topics/{topicKey}/subscribers/{externalSubscriberId}"
+            "/v1/topics/{topicKey}/subscribers/{externalSubscriberId}"
         )(pathParams$);
 
         const query$ = "";
@@ -270,7 +270,7 @@ export class NovuSubscribers extends ClientSDK {
                 charEncoding: "percent",
             }),
         };
-        const path$ = this.templateURLComponent("/topics/{topicKey}/subscribers/removal")(
+        const path$ = this.templateURLComponent("/v1/topics/{topicKey}/subscribers/removal")(
             pathParams$
         );
 

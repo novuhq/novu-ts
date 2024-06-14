@@ -1,17 +1,17 @@
-speakeasyVersion: 1.307.0
+speakeasyVersion: 1.308.0
 sources:
     json-development:
         sourceNamespace: json-development
-        sourceRevisionDigest: sha256:8e32f326f79e627c22c75857b6e41a4a9e55d61259c2a9a4a1a548a3d7a9b3c9
-        sourceBlobDigest: sha256:bcc52fbb3746d8156f2747068c8b2bd01b0a755b96e7dfacd55814c441f8841c
+        sourceRevisionDigest: sha256:dbb34fad20704425aa5f3bebd44c342a26ec51304ca8f3e42ec4fee1864b3ae6
+        sourceBlobDigest: sha256:a1a2c7e9a5d6f2b7ed85c22c521d573f7bf43259dc66e1a2d7fc0cdb64ee1358
         tags:
             - latest
 targets:
     my-first-target:
         source: json-development
         sourceNamespace: json-development
-        sourceRevisionDigest: sha256:8e32f326f79e627c22c75857b6e41a4a9e55d61259c2a9a4a1a548a3d7a9b3c9
-        sourceBlobDigest: sha256:bcc52fbb3746d8156f2747068c8b2bd01b0a755b96e7dfacd55814c441f8841c
+        sourceRevisionDigest: sha256:dbb34fad20704425aa5f3bebd44c342a26ec51304ca8f3e42ec4fee1864b3ae6
+        sourceBlobDigest: sha256:a1a2c7e9a5d6f2b7ed85c22c521d573f7bf43259dc66e1a2d7fc0cdb64ee1358
         outLocation: /Users/galtidhar/Documents/GitHub/novu-ts-sdk
 workflow:
     workflowVersion: 1.0.0
@@ -28,3 +28,6 @@ workflow:
         my-first-target:
             target: typescript
             source: json-development
+            publish:
+                npm:
+                    token: $npm_token

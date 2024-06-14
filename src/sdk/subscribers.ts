@@ -111,7 +111,7 @@ export class Subscribers extends ClientSDK {
         );
         const body$ = null;
 
-        const path$ = this.templateURLComponent("/subscribers")();
+        const path$ = this.templateURLComponent("/v1/subscribers")();
 
         const query$ = encodeFormQuery$({
             limit: payload$.limit,
@@ -227,7 +227,7 @@ export class Subscribers extends ClientSDK {
         );
         const body$ = encodeJSON$("body", payload$, { explode: true });
 
-        const path$ = this.templateURLComponent("/subscribers")();
+        const path$ = this.templateURLComponent("/v1/subscribers")();
 
         const query$ = "";
 
@@ -319,7 +319,7 @@ export class Subscribers extends ClientSDK {
                 charEncoding: "percent",
             }),
         };
-        const path$ = this.templateURLComponent("/subscribers/{subscriberId}")(pathParams$);
+        const path$ = this.templateURLComponent("/v1/subscribers/{subscriberId}")(pathParams$);
 
         const query$ = "";
 
@@ -416,7 +416,7 @@ export class Subscribers extends ClientSDK {
                 charEncoding: "percent",
             }),
         };
-        const path$ = this.templateURLComponent("/subscribers/{subscriberId}")(pathParams$);
+        const path$ = this.templateURLComponent("/v1/subscribers/{subscriberId}")(pathParams$);
 
         const query$ = "";
 
@@ -510,7 +510,7 @@ export class Subscribers extends ClientSDK {
                 charEncoding: "percent",
             }),
         };
-        const path$ = this.templateURLComponent("/subscribers/{subscriberId}")(pathParams$);
+        const path$ = this.templateURLComponent("/v1/subscribers/{subscriberId}")(pathParams$);
 
         const query$ = "";
 
@@ -597,7 +597,7 @@ export class Subscribers extends ClientSDK {
         );
         const body$ = encodeJSON$("body", payload$, { explode: true });
 
-        const path$ = this.templateURLComponent("/subscribers/bulk")();
+        const path$ = this.templateURLComponent("/v1/subscribers/bulk")();
 
         const query$ = "";
 

@@ -58,7 +58,7 @@ export class Branding extends ClientSDK {
         );
         const body$ = encodeJSON$("body", payload$, { explode: true });
 
-        const path$ = this.templateURLComponent("/organizations/branding")();
+        const path$ = this.templateURLComponent("/v1/organizations/branding")();
 
         const query$ = "";
 

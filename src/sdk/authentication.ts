@@ -75,7 +75,7 @@ export class Authentication extends ClientSDK {
             }),
         };
         const path$ = this.templateURLComponent(
-            "/subscribers/{subscriberId}/credentials/{providerId}/oauth/callback"
+            "/v1/subscribers/{subscriberId}/credentials/{providerId}/oauth/callback"
         )(pathParams$);
 
         const query$ = encodeFormQuery$({
@@ -176,7 +176,7 @@ export class Authentication extends ClientSDK {
             }),
         };
         const path$ = this.templateURLComponent(
-            "/subscribers/{subscriberId}/credentials/{providerId}/oauth"
+            "/v1/subscribers/{subscriberId}/credentials/{providerId}/oauth"
         )(pathParams$);
 
         const query$ = encodeFormQuery$({

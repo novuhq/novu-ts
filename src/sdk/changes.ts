@@ -63,7 +63,7 @@ export class Changes extends ClientSDK {
         );
         const body$ = null;
 
-        const path$ = this.templateURLComponent("/changes")();
+        const path$ = this.templateURLComponent("/v1/changes")();
 
         const query$ = encodeFormQuery$({
             limit: payload$.limit,
@@ -138,7 +138,7 @@ export class Changes extends ClientSDK {
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
-        const path$ = this.templateURLComponent("/changes/count")();
+        const path$ = this.templateURLComponent("/v1/changes/count")();
 
         const query$ = "";
 
@@ -218,7 +218,7 @@ export class Changes extends ClientSDK {
         );
         const body$ = encodeJSON$("body", payload$, { explode: true });
 
-        const path$ = this.templateURLComponent("/changes/bulk/apply")();
+        const path$ = this.templateURLComponent("/v1/changes/bulk/apply")();
 
         const query$ = "";
 
@@ -306,7 +306,7 @@ export class Changes extends ClientSDK {
                 charEncoding: "percent",
             }),
         };
-        const path$ = this.templateURLComponent("/changes/{changeId}/apply")(pathParams$);
+        const path$ = this.templateURLComponent("/v1/changes/{changeId}/apply")(pathParams$);
 
         const query$ = "";
 

@@ -2,8 +2,8 @@
 ### Trigger Notification Event
 
 ```typescript
-import { Novu } from "novu-node";
-import { TopicPayloadDtoType } from "novu-node/models/components";
+import { Novu } from "novu-sdk";
+import { TopicPayloadDtoType } from "novu-sdk/models/components";
 
 const novu = new Novu({
     apiKey: "<YOUR_API_KEY_HERE>",

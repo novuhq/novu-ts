@@ -9,7 +9,7 @@ import { Params, pathToFunc } from "./url";
 /**
  * Contains the list of servers available to the SDK
  */
-export const ServerList = ["https://api.novu.co/v1", "https://eu.api.novu.co/v1"] as const;
+export const ServerList = ["https://api.novu.co", "https://eu.api.novu.co"] as const;
 
 export type SDKOptions = {
     apiKey?: string | (() => Promise<string>);
@@ -49,7 +49,7 @@ export function serverURLFromOptions(options: SDKOptions): URL | null {
 export const SDK_METADATA = {
     language: "typescript",
     openapiDocVersion: "1.0",
-    sdkVersion: "0.16.6",
-    genVersion: "2.342.0",
-    userAgent: "speakeasy-sdk/typescript 0.16.6 2.342.0 1.0 novu-node",
+    sdkVersion: "0.0.1-alpha.1",
+    genVersion: "2.342.2",
+    userAgent: "speakeasy-sdk/typescript 0.0.1-alpha.1 2.342.2 1.0 novu-sdk",
 } as const;

@@ -66,7 +66,7 @@ export class Messages extends ClientSDK {
         );
         const body$ = null;
 
-        const path$ = this.templateURLComponent("/messages")();
+        const path$ = this.templateURLComponent("/v1/messages")();
 
         const query$ = encodeFormQuery$({
             channel: payload$.channel,
@@ -164,7 +164,7 @@ export class Messages extends ClientSDK {
                 charEncoding: "percent",
             }),
         };
-        const path$ = this.templateURLComponent("/messages/{messageId}")(pathParams$);
+        const path$ = this.templateURLComponent("/v1/messages/{messageId}")(pathParams$);
 
         const query$ = "";
 
@@ -260,7 +260,7 @@ export class Messages extends ClientSDK {
                 charEncoding: "percent",
             }),
         };
-        const path$ = this.templateURLComponent("/messages/transaction/{transactionId}")(
+        const path$ = this.templateURLComponent("/v1/messages/transaction/{transactionId}")(
             pathParams$
         );
 

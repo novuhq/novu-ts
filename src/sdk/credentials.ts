@@ -78,7 +78,7 @@ export class Credentials extends ClientSDK {
                 charEncoding: "percent",
             }),
         };
-        const path$ = this.templateURLComponent("/subscribers/{subscriberId}/credentials")(
+        const path$ = this.templateURLComponent("/v1/subscribers/{subscriberId}/credentials")(
             pathParams$
         );
 
@@ -180,7 +180,7 @@ export class Credentials extends ClientSDK {
                 charEncoding: "percent",
             }),
         };
-        const path$ = this.templateURLComponent("/subscribers/{subscriberId}/credentials")(
+        const path$ = this.templateURLComponent("/v1/subscribers/{subscriberId}/credentials")(
             pathParams$
         );
 
@@ -283,7 +283,7 @@ export class Credentials extends ClientSDK {
             }),
         };
         const path$ = this.templateURLComponent(
-            "/subscribers/{subscriberId}/credentials/{providerId}"
+            "/v1/subscribers/{subscriberId}/credentials/{providerId}"
         )(pathParams$);
 
         const query$ = "";

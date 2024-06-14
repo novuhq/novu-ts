@@ -70,7 +70,7 @@ export class Notifications extends ClientSDK {
         );
         const body$ = null;
 
-        const path$ = this.templateURLComponent("/notifications")();
+        const path$ = this.templateURLComponent("/v1/notifications")();
 
         const query$ = encodeFormQuery$({
             channels: payload$.channels,
@@ -169,7 +169,7 @@ export class Notifications extends ClientSDK {
                 charEncoding: "percent",
             }),
         };
-        const path$ = this.templateURLComponent("/notifications/{notificationId}")(pathParams$);
+        const path$ = this.templateURLComponent("/v1/notifications/{notificationId}")(pathParams$);
 
         const query$ = "";
 

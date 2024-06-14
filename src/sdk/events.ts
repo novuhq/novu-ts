@@ -67,7 +67,7 @@ export class Events extends ClientSDK {
         );
         const body$ = encodeJSON$("body", payload$, { explode: true });
 
-        const path$ = this.templateURLComponent("/events/trigger")();
+        const path$ = this.templateURLComponent("/v1/events/trigger")();
 
         const query$ = "";
 
@@ -154,7 +154,7 @@ export class Events extends ClientSDK {
         );
         const body$ = encodeJSON$("body", payload$, { explode: true });
 
-        const path$ = this.templateURLComponent("/events/trigger/bulk")();
+        const path$ = this.templateURLComponent("/v1/events/trigger/bulk")();
 
         const query$ = "";
 
@@ -239,7 +239,7 @@ export class Events extends ClientSDK {
         );
         const body$ = encodeJSON$("body", payload$, { explode: true });
 
-        const path$ = this.templateURLComponent("/events/trigger/broadcast")();
+        const path$ = this.templateURLComponent("/v1/events/trigger/broadcast")();
 
         const query$ = "";
 
@@ -333,7 +333,7 @@ export class Events extends ClientSDK {
                 charEncoding: "percent",
             }),
         };
-        const path$ = this.templateURLComponent("/events/trigger/{transactionId}")(pathParams$);
+        const path$ = this.templateURLComponent("/v1/events/trigger/{transactionId}")(pathParams$);
 
         const query$ = "";
 

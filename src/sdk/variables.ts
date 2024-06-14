@@ -49,7 +49,7 @@ export class Variables extends ClientSDK {
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
-        const path$ = this.templateURLComponent("/workflows/variables")();
+        const path$ = this.templateURLComponent("/v1/workflows/variables")();
 
         const query$ = "";
 

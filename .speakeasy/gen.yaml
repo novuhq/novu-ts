@@ -1,7 +1,7 @@
 configVersion: 2.0.0
 generation:
   sdkClassName: Novu
-  maintainOpenAPIOrder: true
+  maintainOpenAPIOrder: false
   usageSnippets:
     optionalPropertyRendering: withExample
   useClassNamesForArrayFields: true
@@ -12,7 +12,7 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: false
 typescript:
-  version: 0.16.6
+  version: 0.0.1-alpha.1
   additionalDependencies:
     dependencies: {}
     devDependencies: {}
@@ -34,6 +34,6 @@ typescript:
   maxMethodParams: 2
   methodArguments: require-security-and-request
   outputModelSuffix: output
-  packageName: novu-node
+  packageName: novu-sdk
   responseFormat: flat
   templateVersion: v2

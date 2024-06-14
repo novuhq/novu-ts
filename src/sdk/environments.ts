@@ -53,7 +53,7 @@ export class Environments extends ClientSDK {
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
-        const path$ = this.templateURLComponent("/environments/me")();
+        const path$ = this.templateURLComponent("/v1/environments/me")();
 
         const query$ = "";
 
@@ -123,7 +123,7 @@ export class Environments extends ClientSDK {
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
-        const path$ = this.templateURLComponent("/environments")();
+        const path$ = this.templateURLComponent("/v1/environments")();
 
         const query$ = "";
 

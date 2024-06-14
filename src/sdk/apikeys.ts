@@ -47,7 +47,7 @@ export class ApiKeys extends ClientSDK {
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
-        const path$ = this.templateURLComponent("/environments/api-keys")();
+        const path$ = this.templateURLComponent("/v1/environments/api-keys")();
 
         const query$ = "";
 
@@ -117,7 +117,7 @@ export class ApiKeys extends ClientSDK {
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
-        const path$ = this.templateURLComponent("/environments/api-keys/regenerate")();
+        const path$ = this.templateURLComponent("/v1/environments/api-keys/regenerate")();
 
         const query$ = "";
 

@@ -70,7 +70,7 @@ export class Preferences extends ClientSDK {
                 charEncoding: "percent",
             }),
         };
-        const path$ = this.templateURLComponent("/subscribers/{subscriberId}/preferences")(
+        const path$ = this.templateURLComponent("/v1/subscribers/{subscriberId}/preferences")(
             pathParams$
         );
 
@@ -171,7 +171,7 @@ export class Preferences extends ClientSDK {
                 charEncoding: "percent",
             }),
         };
-        const path$ = this.templateURLComponent("/subscribers/{subscriberId}/preferences")(
+        const path$ = this.templateURLComponent("/v1/subscribers/{subscriberId}/preferences")(
             pathParams$
         );
 
@@ -271,7 +271,7 @@ export class Preferences extends ClientSDK {
             }),
         };
         const path$ = this.templateURLComponent(
-            "/subscribers/{subscriberId}/preferences/{parameter}"
+            "/v1/subscribers/{subscriberId}/preferences/{parameter}"
         )(pathParams$);
 
         const query$ = "";
@@ -371,7 +371,7 @@ export class Preferences extends ClientSDK {
             }),
         };
         const path$ = this.templateURLComponent(
-            "/subscribers/{subscriberId}/preferences/{parameter}"
+            "/v1/subscribers/{subscriberId}/preferences/{parameter}"
         )(pathParams$);
 
         const query$ = "";

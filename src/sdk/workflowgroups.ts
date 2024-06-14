@@ -53,7 +53,7 @@ export class WorkflowGroups extends ClientSDK {
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
-        const path$ = this.templateURLComponent("/notification-groups")();
+        const path$ = this.templateURLComponent("/v1/notification-groups")();
 
         const query$ = "";
 
@@ -136,7 +136,7 @@ export class WorkflowGroups extends ClientSDK {
         );
         const body$ = encodeJSON$("body", payload$, { explode: true });
 
-        const path$ = this.templateURLComponent("/notification-groups")();
+        const path$ = this.templateURLComponent("/v1/notification-groups")();
 
         const query$ = "";
 
@@ -227,7 +227,7 @@ export class WorkflowGroups extends ClientSDK {
         const pathParams$ = {
             id: encodeSimple$("id", payload$.id, { explode: false, charEncoding: "percent" }),
         };
-        const path$ = this.templateURLComponent("/notification-groups/{id}")(pathParams$);
+        const path$ = this.templateURLComponent("/v1/notification-groups/{id}")(pathParams$);
 
         const query$ = "";
 
@@ -318,7 +318,7 @@ export class WorkflowGroups extends ClientSDK {
         const pathParams$ = {
             id: encodeSimple$("id", payload$.id, { explode: false, charEncoding: "percent" }),
         };
-        const path$ = this.templateURLComponent("/notification-groups/{id}")(pathParams$);
+        const path$ = this.templateURLComponent("/v1/notification-groups/{id}")(pathParams$);
 
         const query$ = "";
 
@@ -414,7 +414,7 @@ export class WorkflowGroups extends ClientSDK {
         const pathParams$ = {
             id: encodeSimple$("id", payload$.id, { explode: false, charEncoding: "percent" }),
         };
-        const path$ = this.templateURLComponent("/notification-groups/{id}")(pathParams$);
+        const path$ = this.templateURLComponent("/v1/notification-groups/{id}")(pathParams$);
 
         const query$ = "";
 

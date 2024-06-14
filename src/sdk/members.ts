@@ -68,7 +68,9 @@ export class Members extends ClientSDK {
                 charEncoding: "percent",
             }),
         };
-        const path$ = this.templateURLComponent("/organizations/members/{memberId}")(pathParams$);
+        const path$ = this.templateURLComponent("/v1/organizations/members/{memberId}")(
+            pathParams$
+        );
 
         const query$ = "";
 
@@ -139,7 +141,7 @@ export class Members extends ClientSDK {
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
-        const path$ = this.templateURLComponent("/organizations/members")();
+        const path$ = this.templateURLComponent("/v1/organizations/members")();
 
         const query$ = "";
 

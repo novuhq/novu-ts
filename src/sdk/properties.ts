@@ -77,7 +77,7 @@ export class Properties extends ClientSDK {
                 charEncoding: "percent",
             }),
         };
-        const path$ = this.templateURLComponent("/subscribers/{subscriberId}/online-status")(
+        const path$ = this.templateURLComponent("/v1/subscribers/{subscriberId}/online-status")(
             pathParams$
         );
 

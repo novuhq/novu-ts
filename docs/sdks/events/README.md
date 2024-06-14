@@ -24,8 +24,8 @@ Events represent a change in state of a subscriber. They are used to trigger wor
 ### Example Usage
 
 ```typescript
-import { Novu } from "novu-node";
-import { TopicPayloadDtoType } from "novu-node/models/components";
+import { Novu } from "novu-sdk";
+import { TopicPayloadDtoType } from "novu-sdk/models/components";
 
 const novu = new Novu({
   apiKey: "<YOUR_API_KEY_HERE>",
@@ -80,8 +80,8 @@ run();
 ### Example Usage
 
 ```typescript
-import { Novu } from "novu-node";
-import { TopicPayloadDtoType } from "novu-node/models/components";
+import { Novu } from "novu-sdk";
+import { TopicPayloadDtoType } from "novu-sdk/models/components";
 
 const novu = new Novu({
   apiKey: "<YOUR_API_KEY_HERE>",
@@ -138,7 +138,7 @@ Trigger a broadcast event to all existing subscribers, could be used to send ann
 ### Example Usage
 
 ```typescript
-import { Novu } from "novu-node";
+import { Novu } from "novu-sdk";
 
 const novu = new Novu({
   apiKey: "<YOUR_API_KEY_HERE>",
@@ -187,7 +187,7 @@ run();
 ### Example Usage
 
 ```typescript
-import { Novu } from "novu-node";
+import { Novu } from "novu-sdk";
 
 const novu = new Novu({
   apiKey: "<YOUR_API_KEY_HERE>",

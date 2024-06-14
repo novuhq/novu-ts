@@ -71,7 +71,7 @@ export class NovuMessages extends ClientSDK {
                 charEncoding: "percent",
             }),
         };
-        const path$ = this.templateURLComponent("/subscribers/{subscriberId}/messages/mark-as")(
+        const path$ = this.templateURLComponent("/v1/subscribers/{subscriberId}/messages/mark-as")(
             pathParams$
         );
 
@@ -167,7 +167,7 @@ export class NovuMessages extends ClientSDK {
                 charEncoding: "percent",
             }),
         };
-        const path$ = this.templateURLComponent("/subscribers/{subscriberId}/messages/mark-all")(
+        const path$ = this.templateURLComponent("/v1/subscribers/{subscriberId}/messages/mark-all")(
             pathParams$
         );
 
@@ -265,7 +265,7 @@ export class NovuMessages extends ClientSDK {
             type: encodeSimple$("type", payload$.type, { explode: false, charEncoding: "percent" }),
         };
         const path$ = this.templateURLComponent(
-            "/subscribers/{subscriberId}/messages/{messageId}/actions/{type}"
+            "/v1/subscribers/{subscriberId}/messages/{messageId}/actions/{type}"
         )(pathParams$);
 
         const query$ = "";
