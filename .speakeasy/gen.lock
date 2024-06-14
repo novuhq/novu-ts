@@ -5,8 +5,10 @@ management:
   docVersion: "1.0"
   speakeasyVersion: 1.308.1
   generationVersion: 2.342.6
-  releaseVersion: 0.0.1-alpha.2
-  configChecksum: 944abba41b79fc21b9eb7d6917828fcd
+  releaseVersion: 0.0.1-alpha.3
+  configChecksum: bbfdab87886dee8005889d3f8b62750e
+  repoURL: https://github.com/novuhq/novu-node.git
+  installationURL: https://github.com/novuhq/novu-node
   published: true
 features:
   typescript:
