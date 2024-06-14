@@ -11,13 +11,13 @@ export type TemplateResponse = {
      */
     id: string;
     /**
-     * Name of the workflow
-     */
-    name: string;
-    /**
      * Critical templates will always be delivered to the end user and should be hidden from the subscriber preferences screen
      */
     critical: boolean;
+    /**
+     * Name of the workflow
+     */
+    name: string;
     /**
      * Triggers are the events that will trigger the workflow.
      */
@@ -29,8 +29,8 @@ export namespace TemplateResponse$ {
     export const inboundSchema: z.ZodType<TemplateResponse, z.ZodTypeDef, unknown> = z
         .object({
             _id: z.string(),
-            name: z.string(),
             critical: z.boolean(),
+            name: z.string(),
             triggers: z.array(z.string()),
         })
         .transform((v) => {
@@ -41,16 +41,16 @@ export namespace TemplateResponse$ {
 
     export type Outbound = {
         _id: string;
-        name: string;
         critical: boolean;
+        name: string;
         triggers: Array<string>;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TemplateResponse> = z
         .object({
             id: z.string(),
-            name: z.string(),
             critical: z.boolean(),
+            name: z.string(),
             triggers: z.array(z.string()),
         })
         .transform((v) => {

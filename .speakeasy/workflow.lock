@@ -1,17 +1,17 @@
-speakeasyVersion: 1.308.0
+speakeasyVersion: 1.308.1
 sources:
     json-development:
         sourceNamespace: json-development
-        sourceRevisionDigest: sha256:dbb34fad20704425aa5f3bebd44c342a26ec51304ca8f3e42ec4fee1864b3ae6
-        sourceBlobDigest: sha256:a1a2c7e9a5d6f2b7ed85c22c521d573f7bf43259dc66e1a2d7fc0cdb64ee1358
+        sourceRevisionDigest: sha256:5dce7a6bba8b99f7be22ce80c2bb074e61aac4a930cdd1139124d2fb72166852
+        sourceBlobDigest: sha256:8bfbf39247b9510f916783be29abd7f814f07787477ae0c10816a5219a97ecf9
         tags:
             - latest
 targets:
     my-first-target:
         source: json-development
         sourceNamespace: json-development
-        sourceRevisionDigest: sha256:dbb34fad20704425aa5f3bebd44c342a26ec51304ca8f3e42ec4fee1864b3ae6
-        sourceBlobDigest: sha256:a1a2c7e9a5d6f2b7ed85c22c521d573f7bf43259dc66e1a2d7fc0cdb64ee1358
+        sourceRevisionDigest: sha256:5dce7a6bba8b99f7be22ce80c2bb074e61aac4a930cdd1139124d2fb72166852
+        sourceBlobDigest: sha256:8bfbf39247b9510f916783be29abd7f814f07787477ae0c10816a5219a97ecf9
         outLocation: /Users/galtidhar/Documents/GitHub/novu-ts-sdk
 workflow:
     workflowVersion: 1.0.0
@@ -19,9 +19,9 @@ workflow:
     sources:
         json-development:
             inputs:
-                - location: http://127.0.0.1:3000/openapi.sdk.json
+                - location: ./sources/openapi.sdk.json
             overlays:
-                - location: /Users/galtidhar/WebstormProjects/novu-sdk/sources/remove-headers-overlay.yaml
+                - location: ./sources/remove-headers-overlay.yaml
             registry:
                 location: registry.speakeasyapi.dev/novu/novu/json-development
     targets:

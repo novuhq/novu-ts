@@ -6,7 +6,7 @@ import { remap as remap$ } from "../../lib/primitives";
 import { ClosedEnum } from "../../types";
 import * as z from "zod";
 
-export const Channel = {
+export const ExecutionDetailsResponseDtoChannel = {
     InApp: "in_app",
     Email: "email",
     Sms: "sms",
@@ -17,17 +17,21 @@ export const Channel = {
     Delay: "delay",
     Custom: "custom",
 } as const;
-export type Channel = ClosedEnum<typeof Channel>;
+export type ExecutionDetailsResponseDtoChannel = ClosedEnum<
+    typeof ExecutionDetailsResponseDtoChannel
+>;
 
-export const Source = {
+export const ExecutionDetailsResponseDtoSource = {
     Credentials: "Credentials",
     Internal: "Internal",
     Payload: "Payload",
     Webhook: "Webhook",
 } as const;
-export type Source = ClosedEnum<typeof Source>;
+export type ExecutionDetailsResponseDtoSource = ClosedEnum<
+    typeof ExecutionDetailsResponseDtoSource
+>;
 
-export const Status = {
+export const ExecutionDetailsResponseDtoStatus = {
     Success: "Success",
     Warning: "Warning",
     Failed: "Failed",
@@ -35,43 +39,45 @@ export const Status = {
     Queued: "Queued",
     ReadConfirmation: "ReadConfirmation",
 } as const;
-export type Status = ClosedEnum<typeof Status>;
+export type ExecutionDetailsResponseDtoStatus = ClosedEnum<
+    typeof ExecutionDetailsResponseDtoStatus
+>;
 
 export type ExecutionDetailsResponseDto = {
-    id?: string | undefined;
-    organizationId: string;
-    jobId: string;
     environmentId: string;
+    id?: string | undefined;
+    jobId: string;
+    messageId?: string | undefined;
     notificationId: string;
     notificationTemplateId: string;
+    organizationId: string;
     subscriberId: string;
-    messageId?: string | undefined;
-    providerId?: string | undefined;
-    transactionId: string;
-    channel: Channel;
-    detail: string;
-    source: Source;
-    status: Status;
-    isTest: boolean;
-    isRetry: boolean;
+    channel: ExecutionDetailsResponseDtoChannel;
     createdAt?: string | undefined;
+    detail: string;
+    isRetry: boolean;
+    isTest: boolean;
+    providerId?: string | undefined;
+    source: ExecutionDetailsResponseDtoSource;
+    status: ExecutionDetailsResponseDtoStatus;
+    transactionId: string;
 };
 
 /** @internal */
-export namespace Channel$ {
-    export const inboundSchema = z.nativeEnum(Channel);
+export namespace ExecutionDetailsResponseDtoChannel$ {
+    export const inboundSchema = z.nativeEnum(ExecutionDetailsResponseDtoChannel);
     export const outboundSchema = inboundSchema;
 }
 
 /** @internal */
-export namespace Source$ {
-    export const inboundSchema = z.nativeEnum(Source);
+export namespace ExecutionDetailsResponseDtoSource$ {
+    export const inboundSchema = z.nativeEnum(ExecutionDetailsResponseDtoSource);
     export const outboundSchema = inboundSchema;
 }
 
 /** @internal */
-export namespace Status$ {
-    export const inboundSchema = z.nativeEnum(Status);
+export namespace ExecutionDetailsResponseDtoStatus$ {
+    export const inboundSchema = z.nativeEnum(ExecutionDetailsResponseDtoStatus);
     export const outboundSchema = inboundSchema;
 }
 
@@ -79,87 +85,87 @@ export namespace Status$ {
 export namespace ExecutionDetailsResponseDto$ {
     export const inboundSchema: z.ZodType<ExecutionDetailsResponseDto, z.ZodTypeDef, unknown> = z
         .object({
-            _id: z.string().optional(),
-            _organizationId: z.string(),
-            _jobId: z.string(),
             _environmentId: z.string(),
+            _id: z.string().optional(),
+            _jobId: z.string(),
+            _messageId: z.string().optional(),
             _notificationId: z.string(),
             _notificationTemplateId: z.string(),
+            _organizationId: z.string(),
             _subscriberId: z.string(),
-            _messageId: z.string().optional(),
-            providerId: z.string().optional(),
-            transactionId: z.string(),
-            channel: Channel$.inboundSchema,
-            detail: z.string(),
-            source: Source$.inboundSchema,
-            status: Status$.inboundSchema,
-            isTest: z.boolean(),
-            isRetry: z.boolean(),
+            channel: ExecutionDetailsResponseDtoChannel$.inboundSchema,
             createdAt: z.string().optional(),
+            detail: z.string(),
+            isRetry: z.boolean(),
+            isTest: z.boolean(),
+            providerId: z.string().optional(),
+            source: ExecutionDetailsResponseDtoSource$.inboundSchema,
+            status: ExecutionDetailsResponseDtoStatus$.inboundSchema,
+            transactionId: z.string(),
         })
         .transform((v) => {
             return remap$(v, {
-                _id: "id",
-                _organizationId: "organizationId",
-                _jobId: "jobId",
                 _environmentId: "environmentId",
+                _id: "id",
+                _jobId: "jobId",
+                _messageId: "messageId",
                 _notificationId: "notificationId",
                 _notificationTemplateId: "notificationTemplateId",
+                _organizationId: "organizationId",
                 _subscriberId: "subscriberId",
-                _messageId: "messageId",
             });
         });
 
     export type Outbound = {
-        _id?: string | undefined;
-        _organizationId: string;
-        _jobId: string;
         _environmentId: string;
+        _id?: string | undefined;
+        _jobId: string;
+        _messageId?: string | undefined;
         _notificationId: string;
         _notificationTemplateId: string;
+        _organizationId: string;
         _subscriberId: string;
-        _messageId?: string | undefined;
-        providerId?: string | undefined;
-        transactionId: string;
         channel: string;
+        createdAt?: string | undefined;
         detail: string;
+        isRetry: boolean;
+        isTest: boolean;
+        providerId?: string | undefined;
         source: string;
         status: string;
-        isTest: boolean;
-        isRetry: boolean;
-        createdAt?: string | undefined;
+        transactionId: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ExecutionDetailsResponseDto> = z
         .object({
-            id: z.string().optional(),
-            organizationId: z.string(),
-            jobId: z.string(),
             environmentId: z.string(),
+            id: z.string().optional(),
+            jobId: z.string(),
+            messageId: z.string().optional(),
             notificationId: z.string(),
             notificationTemplateId: z.string(),
+            organizationId: z.string(),
             subscriberId: z.string(),
-            messageId: z.string().optional(),
-            providerId: z.string().optional(),
-            transactionId: z.string(),
-            channel: Channel$.outboundSchema,
-            detail: z.string(),
-            source: Source$.outboundSchema,
-            status: Status$.outboundSchema,
-            isTest: z.boolean(),
-            isRetry: z.boolean(),
+            channel: ExecutionDetailsResponseDtoChannel$.outboundSchema,
             createdAt: z.string().optional(),
+            detail: z.string(),
+            isRetry: z.boolean(),
+            isTest: z.boolean(),
+            providerId: z.string().optional(),
+            source: ExecutionDetailsResponseDtoSource$.outboundSchema,
+            status: ExecutionDetailsResponseDtoStatus$.outboundSchema,
+            transactionId: z.string(),
         })
         .transform((v) => {
             return remap$(v, {
-                id: "_id",
-                organizationId: "_organizationId",
-                jobId: "_jobId",
                 environmentId: "_environmentId",
+                id: "_id",
+                jobId: "_jobId",
+                messageId: "_messageId",
                 notificationId: "_notificationId",
                 notificationTemplateId: "_notificationTemplateId",
+                organizationId: "_organizationId",
                 subscriberId: "_subscriberId",
-                messageId: "_messageId",
             });
         });
 }

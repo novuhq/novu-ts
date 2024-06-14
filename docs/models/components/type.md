@@ -3,13 +3,13 @@
 
 ## Values
 
-| Name        | Value       |
-| ----------- | ----------- |
-| `Boolean`   | BOOLEAN     |
-| `Text`      | TEXT        |
-| `Date`      | DATE        |
-| `Number`    | NUMBER      |
-| `Statement` | STATEMENT   |
-| `List`      | LIST        |
-| `MultiList` | MULTI_LIST  |
-| `Group`     | GROUP       |
+| Name                   | Value                  |
+| ---------------------- | ---------------------- |
+| `Feed`                 | Feed                   |
+| `MessageTemplate`      | MessageTemplate        |
+| `Layout`               | Layout                 |
+| `DefaultLayout`        | DefaultLayout          |
+| `NotificationTemplate` | NotificationTemplate   |
+| `NotificationGroup`    | NotificationGroup      |
+| `TranslationGroup`     | TranslationGroup       |
+| `Translation`          | Translation            |

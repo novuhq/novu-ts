@@ -41,6 +41,100 @@ export class Events extends ClientSDK {
     }
 
     /**
+     * Cancel triggered event
+     *
+     * @remarks
+     *
+     *     Using a previously generated transactionId during the event trigger,
+     *      will cancel any active or pending workflows. This is useful to cancel active digests, delays etc...
+     *
+     */
+    async cancel(
+        transactionId: string,
+        options?: RequestOptions & { retries?: retries$.RetryConfig }
+    ): Promise<components.DataBooleanDto> {
+        const input$: operations.EventsControllerCancelRequest = {
+            transactionId: transactionId,
+        };
+        const headers$ = new Headers();
+        headers$.set("user-agent", SDK_METADATA.userAgent);
+        headers$.set("Accept", "application/json");
+
+        const payload$ = schemas$.parse(
+            input$,
+            (value$) => operations.EventsControllerCancelRequest$.outboundSchema.parse(value$),
+            "Input validation failed"
+        );
+        const body$ = null;
+
+        const pathParams$ = {
+            transactionId: encodeSimple$("transactionId", payload$.transactionId, {
+                explode: false,
+                charEncoding: "percent",
+            }),
+        };
+        const path$ = this.templateURLComponent("/v1/events/trigger/{transactionId}")(pathParams$);
+
+        const query$ = "";
+
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "EventsController_cancel",
+            oAuth2Scopes: [],
+            securitySource: this.options$.apiKey,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
+
+        const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
+        const request$ = this.createRequest$(
+            context,
+            {
+                security: securitySettings$,
+                method: "DELETE",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                body: body$,
+            },
+            options
+        );
+
+        const retryConfig = options?.retries ||
+            this.options$.retryConfig || {
+                strategy: "backoff",
+                backoff: {
+                    initialInterval: 500,
+                    maxInterval: 30000,
+                    exponent: 1.5,
+                    maxElapsedTime: 3600000,
+                },
+                retryConnectionErrors: true,
+            };
+
+        const response = await retries$.retry(
+            () => {
+                const cloned = request$.clone();
+                return this.do$(cloned, doOptions);
+            },
+            { config: retryConfig, statusCodes: ["408", "409", "429", "5XX"] }
+        );
+
+        const [result$] = await this.matcher<components.DataBooleanDto>()
+            .json(200, components.DataBooleanDto$)
+            .fail([409, 429, "4XX", 503, "5XX"])
+            .match(response);
+
+        return result$;
+    }
+
+    /**
      * Trigger event
      *
      * @remarks
@@ -122,93 +216,6 @@ export class Events extends ClientSDK {
 
         const [result$] = await this.matcher<components.TriggerEventResponseDto>()
             .json(201, components.TriggerEventResponseDto$)
-            .fail([409, 429, "4XX", 503, "5XX"])
-            .match(response);
-
-        return result$;
-    }
-
-    /**
-     * Bulk trigger event
-     *
-     * @remarks
-     *
-     *       Using this endpoint you can trigger multiple events at once, to avoid multiple calls to the API.
-     *       The bulk API is limited to 100 events per request.
-     *
-     */
-    async triggerBulk(
-        request: components.BulkTriggerEventDto,
-        options?: RequestOptions & { retries?: retries$.RetryConfig }
-    ): Promise<Array<components.TriggerEventResponseDto>> {
-        const input$ = request;
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Content-Type", "application/json");
-        headers$.set("Accept", "application/json");
-
-        const payload$ = schemas$.parse(
-            input$,
-            (value$) => components.BulkTriggerEventDto$.outboundSchema.parse(value$),
-            "Input validation failed"
-        );
-        const body$ = encodeJSON$("body", payload$, { explode: true });
-
-        const path$ = this.templateURLComponent("/v1/events/trigger/bulk")();
-
-        const query$ = "";
-
-        let security$;
-        if (typeof this.options$.apiKey === "function") {
-            security$ = { apiKey: await this.options$.apiKey() };
-        } else if (this.options$.apiKey) {
-            security$ = { apiKey: this.options$.apiKey };
-        } else {
-            security$ = {};
-        }
-        const context = {
-            operationID: "EventsController_triggerBulk",
-            oAuth2Scopes: [],
-            securitySource: this.options$.apiKey,
-        };
-        const securitySettings$ = this.resolveGlobalSecurity(security$);
-
-        const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
-        const request$ = this.createRequest$(
-            context,
-            {
-                security: securitySettings$,
-                method: "POST",
-                path: path$,
-                headers: headers$,
-                query: query$,
-                body: body$,
-            },
-            options
-        );
-
-        const retryConfig = options?.retries ||
-            this.options$.retryConfig || {
-                strategy: "backoff",
-                backoff: {
-                    initialInterval: 500,
-                    maxInterval: 30000,
-                    exponent: 1.5,
-                    maxElapsedTime: 3600000,
-                },
-                retryConnectionErrors: true,
-            };
-
-        const response = await retries$.retry(
-            () => {
-                const cloned = request$.clone();
-                return this.do$(cloned, doOptions);
-            },
-            { config: retryConfig, statusCodes: ["408", "409", "429", "5XX"] }
-        );
-
-        const [result$] = await this.matcher<Array<components.TriggerEventResponseDto>>()
-            .json(201, z.array(components.TriggerEventResponseDto$.inboundSchema))
             .fail([409, 429, "4XX", 503, "5XX"])
             .match(response);
 
@@ -301,39 +308,32 @@ export class Events extends ClientSDK {
     }
 
     /**
-     * Cancel triggered event
+     * Bulk trigger event
      *
      * @remarks
      *
-     *     Using a previously generated transactionId during the event trigger,
-     *      will cancel any active or pending workflows. This is useful to cancel active digests, delays etc...
+     *       Using this endpoint you can trigger multiple events at once, to avoid multiple calls to the API.
+     *       The bulk API is limited to 100 events per request.
      *
      */
-    async cancel(
-        transactionId: string,
+    async triggerBulk(
+        request: components.BulkTriggerEventDto,
         options?: RequestOptions & { retries?: retries$.RetryConfig }
-    ): Promise<components.DataBooleanDto> {
-        const input$: operations.EventsControllerCancelRequest = {
-            transactionId: transactionId,
-        };
+    ): Promise<Array<components.TriggerEventResponseDto>> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
+        headers$.set("Content-Type", "application/json");
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.EventsControllerCancelRequest$.outboundSchema.parse(value$),
+            (value$) => components.BulkTriggerEventDto$.outboundSchema.parse(value$),
             "Input validation failed"
         );
-        const body$ = null;
+        const body$ = encodeJSON$("body", payload$, { explode: true });
 
-        const pathParams$ = {
-            transactionId: encodeSimple$("transactionId", payload$.transactionId, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-        };
-        const path$ = this.templateURLComponent("/v1/events/trigger/{transactionId}")(pathParams$);
+        const path$ = this.templateURLComponent("/v1/events/trigger/bulk")();
 
         const query$ = "";
 
@@ -346,7 +346,7 @@ export class Events extends ClientSDK {
             security$ = {};
         }
         const context = {
-            operationID: "EventsController_cancel",
+            operationID: "EventsController_triggerBulk",
             oAuth2Scopes: [],
             securitySource: this.options$.apiKey,
         };
@@ -357,7 +357,7 @@ export class Events extends ClientSDK {
             context,
             {
                 security: securitySettings$,
-                method: "DELETE",
+                method: "POST",
                 path: path$,
                 headers: headers$,
                 query: query$,
@@ -386,8 +386,8 @@ export class Events extends ClientSDK {
             { config: retryConfig, statusCodes: ["408", "409", "429", "5XX"] }
         );
 
-        const [result$] = await this.matcher<components.DataBooleanDto>()
-            .json(200, components.DataBooleanDto$)
+        const [result$] = await this.matcher<Array<components.TriggerEventResponseDto>>()
+            .json(201, z.array(components.TriggerEventResponseDto$.inboundSchema))
             .fail([409, 429, "4XX", 503, "5XX"])
             .match(response);
 

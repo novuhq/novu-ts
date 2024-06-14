@@ -22,13 +22,13 @@ export type ChannelPreferenceType = ClosedEnum<typeof ChannelPreferenceType>;
 
 export type ChannelPreference = {
     /**
-     * The type of channel that is enabled or not
-     */
-    type: ChannelPreferenceType;
-    /**
      * If channel is enabled or not
      */
     enabled: boolean;
+    /**
+     * The type of channel that is enabled or not
+     */
+    type: ChannelPreferenceType;
 };
 
 /** @internal */
@@ -40,17 +40,17 @@ export namespace ChannelPreferenceType$ {
 /** @internal */
 export namespace ChannelPreference$ {
     export const inboundSchema: z.ZodType<ChannelPreference, z.ZodTypeDef, unknown> = z.object({
-        type: ChannelPreferenceType$.inboundSchema,
         enabled: z.boolean(),
+        type: ChannelPreferenceType$.inboundSchema,
     });
 
     export type Outbound = {
-        type: string;
         enabled: boolean;
+        type: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ChannelPreference> = z.object({
-        type: ChannelPreferenceType$.outboundSchema,
         enabled: z.boolean(),
+        type: ChannelPreferenceType$.outboundSchema,
     });
 }

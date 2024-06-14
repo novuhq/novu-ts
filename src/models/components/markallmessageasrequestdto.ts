@@ -13,7 +13,7 @@ export type FeedIdentifier = string | Array<string>;
 /**
  * Mark all subscriber messages as read, unread, seen or unseen
  */
-export const MarkAllMessageAsRequestDtoMarkAs = {
+export const MarkAs = {
     Read: "read",
     Seen: "seen",
     Unread: "unread",
@@ -22,7 +22,7 @@ export const MarkAllMessageAsRequestDtoMarkAs = {
 /**
  * Mark all subscriber messages as read, unread, seen or unseen
  */
-export type MarkAllMessageAsRequestDtoMarkAs = ClosedEnum<typeof MarkAllMessageAsRequestDtoMarkAs>;
+export type MarkAs = ClosedEnum<typeof MarkAs>;
 
 export type MarkAllMessageAsRequestDto = {
     /**
@@ -32,7 +32,7 @@ export type MarkAllMessageAsRequestDto = {
     /**
      * Mark all subscriber messages as read, unread, seen or unseen
      */
-    markAs: MarkAllMessageAsRequestDtoMarkAs;
+    markAs: MarkAs;
 };
 
 /** @internal */
@@ -50,8 +50,8 @@ export namespace FeedIdentifier$ {
 }
 
 /** @internal */
-export namespace MarkAllMessageAsRequestDtoMarkAs$ {
-    export const inboundSchema = z.nativeEnum(MarkAllMessageAsRequestDtoMarkAs);
+export namespace MarkAs$ {
+    export const inboundSchema = z.nativeEnum(MarkAs);
     export const outboundSchema = inboundSchema;
 }
 
@@ -60,7 +60,7 @@ export namespace MarkAllMessageAsRequestDto$ {
     export const inboundSchema: z.ZodType<MarkAllMessageAsRequestDto, z.ZodTypeDef, unknown> =
         z.object({
             feedIdentifier: z.union([z.string(), z.array(z.string())]).optional(),
-            markAs: MarkAllMessageAsRequestDtoMarkAs$.inboundSchema,
+            markAs: MarkAs$.inboundSchema,
         });
 
     export type Outbound = {
@@ -71,6 +71,6 @@ export namespace MarkAllMessageAsRequestDto$ {
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, MarkAllMessageAsRequestDto> =
         z.object({
             feedIdentifier: z.union([z.string(), z.array(z.string())]).optional(),
-            markAs: MarkAllMessageAsRequestDtoMarkAs$.outboundSchema,
+            markAs: MarkAs$.outboundSchema,
         });
 }

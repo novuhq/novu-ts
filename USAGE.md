@@ -12,8 +12,8 @@ const novu = new Novu({
 async function run() {
     const result = await novu.events.trigger({
         name: "workflow_identifier",
-        payload: {},
         overrides: {},
+        payload: {},
         to: [
             {
                 topicKey: "topic_key",

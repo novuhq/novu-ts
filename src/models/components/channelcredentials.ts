@@ -6,9 +6,9 @@ import * as z from "zod";
 
 export type ChannelCredentials = {
     /**
-     * Webhook url used by chat app integrations. The webhook should be obtained from the chat app provider.
+     * alert_uid for grafana on-call webhook payload
      */
-    webhookUrl: string;
+    alertUid?: string | undefined;
     /**
      * Channel specification for Mattermost chat notifications
      */
@@ -18,13 +18,9 @@ export type ChannelCredentials = {
      */
     deviceTokens?: Array<string> | undefined;
     /**
-     * alert_uid for grafana on-call webhook payload
+     * link_to_upstream_details property fo grafana on call webhook
      */
-    alertUid?: string | undefined;
-    /**
-     * title to be used with grafana on call webhook
-     */
-    title?: string | undefined;
+    externalUrl?: string | undefined;
     /**
      * image_url property fo grafana on call webhook
      */
@@ -34,43 +30,47 @@ export type ChannelCredentials = {
      */
     state?: string | undefined;
     /**
-     * link_to_upstream_details property fo grafana on call webhook
+     * title to be used with grafana on call webhook
      */
-    externalUrl?: string | undefined;
+    title?: string | undefined;
+    /**
+     * Webhook url used by chat app integrations. The webhook should be obtained from the chat app provider.
+     */
+    webhookUrl: string;
 };
 
 /** @internal */
 export namespace ChannelCredentials$ {
     export const inboundSchema: z.ZodType<ChannelCredentials, z.ZodTypeDef, unknown> = z.object({
-        webhookUrl: z.string(),
+        alertUid: z.string().optional(),
         channel: z.string().optional(),
         deviceTokens: z.array(z.string()).optional(),
-        alertUid: z.string().optional(),
-        title: z.string().optional(),
+        externalUrl: z.string().optional(),
         imageUrl: z.string().optional(),
         state: z.string().optional(),
-        externalUrl: z.string().optional(),
+        title: z.string().optional(),
+        webhookUrl: z.string(),
     });
 
     export type Outbound = {
-        webhookUrl: string;
+        alertUid?: string | undefined;
         channel?: string | undefined;
         deviceTokens?: Array<string> | undefined;
-        alertUid?: string | undefined;
-        title?: string | undefined;
+        externalUrl?: string | undefined;
         imageUrl?: string | undefined;
         state?: string | undefined;
-        externalUrl?: string | undefined;
+        title?: string | undefined;
+        webhookUrl: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ChannelCredentials> = z.object({
-        webhookUrl: z.string(),
+        alertUid: z.string().optional(),
         channel: z.string().optional(),
         deviceTokens: z.array(z.string()).optional(),
-        alertUid: z.string().optional(),
-        title: z.string().optional(),
+        externalUrl: z.string().optional(),
         imageUrl: z.string().optional(),
         state: z.string().optional(),
-        externalUrl: z.string().optional(),
+        title: z.string().optional(),
+        webhookUrl: z.string(),
     });
 }

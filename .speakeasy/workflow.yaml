@@ -3,9 +3,10 @@ speakeasyVersion: latest
 sources:
     json-development:
         inputs:
-            - location: http://127.0.0.1:3000/openapi.sdk.json
+#            - location: http://api.novu.co/openapi.sdk.json
+            - location: ./sources/openapi.sdk.json
         overlays:
-            - location: /Users/galtidhar/WebstormProjects/novu-sdk/sources/remove-headers-overlay.yaml
+            - location: ./sources/remove-headers-overlay.yaml
         registry:
             location: registry.speakeasyapi.dev/novu/novu/json-development
 targets:

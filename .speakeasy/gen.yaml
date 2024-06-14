@@ -1,7 +1,6 @@
 configVersion: 2.0.0
 generation:
   sdkClassName: Novu
-  maintainOpenAPIOrder: false
   usageSnippets:
     optionalPropertyRendering: withExample
   useClassNamesForArrayFields: true
@@ -12,7 +11,7 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: false
 typescript:
-  version: 0.0.1-alpha.1
+  version: 0.0.1-alpha.2
   additionalDependencies:
     dependencies: {}
     devDependencies: {}

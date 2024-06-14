@@ -10,8 +10,6 @@ import { SubscriberResponseDto, SubscriberResponseDto$ } from "./subscriberrespo
 import { WorkflowResponse, WorkflowResponse$ } from "./workflowresponse";
 import * as z from "zod";
 
-export type Content = EmailBlock | string;
-
 export const MessageResponseDtoChannel = {
     InApp: "in_app",
     Email: "email",
@@ -21,6 +19,18 @@ export const MessageResponseDtoChannel = {
 } as const;
 export type MessageResponseDtoChannel = ClosedEnum<typeof MessageResponseDtoChannel>;
 
+export type Content = EmailBlock | string;
+
+/**
+ * Provider specific overrides used when triggering the notification
+ */
+export type Overrides = {};
+
+/**
+ * The payload that was used to send the notification trigger
+ */
+export type MessageResponseDtoPayload = {};
+
 export const MessageResponseDtoStatus = {
     Sent: "sent",
     Error: "error",
@@ -28,56 +38,52 @@ export const MessageResponseDtoStatus = {
 } as const;
 export type MessageResponseDtoStatus = ClosedEnum<typeof MessageResponseDtoStatus>;
 
-/**
- * The payload that was used to send the notification trigger
- */
-export type MessageResponseDtoPayload = {};
-
-/**
- * Provider specific overrides used when triggering the notification
- */
-export type MessageResponseDtoOverrides = {};
-
 export type MessageResponseDto = {
-    id?: string | undefined;
-    templateId: string;
     environmentId: string;
-    messageTemplateId: string;
-    organizationId: string;
-    notificationId: string;
-    subscriberId: string;
-    subscriber?: SubscriberResponseDto | undefined;
-    template?: WorkflowResponse | undefined;
-    templateIdentifier?: string | undefined;
-    createdAt: string;
-    lastSeenDate?: string | undefined;
-    lastReadDate?: string | undefined;
-    content: EmailBlock | string;
-    transactionId: string;
-    subject?: string | undefined;
-    channel: MessageResponseDtoChannel;
-    read: boolean;
-    seen: boolean;
-    email?: string | undefined;
-    phone?: string | undefined;
-    directWebhookUrl?: string | undefined;
-    providerId?: string | undefined;
-    deviceTokens?: Array<string> | undefined;
-    title?: string | undefined;
-    cta: MessageCTA;
     feedId?: string | null | undefined;
-    status: MessageResponseDtoStatus;
+    id?: string | undefined;
+    messageTemplateId: string;
+    notificationId: string;
+    organizationId: string;
+    subscriberId: string;
+    templateId: string;
+    channel: MessageResponseDtoChannel;
+    content: EmailBlock | string;
+    createdAt: string;
+    cta: MessageCTA;
+    deviceTokens?: Array<string> | undefined;
+    directWebhookUrl?: string | undefined;
+    email?: string | undefined;
     errorId: string;
     errorText: string;
+    lastReadDate?: string | undefined;
+    lastSeenDate?: string | undefined;
+    /**
+     * Provider specific overrides used when triggering the notification
+     */
+    overrides: Overrides;
     /**
      * The payload that was used to send the notification trigger
      */
     payload: MessageResponseDtoPayload;
-    /**
-     * Provider specific overrides used when triggering the notification
-     */
-    overrides: MessageResponseDtoOverrides;
+    phone?: string | undefined;
+    providerId?: string | undefined;
+    read: boolean;
+    seen: boolean;
+    status: MessageResponseDtoStatus;
+    subject?: string | undefined;
+    subscriber?: SubscriberResponseDto | undefined;
+    template?: WorkflowResponse | undefined;
+    templateIdentifier?: string | undefined;
+    title?: string | undefined;
+    transactionId: string;
 };
+
+/** @internal */
+export namespace MessageResponseDtoChannel$ {
+    export const inboundSchema = z.nativeEnum(MessageResponseDtoChannel);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace Content$ {
@@ -94,15 +100,12 @@ export namespace Content$ {
 }
 
 /** @internal */
-export namespace MessageResponseDtoChannel$ {
-    export const inboundSchema = z.nativeEnum(MessageResponseDtoChannel);
-    export const outboundSchema = inboundSchema;
-}
+export namespace Overrides$ {
+    export const inboundSchema: z.ZodType<Overrides, z.ZodTypeDef, unknown> = z.object({});
 
-/** @internal */
-export namespace MessageResponseDtoStatus$ {
-    export const inboundSchema = z.nativeEnum(MessageResponseDtoStatus);
-    export const outboundSchema = inboundSchema;
+    export type Outbound = {};
+
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Overrides> = z.object({});
 }
 
 /** @internal */
@@ -117,146 +120,141 @@ export namespace MessageResponseDtoPayload$ {
 }
 
 /** @internal */
-export namespace MessageResponseDtoOverrides$ {
-    export const inboundSchema: z.ZodType<MessageResponseDtoOverrides, z.ZodTypeDef, unknown> =
-        z.object({});
-
-    export type Outbound = {};
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, MessageResponseDtoOverrides> =
-        z.object({});
+export namespace MessageResponseDtoStatus$ {
+    export const inboundSchema = z.nativeEnum(MessageResponseDtoStatus);
+    export const outboundSchema = inboundSchema;
 }
 
 /** @internal */
 export namespace MessageResponseDto$ {
     export const inboundSchema: z.ZodType<MessageResponseDto, z.ZodTypeDef, unknown> = z
         .object({
-            _id: z.string().optional(),
-            _templateId: z.string(),
             _environmentId: z.string(),
+            _feedId: z.nullable(z.string()).optional(),
+            _id: z.string().optional(),
             _messageTemplateId: z.string(),
-            _organizationId: z.string(),
             _notificationId: z.string(),
+            _organizationId: z.string(),
             _subscriberId: z.string(),
+            _templateId: z.string(),
+            channel: MessageResponseDtoChannel$.inboundSchema,
+            content: z.union([EmailBlock$.inboundSchema, z.string()]),
+            createdAt: z.string(),
+            cta: MessageCTA$.inboundSchema,
+            deviceTokens: z.array(z.string()).optional(),
+            directWebhookUrl: z.string().optional(),
+            email: z.string().optional(),
+            errorId: z.string(),
+            errorText: z.string(),
+            lastReadDate: z.string().optional(),
+            lastSeenDate: z.string().optional(),
+            overrides: z.lazy(() => Overrides$.inboundSchema),
+            payload: z.lazy(() => MessageResponseDtoPayload$.inboundSchema),
+            phone: z.string().optional(),
+            providerId: z.string().optional(),
+            read: z.boolean(),
+            seen: z.boolean(),
+            status: MessageResponseDtoStatus$.inboundSchema,
+            subject: z.string().optional(),
             subscriber: SubscriberResponseDto$.inboundSchema.optional(),
             template: WorkflowResponse$.inboundSchema.optional(),
             templateIdentifier: z.string().optional(),
-            createdAt: z.string(),
-            lastSeenDate: z.string().optional(),
-            lastReadDate: z.string().optional(),
-            content: z.union([EmailBlock$.inboundSchema, z.string()]),
-            transactionId: z.string(),
-            subject: z.string().optional(),
-            channel: MessageResponseDtoChannel$.inboundSchema,
-            read: z.boolean(),
-            seen: z.boolean(),
-            email: z.string().optional(),
-            phone: z.string().optional(),
-            directWebhookUrl: z.string().optional(),
-            providerId: z.string().optional(),
-            deviceTokens: z.array(z.string()).optional(),
             title: z.string().optional(),
-            cta: MessageCTA$.inboundSchema,
-            _feedId: z.nullable(z.string()).optional(),
-            status: MessageResponseDtoStatus$.inboundSchema,
-            errorId: z.string(),
-            errorText: z.string(),
-            payload: z.lazy(() => MessageResponseDtoPayload$.inboundSchema),
-            overrides: z.lazy(() => MessageResponseDtoOverrides$.inboundSchema),
+            transactionId: z.string(),
         })
         .transform((v) => {
             return remap$(v, {
-                _id: "id",
-                _templateId: "templateId",
                 _environmentId: "environmentId",
-                _messageTemplateId: "messageTemplateId",
-                _organizationId: "organizationId",
-                _notificationId: "notificationId",
-                _subscriberId: "subscriberId",
                 _feedId: "feedId",
+                _id: "id",
+                _messageTemplateId: "messageTemplateId",
+                _notificationId: "notificationId",
+                _organizationId: "organizationId",
+                _subscriberId: "subscriberId",
+                _templateId: "templateId",
             });
         });
 
     export type Outbound = {
-        _id?: string | undefined;
-        _templateId: string;
         _environmentId: string;
+        _feedId?: string | null | undefined;
+        _id?: string | undefined;
         _messageTemplateId: string;
-        _organizationId: string;
         _notificationId: string;
+        _organizationId: string;
         _subscriberId: string;
+        _templateId: string;
+        channel: string;
+        content: EmailBlock$.Outbound | string;
+        createdAt: string;
+        cta: MessageCTA$.Outbound;
+        deviceTokens?: Array<string> | undefined;
+        directWebhookUrl?: string | undefined;
+        email?: string | undefined;
+        errorId: string;
+        errorText: string;
+        lastReadDate?: string | undefined;
+        lastSeenDate?: string | undefined;
+        overrides: Overrides$.Outbound;
+        payload: MessageResponseDtoPayload$.Outbound;
+        phone?: string | undefined;
+        providerId?: string | undefined;
+        read: boolean;
+        seen: boolean;
+        status: string;
+        subject?: string | undefined;
         subscriber?: SubscriberResponseDto$.Outbound | undefined;
         template?: WorkflowResponse$.Outbound | undefined;
         templateIdentifier?: string | undefined;
-        createdAt: string;
-        lastSeenDate?: string | undefined;
-        lastReadDate?: string | undefined;
-        content: EmailBlock$.Outbound | string;
-        transactionId: string;
-        subject?: string | undefined;
-        channel: string;
-        read: boolean;
-        seen: boolean;
-        email?: string | undefined;
-        phone?: string | undefined;
-        directWebhookUrl?: string | undefined;
-        providerId?: string | undefined;
-        deviceTokens?: Array<string> | undefined;
         title?: string | undefined;
-        cta: MessageCTA$.Outbound;
-        _feedId?: string | null | undefined;
-        status: string;
-        errorId: string;
-        errorText: string;
-        payload: MessageResponseDtoPayload$.Outbound;
-        overrides: MessageResponseDtoOverrides$.Outbound;
+        transactionId: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, MessageResponseDto> = z
         .object({
-            id: z.string().optional(),
-            templateId: z.string(),
             environmentId: z.string(),
+            feedId: z.nullable(z.string()).optional(),
+            id: z.string().optional(),
             messageTemplateId: z.string(),
-            organizationId: z.string(),
             notificationId: z.string(),
+            organizationId: z.string(),
             subscriberId: z.string(),
+            templateId: z.string(),
+            channel: MessageResponseDtoChannel$.outboundSchema,
+            content: z.union([EmailBlock$.outboundSchema, z.string()]),
+            createdAt: z.string(),
+            cta: MessageCTA$.outboundSchema,
+            deviceTokens: z.array(z.string()).optional(),
+            directWebhookUrl: z.string().optional(),
+            email: z.string().optional(),
+            errorId: z.string(),
+            errorText: z.string(),
+            lastReadDate: z.string().optional(),
+            lastSeenDate: z.string().optional(),
+            overrides: z.lazy(() => Overrides$.outboundSchema),
+            payload: z.lazy(() => MessageResponseDtoPayload$.outboundSchema),
+            phone: z.string().optional(),
+            providerId: z.string().optional(),
+            read: z.boolean(),
+            seen: z.boolean(),
+            status: MessageResponseDtoStatus$.outboundSchema,
+            subject: z.string().optional(),
             subscriber: SubscriberResponseDto$.outboundSchema.optional(),
             template: WorkflowResponse$.outboundSchema.optional(),
             templateIdentifier: z.string().optional(),
-            createdAt: z.string(),
-            lastSeenDate: z.string().optional(),
-            lastReadDate: z.string().optional(),
-            content: z.union([EmailBlock$.outboundSchema, z.string()]),
-            transactionId: z.string(),
-            subject: z.string().optional(),
-            channel: MessageResponseDtoChannel$.outboundSchema,
-            read: z.boolean(),
-            seen: z.boolean(),
-            email: z.string().optional(),
-            phone: z.string().optional(),
-            directWebhookUrl: z.string().optional(),
-            providerId: z.string().optional(),
-            deviceTokens: z.array(z.string()).optional(),
             title: z.string().optional(),
-            cta: MessageCTA$.outboundSchema,
-            feedId: z.nullable(z.string()).optional(),
-            status: MessageResponseDtoStatus$.outboundSchema,
-            errorId: z.string(),
-            errorText: z.string(),
-            payload: z.lazy(() => MessageResponseDtoPayload$.outboundSchema),
-            overrides: z.lazy(() => MessageResponseDtoOverrides$.outboundSchema),
+            transactionId: z.string(),
         })
         .transform((v) => {
             return remap$(v, {
-                id: "_id",
-                templateId: "_templateId",
                 environmentId: "_environmentId",
-                messageTemplateId: "_messageTemplateId",
-                organizationId: "_organizationId",
-                notificationId: "_notificationId",
-                subscriberId: "_subscriberId",
                 feedId: "_feedId",
+                id: "_id",
+                messageTemplateId: "_messageTemplateId",
+                notificationId: "_notificationId",
+                organizationId: "_organizationId",
+                subscriberId: "_subscriberId",
+                templateId: "_templateId",
             });
         });
 }

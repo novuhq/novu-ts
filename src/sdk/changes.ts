@@ -45,31 +45,35 @@ export class Changes extends ClientSDK {
     }
 
     /**
-     * Get changes
+     * Apply change
      */
-    async retrieve(
-        request: operations.ChangesControllerGetChangesRequest,
+    async apply(
+        changeId: string,
         options?: RequestOptions & { retries?: retries$.RetryConfig }
-    ): Promise<components.ChangesResponseDto> {
-        const input$ = request;
+    ): Promise<Array<components.ChangeResponseDto>> {
+        const input$: operations.ChangesControllerApplyDiffRequest = {
+            changeId: changeId,
+        };
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.ChangesControllerGetChangesRequest$.outboundSchema.parse(value$),
+            (value$) => operations.ChangesControllerApplyDiffRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
 
-        const path$ = this.templateURLComponent("/v1/changes")();
+        const pathParams$ = {
+            changeId: encodeSimple$("changeId", payload$.changeId, {
+                explode: false,
+                charEncoding: "percent",
+            }),
+        };
+        const path$ = this.templateURLComponent("/v1/changes/{changeId}/apply")(pathParams$);
 
-        const query$ = encodeFormQuery$({
-            limit: payload$.limit,
-            page: payload$.page,
-            promoted: payload$.promoted,
-        });
+        const query$ = "";
 
         let security$;
         if (typeof this.options$.apiKey === "function") {
@@ -80,7 +84,7 @@ export class Changes extends ClientSDK {
             security$ = {};
         }
         const context = {
-            operationID: "ChangesController_getChanges",
+            operationID: "ChangesController_applyDiff",
             oAuth2Scopes: [],
             securitySource: this.options$.apiKey,
         };
@@ -91,7 +95,7 @@ export class Changes extends ClientSDK {
             context,
             {
                 security: securitySettings$,
-                method: "GET",
+                method: "POST",
                 path: path$,
                 headers: headers$,
                 query: query$,
@@ -120,78 +124,8 @@ export class Changes extends ClientSDK {
             { config: retryConfig, statusCodes: ["408", "409", "429", "5XX"] }
         );
 
-        const [result$] = await this.matcher<components.ChangesResponseDto>()
-            .json(200, components.ChangesResponseDto$)
-            .fail([409, 429, "4XX", 503, "5XX"])
-            .match(response);
-
-        return result$;
-    }
-
-    /**
-     * Get changes count
-     */
-    async count(
-        options?: RequestOptions & { retries?: retries$.RetryConfig }
-    ): Promise<components.DataNumberDto> {
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "application/json");
-
-        const path$ = this.templateURLComponent("/v1/changes/count")();
-
-        const query$ = "";
-
-        let security$;
-        if (typeof this.options$.apiKey === "function") {
-            security$ = { apiKey: await this.options$.apiKey() };
-        } else if (this.options$.apiKey) {
-            security$ = { apiKey: this.options$.apiKey };
-        } else {
-            security$ = {};
-        }
-        const context = {
-            operationID: "ChangesController_getChangesCount",
-            oAuth2Scopes: [],
-            securitySource: this.options$.apiKey,
-        };
-        const securitySettings$ = this.resolveGlobalSecurity(security$);
-
-        const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
-        const request$ = this.createRequest$(
-            context,
-            {
-                security: securitySettings$,
-                method: "GET",
-                path: path$,
-                headers: headers$,
-                query: query$,
-            },
-            options
-        );
-
-        const retryConfig = options?.retries ||
-            this.options$.retryConfig || {
-                strategy: "backoff",
-                backoff: {
-                    initialInterval: 500,
-                    maxInterval: 30000,
-                    exponent: 1.5,
-                    maxElapsedTime: 3600000,
-                },
-                retryConnectionErrors: true,
-            };
-
-        const response = await retries$.retry(
-            () => {
-                const cloned = request$.clone();
-                return this.do$(cloned, doOptions);
-            },
-            { config: retryConfig, statusCodes: ["408", "409", "429", "5XX"] }
-        );
-
-        const [result$] = await this.matcher<components.DataNumberDto>()
-            .json(200, components.DataNumberDto$)
+        const [result$] = await this.matcher<Array<components.ChangeResponseDto>>()
+            .json(201, z.array(components.ChangeResponseDto$.inboundSchema))
             .fail([409, 429, "4XX", 503, "5XX"])
             .match(response);
 
@@ -280,33 +214,16 @@ export class Changes extends ClientSDK {
     }
 
     /**
-     * Apply change
+     * Get changes count
      */
-    async apply(
-        changeId: string,
+    async count(
         options?: RequestOptions & { retries?: retries$.RetryConfig }
-    ): Promise<Array<components.ChangeResponseDto>> {
-        const input$: operations.ChangesControllerApplyDiffRequest = {
-            changeId: changeId,
-        };
+    ): Promise<components.DataNumberDto> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
-        const payload$ = schemas$.parse(
-            input$,
-            (value$) => operations.ChangesControllerApplyDiffRequest$.outboundSchema.parse(value$),
-            "Input validation failed"
-        );
-        const body$ = null;
-
-        const pathParams$ = {
-            changeId: encodeSimple$("changeId", payload$.changeId, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-        };
-        const path$ = this.templateURLComponent("/v1/changes/{changeId}/apply")(pathParams$);
+        const path$ = this.templateURLComponent("/v1/changes/count")();
 
         const query$ = "";
 
@@ -319,7 +236,7 @@ export class Changes extends ClientSDK {
             security$ = {};
         }
         const context = {
-            operationID: "ChangesController_applyDiff",
+            operationID: "ChangesController_getChangesCount",
             oAuth2Scopes: [],
             securitySource: this.options$.apiKey,
         };
@@ -330,7 +247,90 @@ export class Changes extends ClientSDK {
             context,
             {
                 security: securitySettings$,
-                method: "POST",
+                method: "GET",
+                path: path$,
+                headers: headers$,
+                query: query$,
+            },
+            options
+        );
+
+        const retryConfig = options?.retries ||
+            this.options$.retryConfig || {
+                strategy: "backoff",
+                backoff: {
+                    initialInterval: 500,
+                    maxInterval: 30000,
+                    exponent: 1.5,
+                    maxElapsedTime: 3600000,
+                },
+                retryConnectionErrors: true,
+            };
+
+        const response = await retries$.retry(
+            () => {
+                const cloned = request$.clone();
+                return this.do$(cloned, doOptions);
+            },
+            { config: retryConfig, statusCodes: ["408", "409", "429", "5XX"] }
+        );
+
+        const [result$] = await this.matcher<components.DataNumberDto>()
+            .json(200, components.DataNumberDto$)
+            .fail([409, 429, "4XX", 503, "5XX"])
+            .match(response);
+
+        return result$;
+    }
+
+    /**
+     * Get changes
+     */
+    async retrieve(
+        request: operations.ChangesControllerGetChangesRequest,
+        options?: RequestOptions & { retries?: retries$.RetryConfig }
+    ): Promise<components.ChangesResponseDto> {
+        const input$ = request;
+        const headers$ = new Headers();
+        headers$.set("user-agent", SDK_METADATA.userAgent);
+        headers$.set("Accept", "application/json");
+
+        const payload$ = schemas$.parse(
+            input$,
+            (value$) => operations.ChangesControllerGetChangesRequest$.outboundSchema.parse(value$),
+            "Input validation failed"
+        );
+        const body$ = null;
+
+        const path$ = this.templateURLComponent("/v1/changes")();
+
+        const query$ = encodeFormQuery$({
+            limit: payload$.limit,
+            page: payload$.page,
+            promoted: payload$.promoted,
+        });
+
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "ChangesController_getChanges",
+            oAuth2Scopes: [],
+            securitySource: this.options$.apiKey,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
+
+        const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
+        const request$ = this.createRequest$(
+            context,
+            {
+                security: securitySettings$,
+                method: "GET",
                 path: path$,
                 headers: headers$,
                 query: query$,
@@ -359,8 +359,8 @@ export class Changes extends ClientSDK {
             { config: retryConfig, statusCodes: ["408", "409", "429", "5XX"] }
         );
 
-        const [result$] = await this.matcher<Array<components.ChangeResponseDto>>()
-            .json(201, z.array(components.ChangeResponseDto$.inboundSchema))
+        const [result$] = await this.matcher<components.ChangesResponseDto>()
+            .json(200, components.ChangesResponseDto$)
             .fail([409, 429, "4XX", 503, "5XX"])
             .match(response);
 

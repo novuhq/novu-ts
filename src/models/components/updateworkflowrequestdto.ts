@@ -9,15 +9,15 @@ import * as z from "zod";
 export type UpdateWorkflowRequestDtoData = {};
 
 export type UpdateWorkflowRequestDto = {
-    name: string;
-    tags?: Array<string> | undefined;
+    critical?: boolean | undefined;
+    data?: UpdateWorkflowRequestDtoData | undefined;
     description?: string | undefined;
     identifier?: string | undefined;
-    steps?: Array<NotificationStep> | undefined;
+    name: string;
     notificationGroupId: string;
-    critical?: boolean | undefined;
     preferenceSettings?: PreferenceChannels | undefined;
-    data?: UpdateWorkflowRequestDtoData | undefined;
+    steps?: Array<NotificationStep> | undefined;
+    tags?: Array<string> | undefined;
 };
 
 /** @internal */
@@ -35,39 +35,39 @@ export namespace UpdateWorkflowRequestDtoData$ {
 export namespace UpdateWorkflowRequestDto$ {
     export const inboundSchema: z.ZodType<UpdateWorkflowRequestDto, z.ZodTypeDef, unknown> =
         z.object({
-            name: z.string(),
-            tags: z.array(z.string()).optional(),
+            critical: z.boolean().optional(),
+            data: z.lazy(() => UpdateWorkflowRequestDtoData$.inboundSchema).optional(),
             description: z.string().optional(),
             identifier: z.string().optional(),
-            steps: z.array(NotificationStep$.inboundSchema).optional(),
+            name: z.string(),
             notificationGroupId: z.string(),
-            critical: z.boolean().optional(),
             preferenceSettings: PreferenceChannels$.inboundSchema.optional(),
-            data: z.lazy(() => UpdateWorkflowRequestDtoData$.inboundSchema).optional(),
+            steps: z.array(NotificationStep$.inboundSchema).optional(),
+            tags: z.array(z.string()).optional(),
         });
 
     export type Outbound = {
-        name: string;
-        tags?: Array<string> | undefined;
+        critical?: boolean | undefined;
+        data?: UpdateWorkflowRequestDtoData$.Outbound | undefined;
         description?: string | undefined;
         identifier?: string | undefined;
-        steps?: Array<NotificationStep$.Outbound> | undefined;
+        name: string;
         notificationGroupId: string;
-        critical?: boolean | undefined;
         preferenceSettings?: PreferenceChannels$.Outbound | undefined;
-        data?: UpdateWorkflowRequestDtoData$.Outbound | undefined;
+        steps?: Array<NotificationStep$.Outbound> | undefined;
+        tags?: Array<string> | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, UpdateWorkflowRequestDto> =
         z.object({
-            name: z.string(),
-            tags: z.array(z.string()).optional(),
+            critical: z.boolean().optional(),
+            data: z.lazy(() => UpdateWorkflowRequestDtoData$.outboundSchema).optional(),
             description: z.string().optional(),
             identifier: z.string().optional(),
-            steps: z.array(NotificationStep$.outboundSchema).optional(),
+            name: z.string(),
             notificationGroupId: z.string(),
-            critical: z.boolean().optional(),
             preferenceSettings: PreferenceChannels$.outboundSchema.optional(),
-            data: z.lazy(() => UpdateWorkflowRequestDtoData$.outboundSchema).optional(),
+            steps: z.array(NotificationStep$.outboundSchema).optional(),
+            tags: z.array(z.string()).optional(),
         });
 }

@@ -12,19 +12,19 @@ export type TenantControllerListTenantsRequest = {
 };
 
 export type TenantControllerListTenantsResponseBody = {
-    /**
-     * The current page of the paginated response
-     */
-    page: number;
+    data: Array<components.GetTenantResponseDto>;
     /**
      * Does the list have more items to fetch
      */
     hasMore: boolean;
     /**
+     * The current page of the paginated response
+     */
+    page: number;
+    /**
      * Number of items on each page
      */
     pageSize: number;
-    data: Array<components.GetTenantResponseDto>;
 };
 
 export type TenantControllerListTenantsResponse = {
@@ -64,17 +64,17 @@ export namespace TenantControllerListTenantsResponseBody$ {
         z.ZodTypeDef,
         unknown
     > = z.object({
-        page: z.number(),
-        hasMore: z.boolean(),
-        pageSize: z.number(),
         data: z.array(components.GetTenantResponseDto$.inboundSchema),
+        hasMore: z.boolean(),
+        page: z.number(),
+        pageSize: z.number(),
     });
 
     export type Outbound = {
-        page: number;
-        hasMore: boolean;
-        pageSize: number;
         data: Array<components.GetTenantResponseDto$.Outbound>;
+        hasMore: boolean;
+        page: number;
+        pageSize: number;
     };
 
     export const outboundSchema: z.ZodType<
@@ -82,10 +82,10 @@ export namespace TenantControllerListTenantsResponseBody$ {
         z.ZodTypeDef,
         TenantControllerListTenantsResponseBody
     > = z.object({
-        page: z.number(),
-        hasMore: z.boolean(),
-        pageSize: z.number(),
         data: z.array(components.GetTenantResponseDto$.outboundSchema),
+        hasMore: z.boolean(),
+        page: z.number(),
+        pageSize: z.number(),
     });
 }
 

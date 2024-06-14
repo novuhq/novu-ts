@@ -18,19 +18,19 @@ export type SubscribersControllerGetNotificationsFeedRequest = {
 };
 
 export type SubscribersControllerGetNotificationsFeedResponseBody = {
-    /**
-     * The current page of the paginated response
-     */
-    page: number;
+    data: Array<components.FeedResponseDto>;
     /**
      * Does the list have more items to fetch
      */
     hasMore: boolean;
     /**
+     * The current page of the paginated response
+     */
+    page: number;
+    /**
      * Number of items on each page
      */
     pageSize: number;
-    data: Array<components.FeedResponseDto>;
 };
 
 /** @internal */
@@ -78,17 +78,17 @@ export namespace SubscribersControllerGetNotificationsFeedResponseBody$ {
         z.ZodTypeDef,
         unknown
     > = z.object({
-        page: z.number(),
-        hasMore: z.boolean(),
-        pageSize: z.number(),
         data: z.array(components.FeedResponseDto$.inboundSchema),
+        hasMore: z.boolean(),
+        page: z.number(),
+        pageSize: z.number(),
     });
 
     export type Outbound = {
-        page: number;
-        hasMore: boolean;
-        pageSize: number;
         data: Array<components.FeedResponseDto$.Outbound>;
+        hasMore: boolean;
+        page: number;
+        pageSize: number;
     };
 
     export const outboundSchema: z.ZodType<
@@ -96,9 +96,9 @@ export namespace SubscribersControllerGetNotificationsFeedResponseBody$ {
         z.ZodTypeDef,
         SubscribersControllerGetNotificationsFeedResponseBody
     > = z.object({
-        page: z.number(),
-        hasMore: z.boolean(),
-        pageSize: z.number(),
         data: z.array(components.FeedResponseDto$.outboundSchema),
+        hasMore: z.boolean(),
+        page: z.number(),
+        pageSize: z.number(),
     });
 }

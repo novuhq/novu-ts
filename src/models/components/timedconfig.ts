@@ -5,16 +5,11 @@
 import { ClosedEnum } from "../../types";
 import * as z from "zod";
 
-export const WeekDays = {
-    Monday: "monday",
-    Tuesday: "tuesday",
-    Wednesday: "wednesday",
-    Thursday: "thursday",
-    Friday: "friday",
-    Saturday: "saturday",
-    Sunday: "sunday",
+export const MonthlyType = {
+    Each: "each",
+    On: "on",
 } as const;
-export type WeekDays = ClosedEnum<typeof WeekDays>;
+export type MonthlyType = ClosedEnum<typeof MonthlyType>;
 
 export const Ordinal = {
     One: "1",
@@ -40,24 +35,29 @@ export const OrdinalValue = {
 } as const;
 export type OrdinalValue = ClosedEnum<typeof OrdinalValue>;
 
-export const MonthlyType = {
-    Each: "each",
-    On: "on",
+export const WeekDays = {
+    Monday: "monday",
+    Tuesday: "tuesday",
+    Wednesday: "wednesday",
+    Thursday: "thursday",
+    Friday: "friday",
+    Saturday: "saturday",
+    Sunday: "sunday",
 } as const;
-export type MonthlyType = ClosedEnum<typeof MonthlyType>;
+export type WeekDays = ClosedEnum<typeof WeekDays>;
 
 export type TimedConfig = {
     atTime?: string | undefined;
-    weekDays?: Array<WeekDays> | undefined;
     monthDays?: Array<string> | undefined;
+    monthlyType?: MonthlyType | undefined;
     ordinal?: Ordinal | undefined;
     ordinalValue?: OrdinalValue | undefined;
-    monthlyType?: MonthlyType | undefined;
+    weekDays?: Array<WeekDays> | undefined;
 };
 
 /** @internal */
-export namespace WeekDays$ {
-    export const inboundSchema = z.nativeEnum(WeekDays);
+export namespace MonthlyType$ {
+    export const inboundSchema = z.nativeEnum(MonthlyType);
     export const outboundSchema = inboundSchema;
 }
 
@@ -74,8 +74,8 @@ export namespace OrdinalValue$ {
 }
 
 /** @internal */
-export namespace MonthlyType$ {
-    export const inboundSchema = z.nativeEnum(MonthlyType);
+export namespace WeekDays$ {
+    export const inboundSchema = z.nativeEnum(WeekDays);
     export const outboundSchema = inboundSchema;
 }
 
@@ -83,28 +83,28 @@ export namespace MonthlyType$ {
 export namespace TimedConfig$ {
     export const inboundSchema: z.ZodType<TimedConfig, z.ZodTypeDef, unknown> = z.object({
         atTime: z.string().optional(),
-        weekDays: z.array(WeekDays$.inboundSchema).optional(),
         monthDays: z.array(z.string()).optional(),
+        monthlyType: MonthlyType$.inboundSchema.optional(),
         ordinal: Ordinal$.inboundSchema.optional(),
         ordinalValue: OrdinalValue$.inboundSchema.optional(),
-        monthlyType: MonthlyType$.inboundSchema.optional(),
+        weekDays: z.array(WeekDays$.inboundSchema).optional(),
     });
 
     export type Outbound = {
         atTime?: string | undefined;
-        weekDays?: Array<string> | undefined;
         monthDays?: Array<string> | undefined;
+        monthlyType?: string | undefined;
         ordinal?: string | undefined;
         ordinalValue?: string | undefined;
-        monthlyType?: string | undefined;
+        weekDays?: Array<string> | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TimedConfig> = z.object({
         atTime: z.string().optional(),
-        weekDays: z.array(WeekDays$.outboundSchema).optional(),
         monthDays: z.array(z.string()).optional(),
+        monthlyType: MonthlyType$.outboundSchema.optional(),
         ordinal: Ordinal$.outboundSchema.optional(),
         ordinalValue: OrdinalValue$.outboundSchema.optional(),
-        monthlyType: MonthlyType$.outboundSchema.optional(),
+        weekDays: z.array(WeekDays$.outboundSchema).optional(),
     });
 }

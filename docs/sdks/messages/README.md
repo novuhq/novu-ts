@@ -8,51 +8,9 @@ A message in Novu represents a notification delivered to a recipient on a partic
 <https://docs.novu.co/workflows/messages>
 ### Available Operations
 
-* [retrieve](#retrieve) - Get messages
 * [delete](#delete) - Delete message
 * [deleteByTransactionId](#deletebytransactionid) - Delete messages by transactionId
-
-## retrieve
-
-Returns a list of messages, could paginate using the `page` query parameter
-
-### Example Usage
-
-```typescript
-import { Novu } from "novu-sdk";
-
-const novu = new Novu({
-  apiKey: "<YOUR_API_KEY_HERE>",
-});
-
-async function run() {
-  const result = await novu.messages.retrieve({});
-
-  // Handle the result
-  console.log(result)
-}
-
-run();
-```
-
-### Parameters
-
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.MessagesControllerGetMessagesRequest](../../models/operations/messagescontrollergetmessagesrequest.md)                                                             | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
-
-
-### Response
-
-**Promise\<[components.ActivitiesResponseDto](../../models/components/activitiesresponsedto.md)\>**
-### Errors
-
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+* [retrieve](#retrieve) - Get messages
 
 ## delete
 
@@ -104,14 +62,14 @@ Deletes messages entity from the Novu platform using TransactionId of message
 
 ```typescript
 import { Novu } from "novu-sdk";
-import { QueryParamChannel } from "novu-sdk/models/operations";
+import { Channel } from "novu-sdk/models/operations";
 
 const novu = new Novu({
   apiKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
-  await novu.messages.deleteByTransactionId("<value>", QueryParamChannel.Push);
+  await novu.messages.deleteByTransactionId("<value>", Channel.Push);
 
   
 }
@@ -124,7 +82,7 @@ run();
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `transactionId`                                                                                                                                                                | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
-| `channel`                                                                                                                                                                      | [operations.QueryParamChannel](../../models/operations/queryparamchannel.md)                                                                                                   | :heavy_minus_sign:                                                                                                                                                             | The channel of the message to be deleted                                                                                                                                       |
+| `channel`                                                                                                                                                                      | [operations.Channel](../../models/operations/channel.md)                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | The channel of the message to be deleted                                                                                                                                       |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
@@ -133,6 +91,48 @@ run();
 ### Response
 
 **Promise\<void\>**
+### Errors
+
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4xx-5xx         | */*             |
+
+## retrieve
+
+Returns a list of messages, could paginate using the `page` query parameter
+
+### Example Usage
+
+```typescript
+import { Novu } from "novu-sdk";
+
+const novu = new Novu({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await novu.messages.retrieve({});
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.MessagesControllerGetMessagesRequest](../../models/operations/messagescontrollergetmessagesrequest.md)                                                             | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+
+### Response
+
+**Promise\<[components.ActivitiesResponseDto](../../models/components/activitiesresponsedto.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

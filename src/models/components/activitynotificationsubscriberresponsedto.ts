@@ -6,10 +6,10 @@ import { remap as remap$ } from "../../lib/primitives";
 import * as z from "zod";
 
 export type ActivityNotificationSubscriberResponseDto = {
-    firstName?: string | undefined;
     id: string;
-    lastName?: string | undefined;
     email?: string | undefined;
+    firstName?: string | undefined;
+    lastName?: string | undefined;
     phone?: string | undefined;
 };
 
@@ -21,10 +21,10 @@ export namespace ActivityNotificationSubscriberResponseDto$ {
         unknown
     > = z
         .object({
-            firstName: z.string().optional(),
             _id: z.string(),
-            lastName: z.string().optional(),
             email: z.string().optional(),
+            firstName: z.string().optional(),
+            lastName: z.string().optional(),
             phone: z.string().optional(),
         })
         .transform((v) => {
@@ -34,10 +34,10 @@ export namespace ActivityNotificationSubscriberResponseDto$ {
         });
 
     export type Outbound = {
-        firstName?: string | undefined;
         _id: string;
-        lastName?: string | undefined;
         email?: string | undefined;
+        firstName?: string | undefined;
+        lastName?: string | undefined;
         phone?: string | undefined;
     };
 
@@ -47,10 +47,10 @@ export namespace ActivityNotificationSubscriberResponseDto$ {
         ActivityNotificationSubscriberResponseDto
     > = z
         .object({
-            firstName: z.string().optional(),
             id: z.string(),
-            lastName: z.string().optional(),
             email: z.string().optional(),
+            firstName: z.string().optional(),
+            lastName: z.string().optional(),
             phone: z.string().optional(),
         })
         .transform((v) => {

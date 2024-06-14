@@ -7,9 +7,9 @@ import * as z from "zod";
 export type TenantPayloadDtoData = {};
 
 export type TenantPayloadDto = {
+    data?: TenantPayloadDtoData | undefined;
     identifier?: string | undefined;
     name?: string | undefined;
-    data?: TenantPayloadDtoData | undefined;
 };
 
 /** @internal */
@@ -28,20 +28,20 @@ export namespace TenantPayloadDtoData$ {
 /** @internal */
 export namespace TenantPayloadDto$ {
     export const inboundSchema: z.ZodType<TenantPayloadDto, z.ZodTypeDef, unknown> = z.object({
+        data: z.lazy(() => TenantPayloadDtoData$.inboundSchema).optional(),
         identifier: z.string().optional(),
         name: z.string().optional(),
-        data: z.lazy(() => TenantPayloadDtoData$.inboundSchema).optional(),
     });
 
     export type Outbound = {
+        data?: TenantPayloadDtoData$.Outbound | undefined;
         identifier?: string | undefined;
         name?: string | undefined;
-        data?: TenantPayloadDtoData$.Outbound | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TenantPayloadDto> = z.object({
+        data: z.lazy(() => TenantPayloadDtoData$.outboundSchema).optional(),
         identifier: z.string().optional(),
         name: z.string().optional(),
-        data: z.lazy(() => TenantPayloadDtoData$.outboundSchema).optional(),
     });
 }

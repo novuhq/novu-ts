@@ -6,34 +6,34 @@ import { WorkflowResponse, WorkflowResponse$ } from "./workflowresponse";
 import * as z from "zod";
 
 export type WorkflowsResponseDto = {
-    totalCount: number;
     data: Array<WorkflowResponse>;
-    pageSize: number;
     page: number;
+    pageSize: number;
+    totalCount: number;
 };
 
 /** @internal */
 export namespace WorkflowsResponseDto$ {
     export const inboundSchema: z.ZodType<WorkflowsResponseDto, z.ZodTypeDef, unknown> = z.object({
-        totalCount: z.number(),
         data: z.array(WorkflowResponse$.inboundSchema),
-        pageSize: z.number(),
         page: z.number(),
+        pageSize: z.number(),
+        totalCount: z.number(),
     });
 
     export type Outbound = {
-        totalCount: number;
         data: Array<WorkflowResponse$.Outbound>;
-        pageSize: number;
         page: number;
+        pageSize: number;
+        totalCount: number;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, WorkflowsResponseDto> = z.object(
         {
-            totalCount: z.number(),
             data: z.array(WorkflowResponse$.outboundSchema),
-            pageSize: z.number(),
             page: z.number(),
+            pageSize: z.number(),
+            totalCount: z.number(),
         }
     );
 }

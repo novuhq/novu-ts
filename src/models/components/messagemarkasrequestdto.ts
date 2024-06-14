@@ -5,20 +5,26 @@
 import { ClosedEnum } from "../../types";
 import * as z from "zod";
 
-export type MessageId = string | Array<string>;
-
-export const MarkAs = {
+export const MessageMarkAsRequestDtoMarkAs = {
     Read: "read",
     Seen: "seen",
     Unread: "unread",
     Unseen: "unseen",
 } as const;
-export type MarkAs = ClosedEnum<typeof MarkAs>;
+export type MessageMarkAsRequestDtoMarkAs = ClosedEnum<typeof MessageMarkAsRequestDtoMarkAs>;
+
+export type MessageId = string | Array<string>;
 
 export type MessageMarkAsRequestDto = {
+    markAs: MessageMarkAsRequestDtoMarkAs;
     messageId: string | Array<string>;
-    markAs: MarkAs;
 };
+
+/** @internal */
+export namespace MessageMarkAsRequestDtoMarkAs$ {
+    export const inboundSchema = z.nativeEnum(MessageMarkAsRequestDtoMarkAs);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace MessageId$ {
@@ -35,27 +41,21 @@ export namespace MessageId$ {
 }
 
 /** @internal */
-export namespace MarkAs$ {
-    export const inboundSchema = z.nativeEnum(MarkAs);
-    export const outboundSchema = inboundSchema;
-}
-
-/** @internal */
 export namespace MessageMarkAsRequestDto$ {
     export const inboundSchema: z.ZodType<MessageMarkAsRequestDto, z.ZodTypeDef, unknown> =
         z.object({
+            markAs: MessageMarkAsRequestDtoMarkAs$.inboundSchema,
             messageId: z.union([z.string(), z.array(z.string())]),
-            markAs: MarkAs$.inboundSchema,
         });
 
     export type Outbound = {
-        messageId: string | Array<string>;
         markAs: string;
+        messageId: string | Array<string>;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, MessageMarkAsRequestDto> =
         z.object({
+            markAs: MessageMarkAsRequestDtoMarkAs$.outboundSchema,
             messageId: z.union([z.string(), z.array(z.string())]),
-            markAs: MarkAs$.outboundSchema,
         });
 }

@@ -4,23 +4,14 @@
 
 import * as z from "zod";
 
-export type Translations = {};
-
 export type System = {};
 
+export type Translations = {};
+
 export type VariablesResponseDto = {
-    translations: Translations;
     system: System;
+    translations: Translations;
 };
-
-/** @internal */
-export namespace Translations$ {
-    export const inboundSchema: z.ZodType<Translations, z.ZodTypeDef, unknown> = z.object({});
-
-    export type Outbound = {};
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Translations> = z.object({});
-}
 
 /** @internal */
 export namespace System$ {
@@ -32,21 +23,30 @@ export namespace System$ {
 }
 
 /** @internal */
+export namespace Translations$ {
+    export const inboundSchema: z.ZodType<Translations, z.ZodTypeDef, unknown> = z.object({});
+
+    export type Outbound = {};
+
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Translations> = z.object({});
+}
+
+/** @internal */
 export namespace VariablesResponseDto$ {
     export const inboundSchema: z.ZodType<VariablesResponseDto, z.ZodTypeDef, unknown> = z.object({
-        translations: z.lazy(() => Translations$.inboundSchema),
         system: z.lazy(() => System$.inboundSchema),
+        translations: z.lazy(() => Translations$.inboundSchema),
     });
 
     export type Outbound = {
-        translations: Translations$.Outbound;
         system: System$.Outbound;
+        translations: Translations$.Outbound;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, VariablesResponseDto> = z.object(
         {
-            translations: z.lazy(() => Translations$.outboundSchema),
             system: z.lazy(() => System$.outboundSchema),
+            translations: z.lazy(() => Translations$.outboundSchema),
         }
     );
 }

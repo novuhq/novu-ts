@@ -57,6 +57,21 @@ export class Subscribers extends ClientSDK {
         return (this._credentials ??= new Credentials(this.options$));
     }
 
+    private _authentication?: Authentication;
+    get authentication(): Authentication {
+        return (this._authentication ??= new Authentication(this.options$));
+    }
+
+    private _messages?: NovuMessages;
+    get messages(): NovuMessages {
+        return (this._messages ??= new NovuMessages(this.options$));
+    }
+
+    private _notifications?: NovuNotifications;
+    get notifications(): NovuNotifications {
+        return (this._notifications ??= new NovuNotifications(this.options$));
+    }
+
     private _properties?: Properties;
     get properties(): Properties {
         return (this._properties ??= new Properties(this.options$));
@@ -67,19 +82,269 @@ export class Subscribers extends ClientSDK {
         return (this._preferences ??= new Preferences(this.options$));
     }
 
-    private _notifications?: NovuNotifications;
-    get notifications(): NovuNotifications {
-        return (this._notifications ??= new NovuNotifications(this.options$));
+    /**
+     * Create subscriber
+     *
+     * @remarks
+     * Creates a subscriber entity, in the Novu platform. The subscriber will be later used to receive notifications, and access notification feeds. Communication credentials such as email, phone number, and 3 rd party credentials i.e slack tokens could be later associated to this entity.
+     */
+    async create(
+        request: components.CreateSubscriberRequestDto,
+        options?: RequestOptions & { retries?: retries$.RetryConfig }
+    ): Promise<components.SubscriberResponseDto> {
+        const input$ = request;
+        const headers$ = new Headers();
+        headers$.set("user-agent", SDK_METADATA.userAgent);
+        headers$.set("Content-Type", "application/json");
+        headers$.set("Accept", "application/json");
+
+        const payload$ = schemas$.parse(
+            input$,
+            (value$) => components.CreateSubscriberRequestDto$.outboundSchema.parse(value$),
+            "Input validation failed"
+        );
+        const body$ = encodeJSON$("body", payload$, { explode: true });
+
+        const path$ = this.templateURLComponent("/v1/subscribers")();
+
+        const query$ = "";
+
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "SubscribersController_createSubscriber",
+            oAuth2Scopes: [],
+            securitySource: this.options$.apiKey,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
+
+        const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
+        const request$ = this.createRequest$(
+            context,
+            {
+                security: securitySettings$,
+                method: "POST",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                body: body$,
+            },
+            options
+        );
+
+        const retryConfig = options?.retries ||
+            this.options$.retryConfig || {
+                strategy: "backoff",
+                backoff: {
+                    initialInterval: 500,
+                    maxInterval: 30000,
+                    exponent: 1.5,
+                    maxElapsedTime: 3600000,
+                },
+                retryConnectionErrors: true,
+            };
+
+        const response = await retries$.retry(
+            () => {
+                const cloned = request$.clone();
+                return this.do$(cloned, doOptions);
+            },
+            { config: retryConfig, statusCodes: ["408", "409", "429", "5XX"] }
+        );
+
+        const [result$] = await this.matcher<components.SubscriberResponseDto>()
+            .json(201, components.SubscriberResponseDto$)
+            .fail([409, 429, "4XX", 503, "5XX"])
+            .match(response);
+
+        return result$;
     }
 
-    private _messages?: NovuMessages;
-    get messages(): NovuMessages {
-        return (this._messages ??= new NovuMessages(this.options$));
+    /**
+     * Bulk create subscribers
+     *
+     * @remarks
+     *
+     *       Using this endpoint you can create multiple subscribers at once, to avoid multiple calls to the API.
+     *       The bulk API is limited to 500 subscribers per request.
+     *
+     */
+    async createBulk(
+        request: components.BulkSubscriberCreateDto,
+        options?: RequestOptions & { retries?: retries$.RetryConfig }
+    ): Promise<void> {
+        const input$ = request;
+        const headers$ = new Headers();
+        headers$.set("user-agent", SDK_METADATA.userAgent);
+        headers$.set("Content-Type", "application/json");
+        headers$.set("Accept", "*/*");
+
+        const payload$ = schemas$.parse(
+            input$,
+            (value$) => components.BulkSubscriberCreateDto$.outboundSchema.parse(value$),
+            "Input validation failed"
+        );
+        const body$ = encodeJSON$("body", payload$, { explode: true });
+
+        const path$ = this.templateURLComponent("/v1/subscribers/bulk")();
+
+        const query$ = "";
+
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "SubscribersController_bulkCreateSubscribers",
+            oAuth2Scopes: [],
+            securitySource: this.options$.apiKey,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
+
+        const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
+        const request$ = this.createRequest$(
+            context,
+            {
+                security: securitySettings$,
+                method: "POST",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                body: body$,
+            },
+            options
+        );
+
+        const retryConfig = options?.retries ||
+            this.options$.retryConfig || {
+                strategy: "backoff",
+                backoff: {
+                    initialInterval: 500,
+                    maxInterval: 30000,
+                    exponent: 1.5,
+                    maxElapsedTime: 3600000,
+                },
+                retryConnectionErrors: true,
+            };
+
+        const response = await retries$.retry(
+            () => {
+                const cloned = request$.clone();
+                return this.do$(cloned, doOptions);
+            },
+            { config: retryConfig, statusCodes: ["408", "409", "429", "5XX"] }
+        );
+
+        const [result$] = await this.matcher<void>()
+            .void(201, z.void())
+            .fail([409, 429, "4XX", 503, "5XX"])
+            .match(response);
+
+        return result$;
     }
 
-    private _authentication?: Authentication;
-    get authentication(): Authentication {
-        return (this._authentication ??= new Authentication(this.options$));
+    /**
+     * Delete subscriber
+     *
+     * @remarks
+     * Deletes a subscriber entity from the Novu platform
+     */
+    async delete(
+        subscriberId: string,
+        options?: RequestOptions & { retries?: retries$.RetryConfig }
+    ): Promise<components.DeleteSubscriberResponseDto> {
+        const input$: operations.SubscribersControllerRemoveSubscriberRequest = {
+            subscriberId: subscriberId,
+        };
+        const headers$ = new Headers();
+        headers$.set("user-agent", SDK_METADATA.userAgent);
+        headers$.set("Accept", "application/json");
+
+        const payload$ = schemas$.parse(
+            input$,
+            (value$) =>
+                operations.SubscribersControllerRemoveSubscriberRequest$.outboundSchema.parse(
+                    value$
+                ),
+            "Input validation failed"
+        );
+        const body$ = null;
+
+        const pathParams$ = {
+            subscriberId: encodeSimple$("subscriberId", payload$.subscriberId, {
+                explode: false,
+                charEncoding: "percent",
+            }),
+        };
+        const path$ = this.templateURLComponent("/v1/subscribers/{subscriberId}")(pathParams$);
+
+        const query$ = "";
+
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "SubscribersController_removeSubscriber",
+            oAuth2Scopes: [],
+            securitySource: this.options$.apiKey,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
+
+        const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
+        const request$ = this.createRequest$(
+            context,
+            {
+                security: securitySettings$,
+                method: "DELETE",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                body: body$,
+            },
+            options
+        );
+
+        const retryConfig = options?.retries ||
+            this.options$.retryConfig || {
+                strategy: "backoff",
+                backoff: {
+                    initialInterval: 500,
+                    maxInterval: 30000,
+                    exponent: 1.5,
+                    maxElapsedTime: 3600000,
+                },
+                retryConnectionErrors: true,
+            };
+
+        const response = await retries$.retry(
+            () => {
+                const cloned = request$.clone();
+                return this.do$(cloned, doOptions);
+            },
+            { config: retryConfig, statusCodes: ["408", "409", "429", "5XX"] }
+        );
+
+        const [result$] = await this.matcher<components.DeleteSubscriberResponseDto>()
+            .json(200, components.DeleteSubscriberResponseDto$)
+            .fail([409, 429, "4XX", 503, "5XX"])
+            .match(response);
+
+        return result$;
     }
 
     /**
@@ -202,90 +467,6 @@ export class Subscribers extends ClientSDK {
 
         const page$ = { ...result$, next: nextFunc(raw$) };
         return { ...page$, ...createPageIterator(page$) };
-    }
-
-    /**
-     * Create subscriber
-     *
-     * @remarks
-     * Creates a subscriber entity, in the Novu platform. The subscriber will be later used to receive notifications, and access notification feeds. Communication credentials such as email, phone number, and 3 rd party credentials i.e slack tokens could be later associated to this entity.
-     */
-    async create(
-        request: components.CreateSubscriberRequestDto,
-        options?: RequestOptions & { retries?: retries$.RetryConfig }
-    ): Promise<components.SubscriberResponseDto> {
-        const input$ = request;
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Content-Type", "application/json");
-        headers$.set("Accept", "application/json");
-
-        const payload$ = schemas$.parse(
-            input$,
-            (value$) => components.CreateSubscriberRequestDto$.outboundSchema.parse(value$),
-            "Input validation failed"
-        );
-        const body$ = encodeJSON$("body", payload$, { explode: true });
-
-        const path$ = this.templateURLComponent("/v1/subscribers")();
-
-        const query$ = "";
-
-        let security$;
-        if (typeof this.options$.apiKey === "function") {
-            security$ = { apiKey: await this.options$.apiKey() };
-        } else if (this.options$.apiKey) {
-            security$ = { apiKey: this.options$.apiKey };
-        } else {
-            security$ = {};
-        }
-        const context = {
-            operationID: "SubscribersController_createSubscriber",
-            oAuth2Scopes: [],
-            securitySource: this.options$.apiKey,
-        };
-        const securitySettings$ = this.resolveGlobalSecurity(security$);
-
-        const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
-        const request$ = this.createRequest$(
-            context,
-            {
-                security: securitySettings$,
-                method: "POST",
-                path: path$,
-                headers: headers$,
-                query: query$,
-                body: body$,
-            },
-            options
-        );
-
-        const retryConfig = options?.retries ||
-            this.options$.retryConfig || {
-                strategy: "backoff",
-                backoff: {
-                    initialInterval: 500,
-                    maxInterval: 30000,
-                    exponent: 1.5,
-                    maxElapsedTime: 3600000,
-                },
-                retryConnectionErrors: true,
-            };
-
-        const response = await retries$.retry(
-            () => {
-                const cloned = request$.clone();
-                return this.do$(cloned, doOptions);
-            },
-            { config: retryConfig, statusCodes: ["408", "409", "429", "5XX"] }
-        );
-
-        const [result$] = await this.matcher<components.SubscriberResponseDto>()
-            .json(201, components.SubscriberResponseDto$)
-            .fail([409, 429, "4XX", 503, "5XX"])
-            .match(response);
-
-        return result$;
     }
 
     /**
@@ -471,187 +652,6 @@ export class Subscribers extends ClientSDK {
 
         const [result$] = await this.matcher<components.SubscriberResponseDto>()
             .json(200, components.SubscriberResponseDto$)
-            .fail([409, 429, "4XX", 503, "5XX"])
-            .match(response);
-
-        return result$;
-    }
-
-    /**
-     * Delete subscriber
-     *
-     * @remarks
-     * Deletes a subscriber entity from the Novu platform
-     */
-    async delete(
-        subscriberId: string,
-        options?: RequestOptions & { retries?: retries$.RetryConfig }
-    ): Promise<components.DeleteSubscriberResponseDto> {
-        const input$: operations.SubscribersControllerRemoveSubscriberRequest = {
-            subscriberId: subscriberId,
-        };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "application/json");
-
-        const payload$ = schemas$.parse(
-            input$,
-            (value$) =>
-                operations.SubscribersControllerRemoveSubscriberRequest$.outboundSchema.parse(
-                    value$
-                ),
-            "Input validation failed"
-        );
-        const body$ = null;
-
-        const pathParams$ = {
-            subscriberId: encodeSimple$("subscriberId", payload$.subscriberId, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-        };
-        const path$ = this.templateURLComponent("/v1/subscribers/{subscriberId}")(pathParams$);
-
-        const query$ = "";
-
-        let security$;
-        if (typeof this.options$.apiKey === "function") {
-            security$ = { apiKey: await this.options$.apiKey() };
-        } else if (this.options$.apiKey) {
-            security$ = { apiKey: this.options$.apiKey };
-        } else {
-            security$ = {};
-        }
-        const context = {
-            operationID: "SubscribersController_removeSubscriber",
-            oAuth2Scopes: [],
-            securitySource: this.options$.apiKey,
-        };
-        const securitySettings$ = this.resolveGlobalSecurity(security$);
-
-        const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
-        const request$ = this.createRequest$(
-            context,
-            {
-                security: securitySettings$,
-                method: "DELETE",
-                path: path$,
-                headers: headers$,
-                query: query$,
-                body: body$,
-            },
-            options
-        );
-
-        const retryConfig = options?.retries ||
-            this.options$.retryConfig || {
-                strategy: "backoff",
-                backoff: {
-                    initialInterval: 500,
-                    maxInterval: 30000,
-                    exponent: 1.5,
-                    maxElapsedTime: 3600000,
-                },
-                retryConnectionErrors: true,
-            };
-
-        const response = await retries$.retry(
-            () => {
-                const cloned = request$.clone();
-                return this.do$(cloned, doOptions);
-            },
-            { config: retryConfig, statusCodes: ["408", "409", "429", "5XX"] }
-        );
-
-        const [result$] = await this.matcher<components.DeleteSubscriberResponseDto>()
-            .json(200, components.DeleteSubscriberResponseDto$)
-            .fail([409, 429, "4XX", 503, "5XX"])
-            .match(response);
-
-        return result$;
-    }
-
-    /**
-     * Bulk create subscribers
-     *
-     * @remarks
-     *
-     *       Using this endpoint you can create multiple subscribers at once, to avoid multiple calls to the API.
-     *       The bulk API is limited to 500 subscribers per request.
-     *
-     */
-    async createBulk(
-        request: components.BulkSubscriberCreateDto,
-        options?: RequestOptions & { retries?: retries$.RetryConfig }
-    ): Promise<void> {
-        const input$ = request;
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Content-Type", "application/json");
-        headers$.set("Accept", "*/*");
-
-        const payload$ = schemas$.parse(
-            input$,
-            (value$) => components.BulkSubscriberCreateDto$.outboundSchema.parse(value$),
-            "Input validation failed"
-        );
-        const body$ = encodeJSON$("body", payload$, { explode: true });
-
-        const path$ = this.templateURLComponent("/v1/subscribers/bulk")();
-
-        const query$ = "";
-
-        let security$;
-        if (typeof this.options$.apiKey === "function") {
-            security$ = { apiKey: await this.options$.apiKey() };
-        } else if (this.options$.apiKey) {
-            security$ = { apiKey: this.options$.apiKey };
-        } else {
-            security$ = {};
-        }
-        const context = {
-            operationID: "SubscribersController_bulkCreateSubscribers",
-            oAuth2Scopes: [],
-            securitySource: this.options$.apiKey,
-        };
-        const securitySettings$ = this.resolveGlobalSecurity(security$);
-
-        const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
-        const request$ = this.createRequest$(
-            context,
-            {
-                security: securitySettings$,
-                method: "POST",
-                path: path$,
-                headers: headers$,
-                query: query$,
-                body: body$,
-            },
-            options
-        );
-
-        const retryConfig = options?.retries ||
-            this.options$.retryConfig || {
-                strategy: "backoff",
-                backoff: {
-                    initialInterval: 500,
-                    maxInterval: 30000,
-                    exponent: 1.5,
-                    maxElapsedTime: 3600000,
-                },
-                retryConnectionErrors: true,
-            };
-
-        const response = await retries$.retry(
-            () => {
-                const cloned = request$.clone();
-                return this.do$(cloned, doOptions);
-            },
-            { config: retryConfig, statusCodes: ["408", "409", "429", "5XX"] }
-        );
-
-        const [result$] = await this.matcher<void>()
-            .void(201, z.void())
             .fail([409, 429, "4XX", 503, "5XX"])
             .match(response);
 

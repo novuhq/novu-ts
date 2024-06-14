@@ -1,6 +1,6 @@
 # Overrides
 
-This could be used to override provider specific configurations
+Provider specific overrides used when triggering the notification
 
 
 ## Fields

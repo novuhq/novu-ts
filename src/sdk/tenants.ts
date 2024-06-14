@@ -47,6 +47,182 @@ export class Tenants extends ClientSDK {
     }
 
     /**
+     * Create tenant
+     *
+     * @remarks
+     * Create tenant under the current environment
+     */
+    async create(
+        request: components.CreateTenantRequestDto,
+        options?: RequestOptions & { retries?: retries$.RetryConfig }
+    ): Promise<components.CreateTenantResponseDto> {
+        const input$ = request;
+        const headers$ = new Headers();
+        headers$.set("user-agent", SDK_METADATA.userAgent);
+        headers$.set("Content-Type", "application/json");
+        headers$.set("Accept", "application/json");
+
+        const payload$ = schemas$.parse(
+            input$,
+            (value$) => components.CreateTenantRequestDto$.outboundSchema.parse(value$),
+            "Input validation failed"
+        );
+        const body$ = encodeJSON$("body", payload$, { explode: true });
+
+        const path$ = this.templateURLComponent("/v1/tenants")();
+
+        const query$ = "";
+
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "TenantController_createTenant",
+            oAuth2Scopes: [],
+            securitySource: this.options$.apiKey,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
+
+        const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
+        const request$ = this.createRequest$(
+            context,
+            {
+                security: securitySettings$,
+                method: "POST",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                body: body$,
+            },
+            options
+        );
+
+        const retryConfig = options?.retries ||
+            this.options$.retryConfig || {
+                strategy: "backoff",
+                backoff: {
+                    initialInterval: 500,
+                    maxInterval: 30000,
+                    exponent: 1.5,
+                    maxElapsedTime: 3600000,
+                },
+                retryConnectionErrors: true,
+            };
+
+        const response = await retries$.retry(
+            () => {
+                const cloned = request$.clone();
+                return this.do$(cloned, doOptions);
+            },
+            { config: retryConfig, statusCodes: ["408", "409", "429", "5XX"] }
+        );
+
+        const [result$] = await this.matcher<components.CreateTenantResponseDto>()
+            .json([200, 201], components.CreateTenantResponseDto$)
+            .fail([409, 429, "4XX", 503, "5XX"])
+            .match(response);
+
+        return result$;
+    }
+
+    /**
+     * Delete tenant
+     *
+     * @remarks
+     * Deletes a tenant entity from the Novu platform
+     */
+    async delete(
+        identifier: string,
+        options?: RequestOptions & { retries?: retries$.RetryConfig }
+    ): Promise<void> {
+        const input$: operations.TenantControllerRemoveTenantRequest = {
+            identifier: identifier,
+        };
+        const headers$ = new Headers();
+        headers$.set("user-agent", SDK_METADATA.userAgent);
+        headers$.set("Accept", "*/*");
+
+        const payload$ = schemas$.parse(
+            input$,
+            (value$) =>
+                operations.TenantControllerRemoveTenantRequest$.outboundSchema.parse(value$),
+            "Input validation failed"
+        );
+        const body$ = null;
+
+        const pathParams$ = {
+            identifier: encodeSimple$("identifier", payload$.identifier, {
+                explode: false,
+                charEncoding: "percent",
+            }),
+        };
+        const path$ = this.templateURLComponent("/v1/tenants/{identifier}")(pathParams$);
+
+        const query$ = "";
+
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "TenantController_removeTenant",
+            oAuth2Scopes: [],
+            securitySource: this.options$.apiKey,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
+
+        const doOptions = { context, errorCodes: ["404", "409", "429", "4XX", "503", "5XX"] };
+        const request$ = this.createRequest$(
+            context,
+            {
+                security: securitySettings$,
+                method: "DELETE",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                body: body$,
+            },
+            options
+        );
+
+        const retryConfig = options?.retries ||
+            this.options$.retryConfig || {
+                strategy: "backoff",
+                backoff: {
+                    initialInterval: 500,
+                    maxInterval: 30000,
+                    exponent: 1.5,
+                    maxElapsedTime: 3600000,
+                },
+                retryConnectionErrors: true,
+            };
+
+        const response = await retries$.retry(
+            () => {
+                const cloned = request$.clone();
+                return this.do$(cloned, doOptions);
+            },
+            { config: retryConfig, statusCodes: ["408", "409", "429", "5XX"] }
+        );
+
+        const [result$] = await this.matcher<void>()
+            .void(204, z.void())
+            .fail([404, 409, 429, "4XX", 503, "5XX"])
+            .match(response);
+
+        return result$;
+    }
+
+    /**
      * Get tenants
      *
      * @remarks
@@ -163,90 +339,6 @@ export class Tenants extends ClientSDK {
     }
 
     /**
-     * Create tenant
-     *
-     * @remarks
-     * Create tenant under the current environment
-     */
-    async create(
-        request: components.CreateTenantRequestDto,
-        options?: RequestOptions & { retries?: retries$.RetryConfig }
-    ): Promise<components.CreateTenantResponseDto> {
-        const input$ = request;
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Content-Type", "application/json");
-        headers$.set("Accept", "application/json");
-
-        const payload$ = schemas$.parse(
-            input$,
-            (value$) => components.CreateTenantRequestDto$.outboundSchema.parse(value$),
-            "Input validation failed"
-        );
-        const body$ = encodeJSON$("body", payload$, { explode: true });
-
-        const path$ = this.templateURLComponent("/v1/tenants")();
-
-        const query$ = "";
-
-        let security$;
-        if (typeof this.options$.apiKey === "function") {
-            security$ = { apiKey: await this.options$.apiKey() };
-        } else if (this.options$.apiKey) {
-            security$ = { apiKey: this.options$.apiKey };
-        } else {
-            security$ = {};
-        }
-        const context = {
-            operationID: "TenantController_createTenant",
-            oAuth2Scopes: [],
-            securitySource: this.options$.apiKey,
-        };
-        const securitySettings$ = this.resolveGlobalSecurity(security$);
-
-        const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
-        const request$ = this.createRequest$(
-            context,
-            {
-                security: securitySettings$,
-                method: "POST",
-                path: path$,
-                headers: headers$,
-                query: query$,
-                body: body$,
-            },
-            options
-        );
-
-        const retryConfig = options?.retries ||
-            this.options$.retryConfig || {
-                strategy: "backoff",
-                backoff: {
-                    initialInterval: 500,
-                    maxInterval: 30000,
-                    exponent: 1.5,
-                    maxElapsedTime: 3600000,
-                },
-                retryConnectionErrors: true,
-            };
-
-        const response = await retries$.retry(
-            () => {
-                const cloned = request$.clone();
-                return this.do$(cloned, doOptions);
-            },
-            { config: retryConfig, statusCodes: ["408", "409", "429", "5XX"] }
-        );
-
-        const [result$] = await this.matcher<components.CreateTenantResponseDto>()
-            .json([200, 201], components.CreateTenantResponseDto$)
-            .fail([409, 429, "4XX", 503, "5XX"])
-            .match(response);
-
-        return result$;
-    }
-
-    /**
      * Get tenant
      *
      * @remarks
@@ -332,98 +424,6 @@ export class Tenants extends ClientSDK {
 
         const [result$] = await this.matcher<components.GetTenantResponseDto>()
             .json(200, components.GetTenantResponseDto$)
-            .fail([404, 409, 429, "4XX", 503, "5XX"])
-            .match(response);
-
-        return result$;
-    }
-
-    /**
-     * Delete tenant
-     *
-     * @remarks
-     * Deletes a tenant entity from the Novu platform
-     */
-    async delete(
-        identifier: string,
-        options?: RequestOptions & { retries?: retries$.RetryConfig }
-    ): Promise<void> {
-        const input$: operations.TenantControllerRemoveTenantRequest = {
-            identifier: identifier,
-        };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "*/*");
-
-        const payload$ = schemas$.parse(
-            input$,
-            (value$) =>
-                operations.TenantControllerRemoveTenantRequest$.outboundSchema.parse(value$),
-            "Input validation failed"
-        );
-        const body$ = null;
-
-        const pathParams$ = {
-            identifier: encodeSimple$("identifier", payload$.identifier, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-        };
-        const path$ = this.templateURLComponent("/v1/tenants/{identifier}")(pathParams$);
-
-        const query$ = "";
-
-        let security$;
-        if (typeof this.options$.apiKey === "function") {
-            security$ = { apiKey: await this.options$.apiKey() };
-        } else if (this.options$.apiKey) {
-            security$ = { apiKey: this.options$.apiKey };
-        } else {
-            security$ = {};
-        }
-        const context = {
-            operationID: "TenantController_removeTenant",
-            oAuth2Scopes: [],
-            securitySource: this.options$.apiKey,
-        };
-        const securitySettings$ = this.resolveGlobalSecurity(security$);
-
-        const doOptions = { context, errorCodes: ["404", "409", "429", "4XX", "503", "5XX"] };
-        const request$ = this.createRequest$(
-            context,
-            {
-                security: securitySettings$,
-                method: "DELETE",
-                path: path$,
-                headers: headers$,
-                query: query$,
-                body: body$,
-            },
-            options
-        );
-
-        const retryConfig = options?.retries ||
-            this.options$.retryConfig || {
-                strategy: "backoff",
-                backoff: {
-                    initialInterval: 500,
-                    maxInterval: 30000,
-                    exponent: 1.5,
-                    maxElapsedTime: 3600000,
-                },
-                retryConnectionErrors: true,
-            };
-
-        const response = await retries$.retry(
-            () => {
-                const cloned = request$.clone();
-                return this.do$(cloned, doOptions);
-            },
-            { config: retryConfig, statusCodes: ["408", "409", "429", "5XX"] }
-        );
-
-        const [result$] = await this.matcher<void>()
-            .void(204, z.void())
             .fail([404, 409, 429, "4XX", 503, "5XX"])
             .match(response);
 

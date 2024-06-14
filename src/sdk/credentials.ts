@@ -41,107 +41,6 @@ export class Credentials extends ClientSDK {
     }
 
     /**
-     * Update subscriber credentials
-     *
-     * @remarks
-     * Subscriber credentials associated to the delivery methods such as slack and push tokens.
-     */
-    async update(
-        subscriberId: string,
-        updateSubscriberChannelRequestDto: components.UpdateSubscriberChannelRequestDto,
-        options?: RequestOptions & { retries?: retries$.RetryConfig }
-    ): Promise<components.SubscriberResponseDto> {
-        const input$: operations.SubscribersControllerUpdateSubscriberChannelRequest = {
-            subscriberId: subscriberId,
-            updateSubscriberChannelRequestDto: updateSubscriberChannelRequestDto,
-        };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Content-Type", "application/json");
-        headers$.set("Accept", "application/json");
-
-        const payload$ = schemas$.parse(
-            input$,
-            (value$) =>
-                operations.SubscribersControllerUpdateSubscriberChannelRequest$.outboundSchema.parse(
-                    value$
-                ),
-            "Input validation failed"
-        );
-        const body$ = encodeJSON$("body", payload$.UpdateSubscriberChannelRequestDto, {
-            explode: true,
-        });
-
-        const pathParams$ = {
-            subscriberId: encodeSimple$("subscriberId", payload$.subscriberId, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-        };
-        const path$ = this.templateURLComponent("/v1/subscribers/{subscriberId}/credentials")(
-            pathParams$
-        );
-
-        const query$ = "";
-
-        let security$;
-        if (typeof this.options$.apiKey === "function") {
-            security$ = { apiKey: await this.options$.apiKey() };
-        } else if (this.options$.apiKey) {
-            security$ = { apiKey: this.options$.apiKey };
-        } else {
-            security$ = {};
-        }
-        const context = {
-            operationID: "SubscribersController_updateSubscriberChannel",
-            oAuth2Scopes: [],
-            securitySource: this.options$.apiKey,
-        };
-        const securitySettings$ = this.resolveGlobalSecurity(security$);
-
-        const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
-        const request$ = this.createRequest$(
-            context,
-            {
-                security: securitySettings$,
-                method: "PUT",
-                path: path$,
-                headers: headers$,
-                query: query$,
-                body: body$,
-            },
-            options
-        );
-
-        const retryConfig = options?.retries ||
-            this.options$.retryConfig || {
-                strategy: "backoff",
-                backoff: {
-                    initialInterval: 500,
-                    maxInterval: 30000,
-                    exponent: 1.5,
-                    maxElapsedTime: 3600000,
-                },
-                retryConnectionErrors: true,
-            };
-
-        const response = await retries$.retry(
-            () => {
-                const cloned = request$.clone();
-                return this.do$(cloned, doOptions);
-            },
-            { config: retryConfig, statusCodes: ["408", "409", "429", "5XX"] }
-        );
-
-        const [result$] = await this.matcher<components.SubscriberResponseDto>()
-            .json(200, components.SubscriberResponseDto$)
-            .fail([409, 429, "4XX", 503, "5XX"])
-            .match(response);
-
-        return result$;
-    }
-
-    /**
      * Modify subscriber credentials
      *
      * @remarks
@@ -339,6 +238,107 @@ export class Credentials extends ClientSDK {
 
         const [result$] = await this.matcher<void>()
             .void(204, z.void())
+            .fail([409, 429, "4XX", 503, "5XX"])
+            .match(response);
+
+        return result$;
+    }
+
+    /**
+     * Update subscriber credentials
+     *
+     * @remarks
+     * Subscriber credentials associated to the delivery methods such as slack and push tokens.
+     */
+    async update(
+        subscriberId: string,
+        updateSubscriberChannelRequestDto: components.UpdateSubscriberChannelRequestDto,
+        options?: RequestOptions & { retries?: retries$.RetryConfig }
+    ): Promise<components.SubscriberResponseDto> {
+        const input$: operations.SubscribersControllerUpdateSubscriberChannelRequest = {
+            subscriberId: subscriberId,
+            updateSubscriberChannelRequestDto: updateSubscriberChannelRequestDto,
+        };
+        const headers$ = new Headers();
+        headers$.set("user-agent", SDK_METADATA.userAgent);
+        headers$.set("Content-Type", "application/json");
+        headers$.set("Accept", "application/json");
+
+        const payload$ = schemas$.parse(
+            input$,
+            (value$) =>
+                operations.SubscribersControllerUpdateSubscriberChannelRequest$.outboundSchema.parse(
+                    value$
+                ),
+            "Input validation failed"
+        );
+        const body$ = encodeJSON$("body", payload$.UpdateSubscriberChannelRequestDto, {
+            explode: true,
+        });
+
+        const pathParams$ = {
+            subscriberId: encodeSimple$("subscriberId", payload$.subscriberId, {
+                explode: false,
+                charEncoding: "percent",
+            }),
+        };
+        const path$ = this.templateURLComponent("/v1/subscribers/{subscriberId}/credentials")(
+            pathParams$
+        );
+
+        const query$ = "";
+
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "SubscribersController_updateSubscriberChannel",
+            oAuth2Scopes: [],
+            securitySource: this.options$.apiKey,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
+
+        const doOptions = { context, errorCodes: ["409", "429", "4XX", "503", "5XX"] };
+        const request$ = this.createRequest$(
+            context,
+            {
+                security: securitySettings$,
+                method: "PUT",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                body: body$,
+            },
+            options
+        );
+
+        const retryConfig = options?.retries ||
+            this.options$.retryConfig || {
+                strategy: "backoff",
+                backoff: {
+                    initialInterval: 500,
+                    maxInterval: 30000,
+                    exponent: 1.5,
+                    maxElapsedTime: 3600000,
+                },
+                retryConnectionErrors: true,
+            };
+
+        const response = await retries$.retry(
+            () => {
+                const cloned = request$.clone();
+                return this.do$(cloned, doOptions);
+            },
+            { config: retryConfig, statusCodes: ["408", "409", "429", "5XX"] }
+        );
+
+        const [result$] = await this.matcher<components.SubscriberResponseDto>()
+            .json(200, components.SubscriberResponseDto$)
             .fail([409, 429, "4XX", 503, "5XX"])
             .match(response);
 

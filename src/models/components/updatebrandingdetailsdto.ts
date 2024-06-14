@@ -5,38 +5,38 @@
 import * as z from "zod";
 
 export type UpdateBrandingDetailsDto = {
-    logo: string;
     color: string;
-    fontColor: string;
     contentBackground: string;
+    fontColor: string;
     fontFamily?: string | undefined;
+    logo: string;
 };
 
 /** @internal */
 export namespace UpdateBrandingDetailsDto$ {
     export const inboundSchema: z.ZodType<UpdateBrandingDetailsDto, z.ZodTypeDef, unknown> =
         z.object({
-            logo: z.string(),
             color: z.string(),
-            fontColor: z.string(),
             contentBackground: z.string(),
+            fontColor: z.string(),
             fontFamily: z.string().optional(),
+            logo: z.string(),
         });
 
     export type Outbound = {
-        logo: string;
         color: string;
-        fontColor: string;
         contentBackground: string;
+        fontColor: string;
         fontFamily?: string | undefined;
+        logo: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, UpdateBrandingDetailsDto> =
         z.object({
-            logo: z.string(),
             color: z.string(),
-            fontColor: z.string(),
             contentBackground: z.string(),
+            fontColor: z.string(),
             fontFamily: z.string().optional(),
+            logo: z.string(),
         });
 }

@@ -5,25 +5,25 @@
 import * as z from "zod";
 
 export type ChannelCredentialsDto = {
-    webhookUrl?: string | undefined;
     deviceTokens?: Array<string> | undefined;
+    webhookUrl?: string | undefined;
 };
 
 /** @internal */
 export namespace ChannelCredentialsDto$ {
     export const inboundSchema: z.ZodType<ChannelCredentialsDto, z.ZodTypeDef, unknown> = z.object({
-        webhookUrl: z.string().optional(),
         deviceTokens: z.array(z.string()).optional(),
+        webhookUrl: z.string().optional(),
     });
 
     export type Outbound = {
-        webhookUrl?: string | undefined;
         deviceTokens?: Array<string> | undefined;
+        webhookUrl?: string | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ChannelCredentialsDto> =
         z.object({
-            webhookUrl: z.string().optional(),
             deviceTokens: z.array(z.string()).optional(),
+            webhookUrl: z.string().optional(),
         });
 }

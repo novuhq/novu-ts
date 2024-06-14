@@ -6,51 +6,51 @@ import { remap as remap$ } from "../../lib/primitives";
 import * as z from "zod";
 
 export type FeedResponseDto = {
-    id?: string | undefined;
-    name: string;
-    identifier: string;
     environmentId: string;
+    id?: string | undefined;
     organizationId: string;
+    identifier: string;
+    name: string;
 };
 
 /** @internal */
 export namespace FeedResponseDto$ {
     export const inboundSchema: z.ZodType<FeedResponseDto, z.ZodTypeDef, unknown> = z
         .object({
-            _id: z.string().optional(),
-            name: z.string(),
-            identifier: z.string(),
             _environmentId: z.string(),
+            _id: z.string().optional(),
             _organizationId: z.string(),
+            identifier: z.string(),
+            name: z.string(),
         })
         .transform((v) => {
             return remap$(v, {
-                _id: "id",
                 _environmentId: "environmentId",
+                _id: "id",
                 _organizationId: "organizationId",
             });
         });
 
     export type Outbound = {
-        _id?: string | undefined;
-        name: string;
-        identifier: string;
         _environmentId: string;
+        _id?: string | undefined;
         _organizationId: string;
+        identifier: string;
+        name: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, FeedResponseDto> = z
         .object({
-            id: z.string().optional(),
-            name: z.string(),
-            identifier: z.string(),
             environmentId: z.string(),
+            id: z.string().optional(),
             organizationId: z.string(),
+            identifier: z.string(),
+            name: z.string(),
         })
         .transform((v) => {
             return remap$(v, {
-                id: "_id",
                 environmentId: "_environmentId",
+                id: "_id",
                 organizationId: "_organizationId",
             });
         });

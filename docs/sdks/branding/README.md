@@ -20,10 +20,10 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.organizations.branding.update({
-    logo: "<value>",
     color: "fuchsia",
-    fontColor: "<value>",
     contentBackground: "<value>",
+    fontColor: "<value>",
+    logo: "<value>",
   });
 
   // Handle the result

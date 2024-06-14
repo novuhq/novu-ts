@@ -1,0 +1,7 @@
+overlay: 1.0.0
+info:
+  title: Remove headers from all responses
+  version: 0.0.0
+actions:
+  - target: $.paths.*.*.responses.*.headers
+    remove: true

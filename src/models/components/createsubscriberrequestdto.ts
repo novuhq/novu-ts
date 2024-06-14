@@ -5,74 +5,72 @@
 import { SubscriberChannelDto, SubscriberChannelDto$ } from "./subscriberchanneldto";
 import * as z from "zod";
 
-export type CreateSubscriberRequestDtoData = {};
+export type Data = {};
 
 export type CreateSubscriberRequestDto = {
-    /**
-     * The internal identifier you used to create this subscriber, usually correlates to the id the user in your systems
-     */
-    subscriberId: string;
-    email?: string | undefined;
-    firstName?: string | undefined;
-    lastName?: string | undefined;
-    phone?: string | undefined;
     /**
      * An http url to the profile image of your subscriber
      */
     avatar?: string | undefined;
-    locale?: string | undefined;
-    data?: CreateSubscriberRequestDtoData | undefined;
     channels?: Array<SubscriberChannelDto> | undefined;
+    data?: Data | undefined;
+    email?: string | undefined;
+    firstName?: string | undefined;
+    lastName?: string | undefined;
+    locale?: string | undefined;
+    phone?: string | undefined;
+    /**
+     * The internal identifier you used to create this subscriber, usually correlates to the id the user in your systems
+     */
+    subscriberId: string;
 };
 
 /** @internal */
-export namespace CreateSubscriberRequestDtoData$ {
-    export const inboundSchema: z.ZodType<CreateSubscriberRequestDtoData, z.ZodTypeDef, unknown> =
-        z.object({});
+export namespace Data$ {
+    export const inboundSchema: z.ZodType<Data, z.ZodTypeDef, unknown> = z.object({});
 
     export type Outbound = {};
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateSubscriberRequestDtoData> =
-        z.object({});
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Data> = z.object({});
 }
 
 /** @internal */
 export namespace CreateSubscriberRequestDto$ {
     export const inboundSchema: z.ZodType<CreateSubscriberRequestDto, z.ZodTypeDef, unknown> =
         z.object({
-            subscriberId: z.string(),
+            avatar: z.string().optional(),
+            channels: z.array(SubscriberChannelDto$.inboundSchema).optional(),
+            data: z.lazy(() => Data$.inboundSchema).optional(),
             email: z.string().optional(),
             firstName: z.string().optional(),
             lastName: z.string().optional(),
-            phone: z.string().optional(),
-            avatar: z.string().optional(),
             locale: z.string().optional(),
-            data: z.lazy(() => CreateSubscriberRequestDtoData$.inboundSchema).optional(),
-            channels: z.array(SubscriberChannelDto$.inboundSchema).optional(),
+            phone: z.string().optional(),
+            subscriberId: z.string(),
         });
 
     export type Outbound = {
-        subscriberId: string;
+        avatar?: string | undefined;
+        channels?: Array<SubscriberChannelDto$.Outbound> | undefined;
+        data?: Data$.Outbound | undefined;
         email?: string | undefined;
         firstName?: string | undefined;
         lastName?: string | undefined;
-        phone?: string | undefined;
-        avatar?: string | undefined;
         locale?: string | undefined;
-        data?: CreateSubscriberRequestDtoData$.Outbound | undefined;
-        channels?: Array<SubscriberChannelDto$.Outbound> | undefined;
+        phone?: string | undefined;
+        subscriberId: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateSubscriberRequestDto> =
         z.object({
-            subscriberId: z.string(),
+            avatar: z.string().optional(),
+            channels: z.array(SubscriberChannelDto$.outboundSchema).optional(),
+            data: z.lazy(() => Data$.outboundSchema).optional(),
             email: z.string().optional(),
             firstName: z.string().optional(),
             lastName: z.string().optional(),
-            phone: z.string().optional(),
-            avatar: z.string().optional(),
             locale: z.string().optional(),
-            data: z.lazy(() => CreateSubscriberRequestDtoData$.outboundSchema).optional(),
-            channels: z.array(SubscriberChannelDto$.outboundSchema).optional(),
+            phone: z.string().optional(),
+            subscriberId: z.string(),
         });
 }
