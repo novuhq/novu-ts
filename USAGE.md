@@ -2,15 +2,15 @@
 ### Trigger Notification Event
 
 ```typescript
-import { Novu } from "novu-sdk";
-import { TopicPayloadDtoType } from "novu-sdk/models/components";
+import { Novu } from "novu/api";
+import { TopicPayloadDtoType } from "novu/api/models/components";
 
 const novu = new Novu({
     apiKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
-    const result = await novu.events.trigger({
+    const result = await novu.trigger({
         name: "workflow_identifier",
         overrides: {},
         payload: {},

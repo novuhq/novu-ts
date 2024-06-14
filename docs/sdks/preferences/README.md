@@ -15,7 +15,7 @@ Get subscriber preferences
 ### Example Usage
 
 ```typescript
-import { Novu } from "novu-sdk";
+import { Novu } from "novu/api";
 
 const novu = new Novu({
   apiKey: "<YOUR_API_KEY_HERE>",
@@ -57,7 +57,7 @@ Get subscriber preferences by level
 ### Example Usage
 
 ```typescript
-import { Novu } from "novu-sdk";
+import { Novu } from "novu/api";
 
 const novu = new Novu({
   apiKey: "<YOUR_API_KEY_HERE>",
@@ -100,7 +100,7 @@ Update subscriber preference
 ### Example Usage
 
 ```typescript
-import { Novu } from "novu-sdk";
+import { Novu } from "novu/api";
 
 const novu = new Novu({
   apiKey: "<YOUR_API_KEY_HERE>",
@@ -146,7 +146,7 @@ Update subscriber global preferences
 ### Example Usage
 
 ```typescript
-import { Novu } from "novu-sdk";
+import { Novu } from "novu/api";
 
 const novu = new Novu({
   apiKey: "<YOUR_API_KEY_HERE>",

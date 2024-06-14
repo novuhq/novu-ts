@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: f50499c4-d106-4975-983f-ead3a386ec53
 management:
-  docChecksum: fd909d3ac88ddddc757bde177be7fbbe
+  docChecksum: ff2b225ca2e49278441d328b95c1438e
   docVersion: "1.0"
   speakeasyVersion: 1.308.1
   generationVersion: 2.342.6
-  releaseVersion: 0.0.1-alpha.3
-  configChecksum: bbfdab87886dee8005889d3f8b62750e
+  releaseVersion: 0.0.1-alpha.4
+  configChecksum: 2487c39ae14ab48451fa732721232820
   repoURL: https://github.com/novuhq/novu-node.git
   installationURL: https://github.com/novuhq/novu-node
   published: true
@@ -87,13 +87,6 @@ generatedFiles:
   - src/types/operations.ts
   - src/types/rfcdate.ts
   - tsconfig.json
-  - src/models/components/changeresponsedto.ts
-  - src/models/components/bulkapplychangedto.ts
-  - src/models/components/datanumberdto.ts
-  - src/models/components/changesresponsedto.ts
-  - src/models/components/environmentresponsedto.ts
-  - src/models/components/apikey.ts
-  - src/models/components/databooleandto.ts
   - src/models/components/triggereventresponsedto.ts
   - src/models/components/triggereventrequestdto.ts
   - src/models/components/subscriberpayloaddto.ts
@@ -101,6 +94,13 @@ generatedFiles:
   - src/models/components/channelcredentialsdto.ts
   - src/models/components/topicpayloaddto.ts
   - src/models/components/tenantpayloaddto.ts
+  - src/models/components/changeresponsedto.ts
+  - src/models/components/bulkapplychangedto.ts
+  - src/models/components/datanumberdto.ts
+  - src/models/components/changesresponsedto.ts
+  - src/models/components/environmentresponsedto.ts
+  - src/models/components/apikey.ts
+  - src/models/components/databooleandto.ts
   - src/models/components/triggereventtoallrequestdto.ts
   - src/models/components/bulktriggereventdto.ts
   - src/models/components/executiondetailsresponsedto.ts
@@ -264,16 +264,6 @@ generatedFiles:
   - src/models/errors/index.ts
   - src/models/components/index.ts
   - src/models/operations/index.ts
-  - docs/models/components/change.md
-  - docs/models/components/type.md
-  - docs/models/components/changeresponsedto.md
-  - docs/models/components/bulkapplychangedto.md
-  - docs/models/components/datanumberdto.md
-  - docs/models/components/changesresponsedto.md
-  - docs/models/components/apikeys.md
-  - docs/models/components/environmentresponsedto.md
-  - docs/models/components/apikey.md
-  - docs/models/components/databooleandto.md
   - docs/models/components/triggereventresponsedtostatus.md
   - docs/models/components/triggereventresponsedto.md
   - docs/models/components/actor.md
@@ -291,6 +281,16 @@ generatedFiles:
   - docs/models/components/topicpayloaddto.md
   - docs/models/components/tenantpayloaddtodata.md
   - docs/models/components/tenantpayloaddto.md
+  - docs/models/components/change.md
+  - docs/models/components/type.md
+  - docs/models/components/changeresponsedto.md
+  - docs/models/components/bulkapplychangedto.md
+  - docs/models/components/datanumberdto.md
+  - docs/models/components/changesresponsedto.md
+  - docs/models/components/apikeys.md
+  - docs/models/components/environmentresponsedto.md
+  - docs/models/components/apikey.md
+  - docs/models/components/databooleandto.md
   - docs/models/components/triggereventtoallrequestdtoactor.md
   - docs/models/components/triggereventtoallrequestdtooverrides.md
   - docs/models/components/triggereventtoallrequestdtopayload.md
@@ -551,8 +551,8 @@ generatedFiles:
   - docs/models/operations/workflowcontrollergetworkflowbyidrequest.md
   - docs/models/operations/workflowcontrollerupdateworkflowbyidrequest.md
   - docs/models/operations/workflowcontrollerupdateactivestatusrequest.md
-  - docs/sdks/novu/README.md
   - docs/lib/utils/retryconfig.md
+  - docs/sdks/novu/README.md
   - docs/sdks/changes/README.md
   - docs/sdks/environments/README.md
   - docs/sdks/apikeys/README.md

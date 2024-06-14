@@ -13,7 +13,7 @@ Remove a member from organization using memberId
 ### Example Usage
 
 ```typescript
-import { Novu } from "novu-sdk";
+import { Novu } from "novu/api";
 
 const novu = new Novu({
   apiKey: "<YOUR_API_KEY_HERE>",
@@ -55,7 +55,7 @@ Fetch all members of current organizations
 ### Example Usage
 
 ```typescript
-import { Novu } from "novu-sdk";
+import { Novu } from "novu/api";
 
 const novu = new Novu({
   apiKey: "<YOUR_API_KEY_HERE>",

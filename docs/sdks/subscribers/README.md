@@ -22,7 +22,7 @@ Creates a subscriber entity, in the Novu platform. The subscriber will be later 
 ### Example Usage
 
 ```typescript
-import { Novu } from "novu-sdk";
+import { Novu } from "novu/api";
 
 const novu = new Novu({
   apiKey: "<YOUR_API_KEY_HERE>",
@@ -69,7 +69,7 @@ run();
 ### Example Usage
 
 ```typescript
-import { Novu } from "novu-sdk";
+import { Novu } from "novu/api";
 
 const novu = new Novu({
   apiKey: "<YOUR_API_KEY_HERE>",
@@ -116,7 +116,7 @@ Deletes a subscriber entity from the Novu platform
 ### Example Usage
 
 ```typescript
-import { Novu } from "novu-sdk";
+import { Novu } from "novu/api";
 
 const novu = new Novu({
   apiKey: "<YOUR_API_KEY_HERE>",
@@ -158,7 +158,7 @@ Returns a list of subscribers, could paginated using the `page` and `limit` quer
 ### Example Usage
 
 ```typescript
-import { Novu } from "novu-sdk";
+import { Novu } from "novu/api";
 
 const novu = new Novu({
   apiKey: "<YOUR_API_KEY_HERE>",
@@ -202,7 +202,7 @@ Get subscriber by your internal id used to identify the subscriber
 ### Example Usage
 
 ```typescript
-import { Novu } from "novu-sdk";
+import { Novu } from "novu/api";
 
 const novu = new Novu({
   apiKey: "<YOUR_API_KEY_HERE>",
@@ -244,7 +244,7 @@ Used to update the subscriber entity with new information
 ### Example Usage
 
 ```typescript
-import { Novu } from "novu-sdk";
+import { Novu } from "novu/api";
 
 const novu = new Novu({
   apiKey: "<YOUR_API_KEY_HERE>",

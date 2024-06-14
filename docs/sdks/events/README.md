@@ -9,7 +9,6 @@ Events represent a change in state of a subscriber. They are used to trigger wor
 ### Available Operations
 
 * [cancel](#cancel) - Cancel triggered event
-* [trigger](#trigger) - Trigger event
 * [triggerBroadcast](#triggerbroadcast) - Broadcast event to all
 * [triggerBulk](#triggerbulk) - Bulk trigger event
 
@@ -23,7 +22,7 @@ Events represent a change in state of a subscriber. They are used to trigger wor
 ### Example Usage
 
 ```typescript
-import { Novu } from "novu-sdk";
+import { Novu } from "novu/api";
 
 const novu = new Novu({
   apiKey: "<YOUR_API_KEY_HERE>",
@@ -58,63 +57,6 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
 
-## trigger
-
-
-    Trigger event is the main (and only) way to send notifications to subscribers. 
-    The trigger identifier is used to match the particular workflow associated with it. 
-    Additional information can be passed according the body interface below.
-    
-
-### Example Usage
-
-```typescript
-import { Novu } from "novu-sdk";
-import { TopicPayloadDtoType } from "novu-sdk/models/components";
-
-const novu = new Novu({
-  apiKey: "<YOUR_API_KEY_HERE>",
-});
-
-async function run() {
-  const result = await novu.events.trigger({
-    name: "workflow_identifier",
-    overrides: {},
-    payload: {},
-    to: [
-        {
-          topicKey: "topic_key",
-          type: TopicPayloadDtoType.Topic,
-        },
-    ],
-  });
-
-  // Handle the result
-  console.log(result)
-}
-
-run();
-```
-
-### Parameters
-
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [components.TriggerEventRequestDto](../../models/components/triggereventrequestdto.md)                                                                                         | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
-
-
-### Response
-
-**Promise\<[components.TriggerEventResponseDto](../../models/components/triggereventresponsedto.md)\>**
-### Errors
-
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
 ## triggerBroadcast
 
 Trigger a broadcast event to all existing subscribers, could be used to send announcements, etc.
@@ -123,7 +65,7 @@ Trigger a broadcast event to all existing subscribers, could be used to send ann
 ### Example Usage
 
 ```typescript
-import { Novu } from "novu-sdk";
+import { Novu } from "novu/api";
 
 const novu = new Novu({
   apiKey: "<YOUR_API_KEY_HERE>",
@@ -172,8 +114,8 @@ run();
 ### Example Usage
 
 ```typescript
-import { Novu } from "novu-sdk";
-import { TopicPayloadDtoType } from "novu-sdk/models/components";
+import { Novu } from "novu/api";
+import { TopicPayloadDtoType } from "novu/api/models/components";
 
 const novu = new Novu({
   apiKey: "<YOUR_API_KEY_HERE>",

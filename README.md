@@ -14,13 +14,13 @@
 ### NPM
 
 ```bash
-npm add novu-sdk
+npm add novu/api
 ```
 
 ### Yarn
 
 ```bash
-yarn add novu-sdk
+yarn add novu/api
 ```
 <!-- End SDK Installation [installation] -->
 
@@ -36,15 +36,15 @@ For supported JavaScript runtimes, please consult [RUNTIMES.md](RUNTIMES.md).
 ### Trigger Notification Event
 
 ```typescript
-import { Novu } from "novu-sdk";
-import { TopicPayloadDtoType } from "novu-sdk/models/components";
+import { Novu } from "novu/api";
+import { TopicPayloadDtoType } from "novu/api/models/components";
 
 const novu = new Novu({
     apiKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
-    const result = await novu.events.trigger({
+    const result = await novu.trigger({
         name: "workflow_identifier",
         overrides: {},
         payload: {},
@@ -68,6 +68,10 @@ run();
 <!-- Start Available Resources and Operations [operations] -->
 ## Available Resources and Operations
 
+### [Novu SDK](docs/sdks/novu/README.md)
+
+* [trigger](docs/sdks/novu/README.md#trigger) - Trigger event
+
 ### [changes](docs/sdks/changes/README.md)
 
 * [apply](docs/sdks/changes/README.md#apply) - Apply change
@@ -88,7 +92,6 @@ run();
 ### [events](docs/sdks/events/README.md)
 
 * [cancel](docs/sdks/events/README.md#cancel) - Cancel triggered event
-* [trigger](docs/sdks/events/README.md#trigger) - Trigger event
 * [triggerBroadcast](docs/sdks/events/README.md#triggerbroadcast) - Broadcast event to all
 * [triggerBulk](docs/sdks/events/README.md#triggerbulk) - Bulk trigger event
 
@@ -258,7 +261,7 @@ syntax.
 Here's an example of one such pagination call:
 
 ```typescript
-import { Novu } from "novu-sdk";
+import { Novu } from "novu/api";
 
 const novu = new Novu({
     apiKey: "<YOUR_API_KEY_HERE>",
@@ -290,8 +293,9 @@ Validation errors can also occur when either method arguments or data returned f
 
 
 ```typescript
-import { Novu } from "novu-sdk";
-import * as errors from "novu-sdk/models/errors";
+import { Novu } from "novu/api";
+import { TopicPayloadDtoType } from "novu/api/models/components";
+import * as errors from "novu/api/models/errors";
 
 const novu = new Novu({
     apiKey: "<YOUR_API_KEY_HERE>",
@@ -300,7 +304,17 @@ const novu = new Novu({
 async function run() {
     let result;
     try {
-        result = await novu.changes.apply("<value>");
+        result = await novu.trigger({
+            name: "workflow_identifier",
+            overrides: {},
+            payload: {},
+            to: [
+                {
+                    topicKey: "topic_key",
+                    type: TopicPayloadDtoType.Topic,
+                },
+            ],
+        });
     } catch (err) {
         switch (true) {
             case err instanceof errors.SDKValidationError: {
@@ -338,7 +352,8 @@ You can override the default server globally by passing a server index to the `s
 | 1 | `https://eu.api.novu.co` | None |
 
 ```typescript
-import { Novu } from "novu-sdk";
+import { Novu } from "novu/api";
+import { TopicPayloadDtoType } from "novu/api/models/components";
 
 const novu = new Novu({
     serverIdx: 1,
@@ -346,7 +361,17 @@ const novu = new Novu({
 });
 
 async function run() {
-    const result = await novu.changes.apply("<value>");
+    const result = await novu.trigger({
+        name: "workflow_identifier",
+        overrides: {},
+        payload: {},
+        to: [
+            {
+                topicKey: "topic_key",
+                type: TopicPayloadDtoType.Topic,
+            },
+        ],
+    });
 
     // Handle the result
     console.log(result);
@@ -362,7 +387,8 @@ run();
 The default server can also be overridden globally by passing a URL to the `serverURL` optional parameter when initializing the SDK client instance. For example:
 
 ```typescript
-import { Novu } from "novu-sdk";
+import { Novu } from "novu/api";
+import { TopicPayloadDtoType } from "novu/api/models/components";
 
 const novu = new Novu({
     serverURL: "https://api.novu.co",
@@ -370,7 +396,17 @@ const novu = new Novu({
 });
 
 async function run() {
-    const result = await novu.changes.apply("<value>");
+    const result = await novu.trigger({
+        name: "workflow_identifier",
+        overrides: {},
+        payload: {},
+        to: [
+            {
+                topicKey: "topic_key",
+                type: TopicPayloadDtoType.Topic,
+            },
+        ],
+    });
 
     // Handle the result
     console.log(result);
@@ -399,8 +435,8 @@ custom header and a timeout to requests and how to use the `"requestError"` hook
 to log errors:
 
 ```typescript
-import { Novu } from "novu-sdk";
-import { HTTPClient } from "novu-sdk/lib/http";
+import { Novu } from "novu/api";
+import { HTTPClient } from "novu/api/lib/http";
 
 const httpClient = new HTTPClient({
   // fetcher takes a function that has the same signature as native `fetch`.
@@ -443,14 +479,25 @@ This SDK supports the following security scheme globally:
 
 To authenticate with the API the `apiKey` parameter must be set when initializing the SDK client instance. For example:
 ```typescript
-import { Novu } from "novu-sdk";
+import { Novu } from "novu/api";
+import { TopicPayloadDtoType } from "novu/api/models/components";
 
 const novu = new Novu({
     apiKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
-    const result = await novu.changes.apply("<value>");
+    const result = await novu.trigger({
+        name: "workflow_identifier",
+        overrides: {},
+        payload: {},
+        to: [
+            {
+                topicKey: "topic_key",
+                type: TopicPayloadDtoType.Topic,
+            },
+        ],
+    });
 
     // Handle the result
     console.log(result);
@@ -468,25 +515,39 @@ Some of the endpoints in this SDK support retries.  If you use the SDK without a
 
 To change the default retry strategy for a single API call, simply provide a retryConfig object to the call:
 ```typescript
-import { Novu } from "novu-sdk";
+import { Novu } from "novu/api";
+import { TopicPayloadDtoType } from "novu/api/models/components";
 
 const novu = new Novu({
     apiKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
-    const result = await novu.changes.apply("<value>", {
-        retries: {
-            strategy: "backoff",
-            backoff: {
-                initialInterval: 1,
-                maxInterval: 50,
-                exponent: 1.1,
-                maxElapsedTime: 100,
-            },
-            retryConnectionErrors: false,
+    const result = await novu.trigger(
+        {
+            name: "workflow_identifier",
+            overrides: {},
+            payload: {},
+            to: [
+                {
+                    topicKey: "topic_key",
+                    type: TopicPayloadDtoType.Topic,
+                },
+            ],
         },
-    });
+        {
+            retries: {
+                strategy: "backoff",
+                backoff: {
+                    initialInterval: 1,
+                    maxInterval: 50,
+                    exponent: 1.1,
+                    maxElapsedTime: 100,
+                },
+                retryConnectionErrors: false,
+            },
+        }
+    );
 
     // Handle the result
     console.log(result);
@@ -498,7 +559,8 @@ run();
 
 If you'd like to override the default retry strategy for all operations that support retries, you can provide a retryConfig at SDK initialization:
 ```typescript
-import { Novu } from "novu-sdk";
+import { Novu } from "novu/api";
+import { TopicPayloadDtoType } from "novu/api/models/components";
 
 const novu = new Novu({
     retryConfig: {
@@ -515,7 +577,17 @@ const novu = new Novu({
 });
 
 async function run() {
-    const result = await novu.changes.apply("<value>");
+    const result = await novu.trigger({
+        name: "workflow_identifier",
+        overrides: {},
+        payload: {},
+        to: [
+            {
+                topicKey: "topic_key",
+                type: TopicPayloadDtoType.Topic,
+            },
+        ],
+    });
 
     // Handle the result
     console.log(result);

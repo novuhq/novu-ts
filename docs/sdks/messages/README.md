@@ -19,7 +19,7 @@ Deletes a message entity from the Novu platform
 ### Example Usage
 
 ```typescript
-import { Novu } from "novu-sdk";
+import { Novu } from "novu/api";
 
 const novu = new Novu({
   apiKey: "<YOUR_API_KEY_HERE>",
@@ -61,8 +61,8 @@ Deletes messages entity from the Novu platform using TransactionId of message
 ### Example Usage
 
 ```typescript
-import { Novu } from "novu-sdk";
-import { Channel } from "novu-sdk/models/operations";
+import { Novu } from "novu/api";
+import { Channel } from "novu/api/models/operations";
 
 const novu = new Novu({
   apiKey: "<YOUR_API_KEY_HERE>",
@@ -104,7 +104,7 @@ Returns a list of messages, could paginate using the `page` query parameter
 ### Example Usage
 
 ```typescript
-import { Novu } from "novu-sdk";
+import { Novu } from "novu/api";
 
 const novu = new Novu({
   apiKey: "<YOUR_API_KEY_HERE>",
