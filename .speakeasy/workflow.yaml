@@ -13,6 +13,10 @@ targets:
     my-first-target:
         target: typescript
         source: json-development
+        codeSamples:
+            output: codeSamples.yaml
+            registry:
+                location: registry.speakeasyapi.dev/novu/novu/code-samples-typescript
         publish:
             npm:
                 token: $npm_token
