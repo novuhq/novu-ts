@@ -14,7 +14,7 @@ targets:
         target: typescript
         source: json-development
         codeSamples:
-            output: codeSamples.yaml
+            output: codeSamples.json
             registry:
                 location: registry.speakeasyapi.dev/novu/novu/code-samples-typescript
         publish:
