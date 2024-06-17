@@ -2,8 +2,8 @@ speakeasyVersion: 1.308.1
 sources:
     json-development:
         sourceNamespace: json-development
-        sourceRevisionDigest: sha256:1634ded5478fd93c3b54d8d129ed11832abf56b92cdbf75a3ff6970e55b5e0c5
-        sourceBlobDigest: sha256:dcd592b3a38277e608f394e389a8f7a4f955f26d70dc716c992a6c1a67c683e4
+        sourceRevisionDigest: sha256:950d08dc65a627c5f6bd58e23a128e2655bd32b6b652517bb3128bdeb65aa8b1
+        sourceBlobDigest: sha256:bc091a01533a58df371acf1ba18ab29a87f90781a8ed1dcc004bf00b216d97b0
         tags:
             - latest
             - main
@@ -11,9 +11,11 @@ targets:
     my-first-target:
         source: json-development
         sourceNamespace: json-development
-        sourceRevisionDigest: sha256:1634ded5478fd93c3b54d8d129ed11832abf56b92cdbf75a3ff6970e55b5e0c5
-        sourceBlobDigest: sha256:dcd592b3a38277e608f394e389a8f7a4f955f26d70dc716c992a6c1a67c683e4
-        outLocation: /github/workspace/repo
+        sourceRevisionDigest: sha256:950d08dc65a627c5f6bd58e23a128e2655bd32b6b652517bb3128bdeb65aa8b1
+        sourceBlobDigest: sha256:bc091a01533a58df371acf1ba18ab29a87f90781a8ed1dcc004bf00b216d97b0
+        codeSamplesNamespace: code-samples-typescript
+        codeSamplesRevisionDigest: sha256:c7f498b32defe6bbeaa6c6a282493c063506f5dc5d273086dc89d3a48d3fc999
+        outLocation: /Users/da/code/misc/novu-node
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
@@ -32,3 +34,7 @@ workflow:
             publish:
                 npm:
                     token: $npm_token
+            codeSamples:
+                output: codeSamples.json
+                registry:
+                    location: registry.speakeasyapi.dev/novu/novu/code-samples-typescript
