@@ -2,7 +2,7 @@ speakeasyVersion: 1.308.1
 sources:
     json-development:
         sourceNamespace: json-development
-        sourceRevisionDigest: sha256:6399c072262e11694acc5603bda7a87fc8d9a63a1fbaad0d509ff1f43db4590d
+        sourceRevisionDigest: sha256:29edc619a2679fa8e1a740058da7bdb67f035552773df8d953613a3f9dc9a82a
         sourceBlobDigest: sha256:e8603aa67eeecc10118aee45900346cfc574753b6cfc9a02891d5c0ac34db596
         tags:
             - latest
@@ -11,10 +11,10 @@ targets:
     my-first-target:
         source: json-development
         sourceNamespace: json-development
-        sourceRevisionDigest: sha256:6399c072262e11694acc5603bda7a87fc8d9a63a1fbaad0d509ff1f43db4590d
+        sourceRevisionDigest: sha256:29edc619a2679fa8e1a740058da7bdb67f035552773df8d953613a3f9dc9a82a
         sourceBlobDigest: sha256:e8603aa67eeecc10118aee45900346cfc574753b6cfc9a02891d5c0ac34db596
         codeSamplesNamespace: code-samples-typescript
-        codeSamplesRevisionDigest: sha256:15de99575780fa8d0820ac02e699dacf5cf3689f98231a136b8c978013d0f4d6
+        codeSamplesRevisionDigest: sha256:dd267717c5a192385b338c0e97f54a1a34a6bbe7ce4aae75c79eeeba30c2d7ca
         outLocation: /Users/da/code/misc/novu-node
 workflow:
     workflowVersion: 1.0.0
