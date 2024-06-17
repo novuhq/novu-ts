@@ -9,12 +9,13 @@ sources:
             - location: ./sources/remove-headers-overlay.yaml
         registry:
             location: registry.speakeasyapi.dev/novu/novu/json-development
+        output: sources/json-development.json
 targets:
     my-first-target:
         target: typescript
         source: json-development
         codeSamples:
-            output: codeSamples.json
+            output: sources/code-samples.json
             registry:
                 location: registry.speakeasyapi.dev/novu/novu/code-samples-typescript
         publish:
