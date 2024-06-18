@@ -2,19 +2,18 @@ speakeasyVersion: 1.308.1
 sources:
     json-development:
         sourceNamespace: json-development
-        sourceRevisionDigest: sha256:29edc619a2679fa8e1a740058da7bdb67f035552773df8d953613a3f9dc9a82a
-        sourceBlobDigest: sha256:e8603aa67eeecc10118aee45900346cfc574753b6cfc9a02891d5c0ac34db596
+        sourceRevisionDigest: sha256:1bc7354bf3d77f5041f4a62ff46949898a6e56bfebddd50406db841adbe08f6e
+        sourceBlobDigest: sha256:aef7e5b403d20e17858ce338f35a9e6bb056e3ea3e7a98c3def0d89ecfeb95b3
         tags:
             - latest
-            - main
 targets:
     my-first-target:
         source: json-development
         sourceNamespace: json-development
-        sourceRevisionDigest: sha256:29edc619a2679fa8e1a740058da7bdb67f035552773df8d953613a3f9dc9a82a
-        sourceBlobDigest: sha256:e8603aa67eeecc10118aee45900346cfc574753b6cfc9a02891d5c0ac34db596
+        sourceRevisionDigest: sha256:1bc7354bf3d77f5041f4a62ff46949898a6e56bfebddd50406db841adbe08f6e
+        sourceBlobDigest: sha256:aef7e5b403d20e17858ce338f35a9e6bb056e3ea3e7a98c3def0d89ecfeb95b3
         codeSamplesNamespace: code-samples-typescript
-        codeSamplesRevisionDigest: sha256:dd267717c5a192385b338c0e97f54a1a34a6bbe7ce4aae75c79eeeba30c2d7ca
+        codeSamplesRevisionDigest: sha256:8bcf1a1d27d468c4289986ffc8eb9789bc81a6d0f5abcac77ddd6d8f5b43b832
         outLocation: /Users/da/code/misc/novu-node
 workflow:
     workflowVersion: 1.0.0
@@ -22,9 +21,9 @@ workflow:
     sources:
         json-development:
             inputs:
-                - location: ./sources/openapi.sdk.json
+                - location: http://api.novu.co/openapi.sdk.json
             overlays:
-                - location: ./sources/remove-headers-overlay.yaml
+                - location: ./sources/cleanup-overlay.yaml
             output: sources/json-development.json
             registry:
                 location: registry.speakeasyapi.dev/novu/novu/json-development

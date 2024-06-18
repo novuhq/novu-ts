@@ -1,0 +1,20 @@
+overlay: 1.0.0
+info:
+  title: Clean OpenAPI
+  version: 0.0.0
+actions:
+  # Remove headers from all paths
+  - target: $.paths.*.*.responses.*.headers
+    remove: true
+  # Remove all echo paths 
+  - target: $..[?(@.operationId =~ /EchoController/)]
+    remove: true
+  # Remove all translation paths
+  - target: $..[?(@.operationId =~ /TranslationController/)]
+    remove: true
+  # Remove all google auth paths
+  - target: $..[?(@.operationId =~ /AuthController_google/)]
+    remove: true
+  # Remove the TranslationGroupRequestDto schema
+  - target: $.components.schemas.TranslationGroupRequestDto
+    remove: true
