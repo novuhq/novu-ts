@@ -70,8 +70,6 @@ run();
 
 ### [Novu SDK](docs/sdks/novu/README.md)
 
-* [authControllerGoogleAuth](docs/sdks/novu/README.md#authcontrollergoogleauth)
-* [authControllerGoogleCallback](docs/sdks/novu/README.md#authcontrollergooglecallback)
 * [trigger](docs/sdks/novu/README.md#trigger) - Trigger event
 
 ### [changes](docs/sdks/changes/README.md)
@@ -296,6 +294,7 @@ Validation errors can also occur when either method arguments or data returned f
 
 ```typescript
 import { Novu } from "@novu/api";
+import { TopicPayloadDtoType } from "@novu/api/models/components";
 import * as errors from "@novu/api/models/errors";
 
 const novu = new Novu({
@@ -303,8 +302,19 @@ const novu = new Novu({
 });
 
 async function run() {
+    let result;
     try {
-        await novu.authControllerGoogleAuth();
+        result = await novu.trigger({
+            name: "workflow_identifier",
+            overrides: {},
+            payload: {},
+            to: [
+                {
+                    topicKey: "topic_key",
+                    type: TopicPayloadDtoType.Topic,
+                },
+            ],
+        });
     } catch (err) {
         switch (true) {
             case err instanceof errors.SDKValidationError: {
@@ -319,6 +329,9 @@ async function run() {
             }
         }
     }
+
+    // Handle the result
+    console.log(result);
 }
 
 run();
@@ -340,6 +353,7 @@ You can override the default server globally by passing a server index to the `s
 
 ```typescript
 import { Novu } from "@novu/api";
+import { TopicPayloadDtoType } from "@novu/api/models/components";
 
 const novu = new Novu({
     serverIdx: 1,
@@ -347,7 +361,20 @@ const novu = new Novu({
 });
 
 async function run() {
-    await novu.authControllerGoogleAuth();
+    const result = await novu.trigger({
+        name: "workflow_identifier",
+        overrides: {},
+        payload: {},
+        to: [
+            {
+                topicKey: "topic_key",
+                type: TopicPayloadDtoType.Topic,
+            },
+        ],
+    });
+
+    // Handle the result
+    console.log(result);
 }
 
 run();
@@ -361,6 +388,7 @@ The default server can also be overridden globally by passing a URL to the `serv
 
 ```typescript
 import { Novu } from "@novu/api";
+import { TopicPayloadDtoType } from "@novu/api/models/components";
 
 const novu = new Novu({
     serverURL: "https://api.novu.co",
@@ -368,7 +396,20 @@ const novu = new Novu({
 });
 
 async function run() {
-    await novu.authControllerGoogleAuth();
+    const result = await novu.trigger({
+        name: "workflow_identifier",
+        overrides: {},
+        payload: {},
+        to: [
+            {
+                topicKey: "topic_key",
+                type: TopicPayloadDtoType.Topic,
+            },
+        ],
+    });
+
+    // Handle the result
+    console.log(result);
 }
 
 run();
@@ -439,13 +480,27 @@ This SDK supports the following security scheme globally:
 To authenticate with the API the `apiKey` parameter must be set when initializing the SDK client instance. For example:
 ```typescript
 import { Novu } from "@novu/api";
+import { TopicPayloadDtoType } from "@novu/api/models/components";
 
 const novu = new Novu({
     apiKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
-    await novu.authControllerGoogleAuth();
+    const result = await novu.trigger({
+        name: "workflow_identifier",
+        overrides: {},
+        payload: {},
+        to: [
+            {
+                topicKey: "topic_key",
+                type: TopicPayloadDtoType.Topic,
+            },
+        ],
+    });
+
+    // Handle the result
+    console.log(result);
 }
 
 run();
@@ -461,24 +516,41 @@ Some of the endpoints in this SDK support retries.  If you use the SDK without a
 To change the default retry strategy for a single API call, simply provide a retryConfig object to the call:
 ```typescript
 import { Novu } from "@novu/api";
+import { TopicPayloadDtoType } from "@novu/api/models/components";
 
 const novu = new Novu({
     apiKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
-    await novu.authControllerGoogleAuth({
-        retries: {
-            strategy: "backoff",
-            backoff: {
-                initialInterval: 1,
-                maxInterval: 50,
-                exponent: 1.1,
-                maxElapsedTime: 100,
-            },
-            retryConnectionErrors: false,
+    const result = await novu.trigger(
+        {
+            name: "workflow_identifier",
+            overrides: {},
+            payload: {},
+            to: [
+                {
+                    topicKey: "topic_key",
+                    type: TopicPayloadDtoType.Topic,
+                },
+            ],
         },
-    });
+        {
+            retries: {
+                strategy: "backoff",
+                backoff: {
+                    initialInterval: 1,
+                    maxInterval: 50,
+                    exponent: 1.1,
+                    maxElapsedTime: 100,
+                },
+                retryConnectionErrors: false,
+            },
+        }
+    );
+
+    // Handle the result
+    console.log(result);
 }
 
 run();
@@ -488,6 +560,7 @@ run();
 If you'd like to override the default retry strategy for all operations that support retries, you can provide a retryConfig at SDK initialization:
 ```typescript
 import { Novu } from "@novu/api";
+import { TopicPayloadDtoType } from "@novu/api/models/components";
 
 const novu = new Novu({
     retryConfig: {
@@ -504,7 +577,20 @@ const novu = new Novu({
 });
 
 async function run() {
-    await novu.authControllerGoogleAuth();
+    const result = await novu.trigger({
+        name: "workflow_identifier",
+        overrides: {},
+        payload: {},
+        to: [
+            {
+                topicKey: "topic_key",
+                type: TopicPayloadDtoType.Topic,
+            },
+        ],
+    });
+
+    // Handle the result
+    console.log(result);
 }
 
 run();

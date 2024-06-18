@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: f50499c4-d106-4975-983f-ead3a386ec53
 management:
-  docChecksum: 9d31047c9ece63ca9dd4d7db4d427108
+  docChecksum: 843588d509aa4de3a4d846ef57647cfc
   docVersion: "1.0"
   speakeasyVersion: 1.308.1
   generationVersion: 2.342.6
-  releaseVersion: 0.0.1-alpha.7
-  configChecksum: 23382479ef069ee9a3a68073c5207d6d
+  releaseVersion: 0.0.1-alpha.8
+  configChecksum: 44795b95ebeff18a9bac44fee44a664c
   repoURL: https://github.com/novuhq/novu-node.git
   installationURL: https://github.com/novuhq/novu-node
   published: true

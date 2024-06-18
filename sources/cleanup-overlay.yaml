@@ -12,6 +12,9 @@ actions:
   # Remove all translation paths
   - target: $..[?(@.operationId =~ /TranslationController/)]
     remove: true
+  # Remove all google auth paths
+  - target: $..[?(@.operationId =~ /AuthController_google/)]
+    remove: true
   # Remove the TranslationGroupRequestDto schema
   - target: $.components.schemas.TranslationGroupRequestDto
     remove: true
