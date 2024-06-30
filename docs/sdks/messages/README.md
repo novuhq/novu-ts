@@ -62,14 +62,13 @@ Deletes messages entity from the Novu platform using TransactionId of message
 
 ```typescript
 import { Novu } from "@novu/api";
-import { Channel } from "@novu/api/models/operations";
 
 const novu = new Novu({
   apiKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
-  await novu.messages.deleteByTransactionId("<value>", Channel.Push);
+  await novu.messages.deleteByTransactionId("<value>", "push");
 
   
 }

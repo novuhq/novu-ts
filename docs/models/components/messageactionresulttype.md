@@ -7,4 +7,3 @@
 | ----------- | ----------- |
 | `Primary`   | primary     |
 | `Secondary` | secondary   |
-| `Clicked`   | clicked     |

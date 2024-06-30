@@ -14,7 +14,6 @@ Get notifications
 
 ```typescript
 import { Novu } from "@novu/api";
-import { Channels } from "@novu/api/models/operations";
 
 const novu = new Novu({
   apiKey: "<YOUR_API_KEY_HERE>",
@@ -23,7 +22,7 @@ const novu = new Novu({
 async function run() {
   const result = await novu.notifications.list({
     channels: [
-      Channels.Chat,
+      "chat",
     ],
     templates: [
       "<value>",

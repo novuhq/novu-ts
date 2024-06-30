@@ -23,7 +23,6 @@ Create an integration for the current environment the user is based on the API k
 
 ```typescript
 import { Novu } from "@novu/api";
-import { Channel } from "@novu/api/models/components";
 
 const novu = new Novu({
   apiKey: "<YOUR_API_KEY_HERE>",
@@ -31,7 +30,7 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.integrations.create({
-    channel: Channel.Sms,
+    channel: "sms",
     providerId: "<value>",
   });
 

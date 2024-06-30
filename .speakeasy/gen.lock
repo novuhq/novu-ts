@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: f50499c4-d106-4975-983f-ead3a386ec53
 management:
-  docChecksum: 843588d509aa4de3a4d846ef57647cfc
+  docChecksum: 1eadec3f5478d02504091b0e2b5b2ee0
   docVersion: "1.0"
-  speakeasyVersion: 1.308.1
-  generationVersion: 2.342.6
-  releaseVersion: 0.0.1-alpha.8
-  configChecksum: 44795b95ebeff18a9bac44fee44a664c
+  speakeasyVersion: 1.322.3
+  generationVersion: 2.354.2
+  releaseVersion: 0.0.1-alpha.9
+  configChecksum: 29fb899ef19d96629eaf20333f0647b0
   repoURL: https://github.com/novuhq/novu-node.git
   installationURL: https://github.com/novuhq/novu-node
   published: true
@@ -14,7 +14,7 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.5
-    core: 3.9.14
+    core: 3.10.2
     deprecations: 2.81.1
     examples: 2.81.4
     flattening: 2.81.1
@@ -61,7 +61,7 @@ generatedFiles:
   - src/sdk/status.ts
   - src/sdk/workflows.ts
   - src/sdk/sdk.ts
-  - .eslintrc.js
+  - .eslintrc.cjs
   - .npmignore
   - RUNTIMES.md
   - jsr.json
@@ -530,6 +530,7 @@ generatedFiles:
   - docs/models/operations/subscriberscontrollergetunseencountrequest.md
   - docs/models/operations/subscriberscontrollerupdatesubscriberonlineflagrequest.md
   - docs/models/operations/subscriberscontrollerlistsubscriberpreferencesrequest.md
+  - docs/models/operations/parameter.md
   - docs/models/operations/subscriberscontrollergetsubscriberpreferencebylevelrequest.md
   - docs/models/operations/subscriberscontrollerupdatesubscriberpreferencerequest.md
   - docs/models/operations/subscriberscontrollerupdatesubscriberglobalpreferencesrequest.md
