@@ -16,7 +16,6 @@ Subscriber credentials associated to the delivery methods such as slack and push
 
 ```typescript
 import { Novu } from "@novu/api";
-import { UpdateSubscriberChannelRequestDtoProviderId } from "@novu/api/models/components";
 
 const novu = new Novu({
   apiKey: "<YOUR_API_KEY_HERE>",
@@ -27,7 +26,7 @@ async function run() {
     credentials: {
       webhookUrl: "<value>",
     },
-    providerId: UpdateSubscriberChannelRequestDtoProviderId.Zulip,
+    providerId: "zulip",
   });
 
   // Handle the result
@@ -107,7 +106,6 @@ Subscriber credentials associated to the delivery methods such as slack and push
 
 ```typescript
 import { Novu } from "@novu/api";
-import { UpdateSubscriberChannelRequestDtoProviderId } from "@novu/api/models/components";
 
 const novu = new Novu({
   apiKey: "<YOUR_API_KEY_HERE>",
@@ -118,7 +116,7 @@ async function run() {
     credentials: {
       webhookUrl: "<value>",
     },
-    providerId: UpdateSubscriberChannelRequestDtoProviderId.Pushpad,
+    providerId: "pushpad",
   });
 
   // Handle the result

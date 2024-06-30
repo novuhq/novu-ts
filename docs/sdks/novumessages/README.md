@@ -15,7 +15,6 @@ Marks all the subscriber messages as read, unread, seen or unseen. Optionally yo
 
 ```typescript
 import { Novu } from "@novu/api";
-import { MarkAs } from "@novu/api/models/components";
 
 const novu = new Novu({
   apiKey: "<YOUR_API_KEY_HERE>",
@@ -23,7 +22,7 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.subscribers.messages.markAll("<value>", {
-    markAs: MarkAs.Seen,
+    markAs: "seen",
   });
 
   // Handle the result
@@ -61,7 +60,6 @@ Mark a subscriber messages as seen, read, unseen or unread
 
 ```typescript
 import { Novu } from "@novu/api";
-import { MessageMarkAsRequestDtoMarkAs } from "@novu/api/models/components";
 
 const novu = new Novu({
   apiKey: "<YOUR_API_KEY_HERE>",
@@ -69,7 +67,7 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.subscribers.messages.markAllAs("<value>", {
-    markAs: MessageMarkAsRequestDtoMarkAs.Seen,
+    markAs: "seen",
   messageId: "<value>",
   });
 
@@ -108,7 +106,6 @@ Mark message action as seen
 
 ```typescript
 import { Novu } from "@novu/api";
-import { MarkMessageActionAsSeenDtoStatus } from "@novu/api/models/components";
 
 const novu = new Novu({
   apiKey: "<YOUR_API_KEY_HERE>",
@@ -120,7 +117,7 @@ async function run() {
     type: "<value>",
     subscriberId: "<value>",
     markMessageActionAsSeenDto: {
-      status: MarkMessageActionAsSeenDtoStatus.Done,
+      status: "done",
     },
   });
 

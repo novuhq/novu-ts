@@ -5,7 +5,7 @@
 import {
     CreateSubscriberRequestDto,
     CreateSubscriberRequestDto$,
-} from "./createsubscriberrequestdto";
+} from "./createsubscriberrequestdto.js";
 import * as z from "zod";
 
 export type BulkSubscriberCreateDto = {

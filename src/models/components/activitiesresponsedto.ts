@@ -5,7 +5,7 @@
 import {
     ActivityNotificationResponseDto,
     ActivityNotificationResponseDto$,
-} from "./activitynotificationresponsedto";
+} from "./activitynotificationresponsedto.js";
 import * as z from "zod";
 
 export type ActivitiesResponseDto = {

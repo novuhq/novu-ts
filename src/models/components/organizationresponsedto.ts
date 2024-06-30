@@ -5,11 +5,11 @@
 import {
     IPartnerConfigurationResponseDto,
     IPartnerConfigurationResponseDto$,
-} from "./ipartnerconfigurationresponsedto";
+} from "./ipartnerconfigurationresponsedto.js";
 import {
     OrganizationBrandingResponseDto,
     OrganizationBrandingResponseDto$,
-} from "./organizationbrandingresponsedto";
+} from "./organizationbrandingresponsedto.js";
 import * as z from "zod";
 
 export type OrganizationResponseDto = {
