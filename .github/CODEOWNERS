@@ -1,4 +1,4 @@
 # Reference: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners#codeowners-syntax
 
 # https://github.com/orgs/novuhq/teams/novu-sdks
-@novuhq/novu-sdks
+* @novuhq/novu-sdks
