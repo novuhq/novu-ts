@@ -1,5 +1,14 @@
 # NotificationTriggerVariable
 
+## Example Usage
+
+```typescript
+import { NotificationTriggerVariable } from "@novu/api/models/components";
+
+let value: NotificationTriggerVariable = {
+    name: "<value>",
+};
+```
 
 ## Fields
 

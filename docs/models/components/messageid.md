@@ -1,5 +1,12 @@
 # MessageId
 
+## Example Usage
+
+```typescript
+import { MessageId } from "@novu/api/models/components";
+
+let value: MessageId = "<value>";
+```
 
 ## Supported Types
 

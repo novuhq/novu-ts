@@ -1,5 +1,12 @@
 # MessagesControllerGetMessagesRequest
 
+## Example Usage
+
+```typescript
+import { MessagesControllerGetMessagesRequest } from "@novu/api/models/operations";
+
+let value: MessagesControllerGetMessagesRequest = {};
+```
 
 ## Fields
 

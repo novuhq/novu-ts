@@ -1,5 +1,16 @@
 # NotificationGroup
 
+## Example Usage
+
+```typescript
+import { NotificationGroup } from "@novu/api/models/components";
+
+let value: NotificationGroup = {
+    environmentId: "<value>",
+    organizationId: "<value>",
+    name: "<value>",
+};
+```
 
 ## Fields
 

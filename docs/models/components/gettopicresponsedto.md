@@ -1,5 +1,18 @@
 # GetTopicResponseDto
 
+## Example Usage
+
+```typescript
+import { GetTopicResponseDto } from "@novu/api/models/components";
+
+let value: GetTopicResponseDto = {
+    environmentId: "<value>",
+    organizationId: "<value>",
+    key: "<key>",
+    name: "<value>",
+    subscribers: ["<value>"],
+};
+```
 
 ## Fields
 

@@ -1,5 +1,14 @@
 # DataBooleanDto
 
+## Example Usage
+
+```typescript
+import { DataBooleanDto } from "@novu/api/models/components";
+
+let value: DataBooleanDto = {
+    data: false,
+};
+```
 
 ## Fields
 

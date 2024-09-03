@@ -1,5 +1,17 @@
 # OrganizationBrandingResponseDto
 
+## Example Usage
+
+```typescript
+import { OrganizationBrandingResponseDto } from "@novu/api/models/components";
+
+let value: OrganizationBrandingResponseDto = {
+    color: "orchid",
+    contentBackground: "<value>",
+    fontColor: "<value>",
+    logo: "<value>",
+};
+```
 
 ## Fields
 

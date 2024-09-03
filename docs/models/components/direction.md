@@ -1,9 +1,15 @@
 # Direction
 
+## Example Usage
+
+```typescript
+import { Direction } from "@novu/api/models/components";
+
+let value: Direction = "trl";
+```
 
 ## Values
 
-| Name  | Value |
-| ----- | ----- |
-| `Ltr` | ltr   |
-| `Trl` | trl   |
+```typescript
+"ltr" | "trl"
+```

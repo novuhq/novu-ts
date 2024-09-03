@@ -1,5 +1,15 @@
 # MessageButton
 
+## Example Usage
+
+```typescript
+import { MessageButton } from "@novu/api/models/components";
+
+let value: MessageButton = {
+    content: "<value>",
+    type: "secondary",
+};
+```
 
 ## Fields
 

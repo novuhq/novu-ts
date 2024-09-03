@@ -1,12 +1,15 @@
 # IntegrationResponseDtoChannel
 
+## Example Usage
+
+```typescript
+import { IntegrationResponseDtoChannel } from "@novu/api/models/components";
+
+let value: IntegrationResponseDtoChannel = "sms";
+```
 
 ## Values
 
-| Name    | Value   |
-| ------- | ------- |
-| `InApp` | in_app  |
-| `Email` | email   |
-| `Sms`   | sms     |
-| `Chat`  | chat    |
-| `Push`  | push    |
+```typescript
+"in_app" | "email" | "sms" | "chat" | "push"
+```

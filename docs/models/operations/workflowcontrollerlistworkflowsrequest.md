@@ -1,5 +1,12 @@
 # WorkflowControllerListWorkflowsRequest
 
+## Example Usage
+
+```typescript
+import { WorkflowControllerListWorkflowsRequest } from "@novu/api/models/operations";
+
+let value: WorkflowControllerListWorkflowsRequest = {};
+```
 
 ## Fields
 

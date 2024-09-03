@@ -1,14 +1,15 @@
 # WeekDays
 
+## Example Usage
+
+```typescript
+import { WeekDays } from "@novu/api/models/components";
+
+let value: WeekDays = "sunday";
+```
 
 ## Values
 
-| Name        | Value       |
-| ----------- | ----------- |
-| `Monday`    | monday      |
-| `Tuesday`   | tuesday     |
-| `Wednesday` | wednesday   |
-| `Thursday`  | thursday    |
-| `Friday`    | friday      |
-| `Saturday`  | saturday    |
-| `Sunday`    | sunday      |
+```typescript
+"monday" | "tuesday" | "wednesday" | "thursday" | "friday" | "saturday" | "sunday"
+```

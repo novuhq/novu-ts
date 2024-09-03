@@ -1,12 +1,15 @@
 # UpdateLayoutResponseDtoChannel
 
+## Example Usage
+
+```typescript
+import { UpdateLayoutResponseDtoChannel } from "@novu/api/models/components";
+
+let value: UpdateLayoutResponseDtoChannel = "push";
+```
 
 ## Values
 
-| Name    | Value   |
-| ------- | ------- |
-| `InApp` | in_app  |
-| `Email` | email   |
-| `Sms`   | sms     |
-| `Chat`  | chat    |
-| `Push`  | push    |
+```typescript
+"in_app" | "email" | "sms" | "chat" | "push"
+```

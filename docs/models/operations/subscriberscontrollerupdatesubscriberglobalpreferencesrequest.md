@@ -1,5 +1,15 @@
 # SubscribersControllerUpdateSubscriberGlobalPreferencesRequest
 
+## Example Usage
+
+```typescript
+import { SubscribersControllerUpdateSubscriberGlobalPreferencesRequest } from "@novu/api/models/operations";
+
+let value: SubscribersControllerUpdateSubscriberGlobalPreferencesRequest = {
+    subscriberId: "<value>",
+    updateSubscriberGlobalPreferencesRequestDto: {},
+};
+```
 
 ## Fields
 

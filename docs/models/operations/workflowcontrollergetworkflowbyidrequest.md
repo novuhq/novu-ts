@@ -1,5 +1,14 @@
 # WorkflowControllerGetWorkflowByIdRequest
 
+## Example Usage
+
+```typescript
+import { WorkflowControllerGetWorkflowByIdRequest } from "@novu/api/models/operations";
+
+let value: WorkflowControllerGetWorkflowByIdRequest = {
+    workflowId: "<value>",
+};
+```
 
 ## Fields
 

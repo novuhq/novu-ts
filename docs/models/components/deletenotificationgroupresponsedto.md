@@ -1,5 +1,15 @@
 # DeleteNotificationGroupResponseDto
 
+## Example Usage
+
+```typescript
+import { DeleteNotificationGroupResponseDto } from "@novu/api/models/components";
+
+let value: DeleteNotificationGroupResponseDto = {
+    acknowledged: false,
+    status: "deleted",
+};
+```
 
 ## Fields
 

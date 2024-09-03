@@ -1,5 +1,14 @@
 # TenantControllerRemoveTenantRequest
 
+## Example Usage
+
+```typescript
+import { TenantControllerRemoveTenantRequest } from "@novu/api/models/operations";
+
+let value: TenantControllerRemoveTenantRequest = {
+    identifier: "<value>",
+};
+```
 
 ## Fields
 

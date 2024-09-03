@@ -1,5 +1,17 @@
 # UpdateBrandingDetailsDto
 
+## Example Usage
+
+```typescript
+import { UpdateBrandingDetailsDto } from "@novu/api/models/components";
+
+let value: UpdateBrandingDetailsDto = {
+    color: "plum",
+    contentBackground: "<value>",
+    fontColor: "<value>",
+    logo: "<value>",
+};
+```
 
 ## Fields
 

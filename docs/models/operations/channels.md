@@ -1,12 +1,15 @@
 # Channels
 
+## Example Usage
+
+```typescript
+import { Channels } from "@novu/api/models/operations";
+
+let value: Channels = "chat";
+```
 
 ## Values
 
-| Name    | Value   |
-| ------- | ------- |
-| `InApp` | in_app  |
-| `Email` | email   |
-| `Sms`   | sms     |
-| `Chat`  | chat    |
-| `Push`  | push    |
+```typescript
+"in_app" | "email" | "sms" | "chat" | "push"
+```

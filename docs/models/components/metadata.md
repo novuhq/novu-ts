@@ -1,5 +1,14 @@
 # Metadata
 
+## Example Usage
+
+```typescript
+import { Metadata } from "@novu/api/models/components";
+
+let value: Metadata = {
+    type: "backoff",
+};
+```
 
 ## Supported Types
 

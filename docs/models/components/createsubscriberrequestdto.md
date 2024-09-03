@@ -1,12 +1,21 @@
 # CreateSubscriberRequestDto
 
+## Example Usage
+
+```typescript
+import { CreateSubscriberRequestDto } from "@novu/api/models/components";
+
+let value: CreateSubscriberRequestDto = {
+    subscriberId: "<value>",
+};
+```
 
 ## Fields
 
 | Field                                                                                                             | Type                                                                                                              | Required                                                                                                          | Description                                                                                                       |
 | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
 | `avatar`                                                                                                          | *string*                                                                                                          | :heavy_minus_sign:                                                                                                | An http url to the profile image of your subscriber                                                               |
-| `channels`                                                                                                        | [components.SubscriberChannelDto](../../models/components/subscriberchanneldto.md)[]                              | :heavy_minus_sign:                                                                                                | N/A                                                                                                               |
+| `channels`                                                                                                        | *string*[]                                                                                                        | :heavy_minus_sign:                                                                                                | N/A                                                                                                               |
 | `data`                                                                                                            | [components.Data](../../models/components/data.md)                                                                | :heavy_minus_sign:                                                                                                | N/A                                                                                                               |
 | `email`                                                                                                           | *string*                                                                                                          | :heavy_minus_sign:                                                                                                | N/A                                                                                                               |
 | `firstName`                                                                                                       | *string*                                                                                                          | :heavy_minus_sign:                                                                                                | N/A                                                                                                               |

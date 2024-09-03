@@ -1,9 +1,15 @@
 # MessageActionStatus
 
+## Example Usage
+
+```typescript
+import { MessageActionStatus } from "@novu/api/models/components";
+
+let value: MessageActionStatus = "pending";
+```
 
 ## Values
 
-| Name      | Value     |
-| --------- | --------- |
-| `Pending` | pending   |
-| `Done`    | done      |
+```typescript
+"pending" | "done"
+```

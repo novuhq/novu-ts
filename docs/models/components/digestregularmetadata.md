@@ -1,5 +1,14 @@
 # DigestRegularMetadata
 
+## Example Usage
+
+```typescript
+import { DigestRegularMetadata } from "@novu/api/models/components";
+
+let value: DigestRegularMetadata = {
+    type: "backoff",
+};
+```
 
 ## Fields
 

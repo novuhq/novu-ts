@@ -1,5 +1,14 @@
 # SubscribersControllerRemoveSubscriberRequest
 
+## Example Usage
+
+```typescript
+import { SubscribersControllerRemoveSubscriberRequest } from "@novu/api/models/operations";
+
+let value: SubscribersControllerRemoveSubscriberRequest = {
+    subscriberId: "<value>",
+};
+```
 
 ## Fields
 

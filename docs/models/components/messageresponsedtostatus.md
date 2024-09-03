@@ -1,10 +1,15 @@
 # MessageResponseDtoStatus
 
+## Example Usage
+
+```typescript
+import { MessageResponseDtoStatus } from "@novu/api/models/components";
+
+let value: MessageResponseDtoStatus = "warning";
+```
 
 ## Values
 
-| Name      | Value     |
-| --------- | --------- |
-| `Sent`    | sent      |
-| `Error`   | error     |
-| `Warning` | warning   |
+```typescript
+"sent" | "error" | "warning"
+```

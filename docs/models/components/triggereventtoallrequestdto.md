@@ -1,5 +1,16 @@
 # TriggerEventToAllRequestDto
 
+## Example Usage
+
+```typescript
+import { TriggerEventToAllRequestDto } from "@novu/api/models/components";
+
+let value: TriggerEventToAllRequestDto = {
+    name: "<value>",
+    overrides: {},
+    payload: {},
+};
+```
 
 ## Fields
 

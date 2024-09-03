@@ -1,5 +1,12 @@
 # To
 
+## Example Usage
+
+```typescript
+import { To } from "@novu/api/models/components";
+
+let value: To = "SUBSCRIBER_ID";
+```
 
 ## Supported Types
 

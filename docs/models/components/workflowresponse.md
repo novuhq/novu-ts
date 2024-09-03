@@ -1,5 +1,29 @@
 # WorkflowResponse
 
+## Example Usage
+
+```typescript
+import { WorkflowResponse } from "@novu/api/models/components";
+
+let value: WorkflowResponse = {
+    creatorId: "<value>",
+    environmentId: "<value>",
+    notificationGroupId: "<value>",
+    organizationId: "<value>",
+    active: false,
+    critical: false,
+    deleted: false,
+    deletedAt: "<value>",
+    deletedBy: "<value>",
+    description: "Advanced eco-centric middleware",
+    draft: false,
+    name: "<value>",
+    preferenceSettings: {},
+    steps: [],
+    tags: ["<value>"],
+    triggers: [],
+};
+```
 
 ## Fields
 

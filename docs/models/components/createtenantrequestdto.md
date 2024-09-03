@@ -1,5 +1,15 @@
 # CreateTenantRequestDto
 
+## Example Usage
+
+```typescript
+import { CreateTenantRequestDto } from "@novu/api/models/components";
+
+let value: CreateTenantRequestDto = {
+    identifier: "<value>",
+    name: "<value>",
+};
+```
 
 ## Fields
 

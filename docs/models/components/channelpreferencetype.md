@@ -2,13 +2,16 @@
 
 The type of channel that is enabled or not
 
+## Example Usage
+
+```typescript
+import { ChannelPreferenceType } from "@novu/api/models/components";
+
+let value: ChannelPreferenceType = "email";
+```
 
 ## Values
 
-| Name    | Value   |
-| ------- | ------- |
-| `InApp` | in_app  |
-| `Email` | email   |
-| `Sms`   | sms     |
-| `Chat`  | chat    |
-| `Push`  | push    |
+```typescript
+"in_app" | "email" | "sms" | "chat" | "push"
+```

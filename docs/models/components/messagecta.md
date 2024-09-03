@@ -1,5 +1,14 @@
 # MessageCTA
 
+## Example Usage
+
+```typescript
+import { MessageCTA } from "@novu/api/models/components";
+
+let value: MessageCTA = {
+    data: {},
+};
+```
 
 ## Fields
 

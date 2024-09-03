@@ -1,11 +1,15 @@
 # Source
 
+## Example Usage
+
+```typescript
+import { Source } from "@novu/api/models/components";
+
+let value: Source = "Credentials";
+```
 
 ## Values
 
-| Name          | Value         |
-| ------------- | ------------- |
-| `Credentials` | Credentials   |
-| `Internal`    | Internal      |
-| `Payload`     | Payload       |
-| `Webhook`     | Webhook       |
+```typescript
+"Credentials" | "Internal" | "Payload" | "Webhook"
+```

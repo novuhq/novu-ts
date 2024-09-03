@@ -1,10 +1,18 @@
 # CredentialsDto
 
+## Example Usage
+
+```typescript
+import { CredentialsDto } from "@novu/api/models/components";
+
+let value: CredentialsDto = {};
+```
 
 ## Fields
 
 | Field                                                          | Type                                                           | Required                                                       | Description                                                    |
 | -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- |
+| `accessKey`                                                    | *string*                                                       | :heavy_minus_sign:                                             | N/A                                                            |
 | `accountSid`                                                   | *string*                                                       | :heavy_minus_sign:                                             | N/A                                                            |
 | `alertUid`                                                     | *string*                                                       | :heavy_minus_sign:                                             | N/A                                                            |
 | `apiKey`                                                       | *string*                                                       | :heavy_minus_sign:                                             | N/A                                                            |

@@ -1,5 +1,25 @@
 # FilterTopicsResponseDto
 
+## Example Usage
+
+```typescript
+import { FilterTopicsResponseDto } from "@novu/api/models/components";
+
+let value: FilterTopicsResponseDto = {
+    data: [
+        {
+            environmentId: "<value>",
+            organizationId: "<value>",
+            key: "<key>",
+            name: "<value>",
+            subscribers: ["<value>"],
+        },
+    ],
+    page: 3637.11,
+    pageSize: 3250.47,
+    totalCount: 5701.97,
+};
+```
 
 ## Fields
 

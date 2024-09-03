@@ -1,9 +1,15 @@
 # MonthlyType
 
+## Example Usage
+
+```typescript
+import { MonthlyType } from "@novu/api/models/components";
+
+let value: MonthlyType = "each";
+```
 
 ## Values
 
-| Name   | Value  |
-| ------ | ------ |
-| `Each` | each   |
-| `On`   | on     |
+```typescript
+"each" | "on"
+```

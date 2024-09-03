@@ -1,5 +1,15 @@
 # Preference
 
+## Example Usage
+
+```typescript
+import { Preference } from "@novu/api/models/components";
+
+let value: Preference = {
+    channels: {},
+    enabled: false,
+};
+```
 
 ## Fields
 

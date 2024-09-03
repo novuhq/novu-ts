@@ -1,9 +1,15 @@
 # MessageButtonType
 
+## Example Usage
+
+```typescript
+import { MessageButtonType } from "@novu/api/models/components";
+
+let value: MessageButtonType = "secondary";
+```
 
 ## Values
 
-| Name        | Value       |
-| ----------- | ----------- |
-| `Primary`   | primary     |
-| `Secondary` | secondary   |
+```typescript
+"primary" | "secondary"
+```

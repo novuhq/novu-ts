@@ -1,5 +1,15 @@
 # ChannelPreference
 
+## Example Usage
+
+```typescript
+import { ChannelPreference } from "@novu/api/models/components";
+
+let value: ChannelPreference = {
+    enabled: false,
+    type: "chat",
+};
+```
 
 ## Fields
 

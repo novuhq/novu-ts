@@ -1,5 +1,15 @@
 # DelayScheduledMetadata
 
+## Example Usage
+
+```typescript
+import { DelayScheduledMetadata } from "@novu/api/models/components";
+
+let value: DelayScheduledMetadata = {
+    delayPath: "<value>",
+    type: "scheduled",
+};
+```
 
 ## Fields
 

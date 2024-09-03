@@ -1,5 +1,12 @@
 # MessageActionResult
 
+## Example Usage
+
+```typescript
+import { MessageActionResult } from "@novu/api/models/components";
+
+let value: MessageActionResult = {};
+```
 
 ## Fields
 

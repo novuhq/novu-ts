@@ -1,5 +1,20 @@
 # NotificationTrigger
 
+## Example Usage
+
+```typescript
+import { NotificationTrigger } from "@novu/api/models/components";
+
+let value: NotificationTrigger = {
+    identifier: "<value>",
+    type: "event",
+    variables: [
+        {
+            name: "<value>",
+        },
+    ],
+};
+```
 
 ## Fields
 

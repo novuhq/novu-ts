@@ -1,9 +1,15 @@
 # Value
 
+## Example Usage
+
+```typescript
+import { Value } from "@novu/api/models/components";
+
+let value: Value = "AND";
+```
 
 ## Values
 
-| Name  | Value |
-| ----- | ----- |
-| `And` | AND   |
-| `Or`  | OR    |
+```typescript
+"AND" | "OR"
+```

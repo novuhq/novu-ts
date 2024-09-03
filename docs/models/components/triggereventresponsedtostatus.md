@@ -2,15 +2,16 @@
 
 Status for trigger
 
+## Example Usage
+
+```typescript
+import { TriggerEventResponseDtoStatus } from "@novu/api/models/components";
+
+let value: TriggerEventResponseDtoStatus = "no_workflow_steps_defined";
+```
 
 ## Values
 
-| Name                             | Value                            |
-| -------------------------------- | -------------------------------- |
-| `Error`                          | error                            |
-| `TriggerNotActive`               | trigger_not_active               |
-| `NoWorkflowActiveStepsDefined`   | no_workflow_active_steps_defined |
-| `NoWorkflowStepsDefined`         | no_workflow_steps_defined        |
-| `Processed`                      | processed                        |
-| `SubscriberIdMissing`            | subscriber_id_missing            |
-| `NoTenantFound`                  | no_tenant_found                  |
+```typescript
+"error" | "trigger_not_active" | "no_workflow_active_steps_defined" | "no_workflow_steps_defined" | "processed" | "subscriber_id_missing" | "no_tenant_found"
+```

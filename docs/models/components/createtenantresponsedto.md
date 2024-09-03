@@ -1,5 +1,18 @@
 # CreateTenantResponseDto
 
+## Example Usage
+
+```typescript
+import { CreateTenantResponseDto } from "@novu/api/models/components";
+
+let value: CreateTenantResponseDto = {
+    environmentId: "<value>",
+    id: "<id>",
+    createdAt: "<value>",
+    identifier: "<value>",
+    updatedAt: "<value>",
+};
+```
 
 ## Fields
 

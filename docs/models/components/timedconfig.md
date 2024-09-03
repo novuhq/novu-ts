@@ -1,5 +1,12 @@
 # TimedConfig
 
+## Example Usage
+
+```typescript
+import { TimedConfig } from "@novu/api/models/components";
+
+let value: TimedConfig = {};
+```
 
 ## Fields
 

@@ -1,13 +1,17 @@
 # Status
 
+The status enum for the performed action
+
+## Example Usage
+
+```typescript
+import { Status } from "@novu/api/models/components";
+
+let value: Status = "deleted";
+```
 
 ## Values
 
-| Name               | Value              |
-| ------------------ | ------------------ |
-| `Success`          | Success            |
-| `Warning`          | Warning            |
-| `Failed`           | Failed             |
-| `Pending`          | Pending            |
-| `Queued`           | Queued             |
-| `ReadConfirmation` | ReadConfirmation   |
+```typescript
+"deleted"
+```

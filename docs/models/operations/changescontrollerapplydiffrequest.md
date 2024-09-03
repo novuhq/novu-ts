@@ -1,5 +1,14 @@
 # ChangesControllerApplyDiffRequest
 
+## Example Usage
+
+```typescript
+import { ChangesControllerApplyDiffRequest } from "@novu/api/models/operations";
+
+let value: ChangesControllerApplyDiffRequest = {
+    changeId: "<value>",
+};
+```
 
 ## Fields
 

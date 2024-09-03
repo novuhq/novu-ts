@@ -1,5 +1,14 @@
 # EventsControllerCancelRequest
 
+## Example Usage
+
+```typescript
+import { EventsControllerCancelRequest } from "@novu/api/models/operations";
+
+let value: EventsControllerCancelRequest = {
+    transactionId: "<value>",
+};
+```
 
 ## Fields
 

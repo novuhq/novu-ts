@@ -1,10 +1,15 @@
 # TextAlign
 
+## Example Usage
+
+```typescript
+import { TextAlign } from "@novu/api/models/components";
+
+let value: TextAlign = "center";
+```
 
 ## Values
 
-| Name     | Value    |
-| -------- | -------- |
-| `Left`   | left     |
-| `Right`  | right    |
-| `Center` | center   |
+```typescript
+"center" | "left" | "right"
+```

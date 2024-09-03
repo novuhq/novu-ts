@@ -1,9 +1,15 @@
 # TopicPayloadDtoType
 
+## Example Usage
+
+```typescript
+import { TopicPayloadDtoType } from "@novu/api/models/components";
+
+let value: TopicPayloadDtoType = "Topic";
+```
 
 ## Values
 
-| Name         | Value        |
-| ------------ | ------------ |
-| `Subscriber` | Subscriber   |
-| `Topic`      | Topic        |
+```typescript
+"Subscriber" | "Topic"
+```

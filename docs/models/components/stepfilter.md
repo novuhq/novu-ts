@@ -1,5 +1,24 @@
 # StepFilter
 
+## Example Usage
+
+```typescript
+import { StepFilter } from "@novu/api/models/components";
+
+let value: StepFilter = {
+    children: [
+        {
+            field: "<value>",
+            on: "payload",
+            operator: "LIKE",
+            value: "<value>",
+        },
+    ],
+    isNegated: false,
+    type: "BOOLEAN",
+    value: "AND",
+};
+```
 
 ## Fields
 

@@ -1,5 +1,14 @@
 # SubscribersControllerGetSubscriberRequest
 
+## Example Usage
+
+```typescript
+import { SubscribersControllerGetSubscriberRequest } from "@novu/api/models/operations";
+
+let value: SubscribersControllerGetSubscriberRequest = {
+    subscriberId: "<value>",
+};
+```
 
 ## Fields
 

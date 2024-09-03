@@ -1,5 +1,12 @@
 # UpdateTenantRequestDto
 
+## Example Usage
+
+```typescript
+import { UpdateTenantRequestDto } from "@novu/api/models/components";
+
+let value: UpdateTenantRequestDto = {};
+```
 
 ## Fields
 

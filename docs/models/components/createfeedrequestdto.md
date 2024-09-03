@@ -1,5 +1,14 @@
 # CreateFeedRequestDto
 
+## Example Usage
+
+```typescript
+import { CreateFeedRequestDto } from "@novu/api/models/components";
+
+let value: CreateFeedRequestDto = {
+    name: "<value>",
+};
+```
 
 ## Fields
 

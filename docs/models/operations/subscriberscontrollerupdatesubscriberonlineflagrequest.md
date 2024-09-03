@@ -1,5 +1,17 @@
 # SubscribersControllerUpdateSubscriberOnlineFlagRequest
 
+## Example Usage
+
+```typescript
+import { SubscribersControllerUpdateSubscriberOnlineFlagRequest } from "@novu/api/models/operations";
+
+let value: SubscribersControllerUpdateSubscriberOnlineFlagRequest = {
+    subscriberId: "<value>",
+    updateSubscriberOnlineFlagRequestDto: {
+        isOnline: false,
+    },
+};
+```
 
 ## Fields
 

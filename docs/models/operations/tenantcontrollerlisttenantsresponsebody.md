@@ -1,5 +1,25 @@
 # TenantControllerListTenantsResponseBody
 
+## Example Usage
+
+```typescript
+import { TenantControllerListTenantsResponseBody } from "@novu/api/models/operations";
+
+let value: TenantControllerListTenantsResponseBody = {
+    data: [
+        {
+            environmentId: "<value>",
+            id: "<id>",
+            createdAt: "<value>",
+            identifier: "<value>",
+            updatedAt: "<value>",
+        },
+    ],
+    hasMore: false,
+    page: 1381.83,
+    pageSize: 7783.46,
+};
+```
 
 ## Fields
 

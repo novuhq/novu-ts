@@ -1,5 +1,12 @@
 # LayoutsControllerListLayoutsRequest
 
+## Example Usage
+
+```typescript
+import { LayoutsControllerListLayoutsRequest } from "@novu/api/models/operations";
+
+let value: LayoutsControllerListLayoutsRequest = {};
+```
 
 ## Fields
 

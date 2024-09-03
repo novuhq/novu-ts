@@ -1,5 +1,14 @@
 # NotificationStepVariantMetadata
 
+## Example Usage
+
+```typescript
+import { NotificationStepVariantMetadata } from "@novu/api/models/components";
+
+let value: NotificationStepVariantMetadata = {
+    type: "backoff",
+};
+```
 
 ## Supported Types
 

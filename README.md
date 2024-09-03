@@ -6,8 +6,35 @@
 </div>
 
 
+<!-- Start Summary [summary] -->
+## Summary
+
+Novu API: Novu REST API. Please see https://docs.novu.co/api-reference for more details.
+
+For more information about the API: [Novu Documentation](https://docs.novu.co)
+<!-- End Summary [summary] -->
+
+<!-- Start Table of Contents [toc] -->
+## Table of Contents
+
+* [SDK Installation](#sdk-installation)
+* [Requirements](#requirements)
+* [SDK Example Usage](#sdk-example-usage)
+* [Available Resources and Operations](#available-resources-and-operations)
+* [Standalone functions](#standalone-functions)
+* [Pagination](#pagination)
+* [Retries](#retries)
+* [Error Handling](#error-handling)
+* [Server Selection](#server-selection)
+* [Custom HTTP Client](#custom-http-client)
+* [Authentication](#authentication)
+* [Debugging](#debugging)
+<!-- End Table of Contents [toc] -->
+
 <!-- Start SDK Installation [installation] -->
 ## SDK Installation
+
+The SDK can be installed with either [npm](https://www.npmjs.com/), [pnpm](https://pnpm.io/), [bun](https://bun.sh/) or [yarn](https://classic.yarnpkg.com/en/) package managers.
 
 ### NPM
 
@@ -46,6 +73,26 @@ For supported JavaScript runtimes, please consult [RUNTIMES.md](RUNTIMES.md).
 <!-- Start SDK Example Usage [usage] -->
 ## SDK Example Usage
 
+### Cancel Triggered Event
+
+```typescript
+import { Novu } from "@novu/api";
+
+const novu = new Novu({
+    apiKey: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+    const result = await novu.cancel("<value>");
+
+    // Handle the result
+    console.log(result);
+}
+
+run();
+
+```
+
 ### Trigger Notification Event
 
 ```typescript
@@ -62,10 +109,56 @@ async function run() {
         payload: {},
         to: [
             {
-                topicKey: "topic_key",
+                topicKey: "<value>",
                 type: "Topic",
             },
         ],
+    });
+
+    // Handle the result
+    console.log(result);
+}
+
+run();
+
+```
+
+### Broadcast Event to All
+
+```typescript
+import { Novu } from "@novu/api";
+
+const novu = new Novu({
+    apiKey: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+    const result = await novu.triggerBroadcast({
+        name: "<value>",
+        overrides: {},
+        payload: {},
+    });
+
+    // Handle the result
+    console.log(result);
+}
+
+run();
+
+```
+
+### Trigger Notification Events in Bulk
+
+```typescript
+import { Novu } from "@novu/api";
+
+const novu = new Novu({
+    apiKey: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+    const result = await novu.triggerBulk({
+        events: [],
     });
 
     // Handle the result
@@ -82,7 +175,10 @@ run();
 
 ### [Novu SDK](docs/sdks/novu/README.md)
 
+* [cancel](docs/sdks/novu/README.md#cancel) - Cancel triggered event
 * [trigger](docs/sdks/novu/README.md#trigger) - Trigger event
+* [triggerBroadcast](docs/sdks/novu/README.md#triggerbroadcast) - Broadcast event to all
+* [triggerBulk](docs/sdks/novu/README.md#triggerbulk) - Bulk trigger event
 
 ### [changes](docs/sdks/changes/README.md)
 
@@ -99,13 +195,6 @@ run();
 ### [environments.apiKeys](docs/sdks/apikeys/README.md)
 
 * [list](docs/sdks/apikeys/README.md#list) - Get api keys
-* [regenerate](docs/sdks/apikeys/README.md#regenerate) - Regenerate api keys
-
-### [events](docs/sdks/events/README.md)
-
-* [cancel](docs/sdks/events/README.md#cancel) - Cancel triggered event
-* [triggerBroadcast](docs/sdks/events/README.md#triggerbroadcast) - Broadcast event to all
-* [triggerBulk](docs/sdks/events/README.md#triggerbulk) - Bulk trigger event
 
 ### [executionDetails](docs/sdks/executiondetails/README.md)
 
@@ -165,19 +254,9 @@ run();
 
 ### [organizations](docs/sdks/organizations/README.md)
 
-* [create](docs/sdks/organizations/README.md#create) - Create an organization
-* [list](docs/sdks/organizations/README.md#list) - Fetch all organizations
-* [rename](docs/sdks/organizations/README.md#rename) - Rename organization name
+* [eeOrganizationControllerRenameOrganization](docs/sdks/organizations/README.md#eeorganizationcontrollerrenameorganization) - Rename organization name
 * [retrieve](docs/sdks/organizations/README.md#retrieve) - Fetch current organization details
-
-### [organizations.branding](docs/sdks/branding/README.md)
-
-* [update](docs/sdks/branding/README.md#update) - Update organization branding details
-
-### [organizations.members](docs/sdks/members/README.md)
-
-* [delete](docs/sdks/members/README.md#delete) - Remove a member from organization using memberId
-* [list](docs/sdks/members/README.md#list) - Fetch all members of current organizations
+* [update](docs/sdks/organizations/README.md#update) - Update organization branding details
 
 ### [subscribers](docs/sdks/subscribers/README.md)
 
@@ -260,6 +339,110 @@ run();
 * [update](docs/sdks/status/README.md#update) - Update workflow status
 <!-- End Available Resources and Operations [operations] -->
 
+<!-- Start Standalone functions [standalone-funcs] -->
+## Standalone functions
+
+All the methods listed above are available as standalone functions. These
+functions are ideal for use in applications running in the browser, serverless
+runtimes or other environments where application bundle size is a primary
+concern. When using a bundler to build your application, all unused
+functionality will be either excluded from the final bundle or tree-shaken away.
+
+To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
+
+<details>
+
+<summary>Available standalone functions</summary>
+
+- [cancel](docs/sdks/novu/README.md#cancel)
+- [changesApplyBulk](docs/sdks/changes/README.md#applybulk)
+- [changesApply](docs/sdks/changes/README.md#apply)
+- [changesCount](docs/sdks/changes/README.md#count)
+- [changesRetrieve](docs/sdks/changes/README.md#retrieve)
+- [environmentsApiKeysList](docs/sdks/apikeys/README.md#list)
+- [environmentsList](docs/sdks/environments/README.md#list)
+- [environmentsRetrieve](docs/sdks/environments/README.md#retrieve)
+- [executionDetailsRetrieve](docs/sdks/executiondetails/README.md#retrieve)
+- [feedsCreate](docs/sdks/feeds/README.md#create)
+- [feedsDelete](docs/sdks/feeds/README.md#delete)
+- [feedsRetrieve](docs/sdks/feeds/README.md#retrieve)
+- [integrationsCreate](docs/sdks/integrations/README.md#create)
+- [integrationsDelete](docs/sdks/integrations/README.md#delete)
+- [integrationsListActive](docs/sdks/integrations/README.md#listactive)
+- [integrationsList](docs/sdks/integrations/README.md#list)
+- [integrationsSetAsPrimary](docs/sdks/integrations/README.md#setasprimary)
+- [integrationsUpdate](docs/sdks/integrations/README.md#update)
+- [integrationsWebhooksRetrieve](docs/sdks/webhooks/README.md#retrieve)
+- [layoutsCreate](docs/sdks/layouts/README.md#create)
+- [layoutsDelete](docs/sdks/layouts/README.md#delete)
+- [layoutsList](docs/sdks/layouts/README.md#list)
+- [layoutsRetrieve](docs/sdks/layouts/README.md#retrieve)
+- [layoutsSetAsDefault](docs/sdks/layouts/README.md#setasdefault)
+- [layoutsUpdate](docs/sdks/layouts/README.md#update)
+- [messagesDeleteByTransactionId](docs/sdks/messages/README.md#deletebytransactionid)
+- [messagesDelete](docs/sdks/messages/README.md#delete)
+- [messagesRetrieve](docs/sdks/messages/README.md#retrieve)
+- [notificationsList](docs/sdks/notifications/README.md#list)
+- [notificationsRetrieve](docs/sdks/notifications/README.md#retrieve)
+- [notificationsStatsGraph](docs/sdks/stats/README.md#graph)
+- [notificationsStatsRetrieve](docs/sdks/stats/README.md#retrieve)
+- [organizationsEEOrganizationControllerRenameOrganization](docs/sdks/organizations/README.md#eeorganizationcontrollerrenameorganization)
+- [organizationsRetrieve](docs/sdks/organizations/README.md#retrieve)
+- [organizationsUpdate](docs/sdks/organizations/README.md#update)
+- [subscribersAuthenticationChatAccessOauthCallBack](docs/sdks/authentication/README.md#chataccessoauthcallback)
+- [subscribersAuthenticationChatAccessOauth](docs/sdks/authentication/README.md#chataccessoauth)
+- [subscribersCreateBulk](docs/sdks/subscribers/README.md#createbulk)
+- [subscribersCreate](docs/sdks/subscribers/README.md#create)
+- [subscribersCredentialsAppend](docs/sdks/credentials/README.md#append)
+- [subscribersCredentialsDelete](docs/sdks/credentials/README.md#delete)
+- [subscribersCredentialsUpdate](docs/sdks/credentials/README.md#update)
+- [subscribersDelete](docs/sdks/subscribers/README.md#delete)
+- [subscribersList](docs/sdks/subscribers/README.md#list)
+- [subscribersMessagesMarkAllAs](docs/sdks/novumessages/README.md#markallas)
+- [subscribersMessagesMarkAll](docs/sdks/novumessages/README.md#markall)
+- [subscribersMessagesUpdateAsSeen](docs/sdks/novumessages/README.md#updateasseen)
+- [subscribersNotificationsRetrieve](docs/sdks/novunotifications/README.md#retrieve)
+- [subscribersNotificationsUnseenCount](docs/sdks/novunotifications/README.md#unseencount)
+- [subscribersPreferencesList](docs/sdks/preferences/README.md#list)
+- [subscribersPreferencesRetrieveByLevel](docs/sdks/preferences/README.md#retrievebylevel)
+- [subscribersPreferencesUpdateGlobal](docs/sdks/preferences/README.md#updateglobal)
+- [subscribersPreferencesUpdate](docs/sdks/preferences/README.md#update)
+- [subscribersPropertiesUpdateOnlineFlag](docs/sdks/properties/README.md#updateonlineflag)
+- [subscribersRetrieve](docs/sdks/subscribers/README.md#retrieve)
+- [subscribersUpdate](docs/sdks/subscribers/README.md#update)
+- [tenantsCreate](docs/sdks/tenants/README.md#create)
+- [tenantsDelete](docs/sdks/tenants/README.md#delete)
+- [tenantsList](docs/sdks/tenants/README.md#list)
+- [tenantsRetrieve](docs/sdks/tenants/README.md#retrieve)
+- [tenantsUpdate](docs/sdks/tenants/README.md#update)
+- [topicsCreate](docs/sdks/topics/README.md#create)
+- [topicsDelete](docs/sdks/topics/README.md#delete)
+- [topicsList](docs/sdks/topics/README.md#list)
+- [topicsRename](docs/sdks/topics/README.md#rename)
+- [topicsRetrieve](docs/sdks/topics/README.md#retrieve)
+- [topicsSubscribersAssign](docs/sdks/novusubscribers/README.md#assign)
+- [topicsSubscribersDelete](docs/sdks/novusubscribers/README.md#delete)
+- [topicsSubscribersRetrieve](docs/sdks/novusubscribers/README.md#retrieve)
+- [triggerBroadcast](docs/sdks/novu/README.md#triggerbroadcast)
+- [triggerBulk](docs/sdks/novu/README.md#triggerbulk)
+- [trigger](docs/sdks/novu/README.md#trigger)
+- [workflowGroupsCreate](docs/sdks/workflowgroups/README.md#create)
+- [workflowGroupsDelete](docs/sdks/workflowgroups/README.md#delete)
+- [workflowGroupsList](docs/sdks/workflowgroups/README.md#list)
+- [workflowGroupsRetrieve](docs/sdks/workflowgroups/README.md#retrieve)
+- [workflowGroupsUpdate](docs/sdks/workflowgroups/README.md#update)
+- [workflowsCreate](docs/sdks/workflows/README.md#create)
+- [workflowsDelete](docs/sdks/workflows/README.md#delete)
+- [workflowsList](docs/sdks/workflows/README.md#list)
+- [workflowsRetrieve](docs/sdks/workflows/README.md#retrieve)
+- [workflowsStatusUpdate](docs/sdks/status/README.md#update)
+- [workflowsUpdate](docs/sdks/workflows/README.md#update)
+- [workflowsVariablesRetrieve](docs/sdks/variables/README.md#retrieve)
+
+
+</details>
+<!-- End Standalone functions [standalone-funcs] -->
+
 <!-- Start Pagination [pagination] -->
 ## Pagination
 
@@ -280,10 +463,11 @@ const novu = new Novu({
 });
 
 async function run() {
-    const result = await novu.subscribers.list(7685.78, 10);
+    const result = await novu.subscribers.list();
 
     for await (const page of result) {
-        // handle page
+        // Handle the page
+        console.log(page);
     }
 }
 
@@ -315,17 +499,7 @@ const novu = new Novu({
 async function run() {
     let result;
     try {
-        result = await novu.trigger({
-            name: "workflow_identifier",
-            overrides: {},
-            payload: {},
-            to: [
-                {
-                    topicKey: "topic_key",
-                    type: "Topic",
-                },
-            ],
-        });
+        result = await novu.cancel("<value>");
     } catch (err) {
         switch (true) {
             case err instanceof SDKValidationError: {
@@ -371,17 +545,7 @@ const novu = new Novu({
 });
 
 async function run() {
-    const result = await novu.trigger({
-        name: "workflow_identifier",
-        overrides: {},
-        payload: {},
-        to: [
-            {
-                topicKey: "topic_key",
-                type: "Topic",
-            },
-        ],
-    });
+    const result = await novu.cancel("<value>");
 
     // Handle the result
     console.log(result);
@@ -405,17 +569,7 @@ const novu = new Novu({
 });
 
 async function run() {
-    const result = await novu.trigger({
-        name: "workflow_identifier",
-        overrides: {},
-        payload: {},
-        to: [
-            {
-                topicKey: "topic_key",
-                type: "Topic",
-            },
-        ],
-    });
+    const result = await novu.cancel("<value>");
 
     // Handle the result
     console.log(result);
@@ -495,17 +649,7 @@ const novu = new Novu({
 });
 
 async function run() {
-    const result = await novu.trigger({
-        name: "workflow_identifier",
-        overrides: {},
-        payload: {},
-        to: [
-            {
-                topicKey: "topic_key",
-                type: "Topic",
-            },
-        ],
-    });
+    const result = await novu.cancel("<value>");
 
     // Handle the result
     console.log(result);
@@ -530,31 +674,18 @@ const novu = new Novu({
 });
 
 async function run() {
-    const result = await novu.trigger(
-        {
-            name: "workflow_identifier",
-            overrides: {},
-            payload: {},
-            to: [
-                {
-                    topicKey: "topic_key",
-                    type: "Topic",
-                },
-            ],
-        },
-        {
-            retries: {
-                strategy: "backoff",
-                backoff: {
-                    initialInterval: 1,
-                    maxInterval: 50,
-                    exponent: 1.1,
-                    maxElapsedTime: 100,
-                },
-                retryConnectionErrors: false,
+    const result = await novu.cancel("<value>", {
+        retries: {
+            strategy: "backoff",
+            backoff: {
+                initialInterval: 1,
+                maxInterval: 50,
+                exponent: 1.1,
+                maxElapsedTime: 100,
             },
-        }
-    );
+            retryConnectionErrors: false,
+        },
+    });
 
     // Handle the result
     console.log(result);
@@ -583,17 +714,7 @@ const novu = new Novu({
 });
 
 async function run() {
-    const result = await novu.trigger({
-        name: "workflow_identifier",
-        overrides: {},
-        payload: {},
-        to: [
-            {
-                topicKey: "topic_key",
-                type: "Topic",
-            },
-        ],
-    });
+    const result = await novu.cancel("<value>");
 
     // Handle the result
     console.log(result);
@@ -603,6 +724,23 @@ run();
 
 ```
 <!-- End Retries [retries] -->
+
+<!-- Start Debugging [debug] -->
+## Debugging
+
+You can setup your SDK to emit debug logs for SDK requests and responses.
+
+You can pass a logger that matches `console`'s interface as an SDK option.
+
+> [!WARNING]
+> Beware that debug logging will reveal secrets, like API tokens in headers, in log messages printed to a console or files. It's recommended to use this feature only during local development and not in production.
+
+```typescript
+import { Novu } from "@novu/api";
+
+const sdk = new Novu({ debugLogger: console });
+```
+<!-- End Debugging [debug] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 

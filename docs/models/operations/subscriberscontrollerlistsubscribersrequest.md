@@ -1,5 +1,12 @@
 # SubscribersControllerListSubscribersRequest
 
+## Example Usage
+
+```typescript
+import { SubscribersControllerListSubscribersRequest } from "@novu/api/models/operations";
+
+let value: SubscribersControllerListSubscribersRequest = {};
+```
 
 ## Fields
 

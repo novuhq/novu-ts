@@ -1,5 +1,20 @@
 # SubscribersControllerModifySubscriberChannelRequest
 
+## Example Usage
+
+```typescript
+import { SubscribersControllerModifySubscriberChannelRequest } from "@novu/api/models/operations";
+
+let value: SubscribersControllerModifySubscriberChannelRequest = {
+    subscriberId: "<value>",
+    updateSubscriberChannelRequestDto: {
+        credentials: {
+            webhookUrl: "<value>",
+        },
+        providerId: 5818.5,
+    },
+};
+```
 
 ## Fields
 

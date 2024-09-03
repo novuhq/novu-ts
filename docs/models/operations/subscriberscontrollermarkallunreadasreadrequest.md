@@ -1,5 +1,17 @@
 # SubscribersControllerMarkAllUnreadAsReadRequest
 
+## Example Usage
+
+```typescript
+import { SubscribersControllerMarkAllUnreadAsReadRequest } from "@novu/api/models/operations";
+
+let value: SubscribersControllerMarkAllUnreadAsReadRequest = {
+    subscriberId: "<value>",
+    markAllMessageAsRequestDto: {
+        markAs: "seen",
+    },
+};
+```
 
 ## Fields
 
