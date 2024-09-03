@@ -1,5 +1,14 @@
 # IntegrationsControllerSetIntegrationAsPrimaryRequest
 
+## Example Usage
+
+```typescript
+import { IntegrationsControllerSetIntegrationAsPrimaryRequest } from "@novu/api/models/operations";
+
+let value: IntegrationsControllerSetIntegrationAsPrimaryRequest = {
+    integrationId: "<value>",
+};
+```
 
 ## Fields
 

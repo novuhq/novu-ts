@@ -1,5 +1,15 @@
 # IntegrationsControllerUpdateIntegrationByIdRequest
 
+## Example Usage
+
+```typescript
+import { IntegrationsControllerUpdateIntegrationByIdRequest } from "@novu/api/models/operations";
+
+let value: IntegrationsControllerUpdateIntegrationByIdRequest = {
+    integrationId: "<value>",
+    updateIntegrationRequestDto: {},
+};
+```
 
 ## Fields
 

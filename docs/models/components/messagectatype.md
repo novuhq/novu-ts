@@ -1,8 +1,15 @@
 # MessageCTAType
 
+## Example Usage
+
+```typescript
+import { MessageCTAType } from "@novu/api/models/components";
+
+let value: MessageCTAType = "redirect";
+```
 
 ## Values
 
-| Name       | Value      |
-| ---------- | ---------- |
-| `Redirect` | redirect   |
+```typescript
+"redirect"
+```

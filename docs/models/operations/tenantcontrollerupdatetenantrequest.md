@@ -1,5 +1,15 @@
 # TenantControllerUpdateTenantRequest
 
+## Example Usage
+
+```typescript
+import { TenantControllerUpdateTenantRequest } from "@novu/api/models/operations";
+
+let value: TenantControllerUpdateTenantRequest = {
+    identifier: "<value>",
+    updateTenantRequestDto: {},
+};
+```
 
 ## Fields
 

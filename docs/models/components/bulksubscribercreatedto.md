@@ -1,8 +1,17 @@
 # BulkSubscriberCreateDto
 
+## Example Usage
+
+```typescript
+import { BulkSubscriberCreateDto } from "@novu/api/models/components";
+
+let value: BulkSubscriberCreateDto = {
+    subscribers: ["<value>"],
+};
+```
 
 ## Fields
 
-| Field                                                                                            | Type                                                                                             | Required                                                                                         | Description                                                                                      |
-| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
-| `subscribers`                                                                                    | [components.CreateSubscriberRequestDto](../../models/components/createsubscriberrequestdto.md)[] | :heavy_check_mark:                                                                               | N/A                                                                                              |
+| Field              | Type               | Required           | Description        |
+| ------------------ | ------------------ | ------------------ | ------------------ |
+| `subscribers`      | *string*[]         | :heavy_check_mark: | N/A                |

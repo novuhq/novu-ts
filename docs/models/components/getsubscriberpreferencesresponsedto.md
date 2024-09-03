@@ -1,5 +1,17 @@
 # GetSubscriberPreferencesResponseDto
 
+## Example Usage
+
+```typescript
+import { GetSubscriberPreferencesResponseDto } from "@novu/api/models/components";
+
+let value: GetSubscriberPreferencesResponseDto = {
+    preference: {
+        channels: {},
+        enabled: false,
+    },
+};
+```
 
 ## Fields
 

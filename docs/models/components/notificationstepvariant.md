@@ -1,5 +1,12 @@
 # NotificationStepVariant
 
+## Example Usage
+
+```typescript
+import { NotificationStepVariant } from "@novu/api/models/components";
+
+let value: NotificationStepVariant = {};
+```
 
 ## Fields
 

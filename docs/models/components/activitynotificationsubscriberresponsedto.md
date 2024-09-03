@@ -1,5 +1,14 @@
 # ActivityNotificationSubscriberResponseDto
 
+## Example Usage
+
+```typescript
+import { ActivityNotificationSubscriberResponseDto } from "@novu/api/models/components";
+
+let value: ActivityNotificationSubscriberResponseDto = {
+    id: "<id>",
+};
+```
 
 ## Fields
 

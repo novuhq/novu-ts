@@ -1,9 +1,15 @@
 # MessageActionResultType
 
+## Example Usage
+
+```typescript
+import { MessageActionResultType } from "@novu/api/models/components";
+
+let value: MessageActionResultType = "primary";
+```
 
 ## Values
 
-| Name        | Value       |
-| ----------- | ----------- |
-| `Primary`   | primary     |
-| `Secondary` | secondary   |
+```typescript
+"primary" | "secondary"
+```

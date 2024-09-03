@@ -1,5 +1,14 @@
 # DigestTimedMetadata
 
+## Example Usage
+
+```typescript
+import { DigestTimedMetadata } from "@novu/api/models/components";
+
+let value: DigestTimedMetadata = {
+    type: "timed",
+};
+```
 
 ## Fields
 

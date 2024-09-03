@@ -1,5 +1,23 @@
 # GetLayoutResponseDto
 
+## Example Usage
+
+```typescript
+import { GetLayoutResponseDto } from "@novu/api/models/components";
+
+let value: GetLayoutResponseDto = {
+    creatorId: "<value>",
+    environmentId: "<value>",
+    organizationId: "<value>",
+    channel: "in_app",
+    content: "<value>",
+    contentType: "<value>",
+    identifier: "<value>",
+    isDefault: false,
+    isDeleted: false,
+    name: "<value>",
+};
+```
 
 ## Fields
 
@@ -20,4 +38,4 @@
 | `isDeleted`                                                                                      | *boolean*                                                                                        | :heavy_check_mark:                                                                               | N/A                                                                                              |
 | `name`                                                                                           | *string*                                                                                         | :heavy_check_mark:                                                                               | N/A                                                                                              |
 | `updatedAt`                                                                                      | *string*                                                                                         | :heavy_minus_sign:                                                                               | N/A                                                                                              |
-| `variables`                                                                                      | [components.Variables](../../models/components/variables.md)[]                                   | :heavy_minus_sign:                                                                               | N/A                                                                                              |
+| `variables`                                                                                      | *string*[]                                                                                       | :heavy_minus_sign:                                                                               | N/A                                                                                              |

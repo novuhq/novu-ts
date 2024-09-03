@@ -1,5 +1,14 @@
 # IntegrationsControllerGetWebhookSupportStatusRequest
 
+## Example Usage
+
+```typescript
+import { IntegrationsControllerGetWebhookSupportStatusRequest } from "@novu/api/models/operations";
+
+let value: IntegrationsControllerGetWebhookSupportStatusRequest = {
+    providerOrIntegrationId: "<value>",
+};
+```
 
 ## Fields
 

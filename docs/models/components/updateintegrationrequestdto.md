@@ -1,5 +1,12 @@
 # UpdateIntegrationRequestDto
 
+## Example Usage
+
+```typescript
+import { UpdateIntegrationRequestDto } from "@novu/api/models/components";
+
+let value: UpdateIntegrationRequestDto = {};
+```
 
 ## Fields
 

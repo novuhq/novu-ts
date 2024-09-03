@@ -1,5 +1,14 @@
 # DelayRegularMetadata
 
+## Example Usage
+
+```typescript
+import { DelayRegularMetadata } from "@novu/api/models/components";
+
+let value: DelayRegularMetadata = {
+    type: "regular",
+};
+```
 
 ## Fields
 

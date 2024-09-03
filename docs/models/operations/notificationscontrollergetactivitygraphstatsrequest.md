@@ -1,5 +1,12 @@
 # NotificationsControllerGetActivityGraphStatsRequest
 
+## Example Usage
+
+```typescript
+import { NotificationsControllerGetActivityGraphStatsRequest } from "@novu/api/models/operations";
+
+let value: NotificationsControllerGetActivityGraphStatsRequest = {};
+```
 
 ## Fields
 

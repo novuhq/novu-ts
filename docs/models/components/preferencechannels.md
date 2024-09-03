@@ -1,5 +1,12 @@
 # PreferenceChannels
 
+## Example Usage
+
+```typescript
+import { PreferenceChannels } from "@novu/api/models/components";
+
+let value: PreferenceChannels = {};
+```
 
 ## Fields
 

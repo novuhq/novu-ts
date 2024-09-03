@@ -1,5 +1,14 @@
 # BulkTriggerEventDto
 
+## Example Usage
+
+```typescript
+import { BulkTriggerEventDto } from "@novu/api/models/components";
+
+let value: BulkTriggerEventDto = {
+    events: [],
+};
+```
 
 ## Fields
 

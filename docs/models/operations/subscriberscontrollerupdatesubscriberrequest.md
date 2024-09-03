@@ -1,5 +1,15 @@
 # SubscribersControllerUpdateSubscriberRequest
 
+## Example Usage
+
+```typescript
+import { SubscribersControllerUpdateSubscriberRequest } from "@novu/api/models/operations";
+
+let value: SubscribersControllerUpdateSubscriberRequest = {
+    subscriberId: "<value>",
+    updateSubscriberRequestDto: {},
+};
+```
 
 ## Fields
 

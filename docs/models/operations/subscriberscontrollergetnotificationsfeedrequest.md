@@ -1,5 +1,16 @@
 # SubscribersControllerGetNotificationsFeedRequest
 
+## Example Usage
+
+```typescript
+import { SubscribersControllerGetNotificationsFeedRequest } from "@novu/api/models/operations";
+
+let value: SubscribersControllerGetNotificationsFeedRequest = {
+    subscriberId: "<value>",
+    payload:
+        "btoa(JSON.stringify({ foo: 123 })) results in base64 encoded string like eyJmb28iOjEyM30=",
+};
+```
 
 ## Fields
 

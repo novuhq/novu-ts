@@ -1,15 +1,15 @@
 # StepFilterType
 
+## Example Usage
+
+```typescript
+import { StepFilterType } from "@novu/api/models/components";
+
+let value: StepFilterType = "STATEMENT";
+```
 
 ## Values
 
-| Name        | Value       |
-| ----------- | ----------- |
-| `Boolean`   | BOOLEAN     |
-| `Text`      | TEXT        |
-| `Date`      | DATE        |
-| `Number`    | NUMBER      |
-| `Statement` | STATEMENT   |
-| `List`      | LIST        |
-| `MultiList` | MULTI_LIST  |
-| `Group`     | GROUP       |
+```typescript
+"BOOLEAN" | "TEXT" | "DATE" | "NUMBER" | "STATEMENT" | "LIST" | "MULTI_LIST" | "GROUP"
+```

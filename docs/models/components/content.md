@@ -1,5 +1,12 @@
 # Content
 
+## Example Usage
+
+```typescript
+import { Content } from "@novu/api/models/components";
+
+let value: Content = "<value>";
+```
 
 ## Supported Types
 

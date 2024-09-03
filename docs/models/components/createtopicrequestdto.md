@@ -1,5 +1,15 @@
 # CreateTopicRequestDto
 
+## Example Usage
+
+```typescript
+import { CreateTopicRequestDto } from "@novu/api/models/components";
+
+let value: CreateTopicRequestDto = {
+    key: "<key>",
+    name: "<value>",
+};
+```
 
 ## Fields
 

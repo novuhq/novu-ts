@@ -1,5 +1,25 @@
 # IntegrationResponseDto
 
+## Example Usage
+
+```typescript
+import { IntegrationResponseDto } from "@novu/api/models/components";
+
+let value: IntegrationResponseDto = {
+    environmentId: "<value>",
+    organizationId: "<value>",
+    active: false,
+    channel: "sms",
+    credentials: {},
+    deleted: false,
+    deletedAt: "<value>",
+    deletedBy: "<value>",
+    identifier: "<value>",
+    name: "<value>",
+    primary: false,
+    providerId: "<value>",
+};
+```
 
 ## Fields
 

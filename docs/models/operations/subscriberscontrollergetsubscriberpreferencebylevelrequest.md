@@ -1,5 +1,15 @@
 # SubscribersControllerGetSubscriberPreferenceByLevelRequest
 
+## Example Usage
+
+```typescript
+import { SubscribersControllerGetSubscriberPreferenceByLevelRequest } from "@novu/api/models/operations";
+
+let value: SubscribersControllerGetSubscriberPreferenceByLevelRequest = {
+    parameter: "Subscriber",
+    subscriberId: "<value>",
+};
+```
 
 ## Fields
 

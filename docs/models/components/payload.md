@@ -1,5 +1,14 @@
 # Payload
 
+Message action payload
+
+## Example Usage
+
+```typescript
+import { Payload } from "@novu/api/models/components";
+
+let value: Payload = {};
+```
 
 ## Fields
 

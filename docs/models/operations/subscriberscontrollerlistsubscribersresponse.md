@@ -1,5 +1,28 @@
 # SubscribersControllerListSubscribersResponse
 
+## Example Usage
+
+```typescript
+import { SubscribersControllerListSubscribersResponse } from "@novu/api/models/operations";
+
+let value: SubscribersControllerListSubscribersResponse = {
+    result: {
+        data: [
+            {
+                environmentId: "<value>",
+                organizationId: "<value>",
+                createdAt: "<value>",
+                deleted: false,
+                subscriberId: "<value>",
+                updatedAt: "<value>",
+            },
+        ],
+        hasMore: false,
+        page: 9953,
+        pageSize: 6531.08,
+    },
+};
+```
 
 ## Fields
 

@@ -1,9 +1,15 @@
 # EmailBlockType
 
+## Example Usage
+
+```typescript
+import { EmailBlockType } from "@novu/api/models/components";
+
+let value: EmailBlockType = "text";
+```
 
 ## Values
 
-| Name     | Value    |
-| -------- | -------- |
-| `Text`   | text     |
-| `Button` | button   |
+```typescript
+"button" | "text"
+```

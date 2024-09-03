@@ -1,5 +1,12 @@
 # TenantPayloadDto
 
+## Example Usage
+
+```typescript
+import { TenantPayloadDto } from "@novu/api/models/components";
+
+let value: TenantPayloadDto = {};
+```
 
 ## Fields
 

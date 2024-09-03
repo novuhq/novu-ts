@@ -1,15 +1,15 @@
 # Type
 
+## Example Usage
+
+```typescript
+import { Type } from "@novu/api/models/components";
+
+let value: Type = "DefaultLayout";
+```
 
 ## Values
 
-| Name                   | Value                  |
-| ---------------------- | ---------------------- |
-| `Feed`                 | Feed                   |
-| `MessageTemplate`      | MessageTemplate        |
-| `Layout`               | Layout                 |
-| `DefaultLayout`        | DefaultLayout          |
-| `NotificationTemplate` | NotificationTemplate   |
-| `NotificationGroup`    | NotificationGroup      |
-| `TranslationGroup`     | TranslationGroup       |
-| `Translation`          | Translation            |
+```typescript
+"Feed" | "MessageTemplate" | "Layout" | "DefaultLayout" | "NotificationTemplate" | "NotificationGroup" | "TranslationGroup" | "Translation"
+```

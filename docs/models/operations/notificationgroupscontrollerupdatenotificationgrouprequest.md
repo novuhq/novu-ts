@@ -1,5 +1,17 @@
 # NotificationGroupsControllerUpdateNotificationGroupRequest
 
+## Example Usage
+
+```typescript
+import { NotificationGroupsControllerUpdateNotificationGroupRequest } from "@novu/api/models/operations";
+
+let value: NotificationGroupsControllerUpdateNotificationGroupRequest = {
+    id: "<id>",
+    createNotificationGroupRequestDto: {
+        name: "<value>",
+    },
+};
+```
 
 ## Fields
 

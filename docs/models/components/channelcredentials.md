@@ -1,5 +1,14 @@
 # ChannelCredentials
 
+## Example Usage
+
+```typescript
+import { ChannelCredentials } from "@novu/api/models/components";
+
+let value: ChannelCredentials = {
+    webhookUrl: "<value>",
+};
+```
 
 ## Fields
 

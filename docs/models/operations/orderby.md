@@ -2,10 +2,16 @@
 
 Direction of the sorting query param
 
+## Example Usage
+
+```typescript
+import { OrderBy } from "@novu/api/models/operations";
+
+let value: OrderBy = "DESC";
+```
 
 ## Values
 
-| Name   | Value  |
-| ------ | ------ |
-| `Asc`  | ASC    |
-| `Desc` | DESC   |
+```typescript
+"ASC" | "DESC"
+```

@@ -1,5 +1,15 @@
 # DeleteSubscriberResponseDto
 
+## Example Usage
+
+```typescript
+import { DeleteSubscriberResponseDto } from "@novu/api/models/components";
+
+let value: DeleteSubscriberResponseDto = {
+    acknowledged: false,
+    status: "deleted",
+};
+```
 
 ## Fields
 

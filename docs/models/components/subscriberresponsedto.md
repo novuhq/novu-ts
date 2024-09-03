@@ -1,5 +1,19 @@
 # SubscriberResponseDto
 
+## Example Usage
+
+```typescript
+import { SubscriberResponseDto } from "@novu/api/models/components";
+
+let value: SubscriberResponseDto = {
+    environmentId: "<value>",
+    organizationId: "<value>",
+    createdAt: "<value>",
+    deleted: false,
+    subscriberId: "<value>",
+    updatedAt: "<value>",
+};
+```
 
 ## Fields
 

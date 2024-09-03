@@ -1,5 +1,14 @@
 # ChangeWorkflowStatusRequestDto
 
+## Example Usage
+
+```typescript
+import { ChangeWorkflowStatusRequestDto } from "@novu/api/models/components";
+
+let value: ChangeWorkflowStatusRequestDto = {
+    active: false,
+};
+```
 
 ## Fields
 

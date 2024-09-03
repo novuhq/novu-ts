@@ -1,11 +1,15 @@
 # MessageMarkAsRequestDtoMarkAs
 
+## Example Usage
+
+```typescript
+import { MessageMarkAsRequestDtoMarkAs } from "@novu/api/models/components";
+
+let value: MessageMarkAsRequestDtoMarkAs = "read";
+```
 
 ## Values
 
-| Name     | Value    |
-| -------- | -------- |
-| `Read`   | read     |
-| `Seen`   | seen     |
-| `Unread` | unread   |
-| `Unseen` | unseen   |
+```typescript
+"read" | "seen" | "unread" | "unseen"
+```

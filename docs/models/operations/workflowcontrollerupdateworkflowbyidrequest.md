@@ -1,5 +1,18 @@
 # WorkflowControllerUpdateWorkflowByIdRequest
 
+## Example Usage
+
+```typescript
+import { WorkflowControllerUpdateWorkflowByIdRequest } from "@novu/api/models/operations";
+
+let value: WorkflowControllerUpdateWorkflowByIdRequest = {
+    workflowId: "<value>",
+    updateWorkflowRequestDto: {
+        name: "<value>",
+        notificationGroupId: "<value>",
+    },
+};
+```
 
 ## Fields
 

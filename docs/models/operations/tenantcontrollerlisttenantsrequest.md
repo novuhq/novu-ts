@@ -1,5 +1,12 @@
 # TenantControllerListTenantsRequest
 
+## Example Usage
+
+```typescript
+import { TenantControllerListTenantsRequest } from "@novu/api/models/operations";
+
+let value: TenantControllerListTenantsRequest = {};
+```
 
 ## Fields
 

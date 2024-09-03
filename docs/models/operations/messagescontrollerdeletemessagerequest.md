@@ -1,5 +1,14 @@
 # MessagesControllerDeleteMessageRequest
 
+## Example Usage
+
+```typescript
+import { MessagesControllerDeleteMessageRequest } from "@novu/api/models/operations";
+
+let value: MessagesControllerDeleteMessageRequest = {
+    messageId: "<value>",
+};
+```
 
 ## Fields
 

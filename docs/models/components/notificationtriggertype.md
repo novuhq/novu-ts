@@ -1,8 +1,15 @@
 # NotificationTriggerType
 
+## Example Usage
+
+```typescript
+import { NotificationTriggerType } from "@novu/api/models/components";
+
+let value: NotificationTriggerType = "event";
+```
 
 ## Values
 
-| Name    | Value   |
-| ------- | ------- |
-| `Event` | event   |
+```typescript
+"event"
+```

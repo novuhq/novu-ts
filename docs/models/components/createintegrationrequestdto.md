@@ -1,5 +1,15 @@
 # CreateIntegrationRequestDto
 
+## Example Usage
+
+```typescript
+import { CreateIntegrationRequestDto } from "@novu/api/models/components";
+
+let value: CreateIntegrationRequestDto = {
+    channel: "push",
+    providerId: "<value>",
+};
+```
 
 ## Fields
 

@@ -1,5 +1,17 @@
 # TemplateResponse
 
+## Example Usage
+
+```typescript
+import { TemplateResponse } from "@novu/api/models/components";
+
+let value: TemplateResponse = {
+    id: "<id>",
+    critical: false,
+    name: "<value>",
+    triggers: ["<value>"],
+};
+```
 
 ## Fields
 

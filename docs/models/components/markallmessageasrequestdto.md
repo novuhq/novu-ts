@@ -1,5 +1,14 @@
 # MarkAllMessageAsRequestDto
 
+## Example Usage
+
+```typescript
+import { MarkAllMessageAsRequestDto } from "@novu/api/models/components";
+
+let value: MarkAllMessageAsRequestDto = {
+    markAs: "unread",
+};
+```
 
 ## Fields
 

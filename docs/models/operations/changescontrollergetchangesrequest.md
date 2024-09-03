@@ -1,5 +1,14 @@
 # ChangesControllerGetChangesRequest
 
+## Example Usage
+
+```typescript
+import { ChangesControllerGetChangesRequest } from "@novu/api/models/operations";
+
+let value: ChangesControllerGetChangesRequest = {
+    promoted: "false",
+};
+```
 
 ## Fields
 

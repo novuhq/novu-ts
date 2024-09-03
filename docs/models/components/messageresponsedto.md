@@ -1,12 +1,43 @@
 # MessageResponseDto
 
+## Example Usage
+
+```typescript
+import { MessageResponseDto } from "@novu/api/models/components";
+
+let value: MessageResponseDto = {
+    environmentId: "<value>",
+    messageTemplateId: "<value>",
+    notificationId: "<value>",
+    organizationId: "<value>",
+    subscriberId: "<value>",
+    templateId: "<value>",
+    channel: "sms",
+    content: {
+        content: "<value>",
+        type: "text",
+    },
+    createdAt: "<value>",
+    cta: {
+        data: {},
+    },
+    errorId: "<value>",
+    errorText: "<value>",
+    overrides: {},
+    payload: {},
+    read: false,
+    seen: false,
+    status: "sent",
+    transactionId: "<value>",
+};
+```
 
 ## Fields
 
 | Field                                                                                        | Type                                                                                         | Required                                                                                     | Description                                                                                  |
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `environmentId`                                                                              | *string*                                                                                     | :heavy_check_mark:                                                                           | N/A                                                                                          |
-| `feedId`                                                                                     | *string*                                                                                     | :heavy_minus_sign:                                                                           | N/A                                                                                          |
+| `feedId`                                                                                     | [components.FeedId](../../models/components/feedid.md)                                       | :heavy_minus_sign:                                                                           | N/A                                                                                          |
 | `id`                                                                                         | *string*                                                                                     | :heavy_minus_sign:                                                                           | N/A                                                                                          |
 | `messageTemplateId`                                                                          | *string*                                                                                     | :heavy_check_mark:                                                                           | N/A                                                                                          |
 | `notificationId`                                                                             | *string*                                                                                     | :heavy_check_mark:                                                                           | N/A                                                                                          |

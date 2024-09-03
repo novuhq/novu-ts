@@ -1,5 +1,14 @@
 # RemoveSubscribersRequestDto
 
+## Example Usage
+
+```typescript
+import { RemoveSubscribersRequestDto } from "@novu/api/models/components";
+
+let value: RemoveSubscribersRequestDto = {
+    subscribers: ["<value>"],
+};
+```
 
 ## Fields
 

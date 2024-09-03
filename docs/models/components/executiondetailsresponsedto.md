@@ -1,5 +1,26 @@
 # ExecutionDetailsResponseDto
 
+## Example Usage
+
+```typescript
+import { ExecutionDetailsResponseDto } from "@novu/api/models/components";
+
+let value: ExecutionDetailsResponseDto = {
+    environmentId: "<value>",
+    jobId: "<value>",
+    notificationId: "<value>",
+    notificationTemplateId: "<value>",
+    organizationId: "<value>",
+    subscriberId: "<value>",
+    channel: "sms",
+    detail: "<value>",
+    isRetry: false,
+    isTest: false,
+    source: "Internal",
+    status: "Failed",
+    transactionId: "<value>",
+};
+```
 
 ## Fields
 
@@ -19,6 +40,6 @@
 | `isRetry`                                                                                                      | *boolean*                                                                                                      | :heavy_check_mark:                                                                                             | N/A                                                                                                            |
 | `isTest`                                                                                                       | *boolean*                                                                                                      | :heavy_check_mark:                                                                                             | N/A                                                                                                            |
 | `providerId`                                                                                                   | *string*                                                                                                       | :heavy_minus_sign:                                                                                             | N/A                                                                                                            |
-| `source`                                                                                                       | [components.ExecutionDetailsResponseDtoSource](../../models/components/executiondetailsresponsedtosource.md)   | :heavy_check_mark:                                                                                             | N/A                                                                                                            |
+| `source`                                                                                                       | [components.Source](../../models/components/source.md)                                                         | :heavy_check_mark:                                                                                             | N/A                                                                                                            |
 | `status`                                                                                                       | [components.ExecutionDetailsResponseDtoStatus](../../models/components/executiondetailsresponsedtostatus.md)   | :heavy_check_mark:                                                                                             | N/A                                                                                                            |
 | `transactionId`                                                                                                | *string*                                                                                                       | :heavy_check_mark:                                                                                             | N/A                                                                                                            |

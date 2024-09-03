@@ -1,12 +1,15 @@
 # GetLayoutResponseDtoChannel
 
+## Example Usage
+
+```typescript
+import { GetLayoutResponseDtoChannel } from "@novu/api/models/components";
+
+let value: GetLayoutResponseDtoChannel = "chat";
+```
 
 ## Values
 
-| Name    | Value   |
-| ------- | ------- |
-| `InApp` | in_app  |
-| `Email` | email   |
-| `Sms`   | sms     |
-| `Chat`  | chat    |
-| `Push`  | push    |
+```typescript
+"in_app" | "email" | "sms" | "chat" | "push"
+```

@@ -1,13 +1,15 @@
 # Unit
 
+## Example Usage
+
+```typescript
+import { Unit } from "@novu/api/models/components";
+
+let value: Unit = "weeks";
+```
 
 ## Values
 
-| Name      | Value     |
-| --------- | --------- |
-| `Seconds` | seconds   |
-| `Minutes` | minutes   |
-| `Hours`   | hours     |
-| `Days`    | days      |
-| `Weeks`   | weeks     |
-| `Months`  | months    |
+```typescript
+"seconds" | "minutes" | "hours" | "days" | "weeks" | "months"
+```

@@ -1,5 +1,15 @@
 # VariablesResponseDto
 
+## Example Usage
+
+```typescript
+import { VariablesResponseDto } from "@novu/api/models/components";
+
+let value: VariablesResponseDto = {
+    system: {},
+    translations: {},
+};
+```
 
 ## Fields
 

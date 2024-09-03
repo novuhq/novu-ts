@@ -1,5 +1,15 @@
 # EmailBlock
 
+## Example Usage
+
+```typescript
+import { EmailBlock } from "@novu/api/models/components";
+
+let value: EmailBlock = {
+    content: "<value>",
+    type: "text",
+};
+```
 
 ## Fields
 

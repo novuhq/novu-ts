@@ -1,5 +1,12 @@
 # MessageAction
 
+## Example Usage
+
+```typescript
+import { MessageAction } from "@novu/api/models/components";
+
+let value: MessageAction = {};
+```
 
 ## Fields
 

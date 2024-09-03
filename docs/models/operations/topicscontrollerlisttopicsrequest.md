@@ -1,5 +1,12 @@
 # TopicsControllerListTopicsRequest
 
+## Example Usage
+
+```typescript
+import { TopicsControllerListTopicsRequest } from "@novu/api/models/operations";
+
+let value: TopicsControllerListTopicsRequest = {};
+```
 
 ## Fields
 
