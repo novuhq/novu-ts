@@ -6,9 +6,9 @@
 import { CreateWorkflowRequestDto } from "@novu/api/models/components";
 
 let value: CreateWorkflowRequestDto = {
-    name: "<value>",
-    notificationGroupId: "<value>",
-    steps: [],
+  name: "<value>",
+  notificationGroupId: "<value>",
+  steps: [],
 };
 ```
 

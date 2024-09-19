@@ -6,7 +6,7 @@
 import { TenantControllerRemoveTenantRequest } from "@novu/api/models/operations";
 
 let value: TenantControllerRemoveTenantRequest = {
-    identifier: "<value>",
+  identifier: "<value>",
 };
 ```
 

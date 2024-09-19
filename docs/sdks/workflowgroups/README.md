@@ -30,7 +30,7 @@ async function run() {
   const result = await novu.workflowGroups.create({
     name: "<value>",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -104,8 +104,8 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.workflowGroups.delete("<value>");
-
+  const result = await novu.workflowGroups.delete("<id>");
+  
   // Handle the result
   console.log(result)
 }
@@ -128,7 +128,7 @@ const novu = new NovuCore({
 });
 
 async function run() {
-  const res = await workflowGroupsDelete(novu, "<value>");
+  const res = await workflowGroupsDelete(novu, "<id>");
 
   if (!res.ok) {
     throw res.error;
@@ -178,7 +178,7 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.workflowGroups.list();
-
+  
   // Handle the result
   console.log(result)
 }
@@ -249,8 +249,8 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.workflowGroups.retrieve("<value>");
-
+  const result = await novu.workflowGroups.retrieve("<id>");
+  
   // Handle the result
   console.log(result)
 }
@@ -273,7 +273,7 @@ const novu = new NovuCore({
 });
 
 async function run() {
-  const res = await workflowGroupsRetrieve(novu, "<value>");
+  const res = await workflowGroupsRetrieve(novu, "<id>");
 
   if (!res.ok) {
     throw res.error;
@@ -322,10 +322,10 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.workflowGroups.update("<value>", {
+  const result = await novu.workflowGroups.update("<id>", {
     name: "<value>",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -348,7 +348,7 @@ const novu = new NovuCore({
 });
 
 async function run() {
-  const res = await workflowGroupsUpdate(novu, "<value>", {
+  const res = await workflowGroupsUpdate(novu, "<id>", {
     name: "<value>",
   });
 

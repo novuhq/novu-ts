@@ -6,7 +6,7 @@
 import { NotificationGroupsControllerGetNotificationGroupRequest } from "@novu/api/models/operations";
 
 let value: NotificationGroupsControllerGetNotificationGroupRequest = {
-    id: "<id>",
+  id: "<id>",
 };
 ```
 

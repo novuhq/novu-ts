@@ -5,30 +5,30 @@
 import * as z from "zod";
 
 export type EventsControllerCancelRequest = {
-    transactionId: string;
+  transactionId: string;
 };
 
 /** @internal */
 export const EventsControllerCancelRequest$inboundSchema: z.ZodType<
-    EventsControllerCancelRequest,
-    z.ZodTypeDef,
-    unknown
+  EventsControllerCancelRequest,
+  z.ZodTypeDef,
+  unknown
 > = z.object({
-    transactionId: z.string(),
+  transactionId: z.string(),
 });
 
 /** @internal */
 export type EventsControllerCancelRequest$Outbound = {
-    transactionId: string;
+  transactionId: string;
 };
 
 /** @internal */
 export const EventsControllerCancelRequest$outboundSchema: z.ZodType<
-    EventsControllerCancelRequest$Outbound,
-    z.ZodTypeDef,
-    EventsControllerCancelRequest
+  EventsControllerCancelRequest$Outbound,
+  z.ZodTypeDef,
+  EventsControllerCancelRequest
 > = z.object({
-    transactionId: z.string(),
+  transactionId: z.string(),
 });
 
 /**
@@ -36,10 +36,10 @@ export const EventsControllerCancelRequest$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace EventsControllerCancelRequest$ {
-    /** @deprecated use `EventsControllerCancelRequest$inboundSchema` instead. */
-    export const inboundSchema = EventsControllerCancelRequest$inboundSchema;
-    /** @deprecated use `EventsControllerCancelRequest$outboundSchema` instead. */
-    export const outboundSchema = EventsControllerCancelRequest$outboundSchema;
-    /** @deprecated use `EventsControllerCancelRequest$Outbound` instead. */
-    export type Outbound = EventsControllerCancelRequest$Outbound;
+  /** @deprecated use `EventsControllerCancelRequest$inboundSchema` instead. */
+  export const inboundSchema = EventsControllerCancelRequest$inboundSchema;
+  /** @deprecated use `EventsControllerCancelRequest$outboundSchema` instead. */
+  export const outboundSchema = EventsControllerCancelRequest$outboundSchema;
+  /** @deprecated use `EventsControllerCancelRequest$Outbound` instead. */
+  export type Outbound = EventsControllerCancelRequest$Outbound;
 }

@@ -10,23 +10,31 @@ import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class NovuNotifications extends ClientSDK {
-    /**
-     * Get in-app notification feed for a particular subscriber
-     */
-    async retrieve(
-        request: operations.SubscribersControllerGetNotificationsFeedRequest,
-        options?: RequestOptions
-    ): Promise<operations.SubscribersControllerGetNotificationsFeedResponseBody> {
-        return unwrapAsync(subscribersNotificationsRetrieve(this, request, options));
-    }
+  /**
+   * Get in-app notification feed for a particular subscriber
+   */
+  async retrieve(
+    request: operations.SubscribersControllerGetNotificationsFeedRequest,
+    options?: RequestOptions,
+  ): Promise<operations.SubscribersControllerGetNotificationsFeedResponseBody> {
+    return unwrapAsync(subscribersNotificationsRetrieve(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Get the unseen in-app notifications count for subscribers feed
-     */
-    async unseenCount(
-        request: operations.SubscribersControllerGetUnseenCountRequest,
-        options?: RequestOptions
-    ): Promise<components.UnseenCountResponse> {
-        return unwrapAsync(subscribersNotificationsUnseenCount(this, request, options));
-    }
+  /**
+   * Get the unseen in-app notifications count for subscribers feed
+   */
+  async unseenCount(
+    request: operations.SubscribersControllerGetUnseenCountRequest,
+    options?: RequestOptions,
+  ): Promise<components.UnseenCountResponse> {
+    return unwrapAsync(subscribersNotificationsUnseenCount(
+      this,
+      request,
+      options,
+    ));
+  }
 }

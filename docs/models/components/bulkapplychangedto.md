@@ -6,7 +6,9 @@
 import { BulkApplyChangeDto } from "@novu/api/models/components";
 
 let value: BulkApplyChangeDto = {
-    changeIds: ["<value>"],
+  changeIds: [
+    "<value>",
+  ],
 };
 ```
 

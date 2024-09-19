@@ -12,68 +12,89 @@ import * as components from "../models/components/index.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class WorkflowGroups extends ClientSDK {
-    /**
-     * Create workflow group
-     *
-     * @remarks
-     * workflow group was previously named notification group
-     */
-    async create(
-        request: components.CreateNotificationGroupRequestDto,
-        options?: RequestOptions
-    ): Promise<components.NotificationGroupResponseDto> {
-        return unwrapAsync(workflowGroupsCreate(this, request, options));
-    }
+  /**
+   * Create workflow group
+   *
+   * @remarks
+   * workflow group was previously named notification group
+   */
+  async create(
+    request: components.CreateNotificationGroupRequestDto,
+    options?: RequestOptions,
+  ): Promise<components.NotificationGroupResponseDto> {
+    return unwrapAsync(workflowGroupsCreate(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Delete workflow group
-     *
-     * @remarks
-     * workflow group was previously named notification group
-     */
-    async delete(
-        id: string,
-        options?: RequestOptions
-    ): Promise<components.DeleteNotificationGroupResponseDto> {
-        return unwrapAsync(workflowGroupsDelete(this, id, options));
-    }
+  /**
+   * Delete workflow group
+   *
+   * @remarks
+   * workflow group was previously named notification group
+   */
+  async delete(
+    id: string,
+    options?: RequestOptions,
+  ): Promise<components.DeleteNotificationGroupResponseDto> {
+    return unwrapAsync(workflowGroupsDelete(
+      this,
+      id,
+      options,
+    ));
+  }
 
-    /**
-     * Get workflow groups
-     *
-     * @remarks
-     * workflow group was previously named notification group
-     */
-    async list(options?: RequestOptions): Promise<Array<components.NotificationGroupResponseDto>> {
-        return unwrapAsync(workflowGroupsList(this, options));
-    }
+  /**
+   * Get workflow groups
+   *
+   * @remarks
+   * workflow group was previously named notification group
+   */
+  async list(
+    options?: RequestOptions,
+  ): Promise<Array<components.NotificationGroupResponseDto>> {
+    return unwrapAsync(workflowGroupsList(
+      this,
+      options,
+    ));
+  }
 
-    /**
-     * Get workflow group
-     *
-     * @remarks
-     * workflow group was previously named notification group
-     */
-    async retrieve(
-        id: string,
-        options?: RequestOptions
-    ): Promise<components.NotificationGroupResponseDto> {
-        return unwrapAsync(workflowGroupsRetrieve(this, id, options));
-    }
+  /**
+   * Get workflow group
+   *
+   * @remarks
+   * workflow group was previously named notification group
+   */
+  async retrieve(
+    id: string,
+    options?: RequestOptions,
+  ): Promise<components.NotificationGroupResponseDto> {
+    return unwrapAsync(workflowGroupsRetrieve(
+      this,
+      id,
+      options,
+    ));
+  }
 
-    /**
-     * Update workflow group
-     *
-     * @remarks
-     * workflow group was previously named notification group
-     */
-    async update(
-        id: string,
-        createNotificationGroupRequestDto: components.CreateNotificationGroupRequestDto,
-        options?: RequestOptions
-    ): Promise<components.NotificationGroupResponseDto> {
-        return unwrapAsync(
-            workflowGroupsUpdate(this, id, createNotificationGroupRequestDto, options)
-        );
-    }
+  /**
+   * Update workflow group
+   *
+   * @remarks
+   * workflow group was previously named notification group
+   */
+  async update(
+    id: string,
+    createNotificationGroupRequestDto:
+      components.CreateNotificationGroupRequestDto,
+    options?: RequestOptions,
+  ): Promise<components.NotificationGroupResponseDto> {
+    return unwrapAsync(workflowGroupsUpdate(
+      this,
+      id,
+      createNotificationGroupRequestDto,
+      options,
+    ));
+  }
 }

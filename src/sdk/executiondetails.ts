@@ -8,14 +8,19 @@ import * as components from "../models/components/index.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class ExecutionDetails extends ClientSDK {
-    /**
-     * Get execution details
-     */
-    async retrieve(
-        notificationId: string,
-        subscriberId: string,
-        options?: RequestOptions
-    ): Promise<Array<components.ExecutionDetailsResponseDto>> {
-        return unwrapAsync(executionDetailsRetrieve(this, notificationId, subscriberId, options));
-    }
+  /**
+   * Get execution details
+   */
+  async retrieve(
+    notificationId: string,
+    subscriberId: string,
+    options?: RequestOptions,
+  ): Promise<Array<components.ExecutionDetailsResponseDto>> {
+    return unwrapAsync(executionDetailsRetrieve(
+      this,
+      notificationId,
+      subscriberId,
+      options,
+    ));
+  }
 }

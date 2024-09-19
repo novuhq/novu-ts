@@ -24,7 +24,7 @@ async function run() {
   const result = await novu.subscribers.properties.updateOnlineFlag("<value>", {
     isOnline: false,
   });
-
+  
   // Handle the result
   console.log(result)
 }

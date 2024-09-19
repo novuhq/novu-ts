@@ -6,14 +6,14 @@
 import { ChangeResponseDto } from "@novu/api/models/components";
 
 let value: ChangeResponseDto = {
-    creatorId: "<value>",
-    entityId: "<value>",
-    environmentId: "<value>",
-    organizationId: "<value>",
-    change: {},
-    createdAt: "<value>",
-    enabled: false,
-    type: "NotificationTemplate",
+  creatorId: "<value>",
+  entityId: "<value>",
+  environmentId: "<value>",
+  organizationId: "<value>",
+  change: {},
+  createdAt: "<value>",
+  enabled: false,
+  type: "NotificationTemplate",
 };
 ```
 

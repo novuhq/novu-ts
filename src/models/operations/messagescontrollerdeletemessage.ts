@@ -5,30 +5,30 @@
 import * as z from "zod";
 
 export type MessagesControllerDeleteMessageRequest = {
-    messageId: string;
+  messageId: string;
 };
 
 /** @internal */
 export const MessagesControllerDeleteMessageRequest$inboundSchema: z.ZodType<
-    MessagesControllerDeleteMessageRequest,
-    z.ZodTypeDef,
-    unknown
+  MessagesControllerDeleteMessageRequest,
+  z.ZodTypeDef,
+  unknown
 > = z.object({
-    messageId: z.string(),
+  messageId: z.string(),
 });
 
 /** @internal */
 export type MessagesControllerDeleteMessageRequest$Outbound = {
-    messageId: string;
+  messageId: string;
 };
 
 /** @internal */
 export const MessagesControllerDeleteMessageRequest$outboundSchema: z.ZodType<
-    MessagesControllerDeleteMessageRequest$Outbound,
-    z.ZodTypeDef,
-    MessagesControllerDeleteMessageRequest
+  MessagesControllerDeleteMessageRequest$Outbound,
+  z.ZodTypeDef,
+  MessagesControllerDeleteMessageRequest
 > = z.object({
-    messageId: z.string(),
+  messageId: z.string(),
 });
 
 /**
@@ -36,10 +36,12 @@ export const MessagesControllerDeleteMessageRequest$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace MessagesControllerDeleteMessageRequest$ {
-    /** @deprecated use `MessagesControllerDeleteMessageRequest$inboundSchema` instead. */
-    export const inboundSchema = MessagesControllerDeleteMessageRequest$inboundSchema;
-    /** @deprecated use `MessagesControllerDeleteMessageRequest$outboundSchema` instead. */
-    export const outboundSchema = MessagesControllerDeleteMessageRequest$outboundSchema;
-    /** @deprecated use `MessagesControllerDeleteMessageRequest$Outbound` instead. */
-    export type Outbound = MessagesControllerDeleteMessageRequest$Outbound;
+  /** @deprecated use `MessagesControllerDeleteMessageRequest$inboundSchema` instead. */
+  export const inboundSchema =
+    MessagesControllerDeleteMessageRequest$inboundSchema;
+  /** @deprecated use `MessagesControllerDeleteMessageRequest$outboundSchema` instead. */
+  export const outboundSchema =
+    MessagesControllerDeleteMessageRequest$outboundSchema;
+  /** @deprecated use `MessagesControllerDeleteMessageRequest$Outbound` instead. */
+  export type Outbound = MessagesControllerDeleteMessageRequest$Outbound;
 }

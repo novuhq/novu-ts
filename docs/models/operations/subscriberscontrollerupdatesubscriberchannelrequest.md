@@ -6,13 +6,13 @@
 import { SubscribersControllerUpdateSubscriberChannelRequest } from "@novu/api/models/operations";
 
 let value: SubscribersControllerUpdateSubscriberChannelRequest = {
-    subscriberId: "<value>",
-    updateSubscriberChannelRequestDto: {
-        credentials: {
-            webhookUrl: "<value>",
-        },
-        providerId: 2532.91,
+  subscriberId: "<value>",
+  updateSubscriberChannelRequestDto: {
+    credentials: {
+      webhookUrl: "<value>",
     },
+    providerId: 2532.91,
+  },
 };
 ```
 

@@ -32,7 +32,7 @@ async function run() {
   const result = await novu.subscribers.create({
     subscriberId: "<value>",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -114,8 +114,6 @@ async function run() {
       "<value>",
     ],
   });
-
-  
 }
 
 run();
@@ -189,7 +187,7 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.subscribers.delete("<value>");
-
+  
   // Handle the result
   console.log(result)
 }
@@ -262,7 +260,7 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.subscribers.list();
-
+  
   for await (const page of result) {
     // Handle the page
     console.log(page);
@@ -340,7 +338,7 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.subscribers.retrieve("<value>");
-
+  
   // Handle the result
   console.log(result)
 }
@@ -413,7 +411,7 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.subscribers.update("<value>", {});
-
+  
   // Handle the result
   console.log(result)
 }

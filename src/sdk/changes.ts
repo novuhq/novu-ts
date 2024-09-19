@@ -12,40 +12,57 @@ import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class Changes extends ClientSDK {
-    /**
-     * Apply change
-     */
-    async apply(
-        changeId: string,
-        options?: RequestOptions
-    ): Promise<Array<components.ChangeResponseDto>> {
-        return unwrapAsync(changesApply(this, changeId, options));
-    }
+  /**
+   * Apply change
+   */
+  async apply(
+    changeId: string,
+    options?: RequestOptions,
+  ): Promise<Array<components.ChangeResponseDto>> {
+    return unwrapAsync(changesApply(
+      this,
+      changeId,
+      options,
+    ));
+  }
 
-    /**
-     * Apply changes
-     */
-    async applyBulk(
-        request: components.BulkApplyChangeDto,
-        options?: RequestOptions
-    ): Promise<Array<components.ChangeResponseDto>> {
-        return unwrapAsync(changesApplyBulk(this, request, options));
-    }
+  /**
+   * Apply changes
+   */
+  async applyBulk(
+    request: components.BulkApplyChangeDto,
+    options?: RequestOptions,
+  ): Promise<Array<components.ChangeResponseDto>> {
+    return unwrapAsync(changesApplyBulk(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Get changes count
-     */
-    async count(options?: RequestOptions): Promise<components.DataNumberDto> {
-        return unwrapAsync(changesCount(this, options));
-    }
+  /**
+   * Get changes count
+   */
+  async count(
+    options?: RequestOptions,
+  ): Promise<components.DataNumberDto> {
+    return unwrapAsync(changesCount(
+      this,
+      options,
+    ));
+  }
 
-    /**
-     * Get changes
-     */
-    async retrieve(
-        request: operations.ChangesControllerGetChangesRequest,
-        options?: RequestOptions
-    ): Promise<components.ChangesResponseDto> {
-        return unwrapAsync(changesRetrieve(this, request, options));
-    }
+  /**
+   * Get changes
+   */
+  async retrieve(
+    request: operations.ChangesControllerGetChangesRequest,
+    options?: RequestOptions,
+  ): Promise<components.ChangesResponseDto> {
+    return unwrapAsync(changesRetrieve(
+      this,
+      request,
+      options,
+    ));
+  }
 }

@@ -5,42 +5,42 @@
 import * as z from "zod";
 
 export type ChangesResponseDto = {
-    data: Array<string>;
-    page: number;
-    pageSize: number;
-    totalCount: number;
+  data: Array<string>;
+  page: number;
+  pageSize: number;
+  totalCount: number;
 };
 
 /** @internal */
 export const ChangesResponseDto$inboundSchema: z.ZodType<
-    ChangesResponseDto,
-    z.ZodTypeDef,
-    unknown
+  ChangesResponseDto,
+  z.ZodTypeDef,
+  unknown
 > = z.object({
-    data: z.array(z.string()),
-    page: z.number(),
-    pageSize: z.number(),
-    totalCount: z.number(),
+  data: z.array(z.string()),
+  page: z.number(),
+  pageSize: z.number(),
+  totalCount: z.number(),
 });
 
 /** @internal */
 export type ChangesResponseDto$Outbound = {
-    data: Array<string>;
-    page: number;
-    pageSize: number;
-    totalCount: number;
+  data: Array<string>;
+  page: number;
+  pageSize: number;
+  totalCount: number;
 };
 
 /** @internal */
 export const ChangesResponseDto$outboundSchema: z.ZodType<
-    ChangesResponseDto$Outbound,
-    z.ZodTypeDef,
-    ChangesResponseDto
+  ChangesResponseDto$Outbound,
+  z.ZodTypeDef,
+  ChangesResponseDto
 > = z.object({
-    data: z.array(z.string()),
-    page: z.number(),
-    pageSize: z.number(),
-    totalCount: z.number(),
+  data: z.array(z.string()),
+  page: z.number(),
+  pageSize: z.number(),
+  totalCount: z.number(),
 });
 
 /**
@@ -48,10 +48,10 @@ export const ChangesResponseDto$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace ChangesResponseDto$ {
-    /** @deprecated use `ChangesResponseDto$inboundSchema` instead. */
-    export const inboundSchema = ChangesResponseDto$inboundSchema;
-    /** @deprecated use `ChangesResponseDto$outboundSchema` instead. */
-    export const outboundSchema = ChangesResponseDto$outboundSchema;
-    /** @deprecated use `ChangesResponseDto$Outbound` instead. */
-    export type Outbound = ChangesResponseDto$Outbound;
+  /** @deprecated use `ChangesResponseDto$inboundSchema` instead. */
+  export const inboundSchema = ChangesResponseDto$inboundSchema;
+  /** @deprecated use `ChangesResponseDto$outboundSchema` instead. */
+  export const outboundSchema = ChangesResponseDto$outboundSchema;
+  /** @deprecated use `ChangesResponseDto$Outbound` instead. */
+  export type Outbound = ChangesResponseDto$Outbound;
 }

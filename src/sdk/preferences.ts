@@ -12,54 +12,64 @@ import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class Preferences extends ClientSDK {
-    /**
-     * Get subscriber preferences
-     */
-    async list(
-        subscriberId: string,
-        options?: RequestOptions
-    ): Promise<Array<components.UpdateSubscriberPreferenceResponseDto>> {
-        return unwrapAsync(subscribersPreferencesList(this, subscriberId, options));
-    }
+  /**
+   * Get subscriber preferences
+   */
+  async list(
+    subscriberId: string,
+    options?: RequestOptions,
+  ): Promise<Array<components.UpdateSubscriberPreferenceResponseDto>> {
+    return unwrapAsync(subscribersPreferencesList(
+      this,
+      subscriberId,
+      options,
+    ));
+  }
 
-    /**
-     * Get subscriber preferences by level
-     */
-    async retrieveByLevel(
-        parameter: operations.Parameter,
-        subscriberId: string,
-        options?: RequestOptions
-    ): Promise<Array<components.GetSubscriberPreferencesResponseDto>> {
-        return unwrapAsync(
-            subscribersPreferencesRetrieveByLevel(this, parameter, subscriberId, options)
-        );
-    }
+  /**
+   * Get subscriber preferences by level
+   */
+  async retrieveByLevel(
+    parameter: operations.Parameter,
+    subscriberId: string,
+    options?: RequestOptions,
+  ): Promise<Array<components.GetSubscriberPreferencesResponseDto>> {
+    return unwrapAsync(subscribersPreferencesRetrieveByLevel(
+      this,
+      parameter,
+      subscriberId,
+      options,
+    ));
+  }
 
-    /**
-     * Update subscriber preference
-     */
-    async update(
-        request: operations.SubscribersControllerUpdateSubscriberPreferenceRequest,
-        options?: RequestOptions
-    ): Promise<components.UpdateSubscriberPreferenceResponseDto> {
-        return unwrapAsync(subscribersPreferencesUpdate(this, request, options));
-    }
+  /**
+   * Update subscriber preference
+   */
+  async update(
+    request: operations.SubscribersControllerUpdateSubscriberPreferenceRequest,
+    options?: RequestOptions,
+  ): Promise<components.UpdateSubscriberPreferenceResponseDto> {
+    return unwrapAsync(subscribersPreferencesUpdate(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Update subscriber global preferences
-     */
-    async updateGlobal(
-        subscriberId: string,
-        updateSubscriberGlobalPreferencesRequestDto: components.UpdateSubscriberGlobalPreferencesRequestDto,
-        options?: RequestOptions
-    ): Promise<components.UpdateSubscriberPreferenceResponseDto> {
-        return unwrapAsync(
-            subscribersPreferencesUpdateGlobal(
-                this,
-                subscriberId,
-                updateSubscriberGlobalPreferencesRequestDto,
-                options
-            )
-        );
-    }
+  /**
+   * Update subscriber global preferences
+   */
+  async updateGlobal(
+    subscriberId: string,
+    updateSubscriberGlobalPreferencesRequestDto:
+      components.UpdateSubscriberGlobalPreferencesRequestDto,
+    options?: RequestOptions,
+  ): Promise<components.UpdateSubscriberPreferenceResponseDto> {
+    return unwrapAsync(subscribersPreferencesUpdateGlobal(
+      this,
+      subscriberId,
+      updateSubscriberGlobalPreferencesRequestDto,
+      options,
+    ));
+  }
 }

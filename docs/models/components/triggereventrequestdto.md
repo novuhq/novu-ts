@@ -6,15 +6,15 @@
 import { TriggerEventRequestDto } from "@novu/api/models/components";
 
 let value: TriggerEventRequestDto = {
-    name: "workflow_identifier",
-    overrides: {},
-    payload: {},
-    to: [
-        {
-            topicKey: "<value>",
-            type: "Topic",
-        },
-    ],
+  name: "workflow_identifier",
+  overrides: {},
+  payload: {},
+  to: [
+    {
+      topicKey: "<value>",
+      type: "Topic",
+    },
+  ],
 };
 ```
 

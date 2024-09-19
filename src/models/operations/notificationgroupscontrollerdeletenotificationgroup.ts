@@ -5,43 +5,47 @@
 import * as z from "zod";
 
 export type NotificationGroupsControllerDeleteNotificationGroupRequest = {
-    id: string;
+  id: string;
 };
 
 /** @internal */
-export const NotificationGroupsControllerDeleteNotificationGroupRequest$inboundSchema: z.ZodType<
+export const NotificationGroupsControllerDeleteNotificationGroupRequest$inboundSchema:
+  z.ZodType<
     NotificationGroupsControllerDeleteNotificationGroupRequest,
     z.ZodTypeDef,
     unknown
-> = z.object({
+  > = z.object({
     id: z.string(),
-});
+  });
 
 /** @internal */
-export type NotificationGroupsControllerDeleteNotificationGroupRequest$Outbound = {
+export type NotificationGroupsControllerDeleteNotificationGroupRequest$Outbound =
+  {
     id: string;
-};
+  };
 
 /** @internal */
-export const NotificationGroupsControllerDeleteNotificationGroupRequest$outboundSchema: z.ZodType<
+export const NotificationGroupsControllerDeleteNotificationGroupRequest$outboundSchema:
+  z.ZodType<
     NotificationGroupsControllerDeleteNotificationGroupRequest$Outbound,
     z.ZodTypeDef,
     NotificationGroupsControllerDeleteNotificationGroupRequest
-> = z.object({
+  > = z.object({
     id: z.string(),
-});
+  });
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace NotificationGroupsControllerDeleteNotificationGroupRequest$ {
-    /** @deprecated use `NotificationGroupsControllerDeleteNotificationGroupRequest$inboundSchema` instead. */
-    export const inboundSchema =
-        NotificationGroupsControllerDeleteNotificationGroupRequest$inboundSchema;
-    /** @deprecated use `NotificationGroupsControllerDeleteNotificationGroupRequest$outboundSchema` instead. */
-    export const outboundSchema =
-        NotificationGroupsControllerDeleteNotificationGroupRequest$outboundSchema;
-    /** @deprecated use `NotificationGroupsControllerDeleteNotificationGroupRequest$Outbound` instead. */
-    export type Outbound = NotificationGroupsControllerDeleteNotificationGroupRequest$Outbound;
+  /** @deprecated use `NotificationGroupsControllerDeleteNotificationGroupRequest$inboundSchema` instead. */
+  export const inboundSchema =
+    NotificationGroupsControllerDeleteNotificationGroupRequest$inboundSchema;
+  /** @deprecated use `NotificationGroupsControllerDeleteNotificationGroupRequest$outboundSchema` instead. */
+  export const outboundSchema =
+    NotificationGroupsControllerDeleteNotificationGroupRequest$outboundSchema;
+  /** @deprecated use `NotificationGroupsControllerDeleteNotificationGroupRequest$Outbound` instead. */
+  export type Outbound =
+    NotificationGroupsControllerDeleteNotificationGroupRequest$Outbound;
 }

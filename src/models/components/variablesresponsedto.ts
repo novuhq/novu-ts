@@ -9,45 +9,52 @@ export type System = {};
 export type Translations = {};
 
 export type VariablesResponseDto = {
-    system: System;
-    translations: Translations;
+  system: System;
+  translations: Translations;
 };
 
 /** @internal */
-export const System$inboundSchema: z.ZodType<System, z.ZodTypeDef, unknown> = z.object({});
+export const System$inboundSchema: z.ZodType<System, z.ZodTypeDef, unknown> = z
+  .object({});
 
 /** @internal */
 export type System$Outbound = {};
 
 /** @internal */
-export const System$outboundSchema: z.ZodType<System$Outbound, z.ZodTypeDef, System> = z.object({});
+export const System$outboundSchema: z.ZodType<
+  System$Outbound,
+  z.ZodTypeDef,
+  System
+> = z.object({});
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace System$ {
-    /** @deprecated use `System$inboundSchema` instead. */
-    export const inboundSchema = System$inboundSchema;
-    /** @deprecated use `System$outboundSchema` instead. */
-    export const outboundSchema = System$outboundSchema;
-    /** @deprecated use `System$Outbound` instead. */
-    export type Outbound = System$Outbound;
+  /** @deprecated use `System$inboundSchema` instead. */
+  export const inboundSchema = System$inboundSchema;
+  /** @deprecated use `System$outboundSchema` instead. */
+  export const outboundSchema = System$outboundSchema;
+  /** @deprecated use `System$Outbound` instead. */
+  export type Outbound = System$Outbound;
 }
 
 /** @internal */
-export const Translations$inboundSchema: z.ZodType<Translations, z.ZodTypeDef, unknown> = z.object(
-    {}
-);
+export const Translations$inboundSchema: z.ZodType<
+  Translations,
+  z.ZodTypeDef,
+  unknown
+> = z.object({});
 
 /** @internal */
 export type Translations$Outbound = {};
 
 /** @internal */
 export const Translations$outboundSchema: z.ZodType<
-    Translations$Outbound,
-    z.ZodTypeDef,
-    Translations
+  Translations$Outbound,
+  z.ZodTypeDef,
+  Translations
 > = z.object({});
 
 /**
@@ -55,38 +62,38 @@ export const Translations$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace Translations$ {
-    /** @deprecated use `Translations$inboundSchema` instead. */
-    export const inboundSchema = Translations$inboundSchema;
-    /** @deprecated use `Translations$outboundSchema` instead. */
-    export const outboundSchema = Translations$outboundSchema;
-    /** @deprecated use `Translations$Outbound` instead. */
-    export type Outbound = Translations$Outbound;
+  /** @deprecated use `Translations$inboundSchema` instead. */
+  export const inboundSchema = Translations$inboundSchema;
+  /** @deprecated use `Translations$outboundSchema` instead. */
+  export const outboundSchema = Translations$outboundSchema;
+  /** @deprecated use `Translations$Outbound` instead. */
+  export type Outbound = Translations$Outbound;
 }
 
 /** @internal */
 export const VariablesResponseDto$inboundSchema: z.ZodType<
-    VariablesResponseDto,
-    z.ZodTypeDef,
-    unknown
+  VariablesResponseDto,
+  z.ZodTypeDef,
+  unknown
 > = z.object({
-    system: z.lazy(() => System$inboundSchema),
-    translations: z.lazy(() => Translations$inboundSchema),
+  system: z.lazy(() => System$inboundSchema),
+  translations: z.lazy(() => Translations$inboundSchema),
 });
 
 /** @internal */
 export type VariablesResponseDto$Outbound = {
-    system: System$Outbound;
-    translations: Translations$Outbound;
+  system: System$Outbound;
+  translations: Translations$Outbound;
 };
 
 /** @internal */
 export const VariablesResponseDto$outboundSchema: z.ZodType<
-    VariablesResponseDto$Outbound,
-    z.ZodTypeDef,
-    VariablesResponseDto
+  VariablesResponseDto$Outbound,
+  z.ZodTypeDef,
+  VariablesResponseDto
 > = z.object({
-    system: z.lazy(() => System$outboundSchema),
-    translations: z.lazy(() => Translations$outboundSchema),
+  system: z.lazy(() => System$outboundSchema),
+  translations: z.lazy(() => Translations$outboundSchema),
 });
 
 /**
@@ -94,10 +101,10 @@ export const VariablesResponseDto$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace VariablesResponseDto$ {
-    /** @deprecated use `VariablesResponseDto$inboundSchema` instead. */
-    export const inboundSchema = VariablesResponseDto$inboundSchema;
-    /** @deprecated use `VariablesResponseDto$outboundSchema` instead. */
-    export const outboundSchema = VariablesResponseDto$outboundSchema;
-    /** @deprecated use `VariablesResponseDto$Outbound` instead. */
-    export type Outbound = VariablesResponseDto$Outbound;
+  /** @deprecated use `VariablesResponseDto$inboundSchema` instead. */
+  export const inboundSchema = VariablesResponseDto$inboundSchema;
+  /** @deprecated use `VariablesResponseDto$outboundSchema` instead. */
+  export const outboundSchema = VariablesResponseDto$outboundSchema;
+  /** @deprecated use `VariablesResponseDto$Outbound` instead. */
+  export type Outbound = VariablesResponseDto$Outbound;
 }

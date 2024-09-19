@@ -30,7 +30,7 @@ async function run() {
     },
     providerId: 3462.44,
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -57,7 +57,7 @@ async function run() {
     credentials: {
       webhookUrl: "<value>",
     },
-    providerId: 5829.63,
+    providerId: 3462.44,
   });
 
   if (!res.ok) {
@@ -109,8 +109,6 @@ const novu = new Novu({
 
 async function run() {
   await novu.subscribers.credentials.delete("<value>", "<value>");
-
-  
 }
 
 run();
@@ -186,7 +184,7 @@ async function run() {
     },
     providerId: 8574.78,
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -213,7 +211,7 @@ async function run() {
     credentials: {
       webhookUrl: "<value>",
     },
-    providerId: 5971.29,
+    providerId: 8574.78,
   });
 
   if (!res.ok) {

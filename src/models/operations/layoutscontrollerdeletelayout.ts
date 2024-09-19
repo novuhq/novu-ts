@@ -5,33 +5,33 @@
 import * as z from "zod";
 
 export type LayoutsControllerDeleteLayoutRequest = {
-    /**
-     * The layout id
-     */
-    layoutId: string;
+  /**
+   * The layout id
+   */
+  layoutId: string;
 };
 
 /** @internal */
 export const LayoutsControllerDeleteLayoutRequest$inboundSchema: z.ZodType<
-    LayoutsControllerDeleteLayoutRequest,
-    z.ZodTypeDef,
-    unknown
+  LayoutsControllerDeleteLayoutRequest,
+  z.ZodTypeDef,
+  unknown
 > = z.object({
-    layoutId: z.string(),
+  layoutId: z.string(),
 });
 
 /** @internal */
 export type LayoutsControllerDeleteLayoutRequest$Outbound = {
-    layoutId: string;
+  layoutId: string;
 };
 
 /** @internal */
 export const LayoutsControllerDeleteLayoutRequest$outboundSchema: z.ZodType<
-    LayoutsControllerDeleteLayoutRequest$Outbound,
-    z.ZodTypeDef,
-    LayoutsControllerDeleteLayoutRequest
+  LayoutsControllerDeleteLayoutRequest$Outbound,
+  z.ZodTypeDef,
+  LayoutsControllerDeleteLayoutRequest
 > = z.object({
-    layoutId: z.string(),
+  layoutId: z.string(),
 });
 
 /**
@@ -39,10 +39,12 @@ export const LayoutsControllerDeleteLayoutRequest$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace LayoutsControllerDeleteLayoutRequest$ {
-    /** @deprecated use `LayoutsControllerDeleteLayoutRequest$inboundSchema` instead. */
-    export const inboundSchema = LayoutsControllerDeleteLayoutRequest$inboundSchema;
-    /** @deprecated use `LayoutsControllerDeleteLayoutRequest$outboundSchema` instead. */
-    export const outboundSchema = LayoutsControllerDeleteLayoutRequest$outboundSchema;
-    /** @deprecated use `LayoutsControllerDeleteLayoutRequest$Outbound` instead. */
-    export type Outbound = LayoutsControllerDeleteLayoutRequest$Outbound;
+  /** @deprecated use `LayoutsControllerDeleteLayoutRequest$inboundSchema` instead. */
+  export const inboundSchema =
+    LayoutsControllerDeleteLayoutRequest$inboundSchema;
+  /** @deprecated use `LayoutsControllerDeleteLayoutRequest$outboundSchema` instead. */
+  export const outboundSchema =
+    LayoutsControllerDeleteLayoutRequest$outboundSchema;
+  /** @deprecated use `LayoutsControllerDeleteLayoutRequest$Outbound` instead. */
+  export type Outbound = LayoutsControllerDeleteLayoutRequest$Outbound;
 }

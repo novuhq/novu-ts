@@ -6,12 +6,12 @@
 import { TopicSubscriberDto } from "@novu/api/models/components";
 
 let value: TopicSubscriberDto = {
-    environmentId: "<value>",
-    organizationId: "<value>",
-    subscriberId: "<value>",
-    topicId: "<value>",
-    externalSubscriberId: "<value>",
-    topicKey: "<value>",
+  environmentId: "<value>",
+  organizationId: "<value>",
+  subscriberId: "<value>",
+  topicId: "<value>",
+  externalSubscriberId: "<value>",
+  topicKey: "<value>",
 };
 ```
 

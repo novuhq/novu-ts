@@ -10,7 +10,7 @@ It is used to display the Avatar of the provided actor's subscriber id or actor 
 import { Actor } from "@novu/api/models/components";
 
 let value: Actor = {
-    subscriberId: "<value>",
+  subscriberId: "<value>",
 };
 ```
 

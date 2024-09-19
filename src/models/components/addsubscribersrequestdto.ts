@@ -5,33 +5,33 @@
 import * as z from "zod";
 
 export type AddSubscribersRequestDto = {
-    /**
-     * List of subscriber identifiers that will be associated to the topic
-     */
-    subscribers: Array<string>;
+  /**
+   * List of subscriber identifiers that will be associated to the topic
+   */
+  subscribers: Array<string>;
 };
 
 /** @internal */
 export const AddSubscribersRequestDto$inboundSchema: z.ZodType<
-    AddSubscribersRequestDto,
-    z.ZodTypeDef,
-    unknown
+  AddSubscribersRequestDto,
+  z.ZodTypeDef,
+  unknown
 > = z.object({
-    subscribers: z.array(z.string()),
+  subscribers: z.array(z.string()),
 });
 
 /** @internal */
 export type AddSubscribersRequestDto$Outbound = {
-    subscribers: Array<string>;
+  subscribers: Array<string>;
 };
 
 /** @internal */
 export const AddSubscribersRequestDto$outboundSchema: z.ZodType<
-    AddSubscribersRequestDto$Outbound,
-    z.ZodTypeDef,
-    AddSubscribersRequestDto
+  AddSubscribersRequestDto$Outbound,
+  z.ZodTypeDef,
+  AddSubscribersRequestDto
 > = z.object({
-    subscribers: z.array(z.string()),
+  subscribers: z.array(z.string()),
 });
 
 /**
@@ -39,10 +39,10 @@ export const AddSubscribersRequestDto$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace AddSubscribersRequestDto$ {
-    /** @deprecated use `AddSubscribersRequestDto$inboundSchema` instead. */
-    export const inboundSchema = AddSubscribersRequestDto$inboundSchema;
-    /** @deprecated use `AddSubscribersRequestDto$outboundSchema` instead. */
-    export const outboundSchema = AddSubscribersRequestDto$outboundSchema;
-    /** @deprecated use `AddSubscribersRequestDto$Outbound` instead. */
-    export type Outbound = AddSubscribersRequestDto$Outbound;
+  /** @deprecated use `AddSubscribersRequestDto$inboundSchema` instead. */
+  export const inboundSchema = AddSubscribersRequestDto$inboundSchema;
+  /** @deprecated use `AddSubscribersRequestDto$outboundSchema` instead. */
+  export const outboundSchema = AddSubscribersRequestDto$outboundSchema;
+  /** @deprecated use `AddSubscribersRequestDto$Outbound` instead. */
+  export type Outbound = AddSubscribersRequestDto$Outbound;
 }

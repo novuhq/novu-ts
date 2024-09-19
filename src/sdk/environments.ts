@@ -10,22 +10,32 @@ import { unwrapAsync } from "../types/fp.js";
 import { ApiKeys } from "./apikeys.js";
 
 export class Environments extends ClientSDK {
-    private _apiKeys?: ApiKeys;
-    get apiKeys(): ApiKeys {
-        return (this._apiKeys ??= new ApiKeys(this.options$));
-    }
+  private _apiKeys?: ApiKeys;
+  get apiKeys(): ApiKeys {
+    return (this._apiKeys ??= new ApiKeys(this.options$));
+  }
 
-    /**
-     * Get environments
-     */
-    async list(options?: RequestOptions): Promise<Array<components.EnvironmentResponseDto>> {
-        return unwrapAsync(environmentsList(this, options));
-    }
+  /**
+   * Get environments
+   */
+  async list(
+    options?: RequestOptions,
+  ): Promise<Array<components.EnvironmentResponseDto>> {
+    return unwrapAsync(environmentsList(
+      this,
+      options,
+    ));
+  }
 
-    /**
-     * Get current environment
-     */
-    async retrieve(options?: RequestOptions): Promise<components.EnvironmentResponseDto> {
-        return unwrapAsync(environmentsRetrieve(this, options));
-    }
+  /**
+   * Get current environment
+   */
+  async retrieve(
+    options?: RequestOptions,
+  ): Promise<components.EnvironmentResponseDto> {
+    return unwrapAsync(environmentsRetrieve(
+      this,
+      options,
+    ));
+  }
 }

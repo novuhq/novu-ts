@@ -11,17 +11,22 @@ import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
 import {
-    ConnectionError,
-    InvalidRequestError,
-    RequestAbortedError,
-    RequestTimeoutError,
-    UnexpectedClientError,
+  ConnectionError,
+  InvalidRequestError,
+  RequestAbortedError,
+  RequestTimeoutError,
+  UnexpectedClientError,
 } from "../models/errors/httpclienterrors.js";
 import { SDKError } from "../models/errors/sdkerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import * as operations from "../models/operations/index.js";
 import { Result } from "../types/fp.js";
-import { createPageIterator, haltIterator, PageIterator, Paginator } from "../types/operations.js";
+import {
+  createPageIterator,
+  haltIterator,
+  PageIterator,
+  Paginator,
+} from "../types/operations.js";
 
 /**
  * Get subscribers
@@ -30,155 +35,161 @@ import { createPageIterator, haltIterator, PageIterator, Paginator } from "../ty
  * Returns a list of subscribers, could paginated using the `page` and `limit` query parameter
  */
 export async function subscribersList(
-    client$: NovuCore,
-    page?: number | undefined,
-    limit?: number | undefined,
-    options?: RequestOptions
+  client$: NovuCore,
+  page?: number | undefined,
+  limit?: number | undefined,
+  options?: RequestOptions,
 ): Promise<
-    PageIterator<
-        Result<
-            operations.SubscribersControllerListSubscribersResponse,
-            | SDKError
-            | SDKValidationError
-            | UnexpectedClientError
-            | InvalidRequestError
-            | RequestAbortedError
-            | RequestTimeoutError
-            | ConnectionError
-        >
+  PageIterator<
+    Result<
+      operations.SubscribersControllerListSubscribersResponse,
+      | SDKError
+      | SDKValidationError
+      | UnexpectedClientError
+      | InvalidRequestError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | ConnectionError
     >
+  >
 > {
-    const input$: operations.SubscribersControllerListSubscribersRequest = {
-        page: page,
-        limit: limit,
-    };
+  const input$: operations.SubscribersControllerListSubscribersRequest = {
+    page: page,
+    limit: limit,
+  };
 
-    const parsed$ = schemas$.safeParse(
-        input$,
-        (value$) =>
-            operations.SubscribersControllerListSubscribersRequest$outboundSchema.parse(value$),
-        "Input validation failed"
-    );
-    if (!parsed$.ok) {
-        return haltIterator(parsed$);
-    }
-    const payload$ = parsed$.value;
-    const body$ = null;
+  const parsed$ = schemas$.safeParse(
+    input$,
+    (value$) =>
+      operations.SubscribersControllerListSubscribersRequest$outboundSchema
+        .parse(value$),
+    "Input validation failed",
+  );
+  if (!parsed$.ok) {
+    return haltIterator(parsed$);
+  }
+  const payload$ = parsed$.value;
+  const body$ = null;
 
-    const path$ = pathToFunc("/v1/subscribers")();
+  const path$ = pathToFunc("/v1/subscribers")();
 
-    const query$ = encodeFormQuery$({
-        limit: payload$.limit,
-        page: payload$.page,
-    });
+  const query$ = encodeFormQuery$({
+    "limit": payload$.limit,
+    "page": payload$.page,
+  });
 
-    const headers$ = new Headers({
-        Accept: "application/json",
-    });
+  const headers$ = new Headers({
+    Accept: "application/json",
+  });
 
-    const apiKey$ = await extractSecurity(client$.options$.apiKey);
-    const security$ = apiKey$ == null ? {} : { apiKey: apiKey$ };
-    const context = {
-        operationID: "SubscribersController_listSubscribers",
-        oAuth2Scopes: [],
-        securitySource: client$.options$.apiKey,
-    };
-    const securitySettings$ = resolveGlobalSecurity(security$);
+  const apiKey$ = await extractSecurity(client$.options$.apiKey);
+  const security$ = apiKey$ == null ? {} : { apiKey: apiKey$ };
+  const context = {
+    operationID: "SubscribersController_listSubscribers",
+    oAuth2Scopes: [],
+    securitySource: client$.options$.apiKey,
+  };
+  const securitySettings$ = resolveGlobalSecurity(security$);
 
-    const requestRes = client$.createRequest$(
-        context,
-        {
-            security: securitySettings$,
-            method: "GET",
-            path: path$,
-            headers: headers$,
-            query: query$,
-            body: body$,
-            timeoutMs: options?.timeoutMs || client$.options$.timeoutMs || -1,
+  const requestRes = client$.createRequest$(context, {
+    security: securitySettings$,
+    method: "GET",
+    path: path$,
+    headers: headers$,
+    query: query$,
+    body: body$,
+    timeoutMs: options?.timeoutMs || client$.options$.timeoutMs || -1,
+  }, options);
+  if (!requestRes.ok) {
+    return haltIterator(requestRes);
+  }
+  const request$ = requestRes.value;
+
+  const doResult = await client$.do$(request$, {
+    context,
+    errorCodes: ["409", "429", "4XX", "503", "5XX"],
+    retryConfig: options?.retries
+      || client$.options$.retryConfig
+      || {
+        strategy: "backoff",
+        backoff: {
+          initialInterval: 500,
+          maxInterval: 30000,
+          exponent: 1.5,
+          maxElapsedTime: 3600000,
         },
-        options
-    );
-    if (!requestRes.ok) {
-        return haltIterator(requestRes);
+        retryConnectionErrors: true,
+      },
+    retryCodes: options?.retryCodes || ["408", "409", "429", "5XX"],
+  });
+  if (!doResult.ok) {
+    return haltIterator(doResult);
+  }
+  const response = doResult.value;
+
+  const responseFields$ = {
+    HttpMeta: { Response: response, Request: request$ },
+  };
+
+  const [result$, raw$] = await m$.match<
+    operations.SubscribersControllerListSubscribersResponse,
+    | SDKError
+    | SDKValidationError
+    | UnexpectedClientError
+    | InvalidRequestError
+    | RequestAbortedError
+    | RequestTimeoutError
+    | ConnectionError
+  >(
+    m$.json(
+      200,
+      operations.SubscribersControllerListSubscribersResponse$inboundSchema,
+      { key: "Result" },
+    ),
+    m$.fail([409, 429, "4XX", 503, "5XX"]),
+  )(response, { extraFields: responseFields$ });
+  if (!result$.ok) {
+    return haltIterator(result$);
+  }
+
+  const nextFunc = (
+    responseData: unknown,
+  ): Paginator<
+    Result<
+      operations.SubscribersControllerListSubscribersResponse,
+      | SDKError
+      | SDKValidationError
+      | UnexpectedClientError
+      | InvalidRequestError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | ConnectionError
+    >
+  > => {
+    const page = input$?.page || 0;
+    const nextPage = page + 1;
+
+    if (!responseData) {
+      return () => null;
     }
-    const request$ = requestRes.value;
-
-    const doResult = await client$.do$(request$, {
-        context,
-        errorCodes: ["409", "429", "4XX", "503", "5XX"],
-        retryConfig: options?.retries ||
-            client$.options$.retryConfig || {
-                strategy: "backoff",
-                backoff: {
-                    initialInterval: 500,
-                    maxInterval: 30000,
-                    exponent: 1.5,
-                    maxElapsedTime: 3600000,
-                },
-                retryConnectionErrors: true,
-            },
-        retryCodes: options?.retryCodes || ["408", "409", "429", "5XX"],
-    });
-    if (!doResult.ok) {
-        return haltIterator(doResult);
+    const results = dlv(responseData, "data.resultArray");
+    if (!Array.isArray(results) || !results.length) {
+      return () => null;
     }
-    const response = doResult.value;
-
-    const responseFields$ = {
-        HttpMeta: { Response: response, Request: request$ },
-    };
-
-    const [result$, raw$] = await m$.match<
-        operations.SubscribersControllerListSubscribersResponse,
-        | SDKError
-        | SDKValidationError
-        | UnexpectedClientError
-        | InvalidRequestError
-        | RequestAbortedError
-        | RequestTimeoutError
-        | ConnectionError
-    >(
-        m$.json(200, operations.SubscribersControllerListSubscribersResponse$inboundSchema, {
-            key: "Result",
-        }),
-        m$.fail([409, 429, "4XX", 503, "5XX"])
-    )(response, { extraFields: responseFields$ });
-    if (!result$.ok) {
-        return haltIterator(result$);
+    const limit = input$?.limit || 0;
+    if (results.length < limit) {
+      return () => null;
     }
 
-    const nextFunc = (
-        responseData: unknown
-    ): Paginator<
-        Result<
-            operations.SubscribersControllerListSubscribersResponse,
-            | SDKError
-            | SDKValidationError
-            | UnexpectedClientError
-            | InvalidRequestError
-            | RequestAbortedError
-            | RequestTimeoutError
-            | ConnectionError
-        >
-    > => {
-        const page = input$.page || 0;
-        const nextPage = page + 1;
+    return () =>
+      subscribersList(
+        client$,
+        nextPage,
+        limit,
+        options,
+      );
+  };
 
-        if (!responseData) {
-            return () => null;
-        }
-        const results = dlv(responseData, "data.resultArray");
-        if (!Array.isArray(results) || !results.length) {
-            return () => null;
-        }
-        const limit = input$.limit || 0;
-        if (results.length < limit) {
-            return () => null;
-        }
-
-        return () => subscribersList(client$, nextPage, limit, options);
-    };
-
-    const page$ = { ...result$, next: nextFunc(raw$) };
-    return { ...page$, ...createPageIterator(page$, (v) => !v.ok) };
+  const page$ = { ...result$, next: nextFunc(raw$) };
+  return { ...page$, ...createPageIterator(page$, (v) => !v.ok) };
 }

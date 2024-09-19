@@ -6,8 +6,8 @@
 import { DelayScheduledMetadata } from "@novu/api/models/components";
 
 let value: DelayScheduledMetadata = {
-    delayPath: "<value>",
-    type: "scheduled",
+  delayPath: "<value>",
+  type: "scheduled",
 };
 ```
 

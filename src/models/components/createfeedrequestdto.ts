@@ -5,30 +5,30 @@
 import * as z from "zod";
 
 export type CreateFeedRequestDto = {
-    name: string;
+  name: string;
 };
 
 /** @internal */
 export const CreateFeedRequestDto$inboundSchema: z.ZodType<
-    CreateFeedRequestDto,
-    z.ZodTypeDef,
-    unknown
+  CreateFeedRequestDto,
+  z.ZodTypeDef,
+  unknown
 > = z.object({
-    name: z.string(),
+  name: z.string(),
 });
 
 /** @internal */
 export type CreateFeedRequestDto$Outbound = {
-    name: string;
+  name: string;
 };
 
 /** @internal */
 export const CreateFeedRequestDto$outboundSchema: z.ZodType<
-    CreateFeedRequestDto$Outbound,
-    z.ZodTypeDef,
-    CreateFeedRequestDto
+  CreateFeedRequestDto$Outbound,
+  z.ZodTypeDef,
+  CreateFeedRequestDto
 > = z.object({
-    name: z.string(),
+  name: z.string(),
 });
 
 /**
@@ -36,10 +36,10 @@ export const CreateFeedRequestDto$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace CreateFeedRequestDto$ {
-    /** @deprecated use `CreateFeedRequestDto$inboundSchema` instead. */
-    export const inboundSchema = CreateFeedRequestDto$inboundSchema;
-    /** @deprecated use `CreateFeedRequestDto$outboundSchema` instead. */
-    export const outboundSchema = CreateFeedRequestDto$outboundSchema;
-    /** @deprecated use `CreateFeedRequestDto$Outbound` instead. */
-    export type Outbound = CreateFeedRequestDto$Outbound;
+  /** @deprecated use `CreateFeedRequestDto$inboundSchema` instead. */
+  export const inboundSchema = CreateFeedRequestDto$inboundSchema;
+  /** @deprecated use `CreateFeedRequestDto$outboundSchema` instead. */
+  export const outboundSchema = CreateFeedRequestDto$outboundSchema;
+  /** @deprecated use `CreateFeedRequestDto$Outbound` instead. */
+  export type Outbound = CreateFeedRequestDto$Outbound;
 }

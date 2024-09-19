@@ -7,17 +7,20 @@ import * as z from "zod";
 export type MessageEntity = {};
 
 /** @internal */
-export const MessageEntity$inboundSchema: z.ZodType<MessageEntity, z.ZodTypeDef, unknown> =
-    z.object({});
+export const MessageEntity$inboundSchema: z.ZodType<
+  MessageEntity,
+  z.ZodTypeDef,
+  unknown
+> = z.object({});
 
 /** @internal */
 export type MessageEntity$Outbound = {};
 
 /** @internal */
 export const MessageEntity$outboundSchema: z.ZodType<
-    MessageEntity$Outbound,
-    z.ZodTypeDef,
-    MessageEntity
+  MessageEntity$Outbound,
+  z.ZodTypeDef,
+  MessageEntity
 > = z.object({});
 
 /**
@@ -25,10 +28,10 @@ export const MessageEntity$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace MessageEntity$ {
-    /** @deprecated use `MessageEntity$inboundSchema` instead. */
-    export const inboundSchema = MessageEntity$inboundSchema;
-    /** @deprecated use `MessageEntity$outboundSchema` instead. */
-    export const outboundSchema = MessageEntity$outboundSchema;
-    /** @deprecated use `MessageEntity$Outbound` instead. */
-    export type Outbound = MessageEntity$Outbound;
+  /** @deprecated use `MessageEntity$inboundSchema` instead. */
+  export const inboundSchema = MessageEntity$inboundSchema;
+  /** @deprecated use `MessageEntity$outboundSchema` instead. */
+  export const outboundSchema = MessageEntity$outboundSchema;
+  /** @deprecated use `MessageEntity$Outbound` instead. */
+  export type Outbound = MessageEntity$Outbound;
 }

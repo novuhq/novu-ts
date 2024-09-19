@@ -5,27 +5,30 @@
 import * as z from "zod";
 
 export type DataNumberDto = {
-    data: number;
+  data: number;
 };
 
 /** @internal */
-export const DataNumberDto$inboundSchema: z.ZodType<DataNumberDto, z.ZodTypeDef, unknown> =
-    z.object({
-        data: z.number(),
-    });
+export const DataNumberDto$inboundSchema: z.ZodType<
+  DataNumberDto,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  data: z.number(),
+});
 
 /** @internal */
 export type DataNumberDto$Outbound = {
-    data: number;
+  data: number;
 };
 
 /** @internal */
 export const DataNumberDto$outboundSchema: z.ZodType<
-    DataNumberDto$Outbound,
-    z.ZodTypeDef,
-    DataNumberDto
+  DataNumberDto$Outbound,
+  z.ZodTypeDef,
+  DataNumberDto
 > = z.object({
-    data: z.number(),
+  data: z.number(),
 });
 
 /**
@@ -33,10 +36,10 @@ export const DataNumberDto$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace DataNumberDto$ {
-    /** @deprecated use `DataNumberDto$inboundSchema` instead. */
-    export const inboundSchema = DataNumberDto$inboundSchema;
-    /** @deprecated use `DataNumberDto$outboundSchema` instead. */
-    export const outboundSchema = DataNumberDto$outboundSchema;
-    /** @deprecated use `DataNumberDto$Outbound` instead. */
-    export type Outbound = DataNumberDto$Outbound;
+  /** @deprecated use `DataNumberDto$inboundSchema` instead. */
+  export const inboundSchema = DataNumberDto$inboundSchema;
+  /** @deprecated use `DataNumberDto$outboundSchema` instead. */
+  export const outboundSchema = DataNumberDto$outboundSchema;
+  /** @deprecated use `DataNumberDto$Outbound` instead. */
+  export type Outbound = DataNumberDto$Outbound;
 }

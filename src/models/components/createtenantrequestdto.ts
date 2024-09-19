@@ -7,16 +7,16 @@ import * as z from "zod";
 export type CreateTenantRequestDtoData = {};
 
 export type CreateTenantRequestDto = {
-    data?: CreateTenantRequestDtoData | undefined;
-    identifier: string;
-    name: string;
+  data?: CreateTenantRequestDtoData | undefined;
+  identifier: string;
+  name: string;
 };
 
 /** @internal */
 export const CreateTenantRequestDtoData$inboundSchema: z.ZodType<
-    CreateTenantRequestDtoData,
-    z.ZodTypeDef,
-    unknown
+  CreateTenantRequestDtoData,
+  z.ZodTypeDef,
+  unknown
 > = z.object({});
 
 /** @internal */
@@ -24,9 +24,9 @@ export type CreateTenantRequestDtoData$Outbound = {};
 
 /** @internal */
 export const CreateTenantRequestDtoData$outboundSchema: z.ZodType<
-    CreateTenantRequestDtoData$Outbound,
-    z.ZodTypeDef,
-    CreateTenantRequestDtoData
+  CreateTenantRequestDtoData$Outbound,
+  z.ZodTypeDef,
+  CreateTenantRequestDtoData
 > = z.object({});
 
 /**
@@ -34,41 +34,41 @@ export const CreateTenantRequestDtoData$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace CreateTenantRequestDtoData$ {
-    /** @deprecated use `CreateTenantRequestDtoData$inboundSchema` instead. */
-    export const inboundSchema = CreateTenantRequestDtoData$inboundSchema;
-    /** @deprecated use `CreateTenantRequestDtoData$outboundSchema` instead. */
-    export const outboundSchema = CreateTenantRequestDtoData$outboundSchema;
-    /** @deprecated use `CreateTenantRequestDtoData$Outbound` instead. */
-    export type Outbound = CreateTenantRequestDtoData$Outbound;
+  /** @deprecated use `CreateTenantRequestDtoData$inboundSchema` instead. */
+  export const inboundSchema = CreateTenantRequestDtoData$inboundSchema;
+  /** @deprecated use `CreateTenantRequestDtoData$outboundSchema` instead. */
+  export const outboundSchema = CreateTenantRequestDtoData$outboundSchema;
+  /** @deprecated use `CreateTenantRequestDtoData$Outbound` instead. */
+  export type Outbound = CreateTenantRequestDtoData$Outbound;
 }
 
 /** @internal */
 export const CreateTenantRequestDto$inboundSchema: z.ZodType<
-    CreateTenantRequestDto,
-    z.ZodTypeDef,
-    unknown
+  CreateTenantRequestDto,
+  z.ZodTypeDef,
+  unknown
 > = z.object({
-    data: z.lazy(() => CreateTenantRequestDtoData$inboundSchema).optional(),
-    identifier: z.string(),
-    name: z.string(),
+  data: z.lazy(() => CreateTenantRequestDtoData$inboundSchema).optional(),
+  identifier: z.string(),
+  name: z.string(),
 });
 
 /** @internal */
 export type CreateTenantRequestDto$Outbound = {
-    data?: CreateTenantRequestDtoData$Outbound | undefined;
-    identifier: string;
-    name: string;
+  data?: CreateTenantRequestDtoData$Outbound | undefined;
+  identifier: string;
+  name: string;
 };
 
 /** @internal */
 export const CreateTenantRequestDto$outboundSchema: z.ZodType<
-    CreateTenantRequestDto$Outbound,
-    z.ZodTypeDef,
-    CreateTenantRequestDto
+  CreateTenantRequestDto$Outbound,
+  z.ZodTypeDef,
+  CreateTenantRequestDto
 > = z.object({
-    data: z.lazy(() => CreateTenantRequestDtoData$outboundSchema).optional(),
-    identifier: z.string(),
-    name: z.string(),
+  data: z.lazy(() => CreateTenantRequestDtoData$outboundSchema).optional(),
+  identifier: z.string(),
+  name: z.string(),
 });
 
 /**
@@ -76,10 +76,10 @@ export const CreateTenantRequestDto$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace CreateTenantRequestDto$ {
-    /** @deprecated use `CreateTenantRequestDto$inboundSchema` instead. */
-    export const inboundSchema = CreateTenantRequestDto$inboundSchema;
-    /** @deprecated use `CreateTenantRequestDto$outboundSchema` instead. */
-    export const outboundSchema = CreateTenantRequestDto$outboundSchema;
-    /** @deprecated use `CreateTenantRequestDto$Outbound` instead. */
-    export type Outbound = CreateTenantRequestDto$Outbound;
+  /** @deprecated use `CreateTenantRequestDto$inboundSchema` instead. */
+  export const inboundSchema = CreateTenantRequestDto$inboundSchema;
+  /** @deprecated use `CreateTenantRequestDto$outboundSchema` instead. */
+  export const outboundSchema = CreateTenantRequestDto$outboundSchema;
+  /** @deprecated use `CreateTenantRequestDto$Outbound` instead. */
+  export type Outbound = CreateTenantRequestDto$Outbound;
 }

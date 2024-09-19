@@ -5,14 +5,14 @@
 import { Novu } from "@novu/api";
 
 const novu = new Novu({
-    apiKey: "<YOUR_API_KEY_HERE>",
+  apiKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
-    const result = await novu.cancel("<value>");
+  const result = await novu.cancel("<value>");
 
-    // Handle the result
-    console.log(result);
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -25,24 +25,24 @@ run();
 import { Novu } from "@novu/api";
 
 const novu = new Novu({
-    apiKey: "<YOUR_API_KEY_HERE>",
+  apiKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
-    const result = await novu.trigger({
-        name: "workflow_identifier",
-        overrides: {},
-        payload: {},
-        to: [
-            {
-                topicKey: "<value>",
-                type: "Topic",
-            },
-        ],
-    });
+  const result = await novu.trigger({
+    name: "workflow_identifier",
+    overrides: {},
+    payload: {},
+    to: [
+      {
+        topicKey: "<value>",
+        type: "Topic",
+      },
+    ],
+  });
 
-    // Handle the result
-    console.log(result);
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -55,18 +55,18 @@ run();
 import { Novu } from "@novu/api";
 
 const novu = new Novu({
-    apiKey: "<YOUR_API_KEY_HERE>",
+  apiKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
-    const result = await novu.triggerBroadcast({
-        name: "<value>",
-        overrides: {},
-        payload: {},
-    });
+  const result = await novu.triggerBroadcast({
+    name: "<value>",
+    overrides: {},
+    payload: {},
+  });
 
-    // Handle the result
-    console.log(result);
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -79,16 +79,16 @@ run();
 import { Novu } from "@novu/api";
 
 const novu = new Novu({
-    apiKey: "<YOUR_API_KEY_HERE>",
+  apiKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
-    const result = await novu.triggerBulk({
-        events: [],
-    });
+  const result = await novu.triggerBulk({
+    events: [],
+  });
 
-    // Handle the result
-    console.log(result);
+  // Handle the result
+  console.log(result);
 }
 
 run();

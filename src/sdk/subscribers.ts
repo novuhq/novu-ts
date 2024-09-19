@@ -21,118 +21,143 @@ import { Preferences } from "./preferences.js";
 import { Properties } from "./properties.js";
 
 export class Subscribers extends ClientSDK {
-    private _credentials?: Credentials;
-    get credentials(): Credentials {
-        return (this._credentials ??= new Credentials(this.options$));
-    }
+  private _credentials?: Credentials;
+  get credentials(): Credentials {
+    return (this._credentials ??= new Credentials(this.options$));
+  }
 
-    private _authentication?: Authentication;
-    get authentication(): Authentication {
-        return (this._authentication ??= new Authentication(this.options$));
-    }
+  private _authentication?: Authentication;
+  get authentication(): Authentication {
+    return (this._authentication ??= new Authentication(this.options$));
+  }
 
-    private _messages?: NovuMessages;
-    get messages(): NovuMessages {
-        return (this._messages ??= new NovuMessages(this.options$));
-    }
+  private _messages?: NovuMessages;
+  get messages(): NovuMessages {
+    return (this._messages ??= new NovuMessages(this.options$));
+  }
 
-    private _notifications?: NovuNotifications;
-    get notifications(): NovuNotifications {
-        return (this._notifications ??= new NovuNotifications(this.options$));
-    }
+  private _notifications?: NovuNotifications;
+  get notifications(): NovuNotifications {
+    return (this._notifications ??= new NovuNotifications(this.options$));
+  }
 
-    private _properties?: Properties;
-    get properties(): Properties {
-        return (this._properties ??= new Properties(this.options$));
-    }
+  private _properties?: Properties;
+  get properties(): Properties {
+    return (this._properties ??= new Properties(this.options$));
+  }
 
-    private _preferences?: Preferences;
-    get preferences(): Preferences {
-        return (this._preferences ??= new Preferences(this.options$));
-    }
+  private _preferences?: Preferences;
+  get preferences(): Preferences {
+    return (this._preferences ??= new Preferences(this.options$));
+  }
 
-    /**
-     * Create subscriber
-     *
-     * @remarks
-     * Creates a subscriber entity, in the Novu platform. The subscriber will be later used to receive notifications, and access notification feeds. Communication credentials such as email, phone number, and 3 rd party credentials i.e slack tokens could be later associated to this entity.
-     */
-    async create(
-        request: components.CreateSubscriberRequestDto,
-        options?: RequestOptions
-    ): Promise<components.SubscriberResponseDto> {
-        return unwrapAsync(subscribersCreate(this, request, options));
-    }
+  /**
+   * Create subscriber
+   *
+   * @remarks
+   * Creates a subscriber entity, in the Novu platform. The subscriber will be later used to receive notifications, and access notification feeds. Communication credentials such as email, phone number, and 3 rd party credentials i.e slack tokens could be later associated to this entity.
+   */
+  async create(
+    request: components.CreateSubscriberRequestDto,
+    options?: RequestOptions,
+  ): Promise<components.SubscriberResponseDto> {
+    return unwrapAsync(subscribersCreate(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Bulk create subscribers
-     *
-     * @remarks
-     *
-     *       Using this endpoint you can create multiple subscribers at once, to avoid multiple calls to the API.
-     *       The bulk API is limited to 500 subscribers per request.
-     *
-     */
-    async createBulk(
-        request: components.BulkSubscriberCreateDto,
-        options?: RequestOptions
-    ): Promise<void> {
-        return unwrapAsync(subscribersCreateBulk(this, request, options));
-    }
+  /**
+   * Bulk create subscribers
+   *
+   * @remarks
+   *
+   *       Using this endpoint you can create multiple subscribers at once, to avoid multiple calls to the API.
+   *       The bulk API is limited to 500 subscribers per request.
+   */
+  async createBulk(
+    request: components.BulkSubscriberCreateDto,
+    options?: RequestOptions,
+  ): Promise<void> {
+    return unwrapAsync(subscribersCreateBulk(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Delete subscriber
-     *
-     * @remarks
-     * Deletes a subscriber entity from the Novu platform
-     */
-    async delete(
-        subscriberId: string,
-        options?: RequestOptions
-    ): Promise<components.DeleteSubscriberResponseDto> {
-        return unwrapAsync(subscribersDelete(this, subscriberId, options));
-    }
+  /**
+   * Delete subscriber
+   *
+   * @remarks
+   * Deletes a subscriber entity from the Novu platform
+   */
+  async delete(
+    subscriberId: string,
+    options?: RequestOptions,
+  ): Promise<components.DeleteSubscriberResponseDto> {
+    return unwrapAsync(subscribersDelete(
+      this,
+      subscriberId,
+      options,
+    ));
+  }
 
-    /**
-     * Get subscribers
-     *
-     * @remarks
-     * Returns a list of subscribers, could paginated using the `page` and `limit` query parameter
-     */
-    async list(
-        page?: number | undefined,
-        limit?: number | undefined,
-        options?: RequestOptions
-    ): Promise<PageIterator<operations.SubscribersControllerListSubscribersResponse>> {
-        return unwrapResultIterator(subscribersList(this, page, limit, options));
-    }
+  /**
+   * Get subscribers
+   *
+   * @remarks
+   * Returns a list of subscribers, could paginated using the `page` and `limit` query parameter
+   */
+  async list(
+    page?: number | undefined,
+    limit?: number | undefined,
+    options?: RequestOptions,
+  ): Promise<
+    PageIterator<operations.SubscribersControllerListSubscribersResponse>
+  > {
+    return unwrapResultIterator(subscribersList(
+      this,
+      page,
+      limit,
+      options,
+    ));
+  }
 
-    /**
-     * Get subscriber
-     *
-     * @remarks
-     * Get subscriber by your internal id used to identify the subscriber
-     */
-    async retrieve(
-        subscriberId: string,
-        options?: RequestOptions
-    ): Promise<components.SubscriberResponseDto> {
-        return unwrapAsync(subscribersRetrieve(this, subscriberId, options));
-    }
+  /**
+   * Get subscriber
+   *
+   * @remarks
+   * Get subscriber by your internal id used to identify the subscriber
+   */
+  async retrieve(
+    subscriberId: string,
+    options?: RequestOptions,
+  ): Promise<components.SubscriberResponseDto> {
+    return unwrapAsync(subscribersRetrieve(
+      this,
+      subscriberId,
+      options,
+    ));
+  }
 
-    /**
-     * Update subscriber
-     *
-     * @remarks
-     * Used to update the subscriber entity with new information
-     */
-    async update(
-        subscriberId: string,
-        updateSubscriberRequestDto: components.UpdateSubscriberRequestDto,
-        options?: RequestOptions
-    ): Promise<components.SubscriberResponseDto> {
-        return unwrapAsync(
-            subscribersUpdate(this, subscriberId, updateSubscriberRequestDto, options)
-        );
-    }
+  /**
+   * Update subscriber
+   *
+   * @remarks
+   * Used to update the subscriber entity with new information
+   */
+  async update(
+    subscriberId: string,
+    updateSubscriberRequestDto: components.UpdateSubscriberRequestDto,
+    options?: RequestOptions,
+  ): Promise<components.SubscriberResponseDto> {
+    return unwrapAsync(subscribersUpdate(
+      this,
+      subscriberId,
+      updateSubscriberRequestDto,
+      options,
+    ));
+  }
 }

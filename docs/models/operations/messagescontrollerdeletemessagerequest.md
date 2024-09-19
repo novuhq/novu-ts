@@ -6,7 +6,7 @@
 import { MessagesControllerDeleteMessageRequest } from "@novu/api/models/operations";
 
 let value: MessagesControllerDeleteMessageRequest = {
-    messageId: "<value>",
+  messageId: "<value>",
 };
 ```
 

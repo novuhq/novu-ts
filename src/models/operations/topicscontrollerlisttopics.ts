@@ -5,47 +5,47 @@
 import * as z from "zod";
 
 export type TopicsControllerListTopicsRequest = {
-    /**
-     * Number of page for the pagination
-     */
-    page?: number | undefined;
-    /**
-     * Size of page for the pagination
-     */
-    pageSize?: number | undefined;
-    /**
-     * Topic key
-     */
-    key?: string | undefined;
+  /**
+   * Number of page for the pagination
+   */
+  page?: number | undefined;
+  /**
+   * Size of page for the pagination
+   */
+  pageSize?: number | undefined;
+  /**
+   * Topic key
+   */
+  key?: string | undefined;
 };
 
 /** @internal */
 export const TopicsControllerListTopicsRequest$inboundSchema: z.ZodType<
-    TopicsControllerListTopicsRequest,
-    z.ZodTypeDef,
-    unknown
+  TopicsControllerListTopicsRequest,
+  z.ZodTypeDef,
+  unknown
 > = z.object({
-    page: z.number().default(0),
-    pageSize: z.number().default(10),
-    key: z.string().optional(),
+  page: z.number().default(0),
+  pageSize: z.number().default(10),
+  key: z.string().optional(),
 });
 
 /** @internal */
 export type TopicsControllerListTopicsRequest$Outbound = {
-    page: number;
-    pageSize: number;
-    key?: string | undefined;
+  page: number;
+  pageSize: number;
+  key?: string | undefined;
 };
 
 /** @internal */
 export const TopicsControllerListTopicsRequest$outboundSchema: z.ZodType<
-    TopicsControllerListTopicsRequest$Outbound,
-    z.ZodTypeDef,
-    TopicsControllerListTopicsRequest
+  TopicsControllerListTopicsRequest$Outbound,
+  z.ZodTypeDef,
+  TopicsControllerListTopicsRequest
 > = z.object({
-    page: z.number().default(0),
-    pageSize: z.number().default(10),
-    key: z.string().optional(),
+  page: z.number().default(0),
+  pageSize: z.number().default(10),
+  key: z.string().optional(),
 });
 
 /**
@@ -53,10 +53,11 @@ export const TopicsControllerListTopicsRequest$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace TopicsControllerListTopicsRequest$ {
-    /** @deprecated use `TopicsControllerListTopicsRequest$inboundSchema` instead. */
-    export const inboundSchema = TopicsControllerListTopicsRequest$inboundSchema;
-    /** @deprecated use `TopicsControllerListTopicsRequest$outboundSchema` instead. */
-    export const outboundSchema = TopicsControllerListTopicsRequest$outboundSchema;
-    /** @deprecated use `TopicsControllerListTopicsRequest$Outbound` instead. */
-    export type Outbound = TopicsControllerListTopicsRequest$Outbound;
+  /** @deprecated use `TopicsControllerListTopicsRequest$inboundSchema` instead. */
+  export const inboundSchema = TopicsControllerListTopicsRequest$inboundSchema;
+  /** @deprecated use `TopicsControllerListTopicsRequest$outboundSchema` instead. */
+  export const outboundSchema =
+    TopicsControllerListTopicsRequest$outboundSchema;
+  /** @deprecated use `TopicsControllerListTopicsRequest$Outbound` instead. */
+  export type Outbound = TopicsControllerListTopicsRequest$Outbound;
 }

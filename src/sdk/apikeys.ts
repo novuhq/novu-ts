@@ -8,10 +8,15 @@ import * as components from "../models/components/index.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class ApiKeys extends ClientSDK {
-    /**
-     * Get api keys
-     */
-    async list(options?: RequestOptions): Promise<Array<components.ApiKey>> {
-        return unwrapAsync(environmentsApiKeysList(this, options));
-    }
+  /**
+   * Get api keys
+   */
+  async list(
+    options?: RequestOptions,
+  ): Promise<Array<components.ApiKey>> {
+    return unwrapAsync(environmentsApiKeysList(
+      this,
+      options,
+    ));
+  }
 }

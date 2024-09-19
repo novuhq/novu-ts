@@ -22,7 +22,7 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.workflows.variables.retrieve();
-
+  
   // Handle the result
   console.log(result)
 }

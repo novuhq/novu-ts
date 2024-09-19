@@ -7,16 +7,16 @@ import * as z from "zod";
 export type TenantPayloadDtoData = {};
 
 export type TenantPayloadDto = {
-    data?: TenantPayloadDtoData | undefined;
-    identifier?: string | undefined;
-    name?: string | undefined;
+  data?: TenantPayloadDtoData | undefined;
+  identifier?: string | undefined;
+  name?: string | undefined;
 };
 
 /** @internal */
 export const TenantPayloadDtoData$inboundSchema: z.ZodType<
-    TenantPayloadDtoData,
-    z.ZodTypeDef,
-    unknown
+  TenantPayloadDtoData,
+  z.ZodTypeDef,
+  unknown
 > = z.object({});
 
 /** @internal */
@@ -24,9 +24,9 @@ export type TenantPayloadDtoData$Outbound = {};
 
 /** @internal */
 export const TenantPayloadDtoData$outboundSchema: z.ZodType<
-    TenantPayloadDtoData$Outbound,
-    z.ZodTypeDef,
-    TenantPayloadDtoData
+  TenantPayloadDtoData$Outbound,
+  z.ZodTypeDef,
+  TenantPayloadDtoData
 > = z.object({});
 
 /**
@@ -34,38 +34,41 @@ export const TenantPayloadDtoData$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace TenantPayloadDtoData$ {
-    /** @deprecated use `TenantPayloadDtoData$inboundSchema` instead. */
-    export const inboundSchema = TenantPayloadDtoData$inboundSchema;
-    /** @deprecated use `TenantPayloadDtoData$outboundSchema` instead. */
-    export const outboundSchema = TenantPayloadDtoData$outboundSchema;
-    /** @deprecated use `TenantPayloadDtoData$Outbound` instead. */
-    export type Outbound = TenantPayloadDtoData$Outbound;
+  /** @deprecated use `TenantPayloadDtoData$inboundSchema` instead. */
+  export const inboundSchema = TenantPayloadDtoData$inboundSchema;
+  /** @deprecated use `TenantPayloadDtoData$outboundSchema` instead. */
+  export const outboundSchema = TenantPayloadDtoData$outboundSchema;
+  /** @deprecated use `TenantPayloadDtoData$Outbound` instead. */
+  export type Outbound = TenantPayloadDtoData$Outbound;
 }
 
 /** @internal */
-export const TenantPayloadDto$inboundSchema: z.ZodType<TenantPayloadDto, z.ZodTypeDef, unknown> =
-    z.object({
-        data: z.lazy(() => TenantPayloadDtoData$inboundSchema).optional(),
-        identifier: z.string().optional(),
-        name: z.string().optional(),
-    });
+export const TenantPayloadDto$inboundSchema: z.ZodType<
+  TenantPayloadDto,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  data: z.lazy(() => TenantPayloadDtoData$inboundSchema).optional(),
+  identifier: z.string().optional(),
+  name: z.string().optional(),
+});
 
 /** @internal */
 export type TenantPayloadDto$Outbound = {
-    data?: TenantPayloadDtoData$Outbound | undefined;
-    identifier?: string | undefined;
-    name?: string | undefined;
+  data?: TenantPayloadDtoData$Outbound | undefined;
+  identifier?: string | undefined;
+  name?: string | undefined;
 };
 
 /** @internal */
 export const TenantPayloadDto$outboundSchema: z.ZodType<
-    TenantPayloadDto$Outbound,
-    z.ZodTypeDef,
-    TenantPayloadDto
+  TenantPayloadDto$Outbound,
+  z.ZodTypeDef,
+  TenantPayloadDto
 > = z.object({
-    data: z.lazy(() => TenantPayloadDtoData$outboundSchema).optional(),
-    identifier: z.string().optional(),
-    name: z.string().optional(),
+  data: z.lazy(() => TenantPayloadDtoData$outboundSchema).optional(),
+  identifier: z.string().optional(),
+  name: z.string().optional(),
 });
 
 /**
@@ -73,10 +76,10 @@ export const TenantPayloadDto$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace TenantPayloadDto$ {
-    /** @deprecated use `TenantPayloadDto$inboundSchema` instead. */
-    export const inboundSchema = TenantPayloadDto$inboundSchema;
-    /** @deprecated use `TenantPayloadDto$outboundSchema` instead. */
-    export const outboundSchema = TenantPayloadDto$outboundSchema;
-    /** @deprecated use `TenantPayloadDto$Outbound` instead. */
-    export type Outbound = TenantPayloadDto$Outbound;
+  /** @deprecated use `TenantPayloadDto$inboundSchema` instead. */
+  export const inboundSchema = TenantPayloadDto$inboundSchema;
+  /** @deprecated use `TenantPayloadDto$outboundSchema` instead. */
+  export const outboundSchema = TenantPayloadDto$outboundSchema;
+  /** @deprecated use `TenantPayloadDto$Outbound` instead. */
+  export type Outbound = TenantPayloadDto$Outbound;
 }

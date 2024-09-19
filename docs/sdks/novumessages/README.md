@@ -26,7 +26,7 @@ async function run() {
   const result = await novu.subscribers.messages.markAll("<value>", {
     markAs: "seen",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -105,7 +105,7 @@ async function run() {
     markAs: "seen",
     messageId: "<value>",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -129,7 +129,7 @@ const novu = new NovuCore({
 
 async function run() {
   const res = await subscribersMessagesMarkAllAs(novu, "<value>", {
-    markAs: "read",
+    markAs: "seen",
     messageId: "<value>",
   });
 
@@ -189,7 +189,7 @@ async function run() {
       status: "done",
     },
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -217,7 +217,7 @@ async function run() {
     type: "<value>",
     subscriberId: "<value>",
     markMessageActionAsSeenDto: {
-      status: "pending",
+      status: "done",
     },
   });
 

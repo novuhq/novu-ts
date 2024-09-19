@@ -6,8 +6,8 @@
 import { SubscribersControllerGetSubscriberPreferenceByLevelRequest } from "@novu/api/models/operations";
 
 let value: SubscribersControllerGetSubscriberPreferenceByLevelRequest = {
-    parameter: "Subscriber",
-    subscriberId: "<value>",
+  parameter: "Subscriber",
+  subscriberId: "<value>",
 };
 ```
 

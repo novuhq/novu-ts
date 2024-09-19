@@ -6,8 +6,8 @@
 import { DeleteSubscriberResponseDto } from "@novu/api/models/components";
 
 let value: DeleteSubscriberResponseDto = {
-    acknowledged: false,
-    status: "deleted",
+  acknowledged: false,
+  status: "deleted",
 };
 ```
 

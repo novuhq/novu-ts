@@ -6,7 +6,7 @@
 import { UpdateSubscriberOnlineFlagRequestDto } from "@novu/api/models/components";
 
 let value: UpdateSubscriberOnlineFlagRequestDto = {
-    isOnline: false,
+  isOnline: false,
 };
 ```
 

@@ -5,41 +5,46 @@
 import * as z from "zod";
 
 export type IntegrationsControllerRemoveIntegrationRequest = {
-    integrationId: string;
+  integrationId: string;
 };
 
 /** @internal */
-export const IntegrationsControllerRemoveIntegrationRequest$inboundSchema: z.ZodType<
+export const IntegrationsControllerRemoveIntegrationRequest$inboundSchema:
+  z.ZodType<
     IntegrationsControllerRemoveIntegrationRequest,
     z.ZodTypeDef,
     unknown
-> = z.object({
+  > = z.object({
     integrationId: z.string(),
-});
+  });
 
 /** @internal */
 export type IntegrationsControllerRemoveIntegrationRequest$Outbound = {
-    integrationId: string;
+  integrationId: string;
 };
 
 /** @internal */
-export const IntegrationsControllerRemoveIntegrationRequest$outboundSchema: z.ZodType<
+export const IntegrationsControllerRemoveIntegrationRequest$outboundSchema:
+  z.ZodType<
     IntegrationsControllerRemoveIntegrationRequest$Outbound,
     z.ZodTypeDef,
     IntegrationsControllerRemoveIntegrationRequest
-> = z.object({
+  > = z.object({
     integrationId: z.string(),
-});
+  });
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace IntegrationsControllerRemoveIntegrationRequest$ {
-    /** @deprecated use `IntegrationsControllerRemoveIntegrationRequest$inboundSchema` instead. */
-    export const inboundSchema = IntegrationsControllerRemoveIntegrationRequest$inboundSchema;
-    /** @deprecated use `IntegrationsControllerRemoveIntegrationRequest$outboundSchema` instead. */
-    export const outboundSchema = IntegrationsControllerRemoveIntegrationRequest$outboundSchema;
-    /** @deprecated use `IntegrationsControllerRemoveIntegrationRequest$Outbound` instead. */
-    export type Outbound = IntegrationsControllerRemoveIntegrationRequest$Outbound;
+  /** @deprecated use `IntegrationsControllerRemoveIntegrationRequest$inboundSchema` instead. */
+  export const inboundSchema =
+    IntegrationsControllerRemoveIntegrationRequest$inboundSchema;
+  /** @deprecated use `IntegrationsControllerRemoveIntegrationRequest$outboundSchema` instead. */
+  export const outboundSchema =
+    IntegrationsControllerRemoveIntegrationRequest$outboundSchema;
+  /** @deprecated use `IntegrationsControllerRemoveIntegrationRequest$Outbound` instead. */
+  export type Outbound =
+    IntegrationsControllerRemoveIntegrationRequest$Outbound;
 }

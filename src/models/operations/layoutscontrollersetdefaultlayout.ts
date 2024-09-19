@@ -5,33 +5,33 @@
 import * as z from "zod";
 
 export type LayoutsControllerSetDefaultLayoutRequest = {
-    /**
-     * The layout id
-     */
-    layoutId: string;
+  /**
+   * The layout id
+   */
+  layoutId: string;
 };
 
 /** @internal */
 export const LayoutsControllerSetDefaultLayoutRequest$inboundSchema: z.ZodType<
-    LayoutsControllerSetDefaultLayoutRequest,
-    z.ZodTypeDef,
-    unknown
+  LayoutsControllerSetDefaultLayoutRequest,
+  z.ZodTypeDef,
+  unknown
 > = z.object({
-    layoutId: z.string(),
+  layoutId: z.string(),
 });
 
 /** @internal */
 export type LayoutsControllerSetDefaultLayoutRequest$Outbound = {
-    layoutId: string;
+  layoutId: string;
 };
 
 /** @internal */
 export const LayoutsControllerSetDefaultLayoutRequest$outboundSchema: z.ZodType<
-    LayoutsControllerSetDefaultLayoutRequest$Outbound,
-    z.ZodTypeDef,
-    LayoutsControllerSetDefaultLayoutRequest
+  LayoutsControllerSetDefaultLayoutRequest$Outbound,
+  z.ZodTypeDef,
+  LayoutsControllerSetDefaultLayoutRequest
 > = z.object({
-    layoutId: z.string(),
+  layoutId: z.string(),
 });
 
 /**
@@ -39,10 +39,12 @@ export const LayoutsControllerSetDefaultLayoutRequest$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace LayoutsControllerSetDefaultLayoutRequest$ {
-    /** @deprecated use `LayoutsControllerSetDefaultLayoutRequest$inboundSchema` instead. */
-    export const inboundSchema = LayoutsControllerSetDefaultLayoutRequest$inboundSchema;
-    /** @deprecated use `LayoutsControllerSetDefaultLayoutRequest$outboundSchema` instead. */
-    export const outboundSchema = LayoutsControllerSetDefaultLayoutRequest$outboundSchema;
-    /** @deprecated use `LayoutsControllerSetDefaultLayoutRequest$Outbound` instead. */
-    export type Outbound = LayoutsControllerSetDefaultLayoutRequest$Outbound;
+  /** @deprecated use `LayoutsControllerSetDefaultLayoutRequest$inboundSchema` instead. */
+  export const inboundSchema =
+    LayoutsControllerSetDefaultLayoutRequest$inboundSchema;
+  /** @deprecated use `LayoutsControllerSetDefaultLayoutRequest$outboundSchema` instead. */
+  export const outboundSchema =
+    LayoutsControllerSetDefaultLayoutRequest$outboundSchema;
+  /** @deprecated use `LayoutsControllerSetDefaultLayoutRequest$Outbound` instead. */
+  export type Outbound = LayoutsControllerSetDefaultLayoutRequest$Outbound;
 }

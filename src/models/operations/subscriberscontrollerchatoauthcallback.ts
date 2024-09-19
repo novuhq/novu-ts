@@ -5,93 +5,102 @@
 import * as z from "zod";
 
 export type SubscribersControllerChatOauthCallbackRequest = {
-    subscriberId: string;
-    providerId?: any | undefined;
-    code: string;
-    hmacHash: string;
-    environmentId: string;
-    integrationIdentifier?: string | undefined;
+  subscriberId: string;
+  providerId?: any | undefined;
+  code: string;
+  hmacHash: string;
+  environmentId: string;
+  integrationIdentifier?: string | undefined;
 };
 
 export type SubscribersControllerChatOauthCallbackResponseBody = {};
 
 /** @internal */
-export const SubscribersControllerChatOauthCallbackRequest$inboundSchema: z.ZodType<
+export const SubscribersControllerChatOauthCallbackRequest$inboundSchema:
+  z.ZodType<
     SubscribersControllerChatOauthCallbackRequest,
     z.ZodTypeDef,
     unknown
-> = z.object({
+  > = z.object({
     subscriberId: z.string(),
     providerId: z.any().optional(),
     code: z.string(),
     hmacHash: z.string(),
     environmentId: z.string(),
     integrationIdentifier: z.string().optional(),
-});
+  });
 
 /** @internal */
 export type SubscribersControllerChatOauthCallbackRequest$Outbound = {
-    subscriberId: string;
-    providerId?: any | undefined;
-    code: string;
-    hmacHash: string;
-    environmentId: string;
-    integrationIdentifier?: string | undefined;
+  subscriberId: string;
+  providerId?: any | undefined;
+  code: string;
+  hmacHash: string;
+  environmentId: string;
+  integrationIdentifier?: string | undefined;
 };
 
 /** @internal */
-export const SubscribersControllerChatOauthCallbackRequest$outboundSchema: z.ZodType<
+export const SubscribersControllerChatOauthCallbackRequest$outboundSchema:
+  z.ZodType<
     SubscribersControllerChatOauthCallbackRequest$Outbound,
     z.ZodTypeDef,
     SubscribersControllerChatOauthCallbackRequest
-> = z.object({
+  > = z.object({
     subscriberId: z.string(),
     providerId: z.any().optional(),
     code: z.string(),
     hmacHash: z.string(),
     environmentId: z.string(),
     integrationIdentifier: z.string().optional(),
-});
+  });
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace SubscribersControllerChatOauthCallbackRequest$ {
-    /** @deprecated use `SubscribersControllerChatOauthCallbackRequest$inboundSchema` instead. */
-    export const inboundSchema = SubscribersControllerChatOauthCallbackRequest$inboundSchema;
-    /** @deprecated use `SubscribersControllerChatOauthCallbackRequest$outboundSchema` instead. */
-    export const outboundSchema = SubscribersControllerChatOauthCallbackRequest$outboundSchema;
-    /** @deprecated use `SubscribersControllerChatOauthCallbackRequest$Outbound` instead. */
-    export type Outbound = SubscribersControllerChatOauthCallbackRequest$Outbound;
+  /** @deprecated use `SubscribersControllerChatOauthCallbackRequest$inboundSchema` instead. */
+  export const inboundSchema =
+    SubscribersControllerChatOauthCallbackRequest$inboundSchema;
+  /** @deprecated use `SubscribersControllerChatOauthCallbackRequest$outboundSchema` instead. */
+  export const outboundSchema =
+    SubscribersControllerChatOauthCallbackRequest$outboundSchema;
+  /** @deprecated use `SubscribersControllerChatOauthCallbackRequest$Outbound` instead. */
+  export type Outbound = SubscribersControllerChatOauthCallbackRequest$Outbound;
 }
 
 /** @internal */
-export const SubscribersControllerChatOauthCallbackResponseBody$inboundSchema: z.ZodType<
+export const SubscribersControllerChatOauthCallbackResponseBody$inboundSchema:
+  z.ZodType<
     SubscribersControllerChatOauthCallbackResponseBody,
     z.ZodTypeDef,
     unknown
-> = z.object({});
+  > = z.object({});
 
 /** @internal */
 export type SubscribersControllerChatOauthCallbackResponseBody$Outbound = {};
 
 /** @internal */
-export const SubscribersControllerChatOauthCallbackResponseBody$outboundSchema: z.ZodType<
+export const SubscribersControllerChatOauthCallbackResponseBody$outboundSchema:
+  z.ZodType<
     SubscribersControllerChatOauthCallbackResponseBody$Outbound,
     z.ZodTypeDef,
     SubscribersControllerChatOauthCallbackResponseBody
-> = z.object({});
+  > = z.object({});
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace SubscribersControllerChatOauthCallbackResponseBody$ {
-    /** @deprecated use `SubscribersControllerChatOauthCallbackResponseBody$inboundSchema` instead. */
-    export const inboundSchema = SubscribersControllerChatOauthCallbackResponseBody$inboundSchema;
-    /** @deprecated use `SubscribersControllerChatOauthCallbackResponseBody$outboundSchema` instead. */
-    export const outboundSchema = SubscribersControllerChatOauthCallbackResponseBody$outboundSchema;
-    /** @deprecated use `SubscribersControllerChatOauthCallbackResponseBody$Outbound` instead. */
-    export type Outbound = SubscribersControllerChatOauthCallbackResponseBody$Outbound;
+  /** @deprecated use `SubscribersControllerChatOauthCallbackResponseBody$inboundSchema` instead. */
+  export const inboundSchema =
+    SubscribersControllerChatOauthCallbackResponseBody$inboundSchema;
+  /** @deprecated use `SubscribersControllerChatOauthCallbackResponseBody$outboundSchema` instead. */
+  export const outboundSchema =
+    SubscribersControllerChatOauthCallbackResponseBody$outboundSchema;
+  /** @deprecated use `SubscribersControllerChatOauthCallbackResponseBody$Outbound` instead. */
+  export type Outbound =
+    SubscribersControllerChatOauthCallbackResponseBody$Outbound;
 }

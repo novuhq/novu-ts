@@ -6,7 +6,7 @@
 import { CreateTopicResponseDto } from "@novu/api/models/components";
 
 let value: CreateTopicResponseDto = {
-    key: "<key>",
+  key: "<key>",
 };
 ```
 

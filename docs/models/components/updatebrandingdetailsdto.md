@@ -6,10 +6,10 @@
 import { UpdateBrandingDetailsDto } from "@novu/api/models/components";
 
 let value: UpdateBrandingDetailsDto = {
-    color: "plum",
-    contentBackground: "<value>",
-    fontColor: "<value>",
-    logo: "<value>",
+  color: "plum",
+  contentBackground: "<value>",
+  fontColor: "<value>",
+  logo: "<value>",
 };
 ```
 

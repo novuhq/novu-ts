@@ -8,19 +8,22 @@ import * as components from "../models/components/index.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class Status extends ClientSDK {
-    /**
-     * Update workflow status
-     *
-     * @remarks
-     * Workflow was previously named notification template
-     */
-    async update(
-        workflowId: string,
-        changeWorkflowStatusRequestDto: components.ChangeWorkflowStatusRequestDto,
-        options?: RequestOptions
-    ): Promise<components.WorkflowResponse> {
-        return unwrapAsync(
-            workflowsStatusUpdate(this, workflowId, changeWorkflowStatusRequestDto, options)
-        );
-    }
+  /**
+   * Update workflow status
+   *
+   * @remarks
+   * Workflow was previously named notification template
+   */
+  async update(
+    workflowId: string,
+    changeWorkflowStatusRequestDto: components.ChangeWorkflowStatusRequestDto,
+    options?: RequestOptions,
+  ): Promise<components.WorkflowResponse> {
+    return unwrapAsync(workflowsStatusUpdate(
+      this,
+      workflowId,
+      changeWorkflowStatusRequestDto,
+      options,
+    ));
+  }
 }

@@ -28,8 +28,6 @@ async function run() {
       "<value>",
     ],
   });
-
-  
 }
 
 run();
@@ -108,8 +106,6 @@ async function run() {
       "<value>",
     ],
   });
-
-  
 }
 
 run();
@@ -184,7 +180,7 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.topics.subscribers.retrieve("<value>", "<value>");
-
+  
   // Handle the result
   console.log(result)
 }

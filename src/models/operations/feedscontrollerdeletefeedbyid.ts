@@ -5,30 +5,30 @@
 import * as z from "zod";
 
 export type FeedsControllerDeleteFeedByIdRequest = {
-    feedId: string;
+  feedId: string;
 };
 
 /** @internal */
 export const FeedsControllerDeleteFeedByIdRequest$inboundSchema: z.ZodType<
-    FeedsControllerDeleteFeedByIdRequest,
-    z.ZodTypeDef,
-    unknown
+  FeedsControllerDeleteFeedByIdRequest,
+  z.ZodTypeDef,
+  unknown
 > = z.object({
-    feedId: z.string(),
+  feedId: z.string(),
 });
 
 /** @internal */
 export type FeedsControllerDeleteFeedByIdRequest$Outbound = {
-    feedId: string;
+  feedId: string;
 };
 
 /** @internal */
 export const FeedsControllerDeleteFeedByIdRequest$outboundSchema: z.ZodType<
-    FeedsControllerDeleteFeedByIdRequest$Outbound,
-    z.ZodTypeDef,
-    FeedsControllerDeleteFeedByIdRequest
+  FeedsControllerDeleteFeedByIdRequest$Outbound,
+  z.ZodTypeDef,
+  FeedsControllerDeleteFeedByIdRequest
 > = z.object({
-    feedId: z.string(),
+  feedId: z.string(),
 });
 
 /**
@@ -36,10 +36,12 @@ export const FeedsControllerDeleteFeedByIdRequest$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace FeedsControllerDeleteFeedByIdRequest$ {
-    /** @deprecated use `FeedsControllerDeleteFeedByIdRequest$inboundSchema` instead. */
-    export const inboundSchema = FeedsControllerDeleteFeedByIdRequest$inboundSchema;
-    /** @deprecated use `FeedsControllerDeleteFeedByIdRequest$outboundSchema` instead. */
-    export const outboundSchema = FeedsControllerDeleteFeedByIdRequest$outboundSchema;
-    /** @deprecated use `FeedsControllerDeleteFeedByIdRequest$Outbound` instead. */
-    export type Outbound = FeedsControllerDeleteFeedByIdRequest$Outbound;
+  /** @deprecated use `FeedsControllerDeleteFeedByIdRequest$inboundSchema` instead. */
+  export const inboundSchema =
+    FeedsControllerDeleteFeedByIdRequest$inboundSchema;
+  /** @deprecated use `FeedsControllerDeleteFeedByIdRequest$outboundSchema` instead. */
+  export const outboundSchema =
+    FeedsControllerDeleteFeedByIdRequest$outboundSchema;
+  /** @deprecated use `FeedsControllerDeleteFeedByIdRequest$Outbound` instead. */
+  export type Outbound = FeedsControllerDeleteFeedByIdRequest$Outbound;
 }

@@ -6,7 +6,7 @@
 import { DigestTimedMetadata } from "@novu/api/models/components";
 
 let value: DigestTimedMetadata = {
-    type: "timed",
+  type: "timed",
 };
 ```
 

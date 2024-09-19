@@ -7,7 +7,9 @@ Optional feed identifier or array of feed identifiers
 ```typescript
 import { FeedIdentifier } from "@novu/api/models/components";
 
-let value: FeedIdentifier = ["<value>"];
+let value: FeedIdentifier = [
+  "<value>",
+];
 ```
 
 ## Supported Types

@@ -30,7 +30,7 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.layouts.create();
-
+  
   // Handle the result
   console.log(result)
 }
@@ -102,8 +102,6 @@ const novu = new Novu({
 
 async function run() {
   await novu.layouts.delete("<value>");
-
-  
 }
 
 run();
@@ -173,8 +171,6 @@ const novu = new Novu({
 
 async function run() {
   await novu.layouts.list({});
-
-  
 }
 
 run();
@@ -244,7 +240,7 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.layouts.retrieve("<value>");
-
+  
   // Handle the result
   console.log(result)
 }
@@ -317,8 +313,6 @@ const novu = new Novu({
 
 async function run() {
   await novu.layouts.setAsDefault("<value>");
-
-  
 }
 
 run();
@@ -390,7 +384,7 @@ async function run() {
   const result = await novu.layouts.update("<value>", {
     identifier: "<value>",
   });
-
+  
   // Handle the result
   console.log(result)
 }

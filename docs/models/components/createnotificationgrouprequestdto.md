@@ -6,7 +6,7 @@
 import { CreateNotificationGroupRequestDto } from "@novu/api/models/components";
 
 let value: CreateNotificationGroupRequestDto = {
-    name: "<value>",
+  name: "<value>",
 };
 ```
 

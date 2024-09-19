@@ -9,25 +9,31 @@ import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class Authentication extends ClientSDK {
-    /**
-     * Handle chat oauth
-     */
-    async chatAccessOauth(
-        request: operations.SubscribersControllerChatAccessOauthRequest,
-        options?: RequestOptions
-    ): Promise<void> {
-        return unwrapAsync(subscribersAuthenticationChatAccessOauth(this, request, options));
-    }
+  /**
+   * Handle chat oauth
+   */
+  async chatAccessOauth(
+    request: operations.SubscribersControllerChatAccessOauthRequest,
+    options?: RequestOptions,
+  ): Promise<void> {
+    return unwrapAsync(subscribersAuthenticationChatAccessOauth(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Handle providers oauth redirect
-     */
-    async chatAccessOauthCallBack(
-        request: operations.SubscribersControllerChatOauthCallbackRequest,
-        options?: RequestOptions
-    ): Promise<operations.SubscribersControllerChatOauthCallbackResponseBody> {
-        return unwrapAsync(
-            subscribersAuthenticationChatAccessOauthCallBack(this, request, options)
-        );
-    }
+  /**
+   * Handle providers oauth redirect
+   */
+  async chatAccessOauthCallBack(
+    request: operations.SubscribersControllerChatOauthCallbackRequest,
+    options?: RequestOptions,
+  ): Promise<operations.SubscribersControllerChatOauthCallbackResponseBody> {
+    return unwrapAsync(subscribersAuthenticationChatAccessOauthCallBack(
+      this,
+      request,
+      options,
+    ));
+  }
 }

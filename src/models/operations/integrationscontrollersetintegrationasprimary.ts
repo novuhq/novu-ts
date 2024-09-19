@@ -5,42 +5,46 @@
 import * as z from "zod";
 
 export type IntegrationsControllerSetIntegrationAsPrimaryRequest = {
-    integrationId: string;
+  integrationId: string;
 };
 
 /** @internal */
-export const IntegrationsControllerSetIntegrationAsPrimaryRequest$inboundSchema: z.ZodType<
+export const IntegrationsControllerSetIntegrationAsPrimaryRequest$inboundSchema:
+  z.ZodType<
     IntegrationsControllerSetIntegrationAsPrimaryRequest,
     z.ZodTypeDef,
     unknown
-> = z.object({
+  > = z.object({
     integrationId: z.string(),
-});
+  });
 
 /** @internal */
 export type IntegrationsControllerSetIntegrationAsPrimaryRequest$Outbound = {
-    integrationId: string;
+  integrationId: string;
 };
 
 /** @internal */
-export const IntegrationsControllerSetIntegrationAsPrimaryRequest$outboundSchema: z.ZodType<
+export const IntegrationsControllerSetIntegrationAsPrimaryRequest$outboundSchema:
+  z.ZodType<
     IntegrationsControllerSetIntegrationAsPrimaryRequest$Outbound,
     z.ZodTypeDef,
     IntegrationsControllerSetIntegrationAsPrimaryRequest
-> = z.object({
+  > = z.object({
     integrationId: z.string(),
-});
+  });
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace IntegrationsControllerSetIntegrationAsPrimaryRequest$ {
-    /** @deprecated use `IntegrationsControllerSetIntegrationAsPrimaryRequest$inboundSchema` instead. */
-    export const inboundSchema = IntegrationsControllerSetIntegrationAsPrimaryRequest$inboundSchema;
-    /** @deprecated use `IntegrationsControllerSetIntegrationAsPrimaryRequest$outboundSchema` instead. */
-    export const outboundSchema =
-        IntegrationsControllerSetIntegrationAsPrimaryRequest$outboundSchema;
-    /** @deprecated use `IntegrationsControllerSetIntegrationAsPrimaryRequest$Outbound` instead. */
-    export type Outbound = IntegrationsControllerSetIntegrationAsPrimaryRequest$Outbound;
+  /** @deprecated use `IntegrationsControllerSetIntegrationAsPrimaryRequest$inboundSchema` instead. */
+  export const inboundSchema =
+    IntegrationsControllerSetIntegrationAsPrimaryRequest$inboundSchema;
+  /** @deprecated use `IntegrationsControllerSetIntegrationAsPrimaryRequest$outboundSchema` instead. */
+  export const outboundSchema =
+    IntegrationsControllerSetIntegrationAsPrimaryRequest$outboundSchema;
+  /** @deprecated use `IntegrationsControllerSetIntegrationAsPrimaryRequest$Outbound` instead. */
+  export type Outbound =
+    IntegrationsControllerSetIntegrationAsPrimaryRequest$Outbound;
 }

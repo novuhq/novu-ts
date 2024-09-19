@@ -7,214 +7,224 @@ import * as z from "zod";
 export type TlsOptions = {};
 
 export type CredentialsDto = {
-    accessKey?: string | undefined;
-    accountSid?: string | undefined;
-    alertUid?: string | undefined;
-    apiKey?: string | undefined;
-    apiKeyRequestHeader?: string | undefined;
-    apiToken?: string | undefined;
-    applicationId?: string | undefined;
-    authenticateByToken?: boolean | undefined;
-    authenticationTokenKey?: string | undefined;
-    baseUrl?: string | undefined;
-    channelId?: string | undefined;
-    clientId?: string | undefined;
-    datePath?: string | undefined;
-    domain?: string | undefined;
-    externalLink?: string | undefined;
-    from?: string | undefined;
-    hmac?: boolean | undefined;
-    host?: string | undefined;
-    idPath?: string | undefined;
-    ignoreTls?: boolean | undefined;
-    imageUrl?: string | undefined;
-    instanceId?: string | undefined;
-    ipPoolName?: string | undefined;
-    messageProfileId?: string | undefined;
-    password?: string | undefined;
-    phoneNumberIdentification?: string | undefined;
-    port?: string | undefined;
-    projectName?: string | undefined;
-    redirectUrl?: string | undefined;
-    region?: string | undefined;
-    requireTls?: boolean | undefined;
-    secretKey?: string | undefined;
-    secretKeyRequestHeader?: string | undefined;
-    secure?: boolean | undefined;
-    senderName?: string | undefined;
-    serviceAccount?: string | undefined;
-    state?: string | undefined;
-    title?: string | undefined;
-    tlsOptions?: TlsOptions | undefined;
-    token?: string | undefined;
-    user?: string | undefined;
-    webhookUrl?: string | undefined;
+  accessKey?: string | undefined;
+  accountSid?: string | undefined;
+  alertUid?: string | undefined;
+  apiKey?: string | undefined;
+  apiKeyRequestHeader?: string | undefined;
+  apiToken?: string | undefined;
+  applicationId?: string | undefined;
+  authenticateByToken?: boolean | undefined;
+  authenticationTokenKey?: string | undefined;
+  baseUrl?: string | undefined;
+  channelId?: string | undefined;
+  clientId?: string | undefined;
+  datePath?: string | undefined;
+  domain?: string | undefined;
+  externalLink?: string | undefined;
+  from?: string | undefined;
+  hmac?: boolean | undefined;
+  host?: string | undefined;
+  idPath?: string | undefined;
+  ignoreTls?: boolean | undefined;
+  imageUrl?: string | undefined;
+  instanceId?: string | undefined;
+  ipPoolName?: string | undefined;
+  messageProfileId?: string | undefined;
+  password?: string | undefined;
+  phoneNumberIdentification?: string | undefined;
+  port?: string | undefined;
+  projectName?: string | undefined;
+  redirectUrl?: string | undefined;
+  region?: string | undefined;
+  requireTls?: boolean | undefined;
+  secretKey?: string | undefined;
+  secretKeyRequestHeader?: string | undefined;
+  secure?: boolean | undefined;
+  senderName?: string | undefined;
+  serviceAccount?: string | undefined;
+  state?: string | undefined;
+  title?: string | undefined;
+  tlsOptions?: TlsOptions | undefined;
+  token?: string | undefined;
+  user?: string | undefined;
+  webhookUrl?: string | undefined;
 };
 
 /** @internal */
-export const TlsOptions$inboundSchema: z.ZodType<TlsOptions, z.ZodTypeDef, unknown> = z.object({});
+export const TlsOptions$inboundSchema: z.ZodType<
+  TlsOptions,
+  z.ZodTypeDef,
+  unknown
+> = z.object({});
 
 /** @internal */
 export type TlsOptions$Outbound = {};
 
 /** @internal */
-export const TlsOptions$outboundSchema: z.ZodType<TlsOptions$Outbound, z.ZodTypeDef, TlsOptions> =
-    z.object({});
+export const TlsOptions$outboundSchema: z.ZodType<
+  TlsOptions$Outbound,
+  z.ZodTypeDef,
+  TlsOptions
+> = z.object({});
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace TlsOptions$ {
-    /** @deprecated use `TlsOptions$inboundSchema` instead. */
-    export const inboundSchema = TlsOptions$inboundSchema;
-    /** @deprecated use `TlsOptions$outboundSchema` instead. */
-    export const outboundSchema = TlsOptions$outboundSchema;
-    /** @deprecated use `TlsOptions$Outbound` instead. */
-    export type Outbound = TlsOptions$Outbound;
+  /** @deprecated use `TlsOptions$inboundSchema` instead. */
+  export const inboundSchema = TlsOptions$inboundSchema;
+  /** @deprecated use `TlsOptions$outboundSchema` instead. */
+  export const outboundSchema = TlsOptions$outboundSchema;
+  /** @deprecated use `TlsOptions$Outbound` instead. */
+  export type Outbound = TlsOptions$Outbound;
 }
 
 /** @internal */
-export const CredentialsDto$inboundSchema: z.ZodType<CredentialsDto, z.ZodTypeDef, unknown> =
-    z.object({
-        accessKey: z.string().optional(),
-        accountSid: z.string().optional(),
-        alertUid: z.string().optional(),
-        apiKey: z.string().optional(),
-        apiKeyRequestHeader: z.string().optional(),
-        apiToken: z.string().optional(),
-        applicationId: z.string().optional(),
-        authenticateByToken: z.boolean().optional(),
-        authenticationTokenKey: z.string().optional(),
-        baseUrl: z.string().optional(),
-        channelId: z.string().optional(),
-        clientId: z.string().optional(),
-        datePath: z.string().optional(),
-        domain: z.string().optional(),
-        externalLink: z.string().optional(),
-        from: z.string().optional(),
-        hmac: z.boolean().optional(),
-        host: z.string().optional(),
-        idPath: z.string().optional(),
-        ignoreTls: z.boolean().optional(),
-        imageUrl: z.string().optional(),
-        instanceId: z.string().optional(),
-        ipPoolName: z.string().optional(),
-        messageProfileId: z.string().optional(),
-        password: z.string().optional(),
-        phoneNumberIdentification: z.string().optional(),
-        port: z.string().optional(),
-        projectName: z.string().optional(),
-        redirectUrl: z.string().optional(),
-        region: z.string().optional(),
-        requireTls: z.boolean().optional(),
-        secretKey: z.string().optional(),
-        secretKeyRequestHeader: z.string().optional(),
-        secure: z.boolean().optional(),
-        senderName: z.string().optional(),
-        serviceAccount: z.string().optional(),
-        state: z.string().optional(),
-        title: z.string().optional(),
-        tlsOptions: z.lazy(() => TlsOptions$inboundSchema).optional(),
-        token: z.string().optional(),
-        user: z.string().optional(),
-        webhookUrl: z.string().optional(),
-    });
+export const CredentialsDto$inboundSchema: z.ZodType<
+  CredentialsDto,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  accessKey: z.string().optional(),
+  accountSid: z.string().optional(),
+  alertUid: z.string().optional(),
+  apiKey: z.string().optional(),
+  apiKeyRequestHeader: z.string().optional(),
+  apiToken: z.string().optional(),
+  applicationId: z.string().optional(),
+  authenticateByToken: z.boolean().optional(),
+  authenticationTokenKey: z.string().optional(),
+  baseUrl: z.string().optional(),
+  channelId: z.string().optional(),
+  clientId: z.string().optional(),
+  datePath: z.string().optional(),
+  domain: z.string().optional(),
+  externalLink: z.string().optional(),
+  from: z.string().optional(),
+  hmac: z.boolean().optional(),
+  host: z.string().optional(),
+  idPath: z.string().optional(),
+  ignoreTls: z.boolean().optional(),
+  imageUrl: z.string().optional(),
+  instanceId: z.string().optional(),
+  ipPoolName: z.string().optional(),
+  messageProfileId: z.string().optional(),
+  password: z.string().optional(),
+  phoneNumberIdentification: z.string().optional(),
+  port: z.string().optional(),
+  projectName: z.string().optional(),
+  redirectUrl: z.string().optional(),
+  region: z.string().optional(),
+  requireTls: z.boolean().optional(),
+  secretKey: z.string().optional(),
+  secretKeyRequestHeader: z.string().optional(),
+  secure: z.boolean().optional(),
+  senderName: z.string().optional(),
+  serviceAccount: z.string().optional(),
+  state: z.string().optional(),
+  title: z.string().optional(),
+  tlsOptions: z.lazy(() => TlsOptions$inboundSchema).optional(),
+  token: z.string().optional(),
+  user: z.string().optional(),
+  webhookUrl: z.string().optional(),
+});
 
 /** @internal */
 export type CredentialsDto$Outbound = {
-    accessKey?: string | undefined;
-    accountSid?: string | undefined;
-    alertUid?: string | undefined;
-    apiKey?: string | undefined;
-    apiKeyRequestHeader?: string | undefined;
-    apiToken?: string | undefined;
-    applicationId?: string | undefined;
-    authenticateByToken?: boolean | undefined;
-    authenticationTokenKey?: string | undefined;
-    baseUrl?: string | undefined;
-    channelId?: string | undefined;
-    clientId?: string | undefined;
-    datePath?: string | undefined;
-    domain?: string | undefined;
-    externalLink?: string | undefined;
-    from?: string | undefined;
-    hmac?: boolean | undefined;
-    host?: string | undefined;
-    idPath?: string | undefined;
-    ignoreTls?: boolean | undefined;
-    imageUrl?: string | undefined;
-    instanceId?: string | undefined;
-    ipPoolName?: string | undefined;
-    messageProfileId?: string | undefined;
-    password?: string | undefined;
-    phoneNumberIdentification?: string | undefined;
-    port?: string | undefined;
-    projectName?: string | undefined;
-    redirectUrl?: string | undefined;
-    region?: string | undefined;
-    requireTls?: boolean | undefined;
-    secretKey?: string | undefined;
-    secretKeyRequestHeader?: string | undefined;
-    secure?: boolean | undefined;
-    senderName?: string | undefined;
-    serviceAccount?: string | undefined;
-    state?: string | undefined;
-    title?: string | undefined;
-    tlsOptions?: TlsOptions$Outbound | undefined;
-    token?: string | undefined;
-    user?: string | undefined;
-    webhookUrl?: string | undefined;
+  accessKey?: string | undefined;
+  accountSid?: string | undefined;
+  alertUid?: string | undefined;
+  apiKey?: string | undefined;
+  apiKeyRequestHeader?: string | undefined;
+  apiToken?: string | undefined;
+  applicationId?: string | undefined;
+  authenticateByToken?: boolean | undefined;
+  authenticationTokenKey?: string | undefined;
+  baseUrl?: string | undefined;
+  channelId?: string | undefined;
+  clientId?: string | undefined;
+  datePath?: string | undefined;
+  domain?: string | undefined;
+  externalLink?: string | undefined;
+  from?: string | undefined;
+  hmac?: boolean | undefined;
+  host?: string | undefined;
+  idPath?: string | undefined;
+  ignoreTls?: boolean | undefined;
+  imageUrl?: string | undefined;
+  instanceId?: string | undefined;
+  ipPoolName?: string | undefined;
+  messageProfileId?: string | undefined;
+  password?: string | undefined;
+  phoneNumberIdentification?: string | undefined;
+  port?: string | undefined;
+  projectName?: string | undefined;
+  redirectUrl?: string | undefined;
+  region?: string | undefined;
+  requireTls?: boolean | undefined;
+  secretKey?: string | undefined;
+  secretKeyRequestHeader?: string | undefined;
+  secure?: boolean | undefined;
+  senderName?: string | undefined;
+  serviceAccount?: string | undefined;
+  state?: string | undefined;
+  title?: string | undefined;
+  tlsOptions?: TlsOptions$Outbound | undefined;
+  token?: string | undefined;
+  user?: string | undefined;
+  webhookUrl?: string | undefined;
 };
 
 /** @internal */
 export const CredentialsDto$outboundSchema: z.ZodType<
-    CredentialsDto$Outbound,
-    z.ZodTypeDef,
-    CredentialsDto
+  CredentialsDto$Outbound,
+  z.ZodTypeDef,
+  CredentialsDto
 > = z.object({
-    accessKey: z.string().optional(),
-    accountSid: z.string().optional(),
-    alertUid: z.string().optional(),
-    apiKey: z.string().optional(),
-    apiKeyRequestHeader: z.string().optional(),
-    apiToken: z.string().optional(),
-    applicationId: z.string().optional(),
-    authenticateByToken: z.boolean().optional(),
-    authenticationTokenKey: z.string().optional(),
-    baseUrl: z.string().optional(),
-    channelId: z.string().optional(),
-    clientId: z.string().optional(),
-    datePath: z.string().optional(),
-    domain: z.string().optional(),
-    externalLink: z.string().optional(),
-    from: z.string().optional(),
-    hmac: z.boolean().optional(),
-    host: z.string().optional(),
-    idPath: z.string().optional(),
-    ignoreTls: z.boolean().optional(),
-    imageUrl: z.string().optional(),
-    instanceId: z.string().optional(),
-    ipPoolName: z.string().optional(),
-    messageProfileId: z.string().optional(),
-    password: z.string().optional(),
-    phoneNumberIdentification: z.string().optional(),
-    port: z.string().optional(),
-    projectName: z.string().optional(),
-    redirectUrl: z.string().optional(),
-    region: z.string().optional(),
-    requireTls: z.boolean().optional(),
-    secretKey: z.string().optional(),
-    secretKeyRequestHeader: z.string().optional(),
-    secure: z.boolean().optional(),
-    senderName: z.string().optional(),
-    serviceAccount: z.string().optional(),
-    state: z.string().optional(),
-    title: z.string().optional(),
-    tlsOptions: z.lazy(() => TlsOptions$outboundSchema).optional(),
-    token: z.string().optional(),
-    user: z.string().optional(),
-    webhookUrl: z.string().optional(),
+  accessKey: z.string().optional(),
+  accountSid: z.string().optional(),
+  alertUid: z.string().optional(),
+  apiKey: z.string().optional(),
+  apiKeyRequestHeader: z.string().optional(),
+  apiToken: z.string().optional(),
+  applicationId: z.string().optional(),
+  authenticateByToken: z.boolean().optional(),
+  authenticationTokenKey: z.string().optional(),
+  baseUrl: z.string().optional(),
+  channelId: z.string().optional(),
+  clientId: z.string().optional(),
+  datePath: z.string().optional(),
+  domain: z.string().optional(),
+  externalLink: z.string().optional(),
+  from: z.string().optional(),
+  hmac: z.boolean().optional(),
+  host: z.string().optional(),
+  idPath: z.string().optional(),
+  ignoreTls: z.boolean().optional(),
+  imageUrl: z.string().optional(),
+  instanceId: z.string().optional(),
+  ipPoolName: z.string().optional(),
+  messageProfileId: z.string().optional(),
+  password: z.string().optional(),
+  phoneNumberIdentification: z.string().optional(),
+  port: z.string().optional(),
+  projectName: z.string().optional(),
+  redirectUrl: z.string().optional(),
+  region: z.string().optional(),
+  requireTls: z.boolean().optional(),
+  secretKey: z.string().optional(),
+  secretKeyRequestHeader: z.string().optional(),
+  secure: z.boolean().optional(),
+  senderName: z.string().optional(),
+  serviceAccount: z.string().optional(),
+  state: z.string().optional(),
+  title: z.string().optional(),
+  tlsOptions: z.lazy(() => TlsOptions$outboundSchema).optional(),
+  token: z.string().optional(),
+  user: z.string().optional(),
+  webhookUrl: z.string().optional(),
 });
 
 /**
@@ -222,10 +232,10 @@ export const CredentialsDto$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace CredentialsDto$ {
-    /** @deprecated use `CredentialsDto$inboundSchema` instead. */
-    export const inboundSchema = CredentialsDto$inboundSchema;
-    /** @deprecated use `CredentialsDto$outboundSchema` instead. */
-    export const outboundSchema = CredentialsDto$outboundSchema;
-    /** @deprecated use `CredentialsDto$Outbound` instead. */
-    export type Outbound = CredentialsDto$Outbound;
+  /** @deprecated use `CredentialsDto$inboundSchema` instead. */
+  export const inboundSchema = CredentialsDto$inboundSchema;
+  /** @deprecated use `CredentialsDto$outboundSchema` instead. */
+  export const outboundSchema = CredentialsDto$outboundSchema;
+  /** @deprecated use `CredentialsDto$Outbound` instead. */
+  export type Outbound = CredentialsDto$Outbound;
 }

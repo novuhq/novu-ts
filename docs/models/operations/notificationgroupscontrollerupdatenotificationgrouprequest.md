@@ -6,10 +6,10 @@
 import { NotificationGroupsControllerUpdateNotificationGroupRequest } from "@novu/api/models/operations";
 
 let value: NotificationGroupsControllerUpdateNotificationGroupRequest = {
-    id: "<id>",
-    createNotificationGroupRequestDto: {
-        name: "<value>",
-    },
+  id: "<id>",
+  createNotificationGroupRequestDto: {
+    name: "<value>",
+  },
 };
 ```
 

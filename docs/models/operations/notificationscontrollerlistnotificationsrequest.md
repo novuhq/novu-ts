@@ -6,11 +6,19 @@
 import { NotificationsControllerListNotificationsRequest } from "@novu/api/models/operations";
 
 let value: NotificationsControllerListNotificationsRequest = {
-    channels: ["email"],
-    templates: ["<value>"],
-    emails: ["<value>"],
-    search: "<value>",
-    subscriberIds: ["<value>"],
+  channels: [
+    "email",
+  ],
+  templates: [
+    "<value>",
+  ],
+  emails: [
+    "<value>",
+  ],
+  search: "<value>",
+  subscriberIds: [
+    "<value>",
+  ],
 };
 ```
 

@@ -5,10 +5,11 @@
 ```typescript
 import { ExecutionDetailsControllerGetExecutionDetailsForNotificationRequest } from "@novu/api/models/operations";
 
-let value: ExecutionDetailsControllerGetExecutionDetailsForNotificationRequest = {
+let value: ExecutionDetailsControllerGetExecutionDetailsForNotificationRequest =
+  {
     notificationId: "<value>",
     subscriberId: "<value>",
-};
+  };
 ```
 
 ## Fields

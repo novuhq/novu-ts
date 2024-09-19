@@ -6,8 +6,8 @@
 import { MessageButton } from "@novu/api/models/components";
 
 let value: MessageButton = {
-    content: "<value>",
-    type: "secondary",
+  content: "<value>",
+  type: "secondary",
 };
 ```
 

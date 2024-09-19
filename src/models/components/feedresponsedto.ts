@@ -5,43 +5,46 @@
 import * as z from "zod";
 
 export type FeedResponseDto = {
-    data: Array<string>;
-    hasMore: boolean;
-    page: number;
-    pageSize: number;
-    totalCount?: number | undefined;
+  data: Array<string>;
+  hasMore: boolean;
+  page: number;
+  pageSize: number;
+  totalCount?: number | undefined;
 };
 
 /** @internal */
-export const FeedResponseDto$inboundSchema: z.ZodType<FeedResponseDto, z.ZodTypeDef, unknown> =
-    z.object({
-        data: z.array(z.string()),
-        hasMore: z.boolean(),
-        page: z.number(),
-        pageSize: z.number(),
-        totalCount: z.number().optional(),
-    });
+export const FeedResponseDto$inboundSchema: z.ZodType<
+  FeedResponseDto,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  data: z.array(z.string()),
+  hasMore: z.boolean(),
+  page: z.number(),
+  pageSize: z.number(),
+  totalCount: z.number().optional(),
+});
 
 /** @internal */
 export type FeedResponseDto$Outbound = {
-    data: Array<string>;
-    hasMore: boolean;
-    page: number;
-    pageSize: number;
-    totalCount?: number | undefined;
+  data: Array<string>;
+  hasMore: boolean;
+  page: number;
+  pageSize: number;
+  totalCount?: number | undefined;
 };
 
 /** @internal */
 export const FeedResponseDto$outboundSchema: z.ZodType<
-    FeedResponseDto$Outbound,
-    z.ZodTypeDef,
-    FeedResponseDto
+  FeedResponseDto$Outbound,
+  z.ZodTypeDef,
+  FeedResponseDto
 > = z.object({
-    data: z.array(z.string()),
-    hasMore: z.boolean(),
-    page: z.number(),
-    pageSize: z.number(),
-    totalCount: z.number().optional(),
+  data: z.array(z.string()),
+  hasMore: z.boolean(),
+  page: z.number(),
+  pageSize: z.number(),
+  totalCount: z.number().optional(),
 });
 
 /**
@@ -49,10 +52,10 @@ export const FeedResponseDto$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace FeedResponseDto$ {
-    /** @deprecated use `FeedResponseDto$inboundSchema` instead. */
-    export const inboundSchema = FeedResponseDto$inboundSchema;
-    /** @deprecated use `FeedResponseDto$outboundSchema` instead. */
-    export const outboundSchema = FeedResponseDto$outboundSchema;
-    /** @deprecated use `FeedResponseDto$Outbound` instead. */
-    export type Outbound = FeedResponseDto$Outbound;
+  /** @deprecated use `FeedResponseDto$inboundSchema` instead. */
+  export const inboundSchema = FeedResponseDto$inboundSchema;
+  /** @deprecated use `FeedResponseDto$outboundSchema` instead. */
+  export const outboundSchema = FeedResponseDto$outboundSchema;
+  /** @deprecated use `FeedResponseDto$Outbound` instead. */
+  export type Outbound = FeedResponseDto$Outbound;
 }

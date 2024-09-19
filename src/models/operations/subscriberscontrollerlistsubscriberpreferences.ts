@@ -5,43 +5,46 @@
 import * as z from "zod";
 
 export type SubscribersControllerListSubscriberPreferencesRequest = {
-    subscriberId: string;
+  subscriberId: string;
 };
 
 /** @internal */
-export const SubscribersControllerListSubscriberPreferencesRequest$inboundSchema: z.ZodType<
+export const SubscribersControllerListSubscriberPreferencesRequest$inboundSchema:
+  z.ZodType<
     SubscribersControllerListSubscriberPreferencesRequest,
     z.ZodTypeDef,
     unknown
-> = z.object({
+  > = z.object({
     subscriberId: z.string(),
-});
+  });
 
 /** @internal */
 export type SubscribersControllerListSubscriberPreferencesRequest$Outbound = {
-    subscriberId: string;
+  subscriberId: string;
 };
 
 /** @internal */
-export const SubscribersControllerListSubscriberPreferencesRequest$outboundSchema: z.ZodType<
+export const SubscribersControllerListSubscriberPreferencesRequest$outboundSchema:
+  z.ZodType<
     SubscribersControllerListSubscriberPreferencesRequest$Outbound,
     z.ZodTypeDef,
     SubscribersControllerListSubscriberPreferencesRequest
-> = z.object({
+  > = z.object({
     subscriberId: z.string(),
-});
+  });
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace SubscribersControllerListSubscriberPreferencesRequest$ {
-    /** @deprecated use `SubscribersControllerListSubscriberPreferencesRequest$inboundSchema` instead. */
-    export const inboundSchema =
-        SubscribersControllerListSubscriberPreferencesRequest$inboundSchema;
-    /** @deprecated use `SubscribersControllerListSubscriberPreferencesRequest$outboundSchema` instead. */
-    export const outboundSchema =
-        SubscribersControllerListSubscriberPreferencesRequest$outboundSchema;
-    /** @deprecated use `SubscribersControllerListSubscriberPreferencesRequest$Outbound` instead. */
-    export type Outbound = SubscribersControllerListSubscriberPreferencesRequest$Outbound;
+  /** @deprecated use `SubscribersControllerListSubscriberPreferencesRequest$inboundSchema` instead. */
+  export const inboundSchema =
+    SubscribersControllerListSubscriberPreferencesRequest$inboundSchema;
+  /** @deprecated use `SubscribersControllerListSubscriberPreferencesRequest$outboundSchema` instead. */
+  export const outboundSchema =
+    SubscribersControllerListSubscriberPreferencesRequest$outboundSchema;
+  /** @deprecated use `SubscribersControllerListSubscriberPreferencesRequest$Outbound` instead. */
+  export type Outbound =
+    SubscribersControllerListSubscriberPreferencesRequest$Outbound;
 }

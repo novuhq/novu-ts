@@ -79,14 +79,14 @@ For supported JavaScript runtimes, please consult [RUNTIMES.md](RUNTIMES.md).
 import { Novu } from "@novu/api";
 
 const novu = new Novu({
-    apiKey: "<YOUR_API_KEY_HERE>",
+  apiKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
-    const result = await novu.cancel("<value>");
+  const result = await novu.cancel("<value>");
 
-    // Handle the result
-    console.log(result);
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -99,24 +99,24 @@ run();
 import { Novu } from "@novu/api";
 
 const novu = new Novu({
-    apiKey: "<YOUR_API_KEY_HERE>",
+  apiKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
-    const result = await novu.trigger({
-        name: "workflow_identifier",
-        overrides: {},
-        payload: {},
-        to: [
-            {
-                topicKey: "<value>",
-                type: "Topic",
-            },
-        ],
-    });
+  const result = await novu.trigger({
+    name: "workflow_identifier",
+    overrides: {},
+    payload: {},
+    to: [
+      {
+        topicKey: "<value>",
+        type: "Topic",
+      },
+    ],
+  });
 
-    // Handle the result
-    console.log(result);
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -129,18 +129,18 @@ run();
 import { Novu } from "@novu/api";
 
 const novu = new Novu({
-    apiKey: "<YOUR_API_KEY_HERE>",
+  apiKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
-    const result = await novu.triggerBroadcast({
-        name: "<value>",
-        overrides: {},
-        payload: {},
-    });
+  const result = await novu.triggerBroadcast({
+    name: "<value>",
+    overrides: {},
+    payload: {},
+  });
 
-    // Handle the result
-    console.log(result);
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -153,16 +153,16 @@ run();
 import { Novu } from "@novu/api";
 
 const novu = new Novu({
-    apiKey: "<YOUR_API_KEY_HERE>",
+  apiKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
-    const result = await novu.triggerBulk({
-        events: [],
-    });
+  const result = await novu.triggerBulk({
+    events: [],
+  });
 
-    // Handle the result
-    console.log(result);
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -173,12 +173,8 @@ run();
 <!-- Start Available Resources and Operations [operations] -->
 ## Available Resources and Operations
 
-### [Novu SDK](docs/sdks/novu/README.md)
-
-* [cancel](docs/sdks/novu/README.md#cancel) - Cancel triggered event
-* [trigger](docs/sdks/novu/README.md#trigger) - Trigger event
-* [triggerBroadcast](docs/sdks/novu/README.md#triggerbroadcast) - Broadcast event to all
-* [triggerBulk](docs/sdks/novu/README.md#triggerbulk) - Bulk trigger event
+<details open>
+<summary>Available methods</summary>
 
 ### [changes](docs/sdks/changes/README.md)
 
@@ -192,7 +188,7 @@ run();
 * [list](docs/sdks/environments/README.md#list) - Get environments
 * [retrieve](docs/sdks/environments/README.md#retrieve) - Get current environment
 
-### [environments.apiKeys](docs/sdks/apikeys/README.md)
+#### [environments.apiKeys](docs/sdks/apikeys/README.md)
 
 * [list](docs/sdks/apikeys/README.md#list) - Get api keys
 
@@ -215,7 +211,7 @@ run();
 * [setAsPrimary](docs/sdks/integrations/README.md#setasprimary) - Set integration as primary
 * [update](docs/sdks/integrations/README.md#update) - Update integration
 
-### [integrations.webhooks](docs/sdks/webhooks/README.md)
+#### [integrations.webhooks](docs/sdks/webhooks/README.md)
 
 * [retrieve](docs/sdks/webhooks/README.md#retrieve) - Get webhook support status for provider
 
@@ -234,23 +230,22 @@ run();
 * [deleteByTransactionId](docs/sdks/messages/README.md#deletebytransactionid) - Delete messages by transactionId
 * [retrieve](docs/sdks/messages/README.md#retrieve) - Get messages
 
-### [workflowGroups](docs/sdks/workflowgroups/README.md)
-
-* [create](docs/sdks/workflowgroups/README.md#create) - Create workflow group
-* [delete](docs/sdks/workflowgroups/README.md#delete) - Delete workflow group
-* [list](docs/sdks/workflowgroups/README.md#list) - Get workflow groups
-* [retrieve](docs/sdks/workflowgroups/README.md#retrieve) - Get workflow group
-* [update](docs/sdks/workflowgroups/README.md#update) - Update workflow group
-
 ### [notifications](docs/sdks/notifications/README.md)
 
 * [list](docs/sdks/notifications/README.md#list) - Get notifications
 * [retrieve](docs/sdks/notifications/README.md#retrieve) - Get notification
 
-### [notifications.stats](docs/sdks/stats/README.md)
+#### [notifications.stats](docs/sdks/stats/README.md)
 
 * [graph](docs/sdks/stats/README.md#graph) - Get notification graph statistics
 * [retrieve](docs/sdks/stats/README.md#retrieve) - Get notification statistics
+
+### [Novu SDK](docs/sdks/novu/README.md)
+
+* [cancel](docs/sdks/novu/README.md#cancel) - Cancel triggered event
+* [trigger](docs/sdks/novu/README.md#trigger) - Trigger event
+* [triggerBroadcast](docs/sdks/novu/README.md#triggerbroadcast) - Broadcast event to all
+* [triggerBulk](docs/sdks/novu/README.md#triggerbulk) - Bulk trigger event
 
 ### [organizations](docs/sdks/organizations/README.md)
 
@@ -267,38 +262,38 @@ run();
 * [retrieve](docs/sdks/subscribers/README.md#retrieve) - Get subscriber
 * [update](docs/sdks/subscribers/README.md#update) - Update subscriber
 
-### [subscribers.credentials](docs/sdks/credentials/README.md)
+#### [subscribers.authentication](docs/sdks/authentication/README.md)
+
+* [chatAccessOauth](docs/sdks/authentication/README.md#chataccessoauth) - Handle chat oauth
+* [chatAccessOauthCallBack](docs/sdks/authentication/README.md#chataccessoauthcallback) - Handle providers oauth redirect
+
+#### [subscribers.credentials](docs/sdks/credentials/README.md)
 
 * [append](docs/sdks/credentials/README.md#append) - Modify subscriber credentials
 * [delete](docs/sdks/credentials/README.md#delete) - Delete subscriber credentials by providerId
 * [update](docs/sdks/credentials/README.md#update) - Update subscriber credentials
 
-### [subscribers.authentication](docs/sdks/authentication/README.md)
-
-* [chatAccessOauth](docs/sdks/authentication/README.md#chataccessoauth) - Handle chat oauth
-* [chatAccessOauthCallBack](docs/sdks/authentication/README.md#chataccessoauthcallback) - Handle providers oauth redirect
-
-### [subscribers.messages](docs/sdks/novumessages/README.md)
+#### [subscribers.messages](docs/sdks/novumessages/README.md)
 
 * [markAll](docs/sdks/novumessages/README.md#markall) - Marks all the subscriber messages as read, unread, seen or unseen. Optionally you can pass feed id (or array) to mark messages of a particular feed.
 * [markAllAs](docs/sdks/novumessages/README.md#markallas) - Mark a subscriber messages as seen, read, unseen or unread
 * [updateAsSeen](docs/sdks/novumessages/README.md#updateasseen) - Mark message action as seen
 
-### [subscribers.notifications](docs/sdks/novunotifications/README.md)
+#### [subscribers.notifications](docs/sdks/novunotifications/README.md)
 
 * [retrieve](docs/sdks/novunotifications/README.md#retrieve) - Get in-app notification feed for a particular subscriber
 * [unseenCount](docs/sdks/novunotifications/README.md#unseencount) - Get the unseen in-app notifications count for subscribers feed
 
-### [subscribers.properties](docs/sdks/properties/README.md)
-
-* [updateOnlineFlag](docs/sdks/properties/README.md#updateonlineflag) - Update subscriber online status
-
-### [subscribers.preferences](docs/sdks/preferences/README.md)
+#### [subscribers.preferences](docs/sdks/preferences/README.md)
 
 * [list](docs/sdks/preferences/README.md#list) - Get subscriber preferences
 * [retrieveByLevel](docs/sdks/preferences/README.md#retrievebylevel) - Get subscriber preferences by level
 * [update](docs/sdks/preferences/README.md#update) - Update subscriber preference
 * [updateGlobal](docs/sdks/preferences/README.md#updateglobal) - Update subscriber global preferences
+
+#### [subscribers.properties](docs/sdks/properties/README.md)
+
+* [updateOnlineFlag](docs/sdks/properties/README.md#updateonlineflag) - Update subscriber online status
 
 ### [tenants](docs/sdks/tenants/README.md)
 
@@ -316,11 +311,19 @@ run();
 * [rename](docs/sdks/topics/README.md#rename) - Rename a topic
 * [retrieve](docs/sdks/topics/README.md#retrieve) - Get topic
 
-### [topics.subscribers](docs/sdks/novusubscribers/README.md)
+#### [topics.subscribers](docs/sdks/novusubscribers/README.md)
 
 * [assign](docs/sdks/novusubscribers/README.md#assign) - Subscribers addition
 * [delete](docs/sdks/novusubscribers/README.md#delete) - Subscribers removal
 * [retrieve](docs/sdks/novusubscribers/README.md#retrieve) - Check topic subscriber
+
+### [workflowGroups](docs/sdks/workflowgroups/README.md)
+
+* [create](docs/sdks/workflowgroups/README.md#create) - Create workflow group
+* [delete](docs/sdks/workflowgroups/README.md#delete) - Delete workflow group
+* [list](docs/sdks/workflowgroups/README.md#list) - Get workflow groups
+* [retrieve](docs/sdks/workflowgroups/README.md#retrieve) - Get workflow group
+* [update](docs/sdks/workflowgroups/README.md#update) - Update workflow group
 
 ### [workflows](docs/sdks/workflows/README.md)
 
@@ -330,13 +333,15 @@ run();
 * [retrieve](docs/sdks/workflows/README.md#retrieve) - Get workflow
 * [update](docs/sdks/workflows/README.md#update) - Update workflow
 
-### [workflows.variables](docs/sdks/variables/README.md)
+#### [workflows.status](docs/sdks/status/README.md)
+
+* [update](docs/sdks/status/README.md#update) - Update workflow status
+
+#### [workflows.variables](docs/sdks/variables/README.md)
 
 * [retrieve](docs/sdks/variables/README.md#retrieve) - Get available variables
 
-### [workflows.status](docs/sdks/status/README.md)
-
-* [update](docs/sdks/status/README.md#update) - Update workflow status
+</details>
 <!-- End Available Resources and Operations [operations] -->
 
 <!-- Start Standalone functions [standalone-funcs] -->
@@ -459,16 +464,16 @@ Here's an example of one such pagination call:
 import { Novu } from "@novu/api";
 
 const novu = new Novu({
-    apiKey: "<YOUR_API_KEY_HERE>",
+  apiKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
-    const result = await novu.subscribers.list();
+  const result = await novu.subscribers.list();
 
-    for await (const page of result) {
-        // Handle the page
-        console.log(page);
-    }
+  for await (const page of result) {
+    // Handle the page
+    console.log(page);
+  }
 }
 
 run();
@@ -493,30 +498,30 @@ import { Novu } from "@novu/api";
 import { SDKValidationError } from "@novu/api/models/errors";
 
 const novu = new Novu({
-    apiKey: "<YOUR_API_KEY_HERE>",
+  apiKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
-    let result;
-    try {
-        result = await novu.cancel("<value>");
-    } catch (err) {
-        switch (true) {
-            case err instanceof SDKValidationError: {
-                // Validation errors can be pretty-printed
-                console.error(err.pretty());
-                // Raw value may also be inspected
-                console.error(err.rawValue);
-                return;
-            }
-            default: {
-                throw err;
-            }
-        }
-    }
+  let result;
+  try {
+    result = await novu.cancel("<value>");
 
     // Handle the result
     console.log(result);
+  } catch (err) {
+    switch (true) {
+      case (err instanceof SDKValidationError): {
+        // Validation errors can be pretty-printed
+        console.error(err.pretty());
+        // Raw value may also be inspected
+        console.error(err.rawValue);
+        return;
+      }
+      default: {
+        throw err;
+      }
+    }
+  }
 }
 
 run();
@@ -540,15 +545,15 @@ You can override the default server globally by passing a server index to the `s
 import { Novu } from "@novu/api";
 
 const novu = new Novu({
-    serverIdx: 1,
-    apiKey: "<YOUR_API_KEY_HERE>",
+  serverIdx: 1,
+  apiKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
-    const result = await novu.cancel("<value>");
+  const result = await novu.cancel("<value>");
 
-    // Handle the result
-    console.log(result);
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -564,15 +569,15 @@ The default server can also be overridden globally by passing a URL to the `serv
 import { Novu } from "@novu/api";
 
 const novu = new Novu({
-    serverURL: "https://api.novu.co",
-    apiKey: "<YOUR_API_KEY_HERE>",
+  serverURL: "https://api.novu.co",
+  apiKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
-    const result = await novu.cancel("<value>");
+  const result = await novu.cancel("<value>");
 
-    // Handle the result
-    console.log(result);
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -645,14 +650,14 @@ To authenticate with the API the `apiKey` parameter must be set when initializin
 import { Novu } from "@novu/api";
 
 const novu = new Novu({
-    apiKey: "<YOUR_API_KEY_HERE>",
+  apiKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
-    const result = await novu.cancel("<value>");
+  const result = await novu.cancel("<value>");
 
-    // Handle the result
-    console.log(result);
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -670,25 +675,25 @@ To change the default retry strategy for a single API call, simply provide a ret
 import { Novu } from "@novu/api";
 
 const novu = new Novu({
-    apiKey: "<YOUR_API_KEY_HERE>",
+  apiKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
-    const result = await novu.cancel("<value>", {
-        retries: {
-            strategy: "backoff",
-            backoff: {
-                initialInterval: 1,
-                maxInterval: 50,
-                exponent: 1.1,
-                maxElapsedTime: 100,
-            },
-            retryConnectionErrors: false,
-        },
-    });
+  const result = await novu.cancel("<value>", {
+    retries: {
+      strategy: "backoff",
+      backoff: {
+        initialInterval: 1,
+        maxInterval: 50,
+        exponent: 1.1,
+        maxElapsedTime: 100,
+      },
+      retryConnectionErrors: false,
+    },
+  });
 
-    // Handle the result
-    console.log(result);
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -700,24 +705,24 @@ If you'd like to override the default retry strategy for all operations that sup
 import { Novu } from "@novu/api";
 
 const novu = new Novu({
-    retryConfig: {
-        strategy: "backoff",
-        backoff: {
-            initialInterval: 1,
-            maxInterval: 50,
-            exponent: 1.1,
-            maxElapsedTime: 100,
-        },
-        retryConnectionErrors: false,
+  retryConfig: {
+    strategy: "backoff",
+    backoff: {
+      initialInterval: 1,
+      maxInterval: 50,
+      exponent: 1.1,
+      maxElapsedTime: 100,
     },
-    apiKey: "<YOUR_API_KEY_HERE>",
+    retryConnectionErrors: false,
+  },
+  apiKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
-    const result = await novu.cancel("<value>");
+  const result = await novu.cancel("<value>");
 
-    // Handle the result
-    console.log(result);
+  // Handle the result
+  console.log(result);
 }
 
 run();

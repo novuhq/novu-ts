@@ -6,7 +6,7 @@
 import { TopicsControllerGetTopicRequest } from "@novu/api/models/operations";
 
 let value: TopicsControllerGetTopicRequest = {
-    topicKey: "<value>",
+  topicKey: "<value>",
 };
 ```
 

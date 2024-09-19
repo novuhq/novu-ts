@@ -6,10 +6,10 @@
 import { FieldFilterPart } from "@novu/api/models/components";
 
 let value: FieldFilterPart = {
-    field: "<value>",
-    on: "subscriber",
-    operator: "NOT_EQUAL",
-    value: "<value>",
+  field: "<value>",
+  on: "subscriber",
+  operator: "NOT_EQUAL",
+  value: "<value>",
 };
 ```
 

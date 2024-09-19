@@ -6,10 +6,12 @@
 import { FeedResponseDto } from "@novu/api/models/components";
 
 let value: FeedResponseDto = {
-    data: ["<value>"],
-    hasMore: false,
-    page: 7917.25,
-    pageSize: 8121.69,
+  data: [
+    "<value>",
+  ],
+  hasMore: false,
+  page: 7917.25,
+  pageSize: 8121.69,
 };
 ```
 

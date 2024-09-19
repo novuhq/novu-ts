@@ -6,8 +6,8 @@
 import { SubscribersControllerUpdateSubscriberGlobalPreferencesRequest } from "@novu/api/models/operations";
 
 let value: SubscribersControllerUpdateSubscriberGlobalPreferencesRequest = {
-    subscriberId: "<value>",
-    updateSubscriberGlobalPreferencesRequestDto: {},
+  subscriberId: "<value>",
+  updateSubscriberGlobalPreferencesRequestDto: {},
 };
 ```
 

@@ -26,7 +26,7 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.environments.list();
-
+  
   // Handle the result
   console.log(result)
 }
@@ -98,7 +98,7 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.environments.retrieve();
-
+  
   // Handle the result
   console.log(result)
 }

@@ -10,51 +10,60 @@ import * as components from "../models/components/index.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class NovuSubscribers extends ClientSDK {
-    /**
-     * Subscribers addition
-     *
-     * @remarks
-     * Add subscribers to a topic by key
-     */
-    async assign(
-        topicKey: string,
-        addSubscribersRequestDto: components.AddSubscribersRequestDto,
-        options?: RequestOptions
-    ): Promise<void> {
-        return unwrapAsync(
-            topicsSubscribersAssign(this, topicKey, addSubscribersRequestDto, options)
-        );
-    }
+  /**
+   * Subscribers addition
+   *
+   * @remarks
+   * Add subscribers to a topic by key
+   */
+  async assign(
+    topicKey: string,
+    addSubscribersRequestDto: components.AddSubscribersRequestDto,
+    options?: RequestOptions,
+  ): Promise<void> {
+    return unwrapAsync(topicsSubscribersAssign(
+      this,
+      topicKey,
+      addSubscribersRequestDto,
+      options,
+    ));
+  }
 
-    /**
-     * Subscribers removal
-     *
-     * @remarks
-     * Remove subscribers from a topic
-     */
-    async delete(
-        topicKey: string,
-        removeSubscribersRequestDto: components.RemoveSubscribersRequestDto,
-        options?: RequestOptions
-    ): Promise<void> {
-        return unwrapAsync(
-            topicsSubscribersDelete(this, topicKey, removeSubscribersRequestDto, options)
-        );
-    }
+  /**
+   * Subscribers removal
+   *
+   * @remarks
+   * Remove subscribers from a topic
+   */
+  async delete(
+    topicKey: string,
+    removeSubscribersRequestDto: components.RemoveSubscribersRequestDto,
+    options?: RequestOptions,
+  ): Promise<void> {
+    return unwrapAsync(topicsSubscribersDelete(
+      this,
+      topicKey,
+      removeSubscribersRequestDto,
+      options,
+    ));
+  }
 
-    /**
-     * Check topic subscriber
-     *
-     * @remarks
-     * Check if a subscriber belongs to a certain topic
-     */
-    async retrieve(
-        externalSubscriberId: string,
-        topicKey: string,
-        options?: RequestOptions
-    ): Promise<components.TopicSubscriberDto> {
-        return unwrapAsync(
-            topicsSubscribersRetrieve(this, externalSubscriberId, topicKey, options)
-        );
-    }
+  /**
+   * Check topic subscriber
+   *
+   * @remarks
+   * Check if a subscriber belongs to a certain topic
+   */
+  async retrieve(
+    externalSubscriberId: string,
+    topicKey: string,
+    options?: RequestOptions,
+  ): Promise<components.TopicSubscriberDto> {
+    return unwrapAsync(topicsSubscribersRetrieve(
+      this,
+      externalSubscriberId,
+      topicKey,
+      options,
+    ));
+  }
 }

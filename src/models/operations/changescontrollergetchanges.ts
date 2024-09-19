@@ -5,38 +5,38 @@
 import * as z from "zod";
 
 export type ChangesControllerGetChangesRequest = {
-    page?: number | undefined;
-    limit?: number | undefined;
-    promoted?: string | undefined;
+  page?: number | undefined;
+  limit?: number | undefined;
+  promoted?: string | undefined;
 };
 
 /** @internal */
 export const ChangesControllerGetChangesRequest$inboundSchema: z.ZodType<
-    ChangesControllerGetChangesRequest,
-    z.ZodTypeDef,
-    unknown
+  ChangesControllerGetChangesRequest,
+  z.ZodTypeDef,
+  unknown
 > = z.object({
-    page: z.number().optional(),
-    limit: z.number().default(10),
-    promoted: z.string().default("false"),
+  page: z.number().optional(),
+  limit: z.number().default(10),
+  promoted: z.string().default("false"),
 });
 
 /** @internal */
 export type ChangesControllerGetChangesRequest$Outbound = {
-    page?: number | undefined;
-    limit: number;
-    promoted: string;
+  page?: number | undefined;
+  limit: number;
+  promoted: string;
 };
 
 /** @internal */
 export const ChangesControllerGetChangesRequest$outboundSchema: z.ZodType<
-    ChangesControllerGetChangesRequest$Outbound,
-    z.ZodTypeDef,
-    ChangesControllerGetChangesRequest
+  ChangesControllerGetChangesRequest$Outbound,
+  z.ZodTypeDef,
+  ChangesControllerGetChangesRequest
 > = z.object({
-    page: z.number().optional(),
-    limit: z.number().default(10),
-    promoted: z.string().default("false"),
+  page: z.number().optional(),
+  limit: z.number().default(10),
+  promoted: z.string().default("false"),
 });
 
 /**
@@ -44,10 +44,11 @@ export const ChangesControllerGetChangesRequest$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace ChangesControllerGetChangesRequest$ {
-    /** @deprecated use `ChangesControllerGetChangesRequest$inboundSchema` instead. */
-    export const inboundSchema = ChangesControllerGetChangesRequest$inboundSchema;
-    /** @deprecated use `ChangesControllerGetChangesRequest$outboundSchema` instead. */
-    export const outboundSchema = ChangesControllerGetChangesRequest$outboundSchema;
-    /** @deprecated use `ChangesControllerGetChangesRequest$Outbound` instead. */
-    export type Outbound = ChangesControllerGetChangesRequest$Outbound;
+  /** @deprecated use `ChangesControllerGetChangesRequest$inboundSchema` instead. */
+  export const inboundSchema = ChangesControllerGetChangesRequest$inboundSchema;
+  /** @deprecated use `ChangesControllerGetChangesRequest$outboundSchema` instead. */
+  export const outboundSchema =
+    ChangesControllerGetChangesRequest$outboundSchema;
+  /** @deprecated use `ChangesControllerGetChangesRequest$Outbound` instead. */
+  export type Outbound = ChangesControllerGetChangesRequest$Outbound;
 }

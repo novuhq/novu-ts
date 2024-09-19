@@ -6,7 +6,7 @@
 import { RenameTopicRequestDto } from "@novu/api/models/components";
 
 let value: RenameTopicRequestDto = {
-    name: "<value>",
+  name: "<value>",
 };
 ```
 

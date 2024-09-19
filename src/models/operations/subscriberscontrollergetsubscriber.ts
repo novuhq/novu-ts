@@ -5,41 +5,44 @@
 import * as z from "zod";
 
 export type SubscribersControllerGetSubscriberRequest = {
-    subscriberId: string;
+  subscriberId: string;
 };
 
 /** @internal */
 export const SubscribersControllerGetSubscriberRequest$inboundSchema: z.ZodType<
-    SubscribersControllerGetSubscriberRequest,
-    z.ZodTypeDef,
-    unknown
+  SubscribersControllerGetSubscriberRequest,
+  z.ZodTypeDef,
+  unknown
 > = z.object({
-    subscriberId: z.string(),
+  subscriberId: z.string(),
 });
 
 /** @internal */
 export type SubscribersControllerGetSubscriberRequest$Outbound = {
-    subscriberId: string;
+  subscriberId: string;
 };
 
 /** @internal */
-export const SubscribersControllerGetSubscriberRequest$outboundSchema: z.ZodType<
+export const SubscribersControllerGetSubscriberRequest$outboundSchema:
+  z.ZodType<
     SubscribersControllerGetSubscriberRequest$Outbound,
     z.ZodTypeDef,
     SubscribersControllerGetSubscriberRequest
-> = z.object({
+  > = z.object({
     subscriberId: z.string(),
-});
+  });
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace SubscribersControllerGetSubscriberRequest$ {
-    /** @deprecated use `SubscribersControllerGetSubscriberRequest$inboundSchema` instead. */
-    export const inboundSchema = SubscribersControllerGetSubscriberRequest$inboundSchema;
-    /** @deprecated use `SubscribersControllerGetSubscriberRequest$outboundSchema` instead. */
-    export const outboundSchema = SubscribersControllerGetSubscriberRequest$outboundSchema;
-    /** @deprecated use `SubscribersControllerGetSubscriberRequest$Outbound` instead. */
-    export type Outbound = SubscribersControllerGetSubscriberRequest$Outbound;
+  /** @deprecated use `SubscribersControllerGetSubscriberRequest$inboundSchema` instead. */
+  export const inboundSchema =
+    SubscribersControllerGetSubscriberRequest$inboundSchema;
+  /** @deprecated use `SubscribersControllerGetSubscriberRequest$outboundSchema` instead. */
+  export const outboundSchema =
+    SubscribersControllerGetSubscriberRequest$outboundSchema;
+  /** @deprecated use `SubscribersControllerGetSubscriberRequest$Outbound` instead. */
+  export type Outbound = SubscribersControllerGetSubscriberRequest$Outbound;
 }

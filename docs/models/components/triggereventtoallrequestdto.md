@@ -6,9 +6,9 @@
 import { TriggerEventToAllRequestDto } from "@novu/api/models/components";
 
 let value: TriggerEventToAllRequestDto = {
-    name: "<value>",
-    overrides: {},
-    payload: {},
+  name: "<value>",
+  overrides: {},
+  payload: {},
 };
 ```
 

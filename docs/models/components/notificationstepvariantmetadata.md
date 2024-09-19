@@ -6,7 +6,7 @@
 import { NotificationStepVariantMetadata } from "@novu/api/models/components";
 
 let value: NotificationStepVariantMetadata = {
-    type: "backoff",
+  type: "backoff",
 };
 ```
 

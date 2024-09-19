@@ -6,7 +6,7 @@
 import { TenantControllerGetTenantByIdRequest } from "@novu/api/models/operations";
 
 let value: TenantControllerGetTenantByIdRequest = {
-    identifier: "<value>",
+  identifier: "<value>",
 };
 ```
 

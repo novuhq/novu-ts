@@ -6,17 +6,19 @@
 import { SubscribersControllerGetNotificationsFeedResponseBody } from "@novu/api/models/operations";
 
 let value: SubscribersControllerGetNotificationsFeedResponseBody = {
-    data: [
-        {
-            data: ["<value>"],
-            hasMore: false,
-            page: 6235.1,
-            pageSize: 1589.69,
-        },
-    ],
-    hasMore: false,
-    page: 3380.07,
-    pageSize: 1103.75,
+  data: [
+    {
+      data: [
+        "<value>",
+      ],
+      hasMore: false,
+      page: 6235.1,
+      pageSize: 1589.69,
+    },
+  ],
+  hasMore: false,
+  page: 3380.07,
+  pageSize: 1103.75,
 };
 ```
 

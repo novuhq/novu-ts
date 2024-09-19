@@ -5,30 +5,30 @@
 import * as z from "zod";
 
 export type TenantControllerGetTenantByIdRequest = {
-    identifier: string;
+  identifier: string;
 };
 
 /** @internal */
 export const TenantControllerGetTenantByIdRequest$inboundSchema: z.ZodType<
-    TenantControllerGetTenantByIdRequest,
-    z.ZodTypeDef,
-    unknown
+  TenantControllerGetTenantByIdRequest,
+  z.ZodTypeDef,
+  unknown
 > = z.object({
-    identifier: z.string(),
+  identifier: z.string(),
 });
 
 /** @internal */
 export type TenantControllerGetTenantByIdRequest$Outbound = {
-    identifier: string;
+  identifier: string;
 };
 
 /** @internal */
 export const TenantControllerGetTenantByIdRequest$outboundSchema: z.ZodType<
-    TenantControllerGetTenantByIdRequest$Outbound,
-    z.ZodTypeDef,
-    TenantControllerGetTenantByIdRequest
+  TenantControllerGetTenantByIdRequest$Outbound,
+  z.ZodTypeDef,
+  TenantControllerGetTenantByIdRequest
 > = z.object({
-    identifier: z.string(),
+  identifier: z.string(),
 });
 
 /**
@@ -36,10 +36,12 @@ export const TenantControllerGetTenantByIdRequest$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace TenantControllerGetTenantByIdRequest$ {
-    /** @deprecated use `TenantControllerGetTenantByIdRequest$inboundSchema` instead. */
-    export const inboundSchema = TenantControllerGetTenantByIdRequest$inboundSchema;
-    /** @deprecated use `TenantControllerGetTenantByIdRequest$outboundSchema` instead. */
-    export const outboundSchema = TenantControllerGetTenantByIdRequest$outboundSchema;
-    /** @deprecated use `TenantControllerGetTenantByIdRequest$Outbound` instead. */
-    export type Outbound = TenantControllerGetTenantByIdRequest$Outbound;
+  /** @deprecated use `TenantControllerGetTenantByIdRequest$inboundSchema` instead. */
+  export const inboundSchema =
+    TenantControllerGetTenantByIdRequest$inboundSchema;
+  /** @deprecated use `TenantControllerGetTenantByIdRequest$outboundSchema` instead. */
+  export const outboundSchema =
+    TenantControllerGetTenantByIdRequest$outboundSchema;
+  /** @deprecated use `TenantControllerGetTenantByIdRequest$Outbound` instead. */
+  export type Outbound = TenantControllerGetTenantByIdRequest$Outbound;
 }

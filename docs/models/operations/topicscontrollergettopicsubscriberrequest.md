@@ -6,8 +6,8 @@
 import { TopicsControllerGetTopicSubscriberRequest } from "@novu/api/models/operations";
 
 let value: TopicsControllerGetTopicSubscriberRequest = {
-    externalSubscriberId: "<value>",
-    topicKey: "<value>",
+  externalSubscriberId: "<value>",
+  topicKey: "<value>",
 };
 ```
 

@@ -5,57 +5,61 @@
 import * as z from "zod";
 
 export type SubscribersControllerChatAccessOauthRequest = {
-    subscriberId: string;
-    providerId?: any | undefined;
-    hmacHash: string;
-    environmentId: string;
-    integrationIdentifier?: string | undefined;
+  subscriberId: string;
+  providerId?: any | undefined;
+  hmacHash: string;
+  environmentId: string;
+  integrationIdentifier?: string | undefined;
 };
 
 /** @internal */
-export const SubscribersControllerChatAccessOauthRequest$inboundSchema: z.ZodType<
+export const SubscribersControllerChatAccessOauthRequest$inboundSchema:
+  z.ZodType<
     SubscribersControllerChatAccessOauthRequest,
     z.ZodTypeDef,
     unknown
-> = z.object({
+  > = z.object({
     subscriberId: z.string(),
     providerId: z.any().optional(),
     hmacHash: z.string(),
     environmentId: z.string(),
     integrationIdentifier: z.string().optional(),
-});
+  });
 
 /** @internal */
 export type SubscribersControllerChatAccessOauthRequest$Outbound = {
-    subscriberId: string;
-    providerId?: any | undefined;
-    hmacHash: string;
-    environmentId: string;
-    integrationIdentifier?: string | undefined;
+  subscriberId: string;
+  providerId?: any | undefined;
+  hmacHash: string;
+  environmentId: string;
+  integrationIdentifier?: string | undefined;
 };
 
 /** @internal */
-export const SubscribersControllerChatAccessOauthRequest$outboundSchema: z.ZodType<
+export const SubscribersControllerChatAccessOauthRequest$outboundSchema:
+  z.ZodType<
     SubscribersControllerChatAccessOauthRequest$Outbound,
     z.ZodTypeDef,
     SubscribersControllerChatAccessOauthRequest
-> = z.object({
+  > = z.object({
     subscriberId: z.string(),
     providerId: z.any().optional(),
     hmacHash: z.string(),
     environmentId: z.string(),
     integrationIdentifier: z.string().optional(),
-});
+  });
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace SubscribersControllerChatAccessOauthRequest$ {
-    /** @deprecated use `SubscribersControllerChatAccessOauthRequest$inboundSchema` instead. */
-    export const inboundSchema = SubscribersControllerChatAccessOauthRequest$inboundSchema;
-    /** @deprecated use `SubscribersControllerChatAccessOauthRequest$outboundSchema` instead. */
-    export const outboundSchema = SubscribersControllerChatAccessOauthRequest$outboundSchema;
-    /** @deprecated use `SubscribersControllerChatAccessOauthRequest$Outbound` instead. */
-    export type Outbound = SubscribersControllerChatAccessOauthRequest$Outbound;
+  /** @deprecated use `SubscribersControllerChatAccessOauthRequest$inboundSchema` instead. */
+  export const inboundSchema =
+    SubscribersControllerChatAccessOauthRequest$inboundSchema;
+  /** @deprecated use `SubscribersControllerChatAccessOauthRequest$outboundSchema` instead. */
+  export const outboundSchema =
+    SubscribersControllerChatAccessOauthRequest$outboundSchema;
+  /** @deprecated use `SubscribersControllerChatAccessOauthRequest$Outbound` instead. */
+  export type Outbound = SubscribersControllerChatAccessOauthRequest$Outbound;
 }

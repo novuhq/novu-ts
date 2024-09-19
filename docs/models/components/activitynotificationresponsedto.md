@@ -6,9 +6,9 @@
 import { ActivityNotificationResponseDto } from "@novu/api/models/components";
 
 let value: ActivityNotificationResponseDto = {
-    environmentId: "<value>",
-    organizationId: "<value>",
-    transactionId: "<value>",
+  environmentId: "<value>",
+  organizationId: "<value>",
+  transactionId: "<value>",
 };
 ```
 

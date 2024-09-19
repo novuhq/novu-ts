@@ -35,7 +35,7 @@ async function run() {
   
     ],
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -114,7 +114,7 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.workflows.delete("<value>");
-
+  
   // Handle the result
   console.log(result)
 }
@@ -187,7 +187,7 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.workflows.list({});
-
+  
   // Handle the result
   console.log(result)
 }
@@ -260,7 +260,7 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.workflows.retrieve("<value>");
-
+  
   // Handle the result
   console.log(result)
 }
@@ -336,7 +336,7 @@ async function run() {
     name: "<value>",
     notificationGroupId: "<value>",
   });
-
+  
   // Handle the result
   console.log(result)
 }

@@ -6,19 +6,19 @@
 import { SubscribersControllerListSubscribersResponseBody } from "@novu/api/models/operations";
 
 let value: SubscribersControllerListSubscribersResponseBody = {
-    data: [
-        {
-            environmentId: "<value>",
-            organizationId: "<value>",
-            createdAt: "<value>",
-            deleted: false,
-            subscriberId: "<value>",
-            updatedAt: "<value>",
-        },
-    ],
-    hasMore: false,
-    page: 6350.59,
-    pageSize: 1613.09,
+  data: [
+    {
+      environmentId: "<value>",
+      organizationId: "<value>",
+      createdAt: "<value>",
+      deleted: false,
+      subscriberId: "<value>",
+      updatedAt: "<value>",
+    },
+  ],
+  hasMore: false,
+  page: 6350.59,
+  pageSize: 1613.09,
 };
 ```
 
