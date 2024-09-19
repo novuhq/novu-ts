@@ -6,10 +6,12 @@
 import { WorkflowsResponseDto } from "@novu/api/models/components";
 
 let value: WorkflowsResponseDto = {
-    data: ["<value>"],
-    page: 384.25,
-    pageSize: 4386.01,
-    totalCount: 6342.74,
+  data: [
+    "<value>",
+  ],
+  page: 384.25,
+  pageSize: 4386.01,
+  totalCount: 6342.74,
 };
 ```
 

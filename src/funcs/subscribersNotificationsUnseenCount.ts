@@ -4,8 +4,8 @@
 
 import { NovuCore } from "../core.js";
 import {
-    encodeFormQuery as encodeFormQuery$,
-    encodeSimple as encodeSimple$,
+  encodeFormQuery as encodeFormQuery$,
+  encodeSimple as encodeSimple$,
 } from "../lib/encodings.js";
 import * as m$ from "../lib/matchers.js";
 import * as schemas$ from "../lib/schemas.js";
@@ -14,11 +14,11 @@ import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
 import * as components from "../models/components/index.js";
 import {
-    ConnectionError,
-    InvalidRequestError,
-    RequestAbortedError,
-    RequestTimeoutError,
-    UnexpectedClientError,
+  ConnectionError,
+  InvalidRequestError,
+  RequestAbortedError,
+  RequestTimeoutError,
+  UnexpectedClientError,
 } from "../models/errors/httpclienterrors.js";
 import { SDKError } from "../models/errors/sdkerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
@@ -29,117 +29,117 @@ import { Result } from "../types/fp.js";
  * Get the unseen in-app notifications count for subscribers feed
  */
 export async function subscribersNotificationsUnseenCount(
-    client$: NovuCore,
-    request: operations.SubscribersControllerGetUnseenCountRequest,
-    options?: RequestOptions
+  client$: NovuCore,
+  request: operations.SubscribersControllerGetUnseenCountRequest,
+  options?: RequestOptions,
 ): Promise<
-    Result<
-        components.UnseenCountResponse,
-        | SDKError
-        | SDKValidationError
-        | UnexpectedClientError
-        | InvalidRequestError
-        | RequestAbortedError
-        | RequestTimeoutError
-        | ConnectionError
-    >
+  Result<
+    components.UnseenCountResponse,
+    | SDKError
+    | SDKValidationError
+    | UnexpectedClientError
+    | InvalidRequestError
+    | RequestAbortedError
+    | RequestTimeoutError
+    | ConnectionError
+  >
 > {
-    const input$ = request;
+  const input$ = request;
 
-    const parsed$ = schemas$.safeParse(
-        input$,
-        (value$) =>
-            operations.SubscribersControllerGetUnseenCountRequest$outboundSchema.parse(value$),
-        "Input validation failed"
-    );
-    if (!parsed$.ok) {
-        return parsed$;
-    }
-    const payload$ = parsed$.value;
-    const body$ = null;
+  const parsed$ = schemas$.safeParse(
+    input$,
+    (value$) =>
+      operations.SubscribersControllerGetUnseenCountRequest$outboundSchema
+        .parse(value$),
+    "Input validation failed",
+  );
+  if (!parsed$.ok) {
+    return parsed$;
+  }
+  const payload$ = parsed$.value;
+  const body$ = null;
 
-    const pathParams$ = {
-        subscriberId: encodeSimple$("subscriberId", payload$.subscriberId, {
-            explode: false,
-            charEncoding: "percent",
-        }),
-    };
+  const pathParams$ = {
+    subscriberId: encodeSimple$("subscriberId", payload$.subscriberId, {
+      explode: false,
+      charEncoding: "percent",
+    }),
+  };
 
-    const path$ = pathToFunc("/v1/subscribers/{subscriberId}/notifications/unseen")(pathParams$);
+  const path$ = pathToFunc(
+    "/v1/subscribers/{subscriberId}/notifications/unseen",
+  )(pathParams$);
 
-    const query$ = encodeFormQuery$({
-        limit: payload$.limit,
-        seen: payload$.seen,
-    });
+  const query$ = encodeFormQuery$({
+    "limit": payload$.limit,
+    "seen": payload$.seen,
+  });
 
-    const headers$ = new Headers({
-        Accept: "application/json",
-    });
+  const headers$ = new Headers({
+    Accept: "application/json",
+  });
 
-    const apiKey$ = await extractSecurity(client$.options$.apiKey);
-    const security$ = apiKey$ == null ? {} : { apiKey: apiKey$ };
-    const context = {
-        operationID: "SubscribersController_getUnseenCount",
-        oAuth2Scopes: [],
-        securitySource: client$.options$.apiKey,
-    };
-    const securitySettings$ = resolveGlobalSecurity(security$);
+  const apiKey$ = await extractSecurity(client$.options$.apiKey);
+  const security$ = apiKey$ == null ? {} : { apiKey: apiKey$ };
+  const context = {
+    operationID: "SubscribersController_getUnseenCount",
+    oAuth2Scopes: [],
+    securitySource: client$.options$.apiKey,
+  };
+  const securitySettings$ = resolveGlobalSecurity(security$);
 
-    const requestRes = client$.createRequest$(
-        context,
-        {
-            security: securitySettings$,
-            method: "GET",
-            path: path$,
-            headers: headers$,
-            query: query$,
-            body: body$,
-            timeoutMs: options?.timeoutMs || client$.options$.timeoutMs || -1,
+  const requestRes = client$.createRequest$(context, {
+    security: securitySettings$,
+    method: "GET",
+    path: path$,
+    headers: headers$,
+    query: query$,
+    body: body$,
+    timeoutMs: options?.timeoutMs || client$.options$.timeoutMs || -1,
+  }, options);
+  if (!requestRes.ok) {
+    return requestRes;
+  }
+  const request$ = requestRes.value;
+
+  const doResult = await client$.do$(request$, {
+    context,
+    errorCodes: ["409", "429", "4XX", "503", "5XX"],
+    retryConfig: options?.retries
+      || client$.options$.retryConfig
+      || {
+        strategy: "backoff",
+        backoff: {
+          initialInterval: 500,
+          maxInterval: 30000,
+          exponent: 1.5,
+          maxElapsedTime: 3600000,
         },
-        options
-    );
-    if (!requestRes.ok) {
-        return requestRes;
-    }
-    const request$ = requestRes.value;
+        retryConnectionErrors: true,
+      },
+    retryCodes: options?.retryCodes || ["408", "409", "429", "5XX"],
+  });
+  if (!doResult.ok) {
+    return doResult;
+  }
+  const response = doResult.value;
 
-    const doResult = await client$.do$(request$, {
-        context,
-        errorCodes: ["409", "429", "4XX", "503", "5XX"],
-        retryConfig: options?.retries ||
-            client$.options$.retryConfig || {
-                strategy: "backoff",
-                backoff: {
-                    initialInterval: 500,
-                    maxInterval: 30000,
-                    exponent: 1.5,
-                    maxElapsedTime: 3600000,
-                },
-                retryConnectionErrors: true,
-            },
-        retryCodes: options?.retryCodes || ["408", "409", "429", "5XX"],
-    });
-    if (!doResult.ok) {
-        return doResult;
-    }
-    const response = doResult.value;
-
-    const [result$] = await m$.match<
-        components.UnseenCountResponse,
-        | SDKError
-        | SDKValidationError
-        | UnexpectedClientError
-        | InvalidRequestError
-        | RequestAbortedError
-        | RequestTimeoutError
-        | ConnectionError
-    >(
-        m$.json(200, components.UnseenCountResponse$inboundSchema),
-        m$.fail([409, 429, "4XX", 503, "5XX"])
-    )(response);
-    if (!result$.ok) {
-        return result$;
-    }
-
+  const [result$] = await m$.match<
+    components.UnseenCountResponse,
+    | SDKError
+    | SDKValidationError
+    | UnexpectedClientError
+    | InvalidRequestError
+    | RequestAbortedError
+    | RequestTimeoutError
+    | ConnectionError
+  >(
+    m$.json(200, components.UnseenCountResponse$inboundSchema),
+    m$.fail([409, 429, "4XX", 503, "5XX"]),
+  )(response);
+  if (!result$.ok) {
     return result$;
+  }
+
+  return result$;
 }

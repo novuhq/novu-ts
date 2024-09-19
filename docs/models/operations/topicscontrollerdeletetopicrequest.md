@@ -6,7 +6,7 @@
 import { TopicsControllerDeleteTopicRequest } from "@novu/api/models/operations";
 
 let value: TopicsControllerDeleteTopicRequest = {
-    topicKey: "<value>",
+  topicKey: "<value>",
 };
 ```
 

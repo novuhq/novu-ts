@@ -6,7 +6,7 @@
 import { NotificationGroupsControllerDeleteNotificationGroupRequest } from "@novu/api/models/operations";
 
 let value: NotificationGroupsControllerDeleteNotificationGroupRequest = {
-    id: "<id>",
+  id: "<id>",
 };
 ```
 

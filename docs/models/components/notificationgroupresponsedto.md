@@ -6,9 +6,9 @@
 import { NotificationGroupResponseDto } from "@novu/api/models/components";
 
 let value: NotificationGroupResponseDto = {
-    environmentId: "<value>",
-    organizationId: "<value>",
-    name: "<value>",
+  environmentId: "<value>",
+  organizationId: "<value>",
+  name: "<value>",
 };
 ```
 

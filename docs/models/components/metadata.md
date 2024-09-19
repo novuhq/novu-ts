@@ -6,7 +6,7 @@
 import { Metadata } from "@novu/api/models/components";
 
 let value: Metadata = {
-    type: "backoff",
+  type: "backoff",
 };
 ```
 

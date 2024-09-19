@@ -5,40 +5,40 @@
 import * as z from "zod";
 
 export type CreateTopicRequestDto = {
-    /**
-     * User defined custom key and provided by the user that will be an unique identifier for the Topic created.
-     */
-    key: string;
-    /**
-     * User defined custom name and provided by the user that will name the Topic created.
-     */
-    name: string;
+  /**
+   * User defined custom key and provided by the user that will be an unique identifier for the Topic created.
+   */
+  key: string;
+  /**
+   * User defined custom name and provided by the user that will name the Topic created.
+   */
+  name: string;
 };
 
 /** @internal */
 export const CreateTopicRequestDto$inboundSchema: z.ZodType<
-    CreateTopicRequestDto,
-    z.ZodTypeDef,
-    unknown
+  CreateTopicRequestDto,
+  z.ZodTypeDef,
+  unknown
 > = z.object({
-    key: z.string(),
-    name: z.string(),
+  key: z.string(),
+  name: z.string(),
 });
 
 /** @internal */
 export type CreateTopicRequestDto$Outbound = {
-    key: string;
-    name: string;
+  key: string;
+  name: string;
 };
 
 /** @internal */
 export const CreateTopicRequestDto$outboundSchema: z.ZodType<
-    CreateTopicRequestDto$Outbound,
-    z.ZodTypeDef,
-    CreateTopicRequestDto
+  CreateTopicRequestDto$Outbound,
+  z.ZodTypeDef,
+  CreateTopicRequestDto
 > = z.object({
-    key: z.string(),
-    name: z.string(),
+  key: z.string(),
+  name: z.string(),
 });
 
 /**
@@ -46,10 +46,10 @@ export const CreateTopicRequestDto$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace CreateTopicRequestDto$ {
-    /** @deprecated use `CreateTopicRequestDto$inboundSchema` instead. */
-    export const inboundSchema = CreateTopicRequestDto$inboundSchema;
-    /** @deprecated use `CreateTopicRequestDto$outboundSchema` instead. */
-    export const outboundSchema = CreateTopicRequestDto$outboundSchema;
-    /** @deprecated use `CreateTopicRequestDto$Outbound` instead. */
-    export type Outbound = CreateTopicRequestDto$Outbound;
+  /** @deprecated use `CreateTopicRequestDto$inboundSchema` instead. */
+  export const inboundSchema = CreateTopicRequestDto$inboundSchema;
+  /** @deprecated use `CreateTopicRequestDto$outboundSchema` instead. */
+  export const outboundSchema = CreateTopicRequestDto$outboundSchema;
+  /** @deprecated use `CreateTopicRequestDto$Outbound` instead. */
+  export type Outbound = CreateTopicRequestDto$Outbound;
 }

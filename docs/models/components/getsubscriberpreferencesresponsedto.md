@@ -6,10 +6,10 @@
 import { GetSubscriberPreferencesResponseDto } from "@novu/api/models/components";
 
 let value: GetSubscriberPreferencesResponseDto = {
-    preference: {
-        channels: {},
-        enabled: false,
-    },
+  preference: {
+    channels: {},
+    enabled: false,
+  },
 };
 ```
 

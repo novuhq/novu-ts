@@ -25,7 +25,7 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.executionDetails.retrieve("<value>", "<value>");
-
+  
   // Handle the result
   console.log(result)
 }

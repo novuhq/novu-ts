@@ -3714,11 +3714,11 @@
             "in": "path",
             "description": "the preferences level to be retrieved( Subscriber / Topic) ",
             "schema": {
-              "type": "string",
               "enum": [
                 "Subscriber",
                 "Topic"
-              ]
+              ],
+              "type": "string"
             }
           },
           {
@@ -8401,6 +8401,10 @@
           },
           "credentials": {
             "$ref": "#/components/schemas/CredentialsDto"
+          },
+          "removeNovuBranding": {
+            "type": "boolean",
+            "description": "If true, the Novu branding will be removed from the Inbox component"
           },
           "check": {
             "type": "boolean"

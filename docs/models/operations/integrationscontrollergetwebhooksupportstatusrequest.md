@@ -6,7 +6,7 @@
 import { IntegrationsControllerGetWebhookSupportStatusRequest } from "@novu/api/models/operations";
 
 let value: IntegrationsControllerGetWebhookSupportStatusRequest = {
-    providerOrIntegrationId: "<value>",
+  providerOrIntegrationId: "<value>",
 };
 ```
 

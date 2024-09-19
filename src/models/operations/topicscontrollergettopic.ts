@@ -5,33 +5,33 @@
 import * as z from "zod";
 
 export type TopicsControllerGetTopicRequest = {
-    /**
-     * The topic key
-     */
-    topicKey: string;
+  /**
+   * The topic key
+   */
+  topicKey: string;
 };
 
 /** @internal */
 export const TopicsControllerGetTopicRequest$inboundSchema: z.ZodType<
-    TopicsControllerGetTopicRequest,
-    z.ZodTypeDef,
-    unknown
+  TopicsControllerGetTopicRequest,
+  z.ZodTypeDef,
+  unknown
 > = z.object({
-    topicKey: z.string(),
+  topicKey: z.string(),
 });
 
 /** @internal */
 export type TopicsControllerGetTopicRequest$Outbound = {
-    topicKey: string;
+  topicKey: string;
 };
 
 /** @internal */
 export const TopicsControllerGetTopicRequest$outboundSchema: z.ZodType<
-    TopicsControllerGetTopicRequest$Outbound,
-    z.ZodTypeDef,
-    TopicsControllerGetTopicRequest
+  TopicsControllerGetTopicRequest$Outbound,
+  z.ZodTypeDef,
+  TopicsControllerGetTopicRequest
 > = z.object({
-    topicKey: z.string(),
+  topicKey: z.string(),
 });
 
 /**
@@ -39,10 +39,10 @@ export const TopicsControllerGetTopicRequest$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace TopicsControllerGetTopicRequest$ {
-    /** @deprecated use `TopicsControllerGetTopicRequest$inboundSchema` instead. */
-    export const inboundSchema = TopicsControllerGetTopicRequest$inboundSchema;
-    /** @deprecated use `TopicsControllerGetTopicRequest$outboundSchema` instead. */
-    export const outboundSchema = TopicsControllerGetTopicRequest$outboundSchema;
-    /** @deprecated use `TopicsControllerGetTopicRequest$Outbound` instead. */
-    export type Outbound = TopicsControllerGetTopicRequest$Outbound;
+  /** @deprecated use `TopicsControllerGetTopicRequest$inboundSchema` instead. */
+  export const inboundSchema = TopicsControllerGetTopicRequest$inboundSchema;
+  /** @deprecated use `TopicsControllerGetTopicRequest$outboundSchema` instead. */
+  export const outboundSchema = TopicsControllerGetTopicRequest$outboundSchema;
+  /** @deprecated use `TopicsControllerGetTopicRequest$Outbound` instead. */
+  export type Outbound = TopicsControllerGetTopicRequest$Outbound;
 }

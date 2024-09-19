@@ -5,30 +5,30 @@
 import * as z from "zod";
 
 export type UpdateSubscriberOnlineFlagRequestDto = {
-    isOnline: boolean;
+  isOnline: boolean;
 };
 
 /** @internal */
 export const UpdateSubscriberOnlineFlagRequestDto$inboundSchema: z.ZodType<
-    UpdateSubscriberOnlineFlagRequestDto,
-    z.ZodTypeDef,
-    unknown
+  UpdateSubscriberOnlineFlagRequestDto,
+  z.ZodTypeDef,
+  unknown
 > = z.object({
-    isOnline: z.boolean(),
+  isOnline: z.boolean(),
 });
 
 /** @internal */
 export type UpdateSubscriberOnlineFlagRequestDto$Outbound = {
-    isOnline: boolean;
+  isOnline: boolean;
 };
 
 /** @internal */
 export const UpdateSubscriberOnlineFlagRequestDto$outboundSchema: z.ZodType<
-    UpdateSubscriberOnlineFlagRequestDto$Outbound,
-    z.ZodTypeDef,
-    UpdateSubscriberOnlineFlagRequestDto
+  UpdateSubscriberOnlineFlagRequestDto$Outbound,
+  z.ZodTypeDef,
+  UpdateSubscriberOnlineFlagRequestDto
 > = z.object({
-    isOnline: z.boolean(),
+  isOnline: z.boolean(),
 });
 
 /**
@@ -36,10 +36,12 @@ export const UpdateSubscriberOnlineFlagRequestDto$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace UpdateSubscriberOnlineFlagRequestDto$ {
-    /** @deprecated use `UpdateSubscriberOnlineFlagRequestDto$inboundSchema` instead. */
-    export const inboundSchema = UpdateSubscriberOnlineFlagRequestDto$inboundSchema;
-    /** @deprecated use `UpdateSubscriberOnlineFlagRequestDto$outboundSchema` instead. */
-    export const outboundSchema = UpdateSubscriberOnlineFlagRequestDto$outboundSchema;
-    /** @deprecated use `UpdateSubscriberOnlineFlagRequestDto$Outbound` instead. */
-    export type Outbound = UpdateSubscriberOnlineFlagRequestDto$Outbound;
+  /** @deprecated use `UpdateSubscriberOnlineFlagRequestDto$inboundSchema` instead. */
+  export const inboundSchema =
+    UpdateSubscriberOnlineFlagRequestDto$inboundSchema;
+  /** @deprecated use `UpdateSubscriberOnlineFlagRequestDto$outboundSchema` instead. */
+  export const outboundSchema =
+    UpdateSubscriberOnlineFlagRequestDto$outboundSchema;
+  /** @deprecated use `UpdateSubscriberOnlineFlagRequestDto$Outbound` instead. */
+  export type Outbound = UpdateSubscriberOnlineFlagRequestDto$Outbound;
 }

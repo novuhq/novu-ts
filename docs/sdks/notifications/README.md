@@ -37,7 +37,7 @@ async function run() {
       "<value>",
     ],
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -124,7 +124,7 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.notifications.retrieve("<value>");
-
+  
   // Handle the result
   console.log(result)
 }

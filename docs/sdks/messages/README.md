@@ -27,7 +27,7 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.messages.delete("<value>");
-
+  
   // Handle the result
   console.log(result)
 }
@@ -100,8 +100,6 @@ const novu = new Novu({
 
 async function run() {
   await novu.messages.deleteByTransactionId("<value>");
-
-  
 }
 
 run();
@@ -172,7 +170,7 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.messages.retrieve({});
-
+  
   // Handle the result
   console.log(result)
 }

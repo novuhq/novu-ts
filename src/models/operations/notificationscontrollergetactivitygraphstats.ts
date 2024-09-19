@@ -5,42 +5,46 @@
 import * as z from "zod";
 
 export type NotificationsControllerGetActivityGraphStatsRequest = {
-    days?: number | undefined;
+  days?: number | undefined;
 };
 
 /** @internal */
-export const NotificationsControllerGetActivityGraphStatsRequest$inboundSchema: z.ZodType<
+export const NotificationsControllerGetActivityGraphStatsRequest$inboundSchema:
+  z.ZodType<
     NotificationsControllerGetActivityGraphStatsRequest,
     z.ZodTypeDef,
     unknown
-> = z.object({
+  > = z.object({
     days: z.number().optional(),
-});
+  });
 
 /** @internal */
 export type NotificationsControllerGetActivityGraphStatsRequest$Outbound = {
-    days?: number | undefined;
+  days?: number | undefined;
 };
 
 /** @internal */
-export const NotificationsControllerGetActivityGraphStatsRequest$outboundSchema: z.ZodType<
+export const NotificationsControllerGetActivityGraphStatsRequest$outboundSchema:
+  z.ZodType<
     NotificationsControllerGetActivityGraphStatsRequest$Outbound,
     z.ZodTypeDef,
     NotificationsControllerGetActivityGraphStatsRequest
-> = z.object({
+  > = z.object({
     days: z.number().optional(),
-});
+  });
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace NotificationsControllerGetActivityGraphStatsRequest$ {
-    /** @deprecated use `NotificationsControllerGetActivityGraphStatsRequest$inboundSchema` instead. */
-    export const inboundSchema = NotificationsControllerGetActivityGraphStatsRequest$inboundSchema;
-    /** @deprecated use `NotificationsControllerGetActivityGraphStatsRequest$outboundSchema` instead. */
-    export const outboundSchema =
-        NotificationsControllerGetActivityGraphStatsRequest$outboundSchema;
-    /** @deprecated use `NotificationsControllerGetActivityGraphStatsRequest$Outbound` instead. */
-    export type Outbound = NotificationsControllerGetActivityGraphStatsRequest$Outbound;
+  /** @deprecated use `NotificationsControllerGetActivityGraphStatsRequest$inboundSchema` instead. */
+  export const inboundSchema =
+    NotificationsControllerGetActivityGraphStatsRequest$inboundSchema;
+  /** @deprecated use `NotificationsControllerGetActivityGraphStatsRequest$outboundSchema` instead. */
+  export const outboundSchema =
+    NotificationsControllerGetActivityGraphStatsRequest$outboundSchema;
+  /** @deprecated use `NotificationsControllerGetActivityGraphStatsRequest$Outbound` instead. */
+  export type Outbound =
+    NotificationsControllerGetActivityGraphStatsRequest$Outbound;
 }

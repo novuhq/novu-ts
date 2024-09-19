@@ -32,7 +32,7 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.cancel("<value>");
-
+  
   // Handle the result
   console.log(result)
 }
@@ -119,7 +119,7 @@ async function run() {
       },
     ],
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -207,7 +207,7 @@ async function run() {
     overrides: {},
     payload: {},
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -291,7 +291,7 @@ async function run() {
   
     ],
   });
-
+  
   // Handle the result
   console.log(result)
 }

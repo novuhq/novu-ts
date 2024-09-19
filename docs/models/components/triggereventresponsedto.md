@@ -6,8 +6,8 @@
 import { TriggerEventResponseDto } from "@novu/api/models/components";
 
 let value: TriggerEventResponseDto = {
-    acknowledged: false,
-    status: "processed",
+  acknowledged: false,
+  status: "processed",
 };
 ```
 

@@ -5,30 +5,30 @@
 import * as z from "zod";
 
 export type CreateNotificationGroupRequestDto = {
-    name: string;
+  name: string;
 };
 
 /** @internal */
 export const CreateNotificationGroupRequestDto$inboundSchema: z.ZodType<
-    CreateNotificationGroupRequestDto,
-    z.ZodTypeDef,
-    unknown
+  CreateNotificationGroupRequestDto,
+  z.ZodTypeDef,
+  unknown
 > = z.object({
-    name: z.string(),
+  name: z.string(),
 });
 
 /** @internal */
 export type CreateNotificationGroupRequestDto$Outbound = {
-    name: string;
+  name: string;
 };
 
 /** @internal */
 export const CreateNotificationGroupRequestDto$outboundSchema: z.ZodType<
-    CreateNotificationGroupRequestDto$Outbound,
-    z.ZodTypeDef,
-    CreateNotificationGroupRequestDto
+  CreateNotificationGroupRequestDto$Outbound,
+  z.ZodTypeDef,
+  CreateNotificationGroupRequestDto
 > = z.object({
-    name: z.string(),
+  name: z.string(),
 });
 
 /**
@@ -36,10 +36,11 @@ export const CreateNotificationGroupRequestDto$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace CreateNotificationGroupRequestDto$ {
-    /** @deprecated use `CreateNotificationGroupRequestDto$inboundSchema` instead. */
-    export const inboundSchema = CreateNotificationGroupRequestDto$inboundSchema;
-    /** @deprecated use `CreateNotificationGroupRequestDto$outboundSchema` instead. */
-    export const outboundSchema = CreateNotificationGroupRequestDto$outboundSchema;
-    /** @deprecated use `CreateNotificationGroupRequestDto$Outbound` instead. */
-    export type Outbound = CreateNotificationGroupRequestDto$Outbound;
+  /** @deprecated use `CreateNotificationGroupRequestDto$inboundSchema` instead. */
+  export const inboundSchema = CreateNotificationGroupRequestDto$inboundSchema;
+  /** @deprecated use `CreateNotificationGroupRequestDto$outboundSchema` instead. */
+  export const outboundSchema =
+    CreateNotificationGroupRequestDto$outboundSchema;
+  /** @deprecated use `CreateNotificationGroupRequestDto$Outbound` instead. */
+  export type Outbound = CreateNotificationGroupRequestDto$Outbound;
 }

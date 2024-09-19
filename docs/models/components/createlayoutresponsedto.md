@@ -6,7 +6,7 @@
 import { CreateLayoutResponseDto } from "@novu/api/models/components";
 
 let value: CreateLayoutResponseDto = {
-    id: "<id>",
+  id: "<id>",
 };
 ```
 

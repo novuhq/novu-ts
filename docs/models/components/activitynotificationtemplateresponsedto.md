@@ -6,8 +6,10 @@
 import { ActivityNotificationTemplateResponseDto } from "@novu/api/models/components";
 
 let value: ActivityNotificationTemplateResponseDto = {
-    name: "<value>",
-    triggers: ["<value>"],
+  name: "<value>",
+  triggers: [
+    "<value>",
+  ],
 };
 ```
 

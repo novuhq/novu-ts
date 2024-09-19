@@ -24,7 +24,7 @@ async function run() {
   const result = await novu.workflows.status.update("<value>", {
     active: false,
   });
-
+  
   // Handle the result
   console.log(result)
 }

@@ -6,12 +6,12 @@
 import { SubscribersControllerMarkActionAsSeenRequest } from "@novu/api/models/operations";
 
 let value: SubscribersControllerMarkActionAsSeenRequest = {
-    messageId: "<value>",
-    type: "<value>",
-    subscriberId: "<value>",
-    markMessageActionAsSeenDto: {
-        status: "pending",
-    },
+  messageId: "<value>",
+  type: "<value>",
+  subscriberId: "<value>",
+  markMessageActionAsSeenDto: {
+    status: "pending",
+  },
 };
 ```
 

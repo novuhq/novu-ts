@@ -6,8 +6,8 @@
 import { ChannelPreference } from "@novu/api/models/components";
 
 let value: ChannelPreference = {
-    enabled: false,
-    type: "chat",
+  enabled: false,
+  type: "chat",
 };
 ```
 

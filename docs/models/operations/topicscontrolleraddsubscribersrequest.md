@@ -6,10 +6,12 @@
 import { TopicsControllerAddSubscribersRequest } from "@novu/api/models/operations";
 
 let value: TopicsControllerAddSubscribersRequest = {
-    topicKey: "<value>",
-    addSubscribersRequestDto: {
-        subscribers: ["<value>"],
-    },
+  topicKey: "<value>",
+  addSubscribersRequestDto: {
+    subscribers: [
+      "<value>",
+    ],
+  },
 };
 ```
 

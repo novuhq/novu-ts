@@ -10,32 +10,43 @@ import * as components from "../models/components/index.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class Organizations extends ClientSDK {
-    /**
-     * Rename organization name
-     */
-    async eeOrganizationControllerRenameOrganization(
-        request: components.RenameOrganizationDto,
-        options?: RequestOptions
-    ): Promise<components.RenameOrganizationDto> {
-        return unwrapAsync(
-            organizationsEEOrganizationControllerRenameOrganization(this, request, options)
-        );
-    }
+  /**
+   * Rename organization name
+   */
+  async eeOrganizationControllerRenameOrganization(
+    request: components.RenameOrganizationDto,
+    options?: RequestOptions,
+  ): Promise<components.RenameOrganizationDto> {
+    return unwrapAsync(organizationsEEOrganizationControllerRenameOrganization(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Fetch current organization details
-     */
-    async retrieve(options?: RequestOptions): Promise<components.OrganizationResponseDto> {
-        return unwrapAsync(organizationsRetrieve(this, options));
-    }
+  /**
+   * Fetch current organization details
+   */
+  async retrieve(
+    options?: RequestOptions,
+  ): Promise<components.OrganizationResponseDto> {
+    return unwrapAsync(organizationsRetrieve(
+      this,
+      options,
+    ));
+  }
 
-    /**
-     * Update organization branding details
-     */
-    async update(
-        request: components.UpdateBrandingDetailsDto,
-        options?: RequestOptions
-    ): Promise<components.OrganizationBrandingResponseDto> {
-        return unwrapAsync(organizationsUpdate(this, request, options));
-    }
+  /**
+   * Update organization branding details
+   */
+  async update(
+    request: components.UpdateBrandingDetailsDto,
+    options?: RequestOptions,
+  ): Promise<components.OrganizationBrandingResponseDto> {
+    return unwrapAsync(organizationsUpdate(
+      this,
+      request,
+      options,
+    ));
+  }
 }

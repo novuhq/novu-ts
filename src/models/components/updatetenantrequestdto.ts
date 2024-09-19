@@ -7,16 +7,16 @@ import * as z from "zod";
 export type UpdateTenantRequestDtoData = {};
 
 export type UpdateTenantRequestDto = {
-    data?: UpdateTenantRequestDtoData | undefined;
-    identifier?: string | undefined;
-    name?: string | undefined;
+  data?: UpdateTenantRequestDtoData | undefined;
+  identifier?: string | undefined;
+  name?: string | undefined;
 };
 
 /** @internal */
 export const UpdateTenantRequestDtoData$inboundSchema: z.ZodType<
-    UpdateTenantRequestDtoData,
-    z.ZodTypeDef,
-    unknown
+  UpdateTenantRequestDtoData,
+  z.ZodTypeDef,
+  unknown
 > = z.object({});
 
 /** @internal */
@@ -24,9 +24,9 @@ export type UpdateTenantRequestDtoData$Outbound = {};
 
 /** @internal */
 export const UpdateTenantRequestDtoData$outboundSchema: z.ZodType<
-    UpdateTenantRequestDtoData$Outbound,
-    z.ZodTypeDef,
-    UpdateTenantRequestDtoData
+  UpdateTenantRequestDtoData$Outbound,
+  z.ZodTypeDef,
+  UpdateTenantRequestDtoData
 > = z.object({});
 
 /**
@@ -34,41 +34,41 @@ export const UpdateTenantRequestDtoData$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace UpdateTenantRequestDtoData$ {
-    /** @deprecated use `UpdateTenantRequestDtoData$inboundSchema` instead. */
-    export const inboundSchema = UpdateTenantRequestDtoData$inboundSchema;
-    /** @deprecated use `UpdateTenantRequestDtoData$outboundSchema` instead. */
-    export const outboundSchema = UpdateTenantRequestDtoData$outboundSchema;
-    /** @deprecated use `UpdateTenantRequestDtoData$Outbound` instead. */
-    export type Outbound = UpdateTenantRequestDtoData$Outbound;
+  /** @deprecated use `UpdateTenantRequestDtoData$inboundSchema` instead. */
+  export const inboundSchema = UpdateTenantRequestDtoData$inboundSchema;
+  /** @deprecated use `UpdateTenantRequestDtoData$outboundSchema` instead. */
+  export const outboundSchema = UpdateTenantRequestDtoData$outboundSchema;
+  /** @deprecated use `UpdateTenantRequestDtoData$Outbound` instead. */
+  export type Outbound = UpdateTenantRequestDtoData$Outbound;
 }
 
 /** @internal */
 export const UpdateTenantRequestDto$inboundSchema: z.ZodType<
-    UpdateTenantRequestDto,
-    z.ZodTypeDef,
-    unknown
+  UpdateTenantRequestDto,
+  z.ZodTypeDef,
+  unknown
 > = z.object({
-    data: z.lazy(() => UpdateTenantRequestDtoData$inboundSchema).optional(),
-    identifier: z.string().optional(),
-    name: z.string().optional(),
+  data: z.lazy(() => UpdateTenantRequestDtoData$inboundSchema).optional(),
+  identifier: z.string().optional(),
+  name: z.string().optional(),
 });
 
 /** @internal */
 export type UpdateTenantRequestDto$Outbound = {
-    data?: UpdateTenantRequestDtoData$Outbound | undefined;
-    identifier?: string | undefined;
-    name?: string | undefined;
+  data?: UpdateTenantRequestDtoData$Outbound | undefined;
+  identifier?: string | undefined;
+  name?: string | undefined;
 };
 
 /** @internal */
 export const UpdateTenantRequestDto$outboundSchema: z.ZodType<
-    UpdateTenantRequestDto$Outbound,
-    z.ZodTypeDef,
-    UpdateTenantRequestDto
+  UpdateTenantRequestDto$Outbound,
+  z.ZodTypeDef,
+  UpdateTenantRequestDto
 > = z.object({
-    data: z.lazy(() => UpdateTenantRequestDtoData$outboundSchema).optional(),
-    identifier: z.string().optional(),
-    name: z.string().optional(),
+  data: z.lazy(() => UpdateTenantRequestDtoData$outboundSchema).optional(),
+  identifier: z.string().optional(),
+  name: z.string().optional(),
 });
 
 /**
@@ -76,10 +76,10 @@ export const UpdateTenantRequestDto$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace UpdateTenantRequestDto$ {
-    /** @deprecated use `UpdateTenantRequestDto$inboundSchema` instead. */
-    export const inboundSchema = UpdateTenantRequestDto$inboundSchema;
-    /** @deprecated use `UpdateTenantRequestDto$outboundSchema` instead. */
-    export const outboundSchema = UpdateTenantRequestDto$outboundSchema;
-    /** @deprecated use `UpdateTenantRequestDto$Outbound` instead. */
-    export type Outbound = UpdateTenantRequestDto$Outbound;
+  /** @deprecated use `UpdateTenantRequestDto$inboundSchema` instead. */
+  export const inboundSchema = UpdateTenantRequestDto$inboundSchema;
+  /** @deprecated use `UpdateTenantRequestDto$outboundSchema` instead. */
+  export const outboundSchema = UpdateTenantRequestDto$outboundSchema;
+  /** @deprecated use `UpdateTenantRequestDto$Outbound` instead. */
+  export type Outbound = UpdateTenantRequestDto$Outbound;
 }

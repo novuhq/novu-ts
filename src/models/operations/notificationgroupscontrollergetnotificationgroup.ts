@@ -5,43 +5,46 @@
 import * as z from "zod";
 
 export type NotificationGroupsControllerGetNotificationGroupRequest = {
-    id: string;
+  id: string;
 };
 
 /** @internal */
-export const NotificationGroupsControllerGetNotificationGroupRequest$inboundSchema: z.ZodType<
+export const NotificationGroupsControllerGetNotificationGroupRequest$inboundSchema:
+  z.ZodType<
     NotificationGroupsControllerGetNotificationGroupRequest,
     z.ZodTypeDef,
     unknown
-> = z.object({
+  > = z.object({
     id: z.string(),
-});
+  });
 
 /** @internal */
 export type NotificationGroupsControllerGetNotificationGroupRequest$Outbound = {
-    id: string;
+  id: string;
 };
 
 /** @internal */
-export const NotificationGroupsControllerGetNotificationGroupRequest$outboundSchema: z.ZodType<
+export const NotificationGroupsControllerGetNotificationGroupRequest$outboundSchema:
+  z.ZodType<
     NotificationGroupsControllerGetNotificationGroupRequest$Outbound,
     z.ZodTypeDef,
     NotificationGroupsControllerGetNotificationGroupRequest
-> = z.object({
+  > = z.object({
     id: z.string(),
-});
+  });
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace NotificationGroupsControllerGetNotificationGroupRequest$ {
-    /** @deprecated use `NotificationGroupsControllerGetNotificationGroupRequest$inboundSchema` instead. */
-    export const inboundSchema =
-        NotificationGroupsControllerGetNotificationGroupRequest$inboundSchema;
-    /** @deprecated use `NotificationGroupsControllerGetNotificationGroupRequest$outboundSchema` instead. */
-    export const outboundSchema =
-        NotificationGroupsControllerGetNotificationGroupRequest$outboundSchema;
-    /** @deprecated use `NotificationGroupsControllerGetNotificationGroupRequest$Outbound` instead. */
-    export type Outbound = NotificationGroupsControllerGetNotificationGroupRequest$Outbound;
+  /** @deprecated use `NotificationGroupsControllerGetNotificationGroupRequest$inboundSchema` instead. */
+  export const inboundSchema =
+    NotificationGroupsControllerGetNotificationGroupRequest$inboundSchema;
+  /** @deprecated use `NotificationGroupsControllerGetNotificationGroupRequest$outboundSchema` instead. */
+  export const outboundSchema =
+    NotificationGroupsControllerGetNotificationGroupRequest$outboundSchema;
+  /** @deprecated use `NotificationGroupsControllerGetNotificationGroupRequest$Outbound` instead. */
+  export type Outbound =
+    NotificationGroupsControllerGetNotificationGroupRequest$Outbound;
 }

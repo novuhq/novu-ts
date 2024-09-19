@@ -5,30 +5,30 @@
 import * as z from "zod";
 
 export type ChangesControllerApplyDiffRequest = {
-    changeId: string;
+  changeId: string;
 };
 
 /** @internal */
 export const ChangesControllerApplyDiffRequest$inboundSchema: z.ZodType<
-    ChangesControllerApplyDiffRequest,
-    z.ZodTypeDef,
-    unknown
+  ChangesControllerApplyDiffRequest,
+  z.ZodTypeDef,
+  unknown
 > = z.object({
-    changeId: z.string(),
+  changeId: z.string(),
 });
 
 /** @internal */
 export type ChangesControllerApplyDiffRequest$Outbound = {
-    changeId: string;
+  changeId: string;
 };
 
 /** @internal */
 export const ChangesControllerApplyDiffRequest$outboundSchema: z.ZodType<
-    ChangesControllerApplyDiffRequest$Outbound,
-    z.ZodTypeDef,
-    ChangesControllerApplyDiffRequest
+  ChangesControllerApplyDiffRequest$Outbound,
+  z.ZodTypeDef,
+  ChangesControllerApplyDiffRequest
 > = z.object({
-    changeId: z.string(),
+  changeId: z.string(),
 });
 
 /**
@@ -36,10 +36,11 @@ export const ChangesControllerApplyDiffRequest$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace ChangesControllerApplyDiffRequest$ {
-    /** @deprecated use `ChangesControllerApplyDiffRequest$inboundSchema` instead. */
-    export const inboundSchema = ChangesControllerApplyDiffRequest$inboundSchema;
-    /** @deprecated use `ChangesControllerApplyDiffRequest$outboundSchema` instead. */
-    export const outboundSchema = ChangesControllerApplyDiffRequest$outboundSchema;
-    /** @deprecated use `ChangesControllerApplyDiffRequest$Outbound` instead. */
-    export type Outbound = ChangesControllerApplyDiffRequest$Outbound;
+  /** @deprecated use `ChangesControllerApplyDiffRequest$inboundSchema` instead. */
+  export const inboundSchema = ChangesControllerApplyDiffRequest$inboundSchema;
+  /** @deprecated use `ChangesControllerApplyDiffRequest$outboundSchema` instead. */
+  export const outboundSchema =
+    ChangesControllerApplyDiffRequest$outboundSchema;
+  /** @deprecated use `ChangesControllerApplyDiffRequest$Outbound` instead. */
+  export type Outbound = ChangesControllerApplyDiffRequest$Outbound;
 }

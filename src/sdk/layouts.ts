@@ -14,73 +14,105 @@ import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class Layouts extends ClientSDK {
-    /**
-     * Layout creation
-     *
-     * @remarks
-     * Create a layout
-     */
-    async create(options?: RequestOptions): Promise<components.CreateLayoutResponseDto> {
-        return unwrapAsync(layoutsCreate(this, options));
-    }
+  /**
+   * Layout creation
+   *
+   * @remarks
+   * Create a layout
+   */
+  async create(
+    options?: RequestOptions,
+  ): Promise<components.CreateLayoutResponseDto> {
+    return unwrapAsync(layoutsCreate(
+      this,
+      options,
+    ));
+  }
 
-    /**
-     * Delete layout
-     *
-     * @remarks
-     * Execute a soft delete of a layout given a certain ID.
-     */
-    async delete(layoutId: string, options?: RequestOptions): Promise<void> {
-        return unwrapAsync(layoutsDelete(this, layoutId, options));
-    }
+  /**
+   * Delete layout
+   *
+   * @remarks
+   * Execute a soft delete of a layout given a certain ID.
+   */
+  async delete(
+    layoutId: string,
+    options?: RequestOptions,
+  ): Promise<void> {
+    return unwrapAsync(layoutsDelete(
+      this,
+      layoutId,
+      options,
+    ));
+  }
 
-    /**
-     * Filter layouts
-     *
-     * @remarks
-     * Returns a list of layouts that can be paginated using the `page` query parameter and filtered by the environment where it is executed from the organization the user belongs to.
-     */
-    async list(
-        request: operations.LayoutsControllerListLayoutsRequest,
-        options?: RequestOptions
-    ): Promise<void> {
-        return unwrapAsync(layoutsList(this, request, options));
-    }
+  /**
+   * Filter layouts
+   *
+   * @remarks
+   * Returns a list of layouts that can be paginated using the `page` query parameter and filtered by the environment where it is executed from the organization the user belongs to.
+   */
+  async list(
+    request: operations.LayoutsControllerListLayoutsRequest,
+    options?: RequestOptions,
+  ): Promise<void> {
+    return unwrapAsync(layoutsList(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Get layout
-     *
-     * @remarks
-     * Get a layout by its ID
-     */
-    async retrieve(
-        layoutId: string,
-        options?: RequestOptions
-    ): Promise<components.GetLayoutResponseDto> {
-        return unwrapAsync(layoutsRetrieve(this, layoutId, options));
-    }
+  /**
+   * Get layout
+   *
+   * @remarks
+   * Get a layout by its ID
+   */
+  async retrieve(
+    layoutId: string,
+    options?: RequestOptions,
+  ): Promise<components.GetLayoutResponseDto> {
+    return unwrapAsync(layoutsRetrieve(
+      this,
+      layoutId,
+      options,
+    ));
+  }
 
-    /**
-     * Set default layout
-     *
-     * @remarks
-     * Sets the default layout for the environment and updates to non default to the existing default layout (if any).
-     */
-    async setAsDefault(layoutId: string, options?: RequestOptions): Promise<void> {
-        return unwrapAsync(layoutsSetAsDefault(this, layoutId, options));
-    }
+  /**
+   * Set default layout
+   *
+   * @remarks
+   * Sets the default layout for the environment and updates to non default to the existing default layout (if any).
+   */
+  async setAsDefault(
+    layoutId: string,
+    options?: RequestOptions,
+  ): Promise<void> {
+    return unwrapAsync(layoutsSetAsDefault(
+      this,
+      layoutId,
+      options,
+    ));
+  }
 
-    /**
-     * Update a layout
-     *
-     * @remarks
-     * Update the name, content and variables of a layout. Also change it to be default or no.
-     */
-    async update(
-        layoutId: string,
-        updateLayoutRequestDto: components.UpdateLayoutRequestDto,
-        options?: RequestOptions
-    ): Promise<components.UpdateLayoutResponseDto> {
-        return unwrapAsync(layoutsUpdate(this, layoutId, updateLayoutRequestDto, options));
-    }
+  /**
+   * Update a layout
+   *
+   * @remarks
+   * Update the name, content and variables of a layout. Also change it to be default or no.
+   */
+  async update(
+    layoutId: string,
+    updateLayoutRequestDto: components.UpdateLayoutRequestDto,
+    options?: RequestOptions,
+  ): Promise<components.UpdateLayoutResponseDto> {
+    return unwrapAsync(layoutsUpdate(
+      this,
+      layoutId,
+      updateLayoutRequestDto,
+      options,
+    ));
+  }
 }

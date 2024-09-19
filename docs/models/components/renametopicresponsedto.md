@@ -6,11 +6,13 @@
 import { RenameTopicResponseDto } from "@novu/api/models/components";
 
 let value: RenameTopicResponseDto = {
-    environmentId: "<value>",
-    organizationId: "<value>",
-    key: "<key>",
-    name: "<value>",
-    subscribers: ["<value>"],
+  environmentId: "<value>",
+  organizationId: "<value>",
+  key: "<key>",
+  name: "<value>",
+  subscribers: [
+    "<value>",
+  ],
 };
 ```
 

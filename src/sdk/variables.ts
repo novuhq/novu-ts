@@ -8,13 +8,18 @@ import * as components from "../models/components/index.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class Variables extends ClientSDK {
-    /**
-     * Get available variables
-     *
-     * @remarks
-     * Get the variables that can be used in the workflow
-     */
-    async retrieve(options?: RequestOptions): Promise<components.VariablesResponseDto> {
-        return unwrapAsync(workflowsVariablesRetrieve(this, options));
-    }
+  /**
+   * Get available variables
+   *
+   * @remarks
+   * Get the variables that can be used in the workflow
+   */
+  async retrieve(
+    options?: RequestOptions,
+  ): Promise<components.VariablesResponseDto> {
+    return unwrapAsync(workflowsVariablesRetrieve(
+      this,
+      options,
+    ));
+  }
 }

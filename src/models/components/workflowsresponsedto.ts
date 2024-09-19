@@ -5,42 +5,42 @@
 import * as z from "zod";
 
 export type WorkflowsResponseDto = {
-    data: Array<string>;
-    page: number;
-    pageSize: number;
-    totalCount: number;
+  data: Array<string>;
+  page: number;
+  pageSize: number;
+  totalCount: number;
 };
 
 /** @internal */
 export const WorkflowsResponseDto$inboundSchema: z.ZodType<
-    WorkflowsResponseDto,
-    z.ZodTypeDef,
-    unknown
+  WorkflowsResponseDto,
+  z.ZodTypeDef,
+  unknown
 > = z.object({
-    data: z.array(z.string()),
-    page: z.number(),
-    pageSize: z.number(),
-    totalCount: z.number(),
+  data: z.array(z.string()),
+  page: z.number(),
+  pageSize: z.number(),
+  totalCount: z.number(),
 });
 
 /** @internal */
 export type WorkflowsResponseDto$Outbound = {
-    data: Array<string>;
-    page: number;
-    pageSize: number;
-    totalCount: number;
+  data: Array<string>;
+  page: number;
+  pageSize: number;
+  totalCount: number;
 };
 
 /** @internal */
 export const WorkflowsResponseDto$outboundSchema: z.ZodType<
-    WorkflowsResponseDto$Outbound,
-    z.ZodTypeDef,
-    WorkflowsResponseDto
+  WorkflowsResponseDto$Outbound,
+  z.ZodTypeDef,
+  WorkflowsResponseDto
 > = z.object({
-    data: z.array(z.string()),
-    page: z.number(),
-    pageSize: z.number(),
-    totalCount: z.number(),
+  data: z.array(z.string()),
+  page: z.number(),
+  pageSize: z.number(),
+  totalCount: z.number(),
 });
 
 /**
@@ -48,10 +48,10 @@ export const WorkflowsResponseDto$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace WorkflowsResponseDto$ {
-    /** @deprecated use `WorkflowsResponseDto$inboundSchema` instead. */
-    export const inboundSchema = WorkflowsResponseDto$inboundSchema;
-    /** @deprecated use `WorkflowsResponseDto$outboundSchema` instead. */
-    export const outboundSchema = WorkflowsResponseDto$outboundSchema;
-    /** @deprecated use `WorkflowsResponseDto$Outbound` instead. */
-    export type Outbound = WorkflowsResponseDto$Outbound;
+  /** @deprecated use `WorkflowsResponseDto$inboundSchema` instead. */
+  export const inboundSchema = WorkflowsResponseDto$inboundSchema;
+  /** @deprecated use `WorkflowsResponseDto$outboundSchema` instead. */
+  export const outboundSchema = WorkflowsResponseDto$outboundSchema;
+  /** @deprecated use `WorkflowsResponseDto$Outbound` instead. */
+  export type Outbound = WorkflowsResponseDto$Outbound;
 }

@@ -6,10 +6,10 @@
 import { SubscribersControllerUpdateSubscriberOnlineFlagRequest } from "@novu/api/models/operations";
 
 let value: SubscribersControllerUpdateSubscriberOnlineFlagRequest = {
-    subscriberId: "<value>",
-    updateSubscriberOnlineFlagRequestDto: {
-        isOnline: false,
-    },
+  subscriberId: "<value>",
+  updateSubscriberOnlineFlagRequestDto: {
+    isOnline: false,
+  },
 };
 ```
 

@@ -29,7 +29,7 @@ async function run() {
   const result = await novu.feeds.create({
     name: "<value>",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -104,7 +104,7 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.feeds.delete("<value>");
-
+  
   // Handle the result
   console.log(result)
 }
@@ -177,7 +177,7 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.feeds.retrieve();
-
+  
   // Handle the result
   console.log(result)
 }

@@ -6,10 +6,12 @@
 import { ChangesResponseDto } from "@novu/api/models/components";
 
 let value: ChangesResponseDto = {
-    data: ["<value>"],
-    page: 3843.82,
-    pageSize: 4375.87,
-    totalCount: 2975.34,
+  data: [
+    "<value>",
+  ],
+  page: 3843.82,
+  pageSize: 4375.87,
+  totalCount: 2975.34,
 };
 ```
 

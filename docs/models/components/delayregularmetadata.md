@@ -6,7 +6,7 @@
 import { DelayRegularMetadata } from "@novu/api/models/components";
 
 let value: DelayRegularMetadata = {
-    type: "regular",
+  type: "regular",
 };
 ```
 

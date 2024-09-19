@@ -6,7 +6,7 @@
 import { DataBooleanDto } from "@novu/api/models/components";
 
 let value: DataBooleanDto = {
-    data: false,
+  data: false,
 };
 ```
 

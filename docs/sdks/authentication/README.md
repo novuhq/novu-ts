@@ -28,8 +28,6 @@ async function run() {
     hmacHash: "<value>",
     environmentId: "<value>",
   });
-
-  
 }
 
 run();
@@ -110,7 +108,7 @@ async function run() {
     hmacHash: "<value>",
     environmentId: "<value>",
   });
-
+  
   // Handle the result
   console.log(result)
 }

@@ -29,7 +29,7 @@ async function run() {
   const result = await novu.organizations.eeOrganizationControllerRenameOrganization({
     name: "<value>",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -104,7 +104,7 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.organizations.retrieve();
-
+  
   // Handle the result
   console.log(result)
 }
@@ -181,7 +181,7 @@ async function run() {
     fontColor: "<value>",
     logo: "<value>",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -205,7 +205,7 @@ const novu = new NovuCore({
 
 async function run() {
   const res = await organizationsUpdate(novu, {
-    color: "plum",
+    color: "fuchsia",
     contentBackground: "<value>",
     fontColor: "<value>",
     logo: "<value>",

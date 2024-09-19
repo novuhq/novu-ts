@@ -14,71 +14,95 @@ import { unwrapAsync } from "../types/fp.js";
 import { NovuSubscribers } from "./novusubscribers.js";
 
 export class Topics extends ClientSDK {
-    private _subscribers?: NovuSubscribers;
-    get subscribers(): NovuSubscribers {
-        return (this._subscribers ??= new NovuSubscribers(this.options$));
-    }
+  private _subscribers?: NovuSubscribers;
+  get subscribers(): NovuSubscribers {
+    return (this._subscribers ??= new NovuSubscribers(this.options$));
+  }
 
-    /**
-     * Topic creation
-     *
-     * @remarks
-     * Create a topic
-     */
-    async create(
-        request: components.CreateTopicRequestDto,
-        options?: RequestOptions
-    ): Promise<components.CreateTopicResponseDto> {
-        return unwrapAsync(topicsCreate(this, request, options));
-    }
+  /**
+   * Topic creation
+   *
+   * @remarks
+   * Create a topic
+   */
+  async create(
+    request: components.CreateTopicRequestDto,
+    options?: RequestOptions,
+  ): Promise<components.CreateTopicResponseDto> {
+    return unwrapAsync(topicsCreate(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Delete topic
-     *
-     * @remarks
-     * Delete a topic by its topic key if it has no subscribers
-     */
-    async delete(topicKey: string, options?: RequestOptions): Promise<void> {
-        return unwrapAsync(topicsDelete(this, topicKey, options));
-    }
+  /**
+   * Delete topic
+   *
+   * @remarks
+   * Delete a topic by its topic key if it has no subscribers
+   */
+  async delete(
+    topicKey: string,
+    options?: RequestOptions,
+  ): Promise<void> {
+    return unwrapAsync(topicsDelete(
+      this,
+      topicKey,
+      options,
+    ));
+  }
 
-    /**
-     * Filter topics
-     *
-     * @remarks
-     * Returns a list of topics that can be paginated using the `page` query parameter and filtered by the topic key with the `key` query parameter
-     */
-    async list(
-        request: operations.TopicsControllerListTopicsRequest,
-        options?: RequestOptions
-    ): Promise<components.FilterTopicsResponseDto> {
-        return unwrapAsync(topicsList(this, request, options));
-    }
+  /**
+   * Filter topics
+   *
+   * @remarks
+   * Returns a list of topics that can be paginated using the `page` query parameter and filtered by the topic key with the `key` query parameter
+   */
+  async list(
+    request: operations.TopicsControllerListTopicsRequest,
+    options?: RequestOptions,
+  ): Promise<components.FilterTopicsResponseDto> {
+    return unwrapAsync(topicsList(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Rename a topic
-     *
-     * @remarks
-     * Rename a topic by providing a new name
-     */
-    async rename(
-        topicKey: string,
-        renameTopicRequestDto: components.RenameTopicRequestDto,
-        options?: RequestOptions
-    ): Promise<components.RenameTopicResponseDto> {
-        return unwrapAsync(topicsRename(this, topicKey, renameTopicRequestDto, options));
-    }
+  /**
+   * Rename a topic
+   *
+   * @remarks
+   * Rename a topic by providing a new name
+   */
+  async rename(
+    topicKey: string,
+    renameTopicRequestDto: components.RenameTopicRequestDto,
+    options?: RequestOptions,
+  ): Promise<components.RenameTopicResponseDto> {
+    return unwrapAsync(topicsRename(
+      this,
+      topicKey,
+      renameTopicRequestDto,
+      options,
+    ));
+  }
 
-    /**
-     * Get topic
-     *
-     * @remarks
-     * Get a topic by its topic key
-     */
-    async retrieve(
-        topicKey: string,
-        options?: RequestOptions
-    ): Promise<components.GetTopicResponseDto> {
-        return unwrapAsync(topicsRetrieve(this, topicKey, options));
-    }
+  /**
+   * Get topic
+   *
+   * @remarks
+   * Get a topic by its topic key
+   */
+  async retrieve(
+    topicKey: string,
+    options?: RequestOptions,
+  ): Promise<components.GetTopicResponseDto> {
+    return unwrapAsync(topicsRetrieve(
+      this,
+      topicKey,
+      options,
+    ));
+  }
 }

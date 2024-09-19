@@ -10,30 +10,43 @@ import * as components from "../models/components/index.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class Feeds extends ClientSDK {
-    /**
-     * Create feed
-     */
-    async create(
-        request: components.CreateFeedRequestDto,
-        options?: RequestOptions
-    ): Promise<components.FeedResponseDto> {
-        return unwrapAsync(feedsCreate(this, request, options));
-    }
+  /**
+   * Create feed
+   */
+  async create(
+    request: components.CreateFeedRequestDto,
+    options?: RequestOptions,
+  ): Promise<components.FeedResponseDto> {
+    return unwrapAsync(feedsCreate(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Delete feed
-     */
-    async delete(
-        feedId: string,
-        options?: RequestOptions
-    ): Promise<Array<components.FeedResponseDto>> {
-        return unwrapAsync(feedsDelete(this, feedId, options));
-    }
+  /**
+   * Delete feed
+   */
+  async delete(
+    feedId: string,
+    options?: RequestOptions,
+  ): Promise<Array<components.FeedResponseDto>> {
+    return unwrapAsync(feedsDelete(
+      this,
+      feedId,
+      options,
+    ));
+  }
 
-    /**
-     * Get feeds
-     */
-    async retrieve(options?: RequestOptions): Promise<Array<components.FeedResponseDto>> {
-        return unwrapAsync(feedsRetrieve(this, options));
-    }
+  /**
+   * Get feeds
+   */
+  async retrieve(
+    options?: RequestOptions,
+  ): Promise<Array<components.FeedResponseDto>> {
+    return unwrapAsync(feedsRetrieve(
+      this,
+      options,
+    ));
+  }
 }

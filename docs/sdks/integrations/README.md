@@ -33,7 +33,7 @@ async function run() {
     channel: "sms",
     providerId: "<value>",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -57,7 +57,7 @@ const novu = new NovuCore({
 
 async function run() {
   const res = await integrationsCreate(novu, {
-    channel: "chat",
+    channel: "sms",
     providerId: "<value>",
   });
 
@@ -109,7 +109,7 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.integrations.delete("<value>");
-
+  
   // Handle the result
   console.log(result)
 }
@@ -182,7 +182,7 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.integrations.list();
-
+  
   // Handle the result
   console.log(result)
 }
@@ -254,7 +254,7 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.integrations.listActive();
-
+  
   // Handle the result
   console.log(result)
 }
@@ -326,7 +326,7 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.integrations.setAsPrimary("<value>");
-
+  
   // Handle the result
   console.log(result)
 }
@@ -399,7 +399,7 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.integrations.update("<value>", {});
-
+  
   // Handle the result
   console.log(result)
 }

@@ -6,7 +6,7 @@
 import { RenameOrganizationDto } from "@novu/api/models/components";
 
 let value: RenameOrganizationDto = {
-    name: "<value>",
+  name: "<value>",
 };
 ```
 

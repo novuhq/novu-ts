@@ -6,8 +6,8 @@
 import { EmailBlock } from "@novu/api/models/components";
 
 let value: EmailBlock = {
-    content: "<value>",
-    type: "text",
+  content: "<value>",
+  type: "text",
 };
 ```
 

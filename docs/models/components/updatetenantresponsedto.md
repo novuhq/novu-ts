@@ -6,11 +6,11 @@
 import { UpdateTenantResponseDto } from "@novu/api/models/components";
 
 let value: UpdateTenantResponseDto = {
-    environmentId: "<value>",
-    id: "<id>",
-    createdAt: "<value>",
-    identifier: "<value>",
-    updatedAt: "<value>",
+  environmentId: "<value>",
+  id: "<id>",
+  createdAt: "<value>",
+  identifier: "<value>",
+  updatedAt: "<value>",
 };
 ```
 

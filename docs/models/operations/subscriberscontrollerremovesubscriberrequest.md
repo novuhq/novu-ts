@@ -6,7 +6,7 @@
 import { SubscribersControllerRemoveSubscriberRequest } from "@novu/api/models/operations";
 
 let value: SubscribersControllerRemoveSubscriberRequest = {
-    subscriberId: "<value>",
+  subscriberId: "<value>",
 };
 ```
 

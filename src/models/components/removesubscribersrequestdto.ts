@@ -5,33 +5,33 @@
 import * as z from "zod";
 
 export type RemoveSubscribersRequestDto = {
-    /**
-     * List of subscriber identifiers that will be removed to the topic
-     */
-    subscribers: Array<string>;
+  /**
+   * List of subscriber identifiers that will be removed to the topic
+   */
+  subscribers: Array<string>;
 };
 
 /** @internal */
 export const RemoveSubscribersRequestDto$inboundSchema: z.ZodType<
-    RemoveSubscribersRequestDto,
-    z.ZodTypeDef,
-    unknown
+  RemoveSubscribersRequestDto,
+  z.ZodTypeDef,
+  unknown
 > = z.object({
-    subscribers: z.array(z.string()),
+  subscribers: z.array(z.string()),
 });
 
 /** @internal */
 export type RemoveSubscribersRequestDto$Outbound = {
-    subscribers: Array<string>;
+  subscribers: Array<string>;
 };
 
 /** @internal */
 export const RemoveSubscribersRequestDto$outboundSchema: z.ZodType<
-    RemoveSubscribersRequestDto$Outbound,
-    z.ZodTypeDef,
-    RemoveSubscribersRequestDto
+  RemoveSubscribersRequestDto$Outbound,
+  z.ZodTypeDef,
+  RemoveSubscribersRequestDto
 > = z.object({
-    subscribers: z.array(z.string()),
+  subscribers: z.array(z.string()),
 });
 
 /**
@@ -39,10 +39,10 @@ export const RemoveSubscribersRequestDto$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace RemoveSubscribersRequestDto$ {
-    /** @deprecated use `RemoveSubscribersRequestDto$inboundSchema` instead. */
-    export const inboundSchema = RemoveSubscribersRequestDto$inboundSchema;
-    /** @deprecated use `RemoveSubscribersRequestDto$outboundSchema` instead. */
-    export const outboundSchema = RemoveSubscribersRequestDto$outboundSchema;
-    /** @deprecated use `RemoveSubscribersRequestDto$Outbound` instead. */
-    export type Outbound = RemoveSubscribersRequestDto$Outbound;
+  /** @deprecated use `RemoveSubscribersRequestDto$inboundSchema` instead. */
+  export const inboundSchema = RemoveSubscribersRequestDto$inboundSchema;
+  /** @deprecated use `RemoveSubscribersRequestDto$outboundSchema` instead. */
+  export const outboundSchema = RemoveSubscribersRequestDto$outboundSchema;
+  /** @deprecated use `RemoveSubscribersRequestDto$Outbound` instead. */
+  export type Outbound = RemoveSubscribersRequestDto$Outbound;
 }

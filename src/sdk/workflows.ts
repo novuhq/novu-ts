@@ -15,76 +15,100 @@ import { Status } from "./status.js";
 import { Variables } from "./variables.js";
 
 export class Workflows extends ClientSDK {
-    private _variables?: Variables;
-    get variables(): Variables {
-        return (this._variables ??= new Variables(this.options$));
-    }
+  private _variables?: Variables;
+  get variables(): Variables {
+    return (this._variables ??= new Variables(this.options$));
+  }
 
-    private _status?: Status;
-    get status(): Status {
-        return (this._status ??= new Status(this.options$));
-    }
+  private _status?: Status;
+  get status(): Status {
+    return (this._status ??= new Status(this.options$));
+  }
 
-    /**
-     * Create workflow
-     *
-     * @remarks
-     * Workflow was previously named notification template
-     */
-    async create(
-        request: components.CreateWorkflowRequestDto,
-        options?: RequestOptions
-    ): Promise<components.WorkflowResponse> {
-        return unwrapAsync(workflowsCreate(this, request, options));
-    }
+  /**
+   * Create workflow
+   *
+   * @remarks
+   * Workflow was previously named notification template
+   */
+  async create(
+    request: components.CreateWorkflowRequestDto,
+    options?: RequestOptions,
+  ): Promise<components.WorkflowResponse> {
+    return unwrapAsync(workflowsCreate(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Delete workflow
-     *
-     * @remarks
-     * Workflow was previously named notification template
-     */
-    async delete(workflowId: string, options?: RequestOptions): Promise<components.DataBooleanDto> {
-        return unwrapAsync(workflowsDelete(this, workflowId, options));
-    }
+  /**
+   * Delete workflow
+   *
+   * @remarks
+   * Workflow was previously named notification template
+   */
+  async delete(
+    workflowId: string,
+    options?: RequestOptions,
+  ): Promise<components.DataBooleanDto> {
+    return unwrapAsync(workflowsDelete(
+      this,
+      workflowId,
+      options,
+    ));
+  }
 
-    /**
-     * Get workflows
-     *
-     * @remarks
-     * Workflows were previously named notification templates
-     */
-    async list(
-        request: operations.WorkflowControllerListWorkflowsRequest,
-        options?: RequestOptions
-    ): Promise<components.WorkflowsResponseDto> {
-        return unwrapAsync(workflowsList(this, request, options));
-    }
+  /**
+   * Get workflows
+   *
+   * @remarks
+   * Workflows were previously named notification templates
+   */
+  async list(
+    request: operations.WorkflowControllerListWorkflowsRequest,
+    options?: RequestOptions,
+  ): Promise<components.WorkflowsResponseDto> {
+    return unwrapAsync(workflowsList(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Get workflow
-     *
-     * @remarks
-     * Workflow was previously named notification template
-     */
-    async retrieve(
-        workflowId: string,
-        options?: RequestOptions
-    ): Promise<components.WorkflowResponse> {
-        return unwrapAsync(workflowsRetrieve(this, workflowId, options));
-    }
+  /**
+   * Get workflow
+   *
+   * @remarks
+   * Workflow was previously named notification template
+   */
+  async retrieve(
+    workflowId: string,
+    options?: RequestOptions,
+  ): Promise<components.WorkflowResponse> {
+    return unwrapAsync(workflowsRetrieve(
+      this,
+      workflowId,
+      options,
+    ));
+  }
 
-    /**
-     * Update workflow
-     *
-     * @remarks
-     * Workflow was previously named notification template
-     */
-    async update(
-        workflowId: string,
-        updateWorkflowRequestDto: components.UpdateWorkflowRequestDto,
-        options?: RequestOptions
-    ): Promise<components.WorkflowResponse> {
-        return unwrapAsync(workflowsUpdate(this, workflowId, updateWorkflowRequestDto, options));
-    }
+  /**
+   * Update workflow
+   *
+   * @remarks
+   * Workflow was previously named notification template
+   */
+  async update(
+    workflowId: string,
+    updateWorkflowRequestDto: components.UpdateWorkflowRequestDto,
+    options?: RequestOptions,
+  ): Promise<components.WorkflowResponse> {
+    return unwrapAsync(workflowsUpdate(
+      this,
+      workflowId,
+      updateWorkflowRequestDto,
+      options,
+    ));
+  }
 }

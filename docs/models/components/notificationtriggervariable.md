@@ -6,7 +6,7 @@
 import { NotificationTriggerVariable } from "@novu/api/models/components";
 
 let value: NotificationTriggerVariable = {
-    name: "<value>",
+  name: "<value>",
 };
 ```
 

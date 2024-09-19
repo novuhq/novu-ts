@@ -6,10 +6,10 @@
 import { TopicsControllerRenameTopicRequest } from "@novu/api/models/operations";
 
 let value: TopicsControllerRenameTopicRequest = {
-    topicKey: "<value>",
-    renameTopicRequestDto: {
-        name: "<value>",
-    },
+  topicKey: "<value>",
+  renameTopicRequestDto: {
+    name: "<value>",
+  },
 };
 ```
 

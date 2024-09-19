@@ -6,8 +6,8 @@
 import { TenantControllerUpdateTenantRequest } from "@novu/api/models/operations";
 
 let value: TenantControllerUpdateTenantRequest = {
-    identifier: "<value>",
-    updateTenantRequestDto: {},
+  identifier: "<value>",
+  updateTenantRequestDto: {},
 };
 ```
 

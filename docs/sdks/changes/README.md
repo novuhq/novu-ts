@@ -28,7 +28,7 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.changes.apply("<value>");
-
+  
   // Handle the result
   console.log(result)
 }
@@ -105,7 +105,7 @@ async function run() {
       "<value>",
     ],
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -182,7 +182,7 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.changes.count();
-
+  
   // Handle the result
   console.log(result)
 }
@@ -256,7 +256,7 @@ async function run() {
   const result = await novu.changes.retrieve({
     promoted: "false",
   });
-
+  
   // Handle the result
   console.log(result)
 }

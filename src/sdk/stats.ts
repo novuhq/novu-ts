@@ -9,20 +9,29 @@ import * as components from "../models/components/index.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class Stats extends ClientSDK {
-    /**
-     * Get notification graph statistics
-     */
-    async graph(
-        days?: number | undefined,
-        options?: RequestOptions
-    ): Promise<Array<components.ActivityGraphStatesResponse>> {
-        return unwrapAsync(notificationsStatsGraph(this, days, options));
-    }
+  /**
+   * Get notification graph statistics
+   */
+  async graph(
+    days?: number | undefined,
+    options?: RequestOptions,
+  ): Promise<Array<components.ActivityGraphStatesResponse>> {
+    return unwrapAsync(notificationsStatsGraph(
+      this,
+      days,
+      options,
+    ));
+  }
 
-    /**
-     * Get notification statistics
-     */
-    async retrieve(options?: RequestOptions): Promise<components.ActivityStatsResponseDto> {
-        return unwrapAsync(notificationsStatsRetrieve(this, options));
-    }
+  /**
+   * Get notification statistics
+   */
+  async retrieve(
+    options?: RequestOptions,
+  ): Promise<components.ActivityStatsResponseDto> {
+    return unwrapAsync(notificationsStatsRetrieve(
+      this,
+      options,
+    ));
+  }
 }

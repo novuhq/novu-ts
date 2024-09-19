@@ -6,7 +6,7 @@
 import { DataNumberDto } from "@novu/api/models/components";
 
 let value: DataNumberDto = {
-    data: 6458.94,
+  data: 6458.94,
 };
 ```
 

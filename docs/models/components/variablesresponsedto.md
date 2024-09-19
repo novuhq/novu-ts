@@ -6,8 +6,8 @@
 import { VariablesResponseDto } from "@novu/api/models/components";
 
 let value: VariablesResponseDto = {
-    system: {},
-    translations: {},
+  system: {},
+  translations: {},
 };
 ```
 

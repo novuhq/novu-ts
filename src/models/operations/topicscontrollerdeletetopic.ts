@@ -5,33 +5,33 @@
 import * as z from "zod";
 
 export type TopicsControllerDeleteTopicRequest = {
-    /**
-     * The topic key
-     */
-    topicKey: string;
+  /**
+   * The topic key
+   */
+  topicKey: string;
 };
 
 /** @internal */
 export const TopicsControllerDeleteTopicRequest$inboundSchema: z.ZodType<
-    TopicsControllerDeleteTopicRequest,
-    z.ZodTypeDef,
-    unknown
+  TopicsControllerDeleteTopicRequest,
+  z.ZodTypeDef,
+  unknown
 > = z.object({
-    topicKey: z.string(),
+  topicKey: z.string(),
 });
 
 /** @internal */
 export type TopicsControllerDeleteTopicRequest$Outbound = {
-    topicKey: string;
+  topicKey: string;
 };
 
 /** @internal */
 export const TopicsControllerDeleteTopicRequest$outboundSchema: z.ZodType<
-    TopicsControllerDeleteTopicRequest$Outbound,
-    z.ZodTypeDef,
-    TopicsControllerDeleteTopicRequest
+  TopicsControllerDeleteTopicRequest$Outbound,
+  z.ZodTypeDef,
+  TopicsControllerDeleteTopicRequest
 > = z.object({
-    topicKey: z.string(),
+  topicKey: z.string(),
 });
 
 /**
@@ -39,10 +39,11 @@ export const TopicsControllerDeleteTopicRequest$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace TopicsControllerDeleteTopicRequest$ {
-    /** @deprecated use `TopicsControllerDeleteTopicRequest$inboundSchema` instead. */
-    export const inboundSchema = TopicsControllerDeleteTopicRequest$inboundSchema;
-    /** @deprecated use `TopicsControllerDeleteTopicRequest$outboundSchema` instead. */
-    export const outboundSchema = TopicsControllerDeleteTopicRequest$outboundSchema;
-    /** @deprecated use `TopicsControllerDeleteTopicRequest$Outbound` instead. */
-    export type Outbound = TopicsControllerDeleteTopicRequest$Outbound;
+  /** @deprecated use `TopicsControllerDeleteTopicRequest$inboundSchema` instead. */
+  export const inboundSchema = TopicsControllerDeleteTopicRequest$inboundSchema;
+  /** @deprecated use `TopicsControllerDeleteTopicRequest$outboundSchema` instead. */
+  export const outboundSchema =
+    TopicsControllerDeleteTopicRequest$outboundSchema;
+  /** @deprecated use `TopicsControllerDeleteTopicRequest$Outbound` instead. */
+  export type Outbound = TopicsControllerDeleteTopicRequest$Outbound;
 }

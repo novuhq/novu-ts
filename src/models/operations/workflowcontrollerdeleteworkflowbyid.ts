@@ -5,41 +5,45 @@
 import * as z from "zod";
 
 export type WorkflowControllerDeleteWorkflowByIdRequest = {
-    workflowId: string;
+  workflowId: string;
 };
 
 /** @internal */
-export const WorkflowControllerDeleteWorkflowByIdRequest$inboundSchema: z.ZodType<
+export const WorkflowControllerDeleteWorkflowByIdRequest$inboundSchema:
+  z.ZodType<
     WorkflowControllerDeleteWorkflowByIdRequest,
     z.ZodTypeDef,
     unknown
-> = z.object({
+  > = z.object({
     workflowId: z.string(),
-});
+  });
 
 /** @internal */
 export type WorkflowControllerDeleteWorkflowByIdRequest$Outbound = {
-    workflowId: string;
+  workflowId: string;
 };
 
 /** @internal */
-export const WorkflowControllerDeleteWorkflowByIdRequest$outboundSchema: z.ZodType<
+export const WorkflowControllerDeleteWorkflowByIdRequest$outboundSchema:
+  z.ZodType<
     WorkflowControllerDeleteWorkflowByIdRequest$Outbound,
     z.ZodTypeDef,
     WorkflowControllerDeleteWorkflowByIdRequest
-> = z.object({
+  > = z.object({
     workflowId: z.string(),
-});
+  });
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace WorkflowControllerDeleteWorkflowByIdRequest$ {
-    /** @deprecated use `WorkflowControllerDeleteWorkflowByIdRequest$inboundSchema` instead. */
-    export const inboundSchema = WorkflowControllerDeleteWorkflowByIdRequest$inboundSchema;
-    /** @deprecated use `WorkflowControllerDeleteWorkflowByIdRequest$outboundSchema` instead. */
-    export const outboundSchema = WorkflowControllerDeleteWorkflowByIdRequest$outboundSchema;
-    /** @deprecated use `WorkflowControllerDeleteWorkflowByIdRequest$Outbound` instead. */
-    export type Outbound = WorkflowControllerDeleteWorkflowByIdRequest$Outbound;
+  /** @deprecated use `WorkflowControllerDeleteWorkflowByIdRequest$inboundSchema` instead. */
+  export const inboundSchema =
+    WorkflowControllerDeleteWorkflowByIdRequest$inboundSchema;
+  /** @deprecated use `WorkflowControllerDeleteWorkflowByIdRequest$outboundSchema` instead. */
+  export const outboundSchema =
+    WorkflowControllerDeleteWorkflowByIdRequest$outboundSchema;
+  /** @deprecated use `WorkflowControllerDeleteWorkflowByIdRequest$Outbound` instead. */
+  export type Outbound = WorkflowControllerDeleteWorkflowByIdRequest$Outbound;
 }

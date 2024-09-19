@@ -32,7 +32,7 @@ async function run() {
     identifier: "<value>",
     name: "<value>",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -108,8 +108,6 @@ const novu = new Novu({
 
 async function run() {
   await novu.tenants.delete("<value>");
-
-  
 }
 
 run();
@@ -179,7 +177,7 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.tenants.list();
-
+  
   for await (const page of result) {
     // Handle the page
     console.log(page);
@@ -257,7 +255,7 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.tenants.retrieve("<value>");
-
+  
   // Handle the result
   console.log(result)
 }
@@ -330,7 +328,7 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.tenants.update("<value>", {});
-
+  
   // Handle the result
   console.log(result)
 }

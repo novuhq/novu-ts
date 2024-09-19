@@ -14,74 +14,99 @@ import { unwrapAsync } from "../types/fp.js";
 import { Webhooks } from "./webhooks.js";
 
 export class Integrations extends ClientSDK {
-    private _webhooks?: Webhooks;
-    get webhooks(): Webhooks {
-        return (this._webhooks ??= new Webhooks(this.options$));
-    }
+  private _webhooks?: Webhooks;
+  get webhooks(): Webhooks {
+    return (this._webhooks ??= new Webhooks(this.options$));
+  }
 
-    /**
-     * Create integration
-     *
-     * @remarks
-     * Create an integration for the current environment the user is based on the API key provided
-     */
-    async create(
-        request: components.CreateIntegrationRequestDto,
-        options?: RequestOptions
-    ): Promise<components.IntegrationResponseDto> {
-        return unwrapAsync(integrationsCreate(this, request, options));
-    }
+  /**
+   * Create integration
+   *
+   * @remarks
+   * Create an integration for the current environment the user is based on the API key provided
+   */
+  async create(
+    request: components.CreateIntegrationRequestDto,
+    options?: RequestOptions,
+  ): Promise<components.IntegrationResponseDto> {
+    return unwrapAsync(integrationsCreate(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Delete integration
-     */
-    async delete(
-        integrationId: string,
-        options?: RequestOptions
-    ): Promise<Array<components.IntegrationResponseDto>> {
-        return unwrapAsync(integrationsDelete(this, integrationId, options));
-    }
+  /**
+   * Delete integration
+   */
+  async delete(
+    integrationId: string,
+    options?: RequestOptions,
+  ): Promise<Array<components.IntegrationResponseDto>> {
+    return unwrapAsync(integrationsDelete(
+      this,
+      integrationId,
+      options,
+    ));
+  }
 
-    /**
-     * Get integrations
-     *
-     * @remarks
-     * Return all the integrations the user has created for that organization. Review v.0.17.0 changelog for a breaking change
-     */
-    async list(options?: RequestOptions): Promise<Array<components.IntegrationResponseDto>> {
-        return unwrapAsync(integrationsList(this, options));
-    }
+  /**
+   * Get integrations
+   *
+   * @remarks
+   * Return all the integrations the user has created for that organization. Review v.0.17.0 changelog for a breaking change
+   */
+  async list(
+    options?: RequestOptions,
+  ): Promise<Array<components.IntegrationResponseDto>> {
+    return unwrapAsync(integrationsList(
+      this,
+      options,
+    ));
+  }
 
-    /**
-     * Get active integrations
-     *
-     * @remarks
-     * Return all the active integrations the user has created for that organization. Review v.0.17.0 changelog for a breaking change
-     */
-    async listActive(options?: RequestOptions): Promise<Array<components.IntegrationResponseDto>> {
-        return unwrapAsync(integrationsListActive(this, options));
-    }
+  /**
+   * Get active integrations
+   *
+   * @remarks
+   * Return all the active integrations the user has created for that organization. Review v.0.17.0 changelog for a breaking change
+   */
+  async listActive(
+    options?: RequestOptions,
+  ): Promise<Array<components.IntegrationResponseDto>> {
+    return unwrapAsync(integrationsListActive(
+      this,
+      options,
+    ));
+  }
 
-    /**
-     * Set integration as primary
-     */
-    async setAsPrimary(
-        integrationId: string,
-        options?: RequestOptions
-    ): Promise<components.IntegrationResponseDto> {
-        return unwrapAsync(integrationsSetAsPrimary(this, integrationId, options));
-    }
+  /**
+   * Set integration as primary
+   */
+  async setAsPrimary(
+    integrationId: string,
+    options?: RequestOptions,
+  ): Promise<components.IntegrationResponseDto> {
+    return unwrapAsync(integrationsSetAsPrimary(
+      this,
+      integrationId,
+      options,
+    ));
+  }
 
-    /**
-     * Update integration
-     */
-    async update(
-        integrationId: string,
-        updateIntegrationRequestDto: components.UpdateIntegrationRequestDto,
-        options?: RequestOptions
-    ): Promise<components.IntegrationResponseDto> {
-        return unwrapAsync(
-            integrationsUpdate(this, integrationId, updateIntegrationRequestDto, options)
-        );
-    }
+  /**
+   * Update integration
+   */
+  async update(
+    integrationId: string,
+    updateIntegrationRequestDto: components.UpdateIntegrationRequestDto,
+    options?: RequestOptions,
+  ): Promise<components.IntegrationResponseDto> {
+    return unwrapAsync(integrationsUpdate(
+      this,
+      integrationId,
+      updateIntegrationRequestDto,
+      options,
+    ));
+  }
 }

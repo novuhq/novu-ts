@@ -6,7 +6,7 @@
 import { WorkflowControllerDeleteWorkflowByIdRequest } from "@novu/api/models/operations";
 
 let value: WorkflowControllerDeleteWorkflowByIdRequest = {
-    workflowId: "<value>",
+  workflowId: "<value>",
 };
 ```
 

@@ -6,7 +6,9 @@
 import { AddSubscribersRequestDto } from "@novu/api/models/components";
 
 let value: AddSubscribersRequestDto = {
-    subscribers: ["<value>"],
+  subscribers: [
+    "<value>",
+  ],
 };
 ```
 

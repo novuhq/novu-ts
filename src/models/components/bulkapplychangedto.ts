@@ -5,30 +5,30 @@
 import * as z from "zod";
 
 export type BulkApplyChangeDto = {
-    changeIds: Array<string>;
+  changeIds: Array<string>;
 };
 
 /** @internal */
 export const BulkApplyChangeDto$inboundSchema: z.ZodType<
-    BulkApplyChangeDto,
-    z.ZodTypeDef,
-    unknown
+  BulkApplyChangeDto,
+  z.ZodTypeDef,
+  unknown
 > = z.object({
-    changeIds: z.array(z.string()),
+  changeIds: z.array(z.string()),
 });
 
 /** @internal */
 export type BulkApplyChangeDto$Outbound = {
-    changeIds: Array<string>;
+  changeIds: Array<string>;
 };
 
 /** @internal */
 export const BulkApplyChangeDto$outboundSchema: z.ZodType<
-    BulkApplyChangeDto$Outbound,
-    z.ZodTypeDef,
-    BulkApplyChangeDto
+  BulkApplyChangeDto$Outbound,
+  z.ZodTypeDef,
+  BulkApplyChangeDto
 > = z.object({
-    changeIds: z.array(z.string()),
+  changeIds: z.array(z.string()),
 });
 
 /**
@@ -36,10 +36,10 @@ export const BulkApplyChangeDto$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace BulkApplyChangeDto$ {
-    /** @deprecated use `BulkApplyChangeDto$inboundSchema` instead. */
-    export const inboundSchema = BulkApplyChangeDto$inboundSchema;
-    /** @deprecated use `BulkApplyChangeDto$outboundSchema` instead. */
-    export const outboundSchema = BulkApplyChangeDto$outboundSchema;
-    /** @deprecated use `BulkApplyChangeDto$Outbound` instead. */
-    export type Outbound = BulkApplyChangeDto$Outbound;
+  /** @deprecated use `BulkApplyChangeDto$inboundSchema` instead. */
+  export const inboundSchema = BulkApplyChangeDto$inboundSchema;
+  /** @deprecated use `BulkApplyChangeDto$outboundSchema` instead. */
+  export const outboundSchema = BulkApplyChangeDto$outboundSchema;
+  /** @deprecated use `BulkApplyChangeDto$Outbound` instead. */
+  export type Outbound = BulkApplyChangeDto$Outbound;
 }

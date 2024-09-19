@@ -32,7 +32,7 @@ async function run() {
     key: "<key>",
     name: "<value>",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -108,8 +108,6 @@ const novu = new Novu({
 
 async function run() {
   await novu.topics.delete("<value>");
-
-  
 }
 
 run();
@@ -179,7 +177,7 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.topics.list({});
-
+  
   // Handle the result
   console.log(result)
 }
@@ -254,7 +252,7 @@ async function run() {
   const result = await novu.topics.rename("<value>", {
     name: "<value>",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -330,7 +328,7 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.topics.retrieve("<value>");
-
+  
   // Handle the result
   console.log(result)
 }

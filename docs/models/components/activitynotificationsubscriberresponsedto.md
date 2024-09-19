@@ -6,7 +6,7 @@
 import { ActivityNotificationSubscriberResponseDto } from "@novu/api/models/components";
 
 let value: ActivityNotificationSubscriberResponseDto = {
-    id: "<id>",
+  id: "<id>",
 };
 ```
 

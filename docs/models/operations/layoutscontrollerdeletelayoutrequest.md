@@ -6,7 +6,7 @@
 import { LayoutsControllerDeleteLayoutRequest } from "@novu/api/models/operations";
 
 let value: LayoutsControllerDeleteLayoutRequest = {
-    layoutId: "<value>",
+  layoutId: "<value>",
 };
 ```
 

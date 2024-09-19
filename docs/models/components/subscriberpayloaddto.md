@@ -6,7 +6,7 @@
 import { SubscriberPayloadDto } from "@novu/api/models/components";
 
 let value: SubscriberPayloadDto = {
-    subscriberId: "<value>",
+  subscriberId: "<value>",
 };
 ```
 

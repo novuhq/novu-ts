@@ -7,90 +7,92 @@ import * as z from "zod";
 export type Data = {};
 
 export type CreateSubscriberRequestDto = {
-    /**
-     * An http url to the profile image of your subscriber
-     */
-    avatar?: string | undefined;
-    channels?: Array<string> | undefined;
-    data?: Data | undefined;
-    email?: string | undefined;
-    firstName?: string | undefined;
-    lastName?: string | undefined;
-    locale?: string | undefined;
-    phone?: string | undefined;
-    /**
-     * The internal identifier you used to create this subscriber, usually correlates to the id the user in your systems
-     */
-    subscriberId: string;
+  /**
+   * An http url to the profile image of your subscriber
+   */
+  avatar?: string | undefined;
+  channels?: Array<string> | undefined;
+  data?: Data | undefined;
+  email?: string | undefined;
+  firstName?: string | undefined;
+  lastName?: string | undefined;
+  locale?: string | undefined;
+  phone?: string | undefined;
+  /**
+   * The internal identifier you used to create this subscriber, usually correlates to the id the user in your systems
+   */
+  subscriberId: string;
 };
 
 /** @internal */
-export const Data$inboundSchema: z.ZodType<Data, z.ZodTypeDef, unknown> = z.object({});
+export const Data$inboundSchema: z.ZodType<Data, z.ZodTypeDef, unknown> = z
+  .object({});
 
 /** @internal */
 export type Data$Outbound = {};
 
 /** @internal */
-export const Data$outboundSchema: z.ZodType<Data$Outbound, z.ZodTypeDef, Data> = z.object({});
+export const Data$outboundSchema: z.ZodType<Data$Outbound, z.ZodTypeDef, Data> =
+  z.object({});
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace Data$ {
-    /** @deprecated use `Data$inboundSchema` instead. */
-    export const inboundSchema = Data$inboundSchema;
-    /** @deprecated use `Data$outboundSchema` instead. */
-    export const outboundSchema = Data$outboundSchema;
-    /** @deprecated use `Data$Outbound` instead. */
-    export type Outbound = Data$Outbound;
+  /** @deprecated use `Data$inboundSchema` instead. */
+  export const inboundSchema = Data$inboundSchema;
+  /** @deprecated use `Data$outboundSchema` instead. */
+  export const outboundSchema = Data$outboundSchema;
+  /** @deprecated use `Data$Outbound` instead. */
+  export type Outbound = Data$Outbound;
 }
 
 /** @internal */
 export const CreateSubscriberRequestDto$inboundSchema: z.ZodType<
-    CreateSubscriberRequestDto,
-    z.ZodTypeDef,
-    unknown
+  CreateSubscriberRequestDto,
+  z.ZodTypeDef,
+  unknown
 > = z.object({
-    avatar: z.string().optional(),
-    channels: z.array(z.string()).optional(),
-    data: z.lazy(() => Data$inboundSchema).optional(),
-    email: z.string().optional(),
-    firstName: z.string().optional(),
-    lastName: z.string().optional(),
-    locale: z.string().optional(),
-    phone: z.string().optional(),
-    subscriberId: z.string(),
+  avatar: z.string().optional(),
+  channels: z.array(z.string()).optional(),
+  data: z.lazy(() => Data$inboundSchema).optional(),
+  email: z.string().optional(),
+  firstName: z.string().optional(),
+  lastName: z.string().optional(),
+  locale: z.string().optional(),
+  phone: z.string().optional(),
+  subscriberId: z.string(),
 });
 
 /** @internal */
 export type CreateSubscriberRequestDto$Outbound = {
-    avatar?: string | undefined;
-    channels?: Array<string> | undefined;
-    data?: Data$Outbound | undefined;
-    email?: string | undefined;
-    firstName?: string | undefined;
-    lastName?: string | undefined;
-    locale?: string | undefined;
-    phone?: string | undefined;
-    subscriberId: string;
+  avatar?: string | undefined;
+  channels?: Array<string> | undefined;
+  data?: Data$Outbound | undefined;
+  email?: string | undefined;
+  firstName?: string | undefined;
+  lastName?: string | undefined;
+  locale?: string | undefined;
+  phone?: string | undefined;
+  subscriberId: string;
 };
 
 /** @internal */
 export const CreateSubscriberRequestDto$outboundSchema: z.ZodType<
-    CreateSubscriberRequestDto$Outbound,
-    z.ZodTypeDef,
-    CreateSubscriberRequestDto
+  CreateSubscriberRequestDto$Outbound,
+  z.ZodTypeDef,
+  CreateSubscriberRequestDto
 > = z.object({
-    avatar: z.string().optional(),
-    channels: z.array(z.string()).optional(),
-    data: z.lazy(() => Data$outboundSchema).optional(),
-    email: z.string().optional(),
-    firstName: z.string().optional(),
-    lastName: z.string().optional(),
-    locale: z.string().optional(),
-    phone: z.string().optional(),
-    subscriberId: z.string(),
+  avatar: z.string().optional(),
+  channels: z.array(z.string()).optional(),
+  data: z.lazy(() => Data$outboundSchema).optional(),
+  email: z.string().optional(),
+  firstName: z.string().optional(),
+  lastName: z.string().optional(),
+  locale: z.string().optional(),
+  phone: z.string().optional(),
+  subscriberId: z.string(),
 });
 
 /**
@@ -98,10 +100,10 @@ export const CreateSubscriberRequestDto$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace CreateSubscriberRequestDto$ {
-    /** @deprecated use `CreateSubscriberRequestDto$inboundSchema` instead. */
-    export const inboundSchema = CreateSubscriberRequestDto$inboundSchema;
-    /** @deprecated use `CreateSubscriberRequestDto$outboundSchema` instead. */
-    export const outboundSchema = CreateSubscriberRequestDto$outboundSchema;
-    /** @deprecated use `CreateSubscriberRequestDto$Outbound` instead. */
-    export type Outbound = CreateSubscriberRequestDto$Outbound;
+  /** @deprecated use `CreateSubscriberRequestDto$inboundSchema` instead. */
+  export const inboundSchema = CreateSubscriberRequestDto$inboundSchema;
+  /** @deprecated use `CreateSubscriberRequestDto$outboundSchema` instead. */
+  export const outboundSchema = CreateSubscriberRequestDto$outboundSchema;
+  /** @deprecated use `CreateSubscriberRequestDto$Outbound` instead. */
+  export type Outbound = CreateSubscriberRequestDto$Outbound;
 }

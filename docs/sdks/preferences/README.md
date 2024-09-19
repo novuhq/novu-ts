@@ -25,7 +25,7 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.subscribers.preferences.list("<value>");
-
+  
   // Handle the result
   console.log(result)
 }
@@ -98,7 +98,7 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.subscribers.preferences.retrieveByLevel("Topic", "<value>");
-
+  
   // Handle the result
   console.log(result)
 }
@@ -121,7 +121,7 @@ const novu = new NovuCore({
 });
 
 async function run() {
-  const res = await subscribersPreferencesRetrieveByLevel(novu, "Subscriber", "<value>");
+  const res = await subscribersPreferencesRetrieveByLevel(novu, "Topic", "<value>");
 
   if (!res.ok) {
     throw res.error;
@@ -176,7 +176,7 @@ async function run() {
     parameter: "<value>",
     updateSubscriberPreferenceRequestDto: {},
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -253,7 +253,7 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.subscribers.preferences.updateGlobal("<value>", {});
-
+  
   // Handle the result
   console.log(result)
 }

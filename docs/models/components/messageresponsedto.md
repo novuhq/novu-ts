@@ -6,29 +6,29 @@
 import { MessageResponseDto } from "@novu/api/models/components";
 
 let value: MessageResponseDto = {
-    environmentId: "<value>",
-    messageTemplateId: "<value>",
-    notificationId: "<value>",
-    organizationId: "<value>",
-    subscriberId: "<value>",
-    templateId: "<value>",
-    channel: "sms",
-    content: {
-        content: "<value>",
-        type: "text",
-    },
-    createdAt: "<value>",
-    cta: {
-        data: {},
-    },
-    errorId: "<value>",
-    errorText: "<value>",
-    overrides: {},
-    payload: {},
-    read: false,
-    seen: false,
-    status: "sent",
-    transactionId: "<value>",
+  environmentId: "<value>",
+  messageTemplateId: "<value>",
+  notificationId: "<value>",
+  organizationId: "<value>",
+  subscriberId: "<value>",
+  templateId: "<value>",
+  channel: "sms",
+  content: {
+    content: "<value>",
+    type: "text",
+  },
+  createdAt: "<value>",
+  cta: {
+    data: {},
+  },
+  errorId: "<value>",
+  errorText: "<value>",
+  overrides: {},
+  payload: {},
+  read: false,
+  seen: false,
+  status: "sent",
+  transactionId: "<value>",
 };
 ```
 

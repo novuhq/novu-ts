@@ -5,30 +5,30 @@
 import * as z from "zod";
 
 export type WorkflowControllerGetWorkflowByIdRequest = {
-    workflowId: string;
+  workflowId: string;
 };
 
 /** @internal */
 export const WorkflowControllerGetWorkflowByIdRequest$inboundSchema: z.ZodType<
-    WorkflowControllerGetWorkflowByIdRequest,
-    z.ZodTypeDef,
-    unknown
+  WorkflowControllerGetWorkflowByIdRequest,
+  z.ZodTypeDef,
+  unknown
 > = z.object({
-    workflowId: z.string(),
+  workflowId: z.string(),
 });
 
 /** @internal */
 export type WorkflowControllerGetWorkflowByIdRequest$Outbound = {
-    workflowId: string;
+  workflowId: string;
 };
 
 /** @internal */
 export const WorkflowControllerGetWorkflowByIdRequest$outboundSchema: z.ZodType<
-    WorkflowControllerGetWorkflowByIdRequest$Outbound,
-    z.ZodTypeDef,
-    WorkflowControllerGetWorkflowByIdRequest
+  WorkflowControllerGetWorkflowByIdRequest$Outbound,
+  z.ZodTypeDef,
+  WorkflowControllerGetWorkflowByIdRequest
 > = z.object({
-    workflowId: z.string(),
+  workflowId: z.string(),
 });
 
 /**
@@ -36,10 +36,12 @@ export const WorkflowControllerGetWorkflowByIdRequest$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace WorkflowControllerGetWorkflowByIdRequest$ {
-    /** @deprecated use `WorkflowControllerGetWorkflowByIdRequest$inboundSchema` instead. */
-    export const inboundSchema = WorkflowControllerGetWorkflowByIdRequest$inboundSchema;
-    /** @deprecated use `WorkflowControllerGetWorkflowByIdRequest$outboundSchema` instead. */
-    export const outboundSchema = WorkflowControllerGetWorkflowByIdRequest$outboundSchema;
-    /** @deprecated use `WorkflowControllerGetWorkflowByIdRequest$Outbound` instead. */
-    export type Outbound = WorkflowControllerGetWorkflowByIdRequest$Outbound;
+  /** @deprecated use `WorkflowControllerGetWorkflowByIdRequest$inboundSchema` instead. */
+  export const inboundSchema =
+    WorkflowControllerGetWorkflowByIdRequest$inboundSchema;
+  /** @deprecated use `WorkflowControllerGetWorkflowByIdRequest$outboundSchema` instead. */
+  export const outboundSchema =
+    WorkflowControllerGetWorkflowByIdRequest$outboundSchema;
+  /** @deprecated use `WorkflowControllerGetWorkflowByIdRequest$Outbound` instead. */
+  export type Outbound = WorkflowControllerGetWorkflowByIdRequest$Outbound;
 }

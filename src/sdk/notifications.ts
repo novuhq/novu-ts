@@ -11,28 +11,36 @@ import { unwrapAsync } from "../types/fp.js";
 import { Stats } from "./stats.js";
 
 export class Notifications extends ClientSDK {
-    private _stats?: Stats;
-    get stats(): Stats {
-        return (this._stats ??= new Stats(this.options$));
-    }
+  private _stats?: Stats;
+  get stats(): Stats {
+    return (this._stats ??= new Stats(this.options$));
+  }
 
-    /**
-     * Get notifications
-     */
-    async list(
-        request: operations.NotificationsControllerListNotificationsRequest,
-        options?: RequestOptions
-    ): Promise<components.ActivitiesResponseDto> {
-        return unwrapAsync(notificationsList(this, request, options));
-    }
+  /**
+   * Get notifications
+   */
+  async list(
+    request: operations.NotificationsControllerListNotificationsRequest,
+    options?: RequestOptions,
+  ): Promise<components.ActivitiesResponseDto> {
+    return unwrapAsync(notificationsList(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Get notification
-     */
-    async retrieve(
-        notificationId: string,
-        options?: RequestOptions
-    ): Promise<components.ActivityNotificationResponseDto> {
-        return unwrapAsync(notificationsRetrieve(this, notificationId, options));
-    }
+  /**
+   * Get notification
+   */
+  async retrieve(
+    notificationId: string,
+    options?: RequestOptions,
+  ): Promise<components.ActivityNotificationResponseDto> {
+    return unwrapAsync(notificationsRetrieve(
+      this,
+      notificationId,
+      options,
+    ));
+  }
 }

@@ -6,7 +6,7 @@
 import { UpdateLayoutRequestDto } from "@novu/api/models/components";
 
 let value: UpdateLayoutRequestDto = {
-    identifier: "<value>",
+  identifier: "<value>",
 };
 ```
 

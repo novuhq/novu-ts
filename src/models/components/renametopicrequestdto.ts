@@ -5,33 +5,33 @@
 import * as z from "zod";
 
 export type RenameTopicRequestDto = {
-    /**
-     * User defined custom name and provided by the user to rename the topic.
-     */
-    name: string;
+  /**
+   * User defined custom name and provided by the user to rename the topic.
+   */
+  name: string;
 };
 
 /** @internal */
 export const RenameTopicRequestDto$inboundSchema: z.ZodType<
-    RenameTopicRequestDto,
-    z.ZodTypeDef,
-    unknown
+  RenameTopicRequestDto,
+  z.ZodTypeDef,
+  unknown
 > = z.object({
-    name: z.string(),
+  name: z.string(),
 });
 
 /** @internal */
 export type RenameTopicRequestDto$Outbound = {
-    name: string;
+  name: string;
 };
 
 /** @internal */
 export const RenameTopicRequestDto$outboundSchema: z.ZodType<
-    RenameTopicRequestDto$Outbound,
-    z.ZodTypeDef,
-    RenameTopicRequestDto
+  RenameTopicRequestDto$Outbound,
+  z.ZodTypeDef,
+  RenameTopicRequestDto
 > = z.object({
-    name: z.string(),
+  name: z.string(),
 });
 
 /**
@@ -39,10 +39,10 @@ export const RenameTopicRequestDto$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace RenameTopicRequestDto$ {
-    /** @deprecated use `RenameTopicRequestDto$inboundSchema` instead. */
-    export const inboundSchema = RenameTopicRequestDto$inboundSchema;
-    /** @deprecated use `RenameTopicRequestDto$outboundSchema` instead. */
-    export const outboundSchema = RenameTopicRequestDto$outboundSchema;
-    /** @deprecated use `RenameTopicRequestDto$Outbound` instead. */
-    export type Outbound = RenameTopicRequestDto$Outbound;
+  /** @deprecated use `RenameTopicRequestDto$inboundSchema` instead. */
+  export const inboundSchema = RenameTopicRequestDto$inboundSchema;
+  /** @deprecated use `RenameTopicRequestDto$outboundSchema` instead. */
+  export const outboundSchema = RenameTopicRequestDto$outboundSchema;
+  /** @deprecated use `RenameTopicRequestDto$Outbound` instead. */
+  export type Outbound = RenameTopicRequestDto$Outbound;
 }
