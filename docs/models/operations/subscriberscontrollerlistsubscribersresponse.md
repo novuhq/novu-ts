@@ -9,17 +9,17 @@ let value: SubscribersControllerListSubscribersResponse = {
   result: {
     data: [
       {
-        environmentId: "<value>",
-        organizationId: "<value>",
+        environmentId: "<id>",
+        organizationId: "<id>",
         createdAt: "<value>",
         deleted: false,
-        subscriberId: "<value>",
+        subscriberId: "<id>",
         updatedAt: "<value>",
       },
     ],
     hasMore: false,
-    page: 9953,
-    pageSize: 6531.08,
+    page: 1716.30,
+    pageSize: 5210.37,
   },
 };
 ```

@@ -5,7 +5,7 @@
 ```typescript
 import { Channels } from "@novu/api/models/operations";
 
-let value: Channels = "chat";
+let value: Channels = "push";
 ```
 
 ## Values

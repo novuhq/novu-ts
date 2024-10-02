@@ -9,9 +9,9 @@ let value: ChangesResponseDto = {
   data: [
     "<value>",
   ],
-  page: 3843.82,
-  pageSize: 4375.87,
-  totalCount: 2975.34,
+  page: 8917.73,
+  pageSize: 9636.63,
+  totalCount: 3834.42,
 };
 ```
 

@@ -158,7 +158,19 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.triggerBulk({
-    events: [],
+    events: [
+      {
+        name: "workflow_identifier",
+        overrides: {},
+        payload: {},
+        to: [
+          {
+            topicKey: "<value>",
+            type: "Topic",
+          },
+        ],
+      },
+    ],
   });
 
   // Handle the result
@@ -243,6 +255,7 @@ run();
 ### [Novu SDK](docs/sdks/novu/README.md)
 
 * [cancel](docs/sdks/novu/README.md#cancel) - Cancel triggered event
+* [retrieve](docs/sdks/novu/README.md#retrieve) - Get step schema
 * [trigger](docs/sdks/novu/README.md#trigger) - Trigger event
 * [triggerBroadcast](docs/sdks/novu/README.md#triggerbroadcast) - Broadcast event to all
 * [triggerBulk](docs/sdks/novu/README.md#triggerbulk) - Bulk trigger event
@@ -394,6 +407,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [organizationsEEOrganizationControllerRenameOrganization](docs/sdks/organizations/README.md#eeorganizationcontrollerrenameorganization)
 - [organizationsRetrieve](docs/sdks/organizations/README.md#retrieve)
 - [organizationsUpdate](docs/sdks/organizations/README.md#update)
+- [retrieve](docs/sdks/novu/README.md#retrieve)
 - [subscribersAuthenticationChatAccessOauthCallBack](docs/sdks/authentication/README.md#chataccessoauthcallback)
 - [subscribersAuthenticationChatAccessOauth](docs/sdks/authentication/README.md#chataccessoauth)
 - [subscribersCreateBulk](docs/sdks/subscribers/README.md#createbulk)
@@ -484,14 +498,23 @@ run();
 <!-- Start Error Handling [errors] -->
 ## Error Handling
 
-All SDK methods return a response object or throw an error. If Error objects are specified in your OpenAPI Spec, the SDK will throw the appropriate Error type.
+All SDK methods return a response object or throw an error. By default, an API error will throw a `errors.SDKError`.
 
-| Error Object    | Status Code     | Content Type    |
+If a HTTP request fails, an operation my also throw an error from the `models/errors/httpclienterrors.ts` module:
+
+| HTTP Client Error                                    | Description                                          |
+| ---------------------------------------------------- | ---------------------------------------------------- |
+| RequestAbortedError                                  | HTTP request was aborted by the client               |
+| RequestTimeoutError                                  | HTTP request timed out due to an AbortSignal signal  |
+| ConnectionError                                      | HTTP client was unable to make a request to a server |
+| InvalidRequestError                                  | Any input used to create a request is invalid        |
+| UnexpectedClientError                                | Unrecognised or unexpected error                     |
+
+In addition, when custom error responses are specified for an operation, the SDK may throw their associated Error type. You can refer to respective *Errors* tables in SDK docs for more details on possible error types for each operation. For example, the `cancel` method may throw the following errors:
+
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
-Validation errors can also occur when either method arguments or data returned from the server do not match the expected format. The `SDKValidationError` that is thrown as a result will capture the raw value that failed validation in an attribute called `rawValue`. Additionally, a `pretty()` method is available on this error that can be used to log a nicely formatted string since validation errors can list many issues and the plain error string may be difficult read when debugging. 
-
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ```typescript
 import { Novu } from "@novu/api";
@@ -527,6 +550,8 @@ async function run() {
 run();
 
 ```
+
+Validation errors can also occur when either method arguments or data returned from the server do not match the expected format. The `SDKValidationError` that is thrown as a result will capture the raw value that failed validation in an attribute called `rawValue`. Additionally, a `pretty()` method is available on this error that can be used to log a nicely formatted string since validation errors can list many issues and the plain error string may be difficult read when debugging.
 <!-- End Error Handling [errors] -->
 
 <!-- Start Server Selection [server] -->

@@ -9,14 +9,14 @@ let value: StepFilter = {
   children: [
     {
       field: "<value>",
-      on: "payload",
-      operator: "LIKE",
+      on: "subscriber",
+      operator: "NOT_BETWEEN",
       value: "<value>",
     },
   ],
   isNegated: false,
   type: "BOOLEAN",
-  value: "AND",
+  value: "OR",
 };
 ```
 

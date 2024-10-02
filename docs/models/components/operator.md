@@ -5,7 +5,7 @@
 ```typescript
 import { Operator } from "@novu/api/models/components";
 
-let value: Operator = "BETWEEN";
+let value: Operator = "IN";
 ```
 
 ## Values

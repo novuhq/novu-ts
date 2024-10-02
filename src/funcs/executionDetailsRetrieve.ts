@@ -4,9 +4,9 @@
 
 import * as z from "zod";
 import { NovuCore } from "../core.js";
-import { encodeFormQuery as encodeFormQuery$ } from "../lib/encodings.js";
-import * as m$ from "../lib/matchers.js";
-import * as schemas$ from "../lib/schemas.js";
+import { encodeFormQuery } from "../lib/encodings.js";
+import * as M from "../lib/matchers.js";
+import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
@@ -27,7 +27,7 @@ import { Result } from "../types/fp.js";
  * Get execution details
  */
 export async function executionDetailsRetrieve(
-  client$: NovuCore,
+  client: NovuCore,
   notificationId: string,
   subscriberId: string,
   options?: RequestOptions,
@@ -43,67 +43,67 @@ export async function executionDetailsRetrieve(
     | ConnectionError
   >
 > {
-  const input$:
+  const input:
     operations.ExecutionDetailsControllerGetExecutionDetailsForNotificationRequest =
       {
         notificationId: notificationId,
         subscriberId: subscriberId,
       };
 
-  const parsed$ = schemas$.safeParse(
-    input$,
-    (value$) =>
+  const parsed = safeParse(
+    input,
+    (value) =>
       operations
         .ExecutionDetailsControllerGetExecutionDetailsForNotificationRequest$outboundSchema
-        .parse(value$),
+        .parse(value),
     "Input validation failed",
   );
-  if (!parsed$.ok) {
-    return parsed$;
+  if (!parsed.ok) {
+    return parsed;
   }
-  const payload$ = parsed$.value;
-  const body$ = null;
+  const payload = parsed.value;
+  const body = null;
 
-  const path$ = pathToFunc("/v1/execution-details")();
+  const path = pathToFunc("/v1/execution-details")();
 
-  const query$ = encodeFormQuery$({
-    "notificationId": payload$.notificationId,
-    "subscriberId": payload$.subscriberId,
+  const query = encodeFormQuery({
+    "notificationId": payload.notificationId,
+    "subscriberId": payload.subscriberId,
   });
 
-  const headers$ = new Headers({
+  const headers = new Headers({
     Accept: "application/json",
   });
 
-  const apiKey$ = await extractSecurity(client$.options$.apiKey);
-  const security$ = apiKey$ == null ? {} : { apiKey: apiKey$ };
+  const secConfig = await extractSecurity(client._options.apiKey);
+  const securityInput = secConfig == null ? {} : { apiKey: secConfig };
   const context = {
     operationID:
       "ExecutionDetailsController_getExecutionDetailsForNotification",
     oAuth2Scopes: [],
-    securitySource: client$.options$.apiKey,
+    securitySource: client._options.apiKey,
   };
-  const securitySettings$ = resolveGlobalSecurity(security$);
+  const requestSecurity = resolveGlobalSecurity(securityInput);
 
-  const requestRes = client$.createRequest$(context, {
-    security: securitySettings$,
+  const requestRes = client._createRequest(context, {
+    security: requestSecurity,
     method: "GET",
-    path: path$,
-    headers: headers$,
-    query: query$,
-    body: body$,
-    timeoutMs: options?.timeoutMs || client$.options$.timeoutMs || -1,
+    path: path,
+    headers: headers,
+    query: query,
+    body: body,
+    timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
     return requestRes;
   }
-  const request$ = requestRes.value;
+  const req = requestRes.value;
 
-  const doResult = await client$.do$(request$, {
+  const doResult = await client._do(req, {
     context,
     errorCodes: ["409", "429", "4XX", "503", "5XX"],
     retryConfig: options?.retries
-      || client$.options$.retryConfig
+      || client._options.retryConfig
       || {
         strategy: "backoff",
         backoff: {
@@ -121,7 +121,7 @@ export async function executionDetailsRetrieve(
   }
   const response = doResult.value;
 
-  const [result$] = await m$.match<
+  const [result] = await M.match<
     Array<components.ExecutionDetailsResponseDto>,
     | SDKError
     | SDKValidationError
@@ -131,12 +131,12 @@ export async function executionDetailsRetrieve(
     | RequestTimeoutError
     | ConnectionError
   >(
-    m$.json(200, z.array(components.ExecutionDetailsResponseDto$inboundSchema)),
-    m$.fail([409, 429, "4XX", 503, "5XX"]),
+    M.json(200, z.array(components.ExecutionDetailsResponseDto$inboundSchema)),
+    M.fail([409, 429, "4XX", 503, "5XX"]),
   )(response);
-  if (!result$.ok) {
-    return result$;
+  if (!result.ok) {
+    return result;
   }
 
-  return result$;
+  return result;
 }

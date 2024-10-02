@@ -4,9 +4,9 @@
 
 import * as z from "zod";
 import { NovuCore } from "../core.js";
-import { encodeSimple as encodeSimple$ } from "../lib/encodings.js";
-import * as m$ from "../lib/matchers.js";
-import * as schemas$ from "../lib/schemas.js";
+import { encodeSimple } from "../lib/encodings.js";
+import * as M from "../lib/matchers.js";
+import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
@@ -29,7 +29,7 @@ import { Result } from "../types/fp.js";
  * Delete subscriber credentials such as slack and expo tokens.
  */
 export async function subscribersCredentialsDelete(
-  client$: NovuCore,
+  client: NovuCore,
   subscriberId: string,
   providerId: string,
   options?: RequestOptions,
@@ -45,72 +45,72 @@ export async function subscribersCredentialsDelete(
     | ConnectionError
   >
 > {
-  const input$:
+  const input:
     operations.SubscribersControllerDeleteSubscriberCredentialsRequest = {
       subscriberId: subscriberId,
       providerId: providerId,
     };
 
-  const parsed$ = schemas$.safeParse(
-    input$,
-    (value$) =>
+  const parsed = safeParse(
+    input,
+    (value) =>
       operations
         .SubscribersControllerDeleteSubscriberCredentialsRequest$outboundSchema
-        .parse(value$),
+        .parse(value),
     "Input validation failed",
   );
-  if (!parsed$.ok) {
-    return parsed$;
+  if (!parsed.ok) {
+    return parsed;
   }
-  const payload$ = parsed$.value;
-  const body$ = null;
+  const payload = parsed.value;
+  const body = null;
 
-  const pathParams$ = {
-    providerId: encodeSimple$("providerId", payload$.providerId, {
+  const pathParams = {
+    providerId: encodeSimple("providerId", payload.providerId, {
       explode: false,
       charEncoding: "percent",
     }),
-    subscriberId: encodeSimple$("subscriberId", payload$.subscriberId, {
+    subscriberId: encodeSimple("subscriberId", payload.subscriberId, {
       explode: false,
       charEncoding: "percent",
     }),
   };
 
-  const path$ = pathToFunc(
+  const path = pathToFunc(
     "/v1/subscribers/{subscriberId}/credentials/{providerId}",
-  )(pathParams$);
+  )(pathParams);
 
-  const headers$ = new Headers({
+  const headers = new Headers({
     Accept: "*/*",
   });
 
-  const apiKey$ = await extractSecurity(client$.options$.apiKey);
-  const security$ = apiKey$ == null ? {} : { apiKey: apiKey$ };
+  const secConfig = await extractSecurity(client._options.apiKey);
+  const securityInput = secConfig == null ? {} : { apiKey: secConfig };
   const context = {
     operationID: "SubscribersController_deleteSubscriberCredentials",
     oAuth2Scopes: [],
-    securitySource: client$.options$.apiKey,
+    securitySource: client._options.apiKey,
   };
-  const securitySettings$ = resolveGlobalSecurity(security$);
+  const requestSecurity = resolveGlobalSecurity(securityInput);
 
-  const requestRes = client$.createRequest$(context, {
-    security: securitySettings$,
+  const requestRes = client._createRequest(context, {
+    security: requestSecurity,
     method: "DELETE",
-    path: path$,
-    headers: headers$,
-    body: body$,
-    timeoutMs: options?.timeoutMs || client$.options$.timeoutMs || -1,
+    path: path,
+    headers: headers,
+    body: body,
+    timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
     return requestRes;
   }
-  const request$ = requestRes.value;
+  const req = requestRes.value;
 
-  const doResult = await client$.do$(request$, {
+  const doResult = await client._do(req, {
     context,
     errorCodes: ["409", "429", "4XX", "503", "5XX"],
     retryConfig: options?.retries
-      || client$.options$.retryConfig
+      || client._options.retryConfig
       || {
         strategy: "backoff",
         backoff: {
@@ -128,7 +128,7 @@ export async function subscribersCredentialsDelete(
   }
   const response = doResult.value;
 
-  const [result$] = await m$.match<
+  const [result] = await M.match<
     void,
     | SDKError
     | SDKValidationError
@@ -138,12 +138,12 @@ export async function subscribersCredentialsDelete(
     | RequestTimeoutError
     | ConnectionError
   >(
-    m$.nil(204, z.void()),
-    m$.fail([409, 429, "4XX", 503, "5XX"]),
+    M.nil(204, z.void()),
+    M.fail([409, 429, "4XX", 503, "5XX"]),
   )(response);
-  if (!result$.ok) {
-    return result$;
+  if (!result.ok) {
+    return result;
   }
 
-  return result$;
+  return result;
 }

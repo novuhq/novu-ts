@@ -3,12 +3,9 @@
  */
 
 import { NovuCore } from "../core.js";
-import {
-  encodeJSON as encodeJSON$,
-  encodeSimple as encodeSimple$,
-} from "../lib/encodings.js";
-import * as m$ from "../lib/matchers.js";
-import * as schemas$ from "../lib/schemas.js";
+import { encodeJSON, encodeSimple } from "../lib/encodings.js";
+import * as M from "../lib/matchers.js";
+import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
@@ -29,7 +26,7 @@ import { Result } from "../types/fp.js";
  * Update integration
  */
 export async function integrationsUpdate(
-  client$: NovuCore,
+  client: NovuCore,
   integrationId: string,
   updateIntegrationRequestDto: components.UpdateIntegrationRequestDto,
   options?: RequestOptions,
@@ -45,69 +42,68 @@ export async function integrationsUpdate(
     | ConnectionError
   >
 > {
-  const input$: operations.IntegrationsControllerUpdateIntegrationByIdRequest =
-    {
-      integrationId: integrationId,
-      updateIntegrationRequestDto: updateIntegrationRequestDto,
-    };
+  const input: operations.IntegrationsControllerUpdateIntegrationByIdRequest = {
+    integrationId: integrationId,
+    updateIntegrationRequestDto: updateIntegrationRequestDto,
+  };
 
-  const parsed$ = schemas$.safeParse(
-    input$,
-    (value$) =>
+  const parsed = safeParse(
+    input,
+    (value) =>
       operations
         .IntegrationsControllerUpdateIntegrationByIdRequest$outboundSchema
-        .parse(value$),
+        .parse(value),
     "Input validation failed",
   );
-  if (!parsed$.ok) {
-    return parsed$;
+  if (!parsed.ok) {
+    return parsed;
   }
-  const payload$ = parsed$.value;
-  const body$ = encodeJSON$("body", payload$.UpdateIntegrationRequestDto, {
+  const payload = parsed.value;
+  const body = encodeJSON("body", payload.UpdateIntegrationRequestDto, {
     explode: true,
   });
 
-  const pathParams$ = {
-    integrationId: encodeSimple$("integrationId", payload$.integrationId, {
+  const pathParams = {
+    integrationId: encodeSimple("integrationId", payload.integrationId, {
       explode: false,
       charEncoding: "percent",
     }),
   };
 
-  const path$ = pathToFunc("/v1/integrations/{integrationId}")(pathParams$);
+  const path = pathToFunc("/v1/integrations/{integrationId}")(pathParams);
 
-  const headers$ = new Headers({
+  const headers = new Headers({
     "Content-Type": "application/json",
     Accept: "application/json",
   });
 
-  const apiKey$ = await extractSecurity(client$.options$.apiKey);
-  const security$ = apiKey$ == null ? {} : { apiKey: apiKey$ };
+  const secConfig = await extractSecurity(client._options.apiKey);
+  const securityInput = secConfig == null ? {} : { apiKey: secConfig };
   const context = {
     operationID: "IntegrationsController_updateIntegrationById",
     oAuth2Scopes: [],
-    securitySource: client$.options$.apiKey,
+    securitySource: client._options.apiKey,
   };
-  const securitySettings$ = resolveGlobalSecurity(security$);
+  const requestSecurity = resolveGlobalSecurity(securityInput);
 
-  const requestRes = client$.createRequest$(context, {
-    security: securitySettings$,
+  const requestRes = client._createRequest(context, {
+    security: requestSecurity,
     method: "PUT",
-    path: path$,
-    headers: headers$,
-    body: body$,
-    timeoutMs: options?.timeoutMs || client$.options$.timeoutMs || -1,
+    path: path,
+    headers: headers,
+    body: body,
+    timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
     return requestRes;
   }
-  const request$ = requestRes.value;
+  const req = requestRes.value;
 
-  const doResult = await client$.do$(request$, {
+  const doResult = await client._do(req, {
     context,
     errorCodes: ["404", "409", "429", "4XX", "503", "5XX"],
     retryConfig: options?.retries
-      || client$.options$.retryConfig
+      || client._options.retryConfig
       || {
         strategy: "backoff",
         backoff: {
@@ -125,7 +121,7 @@ export async function integrationsUpdate(
   }
   const response = doResult.value;
 
-  const [result$] = await m$.match<
+  const [result] = await M.match<
     components.IntegrationResponseDto,
     | SDKError
     | SDKValidationError
@@ -135,12 +131,12 @@ export async function integrationsUpdate(
     | RequestTimeoutError
     | ConnectionError
   >(
-    m$.json(200, components.IntegrationResponseDto$inboundSchema),
-    m$.fail([404, 409, 429, "4XX", 503, "5XX"]),
+    M.json(200, components.IntegrationResponseDto$inboundSchema),
+    M.fail([404, 409, 429, "4XX", 503, "5XX"]),
   )(response);
-  if (!result$.ok) {
-    return result$;
+  if (!result.ok) {
+    return result;
   }
 
-  return result$;
+  return result;
 }

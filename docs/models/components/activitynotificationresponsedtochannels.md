@@ -5,7 +5,7 @@
 ```typescript
 import { ActivityNotificationResponseDtoChannels } from "@novu/api/models/components";
 
-let value: ActivityNotificationResponseDtoChannels = "delay";
+let value: ActivityNotificationResponseDtoChannels = "custom";
 ```
 
 ## Values

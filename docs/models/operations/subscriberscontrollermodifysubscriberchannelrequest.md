@@ -6,12 +6,12 @@
 import { SubscribersControllerModifySubscriberChannelRequest } from "@novu/api/models/operations";
 
 let value: SubscribersControllerModifySubscriberChannelRequest = {
-  subscriberId: "<value>",
+  subscriberId: "<id>",
   updateSubscriberChannelRequestDto: {
     credentials: {
-      webhookUrl: "<value>",
+      webhookUrl: "https://dismal-affiliate.net/",
     },
-    providerId: 5818.5,
+    providerId: 2239.25,
   },
 };
 ```

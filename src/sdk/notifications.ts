@@ -13,7 +13,7 @@ import { Stats } from "./stats.js";
 export class Notifications extends ClientSDK {
   private _stats?: Stats;
   get stats(): Stats {
-    return (this._stats ??= new Stats(this.options$));
+    return (this._stats ??= new Stats(this._options));
   }
 
   /**

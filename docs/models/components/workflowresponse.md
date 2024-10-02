@@ -6,24 +6,36 @@
 import { WorkflowResponse } from "@novu/api/models/components";
 
 let value: WorkflowResponse = {
-  creatorId: "<value>",
-  environmentId: "<value>",
-  notificationGroupId: "<value>",
-  organizationId: "<value>",
+  creatorId: "<id>",
+  environmentId: "<id>",
+  notificationGroupId: "<id>",
+  organizationId: "<id>",
   active: false,
   critical: false,
   deleted: false,
   deletedAt: "<value>",
   deletedBy: "<value>",
-  description: "Advanced eco-centric middleware",
+  description: "woot minus apropos shrilly ick swine proud plait",
   draft: false,
   name: "<value>",
   preferenceSettings: {},
-  steps: [],
+  steps: [
+    {},
+  ],
   tags: [
     "<value>",
   ],
-  triggers: [],
+  triggers: [
+    {
+      identifier: "<value>",
+      type: "event",
+      variables: [
+        {
+          name: "<value>",
+        },
+      ],
+    },
+  ],
 };
 ```
 

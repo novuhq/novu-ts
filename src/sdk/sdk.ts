@@ -3,11 +3,13 @@
  */
 
 import { cancel } from "../funcs/cancel.js";
+import { retrieve } from "../funcs/retrieve.js";
 import { trigger } from "../funcs/trigger.js";
 import { triggerBroadcast } from "../funcs/triggerBroadcast.js";
 import { triggerBulk } from "../funcs/triggerBulk.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as components from "../models/components/index.js";
+import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
 import { Changes } from "./changes.js";
 import { Environments } from "./environments.js";
@@ -27,72 +29,72 @@ import { Workflows } from "./workflows.js";
 export class Novu extends ClientSDK {
   private _changes?: Changes;
   get changes(): Changes {
-    return (this._changes ??= new Changes(this.options$));
+    return (this._changes ??= new Changes(this._options));
   }
 
   private _environments?: Environments;
   get environments(): Environments {
-    return (this._environments ??= new Environments(this.options$));
+    return (this._environments ??= new Environments(this._options));
   }
 
   private _executionDetails?: ExecutionDetails;
   get executionDetails(): ExecutionDetails {
-    return (this._executionDetails ??= new ExecutionDetails(this.options$));
+    return (this._executionDetails ??= new ExecutionDetails(this._options));
   }
 
   private _feeds?: Feeds;
   get feeds(): Feeds {
-    return (this._feeds ??= new Feeds(this.options$));
+    return (this._feeds ??= new Feeds(this._options));
   }
 
   private _integrations?: Integrations;
   get integrations(): Integrations {
-    return (this._integrations ??= new Integrations(this.options$));
+    return (this._integrations ??= new Integrations(this._options));
   }
 
   private _layouts?: Layouts;
   get layouts(): Layouts {
-    return (this._layouts ??= new Layouts(this.options$));
+    return (this._layouts ??= new Layouts(this._options));
   }
 
   private _messages?: Messages;
   get messages(): Messages {
-    return (this._messages ??= new Messages(this.options$));
+    return (this._messages ??= new Messages(this._options));
   }
 
   private _workflowGroups?: WorkflowGroups;
   get workflowGroups(): WorkflowGroups {
-    return (this._workflowGroups ??= new WorkflowGroups(this.options$));
+    return (this._workflowGroups ??= new WorkflowGroups(this._options));
   }
 
   private _notifications?: Notifications;
   get notifications(): Notifications {
-    return (this._notifications ??= new Notifications(this.options$));
+    return (this._notifications ??= new Notifications(this._options));
   }
 
   private _organizations?: Organizations;
   get organizations(): Organizations {
-    return (this._organizations ??= new Organizations(this.options$));
+    return (this._organizations ??= new Organizations(this._options));
   }
 
   private _subscribers?: Subscribers;
   get subscribers(): Subscribers {
-    return (this._subscribers ??= new Subscribers(this.options$));
+    return (this._subscribers ??= new Subscribers(this._options));
   }
 
   private _tenants?: Tenants;
   get tenants(): Tenants {
-    return (this._tenants ??= new Tenants(this.options$));
+    return (this._tenants ??= new Tenants(this._options));
   }
 
   private _topics?: Topics;
   get topics(): Topics {
-    return (this._topics ??= new Topics(this.options$));
+    return (this._topics ??= new Topics(this._options));
   }
 
   private _workflows?: Workflows;
   get workflows(): Workflows {
-    return (this._workflows ??= new Workflows(this.options$));
+    return (this._workflows ??= new Workflows(this._options));
   }
 
   /**
@@ -110,6 +112,23 @@ export class Novu extends ClientSDK {
     return unwrapAsync(cancel(
       this,
       transactionId,
+      options,
+    ));
+  }
+
+  /**
+   * Get step schema
+   *
+   * @remarks
+   * Get the schema for a step type
+   */
+  async retrieve(
+    stepType: string,
+    options?: RequestOptions,
+  ): Promise<operations.StepSchemasControllerGetStepSchemaResponseBody> {
+    return unwrapAsync(retrieve(
+      this,
+      stepType,
       options,
     ));
   }

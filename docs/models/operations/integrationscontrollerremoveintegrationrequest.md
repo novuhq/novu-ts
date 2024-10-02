@@ -6,7 +6,7 @@
 import { IntegrationsControllerRemoveIntegrationRequest } from "@novu/api/models/operations";
 
 let value: IntegrationsControllerRemoveIntegrationRequest = {
-  integrationId: "<value>",
+  integrationId: "<id>",
 };
 ```
 

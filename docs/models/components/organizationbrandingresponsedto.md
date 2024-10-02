@@ -6,7 +6,7 @@
 import { OrganizationBrandingResponseDto } from "@novu/api/models/components";
 
 let value: OrganizationBrandingResponseDto = {
-  color: "orchid",
+  color: "green",
   contentBackground: "<value>",
   fontColor: "<value>",
   logo: "<value>",

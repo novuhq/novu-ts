@@ -6,7 +6,7 @@
 import { LayoutsControllerSetDefaultLayoutRequest } from "@novu/api/models/operations";
 
 let value: LayoutsControllerSetDefaultLayoutRequest = {
-  layoutId: "<value>",
+  layoutId: "<id>",
 };
 ```
 

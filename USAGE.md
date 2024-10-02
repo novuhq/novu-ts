@@ -84,7 +84,19 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.triggerBulk({
-    events: [],
+    events: [
+      {
+        name: "workflow_identifier",
+        overrides: {},
+        payload: {},
+        to: [
+          {
+            topicKey: "<value>",
+            type: "Topic",
+          },
+        ],
+      },
+    ],
   });
 
   // Handle the result

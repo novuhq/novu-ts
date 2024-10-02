@@ -5,7 +5,7 @@
 ```typescript
 import { GetLayoutResponseDtoChannel } from "@novu/api/models/components";
 
-let value: GetLayoutResponseDtoChannel = "chat";
+let value: GetLayoutResponseDtoChannel = "sms";
 ```
 
 ## Values

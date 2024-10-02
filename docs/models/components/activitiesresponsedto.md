@@ -10,8 +10,8 @@ let value: ActivitiesResponseDto = {
     "<value>",
   ],
   hasMore: false,
-  page: 9786.19,
-  pageSize: 4736.08,
+  page: 6120.96,
+  pageSize: 6169.34,
 };
 ```
 

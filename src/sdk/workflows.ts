@@ -17,12 +17,12 @@ import { Variables } from "./variables.js";
 export class Workflows extends ClientSDK {
   private _variables?: Variables;
   get variables(): Variables {
-    return (this._variables ??= new Variables(this.options$));
+    return (this._variables ??= new Variables(this._options));
   }
 
   private _status?: Status;
   get status(): Status {
-    return (this._status ??= new Status(this.options$));
+    return (this._status ??= new Status(this._options));
   }
 
   /**

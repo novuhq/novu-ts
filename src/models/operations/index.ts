@@ -25,6 +25,7 @@ export * from "./notificationgroupscontrollerupdatenotificationgroup.js";
 export * from "./notificationscontrollergetactivitygraphstats.js";
 export * from "./notificationscontrollergetnotification.js";
 export * from "./notificationscontrollerlistnotifications.js";
+export * from "./stepschemascontrollergetstepschema.js";
 export * from "./subscriberscontrollerchataccessoauth.js";
 export * from "./subscriberscontrollerchatoauthcallback.js";
 export * from "./subscriberscontrollerdeletesubscribercredentials.js";

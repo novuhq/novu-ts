@@ -9,7 +9,7 @@ let value: TenantControllerListTenantsResponse = {
   result: {
     data: [
       {
-        environmentId: "<value>",
+        environmentId: "<id>",
         id: "<id>",
         createdAt: "<value>",
         identifier: "<value>",
@@ -17,8 +17,8 @@ let value: TenantControllerListTenantsResponse = {
       },
     ],
     hasMore: false,
-    page: 1965.82,
-    pageSize: 9495.72,
+    page: 7395.51,
+    pageSize: 4904.59,
   },
 };
 ```

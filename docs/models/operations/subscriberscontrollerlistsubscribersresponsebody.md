@@ -8,17 +8,17 @@ import { SubscribersControllerListSubscribersResponseBody } from "@novu/api/mode
 let value: SubscribersControllerListSubscribersResponseBody = {
   data: [
     {
-      environmentId: "<value>",
-      organizationId: "<value>",
+      environmentId: "<id>",
+      organizationId: "<id>",
       createdAt: "<value>",
       deleted: false,
-      subscriberId: "<value>",
+      subscriberId: "<id>",
       updatedAt: "<value>",
     },
   ],
   hasMore: false,
-  page: 6350.59,
-  pageSize: 1613.09,
+  page: 3599.78,
+  pageSize: 7299.91,
 };
 ```
 

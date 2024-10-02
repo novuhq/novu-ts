@@ -12,13 +12,13 @@ let value: SubscribersControllerGetNotificationsFeedResponseBody = {
         "<value>",
       ],
       hasMore: false,
-      page: 6235.1,
-      pageSize: 1589.69,
+      page: 6139.66,
+      pageSize: 5356.33,
     },
   ],
   hasMore: false,
-  page: 3380.07,
-  pageSize: 1103.75,
+  page: 5899.10,
+  pageSize: 7301.22,
 };
 ```
 

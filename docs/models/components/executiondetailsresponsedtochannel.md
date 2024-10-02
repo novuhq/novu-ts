@@ -5,7 +5,7 @@
 ```typescript
 import { ExecutionDetailsResponseDtoChannel } from "@novu/api/models/components";
 
-let value: ExecutionDetailsResponseDtoChannel = "custom";
+let value: ExecutionDetailsResponseDtoChannel = "delay";
 ```
 
 ## Values

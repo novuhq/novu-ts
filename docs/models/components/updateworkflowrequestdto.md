@@ -7,7 +7,7 @@ import { UpdateWorkflowRequestDto } from "@novu/api/models/components";
 
 let value: UpdateWorkflowRequestDto = {
   name: "<value>",
-  notificationGroupId: "<value>",
+  notificationGroupId: "<id>",
 };
 ```
 

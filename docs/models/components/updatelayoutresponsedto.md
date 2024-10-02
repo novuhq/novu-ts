@@ -6,10 +6,10 @@
 import { UpdateLayoutResponseDto } from "@novu/api/models/components";
 
 let value: UpdateLayoutResponseDto = {
-  creatorId: "<value>",
-  environmentId: "<value>",
-  organizationId: "<value>",
-  channel: "push",
+  creatorId: "<id>",
+  environmentId: "<id>",
+  organizationId: "<id>",
+  channel: "chat",
   content: "<value>",
   contentType: "<value>",
   identifier: "<value>",

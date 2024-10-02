@@ -6,10 +6,10 @@
 import { IntegrationResponseDto } from "@novu/api/models/components";
 
 let value: IntegrationResponseDto = {
-  environmentId: "<value>",
-  organizationId: "<value>",
+  environmentId: "<id>",
+  organizationId: "<id>",
   active: false,
-  channel: "sms",
+  channel: "push",
   credentials: {},
   deleted: false,
   deletedAt: "<value>",
@@ -17,7 +17,7 @@ let value: IntegrationResponseDto = {
   identifier: "<value>",
   name: "<value>",
   primary: false,
-  providerId: "<value>",
+  providerId: "<id>",
 };
 ```
 

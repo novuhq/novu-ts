@@ -6,7 +6,7 @@
 import { ChangesControllerApplyDiffRequest } from "@novu/api/models/operations";
 
 let value: ChangesControllerApplyDiffRequest = {
-  changeId: "<value>",
+  changeId: "<id>",
 };
 ```
 

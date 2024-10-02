@@ -6,7 +6,7 @@
 import { CreateTenantResponseDto } from "@novu/api/models/components";
 
 let value: CreateTenantResponseDto = {
-  environmentId: "<value>",
+  environmentId: "<id>",
   id: "<id>",
   createdAt: "<value>",
   identifier: "<value>",

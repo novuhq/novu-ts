@@ -6,11 +6,11 @@
 import { SubscriberResponseDto } from "@novu/api/models/components";
 
 let value: SubscriberResponseDto = {
-  environmentId: "<value>",
-  organizationId: "<value>",
+  environmentId: "<id>",
+  organizationId: "<id>",
   createdAt: "<value>",
   deleted: false,
-  subscriberId: "<value>",
+  subscriberId: "<id>",
   updatedAt: "<value>",
 };
 ```

@@ -6,11 +6,11 @@
 import { ChannelSettings } from "@novu/api/models/components";
 
 let value: ChannelSettings = {
-  integrationId: "<value>",
+  integrationId: "<id>",
   credentials: {
-    webhookUrl: "<value>",
+    webhookUrl: "https://heavy-middle.info/",
   },
-  providerId: 1433.53,
+  providerId: 9883.74,
 };
 ```
 

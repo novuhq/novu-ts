@@ -16,7 +16,7 @@ import { Webhooks } from "./webhooks.js";
 export class Integrations extends ClientSDK {
   private _webhooks?: Webhooks;
   get webhooks(): Webhooks {
-    return (this._webhooks ??= new Webhooks(this.options$));
+    return (this._webhooks ??= new Webhooks(this._options));
   }
 
   /**

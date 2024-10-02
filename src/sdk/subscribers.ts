@@ -23,32 +23,32 @@ import { Properties } from "./properties.js";
 export class Subscribers extends ClientSDK {
   private _credentials?: Credentials;
   get credentials(): Credentials {
-    return (this._credentials ??= new Credentials(this.options$));
+    return (this._credentials ??= new Credentials(this._options));
   }
 
   private _authentication?: Authentication;
   get authentication(): Authentication {
-    return (this._authentication ??= new Authentication(this.options$));
+    return (this._authentication ??= new Authentication(this._options));
   }
 
   private _messages?: NovuMessages;
   get messages(): NovuMessages {
-    return (this._messages ??= new NovuMessages(this.options$));
+    return (this._messages ??= new NovuMessages(this._options));
   }
 
   private _notifications?: NovuNotifications;
   get notifications(): NovuNotifications {
-    return (this._notifications ??= new NovuNotifications(this.options$));
+    return (this._notifications ??= new NovuNotifications(this._options));
   }
 
   private _properties?: Properties;
   get properties(): Properties {
-    return (this._properties ??= new Properties(this.options$));
+    return (this._properties ??= new Properties(this._options));
   }
 
   private _preferences?: Preferences;
   get preferences(): Preferences {
-    return (this._preferences ??= new Preferences(this.options$));
+    return (this._preferences ??= new Preferences(this._options));
   }
 
   /**

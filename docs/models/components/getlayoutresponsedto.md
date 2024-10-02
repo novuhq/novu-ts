@@ -6,10 +6,10 @@
 import { GetLayoutResponseDto } from "@novu/api/models/components";
 
 let value: GetLayoutResponseDto = {
-  creatorId: "<value>",
-  environmentId: "<value>",
-  organizationId: "<value>",
-  channel: "in_app",
+  creatorId: "<id>",
+  environmentId: "<id>",
+  organizationId: "<id>",
+  channel: "sms",
   content: "<value>",
   contentType: "<value>",
   identifier: "<value>",

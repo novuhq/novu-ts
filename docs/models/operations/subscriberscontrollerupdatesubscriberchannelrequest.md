@@ -6,12 +6,12 @@
 import { SubscribersControllerUpdateSubscriberChannelRequest } from "@novu/api/models/operations";
 
 let value: SubscribersControllerUpdateSubscriberChannelRequest = {
-  subscriberId: "<value>",
+  subscriberId: "<id>",
   updateSubscriberChannelRequestDto: {
     credentials: {
-      webhookUrl: "<value>",
+      webhookUrl: "https://velvety-presume.com/",
     },
-    providerId: 2532.91,
+    providerId: 1646.94,
   },
 };
 ```

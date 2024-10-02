@@ -7,9 +7,9 @@ import { UpdateSubscriberChannelRequestDto } from "@novu/api/models/components";
 
 let value: UpdateSubscriberChannelRequestDto = {
   credentials: {
-    webhookUrl: "<value>",
+    webhookUrl: "https://lighthearted-developing.com/",
   },
-  providerId: 5373.73,
+  providerId: 1103.75,
 };
 ```
 

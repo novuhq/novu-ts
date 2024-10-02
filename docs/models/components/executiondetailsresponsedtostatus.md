@@ -5,7 +5,7 @@
 ```typescript
 import { ExecutionDetailsResponseDtoStatus } from "@novu/api/models/components";
 
-let value: ExecutionDetailsResponseDtoStatus = "ReadConfirmation";
+let value: ExecutionDetailsResponseDtoStatus = "Pending";
 ```
 
 ## Values

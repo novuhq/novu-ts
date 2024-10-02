@@ -7,8 +7,8 @@ import { SubscribersControllerGetUnseenCountRequest } from "@novu/api/models/ope
 
 let value: SubscribersControllerGetUnseenCountRequest = {
   seen: false,
-  subscriberId: "<value>",
-  limit: 6747.52,
+  subscriberId: "<id>",
+  limit: 3119.45,
 };
 ```
 

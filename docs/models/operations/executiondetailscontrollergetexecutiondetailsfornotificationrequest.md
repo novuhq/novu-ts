@@ -7,8 +7,8 @@ import { ExecutionDetailsControllerGetExecutionDetailsForNotificationRequest } f
 
 let value: ExecutionDetailsControllerGetExecutionDetailsForNotificationRequest =
   {
-    notificationId: "<value>",
-    subscriberId: "<value>",
+    notificationId: "<id>",
+    subscriberId: "<id>",
   };
 ```
 

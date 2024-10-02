@@ -6,8 +6,8 @@
 import { NotificationGroup } from "@novu/api/models/components";
 
 let value: NotificationGroup = {
-  environmentId: "<value>",
-  organizationId: "<value>",
+  environmentId: "<id>",
+  organizationId: "<id>",
   name: "<value>",
 };
 ```

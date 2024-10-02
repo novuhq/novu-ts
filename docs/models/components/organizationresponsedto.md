@@ -7,7 +7,7 @@ import { OrganizationResponseDto } from "@novu/api/models/components";
 
 let value: OrganizationResponseDto = {
   branding: {
-    color: "yellow",
+    color: "purple",
     contentBackground: "<value>",
     fontColor: "<value>",
     logo: "<value>",

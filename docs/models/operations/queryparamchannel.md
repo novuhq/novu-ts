@@ -5,7 +5,7 @@
 ```typescript
 import { QueryParamChannel } from "@novu/api/models/operations";
 
-let value: QueryParamChannel = "in_app";
+let value: QueryParamChannel = "push";
 ```
 
 ## Values

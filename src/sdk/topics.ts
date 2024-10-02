@@ -16,7 +16,7 @@ import { NovuSubscribers } from "./novusubscribers.js";
 export class Topics extends ClientSDK {
   private _subscribers?: NovuSubscribers;
   get subscribers(): NovuSubscribers {
-    return (this._subscribers ??= new NovuSubscribers(this.options$));
+    return (this._subscribers ??= new NovuSubscribers(this._options));
   }
 
   /**

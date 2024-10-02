@@ -6,7 +6,7 @@
 import { SubscribersControllerListSubscriberPreferencesRequest } from "@novu/api/models/operations";
 
 let value: SubscribersControllerListSubscriberPreferencesRequest = {
-  subscriberId: "<value>",
+  subscriberId: "<id>",
 };
 ```
 

@@ -1,6 +1,41 @@
 {
   "openapi": "3.0.0",
   "paths": {
+    "/v1/step-schemas/{stepType}": {
+      "get": {
+        "operationId": "StepSchemasController_getStepSchema",
+        "summary": "Get step schema",
+        "description": "Get the schema for a step type",
+        "parameters": [
+          {
+            "name": "stepType",
+            "required": true,
+            "in": "path",
+            "description": "The type of step to get the schema for.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api-key": []
+          }
+        ]
+      }
+    },
     "/v1/environments/me": {
       "get": {
         "operationId": "EnvironmentsController_getCurrentEnvironment",

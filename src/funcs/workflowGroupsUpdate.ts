@@ -3,12 +3,9 @@
  */
 
 import { NovuCore } from "../core.js";
-import {
-  encodeJSON as encodeJSON$,
-  encodeSimple as encodeSimple$,
-} from "../lib/encodings.js";
-import * as m$ from "../lib/matchers.js";
-import * as schemas$ from "../lib/schemas.js";
+import { encodeJSON, encodeSimple } from "../lib/encodings.js";
+import * as M from "../lib/matchers.js";
+import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
@@ -32,7 +29,7 @@ import { Result } from "../types/fp.js";
  * workflow group was previously named notification group
  */
 export async function workflowGroupsUpdate(
-  client$: NovuCore,
+  client: NovuCore,
   id: string,
   createNotificationGroupRequestDto:
     components.CreateNotificationGroupRequestDto,
@@ -49,71 +46,69 @@ export async function workflowGroupsUpdate(
     | ConnectionError
   >
 > {
-  const input$:
+  const input:
     operations.NotificationGroupsControllerUpdateNotificationGroupRequest = {
       id: id,
       createNotificationGroupRequestDto: createNotificationGroupRequestDto,
     };
 
-  const parsed$ = schemas$.safeParse(
-    input$,
-    (value$) =>
+  const parsed = safeParse(
+    input,
+    (value) =>
       operations
         .NotificationGroupsControllerUpdateNotificationGroupRequest$outboundSchema
-        .parse(value$),
+        .parse(value),
     "Input validation failed",
   );
-  if (!parsed$.ok) {
-    return parsed$;
+  if (!parsed.ok) {
+    return parsed;
   }
-  const payload$ = parsed$.value;
-  const body$ = encodeJSON$(
-    "body",
-    payload$.CreateNotificationGroupRequestDto,
-    { explode: true },
-  );
+  const payload = parsed.value;
+  const body = encodeJSON("body", payload.CreateNotificationGroupRequestDto, {
+    explode: true,
+  });
 
-  const pathParams$ = {
-    id: encodeSimple$("id", payload$.id, {
+  const pathParams = {
+    id: encodeSimple("id", payload.id, {
       explode: false,
       charEncoding: "percent",
     }),
   };
 
-  const path$ = pathToFunc("/v1/notification-groups/{id}")(pathParams$);
+  const path = pathToFunc("/v1/notification-groups/{id}")(pathParams);
 
-  const headers$ = new Headers({
+  const headers = new Headers({
     "Content-Type": "application/json",
     Accept: "application/json",
   });
 
-  const apiKey$ = await extractSecurity(client$.options$.apiKey);
-  const security$ = apiKey$ == null ? {} : { apiKey: apiKey$ };
+  const secConfig = await extractSecurity(client._options.apiKey);
+  const securityInput = secConfig == null ? {} : { apiKey: secConfig };
   const context = {
     operationID: "NotificationGroupsController_updateNotificationGroup",
     oAuth2Scopes: [],
-    securitySource: client$.options$.apiKey,
+    securitySource: client._options.apiKey,
   };
-  const securitySettings$ = resolveGlobalSecurity(security$);
+  const requestSecurity = resolveGlobalSecurity(securityInput);
 
-  const requestRes = client$.createRequest$(context, {
-    security: securitySettings$,
+  const requestRes = client._createRequest(context, {
+    security: requestSecurity,
     method: "PATCH",
-    path: path$,
-    headers: headers$,
-    body: body$,
-    timeoutMs: options?.timeoutMs || client$.options$.timeoutMs || -1,
+    path: path,
+    headers: headers,
+    body: body,
+    timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
     return requestRes;
   }
-  const request$ = requestRes.value;
+  const req = requestRes.value;
 
-  const doResult = await client$.do$(request$, {
+  const doResult = await client._do(req, {
     context,
     errorCodes: ["409", "429", "4XX", "503", "5XX"],
     retryConfig: options?.retries
-      || client$.options$.retryConfig
+      || client._options.retryConfig
       || {
         strategy: "backoff",
         backoff: {
@@ -131,7 +126,7 @@ export async function workflowGroupsUpdate(
   }
   const response = doResult.value;
 
-  const [result$] = await m$.match<
+  const [result] = await M.match<
     components.NotificationGroupResponseDto,
     | SDKError
     | SDKValidationError
@@ -141,12 +136,12 @@ export async function workflowGroupsUpdate(
     | RequestTimeoutError
     | ConnectionError
   >(
-    m$.json(200, components.NotificationGroupResponseDto$inboundSchema),
-    m$.fail([409, 429, "4XX", 503, "5XX"]),
+    M.json(200, components.NotificationGroupResponseDto$inboundSchema),
+    M.fail([409, 429, "4XX", 503, "5XX"]),
   )(response);
-  if (!result$.ok) {
-    return result$;
+  if (!result.ok) {
+    return result;
   }
 
-  return result$;
+  return result;
 }

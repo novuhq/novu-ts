@@ -12,7 +12,7 @@ import { ApiKeys } from "./apikeys.js";
 export class Environments extends ClientSDK {
   private _apiKeys?: ApiKeys;
   get apiKeys(): ApiKeys {
-    return (this._apiKeys ??= new ApiKeys(this.options$));
+    return (this._apiKeys ??= new ApiKeys(this._options));
   }
 
   /**

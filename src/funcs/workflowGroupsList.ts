@@ -4,7 +4,7 @@
 
 import * as z from "zod";
 import { NovuCore } from "../core.js";
-import * as m$ from "../lib/matchers.js";
+import * as M from "../lib/matchers.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
@@ -27,7 +27,7 @@ import { Result } from "../types/fp.js";
  * workflow group was previously named notification group
  */
 export async function workflowGroupsList(
-  client$: NovuCore,
+  client: NovuCore,
   options?: RequestOptions,
 ): Promise<
   Result<
@@ -41,38 +41,38 @@ export async function workflowGroupsList(
     | ConnectionError
   >
 > {
-  const path$ = pathToFunc("/v1/notification-groups")();
+  const path = pathToFunc("/v1/notification-groups")();
 
-  const headers$ = new Headers({
+  const headers = new Headers({
     Accept: "application/json",
   });
 
-  const apiKey$ = await extractSecurity(client$.options$.apiKey);
-  const security$ = apiKey$ == null ? {} : { apiKey: apiKey$ };
+  const secConfig = await extractSecurity(client._options.apiKey);
+  const securityInput = secConfig == null ? {} : { apiKey: secConfig };
   const context = {
     operationID: "NotificationGroupsController_listNotificationGroups",
     oAuth2Scopes: [],
-    securitySource: client$.options$.apiKey,
+    securitySource: client._options.apiKey,
   };
-  const securitySettings$ = resolveGlobalSecurity(security$);
+  const requestSecurity = resolveGlobalSecurity(securityInput);
 
-  const requestRes = client$.createRequest$(context, {
-    security: securitySettings$,
+  const requestRes = client._createRequest(context, {
+    security: requestSecurity,
     method: "GET",
-    path: path$,
-    headers: headers$,
-    timeoutMs: options?.timeoutMs || client$.options$.timeoutMs || -1,
+    path: path,
+    headers: headers,
+    timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
     return requestRes;
   }
-  const request$ = requestRes.value;
+  const req = requestRes.value;
 
-  const doResult = await client$.do$(request$, {
+  const doResult = await client._do(req, {
     context,
     errorCodes: ["409", "429", "4XX", "503", "5XX"],
     retryConfig: options?.retries
-      || client$.options$.retryConfig
+      || client._options.retryConfig
       || {
         strategy: "backoff",
         backoff: {
@@ -90,7 +90,7 @@ export async function workflowGroupsList(
   }
   const response = doResult.value;
 
-  const [result$] = await m$.match<
+  const [result] = await M.match<
     Array<components.NotificationGroupResponseDto>,
     | SDKError
     | SDKValidationError
@@ -100,15 +100,12 @@ export async function workflowGroupsList(
     | RequestTimeoutError
     | ConnectionError
   >(
-    m$.json(
-      200,
-      z.array(components.NotificationGroupResponseDto$inboundSchema),
-    ),
-    m$.fail([409, 429, "4XX", 503, "5XX"]),
+    M.json(200, z.array(components.NotificationGroupResponseDto$inboundSchema)),
+    M.fail([409, 429, "4XX", 503, "5XX"]),
   )(response);
-  if (!result$.ok) {
-    return result$;
+  if (!result.ok) {
+    return result;
   }
 
-  return result$;
+  return result;
 }

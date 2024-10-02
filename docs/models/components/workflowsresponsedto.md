@@ -9,9 +9,9 @@ let value: WorkflowsResponseDto = {
   data: [
     "<value>",
   ],
-  page: 384.25,
-  pageSize: 4386.01,
-  totalCount: 6342.74,
+  page: 691.67,
+  pageSize: 6974.29,
+  totalCount: 4535.43,
 };
 ```
 

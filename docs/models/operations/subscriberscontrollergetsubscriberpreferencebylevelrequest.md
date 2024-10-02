@@ -7,7 +7,7 @@ import { SubscribersControllerGetSubscriberPreferenceByLevelRequest } from "@nov
 
 let value: SubscribersControllerGetSubscriberPreferenceByLevelRequest = {
   parameter: "Subscriber",
-  subscriberId: "<value>",
+  subscriberId: "<id>",
 };
 ```
 

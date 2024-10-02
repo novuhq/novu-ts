@@ -8,7 +8,7 @@ import { TenantControllerListTenantsResponseBody } from "@novu/api/models/operat
 let value: TenantControllerListTenantsResponseBody = {
   data: [
     {
-      environmentId: "<value>",
+      environmentId: "<id>",
       id: "<id>",
       createdAt: "<value>",
       identifier: "<value>",
@@ -16,8 +16,8 @@ let value: TenantControllerListTenantsResponseBody = {
     },
   ],
   hasMore: false,
-  page: 1381.83,
-  pageSize: 7783.46,
+  page: 1861.93,
+  pageSize: 9443.72,
 };
 ```
 

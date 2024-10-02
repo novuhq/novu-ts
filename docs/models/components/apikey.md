@@ -6,7 +6,7 @@
 import { ApiKey } from "@novu/api/models/components";
 
 let value: ApiKey = {
-  userId: "<value>",
+  userId: "<id>",
   key: "<key>",
 };
 ```

@@ -4,9 +4,9 @@
 
 import { NovuCore } from "../core.js";
 import { dlv } from "../lib/dlv.js";
-import { encodeFormQuery as encodeFormQuery$ } from "../lib/encodings.js";
-import * as m$ from "../lib/matchers.js";
-import * as schemas$ from "../lib/schemas.js";
+import { encodeFormQuery } from "../lib/encodings.js";
+import * as M from "../lib/matchers.js";
+import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
@@ -35,7 +35,7 @@ import {
  * Returns a list of tenants, could paginated using the `page` and `limit` query parameter. Tenants is not supported in code first version of the API.
  */
 export async function tenantsList(
-  client$: NovuCore,
+  client: NovuCore,
   page?: number | undefined,
   limit?: number | undefined,
   options?: RequestOptions,
@@ -53,64 +53,62 @@ export async function tenantsList(
     >
   >
 > {
-  const input$: operations.TenantControllerListTenantsRequest = {
+  const input: operations.TenantControllerListTenantsRequest = {
     page: page,
     limit: limit,
   };
 
-  const parsed$ = schemas$.safeParse(
-    input$,
-    (value$) =>
-      operations.TenantControllerListTenantsRequest$outboundSchema.parse(
-        value$,
-      ),
+  const parsed = safeParse(
+    input,
+    (value) =>
+      operations.TenantControllerListTenantsRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
-  if (!parsed$.ok) {
-    return haltIterator(parsed$);
+  if (!parsed.ok) {
+    return haltIterator(parsed);
   }
-  const payload$ = parsed$.value;
-  const body$ = null;
+  const payload = parsed.value;
+  const body = null;
 
-  const path$ = pathToFunc("/v1/tenants")();
+  const path = pathToFunc("/v1/tenants")();
 
-  const query$ = encodeFormQuery$({
-    "limit": payload$.limit,
-    "page": payload$.page,
+  const query = encodeFormQuery({
+    "limit": payload.limit,
+    "page": payload.page,
   });
 
-  const headers$ = new Headers({
+  const headers = new Headers({
     Accept: "application/json",
   });
 
-  const apiKey$ = await extractSecurity(client$.options$.apiKey);
-  const security$ = apiKey$ == null ? {} : { apiKey: apiKey$ };
+  const secConfig = await extractSecurity(client._options.apiKey);
+  const securityInput = secConfig == null ? {} : { apiKey: secConfig };
   const context = {
     operationID: "TenantController_listTenants",
     oAuth2Scopes: [],
-    securitySource: client$.options$.apiKey,
+    securitySource: client._options.apiKey,
   };
-  const securitySettings$ = resolveGlobalSecurity(security$);
+  const requestSecurity = resolveGlobalSecurity(securityInput);
 
-  const requestRes = client$.createRequest$(context, {
-    security: securitySettings$,
+  const requestRes = client._createRequest(context, {
+    security: requestSecurity,
     method: "GET",
-    path: path$,
-    headers: headers$,
-    query: query$,
-    body: body$,
-    timeoutMs: options?.timeoutMs || client$.options$.timeoutMs || -1,
+    path: path,
+    headers: headers,
+    query: query,
+    body: body,
+    timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
     return haltIterator(requestRes);
   }
-  const request$ = requestRes.value;
+  const req = requestRes.value;
 
-  const doResult = await client$.do$(request$, {
+  const doResult = await client._do(req, {
     context,
     errorCodes: ["409", "429", "4XX", "503", "5XX"],
     retryConfig: options?.retries
-      || client$.options$.retryConfig
+      || client._options.retryConfig
       || {
         strategy: "backoff",
         backoff: {
@@ -128,11 +126,11 @@ export async function tenantsList(
   }
   const response = doResult.value;
 
-  const responseFields$ = {
-    HttpMeta: { Response: response, Request: request$ },
+  const responseFields = {
+    HttpMeta: { Response: response, Request: req },
   };
 
-  const [result$, raw$] = await m$.match<
+  const [result, raw] = await M.match<
     operations.TenantControllerListTenantsResponse,
     | SDKError
     | SDKValidationError
@@ -142,13 +140,13 @@ export async function tenantsList(
     | RequestTimeoutError
     | ConnectionError
   >(
-    m$.json(200, operations.TenantControllerListTenantsResponse$inboundSchema, {
+    M.json(200, operations.TenantControllerListTenantsResponse$inboundSchema, {
       key: "Result",
     }),
-    m$.fail([409, 429, "4XX", 503, "5XX"]),
-  )(response, { extraFields: responseFields$ });
-  if (!result$.ok) {
-    return haltIterator(result$);
+    M.fail([409, 429, "4XX", 503, "5XX"]),
+  )(response, { extraFields: responseFields });
+  if (!result.ok) {
+    return haltIterator(result);
   }
 
   const nextFunc = (
@@ -165,7 +163,7 @@ export async function tenantsList(
       | ConnectionError
     >
   > => {
-    const page = input$?.page || 0;
+    const page = input?.page || 0;
     const nextPage = page + 1;
 
     if (!responseData) {
@@ -175,20 +173,20 @@ export async function tenantsList(
     if (!Array.isArray(results) || !results.length) {
       return () => null;
     }
-    const limit = input$?.limit || 0;
+    const limit = input?.limit || 0;
     if (results.length < limit) {
       return () => null;
     }
 
     return () =>
       tenantsList(
-        client$,
+        client,
         nextPage,
         limit,
         options,
       );
   };
 
-  const page$ = { ...result$, next: nextFunc(raw$) };
+  const page$ = { ...result, next: nextFunc(raw) };
   return { ...page$, ...createPageIterator(page$, (v) => !v.ok) };
 }

@@ -6,19 +6,19 @@
 import { ExecutionDetailsResponseDto } from "@novu/api/models/components";
 
 let value: ExecutionDetailsResponseDto = {
-  environmentId: "<value>",
-  jobId: "<value>",
-  notificationId: "<value>",
-  notificationTemplateId: "<value>",
-  organizationId: "<value>",
-  subscriberId: "<value>",
-  channel: "sms",
+  environmentId: "<id>",
+  jobId: "<id>",
+  notificationId: "<id>",
+  notificationTemplateId: "<id>",
+  organizationId: "<id>",
+  subscriberId: "<id>",
+  channel: "custom",
   detail: "<value>",
   isRetry: false,
   isTest: false,
-  source: "Internal",
-  status: "Failed",
-  transactionId: "<value>",
+  source: "Credentials",
+  status: "Success",
+  transactionId: "<id>",
 };
 ```
 

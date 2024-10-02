@@ -3,9 +3,9 @@
  */
 
 import { NovuCore } from "../core.js";
-import { encodeSimple as encodeSimple$ } from "../lib/encodings.js";
-import * as m$ from "../lib/matchers.js";
-import * as schemas$ from "../lib/schemas.js";
+import { encodeSimple } from "../lib/encodings.js";
+import * as M from "../lib/matchers.js";
+import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
@@ -29,7 +29,7 @@ import { Result } from "../types/fp.js";
  * Workflow was previously named notification template
  */
 export async function workflowsRetrieve(
-  client$: NovuCore,
+  client: NovuCore,
   workflowId: string,
   options?: RequestOptions,
 ): Promise<
@@ -44,64 +44,64 @@ export async function workflowsRetrieve(
     | ConnectionError
   >
 > {
-  const input$: operations.WorkflowControllerGetWorkflowByIdRequest = {
+  const input: operations.WorkflowControllerGetWorkflowByIdRequest = {
     workflowId: workflowId,
   };
 
-  const parsed$ = schemas$.safeParse(
-    input$,
-    (value$) =>
+  const parsed = safeParse(
+    input,
+    (value) =>
       operations.WorkflowControllerGetWorkflowByIdRequest$outboundSchema.parse(
-        value$,
+        value,
       ),
     "Input validation failed",
   );
-  if (!parsed$.ok) {
-    return parsed$;
+  if (!parsed.ok) {
+    return parsed;
   }
-  const payload$ = parsed$.value;
-  const body$ = null;
+  const payload = parsed.value;
+  const body = null;
 
-  const pathParams$ = {
-    workflowId: encodeSimple$("workflowId", payload$.workflowId, {
+  const pathParams = {
+    workflowId: encodeSimple("workflowId", payload.workflowId, {
       explode: false,
       charEncoding: "percent",
     }),
   };
 
-  const path$ = pathToFunc("/v1/workflows/{workflowId}")(pathParams$);
+  const path = pathToFunc("/v1/workflows/{workflowId}")(pathParams);
 
-  const headers$ = new Headers({
+  const headers = new Headers({
     Accept: "application/json",
   });
 
-  const apiKey$ = await extractSecurity(client$.options$.apiKey);
-  const security$ = apiKey$ == null ? {} : { apiKey: apiKey$ };
+  const secConfig = await extractSecurity(client._options.apiKey);
+  const securityInput = secConfig == null ? {} : { apiKey: secConfig };
   const context = {
     operationID: "WorkflowController_getWorkflowById",
     oAuth2Scopes: [],
-    securitySource: client$.options$.apiKey,
+    securitySource: client._options.apiKey,
   };
-  const securitySettings$ = resolveGlobalSecurity(security$);
+  const requestSecurity = resolveGlobalSecurity(securityInput);
 
-  const requestRes = client$.createRequest$(context, {
-    security: securitySettings$,
+  const requestRes = client._createRequest(context, {
+    security: requestSecurity,
     method: "GET",
-    path: path$,
-    headers: headers$,
-    body: body$,
-    timeoutMs: options?.timeoutMs || client$.options$.timeoutMs || -1,
+    path: path,
+    headers: headers,
+    body: body,
+    timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
     return requestRes;
   }
-  const request$ = requestRes.value;
+  const req = requestRes.value;
 
-  const doResult = await client$.do$(request$, {
+  const doResult = await client._do(req, {
     context,
     errorCodes: ["409", "429", "4XX", "503", "5XX"],
     retryConfig: options?.retries
-      || client$.options$.retryConfig
+      || client._options.retryConfig
       || {
         strategy: "backoff",
         backoff: {
@@ -119,7 +119,7 @@ export async function workflowsRetrieve(
   }
   const response = doResult.value;
 
-  const [result$] = await m$.match<
+  const [result] = await M.match<
     components.WorkflowResponse,
     | SDKError
     | SDKValidationError
@@ -129,12 +129,12 @@ export async function workflowsRetrieve(
     | RequestTimeoutError
     | ConnectionError
   >(
-    m$.json(200, components.WorkflowResponse$inboundSchema),
-    m$.fail([409, 429, "4XX", 503, "5XX"]),
+    M.json(200, components.WorkflowResponse$inboundSchema),
+    M.fail([409, 429, "4XX", 503, "5XX"]),
   )(response);
-  if (!result$.ok) {
-    return result$;
+  if (!result.ok) {
+    return result;
   }
 
-  return result$;
+  return result;
 }

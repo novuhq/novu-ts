@@ -6,7 +6,7 @@
 import { IntegrationsControllerUpdateIntegrationByIdRequest } from "@novu/api/models/operations";
 
 let value: IntegrationsControllerUpdateIntegrationByIdRequest = {
-  integrationId: "<value>",
+  integrationId: "<id>",
   updateIntegrationRequestDto: {},
 };
 ```

@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: f50499c4-d106-4975-983f-ead3a386ec53
 management:
-  docChecksum: d35f4f2287646adf6b222b56b786719d
+  docChecksum: ff78ac5ad2c909b57451d750633bfdbe
   docVersion: "1.0"
-  speakeasyVersion: 1.399.2
-  generationVersion: 2.416.6
-  releaseVersion: 0.0.1-alpha.11
-  configChecksum: 3a75dd73a304fb0621acb8c3a38cdf41
+  speakeasyVersion: 1.405.6
+  generationVersion: 2.428.1
+  releaseVersion: 0.0.1-alpha.12
+  configChecksum: 086bce5f7d668895f77c9cb67655e9bd
   repoURL: https://github.com/novuhq/novu-ts.git
   installationURL: https://github.com/novuhq/novu-ts
   published: true
@@ -14,7 +14,7 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.11
-    core: 3.17.4
+    core: 3.18.1
     defaultEnabledRetries: 0.1.0
     deprecations: 2.81.1
     enumUnions: 0.1.0
@@ -28,7 +28,7 @@ features:
     groups: 2.81.2
     nameOverrides: 2.81.2
     nullables: 0.1.0
-    pagination: 2.82.6
+    pagination: 2.82.7
     responseFormat: 0.2.3
     retries: 2.83.0
     sdkHooks: 0.1.0
@@ -262,6 +262,8 @@ generatedFiles:
   - docs/models/operations/orderby.md
   - docs/models/operations/parameter.md
   - docs/models/operations/queryparamchannel.md
+  - docs/models/operations/stepschemascontrollergetstepschemarequest.md
+  - docs/models/operations/stepschemascontrollergetstepschemaresponsebody.md
   - docs/models/operations/subscriberscontrollerchataccessoauthrequest.md
   - docs/models/operations/subscriberscontrollerchatoauthcallbackrequest.md
   - docs/models/operations/subscriberscontrollerchatoauthcallbackresponsebody.md
@@ -368,6 +370,7 @@ generatedFiles:
   - src/funcs/organizationsEEOrganizationControllerRenameOrganization.ts
   - src/funcs/organizationsRetrieve.ts
   - src/funcs/organizationsUpdate.ts
+  - src/funcs/retrieve.ts
   - src/funcs/subscribersAuthenticationChatAccessOauth.ts
   - src/funcs/subscribersAuthenticationChatAccessOauthCallBack.ts
   - src/funcs/subscribersCreate.ts
@@ -569,6 +572,7 @@ generatedFiles:
   - src/models/operations/notificationscontrollergetactivitygraphstats.ts
   - src/models/operations/notificationscontrollergetnotification.ts
   - src/models/operations/notificationscontrollerlistnotifications.ts
+  - src/models/operations/stepschemascontrollergetstepschema.ts
   - src/models/operations/subscriberscontrollerchataccessoauth.ts
   - src/models/operations/subscriberscontrollerchatoauthcallback.ts
   - src/models/operations/subscriberscontrollerdeletesubscribercredentials.ts
@@ -1259,3 +1263,8 @@ examples:
       responses:
         "200":
           application/json: {"_creatorId": "<value>", "_environmentId": "<value>", "_notificationGroupId": "<value>", "_organizationId": "<value>", "active": true, "critical": true, "deleted": false, "deletedAt": "<value>", "deletedBy": "<value>", "description": "Future-proofed next generation workforce", "draft": false, "name": "<value>", "steps": [], "tags": [], "triggers": []}
+  StepSchemasController_getStepSchema:
+    speakeasy-default-step-schemas-controller-get-step-schema:
+      parameters:
+        path:
+          stepType: "<value>"

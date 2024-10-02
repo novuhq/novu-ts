@@ -5,7 +5,7 @@
 ```typescript
 import { Channel } from "@novu/api/models/components";
 
-let value: Channel = "push";
+let value: Channel = "email";
 ```
 
 ## Values

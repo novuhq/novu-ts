@@ -10,10 +10,7 @@ let value: TriggerEventRequestDto = {
   overrides: {},
   payload: {},
   to: [
-    {
-      topicKey: "<value>",
-      type: "Topic",
-    },
+    "SUBSCRIBER_ID",
   ],
 };
 ```

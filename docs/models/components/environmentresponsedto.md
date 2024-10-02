@@ -6,8 +6,8 @@
 import { EnvironmentResponseDto } from "@novu/api/models/components";
 
 let value: EnvironmentResponseDto = {
-  organizationId: "<value>",
-  parentId: "<value>",
+  organizationId: "<id>",
+  parentId: "<id>",
   identifier: "<value>",
   name: "<value>",
 };

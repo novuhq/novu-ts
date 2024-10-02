@@ -7,7 +7,7 @@ Mark all subscriber messages as read, unread, seen or unseen
 ```typescript
 import { MarkAs } from "@novu/api/models/components";
 
-let value: MarkAs = "unseen";
+let value: MarkAs = "unread";
 ```
 
 ## Values

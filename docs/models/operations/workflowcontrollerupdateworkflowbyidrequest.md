@@ -6,10 +6,10 @@
 import { WorkflowControllerUpdateWorkflowByIdRequest } from "@novu/api/models/operations";
 
 let value: WorkflowControllerUpdateWorkflowByIdRequest = {
-  workflowId: "<value>",
+  workflowId: "<id>",
   updateWorkflowRequestDto: {
     name: "<value>",
-    notificationGroupId: "<value>",
+    notificationGroupId: "<id>",
   },
 };
 ```

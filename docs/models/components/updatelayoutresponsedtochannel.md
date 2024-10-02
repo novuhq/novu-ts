@@ -5,7 +5,7 @@
 ```typescript
 import { UpdateLayoutResponseDtoChannel } from "@novu/api/models/components";
 
-let value: UpdateLayoutResponseDtoChannel = "push";
+let value: UpdateLayoutResponseDtoChannel = "in_app";
 ```
 
 ## Values

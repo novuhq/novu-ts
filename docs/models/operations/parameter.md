@@ -7,7 +7,7 @@ the preferences level to be retrieved( Subscriber / Topic)
 ```typescript
 import { Parameter } from "@novu/api/models/operations";
 
-let value: Parameter = "Topic";
+let value: Parameter = "Subscriber";
 ```
 
 ## Values

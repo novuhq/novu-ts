@@ -6,7 +6,7 @@
 import { WorkflowControllerUpdateActiveStatusRequest } from "@novu/api/models/operations";
 
 let value: WorkflowControllerUpdateActiveStatusRequest = {
-  workflowId: "<value>",
+  workflowId: "<id>",
   changeWorkflowStatusRequestDto: {
     active: false,
   },

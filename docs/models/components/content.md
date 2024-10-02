@@ -1,24 +1,20 @@
 # Content
 
-## Example Usage
-
-```typescript
-import { Content } from "@novu/api/models/components";
-
-let value: Content = "<value>";
-```
 
 ## Supported Types
 
 ### `components.EmailBlock`
 
 ```typescript
-const value: components.EmailBlock = /* values here */
+const value: components.EmailBlock = {
+  content: "<value>",
+  type: "text",
+};
 ```
 
 ### `string`
 
 ```typescript
-const value: string = /* values here */
+const value: string = "<value>";
 ```
 

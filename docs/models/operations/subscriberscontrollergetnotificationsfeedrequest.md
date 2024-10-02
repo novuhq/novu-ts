@@ -6,7 +6,7 @@
 import { SubscribersControllerGetNotificationsFeedRequest } from "@novu/api/models/operations";
 
 let value: SubscribersControllerGetNotificationsFeedRequest = {
-  subscriberId: "<value>",
+  subscriberId: "<id>",
   payload:
     "btoa(JSON.stringify({ foo: 123 })) results in base64 encoded string like eyJmb28iOjEyM30=",
 };

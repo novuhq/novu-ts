@@ -6,7 +6,7 @@
 import { LayoutsControllerGetLayoutRequest } from "@novu/api/models/operations";
 
 let value: LayoutsControllerGetLayoutRequest = {
-  layoutId: "<value>",
+  layoutId: "<id>",
 };
 ```
 
