@@ -1,48 +1,29 @@
-<<<<<<< Updated upstream
-speakeasyVersion: 1.399.2
+speakeasyVersion: 1.445.2
 sources:
     json-development:
         sourceNamespace: json-development
-        sourceRevisionDigest: sha256:395eba518bfd3c604bf1fdd5dba5d7b7fd45b266e2e943805083c8bad4771fdd
-        sourceBlobDigest: sha256:a87a8330164b61538704ebe0d75d9adb307d3cc249d11a835b8cd71be3703570
-=======
-speakeasyVersion: 1.444.1
-sources:
-    json-development:
-        sourceNamespace: json-development
-        sourceRevisionDigest: sha256:4b9174006d5eb012ca8c782224c03619125acd0335256a7701a8670288685d96
-        sourceBlobDigest: sha256:770b3d589f922e7138332329b37f801c77002a53a0a7214de79afa467073d2e2
->>>>>>> Stashed changes
+        sourceRevisionDigest: sha256:583c98bdfa85b8db8c89c540ff60bba0e87504738c862972b9a53dd8f1cb72e1
+        sourceBlobDigest: sha256:9a32d337505c5b553403b49b706fc843ea54f603577cdbb1c532132b14cf8e08
         tags:
             - latest
+            - "1.0"
 targets:
     my-first-target:
         source: json-development
         sourceNamespace: json-development
-<<<<<<< Updated upstream
-        sourceRevisionDigest: sha256:395eba518bfd3c604bf1fdd5dba5d7b7fd45b266e2e943805083c8bad4771fdd
-        sourceBlobDigest: sha256:a87a8330164b61538704ebe0d75d9adb307d3cc249d11a835b8cd71be3703570
+        sourceRevisionDigest: sha256:583c98bdfa85b8db8c89c540ff60bba0e87504738c862972b9a53dd8f1cb72e1
+        sourceBlobDigest: sha256:9a32d337505c5b553403b49b706fc843ea54f603577cdbb1c532132b14cf8e08
         codeSamplesNamespace: code-samples-typescript
-        codeSamplesRevisionDigest: sha256:ec9766637494086a4198568b8ec23f28a71e7af7bebc6b0b5b38460ea0edc273
-=======
-        sourceRevisionDigest: sha256:4b9174006d5eb012ca8c782224c03619125acd0335256a7701a8670288685d96
-        sourceBlobDigest: sha256:770b3d589f922e7138332329b37f801c77002a53a0a7214de79afa467073d2e2
-        codeSamplesNamespace: code-samples-typescript
-        codeSamplesRevisionDigest: sha256:4afbdd4336fa54e05fd4b0ed4b2c2ce2c6f9ac6f444516217a45b3aeca920dfd
->>>>>>> Stashed changes
+        codeSamplesRevisionDigest: sha256:fdc105680e168adee4774e3f3438896f5fa939814d294a84164702026ce6768d
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
     sources:
         json-development:
             inputs:
-<<<<<<< Updated upstream
-                - location: http://api.novu.co/openapi.sdk.json
-=======
                 - location: http://127.0.0.1:3000/openapi.sdk.yaml
->>>>>>> Stashed changes
             overlays:
-                - location: ./sources/cleanup-overlay.yaml
+                - location: .speakeasy/speakeasy-modifications-overlay.yaml
             output: sources/json-development.json
             registry:
                 location: registry.speakeasyapi.dev/novu/novu/json-development
