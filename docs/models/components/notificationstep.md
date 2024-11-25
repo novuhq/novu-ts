@@ -1,0 +1,26 @@
+# NotificationStep
+
+## Example Usage
+
+```typescript
+import { NotificationStep } from "@novu/api/models/components";
+
+let value: NotificationStep = {};
+```
+
+## Fields
+
+| Field                                                                                    | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `id`                                                                                     | *string*                                                                                 | :heavy_minus_sign:                                                                       | N/A                                                                                      |
+| `uuid`                                                                                   | *string*                                                                                 | :heavy_minus_sign:                                                                       | N/A                                                                                      |
+| `name`                                                                                   | *string*                                                                                 | :heavy_minus_sign:                                                                       | N/A                                                                                      |
+| `templateId`                                                                             | *string*                                                                                 | :heavy_minus_sign:                                                                       | N/A                                                                                      |
+| `active`                                                                                 | *boolean*                                                                                | :heavy_minus_sign:                                                                       | N/A                                                                                      |
+| `shouldStopOnFail`                                                                       | *boolean*                                                                                | :heavy_minus_sign:                                                                       | N/A                                                                                      |
+| `template`                                                                               | [components.MessageTemplate](../../models/components/messagetemplate.md)                 | :heavy_minus_sign:                                                                       | N/A                                                                                      |
+| `filters`                                                                                | [components.StepFilter](../../models/components/stepfilter.md)[]                         | :heavy_minus_sign:                                                                       | N/A                                                                                      |
+| `parentId`                                                                               | [components.ParentId](../../models/components/parentid.md)                               | :heavy_minus_sign:                                                                       | N/A                                                                                      |
+| `metadata`                                                                               | *components.Metadata*                                                                    | :heavy_minus_sign:                                                                       | N/A                                                                                      |
+| `replyCallback`                                                                          | [components.ReplyCallback](../../models/components/replycallback.md)                     | :heavy_minus_sign:                                                                       | N/A                                                                                      |
+| `variants`                                                                               | [components.NotificationStepVariant](../../models/components/notificationstepvariant.md) | :heavy_minus_sign:                                                                       | N/A                                                                                      |
