@@ -5,11 +5,7 @@
 ```typescript
 import { MessageResponseDtoChannel } from "@novu/api/models/components";
 
-<<<<<<< Updated upstream
-let value: MessageResponseDtoChannel = "in_app";
-=======
-let value: MessageResponseDtoChannel = "email";
->>>>>>> Stashed changes
+let value: MessageResponseDtoChannel = "sms";
 ```
 
 ## Values

@@ -6,11 +6,7 @@
 import { UnseenCountResponse } from "@novu/api/models/components";
 
 let value: UnseenCountResponse = {
-<<<<<<< Updated upstream
-  count: 7506.86,
-=======
-  count: 3965.06,
->>>>>>> Stashed changes
+  count: 5812.73,
 };
 ```
 

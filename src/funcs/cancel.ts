@@ -3,19 +3,12 @@
  */
 
 import { NovuCore } from "../core.js";
-<<<<<<< Updated upstream
-import { encodeSimple as encodeSimple$ } from "../lib/encodings.js";
-import * as m$ from "../lib/matchers.js";
-import * as schemas$ from "../lib/schemas.js";
-=======
 import { encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { safeParse } from "../lib/schemas.js";
->>>>>>> Stashed changes
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
-import * as components from "../models/components/index.js";
 import {
   ConnectionError,
   InvalidRequestError,
@@ -37,16 +30,12 @@ import { Result } from "../types/fp.js";
  *      will cancel any active or pending workflows. This is useful to cancel active digests, delays etc...
  */
 export async function cancel(
-<<<<<<< Updated upstream
-  client$: NovuCore,
-=======
   client: NovuCore,
->>>>>>> Stashed changes
   transactionId: string,
   options?: RequestOptions,
 ): Promise<
   Result<
-    components.DataBooleanDto,
+    operations.EventsControllerCancelResponse,
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -56,26 +45,6 @@ export async function cancel(
     | ConnectionError
   >
 > {
-<<<<<<< Updated upstream
-  const input$: operations.EventsControllerCancelRequest = {
-    transactionId: transactionId,
-  };
-
-  const parsed$ = schemas$.safeParse(
-    input$,
-    (value$) =>
-      operations.EventsControllerCancelRequest$outboundSchema.parse(value$),
-    "Input validation failed",
-  );
-  if (!parsed$.ok) {
-    return parsed$;
-  }
-  const payload$ = parsed$.value;
-  const body$ = null;
-
-  const pathParams$ = {
-    transactionId: encodeSimple$("transactionId", payload$.transactionId, {
-=======
   const input: operations.EventsControllerCancelRequest = {
     transactionId: transactionId,
   };
@@ -94,47 +63,11 @@ export async function cancel(
 
   const pathParams = {
     transactionId: encodeSimple("transactionId", payload.transactionId, {
->>>>>>> Stashed changes
       explode: false,
       charEncoding: "percent",
     }),
   };
 
-<<<<<<< Updated upstream
-  const path$ = pathToFunc("/v1/events/trigger/{transactionId}")(pathParams$);
-
-  const headers$ = new Headers({
-    Accept: "application/json",
-  });
-
-  const apiKey$ = await extractSecurity(client$.options$.apiKey);
-  const security$ = apiKey$ == null ? {} : { apiKey: apiKey$ };
-  const context = {
-    operationID: "EventsController_cancel",
-    oAuth2Scopes: [],
-    securitySource: client$.options$.apiKey,
-  };
-  const securitySettings$ = resolveGlobalSecurity(security$);
-
-  const requestRes = client$.createRequest$(context, {
-    security: securitySettings$,
-    method: "DELETE",
-    path: path$,
-    headers: headers$,
-    body: body$,
-    timeoutMs: options?.timeoutMs || client$.options$.timeoutMs || -1,
-  }, options);
-  if (!requestRes.ok) {
-    return requestRes;
-  }
-  const request$ = requestRes.value;
-
-  const doResult = await client$.do$(request$, {
-    context,
-    errorCodes: ["409", "429", "4XX", "503", "5XX"],
-    retryConfig: options?.retries
-      || client$.options$.retryConfig
-=======
   const path = pathToFunc("/v1/events/trigger/{transactionId}")(pathParams);
 
   const headers = new Headers({
@@ -154,7 +87,6 @@ export async function cancel(
     securitySource: client._options.apiKey,
     retryConfig: options?.retries
       || client._options.retryConfig
->>>>>>> Stashed changes
       || {
         strategy: "backoff",
         backoff: {
@@ -164,10 +96,6 @@ export async function cancel(
           maxElapsedTime: 3600000,
         },
         retryConnectionErrors: true,
-<<<<<<< Updated upstream
-      },
-    retryCodes: options?.retryCodes || ["408", "409", "429", "5XX"],
-=======
       }
       || { strategy: "none" },
     retryCodes: options?.retryCodes || ["408", "409", "429", "5XX"],
@@ -191,19 +119,18 @@ export async function cancel(
     errorCodes: ["409", "429", "4XX", "503", "5XX"],
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
->>>>>>> Stashed changes
   });
   if (!doResult.ok) {
     return doResult;
   }
   const response = doResult.value;
 
-<<<<<<< Updated upstream
-  const [result$] = await m$.match<
-=======
+  const responseFields = {
+    HttpMeta: { Response: response, Request: req },
+  };
+
   const [result] = await M.match<
->>>>>>> Stashed changes
-    components.DataBooleanDto,
+    operations.EventsControllerCancelResponse,
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -212,23 +139,16 @@ export async function cancel(
     | RequestTimeoutError
     | ConnectionError
   >(
-<<<<<<< Updated upstream
-    m$.json(200, components.DataBooleanDto$inboundSchema),
-    m$.fail([409, 429, "4XX", 503, "5XX"]),
-  )(response);
-  if (!result$.ok) {
-    return result$;
-  }
-
-  return result$;
-=======
-    M.json(200, components.DataBooleanDto$inboundSchema),
-    M.fail([409, 429, "4XX", 503, "5XX"]),
-  )(response);
+    M.json(200, operations.EventsControllerCancelResponse$inboundSchema, {
+      hdrs: true,
+      key: "Result",
+    }),
+    M.fail([409, 429, 503]),
+    M.fail(["4XX", "5XX"]),
+  )(response, { extraFields: responseFields });
   if (!result.ok) {
     return result;
   }
 
   return result;
->>>>>>> Stashed changes
 }

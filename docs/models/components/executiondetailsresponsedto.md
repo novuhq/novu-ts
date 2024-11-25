@@ -6,56 +6,40 @@
 import { ExecutionDetailsResponseDto } from "@novu/api/models/components";
 
 let value: ExecutionDetailsResponseDto = {
-<<<<<<< Updated upstream
-  environmentId: "<value>",
-  jobId: "<value>",
-  notificationId: "<value>",
-  notificationTemplateId: "<value>",
-  organizationId: "<value>",
-  subscriberId: "<value>",
-  channel: "sms",
-  detail: "<value>",
-  isRetry: false,
-  isTest: false,
-  source: "Internal",
-  status: "Failed",
-  transactionId: "<value>",
-=======
-  environmentId: "<id>",
+  organizationId: "<id>",
   jobId: "<id>",
+  environmentId: "<id>",
   notificationId: "<id>",
   notificationTemplateId: "<id>",
-  organizationId: "<id>",
   subscriberId: "<id>",
-  channel: "custom",
+  transactionId: "<id>",
+  channel: "in_app",
   detail: "<value>",
-  isRetry: false,
-  isTest: false,
   source: "Webhook",
   status: "Failed",
-  transactionId: "<id>",
->>>>>>> Stashed changes
+  isTest: false,
+  isRetry: false,
 };
 ```
 
 ## Fields
 
-| Field                                                                                                          | Type                                                                                                           | Required                                                                                                       | Description                                                                                                    |
-| -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `environmentId`                                                                                                | *string*                                                                                                       | :heavy_check_mark:                                                                                             | N/A                                                                                                            |
-| `id`                                                                                                           | *string*                                                                                                       | :heavy_minus_sign:                                                                                             | N/A                                                                                                            |
-| `jobId`                                                                                                        | *string*                                                                                                       | :heavy_check_mark:                                                                                             | N/A                                                                                                            |
-| `messageId`                                                                                                    | *string*                                                                                                       | :heavy_minus_sign:                                                                                             | N/A                                                                                                            |
-| `notificationId`                                                                                               | *string*                                                                                                       | :heavy_check_mark:                                                                                             | N/A                                                                                                            |
-| `notificationTemplateId`                                                                                       | *string*                                                                                                       | :heavy_check_mark:                                                                                             | N/A                                                                                                            |
-| `organizationId`                                                                                               | *string*                                                                                                       | :heavy_check_mark:                                                                                             | N/A                                                                                                            |
-| `subscriberId`                                                                                                 | *string*                                                                                                       | :heavy_check_mark:                                                                                             | N/A                                                                                                            |
-| `channel`                                                                                                      | [components.ExecutionDetailsResponseDtoChannel](../../models/components/executiondetailsresponsedtochannel.md) | :heavy_check_mark:                                                                                             | N/A                                                                                                            |
-| `createdAt`                                                                                                    | *string*                                                                                                       | :heavy_minus_sign:                                                                                             | N/A                                                                                                            |
-| `detail`                                                                                                       | *string*                                                                                                       | :heavy_check_mark:                                                                                             | N/A                                                                                                            |
-| `isRetry`                                                                                                      | *boolean*                                                                                                      | :heavy_check_mark:                                                                                             | N/A                                                                                                            |
-| `isTest`                                                                                                       | *boolean*                                                                                                      | :heavy_check_mark:                                                                                             | N/A                                                                                                            |
-| `providerId`                                                                                                   | *string*                                                                                                       | :heavy_minus_sign:                                                                                             | N/A                                                                                                            |
-| `source`                                                                                                       | [components.Source](../../models/components/source.md)                                                         | :heavy_check_mark:                                                                                             | N/A                                                                                                            |
-| `status`                                                                                                       | [components.ExecutionDetailsResponseDtoStatus](../../models/components/executiondetailsresponsedtostatus.md)   | :heavy_check_mark:                                                                                             | N/A                                                                                                            |
-| `transactionId`                                                                                                | *string*                                                                                                       | :heavy_check_mark:                                                                                             | N/A                                                                                                            |
+| Field                                                    | Type                                                     | Required                                                 | Description                                              |
+| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
+| `id`                                                     | *string*                                                 | :heavy_minus_sign:                                       | N/A                                                      |
+| `organizationId`                                         | *string*                                                 | :heavy_check_mark:                                       | N/A                                                      |
+| `jobId`                                                  | *string*                                                 | :heavy_check_mark:                                       | N/A                                                      |
+| `environmentId`                                          | *string*                                                 | :heavy_check_mark:                                       | N/A                                                      |
+| `notificationId`                                         | *string*                                                 | :heavy_check_mark:                                       | N/A                                                      |
+| `notificationTemplateId`                                 | *string*                                                 | :heavy_check_mark:                                       | N/A                                                      |
+| `subscriberId`                                           | *string*                                                 | :heavy_check_mark:                                       | N/A                                                      |
+| `messageId`                                              | *string*                                                 | :heavy_minus_sign:                                       | N/A                                                      |
+| `providerId`                                             | *string*                                                 | :heavy_minus_sign:                                       | N/A                                                      |
+| `transactionId`                                          | *string*                                                 | :heavy_check_mark:                                       | N/A                                                      |
+| `channel`                                                | [components.Channel](../../models/components/channel.md) | :heavy_check_mark:                                       | N/A                                                      |
+| `detail`                                                 | *string*                                                 | :heavy_check_mark:                                       | N/A                                                      |
+| `source`                                                 | [components.Source](../../models/components/source.md)   | :heavy_check_mark:                                       | N/A                                                      |
+| `status`                                                 | [components.Status](../../models/components/status.md)   | :heavy_check_mark:                                       | N/A                                                      |
+| `isTest`                                                 | *boolean*                                                | :heavy_check_mark:                                       | N/A                                                      |
+| `isRetry`                                                | *boolean*                                                | :heavy_check_mark:                                       | N/A                                                      |
+| `createdAt`                                              | *string*                                                 | :heavy_minus_sign:                                       | N/A                                                      |

@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ChannelSettings,
   ChannelSettings$inboundSchema,
@@ -12,32 +15,36 @@ import {
 } from "./channelsettings.js";
 
 export type SubscriberResponseDto = {
-  v?: number | undefined;
-  environmentId: string;
   /**
    * The internal id novu generated for your subscriber, this is not the subscriberId matching your query. See `subscriberId` for that
    */
   id?: string | undefined;
-  organizationId: string;
-  avatar?: string | undefined;
-  /**
-   * Channels settings for subscriber
-   */
-  channels?: Array<ChannelSettings> | undefined;
-  createdAt: string;
-  deleted: boolean;
-  email?: string | undefined;
   firstName?: string | undefined;
-  isOnline?: boolean | undefined;
   lastName?: string | undefined;
-  lastOnlineAt?: string | undefined;
-  locale?: string | undefined;
+  email?: string | undefined;
   phone?: string | undefined;
+  avatar?: string | undefined;
+  locale?: string | undefined;
   /**
    * The internal identifier you used to create this subscriber, usually correlates to the id the user in your systems
    */
   subscriberId: string;
+  /**
+   * Channels settings for subscriber
+   */
+  channels?: Array<ChannelSettings> | undefined;
+  /**
+   * Topics that subscriber belongs to
+   */
+  topics?: Array<string> | undefined;
+  isOnline?: boolean | undefined;
+  lastOnlineAt?: string | undefined;
+  organizationId: string;
+  environmentId: string;
+  deleted: boolean;
+  createdAt: string;
   updatedAt: string;
+  v?: number | undefined;
 };
 
 /** @internal */
@@ -46,51 +53,53 @@ export const SubscriberResponseDto$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  __v: z.number().optional(),
-  _environmentId: z.string(),
   _id: z.string().optional(),
-  _organizationId: z.string(),
-  avatar: z.string().optional(),
-  channels: z.array(ChannelSettings$inboundSchema).optional(),
-  createdAt: z.string(),
-  deleted: z.boolean(),
-  email: z.string().optional(),
   firstName: z.string().optional(),
-  isOnline: z.boolean().optional(),
   lastName: z.string().optional(),
-  lastOnlineAt: z.string().optional(),
-  locale: z.string().optional(),
+  email: z.string().optional(),
   phone: z.string().optional(),
+  avatar: z.string().optional(),
+  locale: z.string().optional(),
   subscriberId: z.string(),
+  channels: z.array(ChannelSettings$inboundSchema).optional(),
+  topics: z.array(z.string()).optional(),
+  isOnline: z.boolean().optional(),
+  lastOnlineAt: z.string().optional(),
+  _organizationId: z.string(),
+  _environmentId: z.string(),
+  deleted: z.boolean(),
+  createdAt: z.string(),
   updatedAt: z.string(),
+  __v: z.number().optional(),
 }).transform((v) => {
   return remap$(v, {
-    "__v": "v",
-    "_environmentId": "environmentId",
     "_id": "id",
     "_organizationId": "organizationId",
+    "_environmentId": "environmentId",
+    "__v": "v",
   });
 });
 
 /** @internal */
 export type SubscriberResponseDto$Outbound = {
-  __v?: number | undefined;
-  _environmentId: string;
   _id?: string | undefined;
-  _organizationId: string;
-  avatar?: string | undefined;
-  channels?: Array<ChannelSettings$Outbound> | undefined;
-  createdAt: string;
-  deleted: boolean;
-  email?: string | undefined;
   firstName?: string | undefined;
-  isOnline?: boolean | undefined;
   lastName?: string | undefined;
-  lastOnlineAt?: string | undefined;
-  locale?: string | undefined;
+  email?: string | undefined;
   phone?: string | undefined;
+  avatar?: string | undefined;
+  locale?: string | undefined;
   subscriberId: string;
+  channels?: Array<ChannelSettings$Outbound> | undefined;
+  topics?: Array<string> | undefined;
+  isOnline?: boolean | undefined;
+  lastOnlineAt?: string | undefined;
+  _organizationId: string;
+  _environmentId: string;
+  deleted: boolean;
+  createdAt: string;
   updatedAt: string;
+  __v?: number | undefined;
 };
 
 /** @internal */
@@ -99,29 +108,30 @@ export const SubscriberResponseDto$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   SubscriberResponseDto
 > = z.object({
-  v: z.number().optional(),
-  environmentId: z.string(),
   id: z.string().optional(),
-  organizationId: z.string(),
-  avatar: z.string().optional(),
-  channels: z.array(ChannelSettings$outboundSchema).optional(),
-  createdAt: z.string(),
-  deleted: z.boolean(),
-  email: z.string().optional(),
   firstName: z.string().optional(),
-  isOnline: z.boolean().optional(),
   lastName: z.string().optional(),
-  lastOnlineAt: z.string().optional(),
-  locale: z.string().optional(),
+  email: z.string().optional(),
   phone: z.string().optional(),
+  avatar: z.string().optional(),
+  locale: z.string().optional(),
   subscriberId: z.string(),
+  channels: z.array(ChannelSettings$outboundSchema).optional(),
+  topics: z.array(z.string()).optional(),
+  isOnline: z.boolean().optional(),
+  lastOnlineAt: z.string().optional(),
+  organizationId: z.string(),
+  environmentId: z.string(),
+  deleted: z.boolean(),
+  createdAt: z.string(),
   updatedAt: z.string(),
+  v: z.number().optional(),
 }).transform((v) => {
   return remap$(v, {
-    v: "__v",
-    environmentId: "_environmentId",
     id: "_id",
     organizationId: "_organizationId",
+    environmentId: "_environmentId",
+    v: "__v",
   });
 });
 
@@ -136,4 +146,22 @@ export namespace SubscriberResponseDto$ {
   export const outboundSchema = SubscriberResponseDto$outboundSchema;
   /** @deprecated use `SubscriberResponseDto$Outbound` instead. */
   export type Outbound = SubscriberResponseDto$Outbound;
+}
+
+export function subscriberResponseDtoToJSON(
+  subscriberResponseDto: SubscriberResponseDto,
+): string {
+  return JSON.stringify(
+    SubscriberResponseDto$outboundSchema.parse(subscriberResponseDto),
+  );
+}
+
+export function subscriberResponseDtoFromJSON(
+  jsonString: string,
+): SafeParseResult<SubscriberResponseDto, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => SubscriberResponseDto$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'SubscriberResponseDto' from JSON`,
+  );
 }

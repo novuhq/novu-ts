@@ -7,7 +7,7 @@ The provider identifier for the credentials
 ```typescript
 import { ProviderId } from "@novu/api/models/components";
 
-let value: ProviderId = "getstream";
+let value: ProviderId = "ryver";
 ```
 
 ## Values

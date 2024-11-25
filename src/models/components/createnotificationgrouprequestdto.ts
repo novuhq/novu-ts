@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CreateNotificationGroupRequestDto = {
   name: string;
@@ -43,4 +46,24 @@ export namespace CreateNotificationGroupRequestDto$ {
     CreateNotificationGroupRequestDto$outboundSchema;
   /** @deprecated use `CreateNotificationGroupRequestDto$Outbound` instead. */
   export type Outbound = CreateNotificationGroupRequestDto$Outbound;
+}
+
+export function createNotificationGroupRequestDtoToJSON(
+  createNotificationGroupRequestDto: CreateNotificationGroupRequestDto,
+): string {
+  return JSON.stringify(
+    CreateNotificationGroupRequestDto$outboundSchema.parse(
+      createNotificationGroupRequestDto,
+    ),
+  );
+}
+
+export function createNotificationGroupRequestDtoFromJSON(
+  jsonString: string,
+): SafeParseResult<CreateNotificationGroupRequestDto, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreateNotificationGroupRequestDto$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateNotificationGroupRequestDto' from JSON`,
+  );
 }

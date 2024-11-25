@@ -7,6 +7,7 @@ import { topicsSubscribersCheck } from "../funcs/topicsSubscribersCheck.js";
 import { topicsSubscribersRemove } from "../funcs/topicsSubscribersRemove.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as components from "../models/components/index.js";
+import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class NovuTopicsSubscribers extends ClientSDK {
@@ -20,7 +21,7 @@ export class NovuTopicsSubscribers extends ClientSDK {
     addSubscribersRequestDto: components.AddSubscribersRequestDto,
     topicKey: string,
     options?: RequestOptions,
-  ): Promise<void> {
+  ): Promise<operations.TopicsControllerAddSubscribersResponse | undefined> {
     return unwrapAsync(topicsSubscribersAdd(
       this,
       addSubscribersRequestDto,
@@ -39,7 +40,7 @@ export class NovuTopicsSubscribers extends ClientSDK {
     externalSubscriberId: string,
     topicKey: string,
     options?: RequestOptions,
-  ): Promise<components.TopicSubscriberDto> {
+  ): Promise<operations.TopicsControllerGetTopicSubscriberResponse> {
     return unwrapAsync(topicsSubscribersCheck(
       this,
       externalSubscriberId,
@@ -58,7 +59,7 @@ export class NovuTopicsSubscribers extends ClientSDK {
     removeSubscribersRequestDto: components.RemoveSubscribersRequestDto,
     topicKey: string,
     options?: RequestOptions,
-  ): Promise<void> {
+  ): Promise<operations.TopicsControllerRemoveSubscribersResponse | undefined> {
     return unwrapAsync(topicsSubscribersRemove(
       this,
       removeSubscribersRequestDto,

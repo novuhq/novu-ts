@@ -6,11 +6,7 @@
 import { EventsControllerCancelRequest } from "@novu/api/models/operations";
 
 let value: EventsControllerCancelRequest = {
-<<<<<<< Updated upstream
-  transactionId: "<value>",
-=======
   transactionId: "<id>",
->>>>>>> Stashed changes
 };
 ```
 

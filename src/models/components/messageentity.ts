@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type MessageEntity = {};
 
@@ -34,4 +37,18 @@ export namespace MessageEntity$ {
   export const outboundSchema = MessageEntity$outboundSchema;
   /** @deprecated use `MessageEntity$Outbound` instead. */
   export type Outbound = MessageEntity$Outbound;
+}
+
+export function messageEntityToJSON(messageEntity: MessageEntity): string {
+  return JSON.stringify(MessageEntity$outboundSchema.parse(messageEntity));
+}
+
+export function messageEntityFromJSON(
+  jsonString: string,
+): SafeParseResult<MessageEntity, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => MessageEntity$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'MessageEntity' from JSON`,
+  );
 }

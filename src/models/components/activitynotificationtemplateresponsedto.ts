@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ActivityNotificationTemplateResponseDto = {
   id?: string | undefined;
@@ -61,4 +64,31 @@ export namespace ActivityNotificationTemplateResponseDto$ {
     ActivityNotificationTemplateResponseDto$outboundSchema;
   /** @deprecated use `ActivityNotificationTemplateResponseDto$Outbound` instead. */
   export type Outbound = ActivityNotificationTemplateResponseDto$Outbound;
+}
+
+export function activityNotificationTemplateResponseDtoToJSON(
+  activityNotificationTemplateResponseDto:
+    ActivityNotificationTemplateResponseDto,
+): string {
+  return JSON.stringify(
+    ActivityNotificationTemplateResponseDto$outboundSchema.parse(
+      activityNotificationTemplateResponseDto,
+    ),
+  );
+}
+
+export function activityNotificationTemplateResponseDtoFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  ActivityNotificationTemplateResponseDto,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      ActivityNotificationTemplateResponseDto$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'ActivityNotificationTemplateResponseDto' from JSON`,
+  );
 }

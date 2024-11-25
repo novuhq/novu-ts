@@ -4,11 +4,19 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type IntegrationsControllerUpdateIntegrationByIdRequest = {
   integrationId: string;
   updateIntegrationRequestDto: components.UpdateIntegrationRequestDto;
+};
+
+export type IntegrationsControllerUpdateIntegrationByIdResponse = {
+  headers: { [k: string]: Array<string> };
+  result: components.IntegrationResponseDto;
 };
 
 /** @internal */
@@ -63,4 +71,112 @@ export namespace IntegrationsControllerUpdateIntegrationByIdRequest$ {
   /** @deprecated use `IntegrationsControllerUpdateIntegrationByIdRequest$Outbound` instead. */
   export type Outbound =
     IntegrationsControllerUpdateIntegrationByIdRequest$Outbound;
+}
+
+export function integrationsControllerUpdateIntegrationByIdRequestToJSON(
+  integrationsControllerUpdateIntegrationByIdRequest:
+    IntegrationsControllerUpdateIntegrationByIdRequest,
+): string {
+  return JSON.stringify(
+    IntegrationsControllerUpdateIntegrationByIdRequest$outboundSchema.parse(
+      integrationsControllerUpdateIntegrationByIdRequest,
+    ),
+  );
+}
+
+export function integrationsControllerUpdateIntegrationByIdRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  IntegrationsControllerUpdateIntegrationByIdRequest,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      IntegrationsControllerUpdateIntegrationByIdRequest$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'IntegrationsControllerUpdateIntegrationByIdRequest' from JSON`,
+  );
+}
+
+/** @internal */
+export const IntegrationsControllerUpdateIntegrationByIdResponse$inboundSchema:
+  z.ZodType<
+    IntegrationsControllerUpdateIntegrationByIdResponse,
+    z.ZodTypeDef,
+    unknown
+  > = z.object({
+    Headers: z.record(z.array(z.string())),
+    Result: components.IntegrationResponseDto$inboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      "Headers": "headers",
+      "Result": "result",
+    });
+  });
+
+/** @internal */
+export type IntegrationsControllerUpdateIntegrationByIdResponse$Outbound = {
+  Headers: { [k: string]: Array<string> };
+  Result: components.IntegrationResponseDto$Outbound;
+};
+
+/** @internal */
+export const IntegrationsControllerUpdateIntegrationByIdResponse$outboundSchema:
+  z.ZodType<
+    IntegrationsControllerUpdateIntegrationByIdResponse$Outbound,
+    z.ZodTypeDef,
+    IntegrationsControllerUpdateIntegrationByIdResponse
+  > = z.object({
+    headers: z.record(z.array(z.string())),
+    result: components.IntegrationResponseDto$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      headers: "Headers",
+      result: "Result",
+    });
+  });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace IntegrationsControllerUpdateIntegrationByIdResponse$ {
+  /** @deprecated use `IntegrationsControllerUpdateIntegrationByIdResponse$inboundSchema` instead. */
+  export const inboundSchema =
+    IntegrationsControllerUpdateIntegrationByIdResponse$inboundSchema;
+  /** @deprecated use `IntegrationsControllerUpdateIntegrationByIdResponse$outboundSchema` instead. */
+  export const outboundSchema =
+    IntegrationsControllerUpdateIntegrationByIdResponse$outboundSchema;
+  /** @deprecated use `IntegrationsControllerUpdateIntegrationByIdResponse$Outbound` instead. */
+  export type Outbound =
+    IntegrationsControllerUpdateIntegrationByIdResponse$Outbound;
+}
+
+export function integrationsControllerUpdateIntegrationByIdResponseToJSON(
+  integrationsControllerUpdateIntegrationByIdResponse:
+    IntegrationsControllerUpdateIntegrationByIdResponse,
+): string {
+  return JSON.stringify(
+    IntegrationsControllerUpdateIntegrationByIdResponse$outboundSchema.parse(
+      integrationsControllerUpdateIntegrationByIdResponse,
+    ),
+  );
+}
+
+export function integrationsControllerUpdateIntegrationByIdResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  IntegrationsControllerUpdateIntegrationByIdResponse,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      IntegrationsControllerUpdateIntegrationByIdResponse$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'IntegrationsControllerUpdateIntegrationByIdResponse' from JSON`,
+  );
 }

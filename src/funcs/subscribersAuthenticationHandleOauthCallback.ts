@@ -30,7 +30,7 @@ export async function subscribersAuthenticationHandleOauthCallback(
   options?: RequestOptions,
 ): Promise<
   Result<
-    operations.SubscribersControllerChatOauthCallbackResponseBody,
+    operations.SubscribersControllerChatOauthCallbackResponse,
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -131,8 +131,12 @@ export async function subscribersAuthenticationHandleOauthCallback(
   }
   const response = doResult.value;
 
+  const responseFields = {
+    HttpMeta: { Response: response, Request: req },
+  };
+
   const [result] = await M.match<
-    operations.SubscribersControllerChatOauthCallbackResponseBody,
+    operations.SubscribersControllerChatOauthCallbackResponse,
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -143,11 +147,12 @@ export async function subscribersAuthenticationHandleOauthCallback(
   >(
     M.json(
       200,
-      operations
-        .SubscribersControllerChatOauthCallbackResponseBody$inboundSchema,
+      operations.SubscribersControllerChatOauthCallbackResponse$inboundSchema,
+      { key: "Result" },
     ),
-    M.fail([409, 429, "4XX", 503, "5XX"]),
-  )(response);
+    M.fail([409, 429, 503]),
+    M.fail(["4XX", "5XX"]),
+  )(response, { extraFields: responseFields });
   if (!result.ok) {
     return result;
   }

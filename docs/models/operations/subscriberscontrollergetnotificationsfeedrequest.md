@@ -6,11 +6,7 @@
 import { SubscribersControllerGetNotificationsFeedRequest } from "@novu/api/models/operations";
 
 let value: SubscribersControllerGetNotificationsFeedRequest = {
-<<<<<<< Updated upstream
-  subscriberId: "<value>",
-=======
   subscriberId: "<id>",
->>>>>>> Stashed changes
   payload:
     "btoa(JSON.stringify({ foo: 123 })) results in base64 encoded string like eyJmb28iOjEyM30=",
 };

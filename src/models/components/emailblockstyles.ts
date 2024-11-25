@@ -3,7 +3,10 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export const TextAlign = {
   Center: "center",
@@ -69,4 +72,22 @@ export namespace EmailBlockStyles$ {
   export const outboundSchema = EmailBlockStyles$outboundSchema;
   /** @deprecated use `EmailBlockStyles$Outbound` instead. */
   export type Outbound = EmailBlockStyles$Outbound;
+}
+
+export function emailBlockStylesToJSON(
+  emailBlockStyles: EmailBlockStyles,
+): string {
+  return JSON.stringify(
+    EmailBlockStyles$outboundSchema.parse(emailBlockStyles),
+  );
+}
+
+export function emailBlockStylesFromJSON(
+  jsonString: string,
+): SafeParseResult<EmailBlockStyles, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => EmailBlockStyles$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'EmailBlockStyles' from JSON`,
+  );
 }

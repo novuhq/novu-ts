@@ -6,11 +6,7 @@
 import { SubscribersControllerUpdateSubscriberPreferenceRequest } from "@novu/api/models/operations";
 
 let value: SubscribersControllerUpdateSubscriberPreferenceRequest = {
-<<<<<<< Updated upstream
-  subscriberId: "<value>",
-=======
   subscriberId: "<id>",
->>>>>>> Stashed changes
   parameter: "<value>",
   updateSubscriberPreferenceRequestDto: {},
 };

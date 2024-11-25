@@ -3,8 +3,6 @@
 
 ## Overview
 
-## Overview
-
 ### Available Operations
 
 * [updateGlobal](#updateglobal) - Update subscriber global preferences
@@ -23,45 +21,7 @@ const novu = new Novu({
 });
 
 async function run() {
-<<<<<<< Updated upstream:docs/sdks/status/README.md
-  const result = await novu.workflows.status.update("<value>", {
-    active: false,
-  });
-  
-  // Handle the result
-  console.log(result)
-}
-
-run();
-```
-
-### Standalone function
-
-The standalone function version of this method:
-
-```typescript
-import { NovuCore } from "@novu/api/core.js";
-import { workflowsStatusUpdate } from "@novu/api/funcs/workflowsStatusUpdate.js";
-
-// Use `NovuCore` for best tree-shaking performance.
-// You can create one instance of it to use across an application.
-const novu = new NovuCore({
-  apiKey: "<YOUR_API_KEY_HERE>",
-});
-
-async function run() {
-  const res = await workflowsStatusUpdate(novu, "<value>", {
-    active: false,
-  });
-
-  if (!res.ok) {
-    throw res.error;
-  }
-
-  const { value: result } = res;
-=======
   const result = await novu.subscribersPreferences.updateGlobal({}, "<id>");
->>>>>>> Stashed changes:docs/sdks/subscriberspreferences/README.md
 
   // Handle the result
   console.log(result);
@@ -112,11 +72,7 @@ run();
 
 ### Response
 
-<<<<<<< Updated upstream:docs/sdks/status/README.md
-**Promise\<[components.WorkflowResponse](../../models/components/workflowresponse.md)\>**
-=======
-**Promise\<[components.UpdateSubscriberPreferenceResponseDto](../../models/components/updatesubscriberpreferenceresponsedto.md)\>**
->>>>>>> Stashed changes:docs/sdks/subscriberspreferences/README.md
+**Promise\<[operations.SubscribersControllerUpdateSubscriberGlobalPreferencesResponse](../../models/operations/subscriberscontrollerupdatesubscriberglobalpreferencesresponse.md)\>**
 
 ### Errors
 

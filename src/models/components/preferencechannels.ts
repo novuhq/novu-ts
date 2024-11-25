@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type PreferenceChannels = {
-  chat?: boolean | undefined;
   email?: boolean | undefined;
-  inApp?: boolean | undefined;
-  push?: boolean | undefined;
   sms?: boolean | undefined;
+  inApp?: boolean | undefined;
+  chat?: boolean | undefined;
+  push?: boolean | undefined;
 };
 
 /** @internal */
@@ -19,11 +22,11 @@ export const PreferenceChannels$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  chat: z.boolean().optional(),
   email: z.boolean().optional(),
-  in_app: z.boolean().optional(),
-  push: z.boolean().optional(),
   sms: z.boolean().optional(),
+  in_app: z.boolean().optional(),
+  chat: z.boolean().optional(),
+  push: z.boolean().optional(),
 }).transform((v) => {
   return remap$(v, {
     "in_app": "inApp",
@@ -32,11 +35,11 @@ export const PreferenceChannels$inboundSchema: z.ZodType<
 
 /** @internal */
 export type PreferenceChannels$Outbound = {
-  chat?: boolean | undefined;
   email?: boolean | undefined;
-  in_app?: boolean | undefined;
-  push?: boolean | undefined;
   sms?: boolean | undefined;
+  in_app?: boolean | undefined;
+  chat?: boolean | undefined;
+  push?: boolean | undefined;
 };
 
 /** @internal */
@@ -45,11 +48,11 @@ export const PreferenceChannels$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   PreferenceChannels
 > = z.object({
-  chat: z.boolean().optional(),
   email: z.boolean().optional(),
-  inApp: z.boolean().optional(),
-  push: z.boolean().optional(),
   sms: z.boolean().optional(),
+  inApp: z.boolean().optional(),
+  chat: z.boolean().optional(),
+  push: z.boolean().optional(),
 }).transform((v) => {
   return remap$(v, {
     inApp: "in_app",
@@ -67,4 +70,22 @@ export namespace PreferenceChannels$ {
   export const outboundSchema = PreferenceChannels$outboundSchema;
   /** @deprecated use `PreferenceChannels$Outbound` instead. */
   export type Outbound = PreferenceChannels$Outbound;
+}
+
+export function preferenceChannelsToJSON(
+  preferenceChannels: PreferenceChannels,
+): string {
+  return JSON.stringify(
+    PreferenceChannels$outboundSchema.parse(preferenceChannels),
+  );
+}
+
+export function preferenceChannelsFromJSON(
+  jsonString: string,
+): SafeParseResult<PreferenceChannels, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => PreferenceChannels$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PreferenceChannels' from JSON`,
+  );
 }

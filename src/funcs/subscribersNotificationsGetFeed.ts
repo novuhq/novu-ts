@@ -30,7 +30,7 @@ export async function subscribersNotificationsGetFeed(
   options?: RequestOptions,
 ): Promise<
   Result<
-    operations.SubscribersControllerGetNotificationsFeedResponseBody,
+    operations.SubscribersControllerGetNotificationsFeedResponse,
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -128,8 +128,12 @@ export async function subscribersNotificationsGetFeed(
   }
   const response = doResult.value;
 
+  const responseFields = {
+    HttpMeta: { Response: response, Request: req },
+  };
+
   const [result] = await M.match<
-    operations.SubscribersControllerGetNotificationsFeedResponseBody,
+    operations.SubscribersControllerGetNotificationsFeedResponse,
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -141,10 +145,12 @@ export async function subscribersNotificationsGetFeed(
     M.json(
       200,
       operations
-        .SubscribersControllerGetNotificationsFeedResponseBody$inboundSchema,
+        .SubscribersControllerGetNotificationsFeedResponse$inboundSchema,
+      { hdrs: true, key: "Result" },
     ),
-    M.fail([409, 429, "4XX", 503, "5XX"]),
-  )(response);
+    M.fail([409, 429, 503]),
+    M.fail(["4XX", "5XX"]),
+  )(response, { extraFields: responseFields });
   if (!result.ok) {
     return result;
   }

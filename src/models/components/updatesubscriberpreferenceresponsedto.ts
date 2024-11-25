@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Preference,
   Preference$inboundSchema,
@@ -18,13 +21,13 @@ import {
 
 export type UpdateSubscriberPreferenceResponseDto = {
   /**
-   * The preferences of the subscriber regarding the related workflow
-   */
-  preference: Preference;
-  /**
    * The workflow information and if it is critical or not
    */
   template: TemplateResponse;
+  /**
+   * The preferences of the subscriber regarding the related workflow
+   */
+  preference: Preference;
 };
 
 /** @internal */
@@ -33,14 +36,14 @@ export const UpdateSubscriberPreferenceResponseDto$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  preference: Preference$inboundSchema,
   template: TemplateResponse$inboundSchema,
+  preference: Preference$inboundSchema,
 });
 
 /** @internal */
 export type UpdateSubscriberPreferenceResponseDto$Outbound = {
-  preference: Preference$Outbound;
   template: TemplateResponse$Outbound;
+  preference: Preference$Outbound;
 };
 
 /** @internal */
@@ -49,8 +52,8 @@ export const UpdateSubscriberPreferenceResponseDto$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   UpdateSubscriberPreferenceResponseDto
 > = z.object({
-  preference: Preference$outboundSchema,
   template: TemplateResponse$outboundSchema,
+  preference: Preference$outboundSchema,
 });
 
 /**
@@ -66,4 +69,25 @@ export namespace UpdateSubscriberPreferenceResponseDto$ {
     UpdateSubscriberPreferenceResponseDto$outboundSchema;
   /** @deprecated use `UpdateSubscriberPreferenceResponseDto$Outbound` instead. */
   export type Outbound = UpdateSubscriberPreferenceResponseDto$Outbound;
+}
+
+export function updateSubscriberPreferenceResponseDtoToJSON(
+  updateSubscriberPreferenceResponseDto: UpdateSubscriberPreferenceResponseDto,
+): string {
+  return JSON.stringify(
+    UpdateSubscriberPreferenceResponseDto$outboundSchema.parse(
+      updateSubscriberPreferenceResponseDto,
+    ),
+  );
+}
+
+export function updateSubscriberPreferenceResponseDtoFromJSON(
+  jsonString: string,
+): SafeParseResult<UpdateSubscriberPreferenceResponseDto, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      UpdateSubscriberPreferenceResponseDto$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UpdateSubscriberPreferenceResponseDto' from JSON`,
+  );
 }

@@ -71,19 +71,11 @@ const isBrowserLike = webWorkerLike
   || (typeof window === "object" && typeof window.document !== "undefined");
 
 export class ClientSDK {
-<<<<<<< Updated upstream
-  private readonly httpClient: HTTPClient;
-  protected readonly baseURL: URL | null;
-  protected readonly hooks$: SDKHooks;
-  protected readonly logger?: Logger | undefined;
-  public readonly options$: SDKOptions & { hooks?: SDKHooks };
-=======
   readonly #httpClient: HTTPClient;
   readonly #hooks: SDKHooks;
   readonly #logger?: Logger | undefined;
   protected readonly _baseURL: URL | null;
   public readonly _options: SDKOptions & { hooks?: SDKHooks };
->>>>>>> Stashed changes
 
   constructor(options: SDKOptions = {}) {
     const opt = options as unknown;
@@ -93,36 +85,16 @@ export class ClientSDK {
       && "hooks" in opt
       && opt.hooks instanceof SDKHooks
     ) {
-<<<<<<< Updated upstream
-      this.hooks$ = opt.hooks;
-    } else {
-      this.hooks$ = new SDKHooks();
-    }
-    this.options$ = { ...options, hooks: this.hooks$ };
-=======
       this.#hooks = opt.hooks;
     } else {
       this.#hooks = new SDKHooks();
     }
     this._options = { ...options, hooks: this.#hooks };
->>>>>>> Stashed changes
 
     const url = serverURLFromOptions(options);
     if (url) {
       url.pathname = url.pathname.replace(/\/+$/, "") + "/";
     }
-<<<<<<< Updated upstream
-    const { baseURL, client } = this.hooks$.sdkInit({
-      baseURL: url,
-      client: options.httpClient || new HTTPClient(),
-    });
-    this.baseURL = baseURL;
-    this.httpClient = client;
-    this.logger = options.debugLogger;
-  }
-
-  public createRequest$(
-=======
     const { baseURL, client } = this.#hooks.sdkInit({
       baseURL: url,
       client: options.httpClient || new HTTPClient(),
@@ -133,18 +105,13 @@ export class ClientSDK {
   }
 
   public _createRequest(
->>>>>>> Stashed changes
     context: HookContext,
     conf: RequestConfig,
     options?: RequestOptions,
   ): Result<Request, InvalidRequestError | UnexpectedClientError> {
     const { method, path, query, headers: opHeaders, security } = conf;
 
-<<<<<<< Updated upstream
-    const base = conf.baseURL ?? this.baseURL;
-=======
     const base = conf.baseURL ?? this._baseURL;
->>>>>>> Stashed changes
     if (!base) {
       return ERR(new InvalidRequestError("No base URL provided for operation"));
     }
@@ -228,11 +195,7 @@ export class ClientSDK {
 
     let input;
     try {
-<<<<<<< Updated upstream
-      input = this.hooks$.beforeCreateRequest(context, {
-=======
       input = this.#hooks.beforeCreateRequest(context, {
->>>>>>> Stashed changes
         url: reqURL,
         options: {
           ...fetchOptions,
@@ -251,47 +214,6 @@ export class ClientSDK {
 
     return OK(new Request(input.url, input.options));
   }
-<<<<<<< Updated upstream
-
-  public async do$(
-    request: Request,
-    options: {
-      context: HookContext;
-      errorCodes: number | string | (number | string)[];
-      retryConfig?: RetryConfig | undefined;
-      retryCodes?: string[] | undefined;
-    },
-  ): Promise<
-    Result<
-      Response,
-      | RequestAbortedError
-      | RequestTimeoutError
-      | ConnectionError
-      | UnexpectedClientError
-    >
-  > {
-    const { context, errorCodes } = options;
-    const retryConfig = options.retryConfig || { strategy: "none" };
-    const retryCodes = options.retryCodes || [];
-
-    return retry(
-      async () => {
-        const req = await this.hooks$.beforeRequest(context, request.clone());
-        await logRequest(this.logger, req).catch((e) =>
-          this.logger?.log("Failed to log request:", e)
-        );
-
-        let response = await this.httpClient.request(req);
-
-        if (matchStatusCode(response, errorCodes)) {
-          const result = await this.hooks$.afterError(context, response, null);
-          if (result.error) {
-            throw result.error;
-          }
-          response = result.response || response;
-        } else {
-          response = await this.hooks$.afterSuccess(context, response);
-=======
 
   public async _do(
     request: Request,
@@ -338,19 +260,11 @@ export class ClientSDK {
         } finally {
           await logResponse(this.#logger, response, req)
             .catch(e => this.#logger?.log("Failed to log response:", e));
->>>>>>> Stashed changes
         }
-
-        await logResponse(this.logger, response, req)
-          .catch(e => this.logger?.log("Failed to log response:", e));
 
         return response;
       },
-<<<<<<< Updated upstream
-      { config: retryConfig, statusCodes: retryCodes },
-=======
       { config: options.retryConfig, statusCodes: options.retryCodes },
->>>>>>> Stashed changes
     ).then(
       (r) => OK(r),
       (err) => {

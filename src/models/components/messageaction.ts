@@ -3,7 +3,10 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   MessageActionResult,
   MessageActionResult$inboundSchema,
@@ -24,9 +27,9 @@ export const MessageActionStatus = {
 export type MessageActionStatus = ClosedEnum<typeof MessageActionStatus>;
 
 export type MessageAction = {
+  status?: MessageActionStatus | undefined;
   buttons?: Array<MessageButton> | undefined;
   result?: MessageActionResult | undefined;
-  status?: MessageActionStatus | undefined;
 };
 
 /** @internal */
@@ -56,16 +59,16 @@ export const MessageAction$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
+  status: MessageActionStatus$inboundSchema.optional(),
   buttons: z.array(MessageButton$inboundSchema).optional(),
   result: MessageActionResult$inboundSchema.optional(),
-  status: MessageActionStatus$inboundSchema.optional(),
 });
 
 /** @internal */
 export type MessageAction$Outbound = {
+  status?: string | undefined;
   buttons?: Array<MessageButton$Outbound> | undefined;
   result?: MessageActionResult$Outbound | undefined;
-  status?: string | undefined;
 };
 
 /** @internal */
@@ -74,9 +77,9 @@ export const MessageAction$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   MessageAction
 > = z.object({
+  status: MessageActionStatus$outboundSchema.optional(),
   buttons: z.array(MessageButton$outboundSchema).optional(),
   result: MessageActionResult$outboundSchema.optional(),
-  status: MessageActionStatus$outboundSchema.optional(),
 });
 
 /**
@@ -90,4 +93,18 @@ export namespace MessageAction$ {
   export const outboundSchema = MessageAction$outboundSchema;
   /** @deprecated use `MessageAction$Outbound` instead. */
   export type Outbound = MessageAction$Outbound;
+}
+
+export function messageActionToJSON(messageAction: MessageAction): string {
+  return JSON.stringify(MessageAction$outboundSchema.parse(messageAction));
+}
+
+export function messageActionFromJSON(
+  jsonString: string,
+): SafeParseResult<MessageAction, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => MessageAction$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'MessageAction' from JSON`,
+  );
 }

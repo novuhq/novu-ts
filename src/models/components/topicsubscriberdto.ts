@@ -4,14 +4,17 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type TopicSubscriberDto = {
-  environmentId: string;
   organizationId: string;
+  environmentId: string;
   subscriberId: string;
   topicId: string;
-  externalSubscriberId: string;
   topicKey: string;
+  externalSubscriberId: string;
 };
 
 /** @internal */
@@ -20,16 +23,16 @@ export const TopicSubscriberDto$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  _environmentId: z.string(),
   _organizationId: z.string(),
+  _environmentId: z.string(),
   _subscriberId: z.string(),
   _topicId: z.string(),
-  externalSubscriberId: z.string(),
   topicKey: z.string(),
+  externalSubscriberId: z.string(),
 }).transform((v) => {
   return remap$(v, {
-    "_environmentId": "environmentId",
     "_organizationId": "organizationId",
+    "_environmentId": "environmentId",
     "_subscriberId": "subscriberId",
     "_topicId": "topicId",
   });
@@ -37,12 +40,12 @@ export const TopicSubscriberDto$inboundSchema: z.ZodType<
 
 /** @internal */
 export type TopicSubscriberDto$Outbound = {
-  _environmentId: string;
   _organizationId: string;
+  _environmentId: string;
   _subscriberId: string;
   _topicId: string;
-  externalSubscriberId: string;
   topicKey: string;
+  externalSubscriberId: string;
 };
 
 /** @internal */
@@ -51,16 +54,16 @@ export const TopicSubscriberDto$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   TopicSubscriberDto
 > = z.object({
-  environmentId: z.string(),
   organizationId: z.string(),
+  environmentId: z.string(),
   subscriberId: z.string(),
   topicId: z.string(),
-  externalSubscriberId: z.string(),
   topicKey: z.string(),
+  externalSubscriberId: z.string(),
 }).transform((v) => {
   return remap$(v, {
-    environmentId: "_environmentId",
     organizationId: "_organizationId",
+    environmentId: "_environmentId",
     subscriberId: "_subscriberId",
     topicId: "_topicId",
   });
@@ -77,4 +80,22 @@ export namespace TopicSubscriberDto$ {
   export const outboundSchema = TopicSubscriberDto$outboundSchema;
   /** @deprecated use `TopicSubscriberDto$Outbound` instead. */
   export type Outbound = TopicSubscriberDto$Outbound;
+}
+
+export function topicSubscriberDtoToJSON(
+  topicSubscriberDto: TopicSubscriberDto,
+): string {
+  return JSON.stringify(
+    TopicSubscriberDto$outboundSchema.parse(topicSubscriberDto),
+  );
+}
+
+export function topicSubscriberDtoFromJSON(
+  jsonString: string,
+): SafeParseResult<TopicSubscriberDto, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TopicSubscriberDto$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TopicSubscriberDto' from JSON`,
+  );
 }

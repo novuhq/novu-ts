@@ -6,19 +6,11 @@
 import { SubscribersControllerChatOauthCallbackRequest } from "@novu/api/models/operations";
 
 let value: SubscribersControllerChatOauthCallbackRequest = {
-<<<<<<< Updated upstream
-  subscriberId: "<value>",
-  providerId: "<value>",
-  code: "<value>",
-  hmacHash: "<value>",
-  environmentId: "<value>",
-=======
   subscriberId: "<id>",
   providerId: "<value>",
   code: "<value>",
   hmacHash: "<value>",
   environmentId: "<id>",
->>>>>>> Stashed changes
 };
 ```
 

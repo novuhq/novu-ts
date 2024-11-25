@@ -6,13 +6,8 @@
 import { SubscribersControllerDeleteSubscriberCredentialsRequest } from "@novu/api/models/operations";
 
 let value: SubscribersControllerDeleteSubscriberCredentialsRequest = {
-<<<<<<< Updated upstream
-  subscriberId: "<value>",
-  providerId: "<value>",
-=======
   subscriberId: "<id>",
   providerId: "<id>",
->>>>>>> Stashed changes
 };
 ```
 

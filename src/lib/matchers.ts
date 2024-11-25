@@ -205,11 +205,7 @@ export function match<T, E>(
         raw = await response.json();
         break;
       case "bytes":
-<<<<<<< Updated upstream
-        raw = await response.arrayBuffer();
-=======
         raw = new Uint8Array(await response.arrayBuffer());
->>>>>>> Stashed changes
         break;
       case "stream":
         raw = response.body;

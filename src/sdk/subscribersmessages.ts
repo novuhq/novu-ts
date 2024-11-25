@@ -17,7 +17,7 @@ export class SubscribersMessages extends ClientSDK {
     markAllMessageAsRequestDto: components.MarkAllMessageAsRequestDto,
     subscriberId: string,
     options?: RequestOptions,
-  ): Promise<number> {
+  ): Promise<operations.SubscribersControllerMarkAllUnreadAsReadResponse> {
     return unwrapAsync(subscribersMessagesMarkAll(
       this,
       markAllMessageAsRequestDto,
@@ -32,7 +32,7 @@ export class SubscribersMessages extends ClientSDK {
   async updateAsSeen(
     request: operations.SubscribersControllerMarkActionAsSeenRequest,
     options?: RequestOptions,
-  ): Promise<components.MessageResponseDto> {
+  ): Promise<operations.SubscribersControllerMarkActionAsSeenResponse> {
     return unwrapAsync(subscribersMessagesUpdateAsSeen(
       this,
       request,

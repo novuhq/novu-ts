@@ -3,13 +3,16 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type FeedResponseDto = {
-  data: Array<string>;
-  hasMore: boolean;
-  page: number;
-  pageSize: number;
   totalCount?: number | undefined;
+  hasMore: boolean;
+  data: Array<string>;
+  pageSize: number;
+  page: number;
 };
 
 /** @internal */
@@ -18,20 +21,20 @@ export const FeedResponseDto$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  data: z.array(z.string()),
-  hasMore: z.boolean(),
-  page: z.number(),
-  pageSize: z.number(),
   totalCount: z.number().optional(),
+  hasMore: z.boolean(),
+  data: z.array(z.string()),
+  pageSize: z.number(),
+  page: z.number(),
 });
 
 /** @internal */
 export type FeedResponseDto$Outbound = {
-  data: Array<string>;
-  hasMore: boolean;
-  page: number;
-  pageSize: number;
   totalCount?: number | undefined;
+  hasMore: boolean;
+  data: Array<string>;
+  pageSize: number;
+  page: number;
 };
 
 /** @internal */
@@ -40,11 +43,11 @@ export const FeedResponseDto$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   FeedResponseDto
 > = z.object({
-  data: z.array(z.string()),
-  hasMore: z.boolean(),
-  page: z.number(),
-  pageSize: z.number(),
   totalCount: z.number().optional(),
+  hasMore: z.boolean(),
+  data: z.array(z.string()),
+  pageSize: z.number(),
+  page: z.number(),
 });
 
 /**
@@ -58,4 +61,20 @@ export namespace FeedResponseDto$ {
   export const outboundSchema = FeedResponseDto$outboundSchema;
   /** @deprecated use `FeedResponseDto$Outbound` instead. */
   export type Outbound = FeedResponseDto$Outbound;
+}
+
+export function feedResponseDtoToJSON(
+  feedResponseDto: FeedResponseDto,
+): string {
+  return JSON.stringify(FeedResponseDto$outboundSchema.parse(feedResponseDto));
+}
+
+export function feedResponseDtoFromJSON(
+  jsonString: string,
+): SafeParseResult<FeedResponseDto, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => FeedResponseDto$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FeedResponseDto' from JSON`,
+  );
 }

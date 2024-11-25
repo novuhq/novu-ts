@@ -6,17 +6,10 @@
 import { SubscribersControllerChatAccessOauthRequest } from "@novu/api/models/operations";
 
 let value: SubscribersControllerChatAccessOauthRequest = {
-<<<<<<< Updated upstream
-  subscriberId: "<value>",
-  providerId: "<value>",
-  hmacHash: "<value>",
-  environmentId: "<value>",
-=======
   subscriberId: "<id>",
   providerId: "<value>",
   hmacHash: "<value>",
   environmentId: "<id>",
->>>>>>> Stashed changes
 };
 ```
 

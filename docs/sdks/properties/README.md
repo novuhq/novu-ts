@@ -22,44 +22,8 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.subscribers.properties.updateOnlineStatus({
-    isOnline: false,
-<<<<<<< Updated upstream
-  });
-  
-  // Handle the result
-  console.log(result)
-}
-
-run();
-```
-
-### Standalone function
-
-The standalone function version of this method:
-
-```typescript
-import { NovuCore } from "@novu/api/core.js";
-import { subscribersPropertiesUpdateOnlineFlag } from "@novu/api/funcs/subscribersPropertiesUpdateOnlineFlag.js";
-
-// Use `NovuCore` for best tree-shaking performance.
-// You can create one instance of it to use across an application.
-const novu = new NovuCore({
-  apiKey: "<YOUR_API_KEY_HERE>",
-});
-
-async function run() {
-  const res = await subscribersPropertiesUpdateOnlineFlag(novu, "<value>", {
-    isOnline: false,
-  });
-
-  if (!res.ok) {
-    throw res.error;
-  }
-
-  const { value: result } = res;
-=======
+    isOnline: true,
   }, "<id>");
->>>>>>> Stashed changes
 
   // Handle the result
   console.log(result);
@@ -84,7 +48,7 @@ const novu = new NovuCore({
 
 async function run() {
   const res = await subscribersPropertiesUpdateOnlineStatus(novu, {
-    isOnline: false,
+    isOnline: true,
   }, "<id>");
 
   if (!res.ok) {
@@ -112,7 +76,7 @@ run();
 
 ### Response
 
-**Promise\<[components.SubscriberResponseDto](../../models/components/subscriberresponsedto.md)\>**
+**Promise\<[operations.SubscribersControllerUpdateSubscriberOnlineFlagResponse](../../models/operations/subscriberscontrollerupdatesubscriberonlineflagresponse.md)\>**
 
 ### Errors
 

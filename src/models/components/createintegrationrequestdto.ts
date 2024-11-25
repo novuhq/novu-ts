@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   CredentialsDto,
   CredentialsDto$inboundSchema,
@@ -18,47 +21,52 @@ import {
   StepFilter$outboundSchema,
 } from "./stepfilter.js";
 
-export const Channel = {
+export const CreateIntegrationRequestDtoChannel = {
   InApp: "in_app",
   Email: "email",
   Sms: "sms",
   Chat: "chat",
   Push: "push",
 } as const;
-export type Channel = ClosedEnum<typeof Channel>;
+export type CreateIntegrationRequestDtoChannel = ClosedEnum<
+  typeof CreateIntegrationRequestDtoChannel
+>;
 
 export type CreateIntegrationRequestDto = {
+  name?: string | undefined;
+  identifier?: string | undefined;
   environmentId?: string | undefined;
+  providerId: string;
+  channel: CreateIntegrationRequestDtoChannel;
+  credentials?: CredentialsDto | undefined;
   /**
    * If the integration is active the validation on the credentials field will run
    */
   active?: boolean | undefined;
-  channel: Channel;
   check?: boolean | undefined;
   conditions?: Array<StepFilter> | undefined;
-  credentials?: CredentialsDto | undefined;
-  identifier?: string | undefined;
-  name?: string | undefined;
-  providerId: string;
 };
 
 /** @internal */
-export const Channel$inboundSchema: z.ZodNativeEnum<typeof Channel> = z
-  .nativeEnum(Channel);
+export const CreateIntegrationRequestDtoChannel$inboundSchema: z.ZodNativeEnum<
+  typeof CreateIntegrationRequestDtoChannel
+> = z.nativeEnum(CreateIntegrationRequestDtoChannel);
 
 /** @internal */
-export const Channel$outboundSchema: z.ZodNativeEnum<typeof Channel> =
-  Channel$inboundSchema;
+export const CreateIntegrationRequestDtoChannel$outboundSchema: z.ZodNativeEnum<
+  typeof CreateIntegrationRequestDtoChannel
+> = CreateIntegrationRequestDtoChannel$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Channel$ {
-  /** @deprecated use `Channel$inboundSchema` instead. */
-  export const inboundSchema = Channel$inboundSchema;
-  /** @deprecated use `Channel$outboundSchema` instead. */
-  export const outboundSchema = Channel$outboundSchema;
+export namespace CreateIntegrationRequestDtoChannel$ {
+  /** @deprecated use `CreateIntegrationRequestDtoChannel$inboundSchema` instead. */
+  export const inboundSchema = CreateIntegrationRequestDtoChannel$inboundSchema;
+  /** @deprecated use `CreateIntegrationRequestDtoChannel$outboundSchema` instead. */
+  export const outboundSchema =
+    CreateIntegrationRequestDtoChannel$outboundSchema;
 }
 
 /** @internal */
@@ -67,15 +75,15 @@ export const CreateIntegrationRequestDto$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
+  name: z.string().optional(),
+  identifier: z.string().optional(),
   _environmentId: z.string().optional(),
+  providerId: z.string(),
+  channel: CreateIntegrationRequestDtoChannel$inboundSchema,
+  credentials: CredentialsDto$inboundSchema.optional(),
   active: z.boolean().optional(),
-  channel: Channel$inboundSchema,
   check: z.boolean().optional(),
   conditions: z.array(StepFilter$inboundSchema).optional(),
-  credentials: CredentialsDto$inboundSchema.optional(),
-  identifier: z.string().optional(),
-  name: z.string().optional(),
-  providerId: z.string(),
 }).transform((v) => {
   return remap$(v, {
     "_environmentId": "environmentId",
@@ -84,15 +92,15 @@ export const CreateIntegrationRequestDto$inboundSchema: z.ZodType<
 
 /** @internal */
 export type CreateIntegrationRequestDto$Outbound = {
+  name?: string | undefined;
+  identifier?: string | undefined;
   _environmentId?: string | undefined;
-  active?: boolean | undefined;
+  providerId: string;
   channel: string;
+  credentials?: CredentialsDto$Outbound | undefined;
+  active?: boolean | undefined;
   check?: boolean | undefined;
   conditions?: Array<StepFilter$Outbound> | undefined;
-  credentials?: CredentialsDto$Outbound | undefined;
-  identifier?: string | undefined;
-  name?: string | undefined;
-  providerId: string;
 };
 
 /** @internal */
@@ -101,15 +109,15 @@ export const CreateIntegrationRequestDto$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CreateIntegrationRequestDto
 > = z.object({
+  name: z.string().optional(),
+  identifier: z.string().optional(),
   environmentId: z.string().optional(),
+  providerId: z.string(),
+  channel: CreateIntegrationRequestDtoChannel$outboundSchema,
+  credentials: CredentialsDto$outboundSchema.optional(),
   active: z.boolean().optional(),
-  channel: Channel$outboundSchema,
   check: z.boolean().optional(),
   conditions: z.array(StepFilter$outboundSchema).optional(),
-  credentials: CredentialsDto$outboundSchema.optional(),
-  identifier: z.string().optional(),
-  name: z.string().optional(),
-  providerId: z.string(),
 }).transform((v) => {
   return remap$(v, {
     environmentId: "_environmentId",
@@ -127,4 +135,24 @@ export namespace CreateIntegrationRequestDto$ {
   export const outboundSchema = CreateIntegrationRequestDto$outboundSchema;
   /** @deprecated use `CreateIntegrationRequestDto$Outbound` instead. */
   export type Outbound = CreateIntegrationRequestDto$Outbound;
+}
+
+export function createIntegrationRequestDtoToJSON(
+  createIntegrationRequestDto: CreateIntegrationRequestDto,
+): string {
+  return JSON.stringify(
+    CreateIntegrationRequestDto$outboundSchema.parse(
+      createIntegrationRequestDto,
+    ),
+  );
+}
+
+export function createIntegrationRequestDtoFromJSON(
+  jsonString: string,
+): SafeParseResult<CreateIntegrationRequestDto, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreateIntegrationRequestDto$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateIntegrationRequestDto' from JSON`,
+  );
 }

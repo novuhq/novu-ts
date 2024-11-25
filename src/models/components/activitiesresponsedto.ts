@@ -3,12 +3,15 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ActivitiesResponseDto = {
-  data: Array<string>;
   hasMore: boolean;
-  page: number;
+  data: Array<string>;
   pageSize: number;
+  page: number;
 };
 
 /** @internal */
@@ -17,18 +20,18 @@ export const ActivitiesResponseDto$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  data: z.array(z.string()),
   hasMore: z.boolean(),
-  page: z.number(),
+  data: z.array(z.string()),
   pageSize: z.number(),
+  page: z.number(),
 });
 
 /** @internal */
 export type ActivitiesResponseDto$Outbound = {
-  data: Array<string>;
   hasMore: boolean;
-  page: number;
+  data: Array<string>;
   pageSize: number;
+  page: number;
 };
 
 /** @internal */
@@ -37,10 +40,10 @@ export const ActivitiesResponseDto$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ActivitiesResponseDto
 > = z.object({
-  data: z.array(z.string()),
   hasMore: z.boolean(),
-  page: z.number(),
+  data: z.array(z.string()),
   pageSize: z.number(),
+  page: z.number(),
 });
 
 /**
@@ -54,4 +57,22 @@ export namespace ActivitiesResponseDto$ {
   export const outboundSchema = ActivitiesResponseDto$outboundSchema;
   /** @deprecated use `ActivitiesResponseDto$Outbound` instead. */
   export type Outbound = ActivitiesResponseDto$Outbound;
+}
+
+export function activitiesResponseDtoToJSON(
+  activitiesResponseDto: ActivitiesResponseDto,
+): string {
+  return JSON.stringify(
+    ActivitiesResponseDto$outboundSchema.parse(activitiesResponseDto),
+  );
+}
+
+export function activitiesResponseDtoFromJSON(
+  jsonString: string,
+): SafeParseResult<ActivitiesResponseDto, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ActivitiesResponseDto$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ActivitiesResponseDto' from JSON`,
+  );
 }

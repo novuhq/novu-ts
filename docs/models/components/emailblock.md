@@ -6,12 +6,8 @@
 import { EmailBlock } from "@novu/api/models/components";
 
 let value: EmailBlock = {
-  content: "<value>",
-<<<<<<< Updated upstream
-  type: "text",
-=======
   type: "button",
->>>>>>> Stashed changes
+  content: "<value>",
 };
 ```
 
@@ -19,7 +15,7 @@ let value: EmailBlock = {
 
 | Field                                                                      | Type                                                                       | Required                                                                   | Description                                                                |
 | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| `content`                                                                  | *string*                                                                   | :heavy_check_mark:                                                         | N/A                                                                        |
-| `styles`                                                                   | [components.EmailBlockStyles](../../models/components/emailblockstyles.md) | :heavy_minus_sign:                                                         | N/A                                                                        |
 | `type`                                                                     | [components.EmailBlockType](../../models/components/emailblocktype.md)     | :heavy_check_mark:                                                         | N/A                                                                        |
+| `content`                                                                  | *string*                                                                   | :heavy_check_mark:                                                         | N/A                                                                        |
 | `url`                                                                      | *string*                                                                   | :heavy_minus_sign:                                                         | N/A                                                                        |
+| `styles`                                                                   | [components.EmailBlockStyles](../../models/components/emailblockstyles.md) | :heavy_minus_sign:                                                         | N/A                                                                        |

@@ -4,17 +4,20 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ApiKey = {
-  userId: string;
   key: string;
+  userId: string;
 };
 
 /** @internal */
 export const ApiKey$inboundSchema: z.ZodType<ApiKey, z.ZodTypeDef, unknown> = z
   .object({
-    _userId: z.string(),
     key: z.string(),
+    _userId: z.string(),
   }).transform((v) => {
     return remap$(v, {
       "_userId": "userId",
@@ -23,8 +26,8 @@ export const ApiKey$inboundSchema: z.ZodType<ApiKey, z.ZodTypeDef, unknown> = z
 
 /** @internal */
 export type ApiKey$Outbound = {
-  _userId: string;
   key: string;
+  _userId: string;
 };
 
 /** @internal */
@@ -33,8 +36,8 @@ export const ApiKey$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ApiKey
 > = z.object({
-  userId: z.string(),
   key: z.string(),
+  userId: z.string(),
 }).transform((v) => {
   return remap$(v, {
     userId: "_userId",
@@ -52,4 +55,18 @@ export namespace ApiKey$ {
   export const outboundSchema = ApiKey$outboundSchema;
   /** @deprecated use `ApiKey$Outbound` instead. */
   export type Outbound = ApiKey$Outbound;
+}
+
+export function apiKeyToJSON(apiKey: ApiKey): string {
+  return JSON.stringify(ApiKey$outboundSchema.parse(apiKey));
+}
+
+export function apiKeyFromJSON(
+  jsonString: string,
+): SafeParseResult<ApiKey, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ApiKey$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ApiKey' from JSON`,
+  );
 }

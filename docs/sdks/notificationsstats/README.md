@@ -71,7 +71,7 @@ run();
 
 ### Response
 
-**Promise\<[components.ActivityGraphStatesResponse[]](../../models/.md)\>**
+**Promise\<[operations.NotificationsControllerGetActivityGraphStatsResponse](../../models/operations/notificationscontrollergetactivitygraphstatsresponse.md)\>**
 
 ### Errors
 

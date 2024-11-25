@@ -6,11 +6,7 @@
 import { MessagesControllerDeleteMessageRequest } from "@novu/api/models/operations";
 
 let value: MessagesControllerDeleteMessageRequest = {
-<<<<<<< Updated upstream
-  messageId: "<value>",
-=======
   messageId: "<id>",
->>>>>>> Stashed changes
 };
 ```
 

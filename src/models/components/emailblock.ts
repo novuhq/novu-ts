@@ -3,7 +3,10 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   EmailBlockStyles,
   EmailBlockStyles$inboundSchema,
@@ -18,10 +21,10 @@ export const EmailBlockType = {
 export type EmailBlockType = ClosedEnum<typeof EmailBlockType>;
 
 export type EmailBlock = {
-  content: string;
-  styles?: EmailBlockStyles | undefined;
   type: EmailBlockType;
+  content: string;
   url?: string | undefined;
+  styles?: EmailBlockStyles | undefined;
 };
 
 /** @internal */
@@ -51,18 +54,18 @@ export const EmailBlock$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  content: z.string(),
-  styles: EmailBlockStyles$inboundSchema.optional(),
   type: EmailBlockType$inboundSchema,
+  content: z.string(),
   url: z.string().optional(),
+  styles: EmailBlockStyles$inboundSchema.optional(),
 });
 
 /** @internal */
 export type EmailBlock$Outbound = {
-  content: string;
-  styles?: EmailBlockStyles$Outbound | undefined;
   type: string;
+  content: string;
   url?: string | undefined;
+  styles?: EmailBlockStyles$Outbound | undefined;
 };
 
 /** @internal */
@@ -71,10 +74,10 @@ export const EmailBlock$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   EmailBlock
 > = z.object({
-  content: z.string(),
-  styles: EmailBlockStyles$outboundSchema.optional(),
   type: EmailBlockType$outboundSchema,
+  content: z.string(),
   url: z.string().optional(),
+  styles: EmailBlockStyles$outboundSchema.optional(),
 });
 
 /**
@@ -88,4 +91,18 @@ export namespace EmailBlock$ {
   export const outboundSchema = EmailBlock$outboundSchema;
   /** @deprecated use `EmailBlock$Outbound` instead. */
   export type Outbound = EmailBlock$Outbound;
+}
+
+export function emailBlockToJSON(emailBlock: EmailBlock): string {
+  return JSON.stringify(EmailBlock$outboundSchema.parse(emailBlock));
+}
+
+export function emailBlockFromJSON(
+  jsonString: string,
+): SafeParseResult<EmailBlock, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => EmailBlock$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'EmailBlock' from JSON`,
+  );
 }

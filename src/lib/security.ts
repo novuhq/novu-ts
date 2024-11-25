@@ -3,8 +3,6 @@
  */
 
 import * as components from "../models/components/index.js";
-<<<<<<< Updated upstream
-=======
 
 type OAuth2PasswordFlow = {
   username: string;
@@ -13,7 +11,6 @@ type OAuth2PasswordFlow = {
   clientSecret?: string | undefined;
   tokenURL: string;
 };
->>>>>>> Stashed changes
 
 export enum SecurityErrorCode {
   Incomplete = "incomplete",
@@ -48,10 +45,7 @@ export type SecurityState = {
   headers: Record<string, string>;
   queryParams: Record<string, string>;
   cookies: Record<string, string>;
-<<<<<<< Updated upstream
-=======
   oauth2: ({ type: "password" } & OAuth2PasswordFlow) | { type: "none" };
->>>>>>> Stashed changes
 };
 
 type SecurityInputBasic = {
@@ -88,9 +82,6 @@ type SecurityInputOAuth2 = {
 
 type SecurityInputOAuth2ClientCredentials = {
   type: "oauth2:client_credentials";
-<<<<<<< Updated upstream
-  value: string | null | undefined;
-=======
   value:
     | { clientID?: string | undefined; clientSecret?: string | undefined }
     | null
@@ -103,7 +94,6 @@ type SecurityInputOAuth2PasswordCredentials = {
     | string
     | null
     | undefined;
->>>>>>> Stashed changes
   fieldName: string;
 };
 
@@ -119,10 +109,7 @@ export type SecurityInput =
   | SecurityInputAPIKey
   | SecurityInputOAuth2
   | SecurityInputOAuth2ClientCredentials
-<<<<<<< Updated upstream
-=======
   | SecurityInputOAuth2PasswordCredentials
->>>>>>> Stashed changes
   | SecurityInputOIDC
   | SecurityInputCustom;
 
@@ -134,10 +121,7 @@ export function resolveSecurity(
     headers: {},
     queryParams: {},
     cookies: {},
-<<<<<<< Updated upstream
-=======
     oauth2: { type: "none" },
->>>>>>> Stashed changes
   };
 
   const option = options.find((opts) => {
@@ -148,15 +132,12 @@ export function resolveSecurity(
         return o.value.username != null || o.value.password != null;
       } else if (o.type === "http:custom") {
         return null;
-<<<<<<< Updated upstream
-=======
       } else if (o.type === "oauth2:password") {
         return (
           typeof o.value === "string" && !!o.value
         );
       } else if (o.type === "oauth2:client_credentials") {
         return o.value.clientID != null || o.value.clientSecret != null;
->>>>>>> Stashed changes
       } else if (typeof o.value === "string") {
         return !!o.value;
       } else {
@@ -199,12 +180,9 @@ export function resolveSecurity(
       case "oauth2":
         applyBearer(state, spec);
         break;
-<<<<<<< Updated upstream
-=======
       case "oauth2:password":
         applyBearer(state, spec);
         break;
->>>>>>> Stashed changes
       case "oauth2:client_credentials":
         break;
       case "openIdConnect":
@@ -232,11 +210,6 @@ function applyBasic(
 
 function applyBearer(
   state: SecurityState,
-<<<<<<< Updated upstream
-  spec: SecurityInputBearer | SecurityInputOAuth2 | SecurityInputOIDC,
-) {
-  if (spec.value == null) {
-=======
   spec:
     | SecurityInputBearer
     | SecurityInputOAuth2
@@ -244,7 +217,6 @@ function applyBearer(
     | SecurityInputOAuth2PasswordCredentials,
 ) {
   if (typeof spec.value !== "string" || !spec.value) {
->>>>>>> Stashed changes
     return;
   }
 

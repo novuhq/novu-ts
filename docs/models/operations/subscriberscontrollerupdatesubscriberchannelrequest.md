@@ -6,21 +6,12 @@
 import { SubscribersControllerUpdateSubscriberChannelRequest } from "@novu/api/models/operations";
 
 let value: SubscribersControllerUpdateSubscriberChannelRequest = {
-<<<<<<< Updated upstream
-  subscriberId: "<value>",
-  updateSubscriberChannelRequestDto: {
-    credentials: {
-      webhookUrl: "<value>",
-    },
-    providerId: 2532.91,
-=======
   subscriberId: "<id>",
   updateSubscriberChannelRequestDto: {
+    providerId: "msteams",
     credentials: {
-      webhookUrl: "https://frightened-metal.name/",
+      webhookUrl: "https://corrupt-unblinking.name",
     },
-    providerId: "whatsapp-business",
->>>>>>> Stashed changes
   },
 };
 ```

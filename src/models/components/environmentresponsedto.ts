@@ -4,14 +4,18 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type EnvironmentResponseDto = {
   id?: string | undefined;
-  organizationId: string;
-  parentId: string;
-  apiKeys?: Array<string> | undefined;
-  identifier: string;
   name: string;
+  organizationId: string;
+  identifier: string;
+  apiKeys?: Array<string> | undefined;
+  parentId: string;
+  slug?: string | undefined;
 };
 
 /** @internal */
@@ -21,11 +25,12 @@ export const EnvironmentResponseDto$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   _id: z.string().optional(),
-  _organizationId: z.string(),
-  _parentId: z.string(),
-  apiKeys: z.array(z.string()).optional(),
-  identifier: z.string(),
   name: z.string(),
+  _organizationId: z.string(),
+  identifier: z.string(),
+  apiKeys: z.array(z.string()).optional(),
+  _parentId: z.string(),
+  slug: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     "_id": "id",
@@ -37,11 +42,12 @@ export const EnvironmentResponseDto$inboundSchema: z.ZodType<
 /** @internal */
 export type EnvironmentResponseDto$Outbound = {
   _id?: string | undefined;
-  _organizationId: string;
-  _parentId: string;
-  apiKeys?: Array<string> | undefined;
-  identifier: string;
   name: string;
+  _organizationId: string;
+  identifier: string;
+  apiKeys?: Array<string> | undefined;
+  _parentId: string;
+  slug?: string | undefined;
 };
 
 /** @internal */
@@ -51,11 +57,12 @@ export const EnvironmentResponseDto$outboundSchema: z.ZodType<
   EnvironmentResponseDto
 > = z.object({
   id: z.string().optional(),
-  organizationId: z.string(),
-  parentId: z.string(),
-  apiKeys: z.array(z.string()).optional(),
-  identifier: z.string(),
   name: z.string(),
+  organizationId: z.string(),
+  identifier: z.string(),
+  apiKeys: z.array(z.string()).optional(),
+  parentId: z.string(),
+  slug: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     id: "_id",
@@ -75,4 +82,22 @@ export namespace EnvironmentResponseDto$ {
   export const outboundSchema = EnvironmentResponseDto$outboundSchema;
   /** @deprecated use `EnvironmentResponseDto$Outbound` instead. */
   export type Outbound = EnvironmentResponseDto$Outbound;
+}
+
+export function environmentResponseDtoToJSON(
+  environmentResponseDto: EnvironmentResponseDto,
+): string {
+  return JSON.stringify(
+    EnvironmentResponseDto$outboundSchema.parse(environmentResponseDto),
+  );
+}
+
+export function environmentResponseDtoFromJSON(
+  jsonString: string,
+): SafeParseResult<EnvironmentResponseDto, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => EnvironmentResponseDto$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'EnvironmentResponseDto' from JSON`,
+  );
 }

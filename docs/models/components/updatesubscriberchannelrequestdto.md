@@ -6,23 +6,17 @@
 import { UpdateSubscriberChannelRequestDto } from "@novu/api/models/components";
 
 let value: UpdateSubscriberChannelRequestDto = {
+  providerId: "whatsapp-business",
   credentials: {
-<<<<<<< Updated upstream
-    webhookUrl: "<value>",
+    webhookUrl: "https://old-fashioned-deck.org",
   },
-  providerId: 5373.73,
-=======
-    webhookUrl: "https://rare-pillbox.biz/",
-  },
-  providerId: "msteams",
->>>>>>> Stashed changes
 };
 ```
 
 ## Fields
 
-| Field                                                                          | Type                                                                           | Required                                                                       | Description                                                                    |
-| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| `credentials`                                                                  | [components.ChannelCredentials](../../models/components/channelcredentials.md) | :heavy_check_mark:                                                             | Credentials payload for the specified provider                                 |
-| `integrationIdentifier`                                                        | *string*                                                                       | :heavy_minus_sign:                                                             | The integration identifier                                                     |
-| `providerId`                                                                   | *number*                                                                       | :heavy_check_mark:                                                             | The provider identifier for the credentials                                    |
+| Field                                                                                                                            | Type                                                                                                                             | Required                                                                                                                         | Description                                                                                                                      |
+| -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| `providerId`                                                                                                                     | [components.UpdateSubscriberChannelRequestDtoProviderId](../../models/components/updatesubscriberchannelrequestdtoproviderid.md) | :heavy_check_mark:                                                                                                               | The provider identifier for the credentials                                                                                      |
+| `integrationIdentifier`                                                                                                          | *string*                                                                                                                         | :heavy_minus_sign:                                                                                                               | The integration identifier                                                                                                       |
+| `credentials`                                                                                                                    | [components.ChannelCredentials](../../models/components/channelcredentials.md)                                                   | :heavy_check_mark:                                                                                                               | Credentials payload for the specified provider                                                                                   |

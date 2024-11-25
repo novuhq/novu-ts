@@ -4,12 +4,15 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ActivityNotificationSubscriberResponseDto = {
-  id: string;
-  email?: string | undefined;
   firstName?: string | undefined;
+  id: string;
   lastName?: string | undefined;
+  email?: string | undefined;
   phone?: string | undefined;
 };
 
@@ -19,10 +22,10 @@ export const ActivityNotificationSubscriberResponseDto$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  _id: z.string(),
-  email: z.string().optional(),
   firstName: z.string().optional(),
+  _id: z.string(),
   lastName: z.string().optional(),
+  email: z.string().optional(),
   phone: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -32,10 +35,10 @@ export const ActivityNotificationSubscriberResponseDto$inboundSchema: z.ZodType<
 
 /** @internal */
 export type ActivityNotificationSubscriberResponseDto$Outbound = {
-  _id: string;
-  email?: string | undefined;
   firstName?: string | undefined;
+  _id: string;
   lastName?: string | undefined;
+  email?: string | undefined;
   phone?: string | undefined;
 };
 
@@ -46,10 +49,10 @@ export const ActivityNotificationSubscriberResponseDto$outboundSchema:
     z.ZodTypeDef,
     ActivityNotificationSubscriberResponseDto
   > = z.object({
-    id: z.string(),
-    email: z.string().optional(),
     firstName: z.string().optional(),
+    id: z.string(),
     lastName: z.string().optional(),
+    email: z.string().optional(),
     phone: z.string().optional(),
   }).transform((v) => {
     return remap$(v, {
@@ -70,4 +73,31 @@ export namespace ActivityNotificationSubscriberResponseDto$ {
     ActivityNotificationSubscriberResponseDto$outboundSchema;
   /** @deprecated use `ActivityNotificationSubscriberResponseDto$Outbound` instead. */
   export type Outbound = ActivityNotificationSubscriberResponseDto$Outbound;
+}
+
+export function activityNotificationSubscriberResponseDtoToJSON(
+  activityNotificationSubscriberResponseDto:
+    ActivityNotificationSubscriberResponseDto,
+): string {
+  return JSON.stringify(
+    ActivityNotificationSubscriberResponseDto$outboundSchema.parse(
+      activityNotificationSubscriberResponseDto,
+    ),
+  );
+}
+
+export function activityNotificationSubscriberResponseDtoFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  ActivityNotificationSubscriberResponseDto,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      ActivityNotificationSubscriberResponseDto$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'ActivityNotificationSubscriberResponseDto' from JSON`,
+  );
 }

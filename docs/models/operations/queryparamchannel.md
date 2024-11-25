@@ -1,15 +1,13 @@
 # QueryParamChannel
 
+The channel of the message to be deleted
+
 ## Example Usage
 
 ```typescript
 import { QueryParamChannel } from "@novu/api/models/operations";
 
-<<<<<<< Updated upstream
-let value: QueryParamChannel = "in_app";
-=======
-let value: QueryParamChannel = "chat";
->>>>>>> Stashed changes
+let value: QueryParamChannel = "sms";
 ```
 
 ## Values

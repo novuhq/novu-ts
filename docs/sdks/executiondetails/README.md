@@ -3,12 +3,6 @@
 
 ## Overview
 
-<<<<<<< Updated upstream
-Execution details are used to track the execution of a workflow. They provided detailed information on the execution of a workflow, including the status of each step, the input and output of each step, and the overall status of the execution.
-<https://docs.novu.co/activity-feed>
-
-=======
->>>>>>> Stashed changes
 ### Available Operations
 
 * [get](#get) - Get execution details
@@ -27,41 +21,7 @@ const novu = new Novu({
 });
 
 async function run() {
-<<<<<<< Updated upstream
-  const result = await novu.executionDetails.retrieve("<value>", "<value>");
-  
-  // Handle the result
-  console.log(result)
-}
-
-run();
-```
-
-### Standalone function
-
-The standalone function version of this method:
-
-```typescript
-import { NovuCore } from "@novu/api/core.js";
-import { executionDetailsRetrieve } from "@novu/api/funcs/executionDetailsRetrieve.js";
-
-// Use `NovuCore` for best tree-shaking performance.
-// You can create one instance of it to use across an application.
-const novu = new NovuCore({
-  apiKey: "<YOUR_API_KEY_HERE>",
-});
-
-async function run() {
-  const res = await executionDetailsRetrieve(novu, "<value>", "<value>");
-
-  if (!res.ok) {
-    throw res.error;
-  }
-
-  const { value: result } = res;
-=======
   const result = await novu.executionDetails.get("<id>", "<id>");
->>>>>>> Stashed changes
 
   // Handle the result
   console.log(result);
@@ -112,7 +72,7 @@ run();
 
 ### Response
 
-**Promise\<[components.ExecutionDetailsResponseDto[]](../../models/.md)\>**
+**Promise\<[operations.ExecutionDetailsControllerGetExecutionDetailsForNotificationResponse](../../models/operations/executiondetailscontrollergetexecutiondetailsfornotificationresponse.md)\>**
 
 ### Errors
 

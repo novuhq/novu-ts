@@ -3,7 +3,10 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export const MessageButtonType = {
   Primary: "primary",
@@ -12,9 +15,9 @@ export const MessageButtonType = {
 export type MessageButtonType = ClosedEnum<typeof MessageButtonType>;
 
 export type MessageButton = {
+  type: MessageButtonType;
   content: string;
   resultContent?: string | undefined;
-  type: MessageButtonType;
 };
 
 /** @internal */
@@ -44,16 +47,16 @@ export const MessageButton$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
+  type: MessageButtonType$inboundSchema,
   content: z.string(),
   resultContent: z.string().optional(),
-  type: MessageButtonType$inboundSchema,
 });
 
 /** @internal */
 export type MessageButton$Outbound = {
+  type: string;
   content: string;
   resultContent?: string | undefined;
-  type: string;
 };
 
 /** @internal */
@@ -62,9 +65,9 @@ export const MessageButton$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   MessageButton
 > = z.object({
+  type: MessageButtonType$outboundSchema,
   content: z.string(),
   resultContent: z.string().optional(),
-  type: MessageButtonType$outboundSchema,
 });
 
 /**
@@ -78,4 +81,18 @@ export namespace MessageButton$ {
   export const outboundSchema = MessageButton$outboundSchema;
   /** @deprecated use `MessageButton$Outbound` instead. */
   export type Outbound = MessageButton$Outbound;
+}
+
+export function messageButtonToJSON(messageButton: MessageButton): string {
+  return JSON.stringify(MessageButton$outboundSchema.parse(messageButton));
+}
+
+export function messageButtonFromJSON(
+  jsonString: string,
+): SafeParseResult<MessageButton, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => MessageButton$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'MessageButton' from JSON`,
+  );
 }

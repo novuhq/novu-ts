@@ -3,18 +3,23 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * The status enum for the performed action
  */
-export const Status = {
+export const DeleteMessageResponseDtoStatus = {
   Deleted: "deleted",
 } as const;
 /**
  * The status enum for the performed action
  */
-export type Status = ClosedEnum<typeof Status>;
+export type DeleteMessageResponseDtoStatus = ClosedEnum<
+  typeof DeleteMessageResponseDtoStatus
+>;
 
 export type DeleteMessageResponseDto = {
   /**
@@ -24,26 +29,28 @@ export type DeleteMessageResponseDto = {
   /**
    * The status enum for the performed action
    */
-  status: Status;
+  status: DeleteMessageResponseDtoStatus;
 };
 
 /** @internal */
-export const Status$inboundSchema: z.ZodNativeEnum<typeof Status> = z
-  .nativeEnum(Status);
+export const DeleteMessageResponseDtoStatus$inboundSchema: z.ZodNativeEnum<
+  typeof DeleteMessageResponseDtoStatus
+> = z.nativeEnum(DeleteMessageResponseDtoStatus);
 
 /** @internal */
-export const Status$outboundSchema: z.ZodNativeEnum<typeof Status> =
-  Status$inboundSchema;
+export const DeleteMessageResponseDtoStatus$outboundSchema: z.ZodNativeEnum<
+  typeof DeleteMessageResponseDtoStatus
+> = DeleteMessageResponseDtoStatus$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Status$ {
-  /** @deprecated use `Status$inboundSchema` instead. */
-  export const inboundSchema = Status$inboundSchema;
-  /** @deprecated use `Status$outboundSchema` instead. */
-  export const outboundSchema = Status$outboundSchema;
+export namespace DeleteMessageResponseDtoStatus$ {
+  /** @deprecated use `DeleteMessageResponseDtoStatus$inboundSchema` instead. */
+  export const inboundSchema = DeleteMessageResponseDtoStatus$inboundSchema;
+  /** @deprecated use `DeleteMessageResponseDtoStatus$outboundSchema` instead. */
+  export const outboundSchema = DeleteMessageResponseDtoStatus$outboundSchema;
 }
 
 /** @internal */
@@ -53,7 +60,7 @@ export const DeleteMessageResponseDto$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   acknowledged: z.boolean(),
-  status: Status$inboundSchema,
+  status: DeleteMessageResponseDtoStatus$inboundSchema,
 });
 
 /** @internal */
@@ -69,7 +76,7 @@ export const DeleteMessageResponseDto$outboundSchema: z.ZodType<
   DeleteMessageResponseDto
 > = z.object({
   acknowledged: z.boolean(),
-  status: Status$outboundSchema,
+  status: DeleteMessageResponseDtoStatus$outboundSchema,
 });
 
 /**
@@ -83,4 +90,22 @@ export namespace DeleteMessageResponseDto$ {
   export const outboundSchema = DeleteMessageResponseDto$outboundSchema;
   /** @deprecated use `DeleteMessageResponseDto$Outbound` instead. */
   export type Outbound = DeleteMessageResponseDto$Outbound;
+}
+
+export function deleteMessageResponseDtoToJSON(
+  deleteMessageResponseDto: DeleteMessageResponseDto,
+): string {
+  return JSON.stringify(
+    DeleteMessageResponseDto$outboundSchema.parse(deleteMessageResponseDto),
+  );
+}
+
+export function deleteMessageResponseDtoFromJSON(
+  jsonString: string,
+): SafeParseResult<DeleteMessageResponseDto, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DeleteMessageResponseDto$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DeleteMessageResponseDto' from JSON`,
+  );
 }

@@ -9,7 +9,6 @@ import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
-import * as components from "../models/components/index.js";
 import {
   ConnectionError,
   InvalidRequestError,
@@ -31,7 +30,7 @@ export async function integrationsSetPrimary(
   options?: RequestOptions,
 ): Promise<
   Result<
-    components.IntegrationResponseDto,
+    operations.IntegrationsControllerSetIntegrationAsPrimaryResponse,
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -126,8 +125,12 @@ export async function integrationsSetPrimary(
   }
   const response = doResult.value;
 
+  const responseFields = {
+    HttpMeta: { Response: response, Request: req },
+  };
+
   const [result] = await M.match<
-    components.IntegrationResponseDto,
+    operations.IntegrationsControllerSetIntegrationAsPrimaryResponse,
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -136,9 +139,15 @@ export async function integrationsSetPrimary(
     | RequestTimeoutError
     | ConnectionError
   >(
-    M.json(200, components.IntegrationResponseDto$inboundSchema),
-    M.fail([404, 409, 429, "4XX", 503, "5XX"]),
-  )(response);
+    M.json(
+      200,
+      operations
+        .IntegrationsControllerSetIntegrationAsPrimaryResponse$inboundSchema,
+      { hdrs: true, key: "Result" },
+    ),
+    M.fail([404, 409, 429, 503]),
+    M.fail(["4XX", "5XX"]),
+  )(response, { extraFields: responseFields });
   if (!result.ok) {
     return result;
   }

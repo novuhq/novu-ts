@@ -3,12 +3,15 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ChannelCredentials = {
   /**
-   * alert_uid for grafana on-call webhook payload
+   * Webhook url used by chat app integrations. The webhook should be obtained from the chat app provider.
    */
-  alertUid?: string | undefined;
+  webhookUrl: string;
   /**
    * Channel specification for Mattermost chat notifications
    */
@@ -18,9 +21,13 @@ export type ChannelCredentials = {
    */
   deviceTokens?: Array<string> | undefined;
   /**
-   * link_to_upstream_details property fo grafana on call webhook
+   * alert_uid for grafana on-call webhook payload
    */
-  externalUrl?: string | undefined;
+  alertUid?: string | undefined;
+  /**
+   * title to be used with grafana on call webhook
+   */
+  title?: string | undefined;
   /**
    * image_url property fo grafana on call webhook
    */
@@ -30,13 +37,9 @@ export type ChannelCredentials = {
    */
   state?: string | undefined;
   /**
-   * title to be used with grafana on call webhook
+   * link_to_upstream_details property fo grafana on call webhook
    */
-  title?: string | undefined;
-  /**
-   * Webhook url used by chat app integrations. The webhook should be obtained from the chat app provider.
-   */
-  webhookUrl: string;
+  externalUrl?: string | undefined;
 };
 
 /** @internal */
@@ -45,26 +48,26 @@ export const ChannelCredentials$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  alertUid: z.string().optional(),
+  webhookUrl: z.string(),
   channel: z.string().optional(),
   deviceTokens: z.array(z.string()).optional(),
-  externalUrl: z.string().optional(),
+  alertUid: z.string().optional(),
+  title: z.string().optional(),
   imageUrl: z.string().optional(),
   state: z.string().optional(),
-  title: z.string().optional(),
-  webhookUrl: z.string(),
+  externalUrl: z.string().optional(),
 });
 
 /** @internal */
 export type ChannelCredentials$Outbound = {
-  alertUid?: string | undefined;
+  webhookUrl: string;
   channel?: string | undefined;
   deviceTokens?: Array<string> | undefined;
-  externalUrl?: string | undefined;
+  alertUid?: string | undefined;
+  title?: string | undefined;
   imageUrl?: string | undefined;
   state?: string | undefined;
-  title?: string | undefined;
-  webhookUrl: string;
+  externalUrl?: string | undefined;
 };
 
 /** @internal */
@@ -73,14 +76,14 @@ export const ChannelCredentials$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ChannelCredentials
 > = z.object({
-  alertUid: z.string().optional(),
+  webhookUrl: z.string(),
   channel: z.string().optional(),
   deviceTokens: z.array(z.string()).optional(),
-  externalUrl: z.string().optional(),
+  alertUid: z.string().optional(),
+  title: z.string().optional(),
   imageUrl: z.string().optional(),
   state: z.string().optional(),
-  title: z.string().optional(),
-  webhookUrl: z.string(),
+  externalUrl: z.string().optional(),
 });
 
 /**
@@ -94,4 +97,22 @@ export namespace ChannelCredentials$ {
   export const outboundSchema = ChannelCredentials$outboundSchema;
   /** @deprecated use `ChannelCredentials$Outbound` instead. */
   export type Outbound = ChannelCredentials$Outbound;
+}
+
+export function channelCredentialsToJSON(
+  channelCredentials: ChannelCredentials,
+): string {
+  return JSON.stringify(
+    ChannelCredentials$outboundSchema.parse(channelCredentials),
+  );
+}
+
+export function channelCredentialsFromJSON(
+  jsonString: string,
+): SafeParseResult<ChannelCredentials, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ChannelCredentials$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ChannelCredentials' from JSON`,
+  );
 }

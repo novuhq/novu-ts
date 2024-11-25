@@ -14,7 +14,7 @@ export class NovuSubscribersNotifications extends ClientSDK {
   async getFeed(
     request: operations.SubscribersControllerGetNotificationsFeedRequest,
     options?: RequestOptions,
-  ): Promise<operations.SubscribersControllerGetNotificationsFeedResponseBody> {
+  ): Promise<operations.SubscribersControllerGetNotificationsFeedResponse> {
     return unwrapAsync(subscribersNotificationsGetFeed(
       this,
       request,

@@ -3,6 +3,11 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type TopicsControllerListTopicsRequest = {
   /**
@@ -17,6 +22,11 @@ export type TopicsControllerListTopicsRequest = {
    * Topic key
    */
   key?: string | undefined;
+};
+
+export type TopicsControllerListTopicsResponse = {
+  headers: { [k: string]: Array<string> };
+  result: components.FilterTopicsResponseDto;
 };
 
 /** @internal */
@@ -60,4 +70,95 @@ export namespace TopicsControllerListTopicsRequest$ {
     TopicsControllerListTopicsRequest$outboundSchema;
   /** @deprecated use `TopicsControllerListTopicsRequest$Outbound` instead. */
   export type Outbound = TopicsControllerListTopicsRequest$Outbound;
+}
+
+export function topicsControllerListTopicsRequestToJSON(
+  topicsControllerListTopicsRequest: TopicsControllerListTopicsRequest,
+): string {
+  return JSON.stringify(
+    TopicsControllerListTopicsRequest$outboundSchema.parse(
+      topicsControllerListTopicsRequest,
+    ),
+  );
+}
+
+export function topicsControllerListTopicsRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<TopicsControllerListTopicsRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TopicsControllerListTopicsRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TopicsControllerListTopicsRequest' from JSON`,
+  );
+}
+
+/** @internal */
+export const TopicsControllerListTopicsResponse$inboundSchema: z.ZodType<
+  TopicsControllerListTopicsResponse,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  Headers: z.record(z.array(z.string())),
+  Result: components.FilterTopicsResponseDto$inboundSchema,
+}).transform((v) => {
+  return remap$(v, {
+    "Headers": "headers",
+    "Result": "result",
+  });
+});
+
+/** @internal */
+export type TopicsControllerListTopicsResponse$Outbound = {
+  Headers: { [k: string]: Array<string> };
+  Result: components.FilterTopicsResponseDto$Outbound;
+};
+
+/** @internal */
+export const TopicsControllerListTopicsResponse$outboundSchema: z.ZodType<
+  TopicsControllerListTopicsResponse$Outbound,
+  z.ZodTypeDef,
+  TopicsControllerListTopicsResponse
+> = z.object({
+  headers: z.record(z.array(z.string())),
+  result: components.FilterTopicsResponseDto$outboundSchema,
+}).transform((v) => {
+  return remap$(v, {
+    headers: "Headers",
+    result: "Result",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace TopicsControllerListTopicsResponse$ {
+  /** @deprecated use `TopicsControllerListTopicsResponse$inboundSchema` instead. */
+  export const inboundSchema = TopicsControllerListTopicsResponse$inboundSchema;
+  /** @deprecated use `TopicsControllerListTopicsResponse$outboundSchema` instead. */
+  export const outboundSchema =
+    TopicsControllerListTopicsResponse$outboundSchema;
+  /** @deprecated use `TopicsControllerListTopicsResponse$Outbound` instead. */
+  export type Outbound = TopicsControllerListTopicsResponse$Outbound;
+}
+
+export function topicsControllerListTopicsResponseToJSON(
+  topicsControllerListTopicsResponse: TopicsControllerListTopicsResponse,
+): string {
+  return JSON.stringify(
+    TopicsControllerListTopicsResponse$outboundSchema.parse(
+      topicsControllerListTopicsResponse,
+    ),
+  );
+}
+
+export function topicsControllerListTopicsResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<TopicsControllerListTopicsResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      TopicsControllerListTopicsResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TopicsControllerListTopicsResponse' from JSON`,
+  );
 }

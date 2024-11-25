@@ -3,55 +3,66 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
-export type SubscriberPayloadDtoData = {};
+export type Data = {};
 
 export type SubscriberPayloadDto = {
-  /**
-   * An http url to the profile image of your subscriber
-   */
-  avatar?: string | undefined;
-  channels?: Array<string> | undefined;
-  data?: SubscriberPayloadDtoData | undefined;
-  email?: string | undefined;
-  firstName?: string | undefined;
-  lastName?: string | undefined;
-  locale?: string | undefined;
-  phone?: string | undefined;
   /**
    * The internal identifier you used to create this subscriber, usually correlates to the id the user in your systems
    */
   subscriberId: string;
+  email?: string | undefined;
+  firstName?: string | undefined;
+  lastName?: string | undefined;
+  phone?: string | undefined;
+  /**
+   * An http url to the profile image of your subscriber
+   */
+  avatar?: string | undefined;
+  locale?: string | undefined;
+  data?: Data | undefined;
+  channels?: Array<string> | undefined;
 };
 
 /** @internal */
-export const SubscriberPayloadDtoData$inboundSchema: z.ZodType<
-  SubscriberPayloadDtoData,
-  z.ZodTypeDef,
-  unknown
-> = z.object({});
+export const Data$inboundSchema: z.ZodType<Data, z.ZodTypeDef, unknown> = z
+  .object({});
 
 /** @internal */
-export type SubscriberPayloadDtoData$Outbound = {};
+export type Data$Outbound = {};
 
 /** @internal */
-export const SubscriberPayloadDtoData$outboundSchema: z.ZodType<
-  SubscriberPayloadDtoData$Outbound,
-  z.ZodTypeDef,
-  SubscriberPayloadDtoData
-> = z.object({});
+export const Data$outboundSchema: z.ZodType<Data$Outbound, z.ZodTypeDef, Data> =
+  z.object({});
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace SubscriberPayloadDtoData$ {
-  /** @deprecated use `SubscriberPayloadDtoData$inboundSchema` instead. */
-  export const inboundSchema = SubscriberPayloadDtoData$inboundSchema;
-  /** @deprecated use `SubscriberPayloadDtoData$outboundSchema` instead. */
-  export const outboundSchema = SubscriberPayloadDtoData$outboundSchema;
-  /** @deprecated use `SubscriberPayloadDtoData$Outbound` instead. */
-  export type Outbound = SubscriberPayloadDtoData$Outbound;
+export namespace Data$ {
+  /** @deprecated use `Data$inboundSchema` instead. */
+  export const inboundSchema = Data$inboundSchema;
+  /** @deprecated use `Data$outboundSchema` instead. */
+  export const outboundSchema = Data$outboundSchema;
+  /** @deprecated use `Data$Outbound` instead. */
+  export type Outbound = Data$Outbound;
+}
+
+export function dataToJSON(data: Data): string {
+  return JSON.stringify(Data$outboundSchema.parse(data));
+}
+
+export function dataFromJSON(
+  jsonString: string,
+): SafeParseResult<Data, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Data$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Data' from JSON`,
+  );
 }
 
 /** @internal */
@@ -60,28 +71,28 @@ export const SubscriberPayloadDto$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  avatar: z.string().optional(),
-  channels: z.array(z.string()).optional(),
-  data: z.lazy(() => SubscriberPayloadDtoData$inboundSchema).optional(),
+  subscriberId: z.string(),
   email: z.string().optional(),
   firstName: z.string().optional(),
   lastName: z.string().optional(),
-  locale: z.string().optional(),
   phone: z.string().optional(),
-  subscriberId: z.string(),
+  avatar: z.string().optional(),
+  locale: z.string().optional(),
+  data: z.lazy(() => Data$inboundSchema).optional(),
+  channels: z.array(z.string()).optional(),
 });
 
 /** @internal */
 export type SubscriberPayloadDto$Outbound = {
-  avatar?: string | undefined;
-  channels?: Array<string> | undefined;
-  data?: SubscriberPayloadDtoData$Outbound | undefined;
+  subscriberId: string;
   email?: string | undefined;
   firstName?: string | undefined;
   lastName?: string | undefined;
-  locale?: string | undefined;
   phone?: string | undefined;
-  subscriberId: string;
+  avatar?: string | undefined;
+  locale?: string | undefined;
+  data?: Data$Outbound | undefined;
+  channels?: Array<string> | undefined;
 };
 
 /** @internal */
@@ -90,15 +101,15 @@ export const SubscriberPayloadDto$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   SubscriberPayloadDto
 > = z.object({
-  avatar: z.string().optional(),
-  channels: z.array(z.string()).optional(),
-  data: z.lazy(() => SubscriberPayloadDtoData$outboundSchema).optional(),
+  subscriberId: z.string(),
   email: z.string().optional(),
   firstName: z.string().optional(),
   lastName: z.string().optional(),
-  locale: z.string().optional(),
   phone: z.string().optional(),
-  subscriberId: z.string(),
+  avatar: z.string().optional(),
+  locale: z.string().optional(),
+  data: z.lazy(() => Data$outboundSchema).optional(),
+  channels: z.array(z.string()).optional(),
 });
 
 /**
@@ -112,4 +123,22 @@ export namespace SubscriberPayloadDto$ {
   export const outboundSchema = SubscriberPayloadDto$outboundSchema;
   /** @deprecated use `SubscriberPayloadDto$Outbound` instead. */
   export type Outbound = SubscriberPayloadDto$Outbound;
+}
+
+export function subscriberPayloadDtoToJSON(
+  subscriberPayloadDto: SubscriberPayloadDto,
+): string {
+  return JSON.stringify(
+    SubscriberPayloadDto$outboundSchema.parse(subscriberPayloadDto),
+  );
+}
+
+export function subscriberPayloadDtoFromJSON(
+  jsonString: string,
+): SafeParseResult<SubscriberPayloadDto, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => SubscriberPayloadDto$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'SubscriberPayloadDto' from JSON`,
+  );
 }

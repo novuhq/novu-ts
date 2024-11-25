@@ -3,8 +3,6 @@
 
 ## Overview
 
-## Overview
-
 ### Available Operations
 
 * [getUnseenCount](#getunseencount) - Get the unseen in-app notifications count for subscribers feed
@@ -23,45 +21,11 @@ const novu = new Novu({
 });
 
 async function run() {
-<<<<<<< Updated upstream:docs/sdks/variables/README.md
-  const result = await novu.workflows.variables.retrieve();
-  
-  // Handle the result
-  console.log(result)
-}
-
-run();
-```
-
-### Standalone function
-
-The standalone function version of this method:
-
-```typescript
-import { NovuCore } from "@novu/api/core.js";
-import { workflowsVariablesRetrieve } from "@novu/api/funcs/workflowsVariablesRetrieve.js";
-
-// Use `NovuCore` for best tree-shaking performance.
-// You can create one instance of it to use across an application.
-const novu = new NovuCore({
-  apiKey: "<YOUR_API_KEY_HERE>",
-});
-
-async function run() {
-  const res = await workflowsVariablesRetrieve(novu);
-
-  if (!res.ok) {
-    throw res.error;
-  }
-
-  const { value: result } = res;
-=======
   const result = await novu.subscribersNotifications.getUnseenCount({
-    seen: true,
+    seen: false,
     subscriberId: "<id>",
-    limit: 4327.98,
+    limit: 2979.49,
   });
->>>>>>> Stashed changes:docs/sdks/subscribersnotifications/README.md
 
   // Handle the result
   console.log(result);
@@ -86,9 +50,9 @@ const novu = new NovuCore({
 
 async function run() {
   const res = await subscribersNotificationsGetUnseenCount(novu, {
-    seen: true,
+    seen: false,
     subscriberId: "<id>",
-    limit: 4327.98,
+    limit: 2979.49,
   });
 
   if (!res.ok) {
@@ -115,11 +79,7 @@ run();
 
 ### Response
 
-<<<<<<< Updated upstream:docs/sdks/variables/README.md
-**Promise\<[components.VariablesResponseDto](../../models/components/variablesresponsedto.md)\>**
-=======
-**Promise\<[components.UnseenCountResponse](../../models/components/unseencountresponse.md)\>**
->>>>>>> Stashed changes:docs/sdks/subscribersnotifications/README.md
+**Promise\<[operations.SubscribersControllerGetUnseenCountResponse](../../models/operations/subscriberscontrollergetunseencountresponse.md)\>**
 
 ### Errors
 

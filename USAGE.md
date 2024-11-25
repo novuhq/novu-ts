@@ -1,28 +1,4 @@
 <!-- Start SDK Example Usage [usage] -->
-### Cancel Triggered Event
-
-```typescript
-import { Novu } from "@novu/api";
-
-const novu = new Novu({
-  apiKey: "<YOUR_API_KEY_HERE>",
-});
-
-async function run() {
-<<<<<<< Updated upstream
-  const result = await novu.cancel("<value>");
-=======
-  const result = await novu.cancel("<id>");
->>>>>>> Stashed changes
-
-  // Handle the result
-  console.log(result);
-}
-
-run();
-
-```
-
 ### Trigger Notification Event
 
 ```typescript
@@ -35,44 +11,18 @@ const novu = new Novu({
 async function run() {
   const result = await novu.trigger({
     name: "workflow_identifier",
-    overrides: {},
     payload: {},
+    overrides: {},
     to: [
       {
         topicKey: "<value>",
         type: "Topic",
       },
-<<<<<<< Updated upstream
-=======
       {
         topicKey: "<value>",
         type: "Topic",
       },
     ],
-  });
-
-  // Handle the result
-  console.log(result);
-}
-
-run();
-
-```
-
-### Broadcast Event to All
-
-```typescript
-import { Novu } from "@novu/api";
-
-const novu = new Novu({
-  apiKey: "<YOUR_API_KEY_HERE>",
-});
-
-async function run() {
-  const result = await novu.triggerBroadcast({
-    name: "<value>",
-    overrides: {},
-    payload: {},
   });
 
   // Handle the result
@@ -97,8 +47,8 @@ async function run() {
     events: [
       {
         name: "workflow_identifier",
-        overrides: {},
         payload: {},
+        overrides: {},
         to: [
           {
             topicKey: "<value>",
@@ -111,8 +61,8 @@ async function run() {
       },
       {
         name: "workflow_identifier",
-        overrides: {},
         payload: {},
+        overrides: {},
         to: [
           {
             topicKey: "<value>",
@@ -122,8 +72,8 @@ async function run() {
       },
       {
         name: "workflow_identifier",
-        overrides: {},
         payload: {},
+        overrides: {},
         to: [
           {
             topicKey: "<value>",
@@ -135,13 +85,11 @@ async function run() {
           },
         ],
       },
->>>>>>> Stashed changes
     ],
   });
 
   // Handle the result
   console.log(result);
-<<<<<<< Updated upstream
 }
 
 run();
@@ -160,8 +108,8 @@ const novu = new Novu({
 async function run() {
   const result = await novu.triggerBroadcast({
     name: "<value>",
-    overrides: {},
     payload: {},
+    overrides: {},
   });
 
   // Handle the result
@@ -172,7 +120,7 @@ run();
 
 ```
 
-### Trigger Notification Events in Bulk
+### Cancel Triggered Event
 
 ```typescript
 import { Novu } from "@novu/api";
@@ -182,14 +130,10 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.triggerBulk({
-    events: [],
-  });
+  const result = await novu.cancel("<id>");
 
   // Handle the result
   console.log(result);
-=======
->>>>>>> Stashed changes
 }
 
 run();

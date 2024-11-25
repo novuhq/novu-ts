@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   NotificationGroup,
   NotificationGroup$inboundSchema,
@@ -34,26 +37,26 @@ export type WorkflowResponseData = {};
 export type WorkflowIntegrationStatus = {};
 
 export type WorkflowResponse = {
+  id?: string | undefined;
+  name: string;
+  description: string;
+  active: boolean;
+  draft: boolean;
+  preferenceSettings: PreferenceChannels;
+  critical: boolean;
+  tags: Array<string>;
+  steps: Array<NotificationStep>;
+  organizationId: string;
   creatorId: string;
   environmentId: string;
-  id?: string | undefined;
+  triggers: Array<NotificationTrigger>;
   notificationGroupId: string;
-  organizationId: string;
   parentId?: string | undefined;
-  active: boolean;
-  critical: boolean;
-  data?: WorkflowResponseData | undefined;
   deleted: boolean;
   deletedAt: string;
   deletedBy: string;
-  description: string;
-  draft: boolean;
-  name: string;
   notificationGroup?: NotificationGroup | undefined;
-  preferenceSettings: PreferenceChannels;
-  steps: Array<NotificationStep>;
-  tags: Array<string>;
-  triggers: Array<NotificationTrigger>;
+  data?: WorkflowResponseData | undefined;
   workflowIntegrationStatus?: WorkflowIntegrationStatus | undefined;
 };
 
@@ -87,6 +90,24 @@ export namespace WorkflowResponseData$ {
   export type Outbound = WorkflowResponseData$Outbound;
 }
 
+export function workflowResponseDataToJSON(
+  workflowResponseData: WorkflowResponseData,
+): string {
+  return JSON.stringify(
+    WorkflowResponseData$outboundSchema.parse(workflowResponseData),
+  );
+}
+
+export function workflowResponseDataFromJSON(
+  jsonString: string,
+): SafeParseResult<WorkflowResponseData, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => WorkflowResponseData$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'WorkflowResponseData' from JSON`,
+  );
+}
+
 /** @internal */
 export const WorkflowIntegrationStatus$inboundSchema: z.ZodType<
   WorkflowIntegrationStatus,
@@ -117,68 +138,86 @@ export namespace WorkflowIntegrationStatus$ {
   export type Outbound = WorkflowIntegrationStatus$Outbound;
 }
 
+export function workflowIntegrationStatusToJSON(
+  workflowIntegrationStatus: WorkflowIntegrationStatus,
+): string {
+  return JSON.stringify(
+    WorkflowIntegrationStatus$outboundSchema.parse(workflowIntegrationStatus),
+  );
+}
+
+export function workflowIntegrationStatusFromJSON(
+  jsonString: string,
+): SafeParseResult<WorkflowIntegrationStatus, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => WorkflowIntegrationStatus$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'WorkflowIntegrationStatus' from JSON`,
+  );
+}
+
 /** @internal */
 export const WorkflowResponse$inboundSchema: z.ZodType<
   WorkflowResponse,
   z.ZodTypeDef,
   unknown
 > = z.object({
+  _id: z.string().optional(),
+  name: z.string(),
+  description: z.string(),
+  active: z.boolean(),
+  draft: z.boolean(),
+  preferenceSettings: PreferenceChannels$inboundSchema,
+  critical: z.boolean(),
+  tags: z.array(z.string()),
+  steps: z.array(NotificationStep$inboundSchema),
+  _organizationId: z.string(),
   _creatorId: z.string(),
   _environmentId: z.string(),
-  _id: z.string().optional(),
+  triggers: z.array(NotificationTrigger$inboundSchema),
   _notificationGroupId: z.string(),
-  _organizationId: z.string(),
   _parentId: z.string().optional(),
-  active: z.boolean(),
-  critical: z.boolean(),
-  data: z.lazy(() => WorkflowResponseData$inboundSchema).optional(),
   deleted: z.boolean(),
   deletedAt: z.string(),
   deletedBy: z.string(),
-  description: z.string(),
-  draft: z.boolean(),
-  name: z.string(),
   notificationGroup: NotificationGroup$inboundSchema.optional(),
-  preferenceSettings: PreferenceChannels$inboundSchema,
-  steps: z.array(NotificationStep$inboundSchema),
-  tags: z.array(z.string()),
-  triggers: z.array(NotificationTrigger$inboundSchema),
+  data: z.lazy(() => WorkflowResponseData$inboundSchema).optional(),
   workflowIntegrationStatus: z.lazy(() =>
     WorkflowIntegrationStatus$inboundSchema
   ).optional(),
 }).transform((v) => {
   return remap$(v, {
+    "_id": "id",
+    "_organizationId": "organizationId",
     "_creatorId": "creatorId",
     "_environmentId": "environmentId",
-    "_id": "id",
     "_notificationGroupId": "notificationGroupId",
-    "_organizationId": "organizationId",
     "_parentId": "parentId",
   });
 });
 
 /** @internal */
 export type WorkflowResponse$Outbound = {
+  _id?: string | undefined;
+  name: string;
+  description: string;
+  active: boolean;
+  draft: boolean;
+  preferenceSettings: PreferenceChannels$Outbound;
+  critical: boolean;
+  tags: Array<string>;
+  steps: Array<NotificationStep$Outbound>;
+  _organizationId: string;
   _creatorId: string;
   _environmentId: string;
-  _id?: string | undefined;
+  triggers: Array<NotificationTrigger$Outbound>;
   _notificationGroupId: string;
-  _organizationId: string;
   _parentId?: string | undefined;
-  active: boolean;
-  critical: boolean;
-  data?: WorkflowResponseData$Outbound | undefined;
   deleted: boolean;
   deletedAt: string;
   deletedBy: string;
-  description: string;
-  draft: boolean;
-  name: string;
   notificationGroup?: NotificationGroup$Outbound | undefined;
-  preferenceSettings: PreferenceChannels$Outbound;
-  steps: Array<NotificationStep$Outbound>;
-  tags: Array<string>;
-  triggers: Array<NotificationTrigger$Outbound>;
+  data?: WorkflowResponseData$Outbound | undefined;
   workflowIntegrationStatus?: WorkflowIntegrationStatus$Outbound | undefined;
 };
 
@@ -188,36 +227,36 @@ export const WorkflowResponse$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   WorkflowResponse
 > = z.object({
+  id: z.string().optional(),
+  name: z.string(),
+  description: z.string(),
+  active: z.boolean(),
+  draft: z.boolean(),
+  preferenceSettings: PreferenceChannels$outboundSchema,
+  critical: z.boolean(),
+  tags: z.array(z.string()),
+  steps: z.array(NotificationStep$outboundSchema),
+  organizationId: z.string(),
   creatorId: z.string(),
   environmentId: z.string(),
-  id: z.string().optional(),
+  triggers: z.array(NotificationTrigger$outboundSchema),
   notificationGroupId: z.string(),
-  organizationId: z.string(),
   parentId: z.string().optional(),
-  active: z.boolean(),
-  critical: z.boolean(),
-  data: z.lazy(() => WorkflowResponseData$outboundSchema).optional(),
   deleted: z.boolean(),
   deletedAt: z.string(),
   deletedBy: z.string(),
-  description: z.string(),
-  draft: z.boolean(),
-  name: z.string(),
   notificationGroup: NotificationGroup$outboundSchema.optional(),
-  preferenceSettings: PreferenceChannels$outboundSchema,
-  steps: z.array(NotificationStep$outboundSchema),
-  tags: z.array(z.string()),
-  triggers: z.array(NotificationTrigger$outboundSchema),
+  data: z.lazy(() => WorkflowResponseData$outboundSchema).optional(),
   workflowIntegrationStatus: z.lazy(() =>
     WorkflowIntegrationStatus$outboundSchema
   ).optional(),
 }).transform((v) => {
   return remap$(v, {
+    id: "_id",
+    organizationId: "_organizationId",
     creatorId: "_creatorId",
     environmentId: "_environmentId",
-    id: "_id",
     notificationGroupId: "_notificationGroupId",
-    organizationId: "_organizationId",
     parentId: "_parentId",
   });
 });
@@ -233,4 +272,22 @@ export namespace WorkflowResponse$ {
   export const outboundSchema = WorkflowResponse$outboundSchema;
   /** @deprecated use `WorkflowResponse$Outbound` instead. */
   export type Outbound = WorkflowResponse$Outbound;
+}
+
+export function workflowResponseToJSON(
+  workflowResponse: WorkflowResponse,
+): string {
+  return JSON.stringify(
+    WorkflowResponse$outboundSchema.parse(workflowResponse),
+  );
+}
+
+export function workflowResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<WorkflowResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => WorkflowResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'WorkflowResponse' from JSON`,
+  );
 }

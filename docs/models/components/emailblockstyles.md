@@ -6,11 +6,7 @@
 import { EmailBlockStyles } from "@novu/api/models/components";
 
 let value: EmailBlockStyles = {
-<<<<<<< Updated upstream
   textAlign: "center",
-=======
-  textAlign: "right",
->>>>>>> Stashed changes
 };
 ```
 

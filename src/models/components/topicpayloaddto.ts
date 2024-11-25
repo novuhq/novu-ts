@@ -3,38 +3,40 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
-export const TopicPayloadDtoType = {
+export const Type = {
   Subscriber: "Subscriber",
   Topic: "Topic",
 } as const;
-export type TopicPayloadDtoType = ClosedEnum<typeof TopicPayloadDtoType>;
+export type Type = ClosedEnum<typeof Type>;
 
 export type TopicPayloadDto = {
   topicKey: string;
-  type: TopicPayloadDtoType;
+  type: Type;
 };
 
 /** @internal */
-export const TopicPayloadDtoType$inboundSchema: z.ZodNativeEnum<
-  typeof TopicPayloadDtoType
-> = z.nativeEnum(TopicPayloadDtoType);
+export const Type$inboundSchema: z.ZodNativeEnum<typeof Type> = z.nativeEnum(
+  Type,
+);
 
 /** @internal */
-export const TopicPayloadDtoType$outboundSchema: z.ZodNativeEnum<
-  typeof TopicPayloadDtoType
-> = TopicPayloadDtoType$inboundSchema;
+export const Type$outboundSchema: z.ZodNativeEnum<typeof Type> =
+  Type$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace TopicPayloadDtoType$ {
-  /** @deprecated use `TopicPayloadDtoType$inboundSchema` instead. */
-  export const inboundSchema = TopicPayloadDtoType$inboundSchema;
-  /** @deprecated use `TopicPayloadDtoType$outboundSchema` instead. */
-  export const outboundSchema = TopicPayloadDtoType$outboundSchema;
+export namespace Type$ {
+  /** @deprecated use `Type$inboundSchema` instead. */
+  export const inboundSchema = Type$inboundSchema;
+  /** @deprecated use `Type$outboundSchema` instead. */
+  export const outboundSchema = Type$outboundSchema;
 }
 
 /** @internal */
@@ -44,7 +46,7 @@ export const TopicPayloadDto$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   topicKey: z.string(),
-  type: TopicPayloadDtoType$inboundSchema,
+  type: Type$inboundSchema,
 });
 
 /** @internal */
@@ -60,7 +62,7 @@ export const TopicPayloadDto$outboundSchema: z.ZodType<
   TopicPayloadDto
 > = z.object({
   topicKey: z.string(),
-  type: TopicPayloadDtoType$outboundSchema,
+  type: Type$outboundSchema,
 });
 
 /**
@@ -74,4 +76,20 @@ export namespace TopicPayloadDto$ {
   export const outboundSchema = TopicPayloadDto$outboundSchema;
   /** @deprecated use `TopicPayloadDto$Outbound` instead. */
   export type Outbound = TopicPayloadDto$Outbound;
+}
+
+export function topicPayloadDtoToJSON(
+  topicPayloadDto: TopicPayloadDto,
+): string {
+  return JSON.stringify(TopicPayloadDto$outboundSchema.parse(topicPayloadDto));
+}
+
+export function topicPayloadDtoFromJSON(
+  jsonString: string,
+): SafeParseResult<TopicPayloadDto, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TopicPayloadDto$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TopicPayloadDto' from JSON`,
+  );
 }

@@ -7,11 +7,7 @@ import { TriggerEventResponseDto } from "@novu/api/models/components";
 
 let value: TriggerEventResponseDto = {
   acknowledged: false,
-<<<<<<< Updated upstream
-  status: "processed",
-=======
-  status: "subscriber_id_missing",
->>>>>>> Stashed changes
+  status: "error",
 };
 ```
 
@@ -20,6 +16,6 @@ let value: TriggerEventResponseDto = {
 | Field                                                                                                | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
 | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
 | `acknowledged`                                                                                       | *boolean*                                                                                            | :heavy_check_mark:                                                                                   | If trigger was acknowledged or not                                                                   |
-| `error`                                                                                              | *string*[]                                                                                           | :heavy_minus_sign:                                                                                   | In case of an error, this field will contain the error message                                       |
 | `status`                                                                                             | [components.TriggerEventResponseDtoStatus](../../models/components/triggereventresponsedtostatus.md) | :heavy_check_mark:                                                                                   | Status for trigger                                                                                   |
+| `error`                                                                                              | *string*[]                                                                                           | :heavy_minus_sign:                                                                                   | In case of an error, this field will contain the error message                                       |
 | `transactionId`                                                                                      | *string*                                                                                             | :heavy_minus_sign:                                                                                   | Transaction id for trigger                                                                           |

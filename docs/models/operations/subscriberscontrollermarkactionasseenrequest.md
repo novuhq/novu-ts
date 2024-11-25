@@ -6,17 +6,11 @@
 import { SubscribersControllerMarkActionAsSeenRequest } from "@novu/api/models/operations";
 
 let value: SubscribersControllerMarkActionAsSeenRequest = {
-<<<<<<< Updated upstream
-  messageId: "<value>",
-  type: "<value>",
-  subscriberId: "<value>",
-=======
   messageId: "<id>",
   type: "<value>",
   subscriberId: "<id>",
->>>>>>> Stashed changes
   markMessageActionAsSeenDto: {
-    status: "pending",
+    status: "done",
   },
 };
 ```

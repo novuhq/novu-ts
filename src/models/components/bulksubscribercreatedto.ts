@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type BulkSubscriberCreateDto = {
   subscribers: Array<string>;
@@ -42,4 +45,22 @@ export namespace BulkSubscriberCreateDto$ {
   export const outboundSchema = BulkSubscriberCreateDto$outboundSchema;
   /** @deprecated use `BulkSubscriberCreateDto$Outbound` instead. */
   export type Outbound = BulkSubscriberCreateDto$Outbound;
+}
+
+export function bulkSubscriberCreateDtoToJSON(
+  bulkSubscriberCreateDto: BulkSubscriberCreateDto,
+): string {
+  return JSON.stringify(
+    BulkSubscriberCreateDto$outboundSchema.parse(bulkSubscriberCreateDto),
+  );
+}
+
+export function bulkSubscriberCreateDtoFromJSON(
+  jsonString: string,
+): SafeParseResult<BulkSubscriberCreateDto, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => BulkSubscriberCreateDto$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'BulkSubscriberCreateDto' from JSON`,
+  );
 }

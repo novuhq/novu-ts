@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export const Channels = {
   InApp: "in_app",
@@ -17,9 +20,9 @@ export type Channels = ClosedEnum<typeof Channels>;
 
 export type ActivityGraphStatesResponse = {
   id: string;
-  channels: Array<Channels>;
   count: number;
   templates: Array<string>;
+  channels: Array<Channels>;
 };
 
 /** @internal */
@@ -48,9 +51,9 @@ export const ActivityGraphStatesResponse$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   _id: z.string(),
-  channels: z.array(Channels$inboundSchema),
   count: z.number(),
   templates: z.array(z.string()),
+  channels: z.array(Channels$inboundSchema),
 }).transform((v) => {
   return remap$(v, {
     "_id": "id",
@@ -60,9 +63,9 @@ export const ActivityGraphStatesResponse$inboundSchema: z.ZodType<
 /** @internal */
 export type ActivityGraphStatesResponse$Outbound = {
   _id: string;
-  channels: Array<string>;
   count: number;
   templates: Array<string>;
+  channels: Array<string>;
 };
 
 /** @internal */
@@ -72,9 +75,9 @@ export const ActivityGraphStatesResponse$outboundSchema: z.ZodType<
   ActivityGraphStatesResponse
 > = z.object({
   id: z.string(),
-  channels: z.array(Channels$outboundSchema),
   count: z.number(),
   templates: z.array(z.string()),
+  channels: z.array(Channels$outboundSchema),
 }).transform((v) => {
   return remap$(v, {
     id: "_id",
@@ -92,4 +95,24 @@ export namespace ActivityGraphStatesResponse$ {
   export const outboundSchema = ActivityGraphStatesResponse$outboundSchema;
   /** @deprecated use `ActivityGraphStatesResponse$Outbound` instead. */
   export type Outbound = ActivityGraphStatesResponse$Outbound;
+}
+
+export function activityGraphStatesResponseToJSON(
+  activityGraphStatesResponse: ActivityGraphStatesResponse,
+): string {
+  return JSON.stringify(
+    ActivityGraphStatesResponse$outboundSchema.parse(
+      activityGraphStatesResponse,
+    ),
+  );
+}
+
+export function activityGraphStatesResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<ActivityGraphStatesResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ActivityGraphStatesResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ActivityGraphStatesResponse' from JSON`,
+  );
 }

@@ -9,7 +9,6 @@ import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
-import * as components from "../models/components/index.js";
 import {
   ConnectionError,
   InvalidRequestError,
@@ -34,7 +33,7 @@ export async function topicsGetAll(
   options?: RequestOptions,
 ): Promise<
   Result<
-    components.FilterTopicsResponseDto,
+    operations.TopicsControllerListTopicsResponse,
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -120,8 +119,12 @@ export async function topicsGetAll(
   }
   const response = doResult.value;
 
+  const responseFields = {
+    HttpMeta: { Response: response, Request: req },
+  };
+
   const [result] = await M.match<
-    components.FilterTopicsResponseDto,
+    operations.TopicsControllerListTopicsResponse,
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -130,9 +133,13 @@ export async function topicsGetAll(
     | RequestTimeoutError
     | ConnectionError
   >(
-    M.json(200, components.FilterTopicsResponseDto$inboundSchema),
-    M.fail([409, 429, "4XX", 503, "5XX"]),
-  )(response);
+    M.json(200, operations.TopicsControllerListTopicsResponse$inboundSchema, {
+      hdrs: true,
+      key: "Result",
+    }),
+    M.fail([409, 429, 503]),
+    M.fail(["4XX", "5XX"]),
+  )(response, { extraFields: responseFields });
   if (!result.ok) {
     return result;
   }

@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   TriggerEventRequestDto,
   TriggerEventRequestDto$inboundSchema,
@@ -48,4 +51,22 @@ export namespace BulkTriggerEventDto$ {
   export const outboundSchema = BulkTriggerEventDto$outboundSchema;
   /** @deprecated use `BulkTriggerEventDto$Outbound` instead. */
   export type Outbound = BulkTriggerEventDto$Outbound;
+}
+
+export function bulkTriggerEventDtoToJSON(
+  bulkTriggerEventDto: BulkTriggerEventDto,
+): string {
+  return JSON.stringify(
+    BulkTriggerEventDto$outboundSchema.parse(bulkTriggerEventDto),
+  );
+}
+
+export function bulkTriggerEventDtoFromJSON(
+  jsonString: string,
+): SafeParseResult<BulkTriggerEventDto, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => BulkTriggerEventDto$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'BulkTriggerEventDto' from JSON`,
+  );
 }

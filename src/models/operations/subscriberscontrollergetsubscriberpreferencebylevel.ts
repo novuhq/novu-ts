@@ -3,26 +3,40 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
- * the preferences level to be retrieved( Subscriber / Topic)
+ * the preferences level to be retrieved (template / global)
  */
 export const Parameter = {
-  Subscriber: "Subscriber",
-  Topic: "Topic",
+  Global: "global",
+  Template: "template",
 } as const;
 /**
- * the preferences level to be retrieved( Subscriber / Topic)
+ * the preferences level to be retrieved (template / global)
  */
 export type Parameter = ClosedEnum<typeof Parameter>;
 
 export type SubscribersControllerGetSubscriberPreferenceByLevelRequest = {
   /**
-   * the preferences level to be retrieved( Subscriber / Topic)
+   * A flag which specifies if the inactive workflow channels should be included in the retrieved preferences. Default is true
+   */
+  includeInactiveChannels?: boolean | undefined;
+  /**
+   * the preferences level to be retrieved (template / global)
    */
   parameter: Parameter;
   subscriberId: string;
+};
+
+export type SubscribersControllerGetSubscriberPreferenceByLevelResponse = {
+  headers: { [k: string]: Array<string> };
+  result: Array<components.GetSubscriberPreferencesResponseDto>;
 };
 
 /** @internal */
@@ -51,6 +65,7 @@ export const SubscribersControllerGetSubscriberPreferenceByLevelRequest$inboundS
     z.ZodTypeDef,
     unknown
   > = z.object({
+    includeInactiveChannels: z.boolean().optional(),
     parameter: Parameter$inboundSchema,
     subscriberId: z.string(),
   });
@@ -58,6 +73,7 @@ export const SubscribersControllerGetSubscriberPreferenceByLevelRequest$inboundS
 /** @internal */
 export type SubscribersControllerGetSubscriberPreferenceByLevelRequest$Outbound =
   {
+    includeInactiveChannels?: boolean | undefined;
     parameter: string;
     subscriberId: string;
   };
@@ -69,6 +85,7 @@ export const SubscribersControllerGetSubscriberPreferenceByLevelRequest$outbound
     z.ZodTypeDef,
     SubscribersControllerGetSubscriberPreferenceByLevelRequest
   > = z.object({
+    includeInactiveChannels: z.boolean().optional(),
     parameter: Parameter$outboundSchema,
     subscriberId: z.string(),
   });
@@ -87,4 +104,113 @@ export namespace SubscribersControllerGetSubscriberPreferenceByLevelRequest$ {
   /** @deprecated use `SubscribersControllerGetSubscriberPreferenceByLevelRequest$Outbound` instead. */
   export type Outbound =
     SubscribersControllerGetSubscriberPreferenceByLevelRequest$Outbound;
+}
+
+export function subscribersControllerGetSubscriberPreferenceByLevelRequestToJSON(
+  subscribersControllerGetSubscriberPreferenceByLevelRequest:
+    SubscribersControllerGetSubscriberPreferenceByLevelRequest,
+): string {
+  return JSON.stringify(
+    SubscribersControllerGetSubscriberPreferenceByLevelRequest$outboundSchema
+      .parse(subscribersControllerGetSubscriberPreferenceByLevelRequest),
+  );
+}
+
+export function subscribersControllerGetSubscriberPreferenceByLevelRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  SubscribersControllerGetSubscriberPreferenceByLevelRequest,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      SubscribersControllerGetSubscriberPreferenceByLevelRequest$inboundSchema
+        .parse(JSON.parse(x)),
+    `Failed to parse 'SubscribersControllerGetSubscriberPreferenceByLevelRequest' from JSON`,
+  );
+}
+
+/** @internal */
+export const SubscribersControllerGetSubscriberPreferenceByLevelResponse$inboundSchema:
+  z.ZodType<
+    SubscribersControllerGetSubscriberPreferenceByLevelResponse,
+    z.ZodTypeDef,
+    unknown
+  > = z.object({
+    Headers: z.record(z.array(z.string())),
+    Result: z.array(
+      components.GetSubscriberPreferencesResponseDto$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "Headers": "headers",
+      "Result": "result",
+    });
+  });
+
+/** @internal */
+export type SubscribersControllerGetSubscriberPreferenceByLevelResponse$Outbound =
+  {
+    Headers: { [k: string]: Array<string> };
+    Result: Array<components.GetSubscriberPreferencesResponseDto$Outbound>;
+  };
+
+/** @internal */
+export const SubscribersControllerGetSubscriberPreferenceByLevelResponse$outboundSchema:
+  z.ZodType<
+    SubscribersControllerGetSubscriberPreferenceByLevelResponse$Outbound,
+    z.ZodTypeDef,
+    SubscribersControllerGetSubscriberPreferenceByLevelResponse
+  > = z.object({
+    headers: z.record(z.array(z.string())),
+    result: z.array(
+      components.GetSubscriberPreferencesResponseDto$outboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      headers: "Headers",
+      result: "Result",
+    });
+  });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace SubscribersControllerGetSubscriberPreferenceByLevelResponse$ {
+  /** @deprecated use `SubscribersControllerGetSubscriberPreferenceByLevelResponse$inboundSchema` instead. */
+  export const inboundSchema =
+    SubscribersControllerGetSubscriberPreferenceByLevelResponse$inboundSchema;
+  /** @deprecated use `SubscribersControllerGetSubscriberPreferenceByLevelResponse$outboundSchema` instead. */
+  export const outboundSchema =
+    SubscribersControllerGetSubscriberPreferenceByLevelResponse$outboundSchema;
+  /** @deprecated use `SubscribersControllerGetSubscriberPreferenceByLevelResponse$Outbound` instead. */
+  export type Outbound =
+    SubscribersControllerGetSubscriberPreferenceByLevelResponse$Outbound;
+}
+
+export function subscribersControllerGetSubscriberPreferenceByLevelResponseToJSON(
+  subscribersControllerGetSubscriberPreferenceByLevelResponse:
+    SubscribersControllerGetSubscriberPreferenceByLevelResponse,
+): string {
+  return JSON.stringify(
+    SubscribersControllerGetSubscriberPreferenceByLevelResponse$outboundSchema
+      .parse(subscribersControllerGetSubscriberPreferenceByLevelResponse),
+  );
+}
+
+export function subscribersControllerGetSubscriberPreferenceByLevelResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  SubscribersControllerGetSubscriberPreferenceByLevelResponse,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      SubscribersControllerGetSubscriberPreferenceByLevelResponse$inboundSchema
+        .parse(JSON.parse(x)),
+    `Failed to parse 'SubscribersControllerGetSubscriberPreferenceByLevelResponse' from JSON`,
+  );
 }

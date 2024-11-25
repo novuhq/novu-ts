@@ -3,13 +3,16 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type TenantPayloadDtoData = {};
 
 export type TenantPayloadDto = {
-  data?: TenantPayloadDtoData | undefined;
   identifier?: string | undefined;
   name?: string | undefined;
+  data?: TenantPayloadDtoData | undefined;
 };
 
 /** @internal */
@@ -42,22 +45,40 @@ export namespace TenantPayloadDtoData$ {
   export type Outbound = TenantPayloadDtoData$Outbound;
 }
 
+export function tenantPayloadDtoDataToJSON(
+  tenantPayloadDtoData: TenantPayloadDtoData,
+): string {
+  return JSON.stringify(
+    TenantPayloadDtoData$outboundSchema.parse(tenantPayloadDtoData),
+  );
+}
+
+export function tenantPayloadDtoDataFromJSON(
+  jsonString: string,
+): SafeParseResult<TenantPayloadDtoData, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TenantPayloadDtoData$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TenantPayloadDtoData' from JSON`,
+  );
+}
+
 /** @internal */
 export const TenantPayloadDto$inboundSchema: z.ZodType<
   TenantPayloadDto,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  data: z.lazy(() => TenantPayloadDtoData$inboundSchema).optional(),
   identifier: z.string().optional(),
   name: z.string().optional(),
+  data: z.lazy(() => TenantPayloadDtoData$inboundSchema).optional(),
 });
 
 /** @internal */
 export type TenantPayloadDto$Outbound = {
-  data?: TenantPayloadDtoData$Outbound | undefined;
   identifier?: string | undefined;
   name?: string | undefined;
+  data?: TenantPayloadDtoData$Outbound | undefined;
 };
 
 /** @internal */
@@ -66,9 +87,9 @@ export const TenantPayloadDto$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   TenantPayloadDto
 > = z.object({
-  data: z.lazy(() => TenantPayloadDtoData$outboundSchema).optional(),
   identifier: z.string().optional(),
   name: z.string().optional(),
+  data: z.lazy(() => TenantPayloadDtoData$outboundSchema).optional(),
 });
 
 /**
@@ -82,4 +103,22 @@ export namespace TenantPayloadDto$ {
   export const outboundSchema = TenantPayloadDto$outboundSchema;
   /** @deprecated use `TenantPayloadDto$Outbound` instead. */
   export type Outbound = TenantPayloadDto$Outbound;
+}
+
+export function tenantPayloadDtoToJSON(
+  tenantPayloadDto: TenantPayloadDto,
+): string {
+  return JSON.stringify(
+    TenantPayloadDto$outboundSchema.parse(tenantPayloadDto),
+  );
+}
+
+export function tenantPayloadDtoFromJSON(
+  jsonString: string,
+): SafeParseResult<TenantPayloadDto, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TenantPayloadDto$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TenantPayloadDto' from JSON`,
+  );
 }

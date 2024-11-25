@@ -3,15 +3,9 @@
  */
 
 import { NovuCore } from "../core.js";
-<<<<<<< Updated upstream
-import { encodeJSON as encodeJSON$ } from "../lib/encodings.js";
-import * as m$ from "../lib/matchers.js";
-import * as schemas$ from "../lib/schemas.js";
-=======
 import { encodeJSON } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { safeParse } from "../lib/schemas.js";
->>>>>>> Stashed changes
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
@@ -25,6 +19,7 @@ import {
 } from "../models/errors/httpclienterrors.js";
 import { SDKError } from "../models/errors/sdkerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
+import * as operations from "../models/operations/index.js";
 import { Result } from "../types/fp.js";
 
 /**
@@ -32,23 +27,16 @@ import { Result } from "../types/fp.js";
  *
  * @remarks
  * Trigger a broadcast event to all existing subscribers, could be used to send announcements, etc.
-<<<<<<< Updated upstream
- *       In the future could be used to trigger events to a subset of subscribers based on defined filters.
- */
-export async function triggerBroadcast(
-  client$: NovuCore,
-=======
  *
  *       In the future could be used to trigger events to a subset of subscribers based on defined filters.
  */
 export async function triggerBroadcast(
   client: NovuCore,
->>>>>>> Stashed changes
   request: components.TriggerEventToAllRequestDto,
   options?: RequestOptions,
 ): Promise<
   Result<
-    components.TriggerEventResponseDto,
+    operations.EventsControllerBroadcastEventToAllResponse,
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -58,25 +46,6 @@ export async function triggerBroadcast(
     | ConnectionError
   >
 > {
-<<<<<<< Updated upstream
-  const input$ = request;
-
-  const parsed$ = schemas$.safeParse(
-    input$,
-    (value$) =>
-      components.TriggerEventToAllRequestDto$outboundSchema.parse(value$),
-    "Input validation failed",
-  );
-  if (!parsed$.ok) {
-    return parsed$;
-  }
-  const payload$ = parsed$.value;
-  const body$ = encodeJSON$("body", payload$, { explode: true });
-
-  const path$ = pathToFunc("/v1/events/trigger/broadcast")();
-
-  const headers$ = new Headers({
-=======
   const parsed = safeParse(
     request,
     (value) =>
@@ -92,40 +61,10 @@ export async function triggerBroadcast(
   const path = pathToFunc("/v1/events/trigger/broadcast")();
 
   const headers = new Headers({
->>>>>>> Stashed changes
     "Content-Type": "application/json",
     Accept: "application/json",
   });
 
-<<<<<<< Updated upstream
-  const apiKey$ = await extractSecurity(client$.options$.apiKey);
-  const security$ = apiKey$ == null ? {} : { apiKey: apiKey$ };
-  const context = {
-    operationID: "EventsController_broadcastEventToAll",
-    oAuth2Scopes: [],
-    securitySource: client$.options$.apiKey,
-  };
-  const securitySettings$ = resolveGlobalSecurity(security$);
-
-  const requestRes = client$.createRequest$(context, {
-    security: securitySettings$,
-    method: "POST",
-    path: path$,
-    headers: headers$,
-    body: body$,
-    timeoutMs: options?.timeoutMs || client$.options$.timeoutMs || -1,
-  }, options);
-  if (!requestRes.ok) {
-    return requestRes;
-  }
-  const request$ = requestRes.value;
-
-  const doResult = await client$.do$(request$, {
-    context,
-    errorCodes: ["409", "429", "4XX", "503", "5XX"],
-    retryConfig: options?.retries
-      || client$.options$.retryConfig
-=======
   const secConfig = await extractSecurity(client._options.apiKey);
   const securityInput = secConfig == null ? {} : { apiKey: secConfig };
   const requestSecurity = resolveGlobalSecurity(securityInput);
@@ -139,7 +78,6 @@ export async function triggerBroadcast(
     securitySource: client._options.apiKey,
     retryConfig: options?.retries
       || client._options.retryConfig
->>>>>>> Stashed changes
       || {
         strategy: "backoff",
         backoff: {
@@ -149,10 +87,6 @@ export async function triggerBroadcast(
           maxElapsedTime: 3600000,
         },
         retryConnectionErrors: true,
-<<<<<<< Updated upstream
-      },
-    retryCodes: options?.retryCodes || ["408", "409", "429", "5XX"],
-=======
       }
       || { strategy: "none" },
     retryCodes: options?.retryCodes || ["408", "409", "429", "5XX"],
@@ -176,19 +110,18 @@ export async function triggerBroadcast(
     errorCodes: ["409", "429", "4XX", "503", "5XX"],
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
->>>>>>> Stashed changes
   });
   if (!doResult.ok) {
     return doResult;
   }
   const response = doResult.value;
 
-<<<<<<< Updated upstream
-  const [result$] = await m$.match<
-=======
+  const responseFields = {
+    HttpMeta: { Response: response, Request: req },
+  };
+
   const [result] = await M.match<
->>>>>>> Stashed changes
-    components.TriggerEventResponseDto,
+    operations.EventsControllerBroadcastEventToAllResponse,
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -197,23 +130,17 @@ export async function triggerBroadcast(
     | RequestTimeoutError
     | ConnectionError
   >(
-<<<<<<< Updated upstream
-    m$.json(200, components.TriggerEventResponseDto$inboundSchema),
-    m$.fail([409, 429, "4XX", 503, "5XX"]),
-  )(response);
-  if (!result$.ok) {
-    return result$;
-  }
-
-  return result$;
-=======
-    M.json(200, components.TriggerEventResponseDto$inboundSchema),
-    M.fail([409, 429, "4XX", 503, "5XX"]),
-  )(response);
+    M.json(
+      200,
+      operations.EventsControllerBroadcastEventToAllResponse$inboundSchema,
+      { hdrs: true, key: "Result" },
+    ),
+    M.fail([409, 429, 503]),
+    M.fail(["4XX", "5XX"]),
+  )(response, { extraFields: responseFields });
   if (!result.ok) {
     return result;
   }
 
   return result;
->>>>>>> Stashed changes
 }

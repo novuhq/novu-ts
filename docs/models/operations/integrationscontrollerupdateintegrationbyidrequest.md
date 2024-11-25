@@ -6,11 +6,7 @@
 import { IntegrationsControllerUpdateIntegrationByIdRequest } from "@novu/api/models/operations";
 
 let value: IntegrationsControllerUpdateIntegrationByIdRequest = {
-<<<<<<< Updated upstream
-  integrationId: "<value>",
-=======
   integrationId: "<id>",
->>>>>>> Stashed changes
   updateIntegrationRequestDto: {},
 };
 ```

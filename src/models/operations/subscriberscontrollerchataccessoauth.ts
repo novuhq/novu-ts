@@ -3,6 +3,10 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type SubscribersControllerChatAccessOauthRequest = {
   subscriberId: string;
@@ -10,6 +14,10 @@ export type SubscribersControllerChatAccessOauthRequest = {
   hmacHash: string;
   environmentId: string;
   integrationIdentifier?: string | undefined;
+};
+
+export type SubscribersControllerChatAccessOauthResponse = {
+  headers: { [k: string]: Array<string> };
 };
 
 /** @internal */
@@ -62,4 +70,106 @@ export namespace SubscribersControllerChatAccessOauthRequest$ {
     SubscribersControllerChatAccessOauthRequest$outboundSchema;
   /** @deprecated use `SubscribersControllerChatAccessOauthRequest$Outbound` instead. */
   export type Outbound = SubscribersControllerChatAccessOauthRequest$Outbound;
+}
+
+export function subscribersControllerChatAccessOauthRequestToJSON(
+  subscribersControllerChatAccessOauthRequest:
+    SubscribersControllerChatAccessOauthRequest,
+): string {
+  return JSON.stringify(
+    SubscribersControllerChatAccessOauthRequest$outboundSchema.parse(
+      subscribersControllerChatAccessOauthRequest,
+    ),
+  );
+}
+
+export function subscribersControllerChatAccessOauthRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  SubscribersControllerChatAccessOauthRequest,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      SubscribersControllerChatAccessOauthRequest$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'SubscribersControllerChatAccessOauthRequest' from JSON`,
+  );
+}
+
+/** @internal */
+export const SubscribersControllerChatAccessOauthResponse$inboundSchema:
+  z.ZodType<
+    SubscribersControllerChatAccessOauthResponse,
+    z.ZodTypeDef,
+    unknown
+  > = z.object({
+    Headers: z.record(z.array(z.string())),
+  }).transform((v) => {
+    return remap$(v, {
+      "Headers": "headers",
+    });
+  });
+
+/** @internal */
+export type SubscribersControllerChatAccessOauthResponse$Outbound = {
+  Headers: { [k: string]: Array<string> };
+};
+
+/** @internal */
+export const SubscribersControllerChatAccessOauthResponse$outboundSchema:
+  z.ZodType<
+    SubscribersControllerChatAccessOauthResponse$Outbound,
+    z.ZodTypeDef,
+    SubscribersControllerChatAccessOauthResponse
+  > = z.object({
+    headers: z.record(z.array(z.string())),
+  }).transform((v) => {
+    return remap$(v, {
+      headers: "Headers",
+    });
+  });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace SubscribersControllerChatAccessOauthResponse$ {
+  /** @deprecated use `SubscribersControllerChatAccessOauthResponse$inboundSchema` instead. */
+  export const inboundSchema =
+    SubscribersControllerChatAccessOauthResponse$inboundSchema;
+  /** @deprecated use `SubscribersControllerChatAccessOauthResponse$outboundSchema` instead. */
+  export const outboundSchema =
+    SubscribersControllerChatAccessOauthResponse$outboundSchema;
+  /** @deprecated use `SubscribersControllerChatAccessOauthResponse$Outbound` instead. */
+  export type Outbound = SubscribersControllerChatAccessOauthResponse$Outbound;
+}
+
+export function subscribersControllerChatAccessOauthResponseToJSON(
+  subscribersControllerChatAccessOauthResponse:
+    SubscribersControllerChatAccessOauthResponse,
+): string {
+  return JSON.stringify(
+    SubscribersControllerChatAccessOauthResponse$outboundSchema.parse(
+      subscribersControllerChatAccessOauthResponse,
+    ),
+  );
+}
+
+export function subscribersControllerChatAccessOauthResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  SubscribersControllerChatAccessOauthResponse,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      SubscribersControllerChatAccessOauthResponse$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'SubscribersControllerChatAccessOauthResponse' from JSON`,
+  );
 }

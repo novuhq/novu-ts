@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   DelayRegularMetadata,
   DelayRegularMetadata$inboundSchema,
@@ -59,21 +62,21 @@ export type ReplyCallback = {};
 
 export type NotificationStep = {
   id?: string | undefined;
-  parentId?: ParentId | undefined;
+  uuid?: string | undefined;
+  name?: string | undefined;
   templateId?: string | undefined;
   active?: boolean | undefined;
+  shouldStopOnFail?: boolean | undefined;
+  template?: MessageTemplate | undefined;
   filters?: Array<StepFilter> | undefined;
+  parentId?: ParentId | undefined;
   metadata?:
     | DelayScheduledMetadata
     | DelayRegularMetadata
     | DigestTimedMetadata
     | DigestRegularMetadata
     | undefined;
-  name?: string | undefined;
   replyCallback?: ReplyCallback | undefined;
-  shouldStopOnFail?: boolean | undefined;
-  template?: MessageTemplate | undefined;
-  uuid?: string | undefined;
   variants?: NotificationStepVariant | undefined;
 };
 
@@ -105,6 +108,20 @@ export namespace ParentId$ {
   export const outboundSchema = ParentId$outboundSchema;
   /** @deprecated use `ParentId$Outbound` instead. */
   export type Outbound = ParentId$Outbound;
+}
+
+export function parentIdToJSON(parentId: ParentId): string {
+  return JSON.stringify(ParentId$outboundSchema.parse(parentId));
+}
+
+export function parentIdFromJSON(
+  jsonString: string,
+): SafeParseResult<ParentId, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ParentId$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ParentId' from JSON`,
+  );
 }
 
 /** @internal */
@@ -151,6 +168,20 @@ export namespace Metadata$ {
   export type Outbound = Metadata$Outbound;
 }
 
+export function metadataToJSON(metadata: Metadata): string {
+  return JSON.stringify(Metadata$outboundSchema.parse(metadata));
+}
+
+export function metadataFromJSON(
+  jsonString: string,
+): SafeParseResult<Metadata, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Metadata$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Metadata' from JSON`,
+  );
+}
+
 /** @internal */
 export const ReplyCallback$inboundSchema: z.ZodType<
   ReplyCallback,
@@ -181,6 +212,20 @@ export namespace ReplyCallback$ {
   export type Outbound = ReplyCallback$Outbound;
 }
 
+export function replyCallbackToJSON(replyCallback: ReplyCallback): string {
+  return JSON.stringify(ReplyCallback$outboundSchema.parse(replyCallback));
+}
+
+export function replyCallbackFromJSON(
+  jsonString: string,
+): SafeParseResult<ReplyCallback, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ReplyCallback$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ReplyCallback' from JSON`,
+  );
+}
+
 /** @internal */
 export const NotificationStep$inboundSchema: z.ZodType<
   NotificationStep,
@@ -188,48 +233,48 @@ export const NotificationStep$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   _id: z.string().optional(),
-  _parentId: z.lazy(() => ParentId$inboundSchema).optional(),
+  uuid: z.string().optional(),
+  name: z.string().optional(),
   _templateId: z.string().optional(),
   active: z.boolean().optional(),
+  shouldStopOnFail: z.boolean().optional(),
+  template: MessageTemplate$inboundSchema.optional(),
   filters: z.array(StepFilter$inboundSchema).optional(),
+  _parentId: z.lazy(() => ParentId$inboundSchema).optional(),
   metadata: z.union([
     DelayScheduledMetadata$inboundSchema,
     DelayRegularMetadata$inboundSchema,
     DigestTimedMetadata$inboundSchema,
     DigestRegularMetadata$inboundSchema,
   ]).optional(),
-  name: z.string().optional(),
   replyCallback: z.lazy(() => ReplyCallback$inboundSchema).optional(),
-  shouldStopOnFail: z.boolean().optional(),
-  template: MessageTemplate$inboundSchema.optional(),
-  uuid: z.string().optional(),
   variants: NotificationStepVariant$inboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
     "_id": "id",
-    "_parentId": "parentId",
     "_templateId": "templateId",
+    "_parentId": "parentId",
   });
 });
 
 /** @internal */
 export type NotificationStep$Outbound = {
   _id?: string | undefined;
-  _parentId?: ParentId$Outbound | undefined;
+  uuid?: string | undefined;
+  name?: string | undefined;
   _templateId?: string | undefined;
   active?: boolean | undefined;
+  shouldStopOnFail?: boolean | undefined;
+  template?: MessageTemplate$Outbound | undefined;
   filters?: Array<StepFilter$Outbound> | undefined;
+  _parentId?: ParentId$Outbound | undefined;
   metadata?:
     | DelayScheduledMetadata$Outbound
     | DelayRegularMetadata$Outbound
     | DigestTimedMetadata$Outbound
     | DigestRegularMetadata$Outbound
     | undefined;
-  name?: string | undefined;
   replyCallback?: ReplyCallback$Outbound | undefined;
-  shouldStopOnFail?: boolean | undefined;
-  template?: MessageTemplate$Outbound | undefined;
-  uuid?: string | undefined;
   variants?: NotificationStepVariant$Outbound | undefined;
 };
 
@@ -240,27 +285,27 @@ export const NotificationStep$outboundSchema: z.ZodType<
   NotificationStep
 > = z.object({
   id: z.string().optional(),
-  parentId: z.lazy(() => ParentId$outboundSchema).optional(),
+  uuid: z.string().optional(),
+  name: z.string().optional(),
   templateId: z.string().optional(),
   active: z.boolean().optional(),
+  shouldStopOnFail: z.boolean().optional(),
+  template: MessageTemplate$outboundSchema.optional(),
   filters: z.array(StepFilter$outboundSchema).optional(),
+  parentId: z.lazy(() => ParentId$outboundSchema).optional(),
   metadata: z.union([
     DelayScheduledMetadata$outboundSchema,
     DelayRegularMetadata$outboundSchema,
     DigestTimedMetadata$outboundSchema,
     DigestRegularMetadata$outboundSchema,
   ]).optional(),
-  name: z.string().optional(),
   replyCallback: z.lazy(() => ReplyCallback$outboundSchema).optional(),
-  shouldStopOnFail: z.boolean().optional(),
-  template: MessageTemplate$outboundSchema.optional(),
-  uuid: z.string().optional(),
   variants: NotificationStepVariant$outboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
     id: "_id",
-    parentId: "_parentId",
     templateId: "_templateId",
+    parentId: "_parentId",
   });
 });
 
@@ -275,4 +320,22 @@ export namespace NotificationStep$ {
   export const outboundSchema = NotificationStep$outboundSchema;
   /** @deprecated use `NotificationStep$Outbound` instead. */
   export type Outbound = NotificationStep$Outbound;
+}
+
+export function notificationStepToJSON(
+  notificationStep: NotificationStep,
+): string {
+  return JSON.stringify(
+    NotificationStep$outboundSchema.parse(notificationStep),
+  );
+}
+
+export function notificationStepFromJSON(
+  jsonString: string,
+): SafeParseResult<NotificationStep, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => NotificationStep$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'NotificationStep' from JSON`,
+  );
 }

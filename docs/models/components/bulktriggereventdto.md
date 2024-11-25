@@ -6,20 +6,16 @@
 import { BulkTriggerEventDto } from "@novu/api/models/components";
 
 let value: BulkTriggerEventDto = {
-<<<<<<< Updated upstream
-  events: [],
-=======
   events: [
     {
       name: "workflow_identifier",
-      overrides: {},
       payload: {},
+      overrides: {},
       to: [
         "SUBSCRIBER_ID",
       ],
     },
   ],
->>>>>>> Stashed changes
 };
 ```
 

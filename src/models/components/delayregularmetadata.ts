@@ -3,7 +3,22 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+
+export const DelayRegularMetadataUnit = {
+  Seconds: "seconds",
+  Minutes: "minutes",
+  Hours: "hours",
+  Days: "days",
+  Weeks: "weeks",
+  Months: "months",
+} as const;
+export type DelayRegularMetadataUnit = ClosedEnum<
+  typeof DelayRegularMetadataUnit
+>;
 
 export const DelayRegularMetadataType = {
   Regular: "regular",
@@ -12,21 +27,32 @@ export type DelayRegularMetadataType = ClosedEnum<
   typeof DelayRegularMetadataType
 >;
 
-export const Unit = {
-  Seconds: "seconds",
-  Minutes: "minutes",
-  Hours: "hours",
-  Days: "days",
-  Weeks: "weeks",
-  Months: "months",
-} as const;
-export type Unit = ClosedEnum<typeof Unit>;
-
 export type DelayRegularMetadata = {
   amount?: number | undefined;
+  unit?: DelayRegularMetadataUnit | undefined;
   type: DelayRegularMetadataType;
-  unit?: Unit | undefined;
 };
+
+/** @internal */
+export const DelayRegularMetadataUnit$inboundSchema: z.ZodNativeEnum<
+  typeof DelayRegularMetadataUnit
+> = z.nativeEnum(DelayRegularMetadataUnit);
+
+/** @internal */
+export const DelayRegularMetadataUnit$outboundSchema: z.ZodNativeEnum<
+  typeof DelayRegularMetadataUnit
+> = DelayRegularMetadataUnit$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace DelayRegularMetadataUnit$ {
+  /** @deprecated use `DelayRegularMetadataUnit$inboundSchema` instead. */
+  export const inboundSchema = DelayRegularMetadataUnit$inboundSchema;
+  /** @deprecated use `DelayRegularMetadataUnit$outboundSchema` instead. */
+  export const outboundSchema = DelayRegularMetadataUnit$outboundSchema;
+}
 
 /** @internal */
 export const DelayRegularMetadataType$inboundSchema: z.ZodNativeEnum<
@@ -50,41 +76,21 @@ export namespace DelayRegularMetadataType$ {
 }
 
 /** @internal */
-export const Unit$inboundSchema: z.ZodNativeEnum<typeof Unit> = z.nativeEnum(
-  Unit,
-);
-
-/** @internal */
-export const Unit$outboundSchema: z.ZodNativeEnum<typeof Unit> =
-  Unit$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Unit$ {
-  /** @deprecated use `Unit$inboundSchema` instead. */
-  export const inboundSchema = Unit$inboundSchema;
-  /** @deprecated use `Unit$outboundSchema` instead. */
-  export const outboundSchema = Unit$outboundSchema;
-}
-
-/** @internal */
 export const DelayRegularMetadata$inboundSchema: z.ZodType<
   DelayRegularMetadata,
   z.ZodTypeDef,
   unknown
 > = z.object({
   amount: z.number().optional(),
+  unit: DelayRegularMetadataUnit$inboundSchema.optional(),
   type: DelayRegularMetadataType$inboundSchema,
-  unit: Unit$inboundSchema.optional(),
 });
 
 /** @internal */
 export type DelayRegularMetadata$Outbound = {
   amount?: number | undefined;
-  type: string;
   unit?: string | undefined;
+  type: string;
 };
 
 /** @internal */
@@ -94,8 +100,8 @@ export const DelayRegularMetadata$outboundSchema: z.ZodType<
   DelayRegularMetadata
 > = z.object({
   amount: z.number().optional(),
+  unit: DelayRegularMetadataUnit$outboundSchema.optional(),
   type: DelayRegularMetadataType$outboundSchema,
-  unit: Unit$outboundSchema.optional(),
 });
 
 /**
@@ -109,4 +115,22 @@ export namespace DelayRegularMetadata$ {
   export const outboundSchema = DelayRegularMetadata$outboundSchema;
   /** @deprecated use `DelayRegularMetadata$Outbound` instead. */
   export type Outbound = DelayRegularMetadata$Outbound;
+}
+
+export function delayRegularMetadataToJSON(
+  delayRegularMetadata: DelayRegularMetadata,
+): string {
+  return JSON.stringify(
+    DelayRegularMetadata$outboundSchema.parse(delayRegularMetadata),
+  );
+}
+
+export function delayRegularMetadataFromJSON(
+  jsonString: string,
+): SafeParseResult<DelayRegularMetadata, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DelayRegularMetadata$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DelayRegularMetadata' from JSON`,
+  );
 }

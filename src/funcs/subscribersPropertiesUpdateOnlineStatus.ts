@@ -36,7 +36,7 @@ export async function subscribersPropertiesUpdateOnlineStatus(
   options?: RequestOptions,
 ): Promise<
   Result<
-    components.SubscriberResponseDto,
+    operations.SubscribersControllerUpdateSubscriberOnlineFlagResponse,
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -138,8 +138,12 @@ export async function subscribersPropertiesUpdateOnlineStatus(
   }
   const response = doResult.value;
 
+  const responseFields = {
+    HttpMeta: { Response: response, Request: req },
+  };
+
   const [result] = await M.match<
-    components.SubscriberResponseDto,
+    operations.SubscribersControllerUpdateSubscriberOnlineFlagResponse,
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -148,9 +152,15 @@ export async function subscribersPropertiesUpdateOnlineStatus(
     | RequestTimeoutError
     | ConnectionError
   >(
-    M.json(200, components.SubscriberResponseDto$inboundSchema),
-    M.fail([409, 429, "4XX", 503, "5XX"]),
-  )(response);
+    M.json(
+      200,
+      operations
+        .SubscribersControllerUpdateSubscriberOnlineFlagResponse$inboundSchema,
+      { hdrs: true, key: "Result" },
+    ),
+    M.fail([409, 429, 503]),
+    M.fail(["4XX", "5XX"]),
+  )(response, { extraFields: responseFields });
   if (!result.ok) {
     return result;
   }

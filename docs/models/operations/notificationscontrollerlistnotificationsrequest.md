@@ -7,11 +7,7 @@ import { NotificationsControllerListNotificationsRequest } from "@novu/api/model
 
 let value: NotificationsControllerListNotificationsRequest = {
   channels: [
-<<<<<<< Updated upstream
-    "email",
-=======
     "push",
->>>>>>> Stashed changes
   ],
   templates: [
     "<value>",

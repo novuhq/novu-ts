@@ -4,7 +4,7 @@
 
 import { notificationsStatsGet } from "../funcs/notificationsStatsGet.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as components from "../models/components/index.js";
+import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class NotificationsStats extends ClientSDK {
@@ -14,7 +14,7 @@ export class NotificationsStats extends ClientSDK {
   async get(
     days?: number | undefined,
     options?: RequestOptions,
-  ): Promise<Array<components.ActivityGraphStatesResponse>> {
+  ): Promise<operations.NotificationsControllerGetActivityGraphStatsResponse> {
     return unwrapAsync(notificationsStatsGet(
       this,
       days,

@@ -3,8 +3,6 @@
 
 ## Overview
 
-## Overview
-
 ### Available Operations
 
 * [markAll](#markall) - Marks all the subscriber messages as read, unread, seen or unseen. Optionally you can pass feed id (or array) to mark messages of a particular feed.
@@ -24,49 +22,9 @@ const novu = new Novu({
 });
 
 async function run() {
-<<<<<<< Updated upstream:docs/sdks/novunotifications/README.md
-  const result = await novu.subscribers.notifications.retrieve({
-    subscriberId: "<value>",
-    payload: "btoa(JSON.stringify({ foo: 123 })) results in base64 encoded string like eyJmb28iOjEyM30=",
-  });
-  
-  // Handle the result
-  console.log(result)
-}
-
-run();
-```
-
-### Standalone function
-
-The standalone function version of this method:
-
-```typescript
-import { NovuCore } from "@novu/api/core.js";
-import { subscribersNotificationsRetrieve } from "@novu/api/funcs/subscribersNotificationsRetrieve.js";
-
-// Use `NovuCore` for best tree-shaking performance.
-// You can create one instance of it to use across an application.
-const novu = new NovuCore({
-  apiKey: "<YOUR_API_KEY_HERE>",
-});
-
-async function run() {
-  const res = await subscribersNotificationsRetrieve(novu, {
-    subscriberId: "<value>",
-    payload: "btoa(JSON.stringify({ foo: 123 })) results in base64 encoded string like eyJmb28iOjEyM30=",
-  });
-
-  if (!res.ok) {
-    throw res.error;
-  }
-
-  const { value: result } = res;
-=======
   const result = await novu.subscribersMessages.markAll({
     markAs: "seen",
   }, "<id>");
->>>>>>> Stashed changes:docs/sdks/subscribersmessages/README.md
 
   // Handle the result
   console.log(result);
@@ -119,11 +77,7 @@ run();
 
 ### Response
 
-<<<<<<< Updated upstream:docs/sdks/novunotifications/README.md
-**Promise\<[operations.SubscribersControllerGetNotificationsFeedResponseBody](../../models/operations/subscriberscontrollergetnotificationsfeedresponsebody.md)\>**
-=======
-**Promise\<[number](../../models/.md)\>**
->>>>>>> Stashed changes:docs/sdks/subscribersmessages/README.md
+**Promise\<[operations.SubscribersControllerMarkAllUnreadAsReadResponse](../../models/operations/subscriberscontrollermarkallunreadasreadresponse.md)\>**
 
 ### Errors
 
@@ -131,12 +85,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4XX, 5XX        | \*/\*           |
 
-<<<<<<< Updated upstream:docs/sdks/novunotifications/README.md
-
-## unseenCount
-=======
 ## updateAsSeen
->>>>>>> Stashed changes:docs/sdks/subscribersmessages/README.md
 
 Mark message action as seen
 
@@ -150,12 +99,6 @@ const novu = new Novu({
 });
 
 async function run() {
-<<<<<<< Updated upstream:docs/sdks/novunotifications/README.md
-  const result = await novu.subscribers.notifications.unseenCount({
-    seen: true,
-    subscriberId: "<value>",
-    limit: 4322.81,
-=======
   const result = await novu.subscribersMessages.updateAsSeen({
     messageId: "<id>",
     type: "<value>",
@@ -163,42 +106,7 @@ async function run() {
     markMessageActionAsSeenDto: {
       status: "done",
     },
->>>>>>> Stashed changes:docs/sdks/subscribersmessages/README.md
   });
-  
-  // Handle the result
-  console.log(result)
-}
-
-run();
-```
-
-### Standalone function
-
-The standalone function version of this method:
-
-```typescript
-import { NovuCore } from "@novu/api/core.js";
-import { subscribersNotificationsUnseenCount } from "@novu/api/funcs/subscribersNotificationsUnseenCount.js";
-
-// Use `NovuCore` for best tree-shaking performance.
-// You can create one instance of it to use across an application.
-const novu = new NovuCore({
-  apiKey: "<YOUR_API_KEY_HERE>",
-});
-
-async function run() {
-  const res = await subscribersNotificationsUnseenCount(novu, {
-    seen: true,
-    subscriberId: "<value>",
-    limit: 4322.81,
-  });
-
-  if (!res.ok) {
-    throw res.error;
-  }
-
-  const { value: result } = res;
 
   // Handle the result
   console.log(result);
@@ -255,11 +163,7 @@ run();
 
 ### Response
 
-<<<<<<< Updated upstream:docs/sdks/novunotifications/README.md
-**Promise\<[components.UnseenCountResponse](../../models/components/unseencountresponse.md)\>**
-=======
-**Promise\<[components.MessageResponseDto](../../models/components/messageresponsedto.md)\>**
->>>>>>> Stashed changes:docs/sdks/subscribersmessages/README.md
+**Promise\<[operations.SubscribersControllerMarkActionAsSeenResponse](../../models/operations/subscriberscontrollermarkactionasseenresponse.md)\>**
 
 ### Errors
 

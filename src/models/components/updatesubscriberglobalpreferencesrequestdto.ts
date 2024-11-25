@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ChannelPreference,
   ChannelPreference$inboundSchema,
@@ -62,4 +65,31 @@ export namespace UpdateSubscriberGlobalPreferencesRequestDto$ {
     UpdateSubscriberGlobalPreferencesRequestDto$outboundSchema;
   /** @deprecated use `UpdateSubscriberGlobalPreferencesRequestDto$Outbound` instead. */
   export type Outbound = UpdateSubscriberGlobalPreferencesRequestDto$Outbound;
+}
+
+export function updateSubscriberGlobalPreferencesRequestDtoToJSON(
+  updateSubscriberGlobalPreferencesRequestDto:
+    UpdateSubscriberGlobalPreferencesRequestDto,
+): string {
+  return JSON.stringify(
+    UpdateSubscriberGlobalPreferencesRequestDto$outboundSchema.parse(
+      updateSubscriberGlobalPreferencesRequestDto,
+    ),
+  );
+}
+
+export function updateSubscriberGlobalPreferencesRequestDtoFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  UpdateSubscriberGlobalPreferencesRequestDto,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      UpdateSubscriberGlobalPreferencesRequestDto$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'UpdateSubscriberGlobalPreferencesRequestDto' from JSON`,
+  );
 }

@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Preference,
   Preference$inboundSchema,
@@ -18,13 +21,13 @@ import {
 
 export type GetSubscriberPreferencesResponseDto = {
   /**
-   * The preferences of the subscriber regarding the related workflow
-   */
-  preference: Preference;
-  /**
    * The workflow information and if it is critical or not
    */
   template?: TemplateResponse | undefined;
+  /**
+   * The preferences of the subscriber regarding the related workflow
+   */
+  preference: Preference;
 };
 
 /** @internal */
@@ -33,14 +36,14 @@ export const GetSubscriberPreferencesResponseDto$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  preference: Preference$inboundSchema,
   template: TemplateResponse$inboundSchema.optional(),
+  preference: Preference$inboundSchema,
 });
 
 /** @internal */
 export type GetSubscriberPreferencesResponseDto$Outbound = {
-  preference: Preference$Outbound;
   template?: TemplateResponse$Outbound | undefined;
+  preference: Preference$Outbound;
 };
 
 /** @internal */
@@ -49,8 +52,8 @@ export const GetSubscriberPreferencesResponseDto$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GetSubscriberPreferencesResponseDto
 > = z.object({
-  preference: Preference$outboundSchema,
   template: TemplateResponse$outboundSchema.optional(),
+  preference: Preference$outboundSchema,
 });
 
 /**
@@ -66,4 +69,25 @@ export namespace GetSubscriberPreferencesResponseDto$ {
     GetSubscriberPreferencesResponseDto$outboundSchema;
   /** @deprecated use `GetSubscriberPreferencesResponseDto$Outbound` instead. */
   export type Outbound = GetSubscriberPreferencesResponseDto$Outbound;
+}
+
+export function getSubscriberPreferencesResponseDtoToJSON(
+  getSubscriberPreferencesResponseDto: GetSubscriberPreferencesResponseDto,
+): string {
+  return JSON.stringify(
+    GetSubscriberPreferencesResponseDto$outboundSchema.parse(
+      getSubscriberPreferencesResponseDto,
+    ),
+  );
+}
+
+export function getSubscriberPreferencesResponseDtoFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSubscriberPreferencesResponseDto, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      GetSubscriberPreferencesResponseDto$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSubscriberPreferencesResponseDto' from JSON`,
+  );
 }

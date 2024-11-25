@@ -77,7 +77,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.SubscribersControllerGetNotificationsFeedResponseBody](../../models/operations/subscriberscontrollergetnotificationsfeedresponsebody.md)\>**
+**Promise\<[operations.SubscribersControllerGetNotificationsFeedResponse](../../models/operations/subscriberscontrollergetnotificationsfeedresponse.md)\>**
 
 ### Errors
 

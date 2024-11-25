@@ -6,29 +6,19 @@
 import { SubscribersControllerGetNotificationsFeedResponseBody } from "@novu/api/models/operations";
 
 let value: SubscribersControllerGetNotificationsFeedResponseBody = {
+  page: 6120.96,
+  hasMore: false,
+  pageSize: 6169.34,
   data: [
     {
+      hasMore: false,
       data: [
         "<value>",
       ],
-      hasMore: false,
-<<<<<<< Updated upstream
-      page: 6235.1,
-      pageSize: 1589.69,
+      pageSize: 9437.48,
+      page: 6818.20,
     },
   ],
-  hasMore: false,
-  page: 3380.07,
-  pageSize: 1103.75,
-=======
-      page: 4314.18,
-      pageSize: 8965.47,
-    },
-  ],
-  hasMore: false,
-  page: 3675.62,
-  pageSize: 4358.65,
->>>>>>> Stashed changes
 };
 ```
 
@@ -36,7 +26,7 @@ let value: SubscribersControllerGetNotificationsFeedResponseBody = {
 
 | Field                                                                      | Type                                                                       | Required                                                                   | Description                                                                |
 | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| `data`                                                                     | [components.FeedResponseDto](../../models/components/feedresponsedto.md)[] | :heavy_check_mark:                                                         | N/A                                                                        |
-| `hasMore`                                                                  | *boolean*                                                                  | :heavy_check_mark:                                                         | Does the list have more items to fetch                                     |
 | `page`                                                                     | *number*                                                                   | :heavy_check_mark:                                                         | The current page of the paginated response                                 |
+| `hasMore`                                                                  | *boolean*                                                                  | :heavy_check_mark:                                                         | Does the list have more items to fetch                                     |
 | `pageSize`                                                                 | *number*                                                                   | :heavy_check_mark:                                                         | Number of items on each page                                               |
+| `data`                                                                     | [components.FeedResponseDto](../../models/components/feedresponsedto.md)[] | :heavy_check_mark:                                                         | N/A                                                                        |

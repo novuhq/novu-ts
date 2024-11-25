@@ -6,19 +6,11 @@
 import { ChannelSettings } from "@novu/api/models/components";
 
 let value: ChannelSettings = {
-<<<<<<< Updated upstream
-  integrationId: "<value>",
+  providerId: "mattermost",
   credentials: {
-    webhookUrl: "<value>",
+    webhookUrl: "https://ajar-solvency.com",
   },
-  providerId: 1433.53,
-=======
   integrationId: "<id>",
-  credentials: {
-    webhookUrl: "https://agitated-ocelot.name",
-  },
-  providerId: "fcm",
->>>>>>> Stashed changes
 };
 ```
 
@@ -26,11 +18,7 @@ let value: ChannelSettings = {
 
 | Field                                                                          | Type                                                                           | Required                                                                       | Description                                                                    |
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| `integrationId`                                                                | *string*                                                                       | :heavy_check_mark:                                                             | Id of the integration that is used for this channel                            |
-| `credentials`                                                                  | [components.ChannelCredentials](../../models/components/channelcredentials.md) | :heavy_check_mark:                                                             | Credentials payload for the specified provider                                 |
-| `integrationIdentifier`                                                        | *string*                                                                       | :heavy_minus_sign:                                                             | The integration identifier                                                     |
-<<<<<<< Updated upstream
-| `providerId`                                                                   | *number*                                                                       | :heavy_check_mark:                                                             | The provider identifier for the credentials                                    |
-=======
 | `providerId`                                                                   | [components.ProviderId](../../models/components/providerid.md)                 | :heavy_check_mark:                                                             | The provider identifier for the credentials                                    |
->>>>>>> Stashed changes
+| `integrationIdentifier`                                                        | *string*                                                                       | :heavy_minus_sign:                                                             | The integration identifier                                                     |
+| `credentials`                                                                  | [components.ChannelCredentials](../../models/components/channelcredentials.md) | :heavy_check_mark:                                                             | Credentials payload for the specified provider                                 |
+| `integrationId`                                                                | *string*                                                                       | :heavy_check_mark:                                                             | Id of the integration that is used for this channel                            |

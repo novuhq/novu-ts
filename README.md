@@ -73,30 +73,6 @@ For supported JavaScript runtimes, please consult [RUNTIMES.md](RUNTIMES.md).
 <!-- Start SDK Example Usage [usage] -->
 ## SDK Example Usage
 
-### Cancel Triggered Event
-
-```typescript
-import { Novu } from "@novu/api";
-
-const novu = new Novu({
-  apiKey: "<YOUR_API_KEY_HERE>",
-});
-
-async function run() {
-<<<<<<< Updated upstream
-  const result = await novu.cancel("<value>");
-=======
-  const result = await novu.cancel("<id>");
->>>>>>> Stashed changes
-
-  // Handle the result
-  console.log(result);
-}
-
-run();
-
-```
-
 ### Trigger Notification Event
 
 ```typescript
@@ -109,44 +85,18 @@ const novu = new Novu({
 async function run() {
   const result = await novu.trigger({
     name: "workflow_identifier",
-    overrides: {},
     payload: {},
+    overrides: {},
     to: [
       {
         topicKey: "<value>",
         type: "Topic",
       },
-<<<<<<< Updated upstream
-=======
       {
         topicKey: "<value>",
         type: "Topic",
       },
     ],
-  });
-
-  // Handle the result
-  console.log(result);
-}
-
-run();
-
-```
-
-### Broadcast Event to All
-
-```typescript
-import { Novu } from "@novu/api";
-
-const novu = new Novu({
-  apiKey: "<YOUR_API_KEY_HERE>",
-});
-
-async function run() {
-  const result = await novu.triggerBroadcast({
-    name: "<value>",
-    overrides: {},
-    payload: {},
   });
 
   // Handle the result
@@ -171,8 +121,8 @@ async function run() {
     events: [
       {
         name: "workflow_identifier",
-        overrides: {},
         payload: {},
+        overrides: {},
         to: [
           {
             topicKey: "<value>",
@@ -185,8 +135,8 @@ async function run() {
       },
       {
         name: "workflow_identifier",
-        overrides: {},
         payload: {},
+        overrides: {},
         to: [
           {
             topicKey: "<value>",
@@ -196,8 +146,8 @@ async function run() {
       },
       {
         name: "workflow_identifier",
-        overrides: {},
         payload: {},
+        overrides: {},
         to: [
           {
             topicKey: "<value>",
@@ -209,13 +159,11 @@ async function run() {
           },
         ],
       },
->>>>>>> Stashed changes
     ],
   });
 
   // Handle the result
   console.log(result);
-<<<<<<< Updated upstream
 }
 
 run();
@@ -234,8 +182,8 @@ const novu = new Novu({
 async function run() {
   const result = await novu.triggerBroadcast({
     name: "<value>",
-    overrides: {},
     payload: {},
+    overrides: {},
   });
 
   // Handle the result
@@ -246,7 +194,7 @@ run();
 
 ```
 
-### Trigger Notification Events in Bulk
+### Cancel Triggered Event
 
 ```typescript
 import { Novu } from "@novu/api";
@@ -256,14 +204,10 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.triggerBulk({
-    events: [],
-  });
+  const result = await novu.cancel("<id>");
 
   // Handle the result
   console.log(result);
-=======
->>>>>>> Stashed changes
 }
 
 run();
@@ -276,21 +220,11 @@ run();
 
 <details open>
 <summary>Available methods</summary>
-<<<<<<< Updated upstream
-
-### [changes](docs/sdks/changes/README.md)
-
-* [apply](docs/sdks/changes/README.md#apply) - Apply change
-* [applyBulk](docs/sdks/changes/README.md#applybulk) - Apply changes
-* [count](docs/sdks/changes/README.md#count) - Get changes count
-* [retrieve](docs/sdks/changes/README.md#retrieve) - Get changes
-=======
->>>>>>> Stashed changes
 
 ### [environments](docs/sdks/environments/README.md)
 
-* [getAll](docs/sdks/environments/README.md#getall) - Get environments
 * [getCurrent](docs/sdks/environments/README.md#getcurrent) - Get current environment
+* [getAll](docs/sdks/environments/README.md#getall) - Get environments
 
 #### [environments.apiKeys](docs/sdks/apikeys/README.md)
 
@@ -302,128 +236,78 @@ run();
 
 ### [integrations](docs/sdks/integrations/README.md)
 
-* [create](docs/sdks/integrations/README.md#create) - Create integration
-* [delete](docs/sdks/integrations/README.md#delete) - Delete integration
 * [list](docs/sdks/integrations/README.md#list) - Get integrations
+* [create](docs/sdks/integrations/README.md#create) - Create integration
 * [listActive](docs/sdks/integrations/README.md#listactive) - Get active integrations
-* [setPrimary](docs/sdks/integrations/README.md#setprimary) - Set integration as primary
 * [update](docs/sdks/integrations/README.md#update) - Update integration
+* [delete](docs/sdks/integrations/README.md#delete) - Delete integration
+* [setPrimary](docs/sdks/integrations/README.md#setprimary) - Set integration as primary
 
-<<<<<<< Updated upstream
-#### [integrations.webhooks](docs/sdks/webhooks/README.md)
-=======
 ### [integrationsWebhooks](docs/sdks/integrationswebhooks/README.md)
->>>>>>> Stashed changes
 
 * [getStatus](docs/sdks/integrationswebhooks/README.md#getstatus) - Get webhook support status for provider
 
 ### [messages](docs/sdks/messages/README.md)
 
+* [get](docs/sdks/messages/README.md#get) - Get messages
 * [delete](docs/sdks/messages/README.md#delete) - Delete message
 * [deleteByTransactionId](docs/sdks/messages/README.md#deletebytransactionid) - Delete messages by transactionId
-<<<<<<< Updated upstream
-* [retrieve](docs/sdks/messages/README.md#retrieve) - Get messages
-=======
-* [get](docs/sdks/messages/README.md#get) - Get messages
->>>>>>> Stashed changes
 
 ### [notifications](docs/sdks/notifications/README.md)
 
-* [get](docs/sdks/notifications/README.md#get) - Get notification
 * [list](docs/sdks/notifications/README.md#list) - Get notifications
+* [get](docs/sdks/notifications/README.md#get) - Get notification
 
 #### [notifications.stats](docs/sdks/stats/README.md)
 
 * [get](docs/sdks/stats/README.md#get) - Get notification statistics
 
-<<<<<<< Updated upstream
-### [Novu SDK](docs/sdks/novu/README.md)
-
-* [cancel](docs/sdks/novu/README.md#cancel) - Cancel triggered event
-* [trigger](docs/sdks/novu/README.md#trigger) - Trigger event
-* [triggerBroadcast](docs/sdks/novu/README.md#triggerbroadcast) - Broadcast event to all
-* [triggerBulk](docs/sdks/novu/README.md#triggerbulk) - Bulk trigger event
-
-### [organizations](docs/sdks/organizations/README.md)
-
-* [eeOrganizationControllerRenameOrganization](docs/sdks/organizations/README.md#eeorganizationcontrollerrenameorganization) - Rename organization name
-* [retrieve](docs/sdks/organizations/README.md#retrieve) - Fetch current organization details
-* [update](docs/sdks/organizations/README.md#update) - Update organization branding details
-=======
 ### [notificationsStats](docs/sdks/notificationsstats/README.md)
 
 * [get](docs/sdks/notificationsstats/README.md#get) - Get notification graph statistics
 
 ### [Novu SDK](docs/sdks/novu/README.md)
 
-* [cancel](docs/sdks/novu/README.md#cancel) - Cancel triggered event
 * [trigger](docs/sdks/novu/README.md#trigger) - Trigger event
-* [triggerBroadcast](docs/sdks/novu/README.md#triggerbroadcast) - Broadcast event to all
 * [triggerBulk](docs/sdks/novu/README.md#triggerbulk) - Bulk trigger event
->>>>>>> Stashed changes
+* [triggerBroadcast](docs/sdks/novu/README.md#triggerbroadcast) - Broadcast event to all
+* [cancel](docs/sdks/novu/README.md#cancel) - Cancel triggered event
 
 ### [subscribers](docs/sdks/subscribers/README.md)
 
-* [create](docs/sdks/subscribers/README.md#create) - Create subscriber
-* [createBulk](docs/sdks/subscribers/README.md#createbulk) - Bulk create subscribers
-* [delete](docs/sdks/subscribers/README.md#delete) - Delete subscriber
-* [get](docs/sdks/subscribers/README.md#get) - Get subscriber
 * [getAll](docs/sdks/subscribers/README.md#getall) - Get subscribers
+* [create](docs/sdks/subscribers/README.md#create) - Create subscriber
+* [get](docs/sdks/subscribers/README.md#get) - Get subscriber
 * [update](docs/sdks/subscribers/README.md#update) - Update subscriber
+* [delete](docs/sdks/subscribers/README.md#delete) - Delete subscriber
+* [createBulk](docs/sdks/subscribers/README.md#createbulk) - Bulk create subscribers
 
 #### [subscribers.authentication](docs/sdks/authentication/README.md)
 
-<<<<<<< Updated upstream
-* [chatAccessOauth](docs/sdks/authentication/README.md#chataccessoauth) - Handle chat oauth
-* [chatAccessOauthCallBack](docs/sdks/authentication/README.md#chataccessoauthcallback) - Handle providers oauth redirect
-=======
-* [handleOauth](docs/sdks/authentication/README.md#handleoauth) - Handle chat oauth
 * [handleOauthCallback](docs/sdks/authentication/README.md#handleoauthcallback) - Handle providers oauth redirect
->>>>>>> Stashed changes
+* [handleOauth](docs/sdks/authentication/README.md#handleoauth) - Handle chat oauth
 
 #### [subscribers.credentials](docs/sdks/credentials/README.md)
 
+* [update](docs/sdks/credentials/README.md#update) - Update subscriber credentials
 * [append](docs/sdks/credentials/README.md#append) - Modify subscriber credentials
 * [delete](docs/sdks/credentials/README.md#delete) - Delete subscriber credentials by providerId
-* [update](docs/sdks/credentials/README.md#update) - Update subscriber credentials
 
 #### [subscribers.messages](docs/sdks/novumessages/README.md)
-<<<<<<< Updated upstream
-=======
 
 * [mark](docs/sdks/novumessages/README.md#mark) - Mark a subscriber messages as seen, read, unseen or unread
 
 #### [subscribers.notifications](docs/sdks/novusubscribersnotifications/README.md)
->>>>>>> Stashed changes
 
 * [getFeed](docs/sdks/novusubscribersnotifications/README.md#getfeed) - Get in-app notification feed for a particular subscriber
 
-<<<<<<< Updated upstream
-#### [subscribers.notifications](docs/sdks/novunotifications/README.md)
-
-* [retrieve](docs/sdks/novunotifications/README.md#retrieve) - Get in-app notification feed for a particular subscriber
-* [unseenCount](docs/sdks/novunotifications/README.md#unseencount) - Get the unseen in-app notifications count for subscribers feed
-
-#### [subscribers.preferences](docs/sdks/preferences/README.md)
-
-* [list](docs/sdks/preferences/README.md#list) - Get subscriber preferences
-* [retrieveByLevel](docs/sdks/preferences/README.md#retrievebylevel) - Get subscriber preferences by level
-=======
 #### [subscribers.preferences](docs/sdks/preferences/README.md)
 
 * [get](docs/sdks/preferences/README.md#get) - Get subscriber preferences
 * [getByLevel](docs/sdks/preferences/README.md#getbylevel) - Get subscriber preferences by level
->>>>>>> Stashed changes
 * [update](docs/sdks/preferences/README.md#update) - Update subscriber preference
 
 #### [subscribers.properties](docs/sdks/properties/README.md)
-<<<<<<< Updated upstream
-
-* [updateOnlineFlag](docs/sdks/properties/README.md#updateonlineflag) - Update subscriber online status
-
-### [tenants](docs/sdks/tenants/README.md)
-=======
->>>>>>> Stashed changes
 
 * [updateOnlineStatus](docs/sdks/properties/README.md#updateonlinestatus) - Update subscriber online status
 
@@ -443,51 +327,25 @@ run();
 ### [topics](docs/sdks/topics/README.md)
 
 * [create](docs/sdks/topics/README.md#create) - Topic creation
+* [getAll](docs/sdks/topics/README.md#getall) - Filter topics
 * [delete](docs/sdks/topics/README.md#delete) - Delete topic
 * [get](docs/sdks/topics/README.md#get) - Get topic
-* [getAll](docs/sdks/topics/README.md#getall) - Filter topics
 * [rename](docs/sdks/topics/README.md#rename) - Rename a topic
 
-<<<<<<< Updated upstream
-#### [topics.subscribers](docs/sdks/novusubscribers/README.md)
-=======
 #### [topics.subscribers](docs/sdks/novutopicssubscribers/README.md)
->>>>>>> Stashed changes
 
 * [add](docs/sdks/novutopicssubscribers/README.md#add) - Subscribers addition
 * [check](docs/sdks/novutopicssubscribers/README.md#check) - Check topic subscriber
 * [remove](docs/sdks/novutopicssubscribers/README.md#remove) - Subscribers removal
 
 ### [workflowGroups](docs/sdks/workflowgroups/README.md)
-<<<<<<< Updated upstream
 
 * [create](docs/sdks/workflowgroups/README.md#create) - Create workflow group
-* [delete](docs/sdks/workflowgroups/README.md#delete) - Delete workflow group
 * [list](docs/sdks/workflowgroups/README.md#list) - Get workflow groups
-* [retrieve](docs/sdks/workflowgroups/README.md#retrieve) - Get workflow group
-* [update](docs/sdks/workflowgroups/README.md#update) - Update workflow group
-
-### [workflows](docs/sdks/workflows/README.md)
-=======
->>>>>>> Stashed changes
-
-* [create](docs/sdks/workflowgroups/README.md#create) - Create workflow group
-* [delete](docs/sdks/workflowgroups/README.md#delete) - Delete workflow group
 * [get](docs/sdks/workflowgroups/README.md#get) - Get workflow group
-* [list](docs/sdks/workflowgroups/README.md#list) - Get workflow groups
 * [update](docs/sdks/workflowgroups/README.md#update) - Update workflow group
+* [delete](docs/sdks/workflowgroups/README.md#delete) - Delete workflow group
 
-<<<<<<< Updated upstream
-#### [workflows.status](docs/sdks/status/README.md)
-
-* [update](docs/sdks/status/README.md#update) - Update workflow status
-
-#### [workflows.variables](docs/sdks/variables/README.md)
-
-* [retrieve](docs/sdks/variables/README.md#retrieve) - Get available variables
-
-=======
->>>>>>> Stashed changes
 </details>
 <!-- End Available Resources and Operations [operations] -->
 
@@ -506,93 +364,6 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 <summary>Available standalone functions</summary>
 
-<<<<<<< Updated upstream
-- [cancel](docs/sdks/novu/README.md#cancel)
-- [changesApplyBulk](docs/sdks/changes/README.md#applybulk)
-- [changesApply](docs/sdks/changes/README.md#apply)
-- [changesCount](docs/sdks/changes/README.md#count)
-- [changesRetrieve](docs/sdks/changes/README.md#retrieve)
-- [environmentsApiKeysList](docs/sdks/apikeys/README.md#list)
-- [environmentsList](docs/sdks/environments/README.md#list)
-- [environmentsRetrieve](docs/sdks/environments/README.md#retrieve)
-- [executionDetailsRetrieve](docs/sdks/executiondetails/README.md#retrieve)
-- [feedsCreate](docs/sdks/feeds/README.md#create)
-- [feedsDelete](docs/sdks/feeds/README.md#delete)
-- [feedsRetrieve](docs/sdks/feeds/README.md#retrieve)
-- [integrationsCreate](docs/sdks/integrations/README.md#create)
-- [integrationsDelete](docs/sdks/integrations/README.md#delete)
-- [integrationsListActive](docs/sdks/integrations/README.md#listactive)
-- [integrationsList](docs/sdks/integrations/README.md#list)
-- [integrationsSetAsPrimary](docs/sdks/integrations/README.md#setasprimary)
-- [integrationsUpdate](docs/sdks/integrations/README.md#update)
-- [integrationsWebhooksRetrieve](docs/sdks/webhooks/README.md#retrieve)
-- [layoutsCreate](docs/sdks/layouts/README.md#create)
-- [layoutsDelete](docs/sdks/layouts/README.md#delete)
-- [layoutsList](docs/sdks/layouts/README.md#list)
-- [layoutsRetrieve](docs/sdks/layouts/README.md#retrieve)
-- [layoutsSetAsDefault](docs/sdks/layouts/README.md#setasdefault)
-- [layoutsUpdate](docs/sdks/layouts/README.md#update)
-- [messagesDeleteByTransactionId](docs/sdks/messages/README.md#deletebytransactionid)
-- [messagesDelete](docs/sdks/messages/README.md#delete)
-- [messagesRetrieve](docs/sdks/messages/README.md#retrieve)
-- [notificationsList](docs/sdks/notifications/README.md#list)
-- [notificationsRetrieve](docs/sdks/notifications/README.md#retrieve)
-- [notificationsStatsGraph](docs/sdks/stats/README.md#graph)
-- [notificationsStatsRetrieve](docs/sdks/stats/README.md#retrieve)
-- [organizationsEEOrganizationControllerRenameOrganization](docs/sdks/organizations/README.md#eeorganizationcontrollerrenameorganization)
-- [organizationsRetrieve](docs/sdks/organizations/README.md#retrieve)
-- [organizationsUpdate](docs/sdks/organizations/README.md#update)
-- [subscribersAuthenticationChatAccessOauthCallBack](docs/sdks/authentication/README.md#chataccessoauthcallback)
-- [subscribersAuthenticationChatAccessOauth](docs/sdks/authentication/README.md#chataccessoauth)
-- [subscribersCreateBulk](docs/sdks/subscribers/README.md#createbulk)
-- [subscribersCreate](docs/sdks/subscribers/README.md#create)
-- [subscribersCredentialsAppend](docs/sdks/credentials/README.md#append)
-- [subscribersCredentialsDelete](docs/sdks/credentials/README.md#delete)
-- [subscribersCredentialsUpdate](docs/sdks/credentials/README.md#update)
-- [subscribersDelete](docs/sdks/subscribers/README.md#delete)
-- [subscribersList](docs/sdks/subscribers/README.md#list)
-- [subscribersMessagesMarkAllAs](docs/sdks/novumessages/README.md#markallas)
-- [subscribersMessagesMarkAll](docs/sdks/novumessages/README.md#markall)
-- [subscribersMessagesUpdateAsSeen](docs/sdks/novumessages/README.md#updateasseen)
-- [subscribersNotificationsRetrieve](docs/sdks/novunotifications/README.md#retrieve)
-- [subscribersNotificationsUnseenCount](docs/sdks/novunotifications/README.md#unseencount)
-- [subscribersPreferencesList](docs/sdks/preferences/README.md#list)
-- [subscribersPreferencesRetrieveByLevel](docs/sdks/preferences/README.md#retrievebylevel)
-- [subscribersPreferencesUpdateGlobal](docs/sdks/preferences/README.md#updateglobal)
-- [subscribersPreferencesUpdate](docs/sdks/preferences/README.md#update)
-- [subscribersPropertiesUpdateOnlineFlag](docs/sdks/properties/README.md#updateonlineflag)
-- [subscribersRetrieve](docs/sdks/subscribers/README.md#retrieve)
-- [subscribersUpdate](docs/sdks/subscribers/README.md#update)
-- [tenantsCreate](docs/sdks/tenants/README.md#create)
-- [tenantsDelete](docs/sdks/tenants/README.md#delete)
-- [tenantsList](docs/sdks/tenants/README.md#list)
-- [tenantsRetrieve](docs/sdks/tenants/README.md#retrieve)
-- [tenantsUpdate](docs/sdks/tenants/README.md#update)
-- [topicsCreate](docs/sdks/topics/README.md#create)
-- [topicsDelete](docs/sdks/topics/README.md#delete)
-- [topicsList](docs/sdks/topics/README.md#list)
-- [topicsRename](docs/sdks/topics/README.md#rename)
-- [topicsRetrieve](docs/sdks/topics/README.md#retrieve)
-- [topicsSubscribersAssign](docs/sdks/novusubscribers/README.md#assign)
-- [topicsSubscribersDelete](docs/sdks/novusubscribers/README.md#delete)
-- [topicsSubscribersRetrieve](docs/sdks/novusubscribers/README.md#retrieve)
-- [triggerBroadcast](docs/sdks/novu/README.md#triggerbroadcast)
-- [triggerBulk](docs/sdks/novu/README.md#triggerbulk)
-- [trigger](docs/sdks/novu/README.md#trigger)
-- [workflowGroupsCreate](docs/sdks/workflowgroups/README.md#create)
-- [workflowGroupsDelete](docs/sdks/workflowgroups/README.md#delete)
-- [workflowGroupsList](docs/sdks/workflowgroups/README.md#list)
-- [workflowGroupsRetrieve](docs/sdks/workflowgroups/README.md#retrieve)
-- [workflowGroupsUpdate](docs/sdks/workflowgroups/README.md#update)
-- [workflowsCreate](docs/sdks/workflows/README.md#create)
-- [workflowsDelete](docs/sdks/workflows/README.md#delete)
-- [workflowsList](docs/sdks/workflows/README.md#list)
-- [workflowsRetrieve](docs/sdks/workflows/README.md#retrieve)
-- [workflowsStatusUpdate](docs/sdks/status/README.md#update)
-- [workflowsUpdate](docs/sdks/workflows/README.md#update)
-- [workflowsVariablesRetrieve](docs/sdks/variables/README.md#retrieve)
-
-=======
 - [`cancel`](docs/sdks/novu/README.md#cancel) - Cancel triggered event
 - [`environmentsApiKeysList`](docs/sdks/apikeys/README.md#list) - Get api keys
 - [`environmentsGetAll`](docs/sdks/environments/README.md#getall) - Get environments
@@ -649,7 +420,6 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`workflowGroupsGet`](docs/sdks/workflowgroups/README.md#get) - Get workflow group
 - [`workflowGroupsList`](docs/sdks/workflowgroups/README.md#list) - Get workflow groups
 - [`workflowGroupsUpdate`](docs/sdks/workflowgroups/README.md#update) - Update workflow group
->>>>>>> Stashed changes
 
 </details>
 <!-- End Standalone functions [standalone-funcs] -->
@@ -674,11 +444,7 @@ const novu = new Novu({
 });
 
 async function run() {
-<<<<<<< Updated upstream
-  const result = await novu.subscribers.list();
-=======
   const result = await novu.subscribers.getAll();
->>>>>>> Stashed changes
 
   for await (const page of result) {
     // Handle the page
@@ -706,7 +472,7 @@ If a HTTP request fails, an operation my also throw an error from the `models/er
 | InvalidRequestError                                  | Any input used to create a request is invalid        |
 | UnexpectedClientError                                | Unrecognised or unexpected error                     |
 
-In addition, when custom error responses are specified for an operation, the SDK may throw their associated Error type. You can refer to respective *Errors* tables in SDK docs for more details on possible error types for each operation. For example, the `cancel` method may throw the following errors:
+In addition, when custom error responses are specified for an operation, the SDK may throw their associated Error type. You can refer to respective *Errors* tables in SDK docs for more details on possible error types for each operation. For example, the `trigger` method may throw the following errors:
 
 | Error Type      | Status Code | Content Type |
 | --------------- | ----------- | ------------ |
@@ -723,11 +489,21 @@ const novu = new Novu({
 async function run() {
   let result;
   try {
-<<<<<<< Updated upstream
-    result = await novu.cancel("<value>");
-=======
-    result = await novu.cancel("<id>");
->>>>>>> Stashed changes
+    result = await novu.trigger({
+      name: "workflow_identifier",
+      payload: {},
+      overrides: {},
+      to: [
+        {
+          topicKey: "<value>",
+          type: "Topic",
+        },
+        {
+          topicKey: "<value>",
+          type: "Topic",
+        },
+      ],
+    });
 
     // Handle the result
     console.log(result);
@@ -777,11 +553,21 @@ const novu = new Novu({
 });
 
 async function run() {
-<<<<<<< Updated upstream
-  const result = await novu.cancel("<value>");
-=======
-  const result = await novu.cancel("<id>");
->>>>>>> Stashed changes
+  const result = await novu.trigger({
+    name: "workflow_identifier",
+    payload: {},
+    overrides: {},
+    to: [
+      {
+        topicKey: "<value>",
+        type: "Topic",
+      },
+      {
+        topicKey: "<value>",
+        type: "Topic",
+      },
+    ],
+  });
 
   // Handle the result
   console.log(result);
@@ -803,11 +589,21 @@ const novu = new Novu({
 });
 
 async function run() {
-<<<<<<< Updated upstream
-  const result = await novu.cancel("<value>");
-=======
-  const result = await novu.cancel("<id>");
->>>>>>> Stashed changes
+  const result = await novu.trigger({
+    name: "workflow_identifier",
+    payload: {},
+    overrides: {},
+    to: [
+      {
+        topicKey: "<value>",
+        type: "Topic",
+      },
+      {
+        topicKey: "<value>",
+        type: "Topic",
+      },
+    ],
+  });
 
   // Handle the result
   console.log(result);
@@ -887,11 +683,21 @@ const novu = new Novu({
 });
 
 async function run() {
-<<<<<<< Updated upstream
-  const result = await novu.cancel("<value>");
-=======
-  const result = await novu.cancel("<id>");
->>>>>>> Stashed changes
+  const result = await novu.trigger({
+    name: "workflow_identifier",
+    payload: {},
+    overrides: {},
+    to: [
+      {
+        topicKey: "<value>",
+        type: "Topic",
+      },
+      {
+        topicKey: "<value>",
+        type: "Topic",
+      },
+    ],
+  });
 
   // Handle the result
   console.log(result);
@@ -916,11 +722,21 @@ const novu = new Novu({
 });
 
 async function run() {
-<<<<<<< Updated upstream
-  const result = await novu.cancel("<value>", {
-=======
-  const result = await novu.cancel("<id>", {
->>>>>>> Stashed changes
+  const result = await novu.trigger({
+    name: "workflow_identifier",
+    payload: {},
+    overrides: {},
+    to: [
+      {
+        topicKey: "<value>",
+        type: "Topic",
+      },
+      {
+        topicKey: "<value>",
+        type: "Topic",
+      },
+    ],
+  }, {
     retries: {
       strategy: "backoff",
       backoff: {
@@ -960,11 +776,21 @@ const novu = new Novu({
 });
 
 async function run() {
-<<<<<<< Updated upstream
-  const result = await novu.cancel("<value>");
-=======
-  const result = await novu.cancel("<id>");
->>>>>>> Stashed changes
+  const result = await novu.trigger({
+    name: "workflow_identifier",
+    payload: {},
+    overrides: {},
+    to: [
+      {
+        topicKey: "<value>",
+        type: "Topic",
+      },
+      {
+        topicKey: "<value>",
+        type: "Topic",
+      },
+    ],
+  });
 
   // Handle the result
   console.log(result);

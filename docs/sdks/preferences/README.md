@@ -23,41 +23,7 @@ const novu = new Novu({
 });
 
 async function run() {
-<<<<<<< Updated upstream
-  const result = await novu.subscribers.preferences.list("<value>");
-  
-  // Handle the result
-  console.log(result)
-}
-
-run();
-```
-
-### Standalone function
-
-The standalone function version of this method:
-
-```typescript
-import { NovuCore } from "@novu/api/core.js";
-import { subscribersPreferencesList } from "@novu/api/funcs/subscribersPreferencesList.js";
-
-// Use `NovuCore` for best tree-shaking performance.
-// You can create one instance of it to use across an application.
-const novu = new NovuCore({
-  apiKey: "<YOUR_API_KEY_HERE>",
-});
-
-async function run() {
-  const res = await subscribersPreferencesList(novu, "<value>");
-
-  if (!res.ok) {
-    throw res.error;
-  }
-
-  const { value: result } = res;
-=======
   const result = await novu.subscribers.preferences.get("<id>");
->>>>>>> Stashed changes
 
   // Handle the result
   console.log(result);
@@ -108,7 +74,7 @@ run();
 
 ### Response
 
-**Promise\<[components.UpdateSubscriberPreferenceResponseDto[]](../../models/.md)\>**
+**Promise\<[operations.SubscribersControllerListSubscriberPreferencesResponse](../../models/operations/subscriberscontrollerlistsubscriberpreferencesresponse.md)\>**
 
 ### Errors
 
@@ -116,12 +82,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4XX, 5XX        | \*/\*           |
 
-<<<<<<< Updated upstream
-
-## retrieveByLevel
-=======
 ## getByLevel
->>>>>>> Stashed changes
 
 Get subscriber preferences by level
 
@@ -135,44 +96,10 @@ const novu = new Novu({
 });
 
 async function run() {
-<<<<<<< Updated upstream
-  const result = await novu.subscribers.preferences.retrieveByLevel("Topic", "<value>");
-  
-  // Handle the result
-  console.log(result)
-}
-
-run();
-```
-
-### Standalone function
-
-The standalone function version of this method:
-
-```typescript
-import { NovuCore } from "@novu/api/core.js";
-import { subscribersPreferencesRetrieveByLevel } from "@novu/api/funcs/subscribersPreferencesRetrieveByLevel.js";
-
-// Use `NovuCore` for best tree-shaking performance.
-// You can create one instance of it to use across an application.
-const novu = new NovuCore({
-  apiKey: "<YOUR_API_KEY_HERE>",
-});
-
-async function run() {
-  const res = await subscribersPreferencesRetrieveByLevel(novu, "Topic", "<value>");
-
-  if (!res.ok) {
-    throw res.error;
-  }
-
-  const { value: result } = res;
-=======
   const result = await novu.subscribers.preferences.getByLevel({
-    parameter: "template",
+    parameter: "global",
     subscriberId: "<id>",
   });
->>>>>>> Stashed changes
 
   // Handle the result
   console.log(result);
@@ -197,7 +124,7 @@ const novu = new NovuCore({
 
 async function run() {
   const res = await subscribersPreferencesGetByLevel(novu, {
-    parameter: "template",
+    parameter: "global",
     subscriberId: "<id>",
   });
 
@@ -218,26 +145,20 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-<<<<<<< Updated upstream
-| `parameter`                                                                                                                                                                    | [operations.Parameter](../../models/operations/parameter.md)                                                                                                                   | :heavy_check_mark:                                                                                                                                                             | the preferences level to be retrieved( Subscriber / Topic)                                                                                                                     |
-| `subscriberId`                                                                                                                                                                 | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
-=======
 | `request`                                                                                                                                                                      | [operations.SubscribersControllerGetSubscriberPreferenceByLevelRequest](../../models/operations/subscriberscontrollergetsubscriberpreferencebylevelrequest.md)                 | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
->>>>>>> Stashed changes
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 ### Response
 
-**Promise\<[components.GetSubscriberPreferencesResponseDto[]](../../models/.md)\>**
+**Promise\<[operations.SubscribersControllerGetSubscriberPreferenceByLevelResponse](../../models/operations/subscriberscontrollergetsubscriberpreferencebylevelresponse.md)\>**
 
 ### Errors
 
 | Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4XX, 5XX        | \*/\*           |
-
 
 ## update
 
@@ -258,40 +179,6 @@ async function run() {
     parameter: "<value>",
     updateSubscriberPreferenceRequestDto: {},
   });
-  
-  // Handle the result
-  console.log(result)
-}
-
-run();
-```
-
-### Standalone function
-
-The standalone function version of this method:
-
-```typescript
-import { NovuCore } from "@novu/api/core.js";
-import { subscribersPreferencesUpdate } from "@novu/api/funcs/subscribersPreferencesUpdate.js";
-
-// Use `NovuCore` for best tree-shaking performance.
-// You can create one instance of it to use across an application.
-const novu = new NovuCore({
-  apiKey: "<YOUR_API_KEY_HERE>",
-});
-
-async function run() {
-  const res = await subscribersPreferencesUpdate(novu, {
-    subscriberId: "<value>",
-    parameter: "<value>",
-    updateSubscriberPreferenceRequestDto: {},
-  });
-
-  if (!res.ok) {
-    throw res.error;
-  }
-
-  const { value: result } = res;
 
   // Handle the result
   console.log(result);
@@ -345,88 +232,10 @@ run();
 
 ### Response
 
-**Promise\<[components.UpdateSubscriberPreferenceResponseDto](../../models/components/updatesubscriberpreferenceresponsedto.md)\>**
+**Promise\<[operations.SubscribersControllerUpdateSubscriberPreferenceResponse](../../models/operations/subscriberscontrollerupdatesubscriberpreferenceresponse.md)\>**
 
 ### Errors
 
 | Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-<<<<<<< Updated upstream
-| errors.SDKError | 4xx-5xx         | */*             |
-
-
-## updateGlobal
-
-Update subscriber global preferences
-
-### Example Usage
-
-```typescript
-import { Novu } from "@novu/api";
-
-const novu = new Novu({
-  apiKey: "<YOUR_API_KEY_HERE>",
-});
-
-async function run() {
-  const result = await novu.subscribers.preferences.updateGlobal("<value>", {});
-  
-  // Handle the result
-  console.log(result)
-}
-
-run();
-```
-
-### Standalone function
-
-The standalone function version of this method:
-
-```typescript
-import { NovuCore } from "@novu/api/core.js";
-import { subscribersPreferencesUpdateGlobal } from "@novu/api/funcs/subscribersPreferencesUpdateGlobal.js";
-
-// Use `NovuCore` for best tree-shaking performance.
-// You can create one instance of it to use across an application.
-const novu = new NovuCore({
-  apiKey: "<YOUR_API_KEY_HERE>",
-});
-
-async function run() {
-  const res = await subscribersPreferencesUpdateGlobal(novu, "<value>", {});
-
-  if (!res.ok) {
-    throw res.error;
-  }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result)
-}
-
-run();
-```
-
-### Parameters
-
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `subscriberId`                                                                                                                                                                 | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
-| `updateSubscriberGlobalPreferencesRequestDto`                                                                                                                                  | [components.UpdateSubscriberGlobalPreferencesRequestDto](../../models/components/updatesubscriberglobalpreferencesrequestdto.md)                                               | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
-
-### Response
-
-**Promise\<[components.UpdateSubscriberPreferenceResponseDto](../../models/components/updatesubscriberpreferenceresponsedto.md)\>**
-
-### Errors
-
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-=======
 | errors.SDKError | 4XX, 5XX        | \*/\*           |
->>>>>>> Stashed changes

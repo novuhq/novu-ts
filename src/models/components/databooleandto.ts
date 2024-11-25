@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type DataBooleanDto = {
   data: boolean;
@@ -42,4 +45,18 @@ export namespace DataBooleanDto$ {
   export const outboundSchema = DataBooleanDto$outboundSchema;
   /** @deprecated use `DataBooleanDto$Outbound` instead. */
   export type Outbound = DataBooleanDto$Outbound;
+}
+
+export function dataBooleanDtoToJSON(dataBooleanDto: DataBooleanDto): string {
+  return JSON.stringify(DataBooleanDto$outboundSchema.parse(dataBooleanDto));
+}
+
+export function dataBooleanDtoFromJSON(
+  jsonString: string,
+): SafeParseResult<DataBooleanDto, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DataBooleanDto$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DataBooleanDto' from JSON`,
+  );
 }

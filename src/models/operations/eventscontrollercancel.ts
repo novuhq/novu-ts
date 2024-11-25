@@ -3,9 +3,19 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type EventsControllerCancelRequest = {
   transactionId: string;
+};
+
+export type EventsControllerCancelResponse = {
+  headers: { [k: string]: Array<string> };
+  result: components.DataBooleanDto;
 };
 
 /** @internal */
@@ -42,4 +52,93 @@ export namespace EventsControllerCancelRequest$ {
   export const outboundSchema = EventsControllerCancelRequest$outboundSchema;
   /** @deprecated use `EventsControllerCancelRequest$Outbound` instead. */
   export type Outbound = EventsControllerCancelRequest$Outbound;
+}
+
+export function eventsControllerCancelRequestToJSON(
+  eventsControllerCancelRequest: EventsControllerCancelRequest,
+): string {
+  return JSON.stringify(
+    EventsControllerCancelRequest$outboundSchema.parse(
+      eventsControllerCancelRequest,
+    ),
+  );
+}
+
+export function eventsControllerCancelRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<EventsControllerCancelRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => EventsControllerCancelRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'EventsControllerCancelRequest' from JSON`,
+  );
+}
+
+/** @internal */
+export const EventsControllerCancelResponse$inboundSchema: z.ZodType<
+  EventsControllerCancelResponse,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  Headers: z.record(z.array(z.string())),
+  Result: components.DataBooleanDto$inboundSchema,
+}).transform((v) => {
+  return remap$(v, {
+    "Headers": "headers",
+    "Result": "result",
+  });
+});
+
+/** @internal */
+export type EventsControllerCancelResponse$Outbound = {
+  Headers: { [k: string]: Array<string> };
+  Result: components.DataBooleanDto$Outbound;
+};
+
+/** @internal */
+export const EventsControllerCancelResponse$outboundSchema: z.ZodType<
+  EventsControllerCancelResponse$Outbound,
+  z.ZodTypeDef,
+  EventsControllerCancelResponse
+> = z.object({
+  headers: z.record(z.array(z.string())),
+  result: components.DataBooleanDto$outboundSchema,
+}).transform((v) => {
+  return remap$(v, {
+    headers: "Headers",
+    result: "Result",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace EventsControllerCancelResponse$ {
+  /** @deprecated use `EventsControllerCancelResponse$inboundSchema` instead. */
+  export const inboundSchema = EventsControllerCancelResponse$inboundSchema;
+  /** @deprecated use `EventsControllerCancelResponse$outboundSchema` instead. */
+  export const outboundSchema = EventsControllerCancelResponse$outboundSchema;
+  /** @deprecated use `EventsControllerCancelResponse$Outbound` instead. */
+  export type Outbound = EventsControllerCancelResponse$Outbound;
+}
+
+export function eventsControllerCancelResponseToJSON(
+  eventsControllerCancelResponse: EventsControllerCancelResponse,
+): string {
+  return JSON.stringify(
+    EventsControllerCancelResponse$outboundSchema.parse(
+      eventsControllerCancelResponse,
+    ),
+  );
+}
+
+export function eventsControllerCancelResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<EventsControllerCancelResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => EventsControllerCancelResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'EventsControllerCancelResponse' from JSON`,
+  );
 }

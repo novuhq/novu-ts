@@ -3,10 +3,18 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type SubscribersControllerDeleteSubscriberCredentialsRequest = {
   subscriberId: string;
   providerId: string;
+};
+
+export type SubscribersControllerDeleteSubscriberCredentialsResponse = {
+  headers: { [k: string]: Array<string> };
 };
 
 /** @internal */
@@ -51,4 +59,104 @@ export namespace SubscribersControllerDeleteSubscriberCredentialsRequest$ {
   /** @deprecated use `SubscribersControllerDeleteSubscriberCredentialsRequest$Outbound` instead. */
   export type Outbound =
     SubscribersControllerDeleteSubscriberCredentialsRequest$Outbound;
+}
+
+export function subscribersControllerDeleteSubscriberCredentialsRequestToJSON(
+  subscribersControllerDeleteSubscriberCredentialsRequest:
+    SubscribersControllerDeleteSubscriberCredentialsRequest,
+): string {
+  return JSON.stringify(
+    SubscribersControllerDeleteSubscriberCredentialsRequest$outboundSchema
+      .parse(subscribersControllerDeleteSubscriberCredentialsRequest),
+  );
+}
+
+export function subscribersControllerDeleteSubscriberCredentialsRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  SubscribersControllerDeleteSubscriberCredentialsRequest,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      SubscribersControllerDeleteSubscriberCredentialsRequest$inboundSchema
+        .parse(JSON.parse(x)),
+    `Failed to parse 'SubscribersControllerDeleteSubscriberCredentialsRequest' from JSON`,
+  );
+}
+
+/** @internal */
+export const SubscribersControllerDeleteSubscriberCredentialsResponse$inboundSchema:
+  z.ZodType<
+    SubscribersControllerDeleteSubscriberCredentialsResponse,
+    z.ZodTypeDef,
+    unknown
+  > = z.object({
+    Headers: z.record(z.array(z.string())),
+  }).transform((v) => {
+    return remap$(v, {
+      "Headers": "headers",
+    });
+  });
+
+/** @internal */
+export type SubscribersControllerDeleteSubscriberCredentialsResponse$Outbound =
+  {
+    Headers: { [k: string]: Array<string> };
+  };
+
+/** @internal */
+export const SubscribersControllerDeleteSubscriberCredentialsResponse$outboundSchema:
+  z.ZodType<
+    SubscribersControllerDeleteSubscriberCredentialsResponse$Outbound,
+    z.ZodTypeDef,
+    SubscribersControllerDeleteSubscriberCredentialsResponse
+  > = z.object({
+    headers: z.record(z.array(z.string())),
+  }).transform((v) => {
+    return remap$(v, {
+      headers: "Headers",
+    });
+  });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace SubscribersControllerDeleteSubscriberCredentialsResponse$ {
+  /** @deprecated use `SubscribersControllerDeleteSubscriberCredentialsResponse$inboundSchema` instead. */
+  export const inboundSchema =
+    SubscribersControllerDeleteSubscriberCredentialsResponse$inboundSchema;
+  /** @deprecated use `SubscribersControllerDeleteSubscriberCredentialsResponse$outboundSchema` instead. */
+  export const outboundSchema =
+    SubscribersControllerDeleteSubscriberCredentialsResponse$outboundSchema;
+  /** @deprecated use `SubscribersControllerDeleteSubscriberCredentialsResponse$Outbound` instead. */
+  export type Outbound =
+    SubscribersControllerDeleteSubscriberCredentialsResponse$Outbound;
+}
+
+export function subscribersControllerDeleteSubscriberCredentialsResponseToJSON(
+  subscribersControllerDeleteSubscriberCredentialsResponse:
+    SubscribersControllerDeleteSubscriberCredentialsResponse,
+): string {
+  return JSON.stringify(
+    SubscribersControllerDeleteSubscriberCredentialsResponse$outboundSchema
+      .parse(subscribersControllerDeleteSubscriberCredentialsResponse),
+  );
+}
+
+export function subscribersControllerDeleteSubscriberCredentialsResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  SubscribersControllerDeleteSubscriberCredentialsResponse,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      SubscribersControllerDeleteSubscriberCredentialsResponse$inboundSchema
+        .parse(JSON.parse(x)),
+    `Failed to parse 'SubscribersControllerDeleteSubscriberCredentialsResponse' from JSON`,
+  );
 }

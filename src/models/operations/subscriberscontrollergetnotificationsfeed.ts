@@ -3,7 +3,11 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type SubscribersControllerGetNotificationsFeedRequest = {
   subscriberId: string;
@@ -18,19 +22,24 @@ export type SubscribersControllerGetNotificationsFeedRequest = {
 };
 
 export type SubscribersControllerGetNotificationsFeedResponseBody = {
-  data: Array<components.FeedResponseDto>;
-  /**
-   * Does the list have more items to fetch
-   */
-  hasMore: boolean;
   /**
    * The current page of the paginated response
    */
   page: number;
   /**
+   * Does the list have more items to fetch
+   */
+  hasMore: boolean;
+  /**
    * Number of items on each page
    */
   pageSize: number;
+  data: Array<components.FeedResponseDto>;
+};
+
+export type SubscribersControllerGetNotificationsFeedResponse = {
+  headers: { [k: string]: Array<string> };
+  result: SubscribersControllerGetNotificationsFeedResponseBody;
 };
 
 /** @internal */
@@ -89,6 +98,33 @@ export namespace SubscribersControllerGetNotificationsFeedRequest$ {
     SubscribersControllerGetNotificationsFeedRequest$Outbound;
 }
 
+export function subscribersControllerGetNotificationsFeedRequestToJSON(
+  subscribersControllerGetNotificationsFeedRequest:
+    SubscribersControllerGetNotificationsFeedRequest,
+): string {
+  return JSON.stringify(
+    SubscribersControllerGetNotificationsFeedRequest$outboundSchema.parse(
+      subscribersControllerGetNotificationsFeedRequest,
+    ),
+  );
+}
+
+export function subscribersControllerGetNotificationsFeedRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  SubscribersControllerGetNotificationsFeedRequest,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      SubscribersControllerGetNotificationsFeedRequest$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'SubscribersControllerGetNotificationsFeedRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const SubscribersControllerGetNotificationsFeedResponseBody$inboundSchema:
   z.ZodType<
@@ -96,18 +132,18 @@ export const SubscribersControllerGetNotificationsFeedResponseBody$inboundSchema
     z.ZodTypeDef,
     unknown
   > = z.object({
-    data: z.array(components.FeedResponseDto$inboundSchema),
-    hasMore: z.boolean(),
     page: z.number(),
+    hasMore: z.boolean(),
     pageSize: z.number(),
+    data: z.array(components.FeedResponseDto$inboundSchema),
   });
 
 /** @internal */
 export type SubscribersControllerGetNotificationsFeedResponseBody$Outbound = {
-  data: Array<components.FeedResponseDto$Outbound>;
-  hasMore: boolean;
   page: number;
+  hasMore: boolean;
   pageSize: number;
+  data: Array<components.FeedResponseDto$Outbound>;
 };
 
 /** @internal */
@@ -117,10 +153,10 @@ export const SubscribersControllerGetNotificationsFeedResponseBody$outboundSchem
     z.ZodTypeDef,
     SubscribersControllerGetNotificationsFeedResponseBody
   > = z.object({
-    data: z.array(components.FeedResponseDto$outboundSchema),
-    hasMore: z.boolean(),
     page: z.number(),
+    hasMore: z.boolean(),
     pageSize: z.number(),
+    data: z.array(components.FeedResponseDto$outboundSchema),
   });
 
 /**
@@ -137,4 +173,116 @@ export namespace SubscribersControllerGetNotificationsFeedResponseBody$ {
   /** @deprecated use `SubscribersControllerGetNotificationsFeedResponseBody$Outbound` instead. */
   export type Outbound =
     SubscribersControllerGetNotificationsFeedResponseBody$Outbound;
+}
+
+export function subscribersControllerGetNotificationsFeedResponseBodyToJSON(
+  subscribersControllerGetNotificationsFeedResponseBody:
+    SubscribersControllerGetNotificationsFeedResponseBody,
+): string {
+  return JSON.stringify(
+    SubscribersControllerGetNotificationsFeedResponseBody$outboundSchema.parse(
+      subscribersControllerGetNotificationsFeedResponseBody,
+    ),
+  );
+}
+
+export function subscribersControllerGetNotificationsFeedResponseBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  SubscribersControllerGetNotificationsFeedResponseBody,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      SubscribersControllerGetNotificationsFeedResponseBody$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'SubscribersControllerGetNotificationsFeedResponseBody' from JSON`,
+  );
+}
+
+/** @internal */
+export const SubscribersControllerGetNotificationsFeedResponse$inboundSchema:
+  z.ZodType<
+    SubscribersControllerGetNotificationsFeedResponse,
+    z.ZodTypeDef,
+    unknown
+  > = z.object({
+    Headers: z.record(z.array(z.string())),
+    Result: z.lazy(() =>
+      SubscribersControllerGetNotificationsFeedResponseBody$inboundSchema
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "Headers": "headers",
+      "Result": "result",
+    });
+  });
+
+/** @internal */
+export type SubscribersControllerGetNotificationsFeedResponse$Outbound = {
+  Headers: { [k: string]: Array<string> };
+  Result: SubscribersControllerGetNotificationsFeedResponseBody$Outbound;
+};
+
+/** @internal */
+export const SubscribersControllerGetNotificationsFeedResponse$outboundSchema:
+  z.ZodType<
+    SubscribersControllerGetNotificationsFeedResponse$Outbound,
+    z.ZodTypeDef,
+    SubscribersControllerGetNotificationsFeedResponse
+  > = z.object({
+    headers: z.record(z.array(z.string())),
+    result: z.lazy(() =>
+      SubscribersControllerGetNotificationsFeedResponseBody$outboundSchema
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      headers: "Headers",
+      result: "Result",
+    });
+  });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace SubscribersControllerGetNotificationsFeedResponse$ {
+  /** @deprecated use `SubscribersControllerGetNotificationsFeedResponse$inboundSchema` instead. */
+  export const inboundSchema =
+    SubscribersControllerGetNotificationsFeedResponse$inboundSchema;
+  /** @deprecated use `SubscribersControllerGetNotificationsFeedResponse$outboundSchema` instead. */
+  export const outboundSchema =
+    SubscribersControllerGetNotificationsFeedResponse$outboundSchema;
+  /** @deprecated use `SubscribersControllerGetNotificationsFeedResponse$Outbound` instead. */
+  export type Outbound =
+    SubscribersControllerGetNotificationsFeedResponse$Outbound;
+}
+
+export function subscribersControllerGetNotificationsFeedResponseToJSON(
+  subscribersControllerGetNotificationsFeedResponse:
+    SubscribersControllerGetNotificationsFeedResponse,
+): string {
+  return JSON.stringify(
+    SubscribersControllerGetNotificationsFeedResponse$outboundSchema.parse(
+      subscribersControllerGetNotificationsFeedResponse,
+    ),
+  );
+}
+
+export function subscribersControllerGetNotificationsFeedResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  SubscribersControllerGetNotificationsFeedResponse,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      SubscribersControllerGetNotificationsFeedResponse$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'SubscribersControllerGetNotificationsFeedResponse' from JSON`,
+  );
 }

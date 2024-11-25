@@ -4,7 +4,6 @@
 
 import { subscribersNotificationsGetUnseenCount } from "../funcs/subscribersNotificationsGetUnseenCount.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as components from "../models/components/index.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
 
@@ -15,7 +14,7 @@ export class SubscribersNotifications extends ClientSDK {
   async getUnseenCount(
     request: operations.SubscribersControllerGetUnseenCountRequest,
     options?: RequestOptions,
-  ): Promise<components.UnseenCountResponse> {
+  ): Promise<operations.SubscribersControllerGetUnseenCountResponse> {
     return unwrapAsync(subscribersNotificationsGetUnseenCount(
       this,
       request,

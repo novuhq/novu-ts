@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type RenameTopicRequestDto = {
   /**
@@ -45,4 +48,22 @@ export namespace RenameTopicRequestDto$ {
   export const outboundSchema = RenameTopicRequestDto$outboundSchema;
   /** @deprecated use `RenameTopicRequestDto$Outbound` instead. */
   export type Outbound = RenameTopicRequestDto$Outbound;
+}
+
+export function renameTopicRequestDtoToJSON(
+  renameTopicRequestDto: RenameTopicRequestDto,
+): string {
+  return JSON.stringify(
+    RenameTopicRequestDto$outboundSchema.parse(renameTopicRequestDto),
+  );
+}
+
+export function renameTopicRequestDtoFromJSON(
+  jsonString: string,
+): SafeParseResult<RenameTopicRequestDto, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => RenameTopicRequestDto$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'RenameTopicRequestDto' from JSON`,
+  );
 }

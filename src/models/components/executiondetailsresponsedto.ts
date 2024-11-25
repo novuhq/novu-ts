@@ -4,9 +4,12 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
-export const ExecutionDetailsResponseDtoChannel = {
+export const Channel = {
   InApp: "in_app",
   Email: "email",
   Sms: "sms",
@@ -17,9 +20,7 @@ export const ExecutionDetailsResponseDtoChannel = {
   Delay: "delay",
   Custom: "custom",
 } as const;
-export type ExecutionDetailsResponseDtoChannel = ClosedEnum<
-  typeof ExecutionDetailsResponseDtoChannel
->;
+export type Channel = ClosedEnum<typeof Channel>;
 
 export const Source = {
   Credentials: "Credentials",
@@ -29,7 +30,7 @@ export const Source = {
 } as const;
 export type Source = ClosedEnum<typeof Source>;
 
-export const ExecutionDetailsResponseDtoStatus = {
+export const Status = {
   Success: "Success",
   Warning: "Warning",
   Failed: "Failed",
@@ -37,50 +38,45 @@ export const ExecutionDetailsResponseDtoStatus = {
   Queued: "Queued",
   ReadConfirmation: "ReadConfirmation",
 } as const;
-export type ExecutionDetailsResponseDtoStatus = ClosedEnum<
-  typeof ExecutionDetailsResponseDtoStatus
->;
+export type Status = ClosedEnum<typeof Status>;
 
 export type ExecutionDetailsResponseDto = {
-  environmentId: string;
   id?: string | undefined;
+  organizationId: string;
   jobId: string;
-  messageId?: string | undefined;
+  environmentId: string;
   notificationId: string;
   notificationTemplateId: string;
-  organizationId: string;
   subscriberId: string;
-  channel: ExecutionDetailsResponseDtoChannel;
-  createdAt?: string | undefined;
-  detail: string;
-  isRetry: boolean;
-  isTest: boolean;
+  messageId?: string | undefined;
   providerId?: string | undefined;
-  source: Source;
-  status: ExecutionDetailsResponseDtoStatus;
   transactionId: string;
+  channel: Channel;
+  detail: string;
+  source: Source;
+  status: Status;
+  isTest: boolean;
+  isRetry: boolean;
+  createdAt?: string | undefined;
 };
 
 /** @internal */
-export const ExecutionDetailsResponseDtoChannel$inboundSchema: z.ZodNativeEnum<
-  typeof ExecutionDetailsResponseDtoChannel
-> = z.nativeEnum(ExecutionDetailsResponseDtoChannel);
+export const Channel$inboundSchema: z.ZodNativeEnum<typeof Channel> = z
+  .nativeEnum(Channel);
 
 /** @internal */
-export const ExecutionDetailsResponseDtoChannel$outboundSchema: z.ZodNativeEnum<
-  typeof ExecutionDetailsResponseDtoChannel
-> = ExecutionDetailsResponseDtoChannel$inboundSchema;
+export const Channel$outboundSchema: z.ZodNativeEnum<typeof Channel> =
+  Channel$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace ExecutionDetailsResponseDtoChannel$ {
-  /** @deprecated use `ExecutionDetailsResponseDtoChannel$inboundSchema` instead. */
-  export const inboundSchema = ExecutionDetailsResponseDtoChannel$inboundSchema;
-  /** @deprecated use `ExecutionDetailsResponseDtoChannel$outboundSchema` instead. */
-  export const outboundSchema =
-    ExecutionDetailsResponseDtoChannel$outboundSchema;
+export namespace Channel$ {
+  /** @deprecated use `Channel$inboundSchema` instead. */
+  export const inboundSchema = Channel$inboundSchema;
+  /** @deprecated use `Channel$outboundSchema` instead. */
+  export const outboundSchema = Channel$outboundSchema;
 }
 
 /** @internal */
@@ -103,25 +99,22 @@ export namespace Source$ {
 }
 
 /** @internal */
-export const ExecutionDetailsResponseDtoStatus$inboundSchema: z.ZodNativeEnum<
-  typeof ExecutionDetailsResponseDtoStatus
-> = z.nativeEnum(ExecutionDetailsResponseDtoStatus);
+export const Status$inboundSchema: z.ZodNativeEnum<typeof Status> = z
+  .nativeEnum(Status);
 
 /** @internal */
-export const ExecutionDetailsResponseDtoStatus$outboundSchema: z.ZodNativeEnum<
-  typeof ExecutionDetailsResponseDtoStatus
-> = ExecutionDetailsResponseDtoStatus$inboundSchema;
+export const Status$outboundSchema: z.ZodNativeEnum<typeof Status> =
+  Status$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace ExecutionDetailsResponseDtoStatus$ {
-  /** @deprecated use `ExecutionDetailsResponseDtoStatus$inboundSchema` instead. */
-  export const inboundSchema = ExecutionDetailsResponseDtoStatus$inboundSchema;
-  /** @deprecated use `ExecutionDetailsResponseDtoStatus$outboundSchema` instead. */
-  export const outboundSchema =
-    ExecutionDetailsResponseDtoStatus$outboundSchema;
+export namespace Status$ {
+  /** @deprecated use `Status$inboundSchema` instead. */
+  export const inboundSchema = Status$inboundSchema;
+  /** @deprecated use `Status$outboundSchema` instead. */
+  export const outboundSchema = Status$outboundSchema;
 }
 
 /** @internal */
@@ -130,55 +123,55 @@ export const ExecutionDetailsResponseDto$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  _environmentId: z.string(),
   _id: z.string().optional(),
+  _organizationId: z.string(),
   _jobId: z.string(),
-  _messageId: z.string().optional(),
+  _environmentId: z.string(),
   _notificationId: z.string(),
   _notificationTemplateId: z.string(),
-  _organizationId: z.string(),
   _subscriberId: z.string(),
-  channel: ExecutionDetailsResponseDtoChannel$inboundSchema,
-  createdAt: z.string().optional(),
-  detail: z.string(),
-  isRetry: z.boolean(),
-  isTest: z.boolean(),
+  _messageId: z.string().optional(),
   providerId: z.string().optional(),
-  source: Source$inboundSchema,
-  status: ExecutionDetailsResponseDtoStatus$inboundSchema,
   transactionId: z.string(),
+  channel: Channel$inboundSchema,
+  detail: z.string(),
+  source: Source$inboundSchema,
+  status: Status$inboundSchema,
+  isTest: z.boolean(),
+  isRetry: z.boolean(),
+  createdAt: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
-    "_environmentId": "environmentId",
     "_id": "id",
+    "_organizationId": "organizationId",
     "_jobId": "jobId",
-    "_messageId": "messageId",
+    "_environmentId": "environmentId",
     "_notificationId": "notificationId",
     "_notificationTemplateId": "notificationTemplateId",
-    "_organizationId": "organizationId",
     "_subscriberId": "subscriberId",
+    "_messageId": "messageId",
   });
 });
 
 /** @internal */
 export type ExecutionDetailsResponseDto$Outbound = {
-  _environmentId: string;
   _id?: string | undefined;
+  _organizationId: string;
   _jobId: string;
-  _messageId?: string | undefined;
+  _environmentId: string;
   _notificationId: string;
   _notificationTemplateId: string;
-  _organizationId: string;
   _subscriberId: string;
-  channel: string;
-  createdAt?: string | undefined;
-  detail: string;
-  isRetry: boolean;
-  isTest: boolean;
+  _messageId?: string | undefined;
   providerId?: string | undefined;
+  transactionId: string;
+  channel: string;
+  detail: string;
   source: string;
   status: string;
-  transactionId: string;
+  isTest: boolean;
+  isRetry: boolean;
+  createdAt?: string | undefined;
 };
 
 /** @internal */
@@ -187,33 +180,33 @@ export const ExecutionDetailsResponseDto$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ExecutionDetailsResponseDto
 > = z.object({
-  environmentId: z.string(),
   id: z.string().optional(),
+  organizationId: z.string(),
   jobId: z.string(),
-  messageId: z.string().optional(),
+  environmentId: z.string(),
   notificationId: z.string(),
   notificationTemplateId: z.string(),
-  organizationId: z.string(),
   subscriberId: z.string(),
-  channel: ExecutionDetailsResponseDtoChannel$outboundSchema,
-  createdAt: z.string().optional(),
-  detail: z.string(),
-  isRetry: z.boolean(),
-  isTest: z.boolean(),
+  messageId: z.string().optional(),
   providerId: z.string().optional(),
-  source: Source$outboundSchema,
-  status: ExecutionDetailsResponseDtoStatus$outboundSchema,
   transactionId: z.string(),
+  channel: Channel$outboundSchema,
+  detail: z.string(),
+  source: Source$outboundSchema,
+  status: Status$outboundSchema,
+  isTest: z.boolean(),
+  isRetry: z.boolean(),
+  createdAt: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
-    environmentId: "_environmentId",
     id: "_id",
+    organizationId: "_organizationId",
     jobId: "_jobId",
-    messageId: "_messageId",
+    environmentId: "_environmentId",
     notificationId: "_notificationId",
     notificationTemplateId: "_notificationTemplateId",
-    organizationId: "_organizationId",
     subscriberId: "_subscriberId",
+    messageId: "_messageId",
   });
 });
 
@@ -228,4 +221,24 @@ export namespace ExecutionDetailsResponseDto$ {
   export const outboundSchema = ExecutionDetailsResponseDto$outboundSchema;
   /** @deprecated use `ExecutionDetailsResponseDto$Outbound` instead. */
   export type Outbound = ExecutionDetailsResponseDto$Outbound;
+}
+
+export function executionDetailsResponseDtoToJSON(
+  executionDetailsResponseDto: ExecutionDetailsResponseDto,
+): string {
+  return JSON.stringify(
+    ExecutionDetailsResponseDto$outboundSchema.parse(
+      executionDetailsResponseDto,
+    ),
+  );
+}
+
+export function executionDetailsResponseDtoFromJSON(
+  jsonString: string,
+): SafeParseResult<ExecutionDetailsResponseDto, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ExecutionDetailsResponseDto$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ExecutionDetailsResponseDto' from JSON`,
+  );
 }

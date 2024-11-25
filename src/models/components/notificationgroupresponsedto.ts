@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type NotificationGroupResponseDto = {
-  environmentId: string;
   id?: string | undefined;
+  name: string;
+  environmentId: string;
   organizationId: string;
   parentId?: string | undefined;
-  name: string;
 };
 
 /** @internal */
@@ -19,15 +22,15 @@ export const NotificationGroupResponseDto$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  _environmentId: z.string(),
   _id: z.string().optional(),
+  name: z.string(),
+  _environmentId: z.string(),
   _organizationId: z.string(),
   _parentId: z.string().optional(),
-  name: z.string(),
 }).transform((v) => {
   return remap$(v, {
-    "_environmentId": "environmentId",
     "_id": "id",
+    "_environmentId": "environmentId",
     "_organizationId": "organizationId",
     "_parentId": "parentId",
   });
@@ -35,11 +38,11 @@ export const NotificationGroupResponseDto$inboundSchema: z.ZodType<
 
 /** @internal */
 export type NotificationGroupResponseDto$Outbound = {
-  _environmentId: string;
   _id?: string | undefined;
+  name: string;
+  _environmentId: string;
   _organizationId: string;
   _parentId?: string | undefined;
-  name: string;
 };
 
 /** @internal */
@@ -48,15 +51,15 @@ export const NotificationGroupResponseDto$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   NotificationGroupResponseDto
 > = z.object({
-  environmentId: z.string(),
   id: z.string().optional(),
+  name: z.string(),
+  environmentId: z.string(),
   organizationId: z.string(),
   parentId: z.string().optional(),
-  name: z.string(),
 }).transform((v) => {
   return remap$(v, {
-    environmentId: "_environmentId",
     id: "_id",
+    environmentId: "_environmentId",
     organizationId: "_organizationId",
     parentId: "_parentId",
   });
@@ -73,4 +76,24 @@ export namespace NotificationGroupResponseDto$ {
   export const outboundSchema = NotificationGroupResponseDto$outboundSchema;
   /** @deprecated use `NotificationGroupResponseDto$Outbound` instead. */
   export type Outbound = NotificationGroupResponseDto$Outbound;
+}
+
+export function notificationGroupResponseDtoToJSON(
+  notificationGroupResponseDto: NotificationGroupResponseDto,
+): string {
+  return JSON.stringify(
+    NotificationGroupResponseDto$outboundSchema.parse(
+      notificationGroupResponseDto,
+    ),
+  );
+}
+
+export function notificationGroupResponseDtoFromJSON(
+  jsonString: string,
+): SafeParseResult<NotificationGroupResponseDto, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => NotificationGroupResponseDto$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'NotificationGroupResponseDto' from JSON`,
+  );
 }

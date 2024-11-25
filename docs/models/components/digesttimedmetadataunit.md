@@ -5,11 +5,7 @@
 ```typescript
 import { DigestTimedMetadataUnit } from "@novu/api/models/components";
 
-<<<<<<< Updated upstream
 let value: DigestTimedMetadataUnit = "hours";
-=======
-let value: DigestTimedMetadataUnit = "seconds";
->>>>>>> Stashed changes
 ```
 
 ## Values
