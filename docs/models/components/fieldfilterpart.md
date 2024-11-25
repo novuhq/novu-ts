@@ -7,8 +7,13 @@ import { FieldFilterPart } from "@novu/api/models/components";
 
 let value: FieldFilterPart = {
   field: "<value>",
+<<<<<<< Updated upstream
   on: "subscriber",
   operator: "NOT_EQUAL",
+=======
+  on: "payload",
+  operator: "LIKE",
+>>>>>>> Stashed changes
   value: "<value>",
 };
 ```

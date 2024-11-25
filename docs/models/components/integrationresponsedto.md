@@ -6,8 +6,13 @@
 import { IntegrationResponseDto } from "@novu/api/models/components";
 
 let value: IntegrationResponseDto = {
+<<<<<<< Updated upstream
   environmentId: "<value>",
   organizationId: "<value>",
+=======
+  environmentId: "<id>",
+  organizationId: "<id>",
+>>>>>>> Stashed changes
   active: false,
   channel: "sms",
   credentials: {},
@@ -17,7 +22,11 @@ let value: IntegrationResponseDto = {
   identifier: "<value>",
   name: "<value>",
   primary: false,
+<<<<<<< Updated upstream
   providerId: "<value>",
+=======
+  providerId: "<id>",
+>>>>>>> Stashed changes
 };
 ```
 

@@ -8,10 +8,10 @@ Novu uses the concept of environments to ensure logical separation of your data 
 
 ### Available Operations
 
-* [list](#list) - Get environments
-* [retrieve](#retrieve) - Get current environment
+* [getAll](#getall) - Get environments
+* [getCurrent](#getcurrent) - Get current environment
 
-## list
+## getAll
 
 Get environments
 
@@ -25,6 +25,7 @@ const novu = new Novu({
 });
 
 async function run() {
+<<<<<<< Updated upstream
   const result = await novu.environments.list();
   
   // Handle the result
@@ -56,9 +57,42 @@ async function run() {
   }
 
   const { value: result } = res;
+=======
+  const result = await novu.environments.getAll();
+>>>>>>> Stashed changes
 
   // Handle the result
-  console.log(result)
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { NovuCore } from "@novu/api/core.js";
+import { environmentsGetAll } from "@novu/api/funcs/environmentsGetAll.js";
+
+// Use `NovuCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const novu = new NovuCore({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await environmentsGetAll(novu);
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -78,12 +112,16 @@ run();
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
+<<<<<<< Updated upstream
 
 ## retrieve
+=======
+## getCurrent
+>>>>>>> Stashed changes
 
 Get current environment
 
@@ -97,6 +135,7 @@ const novu = new Novu({
 });
 
 async function run() {
+<<<<<<< Updated upstream
   const result = await novu.environments.retrieve();
   
   // Handle the result
@@ -128,9 +167,42 @@ async function run() {
   }
 
   const { value: result } = res;
+=======
+  const result = await novu.environments.getCurrent();
+>>>>>>> Stashed changes
 
   // Handle the result
-  console.log(result)
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { NovuCore } from "@novu/api/core.js";
+import { environmentsGetCurrent } from "@novu/api/funcs/environmentsGetCurrent.js";
+
+// Use `NovuCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const novu = new NovuCore({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await environmentsGetCurrent(novu);
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -150,6 +222,6 @@ run();
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |

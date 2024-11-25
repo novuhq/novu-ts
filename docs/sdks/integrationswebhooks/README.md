@@ -1,15 +1,17 @@
-# Variables
-(*workflows.variables*)
+# IntegrationsWebhooks
+(*integrationsWebhooks*)
+
+## Overview
 
 ## Overview
 
 ### Available Operations
 
-* [retrieve](#retrieve) - Get available variables
+* [getStatus](#getstatus) - Get webhook support status for provider
 
-## retrieve
+## getStatus
 
-Get the variables that can be used in the workflow
+Return the status of the webhook for this provider, if it is supported or if it is not based on a boolean value
 
 ### Example Usage
 
@@ -21,7 +23,8 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.workflows.variables.retrieve();
+<<<<<<< Updated upstream:docs/sdks/webhooks/README.md
+  const result = await novu.integrations.webhooks.retrieve("<value>");
   
   // Handle the result
   console.log(result)
@@ -36,7 +39,7 @@ The standalone function version of this method:
 
 ```typescript
 import { NovuCore } from "@novu/api/core.js";
-import { workflowsVariablesRetrieve } from "@novu/api/funcs/workflowsVariablesRetrieve.js";
+import { integrationsWebhooksRetrieve } from "@novu/api/funcs/integrationsWebhooksRetrieve.js";
 
 // Use `NovuCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -45,7 +48,40 @@ const novu = new NovuCore({
 });
 
 async function run() {
-  const res = await workflowsVariablesRetrieve(novu);
+  const res = await integrationsWebhooksRetrieve(novu, "<value>");
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+=======
+  const result = await novu.integrationsWebhooks.getStatus("<id>");
+>>>>>>> Stashed changes:docs/sdks/integrationswebhooks/README.md
+
+  // Handle the result
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { NovuCore } from "@novu/api/core.js";
+import { integrationsWebhooksGetStatus } from "@novu/api/funcs/integrationsWebhooksGetStatus.js";
+
+// Use `NovuCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const novu = new NovuCore({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await integrationsWebhooksGetStatus(novu, "<id>");
 
   if (!res.ok) {
     throw res.error;
@@ -54,7 +90,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -64,16 +100,17 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `providerOrIntegrationId`                                                                                                                                                      | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 ### Response
 
-**Promise\<[components.VariablesResponseDto](../../models/components/variablesresponsedto.md)\>**
+**Promise\<[boolean](../../models/.md)\>**
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |

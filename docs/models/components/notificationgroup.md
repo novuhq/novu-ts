@@ -6,8 +6,13 @@
 import { NotificationGroup } from "@novu/api/models/components";
 
 let value: NotificationGroup = {
+<<<<<<< Updated upstream
   environmentId: "<value>",
   organizationId: "<value>",
+=======
+  environmentId: "<id>",
+  organizationId: "<id>",
+>>>>>>> Stashed changes
   name: "<value>",
 };
 ```

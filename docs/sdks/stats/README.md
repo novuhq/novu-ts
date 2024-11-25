@@ -5,9 +5,9 @@
 
 ### Available Operations
 
-* [graph](#graph) - Get notification graph statistics
-* [retrieve](#retrieve) - Get notification statistics
+* [get](#get) - Get notification statistics
 
+<<<<<<< Updated upstream
 ## graph
 
 Get notification graph statistics
@@ -82,6 +82,9 @@ run();
 
 
 ## retrieve
+=======
+## get
+>>>>>>> Stashed changes
 
 Get notification statistics
 
@@ -95,6 +98,7 @@ const novu = new Novu({
 });
 
 async function run() {
+<<<<<<< Updated upstream
   const result = await novu.notifications.stats.retrieve();
   
   // Handle the result
@@ -126,9 +130,42 @@ async function run() {
   }
 
   const { value: result } = res;
+=======
+  const result = await novu.notifications.stats.get();
+>>>>>>> Stashed changes
 
   // Handle the result
-  console.log(result)
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { NovuCore } from "@novu/api/core.js";
+import { notificationsStatsGet } from "@novu/api/funcs/notificationsStatsGet.js";
+
+// Use `NovuCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const novu = new NovuCore({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await notificationsStatsGet(novu);
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -148,6 +185,6 @@ run();
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |

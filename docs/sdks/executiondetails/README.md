@@ -3,14 +3,17 @@
 
 ## Overview
 
+<<<<<<< Updated upstream
 Execution details are used to track the execution of a workflow. They provided detailed information on the execution of a workflow, including the status of each step, the input and output of each step, and the overall status of the execution.
 <https://docs.novu.co/activity-feed>
 
+=======
+>>>>>>> Stashed changes
 ### Available Operations
 
-* [retrieve](#retrieve) - Get execution details
+* [get](#get) - Get execution details
 
-## retrieve
+## get
 
 Get execution details
 
@@ -24,6 +27,7 @@ const novu = new Novu({
 });
 
 async function run() {
+<<<<<<< Updated upstream
   const result = await novu.executionDetails.retrieve("<value>", "<value>");
   
   // Handle the result
@@ -55,9 +59,42 @@ async function run() {
   }
 
   const { value: result } = res;
+=======
+  const result = await novu.executionDetails.get("<id>", "<id>");
+>>>>>>> Stashed changes
 
   // Handle the result
-  console.log(result)
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { NovuCore } from "@novu/api/core.js";
+import { executionDetailsGet } from "@novu/api/funcs/executionDetailsGet.js";
+
+// Use `NovuCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const novu = new NovuCore({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await executionDetailsGet(novu, "<id>", "<id>");
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -79,6 +116,6 @@ run();
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |

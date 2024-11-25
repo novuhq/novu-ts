@@ -5,7 +5,11 @@
 ```typescript
 import { IntegrationResponseDtoChannel } from "@novu/api/models/components";
 
+<<<<<<< Updated upstream
 let value: IntegrationResponseDtoChannel = "sms";
+=======
+let value: IntegrationResponseDtoChannel = "chat";
+>>>>>>> Stashed changes
 ```
 
 ## Values

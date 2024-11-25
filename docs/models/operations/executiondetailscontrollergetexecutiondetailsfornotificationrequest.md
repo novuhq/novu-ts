@@ -7,8 +7,13 @@ import { ExecutionDetailsControllerGetExecutionDetailsForNotificationRequest } f
 
 let value: ExecutionDetailsControllerGetExecutionDetailsForNotificationRequest =
   {
+<<<<<<< Updated upstream
     notificationId: "<value>",
     subscriberId: "<value>",
+=======
+    notificationId: "<id>",
+    subscriberId: "<id>",
+>>>>>>> Stashed changes
   };
 ```
 

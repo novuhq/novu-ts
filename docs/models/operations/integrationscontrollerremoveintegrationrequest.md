@@ -6,7 +6,11 @@
 import { IntegrationsControllerRemoveIntegrationRequest } from "@novu/api/models/operations";
 
 let value: IntegrationsControllerRemoveIntegrationRequest = {
+<<<<<<< Updated upstream
   integrationId: "<value>",
+=======
+  integrationId: "<id>",
+>>>>>>> Stashed changes
 };
 ```
 

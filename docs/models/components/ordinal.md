@@ -5,7 +5,11 @@
 ```typescript
 import { Ordinal } from "@novu/api/models/components";
 
+<<<<<<< Updated upstream
 let value: Ordinal = "4";
+=======
+let value: Ordinal = "2";
+>>>>>>> Stashed changes
 ```
 
 ## Values

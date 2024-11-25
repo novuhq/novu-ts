@@ -6,7 +6,11 @@
 import { IntegrationsControllerGetWebhookSupportStatusRequest } from "@novu/api/models/operations";
 
 let value: IntegrationsControllerGetWebhookSupportStatusRequest = {
+<<<<<<< Updated upstream
   providerOrIntegrationId: "<value>",
+=======
+  providerOrIntegrationId: "<id>",
+>>>>>>> Stashed changes
 };
 ```
 

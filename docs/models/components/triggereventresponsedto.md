@@ -7,7 +7,11 @@ import { TriggerEventResponseDto } from "@novu/api/models/components";
 
 let value: TriggerEventResponseDto = {
   acknowledged: false,
+<<<<<<< Updated upstream
   status: "processed",
+=======
+  status: "subscriber_id_missing",
+>>>>>>> Stashed changes
 };
 ```
 

@@ -6,11 +6,19 @@
 import { TopicSubscriberDto } from "@novu/api/models/components";
 
 let value: TopicSubscriberDto = {
+<<<<<<< Updated upstream
   environmentId: "<value>",
   organizationId: "<value>",
   subscriberId: "<value>",
   topicId: "<value>",
   externalSubscriberId: "<value>",
+=======
+  environmentId: "<id>",
+  organizationId: "<id>",
+  subscriberId: "<id>",
+  topicId: "<id>",
+  externalSubscriberId: "<id>",
+>>>>>>> Stashed changes
   topicKey: "<value>",
 };
 ```

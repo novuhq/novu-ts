@@ -12,6 +12,7 @@ let value: SubscribersControllerGetNotificationsFeedResponseBody = {
         "<value>",
       ],
       hasMore: false,
+<<<<<<< Updated upstream
       page: 6235.1,
       pageSize: 1589.69,
     },
@@ -19,6 +20,15 @@ let value: SubscribersControllerGetNotificationsFeedResponseBody = {
   hasMore: false,
   page: 3380.07,
   pageSize: 1103.75,
+=======
+      page: 4314.18,
+      pageSize: 8965.47,
+    },
+  ],
+  hasMore: false,
+  page: 3675.62,
+  pageSize: 4358.65,
+>>>>>>> Stashed changes
 };
 ```
 

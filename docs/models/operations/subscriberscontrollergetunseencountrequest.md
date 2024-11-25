@@ -7,8 +7,13 @@ import { SubscribersControllerGetUnseenCountRequest } from "@novu/api/models/ope
 
 let value: SubscribersControllerGetUnseenCountRequest = {
   seen: false,
+<<<<<<< Updated upstream
   subscriberId: "<value>",
   limit: 6747.52,
+=======
+  subscriberId: "<id>",
+  limit: 9194.83,
+>>>>>>> Stashed changes
 };
 ```
 

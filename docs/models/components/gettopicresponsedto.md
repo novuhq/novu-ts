@@ -6,8 +6,13 @@
 import { GetTopicResponseDto } from "@novu/api/models/components";
 
 let value: GetTopicResponseDto = {
+<<<<<<< Updated upstream
   environmentId: "<value>",
   organizationId: "<value>",
+=======
+  environmentId: "<id>",
+  organizationId: "<id>",
+>>>>>>> Stashed changes
   key: "<key>",
   name: "<value>",
   subscribers: [

@@ -5,9 +5,9 @@
 
 ### Available Operations
 
-* [updateOnlineFlag](#updateonlineflag) - Update subscriber online status
+* [updateOnlineStatus](#updateonlinestatus) - Update subscriber online status
 
-## updateOnlineFlag
+## updateOnlineStatus
 
 Used to update the subscriber isOnline flag.
 
@@ -21,8 +21,9 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.subscribers.properties.updateOnlineFlag("<value>", {
+  const result = await novu.subscribers.properties.updateOnlineStatus({
     isOnline: false,
+<<<<<<< Updated upstream
   });
   
   // Handle the result
@@ -56,9 +57,44 @@ async function run() {
   }
 
   const { value: result } = res;
+=======
+  }, "<id>");
+>>>>>>> Stashed changes
 
   // Handle the result
-  console.log(result)
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { NovuCore } from "@novu/api/core.js";
+import { subscribersPropertiesUpdateOnlineStatus } from "@novu/api/funcs/subscribersPropertiesUpdateOnlineStatus.js";
+
+// Use `NovuCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const novu = new NovuCore({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await subscribersPropertiesUpdateOnlineStatus(novu, {
+    isOnline: false,
+  }, "<id>");
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -80,6 +116,6 @@ run();
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |

@@ -4,7 +4,11 @@
 
 import * as z from "zod";
 import { NovuCore } from "../core.js";
+<<<<<<< Updated upstream
 import * as m$ from "../lib/matchers.js";
+=======
+import * as M from "../lib/matchers.js";
+>>>>>>> Stashed changes
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
@@ -24,7 +28,11 @@ import { Result } from "../types/fp.js";
  * Get api keys
  */
 export async function environmentsApiKeysList(
+<<<<<<< Updated upstream
   client$: NovuCore,
+=======
+  client: NovuCore,
+>>>>>>> Stashed changes
   options?: RequestOptions,
 ): Promise<
   Result<
@@ -38,6 +46,7 @@ export async function environmentsApiKeysList(
     | ConnectionError
   >
 > {
+<<<<<<< Updated upstream
   const path$ = pathToFunc("/v1/environments/api-keys")();
 
   const headers$ = new Headers({
@@ -70,6 +79,27 @@ export async function environmentsApiKeysList(
     errorCodes: ["409", "429", "4XX", "503", "5XX"],
     retryConfig: options?.retries
       || client$.options$.retryConfig
+=======
+  const path = pathToFunc("/v1/environments/api-keys")();
+
+  const headers = new Headers({
+    Accept: "application/json",
+  });
+
+  const secConfig = await extractSecurity(client._options.apiKey);
+  const securityInput = secConfig == null ? {} : { apiKey: secConfig };
+  const requestSecurity = resolveGlobalSecurity(securityInput);
+
+  const context = {
+    operationID: "EnvironmentsControllerV1_listOrganizationApiKeys",
+    oAuth2Scopes: [],
+
+    resolvedSecurity: requestSecurity,
+
+    securitySource: client._options.apiKey,
+    retryConfig: options?.retries
+      || client._options.retryConfig
+>>>>>>> Stashed changes
       || {
         strategy: "backoff",
         backoff: {
@@ -79,15 +109,44 @@ export async function environmentsApiKeysList(
           maxElapsedTime: 3600000,
         },
         retryConnectionErrors: true,
+<<<<<<< Updated upstream
       },
     retryCodes: options?.retryCodes || ["408", "409", "429", "5XX"],
+=======
+      }
+      || { strategy: "none" },
+    retryCodes: options?.retryCodes || ["408", "409", "429", "5XX"],
+  };
+
+  const requestRes = client._createRequest(context, {
+    security: requestSecurity,
+    method: "GET",
+    path: path,
+    headers: headers,
+    timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
+  }, options);
+  if (!requestRes.ok) {
+    return requestRes;
+  }
+  const req = requestRes.value;
+
+  const doResult = await client._do(req, {
+    context,
+    errorCodes: ["409", "429", "4XX", "503", "5XX"],
+    retryConfig: context.retryConfig,
+    retryCodes: context.retryCodes,
+>>>>>>> Stashed changes
   });
   if (!doResult.ok) {
     return doResult;
   }
   const response = doResult.value;
 
+<<<<<<< Updated upstream
   const [result$] = await m$.match<
+=======
+  const [result] = await M.match<
+>>>>>>> Stashed changes
     Array<components.ApiKey>,
     | SDKError
     | SDKValidationError
@@ -97,6 +156,7 @@ export async function environmentsApiKeysList(
     | RequestTimeoutError
     | ConnectionError
   >(
+<<<<<<< Updated upstream
     m$.json(200, z.array(components.ApiKey$inboundSchema)),
     m$.fail([409, 429, "4XX", 503, "5XX"]),
   )(response);
@@ -105,4 +165,14 @@ export async function environmentsApiKeysList(
   }
 
   return result$;
+=======
+    M.json(200, z.array(components.ApiKey$inboundSchema)),
+    M.fail([409, 429, "4XX", 503, "5XX"]),
+  )(response);
+  if (!result.ok) {
+    return result;
+  }
+
+  return result;
+>>>>>>> Stashed changes
 }

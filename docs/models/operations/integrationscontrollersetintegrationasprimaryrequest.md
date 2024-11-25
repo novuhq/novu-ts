@@ -6,7 +6,11 @@
 import { IntegrationsControllerSetIntegrationAsPrimaryRequest } from "@novu/api/models/operations";
 
 let value: IntegrationsControllerSetIntegrationAsPrimaryRequest = {
+<<<<<<< Updated upstream
   integrationId: "<value>",
+=======
+  integrationId: "<id>",
+>>>>>>> Stashed changes
 };
 ```
 

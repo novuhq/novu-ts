@@ -6,8 +6,13 @@
 import { EnvironmentResponseDto } from "@novu/api/models/components";
 
 let value: EnvironmentResponseDto = {
+<<<<<<< Updated upstream
   organizationId: "<value>",
   parentId: "<value>",
+=======
+  organizationId: "<id>",
+  parentId: "<id>",
+>>>>>>> Stashed changes
   identifier: "<value>",
   name: "<value>",
 };
@@ -22,4 +27,9 @@ let value: EnvironmentResponseDto = {
 | `parentId`         | *string*           | :heavy_check_mark: | N/A                |
 | `apiKeys`          | *string*[]         | :heavy_minus_sign: | N/A                |
 | `identifier`       | *string*           | :heavy_check_mark: | N/A                |
+<<<<<<< Updated upstream
 | `name`             | *string*           | :heavy_check_mark: | N/A                |
+=======
+| `name`             | *string*           | :heavy_check_mark: | N/A                |
+| `slug`             | *string*           | :heavy_minus_sign: | N/A                |
+>>>>>>> Stashed changes

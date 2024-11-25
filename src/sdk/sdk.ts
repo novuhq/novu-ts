@@ -9,6 +9,7 @@ import { triggerBulk } from "../funcs/triggerBulk.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as components from "../models/components/index.js";
 import { unwrapAsync } from "../types/fp.js";
+<<<<<<< Updated upstream
 import { Changes } from "./changes.js";
 import { Environments } from "./environments.js";
 import { ExecutionDetails } from "./executiondetails.js";
@@ -83,16 +84,119 @@ export class Novu extends ClientSDK {
   private _tenants?: Tenants;
   get tenants(): Tenants {
     return (this._tenants ??= new Tenants(this.options$));
+=======
+import { Environments } from "./environments.js";
+import { ExecutionDetails } from "./executiondetails.js";
+import { Integrations } from "./integrations.js";
+import { IntegrationsWebhooks } from "./integrationswebhooks.js";
+import { Messages } from "./messages.js";
+import { Notifications } from "./notifications.js";
+import { NotificationsStats } from "./notificationsstats.js";
+import { Subscribers } from "./subscribers.js";
+import { SubscribersMessages } from "./subscribersmessages.js";
+import { SubscribersNotifications } from "./subscribersnotifications.js";
+import { SubscribersPreferences } from "./subscriberspreferences.js";
+import { Topics } from "./topics.js";
+import { WorkflowGroups } from "./workflowgroups.js";
+
+export class Novu extends ClientSDK {
+  private _environments?: Environments;
+  get environments(): Environments {
+    return (this._environments ??= new Environments(this._options));
+  }
+
+  private _executionDetails?: ExecutionDetails;
+  get executionDetails(): ExecutionDetails {
+    return (this._executionDetails ??= new ExecutionDetails(this._options));
+  }
+
+  private _integrations?: Integrations;
+  get integrations(): Integrations {
+    return (this._integrations ??= new Integrations(this._options));
+  }
+
+  private _integrationsWebhooks?: IntegrationsWebhooks;
+  get integrationsWebhooks(): IntegrationsWebhooks {
+    return (this._integrationsWebhooks ??= new IntegrationsWebhooks(
+      this._options,
+    ));
+  }
+
+  private _messages?: Messages;
+  get messages(): Messages {
+    return (this._messages ??= new Messages(this._options));
+  }
+
+  private _workflowGroups?: WorkflowGroups;
+  get workflowGroups(): WorkflowGroups {
+    return (this._workflowGroups ??= new WorkflowGroups(this._options));
+  }
+
+  private _notifications?: Notifications;
+  get notifications(): Notifications {
+    return (this._notifications ??= new Notifications(this._options));
+  }
+
+  private _notificationsStats?: NotificationsStats;
+  get notificationsStats(): NotificationsStats {
+    return (this._notificationsStats ??= new NotificationsStats(this._options));
+  }
+
+  private _subscribers?: Subscribers;
+  get subscribers(): Subscribers {
+    return (this._subscribers ??= new Subscribers(this._options));
+  }
+
+  private _subscribersMessages?: SubscribersMessages;
+  get subscribersMessages(): SubscribersMessages {
+    return (this._subscribersMessages ??= new SubscribersMessages(
+      this._options,
+    ));
+  }
+
+  private _subscribersNotifications?: SubscribersNotifications;
+  get subscribersNotifications(): SubscribersNotifications {
+    return (this._subscribersNotifications ??= new SubscribersNotifications(
+      this._options,
+    ));
+  }
+
+  private _subscribersPreferences?: SubscribersPreferences;
+  get subscribersPreferences(): SubscribersPreferences {
+    return (this._subscribersPreferences ??= new SubscribersPreferences(
+      this._options,
+    ));
+>>>>>>> Stashed changes
   }
 
   private _topics?: Topics;
   get topics(): Topics {
+<<<<<<< Updated upstream
     return (this._topics ??= new Topics(this.options$));
   }
 
   private _workflows?: Workflows;
   get workflows(): Workflows {
     return (this._workflows ??= new Workflows(this.options$));
+  }
+
+  /**
+   * Cancel triggered event
+   *
+   * @remarks
+   *
+   *     Using a previously generated transactionId during the event trigger,
+   *      will cancel any active or pending workflows. This is useful to cancel active digests, delays etc...
+   */
+  async cancel(
+    transactionId: string,
+    options?: RequestOptions,
+  ): Promise<components.DataBooleanDto> {
+    return unwrapAsync(cancel(
+      this,
+      transactionId,
+=======
+    return (this._topics ??= new Topics(this._options));
   }
 
   /**
@@ -130,11 +234,48 @@ export class Novu extends ClientSDK {
     return unwrapAsync(trigger(
       this,
       request,
+>>>>>>> Stashed changes
       options,
     ));
   }
 
   /**
+<<<<<<< Updated upstream
+   * Trigger event
+   *
+   * @remarks
+   *
+   *     Trigger event is the main (and only) way to send notifications to subscribers.
+   *     The trigger identifier is used to match the particular workflow associated with it.
+   *     Additional information can be passed according the body interface below.
+   */
+  async trigger(
+    request: components.TriggerEventRequestDto,
+    options?: RequestOptions,
+  ): Promise<components.TriggerEventResponseDto> {
+    return unwrapAsync(trigger(
+=======
+   * Broadcast event to all
+   *
+   * @remarks
+   * Trigger a broadcast event to all existing subscribers, could be used to send announcements, etc.
+   *
+   *       In the future could be used to trigger events to a subset of subscribers based on defined filters.
+   */
+  async triggerBroadcast(
+    request: components.TriggerEventToAllRequestDto,
+    options?: RequestOptions,
+  ): Promise<components.TriggerEventResponseDto> {
+    return unwrapAsync(triggerBroadcast(
+>>>>>>> Stashed changes
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+<<<<<<< Updated upstream
    * Broadcast event to all
    *
    * @remarks
@@ -153,6 +294,8 @@ export class Novu extends ClientSDK {
   }
 
   /**
+=======
+>>>>>>> Stashed changes
    * Bulk trigger event
    *
    * @remarks

@@ -5,7 +5,11 @@
 ```typescript
 import { Operator } from "@novu/api/models/components";
 
+<<<<<<< Updated upstream
 let value: Operator = "BETWEEN";
+=======
+let value: Operator = "NOT_LIKE";
+>>>>>>> Stashed changes
 ```
 
 ## Values

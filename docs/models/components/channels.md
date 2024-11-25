@@ -5,7 +5,11 @@
 ```typescript
 import { Channels } from "@novu/api/models/components";
 
+<<<<<<< Updated upstream
 let value: Channels = "push";
+=======
+let value: Channels = "sms";
+>>>>>>> Stashed changes
 ```
 
 ## Values

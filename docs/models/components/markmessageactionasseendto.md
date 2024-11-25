@@ -6,7 +6,11 @@
 import { MarkMessageActionAsSeenDto } from "@novu/api/models/components";
 
 let value: MarkMessageActionAsSeenDto = {
+<<<<<<< Updated upstream
   status: "pending",
+=======
+  status: "done",
+>>>>>>> Stashed changes
 };
 ```
 

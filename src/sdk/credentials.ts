@@ -15,18 +15,33 @@ export class Credentials extends ClientSDK {
    *
    * @remarks
    * Subscriber credentials associated to the delivery methods such as slack and push tokens.
+<<<<<<< Updated upstream
    *     This endpoint appends provided credentials and deviceTokens to the existing ones.
    */
   async append(
     subscriberId: string,
     updateSubscriberChannelRequestDto:
       components.UpdateSubscriberChannelRequestDto,
+=======
+   *
+   *     This endpoint appends provided credentials and deviceTokens to the existing ones.
+   */
+  async append(
+    updateSubscriberChannelRequestDto:
+      components.UpdateSubscriberChannelRequestDto,
+    subscriberId: string,
+>>>>>>> Stashed changes
     options?: RequestOptions,
   ): Promise<components.SubscriberResponseDto> {
     return unwrapAsync(subscribersCredentialsAppend(
       this,
+<<<<<<< Updated upstream
       subscriberId,
       updateSubscriberChannelRequestDto,
+=======
+      updateSubscriberChannelRequestDto,
+      subscriberId,
+>>>>>>> Stashed changes
       options,
     ));
   }
@@ -57,15 +72,26 @@ export class Credentials extends ClientSDK {
    * Subscriber credentials associated to the delivery methods such as slack and push tokens.
    */
   async update(
+<<<<<<< Updated upstream
     subscriberId: string,
     updateSubscriberChannelRequestDto:
       components.UpdateSubscriberChannelRequestDto,
+=======
+    updateSubscriberChannelRequestDto:
+      components.UpdateSubscriberChannelRequestDto,
+    subscriberId: string,
+>>>>>>> Stashed changes
     options?: RequestOptions,
   ): Promise<components.SubscriberResponseDto> {
     return unwrapAsync(subscribersCredentialsUpdate(
       this,
+<<<<<<< Updated upstream
       subscriberId,
       updateSubscriberChannelRequestDto,
+=======
+      updateSubscriberChannelRequestDto,
+      subscriberId,
+>>>>>>> Stashed changes
       options,
     ));
   }

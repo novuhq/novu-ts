@@ -1,6 +1,7 @@
 lockVersion: 2.0.0
 id: f50499c4-d106-4975-983f-ead3a386ec53
 management:
+<<<<<<< Updated upstream
   docChecksum: d35f4f2287646adf6b222b56b786719d
   docVersion: "1.0"
   speakeasyVersion: 1.399.2
@@ -9,11 +10,22 @@ management:
   configChecksum: 3a75dd73a304fb0621acb8c3a38cdf41
   repoURL: https://github.com/novuhq/novu-ts.git
   installationURL: https://github.com/novuhq/novu-ts
+=======
+  docChecksum: 04230eaab3e3bff1a8783517be37ad60
+  docVersion: "1.0"
+  speakeasyVersion: 1.444.1
+  generationVersion: 2.461.4
+  releaseVersion: 0.0.1-alpha.11
+  configChecksum: 818568f42529f4a1a2a504b605a99baf
+  repoURL: https://github.com/novuhq/novu-node.git
+  installationURL: https://github.com/novuhq/novu-node
+>>>>>>> Stashed changes
   published: true
 features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.11
+<<<<<<< Updated upstream
     core: 3.17.4
     defaultEnabledRetries: 0.1.0
     deprecations: 2.81.1
@@ -21,6 +33,15 @@ features:
     envVarSecurityUsage: 0.1.1
     examples: 2.81.4
     flattening: 2.81.1
+=======
+    core: 3.18.6
+    defaultEnabledRetries: 0.1.0
+    deprecations: 2.81.1
+    enumUnions: 0.1.0
+    envVarSecurityUsage: 0.1.2
+    examples: 2.81.4
+    flattening: 2.82.0
+>>>>>>> Stashed changes
     globalSecurity: 2.82.11
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
@@ -28,11 +49,20 @@ features:
     groups: 2.81.2
     nameOverrides: 2.81.2
     nullables: 0.1.0
+<<<<<<< Updated upstream
     pagination: 2.82.6
     responseFormat: 0.2.3
     retries: 2.83.0
     sdkHooks: 0.1.0
     unions: 2.85.7
+=======
+    pagination: 2.82.7
+    responseFormat: 0.2.3
+    retries: 2.83.0
+    sdkHooks: 0.2.0
+    tests: 0.7.0
+    unions: 2.85.8
+>>>>>>> Stashed changes
 generatedFiles:
   - .eslintrc.cjs
   - .gitattributes
@@ -53,6 +83,7 @@ generatedFiles:
   - docs/models/components/addsubscribersrequestdto.md
   - docs/models/components/apikey.md
   - docs/models/components/backoffunit.md
+<<<<<<< Updated upstream
   - docs/models/components/bulkapplychangedto.md
   - docs/models/components/bulksubscribercreatedto.md
   - docs/models/components/bulktriggereventdto.md
@@ -64,10 +95,18 @@ generatedFiles:
   - docs/models/components/channelcredentials.md
   - docs/models/components/channelpreference.md
   - docs/models/components/channelpreferencetype.md
+=======
+  - docs/models/components/bulksubscribercreatedto.md
+  - docs/models/components/bulktriggereventdto.md
+  - docs/models/components/channel.md
+  - docs/models/components/channelcredentials.md
+  - docs/models/components/channelpreference.md
+>>>>>>> Stashed changes
   - docs/models/components/channels.md
   - docs/models/components/channelsettings.md
   - docs/models/components/content.md
   - docs/models/components/controls.md
+<<<<<<< Updated upstream
   - docs/models/components/createfeedrequestdto.md
   - docs/models/components/createintegrationrequestdto.md
   - docs/models/components/createlayoutresponsedto.md
@@ -86,6 +125,16 @@ generatedFiles:
   - docs/models/components/data.md
   - docs/models/components/databooleandto.md
   - docs/models/components/datanumberdto.md
+=======
+  - docs/models/components/createintegrationrequestdto.md
+  - docs/models/components/createnotificationgrouprequestdto.md
+  - docs/models/components/createsubscriberrequestdto.md
+  - docs/models/components/createtopicrequestdto.md
+  - docs/models/components/createtopicresponsedto.md
+  - docs/models/components/credentialsdto.md
+  - docs/models/components/data.md
+  - docs/models/components/databooleandto.md
+>>>>>>> Stashed changes
   - docs/models/components/delayregularmetadata.md
   - docs/models/components/delayregularmetadatatype.md
   - docs/models/components/delayscheduledmetadata.md
@@ -101,7 +150,10 @@ generatedFiles:
   - docs/models/components/digesttimedmetadata.md
   - docs/models/components/digesttimedmetadatatype.md
   - docs/models/components/digesttimedmetadataunit.md
+<<<<<<< Updated upstream
   - docs/models/components/direction.md
+=======
+>>>>>>> Stashed changes
   - docs/models/components/emailblock.md
   - docs/models/components/emailblockstyles.md
   - docs/models/components/emailblocktype.md
@@ -114,11 +166,15 @@ generatedFiles:
   - docs/models/components/feedresponsedto.md
   - docs/models/components/fieldfilterpart.md
   - docs/models/components/filtertopicsresponsedto.md
+<<<<<<< Updated upstream
   - docs/models/components/getlayoutresponsedto.md
   - docs/models/components/getlayoutresponsedtochannel.md
   - docs/models/components/getsubscriberpreferencesresponsedto.md
   - docs/models/components/gettenantresponsedto.md
   - docs/models/components/gettenantresponsedtodata.md
+=======
+  - docs/models/components/getsubscriberpreferencesresponsedto.md
+>>>>>>> Stashed changes
   - docs/models/components/gettopicresponsedto.md
   - docs/models/components/integrationresponsedto.md
   - docs/models/components/integrationresponsedtochannel.md
@@ -161,15 +217,23 @@ generatedFiles:
   - docs/models/components/operator.md
   - docs/models/components/ordinal.md
   - docs/models/components/ordinalvalue.md
+<<<<<<< Updated upstream
   - docs/models/components/organizationbrandingresponsedto.md
   - docs/models/components/organizationresponsedto.md
+=======
+>>>>>>> Stashed changes
   - docs/models/components/overrides.md
   - docs/models/components/parentid.md
   - docs/models/components/payload.md
   - docs/models/components/preference.md
   - docs/models/components/preferencechannels.md
+<<<<<<< Updated upstream
   - docs/models/components/removesubscribersrequestdto.md
   - docs/models/components/renameorganizationdto.md
+=======
+  - docs/models/components/providerid.md
+  - docs/models/components/removesubscribersrequestdto.md
+>>>>>>> Stashed changes
   - docs/models/components/renametopicrequestdto.md
   - docs/models/components/renametopicresponsedto.md
   - docs/models/components/replycallback.md
@@ -181,7 +245,10 @@ generatedFiles:
   - docs/models/components/subscriberpayloaddto.md
   - docs/models/components/subscriberpayloaddtodata.md
   - docs/models/components/subscriberresponsedto.md
+<<<<<<< Updated upstream
   - docs/models/components/system.md
+=======
+>>>>>>> Stashed changes
   - docs/models/components/templateresponse.md
   - docs/models/components/tenant.md
   - docs/models/components/tenantpayloaddto.md
@@ -194,7 +261,10 @@ generatedFiles:
   - docs/models/components/topicpayloaddto.md
   - docs/models/components/topicpayloaddtotype.md
   - docs/models/components/topicsubscriberdto.md
+<<<<<<< Updated upstream
   - docs/models/components/translations.md
+=======
+>>>>>>> Stashed changes
   - docs/models/components/triggereventrequestdto.md
   - docs/models/components/triggereventrequestdtooverrides.md
   - docs/models/components/triggereventrequestdtopayload.md
@@ -208,18 +278,25 @@ generatedFiles:
   - docs/models/components/type.md
   - docs/models/components/unit.md
   - docs/models/components/unseencountresponse.md
+<<<<<<< Updated upstream
   - docs/models/components/updatebrandingdetailsdto.md
   - docs/models/components/updateintegrationrequestdto.md
   - docs/models/components/updatelayoutrequestdto.md
   - docs/models/components/updatelayoutresponsedto.md
   - docs/models/components/updatelayoutresponsedtochannel.md
   - docs/models/components/updatesubscriberchannelrequestdto.md
+=======
+  - docs/models/components/updateintegrationrequestdto.md
+  - docs/models/components/updatesubscriberchannelrequestdto.md
+  - docs/models/components/updatesubscriberchannelrequestdtoproviderid.md
+>>>>>>> Stashed changes
   - docs/models/components/updatesubscriberglobalpreferencesrequestdto.md
   - docs/models/components/updatesubscriberonlineflagrequestdto.md
   - docs/models/components/updatesubscriberpreferencerequestdto.md
   - docs/models/components/updatesubscriberpreferenceresponsedto.md
   - docs/models/components/updatesubscriberrequestdto.md
   - docs/models/components/updatesubscriberrequestdtodata.md
+<<<<<<< Updated upstream
   - docs/models/components/updatetenantrequestdto.md
   - docs/models/components/updatetenantrequestdtodata.md
   - docs/models/components/updatetenantresponsedto.md
@@ -229,27 +306,39 @@ generatedFiles:
   - docs/models/components/value.md
   - docs/models/components/variables.md
   - docs/models/components/variablesresponsedto.md
+=======
+  - docs/models/components/value.md
+>>>>>>> Stashed changes
   - docs/models/components/weekdays.md
   - docs/models/components/workflowintegrationstatus.md
   - docs/models/components/workflowresponse.md
   - docs/models/components/workflowresponsedata.md
+<<<<<<< Updated upstream
   - docs/models/components/workflowsresponsedto.md
   - docs/models/operations/changescontrollerapplydiffrequest.md
   - docs/models/operations/changescontrollergetchangesrequest.md
+=======
+>>>>>>> Stashed changes
   - docs/models/operations/channel.md
   - docs/models/operations/channels.md
   - docs/models/operations/eventscontrollercancelrequest.md
   - docs/models/operations/executiondetailscontrollergetexecutiondetailsfornotificationrequest.md
+<<<<<<< Updated upstream
   - docs/models/operations/feedscontrollerdeletefeedbyidrequest.md
+=======
+>>>>>>> Stashed changes
   - docs/models/operations/integrationscontrollergetwebhooksupportstatusrequest.md
   - docs/models/operations/integrationscontrollerremoveintegrationrequest.md
   - docs/models/operations/integrationscontrollersetintegrationasprimaryrequest.md
   - docs/models/operations/integrationscontrollerupdateintegrationbyidrequest.md
+<<<<<<< Updated upstream
   - docs/models/operations/layoutscontrollerdeletelayoutrequest.md
   - docs/models/operations/layoutscontrollergetlayoutrequest.md
   - docs/models/operations/layoutscontrollerlistlayoutsrequest.md
   - docs/models/operations/layoutscontrollersetdefaultlayoutrequest.md
   - docs/models/operations/layoutscontrollerupdatelayoutrequest.md
+=======
+>>>>>>> Stashed changes
   - docs/models/operations/messagescontrollerdeletemessagerequest.md
   - docs/models/operations/messagescontrollerdeletemessagesbytransactionidrequest.md
   - docs/models/operations/messagescontrollergetmessagesrequest.md
@@ -259,7 +348,10 @@ generatedFiles:
   - docs/models/operations/notificationscontrollergetactivitygraphstatsrequest.md
   - docs/models/operations/notificationscontrollergetnotificationrequest.md
   - docs/models/operations/notificationscontrollerlistnotificationsrequest.md
+<<<<<<< Updated upstream
   - docs/models/operations/orderby.md
+=======
+>>>>>>> Stashed changes
   - docs/models/operations/parameter.md
   - docs/models/operations/queryparamchannel.md
   - docs/models/operations/subscriberscontrollerchataccessoauthrequest.md
@@ -285,12 +377,15 @@ generatedFiles:
   - docs/models/operations/subscriberscontrollerupdatesubscriberonlineflagrequest.md
   - docs/models/operations/subscriberscontrollerupdatesubscriberpreferencerequest.md
   - docs/models/operations/subscriberscontrollerupdatesubscriberrequest.md
+<<<<<<< Updated upstream
   - docs/models/operations/tenantcontrollergettenantbyidrequest.md
   - docs/models/operations/tenantcontrollerlisttenantsrequest.md
   - docs/models/operations/tenantcontrollerlisttenantsresponse.md
   - docs/models/operations/tenantcontrollerlisttenantsresponsebody.md
   - docs/models/operations/tenantcontrollerremovetenantrequest.md
   - docs/models/operations/tenantcontrollerupdatetenantrequest.md
+=======
+>>>>>>> Stashed changes
   - docs/models/operations/topicscontrolleraddsubscribersrequest.md
   - docs/models/operations/topicscontrollerdeletetopicrequest.md
   - docs/models/operations/topicscontrollergettopicrequest.md
@@ -298,6 +393,7 @@ generatedFiles:
   - docs/models/operations/topicscontrollerlisttopicsrequest.md
   - docs/models/operations/topicscontrollerremovesubscribersrequest.md
   - docs/models/operations/topicscontrollerrenametopicrequest.md
+<<<<<<< Updated upstream
   - docs/models/operations/workflowcontrollerdeleteworkflowbyidrequest.md
   - docs/models/operations/workflowcontrollergetworkflowbyidrequest.md
   - docs/models/operations/workflowcontrollerlistworkflowsrequest.md
@@ -330,10 +426,36 @@ generatedFiles:
   - docs/sdks/webhooks/README.md
   - docs/sdks/workflowgroups/README.md
   - docs/sdks/workflows/README.md
+=======
+  - docs/sdks/apikeys/README.md
+  - docs/sdks/authentication/README.md
+  - docs/sdks/credentials/README.md
+  - docs/sdks/environments/README.md
+  - docs/sdks/executiondetails/README.md
+  - docs/sdks/integrations/README.md
+  - docs/sdks/integrationswebhooks/README.md
+  - docs/sdks/messages/README.md
+  - docs/sdks/notifications/README.md
+  - docs/sdks/notificationsstats/README.md
+  - docs/sdks/novu/README.md
+  - docs/sdks/novumessages/README.md
+  - docs/sdks/novusubscribersnotifications/README.md
+  - docs/sdks/novutopicssubscribers/README.md
+  - docs/sdks/preferences/README.md
+  - docs/sdks/properties/README.md
+  - docs/sdks/stats/README.md
+  - docs/sdks/subscribers/README.md
+  - docs/sdks/subscribersmessages/README.md
+  - docs/sdks/subscribersnotifications/README.md
+  - docs/sdks/subscriberspreferences/README.md
+  - docs/sdks/topics/README.md
+  - docs/sdks/workflowgroups/README.md
+>>>>>>> Stashed changes
   - jsr.json
   - package.json
   - src/core.ts
   - src/funcs/cancel.ts
+<<<<<<< Updated upstream
   - src/funcs/changesApply.ts
   - src/funcs/changesApplyBulk.ts
   - src/funcs/changesCount.ts
@@ -345,10 +467,17 @@ generatedFiles:
   - src/funcs/feedsCreate.ts
   - src/funcs/feedsDelete.ts
   - src/funcs/feedsRetrieve.ts
+=======
+  - src/funcs/environmentsApiKeysList.ts
+  - src/funcs/environmentsGetAll.ts
+  - src/funcs/environmentsGetCurrent.ts
+  - src/funcs/executionDetailsGet.ts
+>>>>>>> Stashed changes
   - src/funcs/integrationsCreate.ts
   - src/funcs/integrationsDelete.ts
   - src/funcs/integrationsList.ts
   - src/funcs/integrationsListActive.ts
+<<<<<<< Updated upstream
   - src/funcs/integrationsSetAsPrimary.ts
   - src/funcs/integrationsUpdate.ts
   - src/funcs/integrationsWebhooksRetrieve.ts
@@ -370,12 +499,26 @@ generatedFiles:
   - src/funcs/organizationsUpdate.ts
   - src/funcs/subscribersAuthenticationChatAccessOauth.ts
   - src/funcs/subscribersAuthenticationChatAccessOauthCallBack.ts
+=======
+  - src/funcs/integrationsSetPrimary.ts
+  - src/funcs/integrationsUpdate.ts
+  - src/funcs/integrationsWebhooksGetStatus.ts
+  - src/funcs/messagesDelete.ts
+  - src/funcs/messagesDeleteByTransactionId.ts
+  - src/funcs/messagesGet.ts
+  - src/funcs/notificationsGet.ts
+  - src/funcs/notificationsList.ts
+  - src/funcs/notificationsStatsGet.ts
+  - src/funcs/subscribersAuthenticationHandleOauth.ts
+  - src/funcs/subscribersAuthenticationHandleOauthCallback.ts
+>>>>>>> Stashed changes
   - src/funcs/subscribersCreate.ts
   - src/funcs/subscribersCreateBulk.ts
   - src/funcs/subscribersCredentialsAppend.ts
   - src/funcs/subscribersCredentialsDelete.ts
   - src/funcs/subscribersCredentialsUpdate.ts
   - src/funcs/subscribersDelete.ts
+<<<<<<< Updated upstream
   - src/funcs/subscribersList.ts
   - src/funcs/subscribersMessagesMarkAll.ts
   - src/funcs/subscribersMessagesMarkAllAs.ts
@@ -402,11 +545,35 @@ generatedFiles:
   - src/funcs/topicsSubscribersAssign.ts
   - src/funcs/topicsSubscribersDelete.ts
   - src/funcs/topicsSubscribersRetrieve.ts
+=======
+  - src/funcs/subscribersGet.ts
+  - src/funcs/subscribersGetAll.ts
+  - src/funcs/subscribersMessagesMark.ts
+  - src/funcs/subscribersMessagesMarkAll.ts
+  - src/funcs/subscribersMessagesUpdateAsSeen.ts
+  - src/funcs/subscribersNotificationsGetFeed.ts
+  - src/funcs/subscribersNotificationsGetUnseenCount.ts
+  - src/funcs/subscribersPreferencesGet.ts
+  - src/funcs/subscribersPreferencesGetByLevel.ts
+  - src/funcs/subscribersPreferencesUpdate.ts
+  - src/funcs/subscribersPreferencesUpdateGlobal.ts
+  - src/funcs/subscribersPropertiesUpdateOnlineStatus.ts
+  - src/funcs/subscribersUpdate.ts
+  - src/funcs/topicsCreate.ts
+  - src/funcs/topicsDelete.ts
+  - src/funcs/topicsGet.ts
+  - src/funcs/topicsGetAll.ts
+  - src/funcs/topicsRename.ts
+  - src/funcs/topicsSubscribersAdd.ts
+  - src/funcs/topicsSubscribersCheck.ts
+  - src/funcs/topicsSubscribersRemove.ts
+>>>>>>> Stashed changes
   - src/funcs/trigger.ts
   - src/funcs/triggerBroadcast.ts
   - src/funcs/triggerBulk.ts
   - src/funcs/workflowGroupsCreate.ts
   - src/funcs/workflowGroupsDelete.ts
+<<<<<<< Updated upstream
   - src/funcs/workflowGroupsList.ts
   - src/funcs/workflowGroupsRetrieve.ts
   - src/funcs/workflowGroupsUpdate.ts
@@ -417,6 +584,11 @@ generatedFiles:
   - src/funcs/workflowsStatusUpdate.ts
   - src/funcs/workflowsUpdate.ts
   - src/funcs/workflowsVariablesRetrieve.ts
+=======
+  - src/funcs/workflowGroupsGet.ts
+  - src/funcs/workflowGroupsList.ts
+  - src/funcs/workflowGroupsUpdate.ts
+>>>>>>> Stashed changes
   - src/hooks/hooks.ts
   - src/hooks/index.ts
   - src/hooks/types.ts
@@ -444,6 +616,7 @@ generatedFiles:
   - src/models/components/activitystatsresponsedto.ts
   - src/models/components/addsubscribersrequestdto.ts
   - src/models/components/apikey.ts
+<<<<<<< Updated upstream
   - src/models/components/bulkapplychangedto.ts
   - src/models/components/bulksubscribercreatedto.ts
   - src/models/components/bulktriggereventdto.ts
@@ -466,6 +639,20 @@ generatedFiles:
   - src/models/components/credentialsdto.ts
   - src/models/components/databooleandto.ts
   - src/models/components/datanumberdto.ts
+=======
+  - src/models/components/bulksubscribercreatedto.ts
+  - src/models/components/bulktriggereventdto.ts
+  - src/models/components/channelcredentials.ts
+  - src/models/components/channelpreference.ts
+  - src/models/components/channelsettings.ts
+  - src/models/components/createintegrationrequestdto.ts
+  - src/models/components/createnotificationgrouprequestdto.ts
+  - src/models/components/createsubscriberrequestdto.ts
+  - src/models/components/createtopicrequestdto.ts
+  - src/models/components/createtopicresponsedto.ts
+  - src/models/components/credentialsdto.ts
+  - src/models/components/databooleandto.ts
+>>>>>>> Stashed changes
   - src/models/components/delayregularmetadata.ts
   - src/models/components/delayscheduledmetadata.ts
   - src/models/components/deletemessageresponsedto.ts
@@ -480,9 +667,13 @@ generatedFiles:
   - src/models/components/feedresponsedto.ts
   - src/models/components/fieldfilterpart.ts
   - src/models/components/filtertopicsresponsedto.ts
+<<<<<<< Updated upstream
   - src/models/components/getlayoutresponsedto.ts
   - src/models/components/getsubscriberpreferencesresponsedto.ts
   - src/models/components/gettenantresponsedto.ts
+=======
+  - src/models/components/getsubscriberpreferencesresponsedto.ts
+>>>>>>> Stashed changes
   - src/models/components/gettopicresponsedto.ts
   - src/models/components/index.ts
   - src/models/components/integrationresponsedto.ts
@@ -503,12 +694,18 @@ generatedFiles:
   - src/models/components/notificationstepvariant.ts
   - src/models/components/notificationtrigger.ts
   - src/models/components/notificationtriggervariable.ts
+<<<<<<< Updated upstream
   - src/models/components/organizationbrandingresponsedto.ts
   - src/models/components/organizationresponsedto.ts
   - src/models/components/preference.ts
   - src/models/components/preferencechannels.ts
   - src/models/components/removesubscribersrequestdto.ts
   - src/models/components/renameorganizationdto.ts
+=======
+  - src/models/components/preference.ts
+  - src/models/components/preferencechannels.ts
+  - src/models/components/removesubscribersrequestdto.ts
+>>>>>>> Stashed changes
   - src/models/components/renametopicrequestdto.ts
   - src/models/components/renametopicresponsedto.ts
   - src/models/components/security.ts
@@ -525,41 +722,57 @@ generatedFiles:
   - src/models/components/triggereventresponsedto.ts
   - src/models/components/triggereventtoallrequestdto.ts
   - src/models/components/unseencountresponse.ts
+<<<<<<< Updated upstream
   - src/models/components/updatebrandingdetailsdto.ts
   - src/models/components/updateintegrationrequestdto.ts
   - src/models/components/updatelayoutrequestdto.ts
   - src/models/components/updatelayoutresponsedto.ts
+=======
+  - src/models/components/updateintegrationrequestdto.ts
+>>>>>>> Stashed changes
   - src/models/components/updatesubscriberchannelrequestdto.ts
   - src/models/components/updatesubscriberglobalpreferencesrequestdto.ts
   - src/models/components/updatesubscriberonlineflagrequestdto.ts
   - src/models/components/updatesubscriberpreferencerequestdto.ts
   - src/models/components/updatesubscriberpreferenceresponsedto.ts
   - src/models/components/updatesubscriberrequestdto.ts
+<<<<<<< Updated upstream
   - src/models/components/updatetenantrequestdto.ts
   - src/models/components/updatetenantresponsedto.ts
   - src/models/components/updateworkflowrequestdto.ts
   - src/models/components/variablesresponsedto.ts
   - src/models/components/workflowresponse.ts
   - src/models/components/workflowsresponsedto.ts
+=======
+  - src/models/components/workflowresponse.ts
+>>>>>>> Stashed changes
   - src/models/errors/httpclienterrors.ts
   - src/models/errors/index.ts
   - src/models/errors/sdkerror.ts
   - src/models/errors/sdkvalidationerror.ts
+<<<<<<< Updated upstream
   - src/models/operations/changescontrollerapplydiff.ts
   - src/models/operations/changescontrollergetchanges.ts
   - src/models/operations/eventscontrollercancel.ts
   - src/models/operations/executiondetailscontrollergetexecutiondetailsfornotification.ts
   - src/models/operations/feedscontrollerdeletefeedbyid.ts
+=======
+  - src/models/operations/eventscontrollercancel.ts
+  - src/models/operations/executiondetailscontrollergetexecutiondetailsfornotification.ts
+>>>>>>> Stashed changes
   - src/models/operations/index.ts
   - src/models/operations/integrationscontrollergetwebhooksupportstatus.ts
   - src/models/operations/integrationscontrollerremoveintegration.ts
   - src/models/operations/integrationscontrollersetintegrationasprimary.ts
   - src/models/operations/integrationscontrollerupdateintegrationbyid.ts
+<<<<<<< Updated upstream
   - src/models/operations/layoutscontrollerdeletelayout.ts
   - src/models/operations/layoutscontrollergetlayout.ts
   - src/models/operations/layoutscontrollerlistlayouts.ts
   - src/models/operations/layoutscontrollersetdefaultlayout.ts
   - src/models/operations/layoutscontrollerupdatelayout.ts
+=======
+>>>>>>> Stashed changes
   - src/models/operations/messagescontrollerdeletemessage.ts
   - src/models/operations/messagescontrollerdeletemessagesbytransactionid.ts
   - src/models/operations/messagescontrollergetmessages.ts
@@ -588,10 +801,13 @@ generatedFiles:
   - src/models/operations/subscriberscontrollerupdatesubscriberglobalpreferences.ts
   - src/models/operations/subscriberscontrollerupdatesubscriberonlineflag.ts
   - src/models/operations/subscriberscontrollerupdatesubscriberpreference.ts
+<<<<<<< Updated upstream
   - src/models/operations/tenantcontrollergettenantbyid.ts
   - src/models/operations/tenantcontrollerlisttenants.ts
   - src/models/operations/tenantcontrollerremovetenant.ts
   - src/models/operations/tenantcontrollerupdatetenant.ts
+=======
+>>>>>>> Stashed changes
   - src/models/operations/topicscontrolleraddsubscribers.ts
   - src/models/operations/topicscontrollerdeletetopic.ts
   - src/models/operations/topicscontrollergettopic.ts
@@ -599,6 +815,7 @@ generatedFiles:
   - src/models/operations/topicscontrollerlisttopics.ts
   - src/models/operations/topicscontrollerremovesubscribers.ts
   - src/models/operations/topicscontrollerrenametopic.ts
+<<<<<<< Updated upstream
   - src/models/operations/workflowcontrollerdeleteworkflowbyid.ts
   - src/models/operations/workflowcontrollergetworkflowbyid.ts
   - src/models/operations/workflowcontrollerlistworkflows.ts
@@ -620,10 +837,27 @@ generatedFiles:
   - src/sdk/novunotifications.ts
   - src/sdk/novusubscribers.ts
   - src/sdk/organizations.ts
+=======
+  - src/sdk/apikeys.ts
+  - src/sdk/authentication.ts
+  - src/sdk/credentials.ts
+  - src/sdk/environments.ts
+  - src/sdk/executiondetails.ts
+  - src/sdk/index.ts
+  - src/sdk/integrations.ts
+  - src/sdk/integrationswebhooks.ts
+  - src/sdk/messages.ts
+  - src/sdk/notifications.ts
+  - src/sdk/notificationsstats.ts
+  - src/sdk/novumessages.ts
+  - src/sdk/novusubscribersnotifications.ts
+  - src/sdk/novutopicssubscribers.ts
+>>>>>>> Stashed changes
   - src/sdk/preferences.ts
   - src/sdk/properties.ts
   - src/sdk/sdk.ts
   - src/sdk/stats.ts
+<<<<<<< Updated upstream
   - src/sdk/status.ts
   - src/sdk/subscribers.ts
   - src/sdk/tenants.ts
@@ -632,6 +866,14 @@ generatedFiles:
   - src/sdk/webhooks.ts
   - src/sdk/workflowgroups.ts
   - src/sdk/workflows.ts
+=======
+  - src/sdk/subscribers.ts
+  - src/sdk/subscribersmessages.ts
+  - src/sdk/subscribersnotifications.ts
+  - src/sdk/subscriberspreferences.ts
+  - src/sdk/topics.ts
+  - src/sdk/workflowgroups.ts
+>>>>>>> Stashed changes
   - src/types/blobs.ts
   - src/types/constdatetime.ts
   - src/types/enums.ts
@@ -646,6 +888,7 @@ examples:
     speakeasy-default-events-controller-cancel:
       parameters:
         path:
+<<<<<<< Updated upstream
           transactionId: "<value>"
       responses:
         "200":
@@ -657,6 +900,19 @@ examples:
       responses:
         "201":
           application/json: {"acknowledged": false, "status": "no_workflow_active_steps_defined"}
+=======
+          transactionId: "<id>"
+      responses:
+        "200":
+          application/json: {"data": true}
+  EventsController_trigger:
+    speakeasy-default-events-controller-trigger:
+      requestBody:
+        application/json: {"name": "workflow_identifier", "to": [{"topicKey": "<value>", "type": "Topic"}, {"topicKey": "<value>", "type": "Topic"}]}
+      responses:
+        "201":
+          application/json: {"acknowledged": true, "status": "processed"}
+>>>>>>> Stashed changes
   EventsController_broadcastEventToAll:
     speakeasy-default-events-controller-broadcast-event-to-all:
       requestBody:
@@ -667,6 +923,7 @@ examples:
   EventsController_triggerBulk:
     speakeasy-default-events-controller-trigger-bulk:
       requestBody:
+<<<<<<< Updated upstream
         application/json: {"events": []}
       responses:
         "201":
@@ -714,10 +971,32 @@ examples:
       responses:
         "200":
           application/json: []
+=======
+        application/json: {"events": [{"name": "workflow_identifier", "to": [{"topicKey": "<value>", "type": "Topic"}, {"subscriberId": "<id>"}]}, {"name": "workflow_identifier", "to": []}, {"name": "workflow_identifier", "to": [{"topicKey": "<value>", "type": "Topic"}, {"topicKey": "<value>", "type": "Topic"}]}]}
+      responses:
+        "201":
+          application/json: [{"acknowledged": true, "status": "error"}, {"acknowledged": true, "status": "no_workflow_active_steps_defined"}, {"acknowledged": true, "status": "trigger_not_active"}]
+  EnvironmentsControllerV1_listMyEnvironments:
+    speakeasy-default-environments-controller-v1-list-my-environments:
+      responses:
+        "200":
+          application/json: [{"_organizationId": "<id>", "_parentId": "<id>", "identifier": "<value>", "name": "<value>"}, {"_organizationId": "<id>", "_parentId": "<id>", "identifier": "<value>", "name": "<value>"}, {"_organizationId": "<id>", "_parentId": "<id>", "identifier": "<value>", "name": "<value>"}]
+  EnvironmentsControllerV1_getCurrentEnvironment:
+    speakeasy-default-environments-controller-v1-get-current-environment:
+      responses:
+        "200":
+          application/json: {"_organizationId": "<id>", "_parentId": "<id>", "identifier": "<value>", "name": "<value>"}
+  EnvironmentsControllerV1_listOrganizationApiKeys:
+    speakeasy-default-environments-controller-v1-list-organization-api-keys:
+      responses:
+        "200":
+          application/json: [{"_userId": "<id>", "key": "<key>"}, {"_userId": "<id>", "key": "<key>"}, {"_userId": "<id>", "key": "<key>"}]
+>>>>>>> Stashed changes
   ExecutionDetailsController_getExecutionDetailsForNotification:
     speakeasy-default-execution-details-controller-get-execution-details-for-notification:
       parameters:
         query:
+<<<<<<< Updated upstream
           notificationId: "<value>"
           subscriberId: "<value>"
       responses:
@@ -750,44 +1029,88 @@ examples:
       responses:
         "201":
           application/json: {"_environmentId": "<value>", "_organizationId": "<value>", "active": false, "channel": "chat", "deleted": true, "deletedAt": "<value>", "deletedBy": "<value>", "identifier": "<value>", "name": "<value>", "primary": false, "providerId": "<value>"}
+=======
+          notificationId: "<id>"
+          subscriberId: "<id>"
+      responses:
+        "200":
+          application/json: [{"_environmentId": "<id>", "_jobId": "<id>", "_notificationId": "<id>", "_notificationTemplateId": "<id>", "_organizationId": "<id>", "_subscriberId": "<id>", "channel": "custom", "detail": "<value>", "isRetry": true, "isTest": true, "source": "Credentials", "status": "Pending", "transactionId": "<id>"}]
+  IntegrationsController_createIntegration:
+    speakeasy-default-integrations-controller-create-integration:
+      requestBody:
+        application/json: {"channel": "sms", "providerId": "<id>"}
+      responses:
+        "201":
+          application/json: {"_environmentId": "<id>", "_organizationId": "<id>", "active": false, "channel": "sms", "deleted": true, "deletedAt": "<value>", "deletedBy": "<value>", "identifier": "<value>", "name": "<value>", "primary": true, "providerId": "<id>"}
+>>>>>>> Stashed changes
   IntegrationsController_removeIntegration:
     speakeasy-default-integrations-controller-remove-integration:
       parameters:
         path:
+<<<<<<< Updated upstream
           integrationId: "<value>"
       responses:
         "200":
           application/json: []
+=======
+          integrationId: "<id>"
+      responses:
+        "200":
+          application/json: [{"_environmentId": "<id>", "_organizationId": "<id>", "active": false, "channel": "email", "deleted": false, "deletedAt": "<value>", "deletedBy": "<value>", "identifier": "<value>", "name": "<value>", "primary": false, "providerId": "<id>"}, {"_environmentId": "<id>", "_organizationId": "<id>", "active": false, "channel": "in_app", "deleted": false, "deletedAt": "<value>", "deletedBy": "<value>", "identifier": "<value>", "name": "<value>", "primary": false, "providerId": "<id>"}]
+>>>>>>> Stashed changes
   IntegrationsController_listIntegrations:
     speakeasy-default-integrations-controller-list-integrations:
       responses:
         "200":
+<<<<<<< Updated upstream
           application/json: []
+=======
+          application/json: [{"_environmentId": "<id>", "_organizationId": "<id>", "active": false, "channel": "chat", "deleted": true, "deletedAt": "<value>", "deletedBy": "<value>", "identifier": "<value>", "name": "<value>", "primary": true, "providerId": "<id>"}, {"_environmentId": "<id>", "_organizationId": "<id>", "active": true, "channel": "chat", "deleted": false, "deletedAt": "<value>", "deletedBy": "<value>", "identifier": "<value>", "name": "<value>", "primary": true, "providerId": "<id>"}, {"_environmentId": "<id>", "_organizationId": "<id>", "active": false, "channel": "in_app", "deleted": true, "deletedAt": "<value>", "deletedBy": "<value>", "identifier": "<value>", "name": "<value>", "primary": false, "providerId": "<id>"}]
+>>>>>>> Stashed changes
   IntegrationsController_getActiveIntegrations:
     speakeasy-default-integrations-controller-get-active-integrations:
       responses:
         "200":
+<<<<<<< Updated upstream
           application/json: []
+=======
+          application/json: [{"_environmentId": "<id>", "_organizationId": "<id>", "active": true, "channel": "in_app", "deleted": true, "deletedAt": "<value>", "deletedBy": "<value>", "identifier": "<value>", "name": "<value>", "primary": true, "providerId": "<id>"}, {"_environmentId": "<id>", "_organizationId": "<id>", "active": false, "channel": "push", "deleted": true, "deletedAt": "<value>", "deletedBy": "<value>", "identifier": "<value>", "name": "<value>", "primary": true, "providerId": "<id>"}, {"_environmentId": "<id>", "_organizationId": "<id>", "active": false, "channel": "chat", "deleted": true, "deletedAt": "<value>", "deletedBy": "<value>", "identifier": "<value>", "name": "<value>", "primary": true, "providerId": "<id>"}]
+>>>>>>> Stashed changes
   IntegrationsController_setIntegrationAsPrimary:
     speakeasy-default-integrations-controller-set-integration-as-primary:
       parameters:
         path:
+<<<<<<< Updated upstream
           integrationId: "<value>"
       responses:
         "200":
           application/json: {"_environmentId": "<value>", "_organizationId": "<value>", "active": false, "channel": "push", "deleted": true, "deletedAt": "<value>", "deletedBy": "<value>", "identifier": "<value>", "name": "<value>", "primary": true, "providerId": "<value>"}
+=======
+          integrationId: "<id>"
+      responses:
+        "200":
+          application/json: {"_environmentId": "<id>", "_organizationId": "<id>", "active": true, "channel": "sms", "deleted": false, "deletedAt": "<value>", "deletedBy": "<value>", "identifier": "<value>", "name": "<value>", "primary": true, "providerId": "<id>"}
+>>>>>>> Stashed changes
   IntegrationsController_updateIntegrationById:
     speakeasy-default-integrations-controller-update-integration-by-id:
       parameters:
         path:
+<<<<<<< Updated upstream
           integrationId: "<value>"
       responses:
         "200":
           application/json: {"_environmentId": "<value>", "_organizationId": "<value>", "active": false, "channel": "in_app", "deleted": true, "deletedAt": "<value>", "deletedBy": "<value>", "identifier": "<value>", "name": "<value>", "primary": false, "providerId": "<value>"}
+=======
+          integrationId: "<id>"
+      responses:
+        "200":
+          application/json: {"_environmentId": "<id>", "_organizationId": "<id>", "active": false, "channel": "sms", "deleted": true, "deletedAt": "<value>", "deletedBy": "<value>", "identifier": "<value>", "name": "<value>", "primary": false, "providerId": "<id>"}
+>>>>>>> Stashed changes
   IntegrationsController_getWebhookSupportStatus:
     speakeasy-default-integrations-controller-get-webhook-support-status:
       parameters:
         path:
+<<<<<<< Updated upstream
           providerOrIntegrationId: "<value>"
       responses:
         "200":
@@ -827,32 +1150,57 @@ examples:
       responses:
         "200":
           application/json: {"_creatorId": "<value>", "_environmentId": "<value>", "_organizationId": "<value>", "channel": "push", "content": "<value>", "contentType": "<value>", "identifier": "<value>", "isDefault": true, "isDeleted": true, "name": "<value>"}
+=======
+          providerOrIntegrationId: "<id>"
+      responses:
+        "200":
+          application/json: true
+>>>>>>> Stashed changes
   MessagesController_deleteMessage:
     speakeasy-default-messages-controller-delete-message:
       parameters:
         path:
+<<<<<<< Updated upstream
           messageId: "<value>"
       responses:
         "200":
           application/json: {"acknowledged": true, "status": "deleted"}
+=======
+          messageId: "<id>"
+      responses:
+        "200":
+          application/json: {"acknowledged": false, "status": "deleted"}
+>>>>>>> Stashed changes
   MessagesController_deleteMessagesByTransactionId:
     speakeasy-default-messages-controller-delete-messages-by-transaction-id:
       parameters:
         path:
+<<<<<<< Updated upstream
           transactionId: "<value>"
+=======
+          transactionId: "<id>"
+>>>>>>> Stashed changes
         query: {}
   MessagesController_getMessages:
     speakeasy-default-messages-controller-get-messages:
       responses:
         "200":
+<<<<<<< Updated upstream
           application/json: {"data": [], "hasMore": false, "page": "9451.91", "pageSize": "9198.31"}
+=======
+          application/json: {"data": ["<value>"], "hasMore": false, "page": "3129.93", "pageSize": "3234.02"}
+>>>>>>> Stashed changes
   NotificationGroupsController_createNotificationGroup:
     speakeasy-default-notification-groups-controller-create-notification-group:
       requestBody:
         application/json: {"name": "<value>"}
       responses:
         "201":
+<<<<<<< Updated upstream
           application/json: {"_environmentId": "<value>", "_organizationId": "<value>", "name": "<value>"}
+=======
+          application/json: {"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>"}
+>>>>>>> Stashed changes
   NotificationGroupsController_deleteNotificationGroup:
     speakeasy-default-notification-groups-controller-delete-notification-group:
       parameters:
@@ -860,12 +1208,20 @@ examples:
           id: "<id>"
       responses:
         "200":
+<<<<<<< Updated upstream
           application/json: {"acknowledged": true, "status": "deleted"}
+=======
+          application/json: {"acknowledged": false, "status": "deleted"}
+>>>>>>> Stashed changes
   NotificationGroupsController_listNotificationGroups:
     speakeasy-default-notification-groups-controller-list-notification-groups:
       responses:
         "200":
+<<<<<<< Updated upstream
           application/json: []
+=======
+          application/json: [{"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>"}, {"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>"}, {"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>"}]
+>>>>>>> Stashed changes
   NotificationGroupsController_getNotificationGroup:
     speakeasy-default-notification-groups-controller-get-notification-group:
       parameters:
@@ -873,7 +1229,11 @@ examples:
           id: "<id>"
       responses:
         "200":
+<<<<<<< Updated upstream
           application/json: {"_environmentId": "<value>", "_organizationId": "<value>", "name": "<value>"}
+=======
+          application/json: {"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>"}
+>>>>>>> Stashed changes
   NotificationGroupsController_updateNotificationGroup:
     speakeasy-default-notification-groups-controller-update-notification-group:
       parameters:
@@ -883,11 +1243,16 @@ examples:
         application/json: {"name": "<value>"}
       responses:
         "200":
+<<<<<<< Updated upstream
           application/json: {"_environmentId": "<value>", "_organizationId": "<value>", "name": "<value>"}
+=======
+          application/json: {"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>"}
+>>>>>>> Stashed changes
   NotificationsController_listNotifications:
     speakeasy-default-notifications-controller-list-notifications:
       parameters:
         query:
+<<<<<<< Updated upstream
           channels: []
           templates: []
           emails: []
@@ -896,23 +1261,45 @@ examples:
       responses:
         "200":
           application/json: {"data": [], "hasMore": false, "page": "998.95", "pageSize": "5472.72"}
+=======
+          channels: ["sms", "chat", "in_app"]
+          templates: []
+          emails: []
+          search: "<value>"
+          subscriberIds: ["<value>", "<value>"]
+      responses:
+        "200":
+          application/json: {"data": ["<value>", "<value>"], "hasMore": true, "page": "7183.03", "pageSize": "861.40"}
+>>>>>>> Stashed changes
   NotificationsController_getNotification:
     speakeasy-default-notifications-controller-get-notification:
       parameters:
         path:
+<<<<<<< Updated upstream
           notificationId: "<value>"
       responses:
         "200":
           application/json: {"_environmentId": "<value>", "_organizationId": "<value>", "transactionId": "<value>"}
+=======
+          notificationId: "<id>"
+      responses:
+        "200":
+          application/json: {"_environmentId": "<id>", "_organizationId": "<id>", "transactionId": "<id>"}
+>>>>>>> Stashed changes
   NotificationsController_getActivityGraphStats:
     speakeasy-default-notifications-controller-get-activity-graph-stats:
       responses:
         "200":
+<<<<<<< Updated upstream
           application/json: []
+=======
+          application/json: [{"_id": "<id>", "channels": ["push"], "count": "401.93", "templates": ["<value>"]}]
+>>>>>>> Stashed changes
   NotificationsController_getActivityStats:
     speakeasy-default-notifications-controller-get-activity-stats:
       responses:
         "200":
+<<<<<<< Updated upstream
           application/json: {"monthlySent": "3704.56", "weeklySent": "9451.91"}
   EEOrganizationController_renameOrganization:
     speakeasy-default-EE-organization-controller-rename-organization:
@@ -944,126 +1331,239 @@ examples:
     speakeasy-default-subscribers-controller-bulk-create-subscribers:
       requestBody:
         application/json: {"subscribers": []}
+=======
+          application/json: {"monthlySent": "3704.57", "weeklySent": "9198.30"}
+  SubscribersController_createSubscriber:
+    speakeasy-default-subscribers-controller-create-subscriber:
+      requestBody:
+        application/json: {"subscriberId": "<id>"}
+      responses:
+        "201":
+          application/json: {"_environmentId": "<id>", "_organizationId": "<id>", "createdAt": "<value>", "deleted": true, "subscriberId": "<id>", "updatedAt": "<value>"}
+  SubscribersController_bulkCreateSubscribers:
+    speakeasy-default-subscribers-controller-bulk-create-subscribers:
+      requestBody:
+        application/json: {"subscribers": ["<value>"]}
+>>>>>>> Stashed changes
   SubscribersController_removeSubscriber:
     speakeasy-default-subscribers-controller-remove-subscriber:
       parameters:
         path:
+<<<<<<< Updated upstream
           subscriberId: "<value>"
       responses:
         "200":
           application/json: {"acknowledged": true, "status": "deleted"}
+=======
+          subscriberId: "<id>"
+      responses:
+        "200":
+          application/json: {"acknowledged": false, "status": "deleted"}
+>>>>>>> Stashed changes
   SubscribersController_listSubscribers:
     speakeasy-default-subscribers-controller-list-subscribers:
       responses:
         "200":
+<<<<<<< Updated upstream
           application/json: {"data": [], "hasMore": false, "page": "998.95", "pageSize": "5472.72"}
+=======
+          application/json: {"data": [{"_environmentId": "<id>", "_organizationId": "<id>", "createdAt": "<value>", "deleted": false, "subscriberId": "<id>", "updatedAt": "<value>"}, {"_environmentId": "<id>", "_organizationId": "<id>", "createdAt": "<value>", "deleted": false, "subscriberId": "<id>", "updatedAt": "<value>"}, {"_environmentId": "<id>", "_organizationId": "<id>", "createdAt": "<value>", "deleted": true, "subscriberId": "<id>", "updatedAt": "<value>"}], "hasMore": true, "page": "1528.38", "pageSize": "6355.32"}
+>>>>>>> Stashed changes
   SubscribersController_getSubscriber:
     speakeasy-default-subscribers-controller-get-subscriber:
       parameters:
         path:
+<<<<<<< Updated upstream
           subscriberId: "<value>"
       responses:
         "200":
           application/json: {"_environmentId": "<value>", "_organizationId": "<value>", "createdAt": "<value>", "deleted": false, "subscriberId": "<value>", "updatedAt": "<value>"}
+=======
+          subscriberId: "<id>"
+        query: {}
+      responses:
+        "200":
+          application/json: {"_environmentId": "<id>", "_organizationId": "<id>", "createdAt": "<value>", "deleted": true, "subscriberId": "<id>", "updatedAt": "<value>"}
+>>>>>>> Stashed changes
   SubscribersController_updateSubscriber:
     speakeasy-default-subscribers-controller-update-subscriber:
       parameters:
         path:
+<<<<<<< Updated upstream
           subscriberId: "<value>"
       responses:
         "200":
           application/json: {"_environmentId": "<value>", "_organizationId": "<value>", "createdAt": "<value>", "deleted": false, "subscriberId": "<value>", "updatedAt": "<value>"}
+=======
+          subscriberId: "<id>"
+      responses:
+        "200":
+          application/json: {"_environmentId": "<id>", "_organizationId": "<id>", "createdAt": "<value>", "deleted": false, "subscriberId": "<id>", "updatedAt": "<value>"}
+>>>>>>> Stashed changes
   SubscribersController_modifySubscriberChannel:
     speakeasy-default-subscribers-controller-modify-subscriber-channel:
       parameters:
         path:
+<<<<<<< Updated upstream
           subscriberId: "<value>"
       requestBody:
         application/json: {"credentials": {"webhookUrl": "<value>"}, "providerId": "3462.44"}
       responses:
         "200":
           application/json: {"_environmentId": "<value>", "_organizationId": "<value>", "createdAt": "<value>", "deleted": false, "subscriberId": "<value>", "updatedAt": "<value>"}
+=======
+          subscriberId: "<id>"
+      requestBody:
+        application/json: {"credentials": {"webhookUrl": "https://our-sonnet.net/"}, "providerId": "zulip"}
+      responses:
+        "200":
+          application/json: {"_environmentId": "<id>", "_organizationId": "<id>", "createdAt": "<value>", "deleted": false, "subscriberId": "<id>", "updatedAt": "<value>"}
+>>>>>>> Stashed changes
   SubscribersController_deleteSubscriberCredentials:
     speakeasy-default-subscribers-controller-delete-subscriber-credentials:
       parameters:
         path:
+<<<<<<< Updated upstream
           subscriberId: "<value>"
           providerId: "<value>"
+=======
+          subscriberId: "<id>"
+          providerId: "<id>"
+>>>>>>> Stashed changes
   SubscribersController_updateSubscriberChannel:
     speakeasy-default-subscribers-controller-update-subscriber-channel:
       parameters:
         path:
+<<<<<<< Updated upstream
           subscriberId: "<value>"
       requestBody:
         application/json: {"credentials": {"webhookUrl": "<value>"}, "providerId": "8574.78"}
       responses:
         "200":
           application/json: {"_environmentId": "<value>", "_organizationId": "<value>", "createdAt": "<value>", "deleted": true, "subscriberId": "<value>", "updatedAt": "<value>"}
+=======
+          subscriberId: "<id>"
+      requestBody:
+        application/json: {"credentials": {"webhookUrl": "https://passionate-flu.org"}, "providerId": "pushpad"}
+      responses:
+        "200":
+          application/json: {"_environmentId": "<id>", "_organizationId": "<id>", "createdAt": "<value>", "deleted": true, "subscriberId": "<id>", "updatedAt": "<value>"}
+>>>>>>> Stashed changes
   SubscribersController_chatAccessOauth:
     speakeasy-default-subscribers-controller-chat-access-oauth:
       parameters:
         path:
+<<<<<<< Updated upstream
           subscriberId: "<value>"
           providerId: "<value>"
         query:
           hmacHash: "<value>"
           environmentId: "<value>"
+=======
+          subscriberId: "<id>"
+          providerId: "<id>"
+        query:
+          hmacHash: "<value>"
+          environmentId: "<id>"
+>>>>>>> Stashed changes
   SubscribersController_chatOauthCallback:
     speakeasy-default-subscribers-controller-chat-oauth-callback:
       parameters:
         path:
+<<<<<<< Updated upstream
           subscriberId: "<value>"
           providerId: "<value>"
         query:
           code: "<value>"
           hmacHash: "<value>"
           environmentId: "<value>"
+=======
+          subscriberId: "<id>"
+          providerId: "<id>"
+        query:
+          code: "<value>"
+          hmacHash: "<value>"
+          environmentId: "<id>"
+>>>>>>> Stashed changes
   SubscribersController_markAllUnreadAsRead:
     speakeasy-default-subscribers-controller-mark-all-unread-as-read:
       parameters:
         path:
+<<<<<<< Updated upstream
           subscriberId: "<value>"
+=======
+          subscriberId: "<id>"
+>>>>>>> Stashed changes
       requestBody:
         application/json: {"markAs": "seen"}
       responses:
         "201":
+<<<<<<< Updated upstream
           application/json: "9412.34"
+=======
+          application/json: "4603.37"
+>>>>>>> Stashed changes
   SubscribersController_markMessagesAs:
     speakeasy-default-subscribers-controller-mark-messages-as:
       parameters:
         path:
+<<<<<<< Updated upstream
           subscriberId: "<value>"
       requestBody:
         application/json: {"markAs": "seen", "messageId": "<value>"}
       responses:
         "201":
           application/json: []
+=======
+          subscriberId: "<id>"
+      requestBody:
+        application/json: {"markAs": "seen", "messageId": []}
+>>>>>>> Stashed changes
   SubscribersController_markActionAsSeen:
     speakeasy-default-subscribers-controller-mark-action-as-seen:
       parameters:
         path:
+<<<<<<< Updated upstream
           messageId: "<value>"
           type: "<value>"
           subscriberId: "<value>"
+=======
+          messageId: "<id>"
+          type: "<value>"
+          subscriberId: "<id>"
+>>>>>>> Stashed changes
       requestBody:
         application/json: {"status": "done"}
       responses:
         "201":
+<<<<<<< Updated upstream
           application/json: {"_environmentId": "<value>", "_messageTemplateId": "<value>", "_notificationId": "<value>", "_organizationId": "<value>", "_subscriberId": "<value>", "_templateId": "<value>", "channel": "email", "content": {"content": "<value>", "type": "button"}, "createdAt": "<value>", "cta": {}, "errorId": "<value>", "errorText": "<value>", "read": true, "seen": false, "status": "sent", "transactionId": "<value>"}
+=======
+          application/json: {"_environmentId": "<id>", "_messageTemplateId": "<id>", "_notificationId": "<id>", "_organizationId": "<id>", "_subscriberId": "<id>", "_templateId": "<id>", "channel": "sms", "content": "<value>", "createdAt": "<value>", "cta": {}, "errorId": "<id>", "errorText": "<value>", "read": true, "seen": true, "status": "warning", "transactionId": "<id>"}
+>>>>>>> Stashed changes
   SubscribersController_getNotificationsFeed:
     "":
       parameters:
         path:
+<<<<<<< Updated upstream
           subscriberId: "<value>"
+=======
+          subscriberId: "<id>"
+>>>>>>> Stashed changes
         query:
           payload: "btoa(JSON.stringify({ foo: 123 })) results in base64 encoded string like eyJmb28iOjEyM30="
       responses:
         "200":
+<<<<<<< Updated upstream
           application/json: {"data": [], "hasMore": false, "page": "9451.91", "pageSize": "9198.31"}
+=======
+          application/json: {"data": [{"data": ["<value>", "<value>", "<value>"], "hasMore": true, "page": "3234.02", "pageSize": "909.16"}], "hasMore": false, "page": "6695.15", "pageSize": "1530.93"}
+>>>>>>> Stashed changes
   SubscribersController_getUnseenCount:
     speakeasy-default-subscribers-controller-get-unseen-count:
       parameters:
         path:
+<<<<<<< Updated upstream
           subscriberId: "<value>"
         query:
           seen: true
@@ -1071,46 +1571,89 @@ examples:
       responses:
         "200":
           application/json: {"count": "4327.98"}
+=======
+          subscriberId: "<id>"
+        query:
+          seen: true
+          limit: "4327.98"
+      responses:
+        "200":
+          application/json: {"count": "8808.14"}
+>>>>>>> Stashed changes
   SubscribersController_updateSubscriberOnlineFlag:
     speakeasy-default-subscribers-controller-update-subscriber-online-flag:
       parameters:
         path:
+<<<<<<< Updated upstream
           subscriberId: "<value>"
+=======
+          subscriberId: "<id>"
+>>>>>>> Stashed changes
       requestBody:
         application/json: {"isOnline": false}
       responses:
         "200":
+<<<<<<< Updated upstream
           application/json: {"_environmentId": "<value>", "_organizationId": "<value>", "createdAt": "<value>", "deleted": true, "subscriberId": "<value>", "updatedAt": "<value>"}
+=======
+          application/json: {"_environmentId": "<id>", "_organizationId": "<id>", "createdAt": "<value>", "deleted": true, "subscriberId": "<id>", "updatedAt": "<value>"}
+>>>>>>> Stashed changes
   SubscribersController_listSubscriberPreferences:
     speakeasy-default-subscribers-controller-list-subscriber-preferences:
       parameters:
         path:
+<<<<<<< Updated upstream
           subscriberId: "<value>"
       responses:
         "200":
           application/json: []
+=======
+          subscriberId: "<id>"
+        query: {}
+      responses:
+        "200":
+          application/json: [{"preference": {"enabled": false}, "template": {"_id": "<id>", "critical": false, "name": "<value>", "triggers": []}}, {"preference": {"enabled": true}, "template": {"_id": "<id>", "critical": true, "name": "<value>", "triggers": ["<value>", "<value>"]}}, {"preference": {"enabled": false}, "template": {"_id": "<id>", "critical": true, "name": "<value>", "triggers": ["<value>", "<value>"]}}]
+>>>>>>> Stashed changes
   SubscribersController_getSubscriberPreferenceByLevel:
     speakeasy-default-subscribers-controller-get-subscriber-preference-by-level:
       parameters:
         path:
+<<<<<<< Updated upstream
           parameter: "Topic"
           subscriberId: "<value>"
       responses:
         "200":
           application/json: []
+=======
+          parameter: "template"
+          subscriberId: "<id>"
+        query: {}
+      responses:
+        "200":
+          application/json: [{"preference": {"enabled": true}}]
+>>>>>>> Stashed changes
   SubscribersController_updateSubscriberPreference:
     speakeasy-default-subscribers-controller-update-subscriber-preference:
       parameters:
         path:
+<<<<<<< Updated upstream
           subscriberId: "<value>"
           parameter: "<value>"
       responses:
         "200":
           application/json: {"preference": {"enabled": false}, "template": {"_id": "<id>", "critical": true, "name": "<value>", "triggers": []}}
+=======
+          subscriberId: "<id>"
+          parameter: "<value>"
+      responses:
+        "200":
+          application/json: {"preference": {"enabled": false}, "template": {"_id": "<id>", "critical": false, "name": "<value>", "triggers": ["<value>"]}}
+>>>>>>> Stashed changes
   SubscribersController_updateSubscriberGlobalPreferences:
     speakeasy-default-subscribers-controller-update-subscriber-global-preferences:
       parameters:
         path:
+<<<<<<< Updated upstream
           subscriberId: "<value>"
       responses:
         "200":
@@ -1148,6 +1691,12 @@ examples:
       responses:
         "200":
           application/json: {"_environmentId": "<value>", "_id": "<id>", "createdAt": "<value>", "identifier": "<value>", "updatedAt": "<value>"}
+=======
+          subscriberId: "<id>"
+      responses:
+        "200":
+          application/json: {"preference": {"enabled": true}, "template": {"_id": "<id>", "critical": true, "name": "<value>", "triggers": ["<value>"]}}
+>>>>>>> Stashed changes
   TopicsController_createTopic:
     speakeasy-default-topics-controller-create-topic:
       requestBody:
@@ -1164,7 +1713,11 @@ examples:
     speakeasy-default-topics-controller-list-topics:
       responses:
         "200":
+<<<<<<< Updated upstream
           application/json: {"data": [], "page": "7685.78", "pageSize": "998.95", "totalCount": "5472.72"}
+=======
+          application/json: {"data": [{"_environmentId": "<id>", "_organizationId": "<id>", "key": "<key>", "name": "<value>", "subscribers": ["<value>", "<value>"]}, {"_environmentId": "<id>", "_organizationId": "<id>", "key": "<key>", "name": "<value>", "subscribers": ["<value>", "<value>"]}, {"_environmentId": "<id>", "_organizationId": "<id>", "key": "<key>", "name": "<value>", "subscribers": []}], "page": "2297.17", "pageSize": "1528.38", "totalCount": "6355.32"}
+>>>>>>> Stashed changes
   TopicsController_renameTopic:
     speakeasy-default-topics-controller-rename-topic:
       parameters:
@@ -1174,7 +1727,11 @@ examples:
         application/json: {"name": "<value>"}
       responses:
         "200":
+<<<<<<< Updated upstream
           application/json: {"_environmentId": "<value>", "_organizationId": "<value>", "key": "<key>", "name": "<value>", "subscribers": []}
+=======
+          application/json: {"_environmentId": "<id>", "_organizationId": "<id>", "key": "<key>", "name": "<value>", "subscribers": ["<value>", "<value>", "<value>"]}
+>>>>>>> Stashed changes
   TopicsController_getTopic:
     speakeasy-default-topics-controller-get-topic:
       parameters:
@@ -1182,25 +1739,38 @@ examples:
           topicKey: "<value>"
       responses:
         "200":
+<<<<<<< Updated upstream
           application/json: {"_environmentId": "<value>", "_organizationId": "<value>", "key": "<key>", "name": "<value>", "subscribers": []}
+=======
+          application/json: {"_environmentId": "<id>", "_organizationId": "<id>", "key": "<key>", "name": "<value>", "subscribers": ["<value>"]}
+>>>>>>> Stashed changes
   TopicsController_addSubscribers:
     speakeasy-default-topics-controller-add-subscribers:
       parameters:
         path:
           topicKey: "<value>"
       requestBody:
+<<<<<<< Updated upstream
         application/json: {"subscribers": []}
+=======
+        application/json: {"subscribers": ["<value>", "<value>", "<value>"]}
+>>>>>>> Stashed changes
   TopicsController_removeSubscribers:
     speakeasy-default-topics-controller-remove-subscribers:
       parameters:
         path:
           topicKey: "<value>"
       requestBody:
+<<<<<<< Updated upstream
         application/json: {"subscribers": []}
+=======
+        application/json: {"subscribers": ["<value>", "<value>"]}
+>>>>>>> Stashed changes
   TopicsController_getTopicSubscriber:
     speakeasy-default-topics-controller-get-topic-subscriber:
       parameters:
         path:
+<<<<<<< Updated upstream
           externalSubscriberId: "<value>"
           topicKey: "<value>"
       responses:
@@ -1259,3 +1829,10 @@ examples:
       responses:
         "200":
           application/json: {"_creatorId": "<value>", "_environmentId": "<value>", "_notificationGroupId": "<value>", "_organizationId": "<value>", "active": true, "critical": true, "deleted": false, "deletedAt": "<value>", "deletedBy": "<value>", "description": "Future-proofed next generation workforce", "draft": false, "name": "<value>", "steps": [], "tags": [], "triggers": []}
+=======
+          externalSubscriberId: "<id>"
+          topicKey: "<value>"
+      responses:
+        "200":
+          application/json: {"_environmentId": "<id>", "_organizationId": "<id>", "_subscriberId": "<id>", "_topicId": "<id>", "externalSubscriberId": "<id>", "topicKey": "<value>"}
+>>>>>>> Stashed changes

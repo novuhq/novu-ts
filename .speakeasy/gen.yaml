@@ -10,6 +10,7 @@ generation:
     requestResponseComponentNamesFeb2024: true
   auth:
     oAuth2ClientCredentialsEnabled: false
+    oAuth2PasswordEnabled: false
 typescript:
   version: 0.0.1-alpha.11
   additionalDependencies:
@@ -19,8 +20,10 @@ typescript:
   additionalPackageJSON: {}
   author: Novu
   clientServerStatusCodesAsErrors: true
+  defaultErrorName: SDKError
   enumFormat: union
   flattenGlobalSecurity: true
+  flatteningOrder: body-first
   imports:
     option: openapi
     paths:

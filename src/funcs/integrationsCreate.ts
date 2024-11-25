@@ -3,9 +3,15 @@
  */
 
 import { NovuCore } from "../core.js";
+<<<<<<< Updated upstream
 import { encodeJSON as encodeJSON$ } from "../lib/encodings.js";
 import * as m$ from "../lib/matchers.js";
 import * as schemas$ from "../lib/schemas.js";
+=======
+import { encodeJSON } from "../lib/encodings.js";
+import * as M from "../lib/matchers.js";
+import { safeParse } from "../lib/schemas.js";
+>>>>>>> Stashed changes
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
@@ -28,7 +34,11 @@ import { Result } from "../types/fp.js";
  * Create an integration for the current environment the user is based on the API key provided
  */
 export async function integrationsCreate(
+<<<<<<< Updated upstream
   client$: NovuCore,
+=======
+  client: NovuCore,
+>>>>>>> Stashed changes
   request: components.CreateIntegrationRequestDto,
   options?: RequestOptions,
 ): Promise<
@@ -43,6 +53,7 @@ export async function integrationsCreate(
     | ConnectionError
   >
 > {
+<<<<<<< Updated upstream
   const input$ = request;
 
   const parsed$ = schemas$.safeParse(
@@ -60,10 +71,28 @@ export async function integrationsCreate(
   const path$ = pathToFunc("/v1/integrations")();
 
   const headers$ = new Headers({
+=======
+  const parsed = safeParse(
+    request,
+    (value) =>
+      components.CreateIntegrationRequestDto$outboundSchema.parse(value),
+    "Input validation failed",
+  );
+  if (!parsed.ok) {
+    return parsed;
+  }
+  const payload = parsed.value;
+  const body = encodeJSON("body", payload, { explode: true });
+
+  const path = pathToFunc("/v1/integrations")();
+
+  const headers = new Headers({
+>>>>>>> Stashed changes
     "Content-Type": "application/json",
     Accept: "application/json",
   });
 
+<<<<<<< Updated upstream
   const apiKey$ = await extractSecurity(client$.options$.apiKey);
   const security$ = apiKey$ == null ? {} : { apiKey: apiKey$ };
   const context = {
@@ -91,6 +120,21 @@ export async function integrationsCreate(
     errorCodes: ["409", "429", "4XX", "503", "5XX"],
     retryConfig: options?.retries
       || client$.options$.retryConfig
+=======
+  const secConfig = await extractSecurity(client._options.apiKey);
+  const securityInput = secConfig == null ? {} : { apiKey: secConfig };
+  const requestSecurity = resolveGlobalSecurity(securityInput);
+
+  const context = {
+    operationID: "IntegrationsController_createIntegration",
+    oAuth2Scopes: [],
+
+    resolvedSecurity: requestSecurity,
+
+    securitySource: client._options.apiKey,
+    retryConfig: options?.retries
+      || client._options.retryConfig
+>>>>>>> Stashed changes
       || {
         strategy: "backoff",
         backoff: {
@@ -100,15 +144,45 @@ export async function integrationsCreate(
           maxElapsedTime: 3600000,
         },
         retryConnectionErrors: true,
+<<<<<<< Updated upstream
       },
     retryCodes: options?.retryCodes || ["408", "409", "429", "5XX"],
+=======
+      }
+      || { strategy: "none" },
+    retryCodes: options?.retryCodes || ["408", "409", "429", "5XX"],
+  };
+
+  const requestRes = client._createRequest(context, {
+    security: requestSecurity,
+    method: "POST",
+    path: path,
+    headers: headers,
+    body: body,
+    timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
+  }, options);
+  if (!requestRes.ok) {
+    return requestRes;
+  }
+  const req = requestRes.value;
+
+  const doResult = await client._do(req, {
+    context,
+    errorCodes: ["409", "429", "4XX", "503", "5XX"],
+    retryConfig: context.retryConfig,
+    retryCodes: context.retryCodes,
+>>>>>>> Stashed changes
   });
   if (!doResult.ok) {
     return doResult;
   }
   const response = doResult.value;
 
+<<<<<<< Updated upstream
   const [result$] = await m$.match<
+=======
+  const [result] = await M.match<
+>>>>>>> Stashed changes
     components.IntegrationResponseDto,
     | SDKError
     | SDKValidationError
@@ -118,6 +192,7 @@ export async function integrationsCreate(
     | RequestTimeoutError
     | ConnectionError
   >(
+<<<<<<< Updated upstream
     m$.json(201, components.IntegrationResponseDto$inboundSchema),
     m$.fail([409, 429, "4XX", 503, "5XX"]),
   )(response);
@@ -126,4 +201,14 @@ export async function integrationsCreate(
   }
 
   return result$;
+=======
+    M.json(201, components.IntegrationResponseDto$inboundSchema),
+    M.fail([409, 429, "4XX", 503, "5XX"]),
+  )(response);
+  if (!result.ok) {
+    return result;
+  }
+
+  return result;
+>>>>>>> Stashed changes
 }

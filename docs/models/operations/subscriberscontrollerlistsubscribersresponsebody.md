@@ -8,17 +8,30 @@ import { SubscribersControllerListSubscribersResponseBody } from "@novu/api/mode
 let value: SubscribersControllerListSubscribersResponseBody = {
   data: [
     {
+<<<<<<< Updated upstream
       environmentId: "<value>",
       organizationId: "<value>",
       createdAt: "<value>",
       deleted: false,
       subscriberId: "<value>",
+=======
+      environmentId: "<id>",
+      organizationId: "<id>",
+      createdAt: "<value>",
+      deleted: false,
+      subscriberId: "<id>",
+>>>>>>> Stashed changes
       updatedAt: "<value>",
     },
   ],
   hasMore: false,
+<<<<<<< Updated upstream
   page: 6350.59,
   pageSize: 1613.09,
+=======
+  page: 6439.90,
+  pageSize: 4238.55,
+>>>>>>> Stashed changes
 };
 ```
 

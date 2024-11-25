@@ -6,15 +6,23 @@
 import { WorkflowResponse } from "@novu/api/models/components";
 
 let value: WorkflowResponse = {
+<<<<<<< Updated upstream
   creatorId: "<value>",
   environmentId: "<value>",
   notificationGroupId: "<value>",
   organizationId: "<value>",
+=======
+  creatorId: "<id>",
+  environmentId: "<id>",
+  notificationGroupId: "<id>",
+  organizationId: "<id>",
+>>>>>>> Stashed changes
   active: false,
   critical: false,
   deleted: false,
   deletedAt: "<value>",
   deletedBy: "<value>",
+<<<<<<< Updated upstream
   description: "Advanced eco-centric middleware",
   draft: false,
   name: "<value>",
@@ -24,6 +32,29 @@ let value: WorkflowResponse = {
     "<value>",
   ],
   triggers: [],
+=======
+  description: "know gleefully ew ceramic",
+  draft: false,
+  name: "<value>",
+  preferenceSettings: {},
+  steps: [
+    {},
+  ],
+  tags: [
+    "<value>",
+  ],
+  triggers: [
+    {
+      identifier: "<value>",
+      type: "event",
+      variables: [
+        {
+          name: "<value>",
+        },
+      ],
+    },
+  ],
+>>>>>>> Stashed changes
 };
 ```
 

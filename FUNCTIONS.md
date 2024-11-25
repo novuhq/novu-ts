@@ -30,7 +30,11 @@ const novu = new NovuCore({
 });
 
 async function run() {
+<<<<<<< Updated upstream
   const res = await cancel(novu, "<value>");
+=======
+  const res = await cancel(novu, "<id>");
+>>>>>>> Stashed changes
 
   switch (true) {
     case res.ok:
@@ -52,7 +56,11 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
+<<<<<<< Updated upstream
   console.log(result)
+=======
+  console.log(result);
+>>>>>>> Stashed changes
 }
 
 run();

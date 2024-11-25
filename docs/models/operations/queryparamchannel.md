@@ -5,7 +5,11 @@
 ```typescript
 import { QueryParamChannel } from "@novu/api/models/operations";
 
+<<<<<<< Updated upstream
 let value: QueryParamChannel = "in_app";
+=======
+let value: QueryParamChannel = "chat";
+>>>>>>> Stashed changes
 ```
 
 ## Values

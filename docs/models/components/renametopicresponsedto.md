@@ -6,8 +6,13 @@
 import { RenameTopicResponseDto } from "@novu/api/models/components";
 
 let value: RenameTopicResponseDto = {
+<<<<<<< Updated upstream
   environmentId: "<value>",
   organizationId: "<value>",
+=======
+  environmentId: "<id>",
+  organizationId: "<id>",
+>>>>>>> Stashed changes
   key: "<key>",
   name: "<value>",
   subscribers: [

@@ -6,6 +6,7 @@
 import { MessageResponseDto } from "@novu/api/models/components";
 
 let value: MessageResponseDto = {
+<<<<<<< Updated upstream
   environmentId: "<value>",
   messageTemplateId: "<value>",
   notificationId: "<value>",
@@ -13,6 +14,15 @@ let value: MessageResponseDto = {
   subscriberId: "<value>",
   templateId: "<value>",
   channel: "sms",
+=======
+  environmentId: "<id>",
+  messageTemplateId: "<id>",
+  notificationId: "<id>",
+  organizationId: "<id>",
+  subscriberId: "<id>",
+  templateId: "<id>",
+  channel: "in_app",
+>>>>>>> Stashed changes
   content: {
     content: "<value>",
     type: "text",
@@ -21,14 +31,22 @@ let value: MessageResponseDto = {
   cta: {
     data: {},
   },
+<<<<<<< Updated upstream
   errorId: "<value>",
+=======
+  errorId: "<id>",
+>>>>>>> Stashed changes
   errorText: "<value>",
   overrides: {},
   payload: {},
   read: false,
   seen: false,
   status: "sent",
+<<<<<<< Updated upstream
   transactionId: "<value>",
+=======
+  transactionId: "<id>",
+>>>>>>> Stashed changes
 };
 ```
 

@@ -6,6 +6,7 @@
 import { ExecutionDetailsResponseDto } from "@novu/api/models/components";
 
 let value: ExecutionDetailsResponseDto = {
+<<<<<<< Updated upstream
   environmentId: "<value>",
   jobId: "<value>",
   notificationId: "<value>",
@@ -19,6 +20,21 @@ let value: ExecutionDetailsResponseDto = {
   source: "Internal",
   status: "Failed",
   transactionId: "<value>",
+=======
+  environmentId: "<id>",
+  jobId: "<id>",
+  notificationId: "<id>",
+  notificationTemplateId: "<id>",
+  organizationId: "<id>",
+  subscriberId: "<id>",
+  channel: "custom",
+  detail: "<value>",
+  isRetry: false,
+  isTest: false,
+  source: "Webhook",
+  status: "Failed",
+  transactionId: "<id>",
+>>>>>>> Stashed changes
 };
 ```
 

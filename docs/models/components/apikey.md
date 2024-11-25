@@ -6,7 +6,11 @@
 import { ApiKey } from "@novu/api/models/components";
 
 let value: ApiKey = {
+<<<<<<< Updated upstream
   userId: "<value>",
+=======
+  userId: "<id>",
+>>>>>>> Stashed changes
   key: "<key>",
 };
 ```

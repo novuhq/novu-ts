@@ -7,9 +7,15 @@ import { UpdateSubscriberChannelRequestDto } from "@novu/api/models/components";
 
 let value: UpdateSubscriberChannelRequestDto = {
   credentials: {
+<<<<<<< Updated upstream
     webhookUrl: "<value>",
   },
   providerId: 5373.73,
+=======
+    webhookUrl: "https://rare-pillbox.biz/",
+  },
+  providerId: "msteams",
+>>>>>>> Stashed changes
 };
 ```
 

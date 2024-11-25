@@ -3,11 +3,21 @@
  */
 
 import { HTTPClient, RequestInput } from "../lib/http.js";
+<<<<<<< Updated upstream
+=======
+import { RetryConfig } from "../lib/retries.js";
+import { SecurityState } from "../lib/security.js";
+>>>>>>> Stashed changes
 
 export type HookContext = {
   operationID: string;
   oAuth2Scopes?: string[];
   securitySource?: any | (() => Promise<any>);
+<<<<<<< Updated upstream
+=======
+  retryConfig: RetryConfig;
+  resolvedSecurity: SecurityState | null;
+>>>>>>> Stashed changes
 };
 
 export type Awaitable<T> = T | Promise<T>;

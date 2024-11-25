@@ -7,7 +7,11 @@ The channel of the message to be deleted
 ```typescript
 import { Channel } from "@novu/api/models/operations";
 
+<<<<<<< Updated upstream
 let value: Channel = "push";
+=======
+let value: Channel = "chat";
+>>>>>>> Stashed changes
 ```
 
 ## Values

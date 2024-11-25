@@ -6,7 +6,11 @@
 import { MessagesControllerDeleteMessagesByTransactionIdRequest } from "@novu/api/models/operations";
 
 let value: MessagesControllerDeleteMessagesByTransactionIdRequest = {
+<<<<<<< Updated upstream
   transactionId: "<value>",
+=======
+  transactionId: "<id>",
+>>>>>>> Stashed changes
 };
 ```
 

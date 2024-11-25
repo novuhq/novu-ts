@@ -9,14 +9,23 @@ let value: StepFilter = {
   children: [
     {
       field: "<value>",
+<<<<<<< Updated upstream
       on: "payload",
       operator: "LIKE",
+=======
+      on: "subscriber",
+      operator: "SMALLER",
+>>>>>>> Stashed changes
       value: "<value>",
     },
   ],
   isNegated: false,
   type: "BOOLEAN",
+<<<<<<< Updated upstream
   value: "AND",
+=======
+  value: "OR",
+>>>>>>> Stashed changes
 };
 ```
 

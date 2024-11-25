@@ -10,8 +10,13 @@ let value: ActivitiesResponseDto = {
     "<value>",
   ],
   hasMore: false,
+<<<<<<< Updated upstream
   page: 9786.19,
   pageSize: 4736.08,
+=======
+  page: 1182.74,
+  pageSize: 6399.21,
+>>>>>>> Stashed changes
 };
 ```
 

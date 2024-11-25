@@ -6,7 +6,11 @@
 import { ChannelCredentials } from "@novu/api/models/components";
 
 let value: ChannelCredentials = {
+<<<<<<< Updated upstream
   webhookUrl: "<value>",
+=======
+  webhookUrl: "https://responsible-fort.info",
+>>>>>>> Stashed changes
 };
 ```
 

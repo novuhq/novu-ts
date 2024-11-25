@@ -6,8 +6,13 @@
 import { CreateIntegrationRequestDto } from "@novu/api/models/components";
 
 let value: CreateIntegrationRequestDto = {
+<<<<<<< Updated upstream
   channel: "push",
   providerId: "<value>",
+=======
+  channel: "chat",
+  providerId: "<id>",
+>>>>>>> Stashed changes
 };
 ```
 

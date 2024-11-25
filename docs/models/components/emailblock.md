@@ -7,7 +7,11 @@ import { EmailBlock } from "@novu/api/models/components";
 
 let value: EmailBlock = {
   content: "<value>",
+<<<<<<< Updated upstream
   type: "text",
+=======
+  type: "button",
+>>>>>>> Stashed changes
 };
 ```
 

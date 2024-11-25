@@ -6,9 +6,15 @@
 import { SubscribersControllerMarkAllUnreadAsReadRequest } from "@novu/api/models/operations";
 
 let value: SubscribersControllerMarkAllUnreadAsReadRequest = {
+<<<<<<< Updated upstream
   subscriberId: "<value>",
   markAllMessageAsRequestDto: {
     markAs: "seen",
+=======
+  subscriberId: "<id>",
+  markAllMessageAsRequestDto: {
+    markAs: "unread",
+>>>>>>> Stashed changes
   },
 };
 ```

@@ -6,11 +6,19 @@
 import { SubscriberResponseDto } from "@novu/api/models/components";
 
 let value: SubscriberResponseDto = {
+<<<<<<< Updated upstream
   environmentId: "<value>",
   organizationId: "<value>",
   createdAt: "<value>",
   deleted: false,
   subscriberId: "<value>",
+=======
+  environmentId: "<id>",
+  organizationId: "<id>",
+  createdAt: "<value>",
+  deleted: false,
+  subscriberId: "<id>",
+>>>>>>> Stashed changes
   updatedAt: "<value>",
 };
 ```
@@ -35,4 +43,5 @@ let value: SubscriberResponseDto = {
 | `locale`                                                                                                                          | *string*                                                                                                                          | :heavy_minus_sign:                                                                                                                | N/A                                                                                                                               |
 | `phone`                                                                                                                           | *string*                                                                                                                          | :heavy_minus_sign:                                                                                                                | N/A                                                                                                                               |
 | `subscriberId`                                                                                                                    | *string*                                                                                                                          | :heavy_check_mark:                                                                                                                | The internal identifier you used to create this subscriber, usually correlates to the id the user in your systems                 |
+| `topics`                                                                                                                          | *string*[]                                                                                                                        | :heavy_minus_sign:                                                                                                                | Topics that subscriber belongs to                                                                                                 |
 | `updatedAt`                                                                                                                       | *string*                                                                                                                          | :heavy_check_mark:                                                                                                                | N/A                                                                                                                               |

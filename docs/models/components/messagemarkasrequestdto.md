@@ -7,7 +7,13 @@ import { MessageMarkAsRequestDto } from "@novu/api/models/components";
 
 let value: MessageMarkAsRequestDto = {
   markAs: "seen",
+<<<<<<< Updated upstream
   messageId: "<value>",
+=======
+  messageId: [
+    "<id>",
+  ],
+>>>>>>> Stashed changes
 };
 ```
 

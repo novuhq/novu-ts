@@ -6,12 +6,17 @@
 import { SubscribersControllerListSubscriberPreferencesRequest } from "@novu/api/models/operations";
 
 let value: SubscribersControllerListSubscriberPreferencesRequest = {
+<<<<<<< Updated upstream
   subscriberId: "<value>",
+=======
+  subscriberId: "<id>",
+>>>>>>> Stashed changes
 };
 ```
 
 ## Fields
 
-| Field              | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `subscriberId`     | *string*           | :heavy_check_mark: | N/A                |
+| Field                                                                                                                     | Type                                                                                                                      | Required                                                                                                                  | Description                                                                                                               |
+| ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| `subscriberId`                                                                                                            | *string*                                                                                                                  | :heavy_check_mark:                                                                                                        | N/A                                                                                                                       |
+| `includeInactiveChannels`                                                                                                 | *boolean*                                                                                                                 | :heavy_minus_sign:                                                                                                        | A flag which specifies if the inactive workflow channels should be included in the retrieved preferences. Default is true |

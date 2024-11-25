@@ -7,7 +7,11 @@ import { MessageButton } from "@novu/api/models/components";
 
 let value: MessageButton = {
   content: "<value>",
+<<<<<<< Updated upstream
   type: "secondary",
+=======
+  type: "primary",
+>>>>>>> Stashed changes
 };
 ```
 

@@ -6,7 +6,11 @@
 import { SubscribersControllerUpdateSubscriberOnlineFlagRequest } from "@novu/api/models/operations";
 
 let value: SubscribersControllerUpdateSubscriberOnlineFlagRequest = {
+<<<<<<< Updated upstream
   subscriberId: "<value>",
+=======
+  subscriberId: "<id>",
+>>>>>>> Stashed changes
   updateSubscriberOnlineFlagRequestDto: {
     isOnline: false,
   },

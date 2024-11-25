@@ -10,8 +10,13 @@ let value: FeedResponseDto = {
     "<value>",
   ],
   hasMore: false,
+<<<<<<< Updated upstream
   page: 7917.25,
   pageSize: 8121.69,
+=======
+  page: 4386.02,
+  pageSize: 9883.74,
+>>>>>>> Stashed changes
 };
 ```
 

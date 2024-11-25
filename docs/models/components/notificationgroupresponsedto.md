@@ -6,8 +6,13 @@
 import { NotificationGroupResponseDto } from "@novu/api/models/components";
 
 let value: NotificationGroupResponseDto = {
+<<<<<<< Updated upstream
   environmentId: "<value>",
   organizationId: "<value>",
+=======
+  environmentId: "<id>",
+  organizationId: "<id>",
+>>>>>>> Stashed changes
   name: "<value>",
 };
 ```

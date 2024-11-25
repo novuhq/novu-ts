@@ -6,7 +6,11 @@
 import { CreateSubscriberRequestDto } from "@novu/api/models/components";
 
 let value: CreateSubscriberRequestDto = {
+<<<<<<< Updated upstream
   subscriberId: "<value>",
+=======
+  subscriberId: "<id>",
+>>>>>>> Stashed changes
 };
 ```
 

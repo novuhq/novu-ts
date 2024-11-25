@@ -5,10 +5,10 @@
 
 ### Available Operations
 
-* [chatAccessOauth](#chataccessoauth) - Handle chat oauth
-* [chatAccessOauthCallBack](#chataccessoauthcallback) - Handle providers oauth redirect
+* [handleOauth](#handleoauth) - Handle chat oauth
+* [handleOauthCallback](#handleoauthcallback) - Handle providers oauth redirect
 
-## chatAccessOauth
+## handleOauth
 
 Handle chat oauth
 
@@ -22,11 +22,11 @@ const novu = new Novu({
 });
 
 async function run() {
-  await novu.subscribers.authentication.chatAccessOauth({
-    subscriberId: "<value>",
-    providerId: "<value>",
+  await novu.subscribers.authentication.handleOauth({
+    subscriberId: "<id>",
+    providerId: "<id>",
     hmacHash: "<value>",
-    environmentId: "<value>",
+    environmentId: "<id>",
   });
 }
 
@@ -61,6 +61,40 @@ async function run() {
 
   const { value: result } = res;
 
+
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { NovuCore } from "@novu/api/core.js";
+import { subscribersAuthenticationHandleOauth } from "@novu/api/funcs/subscribersAuthenticationHandleOauth.js";
+
+// Use `NovuCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const novu = new NovuCore({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await subscribersAuthenticationHandleOauth(novu, {
+    subscriberId: "<id>",
+    providerId: "<id>",
+    hmacHash: "<value>",
+    environmentId: "<id>",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
   
 }
 
@@ -82,12 +116,16 @@ run();
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
+<<<<<<< Updated upstream
 
 ## chatAccessOauthCallBack
+=======
+## handleOauthCallback
+>>>>>>> Stashed changes
 
 Handle providers oauth redirect
 
@@ -101,12 +139,12 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.subscribers.authentication.chatAccessOauthCallBack({
-    subscriberId: "<value>",
-    providerId: "<value>",
+  const result = await novu.subscribers.authentication.handleOauthCallback({
+    subscriberId: "<id>",
+    providerId: "<id>",
     code: "<value>",
     hmacHash: "<value>",
-    environmentId: "<value>",
+    environmentId: "<id>",
   });
   
   // Handle the result
@@ -146,7 +184,43 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { NovuCore } from "@novu/api/core.js";
+import { subscribersAuthenticationHandleOauthCallback } from "@novu/api/funcs/subscribersAuthenticationHandleOauthCallback.js";
+
+// Use `NovuCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const novu = new NovuCore({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await subscribersAuthenticationHandleOauthCallback(novu, {
+    subscriberId: "<id>",
+    providerId: "<id>",
+    code: "<value>",
+    hmacHash: "<value>",
+    environmentId: "<id>",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -167,6 +241,6 @@ run();
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |

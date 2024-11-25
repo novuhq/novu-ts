@@ -5,10 +5,9 @@
 
 ### Available Operations
 
-* [markAll](#markall) - Marks all the subscriber messages as read, unread, seen or unseen. Optionally you can pass feed id (or array) to mark messages of a particular feed.
-* [markAllAs](#markallas) - Mark a subscriber messages as seen, read, unseen or unread
-* [updateAsSeen](#updateasseen) - Mark message action as seen
+* [mark](#mark) - Mark a subscriber messages as seen, read, unseen or unread
 
+<<<<<<< Updated upstream
 ## markAll
 
 Marks all the subscriber messages as read, unread, seen or unseen. Optionally you can pass feed id (or array) to mark messages of a particular feed.
@@ -88,6 +87,9 @@ run();
 
 
 ## markAllAs
+=======
+## mark
+>>>>>>> Stashed changes
 
 Mark a subscriber messages as seen, read, unseen or unread
 
@@ -101,6 +103,7 @@ const novu = new Novu({
 });
 
 async function run() {
+<<<<<<< Updated upstream
   const result = await novu.subscribers.messages.markAllAs("<value>", {
     markAs: "seen",
     messageId: "<value>",
@@ -138,9 +141,52 @@ async function run() {
   }
 
   const { value: result } = res;
+=======
+  const result = await novu.subscribers.messages.mark({
+    markAs: "seen",
+    messageId: [
+      "<id>",
+    ],
+  }, "<id>");
+>>>>>>> Stashed changes
 
   // Handle the result
-  console.log(result)
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { NovuCore } from "@novu/api/core.js";
+import { subscribersMessagesMark } from "@novu/api/funcs/subscribersMessagesMark.js";
+
+// Use `NovuCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const novu = new NovuCore({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await subscribersMessagesMark(novu, {
+    markAs: "seen",
+    messageId: [
+      "<id>",
+    ],
+  }, "<id>");
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -162,8 +208,9 @@ run();
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
+<<<<<<< Updated upstream
 | errors.SDKError | 4xx-5xx         | */*             |
 
 
@@ -252,3 +299,6 @@ run();
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
+=======
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
+>>>>>>> Stashed changes

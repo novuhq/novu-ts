@@ -4,7 +4,11 @@
 
 import { messagesDelete } from "../funcs/messagesDelete.js";
 import { messagesDeleteByTransactionId } from "../funcs/messagesDeleteByTransactionId.js";
+<<<<<<< Updated upstream
 import { messagesRetrieve } from "../funcs/messagesRetrieve.js";
+=======
+import { messagesGet } from "../funcs/messagesGet.js";
+>>>>>>> Stashed changes
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as components from "../models/components/index.js";
 import * as operations from "../models/operations/index.js";
@@ -53,11 +57,19 @@ export class Messages extends ClientSDK {
    * @remarks
    * Returns a list of messages, could paginate using the `page` query parameter
    */
+<<<<<<< Updated upstream
   async retrieve(
     request: operations.MessagesControllerGetMessagesRequest,
     options?: RequestOptions,
   ): Promise<components.ActivitiesResponseDto> {
     return unwrapAsync(messagesRetrieve(
+=======
+  async get(
+    request: operations.MessagesControllerGetMessagesRequest,
+    options?: RequestOptions,
+  ): Promise<components.ActivitiesResponseDto> {
+    return unwrapAsync(messagesGet(
+>>>>>>> Stashed changes
       this,
       request,
       options,

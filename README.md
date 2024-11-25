@@ -83,7 +83,11 @@ const novu = new Novu({
 });
 
 async function run() {
+<<<<<<< Updated upstream
   const result = await novu.cancel("<value>");
+=======
+  const result = await novu.cancel("<id>");
+>>>>>>> Stashed changes
 
   // Handle the result
   console.log(result);
@@ -108,6 +112,12 @@ async function run() {
     overrides: {},
     payload: {},
     to: [
+      {
+        topicKey: "<value>",
+        type: "Topic",
+      },
+<<<<<<< Updated upstream
+=======
       {
         topicKey: "<value>",
         type: "Topic",
@@ -158,11 +168,102 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.triggerBulk({
+    events: [
+      {
+        name: "workflow_identifier",
+        overrides: {},
+        payload: {},
+        to: [
+          {
+            topicKey: "<value>",
+            type: "Topic",
+          },
+          {
+            subscriberId: "<id>",
+          },
+        ],
+      },
+      {
+        name: "workflow_identifier",
+        overrides: {},
+        payload: {},
+        to: [
+          {
+            topicKey: "<value>",
+            type: "Topic",
+          },
+        ],
+      },
+      {
+        name: "workflow_identifier",
+        overrides: {},
+        payload: {},
+        to: [
+          {
+            topicKey: "<value>",
+            type: "Topic",
+          },
+          {
+            topicKey: "<value>",
+            type: "Topic",
+          },
+        ],
+      },
+>>>>>>> Stashed changes
+    ],
+  });
+
+  // Handle the result
+  console.log(result);
+<<<<<<< Updated upstream
+}
+
+run();
+
+```
+
+### Broadcast Event to All
+
+```typescript
+import { Novu } from "@novu/api";
+
+const novu = new Novu({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await novu.triggerBroadcast({
+    name: "<value>",
+    overrides: {},
+    payload: {},
+  });
+
+  // Handle the result
+  console.log(result);
+}
+
+run();
+
+```
+
+### Trigger Notification Events in Bulk
+
+```typescript
+import { Novu } from "@novu/api";
+
+const novu = new Novu({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await novu.triggerBulk({
     events: [],
   });
 
   // Handle the result
   console.log(result);
+=======
+>>>>>>> Stashed changes
 }
 
 run();
@@ -175,6 +276,7 @@ run();
 
 <details open>
 <summary>Available methods</summary>
+<<<<<<< Updated upstream
 
 ### [changes](docs/sdks/changes/README.md)
 
@@ -182,11 +284,13 @@ run();
 * [applyBulk](docs/sdks/changes/README.md#applybulk) - Apply changes
 * [count](docs/sdks/changes/README.md#count) - Get changes count
 * [retrieve](docs/sdks/changes/README.md#retrieve) - Get changes
+=======
+>>>>>>> Stashed changes
 
 ### [environments](docs/sdks/environments/README.md)
 
-* [list](docs/sdks/environments/README.md#list) - Get environments
-* [retrieve](docs/sdks/environments/README.md#retrieve) - Get current environment
+* [getAll](docs/sdks/environments/README.md#getall) - Get environments
+* [getCurrent](docs/sdks/environments/README.md#getcurrent) - Get current environment
 
 #### [environments.apiKeys](docs/sdks/apikeys/README.md)
 
@@ -194,13 +298,7 @@ run();
 
 ### [executionDetails](docs/sdks/executiondetails/README.md)
 
-* [retrieve](docs/sdks/executiondetails/README.md#retrieve) - Get execution details
-
-### [feeds](docs/sdks/feeds/README.md)
-
-* [create](docs/sdks/feeds/README.md#create) - Create feed
-* [delete](docs/sdks/feeds/README.md#delete) - Delete feed
-* [retrieve](docs/sdks/feeds/README.md#retrieve) - Get feeds
+* [get](docs/sdks/executiondetails/README.md#get) - Get execution details
 
 ### [integrations](docs/sdks/integrations/README.md)
 
@@ -208,38 +306,37 @@ run();
 * [delete](docs/sdks/integrations/README.md#delete) - Delete integration
 * [list](docs/sdks/integrations/README.md#list) - Get integrations
 * [listActive](docs/sdks/integrations/README.md#listactive) - Get active integrations
-* [setAsPrimary](docs/sdks/integrations/README.md#setasprimary) - Set integration as primary
+* [setPrimary](docs/sdks/integrations/README.md#setprimary) - Set integration as primary
 * [update](docs/sdks/integrations/README.md#update) - Update integration
 
+<<<<<<< Updated upstream
 #### [integrations.webhooks](docs/sdks/webhooks/README.md)
+=======
+### [integrationsWebhooks](docs/sdks/integrationswebhooks/README.md)
+>>>>>>> Stashed changes
 
-* [retrieve](docs/sdks/webhooks/README.md#retrieve) - Get webhook support status for provider
-
-### [layouts](docs/sdks/layouts/README.md)
-
-* [create](docs/sdks/layouts/README.md#create) - Layout creation
-* [delete](docs/sdks/layouts/README.md#delete) - Delete layout
-* [list](docs/sdks/layouts/README.md#list) - Filter layouts
-* [retrieve](docs/sdks/layouts/README.md#retrieve) - Get layout
-* [setAsDefault](docs/sdks/layouts/README.md#setasdefault) - Set default layout
-* [update](docs/sdks/layouts/README.md#update) - Update a layout
+* [getStatus](docs/sdks/integrationswebhooks/README.md#getstatus) - Get webhook support status for provider
 
 ### [messages](docs/sdks/messages/README.md)
 
 * [delete](docs/sdks/messages/README.md#delete) - Delete message
 * [deleteByTransactionId](docs/sdks/messages/README.md#deletebytransactionid) - Delete messages by transactionId
+<<<<<<< Updated upstream
 * [retrieve](docs/sdks/messages/README.md#retrieve) - Get messages
+=======
+* [get](docs/sdks/messages/README.md#get) - Get messages
+>>>>>>> Stashed changes
 
 ### [notifications](docs/sdks/notifications/README.md)
 
+* [get](docs/sdks/notifications/README.md#get) - Get notification
 * [list](docs/sdks/notifications/README.md#list) - Get notifications
-* [retrieve](docs/sdks/notifications/README.md#retrieve) - Get notification
 
 #### [notifications.stats](docs/sdks/stats/README.md)
 
-* [graph](docs/sdks/stats/README.md#graph) - Get notification graph statistics
-* [retrieve](docs/sdks/stats/README.md#retrieve) - Get notification statistics
+* [get](docs/sdks/stats/README.md#get) - Get notification statistics
 
+<<<<<<< Updated upstream
 ### [Novu SDK](docs/sdks/novu/README.md)
 
 * [cancel](docs/sdks/novu/README.md#cancel) - Cancel triggered event
@@ -252,20 +349,37 @@ run();
 * [eeOrganizationControllerRenameOrganization](docs/sdks/organizations/README.md#eeorganizationcontrollerrenameorganization) - Rename organization name
 * [retrieve](docs/sdks/organizations/README.md#retrieve) - Fetch current organization details
 * [update](docs/sdks/organizations/README.md#update) - Update organization branding details
+=======
+### [notificationsStats](docs/sdks/notificationsstats/README.md)
+
+* [get](docs/sdks/notificationsstats/README.md#get) - Get notification graph statistics
+
+### [Novu SDK](docs/sdks/novu/README.md)
+
+* [cancel](docs/sdks/novu/README.md#cancel) - Cancel triggered event
+* [trigger](docs/sdks/novu/README.md#trigger) - Trigger event
+* [triggerBroadcast](docs/sdks/novu/README.md#triggerbroadcast) - Broadcast event to all
+* [triggerBulk](docs/sdks/novu/README.md#triggerbulk) - Bulk trigger event
+>>>>>>> Stashed changes
 
 ### [subscribers](docs/sdks/subscribers/README.md)
 
 * [create](docs/sdks/subscribers/README.md#create) - Create subscriber
 * [createBulk](docs/sdks/subscribers/README.md#createbulk) - Bulk create subscribers
 * [delete](docs/sdks/subscribers/README.md#delete) - Delete subscriber
-* [list](docs/sdks/subscribers/README.md#list) - Get subscribers
-* [retrieve](docs/sdks/subscribers/README.md#retrieve) - Get subscriber
+* [get](docs/sdks/subscribers/README.md#get) - Get subscriber
+* [getAll](docs/sdks/subscribers/README.md#getall) - Get subscribers
 * [update](docs/sdks/subscribers/README.md#update) - Update subscriber
 
 #### [subscribers.authentication](docs/sdks/authentication/README.md)
 
+<<<<<<< Updated upstream
 * [chatAccessOauth](docs/sdks/authentication/README.md#chataccessoauth) - Handle chat oauth
 * [chatAccessOauthCallBack](docs/sdks/authentication/README.md#chataccessoauthcallback) - Handle providers oauth redirect
+=======
+* [handleOauth](docs/sdks/authentication/README.md#handleoauth) - Handle chat oauth
+* [handleOauthCallback](docs/sdks/authentication/README.md#handleoauthcallback) - Handle providers oauth redirect
+>>>>>>> Stashed changes
 
 #### [subscribers.credentials](docs/sdks/credentials/README.md)
 
@@ -274,11 +388,17 @@ run();
 * [update](docs/sdks/credentials/README.md#update) - Update subscriber credentials
 
 #### [subscribers.messages](docs/sdks/novumessages/README.md)
+<<<<<<< Updated upstream
+=======
 
-* [markAll](docs/sdks/novumessages/README.md#markall) - Marks all the subscriber messages as read, unread, seen or unseen. Optionally you can pass feed id (or array) to mark messages of a particular feed.
-* [markAllAs](docs/sdks/novumessages/README.md#markallas) - Mark a subscriber messages as seen, read, unseen or unread
-* [updateAsSeen](docs/sdks/novumessages/README.md#updateasseen) - Mark message action as seen
+* [mark](docs/sdks/novumessages/README.md#mark) - Mark a subscriber messages as seen, read, unseen or unread
 
+#### [subscribers.notifications](docs/sdks/novusubscribersnotifications/README.md)
+>>>>>>> Stashed changes
+
+* [getFeed](docs/sdks/novusubscribersnotifications/README.md#getfeed) - Get in-app notification feed for a particular subscriber
+
+<<<<<<< Updated upstream
 #### [subscribers.notifications](docs/sdks/novunotifications/README.md)
 
 * [retrieve](docs/sdks/novunotifications/README.md#retrieve) - Get in-app notification feed for a particular subscriber
@@ -288,36 +408,58 @@ run();
 
 * [list](docs/sdks/preferences/README.md#list) - Get subscriber preferences
 * [retrieveByLevel](docs/sdks/preferences/README.md#retrievebylevel) - Get subscriber preferences by level
+=======
+#### [subscribers.preferences](docs/sdks/preferences/README.md)
+
+* [get](docs/sdks/preferences/README.md#get) - Get subscriber preferences
+* [getByLevel](docs/sdks/preferences/README.md#getbylevel) - Get subscriber preferences by level
+>>>>>>> Stashed changes
 * [update](docs/sdks/preferences/README.md#update) - Update subscriber preference
-* [updateGlobal](docs/sdks/preferences/README.md#updateglobal) - Update subscriber global preferences
 
 #### [subscribers.properties](docs/sdks/properties/README.md)
+<<<<<<< Updated upstream
 
 * [updateOnlineFlag](docs/sdks/properties/README.md#updateonlineflag) - Update subscriber online status
 
 ### [tenants](docs/sdks/tenants/README.md)
+=======
+>>>>>>> Stashed changes
 
-* [create](docs/sdks/tenants/README.md#create) - Create tenant
-* [delete](docs/sdks/tenants/README.md#delete) - Delete tenant
-* [list](docs/sdks/tenants/README.md#list) - Get tenants
-* [retrieve](docs/sdks/tenants/README.md#retrieve) - Get tenant
-* [update](docs/sdks/tenants/README.md#update) - Update tenant
+* [updateOnlineStatus](docs/sdks/properties/README.md#updateonlinestatus) - Update subscriber online status
+
+### [subscribersMessages](docs/sdks/subscribersmessages/README.md)
+
+* [markAll](docs/sdks/subscribersmessages/README.md#markall) - Marks all the subscriber messages as read, unread, seen or unseen. Optionally you can pass feed id (or array) to mark messages of a particular feed.
+* [updateAsSeen](docs/sdks/subscribersmessages/README.md#updateasseen) - Mark message action as seen
+
+### [subscribersNotifications](docs/sdks/subscribersnotifications/README.md)
+
+* [getUnseenCount](docs/sdks/subscribersnotifications/README.md#getunseencount) - Get the unseen in-app notifications count for subscribers feed
+
+### [subscribersPreferences](docs/sdks/subscriberspreferences/README.md)
+
+* [updateGlobal](docs/sdks/subscriberspreferences/README.md#updateglobal) - Update subscriber global preferences
 
 ### [topics](docs/sdks/topics/README.md)
 
 * [create](docs/sdks/topics/README.md#create) - Topic creation
 * [delete](docs/sdks/topics/README.md#delete) - Delete topic
-* [list](docs/sdks/topics/README.md#list) - Filter topics
+* [get](docs/sdks/topics/README.md#get) - Get topic
+* [getAll](docs/sdks/topics/README.md#getall) - Filter topics
 * [rename](docs/sdks/topics/README.md#rename) - Rename a topic
-* [retrieve](docs/sdks/topics/README.md#retrieve) - Get topic
 
+<<<<<<< Updated upstream
 #### [topics.subscribers](docs/sdks/novusubscribers/README.md)
+=======
+#### [topics.subscribers](docs/sdks/novutopicssubscribers/README.md)
+>>>>>>> Stashed changes
 
-* [assign](docs/sdks/novusubscribers/README.md#assign) - Subscribers addition
-* [delete](docs/sdks/novusubscribers/README.md#delete) - Subscribers removal
-* [retrieve](docs/sdks/novusubscribers/README.md#retrieve) - Check topic subscriber
+* [add](docs/sdks/novutopicssubscribers/README.md#add) - Subscribers addition
+* [check](docs/sdks/novutopicssubscribers/README.md#check) - Check topic subscriber
+* [remove](docs/sdks/novutopicssubscribers/README.md#remove) - Subscribers removal
 
 ### [workflowGroups](docs/sdks/workflowgroups/README.md)
+<<<<<<< Updated upstream
 
 * [create](docs/sdks/workflowgroups/README.md#create) - Create workflow group
 * [delete](docs/sdks/workflowgroups/README.md#delete) - Delete workflow group
@@ -326,13 +468,16 @@ run();
 * [update](docs/sdks/workflowgroups/README.md#update) - Update workflow group
 
 ### [workflows](docs/sdks/workflows/README.md)
+=======
+>>>>>>> Stashed changes
 
-* [create](docs/sdks/workflows/README.md#create) - Create workflow
-* [delete](docs/sdks/workflows/README.md#delete) - Delete workflow
-* [list](docs/sdks/workflows/README.md#list) - Get workflows
-* [retrieve](docs/sdks/workflows/README.md#retrieve) - Get workflow
-* [update](docs/sdks/workflows/README.md#update) - Update workflow
+* [create](docs/sdks/workflowgroups/README.md#create) - Create workflow group
+* [delete](docs/sdks/workflowgroups/README.md#delete) - Delete workflow group
+* [get](docs/sdks/workflowgroups/README.md#get) - Get workflow group
+* [list](docs/sdks/workflowgroups/README.md#list) - Get workflow groups
+* [update](docs/sdks/workflowgroups/README.md#update) - Update workflow group
 
+<<<<<<< Updated upstream
 #### [workflows.status](docs/sdks/status/README.md)
 
 * [update](docs/sdks/status/README.md#update) - Update workflow status
@@ -341,6 +486,8 @@ run();
 
 * [retrieve](docs/sdks/variables/README.md#retrieve) - Get available variables
 
+=======
+>>>>>>> Stashed changes
 </details>
 <!-- End Available Resources and Operations [operations] -->
 
@@ -359,6 +506,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 <summary>Available standalone functions</summary>
 
+<<<<<<< Updated upstream
 - [cancel](docs/sdks/novu/README.md#cancel)
 - [changesApplyBulk](docs/sdks/changes/README.md#applybulk)
 - [changesApply](docs/sdks/changes/README.md#apply)
@@ -444,6 +592,64 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [workflowsUpdate](docs/sdks/workflows/README.md#update)
 - [workflowsVariablesRetrieve](docs/sdks/variables/README.md#retrieve)
 
+=======
+- [`cancel`](docs/sdks/novu/README.md#cancel) - Cancel triggered event
+- [`environmentsApiKeysList`](docs/sdks/apikeys/README.md#list) - Get api keys
+- [`environmentsGetAll`](docs/sdks/environments/README.md#getall) - Get environments
+- [`environmentsGetCurrent`](docs/sdks/environments/README.md#getcurrent) - Get current environment
+- [`executionDetailsGet`](docs/sdks/executiondetails/README.md#get) - Get execution details
+- [`integrationsCreate`](docs/sdks/integrations/README.md#create) - Create integration
+- [`integrationsDelete`](docs/sdks/integrations/README.md#delete) - Delete integration
+- [`integrationsList`](docs/sdks/integrations/README.md#list) - Get integrations
+- [`integrationsListActive`](docs/sdks/integrations/README.md#listactive) - Get active integrations
+- [`integrationsSetPrimary`](docs/sdks/integrations/README.md#setprimary) - Set integration as primary
+- [`integrationsUpdate`](docs/sdks/integrations/README.md#update) - Update integration
+- [`integrationsWebhooksGetStatus`](docs/sdks/integrationswebhooks/README.md#getstatus) - Get webhook support status for provider
+- [`messagesDelete`](docs/sdks/messages/README.md#delete) - Delete message
+- [`messagesDeleteByTransactionId`](docs/sdks/messages/README.md#deletebytransactionid) - Delete messages by transactionId
+- [`messagesGet`](docs/sdks/messages/README.md#get) - Get messages
+- [`notificationsGet`](docs/sdks/notifications/README.md#get) - Get notification
+- [`notificationsList`](docs/sdks/notifications/README.md#list) - Get notifications
+- [`notificationsStatsGet`](docs/sdks/notificationsstats/README.md#get) - Get notification graph statistics
+- [`notificationsStatsGet`](docs/sdks/stats/README.md#get) - Get notification statistics
+- [`subscribersAuthenticationHandleOauth`](docs/sdks/authentication/README.md#handleoauth) - Handle chat oauth
+- [`subscribersAuthenticationHandleOauthCallback`](docs/sdks/authentication/README.md#handleoauthcallback) - Handle providers oauth redirect
+- [`subscribersCreate`](docs/sdks/subscribers/README.md#create) - Create subscriber
+- [`subscribersCreateBulk`](docs/sdks/subscribers/README.md#createbulk) - Bulk create subscribers
+- [`subscribersCredentialsAppend`](docs/sdks/credentials/README.md#append) - Modify subscriber credentials
+- [`subscribersCredentialsDelete`](docs/sdks/credentials/README.md#delete) - Delete subscriber credentials by providerId
+- [`subscribersCredentialsUpdate`](docs/sdks/credentials/README.md#update) - Update subscriber credentials
+- [`subscribersDelete`](docs/sdks/subscribers/README.md#delete) - Delete subscriber
+- [`subscribersGet`](docs/sdks/subscribers/README.md#get) - Get subscriber
+- [`subscribersGetAll`](docs/sdks/subscribers/README.md#getall) - Get subscribers
+- [`subscribersMessagesMark`](docs/sdks/novumessages/README.md#mark) - Mark a subscriber messages as seen, read, unseen or unread
+- [`subscribersMessagesMarkAll`](docs/sdks/subscribersmessages/README.md#markall) - Marks all the subscriber messages as read, unread, seen or unseen. Optionally you can pass feed id (or array) to mark messages of a particular feed.
+- [`subscribersMessagesUpdateAsSeen`](docs/sdks/subscribersmessages/README.md#updateasseen) - Mark message action as seen
+- [`subscribersNotificationsGetFeed`](docs/sdks/novusubscribersnotifications/README.md#getfeed) - Get in-app notification feed for a particular subscriber
+- [`subscribersNotificationsGetUnseenCount`](docs/sdks/subscribersnotifications/README.md#getunseencount) - Get the unseen in-app notifications count for subscribers feed
+- [`subscribersPreferencesGet`](docs/sdks/preferences/README.md#get) - Get subscriber preferences
+- [`subscribersPreferencesGetByLevel`](docs/sdks/preferences/README.md#getbylevel) - Get subscriber preferences by level
+- [`subscribersPreferencesUpdate`](docs/sdks/preferences/README.md#update) - Update subscriber preference
+- [`subscribersPreferencesUpdateGlobal`](docs/sdks/subscriberspreferences/README.md#updateglobal) - Update subscriber global preferences
+- [`subscribersPropertiesUpdateOnlineStatus`](docs/sdks/properties/README.md#updateonlinestatus) - Update subscriber online status
+- [`subscribersUpdate`](docs/sdks/subscribers/README.md#update) - Update subscriber
+- [`topicsCreate`](docs/sdks/topics/README.md#create) - Topic creation
+- [`topicsDelete`](docs/sdks/topics/README.md#delete) - Delete topic
+- [`topicsGet`](docs/sdks/topics/README.md#get) - Get topic
+- [`topicsGetAll`](docs/sdks/topics/README.md#getall) - Filter topics
+- [`topicsRename`](docs/sdks/topics/README.md#rename) - Rename a topic
+- [`topicsSubscribersAdd`](docs/sdks/novutopicssubscribers/README.md#add) - Subscribers addition
+- [`topicsSubscribersCheck`](docs/sdks/novutopicssubscribers/README.md#check) - Check topic subscriber
+- [`topicsSubscribersRemove`](docs/sdks/novutopicssubscribers/README.md#remove) - Subscribers removal
+- [`trigger`](docs/sdks/novu/README.md#trigger) - Trigger event
+- [`triggerBroadcast`](docs/sdks/novu/README.md#triggerbroadcast) - Broadcast event to all
+- [`triggerBulk`](docs/sdks/novu/README.md#triggerbulk) - Bulk trigger event
+- [`workflowGroupsCreate`](docs/sdks/workflowgroups/README.md#create) - Create workflow group
+- [`workflowGroupsDelete`](docs/sdks/workflowgroups/README.md#delete) - Delete workflow group
+- [`workflowGroupsGet`](docs/sdks/workflowgroups/README.md#get) - Get workflow group
+- [`workflowGroupsList`](docs/sdks/workflowgroups/README.md#list) - Get workflow groups
+- [`workflowGroupsUpdate`](docs/sdks/workflowgroups/README.md#update) - Update workflow group
+>>>>>>> Stashed changes
 
 </details>
 <!-- End Standalone functions [standalone-funcs] -->
@@ -468,7 +674,11 @@ const novu = new Novu({
 });
 
 async function run() {
+<<<<<<< Updated upstream
   const result = await novu.subscribers.list();
+=======
+  const result = await novu.subscribers.getAll();
+>>>>>>> Stashed changes
 
   for await (const page of result) {
     // Handle the page
@@ -484,14 +694,23 @@ run();
 <!-- Start Error Handling [errors] -->
 ## Error Handling
 
-All SDK methods return a response object or throw an error. If Error objects are specified in your OpenAPI Spec, the SDK will throw the appropriate Error type.
+All SDK methods return a response object or throw an error. By default, an API error will throw a `errors.SDKError`.
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+If a HTTP request fails, an operation my also throw an error from the `models/errors/httpclienterrors.ts` module:
 
-Validation errors can also occur when either method arguments or data returned from the server do not match the expected format. The `SDKValidationError` that is thrown as a result will capture the raw value that failed validation in an attribute called `rawValue`. Additionally, a `pretty()` method is available on this error that can be used to log a nicely formatted string since validation errors can list many issues and the plain error string may be difficult read when debugging. 
+| HTTP Client Error                                    | Description                                          |
+| ---------------------------------------------------- | ---------------------------------------------------- |
+| RequestAbortedError                                  | HTTP request was aborted by the client               |
+| RequestTimeoutError                                  | HTTP request timed out due to an AbortSignal signal  |
+| ConnectionError                                      | HTTP client was unable to make a request to a server |
+| InvalidRequestError                                  | Any input used to create a request is invalid        |
+| UnexpectedClientError                                | Unrecognised or unexpected error                     |
 
+In addition, when custom error responses are specified for an operation, the SDK may throw their associated Error type. You can refer to respective *Errors* tables in SDK docs for more details on possible error types for each operation. For example, the `cancel` method may throw the following errors:
+
+| Error Type      | Status Code | Content Type |
+| --------------- | ----------- | ------------ |
+| errors.SDKError | 4XX, 5XX    | \*/\*        |
 
 ```typescript
 import { Novu } from "@novu/api";
@@ -504,7 +723,11 @@ const novu = new Novu({
 async function run() {
   let result;
   try {
+<<<<<<< Updated upstream
     result = await novu.cancel("<value>");
+=======
+    result = await novu.cancel("<id>");
+>>>>>>> Stashed changes
 
     // Handle the result
     console.log(result);
@@ -527,6 +750,8 @@ async function run() {
 run();
 
 ```
+
+Validation errors can also occur when either method arguments or data returned from the server do not match the expected format. The `SDKValidationError` that is thrown as a result will capture the raw value that failed validation in an attribute called `rawValue`. Additionally, a `pretty()` method is available on this error that can be used to log a nicely formatted string since validation errors can list many issues and the plain error string may be difficult read when debugging.
 <!-- End Error Handling [errors] -->
 
 <!-- Start Server Selection [server] -->
@@ -534,12 +759,14 @@ run();
 
 ### Select Server by Index
 
-You can override the default server globally by passing a server index to the `serverIdx` optional parameter when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
+You can override the default server globally by passing a server index to the `serverIdx: number` optional parameter when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
 
-| # | Server | Variables |
-| - | ------ | --------- |
-| 0 | `https://api.novu.co` | None |
-| 1 | `https://eu.api.novu.co` | None |
+| #   | Server                   |
+| --- | ------------------------ |
+| 0   | `https://api.novu.co`    |
+| 1   | `https://eu.api.novu.co` |
+
+#### Example
 
 ```typescript
 import { Novu } from "@novu/api";
@@ -550,7 +777,11 @@ const novu = new Novu({
 });
 
 async function run() {
+<<<<<<< Updated upstream
   const result = await novu.cancel("<value>");
+=======
+  const result = await novu.cancel("<id>");
+>>>>>>> Stashed changes
 
   // Handle the result
   console.log(result);
@@ -560,11 +791,9 @@ run();
 
 ```
 
-
 ### Override Server URL Per-Client
 
-The default server can also be overridden globally by passing a URL to the `serverURL` optional parameter when initializing the SDK client instance. For example:
-
+The default server can also be overridden globally by passing a URL to the `serverURL: string` optional parameter when initializing the SDK client instance. For example:
 ```typescript
 import { Novu } from "@novu/api";
 
@@ -574,7 +803,11 @@ const novu = new Novu({
 });
 
 async function run() {
+<<<<<<< Updated upstream
   const result = await novu.cancel("<value>");
+=======
+  const result = await novu.cancel("<id>");
+>>>>>>> Stashed changes
 
   // Handle the result
   console.log(result);
@@ -641,9 +874,9 @@ const sdk = new Novu({ httpClient });
 
 This SDK supports the following security scheme globally:
 
-| Name     | Type     | Scheme   |
-| -------- | -------- | -------- |
-| `apiKey` | apiKey   | API key  |
+| Name     | Type   | Scheme  |
+| -------- | ------ | ------- |
+| `apiKey` | apiKey | API key |
 
 To authenticate with the API the `apiKey` parameter must be set when initializing the SDK client instance. For example:
 ```typescript
@@ -654,7 +887,11 @@ const novu = new Novu({
 });
 
 async function run() {
+<<<<<<< Updated upstream
   const result = await novu.cancel("<value>");
+=======
+  const result = await novu.cancel("<id>");
+>>>>>>> Stashed changes
 
   // Handle the result
   console.log(result);
@@ -679,7 +916,11 @@ const novu = new Novu({
 });
 
 async function run() {
+<<<<<<< Updated upstream
   const result = await novu.cancel("<value>", {
+=======
+  const result = await novu.cancel("<id>", {
+>>>>>>> Stashed changes
     retries: {
       strategy: "backoff",
       backoff: {
@@ -719,7 +960,11 @@ const novu = new Novu({
 });
 
 async function run() {
+<<<<<<< Updated upstream
   const result = await novu.cancel("<value>");
+=======
+  const result = await novu.cancel("<id>");
+>>>>>>> Stashed changes
 
   // Handle the result
   console.log(result);

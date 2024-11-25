@@ -5,8 +5,13 @@
 import { subscribersCreate } from "../funcs/subscribersCreate.js";
 import { subscribersCreateBulk } from "../funcs/subscribersCreateBulk.js";
 import { subscribersDelete } from "../funcs/subscribersDelete.js";
+<<<<<<< Updated upstream
 import { subscribersList } from "../funcs/subscribersList.js";
 import { subscribersRetrieve } from "../funcs/subscribersRetrieve.js";
+=======
+import { subscribersGet } from "../funcs/subscribersGet.js";
+import { subscribersGetAll } from "../funcs/subscribersGetAll.js";
+>>>>>>> Stashed changes
 import { subscribersUpdate } from "../funcs/subscribersUpdate.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as components from "../models/components/index.js";
@@ -16,39 +21,70 @@ import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 import { Authentication } from "./authentication.js";
 import { Credentials } from "./credentials.js";
 import { NovuMessages } from "./novumessages.js";
+<<<<<<< Updated upstream
 import { NovuNotifications } from "./novunotifications.js";
+=======
+import { NovuSubscribersNotifications } from "./novusubscribersnotifications.js";
+>>>>>>> Stashed changes
 import { Preferences } from "./preferences.js";
 import { Properties } from "./properties.js";
 
 export class Subscribers extends ClientSDK {
   private _credentials?: Credentials;
   get credentials(): Credentials {
+<<<<<<< Updated upstream
     return (this._credentials ??= new Credentials(this.options$));
+=======
+    return (this._credentials ??= new Credentials(this._options));
+>>>>>>> Stashed changes
   }
 
   private _authentication?: Authentication;
   get authentication(): Authentication {
+<<<<<<< Updated upstream
     return (this._authentication ??= new Authentication(this.options$));
+=======
+    return (this._authentication ??= new Authentication(this._options));
+>>>>>>> Stashed changes
   }
 
   private _messages?: NovuMessages;
   get messages(): NovuMessages {
+<<<<<<< Updated upstream
     return (this._messages ??= new NovuMessages(this.options$));
   }
 
   private _notifications?: NovuNotifications;
   get notifications(): NovuNotifications {
     return (this._notifications ??= new NovuNotifications(this.options$));
+=======
+    return (this._messages ??= new NovuMessages(this._options));
+  }
+
+  private _notifications?: NovuSubscribersNotifications;
+  get notifications(): NovuSubscribersNotifications {
+    return (this._notifications ??= new NovuSubscribersNotifications(
+      this._options,
+    ));
+>>>>>>> Stashed changes
   }
 
   private _properties?: Properties;
   get properties(): Properties {
+<<<<<<< Updated upstream
     return (this._properties ??= new Properties(this.options$));
+=======
+    return (this._properties ??= new Properties(this._options));
+>>>>>>> Stashed changes
   }
 
   private _preferences?: Preferences;
   get preferences(): Preferences {
+<<<<<<< Updated upstream
     return (this._preferences ??= new Preferences(this.options$));
+=======
+    return (this._preferences ??= new Preferences(this._options));
+>>>>>>> Stashed changes
   }
 
   /**
@@ -105,19 +141,49 @@ export class Subscribers extends ClientSDK {
   }
 
   /**
+<<<<<<< Updated upstream
+=======
+   * Get subscriber
+   *
+   * @remarks
+   * Get subscriber by your internal id used to identify the subscriber
+   */
+  async get(
+    subscriberId: string,
+    includeTopics?: string | undefined,
+    options?: RequestOptions,
+  ): Promise<components.SubscriberResponseDto> {
+    return unwrapAsync(subscribersGet(
+      this,
+      subscriberId,
+      includeTopics,
+      options,
+    ));
+  }
+
+  /**
+>>>>>>> Stashed changes
    * Get subscribers
    *
    * @remarks
    * Returns a list of subscribers, could paginated using the `page` and `limit` query parameter
    */
+<<<<<<< Updated upstream
   async list(
+=======
+  async getAll(
+>>>>>>> Stashed changes
     page?: number | undefined,
     limit?: number | undefined,
     options?: RequestOptions,
   ): Promise<
     PageIterator<operations.SubscribersControllerListSubscribersResponse>
   > {
+<<<<<<< Updated upstream
     return unwrapResultIterator(subscribersList(
+=======
+    return unwrapResultIterator(subscribersGetAll(
+>>>>>>> Stashed changes
       this,
       page,
       limit,
@@ -126,6 +192,7 @@ export class Subscribers extends ClientSDK {
   }
 
   /**
+<<<<<<< Updated upstream
    * Get subscriber
    *
    * @remarks
@@ -143,20 +210,32 @@ export class Subscribers extends ClientSDK {
   }
 
   /**
+=======
+>>>>>>> Stashed changes
    * Update subscriber
    *
    * @remarks
    * Used to update the subscriber entity with new information
    */
   async update(
+<<<<<<< Updated upstream
     subscriberId: string,
     updateSubscriberRequestDto: components.UpdateSubscriberRequestDto,
+=======
+    updateSubscriberRequestDto: components.UpdateSubscriberRequestDto,
+    subscriberId: string,
+>>>>>>> Stashed changes
     options?: RequestOptions,
   ): Promise<components.SubscriberResponseDto> {
     return unwrapAsync(subscribersUpdate(
       this,
+<<<<<<< Updated upstream
       subscriberId,
       updateSubscriberRequestDto,
+=======
+      updateSubscriberRequestDto,
+      subscriberId,
+>>>>>>> Stashed changes
       options,
     ));
   }

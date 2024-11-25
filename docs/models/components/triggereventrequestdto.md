@@ -10,10 +10,14 @@ let value: TriggerEventRequestDto = {
   overrides: {},
   payload: {},
   to: [
+<<<<<<< Updated upstream
     {
       topicKey: "<value>",
       type: "Topic",
     },
+=======
+    "SUBSCRIBER_ID",
+>>>>>>> Stashed changes
   ],
 };
 ```
