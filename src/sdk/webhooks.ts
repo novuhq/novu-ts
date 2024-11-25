@@ -4,6 +4,7 @@
 
 import { integrationsWebhooksRetrieve } from "../funcs/integrationsWebhooksRetrieve.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
+import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class Webhooks extends ClientSDK {
@@ -16,7 +17,7 @@ export class Webhooks extends ClientSDK {
   async retrieve(
     providerOrIntegrationId: string,
     options?: RequestOptions,
-  ): Promise<boolean> {
+  ): Promise<operations.IntegrationsControllerGetWebhookSupportStatusResponse> {
     return unwrapAsync(integrationsWebhooksRetrieve(
       this,
       providerOrIntegrationId,

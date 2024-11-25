@@ -6,7 +6,7 @@
 ### Available Operations
 
 * [list](#list) - Get notifications
-* [get](#get) - Get notification
+* [retrieve](#retrieve) - Get notification
 
 ## list
 
@@ -114,7 +114,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4XX, 5XX        | \*/\*           |
 
-## get
+## retrieve
 
 Get notification
 
@@ -128,7 +128,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.notifications.get("<id>");
+  const result = await novu.notifications.retrieve("<id>");
 
   // Handle the result
   console.log(result);
@@ -143,7 +143,7 @@ The standalone function version of this method:
 
 ```typescript
 import { NovuCore } from "@novu/api/core.js";
-import { notificationsGet } from "@novu/api/funcs/notificationsGet.js";
+import { notificationsRetrieve } from "@novu/api/funcs/notificationsRetrieve.js";
 
 // Use `NovuCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -152,7 +152,7 @@ const novu = new NovuCore({
 });
 
 async function run() {
-  const res = await notificationsGet(novu, "<id>");
+  const res = await notificationsRetrieve(novu, "<id>");
 
   if (!res.ok) {
     throw res.error;

@@ -8,11 +8,11 @@ A message in Novu represents a notification delivered to a recipient on a partic
 
 ### Available Operations
 
-* [get](#get) - Get messages
+* [retrieve](#retrieve) - Get messages
 * [delete](#delete) - Delete message
 * [deleteByTransactionId](#deletebytransactionid) - Delete messages by transactionId
 
-## get
+## retrieve
 
 Returns a list of messages, could paginate using the `page` query parameter
 
@@ -26,7 +26,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.messages.get({});
+  const result = await novu.messages.retrieve({});
 
   // Handle the result
   console.log(result);
@@ -41,7 +41,7 @@ The standalone function version of this method:
 
 ```typescript
 import { NovuCore } from "@novu/api/core.js";
-import { messagesGet } from "@novu/api/funcs/messagesGet.js";
+import { messagesRetrieve } from "@novu/api/funcs/messagesRetrieve.js";
 
 // Use `NovuCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -50,7 +50,7 @@ const novu = new NovuCore({
 });
 
 async function run() {
-  const res = await messagesGet(novu, {});
+  const res = await messagesRetrieve(novu, {});
 
   if (!res.ok) {
     throw res.error;

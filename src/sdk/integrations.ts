@@ -6,14 +6,20 @@ import { integrationsCreate } from "../funcs/integrationsCreate.js";
 import { integrationsDelete } from "../funcs/integrationsDelete.js";
 import { integrationsList } from "../funcs/integrationsList.js";
 import { integrationsListActive } from "../funcs/integrationsListActive.js";
-import { integrationsSetPrimary } from "../funcs/integrationsSetPrimary.js";
+import { integrationsSetAsPrimary } from "../funcs/integrationsSetAsPrimary.js";
 import { integrationsUpdate } from "../funcs/integrationsUpdate.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as components from "../models/components/index.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
+import { Webhooks } from "./webhooks.js";
 
 export class Integrations extends ClientSDK {
+  private _webhooks?: Webhooks;
+  get webhooks(): Webhooks {
+    return (this._webhooks ??= new Webhooks(this._options));
+  }
+
   /**
    * Get integrations
    *
@@ -94,11 +100,11 @@ export class Integrations extends ClientSDK {
   /**
    * Set integration as primary
    */
-  async setPrimary(
+  async setAsPrimary(
     integrationId: string,
     options?: RequestOptions,
   ): Promise<operations.IntegrationsControllerSetIntegrationAsPrimaryResponse> {
-    return unwrapAsync(integrationsSetPrimary(
+    return unwrapAsync(integrationsSetAsPrimary(
       this,
       integrationId,
       options,

@@ -3,13 +3,12 @@
  */
 
 import { NovuCore } from "../core.js";
-import { encodeFormQuery as encodeFormQuery$ } from "../lib/encodings.js";
-import * as m$ from "../lib/matchers.js";
-import * as schemas$ from "../lib/schemas.js";
+import { encodeFormQuery } from "../lib/encodings.js";
+import * as M from "../lib/matchers.js";
+import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
-import * as components from "../models/components/index.js";
 import {
   ConnectionError,
   InvalidRequestError,
@@ -29,12 +28,12 @@ import { Result } from "../types/fp.js";
  * Returns a list of messages, could paginate using the `page` query parameter
  */
 export async function messagesRetrieve(
-  client$: NovuCore,
+  client: NovuCore,
   request: operations.MessagesControllerGetMessagesRequest,
   options?: RequestOptions,
 ): Promise<
   Result<
-    components.ActivitiesResponseDto,
+    operations.MessagesControllerGetMessagesResponse,
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -44,64 +43,47 @@ export async function messagesRetrieve(
     | ConnectionError
   >
 > {
-  const input$ = request;
-
-  const parsed$ = schemas$.safeParse(
-    input$,
-    (value$) =>
+  const parsed = safeParse(
+    request,
+    (value) =>
       operations.MessagesControllerGetMessagesRequest$outboundSchema.parse(
-        value$,
+        value,
       ),
     "Input validation failed",
   );
-  if (!parsed$.ok) {
-    return parsed$;
+  if (!parsed.ok) {
+    return parsed;
   }
-  const payload$ = parsed$.value;
-  const body$ = null;
+  const payload = parsed.value;
+  const body = null;
 
-  const path$ = pathToFunc("/v1/messages")();
+  const path = pathToFunc("/v1/messages")();
 
-  const query$ = encodeFormQuery$({
-    "channel": payload$.channel,
-    "limit": payload$.limit,
-    "page": payload$.page,
-    "subscriberId": payload$.subscriberId,
-    "transactionId": payload$.transactionId,
+  const query = encodeFormQuery({
+    "channel": payload.channel,
+    "limit": payload.limit,
+    "page": payload.page,
+    "subscriberId": payload.subscriberId,
+    "transactionId": payload.transactionId,
   });
 
-  const headers$ = new Headers({
+  const headers = new Headers({
     Accept: "application/json",
   });
 
-  const apiKey$ = await extractSecurity(client$.options$.apiKey);
-  const security$ = apiKey$ == null ? {} : { apiKey: apiKey$ };
+  const secConfig = await extractSecurity(client._options.apiKey);
+  const securityInput = secConfig == null ? {} : { apiKey: secConfig };
+  const requestSecurity = resolveGlobalSecurity(securityInput);
+
   const context = {
     operationID: "MessagesController_getMessages",
     oAuth2Scopes: [],
-    securitySource: client$.options$.apiKey,
-  };
-  const securitySettings$ = resolveGlobalSecurity(security$);
 
-  const requestRes = client$.createRequest$(context, {
-    security: securitySettings$,
-    method: "GET",
-    path: path$,
-    headers: headers$,
-    query: query$,
-    body: body$,
-    timeoutMs: options?.timeoutMs || client$.options$.timeoutMs || -1,
-  }, options);
-  if (!requestRes.ok) {
-    return requestRes;
-  }
-  const request$ = requestRes.value;
+    resolvedSecurity: requestSecurity,
 
-  const doResult = await client$.do$(request$, {
-    context,
-    errorCodes: ["409", "429", "4XX", "503", "5XX"],
+    securitySource: client._options.apiKey,
     retryConfig: options?.retries
-      || client$.options$.retryConfig
+      || client._options.retryConfig
       || {
         strategy: "backoff",
         backoff: {
@@ -111,16 +93,42 @@ export async function messagesRetrieve(
           maxElapsedTime: 3600000,
         },
         retryConnectionErrors: true,
-      },
+      }
+      || { strategy: "none" },
     retryCodes: options?.retryCodes || ["408", "409", "429", "5XX"],
+  };
+
+  const requestRes = client._createRequest(context, {
+    security: requestSecurity,
+    method: "GET",
+    path: path,
+    headers: headers,
+    query: query,
+    body: body,
+    timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
+  }, options);
+  if (!requestRes.ok) {
+    return requestRes;
+  }
+  const req = requestRes.value;
+
+  const doResult = await client._do(req, {
+    context,
+    errorCodes: ["409", "429", "4XX", "503", "5XX"],
+    retryConfig: context.retryConfig,
+    retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
     return doResult;
   }
   const response = doResult.value;
 
-  const [result$] = await m$.match<
-    components.ActivitiesResponseDto,
+  const responseFields = {
+    HttpMeta: { Response: response, Request: req },
+  };
+
+  const [result] = await M.match<
+    operations.MessagesControllerGetMessagesResponse,
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -129,12 +137,17 @@ export async function messagesRetrieve(
     | RequestTimeoutError
     | ConnectionError
   >(
-    m$.json(200, components.ActivitiesResponseDto$inboundSchema),
-    m$.fail([409, 429, "4XX", 503, "5XX"]),
-  )(response);
-  if (!result$.ok) {
-    return result$;
+    M.json(
+      200,
+      operations.MessagesControllerGetMessagesResponse$inboundSchema,
+      { hdrs: true, key: "Result" },
+    ),
+    M.fail([409, 429, 503]),
+    M.fail(["4XX", "5XX"]),
+  )(response, { extraFields: responseFields });
+  if (!result.ok) {
+    return result;
   }
 
-  return result$;
+  return result;
 }

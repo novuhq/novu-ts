@@ -3,12 +3,9 @@
  */
 
 import { NovuCore } from "../core.js";
-import {
-  encodeFormQuery as encodeFormQuery$,
-  encodeSimple as encodeSimple$,
-} from "../lib/encodings.js";
-import * as m$ from "../lib/matchers.js";
-import * as schemas$ from "../lib/schemas.js";
+import { encodeFormQuery, encodeSimple } from "../lib/encodings.js";
+import * as M from "../lib/matchers.js";
+import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
@@ -28,12 +25,12 @@ import { Result } from "../types/fp.js";
  * Handle providers oauth redirect
  */
 export async function subscribersAuthenticationChatAccessOauthCallBack(
-  client$: NovuCore,
+  client: NovuCore,
   request: operations.SubscribersControllerChatOauthCallbackRequest,
   options?: RequestOptions,
 ): Promise<
   Result<
-    operations.SubscribersControllerChatOauthCallbackResponseBody,
+    operations.SubscribersControllerChatOauthCallbackResponse,
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -43,75 +40,58 @@ export async function subscribersAuthenticationChatAccessOauthCallBack(
     | ConnectionError
   >
 > {
-  const input$ = request;
-
-  const parsed$ = schemas$.safeParse(
-    input$,
-    (value$) =>
+  const parsed = safeParse(
+    request,
+    (value) =>
       operations.SubscribersControllerChatOauthCallbackRequest$outboundSchema
-        .parse(value$),
+        .parse(value),
     "Input validation failed",
   );
-  if (!parsed$.ok) {
-    return parsed$;
+  if (!parsed.ok) {
+    return parsed;
   }
-  const payload$ = parsed$.value;
-  const body$ = null;
+  const payload = parsed.value;
+  const body = null;
 
-  const pathParams$ = {
-    providerId: encodeSimple$("providerId", payload$.providerId, {
+  const pathParams = {
+    providerId: encodeSimple("providerId", payload.providerId, {
       explode: false,
       charEncoding: "percent",
     }),
-    subscriberId: encodeSimple$("subscriberId", payload$.subscriberId, {
+    subscriberId: encodeSimple("subscriberId", payload.subscriberId, {
       explode: false,
       charEncoding: "percent",
     }),
   };
 
-  const path$ = pathToFunc(
+  const path = pathToFunc(
     "/v1/subscribers/{subscriberId}/credentials/{providerId}/oauth/callback",
-  )(pathParams$);
+  )(pathParams);
 
-  const query$ = encodeFormQuery$({
-    "code": payload$.code,
-    "environmentId": payload$.environmentId,
-    "hmacHash": payload$.hmacHash,
-    "integrationIdentifier": payload$.integrationIdentifier,
+  const query = encodeFormQuery({
+    "code": payload.code,
+    "environmentId": payload.environmentId,
+    "hmacHash": payload.hmacHash,
+    "integrationIdentifier": payload.integrationIdentifier,
   });
 
-  const headers$ = new Headers({
+  const headers = new Headers({
     Accept: "application/json",
   });
 
-  const apiKey$ = await extractSecurity(client$.options$.apiKey);
-  const security$ = apiKey$ == null ? {} : { apiKey: apiKey$ };
+  const secConfig = await extractSecurity(client._options.apiKey);
+  const securityInput = secConfig == null ? {} : { apiKey: secConfig };
+  const requestSecurity = resolveGlobalSecurity(securityInput);
+
   const context = {
     operationID: "SubscribersController_chatOauthCallback",
     oAuth2Scopes: [],
-    securitySource: client$.options$.apiKey,
-  };
-  const securitySettings$ = resolveGlobalSecurity(security$);
 
-  const requestRes = client$.createRequest$(context, {
-    security: securitySettings$,
-    method: "GET",
-    path: path$,
-    headers: headers$,
-    query: query$,
-    body: body$,
-    timeoutMs: options?.timeoutMs || client$.options$.timeoutMs || -1,
-  }, options);
-  if (!requestRes.ok) {
-    return requestRes;
-  }
-  const request$ = requestRes.value;
+    resolvedSecurity: requestSecurity,
 
-  const doResult = await client$.do$(request$, {
-    context,
-    errorCodes: ["409", "429", "4XX", "503", "5XX"],
+    securitySource: client._options.apiKey,
     retryConfig: options?.retries
-      || client$.options$.retryConfig
+      || client._options.retryConfig
       || {
         strategy: "backoff",
         backoff: {
@@ -121,16 +101,42 @@ export async function subscribersAuthenticationChatAccessOauthCallBack(
           maxElapsedTime: 3600000,
         },
         retryConnectionErrors: true,
-      },
+      }
+      || { strategy: "none" },
     retryCodes: options?.retryCodes || ["408", "409", "429", "5XX"],
+  };
+
+  const requestRes = client._createRequest(context, {
+    security: requestSecurity,
+    method: "GET",
+    path: path,
+    headers: headers,
+    query: query,
+    body: body,
+    timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
+  }, options);
+  if (!requestRes.ok) {
+    return requestRes;
+  }
+  const req = requestRes.value;
+
+  const doResult = await client._do(req, {
+    context,
+    errorCodes: ["409", "429", "4XX", "503", "5XX"],
+    retryConfig: context.retryConfig,
+    retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
     return doResult;
   }
   const response = doResult.value;
 
-  const [result$] = await m$.match<
-    operations.SubscribersControllerChatOauthCallbackResponseBody,
+  const responseFields = {
+    HttpMeta: { Response: response, Request: req },
+  };
+
+  const [result] = await M.match<
+    operations.SubscribersControllerChatOauthCallbackResponse,
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -139,16 +145,17 @@ export async function subscribersAuthenticationChatAccessOauthCallBack(
     | RequestTimeoutError
     | ConnectionError
   >(
-    m$.json(
+    M.json(
       200,
-      operations
-        .SubscribersControllerChatOauthCallbackResponseBody$inboundSchema,
+      operations.SubscribersControllerChatOauthCallbackResponse$inboundSchema,
+      { key: "Result" },
     ),
-    m$.fail([409, 429, "4XX", 503, "5XX"]),
-  )(response);
-  if (!result$.ok) {
-    return result$;
+    M.fail([409, 429, 503]),
+    M.fail(["4XX", "5XX"]),
+  )(response, { extraFields: responseFields });
+  if (!result.ok) {
+    return result;
   }
 
-  return result$;
+  return result;
 }

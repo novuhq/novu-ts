@@ -5,9 +5,9 @@
 
 ### Available Operations
 
-* [updateOnlineStatus](#updateonlinestatus) - Update subscriber online status
+* [updateOnlineFlag](#updateonlineflag) - Update subscriber online status
 
-## updateOnlineStatus
+## updateOnlineFlag
 
 Used to update the subscriber isOnline flag.
 
@@ -21,7 +21,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.subscribers.properties.updateOnlineStatus({
+  const result = await novu.subscribers.properties.updateOnlineFlag({
     isOnline: true,
   }, "<id>");
 
@@ -38,7 +38,7 @@ The standalone function version of this method:
 
 ```typescript
 import { NovuCore } from "@novu/api/core.js";
-import { subscribersPropertiesUpdateOnlineStatus } from "@novu/api/funcs/subscribersPropertiesUpdateOnlineStatus.js";
+import { subscribersPropertiesUpdateOnlineFlag } from "@novu/api/funcs/subscribersPropertiesUpdateOnlineFlag.js";
 
 // Use `NovuCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -47,7 +47,7 @@ const novu = new NovuCore({
 });
 
 async function run() {
-  const res = await subscribersPropertiesUpdateOnlineStatus(novu, {
+  const res = await subscribersPropertiesUpdateOnlineFlag(novu, {
     isOnline: true,
   }, "<id>");
 

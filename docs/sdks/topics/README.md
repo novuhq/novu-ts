@@ -9,9 +9,9 @@ Topics are a way to group subscribers together so that they can be notified of e
 ### Available Operations
 
 * [create](#create) - Topic creation
-* [getAll](#getall) - Filter topics
+* [list](#list) - Filter topics
 * [delete](#delete) - Delete topic
-* [get](#get) - Get topic
+* [retrieve](#retrieve) - Get topic
 * [rename](#rename) - Rename a topic
 
 ## create
@@ -92,7 +92,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4XX, 5XX        | \*/\*           |
 
-## getAll
+## list
 
 Returns a list of topics that can be paginated using the `page` query parameter and filtered by the topic key with the `key` query parameter
 
@@ -106,7 +106,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.topics.getAll({});
+  const result = await novu.topics.list({});
 
   // Handle the result
   console.log(result);
@@ -121,7 +121,7 @@ The standalone function version of this method:
 
 ```typescript
 import { NovuCore } from "@novu/api/core.js";
-import { topicsGetAll } from "@novu/api/funcs/topicsGetAll.js";
+import { topicsList } from "@novu/api/funcs/topicsList.js";
 
 // Use `NovuCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -130,7 +130,7 @@ const novu = new NovuCore({
 });
 
 async function run() {
-  const res = await topicsGetAll(novu, {});
+  const res = await topicsList(novu, {});
 
   if (!res.ok) {
     throw res.error;
@@ -236,7 +236,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4XX, 5XX        | \*/\*           |
 
-## get
+## retrieve
 
 Get a topic by its topic key
 
@@ -250,7 +250,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.topics.get("<value>");
+  const result = await novu.topics.retrieve("<value>");
 
   // Handle the result
   console.log(result);
@@ -265,7 +265,7 @@ The standalone function version of this method:
 
 ```typescript
 import { NovuCore } from "@novu/api/core.js";
-import { topicsGet } from "@novu/api/funcs/topicsGet.js";
+import { topicsRetrieve } from "@novu/api/funcs/topicsRetrieve.js";
 
 // Use `NovuCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -274,7 +274,7 @@ const novu = new NovuCore({
 });
 
 async function run() {
-  const res = await topicsGet(novu, "<value>");
+  const res = await topicsRetrieve(novu, "<value>");
 
   if (!res.ok) {
     throw res.error;

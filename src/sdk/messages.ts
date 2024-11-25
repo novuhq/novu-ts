@@ -4,7 +4,7 @@
 
 import { messagesDelete } from "../funcs/messagesDelete.js";
 import { messagesDeleteByTransactionId } from "../funcs/messagesDeleteByTransactionId.js";
-import { messagesGet } from "../funcs/messagesGet.js";
+import { messagesRetrieve } from "../funcs/messagesRetrieve.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
@@ -16,11 +16,11 @@ export class Messages extends ClientSDK {
    * @remarks
    * Returns a list of messages, could paginate using the `page` query parameter
    */
-  async get(
+  async retrieve(
     request: operations.MessagesControllerGetMessagesRequest,
     options?: RequestOptions,
   ): Promise<operations.MessagesControllerGetMessagesResponse> {
-    return unwrapAsync(messagesGet(
+    return unwrapAsync(messagesRetrieve(
       this,
       request,
       options,

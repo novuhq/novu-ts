@@ -8,10 +8,10 @@ Novu uses the concept of environments to ensure logical separation of your data 
 
 ### Available Operations
 
-* [getCurrent](#getcurrent) - Get current environment
-* [getAll](#getall) - Get environments
+* [retrieve](#retrieve) - Get current environment
+* [list](#list) - Get environments
 
-## getCurrent
+## retrieve
 
 Get current environment
 
@@ -25,7 +25,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.environments.getCurrent();
+  const result = await novu.environments.retrieve();
 
   // Handle the result
   console.log(result);
@@ -40,7 +40,7 @@ The standalone function version of this method:
 
 ```typescript
 import { NovuCore } from "@novu/api/core.js";
-import { environmentsGetCurrent } from "@novu/api/funcs/environmentsGetCurrent.js";
+import { environmentsRetrieve } from "@novu/api/funcs/environmentsRetrieve.js";
 
 // Use `NovuCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -49,7 +49,7 @@ const novu = new NovuCore({
 });
 
 async function run() {
-  const res = await environmentsGetCurrent(novu);
+  const res = await environmentsRetrieve(novu);
 
   if (!res.ok) {
     throw res.error;
@@ -82,7 +82,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4XX, 5XX        | \*/\*           |
 
-## getAll
+## list
 
 Get environments
 
@@ -96,7 +96,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.environments.getAll();
+  const result = await novu.environments.list();
 
   // Handle the result
   console.log(result);
@@ -111,7 +111,7 @@ The standalone function version of this method:
 
 ```typescript
 import { NovuCore } from "@novu/api/core.js";
-import { environmentsGetAll } from "@novu/api/funcs/environmentsGetAll.js";
+import { environmentsList } from "@novu/api/funcs/environmentsList.js";
 
 // Use `NovuCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -120,7 +120,7 @@ const novu = new NovuCore({
 });
 
 async function run() {
-  const res = await environmentsGetAll(novu);
+  const res = await environmentsList(novu);
 
   if (!res.ok) {
     throw res.error;

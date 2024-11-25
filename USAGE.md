@@ -130,7 +130,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.cancel("<id>");
+  const result = await novu.cancelByTransactionId("<id>");
 
   // Handle the result
   console.log(result);

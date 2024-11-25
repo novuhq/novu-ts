@@ -5,10 +5,10 @@
 
 ### Available Operations
 
-* [handleOauthCallback](#handleoauthcallback) - Handle providers oauth redirect
-* [handleOauth](#handleoauth) - Handle chat oauth
+* [chatAccessOauthCallBack](#chataccessoauthcallback) - Handle providers oauth redirect
+* [chatAccessOauth](#chataccessoauth) - Handle chat oauth
 
-## handleOauthCallback
+## chatAccessOauthCallBack
 
 Handle providers oauth redirect
 
@@ -22,7 +22,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.subscribers.authentication.handleOauthCallback({
+  const result = await novu.subscribers.authentication.chatAccessOauthCallBack({
     subscriberId: "<id>",
     providerId: "<id>",
     code: "<value>",
@@ -43,7 +43,7 @@ The standalone function version of this method:
 
 ```typescript
 import { NovuCore } from "@novu/api/core.js";
-import { subscribersAuthenticationHandleOauthCallback } from "@novu/api/funcs/subscribersAuthenticationHandleOauthCallback.js";
+import { subscribersAuthenticationChatAccessOauthCallBack } from "@novu/api/funcs/subscribersAuthenticationChatAccessOauthCallBack.js";
 
 // Use `NovuCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -52,7 +52,7 @@ const novu = new NovuCore({
 });
 
 async function run() {
-  const res = await subscribersAuthenticationHandleOauthCallback(novu, {
+  const res = await subscribersAuthenticationChatAccessOauthCallBack(novu, {
     subscriberId: "<id>",
     providerId: "<id>",
     code: "<value>",
@@ -92,7 +92,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4XX, 5XX        | \*/\*           |
 
-## handleOauth
+## chatAccessOauth
 
 Handle chat oauth
 
@@ -106,7 +106,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.subscribers.authentication.handleOauth({
+  const result = await novu.subscribers.authentication.chatAccessOauth({
     subscriberId: "<id>",
     providerId: "<id>",
     hmacHash: "<value>",
@@ -126,7 +126,7 @@ The standalone function version of this method:
 
 ```typescript
 import { NovuCore } from "@novu/api/core.js";
-import { subscribersAuthenticationHandleOauth } from "@novu/api/funcs/subscribersAuthenticationHandleOauth.js";
+import { subscribersAuthenticationChatAccessOauth } from "@novu/api/funcs/subscribersAuthenticationChatAccessOauth.js";
 
 // Use `NovuCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -135,7 +135,7 @@ const novu = new NovuCore({
 });
 
 async function run() {
-  const res = await subscribersAuthenticationHandleOauth(novu, {
+  const res = await subscribersAuthenticationChatAccessOauth(novu, {
     subscriberId: "<id>",
     providerId: "<id>",
     hmacHash: "<value>",

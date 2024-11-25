@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 6bff3a53-3f0b-40b4-942f-ff70dc583ae5
 management:
-  docChecksum: 23a1a47a0223e2cc7c8f22cbc9c329a8
+  docChecksum: 94d6ad7aa34a4727c08897680b358b24
   docVersion: "1.0"
   speakeasyVersion: 1.445.2
   generationVersion: 2.461.4
-  releaseVersion: 0.0.1-alpha.13
-  configChecksum: e9a6d515e982f92b4c9784dd8e13c989
+  releaseVersion: 0.0.1-alpha.19
+  configChecksum: bd7eb4c6370d3a31d86a517a8ce6f715
   published: true
 features:
   typescript:
@@ -305,80 +305,77 @@ generatedFiles:
   - docs/sdks/environments/README.md
   - docs/sdks/executiondetails/README.md
   - docs/sdks/integrations/README.md
-  - docs/sdks/integrationswebhooks/README.md
   - docs/sdks/messages/README.md
   - docs/sdks/notifications/README.md
-  - docs/sdks/notificationsstats/README.md
   - docs/sdks/novu/README.md
   - docs/sdks/novumessages/README.md
-  - docs/sdks/novusubscribersnotifications/README.md
-  - docs/sdks/novutopicssubscribers/README.md
+  - docs/sdks/novunotifications/README.md
+  - docs/sdks/novusubscribers/README.md
   - docs/sdks/preferences/README.md
   - docs/sdks/properties/README.md
   - docs/sdks/stats/README.md
   - docs/sdks/subscribers/README.md
-  - docs/sdks/subscribersmessages/README.md
-  - docs/sdks/subscribersnotifications/README.md
-  - docs/sdks/subscriberspreferences/README.md
   - docs/sdks/topics/README.md
+  - docs/sdks/webhooks/README.md
   - docs/sdks/workflowgroups/README.md
   - jsr.json
   - package.json
   - src/core.ts
-  - src/funcs/cancel.ts
+  - src/funcs/cancelByTransactionId.ts
   - src/funcs/environmentsApiKeysList.ts
-  - src/funcs/environmentsGetAll.ts
-  - src/funcs/environmentsGetCurrent.ts
-  - src/funcs/executionDetailsGet.ts
+  - src/funcs/environmentsList.ts
+  - src/funcs/environmentsRetrieve.ts
+  - src/funcs/executionDetailsRetrieve.ts
   - src/funcs/integrationsCreate.ts
   - src/funcs/integrationsDelete.ts
   - src/funcs/integrationsList.ts
   - src/funcs/integrationsListActive.ts
-  - src/funcs/integrationsSetPrimary.ts
+  - src/funcs/integrationsSetAsPrimary.ts
   - src/funcs/integrationsUpdate.ts
-  - src/funcs/integrationsWebhooksGetStatus.ts
+  - src/funcs/integrationsWebhooksRetrieve.ts
   - src/funcs/messagesDelete.ts
   - src/funcs/messagesDeleteByTransactionId.ts
-  - src/funcs/messagesGet.ts
-  - src/funcs/notificationsGet.ts
+  - src/funcs/messagesRetrieve.ts
   - src/funcs/notificationsList.ts
-  - src/funcs/notificationsStatsGet.ts
-  - src/funcs/subscribersAuthenticationHandleOauth.ts
-  - src/funcs/subscribersAuthenticationHandleOauthCallback.ts
+  - src/funcs/notificationsRetrieve.ts
+  - src/funcs/notificationsStatsGraph.ts
+  - src/funcs/notificationsStatsRetrieve.ts
+  - src/funcs/subscribersAuthenticationChatAccessOauth.ts
+  - src/funcs/subscribersAuthenticationChatAccessOauthCallBack.ts
   - src/funcs/subscribersCreate.ts
   - src/funcs/subscribersCreateBulk.ts
   - src/funcs/subscribersCredentialsAppend.ts
   - src/funcs/subscribersCredentialsDelete.ts
   - src/funcs/subscribersCredentialsUpdate.ts
   - src/funcs/subscribersDelete.ts
-  - src/funcs/subscribersGet.ts
-  - src/funcs/subscribersGetAll.ts
-  - src/funcs/subscribersMessagesMark.ts
+  - src/funcs/subscribersList.ts
   - src/funcs/subscribersMessagesMarkAll.ts
+  - src/funcs/subscribersMessagesMarkAllAs.ts
   - src/funcs/subscribersMessagesUpdateAsSeen.ts
-  - src/funcs/subscribersNotificationsGetFeed.ts
-  - src/funcs/subscribersNotificationsGetUnseenCount.ts
-  - src/funcs/subscribersPreferencesGet.ts
-  - src/funcs/subscribersPreferencesGetByLevel.ts
+  - src/funcs/subscribersNotificationsRetrieve.ts
+  - src/funcs/subscribersNotificationsUnseenCount.ts
+  - src/funcs/subscribersPreferencesList.ts
+  - src/funcs/subscribersPreferencesRetrieveByLevel.ts
   - src/funcs/subscribersPreferencesUpdate.ts
   - src/funcs/subscribersPreferencesUpdateGlobal.ts
-  - src/funcs/subscribersPropertiesUpdateOnlineStatus.ts
+  - src/funcs/subscribersPropertiesUpdateOnlineFlag.ts
+  - src/funcs/subscribersRetrieve.ts
   - src/funcs/subscribersUpdate.ts
   - src/funcs/topicsCreate.ts
   - src/funcs/topicsDelete.ts
-  - src/funcs/topicsGet.ts
-  - src/funcs/topicsGetAll.ts
+  - src/funcs/topicsList.ts
   - src/funcs/topicsRename.ts
-  - src/funcs/topicsSubscribersAdd.ts
-  - src/funcs/topicsSubscribersCheck.ts
-  - src/funcs/topicsSubscribersRemove.ts
+  - src/funcs/topicsRetrieve.ts
+  - src/funcs/topicsSubscribersAssign.ts
+  - src/funcs/topicsSubscribersDelete.ts
+  - src/funcs/topicsSubscribersRetrieve.ts
   - src/funcs/trigger.ts
   - src/funcs/triggerBroadcast.ts
   - src/funcs/triggerBulk.ts
   - src/funcs/workflowGroupsCreate.ts
   - src/funcs/workflowGroupsDelete.ts
-  - src/funcs/workflowGroupsGet.ts
   - src/funcs/workflowGroupsList.ts
+  - src/funcs/workflowGroupsRetrieve.ts
   - src/funcs/workflowGroupsUpdate.ts
   - src/hooks/hooks.ts
   - src/hooks/index.ts
@@ -549,22 +546,18 @@ generatedFiles:
   - src/sdk/executiondetails.ts
   - src/sdk/index.ts
   - src/sdk/integrations.ts
-  - src/sdk/integrationswebhooks.ts
   - src/sdk/messages.ts
   - src/sdk/notifications.ts
-  - src/sdk/notificationsstats.ts
   - src/sdk/novumessages.ts
-  - src/sdk/novusubscribersnotifications.ts
-  - src/sdk/novutopicssubscribers.ts
+  - src/sdk/novunotifications.ts
+  - src/sdk/novusubscribers.ts
   - src/sdk/preferences.ts
   - src/sdk/properties.ts
   - src/sdk/sdk.ts
   - src/sdk/stats.ts
   - src/sdk/subscribers.ts
-  - src/sdk/subscribersmessages.ts
-  - src/sdk/subscribersnotifications.ts
-  - src/sdk/subscriberspreferences.ts
   - src/sdk/topics.ts
+  - src/sdk/webhooks.ts
   - src/sdk/workflowgroups.ts
   - src/types/blobs.ts
   - src/types/constdatetime.ts

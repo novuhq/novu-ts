@@ -5,7 +5,6 @@
 import { subscribersNotificationsRetrieve } from "../funcs/subscribersNotificationsRetrieve.js";
 import { subscribersNotificationsUnseenCount } from "../funcs/subscribersNotificationsUnseenCount.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as components from "../models/components/index.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
 
@@ -16,7 +15,7 @@ export class NovuNotifications extends ClientSDK {
   async retrieve(
     request: operations.SubscribersControllerGetNotificationsFeedRequest,
     options?: RequestOptions,
-  ): Promise<operations.SubscribersControllerGetNotificationsFeedResponseBody> {
+  ): Promise<operations.SubscribersControllerGetNotificationsFeedResponse> {
     return unwrapAsync(subscribersNotificationsRetrieve(
       this,
       request,
@@ -30,7 +29,7 @@ export class NovuNotifications extends ClientSDK {
   async unseenCount(
     request: operations.SubscribersControllerGetUnseenCountRequest,
     options?: RequestOptions,
-  ): Promise<components.UnseenCountResponse> {
+  ): Promise<operations.SubscribersControllerGetUnseenCountResponse> {
     return unwrapAsync(subscribersNotificationsUnseenCount(
       this,
       request,

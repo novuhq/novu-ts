@@ -204,7 +204,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.cancel("<id>");
+  const result = await novu.cancelByTransactionId("<id>");
 
   // Handle the result
   console.log(result);
@@ -223,8 +223,8 @@ run();
 
 ### [environments](docs/sdks/environments/README.md)
 
-* [getCurrent](docs/sdks/environments/README.md#getcurrent) - Get current environment
-* [getAll](docs/sdks/environments/README.md#getall) - Get environments
+* [retrieve](docs/sdks/environments/README.md#retrieve) - Get current environment
+* [list](docs/sdks/environments/README.md#list) - Get environments
 
 #### [environments.apiKeys](docs/sdks/apikeys/README.md)
 
@@ -232,7 +232,7 @@ run();
 
 ### [executionDetails](docs/sdks/executiondetails/README.md)
 
-* [get](docs/sdks/executiondetails/README.md#get) - Get execution details
+* [retrieve](docs/sdks/executiondetails/README.md#retrieve) - Get execution details
 
 ### [integrations](docs/sdks/integrations/README.md)
 
@@ -241,51 +241,48 @@ run();
 * [listActive](docs/sdks/integrations/README.md#listactive) - Get active integrations
 * [update](docs/sdks/integrations/README.md#update) - Update integration
 * [delete](docs/sdks/integrations/README.md#delete) - Delete integration
-* [setPrimary](docs/sdks/integrations/README.md#setprimary) - Set integration as primary
+* [setAsPrimary](docs/sdks/integrations/README.md#setasprimary) - Set integration as primary
 
-### [integrationsWebhooks](docs/sdks/integrationswebhooks/README.md)
+#### [integrations.webhooks](docs/sdks/webhooks/README.md)
 
-* [getStatus](docs/sdks/integrationswebhooks/README.md#getstatus) - Get webhook support status for provider
+* [retrieve](docs/sdks/webhooks/README.md#retrieve) - Get webhook support status for provider
 
 ### [messages](docs/sdks/messages/README.md)
 
-* [get](docs/sdks/messages/README.md#get) - Get messages
+* [retrieve](docs/sdks/messages/README.md#retrieve) - Get messages
 * [delete](docs/sdks/messages/README.md#delete) - Delete message
 * [deleteByTransactionId](docs/sdks/messages/README.md#deletebytransactionid) - Delete messages by transactionId
 
 ### [notifications](docs/sdks/notifications/README.md)
 
 * [list](docs/sdks/notifications/README.md#list) - Get notifications
-* [get](docs/sdks/notifications/README.md#get) - Get notification
+* [retrieve](docs/sdks/notifications/README.md#retrieve) - Get notification
 
 #### [notifications.stats](docs/sdks/stats/README.md)
 
-* [get](docs/sdks/stats/README.md#get) - Get notification statistics
-
-### [notificationsStats](docs/sdks/notificationsstats/README.md)
-
-* [get](docs/sdks/notificationsstats/README.md#get) - Get notification graph statistics
+* [retrieve](docs/sdks/stats/README.md#retrieve) - Get notification statistics
+* [graph](docs/sdks/stats/README.md#graph) - Get notification graph statistics
 
 ### [Novu SDK](docs/sdks/novu/README.md)
 
 * [trigger](docs/sdks/novu/README.md#trigger) - Trigger event
 * [triggerBulk](docs/sdks/novu/README.md#triggerbulk) - Bulk trigger event
 * [triggerBroadcast](docs/sdks/novu/README.md#triggerbroadcast) - Broadcast event to all
-* [cancel](docs/sdks/novu/README.md#cancel) - Cancel triggered event
+* [cancelByTransactionId](docs/sdks/novu/README.md#cancelbytransactionid) - Cancel triggered event
 
 ### [subscribers](docs/sdks/subscribers/README.md)
 
-* [getAll](docs/sdks/subscribers/README.md#getall) - Get subscribers
+* [list](docs/sdks/subscribers/README.md#list) - Get subscribers
 * [create](docs/sdks/subscribers/README.md#create) - Create subscriber
-* [get](docs/sdks/subscribers/README.md#get) - Get subscriber
+* [retrieve](docs/sdks/subscribers/README.md#retrieve) - Get subscriber
 * [update](docs/sdks/subscribers/README.md#update) - Update subscriber
 * [delete](docs/sdks/subscribers/README.md#delete) - Delete subscriber
 * [createBulk](docs/sdks/subscribers/README.md#createbulk) - Bulk create subscribers
 
 #### [subscribers.authentication](docs/sdks/authentication/README.md)
 
-* [handleOauthCallback](docs/sdks/authentication/README.md#handleoauthcallback) - Handle providers oauth redirect
-* [handleOauth](docs/sdks/authentication/README.md#handleoauth) - Handle chat oauth
+* [chatAccessOauthCallBack](docs/sdks/authentication/README.md#chataccessoauthcallback) - Handle providers oauth redirect
+* [chatAccessOauth](docs/sdks/authentication/README.md#chataccessoauth) - Handle chat oauth
 
 #### [subscribers.credentials](docs/sdks/credentials/README.md)
 
@@ -295,54 +292,45 @@ run();
 
 #### [subscribers.messages](docs/sdks/novumessages/README.md)
 
-* [mark](docs/sdks/novumessages/README.md#mark) - Mark a subscriber messages as seen, read, unseen or unread
+* [markAllAs](docs/sdks/novumessages/README.md#markallas) - Mark a subscriber messages as seen, read, unseen or unread
+* [markAll](docs/sdks/novumessages/README.md#markall) - Marks all the subscriber messages as read, unread, seen or unseen. Optionally you can pass feed id (or array) to mark messages of a particular feed.
+* [updateAsSeen](docs/sdks/novumessages/README.md#updateasseen) - Mark message action as seen
 
-#### [subscribers.notifications](docs/sdks/novusubscribersnotifications/README.md)
+#### [subscribers.notifications](docs/sdks/novunotifications/README.md)
 
-* [getFeed](docs/sdks/novusubscribersnotifications/README.md#getfeed) - Get in-app notification feed for a particular subscriber
+* [retrieve](docs/sdks/novunotifications/README.md#retrieve) - Get in-app notification feed for a particular subscriber
+* [unseenCount](docs/sdks/novunotifications/README.md#unseencount) - Get the unseen in-app notifications count for subscribers feed
 
 #### [subscribers.preferences](docs/sdks/preferences/README.md)
 
-* [get](docs/sdks/preferences/README.md#get) - Get subscriber preferences
-* [getByLevel](docs/sdks/preferences/README.md#getbylevel) - Get subscriber preferences by level
+* [list](docs/sdks/preferences/README.md#list) - Get subscriber preferences
+* [updateGlobal](docs/sdks/preferences/README.md#updateglobal) - Update subscriber global preferences
+* [retrieveByLevel](docs/sdks/preferences/README.md#retrievebylevel) - Get subscriber preferences by level
 * [update](docs/sdks/preferences/README.md#update) - Update subscriber preference
 
 #### [subscribers.properties](docs/sdks/properties/README.md)
 
-* [updateOnlineStatus](docs/sdks/properties/README.md#updateonlinestatus) - Update subscriber online status
-
-### [subscribersMessages](docs/sdks/subscribersmessages/README.md)
-
-* [markAll](docs/sdks/subscribersmessages/README.md#markall) - Marks all the subscriber messages as read, unread, seen or unseen. Optionally you can pass feed id (or array) to mark messages of a particular feed.
-* [updateAsSeen](docs/sdks/subscribersmessages/README.md#updateasseen) - Mark message action as seen
-
-### [subscribersNotifications](docs/sdks/subscribersnotifications/README.md)
-
-* [getUnseenCount](docs/sdks/subscribersnotifications/README.md#getunseencount) - Get the unseen in-app notifications count for subscribers feed
-
-### [subscribersPreferences](docs/sdks/subscriberspreferences/README.md)
-
-* [updateGlobal](docs/sdks/subscriberspreferences/README.md#updateglobal) - Update subscriber global preferences
+* [updateOnlineFlag](docs/sdks/properties/README.md#updateonlineflag) - Update subscriber online status
 
 ### [topics](docs/sdks/topics/README.md)
 
 * [create](docs/sdks/topics/README.md#create) - Topic creation
-* [getAll](docs/sdks/topics/README.md#getall) - Filter topics
+* [list](docs/sdks/topics/README.md#list) - Filter topics
 * [delete](docs/sdks/topics/README.md#delete) - Delete topic
-* [get](docs/sdks/topics/README.md#get) - Get topic
+* [retrieve](docs/sdks/topics/README.md#retrieve) - Get topic
 * [rename](docs/sdks/topics/README.md#rename) - Rename a topic
 
-#### [topics.subscribers](docs/sdks/novutopicssubscribers/README.md)
+#### [topics.subscribers](docs/sdks/novusubscribers/README.md)
 
-* [add](docs/sdks/novutopicssubscribers/README.md#add) - Subscribers addition
-* [check](docs/sdks/novutopicssubscribers/README.md#check) - Check topic subscriber
-* [remove](docs/sdks/novutopicssubscribers/README.md#remove) - Subscribers removal
+* [assign](docs/sdks/novusubscribers/README.md#assign) - Subscribers addition
+* [retrieve](docs/sdks/novusubscribers/README.md#retrieve) - Check topic subscriber
+* [delete](docs/sdks/novusubscribers/README.md#delete) - Subscribers removal
 
 ### [workflowGroups](docs/sdks/workflowgroups/README.md)
 
 * [create](docs/sdks/workflowgroups/README.md#create) - Create workflow group
 * [list](docs/sdks/workflowgroups/README.md#list) - Get workflow groups
-* [get](docs/sdks/workflowgroups/README.md#get) - Get workflow group
+* [retrieve](docs/sdks/workflowgroups/README.md#retrieve) - Get workflow group
 * [update](docs/sdks/workflowgroups/README.md#update) - Update workflow group
 * [delete](docs/sdks/workflowgroups/README.md#delete) - Delete workflow group
 
@@ -364,61 +352,61 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 <summary>Available standalone functions</summary>
 
-- [`cancel`](docs/sdks/novu/README.md#cancel) - Cancel triggered event
+- [`cancelByTransactionId`](docs/sdks/novu/README.md#cancelbytransactionid) - Cancel triggered event
 - [`environmentsApiKeysList`](docs/sdks/apikeys/README.md#list) - Get api keys
-- [`environmentsGetAll`](docs/sdks/environments/README.md#getall) - Get environments
-- [`environmentsGetCurrent`](docs/sdks/environments/README.md#getcurrent) - Get current environment
-- [`executionDetailsGet`](docs/sdks/executiondetails/README.md#get) - Get execution details
+- [`environmentsList`](docs/sdks/environments/README.md#list) - Get environments
+- [`environmentsRetrieve`](docs/sdks/environments/README.md#retrieve) - Get current environment
+- [`executionDetailsRetrieve`](docs/sdks/executiondetails/README.md#retrieve) - Get execution details
 - [`integrationsCreate`](docs/sdks/integrations/README.md#create) - Create integration
 - [`integrationsDelete`](docs/sdks/integrations/README.md#delete) - Delete integration
 - [`integrationsList`](docs/sdks/integrations/README.md#list) - Get integrations
 - [`integrationsListActive`](docs/sdks/integrations/README.md#listactive) - Get active integrations
-- [`integrationsSetPrimary`](docs/sdks/integrations/README.md#setprimary) - Set integration as primary
+- [`integrationsSetAsPrimary`](docs/sdks/integrations/README.md#setasprimary) - Set integration as primary
 - [`integrationsUpdate`](docs/sdks/integrations/README.md#update) - Update integration
-- [`integrationsWebhooksGetStatus`](docs/sdks/integrationswebhooks/README.md#getstatus) - Get webhook support status for provider
+- [`integrationsWebhooksRetrieve`](docs/sdks/webhooks/README.md#retrieve) - Get webhook support status for provider
 - [`messagesDelete`](docs/sdks/messages/README.md#delete) - Delete message
 - [`messagesDeleteByTransactionId`](docs/sdks/messages/README.md#deletebytransactionid) - Delete messages by transactionId
-- [`messagesGet`](docs/sdks/messages/README.md#get) - Get messages
-- [`notificationsGet`](docs/sdks/notifications/README.md#get) - Get notification
+- [`messagesRetrieve`](docs/sdks/messages/README.md#retrieve) - Get messages
 - [`notificationsList`](docs/sdks/notifications/README.md#list) - Get notifications
-- [`notificationsStatsGet`](docs/sdks/notificationsstats/README.md#get) - Get notification graph statistics
-- [`notificationsStatsGet`](docs/sdks/stats/README.md#get) - Get notification statistics
-- [`subscribersAuthenticationHandleOauth`](docs/sdks/authentication/README.md#handleoauth) - Handle chat oauth
-- [`subscribersAuthenticationHandleOauthCallback`](docs/sdks/authentication/README.md#handleoauthcallback) - Handle providers oauth redirect
+- [`notificationsRetrieve`](docs/sdks/notifications/README.md#retrieve) - Get notification
+- [`notificationsStatsGraph`](docs/sdks/stats/README.md#graph) - Get notification graph statistics
+- [`notificationsStatsRetrieve`](docs/sdks/stats/README.md#retrieve) - Get notification statistics
+- [`subscribersAuthenticationChatAccessOauth`](docs/sdks/authentication/README.md#chataccessoauth) - Handle chat oauth
+- [`subscribersAuthenticationChatAccessOauthCallBack`](docs/sdks/authentication/README.md#chataccessoauthcallback) - Handle providers oauth redirect
 - [`subscribersCreate`](docs/sdks/subscribers/README.md#create) - Create subscriber
 - [`subscribersCreateBulk`](docs/sdks/subscribers/README.md#createbulk) - Bulk create subscribers
 - [`subscribersCredentialsAppend`](docs/sdks/credentials/README.md#append) - Modify subscriber credentials
 - [`subscribersCredentialsDelete`](docs/sdks/credentials/README.md#delete) - Delete subscriber credentials by providerId
 - [`subscribersCredentialsUpdate`](docs/sdks/credentials/README.md#update) - Update subscriber credentials
 - [`subscribersDelete`](docs/sdks/subscribers/README.md#delete) - Delete subscriber
-- [`subscribersGet`](docs/sdks/subscribers/README.md#get) - Get subscriber
-- [`subscribersGetAll`](docs/sdks/subscribers/README.md#getall) - Get subscribers
-- [`subscribersMessagesMark`](docs/sdks/novumessages/README.md#mark) - Mark a subscriber messages as seen, read, unseen or unread
-- [`subscribersMessagesMarkAll`](docs/sdks/subscribersmessages/README.md#markall) - Marks all the subscriber messages as read, unread, seen or unseen. Optionally you can pass feed id (or array) to mark messages of a particular feed.
-- [`subscribersMessagesUpdateAsSeen`](docs/sdks/subscribersmessages/README.md#updateasseen) - Mark message action as seen
-- [`subscribersNotificationsGetFeed`](docs/sdks/novusubscribersnotifications/README.md#getfeed) - Get in-app notification feed for a particular subscriber
-- [`subscribersNotificationsGetUnseenCount`](docs/sdks/subscribersnotifications/README.md#getunseencount) - Get the unseen in-app notifications count for subscribers feed
-- [`subscribersPreferencesGet`](docs/sdks/preferences/README.md#get) - Get subscriber preferences
-- [`subscribersPreferencesGetByLevel`](docs/sdks/preferences/README.md#getbylevel) - Get subscriber preferences by level
+- [`subscribersList`](docs/sdks/subscribers/README.md#list) - Get subscribers
+- [`subscribersMessagesMarkAll`](docs/sdks/novumessages/README.md#markall) - Marks all the subscriber messages as read, unread, seen or unseen. Optionally you can pass feed id (or array) to mark messages of a particular feed.
+- [`subscribersMessagesMarkAllAs`](docs/sdks/novumessages/README.md#markallas) - Mark a subscriber messages as seen, read, unseen or unread
+- [`subscribersMessagesUpdateAsSeen`](docs/sdks/novumessages/README.md#updateasseen) - Mark message action as seen
+- [`subscribersNotificationsRetrieve`](docs/sdks/novunotifications/README.md#retrieve) - Get in-app notification feed for a particular subscriber
+- [`subscribersNotificationsUnseenCount`](docs/sdks/novunotifications/README.md#unseencount) - Get the unseen in-app notifications count for subscribers feed
+- [`subscribersPreferencesList`](docs/sdks/preferences/README.md#list) - Get subscriber preferences
+- [`subscribersPreferencesRetrieveByLevel`](docs/sdks/preferences/README.md#retrievebylevel) - Get subscriber preferences by level
 - [`subscribersPreferencesUpdate`](docs/sdks/preferences/README.md#update) - Update subscriber preference
-- [`subscribersPreferencesUpdateGlobal`](docs/sdks/subscriberspreferences/README.md#updateglobal) - Update subscriber global preferences
-- [`subscribersPropertiesUpdateOnlineStatus`](docs/sdks/properties/README.md#updateonlinestatus) - Update subscriber online status
+- [`subscribersPreferencesUpdateGlobal`](docs/sdks/preferences/README.md#updateglobal) - Update subscriber global preferences
+- [`subscribersPropertiesUpdateOnlineFlag`](docs/sdks/properties/README.md#updateonlineflag) - Update subscriber online status
+- [`subscribersRetrieve`](docs/sdks/subscribers/README.md#retrieve) - Get subscriber
 - [`subscribersUpdate`](docs/sdks/subscribers/README.md#update) - Update subscriber
 - [`topicsCreate`](docs/sdks/topics/README.md#create) - Topic creation
 - [`topicsDelete`](docs/sdks/topics/README.md#delete) - Delete topic
-- [`topicsGet`](docs/sdks/topics/README.md#get) - Get topic
-- [`topicsGetAll`](docs/sdks/topics/README.md#getall) - Filter topics
+- [`topicsList`](docs/sdks/topics/README.md#list) - Filter topics
 - [`topicsRename`](docs/sdks/topics/README.md#rename) - Rename a topic
-- [`topicsSubscribersAdd`](docs/sdks/novutopicssubscribers/README.md#add) - Subscribers addition
-- [`topicsSubscribersCheck`](docs/sdks/novutopicssubscribers/README.md#check) - Check topic subscriber
-- [`topicsSubscribersRemove`](docs/sdks/novutopicssubscribers/README.md#remove) - Subscribers removal
+- [`topicsRetrieve`](docs/sdks/topics/README.md#retrieve) - Get topic
+- [`topicsSubscribersAssign`](docs/sdks/novusubscribers/README.md#assign) - Subscribers addition
+- [`topicsSubscribersDelete`](docs/sdks/novusubscribers/README.md#delete) - Subscribers removal
+- [`topicsSubscribersRetrieve`](docs/sdks/novusubscribers/README.md#retrieve) - Check topic subscriber
 - [`trigger`](docs/sdks/novu/README.md#trigger) - Trigger event
 - [`triggerBroadcast`](docs/sdks/novu/README.md#triggerbroadcast) - Broadcast event to all
 - [`triggerBulk`](docs/sdks/novu/README.md#triggerbulk) - Bulk trigger event
 - [`workflowGroupsCreate`](docs/sdks/workflowgroups/README.md#create) - Create workflow group
 - [`workflowGroupsDelete`](docs/sdks/workflowgroups/README.md#delete) - Delete workflow group
-- [`workflowGroupsGet`](docs/sdks/workflowgroups/README.md#get) - Get workflow group
 - [`workflowGroupsList`](docs/sdks/workflowgroups/README.md#list) - Get workflow groups
+- [`workflowGroupsRetrieve`](docs/sdks/workflowgroups/README.md#retrieve) - Get workflow group
 - [`workflowGroupsUpdate`](docs/sdks/workflowgroups/README.md#update) - Update workflow group
 
 </details>
@@ -444,7 +432,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.subscribers.getAll();
+  const result = await novu.subscribers.list();
 
   for await (const page of result) {
     // Handle the page

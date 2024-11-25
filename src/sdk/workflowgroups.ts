@@ -4,8 +4,8 @@
 
 import { workflowGroupsCreate } from "../funcs/workflowGroupsCreate.js";
 import { workflowGroupsDelete } from "../funcs/workflowGroupsDelete.js";
-import { workflowGroupsGet } from "../funcs/workflowGroupsGet.js";
 import { workflowGroupsList } from "../funcs/workflowGroupsList.js";
+import { workflowGroupsRetrieve } from "../funcs/workflowGroupsRetrieve.js";
 import { workflowGroupsUpdate } from "../funcs/workflowGroupsUpdate.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as components from "../models/components/index.js";
@@ -55,13 +55,13 @@ export class WorkflowGroups extends ClientSDK {
    * @remarks
    * workflow group was previously named notification group
    */
-  async get(
+  async retrieve(
     id: string,
     options?: RequestOptions,
   ): Promise<
     operations.NotificationGroupsControllerGetNotificationGroupResponse
   > {
-    return unwrapAsync(workflowGroupsGet(
+    return unwrapAsync(workflowGroupsRetrieve(
       this,
       id,
       options,

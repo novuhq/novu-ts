@@ -5,8 +5,8 @@
 import { subscribersCreate } from "../funcs/subscribersCreate.js";
 import { subscribersCreateBulk } from "../funcs/subscribersCreateBulk.js";
 import { subscribersDelete } from "../funcs/subscribersDelete.js";
-import { subscribersGet } from "../funcs/subscribersGet.js";
-import { subscribersGetAll } from "../funcs/subscribersGetAll.js";
+import { subscribersList } from "../funcs/subscribersList.js";
+import { subscribersRetrieve } from "../funcs/subscribersRetrieve.js";
 import { subscribersUpdate } from "../funcs/subscribersUpdate.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as components from "../models/components/index.js";
@@ -16,7 +16,7 @@ import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 import { Authentication } from "./authentication.js";
 import { Credentials } from "./credentials.js";
 import { NovuMessages } from "./novumessages.js";
-import { NovuSubscribersNotifications } from "./novusubscribersnotifications.js";
+import { NovuNotifications } from "./novunotifications.js";
 import { Preferences } from "./preferences.js";
 import { Properties } from "./properties.js";
 
@@ -36,11 +36,9 @@ export class Subscribers extends ClientSDK {
     return (this._preferences ??= new Preferences(this._options));
   }
 
-  private _notifications?: NovuSubscribersNotifications;
-  get notifications(): NovuSubscribersNotifications {
-    return (this._notifications ??= new NovuSubscribersNotifications(
-      this._options,
-    ));
+  private _notifications?: NovuNotifications;
+  get notifications(): NovuNotifications {
+    return (this._notifications ??= new NovuNotifications(this._options));
   }
 
   private _messages?: NovuMessages;
@@ -59,14 +57,14 @@ export class Subscribers extends ClientSDK {
    * @remarks
    * Returns a list of subscribers, could paginated using the `page` and `limit` query parameter
    */
-  async getAll(
+  async list(
     page?: number | undefined,
     limit?: number | undefined,
     options?: RequestOptions,
   ): Promise<
     PageIterator<operations.SubscribersControllerListSubscribersResponse>
   > {
-    return unwrapResultIterator(subscribersGetAll(
+    return unwrapResultIterator(subscribersList(
       this,
       page,
       limit,
@@ -97,12 +95,12 @@ export class Subscribers extends ClientSDK {
    * @remarks
    * Get subscriber by your internal id used to identify the subscriber
    */
-  async get(
+  async retrieve(
     subscriberId: string,
     includeTopics?: string | undefined,
     options?: RequestOptions,
   ): Promise<operations.SubscribersControllerGetSubscriberResponse> {
-    return unwrapAsync(subscribersGet(
+    return unwrapAsync(subscribersRetrieve(
       this,
       subscriberId,
       includeTopics,

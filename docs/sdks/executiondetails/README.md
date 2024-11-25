@@ -3,11 +3,14 @@
 
 ## Overview
 
+Execution details are used to track the execution of a workflow. They provided detailed information on the execution of a workflow, including the status of each step, the input and output of each step, and the overall status of the execution.
+<https://docs.novu.co/activity-feed>
+
 ### Available Operations
 
-* [get](#get) - Get execution details
+* [retrieve](#retrieve) - Get execution details
 
-## get
+## retrieve
 
 Get execution details
 
@@ -21,7 +24,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.executionDetails.get("<id>", "<id>");
+  const result = await novu.executionDetails.retrieve("<id>", "<id>");
 
   // Handle the result
   console.log(result);
@@ -36,7 +39,7 @@ The standalone function version of this method:
 
 ```typescript
 import { NovuCore } from "@novu/api/core.js";
-import { executionDetailsGet } from "@novu/api/funcs/executionDetailsGet.js";
+import { executionDetailsRetrieve } from "@novu/api/funcs/executionDetailsRetrieve.js";
 
 // Use `NovuCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -45,7 +48,7 @@ const novu = new NovuCore({
 });
 
 async function run() {
-  const res = await executionDetailsGet(novu, "<id>", "<id>");
+  const res = await executionDetailsRetrieve(novu, "<id>", "<id>");
 
   if (!res.ok) {
     throw res.error;

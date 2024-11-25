@@ -3,11 +3,13 @@
 
 ## Overview
 
+Workflow groups are used to organize workflows into logical groups.
+
 ### Available Operations
 
 * [create](#create) - Create workflow group
 * [list](#list) - Get workflow groups
-* [get](#get) - Get workflow group
+* [retrieve](#retrieve) - Get workflow group
 * [update](#update) - Update workflow group
 * [delete](#delete) - Delete workflow group
 
@@ -158,7 +160,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4XX, 5XX        | \*/\*           |
 
-## get
+## retrieve
 
 workflow group was previously named notification group
 
@@ -172,7 +174,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.workflowGroups.get("<id>");
+  const result = await novu.workflowGroups.retrieve("<id>");
 
   // Handle the result
   console.log(result);
@@ -187,7 +189,7 @@ The standalone function version of this method:
 
 ```typescript
 import { NovuCore } from "@novu/api/core.js";
-import { workflowGroupsGet } from "@novu/api/funcs/workflowGroupsGet.js";
+import { workflowGroupsRetrieve } from "@novu/api/funcs/workflowGroupsRetrieve.js";
 
 // Use `NovuCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -196,7 +198,7 @@ const novu = new NovuCore({
 });
 
 async function run() {
-  const res = await workflowGroupsGet(novu, "<id>");
+  const res = await workflowGroupsRetrieve(novu, "<id>");
 
   if (!res.ok) {
     throw res.error;

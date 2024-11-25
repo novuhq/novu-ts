@@ -8,14 +8,14 @@ A subscriber in Novu represents someone who should receive a message. A subscrib
 
 ### Available Operations
 
-* [getAll](#getall) - Get subscribers
+* [list](#list) - Get subscribers
 * [create](#create) - Create subscriber
-* [get](#get) - Get subscriber
+* [retrieve](#retrieve) - Get subscriber
 * [update](#update) - Update subscriber
 * [delete](#delete) - Delete subscriber
 * [createBulk](#createbulk) - Bulk create subscribers
 
-## getAll
+## list
 
 Returns a list of subscribers, could paginated using the `page` and `limit` query parameter
 
@@ -29,7 +29,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.subscribers.getAll();
+  const result = await novu.subscribers.list();
 
   for await (const page of result) {
     // Handle the page
@@ -46,7 +46,7 @@ The standalone function version of this method:
 
 ```typescript
 import { NovuCore } from "@novu/api/core.js";
-import { subscribersGetAll } from "@novu/api/funcs/subscribersGetAll.js";
+import { subscribersList } from "@novu/api/funcs/subscribersList.js";
 
 // Use `NovuCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -55,7 +55,7 @@ const novu = new NovuCore({
 });
 
 async function run() {
-  const res = await subscribersGetAll(novu);
+  const res = await subscribersList(novu);
 
   if (!res.ok) {
     throw res.error;
@@ -168,7 +168,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4XX, 5XX        | \*/\*           |
 
-## get
+## retrieve
 
 Get subscriber by your internal id used to identify the subscriber
 
@@ -182,7 +182,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.subscribers.get("<id>");
+  const result = await novu.subscribers.retrieve("<id>");
 
   // Handle the result
   console.log(result);
@@ -197,7 +197,7 @@ The standalone function version of this method:
 
 ```typescript
 import { NovuCore } from "@novu/api/core.js";
-import { subscribersGet } from "@novu/api/funcs/subscribersGet.js";
+import { subscribersRetrieve } from "@novu/api/funcs/subscribersRetrieve.js";
 
 // Use `NovuCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -206,7 +206,7 @@ const novu = new NovuCore({
 });
 
 async function run() {
-  const res = await subscribersGet(novu, "<id>");
+  const res = await subscribersRetrieve(novu, "<id>");
 
   if (!res.ok) {
     throw res.error;

@@ -13,7 +13,7 @@ With the help of the Integration Store, you can easily integrate your favorite d
 * [listActive](#listactive) - Get active integrations
 * [update](#update) - Update integration
 * [delete](#delete) - Delete integration
-* [setPrimary](#setprimary) - Set integration as primary
+* [setAsPrimary](#setasprimary) - Set integration as primary
 
 ## list
 
@@ -380,7 +380,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4XX, 5XX        | \*/\*           |
 
-## setPrimary
+## setAsPrimary
 
 Set integration as primary
 
@@ -394,7 +394,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.integrations.setPrimary("<id>");
+  const result = await novu.integrations.setAsPrimary("<id>");
 
   // Handle the result
   console.log(result);
@@ -409,7 +409,7 @@ The standalone function version of this method:
 
 ```typescript
 import { NovuCore } from "@novu/api/core.js";
-import { integrationsSetPrimary } from "@novu/api/funcs/integrationsSetPrimary.js";
+import { integrationsSetAsPrimary } from "@novu/api/funcs/integrationsSetAsPrimary.js";
 
 // Use `NovuCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -418,7 +418,7 @@ const novu = new NovuCore({
 });
 
 async function run() {
-  const res = await integrationsSetPrimary(novu, "<id>");
+  const res = await integrationsSetAsPrimary(novu, "<id>");
 
   if (!res.ok) {
     throw res.error;

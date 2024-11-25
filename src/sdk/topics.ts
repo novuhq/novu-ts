@@ -4,19 +4,19 @@
 
 import { topicsCreate } from "../funcs/topicsCreate.js";
 import { topicsDelete } from "../funcs/topicsDelete.js";
-import { topicsGet } from "../funcs/topicsGet.js";
-import { topicsGetAll } from "../funcs/topicsGetAll.js";
+import { topicsList } from "../funcs/topicsList.js";
 import { topicsRename } from "../funcs/topicsRename.js";
+import { topicsRetrieve } from "../funcs/topicsRetrieve.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as components from "../models/components/index.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
-import { NovuTopicsSubscribers } from "./novutopicssubscribers.js";
+import { NovuSubscribers } from "./novusubscribers.js";
 
 export class Topics extends ClientSDK {
-  private _subscribers?: NovuTopicsSubscribers;
-  get subscribers(): NovuTopicsSubscribers {
-    return (this._subscribers ??= new NovuTopicsSubscribers(this._options));
+  private _subscribers?: NovuSubscribers;
+  get subscribers(): NovuSubscribers {
+    return (this._subscribers ??= new NovuSubscribers(this._options));
   }
 
   /**
@@ -42,11 +42,11 @@ export class Topics extends ClientSDK {
    * @remarks
    * Returns a list of topics that can be paginated using the `page` query parameter and filtered by the topic key with the `key` query parameter
    */
-  async getAll(
+  async list(
     request: operations.TopicsControllerListTopicsRequest,
     options?: RequestOptions,
   ): Promise<operations.TopicsControllerListTopicsResponse> {
-    return unwrapAsync(topicsGetAll(
+    return unwrapAsync(topicsList(
       this,
       request,
       options,
@@ -76,11 +76,11 @@ export class Topics extends ClientSDK {
    * @remarks
    * Get a topic by its topic key
    */
-  async get(
+  async retrieve(
     topicKey: string,
     options?: RequestOptions,
   ): Promise<operations.TopicsControllerGetTopicResponse> {
-    return unwrapAsync(topicsGet(
+    return unwrapAsync(topicsRetrieve(
       this,
       topicKey,
       options,

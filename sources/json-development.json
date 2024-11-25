@@ -162,8 +162,7 @@
           {
             "api-key": []
           }
-        ],
-        "x-speakeasy-name-override": "getCurrent"
+        ]
       }
     },
     "/v1/environments": {
@@ -330,14 +329,13 @@
           {
             "api-key": []
           }
-        ],
-        "x-speakeasy-name-override": "getAll"
+        ]
       }
     },
     "/v1/environments/api-keys": {
       "get": {
         "operationId": "EnvironmentsControllerV1_listOrganizationApiKeys",
-        "x-speakeasy-group": "environments.apiKeys",
+        "x-speakeasy-group": "Environments.ApiKeys",
         "summary": "Get api keys",
         "parameters": [],
         "responses": {
@@ -499,8 +497,7 @@
           {
             "api-key": []
           }
-        ],
-        "x-speakeasy-name-override": "list"
+        ]
       }
     },
     "/v1/execution-details": {
@@ -684,9 +681,7 @@
           {
             "api-key": []
           }
-        ],
-        "x-speakeasy-group": "executionDetails",
-        "x-speakeasy-name-override": "get"
+        ]
       }
     },
     "/v1/events/trigger": {
@@ -1239,7 +1234,7 @@
         "x-speakeasy-usage-example": {
           "title": "Cancel Triggered Event"
         },
-        "x-speakeasy-name-override": "cancel",
+        "x-speakeasy-name-override": "cancelByTransactionId",
         "summary": "Cancel triggered event",
         "description": "\n    Using a previously generated transactionId during the event trigger,\n     will cancel any active or pending workflows. This is useful to cancel active digests, delays etc...\n    ",
         "parameters": [
@@ -1650,14 +1645,13 @@
           {
             "api-key": []
           }
-        ],
-        "x-speakeasy-name-override": "list"
+        ]
       }
     },
     "/v1/notifications/stats": {
       "get": {
         "operationId": "NotificationsController_getActivityStats",
-        "x-speakeasy-group": "notifications.stats",
+        "x-speakeasy-group": "Notifications.Stats",
         "summary": "Get notification statistics",
         "parameters": [],
         "responses": {
@@ -1816,15 +1810,14 @@
           {
             "api-key": []
           }
-        ],
-        "x-speakeasy-name-override": "get"
+        ]
       }
     },
     "/v1/notifications/graph/stats": {
       "get": {
         "operationId": "NotificationsController_getActivityGraphStats",
-        "x-speakeasy-name-override": "get",
-        "x-speakeasy-group": "notificationsStats",
+        "x-speakeasy-name-override": "graph",
+        "x-speakeasy-group": "Notifications.Stats",
         "summary": "Get notification graph statistics",
         "parameters": [
           {
@@ -2168,8 +2161,7 @@
           {
             "api-key": []
           }
-        ],
-        "x-speakeasy-name-override": "get"
+        ]
       }
     },
     "/v1/notification-groups": {
@@ -2344,9 +2336,7 @@
           {
             "api-key": []
           }
-        ],
-        "x-speakeasy-group": "workflowGroups",
-        "x-speakeasy-name-override": "create"
+        ]
       },
       "get": {
         "operationId": "NotificationGroupsController_listNotificationGroups",
@@ -2512,9 +2502,7 @@
           {
             "api-key": []
           }
-        ],
-        "x-speakeasy-group": "workflowGroups",
-        "x-speakeasy-name-override": "list"
+        ]
       }
     },
     "/v1/notification-groups/{id}": {
@@ -2688,9 +2676,7 @@
           {
             "api-key": []
           }
-        ],
-        "x-speakeasy-group": "workflowGroups",
-        "x-speakeasy-name-override": "get"
+        ]
       },
       "patch": {
         "operationId": "NotificationGroupsController_updateNotificationGroup",
@@ -2872,9 +2858,7 @@
           {
             "api-key": []
           }
-        ],
-        "x-speakeasy-group": "workflowGroups",
-        "x-speakeasy-name-override": "update"
+        ]
       },
       "delete": {
         "operationId": "NotificationGroupsController_deleteNotificationGroup",
@@ -3046,9 +3030,7 @@
           {
             "api-key": []
           }
-        ],
-        "x-speakeasy-group": "workflowGroups",
-        "x-speakeasy-name-override": "delete"
+        ]
       }
     },
     "/v1/integrations": {
@@ -3216,8 +3198,7 @@
           {
             "api-key": []
           }
-        ],
-        "x-speakeasy-name-override": "list"
+        ]
       },
       "post": {
         "operationId": "IntegrationsController_createIntegration",
@@ -3390,8 +3371,7 @@
           {
             "api-key": []
           }
-        ],
-        "x-speakeasy-name-override": "create"
+        ]
       }
     },
     "/v1/integrations/active": {
@@ -3566,7 +3546,7 @@
     "/v1/integrations/webhook/provider/{providerOrIntegrationId}/status": {
       "get": {
         "operationId": "IntegrationsController_getWebhookSupportStatus",
-        "x-speakeasy-group": "integrationsWebhooks",
+        "x-speakeasy-group": "Integrations.Webhooks",
         "summary": "Get webhook support status for provider",
         "description": "Return the status of the webhook for this provider, if it is supported or if it is not based on a boolean value",
         "parameters": [
@@ -3735,8 +3715,7 @@
           {
             "api-key": []
           }
-        ],
-        "x-speakeasy-name-override": "getStatus"
+        ]
       }
     },
     "/v1/integrations/{integrationId}": {
@@ -3945,8 +3924,7 @@
           {
             "api-key": []
           }
-        ],
-        "x-speakeasy-name-override": "update"
+        ]
       },
       "delete": {
         "operationId": "IntegrationsController_removeIntegration",
@@ -4120,14 +4098,13 @@
           {
             "api-key": []
           }
-        ],
-        "x-speakeasy-name-override": "delete"
+        ]
       }
     },
     "/v1/integrations/{integrationId}/set-primary": {
       "post": {
         "operationId": "IntegrationsController_setIntegrationAsPrimary",
-        "x-speakeasy-name-override": "setPrimary",
+        "x-speakeasy-name-override": "setAsPrimary",
         "summary": "Set integration as primary",
         "parameters": [
           {
@@ -4537,8 +4514,7 @@
           {
             "api-key": []
           }
-        ],
-        "x-speakeasy-name-override": "getAll"
+        ]
       },
       "post": {
         "operationId": "SubscribersController_createSubscriber",
@@ -4711,8 +4687,7 @@
           {
             "api-key": []
           }
-        ],
-        "x-speakeasy-name-override": "create"
+        ]
       }
     },
     "/v1/subscribers/{subscriberId}": {
@@ -4895,8 +4870,7 @@
           {
             "api-key": []
           }
-        ],
-        "x-speakeasy-name-override": "get"
+        ]
       },
       "put": {
         "operationId": "SubscribersController_updateSubscriber",
@@ -5078,8 +5052,7 @@
           {
             "api-key": []
           }
-        ],
-        "x-speakeasy-name-override": "update"
+        ]
       },
       "delete": {
         "operationId": "SubscribersController_removeSubscriber",
@@ -5251,8 +5224,7 @@
           {
             "api-key": []
           }
-        ],
-        "x-speakeasy-name-override": "delete"
+        ]
       }
     },
     "/v1/subscribers/bulk": {
@@ -5404,7 +5376,7 @@
     "/v1/subscribers/{subscriberId}/credentials": {
       "put": {
         "operationId": "SubscribersController_updateSubscriberChannel",
-        "x-speakeasy-group": "subscribers.credentials",
+        "x-speakeasy-group": "Subscribers.Credentials",
         "summary": "Update subscriber credentials",
         "description": "Subscriber credentials associated to the delivery methods such as slack and push tokens.",
         "parameters": [
@@ -5583,13 +5555,12 @@
           {
             "api-key": []
           }
-        ],
-        "x-speakeasy-name-override": "update"
+        ]
       },
       "patch": {
         "operationId": "SubscribersController_modifySubscriberChannel",
         "x-speakeasy-name-override": "append",
-        "x-speakeasy-group": "subscribers.credentials",
+        "x-speakeasy-group": "Subscribers.Credentials",
         "summary": "Modify subscriber credentials",
         "description": "Subscriber credentials associated to the delivery methods such as slack and push tokens.\n\n    This endpoint appends provided credentials and deviceTokens to the existing ones.",
         "parameters": [
@@ -5774,7 +5745,7 @@
     "/v1/subscribers/{subscriberId}/credentials/{providerId}": {
       "delete": {
         "operationId": "SubscribersController_deleteSubscriberCredentials",
-        "x-speakeasy-group": "subscribers.credentials",
+        "x-speakeasy-group": "Subscribers.Credentials",
         "summary": "Delete subscriber credentials by providerId",
         "description": "Delete subscriber credentials such as slack and expo tokens.",
         "parameters": [
@@ -5944,14 +5915,13 @@
           {
             "api-key": []
           }
-        ],
-        "x-speakeasy-name-override": "delete"
+        ]
       }
     },
     "/v1/subscribers/{subscriberId}/online-status": {
       "patch": {
         "operationId": "SubscribersController_updateSubscriberOnlineFlag",
-        "x-speakeasy-name-override": "updateOnlineStatus",
+        "x-speakeasy-name-override": "updateOnlineFlag",
         "x-speakeasy-group": "Subscribers.properties",
         "summary": "Update subscriber online status",
         "description": "Used to update the subscriber isOnline flag.",
@@ -6137,7 +6107,7 @@
     "/v1/subscribers/{subscriberId}/preferences": {
       "get": {
         "operationId": "SubscribersController_listSubscriberPreferences",
-        "x-speakeasy-group": "subscribers.preferences",
+        "x-speakeasy-group": "Subscribers.Preferences",
         "summary": "Get subscriber preferences",
         "parameters": [
           {
@@ -6317,13 +6287,12 @@
           {
             "api-key": []
           }
-        ],
-        "x-speakeasy-name-override": "get"
+        ]
       },
       "patch": {
         "operationId": "SubscribersController_updateSubscriberGlobalPreferences",
         "x-speakeasy-name-override": "updateGlobal",
-        "x-speakeasy-group": "subscribersPreferences",
+        "x-speakeasy-group": "Subscribers.Preferences",
         "summary": "Update subscriber global preferences",
         "parameters": [
           {
@@ -6507,8 +6476,8 @@
     "/v1/subscribers/{subscriberId}/preferences/{parameter}": {
       "get": {
         "operationId": "SubscribersController_getSubscriberPreferenceByLevel",
-        "x-speakeasy-name-override": "getByLevel",
-        "x-speakeasy-group": "subscribers.preferences",
+        "x-speakeasy-name-override": "retrieveByLevel",
+        "x-speakeasy-group": "Subscribers.Preferences",
         "summary": "Get subscriber preferences by level",
         "parameters": [
           {
@@ -6705,7 +6674,7 @@
       },
       "patch": {
         "operationId": "SubscribersController_updateSubscriberPreference",
-        "x-speakeasy-group": "subscribers.preferences",
+        "x-speakeasy-group": "Subscribers.Preferences",
         "summary": "Update subscriber preference",
         "parameters": [
           {
@@ -6891,14 +6860,13 @@
           {
             "api-key": []
           }
-        ],
-        "x-speakeasy-name-override": "update"
+        ]
       }
     },
     "/v1/subscribers/{subscriberId}/notifications/feed": {
       "get": {
         "operationId": "SubscribersController_getNotificationsFeed",
-        "x-speakeasy-group": "subscribers.notifications",
+        "x-speakeasy-group": "Subscribers.Notifications",
         "summary": "Get in-app notification feed for a particular subscriber",
         "parameters": [
           {
@@ -7124,15 +7092,14 @@
           {
             "api-key": []
           }
-        ],
-        "x-speakeasy-name-override": "getFeed"
+        ]
       }
     },
     "/v1/subscribers/{subscriberId}/notifications/unseen": {
       "get": {
         "operationId": "SubscribersController_getUnseenCount",
-        "x-speakeasy-name-override": "getUnseenCount",
-        "x-speakeasy-group": "subscribersNotifications",
+        "x-speakeasy-name-override": "unseenCount",
+        "x-speakeasy-group": "Subscribers.Notifications",
         "summary": "Get the unseen in-app notifications count for subscribers feed",
         "parameters": [
           {
@@ -7322,8 +7289,8 @@
     "/v1/subscribers/{subscriberId}/messages/mark-as": {
       "post": {
         "operationId": "SubscribersController_markMessagesAs",
-        "x-speakeasy-name-override": "mark",
-        "x-speakeasy-group": "subscribers.messages",
+        "x-speakeasy-name-override": "markAllAs",
+        "x-speakeasy-group": "Subscribers.Messages",
         "summary": "Mark a subscriber messages as seen, read, unseen or unread",
         "parameters": [
           {
@@ -7488,7 +7455,7 @@
       "post": {
         "operationId": "SubscribersController_markAllUnreadAsRead",
         "x-speakeasy-name-override": "markAll",
-        "x-speakeasy-group": "subscribersMessages",
+        "x-speakeasy-group": "Subscribers.Messages",
         "summary": "Marks all the subscriber messages as read, unread, seen or unseen. Optionally you can pass feed id (or array) to mark messages of a particular feed.",
         "parameters": [
           {
@@ -7650,7 +7617,7 @@
       "post": {
         "operationId": "SubscribersController_markActionAsSeen",
         "x-speakeasy-name-override": "updateAsSeen",
-        "x-speakeasy-group": "subscribersMessages",
+        "x-speakeasy-group": "Subscribers.Messages",
         "summary": "Mark message action as seen",
         "parameters": [
           {
@@ -7848,8 +7815,8 @@
     "/v1/subscribers/{subscriberId}/credentials/{providerId}/oauth/callback": {
       "get": {
         "operationId": "SubscribersController_chatOauthCallback",
-        "x-speakeasy-name-override": "handleOauthCallback",
-        "x-speakeasy-group": "subscribers.authentication",
+        "x-speakeasy-name-override": "chatAccessOauthCallBack",
+        "x-speakeasy-group": "Subscribers.Authentication",
         "summary": "Handle providers oauth redirect",
         "parameters": [
           {
@@ -8038,8 +8005,8 @@
     "/v1/subscribers/{subscriberId}/credentials/{providerId}/oauth": {
       "get": {
         "operationId": "SubscribersController_chatAccessOauth",
-        "x-speakeasy-name-override": "handleOauth",
-        "x-speakeasy-group": "subscribers.authentication",
+        "x-speakeasy-name-override": "chatAccessOauth",
+        "x-speakeasy-group": "Subscribers.Authentication",
         "summary": "Handle chat oauth",
         "parameters": [
           {
@@ -8425,8 +8392,7 @@
           {
             "api-key": []
           }
-        ],
-        "x-speakeasy-name-override": "get"
+        ]
       }
     },
     "/v1/messages/{messageId}": {
@@ -8600,8 +8566,7 @@
           {
             "api-key": []
           }
-        ],
-        "x-speakeasy-name-override": "delete"
+        ]
       }
     },
     "/v1/messages/transaction/{transactionId}": {
@@ -8960,8 +8925,7 @@
           {
             "api-key": []
           }
-        ],
-        "x-speakeasy-name-override": "create"
+        ]
       },
       "get": {
         "operationId": "TopicsController_listTopics",
@@ -9156,15 +9120,14 @@
           {
             "api-key": []
           }
-        ],
-        "x-speakeasy-name-override": "getAll"
+        ]
       }
     },
     "/v1/topics/{topicKey}/subscribers": {
       "post": {
         "operationId": "TopicsController_addSubscribers",
-        "x-speakeasy-name-override": "add",
-        "x-speakeasy-group": "topics.subscribers",
+        "x-speakeasy-name-override": "assign",
+        "x-speakeasy-group": "Topics.Subscribers",
         "summary": "Subscribers addition",
         "description": "Add subscribers to a topic by key",
         "parameters": [
@@ -9343,7 +9306,7 @@
     "/v1/topics/{topicKey}/subscribers/{externalSubscriberId}": {
       "get": {
         "operationId": "TopicsController_getTopicSubscriber",
-        "x-speakeasy-group": "topics.subscribers",
+        "x-speakeasy-group": "Topics.Subscribers",
         "summary": "Check topic subscriber",
         "description": "Check if a subscriber belongs to a certain topic",
         "parameters": [
@@ -9499,14 +9462,13 @@
           {
             "api-key": []
           }
-        ],
-        "x-speakeasy-name-override": "check"
+        ]
       }
     },
     "/v1/topics/{topicKey}/subscribers/removal": {
       "post": {
         "operationId": "TopicsController_removeSubscribers",
-        "x-speakeasy-group": "topics.subscribers",
+        "x-speakeasy-group": "Topics.Subscribers",
         "summary": "Subscribers removal",
         "description": "Remove subscribers from a topic",
         "parameters": [
@@ -9679,8 +9641,7 @@
           {
             "api-key": []
           }
-        ],
-        "x-speakeasy-name-override": "remove"
+        ]
       }
     },
     "/v1/topics/{topicKey}": {
@@ -9868,8 +9829,7 @@
           {
             "api-key": []
           }
-        ],
-        "x-speakeasy-name-override": "delete"
+        ]
       },
       "get": {
         "operationId": "TopicsController_getTopic",
@@ -10042,8 +10002,7 @@
           {
             "api-key": []
           }
-        ],
-        "x-speakeasy-name-override": "get"
+        ]
       },
       "patch": {
         "operationId": "TopicsController_renameTopic",
