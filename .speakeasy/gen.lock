@@ -1,0 +1,1007 @@
+lockVersion: 2.0.0
+id: 6bff3a53-3f0b-40b4-942f-ff70dc583ae5
+management:
+  docChecksum: 23a1a47a0223e2cc7c8f22cbc9c329a8
+  docVersion: "1.0"
+  speakeasyVersion: 1.445.2
+  generationVersion: 2.461.4
+  releaseVersion: 0.0.1-alpha.13
+  configChecksum: e9a6d515e982f92b4c9784dd8e13c989
+  published: true
+features:
+  typescript:
+    additionalDependencies: 0.1.0
+    constsAndDefaults: 0.1.11
+    core: 3.18.6
+    defaultEnabledRetries: 0.1.0
+    deprecations: 2.81.1
+    enumUnions: 0.1.0
+    envVarSecurityUsage: 0.1.2
+    examples: 2.81.4
+    flattening: 2.82.0
+    globalSecurity: 2.82.11
+    globalSecurityCallbacks: 0.1.0
+    globalSecurityFlattening: 0.1.0
+    globalServerURLs: 2.82.4
+    groups: 2.81.2
+    nameOverrides: 2.81.2
+    nullables: 0.1.0
+    pagination: 2.82.7
+    responseFormat: 0.2.3
+    retries: 2.83.0
+    sdkHooks: 0.2.0
+    tests: 0.7.0
+    unions: 2.85.8
+generatedFiles:
+  - .eslintrc.cjs
+  - .gitattributes
+  - .npmignore
+  - FUNCTIONS.md
+  - RUNTIMES.md
+  - USAGE.md
+  - docs/lib/utils/retryconfig.md
+  - docs/models/components/activitiesresponsedto.md
+  - docs/models/components/activitygraphstatesresponse.md
+  - docs/models/components/activitynotificationresponsedto.md
+  - docs/models/components/activitynotificationresponsedtochannels.md
+  - docs/models/components/activitynotificationsubscriberresponsedto.md
+  - docs/models/components/activitynotificationtemplateresponsedto.md
+  - docs/models/components/activitystatsresponsedto.md
+  - docs/models/components/actor.md
+  - docs/models/components/addsubscribersrequestdto.md
+  - docs/models/components/apikey.md
+  - docs/models/components/backoffunit.md
+  - docs/models/components/bulksubscribercreatedto.md
+  - docs/models/components/bulktriggereventdto.md
+  - docs/models/components/channel.md
+  - docs/models/components/channelcredentials.md
+  - docs/models/components/channelpreference.md
+  - docs/models/components/channelpreferencetype.md
+  - docs/models/components/channels.md
+  - docs/models/components/channelsettings.md
+  - docs/models/components/content.md
+  - docs/models/components/controls.md
+  - docs/models/components/createintegrationrequestdto.md
+  - docs/models/components/createintegrationrequestdtochannel.md
+  - docs/models/components/createnotificationgrouprequestdto.md
+  - docs/models/components/createsubscriberrequestdto.md
+  - docs/models/components/createsubscriberrequestdtodata.md
+  - docs/models/components/createtopicrequestdto.md
+  - docs/models/components/createtopicresponsedto.md
+  - docs/models/components/credentialsdto.md
+  - docs/models/components/data.md
+  - docs/models/components/databooleandto.md
+  - docs/models/components/delayregularmetadata.md
+  - docs/models/components/delayregularmetadatatype.md
+  - docs/models/components/delayregularmetadataunit.md
+  - docs/models/components/delayscheduledmetadata.md
+  - docs/models/components/delayscheduledmetadatatype.md
+  - docs/models/components/deletemessageresponsedto.md
+  - docs/models/components/deletemessageresponsedtostatus.md
+  - docs/models/components/deletenotificationgroupresponsedto.md
+  - docs/models/components/deletenotificationgroupresponsedtostatus.md
+  - docs/models/components/deletesubscriberresponsedto.md
+  - docs/models/components/deletesubscriberresponsedtostatus.md
+  - docs/models/components/digestregularmetadata.md
+  - docs/models/components/digestregularmetadatatype.md
+  - docs/models/components/digesttimedmetadata.md
+  - docs/models/components/digesttimedmetadatatype.md
+  - docs/models/components/digesttimedmetadataunit.md
+  - docs/models/components/emailblock.md
+  - docs/models/components/emailblockstyles.md
+  - docs/models/components/emailblocktype.md
+  - docs/models/components/environmentresponsedto.md
+  - docs/models/components/executiondetailsresponsedto.md
+  - docs/models/components/feedid.md
+  - docs/models/components/feedidentifier.md
+  - docs/models/components/feedresponsedto.md
+  - docs/models/components/fieldfilterpart.md
+  - docs/models/components/filtertopicsresponsedto.md
+  - docs/models/components/getsubscriberpreferencesresponsedto.md
+  - docs/models/components/gettopicresponsedto.md
+  - docs/models/components/integrationresponsedto.md
+  - docs/models/components/integrationresponsedtochannel.md
+  - docs/models/components/markallmessageasrequestdto.md
+  - docs/models/components/markallmessageasrequestdtomarkas.md
+  - docs/models/components/markas.md
+  - docs/models/components/markmessageactionasseendto.md
+  - docs/models/components/markmessageactionasseendtopayload.md
+  - docs/models/components/markmessageactionasseendtostatus.md
+  - docs/models/components/messageaction.md
+  - docs/models/components/messageactionresult.md
+  - docs/models/components/messageactionresultpayload.md
+  - docs/models/components/messageactionresulttype.md
+  - docs/models/components/messageactionstatus.md
+  - docs/models/components/messagebutton.md
+  - docs/models/components/messagebuttontype.md
+  - docs/models/components/messagecta.md
+  - docs/models/components/messagectadata.md
+  - docs/models/components/messagectatype.md
+  - docs/models/components/messageentity.md
+  - docs/models/components/messageid.md
+  - docs/models/components/messagemarkasrequestdto.md
+  - docs/models/components/messageresponsedto.md
+  - docs/models/components/messageresponsedtochannel.md
+  - docs/models/components/messageresponsedtooverrides.md
+  - docs/models/components/messageresponsedtopayload.md
+  - docs/models/components/messageresponsedtostatus.md
+  - docs/models/components/messagetemplate.md
+  - docs/models/components/metadata.md
+  - docs/models/components/monthlytype.md
+  - docs/models/components/notificationgroup.md
+  - docs/models/components/notificationgroupresponsedto.md
+  - docs/models/components/notificationstep.md
+  - docs/models/components/notificationstepvariant.md
+  - docs/models/components/notificationstepvariantmetadata.md
+  - docs/models/components/notificationstepvariantparentid.md
+  - docs/models/components/notificationstepvariantreplycallback.md
+  - docs/models/components/notificationtrigger.md
+  - docs/models/components/notificationtriggertype.md
+  - docs/models/components/notificationtriggervariable.md
+  - docs/models/components/on.md
+  - docs/models/components/operator.md
+  - docs/models/components/ordinal.md
+  - docs/models/components/ordinalvalue.md
+  - docs/models/components/overrides.md
+  - docs/models/components/parentid.md
+  - docs/models/components/payload.md
+  - docs/models/components/preference.md
+  - docs/models/components/preferencechannels.md
+  - docs/models/components/providerid.md
+  - docs/models/components/removesubscribersrequestdto.md
+  - docs/models/components/renametopicrequestdto.md
+  - docs/models/components/renametopicresponsedto.md
+  - docs/models/components/replycallback.md
+  - docs/models/components/security.md
+  - docs/models/components/source.md
+  - docs/models/components/status.md
+  - docs/models/components/stepfilter.md
+  - docs/models/components/stepfiltertype.md
+  - docs/models/components/subscriberpayloaddto.md
+  - docs/models/components/subscriberresponsedto.md
+  - docs/models/components/templateresponse.md
+  - docs/models/components/tenant.md
+  - docs/models/components/tenantpayloaddto.md
+  - docs/models/components/tenantpayloaddtodata.md
+  - docs/models/components/textalign.md
+  - docs/models/components/timedconfig.md
+  - docs/models/components/tlsoptions.md
+  - docs/models/components/to.md
+  - docs/models/components/topicdto.md
+  - docs/models/components/topicpayloaddto.md
+  - docs/models/components/topicsubscriberdto.md
+  - docs/models/components/triggereventrequestdto.md
+  - docs/models/components/triggereventresponsedto.md
+  - docs/models/components/triggereventresponsedtostatus.md
+  - docs/models/components/triggereventtoallrequestdto.md
+  - docs/models/components/triggereventtoallrequestdtoactor.md
+  - docs/models/components/triggereventtoallrequestdtooverrides.md
+  - docs/models/components/triggereventtoallrequestdtopayload.md
+  - docs/models/components/triggereventtoallrequestdtotenant.md
+  - docs/models/components/type.md
+  - docs/models/components/unit.md
+  - docs/models/components/unseencountresponse.md
+  - docs/models/components/updateintegrationrequestdto.md
+  - docs/models/components/updatesubscriberchannelrequestdto.md
+  - docs/models/components/updatesubscriberchannelrequestdtoproviderid.md
+  - docs/models/components/updatesubscriberglobalpreferencesrequestdto.md
+  - docs/models/components/updatesubscriberonlineflagrequestdto.md
+  - docs/models/components/updatesubscriberpreferencerequestdto.md
+  - docs/models/components/updatesubscriberpreferenceresponsedto.md
+  - docs/models/components/updatesubscriberrequestdto.md
+  - docs/models/components/updatesubscriberrequestdtodata.md
+  - docs/models/components/value.md
+  - docs/models/components/weekdays.md
+  - docs/models/components/workflowintegrationstatus.md
+  - docs/models/components/workflowresponse.md
+  - docs/models/components/workflowresponsedata.md
+  - docs/models/operations/channel.md
+  - docs/models/operations/channels.md
+  - docs/models/operations/environmentscontrollerv1getcurrentenvironmentresponse.md
+  - docs/models/operations/environmentscontrollerv1listmyenvironmentsresponse.md
+  - docs/models/operations/environmentscontrollerv1listorganizationapikeysresponse.md
+  - docs/models/operations/eventscontrollerbroadcasteventtoallresponse.md
+  - docs/models/operations/eventscontrollercancelrequest.md
+  - docs/models/operations/eventscontrollercancelresponse.md
+  - docs/models/operations/eventscontrollertriggerbulkresponse.md
+  - docs/models/operations/eventscontrollertriggerresponse.md
+  - docs/models/operations/executiondetailscontrollergetexecutiondetailsfornotificationrequest.md
+  - docs/models/operations/executiondetailscontrollergetexecutiondetailsfornotificationresponse.md
+  - docs/models/operations/integrationscontrollercreateintegrationresponse.md
+  - docs/models/operations/integrationscontrollergetactiveintegrationsresponse.md
+  - docs/models/operations/integrationscontrollergetwebhooksupportstatusrequest.md
+  - docs/models/operations/integrationscontrollergetwebhooksupportstatusresponse.md
+  - docs/models/operations/integrationscontrollerlistintegrationsresponse.md
+  - docs/models/operations/integrationscontrollerremoveintegrationrequest.md
+  - docs/models/operations/integrationscontrollerremoveintegrationresponse.md
+  - docs/models/operations/integrationscontrollersetintegrationasprimaryrequest.md
+  - docs/models/operations/integrationscontrollersetintegrationasprimaryresponse.md
+  - docs/models/operations/integrationscontrollerupdateintegrationbyidrequest.md
+  - docs/models/operations/integrationscontrollerupdateintegrationbyidresponse.md
+  - docs/models/operations/messagescontrollerdeletemessagerequest.md
+  - docs/models/operations/messagescontrollerdeletemessageresponse.md
+  - docs/models/operations/messagescontrollerdeletemessagesbytransactionidrequest.md
+  - docs/models/operations/messagescontrollerdeletemessagesbytransactionidresponse.md
+  - docs/models/operations/messagescontrollergetmessagesrequest.md
+  - docs/models/operations/messagescontrollergetmessagesresponse.md
+  - docs/models/operations/notificationgroupscontrollercreatenotificationgroupresponse.md
+  - docs/models/operations/notificationgroupscontrollerdeletenotificationgrouprequest.md
+  - docs/models/operations/notificationgroupscontrollerdeletenotificationgroupresponse.md
+  - docs/models/operations/notificationgroupscontrollergetnotificationgrouprequest.md
+  - docs/models/operations/notificationgroupscontrollergetnotificationgroupresponse.md
+  - docs/models/operations/notificationgroupscontrollerlistnotificationgroupsresponse.md
+  - docs/models/operations/notificationgroupscontrollerupdatenotificationgrouprequest.md
+  - docs/models/operations/notificationgroupscontrollerupdatenotificationgroupresponse.md
+  - docs/models/operations/notificationscontrollergetactivitygraphstatsrequest.md
+  - docs/models/operations/notificationscontrollergetactivitygraphstatsresponse.md
+  - docs/models/operations/notificationscontrollergetactivitystatsresponse.md
+  - docs/models/operations/notificationscontrollergetnotificationrequest.md
+  - docs/models/operations/notificationscontrollergetnotificationresponse.md
+  - docs/models/operations/notificationscontrollerlistnotificationsrequest.md
+  - docs/models/operations/notificationscontrollerlistnotificationsresponse.md
+  - docs/models/operations/parameter.md
+  - docs/models/operations/queryparamchannel.md
+  - docs/models/operations/subscriberscontrollerbulkcreatesubscribersresponse.md
+  - docs/models/operations/subscriberscontrollerchataccessoauthrequest.md
+  - docs/models/operations/subscriberscontrollerchataccessoauthresponse.md
+  - docs/models/operations/subscriberscontrollerchatoauthcallbackrequest.md
+  - docs/models/operations/subscriberscontrollerchatoauthcallbackresponse.md
+  - docs/models/operations/subscriberscontrollerchatoauthcallbackresponsebody.md
+  - docs/models/operations/subscriberscontrollercreatesubscriberresponse.md
+  - docs/models/operations/subscriberscontrollerdeletesubscribercredentialsrequest.md
+  - docs/models/operations/subscriberscontrollerdeletesubscribercredentialsresponse.md
+  - docs/models/operations/subscriberscontrollergetnotificationsfeedrequest.md
+  - docs/models/operations/subscriberscontrollergetnotificationsfeedresponse.md
+  - docs/models/operations/subscriberscontrollergetnotificationsfeedresponsebody.md
+  - docs/models/operations/subscriberscontrollergetsubscriberpreferencebylevelrequest.md
+  - docs/models/operations/subscriberscontrollergetsubscriberpreferencebylevelresponse.md
+  - docs/models/operations/subscriberscontrollergetsubscriberrequest.md
+  - docs/models/operations/subscriberscontrollergetsubscriberresponse.md
+  - docs/models/operations/subscriberscontrollergetunseencountrequest.md
+  - docs/models/operations/subscriberscontrollergetunseencountresponse.md
+  - docs/models/operations/subscriberscontrollerlistsubscriberpreferencesrequest.md
+  - docs/models/operations/subscriberscontrollerlistsubscriberpreferencesresponse.md
+  - docs/models/operations/subscriberscontrollerlistsubscribersrequest.md
+  - docs/models/operations/subscriberscontrollerlistsubscribersresponse.md
+  - docs/models/operations/subscriberscontrollerlistsubscribersresponsebody.md
+  - docs/models/operations/subscriberscontrollermarkactionasseenrequest.md
+  - docs/models/operations/subscriberscontrollermarkactionasseenresponse.md
+  - docs/models/operations/subscriberscontrollermarkallunreadasreadrequest.md
+  - docs/models/operations/subscriberscontrollermarkallunreadasreadresponse.md
+  - docs/models/operations/subscriberscontrollermarkmessagesasrequest.md
+  - docs/models/operations/subscriberscontrollermarkmessagesasresponse.md
+  - docs/models/operations/subscriberscontrollermodifysubscriberchannelrequest.md
+  - docs/models/operations/subscriberscontrollermodifysubscriberchannelresponse.md
+  - docs/models/operations/subscriberscontrollerremovesubscriberrequest.md
+  - docs/models/operations/subscriberscontrollerremovesubscriberresponse.md
+  - docs/models/operations/subscriberscontrollerupdatesubscriberchannelrequest.md
+  - docs/models/operations/subscriberscontrollerupdatesubscriberchannelresponse.md
+  - docs/models/operations/subscriberscontrollerupdatesubscriberglobalpreferencesrequest.md
+  - docs/models/operations/subscriberscontrollerupdatesubscriberglobalpreferencesresponse.md
+  - docs/models/operations/subscriberscontrollerupdatesubscriberonlineflagrequest.md
+  - docs/models/operations/subscriberscontrollerupdatesubscriberonlineflagresponse.md
+  - docs/models/operations/subscriberscontrollerupdatesubscriberpreferencerequest.md
+  - docs/models/operations/subscriberscontrollerupdatesubscriberpreferenceresponse.md
+  - docs/models/operations/subscriberscontrollerupdatesubscriberrequest.md
+  - docs/models/operations/subscriberscontrollerupdatesubscriberresponse.md
+  - docs/models/operations/topicscontrolleraddsubscribersrequest.md
+  - docs/models/operations/topicscontrolleraddsubscribersresponse.md
+  - docs/models/operations/topicscontrollercreatetopicresponse.md
+  - docs/models/operations/topicscontrollerdeletetopicrequest.md
+  - docs/models/operations/topicscontrollerdeletetopicresponse.md
+  - docs/models/operations/topicscontrollergettopicrequest.md
+  - docs/models/operations/topicscontrollergettopicresponse.md
+  - docs/models/operations/topicscontrollergettopicsubscriberrequest.md
+  - docs/models/operations/topicscontrollergettopicsubscriberresponse.md
+  - docs/models/operations/topicscontrollerlisttopicsrequest.md
+  - docs/models/operations/topicscontrollerlisttopicsresponse.md
+  - docs/models/operations/topicscontrollerremovesubscribersrequest.md
+  - docs/models/operations/topicscontrollerremovesubscribersresponse.md
+  - docs/models/operations/topicscontrollerrenametopicrequest.md
+  - docs/models/operations/topicscontrollerrenametopicresponse.md
+  - docs/sdks/apikeys/README.md
+  - docs/sdks/authentication/README.md
+  - docs/sdks/credentials/README.md
+  - docs/sdks/environments/README.md
+  - docs/sdks/executiondetails/README.md
+  - docs/sdks/integrations/README.md
+  - docs/sdks/integrationswebhooks/README.md
+  - docs/sdks/messages/README.md
+  - docs/sdks/notifications/README.md
+  - docs/sdks/notificationsstats/README.md
+  - docs/sdks/novu/README.md
+  - docs/sdks/novumessages/README.md
+  - docs/sdks/novusubscribersnotifications/README.md
+  - docs/sdks/novutopicssubscribers/README.md
+  - docs/sdks/preferences/README.md
+  - docs/sdks/properties/README.md
+  - docs/sdks/stats/README.md
+  - docs/sdks/subscribers/README.md
+  - docs/sdks/subscribersmessages/README.md
+  - docs/sdks/subscribersnotifications/README.md
+  - docs/sdks/subscriberspreferences/README.md
+  - docs/sdks/topics/README.md
+  - docs/sdks/workflowgroups/README.md
+  - jsr.json
+  - package.json
+  - src/core.ts
+  - src/funcs/cancel.ts
+  - src/funcs/environmentsApiKeysList.ts
+  - src/funcs/environmentsGetAll.ts
+  - src/funcs/environmentsGetCurrent.ts
+  - src/funcs/executionDetailsGet.ts
+  - src/funcs/integrationsCreate.ts
+  - src/funcs/integrationsDelete.ts
+  - src/funcs/integrationsList.ts
+  - src/funcs/integrationsListActive.ts
+  - src/funcs/integrationsSetPrimary.ts
+  - src/funcs/integrationsUpdate.ts
+  - src/funcs/integrationsWebhooksGetStatus.ts
+  - src/funcs/messagesDelete.ts
+  - src/funcs/messagesDeleteByTransactionId.ts
+  - src/funcs/messagesGet.ts
+  - src/funcs/notificationsGet.ts
+  - src/funcs/notificationsList.ts
+  - src/funcs/notificationsStatsGet.ts
+  - src/funcs/subscribersAuthenticationHandleOauth.ts
+  - src/funcs/subscribersAuthenticationHandleOauthCallback.ts
+  - src/funcs/subscribersCreate.ts
+  - src/funcs/subscribersCreateBulk.ts
+  - src/funcs/subscribersCredentialsAppend.ts
+  - src/funcs/subscribersCredentialsDelete.ts
+  - src/funcs/subscribersCredentialsUpdate.ts
+  - src/funcs/subscribersDelete.ts
+  - src/funcs/subscribersGet.ts
+  - src/funcs/subscribersGetAll.ts
+  - src/funcs/subscribersMessagesMark.ts
+  - src/funcs/subscribersMessagesMarkAll.ts
+  - src/funcs/subscribersMessagesUpdateAsSeen.ts
+  - src/funcs/subscribersNotificationsGetFeed.ts
+  - src/funcs/subscribersNotificationsGetUnseenCount.ts
+  - src/funcs/subscribersPreferencesGet.ts
+  - src/funcs/subscribersPreferencesGetByLevel.ts
+  - src/funcs/subscribersPreferencesUpdate.ts
+  - src/funcs/subscribersPreferencesUpdateGlobal.ts
+  - src/funcs/subscribersPropertiesUpdateOnlineStatus.ts
+  - src/funcs/subscribersUpdate.ts
+  - src/funcs/topicsCreate.ts
+  - src/funcs/topicsDelete.ts
+  - src/funcs/topicsGet.ts
+  - src/funcs/topicsGetAll.ts
+  - src/funcs/topicsRename.ts
+  - src/funcs/topicsSubscribersAdd.ts
+  - src/funcs/topicsSubscribersCheck.ts
+  - src/funcs/topicsSubscribersRemove.ts
+  - src/funcs/trigger.ts
+  - src/funcs/triggerBroadcast.ts
+  - src/funcs/triggerBulk.ts
+  - src/funcs/workflowGroupsCreate.ts
+  - src/funcs/workflowGroupsDelete.ts
+  - src/funcs/workflowGroupsGet.ts
+  - src/funcs/workflowGroupsList.ts
+  - src/funcs/workflowGroupsUpdate.ts
+  - src/hooks/hooks.ts
+  - src/hooks/index.ts
+  - src/hooks/types.ts
+  - src/index.ts
+  - src/lib/base64.ts
+  - src/lib/config.ts
+  - src/lib/dlv.ts
+  - src/lib/encodings.ts
+  - src/lib/files.ts
+  - src/lib/http.ts
+  - src/lib/is-plain-object.ts
+  - src/lib/logger.ts
+  - src/lib/matchers.ts
+  - src/lib/primitives.ts
+  - src/lib/retries.ts
+  - src/lib/schemas.ts
+  - src/lib/sdks.ts
+  - src/lib/security.ts
+  - src/lib/url.ts
+  - src/models/components/activitiesresponsedto.ts
+  - src/models/components/activitygraphstatesresponse.ts
+  - src/models/components/activitynotificationresponsedto.ts
+  - src/models/components/activitynotificationsubscriberresponsedto.ts
+  - src/models/components/activitynotificationtemplateresponsedto.ts
+  - src/models/components/activitystatsresponsedto.ts
+  - src/models/components/addsubscribersrequestdto.ts
+  - src/models/components/apikey.ts
+  - src/models/components/bulksubscribercreatedto.ts
+  - src/models/components/bulktriggereventdto.ts
+  - src/models/components/channelcredentials.ts
+  - src/models/components/channelpreference.ts
+  - src/models/components/channelsettings.ts
+  - src/models/components/createintegrationrequestdto.ts
+  - src/models/components/createnotificationgrouprequestdto.ts
+  - src/models/components/createsubscriberrequestdto.ts
+  - src/models/components/createtopicrequestdto.ts
+  - src/models/components/createtopicresponsedto.ts
+  - src/models/components/credentialsdto.ts
+  - src/models/components/databooleandto.ts
+  - src/models/components/delayregularmetadata.ts
+  - src/models/components/delayscheduledmetadata.ts
+  - src/models/components/deletemessageresponsedto.ts
+  - src/models/components/deletenotificationgroupresponsedto.ts
+  - src/models/components/deletesubscriberresponsedto.ts
+  - src/models/components/digestregularmetadata.ts
+  - src/models/components/digesttimedmetadata.ts
+  - src/models/components/emailblock.ts
+  - src/models/components/emailblockstyles.ts
+  - src/models/components/environmentresponsedto.ts
+  - src/models/components/executiondetailsresponsedto.ts
+  - src/models/components/feedresponsedto.ts
+  - src/models/components/fieldfilterpart.ts
+  - src/models/components/filtertopicsresponsedto.ts
+  - src/models/components/getsubscriberpreferencesresponsedto.ts
+  - src/models/components/gettopicresponsedto.ts
+  - src/models/components/index.ts
+  - src/models/components/integrationresponsedto.ts
+  - src/models/components/markallmessageasrequestdto.ts
+  - src/models/components/markmessageactionasseendto.ts
+  - src/models/components/messageaction.ts
+  - src/models/components/messageactionresult.ts
+  - src/models/components/messagebutton.ts
+  - src/models/components/messagecta.ts
+  - src/models/components/messagectadata.ts
+  - src/models/components/messageentity.ts
+  - src/models/components/messagemarkasrequestdto.ts
+  - src/models/components/messageresponsedto.ts
+  - src/models/components/messagetemplate.ts
+  - src/models/components/notificationgroup.ts
+  - src/models/components/notificationgroupresponsedto.ts
+  - src/models/components/notificationstep.ts
+  - src/models/components/notificationstepvariant.ts
+  - src/models/components/notificationtrigger.ts
+  - src/models/components/notificationtriggervariable.ts
+  - src/models/components/preference.ts
+  - src/models/components/preferencechannels.ts
+  - src/models/components/removesubscribersrequestdto.ts
+  - src/models/components/renametopicrequestdto.ts
+  - src/models/components/renametopicresponsedto.ts
+  - src/models/components/security.ts
+  - src/models/components/stepfilter.ts
+  - src/models/components/subscriberpayloaddto.ts
+  - src/models/components/subscriberresponsedto.ts
+  - src/models/components/templateresponse.ts
+  - src/models/components/tenantpayloaddto.ts
+  - src/models/components/timedconfig.ts
+  - src/models/components/topicdto.ts
+  - src/models/components/topicpayloaddto.ts
+  - src/models/components/topicsubscriberdto.ts
+  - src/models/components/triggereventrequestdto.ts
+  - src/models/components/triggereventresponsedto.ts
+  - src/models/components/triggereventtoallrequestdto.ts
+  - src/models/components/unseencountresponse.ts
+  - src/models/components/updateintegrationrequestdto.ts
+  - src/models/components/updatesubscriberchannelrequestdto.ts
+  - src/models/components/updatesubscriberglobalpreferencesrequestdto.ts
+  - src/models/components/updatesubscriberonlineflagrequestdto.ts
+  - src/models/components/updatesubscriberpreferencerequestdto.ts
+  - src/models/components/updatesubscriberpreferenceresponsedto.ts
+  - src/models/components/updatesubscriberrequestdto.ts
+  - src/models/components/workflowresponse.ts
+  - src/models/errors/httpclienterrors.ts
+  - src/models/errors/index.ts
+  - src/models/errors/sdkerror.ts
+  - src/models/errors/sdkvalidationerror.ts
+  - src/models/operations/environmentscontrollerv1getcurrentenvironment.ts
+  - src/models/operations/environmentscontrollerv1listmyenvironments.ts
+  - src/models/operations/environmentscontrollerv1listorganizationapikeys.ts
+  - src/models/operations/eventscontrollerbroadcasteventtoall.ts
+  - src/models/operations/eventscontrollercancel.ts
+  - src/models/operations/eventscontrollertrigger.ts
+  - src/models/operations/eventscontrollertriggerbulk.ts
+  - src/models/operations/executiondetailscontrollergetexecutiondetailsfornotification.ts
+  - src/models/operations/index.ts
+  - src/models/operations/integrationscontrollercreateintegration.ts
+  - src/models/operations/integrationscontrollergetactiveintegrations.ts
+  - src/models/operations/integrationscontrollergetwebhooksupportstatus.ts
+  - src/models/operations/integrationscontrollerlistintegrations.ts
+  - src/models/operations/integrationscontrollerremoveintegration.ts
+  - src/models/operations/integrationscontrollersetintegrationasprimary.ts
+  - src/models/operations/integrationscontrollerupdateintegrationbyid.ts
+  - src/models/operations/messagescontrollerdeletemessage.ts
+  - src/models/operations/messagescontrollerdeletemessagesbytransactionid.ts
+  - src/models/operations/messagescontrollergetmessages.ts
+  - src/models/operations/notificationgroupscontrollercreatenotificationgroup.ts
+  - src/models/operations/notificationgroupscontrollerdeletenotificationgroup.ts
+  - src/models/operations/notificationgroupscontrollergetnotificationgroup.ts
+  - src/models/operations/notificationgroupscontrollerlistnotificationgroups.ts
+  - src/models/operations/notificationgroupscontrollerupdatenotificationgroup.ts
+  - src/models/operations/notificationscontrollergetactivitygraphstats.ts
+  - src/models/operations/notificationscontrollergetactivitystats.ts
+  - src/models/operations/notificationscontrollergetnotification.ts
+  - src/models/operations/notificationscontrollerlistnotifications.ts
+  - src/models/operations/subscriberscontrollerbulkcreatesubscribers.ts
+  - src/models/operations/subscriberscontrollerchataccessoauth.ts
+  - src/models/operations/subscriberscontrollerchatoauthcallback.ts
+  - src/models/operations/subscriberscontrollercreatesubscriber.ts
+  - src/models/operations/subscriberscontrollerdeletesubscribercredentials.ts
+  - src/models/operations/subscriberscontrollergetnotificationsfeed.ts
+  - src/models/operations/subscriberscontrollergetsubscriber.ts
+  - src/models/operations/subscriberscontrollergetsubscriberpreferencebylevel.ts
+  - src/models/operations/subscriberscontrollergetunseencount.ts
+  - src/models/operations/subscriberscontrollerlistsubscriberpreferences.ts
+  - src/models/operations/subscriberscontrollerlistsubscribers.ts
+  - src/models/operations/subscriberscontrollermarkactionasseen.ts
+  - src/models/operations/subscriberscontrollermarkallunreadasread.ts
+  - src/models/operations/subscriberscontrollermarkmessagesas.ts
+  - src/models/operations/subscriberscontrollermodifysubscriberchannel.ts
+  - src/models/operations/subscriberscontrollerremovesubscriber.ts
+  - src/models/operations/subscriberscontrollerupdatesubscriber.ts
+  - src/models/operations/subscriberscontrollerupdatesubscriberchannel.ts
+  - src/models/operations/subscriberscontrollerupdatesubscriberglobalpreferences.ts
+  - src/models/operations/subscriberscontrollerupdatesubscriberonlineflag.ts
+  - src/models/operations/subscriberscontrollerupdatesubscriberpreference.ts
+  - src/models/operations/topicscontrolleraddsubscribers.ts
+  - src/models/operations/topicscontrollercreatetopic.ts
+  - src/models/operations/topicscontrollerdeletetopic.ts
+  - src/models/operations/topicscontrollergettopic.ts
+  - src/models/operations/topicscontrollergettopicsubscriber.ts
+  - src/models/operations/topicscontrollerlisttopics.ts
+  - src/models/operations/topicscontrollerremovesubscribers.ts
+  - src/models/operations/topicscontrollerrenametopic.ts
+  - src/sdk/apikeys.ts
+  - src/sdk/authentication.ts
+  - src/sdk/credentials.ts
+  - src/sdk/environments.ts
+  - src/sdk/executiondetails.ts
+  - src/sdk/index.ts
+  - src/sdk/integrations.ts
+  - src/sdk/integrationswebhooks.ts
+  - src/sdk/messages.ts
+  - src/sdk/notifications.ts
+  - src/sdk/notificationsstats.ts
+  - src/sdk/novumessages.ts
+  - src/sdk/novusubscribersnotifications.ts
+  - src/sdk/novutopicssubscribers.ts
+  - src/sdk/preferences.ts
+  - src/sdk/properties.ts
+  - src/sdk/sdk.ts
+  - src/sdk/stats.ts
+  - src/sdk/subscribers.ts
+  - src/sdk/subscribersmessages.ts
+  - src/sdk/subscribersnotifications.ts
+  - src/sdk/subscriberspreferences.ts
+  - src/sdk/topics.ts
+  - src/sdk/workflowgroups.ts
+  - src/types/blobs.ts
+  - src/types/constdatetime.ts
+  - src/types/enums.ts
+  - src/types/fp.ts
+  - src/types/index.ts
+  - src/types/operations.ts
+  - src/types/rfcdate.ts
+  - src/types/streams.ts
+  - tsconfig.json
+examples:
+  EventsController_trigger:
+    speakeasy-default-events-controller-trigger:
+      requestBody:
+        application/json: {"name": "workflow_identifier", "to": [{"topicKey": "<value>", "type": "Topic"}, {"topicKey": "<value>", "type": "Topic"}]}
+      responses:
+        "201":
+          application/json: {"acknowledged": true, "status": "processed"}
+  EventsController_triggerBulk:
+    speakeasy-default-events-controller-trigger-bulk:
+      requestBody:
+        application/json: {"events": [{"name": "workflow_identifier", "to": [{"topicKey": "<value>", "type": "Topic"}, {"subscriberId": "<id>"}]}, {"name": "workflow_identifier", "to": []}, {"name": "workflow_identifier", "to": [{"topicKey": "<value>", "type": "Topic"}, {"topicKey": "<value>", "type": "Topic"}]}]}
+      responses:
+        "201":
+          application/json: [{"acknowledged": true, "status": "error"}, {"acknowledged": true, "status": "no_workflow_active_steps_defined"}, {"acknowledged": true, "status": "trigger_not_active"}]
+  EventsController_broadcastEventToAll:
+    speakeasy-default-events-controller-broadcast-event-to-all:
+      requestBody:
+        application/json: {"name": "<value>"}
+      responses:
+        "200":
+          application/json: {"acknowledged": true, "status": "trigger_not_active"}
+  EventsController_cancel:
+    speakeasy-default-events-controller-cancel:
+      parameters:
+        path:
+          transactionId: "<id>"
+      responses:
+        "200":
+          application/json: {"data": true}
+  EnvironmentsControllerV1_getCurrentEnvironment:
+    speakeasy-default-environments-controller-v1-get-current-environment:
+      responses:
+        "200":
+          application/json: {"name": "<value>", "_organizationId": "<id>", "identifier": "<value>", "_parentId": "<id>"}
+  EnvironmentsControllerV1_listMyEnvironments:
+    speakeasy-default-environments-controller-v1-list-my-environments:
+      responses:
+        "200":
+          application/json: [{"name": "<value>", "_organizationId": "<id>", "identifier": "<value>", "_parentId": "<id>"}]
+  EnvironmentsControllerV1_listOrganizationApiKeys:
+    speakeasy-default-environments-controller-v1-list-organization-api-keys:
+      responses:
+        "200":
+          application/json: [{"key": "<key>", "_userId": "<id>"}, {"key": "<key>", "_userId": "<id>"}, {"key": "<key>", "_userId": "<id>"}]
+  ExecutionDetailsController_getExecutionDetailsForNotification:
+    speakeasy-default-execution-details-controller-get-execution-details-for-notification:
+      parameters:
+        query:
+          notificationId: "<id>"
+          subscriberId: "<id>"
+      responses:
+        "200":
+          application/json: [{"_organizationId": "<id>", "_jobId": "<id>", "_environmentId": "<id>", "_notificationId": "<id>", "_notificationTemplateId": "<id>", "_subscriberId": "<id>", "transactionId": "<id>", "channel": "digest", "detail": "<value>", "source": "Payload", "status": "Pending", "isTest": false, "isRetry": true}, {"_organizationId": "<id>", "_jobId": "<id>", "_environmentId": "<id>", "_notificationId": "<id>", "_notificationTemplateId": "<id>", "_subscriberId": "<id>", "transactionId": "<id>", "channel": "push", "detail": "<value>", "source": "Internal", "status": "Warning", "isTest": false, "isRetry": true}]
+  NotificationsController_listNotifications:
+    speakeasy-default-notifications-controller-list-notifications:
+      parameters:
+        query:
+          channels: ["sms", "chat", "in_app"]
+          templates: []
+          emails: []
+          search: "<value>"
+          subscriberIds: ["<value>", "<value>"]
+      responses:
+        "200":
+          application/json: {"hasMore": false, "data": [], "pageSize": "7183.03", "page": "861.40"}
+  NotificationsController_getNotification:
+    speakeasy-default-notifications-controller-get-notification:
+      parameters:
+        path:
+          notificationId: "<id>"
+      responses:
+        "200":
+          application/json: {"_environmentId": "<id>", "_organizationId": "<id>", "transactionId": "<id>"}
+  NotificationsController_getActivityStats:
+    speakeasy-default-notifications-controller-get-activity-stats:
+      responses:
+        "200":
+          application/json: {"weeklySent": "7003.46", "monthlySent": "5588.34"}
+  NotificationsController_getActivityGraphStats:
+    speakeasy-default-notifications-controller-get-activity-graph-stats:
+      responses:
+        "200":
+          application/json: [{"_id": "<id>", "count": "5588.34", "templates": ["<value>", "<value>"], "channels": ["push", "sms"]}, {"_id": "<id>", "count": "4508.24", "templates": ["<value>"], "channels": []}]
+  NotificationGroupsController_createNotificationGroup:
+    speakeasy-default-notification-groups-controller-create-notification-group:
+      requestBody:
+        application/json: {"name": "<value>"}
+      responses:
+        "201":
+          application/json: {"name": "<value>", "_environmentId": "<id>", "_organizationId": "<id>"}
+  NotificationGroupsController_listNotificationGroups:
+    speakeasy-default-notification-groups-controller-list-notification-groups:
+      responses:
+        "200":
+          application/json: [{"name": "<value>", "_environmentId": "<id>", "_organizationId": "<id>"}, {"name": "<value>", "_environmentId": "<id>", "_organizationId": "<id>"}, {"name": "<value>", "_environmentId": "<id>", "_organizationId": "<id>"}]
+  NotificationGroupsController_getNotificationGroup:
+    speakeasy-default-notification-groups-controller-get-notification-group:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "200":
+          application/json: {"name": "<value>", "_environmentId": "<id>", "_organizationId": "<id>"}
+  NotificationGroupsController_updateNotificationGroup:
+    speakeasy-default-notification-groups-controller-update-notification-group:
+      parameters:
+        path:
+          id: "<id>"
+      requestBody:
+        application/json: {"name": "<value>"}
+      responses:
+        "200":
+          application/json: {"name": "<value>", "_environmentId": "<id>", "_organizationId": "<id>"}
+  NotificationGroupsController_deleteNotificationGroup:
+    speakeasy-default-notification-groups-controller-delete-notification-group:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "200":
+          application/json: {"acknowledged": false, "status": "deleted"}
+  IntegrationsController_listIntegrations:
+    speakeasy-default-integrations-controller-list-integrations:
+      responses:
+        "200":
+          application/json: [{"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>", "identifier": "<value>", "providerId": "<id>", "channel": "sms", "active": false, "deleted": true, "deletedAt": "<value>", "deletedBy": "<value>", "primary": true}, {"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>", "identifier": "<value>", "providerId": "<id>", "channel": "in_app", "active": false, "deleted": false, "deletedAt": "<value>", "deletedBy": "<value>", "primary": true}, {"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>", "identifier": "<value>", "providerId": "<id>", "channel": "chat", "active": true, "deleted": true, "deletedAt": "<value>", "deletedBy": "<value>", "primary": false}]
+  IntegrationsController_createIntegration:
+    speakeasy-default-integrations-controller-create-integration:
+      requestBody:
+        application/json: {"providerId": "<id>", "channel": "sms"}
+      responses:
+        "201":
+          application/json: {"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>", "identifier": "<value>", "providerId": "<id>", "channel": "chat", "active": true, "deleted": true, "deletedAt": "<value>", "deletedBy": "<value>", "primary": true}
+  IntegrationsController_getActiveIntegrations:
+    speakeasy-default-integrations-controller-get-active-integrations:
+      responses:
+        "200":
+          application/json: [{"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>", "identifier": "<value>", "providerId": "<id>", "channel": "email", "active": true, "deleted": true, "deletedAt": "<value>", "deletedBy": "<value>", "primary": true}, {"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>", "identifier": "<value>", "providerId": "<id>", "channel": "chat", "active": false, "deleted": true, "deletedAt": "<value>", "deletedBy": "<value>", "primary": true}, {"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>", "identifier": "<value>", "providerId": "<id>", "channel": "chat", "active": false, "deleted": true, "deletedAt": "<value>", "deletedBy": "<value>", "primary": true}]
+  IntegrationsController_updateIntegrationById:
+    speakeasy-default-integrations-controller-update-integration-by-id:
+      parameters:
+        path:
+          integrationId: "<id>"
+      responses:
+        "200":
+          application/json: {"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>", "identifier": "<value>", "providerId": "<id>", "channel": "push", "active": false, "deleted": true, "deletedAt": "<value>", "deletedBy": "<value>", "primary": false}
+  IntegrationsController_removeIntegration:
+    speakeasy-default-integrations-controller-remove-integration:
+      parameters:
+        path:
+          integrationId: "<id>"
+      responses:
+        "200":
+          application/json: [{"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>", "identifier": "<value>", "providerId": "<id>", "channel": "chat", "active": true, "deleted": false, "deletedAt": "<value>", "deletedBy": "<value>", "primary": false}, {"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>", "identifier": "<value>", "providerId": "<id>", "channel": "chat", "active": true, "deleted": false, "deletedAt": "<value>", "deletedBy": "<value>", "primary": false}]
+  IntegrationsController_setIntegrationAsPrimary:
+    speakeasy-default-integrations-controller-set-integration-as-primary:
+      parameters:
+        path:
+          integrationId: "<id>"
+      responses:
+        "200":
+          application/json: {"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>", "identifier": "<value>", "providerId": "<id>", "channel": "push", "active": true, "deleted": true, "deletedAt": "<value>", "deletedBy": "<value>", "primary": false}
+  IntegrationsController_getWebhookSupportStatus:
+    speakeasy-default-integrations-controller-get-webhook-support-status:
+      parameters:
+        path:
+          providerOrIntegrationId: "<id>"
+      responses:
+        "200":
+          application/json: true
+  SubscribersController_listSubscribers:
+    speakeasy-default-subscribers-controller-list-subscribers:
+      responses:
+        "200":
+          application/json: {"page": "4610.08", "hasMore": true, "pageSize": "5984.80", "data": [{"subscriberId": "<id>", "_organizationId": "<id>", "_environmentId": "<id>", "deleted": true, "createdAt": "<value>", "updatedAt": "<value>"}, {"subscriberId": "<id>", "_organizationId": "<id>", "_environmentId": "<id>", "deleted": true, "createdAt": "<value>", "updatedAt": "<value>"}]}
+  SubscribersController_createSubscriber:
+    speakeasy-default-subscribers-controller-create-subscriber:
+      requestBody:
+        application/json: {"subscriberId": "<id>"}
+      responses:
+        "201":
+          application/json: {"subscriberId": "<id>", "_organizationId": "<id>", "_environmentId": "<id>", "deleted": true, "createdAt": "<value>", "updatedAt": "<value>"}
+  SubscribersController_getSubscriber:
+    speakeasy-default-subscribers-controller-get-subscriber:
+      parameters:
+        path:
+          subscriberId: "<id>"
+        query: {}
+      responses:
+        "200":
+          application/json: {"subscriberId": "<id>", "_organizationId": "<id>", "_environmentId": "<id>", "deleted": false, "createdAt": "<value>", "updatedAt": "<value>"}
+  SubscribersController_updateSubscriber:
+    speakeasy-default-subscribers-controller-update-subscriber:
+      parameters:
+        path:
+          subscriberId: "<id>"
+      responses:
+        "200":
+          application/json: {"subscriberId": "<id>", "_organizationId": "<id>", "_environmentId": "<id>", "deleted": false, "createdAt": "<value>", "updatedAt": "<value>"}
+  SubscribersController_removeSubscriber:
+    speakeasy-default-subscribers-controller-remove-subscriber:
+      parameters:
+        path:
+          subscriberId: "<id>"
+      responses:
+        "200":
+          application/json: {"acknowledged": false, "status": "deleted"}
+  SubscribersController_bulkCreateSubscribers:
+    speakeasy-default-subscribers-controller-bulk-create-subscribers:
+      requestBody:
+        application/json: {"subscribers": ["<value>"]}
+  SubscribersController_updateSubscriberChannel:
+    speakeasy-default-subscribers-controller-update-subscriber-channel:
+      parameters:
+        path:
+          subscriberId: "<id>"
+      requestBody:
+        application/json: {"providerId": "pushpad", "credentials": {"webhookUrl": "https://grown-worth.name"}}
+      responses:
+        "200":
+          application/json: {"subscriberId": "<id>", "_organizationId": "<id>", "_environmentId": "<id>", "deleted": true, "createdAt": "<value>", "updatedAt": "<value>"}
+  SubscribersController_modifySubscriberChannel:
+    speakeasy-default-subscribers-controller-modify-subscriber-channel:
+      parameters:
+        path:
+          subscriberId: "<id>"
+      requestBody:
+        application/json: {"providerId": "zulip", "credentials": {"webhookUrl": "https://talkative-pop.org"}}
+      responses:
+        "200":
+          application/json: {"subscriberId": "<id>", "_organizationId": "<id>", "_environmentId": "<id>", "deleted": false, "createdAt": "<value>", "updatedAt": "<value>"}
+  SubscribersController_deleteSubscriberCredentials:
+    speakeasy-default-subscribers-controller-delete-subscriber-credentials:
+      parameters:
+        path:
+          subscriberId: "<id>"
+          providerId: "<id>"
+  SubscribersController_updateSubscriberOnlineFlag:
+    speakeasy-default-subscribers-controller-update-subscriber-online-flag:
+      parameters:
+        path:
+          subscriberId: "<id>"
+      requestBody:
+        application/json: {"isOnline": true}
+      responses:
+        "200":
+          application/json: {"subscriberId": "<id>", "_organizationId": "<id>", "_environmentId": "<id>", "deleted": true, "createdAt": "<value>", "updatedAt": "<value>"}
+  SubscribersController_listSubscriberPreferences:
+    speakeasy-default-subscribers-controller-list-subscriber-preferences:
+      parameters:
+        path:
+          subscriberId: "<id>"
+        query: {}
+      responses:
+        "200":
+          application/json: [{"template": {"_id": "<id>", "name": "<value>", "critical": false, "triggers": ["<value>", "<value>"]}, "preference": {"enabled": false}}, {"template": {"_id": "<id>", "name": "<value>", "critical": false, "triggers": ["<value>"]}, "preference": {"enabled": true}}]
+  SubscribersController_getSubscriberPreferenceByLevel:
+    speakeasy-default-subscribers-controller-get-subscriber-preference-by-level:
+      parameters:
+        path:
+          parameter: "global"
+          subscriberId: "<id>"
+        query: {}
+      responses:
+        "200":
+          application/json: [{"preference": {"enabled": true}}, {"preference": {"enabled": true}}]
+  SubscribersController_updateSubscriberPreference:
+    speakeasy-default-subscribers-controller-update-subscriber-preference:
+      parameters:
+        path:
+          subscriberId: "<id>"
+          parameter: "<value>"
+      responses:
+        "200":
+          application/json: {"template": {"_id": "<id>", "name": "<value>", "critical": false, "triggers": ["<value>", "<value>"]}, "preference": {"enabled": true}}
+  SubscribersController_getNotificationsFeed:
+    "":
+      parameters:
+        path:
+          subscriberId: "<id>"
+        query:
+          payload: "btoa(JSON.stringify({ foo: 123 })) results in base64 encoded string like eyJmb28iOjEyM30="
+      responses:
+        "200":
+          application/json: {"page": "1526.70", "hasMore": true, "pageSize": "9643.05", "data": [{"hasMore": true, "data": ["<value>", "<value>"], "pageSize": "1031.10", "page": "1522.73"}, {"hasMore": false, "data": [], "pageSize": "5271.67", "page": "9499.10"}]}
+  SubscribersController_markMessagesAs:
+    speakeasy-default-subscribers-controller-mark-messages-as:
+      parameters:
+        path:
+          subscriberId: "<id>"
+      requestBody:
+        application/json: {"messageId": "<value>", "markAs": "read"}
+  SubscribersController_chatOauthCallback:
+    speakeasy-default-subscribers-controller-chat-oauth-callback:
+      parameters:
+        path:
+          subscriberId: "<id>"
+          providerId: "<id>"
+        query:
+          code: "<value>"
+          hmacHash: "<value>"
+          environmentId: "<id>"
+  SubscribersController_chatAccessOauth:
+    speakeasy-default-subscribers-controller-chat-access-oauth:
+      parameters:
+        path:
+          subscriberId: "<id>"
+          providerId: "<id>"
+        query:
+          hmacHash: "<value>"
+          environmentId: "<id>"
+  SubscribersController_updateSubscriberGlobalPreferences:
+    speakeasy-default-subscribers-controller-update-subscriber-global-preferences:
+      parameters:
+        path:
+          subscriberId: "<id>"
+      responses:
+        "200":
+          application/json: {"template": {"_id": "<id>", "name": "<value>", "critical": true, "triggers": ["<value>"]}, "preference": {"enabled": true}}
+  SubscribersController_getUnseenCount:
+    speakeasy-default-subscribers-controller-get-unseen-count:
+      parameters:
+        path:
+          subscriberId: "<id>"
+        query:
+          seen: false
+          limit: "2979.49"
+      responses:
+        "200":
+          application/json: {"count": "5438.83"}
+  SubscribersController_markAllUnreadAsRead:
+    speakeasy-default-subscribers-controller-mark-all-unread-as-read:
+      parameters:
+        path:
+          subscriberId: "<id>"
+      requestBody:
+        application/json: {"markAs": "seen"}
+      responses:
+        "201":
+          application/json: "4603.37"
+  SubscribersController_markActionAsSeen:
+    speakeasy-default-subscribers-controller-mark-action-as-seen:
+      parameters:
+        path:
+          messageId: "<id>"
+          type: "<value>"
+          subscriberId: "<id>"
+      requestBody:
+        application/json: {"status": "done"}
+      responses:
+        "201":
+          application/json: {"_templateId": "<id>", "_environmentId": "<id>", "_messageTemplateId": "<id>", "_organizationId": "<id>", "_notificationId": "<id>", "_subscriberId": "<id>", "createdAt": "<value>", "content": {"type": "text", "content": "<value>"}, "transactionId": "<id>", "channel": "email", "read": true, "seen": false, "cta": {}, "status": "sent", "errorId": "<id>", "errorText": "<value>"}
+  MessagesController_getMessages:
+    speakeasy-default-messages-controller-get-messages:
+      responses:
+        "200":
+          application/json: {"hasMore": false, "data": ["<value>", "<value>"], "pageSize": "5442.21", "page": "5212.35"}
+  MessagesController_deleteMessage:
+    speakeasy-default-messages-controller-delete-message:
+      parameters:
+        path:
+          messageId: "<id>"
+      responses:
+        "200":
+          application/json: {"acknowledged": false, "status": "deleted"}
+  MessagesController_deleteMessagesByTransactionId:
+    speakeasy-default-messages-controller-delete-messages-by-transaction-id:
+      parameters:
+        path:
+          transactionId: "<id>"
+        query: {}
+  TopicsController_createTopic:
+    speakeasy-default-topics-controller-create-topic:
+      requestBody:
+        application/json: {"key": "<key>", "name": "<value>"}
+      responses:
+        "201":
+          application/json: {"key": "<key>"}
+  TopicsController_listTopics:
+    speakeasy-default-topics-controller-list-topics:
+      responses:
+        "200":
+          application/json: {"data": [{"_organizationId": "<id>", "_environmentId": "<id>", "key": "<key>", "name": "<value>", "subscribers": []}], "page": "5984.80", "pageSize": "6512.03", "totalCount": "163.09"}
+  TopicsController_deleteTopic:
+    speakeasy-default-topics-controller-delete-topic:
+      parameters:
+        path:
+          topicKey: "<value>"
+  TopicsController_getTopic:
+    speakeasy-default-topics-controller-get-topic:
+      parameters:
+        path:
+          topicKey: "<value>"
+      responses:
+        "200":
+          application/json: {"_organizationId": "<id>", "_environmentId": "<id>", "key": "<key>", "name": "<value>", "subscribers": ["<value>", "<value>"]}
+  TopicsController_renameTopic:
+    speakeasy-default-topics-controller-rename-topic:
+      parameters:
+        path:
+          topicKey: "<value>"
+      requestBody:
+        application/json: {"name": "<value>"}
+      responses:
+        "200":
+          application/json: {"_organizationId": "<id>", "_environmentId": "<id>", "key": "<key>", "name": "<value>", "subscribers": ["<value>", "<value>", "<value>"]}
+  TopicsController_addSubscribers:
+    speakeasy-default-topics-controller-add-subscribers:
+      parameters:
+        path:
+          topicKey: "<value>"
+      requestBody:
+        application/json: {"subscribers": ["<value>", "<value>"]}
+  TopicsController_getTopicSubscriber:
+    speakeasy-default-topics-controller-get-topic-subscriber:
+      parameters:
+        path:
+          externalSubscriberId: "<id>"
+          topicKey: "<value>"
+      responses:
+        "200":
+          application/json: {"_organizationId": "<id>", "_environmentId": "<id>", "_subscriberId": "<id>", "_topicId": "<id>", "topicKey": "<value>", "externalSubscriberId": "<id>"}
+  TopicsController_removeSubscribers:
+    speakeasy-default-topics-controller-remove-subscribers:
+      parameters:
+        path:
+          topicKey: "<value>"
+      requestBody:
+        application/json: {"subscribers": ["<value>", "<value>"]}
