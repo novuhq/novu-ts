@@ -50,7 +50,8 @@ export async function subscribersList(
       | RequestAbortedError
       | RequestTimeoutError
       | ConnectionError
-    >
+    >,
+    { page: number }
   >
 > {
   const input: operations.SubscribersControllerListSubscribersRequest = {
@@ -162,42 +163,47 @@ export async function subscribersList(
 
   const nextFunc = (
     responseData: unknown,
-  ): Paginator<
-    Result<
-      operations.SubscribersControllerListSubscribersResponse,
-      | SDKError
-      | SDKValidationError
-      | UnexpectedClientError
-      | InvalidRequestError
-      | RequestAbortedError
-      | RequestTimeoutError
-      | ConnectionError
-    >
-  > => {
+  ): {
+    next: Paginator<
+      Result<
+        operations.SubscribersControllerListSubscribersResponse,
+        | SDKError
+        | SDKValidationError
+        | UnexpectedClientError
+        | InvalidRequestError
+        | RequestAbortedError
+        | RequestTimeoutError
+        | ConnectionError
+      >
+    >;
+    "~next"?: { page: number };
+  } => {
     const page = input?.page || 0;
     const nextPage = page + 1;
 
     if (!responseData) {
-      return () => null;
+      return { next: () => null };
     }
     const results = dlv(responseData, "data.resultArray");
     if (!Array.isArray(results) || !results.length) {
-      return () => null;
+      return { next: () => null };
     }
     const limit = input?.limit || 0;
     if (results.length < limit) {
-      return () => null;
+      return { next: () => null };
     }
 
-    return () =>
+    const nextVal = () =>
       subscribersList(
         client,
         nextPage,
         limit,
         options,
       );
+
+    return { next: nextVal, "~next": { page: nextPage } };
   };
 
-  const page$ = { ...result, next: nextFunc(raw) };
+  const page$ = { ...result, ...nextFunc(raw) };
   return { ...page$, ...createPageIterator(page$, (v) => !v.ok) };
 }

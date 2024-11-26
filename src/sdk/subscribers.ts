@@ -62,7 +62,10 @@ export class Subscribers extends ClientSDK {
     limit?: number | undefined,
     options?: RequestOptions,
   ): Promise<
-    PageIterator<operations.SubscribersControllerListSubscribersResponse>
+    PageIterator<
+      operations.SubscribersControllerListSubscribersResponse,
+      { page: number }
+    >
   > {
     return unwrapResultIterator(subscribersList(
       this,

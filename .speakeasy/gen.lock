@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 6bff3a53-3f0b-40b4-942f-ff70dc583ae5
 management:
-  docChecksum: 10932993b99f723bb4dec08261897258
+  docChecksum: 699209ff007a2264c6e5ba8a9654f56d
   docVersion: "1.0"
-  speakeasyVersion: 1.446.1
-  generationVersion: 2.462.1
-  releaseVersion: 0.0.1-alpha.25
-  configChecksum: 3e76faf756c7c8551645e6079f12b9af
+  speakeasyVersion: 1.447.0
+  generationVersion: 2.463.0
+  releaseVersion: 0.0.1-alpha.28
+  configChecksum: 0fdac0df335a23d59cde020c41a597e0
   published: true
 features:
   typescript:
@@ -41,8 +41,8 @@ generatedFiles:
   - docs/lib/utils/retryconfig.md
   - docs/models/components/activitiesresponsedto.md
   - docs/models/components/activitygraphstatesresponse.md
+  - docs/models/components/activitygraphstatesresponsechannels.md
   - docs/models/components/activitynotificationresponsedto.md
-  - docs/models/components/activitynotificationresponsedtochannels.md
   - docs/models/components/activitynotificationsubscriberresponsedto.md
   - docs/models/components/activitynotificationtemplateresponsedto.md
   - docs/models/components/activitystatsresponsedto.md
@@ -924,7 +924,7 @@ examples:
     speakeasy-default-messages-controller-get-messages:
       responses:
         "200":
-          application/json: {"hasMore": false, "data": ["<value>", "<value>"], "pageSize": "5442.21", "page": "5212.35"}
+          application/json: {"hasMore": false, "data": [{"_environmentId": "<id>", "_organizationId": "<id>", "transactionId": "<id>"}, {"_environmentId": "<id>", "_organizationId": "<id>", "transactionId": "<id>"}], "pageSize": "5442.21", "page": "5212.35"}
   MessagesController_deleteMessage:
     speakeasy-default-messages-controller-delete-message:
       parameters:

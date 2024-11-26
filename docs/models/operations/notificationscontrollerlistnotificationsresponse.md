@@ -14,7 +14,11 @@ let value: NotificationsControllerListNotificationsResponse = {
   result: {
     hasMore: false,
     data: [
-      "<value>",
+      {
+        environmentId: "<id>",
+        organizationId: "<id>",
+        transactionId: "<id>",
+      },
     ],
     pageSize: 9636.63,
     page: 3834.42,

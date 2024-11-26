@@ -10781,83 +10781,6 @@
           "data"
         ]
       },
-      "ActivitiesResponseDto": {
-        "type": "object",
-        "properties": {
-          "hasMore": {
-            "type": "boolean"
-          },
-          "data": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "pageSize": {
-            "type": "number"
-          },
-          "page": {
-            "type": "number"
-          }
-        },
-        "required": [
-          "hasMore",
-          "data",
-          "pageSize",
-          "page"
-        ]
-      },
-      "ActivityStatsResponseDto": {
-        "type": "object",
-        "properties": {
-          "weeklySent": {
-            "type": "number"
-          },
-          "monthlySent": {
-            "type": "number"
-          }
-        },
-        "required": [
-          "weeklySent",
-          "monthlySent"
-        ]
-      },
-      "ActivityGraphStatesResponse": {
-        "type": "object",
-        "properties": {
-          "_id": {
-            "type": "string"
-          },
-          "count": {
-            "type": "number"
-          },
-          "templates": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "channels": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "enum": [
-                "in_app",
-                "email",
-                "sms",
-                "chat",
-                "push"
-              ]
-            }
-          }
-        },
-        "required": [
-          "_id",
-          "count",
-          "templates",
-          "channels"
-        ]
-      },
       "ActivityNotificationSubscriberResponseDto": {
         "type": "object",
         "properties": {
@@ -10965,6 +10888,84 @@
           "_environmentId",
           "_organizationId",
           "transactionId"
+        ]
+      },
+      "ActivitiesResponseDto": {
+        "type": "object",
+        "properties": {
+          "hasMore": {
+            "type": "boolean"
+          },
+          "data": {
+            "description": "Array of Activity notifications",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ActivityNotificationResponseDto"
+            }
+          },
+          "pageSize": {
+            "type": "number"
+          },
+          "page": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "hasMore",
+          "data",
+          "pageSize",
+          "page"
+        ]
+      },
+      "ActivityStatsResponseDto": {
+        "type": "object",
+        "properties": {
+          "weeklySent": {
+            "type": "number"
+          },
+          "monthlySent": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "weeklySent",
+          "monthlySent"
+        ]
+      },
+      "ActivityGraphStatesResponse": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "count": {
+            "type": "number"
+          },
+          "templates": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "channels": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "in_app",
+                "email",
+                "sms",
+                "chat",
+                "push"
+              ]
+            }
+          }
+        },
+        "required": [
+          "_id",
+          "count",
+          "templates",
+          "channels"
         ]
       },
       "NotificationGroupResponseDto": {
