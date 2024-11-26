@@ -6,10 +6,19 @@ import * as z from "zod";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+import {
+  ActivityNotificationResponseDto,
+  ActivityNotificationResponseDto$inboundSchema,
+  ActivityNotificationResponseDto$Outbound,
+  ActivityNotificationResponseDto$outboundSchema,
+} from "./activitynotificationresponsedto.js";
 
 export type ActivitiesResponseDto = {
   hasMore: boolean;
-  data: Array<string>;
+  /**
+   * Array of Activity notifications
+   */
+  data: Array<ActivityNotificationResponseDto>;
   pageSize: number;
   page: number;
 };
@@ -21,7 +30,7 @@ export const ActivitiesResponseDto$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   hasMore: z.boolean(),
-  data: z.array(z.string()),
+  data: z.array(ActivityNotificationResponseDto$inboundSchema),
   pageSize: z.number(),
   page: z.number(),
 });
@@ -29,7 +38,7 @@ export const ActivitiesResponseDto$inboundSchema: z.ZodType<
 /** @internal */
 export type ActivitiesResponseDto$Outbound = {
   hasMore: boolean;
-  data: Array<string>;
+  data: Array<ActivityNotificationResponseDto$Outbound>;
   pageSize: number;
   page: number;
 };
@@ -41,7 +50,7 @@ export const ActivitiesResponseDto$outboundSchema: z.ZodType<
   ActivitiesResponseDto
 > = z.object({
   hasMore: z.boolean(),
-  data: z.array(z.string()),
+  data: z.array(ActivityNotificationResponseDto$outboundSchema),
   pageSize: z.number(),
   page: z.number(),
 });
