@@ -3,49 +3,78 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
-export type Data = {};
+export type CreateSubscriberRequestDtoData = {};
 
 export type CreateSubscriberRequestDto = {
-  /**
-   * An http url to the profile image of your subscriber
-   */
-  avatar?: string | undefined;
-  channels?: Array<string> | undefined;
-  data?: Data | undefined;
-  email?: string | undefined;
-  firstName?: string | undefined;
-  lastName?: string | undefined;
-  locale?: string | undefined;
-  phone?: string | undefined;
   /**
    * The internal identifier you used to create this subscriber, usually correlates to the id the user in your systems
    */
   subscriberId: string;
+  email?: string | undefined;
+  firstName?: string | undefined;
+  lastName?: string | undefined;
+  phone?: string | undefined;
+  /**
+   * An http url to the profile image of your subscriber
+   */
+  avatar?: string | undefined;
+  locale?: string | undefined;
+  data?: CreateSubscriberRequestDtoData | undefined;
+  channels?: Array<string> | undefined;
 };
 
 /** @internal */
-export const Data$inboundSchema: z.ZodType<Data, z.ZodTypeDef, unknown> = z
-  .object({});
+export const CreateSubscriberRequestDtoData$inboundSchema: z.ZodType<
+  CreateSubscriberRequestDtoData,
+  z.ZodTypeDef,
+  unknown
+> = z.object({});
 
 /** @internal */
-export type Data$Outbound = {};
+export type CreateSubscriberRequestDtoData$Outbound = {};
 
 /** @internal */
-export const Data$outboundSchema: z.ZodType<Data$Outbound, z.ZodTypeDef, Data> =
-  z.object({});
+export const CreateSubscriberRequestDtoData$outboundSchema: z.ZodType<
+  CreateSubscriberRequestDtoData$Outbound,
+  z.ZodTypeDef,
+  CreateSubscriberRequestDtoData
+> = z.object({});
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Data$ {
-  /** @deprecated use `Data$inboundSchema` instead. */
-  export const inboundSchema = Data$inboundSchema;
-  /** @deprecated use `Data$outboundSchema` instead. */
-  export const outboundSchema = Data$outboundSchema;
-  /** @deprecated use `Data$Outbound` instead. */
-  export type Outbound = Data$Outbound;
+export namespace CreateSubscriberRequestDtoData$ {
+  /** @deprecated use `CreateSubscriberRequestDtoData$inboundSchema` instead. */
+  export const inboundSchema = CreateSubscriberRequestDtoData$inboundSchema;
+  /** @deprecated use `CreateSubscriberRequestDtoData$outboundSchema` instead. */
+  export const outboundSchema = CreateSubscriberRequestDtoData$outboundSchema;
+  /** @deprecated use `CreateSubscriberRequestDtoData$Outbound` instead. */
+  export type Outbound = CreateSubscriberRequestDtoData$Outbound;
+}
+
+export function createSubscriberRequestDtoDataToJSON(
+  createSubscriberRequestDtoData: CreateSubscriberRequestDtoData,
+): string {
+  return JSON.stringify(
+    CreateSubscriberRequestDtoData$outboundSchema.parse(
+      createSubscriberRequestDtoData,
+    ),
+  );
+}
+
+export function createSubscriberRequestDtoDataFromJSON(
+  jsonString: string,
+): SafeParseResult<CreateSubscriberRequestDtoData, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreateSubscriberRequestDtoData$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateSubscriberRequestDtoData' from JSON`,
+  );
 }
 
 /** @internal */
@@ -54,28 +83,28 @@ export const CreateSubscriberRequestDto$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  avatar: z.string().optional(),
-  channels: z.array(z.string()).optional(),
-  data: z.lazy(() => Data$inboundSchema).optional(),
+  subscriberId: z.string(),
   email: z.string().optional(),
   firstName: z.string().optional(),
   lastName: z.string().optional(),
-  locale: z.string().optional(),
   phone: z.string().optional(),
-  subscriberId: z.string(),
+  avatar: z.string().optional(),
+  locale: z.string().optional(),
+  data: z.lazy(() => CreateSubscriberRequestDtoData$inboundSchema).optional(),
+  channels: z.array(z.string()).optional(),
 });
 
 /** @internal */
 export type CreateSubscriberRequestDto$Outbound = {
-  avatar?: string | undefined;
-  channels?: Array<string> | undefined;
-  data?: Data$Outbound | undefined;
+  subscriberId: string;
   email?: string | undefined;
   firstName?: string | undefined;
   lastName?: string | undefined;
-  locale?: string | undefined;
   phone?: string | undefined;
-  subscriberId: string;
+  avatar?: string | undefined;
+  locale?: string | undefined;
+  data?: CreateSubscriberRequestDtoData$Outbound | undefined;
+  channels?: Array<string> | undefined;
 };
 
 /** @internal */
@@ -84,15 +113,15 @@ export const CreateSubscriberRequestDto$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CreateSubscriberRequestDto
 > = z.object({
-  avatar: z.string().optional(),
-  channels: z.array(z.string()).optional(),
-  data: z.lazy(() => Data$outboundSchema).optional(),
+  subscriberId: z.string(),
   email: z.string().optional(),
   firstName: z.string().optional(),
   lastName: z.string().optional(),
-  locale: z.string().optional(),
   phone: z.string().optional(),
-  subscriberId: z.string(),
+  avatar: z.string().optional(),
+  locale: z.string().optional(),
+  data: z.lazy(() => CreateSubscriberRequestDtoData$outboundSchema).optional(),
+  channels: z.array(z.string()).optional(),
 });
 
 /**
@@ -106,4 +135,22 @@ export namespace CreateSubscriberRequestDto$ {
   export const outboundSchema = CreateSubscriberRequestDto$outboundSchema;
   /** @deprecated use `CreateSubscriberRequestDto$Outbound` instead. */
   export type Outbound = CreateSubscriberRequestDto$Outbound;
+}
+
+export function createSubscriberRequestDtoToJSON(
+  createSubscriberRequestDto: CreateSubscriberRequestDto,
+): string {
+  return JSON.stringify(
+    CreateSubscriberRequestDto$outboundSchema.parse(createSubscriberRequestDto),
+  );
+}
+
+export function createSubscriberRequestDtoFromJSON(
+  jsonString: string,
+): SafeParseResult<CreateSubscriberRequestDto, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreateSubscriberRequestDto$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateSubscriberRequestDto' from JSON`,
+  );
 }

@@ -5,32 +5,32 @@
 import { notificationsStatsGraph } from "../funcs/notificationsStatsGraph.js";
 import { notificationsStatsRetrieve } from "../funcs/notificationsStatsRetrieve.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as components from "../models/components/index.js";
+import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class Stats extends ClientSDK {
+  /**
+   * Get notification statistics
+   */
+  async retrieve(
+    options?: RequestOptions,
+  ): Promise<operations.NotificationsControllerGetActivityStatsResponse> {
+    return unwrapAsync(notificationsStatsRetrieve(
+      this,
+      options,
+    ));
+  }
+
   /**
    * Get notification graph statistics
    */
   async graph(
     days?: number | undefined,
     options?: RequestOptions,
-  ): Promise<Array<components.ActivityGraphStatesResponse>> {
+  ): Promise<operations.NotificationsControllerGetActivityGraphStatsResponse> {
     return unwrapAsync(notificationsStatsGraph(
       this,
       days,
-      options,
-    ));
-  }
-
-  /**
-   * Get notification statistics
-   */
-  async retrieve(
-    options?: RequestOptions,
-  ): Promise<components.ActivityStatsResponseDto> {
-    return unwrapAsync(notificationsStatsRetrieve(
-      this,
       options,
     ));
   }

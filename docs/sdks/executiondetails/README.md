@@ -24,10 +24,10 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.executionDetails.retrieve("<value>", "<value>");
-  
+  const result = await novu.executionDetails.retrieve("<id>", "<id>");
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -48,7 +48,7 @@ const novu = new NovuCore({
 });
 
 async function run() {
-  const res = await executionDetailsRetrieve(novu, "<value>", "<value>");
+  const res = await executionDetailsRetrieve(novu, "<id>", "<id>");
 
   if (!res.ok) {
     throw res.error;
@@ -57,7 +57,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -75,10 +75,10 @@ run();
 
 ### Response
 
-**Promise\<[components.ExecutionDetailsResponseDto[]](../../models/.md)\>**
+**Promise\<[operations.ExecutionDetailsControllerGetExecutionDetailsForNotificationResponse](../../models/operations/executiondetailscontrollergetexecutiondetailsfornotificationresponse.md)\>**
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |

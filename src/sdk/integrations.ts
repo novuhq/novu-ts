@@ -10,13 +10,29 @@ import { integrationsSetAsPrimary } from "../funcs/integrationsSetAsPrimary.js";
 import { integrationsUpdate } from "../funcs/integrationsUpdate.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as components from "../models/components/index.js";
+import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
 import { Webhooks } from "./webhooks.js";
 
 export class Integrations extends ClientSDK {
   private _webhooks?: Webhooks;
   get webhooks(): Webhooks {
-    return (this._webhooks ??= new Webhooks(this.options$));
+    return (this._webhooks ??= new Webhooks(this._options));
+  }
+
+  /**
+   * Get integrations
+   *
+   * @remarks
+   * Return all the integrations the user has created for that organization. Review v.0.17.0 changelog for a breaking change
+   */
+  async list(
+    options?: RequestOptions,
+  ): Promise<operations.IntegrationsControllerListIntegrationsResponse> {
+    return unwrapAsync(integrationsList(
+      this,
+      options,
+    ));
   }
 
   /**
@@ -28,39 +44,10 @@ export class Integrations extends ClientSDK {
   async create(
     request: components.CreateIntegrationRequestDto,
     options?: RequestOptions,
-  ): Promise<components.IntegrationResponseDto> {
+  ): Promise<operations.IntegrationsControllerCreateIntegrationResponse> {
     return unwrapAsync(integrationsCreate(
       this,
       request,
-      options,
-    ));
-  }
-
-  /**
-   * Delete integration
-   */
-  async delete(
-    integrationId: string,
-    options?: RequestOptions,
-  ): Promise<Array<components.IntegrationResponseDto>> {
-    return unwrapAsync(integrationsDelete(
-      this,
-      integrationId,
-      options,
-    ));
-  }
-
-  /**
-   * Get integrations
-   *
-   * @remarks
-   * Return all the integrations the user has created for that organization. Review v.0.17.0 changelog for a breaking change
-   */
-  async list(
-    options?: RequestOptions,
-  ): Promise<Array<components.IntegrationResponseDto>> {
-    return unwrapAsync(integrationsList(
-      this,
       options,
     ));
   }
@@ -73,9 +60,39 @@ export class Integrations extends ClientSDK {
    */
   async listActive(
     options?: RequestOptions,
-  ): Promise<Array<components.IntegrationResponseDto>> {
+  ): Promise<operations.IntegrationsControllerGetActiveIntegrationsResponse> {
     return unwrapAsync(integrationsListActive(
       this,
+      options,
+    ));
+  }
+
+  /**
+   * Update integration
+   */
+  async update(
+    updateIntegrationRequestDto: components.UpdateIntegrationRequestDto,
+    integrationId: string,
+    options?: RequestOptions,
+  ): Promise<operations.IntegrationsControllerUpdateIntegrationByIdResponse> {
+    return unwrapAsync(integrationsUpdate(
+      this,
+      updateIntegrationRequestDto,
+      integrationId,
+      options,
+    ));
+  }
+
+  /**
+   * Delete integration
+   */
+  async delete(
+    integrationId: string,
+    options?: RequestOptions,
+  ): Promise<operations.IntegrationsControllerRemoveIntegrationResponse> {
+    return unwrapAsync(integrationsDelete(
+      this,
+      integrationId,
       options,
     ));
   }
@@ -86,26 +103,10 @@ export class Integrations extends ClientSDK {
   async setAsPrimary(
     integrationId: string,
     options?: RequestOptions,
-  ): Promise<components.IntegrationResponseDto> {
+  ): Promise<operations.IntegrationsControllerSetIntegrationAsPrimaryResponse> {
     return unwrapAsync(integrationsSetAsPrimary(
       this,
       integrationId,
-      options,
-    ));
-  }
-
-  /**
-   * Update integration
-   */
-  async update(
-    integrationId: string,
-    updateIntegrationRequestDto: components.UpdateIntegrationRequestDto,
-    options?: RequestOptions,
-  ): Promise<components.IntegrationResponseDto> {
-    return unwrapAsync(integrationsUpdate(
-      this,
-      integrationId,
-      updateIntegrationRequestDto,
       options,
     ));
   }

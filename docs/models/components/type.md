@@ -5,11 +5,11 @@
 ```typescript
 import { Type } from "@novu/api/models/components";
 
-let value: Type = "DefaultLayout";
+let value: Type = "Topic";
 ```
 
 ## Values
 
 ```typescript
-"Feed" | "MessageTemplate" | "Layout" | "DefaultLayout" | "NotificationTemplate" | "NotificationGroup" | "TranslationGroup" | "Translation"
+"Subscriber" | "Topic"
 ```

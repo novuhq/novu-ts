@@ -3,13 +3,12 @@
  */
 
 import { NovuCore } from "../core.js";
-import { encodeSimple as encodeSimple$ } from "../lib/encodings.js";
-import * as m$ from "../lib/matchers.js";
-import * as schemas$ from "../lib/schemas.js";
+import { encodeSimple } from "../lib/encodings.js";
+import * as M from "../lib/matchers.js";
+import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
-import * as components from "../models/components/index.js";
 import {
   ConnectionError,
   InvalidRequestError,
@@ -29,13 +28,13 @@ import { Result } from "../types/fp.js";
  * Check if a subscriber belongs to a certain topic
  */
 export async function topicsSubscribersRetrieve(
-  client$: NovuCore,
+  client: NovuCore,
   externalSubscriberId: string,
   topicKey: string,
   options?: RequestOptions,
 ): Promise<
   Result<
-    components.TopicSubscriberDto,
+    operations.TopicsControllerGetTopicSubscriberResponse,
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -45,72 +44,58 @@ export async function topicsSubscribersRetrieve(
     | ConnectionError
   >
 > {
-  const input$: operations.TopicsControllerGetTopicSubscriberRequest = {
+  const input: operations.TopicsControllerGetTopicSubscriberRequest = {
     externalSubscriberId: externalSubscriberId,
     topicKey: topicKey,
   };
 
-  const parsed$ = schemas$.safeParse(
-    input$,
-    (value$) =>
+  const parsed = safeParse(
+    input,
+    (value) =>
       operations.TopicsControllerGetTopicSubscriberRequest$outboundSchema.parse(
-        value$,
+        value,
       ),
     "Input validation failed",
   );
-  if (!parsed$.ok) {
-    return parsed$;
+  if (!parsed.ok) {
+    return parsed;
   }
-  const payload$ = parsed$.value;
-  const body$ = null;
+  const payload = parsed.value;
+  const body = null;
 
-  const pathParams$ = {
-    externalSubscriberId: encodeSimple$(
+  const pathParams = {
+    externalSubscriberId: encodeSimple(
       "externalSubscriberId",
-      payload$.externalSubscriberId,
+      payload.externalSubscriberId,
       { explode: false, charEncoding: "percent" },
     ),
-    topicKey: encodeSimple$("topicKey", payload$.topicKey, {
+    topicKey: encodeSimple("topicKey", payload.topicKey, {
       explode: false,
       charEncoding: "percent",
     }),
   };
 
-  const path$ = pathToFunc(
+  const path = pathToFunc(
     "/v1/topics/{topicKey}/subscribers/{externalSubscriberId}",
-  )(pathParams$);
+  )(pathParams);
 
-  const headers$ = new Headers({
+  const headers = new Headers({
     Accept: "application/json",
   });
 
-  const apiKey$ = await extractSecurity(client$.options$.apiKey);
-  const security$ = apiKey$ == null ? {} : { apiKey: apiKey$ };
+  const secConfig = await extractSecurity(client._options.apiKey);
+  const securityInput = secConfig == null ? {} : { apiKey: secConfig };
+  const requestSecurity = resolveGlobalSecurity(securityInput);
+
   const context = {
     operationID: "TopicsController_getTopicSubscriber",
     oAuth2Scopes: [],
-    securitySource: client$.options$.apiKey,
-  };
-  const securitySettings$ = resolveGlobalSecurity(security$);
 
-  const requestRes = client$.createRequest$(context, {
-    security: securitySettings$,
-    method: "GET",
-    path: path$,
-    headers: headers$,
-    body: body$,
-    timeoutMs: options?.timeoutMs || client$.options$.timeoutMs || -1,
-  }, options);
-  if (!requestRes.ok) {
-    return requestRes;
-  }
-  const request$ = requestRes.value;
+    resolvedSecurity: requestSecurity,
 
-  const doResult = await client$.do$(request$, {
-    context,
-    errorCodes: ["409", "429", "4XX", "503", "5XX"],
+    securitySource: client._options.apiKey,
     retryConfig: options?.retries
-      || client$.options$.retryConfig
+      || client._options.retryConfig
       || {
         strategy: "backoff",
         backoff: {
@@ -120,16 +105,41 @@ export async function topicsSubscribersRetrieve(
           maxElapsedTime: 3600000,
         },
         retryConnectionErrors: true,
-      },
+      }
+      || { strategy: "none" },
     retryCodes: options?.retryCodes || ["408", "409", "429", "5XX"],
+  };
+
+  const requestRes = client._createRequest(context, {
+    security: requestSecurity,
+    method: "GET",
+    path: path,
+    headers: headers,
+    body: body,
+    timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
+  }, options);
+  if (!requestRes.ok) {
+    return requestRes;
+  }
+  const req = requestRes.value;
+
+  const doResult = await client._do(req, {
+    context,
+    errorCodes: ["409", "429", "4XX", "503", "5XX"],
+    retryConfig: context.retryConfig,
+    retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
     return doResult;
   }
   const response = doResult.value;
 
-  const [result$] = await m$.match<
-    components.TopicSubscriberDto,
+  const responseFields = {
+    HttpMeta: { Response: response, Request: req },
+  };
+
+  const [result] = await M.match<
+    operations.TopicsControllerGetTopicSubscriberResponse,
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -138,12 +148,17 @@ export async function topicsSubscribersRetrieve(
     | RequestTimeoutError
     | ConnectionError
   >(
-    m$.json(200, components.TopicSubscriberDto$inboundSchema),
-    m$.fail([409, 429, "4XX", 503, "5XX"]),
-  )(response);
-  if (!result$.ok) {
-    return result$;
+    M.json(
+      200,
+      operations.TopicsControllerGetTopicSubscriberResponse$inboundSchema,
+      { key: "Result" },
+    ),
+    M.fail([409, 429, 503]),
+    M.fail(["4XX", "5XX"]),
+  )(response, { extraFields: responseFields });
+  if (!result.ok) {
+    return result;
   }
 
-  return result$;
+  return result;
 }

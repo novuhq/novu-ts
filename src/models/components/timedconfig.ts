@@ -3,13 +3,21 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
-export const MonthlyType = {
-  Each: "each",
-  On: "on",
+export const WeekDays = {
+  Monday: "monday",
+  Tuesday: "tuesday",
+  Wednesday: "wednesday",
+  Thursday: "thursday",
+  Friday: "friday",
+  Saturday: "saturday",
+  Sunday: "sunday",
 } as const;
-export type MonthlyType = ClosedEnum<typeof MonthlyType>;
+export type WeekDays = ClosedEnum<typeof WeekDays>;
 
 export const Ordinal = {
   One: "1",
@@ -35,43 +43,38 @@ export const OrdinalValue = {
 } as const;
 export type OrdinalValue = ClosedEnum<typeof OrdinalValue>;
 
-export const WeekDays = {
-  Monday: "monday",
-  Tuesday: "tuesday",
-  Wednesday: "wednesday",
-  Thursday: "thursday",
-  Friday: "friday",
-  Saturday: "saturday",
-  Sunday: "sunday",
+export const MonthlyType = {
+  Each: "each",
+  On: "on",
 } as const;
-export type WeekDays = ClosedEnum<typeof WeekDays>;
+export type MonthlyType = ClosedEnum<typeof MonthlyType>;
 
 export type TimedConfig = {
   atTime?: string | undefined;
+  weekDays?: Array<WeekDays> | undefined;
   monthDays?: Array<string> | undefined;
-  monthlyType?: MonthlyType | undefined;
   ordinal?: Ordinal | undefined;
   ordinalValue?: OrdinalValue | undefined;
-  weekDays?: Array<WeekDays> | undefined;
+  monthlyType?: MonthlyType | undefined;
 };
 
 /** @internal */
-export const MonthlyType$inboundSchema: z.ZodNativeEnum<typeof MonthlyType> = z
-  .nativeEnum(MonthlyType);
+export const WeekDays$inboundSchema: z.ZodNativeEnum<typeof WeekDays> = z
+  .nativeEnum(WeekDays);
 
 /** @internal */
-export const MonthlyType$outboundSchema: z.ZodNativeEnum<typeof MonthlyType> =
-  MonthlyType$inboundSchema;
+export const WeekDays$outboundSchema: z.ZodNativeEnum<typeof WeekDays> =
+  WeekDays$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace MonthlyType$ {
-  /** @deprecated use `MonthlyType$inboundSchema` instead. */
-  export const inboundSchema = MonthlyType$inboundSchema;
-  /** @deprecated use `MonthlyType$outboundSchema` instead. */
-  export const outboundSchema = MonthlyType$outboundSchema;
+export namespace WeekDays$ {
+  /** @deprecated use `WeekDays$inboundSchema` instead. */
+  export const inboundSchema = WeekDays$inboundSchema;
+  /** @deprecated use `WeekDays$outboundSchema` instead. */
+  export const outboundSchema = WeekDays$outboundSchema;
 }
 
 /** @internal */
@@ -113,22 +116,22 @@ export namespace OrdinalValue$ {
 }
 
 /** @internal */
-export const WeekDays$inboundSchema: z.ZodNativeEnum<typeof WeekDays> = z
-  .nativeEnum(WeekDays);
+export const MonthlyType$inboundSchema: z.ZodNativeEnum<typeof MonthlyType> = z
+  .nativeEnum(MonthlyType);
 
 /** @internal */
-export const WeekDays$outboundSchema: z.ZodNativeEnum<typeof WeekDays> =
-  WeekDays$inboundSchema;
+export const MonthlyType$outboundSchema: z.ZodNativeEnum<typeof MonthlyType> =
+  MonthlyType$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace WeekDays$ {
-  /** @deprecated use `WeekDays$inboundSchema` instead. */
-  export const inboundSchema = WeekDays$inboundSchema;
-  /** @deprecated use `WeekDays$outboundSchema` instead. */
-  export const outboundSchema = WeekDays$outboundSchema;
+export namespace MonthlyType$ {
+  /** @deprecated use `MonthlyType$inboundSchema` instead. */
+  export const inboundSchema = MonthlyType$inboundSchema;
+  /** @deprecated use `MonthlyType$outboundSchema` instead. */
+  export const outboundSchema = MonthlyType$outboundSchema;
 }
 
 /** @internal */
@@ -138,21 +141,21 @@ export const TimedConfig$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   atTime: z.string().optional(),
+  weekDays: z.array(WeekDays$inboundSchema).optional(),
   monthDays: z.array(z.string()).optional(),
-  monthlyType: MonthlyType$inboundSchema.optional(),
   ordinal: Ordinal$inboundSchema.optional(),
   ordinalValue: OrdinalValue$inboundSchema.optional(),
-  weekDays: z.array(WeekDays$inboundSchema).optional(),
+  monthlyType: MonthlyType$inboundSchema.optional(),
 });
 
 /** @internal */
 export type TimedConfig$Outbound = {
   atTime?: string | undefined;
+  weekDays?: Array<string> | undefined;
   monthDays?: Array<string> | undefined;
-  monthlyType?: string | undefined;
   ordinal?: string | undefined;
   ordinalValue?: string | undefined;
-  weekDays?: Array<string> | undefined;
+  monthlyType?: string | undefined;
 };
 
 /** @internal */
@@ -162,11 +165,11 @@ export const TimedConfig$outboundSchema: z.ZodType<
   TimedConfig
 > = z.object({
   atTime: z.string().optional(),
+  weekDays: z.array(WeekDays$outboundSchema).optional(),
   monthDays: z.array(z.string()).optional(),
-  monthlyType: MonthlyType$outboundSchema.optional(),
   ordinal: Ordinal$outboundSchema.optional(),
   ordinalValue: OrdinalValue$outboundSchema.optional(),
-  weekDays: z.array(WeekDays$outboundSchema).optional(),
+  monthlyType: MonthlyType$outboundSchema.optional(),
 });
 
 /**
@@ -180,4 +183,18 @@ export namespace TimedConfig$ {
   export const outboundSchema = TimedConfig$outboundSchema;
   /** @deprecated use `TimedConfig$Outbound` instead. */
   export type Outbound = TimedConfig$Outbound;
+}
+
+export function timedConfigToJSON(timedConfig: TimedConfig): string {
+  return JSON.stringify(TimedConfig$outboundSchema.parse(timedConfig));
+}
+
+export function timedConfigFromJSON(
+  jsonString: string,
+): SafeParseResult<TimedConfig, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TimedConfig$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TimedConfig' from JSON`,
+  );
 }

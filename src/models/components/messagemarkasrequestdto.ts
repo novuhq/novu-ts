@@ -3,45 +3,25 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
-export const MessageMarkAsRequestDtoMarkAs = {
+export type MessageId = string | Array<string>;
+
+export const MarkAs = {
   Read: "read",
   Seen: "seen",
   Unread: "unread",
   Unseen: "unseen",
 } as const;
-export type MessageMarkAsRequestDtoMarkAs = ClosedEnum<
-  typeof MessageMarkAsRequestDtoMarkAs
->;
-
-export type MessageId = string | Array<string>;
+export type MarkAs = ClosedEnum<typeof MarkAs>;
 
 export type MessageMarkAsRequestDto = {
-  markAs: MessageMarkAsRequestDtoMarkAs;
   messageId: string | Array<string>;
+  markAs: MarkAs;
 };
-
-/** @internal */
-export const MessageMarkAsRequestDtoMarkAs$inboundSchema: z.ZodNativeEnum<
-  typeof MessageMarkAsRequestDtoMarkAs
-> = z.nativeEnum(MessageMarkAsRequestDtoMarkAs);
-
-/** @internal */
-export const MessageMarkAsRequestDtoMarkAs$outboundSchema: z.ZodNativeEnum<
-  typeof MessageMarkAsRequestDtoMarkAs
-> = MessageMarkAsRequestDtoMarkAs$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MessageMarkAsRequestDtoMarkAs$ {
-  /** @deprecated use `MessageMarkAsRequestDtoMarkAs$inboundSchema` instead. */
-  export const inboundSchema = MessageMarkAsRequestDtoMarkAs$inboundSchema;
-  /** @deprecated use `MessageMarkAsRequestDtoMarkAs$outboundSchema` instead. */
-  export const outboundSchema = MessageMarkAsRequestDtoMarkAs$outboundSchema;
-}
 
 /** @internal */
 export const MessageId$inboundSchema: z.ZodType<
@@ -73,20 +53,53 @@ export namespace MessageId$ {
   export type Outbound = MessageId$Outbound;
 }
 
+export function messageIdToJSON(messageId: MessageId): string {
+  return JSON.stringify(MessageId$outboundSchema.parse(messageId));
+}
+
+export function messageIdFromJSON(
+  jsonString: string,
+): SafeParseResult<MessageId, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => MessageId$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'MessageId' from JSON`,
+  );
+}
+
+/** @internal */
+export const MarkAs$inboundSchema: z.ZodNativeEnum<typeof MarkAs> = z
+  .nativeEnum(MarkAs);
+
+/** @internal */
+export const MarkAs$outboundSchema: z.ZodNativeEnum<typeof MarkAs> =
+  MarkAs$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace MarkAs$ {
+  /** @deprecated use `MarkAs$inboundSchema` instead. */
+  export const inboundSchema = MarkAs$inboundSchema;
+  /** @deprecated use `MarkAs$outboundSchema` instead. */
+  export const outboundSchema = MarkAs$outboundSchema;
+}
+
 /** @internal */
 export const MessageMarkAsRequestDto$inboundSchema: z.ZodType<
   MessageMarkAsRequestDto,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  markAs: MessageMarkAsRequestDtoMarkAs$inboundSchema,
   messageId: z.union([z.string(), z.array(z.string())]),
+  markAs: MarkAs$inboundSchema,
 });
 
 /** @internal */
 export type MessageMarkAsRequestDto$Outbound = {
-  markAs: string;
   messageId: string | Array<string>;
+  markAs: string;
 };
 
 /** @internal */
@@ -95,8 +108,8 @@ export const MessageMarkAsRequestDto$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   MessageMarkAsRequestDto
 > = z.object({
-  markAs: MessageMarkAsRequestDtoMarkAs$outboundSchema,
   messageId: z.union([z.string(), z.array(z.string())]),
+  markAs: MarkAs$outboundSchema,
 });
 
 /**
@@ -110,4 +123,22 @@ export namespace MessageMarkAsRequestDto$ {
   export const outboundSchema = MessageMarkAsRequestDto$outboundSchema;
   /** @deprecated use `MessageMarkAsRequestDto$Outbound` instead. */
   export type Outbound = MessageMarkAsRequestDto$Outbound;
+}
+
+export function messageMarkAsRequestDtoToJSON(
+  messageMarkAsRequestDto: MessageMarkAsRequestDto,
+): string {
+  return JSON.stringify(
+    MessageMarkAsRequestDto$outboundSchema.parse(messageMarkAsRequestDto),
+  );
+}
+
+export function messageMarkAsRequestDtoFromJSON(
+  jsonString: string,
+): SafeParseResult<MessageMarkAsRequestDto, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => MessageMarkAsRequestDto$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'MessageMarkAsRequestDto' from JSON`,
+  );
 }

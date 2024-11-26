@@ -6,11 +6,27 @@ import { messagesDelete } from "../funcs/messagesDelete.js";
 import { messagesDeleteByTransactionId } from "../funcs/messagesDeleteByTransactionId.js";
 import { messagesRetrieve } from "../funcs/messagesRetrieve.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as components from "../models/components/index.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class Messages extends ClientSDK {
+  /**
+   * Get messages
+   *
+   * @remarks
+   * Returns a list of messages, could paginate using the `page` query parameter
+   */
+  async retrieve(
+    request: operations.MessagesControllerGetMessagesRequest,
+    options?: RequestOptions,
+  ): Promise<operations.MessagesControllerGetMessagesResponse> {
+    return unwrapAsync(messagesRetrieve(
+      this,
+      request,
+      options,
+    ));
+  }
+
   /**
    * Delete message
    *
@@ -20,7 +36,7 @@ export class Messages extends ClientSDK {
   async delete(
     messageId: string,
     options?: RequestOptions,
-  ): Promise<components.DeleteMessageResponseDto> {
+  ): Promise<operations.MessagesControllerDeleteMessageResponse> {
     return unwrapAsync(messagesDelete(
       this,
       messageId,
@@ -36,30 +52,16 @@ export class Messages extends ClientSDK {
    */
   async deleteByTransactionId(
     transactionId: string,
-    channel?: operations.Channel | undefined,
+    channel?: operations.QueryParamChannel | undefined,
     options?: RequestOptions,
-  ): Promise<void> {
+  ): Promise<
+    | operations.MessagesControllerDeleteMessagesByTransactionIdResponse
+    | undefined
+  > {
     return unwrapAsync(messagesDeleteByTransactionId(
       this,
       transactionId,
       channel,
-      options,
-    ));
-  }
-
-  /**
-   * Get messages
-   *
-   * @remarks
-   * Returns a list of messages, could paginate using the `page` query parameter
-   */
-  async retrieve(
-    request: operations.MessagesControllerGetMessagesRequest,
-    options?: RequestOptions,
-  ): Promise<components.ActivitiesResponseDto> {
-    return unwrapAsync(messagesRetrieve(
-      this,
-      request,
       options,
     ));
   }

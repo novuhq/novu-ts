@@ -5,26 +5,14 @@
 import { environmentsList } from "../funcs/environmentsList.js";
 import { environmentsRetrieve } from "../funcs/environmentsRetrieve.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as components from "../models/components/index.js";
+import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
 import { ApiKeys } from "./apikeys.js";
 
 export class Environments extends ClientSDK {
   private _apiKeys?: ApiKeys;
   get apiKeys(): ApiKeys {
-    return (this._apiKeys ??= new ApiKeys(this.options$));
-  }
-
-  /**
-   * Get environments
-   */
-  async list(
-    options?: RequestOptions,
-  ): Promise<Array<components.EnvironmentResponseDto>> {
-    return unwrapAsync(environmentsList(
-      this,
-      options,
-    ));
+    return (this._apiKeys ??= new ApiKeys(this._options));
   }
 
   /**
@@ -32,8 +20,20 @@ export class Environments extends ClientSDK {
    */
   async retrieve(
     options?: RequestOptions,
-  ): Promise<components.EnvironmentResponseDto> {
+  ): Promise<operations.EnvironmentsControllerV1GetCurrentEnvironmentResponse> {
     return unwrapAsync(environmentsRetrieve(
+      this,
+      options,
+    ));
+  }
+
+  /**
+   * Get environments
+   */
+  async list(
+    options?: RequestOptions,
+  ): Promise<operations.EnvironmentsControllerV1ListMyEnvironmentsResponse> {
+    return unwrapAsync(environmentsList(
       this,
       options,
     ));

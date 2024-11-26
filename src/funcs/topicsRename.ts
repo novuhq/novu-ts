@@ -3,12 +3,9 @@
  */
 
 import { NovuCore } from "../core.js";
-import {
-  encodeJSON as encodeJSON$,
-  encodeSimple as encodeSimple$,
-} from "../lib/encodings.js";
-import * as m$ from "../lib/matchers.js";
-import * as schemas$ from "../lib/schemas.js";
+import { encodeJSON, encodeSimple } from "../lib/encodings.js";
+import * as M from "../lib/matchers.js";
+import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
@@ -32,13 +29,13 @@ import { Result } from "../types/fp.js";
  * Rename a topic by providing a new name
  */
 export async function topicsRename(
-  client$: NovuCore,
-  topicKey: string,
+  client: NovuCore,
   renameTopicRequestDto: components.RenameTopicRequestDto,
+  topicKey: string,
   options?: RequestOptions,
 ): Promise<
   Result<
-    components.RenameTopicResponseDto,
+    operations.TopicsControllerRenameTopicResponse,
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -48,68 +45,52 @@ export async function topicsRename(
     | ConnectionError
   >
 > {
-  const input$: operations.TopicsControllerRenameTopicRequest = {
-    topicKey: topicKey,
+  const input: operations.TopicsControllerRenameTopicRequest = {
     renameTopicRequestDto: renameTopicRequestDto,
+    topicKey: topicKey,
   };
 
-  const parsed$ = schemas$.safeParse(
-    input$,
-    (value$) =>
-      operations.TopicsControllerRenameTopicRequest$outboundSchema.parse(
-        value$,
-      ),
+  const parsed = safeParse(
+    input,
+    (value) =>
+      operations.TopicsControllerRenameTopicRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
-  if (!parsed$.ok) {
-    return parsed$;
+  if (!parsed.ok) {
+    return parsed;
   }
-  const payload$ = parsed$.value;
-  const body$ = encodeJSON$("body", payload$.RenameTopicRequestDto, {
+  const payload = parsed.value;
+  const body = encodeJSON("body", payload.RenameTopicRequestDto, {
     explode: true,
   });
 
-  const pathParams$ = {
-    topicKey: encodeSimple$("topicKey", payload$.topicKey, {
+  const pathParams = {
+    topicKey: encodeSimple("topicKey", payload.topicKey, {
       explode: false,
       charEncoding: "percent",
     }),
   };
 
-  const path$ = pathToFunc("/v1/topics/{topicKey}")(pathParams$);
+  const path = pathToFunc("/v1/topics/{topicKey}")(pathParams);
 
-  const headers$ = new Headers({
+  const headers = new Headers({
     "Content-Type": "application/json",
     Accept: "application/json",
   });
 
-  const apiKey$ = await extractSecurity(client$.options$.apiKey);
-  const security$ = apiKey$ == null ? {} : { apiKey: apiKey$ };
+  const secConfig = await extractSecurity(client._options.apiKey);
+  const securityInput = secConfig == null ? {} : { apiKey: secConfig };
+  const requestSecurity = resolveGlobalSecurity(securityInput);
+
   const context = {
     operationID: "TopicsController_renameTopic",
     oAuth2Scopes: [],
-    securitySource: client$.options$.apiKey,
-  };
-  const securitySettings$ = resolveGlobalSecurity(security$);
 
-  const requestRes = client$.createRequest$(context, {
-    security: securitySettings$,
-    method: "PATCH",
-    path: path$,
-    headers: headers$,
-    body: body$,
-    timeoutMs: options?.timeoutMs || client$.options$.timeoutMs || -1,
-  }, options);
-  if (!requestRes.ok) {
-    return requestRes;
-  }
-  const request$ = requestRes.value;
+    resolvedSecurity: requestSecurity,
 
-  const doResult = await client$.do$(request$, {
-    context,
-    errorCodes: ["409", "429", "4XX", "503", "5XX"],
+    securitySource: client._options.apiKey,
     retryConfig: options?.retries
-      || client$.options$.retryConfig
+      || client._options.retryConfig
       || {
         strategy: "backoff",
         backoff: {
@@ -119,16 +100,41 @@ export async function topicsRename(
           maxElapsedTime: 3600000,
         },
         retryConnectionErrors: true,
-      },
+      }
+      || { strategy: "none" },
     retryCodes: options?.retryCodes || ["408", "409", "429", "5XX"],
+  };
+
+  const requestRes = client._createRequest(context, {
+    security: requestSecurity,
+    method: "PATCH",
+    path: path,
+    headers: headers,
+    body: body,
+    timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
+  }, options);
+  if (!requestRes.ok) {
+    return requestRes;
+  }
+  const req = requestRes.value;
+
+  const doResult = await client._do(req, {
+    context,
+    errorCodes: ["409", "429", "4XX", "503", "5XX"],
+    retryConfig: context.retryConfig,
+    retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
     return doResult;
   }
   const response = doResult.value;
 
-  const [result$] = await m$.match<
-    components.RenameTopicResponseDto,
+  const responseFields = {
+    HttpMeta: { Response: response, Request: req },
+  };
+
+  const [result] = await M.match<
+    operations.TopicsControllerRenameTopicResponse,
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -137,12 +143,16 @@ export async function topicsRename(
     | RequestTimeoutError
     | ConnectionError
   >(
-    m$.json(200, components.RenameTopicResponseDto$inboundSchema),
-    m$.fail([409, 429, "4XX", 503, "5XX"]),
-  )(response);
-  if (!result$.ok) {
-    return result$;
+    M.json(200, operations.TopicsControllerRenameTopicResponse$inboundSchema, {
+      hdrs: true,
+      key: "Result",
+    }),
+    M.fail([409, 429, 503]),
+    M.fail(["4XX", "5XX"]),
+  )(response, { extraFields: responseFields });
+  if (!result.ok) {
+    return result;
   }
 
-  return result$;
+  return result;
 }

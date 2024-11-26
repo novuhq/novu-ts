@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AddSubscribersRequestDto = {
   /**
@@ -45,4 +48,22 @@ export namespace AddSubscribersRequestDto$ {
   export const outboundSchema = AddSubscribersRequestDto$outboundSchema;
   /** @deprecated use `AddSubscribersRequestDto$Outbound` instead. */
   export type Outbound = AddSubscribersRequestDto$Outbound;
+}
+
+export function addSubscribersRequestDtoToJSON(
+  addSubscribersRequestDto: AddSubscribersRequestDto,
+): string {
+  return JSON.stringify(
+    AddSubscribersRequestDto$outboundSchema.parse(addSubscribersRequestDto),
+  );
+}
+
+export function addSubscribersRequestDtoFromJSON(
+  jsonString: string,
+): SafeParseResult<AddSubscribersRequestDto, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AddSubscribersRequestDto$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AddSubscribersRequestDto' from JSON`,
+  );
 }

@@ -3,7 +3,10 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * The status enum for the performed action
@@ -90,4 +93,25 @@ export namespace DeleteNotificationGroupResponseDto$ {
     DeleteNotificationGroupResponseDto$outboundSchema;
   /** @deprecated use `DeleteNotificationGroupResponseDto$Outbound` instead. */
   export type Outbound = DeleteNotificationGroupResponseDto$Outbound;
+}
+
+export function deleteNotificationGroupResponseDtoToJSON(
+  deleteNotificationGroupResponseDto: DeleteNotificationGroupResponseDto,
+): string {
+  return JSON.stringify(
+    DeleteNotificationGroupResponseDto$outboundSchema.parse(
+      deleteNotificationGroupResponseDto,
+    ),
+  );
+}
+
+export function deleteNotificationGroupResponseDtoFromJSON(
+  jsonString: string,
+): SafeParseResult<DeleteNotificationGroupResponseDto, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      DeleteNotificationGroupResponseDto$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DeleteNotificationGroupResponseDto' from JSON`,
+  );
 }

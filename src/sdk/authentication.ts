@@ -10,13 +10,13 @@ import { unwrapAsync } from "../types/fp.js";
 
 export class Authentication extends ClientSDK {
   /**
-   * Handle chat oauth
+   * Handle providers oauth redirect
    */
-  async chatAccessOauth(
-    request: operations.SubscribersControllerChatAccessOauthRequest,
+  async chatAccessOauthCallBack(
+    request: operations.SubscribersControllerChatOauthCallbackRequest,
     options?: RequestOptions,
-  ): Promise<void> {
-    return unwrapAsync(subscribersAuthenticationChatAccessOauth(
+  ): Promise<operations.SubscribersControllerChatOauthCallbackResponse> {
+    return unwrapAsync(subscribersAuthenticationChatAccessOauthCallBack(
       this,
       request,
       options,
@@ -24,13 +24,15 @@ export class Authentication extends ClientSDK {
   }
 
   /**
-   * Handle providers oauth redirect
+   * Handle chat oauth
    */
-  async chatAccessOauthCallBack(
-    request: operations.SubscribersControllerChatOauthCallbackRequest,
+  async chatAccessOauth(
+    request: operations.SubscribersControllerChatAccessOauthRequest,
     options?: RequestOptions,
-  ): Promise<operations.SubscribersControllerChatOauthCallbackResponseBody> {
-    return unwrapAsync(subscribersAuthenticationChatAccessOauthCallBack(
+  ): Promise<
+    operations.SubscribersControllerChatAccessOauthResponse | undefined
+  > {
+    return unwrapAsync(subscribersAuthenticationChatAccessOauth(
       this,
       request,
       options,

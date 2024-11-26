@@ -1,17 +1,17 @@
 # Parameter
 
-the preferences level to be retrieved( Subscriber / Topic) 
+the preferences level to be retrieved (template / global) 
 
 ## Example Usage
 
 ```typescript
 import { Parameter } from "@novu/api/models/operations";
 
-let value: Parameter = "Topic";
+let value: Parameter = "global";
 ```
 
 ## Values
 
 ```typescript
-"Subscriber" | "Topic"
+"global" | "template"
 ```

@@ -3,7 +3,10 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * The status enum for the performed action
@@ -88,4 +91,24 @@ export namespace DeleteSubscriberResponseDto$ {
   export const outboundSchema = DeleteSubscriberResponseDto$outboundSchema;
   /** @deprecated use `DeleteSubscriberResponseDto$Outbound` instead. */
   export type Outbound = DeleteSubscriberResponseDto$Outbound;
+}
+
+export function deleteSubscriberResponseDtoToJSON(
+  deleteSubscriberResponseDto: DeleteSubscriberResponseDto,
+): string {
+  return JSON.stringify(
+    DeleteSubscriberResponseDto$outboundSchema.parse(
+      deleteSubscriberResponseDto,
+    ),
+  );
+}
+
+export function deleteSubscriberResponseDtoFromJSON(
+  jsonString: string,
+): SafeParseResult<DeleteSubscriberResponseDto, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DeleteSubscriberResponseDto$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DeleteSubscriberResponseDto' from JSON`,
+  );
 }

@@ -3,17 +3,21 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type UpdateSubscriberRequestDtoData = {};
 
 export type UpdateSubscriberRequestDto = {
-  avatar?: string | undefined;
-  data?: UpdateSubscriberRequestDtoData | undefined;
   email?: string | undefined;
   firstName?: string | undefined;
   lastName?: string | undefined;
-  locale?: string | undefined;
   phone?: string | undefined;
+  avatar?: string | undefined;
+  locale?: string | undefined;
+  data?: UpdateSubscriberRequestDtoData | undefined;
+  channels?: Array<string> | undefined;
 };
 
 /** @internal */
@@ -46,30 +50,52 @@ export namespace UpdateSubscriberRequestDtoData$ {
   export type Outbound = UpdateSubscriberRequestDtoData$Outbound;
 }
 
+export function updateSubscriberRequestDtoDataToJSON(
+  updateSubscriberRequestDtoData: UpdateSubscriberRequestDtoData,
+): string {
+  return JSON.stringify(
+    UpdateSubscriberRequestDtoData$outboundSchema.parse(
+      updateSubscriberRequestDtoData,
+    ),
+  );
+}
+
+export function updateSubscriberRequestDtoDataFromJSON(
+  jsonString: string,
+): SafeParseResult<UpdateSubscriberRequestDtoData, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => UpdateSubscriberRequestDtoData$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UpdateSubscriberRequestDtoData' from JSON`,
+  );
+}
+
 /** @internal */
 export const UpdateSubscriberRequestDto$inboundSchema: z.ZodType<
   UpdateSubscriberRequestDto,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  avatar: z.string().optional(),
-  data: z.lazy(() => UpdateSubscriberRequestDtoData$inboundSchema).optional(),
   email: z.string().optional(),
   firstName: z.string().optional(),
   lastName: z.string().optional(),
-  locale: z.string().optional(),
   phone: z.string().optional(),
+  avatar: z.string().optional(),
+  locale: z.string().optional(),
+  data: z.lazy(() => UpdateSubscriberRequestDtoData$inboundSchema).optional(),
+  channels: z.array(z.string()).optional(),
 });
 
 /** @internal */
 export type UpdateSubscriberRequestDto$Outbound = {
-  avatar?: string | undefined;
-  data?: UpdateSubscriberRequestDtoData$Outbound | undefined;
   email?: string | undefined;
   firstName?: string | undefined;
   lastName?: string | undefined;
-  locale?: string | undefined;
   phone?: string | undefined;
+  avatar?: string | undefined;
+  locale?: string | undefined;
+  data?: UpdateSubscriberRequestDtoData$Outbound | undefined;
+  channels?: Array<string> | undefined;
 };
 
 /** @internal */
@@ -78,13 +104,14 @@ export const UpdateSubscriberRequestDto$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   UpdateSubscriberRequestDto
 > = z.object({
-  avatar: z.string().optional(),
-  data: z.lazy(() => UpdateSubscriberRequestDtoData$outboundSchema).optional(),
   email: z.string().optional(),
   firstName: z.string().optional(),
   lastName: z.string().optional(),
-  locale: z.string().optional(),
   phone: z.string().optional(),
+  avatar: z.string().optional(),
+  locale: z.string().optional(),
+  data: z.lazy(() => UpdateSubscriberRequestDtoData$outboundSchema).optional(),
+  channels: z.array(z.string()).optional(),
 });
 
 /**
@@ -98,4 +125,22 @@ export namespace UpdateSubscriberRequestDto$ {
   export const outboundSchema = UpdateSubscriberRequestDto$outboundSchema;
   /** @deprecated use `UpdateSubscriberRequestDto$Outbound` instead. */
   export type Outbound = UpdateSubscriberRequestDto$Outbound;
+}
+
+export function updateSubscriberRequestDtoToJSON(
+  updateSubscriberRequestDto: UpdateSubscriberRequestDto,
+): string {
+  return JSON.stringify(
+    UpdateSubscriberRequestDto$outboundSchema.parse(updateSubscriberRequestDto),
+  );
+}
+
+export function updateSubscriberRequestDtoFromJSON(
+  jsonString: string,
+): SafeParseResult<UpdateSubscriberRequestDto, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => UpdateSubscriberRequestDto$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UpdateSubscriberRequestDto' from JSON`,
+  );
 }

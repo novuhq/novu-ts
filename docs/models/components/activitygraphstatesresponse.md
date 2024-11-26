@@ -7,12 +7,12 @@ import { ActivityGraphStatesResponse } from "@novu/api/models/components";
 
 let value: ActivityGraphStatesResponse = {
   id: "<id>",
-  channels: [
-    "sms",
-  ],
-  count: 5204.78,
+  count: 2961.40,
   templates: [
     "<value>",
+  ],
+  channels: [
+    "in_app",
   ],
 };
 ```
@@ -22,6 +22,6 @@ let value: ActivityGraphStatesResponse = {
 | Field                                                        | Type                                                         | Required                                                     | Description                                                  |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | `id`                                                         | *string*                                                     | :heavy_check_mark:                                           | N/A                                                          |
-| `channels`                                                   | [components.Channels](../../models/components/channels.md)[] | :heavy_check_mark:                                           | N/A                                                          |
 | `count`                                                      | *number*                                                     | :heavy_check_mark:                                           | N/A                                                          |
 | `templates`                                                  | *string*[]                                                   | :heavy_check_mark:                                           | N/A                                                          |
+| `channels`                                                   | [components.Channels](../../models/components/channels.md)[] | :heavy_check_mark:                                           | N/A                                                          |

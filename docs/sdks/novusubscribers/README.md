@@ -6,8 +6,8 @@
 ### Available Operations
 
 * [assign](#assign) - Subscribers addition
-* [delete](#delete) - Subscribers removal
 * [retrieve](#retrieve) - Check topic subscriber
+* [delete](#delete) - Subscribers removal
 
 ## assign
 
@@ -23,11 +23,15 @@ const novu = new Novu({
 });
 
 async function run() {
-  await novu.topics.subscribers.assign("<value>", {
+  const result = await novu.topics.subscribers.assign({
     subscribers: [
       "<value>",
+      "<value>",
     ],
-  });
+  }, "<value>");
+
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -48,11 +52,12 @@ const novu = new NovuCore({
 });
 
 async function run() {
-  const res = await topicsSubscribersAssign(novu, "<value>", {
+  const res = await topicsSubscribersAssign(novu, {
     subscribers: [
       "<value>",
+      "<value>",
     ],
-  });
+  }, "<value>");
 
   if (!res.ok) {
     throw res.error;
@@ -60,7 +65,8 @@ async function run() {
 
   const { value: result } = res;
 
-  
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -78,92 +84,13 @@ run();
 
 ### Response
 
-**Promise\<void\>**
+**Promise\<[operations.TopicsControllerAddSubscribersResponse](../../models/operations/topicscontrolleraddsubscribersresponse.md)\>**
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
-
-## delete
-
-Remove subscribers from a topic
-
-### Example Usage
-
-```typescript
-import { Novu } from "@novu/api";
-
-const novu = new Novu({
-  apiKey: "<YOUR_API_KEY_HERE>",
-});
-
-async function run() {
-  await novu.topics.subscribers.delete("<value>", {
-    subscribers: [
-      "<value>",
-    ],
-  });
-}
-
-run();
-```
-
-### Standalone function
-
-The standalone function version of this method:
-
-```typescript
-import { NovuCore } from "@novu/api/core.js";
-import { topicsSubscribersDelete } from "@novu/api/funcs/topicsSubscribersDelete.js";
-
-// Use `NovuCore` for best tree-shaking performance.
-// You can create one instance of it to use across an application.
-const novu = new NovuCore({
-  apiKey: "<YOUR_API_KEY_HERE>",
-});
-
-async function run() {
-  const res = await topicsSubscribersDelete(novu, "<value>", {
-    subscribers: [
-      "<value>",
-    ],
-  });
-
-  if (!res.ok) {
-    throw res.error;
-  }
-
-  const { value: result } = res;
-
-  
-}
-
-run();
-```
-
-### Parameters
-
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `topicKey`                                                                                                                                                                     | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | The topic key                                                                                                                                                                  |
-| `removeSubscribersRequestDto`                                                                                                                                                  | [components.RemoveSubscribersRequestDto](../../models/components/removesubscribersrequestdto.md)                                                                               | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
-
-### Response
-
-**Promise\<void\>**
-
-### Errors
-
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## retrieve
 
@@ -179,10 +106,10 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.topics.subscribers.retrieve("<value>", "<value>");
-  
+  const result = await novu.topics.subscribers.retrieve("<id>", "<value>");
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -203,7 +130,7 @@ const novu = new NovuCore({
 });
 
 async function run() {
-  const res = await topicsSubscribersRetrieve(novu, "<value>", "<value>");
+  const res = await topicsSubscribersRetrieve(novu, "<id>", "<value>");
 
   if (!res.ok) {
     throw res.error;
@@ -212,7 +139,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -230,10 +157,93 @@ run();
 
 ### Response
 
-**Promise\<[components.TopicSubscriberDto](../../models/components/topicsubscriberdto.md)\>**
+**Promise\<[operations.TopicsControllerGetTopicSubscriberResponse](../../models/operations/topicscontrollergettopicsubscriberresponse.md)\>**
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
+
+## delete
+
+Remove subscribers from a topic
+
+### Example Usage
+
+```typescript
+import { Novu } from "@novu/api";
+
+const novu = new Novu({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await novu.topics.subscribers.delete({
+    subscribers: [
+      "<value>",
+      "<value>",
+    ],
+  }, "<value>");
+
+  // Handle the result
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { NovuCore } from "@novu/api/core.js";
+import { topicsSubscribersDelete } from "@novu/api/funcs/topicsSubscribersDelete.js";
+
+// Use `NovuCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const novu = new NovuCore({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await topicsSubscribersDelete(novu, {
+    subscribers: [
+      "<value>",
+      "<value>",
+    ],
+  }, "<value>");
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result);
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `topicKey`                                                                                                                                                                     | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | The topic key                                                                                                                                                                  |
+| `removeSubscribersRequestDto`                                                                                                                                                  | [components.RemoveSubscribersRequestDto](../../models/components/removesubscribersrequestdto.md)                                                                               | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.TopicsControllerRemoveSubscribersResponse](../../models/operations/topicscontrollerremovesubscribersresponse.md)\>**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |

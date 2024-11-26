@@ -6,12 +6,12 @@
 import { SubscribersControllerModifySubscriberChannelRequest } from "@novu/api/models/operations";
 
 let value: SubscribersControllerModifySubscriberChannelRequest = {
-  subscriberId: "<value>",
+  subscriberId: "<id>",
   updateSubscriberChannelRequestDto: {
+    providerId: "getstream",
     credentials: {
-      webhookUrl: "<value>",
+      webhookUrl: "https://sorrowful-import.name/",
     },
-    providerId: 5818.5,
   },
 };
 ```

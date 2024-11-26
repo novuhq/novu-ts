@@ -3,13 +3,10 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
-
-export const On = {
-  Subscriber: "subscriber",
-  Payload: "payload",
-} as const;
-export type On = ClosedEnum<typeof On>;
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export const Operator = {
   Larger: "LARGER",
@@ -29,29 +26,18 @@ export const Operator = {
 } as const;
 export type Operator = ClosedEnum<typeof Operator>;
 
+export const On = {
+  Subscriber: "subscriber",
+  Payload: "payload",
+} as const;
+export type On = ClosedEnum<typeof On>;
+
 export type FieldFilterPart = {
   field: string;
-  on: On;
-  operator: Operator;
   value: string;
+  operator: Operator;
+  on: On;
 };
-
-/** @internal */
-export const On$inboundSchema: z.ZodNativeEnum<typeof On> = z.nativeEnum(On);
-
-/** @internal */
-export const On$outboundSchema: z.ZodNativeEnum<typeof On> = On$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace On$ {
-  /** @deprecated use `On$inboundSchema` instead. */
-  export const inboundSchema = On$inboundSchema;
-  /** @deprecated use `On$outboundSchema` instead. */
-  export const outboundSchema = On$outboundSchema;
-}
 
 /** @internal */
 export const Operator$inboundSchema: z.ZodNativeEnum<typeof Operator> = z
@@ -73,23 +59,40 @@ export namespace Operator$ {
 }
 
 /** @internal */
+export const On$inboundSchema: z.ZodNativeEnum<typeof On> = z.nativeEnum(On);
+
+/** @internal */
+export const On$outboundSchema: z.ZodNativeEnum<typeof On> = On$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace On$ {
+  /** @deprecated use `On$inboundSchema` instead. */
+  export const inboundSchema = On$inboundSchema;
+  /** @deprecated use `On$outboundSchema` instead. */
+  export const outboundSchema = On$outboundSchema;
+}
+
+/** @internal */
 export const FieldFilterPart$inboundSchema: z.ZodType<
   FieldFilterPart,
   z.ZodTypeDef,
   unknown
 > = z.object({
   field: z.string(),
-  on: On$inboundSchema,
-  operator: Operator$inboundSchema,
   value: z.string(),
+  operator: Operator$inboundSchema,
+  on: On$inboundSchema,
 });
 
 /** @internal */
 export type FieldFilterPart$Outbound = {
   field: string;
-  on: string;
-  operator: string;
   value: string;
+  operator: string;
+  on: string;
 };
 
 /** @internal */
@@ -99,9 +102,9 @@ export const FieldFilterPart$outboundSchema: z.ZodType<
   FieldFilterPart
 > = z.object({
   field: z.string(),
-  on: On$outboundSchema,
-  operator: Operator$outboundSchema,
   value: z.string(),
+  operator: Operator$outboundSchema,
+  on: On$outboundSchema,
 });
 
 /**
@@ -115,4 +118,20 @@ export namespace FieldFilterPart$ {
   export const outboundSchema = FieldFilterPart$outboundSchema;
   /** @deprecated use `FieldFilterPart$Outbound` instead. */
   export type Outbound = FieldFilterPart$Outbound;
+}
+
+export function fieldFilterPartToJSON(
+  fieldFilterPart: FieldFilterPart,
+): string {
+  return JSON.stringify(FieldFilterPart$outboundSchema.parse(fieldFilterPart));
+}
+
+export function fieldFilterPartFromJSON(
+  jsonString: string,
+): SafeParseResult<FieldFilterPart, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => FieldFilterPart$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FieldFilterPart' from JSON`,
+  );
 }

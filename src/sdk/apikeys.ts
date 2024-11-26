@@ -4,7 +4,7 @@
 
 import { environmentsApiKeysList } from "../funcs/environmentsApiKeysList.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as components from "../models/components/index.js";
+import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class ApiKeys extends ClientSDK {
@@ -13,7 +13,9 @@ export class ApiKeys extends ClientSDK {
    */
   async list(
     options?: RequestOptions,
-  ): Promise<Array<components.ApiKey>> {
+  ): Promise<
+    operations.EnvironmentsControllerV1ListOrganizationApiKeysResponse
+  > {
     return unwrapAsync(environmentsApiKeysList(
       this,
       options,

@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ActivityNotificationSubscriberResponseDto,
   ActivityNotificationSubscriberResponseDto$inboundSchema,
@@ -34,15 +37,15 @@ export type ActivityNotificationResponseDtoChannels = ClosedEnum<
 >;
 
 export type ActivityNotificationResponseDto = {
-  environmentId: string;
   id?: string | undefined;
+  environmentId: string;
   organizationId: string;
-  channels?: ActivityNotificationResponseDtoChannels | undefined;
+  transactionId: string;
   createdAt?: string | undefined;
-  jobs?: Array<string> | undefined;
+  channels?: ActivityNotificationResponseDtoChannels | undefined;
   subscriber?: ActivityNotificationSubscriberResponseDto | undefined;
   template?: ActivityNotificationTemplateResponseDto | undefined;
-  transactionId: string;
+  jobs?: Array<string> | undefined;
 };
 
 /** @internal */
@@ -74,35 +77,35 @@ export const ActivityNotificationResponseDto$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  _environmentId: z.string(),
   _id: z.string().optional(),
+  _environmentId: z.string(),
   _organizationId: z.string(),
-  channels: ActivityNotificationResponseDtoChannels$inboundSchema.optional(),
+  transactionId: z.string(),
   createdAt: z.string().optional(),
-  jobs: z.array(z.string()).optional(),
+  channels: ActivityNotificationResponseDtoChannels$inboundSchema.optional(),
   subscriber: ActivityNotificationSubscriberResponseDto$inboundSchema
     .optional(),
   template: ActivityNotificationTemplateResponseDto$inboundSchema.optional(),
-  transactionId: z.string(),
+  jobs: z.array(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
-    "_environmentId": "environmentId",
     "_id": "id",
+    "_environmentId": "environmentId",
     "_organizationId": "organizationId",
   });
 });
 
 /** @internal */
 export type ActivityNotificationResponseDto$Outbound = {
-  _environmentId: string;
   _id?: string | undefined;
+  _environmentId: string;
   _organizationId: string;
-  channels?: string | undefined;
+  transactionId: string;
   createdAt?: string | undefined;
-  jobs?: Array<string> | undefined;
+  channels?: string | undefined;
   subscriber?: ActivityNotificationSubscriberResponseDto$Outbound | undefined;
   template?: ActivityNotificationTemplateResponseDto$Outbound | undefined;
-  transactionId: string;
+  jobs?: Array<string> | undefined;
 };
 
 /** @internal */
@@ -111,20 +114,20 @@ export const ActivityNotificationResponseDto$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ActivityNotificationResponseDto
 > = z.object({
-  environmentId: z.string(),
   id: z.string().optional(),
+  environmentId: z.string(),
   organizationId: z.string(),
-  channels: ActivityNotificationResponseDtoChannels$outboundSchema.optional(),
+  transactionId: z.string(),
   createdAt: z.string().optional(),
-  jobs: z.array(z.string()).optional(),
+  channels: ActivityNotificationResponseDtoChannels$outboundSchema.optional(),
   subscriber: ActivityNotificationSubscriberResponseDto$outboundSchema
     .optional(),
   template: ActivityNotificationTemplateResponseDto$outboundSchema.optional(),
-  transactionId: z.string(),
+  jobs: z.array(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
-    environmentId: "_environmentId",
     id: "_id",
+    environmentId: "_environmentId",
     organizationId: "_organizationId",
   });
 });
@@ -140,4 +143,24 @@ export namespace ActivityNotificationResponseDto$ {
   export const outboundSchema = ActivityNotificationResponseDto$outboundSchema;
   /** @deprecated use `ActivityNotificationResponseDto$Outbound` instead. */
   export type Outbound = ActivityNotificationResponseDto$Outbound;
+}
+
+export function activityNotificationResponseDtoToJSON(
+  activityNotificationResponseDto: ActivityNotificationResponseDto,
+): string {
+  return JSON.stringify(
+    ActivityNotificationResponseDto$outboundSchema.parse(
+      activityNotificationResponseDto,
+    ),
+  );
+}
+
+export function activityNotificationResponseDtoFromJSON(
+  jsonString: string,
+): SafeParseResult<ActivityNotificationResponseDto, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ActivityNotificationResponseDto$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ActivityNotificationResponseDto' from JSON`,
+  );
 }

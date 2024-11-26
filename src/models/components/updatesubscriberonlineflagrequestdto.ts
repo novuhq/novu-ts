@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type UpdateSubscriberOnlineFlagRequestDto = {
   isOnline: boolean;
@@ -44,4 +47,25 @@ export namespace UpdateSubscriberOnlineFlagRequestDto$ {
     UpdateSubscriberOnlineFlagRequestDto$outboundSchema;
   /** @deprecated use `UpdateSubscriberOnlineFlagRequestDto$Outbound` instead. */
   export type Outbound = UpdateSubscriberOnlineFlagRequestDto$Outbound;
+}
+
+export function updateSubscriberOnlineFlagRequestDtoToJSON(
+  updateSubscriberOnlineFlagRequestDto: UpdateSubscriberOnlineFlagRequestDto,
+): string {
+  return JSON.stringify(
+    UpdateSubscriberOnlineFlagRequestDto$outboundSchema.parse(
+      updateSubscriberOnlineFlagRequestDto,
+    ),
+  );
+}
+
+export function updateSubscriberOnlineFlagRequestDtoFromJSON(
+  jsonString: string,
+): SafeParseResult<UpdateSubscriberOnlineFlagRequestDto, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      UpdateSubscriberOnlineFlagRequestDto$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UpdateSubscriberOnlineFlagRequestDto' from JSON`,
+  );
 }

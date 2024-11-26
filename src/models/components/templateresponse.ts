@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type TemplateResponse = {
   /**
@@ -11,13 +14,13 @@ export type TemplateResponse = {
    */
   id: string;
   /**
-   * Critical templates will always be delivered to the end user and should be hidden from the subscriber preferences screen
-   */
-  critical: boolean;
-  /**
    * Name of the workflow
    */
   name: string;
+  /**
+   * Critical templates will always be delivered to the end user and should be hidden from the subscriber preferences screen
+   */
+  critical: boolean;
   /**
    * Triggers are the events that will trigger the workflow.
    */
@@ -31,8 +34,8 @@ export const TemplateResponse$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   _id: z.string(),
-  critical: z.boolean(),
   name: z.string(),
+  critical: z.boolean(),
   triggers: z.array(z.string()),
 }).transform((v) => {
   return remap$(v, {
@@ -43,8 +46,8 @@ export const TemplateResponse$inboundSchema: z.ZodType<
 /** @internal */
 export type TemplateResponse$Outbound = {
   _id: string;
-  critical: boolean;
   name: string;
+  critical: boolean;
   triggers: Array<string>;
 };
 
@@ -55,8 +58,8 @@ export const TemplateResponse$outboundSchema: z.ZodType<
   TemplateResponse
 > = z.object({
   id: z.string(),
-  critical: z.boolean(),
   name: z.string(),
+  critical: z.boolean(),
   triggers: z.array(z.string()),
 }).transform((v) => {
   return remap$(v, {
@@ -75,4 +78,22 @@ export namespace TemplateResponse$ {
   export const outboundSchema = TemplateResponse$outboundSchema;
   /** @deprecated use `TemplateResponse$Outbound` instead. */
   export type Outbound = TemplateResponse$Outbound;
+}
+
+export function templateResponseToJSON(
+  templateResponse: TemplateResponse,
+): string {
+  return JSON.stringify(
+    TemplateResponse$outboundSchema.parse(templateResponse),
+  );
+}
+
+export function templateResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<TemplateResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TemplateResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TemplateResponse' from JSON`,
+  );
 }

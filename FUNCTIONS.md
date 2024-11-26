@@ -20,7 +20,7 @@ specific category of applications.
 
 ```typescript
 import { NovuCore } from "@novu/api/core.js";
-import { cancel } from "@novu/api/funcs/cancel.js";
+import { trigger } from "@novu/api/funcs/trigger.js";
 import { SDKValidationError } from "@novu/api/models/errors/sdkvalidationerror.js";
 
 // Use `NovuCore` for best tree-shaking performance.
@@ -30,7 +30,19 @@ const novu = new NovuCore({
 });
 
 async function run() {
-  const res = await cancel(novu, "<value>");
+  const res = await trigger(novu, {
+    name: "workflow_identifier",
+    to: [
+      {
+        topicKey: "<value>",
+        type: "Topic",
+      },
+      {
+        topicKey: "<value>",
+        type: "Topic",
+      },
+    ],
+  });
 
   switch (true) {
     case res.ok:
@@ -52,7 +64,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();

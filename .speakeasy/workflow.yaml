@@ -3,21 +3,20 @@ speakeasyVersion: latest
 sources:
     json-development:
         inputs:
-            - location: http://api.novu.co/openapi.sdk.json
-            # - location: ./sources/openapi.sdk.json
+            - location: http://127.0.0.1:3000/openapi.sdk.yaml
         overlays:
-            - location: ./sources/cleanup-overlay.yaml
+            - location: .speakeasy/speakeasy-modifications-overlay.yaml
+        output: sources/json-development.json
         registry:
             location: registry.speakeasyapi.dev/novu/novu/json-development
-        output: sources/json-development.json
 targets:
     my-first-target:
         target: typescript
         source: json-development
+        publish:
+            npm:
+                token: $npm_token
         codeSamples:
             output: sources/code-samples.yaml
             registry:
                 location: registry.speakeasyapi.dev/novu/novu/code-samples-typescript
-        publish:
-            npm:
-                token: $npm_token

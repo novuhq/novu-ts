@@ -7,26 +7,48 @@ import { subscribersCredentialsDelete } from "../funcs/subscribersCredentialsDel
 import { subscribersCredentialsUpdate } from "../funcs/subscribersCredentialsUpdate.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as components from "../models/components/index.js";
+import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class Credentials extends ClientSDK {
+  /**
+   * Update subscriber credentials
+   *
+   * @remarks
+   * Subscriber credentials associated to the delivery methods such as slack and push tokens.
+   */
+  async update(
+    updateSubscriberChannelRequestDto:
+      components.UpdateSubscriberChannelRequestDto,
+    subscriberId: string,
+    options?: RequestOptions,
+  ): Promise<operations.SubscribersControllerUpdateSubscriberChannelResponse> {
+    return unwrapAsync(subscribersCredentialsUpdate(
+      this,
+      updateSubscriberChannelRequestDto,
+      subscriberId,
+      options,
+    ));
+  }
+
   /**
    * Modify subscriber credentials
    *
    * @remarks
    * Subscriber credentials associated to the delivery methods such as slack and push tokens.
+   *
    *     This endpoint appends provided credentials and deviceTokens to the existing ones.
    */
   async append(
-    subscriberId: string,
     updateSubscriberChannelRequestDto:
       components.UpdateSubscriberChannelRequestDto,
+    subscriberId: string,
     options?: RequestOptions,
-  ): Promise<components.SubscriberResponseDto> {
+  ): Promise<operations.SubscribersControllerModifySubscriberChannelResponse> {
     return unwrapAsync(subscribersCredentialsAppend(
       this,
-      subscriberId,
       updateSubscriberChannelRequestDto,
+      subscriberId,
       options,
     ));
   }
@@ -41,31 +63,14 @@ export class Credentials extends ClientSDK {
     subscriberId: string,
     providerId: string,
     options?: RequestOptions,
-  ): Promise<void> {
+  ): Promise<
+    | operations.SubscribersControllerDeleteSubscriberCredentialsResponse
+    | undefined
+  > {
     return unwrapAsync(subscribersCredentialsDelete(
       this,
       subscriberId,
       providerId,
-      options,
-    ));
-  }
-
-  /**
-   * Update subscriber credentials
-   *
-   * @remarks
-   * Subscriber credentials associated to the delivery methods such as slack and push tokens.
-   */
-  async update(
-    subscriberId: string,
-    updateSubscriberChannelRequestDto:
-      components.UpdateSubscriberChannelRequestDto,
-    options?: RequestOptions,
-  ): Promise<components.SubscriberResponseDto> {
-    return unwrapAsync(subscribersCredentialsUpdate(
-      this,
-      subscriberId,
-      updateSubscriberChannelRequestDto,
       options,
     ));
   }

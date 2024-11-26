@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type TopicsControllerRenameTopicRequest = {
   /**
@@ -12,6 +15,11 @@ export type TopicsControllerRenameTopicRequest = {
    */
   topicKey: string;
   renameTopicRequestDto: components.RenameTopicRequestDto;
+};
+
+export type TopicsControllerRenameTopicResponse = {
+  headers: { [k: string]: Array<string> };
+  result: components.RenameTopicResponseDto;
 };
 
 /** @internal */
@@ -60,4 +68,97 @@ export namespace TopicsControllerRenameTopicRequest$ {
     TopicsControllerRenameTopicRequest$outboundSchema;
   /** @deprecated use `TopicsControllerRenameTopicRequest$Outbound` instead. */
   export type Outbound = TopicsControllerRenameTopicRequest$Outbound;
+}
+
+export function topicsControllerRenameTopicRequestToJSON(
+  topicsControllerRenameTopicRequest: TopicsControllerRenameTopicRequest,
+): string {
+  return JSON.stringify(
+    TopicsControllerRenameTopicRequest$outboundSchema.parse(
+      topicsControllerRenameTopicRequest,
+    ),
+  );
+}
+
+export function topicsControllerRenameTopicRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<TopicsControllerRenameTopicRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      TopicsControllerRenameTopicRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TopicsControllerRenameTopicRequest' from JSON`,
+  );
+}
+
+/** @internal */
+export const TopicsControllerRenameTopicResponse$inboundSchema: z.ZodType<
+  TopicsControllerRenameTopicResponse,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  Headers: z.record(z.array(z.string())),
+  Result: components.RenameTopicResponseDto$inboundSchema,
+}).transform((v) => {
+  return remap$(v, {
+    "Headers": "headers",
+    "Result": "result",
+  });
+});
+
+/** @internal */
+export type TopicsControllerRenameTopicResponse$Outbound = {
+  Headers: { [k: string]: Array<string> };
+  Result: components.RenameTopicResponseDto$Outbound;
+};
+
+/** @internal */
+export const TopicsControllerRenameTopicResponse$outboundSchema: z.ZodType<
+  TopicsControllerRenameTopicResponse$Outbound,
+  z.ZodTypeDef,
+  TopicsControllerRenameTopicResponse
+> = z.object({
+  headers: z.record(z.array(z.string())),
+  result: components.RenameTopicResponseDto$outboundSchema,
+}).transform((v) => {
+  return remap$(v, {
+    headers: "Headers",
+    result: "Result",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace TopicsControllerRenameTopicResponse$ {
+  /** @deprecated use `TopicsControllerRenameTopicResponse$inboundSchema` instead. */
+  export const inboundSchema =
+    TopicsControllerRenameTopicResponse$inboundSchema;
+  /** @deprecated use `TopicsControllerRenameTopicResponse$outboundSchema` instead. */
+  export const outboundSchema =
+    TopicsControllerRenameTopicResponse$outboundSchema;
+  /** @deprecated use `TopicsControllerRenameTopicResponse$Outbound` instead. */
+  export type Outbound = TopicsControllerRenameTopicResponse$Outbound;
+}
+
+export function topicsControllerRenameTopicResponseToJSON(
+  topicsControllerRenameTopicResponse: TopicsControllerRenameTopicResponse,
+): string {
+  return JSON.stringify(
+    TopicsControllerRenameTopicResponse$outboundSchema.parse(
+      topicsControllerRenameTopicResponse,
+    ),
+  );
+}
+
+export function topicsControllerRenameTopicResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<TopicsControllerRenameTopicResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      TopicsControllerRenameTopicResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TopicsControllerRenameTopicResponse' from JSON`,
+  );
 }

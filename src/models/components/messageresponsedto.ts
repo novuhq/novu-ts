@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   EmailBlock,
   EmailBlock$inboundSchema,
@@ -30,7 +33,7 @@ import {
   WorkflowResponse$outboundSchema,
 } from "./workflowresponse.js";
 
-export type FeedId = {};
+export type Content = EmailBlock | string;
 
 export const MessageResponseDtoChannel = {
   InApp: "in_app",
@@ -43,17 +46,7 @@ export type MessageResponseDtoChannel = ClosedEnum<
   typeof MessageResponseDtoChannel
 >;
 
-export type Content = EmailBlock | string;
-
-/**
- * Provider specific overrides used when triggering the notification
- */
-export type Overrides = {};
-
-/**
- * The payload that was used to send the notification trigger
- */
-export type MessageResponseDtoPayload = {};
+export type FeedId = {};
 
 export const MessageResponseDtoStatus = {
   Sent: "sent",
@@ -64,94 +57,56 @@ export type MessageResponseDtoStatus = ClosedEnum<
   typeof MessageResponseDtoStatus
 >;
 
+/**
+ * The payload that was used to send the notification trigger
+ */
+export type MessageResponseDtoPayload = {};
+
+/**
+ * Provider specific overrides used when triggering the notification
+ */
+export type MessageResponseDtoOverrides = {};
+
 export type MessageResponseDto = {
-  environmentId: string;
-  feedId?: FeedId | null | undefined;
   id?: string | undefined;
-  messageTemplateId: string;
-  notificationId: string;
-  organizationId: string;
-  subscriberId: string;
   templateId: string;
-  channel: MessageResponseDtoChannel;
-  content: EmailBlock | string;
+  environmentId: string;
+  messageTemplateId: string;
+  organizationId: string;
+  notificationId: string;
+  subscriberId: string;
+  subscriber?: SubscriberResponseDto | undefined;
+  template?: WorkflowResponse | undefined;
+  templateIdentifier?: string | undefined;
   createdAt: string;
-  cta: MessageCTA;
-  deviceTokens?: Array<string> | undefined;
-  directWebhookUrl?: string | undefined;
+  lastSeenDate?: string | undefined;
+  lastReadDate?: string | undefined;
+  content: EmailBlock | string;
+  transactionId: string;
+  subject?: string | undefined;
+  channel: MessageResponseDtoChannel;
+  read: boolean;
+  seen: boolean;
   email?: string | undefined;
+  phone?: string | undefined;
+  directWebhookUrl?: string | undefined;
+  providerId?: string | undefined;
+  deviceTokens?: Array<string> | undefined;
+  title?: string | undefined;
+  cta: MessageCTA;
+  feedId?: FeedId | null | undefined;
+  status: MessageResponseDtoStatus;
   errorId: string;
   errorText: string;
-  lastReadDate?: string | undefined;
-  lastSeenDate?: string | undefined;
-  /**
-   * Provider specific overrides used when triggering the notification
-   */
-  overrides: Overrides;
   /**
    * The payload that was used to send the notification trigger
    */
   payload: MessageResponseDtoPayload;
-  phone?: string | undefined;
-  providerId?: string | undefined;
-  read: boolean;
-  seen: boolean;
-  status: MessageResponseDtoStatus;
-  subject?: string | undefined;
-  subscriber?: SubscriberResponseDto | undefined;
-  template?: WorkflowResponse | undefined;
-  templateIdentifier?: string | undefined;
-  title?: string | undefined;
-  transactionId: string;
+  /**
+   * Provider specific overrides used when triggering the notification
+   */
+  overrides: MessageResponseDtoOverrides;
 };
-
-/** @internal */
-export const FeedId$inboundSchema: z.ZodType<FeedId, z.ZodTypeDef, unknown> = z
-  .object({});
-
-/** @internal */
-export type FeedId$Outbound = {};
-
-/** @internal */
-export const FeedId$outboundSchema: z.ZodType<
-  FeedId$Outbound,
-  z.ZodTypeDef,
-  FeedId
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FeedId$ {
-  /** @deprecated use `FeedId$inboundSchema` instead. */
-  export const inboundSchema = FeedId$inboundSchema;
-  /** @deprecated use `FeedId$outboundSchema` instead. */
-  export const outboundSchema = FeedId$outboundSchema;
-  /** @deprecated use `FeedId$Outbound` instead. */
-  export type Outbound = FeedId$Outbound;
-}
-
-/** @internal */
-export const MessageResponseDtoChannel$inboundSchema: z.ZodNativeEnum<
-  typeof MessageResponseDtoChannel
-> = z.nativeEnum(MessageResponseDtoChannel);
-
-/** @internal */
-export const MessageResponseDtoChannel$outboundSchema: z.ZodNativeEnum<
-  typeof MessageResponseDtoChannel
-> = MessageResponseDtoChannel$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MessageResponseDtoChannel$ {
-  /** @deprecated use `MessageResponseDtoChannel$inboundSchema` instead. */
-  export const inboundSchema = MessageResponseDtoChannel$inboundSchema;
-  /** @deprecated use `MessageResponseDtoChannel$outboundSchema` instead. */
-  export const outboundSchema = MessageResponseDtoChannel$outboundSchema;
-}
 
 /** @internal */
 export const Content$inboundSchema: z.ZodType<Content, z.ZodTypeDef, unknown> =
@@ -180,34 +135,101 @@ export namespace Content$ {
   export type Outbound = Content$Outbound;
 }
 
-/** @internal */
-export const Overrides$inboundSchema: z.ZodType<
-  Overrides,
-  z.ZodTypeDef,
-  unknown
-> = z.object({});
+export function contentToJSON(content: Content): string {
+  return JSON.stringify(Content$outboundSchema.parse(content));
+}
+
+export function contentFromJSON(
+  jsonString: string,
+): SafeParseResult<Content, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Content$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Content' from JSON`,
+  );
+}
 
 /** @internal */
-export type Overrides$Outbound = {};
+export const MessageResponseDtoChannel$inboundSchema: z.ZodNativeEnum<
+  typeof MessageResponseDtoChannel
+> = z.nativeEnum(MessageResponseDtoChannel);
 
 /** @internal */
-export const Overrides$outboundSchema: z.ZodType<
-  Overrides$Outbound,
+export const MessageResponseDtoChannel$outboundSchema: z.ZodNativeEnum<
+  typeof MessageResponseDtoChannel
+> = MessageResponseDtoChannel$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace MessageResponseDtoChannel$ {
+  /** @deprecated use `MessageResponseDtoChannel$inboundSchema` instead. */
+  export const inboundSchema = MessageResponseDtoChannel$inboundSchema;
+  /** @deprecated use `MessageResponseDtoChannel$outboundSchema` instead. */
+  export const outboundSchema = MessageResponseDtoChannel$outboundSchema;
+}
+
+/** @internal */
+export const FeedId$inboundSchema: z.ZodType<FeedId, z.ZodTypeDef, unknown> = z
+  .object({});
+
+/** @internal */
+export type FeedId$Outbound = {};
+
+/** @internal */
+export const FeedId$outboundSchema: z.ZodType<
+  FeedId$Outbound,
   z.ZodTypeDef,
-  Overrides
+  FeedId
 > = z.object({});
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Overrides$ {
-  /** @deprecated use `Overrides$inboundSchema` instead. */
-  export const inboundSchema = Overrides$inboundSchema;
-  /** @deprecated use `Overrides$outboundSchema` instead. */
-  export const outboundSchema = Overrides$outboundSchema;
-  /** @deprecated use `Overrides$Outbound` instead. */
-  export type Outbound = Overrides$Outbound;
+export namespace FeedId$ {
+  /** @deprecated use `FeedId$inboundSchema` instead. */
+  export const inboundSchema = FeedId$inboundSchema;
+  /** @deprecated use `FeedId$outboundSchema` instead. */
+  export const outboundSchema = FeedId$outboundSchema;
+  /** @deprecated use `FeedId$Outbound` instead. */
+  export type Outbound = FeedId$Outbound;
+}
+
+export function feedIdToJSON(feedId: FeedId): string {
+  return JSON.stringify(FeedId$outboundSchema.parse(feedId));
+}
+
+export function feedIdFromJSON(
+  jsonString: string,
+): SafeParseResult<FeedId, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => FeedId$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FeedId' from JSON`,
+  );
+}
+
+/** @internal */
+export const MessageResponseDtoStatus$inboundSchema: z.ZodNativeEnum<
+  typeof MessageResponseDtoStatus
+> = z.nativeEnum(MessageResponseDtoStatus);
+
+/** @internal */
+export const MessageResponseDtoStatus$outboundSchema: z.ZodNativeEnum<
+  typeof MessageResponseDtoStatus
+> = MessageResponseDtoStatus$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace MessageResponseDtoStatus$ {
+  /** @deprecated use `MessageResponseDtoStatus$inboundSchema` instead. */
+  export const inboundSchema = MessageResponseDtoStatus$inboundSchema;
+  /** @deprecated use `MessageResponseDtoStatus$outboundSchema` instead. */
+  export const outboundSchema = MessageResponseDtoStatus$outboundSchema;
 }
 
 /** @internal */
@@ -240,25 +262,72 @@ export namespace MessageResponseDtoPayload$ {
   export type Outbound = MessageResponseDtoPayload$Outbound;
 }
 
-/** @internal */
-export const MessageResponseDtoStatus$inboundSchema: z.ZodNativeEnum<
-  typeof MessageResponseDtoStatus
-> = z.nativeEnum(MessageResponseDtoStatus);
+export function messageResponseDtoPayloadToJSON(
+  messageResponseDtoPayload: MessageResponseDtoPayload,
+): string {
+  return JSON.stringify(
+    MessageResponseDtoPayload$outboundSchema.parse(messageResponseDtoPayload),
+  );
+}
+
+export function messageResponseDtoPayloadFromJSON(
+  jsonString: string,
+): SafeParseResult<MessageResponseDtoPayload, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => MessageResponseDtoPayload$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'MessageResponseDtoPayload' from JSON`,
+  );
+}
 
 /** @internal */
-export const MessageResponseDtoStatus$outboundSchema: z.ZodNativeEnum<
-  typeof MessageResponseDtoStatus
-> = MessageResponseDtoStatus$inboundSchema;
+export const MessageResponseDtoOverrides$inboundSchema: z.ZodType<
+  MessageResponseDtoOverrides,
+  z.ZodTypeDef,
+  unknown
+> = z.object({});
+
+/** @internal */
+export type MessageResponseDtoOverrides$Outbound = {};
+
+/** @internal */
+export const MessageResponseDtoOverrides$outboundSchema: z.ZodType<
+  MessageResponseDtoOverrides$Outbound,
+  z.ZodTypeDef,
+  MessageResponseDtoOverrides
+> = z.object({});
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace MessageResponseDtoStatus$ {
-  /** @deprecated use `MessageResponseDtoStatus$inboundSchema` instead. */
-  export const inboundSchema = MessageResponseDtoStatus$inboundSchema;
-  /** @deprecated use `MessageResponseDtoStatus$outboundSchema` instead. */
-  export const outboundSchema = MessageResponseDtoStatus$outboundSchema;
+export namespace MessageResponseDtoOverrides$ {
+  /** @deprecated use `MessageResponseDtoOverrides$inboundSchema` instead. */
+  export const inboundSchema = MessageResponseDtoOverrides$inboundSchema;
+  /** @deprecated use `MessageResponseDtoOverrides$outboundSchema` instead. */
+  export const outboundSchema = MessageResponseDtoOverrides$outboundSchema;
+  /** @deprecated use `MessageResponseDtoOverrides$Outbound` instead. */
+  export type Outbound = MessageResponseDtoOverrides$Outbound;
+}
+
+export function messageResponseDtoOverridesToJSON(
+  messageResponseDtoOverrides: MessageResponseDtoOverrides,
+): string {
+  return JSON.stringify(
+    MessageResponseDtoOverrides$outboundSchema.parse(
+      messageResponseDtoOverrides,
+    ),
+  );
+}
+
+export function messageResponseDtoOverridesFromJSON(
+  jsonString: string,
+): SafeParseResult<MessageResponseDtoOverrides, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => MessageResponseDtoOverrides$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'MessageResponseDtoOverrides' from JSON`,
+  );
 }
 
 /** @internal */
@@ -267,85 +336,85 @@ export const MessageResponseDto$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  _environmentId: z.string(),
-  _feedId: z.nullable(z.lazy(() => FeedId$inboundSchema)).optional(),
   _id: z.string().optional(),
-  _messageTemplateId: z.string(),
-  _notificationId: z.string(),
-  _organizationId: z.string(),
-  _subscriberId: z.string(),
   _templateId: z.string(),
-  channel: MessageResponseDtoChannel$inboundSchema,
-  content: z.union([EmailBlock$inboundSchema, z.string()]),
-  createdAt: z.string(),
-  cta: MessageCTA$inboundSchema,
-  deviceTokens: z.array(z.string()).optional(),
-  directWebhookUrl: z.string().optional(),
-  email: z.string().optional(),
-  errorId: z.string(),
-  errorText: z.string(),
-  lastReadDate: z.string().optional(),
-  lastSeenDate: z.string().optional(),
-  overrides: z.lazy(() => Overrides$inboundSchema),
-  payload: z.lazy(() => MessageResponseDtoPayload$inboundSchema),
-  phone: z.string().optional(),
-  providerId: z.string().optional(),
-  read: z.boolean(),
-  seen: z.boolean(),
-  status: MessageResponseDtoStatus$inboundSchema,
-  subject: z.string().optional(),
+  _environmentId: z.string(),
+  _messageTemplateId: z.string(),
+  _organizationId: z.string(),
+  _notificationId: z.string(),
+  _subscriberId: z.string(),
   subscriber: SubscriberResponseDto$inboundSchema.optional(),
   template: WorkflowResponse$inboundSchema.optional(),
   templateIdentifier: z.string().optional(),
-  title: z.string().optional(),
+  createdAt: z.string(),
+  lastSeenDate: z.string().optional(),
+  lastReadDate: z.string().optional(),
+  content: z.union([EmailBlock$inboundSchema, z.string()]),
   transactionId: z.string(),
+  subject: z.string().optional(),
+  channel: MessageResponseDtoChannel$inboundSchema,
+  read: z.boolean(),
+  seen: z.boolean(),
+  email: z.string().optional(),
+  phone: z.string().optional(),
+  directWebhookUrl: z.string().optional(),
+  providerId: z.string().optional(),
+  deviceTokens: z.array(z.string()).optional(),
+  title: z.string().optional(),
+  cta: MessageCTA$inboundSchema,
+  _feedId: z.nullable(z.lazy(() => FeedId$inboundSchema)).optional(),
+  status: MessageResponseDtoStatus$inboundSchema,
+  errorId: z.string(),
+  errorText: z.string(),
+  payload: z.lazy(() => MessageResponseDtoPayload$inboundSchema),
+  overrides: z.lazy(() => MessageResponseDtoOverrides$inboundSchema),
 }).transform((v) => {
   return remap$(v, {
-    "_environmentId": "environmentId",
-    "_feedId": "feedId",
     "_id": "id",
-    "_messageTemplateId": "messageTemplateId",
-    "_notificationId": "notificationId",
-    "_organizationId": "organizationId",
-    "_subscriberId": "subscriberId",
     "_templateId": "templateId",
+    "_environmentId": "environmentId",
+    "_messageTemplateId": "messageTemplateId",
+    "_organizationId": "organizationId",
+    "_notificationId": "notificationId",
+    "_subscriberId": "subscriberId",
+    "_feedId": "feedId",
   });
 });
 
 /** @internal */
 export type MessageResponseDto$Outbound = {
-  _environmentId: string;
-  _feedId?: FeedId$Outbound | null | undefined;
   _id?: string | undefined;
-  _messageTemplateId: string;
-  _notificationId: string;
-  _organizationId: string;
-  _subscriberId: string;
   _templateId: string;
-  channel: string;
-  content: EmailBlock$Outbound | string;
-  createdAt: string;
-  cta: MessageCTA$Outbound;
-  deviceTokens?: Array<string> | undefined;
-  directWebhookUrl?: string | undefined;
-  email?: string | undefined;
-  errorId: string;
-  errorText: string;
-  lastReadDate?: string | undefined;
-  lastSeenDate?: string | undefined;
-  overrides: Overrides$Outbound;
-  payload: MessageResponseDtoPayload$Outbound;
-  phone?: string | undefined;
-  providerId?: string | undefined;
-  read: boolean;
-  seen: boolean;
-  status: string;
-  subject?: string | undefined;
+  _environmentId: string;
+  _messageTemplateId: string;
+  _organizationId: string;
+  _notificationId: string;
+  _subscriberId: string;
   subscriber?: SubscriberResponseDto$Outbound | undefined;
   template?: WorkflowResponse$Outbound | undefined;
   templateIdentifier?: string | undefined;
-  title?: string | undefined;
+  createdAt: string;
+  lastSeenDate?: string | undefined;
+  lastReadDate?: string | undefined;
+  content: EmailBlock$Outbound | string;
   transactionId: string;
+  subject?: string | undefined;
+  channel: string;
+  read: boolean;
+  seen: boolean;
+  email?: string | undefined;
+  phone?: string | undefined;
+  directWebhookUrl?: string | undefined;
+  providerId?: string | undefined;
+  deviceTokens?: Array<string> | undefined;
+  title?: string | undefined;
+  cta: MessageCTA$Outbound;
+  _feedId?: FeedId$Outbound | null | undefined;
+  status: string;
+  errorId: string;
+  errorText: string;
+  payload: MessageResponseDtoPayload$Outbound;
+  overrides: MessageResponseDtoOverrides$Outbound;
 };
 
 /** @internal */
@@ -354,48 +423,48 @@ export const MessageResponseDto$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   MessageResponseDto
 > = z.object({
-  environmentId: z.string(),
-  feedId: z.nullable(z.lazy(() => FeedId$outboundSchema)).optional(),
   id: z.string().optional(),
-  messageTemplateId: z.string(),
-  notificationId: z.string(),
-  organizationId: z.string(),
-  subscriberId: z.string(),
   templateId: z.string(),
-  channel: MessageResponseDtoChannel$outboundSchema,
-  content: z.union([EmailBlock$outboundSchema, z.string()]),
-  createdAt: z.string(),
-  cta: MessageCTA$outboundSchema,
-  deviceTokens: z.array(z.string()).optional(),
-  directWebhookUrl: z.string().optional(),
-  email: z.string().optional(),
-  errorId: z.string(),
-  errorText: z.string(),
-  lastReadDate: z.string().optional(),
-  lastSeenDate: z.string().optional(),
-  overrides: z.lazy(() => Overrides$outboundSchema),
-  payload: z.lazy(() => MessageResponseDtoPayload$outboundSchema),
-  phone: z.string().optional(),
-  providerId: z.string().optional(),
-  read: z.boolean(),
-  seen: z.boolean(),
-  status: MessageResponseDtoStatus$outboundSchema,
-  subject: z.string().optional(),
+  environmentId: z.string(),
+  messageTemplateId: z.string(),
+  organizationId: z.string(),
+  notificationId: z.string(),
+  subscriberId: z.string(),
   subscriber: SubscriberResponseDto$outboundSchema.optional(),
   template: WorkflowResponse$outboundSchema.optional(),
   templateIdentifier: z.string().optional(),
-  title: z.string().optional(),
+  createdAt: z.string(),
+  lastSeenDate: z.string().optional(),
+  lastReadDate: z.string().optional(),
+  content: z.union([EmailBlock$outboundSchema, z.string()]),
   transactionId: z.string(),
+  subject: z.string().optional(),
+  channel: MessageResponseDtoChannel$outboundSchema,
+  read: z.boolean(),
+  seen: z.boolean(),
+  email: z.string().optional(),
+  phone: z.string().optional(),
+  directWebhookUrl: z.string().optional(),
+  providerId: z.string().optional(),
+  deviceTokens: z.array(z.string()).optional(),
+  title: z.string().optional(),
+  cta: MessageCTA$outboundSchema,
+  feedId: z.nullable(z.lazy(() => FeedId$outboundSchema)).optional(),
+  status: MessageResponseDtoStatus$outboundSchema,
+  errorId: z.string(),
+  errorText: z.string(),
+  payload: z.lazy(() => MessageResponseDtoPayload$outboundSchema),
+  overrides: z.lazy(() => MessageResponseDtoOverrides$outboundSchema),
 }).transform((v) => {
   return remap$(v, {
-    environmentId: "_environmentId",
-    feedId: "_feedId",
     id: "_id",
-    messageTemplateId: "_messageTemplateId",
-    notificationId: "_notificationId",
-    organizationId: "_organizationId",
-    subscriberId: "_subscriberId",
     templateId: "_templateId",
+    environmentId: "_environmentId",
+    messageTemplateId: "_messageTemplateId",
+    organizationId: "_organizationId",
+    notificationId: "_notificationId",
+    subscriberId: "_subscriberId",
+    feedId: "_feedId",
   });
 });
 
@@ -410,4 +479,22 @@ export namespace MessageResponseDto$ {
   export const outboundSchema = MessageResponseDto$outboundSchema;
   /** @deprecated use `MessageResponseDto$Outbound` instead. */
   export type Outbound = MessageResponseDto$Outbound;
+}
+
+export function messageResponseDtoToJSON(
+  messageResponseDto: MessageResponseDto,
+): string {
+  return JSON.stringify(
+    MessageResponseDto$outboundSchema.parse(messageResponseDto),
+  );
+}
+
+export function messageResponseDtoFromJSON(
+  jsonString: string,
+): SafeParseResult<MessageResponseDto, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => MessageResponseDto$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'MessageResponseDto' from JSON`,
+  );
 }

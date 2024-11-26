@@ -8,10 +8,10 @@ Workflow groups are used to organize workflows into logical groups.
 ### Available Operations
 
 * [create](#create) - Create workflow group
-* [delete](#delete) - Delete workflow group
 * [list](#list) - Get workflow groups
 * [retrieve](#retrieve) - Get workflow group
 * [update](#update) - Update workflow group
+* [delete](#delete) - Delete workflow group
 
 ## create
 
@@ -30,9 +30,9 @@ async function run() {
   const result = await novu.workflowGroups.create({
     name: "<value>",
   });
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -64,7 +64,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -81,87 +81,13 @@ run();
 
 ### Response
 
-**Promise\<[components.NotificationGroupResponseDto](../../models/components/notificationgroupresponsedto.md)\>**
+**Promise\<[operations.NotificationGroupsControllerCreateNotificationGroupResponse](../../models/operations/notificationgroupscontrollercreatenotificationgroupresponse.md)\>**
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
-
-## delete
-
-workflow group was previously named notification group
-
-### Example Usage
-
-```typescript
-import { Novu } from "@novu/api";
-
-const novu = new Novu({
-  apiKey: "<YOUR_API_KEY_HERE>",
-});
-
-async function run() {
-  const result = await novu.workflowGroups.delete("<id>");
-  
-  // Handle the result
-  console.log(result)
-}
-
-run();
-```
-
-### Standalone function
-
-The standalone function version of this method:
-
-```typescript
-import { NovuCore } from "@novu/api/core.js";
-import { workflowGroupsDelete } from "@novu/api/funcs/workflowGroupsDelete.js";
-
-// Use `NovuCore` for best tree-shaking performance.
-// You can create one instance of it to use across an application.
-const novu = new NovuCore({
-  apiKey: "<YOUR_API_KEY_HERE>",
-});
-
-async function run() {
-  const res = await workflowGroupsDelete(novu, "<id>");
-
-  if (!res.ok) {
-    throw res.error;
-  }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result)
-}
-
-run();
-```
-
-### Parameters
-
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `id`                                                                                                                                                                           | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
-
-### Response
-
-**Promise\<[components.DeleteNotificationGroupResponseDto](../../models/components/deletenotificationgroupresponsedto.md)\>**
-
-### Errors
-
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## list
 
@@ -178,9 +104,9 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.workflowGroups.list();
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -210,7 +136,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -226,14 +152,13 @@ run();
 
 ### Response
 
-**Promise\<[components.NotificationGroupResponseDto[]](../../models/.md)\>**
+**Promise\<[operations.NotificationGroupsControllerListNotificationGroupsResponse](../../models/operations/notificationgroupscontrollerlistnotificationgroupsresponse.md)\>**
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## retrieve
 
@@ -250,9 +175,9 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.workflowGroups.retrieve("<id>");
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -282,7 +207,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -299,14 +224,13 @@ run();
 
 ### Response
 
-**Promise\<[components.NotificationGroupResponseDto](../../models/components/notificationgroupresponsedto.md)\>**
+**Promise\<[operations.NotificationGroupsControllerGetNotificationGroupResponse](../../models/operations/notificationgroupscontrollergetnotificationgroupresponse.md)\>**
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## update
 
@@ -322,12 +246,12 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.workflowGroups.update("<id>", {
+  const result = await novu.workflowGroups.update({
     name: "<value>",
-  });
-  
+  }, "<id>");
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -348,9 +272,9 @@ const novu = new NovuCore({
 });
 
 async function run() {
-  const res = await workflowGroupsUpdate(novu, "<id>", {
+  const res = await workflowGroupsUpdate(novu, {
     name: "<value>",
-  });
+  }, "<id>");
 
   if (!res.ok) {
     throw res.error;
@@ -359,7 +283,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -377,10 +301,82 @@ run();
 
 ### Response
 
-**Promise\<[components.NotificationGroupResponseDto](../../models/components/notificationgroupresponsedto.md)\>**
+**Promise\<[operations.NotificationGroupsControllerUpdateNotificationGroupResponse](../../models/operations/notificationgroupscontrollerupdatenotificationgroupresponse.md)\>**
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
+
+## delete
+
+workflow group was previously named notification group
+
+### Example Usage
+
+```typescript
+import { Novu } from "@novu/api";
+
+const novu = new Novu({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await novu.workflowGroups.delete("<id>");
+
+  // Handle the result
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { NovuCore } from "@novu/api/core.js";
+import { workflowGroupsDelete } from "@novu/api/funcs/workflowGroupsDelete.js";
+
+// Use `NovuCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const novu = new NovuCore({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await workflowGroupsDelete(novu, "<id>");
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result);
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `id`                                                                                                                                                                           | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.NotificationGroupsControllerDeleteNotificationGroupResponse](../../models/operations/notificationgroupscontrollerdeletenotificationgroupresponse.md)\>**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |

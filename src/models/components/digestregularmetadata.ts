@@ -3,7 +3,28 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+
+export const Unit = {
+  Seconds: "seconds",
+  Minutes: "minutes",
+  Hours: "hours",
+  Days: "days",
+  Weeks: "weeks",
+  Months: "months",
+} as const;
+export type Unit = ClosedEnum<typeof Unit>;
+
+export const DigestRegularMetadataType = {
+  Regular: "regular",
+  Backoff: "backoff",
+} as const;
+export type DigestRegularMetadataType = ClosedEnum<
+  typeof DigestRegularMetadataType
+>;
 
 export const BackoffUnit = {
   Seconds: "seconds",
@@ -15,54 +36,35 @@ export const BackoffUnit = {
 } as const;
 export type BackoffUnit = ClosedEnum<typeof BackoffUnit>;
 
-export const DigestRegularMetadataType = {
-  Regular: "regular",
-  Backoff: "backoff",
-} as const;
-export type DigestRegularMetadataType = ClosedEnum<
-  typeof DigestRegularMetadataType
->;
-
-export const DigestRegularMetadataUnit = {
-  Seconds: "seconds",
-  Minutes: "minutes",
-  Hours: "hours",
-  Days: "days",
-  Weeks: "weeks",
-  Months: "months",
-} as const;
-export type DigestRegularMetadataUnit = ClosedEnum<
-  typeof DigestRegularMetadataUnit
->;
-
 export type DigestRegularMetadata = {
   amount?: number | undefined;
+  unit?: Unit | undefined;
+  digestKey?: string | undefined;
+  type: DigestRegularMetadataType;
   backoff?: boolean | undefined;
   backoffAmount?: number | undefined;
   backoffUnit?: BackoffUnit | undefined;
-  digestKey?: string | undefined;
-  type: DigestRegularMetadataType;
-  unit?: DigestRegularMetadataUnit | undefined;
   updateMode?: boolean | undefined;
 };
 
 /** @internal */
-export const BackoffUnit$inboundSchema: z.ZodNativeEnum<typeof BackoffUnit> = z
-  .nativeEnum(BackoffUnit);
+export const Unit$inboundSchema: z.ZodNativeEnum<typeof Unit> = z.nativeEnum(
+  Unit,
+);
 
 /** @internal */
-export const BackoffUnit$outboundSchema: z.ZodNativeEnum<typeof BackoffUnit> =
-  BackoffUnit$inboundSchema;
+export const Unit$outboundSchema: z.ZodNativeEnum<typeof Unit> =
+  Unit$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace BackoffUnit$ {
-  /** @deprecated use `BackoffUnit$inboundSchema` instead. */
-  export const inboundSchema = BackoffUnit$inboundSchema;
-  /** @deprecated use `BackoffUnit$outboundSchema` instead. */
-  export const outboundSchema = BackoffUnit$outboundSchema;
+export namespace Unit$ {
+  /** @deprecated use `Unit$inboundSchema` instead. */
+  export const inboundSchema = Unit$inboundSchema;
+  /** @deprecated use `Unit$outboundSchema` instead. */
+  export const outboundSchema = Unit$outboundSchema;
 }
 
 /** @internal */
@@ -87,24 +89,22 @@ export namespace DigestRegularMetadataType$ {
 }
 
 /** @internal */
-export const DigestRegularMetadataUnit$inboundSchema: z.ZodNativeEnum<
-  typeof DigestRegularMetadataUnit
-> = z.nativeEnum(DigestRegularMetadataUnit);
+export const BackoffUnit$inboundSchema: z.ZodNativeEnum<typeof BackoffUnit> = z
+  .nativeEnum(BackoffUnit);
 
 /** @internal */
-export const DigestRegularMetadataUnit$outboundSchema: z.ZodNativeEnum<
-  typeof DigestRegularMetadataUnit
-> = DigestRegularMetadataUnit$inboundSchema;
+export const BackoffUnit$outboundSchema: z.ZodNativeEnum<typeof BackoffUnit> =
+  BackoffUnit$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace DigestRegularMetadataUnit$ {
-  /** @deprecated use `DigestRegularMetadataUnit$inboundSchema` instead. */
-  export const inboundSchema = DigestRegularMetadataUnit$inboundSchema;
-  /** @deprecated use `DigestRegularMetadataUnit$outboundSchema` instead. */
-  export const outboundSchema = DigestRegularMetadataUnit$outboundSchema;
+export namespace BackoffUnit$ {
+  /** @deprecated use `BackoffUnit$inboundSchema` instead. */
+  export const inboundSchema = BackoffUnit$inboundSchema;
+  /** @deprecated use `BackoffUnit$outboundSchema` instead. */
+  export const outboundSchema = BackoffUnit$outboundSchema;
 }
 
 /** @internal */
@@ -114,24 +114,24 @@ export const DigestRegularMetadata$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   amount: z.number().optional(),
+  unit: Unit$inboundSchema.optional(),
+  digestKey: z.string().optional(),
+  type: DigestRegularMetadataType$inboundSchema,
   backoff: z.boolean().optional(),
   backoffAmount: z.number().optional(),
   backoffUnit: BackoffUnit$inboundSchema.optional(),
-  digestKey: z.string().optional(),
-  type: DigestRegularMetadataType$inboundSchema,
-  unit: DigestRegularMetadataUnit$inboundSchema.optional(),
   updateMode: z.boolean().optional(),
 });
 
 /** @internal */
 export type DigestRegularMetadata$Outbound = {
   amount?: number | undefined;
+  unit?: string | undefined;
+  digestKey?: string | undefined;
+  type: string;
   backoff?: boolean | undefined;
   backoffAmount?: number | undefined;
   backoffUnit?: string | undefined;
-  digestKey?: string | undefined;
-  type: string;
-  unit?: string | undefined;
   updateMode?: boolean | undefined;
 };
 
@@ -142,12 +142,12 @@ export const DigestRegularMetadata$outboundSchema: z.ZodType<
   DigestRegularMetadata
 > = z.object({
   amount: z.number().optional(),
+  unit: Unit$outboundSchema.optional(),
+  digestKey: z.string().optional(),
+  type: DigestRegularMetadataType$outboundSchema,
   backoff: z.boolean().optional(),
   backoffAmount: z.number().optional(),
   backoffUnit: BackoffUnit$outboundSchema.optional(),
-  digestKey: z.string().optional(),
-  type: DigestRegularMetadataType$outboundSchema,
-  unit: DigestRegularMetadataUnit$outboundSchema.optional(),
   updateMode: z.boolean().optional(),
 });
 
@@ -162,4 +162,22 @@ export namespace DigestRegularMetadata$ {
   export const outboundSchema = DigestRegularMetadata$outboundSchema;
   /** @deprecated use `DigestRegularMetadata$Outbound` instead. */
   export type Outbound = DigestRegularMetadata$Outbound;
+}
+
+export function digestRegularMetadataToJSON(
+  digestRegularMetadata: DigestRegularMetadata,
+): string {
+  return JSON.stringify(
+    DigestRegularMetadata$outboundSchema.parse(digestRegularMetadata),
+  );
+}
+
+export function digestRegularMetadataFromJSON(
+  jsonString: string,
+): SafeParseResult<DigestRegularMetadata, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DigestRegularMetadata$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DigestRegularMetadata' from JSON`,
+  );
 }

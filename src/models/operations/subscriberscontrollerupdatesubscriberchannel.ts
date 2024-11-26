@@ -4,12 +4,20 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type SubscribersControllerUpdateSubscriberChannelRequest = {
   subscriberId: string;
   updateSubscriberChannelRequestDto:
     components.UpdateSubscriberChannelRequestDto;
+};
+
+export type SubscribersControllerUpdateSubscriberChannelResponse = {
+  headers: { [k: string]: Array<string> };
+  result: components.SubscriberResponseDto;
 };
 
 /** @internal */
@@ -65,4 +73,112 @@ export namespace SubscribersControllerUpdateSubscriberChannelRequest$ {
   /** @deprecated use `SubscribersControllerUpdateSubscriberChannelRequest$Outbound` instead. */
   export type Outbound =
     SubscribersControllerUpdateSubscriberChannelRequest$Outbound;
+}
+
+export function subscribersControllerUpdateSubscriberChannelRequestToJSON(
+  subscribersControllerUpdateSubscriberChannelRequest:
+    SubscribersControllerUpdateSubscriberChannelRequest,
+): string {
+  return JSON.stringify(
+    SubscribersControllerUpdateSubscriberChannelRequest$outboundSchema.parse(
+      subscribersControllerUpdateSubscriberChannelRequest,
+    ),
+  );
+}
+
+export function subscribersControllerUpdateSubscriberChannelRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  SubscribersControllerUpdateSubscriberChannelRequest,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      SubscribersControllerUpdateSubscriberChannelRequest$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'SubscribersControllerUpdateSubscriberChannelRequest' from JSON`,
+  );
+}
+
+/** @internal */
+export const SubscribersControllerUpdateSubscriberChannelResponse$inboundSchema:
+  z.ZodType<
+    SubscribersControllerUpdateSubscriberChannelResponse,
+    z.ZodTypeDef,
+    unknown
+  > = z.object({
+    Headers: z.record(z.array(z.string())),
+    Result: components.SubscriberResponseDto$inboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      "Headers": "headers",
+      "Result": "result",
+    });
+  });
+
+/** @internal */
+export type SubscribersControllerUpdateSubscriberChannelResponse$Outbound = {
+  Headers: { [k: string]: Array<string> };
+  Result: components.SubscriberResponseDto$Outbound;
+};
+
+/** @internal */
+export const SubscribersControllerUpdateSubscriberChannelResponse$outboundSchema:
+  z.ZodType<
+    SubscribersControllerUpdateSubscriberChannelResponse$Outbound,
+    z.ZodTypeDef,
+    SubscribersControllerUpdateSubscriberChannelResponse
+  > = z.object({
+    headers: z.record(z.array(z.string())),
+    result: components.SubscriberResponseDto$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      headers: "Headers",
+      result: "Result",
+    });
+  });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace SubscribersControllerUpdateSubscriberChannelResponse$ {
+  /** @deprecated use `SubscribersControllerUpdateSubscriberChannelResponse$inboundSchema` instead. */
+  export const inboundSchema =
+    SubscribersControllerUpdateSubscriberChannelResponse$inboundSchema;
+  /** @deprecated use `SubscribersControllerUpdateSubscriberChannelResponse$outboundSchema` instead. */
+  export const outboundSchema =
+    SubscribersControllerUpdateSubscriberChannelResponse$outboundSchema;
+  /** @deprecated use `SubscribersControllerUpdateSubscriberChannelResponse$Outbound` instead. */
+  export type Outbound =
+    SubscribersControllerUpdateSubscriberChannelResponse$Outbound;
+}
+
+export function subscribersControllerUpdateSubscriberChannelResponseToJSON(
+  subscribersControllerUpdateSubscriberChannelResponse:
+    SubscribersControllerUpdateSubscriberChannelResponse,
+): string {
+  return JSON.stringify(
+    SubscribersControllerUpdateSubscriberChannelResponse$outboundSchema.parse(
+      subscribersControllerUpdateSubscriberChannelResponse,
+    ),
+  );
+}
+
+export function subscribersControllerUpdateSubscriberChannelResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  SubscribersControllerUpdateSubscriberChannelResponse,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      SubscribersControllerUpdateSubscriberChannelResponse$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'SubscribersControllerUpdateSubscriberChannelResponse' from JSON`,
+  );
 }

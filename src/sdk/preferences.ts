@@ -17,10 +17,33 @@ export class Preferences extends ClientSDK {
    */
   async list(
     subscriberId: string,
+    includeInactiveChannels?: boolean | undefined,
     options?: RequestOptions,
-  ): Promise<Array<components.UpdateSubscriberPreferenceResponseDto>> {
+  ): Promise<
+    operations.SubscribersControllerListSubscriberPreferencesResponse
+  > {
     return unwrapAsync(subscribersPreferencesList(
       this,
+      subscriberId,
+      includeInactiveChannels,
+      options,
+    ));
+  }
+
+  /**
+   * Update subscriber global preferences
+   */
+  async updateGlobal(
+    updateSubscriberGlobalPreferencesRequestDto:
+      components.UpdateSubscriberGlobalPreferencesRequestDto,
+    subscriberId: string,
+    options?: RequestOptions,
+  ): Promise<
+    operations.SubscribersControllerUpdateSubscriberGlobalPreferencesResponse
+  > {
+    return unwrapAsync(subscribersPreferencesUpdateGlobal(
+      this,
+      updateSubscriberGlobalPreferencesRequestDto,
       subscriberId,
       options,
     ));
@@ -30,14 +53,15 @@ export class Preferences extends ClientSDK {
    * Get subscriber preferences by level
    */
   async retrieveByLevel(
-    parameter: operations.Parameter,
-    subscriberId: string,
+    request:
+      operations.SubscribersControllerGetSubscriberPreferenceByLevelRequest,
     options?: RequestOptions,
-  ): Promise<Array<components.GetSubscriberPreferencesResponseDto>> {
+  ): Promise<
+    operations.SubscribersControllerGetSubscriberPreferenceByLevelResponse
+  > {
     return unwrapAsync(subscribersPreferencesRetrieveByLevel(
       this,
-      parameter,
-      subscriberId,
+      request,
       options,
     ));
   }
@@ -48,27 +72,12 @@ export class Preferences extends ClientSDK {
   async update(
     request: operations.SubscribersControllerUpdateSubscriberPreferenceRequest,
     options?: RequestOptions,
-  ): Promise<components.UpdateSubscriberPreferenceResponseDto> {
+  ): Promise<
+    operations.SubscribersControllerUpdateSubscriberPreferenceResponse
+  > {
     return unwrapAsync(subscribersPreferencesUpdate(
       this,
       request,
-      options,
-    ));
-  }
-
-  /**
-   * Update subscriber global preferences
-   */
-  async updateGlobal(
-    subscriberId: string,
-    updateSubscriberGlobalPreferencesRequestDto:
-      components.UpdateSubscriberGlobalPreferencesRequestDto,
-    options?: RequestOptions,
-  ): Promise<components.UpdateSubscriberPreferenceResponseDto> {
-    return unwrapAsync(subscribersPreferencesUpdateGlobal(
-      this,
-      subscriberId,
-      updateSubscriberGlobalPreferencesRequestDto,
       options,
     ));
   }

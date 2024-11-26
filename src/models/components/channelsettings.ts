@@ -4,6 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ChannelCredentials,
   ChannelCredentials$inboundSchema,
@@ -11,24 +15,70 @@ import {
   ChannelCredentials$outboundSchema,
 } from "./channelcredentials.js";
 
+/**
+ * The provider identifier for the credentials
+ */
+export const ProviderId = {
+  Slack: "slack",
+  Discord: "discord",
+  Msteams: "msteams",
+  Mattermost: "mattermost",
+  Ryver: "ryver",
+  Zulip: "zulip",
+  GrafanaOnCall: "grafana-on-call",
+  Getstream: "getstream",
+  RocketChat: "rocket-chat",
+  WhatsappBusiness: "whatsapp-business",
+  Fcm: "fcm",
+  Apns: "apns",
+  Expo: "expo",
+  OneSignal: "one-signal",
+  Pushpad: "pushpad",
+  PushWebhook: "push-webhook",
+  PusherBeams: "pusher-beams",
+} as const;
+/**
+ * The provider identifier for the credentials
+ */
+export type ProviderId = ClosedEnum<typeof ProviderId>;
+
 export type ChannelSettings = {
   /**
-   * Id of the integration that is used for this channel
+   * The provider identifier for the credentials
    */
-  integrationId: string;
-  /**
-   * Credentials payload for the specified provider
-   */
-  credentials: ChannelCredentials;
+  providerId: ProviderId;
   /**
    * The integration identifier
    */
   integrationIdentifier?: string | undefined;
   /**
-   * The provider identifier for the credentials
+   * Credentials payload for the specified provider
    */
-  providerId: number;
+  credentials: ChannelCredentials;
+  /**
+   * Id of the integration that is used for this channel
+   */
+  integrationId: string;
 };
+
+/** @internal */
+export const ProviderId$inboundSchema: z.ZodNativeEnum<typeof ProviderId> = z
+  .nativeEnum(ProviderId);
+
+/** @internal */
+export const ProviderId$outboundSchema: z.ZodNativeEnum<typeof ProviderId> =
+  ProviderId$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace ProviderId$ {
+  /** @deprecated use `ProviderId$inboundSchema` instead. */
+  export const inboundSchema = ProviderId$inboundSchema;
+  /** @deprecated use `ProviderId$outboundSchema` instead. */
+  export const outboundSchema = ProviderId$outboundSchema;
+}
 
 /** @internal */
 export const ChannelSettings$inboundSchema: z.ZodType<
@@ -36,10 +86,10 @@ export const ChannelSettings$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  _integrationId: z.string(),
-  credentials: ChannelCredentials$inboundSchema,
+  providerId: ProviderId$inboundSchema,
   integrationIdentifier: z.string().optional(),
-  providerId: z.number(),
+  credentials: ChannelCredentials$inboundSchema,
+  _integrationId: z.string(),
 }).transform((v) => {
   return remap$(v, {
     "_integrationId": "integrationId",
@@ -48,10 +98,10 @@ export const ChannelSettings$inboundSchema: z.ZodType<
 
 /** @internal */
 export type ChannelSettings$Outbound = {
-  _integrationId: string;
-  credentials: ChannelCredentials$Outbound;
+  providerId: string;
   integrationIdentifier?: string | undefined;
-  providerId: number;
+  credentials: ChannelCredentials$Outbound;
+  _integrationId: string;
 };
 
 /** @internal */
@@ -60,10 +110,10 @@ export const ChannelSettings$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ChannelSettings
 > = z.object({
-  integrationId: z.string(),
-  credentials: ChannelCredentials$outboundSchema,
+  providerId: ProviderId$outboundSchema,
   integrationIdentifier: z.string().optional(),
-  providerId: z.number(),
+  credentials: ChannelCredentials$outboundSchema,
+  integrationId: z.string(),
 }).transform((v) => {
   return remap$(v, {
     integrationId: "_integrationId",
@@ -81,4 +131,20 @@ export namespace ChannelSettings$ {
   export const outboundSchema = ChannelSettings$outboundSchema;
   /** @deprecated use `ChannelSettings$Outbound` instead. */
   export type Outbound = ChannelSettings$Outbound;
+}
+
+export function channelSettingsToJSON(
+  channelSettings: ChannelSettings,
+): string {
+  return JSON.stringify(ChannelSettings$outboundSchema.parse(channelSettings));
+}
+
+export function channelSettingsFromJSON(
+  jsonString: string,
+): SafeParseResult<ChannelSettings, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ChannelSettings$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ChannelSettings' from JSON`,
+  );
 }

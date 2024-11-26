@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type SubscribersControllerListSubscribersRequest = {
   page?: number | undefined;
@@ -12,22 +15,23 @@ export type SubscribersControllerListSubscribersRequest = {
 };
 
 export type SubscribersControllerListSubscribersResponseBody = {
-  data: Array<components.SubscriberResponseDto>;
-  /**
-   * Does the list have more items to fetch
-   */
-  hasMore: boolean;
   /**
    * The current page of the paginated response
    */
   page: number;
   /**
+   * Does the list have more items to fetch
+   */
+  hasMore: boolean;
+  /**
    * Number of items on each page
    */
   pageSize: number;
+  data: Array<components.SubscriberResponseDto>;
 };
 
 export type SubscribersControllerListSubscribersResponse = {
+  headers: { [k: string]: Array<string> };
   result: SubscribersControllerListSubscribersResponseBody;
 };
 
@@ -74,6 +78,33 @@ export namespace SubscribersControllerListSubscribersRequest$ {
   export type Outbound = SubscribersControllerListSubscribersRequest$Outbound;
 }
 
+export function subscribersControllerListSubscribersRequestToJSON(
+  subscribersControllerListSubscribersRequest:
+    SubscribersControllerListSubscribersRequest,
+): string {
+  return JSON.stringify(
+    SubscribersControllerListSubscribersRequest$outboundSchema.parse(
+      subscribersControllerListSubscribersRequest,
+    ),
+  );
+}
+
+export function subscribersControllerListSubscribersRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  SubscribersControllerListSubscribersRequest,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      SubscribersControllerListSubscribersRequest$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'SubscribersControllerListSubscribersRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const SubscribersControllerListSubscribersResponseBody$inboundSchema:
   z.ZodType<
@@ -81,18 +112,18 @@ export const SubscribersControllerListSubscribersResponseBody$inboundSchema:
     z.ZodTypeDef,
     unknown
   > = z.object({
-    data: z.array(components.SubscriberResponseDto$inboundSchema),
-    hasMore: z.boolean(),
     page: z.number(),
+    hasMore: z.boolean(),
     pageSize: z.number(),
+    data: z.array(components.SubscriberResponseDto$inboundSchema),
   });
 
 /** @internal */
 export type SubscribersControllerListSubscribersResponseBody$Outbound = {
-  data: Array<components.SubscriberResponseDto$Outbound>;
-  hasMore: boolean;
   page: number;
+  hasMore: boolean;
   pageSize: number;
+  data: Array<components.SubscriberResponseDto$Outbound>;
 };
 
 /** @internal */
@@ -102,10 +133,10 @@ export const SubscribersControllerListSubscribersResponseBody$outboundSchema:
     z.ZodTypeDef,
     SubscribersControllerListSubscribersResponseBody
   > = z.object({
-    data: z.array(components.SubscriberResponseDto$outboundSchema),
-    hasMore: z.boolean(),
     page: z.number(),
+    hasMore: z.boolean(),
     pageSize: z.number(),
+    data: z.array(components.SubscriberResponseDto$outboundSchema),
   });
 
 /**
@@ -124,6 +155,33 @@ export namespace SubscribersControllerListSubscribersResponseBody$ {
     SubscribersControllerListSubscribersResponseBody$Outbound;
 }
 
+export function subscribersControllerListSubscribersResponseBodyToJSON(
+  subscribersControllerListSubscribersResponseBody:
+    SubscribersControllerListSubscribersResponseBody,
+): string {
+  return JSON.stringify(
+    SubscribersControllerListSubscribersResponseBody$outboundSchema.parse(
+      subscribersControllerListSubscribersResponseBody,
+    ),
+  );
+}
+
+export function subscribersControllerListSubscribersResponseBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  SubscribersControllerListSubscribersResponseBody,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      SubscribersControllerListSubscribersResponseBody$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'SubscribersControllerListSubscribersResponseBody' from JSON`,
+  );
+}
+
 /** @internal */
 export const SubscribersControllerListSubscribersResponse$inboundSchema:
   z.ZodType<
@@ -131,17 +189,20 @@ export const SubscribersControllerListSubscribersResponse$inboundSchema:
     z.ZodTypeDef,
     unknown
   > = z.object({
+    Headers: z.record(z.array(z.string())),
     Result: z.lazy(() =>
       SubscribersControllerListSubscribersResponseBody$inboundSchema
     ),
   }).transform((v) => {
     return remap$(v, {
+      "Headers": "headers",
       "Result": "result",
     });
   });
 
 /** @internal */
 export type SubscribersControllerListSubscribersResponse$Outbound = {
+  Headers: { [k: string]: Array<string> };
   Result: SubscribersControllerListSubscribersResponseBody$Outbound;
 };
 
@@ -152,11 +213,13 @@ export const SubscribersControllerListSubscribersResponse$outboundSchema:
     z.ZodTypeDef,
     SubscribersControllerListSubscribersResponse
   > = z.object({
+    headers: z.record(z.array(z.string())),
     result: z.lazy(() =>
       SubscribersControllerListSubscribersResponseBody$outboundSchema
     ),
   }).transform((v) => {
     return remap$(v, {
+      headers: "Headers",
       result: "Result",
     });
   });
@@ -174,4 +237,31 @@ export namespace SubscribersControllerListSubscribersResponse$ {
     SubscribersControllerListSubscribersResponse$outboundSchema;
   /** @deprecated use `SubscribersControllerListSubscribersResponse$Outbound` instead. */
   export type Outbound = SubscribersControllerListSubscribersResponse$Outbound;
+}
+
+export function subscribersControllerListSubscribersResponseToJSON(
+  subscribersControllerListSubscribersResponse:
+    SubscribersControllerListSubscribersResponse,
+): string {
+  return JSON.stringify(
+    SubscribersControllerListSubscribersResponse$outboundSchema.parse(
+      subscribersControllerListSubscribersResponse,
+    ),
+  );
+}
+
+export function subscribersControllerListSubscribersResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  SubscribersControllerListSubscribersResponse,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      SubscribersControllerListSubscribersResponse$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'SubscribersControllerListSubscribersResponse' from JSON`,
+  );
 }

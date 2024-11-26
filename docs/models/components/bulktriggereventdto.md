@@ -6,7 +6,16 @@
 import { BulkTriggerEventDto } from "@novu/api/models/components";
 
 let value: BulkTriggerEventDto = {
-  events: [],
+  events: [
+    {
+      name: "workflow_identifier",
+      payload: {},
+      overrides: {},
+      to: [
+        "SUBSCRIBER_ID",
+      ],
+    },
+  ],
 };
 ```
 

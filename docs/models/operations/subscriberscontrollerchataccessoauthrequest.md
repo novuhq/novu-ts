@@ -6,10 +6,10 @@
 import { SubscribersControllerChatAccessOauthRequest } from "@novu/api/models/operations";
 
 let value: SubscribersControllerChatAccessOauthRequest = {
-  subscriberId: "<value>",
+  subscriberId: "<id>",
   providerId: "<value>",
   hmacHash: "<value>",
-  environmentId: "<value>",
+  environmentId: "<id>",
 };
 ```
 

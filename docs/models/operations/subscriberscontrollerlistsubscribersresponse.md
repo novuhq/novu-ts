@@ -6,20 +6,25 @@
 import { SubscribersControllerListSubscribersResponse } from "@novu/api/models/operations";
 
 let value: SubscribersControllerListSubscribersResponse = {
+  headers: {
+    "key": [
+      "<value>",
+    ],
+  },
   result: {
+    page: 4614.79,
+    hasMore: false,
+    pageSize: 7805.29,
     data: [
       {
-        environmentId: "<value>",
-        organizationId: "<value>",
-        createdAt: "<value>",
+        subscriberId: "<id>",
+        organizationId: "<id>",
+        environmentId: "<id>",
         deleted: false,
-        subscriberId: "<value>",
+        createdAt: "<value>",
         updatedAt: "<value>",
       },
     ],
-    hasMore: false,
-    page: 9953,
-    pageSize: 6531.08,
   },
 };
 ```
@@ -28,4 +33,5 @@ let value: SubscribersControllerListSubscribersResponse = {
 
 | Field                                                                                                                                      | Type                                                                                                                                       | Required                                                                                                                                   | Description                                                                                                                                |
 | ------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| `headers`                                                                                                                                  | Record<string, *string*[]>                                                                                                                 | :heavy_check_mark:                                                                                                                         | N/A                                                                                                                                        |
 | `result`                                                                                                                                   | [operations.SubscribersControllerListSubscribersResponseBody](../../models/operations/subscriberscontrollerlistsubscribersresponsebody.md) | :heavy_check_mark:                                                                                                                         | N/A                                                                                                                                        |

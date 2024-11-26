@@ -6,8 +6,8 @@
 import { ActivityStatsResponseDto } from "@novu/api/models/components";
 
 let value: ActivityStatsResponseDto = {
-  monthlySent: 7805.29,
-  weeklySent: 6788.8,
+  weeklySent: 391.88,
+  monthlySent: 2828.07,
 };
 ```
 
@@ -15,5 +15,5 @@ let value: ActivityStatsResponseDto = {
 
 | Field              | Type               | Required           | Description        |
 | ------------------ | ------------------ | ------------------ | ------------------ |
-| `monthlySent`      | *number*           | :heavy_check_mark: | N/A                |
 | `weeklySent`       | *number*           | :heavy_check_mark: | N/A                |
+| `monthlySent`      | *number*           | :heavy_check_mark: | N/A                |

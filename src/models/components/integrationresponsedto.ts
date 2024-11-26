@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   CredentialsDto,
   CredentialsDto$inboundSchema,
@@ -30,20 +33,20 @@ export type IntegrationResponseDtoChannel = ClosedEnum<
 >;
 
 export type IntegrationResponseDto = {
-  environmentId: string;
   id?: string | undefined;
+  environmentId: string;
   organizationId: string;
-  active: boolean;
+  name: string;
+  identifier: string;
+  providerId: string;
   channel: IntegrationResponseDtoChannel;
-  conditions?: Array<StepFilter> | undefined;
   credentials: CredentialsDto;
+  active: boolean;
   deleted: boolean;
   deletedAt: string;
   deletedBy: string;
-  identifier: string;
-  name: string;
   primary: boolean;
-  providerId: string;
+  conditions?: Array<StepFilter> | undefined;
 };
 
 /** @internal */
@@ -73,44 +76,44 @@ export const IntegrationResponseDto$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  _environmentId: z.string(),
   _id: z.string().optional(),
+  _environmentId: z.string(),
   _organizationId: z.string(),
-  active: z.boolean(),
+  name: z.string(),
+  identifier: z.string(),
+  providerId: z.string(),
   channel: IntegrationResponseDtoChannel$inboundSchema,
-  conditions: z.array(StepFilter$inboundSchema).optional(),
   credentials: CredentialsDto$inboundSchema,
+  active: z.boolean(),
   deleted: z.boolean(),
   deletedAt: z.string(),
   deletedBy: z.string(),
-  identifier: z.string(),
-  name: z.string(),
   primary: z.boolean(),
-  providerId: z.string(),
+  conditions: z.array(StepFilter$inboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
-    "_environmentId": "environmentId",
     "_id": "id",
+    "_environmentId": "environmentId",
     "_organizationId": "organizationId",
   });
 });
 
 /** @internal */
 export type IntegrationResponseDto$Outbound = {
-  _environmentId: string;
   _id?: string | undefined;
+  _environmentId: string;
   _organizationId: string;
-  active: boolean;
+  name: string;
+  identifier: string;
+  providerId: string;
   channel: string;
-  conditions?: Array<StepFilter$Outbound> | undefined;
   credentials: CredentialsDto$Outbound;
+  active: boolean;
   deleted: boolean;
   deletedAt: string;
   deletedBy: string;
-  identifier: string;
-  name: string;
   primary: boolean;
-  providerId: string;
+  conditions?: Array<StepFilter$Outbound> | undefined;
 };
 
 /** @internal */
@@ -119,24 +122,24 @@ export const IntegrationResponseDto$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   IntegrationResponseDto
 > = z.object({
-  environmentId: z.string(),
   id: z.string().optional(),
+  environmentId: z.string(),
   organizationId: z.string(),
-  active: z.boolean(),
+  name: z.string(),
+  identifier: z.string(),
+  providerId: z.string(),
   channel: IntegrationResponseDtoChannel$outboundSchema,
-  conditions: z.array(StepFilter$outboundSchema).optional(),
   credentials: CredentialsDto$outboundSchema,
+  active: z.boolean(),
   deleted: z.boolean(),
   deletedAt: z.string(),
   deletedBy: z.string(),
-  identifier: z.string(),
-  name: z.string(),
   primary: z.boolean(),
-  providerId: z.string(),
+  conditions: z.array(StepFilter$outboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
-    environmentId: "_environmentId",
     id: "_id",
+    environmentId: "_environmentId",
     organizationId: "_organizationId",
   });
 });
@@ -152,4 +155,22 @@ export namespace IntegrationResponseDto$ {
   export const outboundSchema = IntegrationResponseDto$outboundSchema;
   /** @deprecated use `IntegrationResponseDto$Outbound` instead. */
   export type Outbound = IntegrationResponseDto$Outbound;
+}
+
+export function integrationResponseDtoToJSON(
+  integrationResponseDto: IntegrationResponseDto,
+): string {
+  return JSON.stringify(
+    IntegrationResponseDto$outboundSchema.parse(integrationResponseDto),
+  );
+}
+
+export function integrationResponseDtoFromJSON(
+  jsonString: string,
+): SafeParseResult<IntegrationResponseDto, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => IntegrationResponseDto$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'IntegrationResponseDto' from JSON`,
+  );
 }

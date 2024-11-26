@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CreateTopicRequestDto = {
   /**
@@ -52,4 +55,22 @@ export namespace CreateTopicRequestDto$ {
   export const outboundSchema = CreateTopicRequestDto$outboundSchema;
   /** @deprecated use `CreateTopicRequestDto$Outbound` instead. */
   export type Outbound = CreateTopicRequestDto$Outbound;
+}
+
+export function createTopicRequestDtoToJSON(
+  createTopicRequestDto: CreateTopicRequestDto,
+): string {
+  return JSON.stringify(
+    CreateTopicRequestDto$outboundSchema.parse(createTopicRequestDto),
+  );
+}
+
+export function createTopicRequestDtoFromJSON(
+  jsonString: string,
+): SafeParseResult<CreateTopicRequestDto, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreateTopicRequestDto$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateTopicRequestDto' from JSON`,
+  );
 }

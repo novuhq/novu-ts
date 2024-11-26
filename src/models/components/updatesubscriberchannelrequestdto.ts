@@ -3,6 +3,10 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ChannelCredentials,
   ChannelCredentials$inboundSchema,
@@ -10,20 +14,72 @@ import {
   ChannelCredentials$outboundSchema,
 } from "./channelcredentials.js";
 
+/**
+ * The provider identifier for the credentials
+ */
+export const UpdateSubscriberChannelRequestDtoProviderId = {
+  Slack: "slack",
+  Discord: "discord",
+  Msteams: "msteams",
+  Mattermost: "mattermost",
+  Ryver: "ryver",
+  Zulip: "zulip",
+  GrafanaOnCall: "grafana-on-call",
+  Getstream: "getstream",
+  RocketChat: "rocket-chat",
+  WhatsappBusiness: "whatsapp-business",
+  Fcm: "fcm",
+  Apns: "apns",
+  Expo: "expo",
+  OneSignal: "one-signal",
+  Pushpad: "pushpad",
+  PushWebhook: "push-webhook",
+  PusherBeams: "pusher-beams",
+} as const;
+/**
+ * The provider identifier for the credentials
+ */
+export type UpdateSubscriberChannelRequestDtoProviderId = ClosedEnum<
+  typeof UpdateSubscriberChannelRequestDtoProviderId
+>;
+
 export type UpdateSubscriberChannelRequestDto = {
   /**
-   * Credentials payload for the specified provider
+   * The provider identifier for the credentials
    */
-  credentials: ChannelCredentials;
+  providerId: UpdateSubscriberChannelRequestDtoProviderId;
   /**
    * The integration identifier
    */
   integrationIdentifier?: string | undefined;
   /**
-   * The provider identifier for the credentials
+   * Credentials payload for the specified provider
    */
-  providerId: number;
+  credentials: ChannelCredentials;
 };
+
+/** @internal */
+export const UpdateSubscriberChannelRequestDtoProviderId$inboundSchema:
+  z.ZodNativeEnum<typeof UpdateSubscriberChannelRequestDtoProviderId> = z
+    .nativeEnum(UpdateSubscriberChannelRequestDtoProviderId);
+
+/** @internal */
+export const UpdateSubscriberChannelRequestDtoProviderId$outboundSchema:
+  z.ZodNativeEnum<typeof UpdateSubscriberChannelRequestDtoProviderId> =
+    UpdateSubscriberChannelRequestDtoProviderId$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace UpdateSubscriberChannelRequestDtoProviderId$ {
+  /** @deprecated use `UpdateSubscriberChannelRequestDtoProviderId$inboundSchema` instead. */
+  export const inboundSchema =
+    UpdateSubscriberChannelRequestDtoProviderId$inboundSchema;
+  /** @deprecated use `UpdateSubscriberChannelRequestDtoProviderId$outboundSchema` instead. */
+  export const outboundSchema =
+    UpdateSubscriberChannelRequestDtoProviderId$outboundSchema;
+}
 
 /** @internal */
 export const UpdateSubscriberChannelRequestDto$inboundSchema: z.ZodType<
@@ -31,16 +87,16 @@ export const UpdateSubscriberChannelRequestDto$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  credentials: ChannelCredentials$inboundSchema,
+  providerId: UpdateSubscriberChannelRequestDtoProviderId$inboundSchema,
   integrationIdentifier: z.string().optional(),
-  providerId: z.number(),
+  credentials: ChannelCredentials$inboundSchema,
 });
 
 /** @internal */
 export type UpdateSubscriberChannelRequestDto$Outbound = {
-  credentials: ChannelCredentials$Outbound;
+  providerId: string;
   integrationIdentifier?: string | undefined;
-  providerId: number;
+  credentials: ChannelCredentials$Outbound;
 };
 
 /** @internal */
@@ -49,9 +105,9 @@ export const UpdateSubscriberChannelRequestDto$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   UpdateSubscriberChannelRequestDto
 > = z.object({
-  credentials: ChannelCredentials$outboundSchema,
+  providerId: UpdateSubscriberChannelRequestDtoProviderId$outboundSchema,
   integrationIdentifier: z.string().optional(),
-  providerId: z.number(),
+  credentials: ChannelCredentials$outboundSchema,
 });
 
 /**
@@ -66,4 +122,24 @@ export namespace UpdateSubscriberChannelRequestDto$ {
     UpdateSubscriberChannelRequestDto$outboundSchema;
   /** @deprecated use `UpdateSubscriberChannelRequestDto$Outbound` instead. */
   export type Outbound = UpdateSubscriberChannelRequestDto$Outbound;
+}
+
+export function updateSubscriberChannelRequestDtoToJSON(
+  updateSubscriberChannelRequestDto: UpdateSubscriberChannelRequestDto,
+): string {
+  return JSON.stringify(
+    UpdateSubscriberChannelRequestDto$outboundSchema.parse(
+      updateSubscriberChannelRequestDto,
+    ),
+  );
+}
+
+export function updateSubscriberChannelRequestDtoFromJSON(
+  jsonString: string,
+): SafeParseResult<UpdateSubscriberChannelRequestDto, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => UpdateSubscriberChannelRequestDto$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UpdateSubscriberChannelRequestDto' from JSON`,
+  );
 }

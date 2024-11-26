@@ -1,30 +1,28 @@
 # To
 
-## Example Usage
-
-```typescript
-import { To } from "@novu/api/models/components";
-
-let value: To = "SUBSCRIBER_ID";
-```
 
 ## Supported Types
 
 ### `components.SubscriberPayloadDto`
 
 ```typescript
-const value: components.SubscriberPayloadDto = /* values here */
+const value: components.SubscriberPayloadDto = {
+  subscriberId: "<id>",
+};
 ```
 
 ### `string`
 
 ```typescript
-const value: string = /* values here */
+const value: string = "SUBSCRIBER_ID";
 ```
 
 ### `components.TopicPayloadDto`
 
 ```typescript
-const value: components.TopicPayloadDto = /* values here */
+const value: components.TopicPayloadDto = {
+  topicKey: "<value>",
+  type: "Topic",
+};
 ```
 

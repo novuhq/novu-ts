@@ -6,12 +6,12 @@
 import { SubscribersControllerUpdateSubscriberChannelRequest } from "@novu/api/models/operations";
 
 let value: SubscribersControllerUpdateSubscriberChannelRequest = {
-  subscriberId: "<value>",
+  subscriberId: "<id>",
   updateSubscriberChannelRequestDto: {
+    providerId: "msteams",
     credentials: {
-      webhookUrl: "<value>",
+      webhookUrl: "https://corrupt-unblinking.name",
     },
-    providerId: 2532.91,
   },
 };
 ```

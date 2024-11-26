@@ -16,7 +16,7 @@ import { NovuSubscribers } from "./novusubscribers.js";
 export class Topics extends ClientSDK {
   private _subscribers?: NovuSubscribers;
   get subscribers(): NovuSubscribers {
-    return (this._subscribers ??= new NovuSubscribers(this.options$));
+    return (this._subscribers ??= new NovuSubscribers(this._options));
   }
 
   /**
@@ -28,8 +28,25 @@ export class Topics extends ClientSDK {
   async create(
     request: components.CreateTopicRequestDto,
     options?: RequestOptions,
-  ): Promise<components.CreateTopicResponseDto> {
+  ): Promise<operations.TopicsControllerCreateTopicResponse> {
     return unwrapAsync(topicsCreate(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Filter topics
+   *
+   * @remarks
+   * Returns a list of topics that can be paginated using the `page` query parameter and filtered by the topic key with the `key` query parameter
+   */
+  async list(
+    request: operations.TopicsControllerListTopicsRequest,
+    options?: RequestOptions,
+  ): Promise<operations.TopicsControllerListTopicsResponse> {
+    return unwrapAsync(topicsList(
       this,
       request,
       options,
@@ -45,46 +62,10 @@ export class Topics extends ClientSDK {
   async delete(
     topicKey: string,
     options?: RequestOptions,
-  ): Promise<void> {
+  ): Promise<operations.TopicsControllerDeleteTopicResponse | undefined> {
     return unwrapAsync(topicsDelete(
       this,
       topicKey,
-      options,
-    ));
-  }
-
-  /**
-   * Filter topics
-   *
-   * @remarks
-   * Returns a list of topics that can be paginated using the `page` query parameter and filtered by the topic key with the `key` query parameter
-   */
-  async list(
-    request: operations.TopicsControllerListTopicsRequest,
-    options?: RequestOptions,
-  ): Promise<components.FilterTopicsResponseDto> {
-    return unwrapAsync(topicsList(
-      this,
-      request,
-      options,
-    ));
-  }
-
-  /**
-   * Rename a topic
-   *
-   * @remarks
-   * Rename a topic by providing a new name
-   */
-  async rename(
-    topicKey: string,
-    renameTopicRequestDto: components.RenameTopicRequestDto,
-    options?: RequestOptions,
-  ): Promise<components.RenameTopicResponseDto> {
-    return unwrapAsync(topicsRename(
-      this,
-      topicKey,
-      renameTopicRequestDto,
       options,
     ));
   }
@@ -98,9 +79,28 @@ export class Topics extends ClientSDK {
   async retrieve(
     topicKey: string,
     options?: RequestOptions,
-  ): Promise<components.GetTopicResponseDto> {
+  ): Promise<operations.TopicsControllerGetTopicResponse> {
     return unwrapAsync(topicsRetrieve(
       this,
+      topicKey,
+      options,
+    ));
+  }
+
+  /**
+   * Rename a topic
+   *
+   * @remarks
+   * Rename a topic by providing a new name
+   */
+  async rename(
+    renameTopicRequestDto: components.RenameTopicRequestDto,
+    topicKey: string,
+    options?: RequestOptions,
+  ): Promise<operations.TopicsControllerRenameTopicResponse> {
+    return unwrapAsync(topicsRename(
+      this,
+      renameTopicRequestDto,
       topicKey,
       options,
     ));

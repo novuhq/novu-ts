@@ -23,85 +23,32 @@ import { Properties } from "./properties.js";
 export class Subscribers extends ClientSDK {
   private _credentials?: Credentials;
   get credentials(): Credentials {
-    return (this._credentials ??= new Credentials(this.options$));
-  }
-
-  private _authentication?: Authentication;
-  get authentication(): Authentication {
-    return (this._authentication ??= new Authentication(this.options$));
-  }
-
-  private _messages?: NovuMessages;
-  get messages(): NovuMessages {
-    return (this._messages ??= new NovuMessages(this.options$));
-  }
-
-  private _notifications?: NovuNotifications;
-  get notifications(): NovuNotifications {
-    return (this._notifications ??= new NovuNotifications(this.options$));
+    return (this._credentials ??= new Credentials(this._options));
   }
 
   private _properties?: Properties;
   get properties(): Properties {
-    return (this._properties ??= new Properties(this.options$));
+    return (this._properties ??= new Properties(this._options));
   }
 
   private _preferences?: Preferences;
   get preferences(): Preferences {
-    return (this._preferences ??= new Preferences(this.options$));
+    return (this._preferences ??= new Preferences(this._options));
   }
 
-  /**
-   * Create subscriber
-   *
-   * @remarks
-   * Creates a subscriber entity, in the Novu platform. The subscriber will be later used to receive notifications, and access notification feeds. Communication credentials such as email, phone number, and 3 rd party credentials i.e slack tokens could be later associated to this entity.
-   */
-  async create(
-    request: components.CreateSubscriberRequestDto,
-    options?: RequestOptions,
-  ): Promise<components.SubscriberResponseDto> {
-    return unwrapAsync(subscribersCreate(
-      this,
-      request,
-      options,
-    ));
+  private _notifications?: NovuNotifications;
+  get notifications(): NovuNotifications {
+    return (this._notifications ??= new NovuNotifications(this._options));
   }
 
-  /**
-   * Bulk create subscribers
-   *
-   * @remarks
-   *
-   *       Using this endpoint you can create multiple subscribers at once, to avoid multiple calls to the API.
-   *       The bulk API is limited to 500 subscribers per request.
-   */
-  async createBulk(
-    request: components.BulkSubscriberCreateDto,
-    options?: RequestOptions,
-  ): Promise<void> {
-    return unwrapAsync(subscribersCreateBulk(
-      this,
-      request,
-      options,
-    ));
+  private _messages?: NovuMessages;
+  get messages(): NovuMessages {
+    return (this._messages ??= new NovuMessages(this._options));
   }
 
-  /**
-   * Delete subscriber
-   *
-   * @remarks
-   * Deletes a subscriber entity from the Novu platform
-   */
-  async delete(
-    subscriberId: string,
-    options?: RequestOptions,
-  ): Promise<components.DeleteSubscriberResponseDto> {
-    return unwrapAsync(subscribersDelete(
-      this,
-      subscriberId,
-      options,
-    ));
+  private _authentication?: Authentication;
+  get authentication(): Authentication {
+    return (this._authentication ??= new Authentication(this._options));
   }
 
   /**
@@ -126,6 +73,23 @@ export class Subscribers extends ClientSDK {
   }
 
   /**
+   * Create subscriber
+   *
+   * @remarks
+   * Creates a subscriber entity, in the Novu platform. The subscriber will be later used to receive notifications, and access notification feeds. Communication credentials such as email, phone number, and 3 rd party credentials i.e slack tokens could be later associated to this entity.
+   */
+  async create(
+    request: components.CreateSubscriberRequestDto,
+    options?: RequestOptions,
+  ): Promise<operations.SubscribersControllerCreateSubscriberResponse> {
+    return unwrapAsync(subscribersCreate(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
    * Get subscriber
    *
    * @remarks
@@ -133,11 +97,13 @@ export class Subscribers extends ClientSDK {
    */
   async retrieve(
     subscriberId: string,
+    includeTopics?: string | undefined,
     options?: RequestOptions,
-  ): Promise<components.SubscriberResponseDto> {
+  ): Promise<operations.SubscribersControllerGetSubscriberResponse> {
     return unwrapAsync(subscribersRetrieve(
       this,
       subscriberId,
+      includeTopics,
       options,
     ));
   }
@@ -149,14 +115,52 @@ export class Subscribers extends ClientSDK {
    * Used to update the subscriber entity with new information
    */
   async update(
-    subscriberId: string,
     updateSubscriberRequestDto: components.UpdateSubscriberRequestDto,
+    subscriberId: string,
     options?: RequestOptions,
-  ): Promise<components.SubscriberResponseDto> {
+  ): Promise<operations.SubscribersControllerUpdateSubscriberResponse> {
     return unwrapAsync(subscribersUpdate(
       this,
-      subscriberId,
       updateSubscriberRequestDto,
+      subscriberId,
+      options,
+    ));
+  }
+
+  /**
+   * Delete subscriber
+   *
+   * @remarks
+   * Deletes a subscriber entity from the Novu platform
+   */
+  async delete(
+    subscriberId: string,
+    options?: RequestOptions,
+  ): Promise<operations.SubscribersControllerRemoveSubscriberResponse> {
+    return unwrapAsync(subscribersDelete(
+      this,
+      subscriberId,
+      options,
+    ));
+  }
+
+  /**
+   * Bulk create subscribers
+   *
+   * @remarks
+   *
+   *       Using this endpoint you can create multiple subscribers at once, to avoid multiple calls to the API.
+   *       The bulk API is limited to 500 subscribers per request.
+   */
+  async createBulk(
+    request: components.BulkSubscriberCreateDto,
+    options?: RequestOptions,
+  ): Promise<
+    operations.SubscribersControllerBulkCreateSubscribersResponse | undefined
+  > {
+    return unwrapAsync(subscribersCreateBulk(
+      this,
+      request,
       options,
     ));
   }

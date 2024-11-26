@@ -3,9 +3,18 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type IntegrationsControllerGetWebhookSupportStatusRequest = {
   providerOrIntegrationId: string;
+};
+
+export type IntegrationsControllerGetWebhookSupportStatusResponse = {
+  headers: { [k: string]: Array<string> };
+  result: boolean;
 };
 
 /** @internal */
@@ -47,4 +56,112 @@ export namespace IntegrationsControllerGetWebhookSupportStatusRequest$ {
   /** @deprecated use `IntegrationsControllerGetWebhookSupportStatusRequest$Outbound` instead. */
   export type Outbound =
     IntegrationsControllerGetWebhookSupportStatusRequest$Outbound;
+}
+
+export function integrationsControllerGetWebhookSupportStatusRequestToJSON(
+  integrationsControllerGetWebhookSupportStatusRequest:
+    IntegrationsControllerGetWebhookSupportStatusRequest,
+): string {
+  return JSON.stringify(
+    IntegrationsControllerGetWebhookSupportStatusRequest$outboundSchema.parse(
+      integrationsControllerGetWebhookSupportStatusRequest,
+    ),
+  );
+}
+
+export function integrationsControllerGetWebhookSupportStatusRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  IntegrationsControllerGetWebhookSupportStatusRequest,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      IntegrationsControllerGetWebhookSupportStatusRequest$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'IntegrationsControllerGetWebhookSupportStatusRequest' from JSON`,
+  );
+}
+
+/** @internal */
+export const IntegrationsControllerGetWebhookSupportStatusResponse$inboundSchema:
+  z.ZodType<
+    IntegrationsControllerGetWebhookSupportStatusResponse,
+    z.ZodTypeDef,
+    unknown
+  > = z.object({
+    Headers: z.record(z.array(z.string())),
+    Result: z.boolean(),
+  }).transform((v) => {
+    return remap$(v, {
+      "Headers": "headers",
+      "Result": "result",
+    });
+  });
+
+/** @internal */
+export type IntegrationsControllerGetWebhookSupportStatusResponse$Outbound = {
+  Headers: { [k: string]: Array<string> };
+  Result: boolean;
+};
+
+/** @internal */
+export const IntegrationsControllerGetWebhookSupportStatusResponse$outboundSchema:
+  z.ZodType<
+    IntegrationsControllerGetWebhookSupportStatusResponse$Outbound,
+    z.ZodTypeDef,
+    IntegrationsControllerGetWebhookSupportStatusResponse
+  > = z.object({
+    headers: z.record(z.array(z.string())),
+    result: z.boolean(),
+  }).transform((v) => {
+    return remap$(v, {
+      headers: "Headers",
+      result: "Result",
+    });
+  });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace IntegrationsControllerGetWebhookSupportStatusResponse$ {
+  /** @deprecated use `IntegrationsControllerGetWebhookSupportStatusResponse$inboundSchema` instead. */
+  export const inboundSchema =
+    IntegrationsControllerGetWebhookSupportStatusResponse$inboundSchema;
+  /** @deprecated use `IntegrationsControllerGetWebhookSupportStatusResponse$outboundSchema` instead. */
+  export const outboundSchema =
+    IntegrationsControllerGetWebhookSupportStatusResponse$outboundSchema;
+  /** @deprecated use `IntegrationsControllerGetWebhookSupportStatusResponse$Outbound` instead. */
+  export type Outbound =
+    IntegrationsControllerGetWebhookSupportStatusResponse$Outbound;
+}
+
+export function integrationsControllerGetWebhookSupportStatusResponseToJSON(
+  integrationsControllerGetWebhookSupportStatusResponse:
+    IntegrationsControllerGetWebhookSupportStatusResponse,
+): string {
+  return JSON.stringify(
+    IntegrationsControllerGetWebhookSupportStatusResponse$outboundSchema.parse(
+      integrationsControllerGetWebhookSupportStatusResponse,
+    ),
+  );
+}
+
+export function integrationsControllerGetWebhookSupportStatusResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  IntegrationsControllerGetWebhookSupportStatusResponse,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      IntegrationsControllerGetWebhookSupportStatusResponse$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'IntegrationsControllerGetWebhookSupportStatusResponse' from JSON`,
+  );
 }

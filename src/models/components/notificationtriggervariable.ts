@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type NotificationTriggerVariable = {
   name: string;
@@ -42,4 +45,24 @@ export namespace NotificationTriggerVariable$ {
   export const outboundSchema = NotificationTriggerVariable$outboundSchema;
   /** @deprecated use `NotificationTriggerVariable$Outbound` instead. */
   export type Outbound = NotificationTriggerVariable$Outbound;
+}
+
+export function notificationTriggerVariableToJSON(
+  notificationTriggerVariable: NotificationTriggerVariable,
+): string {
+  return JSON.stringify(
+    NotificationTriggerVariable$outboundSchema.parse(
+      notificationTriggerVariable,
+    ),
+  );
+}
+
+export function notificationTriggerVariableFromJSON(
+  jsonString: string,
+): SafeParseResult<NotificationTriggerVariable, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => NotificationTriggerVariable$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'NotificationTriggerVariable' from JSON`,
+  );
 }

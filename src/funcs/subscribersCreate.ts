@@ -3,9 +3,9 @@
  */
 
 import { NovuCore } from "../core.js";
-import { encodeJSON as encodeJSON$ } from "../lib/encodings.js";
-import * as m$ from "../lib/matchers.js";
-import * as schemas$ from "../lib/schemas.js";
+import { encodeJSON } from "../lib/encodings.js";
+import * as M from "../lib/matchers.js";
+import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
@@ -19,6 +19,7 @@ import {
 } from "../models/errors/httpclienterrors.js";
 import { SDKError } from "../models/errors/sdkerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
+import * as operations from "../models/operations/index.js";
 import { Result } from "../types/fp.js";
 
 /**
@@ -28,12 +29,12 @@ import { Result } from "../types/fp.js";
  * Creates a subscriber entity, in the Novu platform. The subscriber will be later used to receive notifications, and access notification feeds. Communication credentials such as email, phone number, and 3 rd party credentials i.e slack tokens could be later associated to this entity.
  */
 export async function subscribersCreate(
-  client$: NovuCore,
+  client: NovuCore,
   request: components.CreateSubscriberRequestDto,
   options?: RequestOptions,
 ): Promise<
   Result<
-    components.SubscriberResponseDto,
+    operations.SubscribersControllerCreateSubscriberResponse,
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -43,54 +44,38 @@ export async function subscribersCreate(
     | ConnectionError
   >
 > {
-  const input$ = request;
-
-  const parsed$ = schemas$.safeParse(
-    input$,
-    (value$) =>
-      components.CreateSubscriberRequestDto$outboundSchema.parse(value$),
+  const parsed = safeParse(
+    request,
+    (value) =>
+      components.CreateSubscriberRequestDto$outboundSchema.parse(value),
     "Input validation failed",
   );
-  if (!parsed$.ok) {
-    return parsed$;
+  if (!parsed.ok) {
+    return parsed;
   }
-  const payload$ = parsed$.value;
-  const body$ = encodeJSON$("body", payload$, { explode: true });
+  const payload = parsed.value;
+  const body = encodeJSON("body", payload, { explode: true });
 
-  const path$ = pathToFunc("/v1/subscribers")();
+  const path = pathToFunc("/v1/subscribers")();
 
-  const headers$ = new Headers({
+  const headers = new Headers({
     "Content-Type": "application/json",
     Accept: "application/json",
   });
 
-  const apiKey$ = await extractSecurity(client$.options$.apiKey);
-  const security$ = apiKey$ == null ? {} : { apiKey: apiKey$ };
+  const secConfig = await extractSecurity(client._options.apiKey);
+  const securityInput = secConfig == null ? {} : { apiKey: secConfig };
+  const requestSecurity = resolveGlobalSecurity(securityInput);
+
   const context = {
     operationID: "SubscribersController_createSubscriber",
     oAuth2Scopes: [],
-    securitySource: client$.options$.apiKey,
-  };
-  const securitySettings$ = resolveGlobalSecurity(security$);
 
-  const requestRes = client$.createRequest$(context, {
-    security: securitySettings$,
-    method: "POST",
-    path: path$,
-    headers: headers$,
-    body: body$,
-    timeoutMs: options?.timeoutMs || client$.options$.timeoutMs || -1,
-  }, options);
-  if (!requestRes.ok) {
-    return requestRes;
-  }
-  const request$ = requestRes.value;
+    resolvedSecurity: requestSecurity,
 
-  const doResult = await client$.do$(request$, {
-    context,
-    errorCodes: ["409", "429", "4XX", "503", "5XX"],
+    securitySource: client._options.apiKey,
     retryConfig: options?.retries
-      || client$.options$.retryConfig
+      || client._options.retryConfig
       || {
         strategy: "backoff",
         backoff: {
@@ -100,16 +85,41 @@ export async function subscribersCreate(
           maxElapsedTime: 3600000,
         },
         retryConnectionErrors: true,
-      },
+      }
+      || { strategy: "none" },
     retryCodes: options?.retryCodes || ["408", "409", "429", "5XX"],
+  };
+
+  const requestRes = client._createRequest(context, {
+    security: requestSecurity,
+    method: "POST",
+    path: path,
+    headers: headers,
+    body: body,
+    timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
+  }, options);
+  if (!requestRes.ok) {
+    return requestRes;
+  }
+  const req = requestRes.value;
+
+  const doResult = await client._do(req, {
+    context,
+    errorCodes: ["409", "429", "4XX", "503", "5XX"],
+    retryConfig: context.retryConfig,
+    retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
     return doResult;
   }
   const response = doResult.value;
 
-  const [result$] = await m$.match<
-    components.SubscriberResponseDto,
+  const responseFields = {
+    HttpMeta: { Response: response, Request: req },
+  };
+
+  const [result] = await M.match<
+    operations.SubscribersControllerCreateSubscriberResponse,
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -118,12 +128,17 @@ export async function subscribersCreate(
     | RequestTimeoutError
     | ConnectionError
   >(
-    m$.json(201, components.SubscriberResponseDto$inboundSchema),
-    m$.fail([409, 429, "4XX", 503, "5XX"]),
-  )(response);
-  if (!result$.ok) {
-    return result$;
+    M.json(
+      201,
+      operations.SubscribersControllerCreateSubscriberResponse$inboundSchema,
+      { hdrs: true, key: "Result" },
+    ),
+    M.fail([409, 429, 503]),
+    M.fail(["4XX", "5XX"]),
+  )(response, { extraFields: responseFields });
+  if (!result.ok) {
+    return result;
   }
 
-  return result$;
+  return result;
 }

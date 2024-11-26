@@ -6,11 +6,11 @@
 import { ChannelSettings } from "@novu/api/models/components";
 
 let value: ChannelSettings = {
-  integrationId: "<value>",
+  providerId: "mattermost",
   credentials: {
-    webhookUrl: "<value>",
+    webhookUrl: "https://ajar-solvency.com",
   },
-  providerId: 1433.53,
+  integrationId: "<id>",
 };
 ```
 
@@ -18,7 +18,7 @@ let value: ChannelSettings = {
 
 | Field                                                                          | Type                                                                           | Required                                                                       | Description                                                                    |
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| `integrationId`                                                                | *string*                                                                       | :heavy_check_mark:                                                             | Id of the integration that is used for this channel                            |
-| `credentials`                                                                  | [components.ChannelCredentials](../../models/components/channelcredentials.md) | :heavy_check_mark:                                                             | Credentials payload for the specified provider                                 |
+| `providerId`                                                                   | [components.ProviderId](../../models/components/providerid.md)                 | :heavy_check_mark:                                                             | The provider identifier for the credentials                                    |
 | `integrationIdentifier`                                                        | *string*                                                                       | :heavy_minus_sign:                                                             | The integration identifier                                                     |
-| `providerId`                                                                   | *number*                                                                       | :heavy_check_mark:                                                             | The provider identifier for the credentials                                    |
+| `credentials`                                                                  | [components.ChannelCredentials](../../models/components/channelcredentials.md) | :heavy_check_mark:                                                             | Credentials payload for the specified provider                                 |
+| `integrationId`                                                                | *string*                                                                       | :heavy_check_mark:                                                             | Id of the integration that is used for this channel                            |

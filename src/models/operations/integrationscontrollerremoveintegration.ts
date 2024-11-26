@@ -3,9 +3,19 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type IntegrationsControllerRemoveIntegrationRequest = {
   integrationId: string;
+};
+
+export type IntegrationsControllerRemoveIntegrationResponse = {
+  headers: { [k: string]: Array<string> };
+  result: Array<components.IntegrationResponseDto>;
 };
 
 /** @internal */
@@ -47,4 +57,112 @@ export namespace IntegrationsControllerRemoveIntegrationRequest$ {
   /** @deprecated use `IntegrationsControllerRemoveIntegrationRequest$Outbound` instead. */
   export type Outbound =
     IntegrationsControllerRemoveIntegrationRequest$Outbound;
+}
+
+export function integrationsControllerRemoveIntegrationRequestToJSON(
+  integrationsControllerRemoveIntegrationRequest:
+    IntegrationsControllerRemoveIntegrationRequest,
+): string {
+  return JSON.stringify(
+    IntegrationsControllerRemoveIntegrationRequest$outboundSchema.parse(
+      integrationsControllerRemoveIntegrationRequest,
+    ),
+  );
+}
+
+export function integrationsControllerRemoveIntegrationRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  IntegrationsControllerRemoveIntegrationRequest,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      IntegrationsControllerRemoveIntegrationRequest$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'IntegrationsControllerRemoveIntegrationRequest' from JSON`,
+  );
+}
+
+/** @internal */
+export const IntegrationsControllerRemoveIntegrationResponse$inboundSchema:
+  z.ZodType<
+    IntegrationsControllerRemoveIntegrationResponse,
+    z.ZodTypeDef,
+    unknown
+  > = z.object({
+    Headers: z.record(z.array(z.string())),
+    Result: z.array(components.IntegrationResponseDto$inboundSchema),
+  }).transform((v) => {
+    return remap$(v, {
+      "Headers": "headers",
+      "Result": "result",
+    });
+  });
+
+/** @internal */
+export type IntegrationsControllerRemoveIntegrationResponse$Outbound = {
+  Headers: { [k: string]: Array<string> };
+  Result: Array<components.IntegrationResponseDto$Outbound>;
+};
+
+/** @internal */
+export const IntegrationsControllerRemoveIntegrationResponse$outboundSchema:
+  z.ZodType<
+    IntegrationsControllerRemoveIntegrationResponse$Outbound,
+    z.ZodTypeDef,
+    IntegrationsControllerRemoveIntegrationResponse
+  > = z.object({
+    headers: z.record(z.array(z.string())),
+    result: z.array(components.IntegrationResponseDto$outboundSchema),
+  }).transform((v) => {
+    return remap$(v, {
+      headers: "Headers",
+      result: "Result",
+    });
+  });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace IntegrationsControllerRemoveIntegrationResponse$ {
+  /** @deprecated use `IntegrationsControllerRemoveIntegrationResponse$inboundSchema` instead. */
+  export const inboundSchema =
+    IntegrationsControllerRemoveIntegrationResponse$inboundSchema;
+  /** @deprecated use `IntegrationsControllerRemoveIntegrationResponse$outboundSchema` instead. */
+  export const outboundSchema =
+    IntegrationsControllerRemoveIntegrationResponse$outboundSchema;
+  /** @deprecated use `IntegrationsControllerRemoveIntegrationResponse$Outbound` instead. */
+  export type Outbound =
+    IntegrationsControllerRemoveIntegrationResponse$Outbound;
+}
+
+export function integrationsControllerRemoveIntegrationResponseToJSON(
+  integrationsControllerRemoveIntegrationResponse:
+    IntegrationsControllerRemoveIntegrationResponse,
+): string {
+  return JSON.stringify(
+    IntegrationsControllerRemoveIntegrationResponse$outboundSchema.parse(
+      integrationsControllerRemoveIntegrationResponse,
+    ),
+  );
+}
+
+export function integrationsControllerRemoveIntegrationResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  IntegrationsControllerRemoveIntegrationResponse,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      IntegrationsControllerRemoveIntegrationResponse$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'IntegrationsControllerRemoveIntegrationResponse' from JSON`,
+  );
 }

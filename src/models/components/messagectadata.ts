@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type MessageCTAData = {
   url?: string | undefined;
@@ -42,4 +45,18 @@ export namespace MessageCTAData$ {
   export const outboundSchema = MessageCTAData$outboundSchema;
   /** @deprecated use `MessageCTAData$Outbound` instead. */
   export type Outbound = MessageCTAData$Outbound;
+}
+
+export function messageCTADataToJSON(messageCTAData: MessageCTAData): string {
+  return JSON.stringify(MessageCTAData$outboundSchema.parse(messageCTAData));
+}
+
+export function messageCTADataFromJSON(
+  jsonString: string,
+): SafeParseResult<MessageCTAData, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => MessageCTAData$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'MessageCTAData' from JSON`,
+  );
 }

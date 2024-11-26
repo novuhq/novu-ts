@@ -5,7 +5,6 @@
 import { notificationsList } from "../funcs/notificationsList.js";
 import { notificationsRetrieve } from "../funcs/notificationsRetrieve.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as components from "../models/components/index.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
 import { Stats } from "./stats.js";
@@ -13,7 +12,7 @@ import { Stats } from "./stats.js";
 export class Notifications extends ClientSDK {
   private _stats?: Stats;
   get stats(): Stats {
-    return (this._stats ??= new Stats(this.options$));
+    return (this._stats ??= new Stats(this._options));
   }
 
   /**
@@ -22,7 +21,7 @@ export class Notifications extends ClientSDK {
   async list(
     request: operations.NotificationsControllerListNotificationsRequest,
     options?: RequestOptions,
-  ): Promise<components.ActivitiesResponseDto> {
+  ): Promise<operations.NotificationsControllerListNotificationsResponse> {
     return unwrapAsync(notificationsList(
       this,
       request,
@@ -36,7 +35,7 @@ export class Notifications extends ClientSDK {
   async retrieve(
     notificationId: string,
     options?: RequestOptions,
-  ): Promise<components.ActivityNotificationResponseDto> {
+  ): Promise<operations.NotificationsControllerGetNotificationResponse> {
     return unwrapAsync(notificationsRetrieve(
       this,
       notificationId,

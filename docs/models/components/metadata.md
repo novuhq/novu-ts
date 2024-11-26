@@ -1,38 +1,38 @@
 # Metadata
 
-## Example Usage
-
-```typescript
-import { Metadata } from "@novu/api/models/components";
-
-let value: Metadata = {
-  type: "backoff",
-};
-```
 
 ## Supported Types
 
 ### `components.DigestRegularMetadata`
 
 ```typescript
-const value: components.DigestRegularMetadata = /* values here */
+const value: components.DigestRegularMetadata = {
+  type: "backoff",
+};
 ```
 
 ### `components.DigestTimedMetadata`
 
 ```typescript
-const value: components.DigestTimedMetadata = /* values here */
+const value: components.DigestTimedMetadata = {
+  type: "timed",
+};
 ```
 
 ### `components.DelayRegularMetadata`
 
 ```typescript
-const value: components.DelayRegularMetadata = /* values here */
+const value: components.DelayRegularMetadata = {
+  type: "regular",
+};
 ```
 
 ### `components.DelayScheduledMetadata`
 
 ```typescript
-const value: components.DelayScheduledMetadata = /* values here */
+const value: components.DelayScheduledMetadata = {
+  type: "scheduled",
+  delayPath: "<value>",
+};
 ```
 

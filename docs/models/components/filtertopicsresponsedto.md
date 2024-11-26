@@ -8,8 +8,8 @@ import { FilterTopicsResponseDto } from "@novu/api/models/components";
 let value: FilterTopicsResponseDto = {
   data: [
     {
-      environmentId: "<value>",
-      organizationId: "<value>",
+      organizationId: "<id>",
+      environmentId: "<id>",
       key: "<key>",
       name: "<value>",
       subscribers: [
@@ -17,9 +17,9 @@ let value: FilterTopicsResponseDto = {
       ],
     },
   ],
-  page: 3637.11,
-  pageSize: 3250.47,
-  totalCount: 5701.97,
+  page: 580.29,
+  pageSize: 4344.17,
+  totalCount: 3117.96,
 };
 ```
 

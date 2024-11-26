@@ -3,44 +3,52 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
-export const QueryParamChannel = {
+export const Channel = {
   InApp: "in_app",
   Email: "email",
   Sms: "sms",
   Chat: "chat",
   Push: "push",
 } as const;
-export type QueryParamChannel = ClosedEnum<typeof QueryParamChannel>;
+export type Channel = ClosedEnum<typeof Channel>;
 
 export type MessagesControllerGetMessagesRequest = {
-  channel?: QueryParamChannel | undefined;
+  channel?: Channel | undefined;
   subscriberId?: string | undefined;
   transactionId?: Array<string> | undefined;
   page?: number | undefined;
   limit?: number | undefined;
 };
 
-/** @internal */
-export const QueryParamChannel$inboundSchema: z.ZodNativeEnum<
-  typeof QueryParamChannel
-> = z.nativeEnum(QueryParamChannel);
+export type MessagesControllerGetMessagesResponse = {
+  headers: { [k: string]: Array<string> };
+  result: components.ActivitiesResponseDto;
+};
 
 /** @internal */
-export const QueryParamChannel$outboundSchema: z.ZodNativeEnum<
-  typeof QueryParamChannel
-> = QueryParamChannel$inboundSchema;
+export const Channel$inboundSchema: z.ZodNativeEnum<typeof Channel> = z
+  .nativeEnum(Channel);
+
+/** @internal */
+export const Channel$outboundSchema: z.ZodNativeEnum<typeof Channel> =
+  Channel$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace QueryParamChannel$ {
-  /** @deprecated use `QueryParamChannel$inboundSchema` instead. */
-  export const inboundSchema = QueryParamChannel$inboundSchema;
-  /** @deprecated use `QueryParamChannel$outboundSchema` instead. */
-  export const outboundSchema = QueryParamChannel$outboundSchema;
+export namespace Channel$ {
+  /** @deprecated use `Channel$inboundSchema` instead. */
+  export const inboundSchema = Channel$inboundSchema;
+  /** @deprecated use `Channel$outboundSchema` instead. */
+  export const outboundSchema = Channel$outboundSchema;
 }
 
 /** @internal */
@@ -49,7 +57,7 @@ export const MessagesControllerGetMessagesRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  channel: QueryParamChannel$inboundSchema.optional(),
+  channel: Channel$inboundSchema.optional(),
   subscriberId: z.string().optional(),
   transactionId: z.array(z.string()).optional(),
   page: z.number().default(0),
@@ -71,7 +79,7 @@ export const MessagesControllerGetMessagesRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   MessagesControllerGetMessagesRequest
 > = z.object({
-  channel: QueryParamChannel$outboundSchema.optional(),
+  channel: Channel$outboundSchema.optional(),
   subscriberId: z.string().optional(),
   transactionId: z.array(z.string()).optional(),
   page: z.number().default(0),
@@ -91,4 +99,97 @@ export namespace MessagesControllerGetMessagesRequest$ {
     MessagesControllerGetMessagesRequest$outboundSchema;
   /** @deprecated use `MessagesControllerGetMessagesRequest$Outbound` instead. */
   export type Outbound = MessagesControllerGetMessagesRequest$Outbound;
+}
+
+export function messagesControllerGetMessagesRequestToJSON(
+  messagesControllerGetMessagesRequest: MessagesControllerGetMessagesRequest,
+): string {
+  return JSON.stringify(
+    MessagesControllerGetMessagesRequest$outboundSchema.parse(
+      messagesControllerGetMessagesRequest,
+    ),
+  );
+}
+
+export function messagesControllerGetMessagesRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<MessagesControllerGetMessagesRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      MessagesControllerGetMessagesRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'MessagesControllerGetMessagesRequest' from JSON`,
+  );
+}
+
+/** @internal */
+export const MessagesControllerGetMessagesResponse$inboundSchema: z.ZodType<
+  MessagesControllerGetMessagesResponse,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  Headers: z.record(z.array(z.string())),
+  Result: components.ActivitiesResponseDto$inboundSchema,
+}).transform((v) => {
+  return remap$(v, {
+    "Headers": "headers",
+    "Result": "result",
+  });
+});
+
+/** @internal */
+export type MessagesControllerGetMessagesResponse$Outbound = {
+  Headers: { [k: string]: Array<string> };
+  Result: components.ActivitiesResponseDto$Outbound;
+};
+
+/** @internal */
+export const MessagesControllerGetMessagesResponse$outboundSchema: z.ZodType<
+  MessagesControllerGetMessagesResponse$Outbound,
+  z.ZodTypeDef,
+  MessagesControllerGetMessagesResponse
+> = z.object({
+  headers: z.record(z.array(z.string())),
+  result: components.ActivitiesResponseDto$outboundSchema,
+}).transform((v) => {
+  return remap$(v, {
+    headers: "Headers",
+    result: "Result",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace MessagesControllerGetMessagesResponse$ {
+  /** @deprecated use `MessagesControllerGetMessagesResponse$inboundSchema` instead. */
+  export const inboundSchema =
+    MessagesControllerGetMessagesResponse$inboundSchema;
+  /** @deprecated use `MessagesControllerGetMessagesResponse$outboundSchema` instead. */
+  export const outboundSchema =
+    MessagesControllerGetMessagesResponse$outboundSchema;
+  /** @deprecated use `MessagesControllerGetMessagesResponse$Outbound` instead. */
+  export type Outbound = MessagesControllerGetMessagesResponse$Outbound;
+}
+
+export function messagesControllerGetMessagesResponseToJSON(
+  messagesControllerGetMessagesResponse: MessagesControllerGetMessagesResponse,
+): string {
+  return JSON.stringify(
+    MessagesControllerGetMessagesResponse$outboundSchema.parse(
+      messagesControllerGetMessagesResponse,
+    ),
+  );
+}
+
+export function messagesControllerGetMessagesResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<MessagesControllerGetMessagesResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      MessagesControllerGetMessagesResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'MessagesControllerGetMessagesResponse' from JSON`,
+  );
 }

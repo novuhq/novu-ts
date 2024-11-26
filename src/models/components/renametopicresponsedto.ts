@@ -4,11 +4,14 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type RenameTopicResponseDto = {
-  environmentId: string;
   id?: string | undefined;
   organizationId: string;
+  environmentId: string;
   key: string;
   name: string;
   subscribers: Array<string>;
@@ -20,25 +23,25 @@ export const RenameTopicResponseDto$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  _environmentId: z.string(),
   _id: z.string().optional(),
   _organizationId: z.string(),
+  _environmentId: z.string(),
   key: z.string(),
   name: z.string(),
   subscribers: z.array(z.string()),
 }).transform((v) => {
   return remap$(v, {
-    "_environmentId": "environmentId",
     "_id": "id",
     "_organizationId": "organizationId",
+    "_environmentId": "environmentId",
   });
 });
 
 /** @internal */
 export type RenameTopicResponseDto$Outbound = {
-  _environmentId: string;
   _id?: string | undefined;
   _organizationId: string;
+  _environmentId: string;
   key: string;
   name: string;
   subscribers: Array<string>;
@@ -50,17 +53,17 @@ export const RenameTopicResponseDto$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   RenameTopicResponseDto
 > = z.object({
-  environmentId: z.string(),
   id: z.string().optional(),
   organizationId: z.string(),
+  environmentId: z.string(),
   key: z.string(),
   name: z.string(),
   subscribers: z.array(z.string()),
 }).transform((v) => {
   return remap$(v, {
-    environmentId: "_environmentId",
     id: "_id",
     organizationId: "_organizationId",
+    environmentId: "_environmentId",
   });
 });
 
@@ -75,4 +78,22 @@ export namespace RenameTopicResponseDto$ {
   export const outboundSchema = RenameTopicResponseDto$outboundSchema;
   /** @deprecated use `RenameTopicResponseDto$Outbound` instead. */
   export type Outbound = RenameTopicResponseDto$Outbound;
+}
+
+export function renameTopicResponseDtoToJSON(
+  renameTopicResponseDto: RenameTopicResponseDto,
+): string {
+  return JSON.stringify(
+    RenameTopicResponseDto$outboundSchema.parse(renameTopicResponseDto),
+  );
+}
+
+export function renameTopicResponseDtoFromJSON(
+  jsonString: string,
+): SafeParseResult<RenameTopicResponseDto, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => RenameTopicResponseDto$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'RenameTopicResponseDto' from JSON`,
+  );
 }

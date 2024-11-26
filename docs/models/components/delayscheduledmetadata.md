@@ -6,8 +6,8 @@
 import { DelayScheduledMetadata } from "@novu/api/models/components";
 
 let value: DelayScheduledMetadata = {
-  delayPath: "<value>",
   type: "scheduled",
+  delayPath: "<value>",
 };
 ```
 
@@ -15,5 +15,5 @@ let value: DelayScheduledMetadata = {
 
 | Field                                                                                          | Type                                                                                           | Required                                                                                       | Description                                                                                    |
 | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| `delayPath`                                                                                    | *string*                                                                                       | :heavy_check_mark:                                                                             | N/A                                                                                            |
 | `type`                                                                                         | [components.DelayScheduledMetadataType](../../models/components/delayscheduledmetadatatype.md) | :heavy_check_mark:                                                                             | N/A                                                                                            |
+| `delayPath`                                                                                    | *string*                                                                                       | :heavy_check_mark:                                                                             | N/A                                                                                            |

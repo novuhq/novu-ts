@@ -3,7 +3,10 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type MessageActionResultPayload = {};
 
@@ -48,6 +51,24 @@ export namespace MessageActionResultPayload$ {
   export const outboundSchema = MessageActionResultPayload$outboundSchema;
   /** @deprecated use `MessageActionResultPayload$Outbound` instead. */
   export type Outbound = MessageActionResultPayload$Outbound;
+}
+
+export function messageActionResultPayloadToJSON(
+  messageActionResultPayload: MessageActionResultPayload,
+): string {
+  return JSON.stringify(
+    MessageActionResultPayload$outboundSchema.parse(messageActionResultPayload),
+  );
+}
+
+export function messageActionResultPayloadFromJSON(
+  jsonString: string,
+): SafeParseResult<MessageActionResultPayload, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => MessageActionResultPayload$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'MessageActionResultPayload' from JSON`,
+  );
 }
 
 /** @internal */
@@ -108,4 +129,22 @@ export namespace MessageActionResult$ {
   export const outboundSchema = MessageActionResult$outboundSchema;
   /** @deprecated use `MessageActionResult$Outbound` instead. */
   export type Outbound = MessageActionResult$Outbound;
+}
+
+export function messageActionResultToJSON(
+  messageActionResult: MessageActionResult,
+): string {
+  return JSON.stringify(
+    MessageActionResult$outboundSchema.parse(messageActionResult),
+  );
+}
+
+export function messageActionResultFromJSON(
+  jsonString: string,
+): SafeParseResult<MessageActionResult, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => MessageActionResult$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'MessageActionResult' from JSON`,
+  );
 }

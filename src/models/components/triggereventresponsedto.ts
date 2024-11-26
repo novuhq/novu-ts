@@ -3,7 +3,10 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * Status for trigger
@@ -30,13 +33,13 @@ export type TriggerEventResponseDto = {
    */
   acknowledged: boolean;
   /**
-   * In case of an error, this field will contain the error message
-   */
-  error?: Array<string> | undefined;
-  /**
    * Status for trigger
    */
   status: TriggerEventResponseDtoStatus;
+  /**
+   * In case of an error, this field will contain the error message
+   */
+  error?: Array<string> | undefined;
   /**
    * Transaction id for trigger
    */
@@ -71,16 +74,16 @@ export const TriggerEventResponseDto$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   acknowledged: z.boolean(),
-  error: z.array(z.string()).optional(),
   status: TriggerEventResponseDtoStatus$inboundSchema,
+  error: z.array(z.string()).optional(),
   transactionId: z.string().optional(),
 });
 
 /** @internal */
 export type TriggerEventResponseDto$Outbound = {
   acknowledged: boolean;
-  error?: Array<string> | undefined;
   status: string;
+  error?: Array<string> | undefined;
   transactionId?: string | undefined;
 };
 
@@ -91,8 +94,8 @@ export const TriggerEventResponseDto$outboundSchema: z.ZodType<
   TriggerEventResponseDto
 > = z.object({
   acknowledged: z.boolean(),
-  error: z.array(z.string()).optional(),
   status: TriggerEventResponseDtoStatus$outboundSchema,
+  error: z.array(z.string()).optional(),
   transactionId: z.string().optional(),
 });
 
@@ -107,4 +110,22 @@ export namespace TriggerEventResponseDto$ {
   export const outboundSchema = TriggerEventResponseDto$outboundSchema;
   /** @deprecated use `TriggerEventResponseDto$Outbound` instead. */
   export type Outbound = TriggerEventResponseDto$Outbound;
+}
+
+export function triggerEventResponseDtoToJSON(
+  triggerEventResponseDto: TriggerEventResponseDto,
+): string {
+  return JSON.stringify(
+    TriggerEventResponseDto$outboundSchema.parse(triggerEventResponseDto),
+  );
+}
+
+export function triggerEventResponseDtoFromJSON(
+  jsonString: string,
+): SafeParseResult<TriggerEventResponseDto, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TriggerEventResponseDto$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TriggerEventResponseDto' from JSON`,
+  );
 }

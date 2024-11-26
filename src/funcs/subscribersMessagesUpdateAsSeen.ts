@@ -3,16 +3,12 @@
  */
 
 import { NovuCore } from "../core.js";
-import {
-  encodeJSON as encodeJSON$,
-  encodeSimple as encodeSimple$,
-} from "../lib/encodings.js";
-import * as m$ from "../lib/matchers.js";
-import * as schemas$ from "../lib/schemas.js";
+import { encodeJSON, encodeSimple } from "../lib/encodings.js";
+import * as M from "../lib/matchers.js";
+import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
-import * as components from "../models/components/index.js";
 import {
   ConnectionError,
   InvalidRequestError,
@@ -29,12 +25,12 @@ import { Result } from "../types/fp.js";
  * Mark message action as seen
  */
 export async function subscribersMessagesUpdateAsSeen(
-  client$: NovuCore,
+  client: NovuCore,
   request: operations.SubscribersControllerMarkActionAsSeenRequest,
   options?: RequestOptions,
 ): Promise<
   Result<
-    components.MessageResponseDto,
+    operations.SubscribersControllerMarkActionAsSeenResponse,
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -44,74 +40,58 @@ export async function subscribersMessagesUpdateAsSeen(
     | ConnectionError
   >
 > {
-  const input$ = request;
-
-  const parsed$ = schemas$.safeParse(
-    input$,
-    (value$) =>
+  const parsed = safeParse(
+    request,
+    (value) =>
       operations.SubscribersControllerMarkActionAsSeenRequest$outboundSchema
-        .parse(value$),
+        .parse(value),
     "Input validation failed",
   );
-  if (!parsed$.ok) {
-    return parsed$;
+  if (!parsed.ok) {
+    return parsed;
   }
-  const payload$ = parsed$.value;
-  const body$ = encodeJSON$("body", payload$.MarkMessageActionAsSeenDto, {
+  const payload = parsed.value;
+  const body = encodeJSON("body", payload.MarkMessageActionAsSeenDto, {
     explode: true,
   });
 
-  const pathParams$ = {
-    messageId: encodeSimple$("messageId", payload$.messageId, {
+  const pathParams = {
+    messageId: encodeSimple("messageId", payload.messageId, {
       explode: false,
       charEncoding: "percent",
     }),
-    subscriberId: encodeSimple$("subscriberId", payload$.subscriberId, {
+    subscriberId: encodeSimple("subscriberId", payload.subscriberId, {
       explode: false,
       charEncoding: "percent",
     }),
-    type: encodeSimple$("type", payload$.type, {
+    type: encodeSimple("type", payload.type, {
       explode: false,
       charEncoding: "percent",
     }),
   };
 
-  const path$ = pathToFunc(
+  const path = pathToFunc(
     "/v1/subscribers/{subscriberId}/messages/{messageId}/actions/{type}",
-  )(pathParams$);
+  )(pathParams);
 
-  const headers$ = new Headers({
+  const headers = new Headers({
     "Content-Type": "application/json",
     Accept: "application/json",
   });
 
-  const apiKey$ = await extractSecurity(client$.options$.apiKey);
-  const security$ = apiKey$ == null ? {} : { apiKey: apiKey$ };
+  const secConfig = await extractSecurity(client._options.apiKey);
+  const securityInput = secConfig == null ? {} : { apiKey: secConfig };
+  const requestSecurity = resolveGlobalSecurity(securityInput);
+
   const context = {
     operationID: "SubscribersController_markActionAsSeen",
     oAuth2Scopes: [],
-    securitySource: client$.options$.apiKey,
-  };
-  const securitySettings$ = resolveGlobalSecurity(security$);
 
-  const requestRes = client$.createRequest$(context, {
-    security: securitySettings$,
-    method: "POST",
-    path: path$,
-    headers: headers$,
-    body: body$,
-    timeoutMs: options?.timeoutMs || client$.options$.timeoutMs || -1,
-  }, options);
-  if (!requestRes.ok) {
-    return requestRes;
-  }
-  const request$ = requestRes.value;
+    resolvedSecurity: requestSecurity,
 
-  const doResult = await client$.do$(request$, {
-    context,
-    errorCodes: ["409", "429", "4XX", "503", "5XX"],
+    securitySource: client._options.apiKey,
     retryConfig: options?.retries
-      || client$.options$.retryConfig
+      || client._options.retryConfig
       || {
         strategy: "backoff",
         backoff: {
@@ -121,16 +101,41 @@ export async function subscribersMessagesUpdateAsSeen(
           maxElapsedTime: 3600000,
         },
         retryConnectionErrors: true,
-      },
+      }
+      || { strategy: "none" },
     retryCodes: options?.retryCodes || ["408", "409", "429", "5XX"],
+  };
+
+  const requestRes = client._createRequest(context, {
+    security: requestSecurity,
+    method: "POST",
+    path: path,
+    headers: headers,
+    body: body,
+    timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
+  }, options);
+  if (!requestRes.ok) {
+    return requestRes;
+  }
+  const req = requestRes.value;
+
+  const doResult = await client._do(req, {
+    context,
+    errorCodes: ["409", "429", "4XX", "503", "5XX"],
+    retryConfig: context.retryConfig,
+    retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
     return doResult;
   }
   const response = doResult.value;
 
-  const [result$] = await m$.match<
-    components.MessageResponseDto,
+  const responseFields = {
+    HttpMeta: { Response: response, Request: req },
+  };
+
+  const [result] = await M.match<
+    operations.SubscribersControllerMarkActionAsSeenResponse,
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -139,12 +144,17 @@ export async function subscribersMessagesUpdateAsSeen(
     | RequestTimeoutError
     | ConnectionError
   >(
-    m$.json(201, components.MessageResponseDto$inboundSchema),
-    m$.fail([409, 429, "4XX", 503, "5XX"]),
-  )(response);
-  if (!result$.ok) {
-    return result$;
+    M.json(
+      201,
+      operations.SubscribersControllerMarkActionAsSeenResponse$inboundSchema,
+      { hdrs: true, key: "Result" },
+    ),
+    M.fail([409, 429, 503]),
+    M.fail(["4XX", "5XX"]),
+  )(response, { extraFields: responseFields });
+  if (!result.ok) {
+    return result;
   }
 
-  return result$;
+  return result;
 }

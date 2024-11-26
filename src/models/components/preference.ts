@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   PreferenceChannels,
   PreferenceChannels$inboundSchema,
@@ -12,13 +15,13 @@ import {
 
 export type Preference = {
   /**
-   * Subscriber preferences for the different channels regarding this workflow
-   */
-  channels: PreferenceChannels;
-  /**
    * Sets if the workflow is fully enabled for all channels or not for the subscriber.
    */
   enabled: boolean;
+  /**
+   * Subscriber preferences for the different channels regarding this workflow
+   */
+  channels: PreferenceChannels;
 };
 
 /** @internal */
@@ -27,14 +30,14 @@ export const Preference$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  channels: PreferenceChannels$inboundSchema,
   enabled: z.boolean(),
+  channels: PreferenceChannels$inboundSchema,
 });
 
 /** @internal */
 export type Preference$Outbound = {
-  channels: PreferenceChannels$Outbound;
   enabled: boolean;
+  channels: PreferenceChannels$Outbound;
 };
 
 /** @internal */
@@ -43,8 +46,8 @@ export const Preference$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   Preference
 > = z.object({
-  channels: PreferenceChannels$outboundSchema,
   enabled: z.boolean(),
+  channels: PreferenceChannels$outboundSchema,
 });
 
 /**
@@ -58,4 +61,18 @@ export namespace Preference$ {
   export const outboundSchema = Preference$outboundSchema;
   /** @deprecated use `Preference$Outbound` instead. */
   export type Outbound = Preference$Outbound;
+}
+
+export function preferenceToJSON(preference: Preference): string {
+  return JSON.stringify(Preference$outboundSchema.parse(preference));
+}
+
+export function preferenceFromJSON(
+  jsonString: string,
+): SafeParseResult<Preference, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Preference$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Preference' from JSON`,
+  );
 }

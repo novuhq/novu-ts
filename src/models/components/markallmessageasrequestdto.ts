@@ -3,7 +3,10 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * Optional feed identifier or array of feed identifiers
@@ -13,7 +16,7 @@ export type FeedIdentifier = string | Array<string>;
 /**
  * Mark all subscriber messages as read, unread, seen or unseen
  */
-export const MarkAs = {
+export const MarkAllMessageAsRequestDtoMarkAs = {
   Read: "read",
   Seen: "seen",
   Unread: "unread",
@@ -22,7 +25,9 @@ export const MarkAs = {
 /**
  * Mark all subscriber messages as read, unread, seen or unseen
  */
-export type MarkAs = ClosedEnum<typeof MarkAs>;
+export type MarkAllMessageAsRequestDtoMarkAs = ClosedEnum<
+  typeof MarkAllMessageAsRequestDtoMarkAs
+>;
 
 export type MarkAllMessageAsRequestDto = {
   /**
@@ -32,7 +37,7 @@ export type MarkAllMessageAsRequestDto = {
   /**
    * Mark all subscriber messages as read, unread, seen or unseen
    */
-  markAs: MarkAs;
+  markAs: MarkAllMessageAsRequestDtoMarkAs;
 };
 
 /** @internal */
@@ -65,23 +70,39 @@ export namespace FeedIdentifier$ {
   export type Outbound = FeedIdentifier$Outbound;
 }
 
-/** @internal */
-export const MarkAs$inboundSchema: z.ZodNativeEnum<typeof MarkAs> = z
-  .nativeEnum(MarkAs);
+export function feedIdentifierToJSON(feedIdentifier: FeedIdentifier): string {
+  return JSON.stringify(FeedIdentifier$outboundSchema.parse(feedIdentifier));
+}
+
+export function feedIdentifierFromJSON(
+  jsonString: string,
+): SafeParseResult<FeedIdentifier, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => FeedIdentifier$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FeedIdentifier' from JSON`,
+  );
+}
 
 /** @internal */
-export const MarkAs$outboundSchema: z.ZodNativeEnum<typeof MarkAs> =
-  MarkAs$inboundSchema;
+export const MarkAllMessageAsRequestDtoMarkAs$inboundSchema: z.ZodNativeEnum<
+  typeof MarkAllMessageAsRequestDtoMarkAs
+> = z.nativeEnum(MarkAllMessageAsRequestDtoMarkAs);
+
+/** @internal */
+export const MarkAllMessageAsRequestDtoMarkAs$outboundSchema: z.ZodNativeEnum<
+  typeof MarkAllMessageAsRequestDtoMarkAs
+> = MarkAllMessageAsRequestDtoMarkAs$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace MarkAs$ {
-  /** @deprecated use `MarkAs$inboundSchema` instead. */
-  export const inboundSchema = MarkAs$inboundSchema;
-  /** @deprecated use `MarkAs$outboundSchema` instead. */
-  export const outboundSchema = MarkAs$outboundSchema;
+export namespace MarkAllMessageAsRequestDtoMarkAs$ {
+  /** @deprecated use `MarkAllMessageAsRequestDtoMarkAs$inboundSchema` instead. */
+  export const inboundSchema = MarkAllMessageAsRequestDtoMarkAs$inboundSchema;
+  /** @deprecated use `MarkAllMessageAsRequestDtoMarkAs$outboundSchema` instead. */
+  export const outboundSchema = MarkAllMessageAsRequestDtoMarkAs$outboundSchema;
 }
 
 /** @internal */
@@ -91,7 +112,7 @@ export const MarkAllMessageAsRequestDto$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   feedIdentifier: z.union([z.string(), z.array(z.string())]).optional(),
-  markAs: MarkAs$inboundSchema,
+  markAs: MarkAllMessageAsRequestDtoMarkAs$inboundSchema,
 });
 
 /** @internal */
@@ -107,7 +128,7 @@ export const MarkAllMessageAsRequestDto$outboundSchema: z.ZodType<
   MarkAllMessageAsRequestDto
 > = z.object({
   feedIdentifier: z.union([z.string(), z.array(z.string())]).optional(),
-  markAs: MarkAs$outboundSchema,
+  markAs: MarkAllMessageAsRequestDtoMarkAs$outboundSchema,
 });
 
 /**
@@ -121,4 +142,22 @@ export namespace MarkAllMessageAsRequestDto$ {
   export const outboundSchema = MarkAllMessageAsRequestDto$outboundSchema;
   /** @deprecated use `MarkAllMessageAsRequestDto$Outbound` instead. */
   export type Outbound = MarkAllMessageAsRequestDto$Outbound;
+}
+
+export function markAllMessageAsRequestDtoToJSON(
+  markAllMessageAsRequestDto: MarkAllMessageAsRequestDto,
+): string {
+  return JSON.stringify(
+    MarkAllMessageAsRequestDto$outboundSchema.parse(markAllMessageAsRequestDto),
+  );
+}
+
+export function markAllMessageAsRequestDtoFromJSON(
+  jsonString: string,
+): SafeParseResult<MarkAllMessageAsRequestDto, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => MarkAllMessageAsRequestDto$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'MarkAllMessageAsRequestDto' from JSON`,
+  );
 }

@@ -3,10 +3,13 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ActivityStatsResponseDto = {
-  monthlySent: number;
   weeklySent: number;
+  monthlySent: number;
 };
 
 /** @internal */
@@ -15,14 +18,14 @@ export const ActivityStatsResponseDto$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  monthlySent: z.number(),
   weeklySent: z.number(),
+  monthlySent: z.number(),
 });
 
 /** @internal */
 export type ActivityStatsResponseDto$Outbound = {
-  monthlySent: number;
   weeklySent: number;
+  monthlySent: number;
 };
 
 /** @internal */
@@ -31,8 +34,8 @@ export const ActivityStatsResponseDto$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ActivityStatsResponseDto
 > = z.object({
-  monthlySent: z.number(),
   weeklySent: z.number(),
+  monthlySent: z.number(),
 });
 
 /**
@@ -46,4 +49,22 @@ export namespace ActivityStatsResponseDto$ {
   export const outboundSchema = ActivityStatsResponseDto$outboundSchema;
   /** @deprecated use `ActivityStatsResponseDto$Outbound` instead. */
   export type Outbound = ActivityStatsResponseDto$Outbound;
+}
+
+export function activityStatsResponseDtoToJSON(
+  activityStatsResponseDto: ActivityStatsResponseDto,
+): string {
+  return JSON.stringify(
+    ActivityStatsResponseDto$outboundSchema.parse(activityStatsResponseDto),
+  );
+}
+
+export function activityStatsResponseDtoFromJSON(
+  jsonString: string,
+): SafeParseResult<ActivityStatsResponseDto, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ActivityStatsResponseDto$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ActivityStatsResponseDto' from JSON`,
+  );
 }

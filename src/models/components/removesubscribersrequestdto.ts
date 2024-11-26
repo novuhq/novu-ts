@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type RemoveSubscribersRequestDto = {
   /**
@@ -45,4 +48,24 @@ export namespace RemoveSubscribersRequestDto$ {
   export const outboundSchema = RemoveSubscribersRequestDto$outboundSchema;
   /** @deprecated use `RemoveSubscribersRequestDto$Outbound` instead. */
   export type Outbound = RemoveSubscribersRequestDto$Outbound;
+}
+
+export function removeSubscribersRequestDtoToJSON(
+  removeSubscribersRequestDto: RemoveSubscribersRequestDto,
+): string {
+  return JSON.stringify(
+    RemoveSubscribersRequestDto$outboundSchema.parse(
+      removeSubscribersRequestDto,
+    ),
+  );
+}
+
+export function removeSubscribersRequestDtoFromJSON(
+  jsonString: string,
+): SafeParseResult<RemoveSubscribersRequestDto, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => RemoveSubscribersRequestDto$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'RemoveSubscribersRequestDto' from JSON`,
+  );
 }

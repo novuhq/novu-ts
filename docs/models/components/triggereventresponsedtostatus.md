@@ -7,7 +7,7 @@ Status for trigger
 ```typescript
 import { TriggerEventResponseDtoStatus } from "@novu/api/models/components";
 
-let value: TriggerEventResponseDtoStatus = "no_workflow_steps_defined";
+let value: TriggerEventResponseDtoStatus = "processed";
 ```
 
 ## Values

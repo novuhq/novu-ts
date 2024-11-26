@@ -21,10 +21,10 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.integrations.webhooks.retrieve("<value>");
-  
+  const result = await novu.integrations.webhooks.retrieve("<id>");
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -45,7 +45,7 @@ const novu = new NovuCore({
 });
 
 async function run() {
-  const res = await integrationsWebhooksRetrieve(novu, "<value>");
+  const res = await integrationsWebhooksRetrieve(novu, "<id>");
 
   if (!res.ok) {
     throw res.error;
@@ -54,7 +54,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -71,10 +71,10 @@ run();
 
 ### Response
 
-**Promise\<[boolean](../../models/.md)\>**
+**Promise\<[operations.IntegrationsControllerGetWebhookSupportStatusResponse](../../models/operations/integrationscontrollergetwebhooksupportstatusresponse.md)\>**
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |

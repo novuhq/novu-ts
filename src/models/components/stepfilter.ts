@@ -3,7 +3,10 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   FieldFilterPart,
   FieldFilterPart$inboundSchema,
@@ -30,10 +33,10 @@ export const Value = {
 export type Value = ClosedEnum<typeof Value>;
 
 export type StepFilter = {
-  children: Array<FieldFilterPart>;
   isNegated: boolean;
   type: StepFilterType;
   value: Value;
+  children: Array<FieldFilterPart>;
 };
 
 /** @internal */
@@ -83,18 +86,18 @@ export const StepFilter$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  children: z.array(FieldFilterPart$inboundSchema),
   isNegated: z.boolean(),
   type: StepFilterType$inboundSchema,
   value: Value$inboundSchema,
+  children: z.array(FieldFilterPart$inboundSchema),
 });
 
 /** @internal */
 export type StepFilter$Outbound = {
-  children: Array<FieldFilterPart$Outbound>;
   isNegated: boolean;
   type: string;
   value: string;
+  children: Array<FieldFilterPart$Outbound>;
 };
 
 /** @internal */
@@ -103,10 +106,10 @@ export const StepFilter$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   StepFilter
 > = z.object({
-  children: z.array(FieldFilterPart$outboundSchema),
   isNegated: z.boolean(),
   type: StepFilterType$outboundSchema,
   value: Value$outboundSchema,
+  children: z.array(FieldFilterPart$outboundSchema),
 });
 
 /**
@@ -120,4 +123,18 @@ export namespace StepFilter$ {
   export const outboundSchema = StepFilter$outboundSchema;
   /** @deprecated use `StepFilter$Outbound` instead. */
   export type Outbound = StepFilter$Outbound;
+}
+
+export function stepFilterToJSON(stepFilter: StepFilter): string {
+  return JSON.stringify(StepFilter$outboundSchema.parse(stepFilter));
+}
+
+export function stepFilterFromJSON(
+  jsonString: string,
+): SafeParseResult<StepFilter, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => StepFilter$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'StepFilter' from JSON`,
+  );
 }

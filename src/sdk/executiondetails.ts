@@ -4,7 +4,7 @@
 
 import { executionDetailsRetrieve } from "../funcs/executionDetailsRetrieve.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as components from "../models/components/index.js";
+import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class ExecutionDetails extends ClientSDK {
@@ -15,7 +15,9 @@ export class ExecutionDetails extends ClientSDK {
     notificationId: string,
     subscriberId: string,
     options?: RequestOptions,
-  ): Promise<Array<components.ExecutionDetailsResponseDto>> {
+  ): Promise<
+    operations.ExecutionDetailsControllerGetExecutionDetailsForNotificationResponse
+  > {
     return unwrapAsync(executionDetailsRetrieve(
       this,
       notificationId,

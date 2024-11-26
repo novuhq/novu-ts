@@ -23,12 +23,12 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.subscribers.notifications.retrieve({
-    subscriberId: "<value>",
+    subscriberId: "<id>",
     payload: "btoa(JSON.stringify({ foo: 123 })) results in base64 encoded string like eyJmb28iOjEyM30=",
   });
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -50,7 +50,7 @@ const novu = new NovuCore({
 
 async function run() {
   const res = await subscribersNotificationsRetrieve(novu, {
-    subscriberId: "<value>",
+    subscriberId: "<id>",
     payload: "btoa(JSON.stringify({ foo: 123 })) results in base64 encoded string like eyJmb28iOjEyM30=",
   });
 
@@ -61,7 +61,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -78,14 +78,13 @@ run();
 
 ### Response
 
-**Promise\<[operations.SubscribersControllerGetNotificationsFeedResponseBody](../../models/operations/subscriberscontrollergetnotificationsfeedresponsebody.md)\>**
+**Promise\<[operations.SubscribersControllerGetNotificationsFeedResponse](../../models/operations/subscriberscontrollergetnotificationsfeedresponse.md)\>**
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## unseenCount
 
@@ -102,13 +101,13 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.subscribers.notifications.unseenCount({
-    seen: true,
-    subscriberId: "<value>",
-    limit: 4322.81,
+    seen: false,
+    subscriberId: "<id>",
+    limit: 2979.49,
   });
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -130,9 +129,9 @@ const novu = new NovuCore({
 
 async function run() {
   const res = await subscribersNotificationsUnseenCount(novu, {
-    seen: true,
-    subscriberId: "<value>",
-    limit: 4322.81,
+    seen: false,
+    subscriberId: "<id>",
+    limit: 2979.49,
   });
 
   if (!res.ok) {
@@ -142,7 +141,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -159,10 +158,10 @@ run();
 
 ### Response
 
-**Promise\<[components.UnseenCountResponse](../../models/components/unseencountresponse.md)\>**
+**Promise\<[operations.SubscribersControllerGetUnseenCountResponse](../../models/operations/subscriberscontrollergetunseencountresponse.md)\>**
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |

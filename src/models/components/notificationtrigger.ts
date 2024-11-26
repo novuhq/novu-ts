@@ -3,7 +3,10 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   NotificationTriggerVariable,
   NotificationTriggerVariable$inboundSchema,
@@ -19,10 +22,10 @@ export type NotificationTriggerType = ClosedEnum<
 >;
 
 export type NotificationTrigger = {
-  identifier: string;
-  subscriberVariables?: Array<NotificationTriggerVariable> | undefined;
   type: NotificationTriggerType;
+  identifier: string;
   variables: Array<NotificationTriggerVariable>;
+  subscriberVariables?: Array<NotificationTriggerVariable> | undefined;
 };
 
 /** @internal */
@@ -52,19 +55,19 @@ export const NotificationTrigger$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
+  type: NotificationTriggerType$inboundSchema,
   identifier: z.string(),
+  variables: z.array(NotificationTriggerVariable$inboundSchema),
   subscriberVariables: z.array(NotificationTriggerVariable$inboundSchema)
     .optional(),
-  type: NotificationTriggerType$inboundSchema,
-  variables: z.array(NotificationTriggerVariable$inboundSchema),
 });
 
 /** @internal */
 export type NotificationTrigger$Outbound = {
-  identifier: string;
-  subscriberVariables?: Array<NotificationTriggerVariable$Outbound> | undefined;
   type: string;
+  identifier: string;
   variables: Array<NotificationTriggerVariable$Outbound>;
+  subscriberVariables?: Array<NotificationTriggerVariable$Outbound> | undefined;
 };
 
 /** @internal */
@@ -73,11 +76,11 @@ export const NotificationTrigger$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   NotificationTrigger
 > = z.object({
+  type: NotificationTriggerType$outboundSchema,
   identifier: z.string(),
+  variables: z.array(NotificationTriggerVariable$outboundSchema),
   subscriberVariables: z.array(NotificationTriggerVariable$outboundSchema)
     .optional(),
-  type: NotificationTriggerType$outboundSchema,
-  variables: z.array(NotificationTriggerVariable$outboundSchema),
 });
 
 /**
@@ -91,4 +94,22 @@ export namespace NotificationTrigger$ {
   export const outboundSchema = NotificationTrigger$outboundSchema;
   /** @deprecated use `NotificationTrigger$Outbound` instead. */
   export type Outbound = NotificationTrigger$Outbound;
+}
+
+export function notificationTriggerToJSON(
+  notificationTrigger: NotificationTrigger,
+): string {
+  return JSON.stringify(
+    NotificationTrigger$outboundSchema.parse(notificationTrigger),
+  );
+}
+
+export function notificationTriggerFromJSON(
+  jsonString: string,
+): SafeParseResult<NotificationTrigger, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => NotificationTrigger$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'NotificationTrigger' from JSON`,
+  );
 }

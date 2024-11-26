@@ -4,11 +4,14 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type TopicDto = {
-  environmentId: string;
   id?: string | undefined;
   organizationId: string;
+  environmentId: string;
   key: string;
   name: string;
   subscribers: Array<string>;
@@ -20,25 +23,25 @@ export const TopicDto$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  _environmentId: z.string(),
   _id: z.string().optional(),
   _organizationId: z.string(),
+  _environmentId: z.string(),
   key: z.string(),
   name: z.string(),
   subscribers: z.array(z.string()),
 }).transform((v) => {
   return remap$(v, {
-    "_environmentId": "environmentId",
     "_id": "id",
     "_organizationId": "organizationId",
+    "_environmentId": "environmentId",
   });
 });
 
 /** @internal */
 export type TopicDto$Outbound = {
-  _environmentId: string;
   _id?: string | undefined;
   _organizationId: string;
+  _environmentId: string;
   key: string;
   name: string;
   subscribers: Array<string>;
@@ -50,17 +53,17 @@ export const TopicDto$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   TopicDto
 > = z.object({
-  environmentId: z.string(),
   id: z.string().optional(),
   organizationId: z.string(),
+  environmentId: z.string(),
   key: z.string(),
   name: z.string(),
   subscribers: z.array(z.string()),
 }).transform((v) => {
   return remap$(v, {
-    environmentId: "_environmentId",
     id: "_id",
     organizationId: "_organizationId",
+    environmentId: "_environmentId",
   });
 });
 
@@ -75,4 +78,18 @@ export namespace TopicDto$ {
   export const outboundSchema = TopicDto$outboundSchema;
   /** @deprecated use `TopicDto$Outbound` instead. */
   export type Outbound = TopicDto$Outbound;
+}
+
+export function topicDtoToJSON(topicDto: TopicDto): string {
+  return JSON.stringify(TopicDto$outboundSchema.parse(topicDto));
+}
+
+export function topicDtoFromJSON(
+  jsonString: string,
+): SafeParseResult<TopicDto, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TopicDto$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TopicDto' from JSON`,
+  );
 }

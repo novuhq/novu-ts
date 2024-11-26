@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   TopicDto,
   TopicDto$inboundSchema,
@@ -60,4 +63,22 @@ export namespace FilterTopicsResponseDto$ {
   export const outboundSchema = FilterTopicsResponseDto$outboundSchema;
   /** @deprecated use `FilterTopicsResponseDto$Outbound` instead. */
   export type Outbound = FilterTopicsResponseDto$Outbound;
+}
+
+export function filterTopicsResponseDtoToJSON(
+  filterTopicsResponseDto: FilterTopicsResponseDto,
+): string {
+  return JSON.stringify(
+    FilterTopicsResponseDto$outboundSchema.parse(filterTopicsResponseDto),
+  );
+}
+
+export function filterTopicsResponseDtoFromJSON(
+  jsonString: string,
+): SafeParseResult<FilterTopicsResponseDto, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => FilterTopicsResponseDto$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FilterTopicsResponseDto' from JSON`,
+  );
 }

@@ -3,7 +3,10 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * The type of channel that is enabled or not
@@ -22,13 +25,13 @@ export type ChannelPreferenceType = ClosedEnum<typeof ChannelPreferenceType>;
 
 export type ChannelPreference = {
   /**
-   * If channel is enabled or not
-   */
-  enabled: boolean;
-  /**
    * The type of channel that is enabled or not
    */
   type: ChannelPreferenceType;
+  /**
+   * If channel is enabled or not
+   */
+  enabled: boolean;
 };
 
 /** @internal */
@@ -58,14 +61,14 @@ export const ChannelPreference$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  enabled: z.boolean(),
   type: ChannelPreferenceType$inboundSchema,
+  enabled: z.boolean(),
 });
 
 /** @internal */
 export type ChannelPreference$Outbound = {
-  enabled: boolean;
   type: string;
+  enabled: boolean;
 };
 
 /** @internal */
@@ -74,8 +77,8 @@ export const ChannelPreference$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ChannelPreference
 > = z.object({
-  enabled: z.boolean(),
   type: ChannelPreferenceType$outboundSchema,
+  enabled: z.boolean(),
 });
 
 /**
@@ -89,4 +92,22 @@ export namespace ChannelPreference$ {
   export const outboundSchema = ChannelPreference$outboundSchema;
   /** @deprecated use `ChannelPreference$Outbound` instead. */
   export type Outbound = ChannelPreference$Outbound;
+}
+
+export function channelPreferenceToJSON(
+  channelPreference: ChannelPreference,
+): string {
+  return JSON.stringify(
+    ChannelPreference$outboundSchema.parse(channelPreference),
+  );
+}
+
+export function channelPreferenceFromJSON(
+  jsonString: string,
+): SafeParseResult<ChannelPreference, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ChannelPreference$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ChannelPreference' from JSON`,
+  );
 }

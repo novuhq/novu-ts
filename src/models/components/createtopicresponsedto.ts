@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CreateTopicResponseDto = {
   /**
@@ -61,4 +64,22 @@ export namespace CreateTopicResponseDto$ {
   export const outboundSchema = CreateTopicResponseDto$outboundSchema;
   /** @deprecated use `CreateTopicResponseDto$Outbound` instead. */
   export type Outbound = CreateTopicResponseDto$Outbound;
+}
+
+export function createTopicResponseDtoToJSON(
+  createTopicResponseDto: CreateTopicResponseDto,
+): string {
+  return JSON.stringify(
+    CreateTopicResponseDto$outboundSchema.parse(createTopicResponseDto),
+  );
+}
+
+export function createTopicResponseDtoFromJSON(
+  jsonString: string,
+): SafeParseResult<CreateTopicResponseDto, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreateTopicResponseDto$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateTopicResponseDto' from JSON`,
+  );
 }

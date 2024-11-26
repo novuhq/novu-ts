@@ -73,26 +73,6 @@ For supported JavaScript runtimes, please consult [RUNTIMES.md](RUNTIMES.md).
 <!-- Start SDK Example Usage [usage] -->
 ## SDK Example Usage
 
-### Cancel Triggered Event
-
-```typescript
-import { Novu } from "@novu/api";
-
-const novu = new Novu({
-  apiKey: "<YOUR_API_KEY_HERE>",
-});
-
-async function run() {
-  const result = await novu.cancel("<value>");
-
-  // Handle the result
-  console.log(result);
-}
-
-run();
-
-```
-
 ### Trigger Notification Event
 
 ```typescript
@@ -105,12 +85,71 @@ const novu = new Novu({
 async function run() {
   const result = await novu.trigger({
     name: "workflow_identifier",
-    overrides: {},
-    payload: {},
     to: [
       {
         topicKey: "<value>",
         type: "Topic",
+      },
+      {
+        topicKey: "<value>",
+        type: "Topic",
+      },
+    ],
+  });
+
+  // Handle the result
+  console.log(result);
+}
+
+run();
+
+```
+
+### Trigger Notification Events in Bulk
+
+```typescript
+import { Novu } from "@novu/api";
+
+const novu = new Novu({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await novu.triggerBulk({
+    events: [
+      {
+        name: "workflow_identifier",
+        to: [
+          {
+            topicKey: "<value>",
+            type: "Topic",
+          },
+          {
+            subscriberId: "<id>",
+          },
+        ],
+      },
+      {
+        name: "workflow_identifier",
+        to: [
+          {
+            topicKey: "<value>",
+            type: "Topic",
+          },
+        ],
+      },
+      {
+        name: "workflow_identifier",
+        to: [
+          {
+            topicKey: "<value>",
+            type: "Topic",
+          },
+          {
+            topicKey: "<value>",
+            type: "Topic",
+          },
+        ],
       },
     ],
   });
@@ -135,7 +174,6 @@ const novu = new Novu({
 async function run() {
   const result = await novu.triggerBroadcast({
     name: "<value>",
-    overrides: {},
     payload: {},
   });
 
@@ -147,7 +185,7 @@ run();
 
 ```
 
-### Trigger Notification Events in Bulk
+### Cancel Triggered Event
 
 ```typescript
 import { Novu } from "@novu/api";
@@ -157,9 +195,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.triggerBulk({
-    events: [],
-  });
+  const result = await novu.cancel("<id>");
 
   // Handle the result
   console.log(result);
@@ -176,17 +212,10 @@ run();
 <details open>
 <summary>Available methods</summary>
 
-### [changes](docs/sdks/changes/README.md)
-
-* [apply](docs/sdks/changes/README.md#apply) - Apply change
-* [applyBulk](docs/sdks/changes/README.md#applybulk) - Apply changes
-* [count](docs/sdks/changes/README.md#count) - Get changes count
-* [retrieve](docs/sdks/changes/README.md#retrieve) - Get changes
-
 ### [environments](docs/sdks/environments/README.md)
 
-* [list](docs/sdks/environments/README.md#list) - Get environments
 * [retrieve](docs/sdks/environments/README.md#retrieve) - Get current environment
+* [list](docs/sdks/environments/README.md#list) - Get environments
 
 #### [environments.apiKeys](docs/sdks/apikeys/README.md)
 
@@ -196,39 +225,24 @@ run();
 
 * [retrieve](docs/sdks/executiondetails/README.md#retrieve) - Get execution details
 
-### [feeds](docs/sdks/feeds/README.md)
-
-* [create](docs/sdks/feeds/README.md#create) - Create feed
-* [delete](docs/sdks/feeds/README.md#delete) - Delete feed
-* [retrieve](docs/sdks/feeds/README.md#retrieve) - Get feeds
-
 ### [integrations](docs/sdks/integrations/README.md)
 
-* [create](docs/sdks/integrations/README.md#create) - Create integration
-* [delete](docs/sdks/integrations/README.md#delete) - Delete integration
 * [list](docs/sdks/integrations/README.md#list) - Get integrations
+* [create](docs/sdks/integrations/README.md#create) - Create integration
 * [listActive](docs/sdks/integrations/README.md#listactive) - Get active integrations
-* [setAsPrimary](docs/sdks/integrations/README.md#setasprimary) - Set integration as primary
 * [update](docs/sdks/integrations/README.md#update) - Update integration
+* [delete](docs/sdks/integrations/README.md#delete) - Delete integration
+* [setAsPrimary](docs/sdks/integrations/README.md#setasprimary) - Set integration as primary
 
 #### [integrations.webhooks](docs/sdks/webhooks/README.md)
 
 * [retrieve](docs/sdks/webhooks/README.md#retrieve) - Get webhook support status for provider
 
-### [layouts](docs/sdks/layouts/README.md)
-
-* [create](docs/sdks/layouts/README.md#create) - Layout creation
-* [delete](docs/sdks/layouts/README.md#delete) - Delete layout
-* [list](docs/sdks/layouts/README.md#list) - Filter layouts
-* [retrieve](docs/sdks/layouts/README.md#retrieve) - Get layout
-* [setAsDefault](docs/sdks/layouts/README.md#setasdefault) - Set default layout
-* [update](docs/sdks/layouts/README.md#update) - Update a layout
-
 ### [messages](docs/sdks/messages/README.md)
 
+* [retrieve](docs/sdks/messages/README.md#retrieve) - Get messages
 * [delete](docs/sdks/messages/README.md#delete) - Delete message
 * [deleteByTransactionId](docs/sdks/messages/README.md#deletebytransactionid) - Delete messages by transactionId
-* [retrieve](docs/sdks/messages/README.md#retrieve) - Get messages
 
 ### [notifications](docs/sdks/notifications/README.md)
 
@@ -237,46 +251,40 @@ run();
 
 #### [notifications.stats](docs/sdks/stats/README.md)
 
-* [graph](docs/sdks/stats/README.md#graph) - Get notification graph statistics
 * [retrieve](docs/sdks/stats/README.md#retrieve) - Get notification statistics
+* [graph](docs/sdks/stats/README.md#graph) - Get notification graph statistics
 
 ### [Novu SDK](docs/sdks/novu/README.md)
 
-* [cancel](docs/sdks/novu/README.md#cancel) - Cancel triggered event
 * [trigger](docs/sdks/novu/README.md#trigger) - Trigger event
-* [triggerBroadcast](docs/sdks/novu/README.md#triggerbroadcast) - Broadcast event to all
 * [triggerBulk](docs/sdks/novu/README.md#triggerbulk) - Bulk trigger event
-
-### [organizations](docs/sdks/organizations/README.md)
-
-* [eeOrganizationControllerRenameOrganization](docs/sdks/organizations/README.md#eeorganizationcontrollerrenameorganization) - Rename organization name
-* [retrieve](docs/sdks/organizations/README.md#retrieve) - Fetch current organization details
-* [update](docs/sdks/organizations/README.md#update) - Update organization branding details
+* [triggerBroadcast](docs/sdks/novu/README.md#triggerbroadcast) - Broadcast event to all
+* [cancel](docs/sdks/novu/README.md#cancel) - Cancel triggered event
 
 ### [subscribers](docs/sdks/subscribers/README.md)
 
-* [create](docs/sdks/subscribers/README.md#create) - Create subscriber
-* [createBulk](docs/sdks/subscribers/README.md#createbulk) - Bulk create subscribers
-* [delete](docs/sdks/subscribers/README.md#delete) - Delete subscriber
 * [list](docs/sdks/subscribers/README.md#list) - Get subscribers
+* [create](docs/sdks/subscribers/README.md#create) - Create subscriber
 * [retrieve](docs/sdks/subscribers/README.md#retrieve) - Get subscriber
 * [update](docs/sdks/subscribers/README.md#update) - Update subscriber
+* [delete](docs/sdks/subscribers/README.md#delete) - Delete subscriber
+* [createBulk](docs/sdks/subscribers/README.md#createbulk) - Bulk create subscribers
 
 #### [subscribers.authentication](docs/sdks/authentication/README.md)
 
-* [chatAccessOauth](docs/sdks/authentication/README.md#chataccessoauth) - Handle chat oauth
 * [chatAccessOauthCallBack](docs/sdks/authentication/README.md#chataccessoauthcallback) - Handle providers oauth redirect
+* [chatAccessOauth](docs/sdks/authentication/README.md#chataccessoauth) - Handle chat oauth
 
 #### [subscribers.credentials](docs/sdks/credentials/README.md)
 
+* [update](docs/sdks/credentials/README.md#update) - Update subscriber credentials
 * [append](docs/sdks/credentials/README.md#append) - Modify subscriber credentials
 * [delete](docs/sdks/credentials/README.md#delete) - Delete subscriber credentials by providerId
-* [update](docs/sdks/credentials/README.md#update) - Update subscriber credentials
 
 #### [subscribers.messages](docs/sdks/novumessages/README.md)
 
-* [markAll](docs/sdks/novumessages/README.md#markall) - Marks all the subscriber messages as read, unread, seen or unseen. Optionally you can pass feed id (or array) to mark messages of a particular feed.
 * [markAllAs](docs/sdks/novumessages/README.md#markallas) - Mark a subscriber messages as seen, read, unseen or unread
+* [markAll](docs/sdks/novumessages/README.md#markall) - Marks all the subscriber messages as read, unread, seen or unseen. Optionally you can pass feed id (or array) to mark messages of a particular feed.
 * [updateAsSeen](docs/sdks/novumessages/README.md#updateasseen) - Mark message action as seen
 
 #### [subscribers.notifications](docs/sdks/novunotifications/README.md)
@@ -287,59 +295,35 @@ run();
 #### [subscribers.preferences](docs/sdks/preferences/README.md)
 
 * [list](docs/sdks/preferences/README.md#list) - Get subscriber preferences
+* [updateGlobal](docs/sdks/preferences/README.md#updateglobal) - Update subscriber global preferences
 * [retrieveByLevel](docs/sdks/preferences/README.md#retrievebylevel) - Get subscriber preferences by level
 * [update](docs/sdks/preferences/README.md#update) - Update subscriber preference
-* [updateGlobal](docs/sdks/preferences/README.md#updateglobal) - Update subscriber global preferences
 
 #### [subscribers.properties](docs/sdks/properties/README.md)
 
 * [updateOnlineFlag](docs/sdks/properties/README.md#updateonlineflag) - Update subscriber online status
 
-### [tenants](docs/sdks/tenants/README.md)
-
-* [create](docs/sdks/tenants/README.md#create) - Create tenant
-* [delete](docs/sdks/tenants/README.md#delete) - Delete tenant
-* [list](docs/sdks/tenants/README.md#list) - Get tenants
-* [retrieve](docs/sdks/tenants/README.md#retrieve) - Get tenant
-* [update](docs/sdks/tenants/README.md#update) - Update tenant
-
 ### [topics](docs/sdks/topics/README.md)
 
 * [create](docs/sdks/topics/README.md#create) - Topic creation
-* [delete](docs/sdks/topics/README.md#delete) - Delete topic
 * [list](docs/sdks/topics/README.md#list) - Filter topics
-* [rename](docs/sdks/topics/README.md#rename) - Rename a topic
+* [delete](docs/sdks/topics/README.md#delete) - Delete topic
 * [retrieve](docs/sdks/topics/README.md#retrieve) - Get topic
+* [rename](docs/sdks/topics/README.md#rename) - Rename a topic
 
 #### [topics.subscribers](docs/sdks/novusubscribers/README.md)
 
 * [assign](docs/sdks/novusubscribers/README.md#assign) - Subscribers addition
-* [delete](docs/sdks/novusubscribers/README.md#delete) - Subscribers removal
 * [retrieve](docs/sdks/novusubscribers/README.md#retrieve) - Check topic subscriber
+* [delete](docs/sdks/novusubscribers/README.md#delete) - Subscribers removal
 
 ### [workflowGroups](docs/sdks/workflowgroups/README.md)
 
 * [create](docs/sdks/workflowgroups/README.md#create) - Create workflow group
-* [delete](docs/sdks/workflowgroups/README.md#delete) - Delete workflow group
 * [list](docs/sdks/workflowgroups/README.md#list) - Get workflow groups
 * [retrieve](docs/sdks/workflowgroups/README.md#retrieve) - Get workflow group
 * [update](docs/sdks/workflowgroups/README.md#update) - Update workflow group
-
-### [workflows](docs/sdks/workflows/README.md)
-
-* [create](docs/sdks/workflows/README.md#create) - Create workflow
-* [delete](docs/sdks/workflows/README.md#delete) - Delete workflow
-* [list](docs/sdks/workflows/README.md#list) - Get workflows
-* [retrieve](docs/sdks/workflows/README.md#retrieve) - Get workflow
-* [update](docs/sdks/workflows/README.md#update) - Update workflow
-
-#### [workflows.status](docs/sdks/status/README.md)
-
-* [update](docs/sdks/status/README.md#update) - Update workflow status
-
-#### [workflows.variables](docs/sdks/variables/README.md)
-
-* [retrieve](docs/sdks/variables/README.md#retrieve) - Get available variables
+* [delete](docs/sdks/workflowgroups/README.md#delete) - Delete workflow group
 
 </details>
 <!-- End Available Resources and Operations [operations] -->
@@ -359,91 +343,62 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 <summary>Available standalone functions</summary>
 
-- [cancel](docs/sdks/novu/README.md#cancel)
-- [changesApplyBulk](docs/sdks/changes/README.md#applybulk)
-- [changesApply](docs/sdks/changes/README.md#apply)
-- [changesCount](docs/sdks/changes/README.md#count)
-- [changesRetrieve](docs/sdks/changes/README.md#retrieve)
-- [environmentsApiKeysList](docs/sdks/apikeys/README.md#list)
-- [environmentsList](docs/sdks/environments/README.md#list)
-- [environmentsRetrieve](docs/sdks/environments/README.md#retrieve)
-- [executionDetailsRetrieve](docs/sdks/executiondetails/README.md#retrieve)
-- [feedsCreate](docs/sdks/feeds/README.md#create)
-- [feedsDelete](docs/sdks/feeds/README.md#delete)
-- [feedsRetrieve](docs/sdks/feeds/README.md#retrieve)
-- [integrationsCreate](docs/sdks/integrations/README.md#create)
-- [integrationsDelete](docs/sdks/integrations/README.md#delete)
-- [integrationsListActive](docs/sdks/integrations/README.md#listactive)
-- [integrationsList](docs/sdks/integrations/README.md#list)
-- [integrationsSetAsPrimary](docs/sdks/integrations/README.md#setasprimary)
-- [integrationsUpdate](docs/sdks/integrations/README.md#update)
-- [integrationsWebhooksRetrieve](docs/sdks/webhooks/README.md#retrieve)
-- [layoutsCreate](docs/sdks/layouts/README.md#create)
-- [layoutsDelete](docs/sdks/layouts/README.md#delete)
-- [layoutsList](docs/sdks/layouts/README.md#list)
-- [layoutsRetrieve](docs/sdks/layouts/README.md#retrieve)
-- [layoutsSetAsDefault](docs/sdks/layouts/README.md#setasdefault)
-- [layoutsUpdate](docs/sdks/layouts/README.md#update)
-- [messagesDeleteByTransactionId](docs/sdks/messages/README.md#deletebytransactionid)
-- [messagesDelete](docs/sdks/messages/README.md#delete)
-- [messagesRetrieve](docs/sdks/messages/README.md#retrieve)
-- [notificationsList](docs/sdks/notifications/README.md#list)
-- [notificationsRetrieve](docs/sdks/notifications/README.md#retrieve)
-- [notificationsStatsGraph](docs/sdks/stats/README.md#graph)
-- [notificationsStatsRetrieve](docs/sdks/stats/README.md#retrieve)
-- [organizationsEEOrganizationControllerRenameOrganization](docs/sdks/organizations/README.md#eeorganizationcontrollerrenameorganization)
-- [organizationsRetrieve](docs/sdks/organizations/README.md#retrieve)
-- [organizationsUpdate](docs/sdks/organizations/README.md#update)
-- [subscribersAuthenticationChatAccessOauthCallBack](docs/sdks/authentication/README.md#chataccessoauthcallback)
-- [subscribersAuthenticationChatAccessOauth](docs/sdks/authentication/README.md#chataccessoauth)
-- [subscribersCreateBulk](docs/sdks/subscribers/README.md#createbulk)
-- [subscribersCreate](docs/sdks/subscribers/README.md#create)
-- [subscribersCredentialsAppend](docs/sdks/credentials/README.md#append)
-- [subscribersCredentialsDelete](docs/sdks/credentials/README.md#delete)
-- [subscribersCredentialsUpdate](docs/sdks/credentials/README.md#update)
-- [subscribersDelete](docs/sdks/subscribers/README.md#delete)
-- [subscribersList](docs/sdks/subscribers/README.md#list)
-- [subscribersMessagesMarkAllAs](docs/sdks/novumessages/README.md#markallas)
-- [subscribersMessagesMarkAll](docs/sdks/novumessages/README.md#markall)
-- [subscribersMessagesUpdateAsSeen](docs/sdks/novumessages/README.md#updateasseen)
-- [subscribersNotificationsRetrieve](docs/sdks/novunotifications/README.md#retrieve)
-- [subscribersNotificationsUnseenCount](docs/sdks/novunotifications/README.md#unseencount)
-- [subscribersPreferencesList](docs/sdks/preferences/README.md#list)
-- [subscribersPreferencesRetrieveByLevel](docs/sdks/preferences/README.md#retrievebylevel)
-- [subscribersPreferencesUpdateGlobal](docs/sdks/preferences/README.md#updateglobal)
-- [subscribersPreferencesUpdate](docs/sdks/preferences/README.md#update)
-- [subscribersPropertiesUpdateOnlineFlag](docs/sdks/properties/README.md#updateonlineflag)
-- [subscribersRetrieve](docs/sdks/subscribers/README.md#retrieve)
-- [subscribersUpdate](docs/sdks/subscribers/README.md#update)
-- [tenantsCreate](docs/sdks/tenants/README.md#create)
-- [tenantsDelete](docs/sdks/tenants/README.md#delete)
-- [tenantsList](docs/sdks/tenants/README.md#list)
-- [tenantsRetrieve](docs/sdks/tenants/README.md#retrieve)
-- [tenantsUpdate](docs/sdks/tenants/README.md#update)
-- [topicsCreate](docs/sdks/topics/README.md#create)
-- [topicsDelete](docs/sdks/topics/README.md#delete)
-- [topicsList](docs/sdks/topics/README.md#list)
-- [topicsRename](docs/sdks/topics/README.md#rename)
-- [topicsRetrieve](docs/sdks/topics/README.md#retrieve)
-- [topicsSubscribersAssign](docs/sdks/novusubscribers/README.md#assign)
-- [topicsSubscribersDelete](docs/sdks/novusubscribers/README.md#delete)
-- [topicsSubscribersRetrieve](docs/sdks/novusubscribers/README.md#retrieve)
-- [triggerBroadcast](docs/sdks/novu/README.md#triggerbroadcast)
-- [triggerBulk](docs/sdks/novu/README.md#triggerbulk)
-- [trigger](docs/sdks/novu/README.md#trigger)
-- [workflowGroupsCreate](docs/sdks/workflowgroups/README.md#create)
-- [workflowGroupsDelete](docs/sdks/workflowgroups/README.md#delete)
-- [workflowGroupsList](docs/sdks/workflowgroups/README.md#list)
-- [workflowGroupsRetrieve](docs/sdks/workflowgroups/README.md#retrieve)
-- [workflowGroupsUpdate](docs/sdks/workflowgroups/README.md#update)
-- [workflowsCreate](docs/sdks/workflows/README.md#create)
-- [workflowsDelete](docs/sdks/workflows/README.md#delete)
-- [workflowsList](docs/sdks/workflows/README.md#list)
-- [workflowsRetrieve](docs/sdks/workflows/README.md#retrieve)
-- [workflowsStatusUpdate](docs/sdks/status/README.md#update)
-- [workflowsUpdate](docs/sdks/workflows/README.md#update)
-- [workflowsVariablesRetrieve](docs/sdks/variables/README.md#retrieve)
-
+- [`cancel`](docs/sdks/novu/README.md#cancel) - Cancel triggered event
+- [`environmentsApiKeysList`](docs/sdks/apikeys/README.md#list) - Get api keys
+- [`environmentsList`](docs/sdks/environments/README.md#list) - Get environments
+- [`environmentsRetrieve`](docs/sdks/environments/README.md#retrieve) - Get current environment
+- [`executionDetailsRetrieve`](docs/sdks/executiondetails/README.md#retrieve) - Get execution details
+- [`integrationsCreate`](docs/sdks/integrations/README.md#create) - Create integration
+- [`integrationsDelete`](docs/sdks/integrations/README.md#delete) - Delete integration
+- [`integrationsList`](docs/sdks/integrations/README.md#list) - Get integrations
+- [`integrationsListActive`](docs/sdks/integrations/README.md#listactive) - Get active integrations
+- [`integrationsSetAsPrimary`](docs/sdks/integrations/README.md#setasprimary) - Set integration as primary
+- [`integrationsUpdate`](docs/sdks/integrations/README.md#update) - Update integration
+- [`integrationsWebhooksRetrieve`](docs/sdks/webhooks/README.md#retrieve) - Get webhook support status for provider
+- [`messagesDelete`](docs/sdks/messages/README.md#delete) - Delete message
+- [`messagesDeleteByTransactionId`](docs/sdks/messages/README.md#deletebytransactionid) - Delete messages by transactionId
+- [`messagesRetrieve`](docs/sdks/messages/README.md#retrieve) - Get messages
+- [`notificationsList`](docs/sdks/notifications/README.md#list) - Get notifications
+- [`notificationsRetrieve`](docs/sdks/notifications/README.md#retrieve) - Get notification
+- [`notificationsStatsGraph`](docs/sdks/stats/README.md#graph) - Get notification graph statistics
+- [`notificationsStatsRetrieve`](docs/sdks/stats/README.md#retrieve) - Get notification statistics
+- [`subscribersAuthenticationChatAccessOauth`](docs/sdks/authentication/README.md#chataccessoauth) - Handle chat oauth
+- [`subscribersAuthenticationChatAccessOauthCallBack`](docs/sdks/authentication/README.md#chataccessoauthcallback) - Handle providers oauth redirect
+- [`subscribersCreate`](docs/sdks/subscribers/README.md#create) - Create subscriber
+- [`subscribersCreateBulk`](docs/sdks/subscribers/README.md#createbulk) - Bulk create subscribers
+- [`subscribersCredentialsAppend`](docs/sdks/credentials/README.md#append) - Modify subscriber credentials
+- [`subscribersCredentialsDelete`](docs/sdks/credentials/README.md#delete) - Delete subscriber credentials by providerId
+- [`subscribersCredentialsUpdate`](docs/sdks/credentials/README.md#update) - Update subscriber credentials
+- [`subscribersDelete`](docs/sdks/subscribers/README.md#delete) - Delete subscriber
+- [`subscribersList`](docs/sdks/subscribers/README.md#list) - Get subscribers
+- [`subscribersMessagesMarkAll`](docs/sdks/novumessages/README.md#markall) - Marks all the subscriber messages as read, unread, seen or unseen. Optionally you can pass feed id (or array) to mark messages of a particular feed.
+- [`subscribersMessagesMarkAllAs`](docs/sdks/novumessages/README.md#markallas) - Mark a subscriber messages as seen, read, unseen or unread
+- [`subscribersMessagesUpdateAsSeen`](docs/sdks/novumessages/README.md#updateasseen) - Mark message action as seen
+- [`subscribersNotificationsRetrieve`](docs/sdks/novunotifications/README.md#retrieve) - Get in-app notification feed for a particular subscriber
+- [`subscribersNotificationsUnseenCount`](docs/sdks/novunotifications/README.md#unseencount) - Get the unseen in-app notifications count for subscribers feed
+- [`subscribersPreferencesList`](docs/sdks/preferences/README.md#list) - Get subscriber preferences
+- [`subscribersPreferencesRetrieveByLevel`](docs/sdks/preferences/README.md#retrievebylevel) - Get subscriber preferences by level
+- [`subscribersPreferencesUpdate`](docs/sdks/preferences/README.md#update) - Update subscriber preference
+- [`subscribersPreferencesUpdateGlobal`](docs/sdks/preferences/README.md#updateglobal) - Update subscriber global preferences
+- [`subscribersPropertiesUpdateOnlineFlag`](docs/sdks/properties/README.md#updateonlineflag) - Update subscriber online status
+- [`subscribersRetrieve`](docs/sdks/subscribers/README.md#retrieve) - Get subscriber
+- [`subscribersUpdate`](docs/sdks/subscribers/README.md#update) - Update subscriber
+- [`topicsCreate`](docs/sdks/topics/README.md#create) - Topic creation
+- [`topicsDelete`](docs/sdks/topics/README.md#delete) - Delete topic
+- [`topicsList`](docs/sdks/topics/README.md#list) - Filter topics
+- [`topicsRename`](docs/sdks/topics/README.md#rename) - Rename a topic
+- [`topicsRetrieve`](docs/sdks/topics/README.md#retrieve) - Get topic
+- [`topicsSubscribersAssign`](docs/sdks/novusubscribers/README.md#assign) - Subscribers addition
+- [`topicsSubscribersDelete`](docs/sdks/novusubscribers/README.md#delete) - Subscribers removal
+- [`topicsSubscribersRetrieve`](docs/sdks/novusubscribers/README.md#retrieve) - Check topic subscriber
+- [`trigger`](docs/sdks/novu/README.md#trigger) - Trigger event
+- [`triggerBroadcast`](docs/sdks/novu/README.md#triggerbroadcast) - Broadcast event to all
+- [`triggerBulk`](docs/sdks/novu/README.md#triggerbulk) - Bulk trigger event
+- [`workflowGroupsCreate`](docs/sdks/workflowgroups/README.md#create) - Create workflow group
+- [`workflowGroupsDelete`](docs/sdks/workflowgroups/README.md#delete) - Delete workflow group
+- [`workflowGroupsList`](docs/sdks/workflowgroups/README.md#list) - Get workflow groups
+- [`workflowGroupsRetrieve`](docs/sdks/workflowgroups/README.md#retrieve) - Get workflow group
+- [`workflowGroupsUpdate`](docs/sdks/workflowgroups/README.md#update) - Update workflow group
 
 </details>
 <!-- End Standalone functions [standalone-funcs] -->
@@ -484,14 +439,23 @@ run();
 <!-- Start Error Handling [errors] -->
 ## Error Handling
 
-All SDK methods return a response object or throw an error. If Error objects are specified in your OpenAPI Spec, the SDK will throw the appropriate Error type.
+All SDK methods return a response object or throw an error. By default, an API error will throw a `errors.SDKError`.
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+If a HTTP request fails, an operation my also throw an error from the `models/errors/httpclienterrors.ts` module:
 
-Validation errors can also occur when either method arguments or data returned from the server do not match the expected format. The `SDKValidationError` that is thrown as a result will capture the raw value that failed validation in an attribute called `rawValue`. Additionally, a `pretty()` method is available on this error that can be used to log a nicely formatted string since validation errors can list many issues and the plain error string may be difficult read when debugging. 
+| HTTP Client Error                                    | Description                                          |
+| ---------------------------------------------------- | ---------------------------------------------------- |
+| RequestAbortedError                                  | HTTP request was aborted by the client               |
+| RequestTimeoutError                                  | HTTP request timed out due to an AbortSignal signal  |
+| ConnectionError                                      | HTTP client was unable to make a request to a server |
+| InvalidRequestError                                  | Any input used to create a request is invalid        |
+| UnexpectedClientError                                | Unrecognised or unexpected error                     |
 
+In addition, when custom error responses are specified for an operation, the SDK may throw their associated Error type. You can refer to respective *Errors* tables in SDK docs for more details on possible error types for each operation. For example, the `trigger` method may throw the following errors:
+
+| Error Type      | Status Code | Content Type |
+| --------------- | ----------- | ------------ |
+| errors.SDKError | 4XX, 5XX    | \*/\*        |
 
 ```typescript
 import { Novu } from "@novu/api";
@@ -504,7 +468,19 @@ const novu = new Novu({
 async function run() {
   let result;
   try {
-    result = await novu.cancel("<value>");
+    result = await novu.trigger({
+      name: "workflow_identifier",
+      to: [
+        {
+          topicKey: "<value>",
+          type: "Topic",
+        },
+        {
+          topicKey: "<value>",
+          type: "Topic",
+        },
+      ],
+    });
 
     // Handle the result
     console.log(result);
@@ -527,6 +503,8 @@ async function run() {
 run();
 
 ```
+
+Validation errors can also occur when either method arguments or data returned from the server do not match the expected format. The `SDKValidationError` that is thrown as a result will capture the raw value that failed validation in an attribute called `rawValue`. Additionally, a `pretty()` method is available on this error that can be used to log a nicely formatted string since validation errors can list many issues and the plain error string may be difficult read when debugging.
 <!-- End Error Handling [errors] -->
 
 <!-- Start Server Selection [server] -->
@@ -534,12 +512,14 @@ run();
 
 ### Select Server by Index
 
-You can override the default server globally by passing a server index to the `serverIdx` optional parameter when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
+You can override the default server globally by passing a server index to the `serverIdx: number` optional parameter when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
 
-| # | Server | Variables |
-| - | ------ | --------- |
-| 0 | `https://api.novu.co` | None |
-| 1 | `https://eu.api.novu.co` | None |
+| #   | Server                   |
+| --- | ------------------------ |
+| 0   | `https://api.novu.co`    |
+| 1   | `https://eu.api.novu.co` |
+
+#### Example
 
 ```typescript
 import { Novu } from "@novu/api";
@@ -550,7 +530,19 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.cancel("<value>");
+  const result = await novu.trigger({
+    name: "workflow_identifier",
+    to: [
+      {
+        topicKey: "<value>",
+        type: "Topic",
+      },
+      {
+        topicKey: "<value>",
+        type: "Topic",
+      },
+    ],
+  });
 
   // Handle the result
   console.log(result);
@@ -560,11 +552,9 @@ run();
 
 ```
 
-
 ### Override Server URL Per-Client
 
-The default server can also be overridden globally by passing a URL to the `serverURL` optional parameter when initializing the SDK client instance. For example:
-
+The default server can also be overridden globally by passing a URL to the `serverURL: string` optional parameter when initializing the SDK client instance. For example:
 ```typescript
 import { Novu } from "@novu/api";
 
@@ -574,7 +564,19 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.cancel("<value>");
+  const result = await novu.trigger({
+    name: "workflow_identifier",
+    to: [
+      {
+        topicKey: "<value>",
+        type: "Topic",
+      },
+      {
+        topicKey: "<value>",
+        type: "Topic",
+      },
+    ],
+  });
 
   // Handle the result
   console.log(result);
@@ -641,9 +643,9 @@ const sdk = new Novu({ httpClient });
 
 This SDK supports the following security scheme globally:
 
-| Name     | Type     | Scheme   |
-| -------- | -------- | -------- |
-| `apiKey` | apiKey   | API key  |
+| Name     | Type   | Scheme  |
+| -------- | ------ | ------- |
+| `apiKey` | apiKey | API key |
 
 To authenticate with the API the `apiKey` parameter must be set when initializing the SDK client instance. For example:
 ```typescript
@@ -654,7 +656,19 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.cancel("<value>");
+  const result = await novu.trigger({
+    name: "workflow_identifier",
+    to: [
+      {
+        topicKey: "<value>",
+        type: "Topic",
+      },
+      {
+        topicKey: "<value>",
+        type: "Topic",
+      },
+    ],
+  });
 
   // Handle the result
   console.log(result);
@@ -679,7 +693,19 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.cancel("<value>", {
+  const result = await novu.trigger({
+    name: "workflow_identifier",
+    to: [
+      {
+        topicKey: "<value>",
+        type: "Topic",
+      },
+      {
+        topicKey: "<value>",
+        type: "Topic",
+      },
+    ],
+  }, {
     retries: {
       strategy: "backoff",
       backoff: {
@@ -719,7 +745,19 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.cancel("<value>");
+  const result = await novu.trigger({
+    name: "workflow_identifier",
+    to: [
+      {
+        topicKey: "<value>",
+        type: "Topic",
+      },
+      {
+        topicKey: "<value>",
+        type: "Topic",
+      },
+    ],
+  });
 
   // Handle the result
   console.log(result);

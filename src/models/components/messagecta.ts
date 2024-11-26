@@ -3,7 +3,10 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   MessageAction,
   MessageAction$inboundSchema,
@@ -23,9 +26,9 @@ export const MessageCTAType = {
 export type MessageCTAType = ClosedEnum<typeof MessageCTAType>;
 
 export type MessageCTA = {
-  action?: MessageAction | undefined;
-  data: MessageCTAData;
   type?: MessageCTAType | undefined;
+  data: MessageCTAData;
+  action?: MessageAction | undefined;
 };
 
 /** @internal */
@@ -55,16 +58,16 @@ export const MessageCTA$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  action: MessageAction$inboundSchema.optional(),
-  data: MessageCTAData$inboundSchema,
   type: MessageCTAType$inboundSchema.optional(),
+  data: MessageCTAData$inboundSchema,
+  action: MessageAction$inboundSchema.optional(),
 });
 
 /** @internal */
 export type MessageCTA$Outbound = {
-  action?: MessageAction$Outbound | undefined;
-  data: MessageCTAData$Outbound;
   type?: string | undefined;
+  data: MessageCTAData$Outbound;
+  action?: MessageAction$Outbound | undefined;
 };
 
 /** @internal */
@@ -73,9 +76,9 @@ export const MessageCTA$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   MessageCTA
 > = z.object({
-  action: MessageAction$outboundSchema.optional(),
-  data: MessageCTAData$outboundSchema,
   type: MessageCTAType$outboundSchema.optional(),
+  data: MessageCTAData$outboundSchema,
+  action: MessageAction$outboundSchema.optional(),
 });
 
 /**
@@ -89,4 +92,18 @@ export namespace MessageCTA$ {
   export const outboundSchema = MessageCTA$outboundSchema;
   /** @deprecated use `MessageCTA$Outbound` instead. */
   export type Outbound = MessageCTA$Outbound;
+}
+
+export function messageCTAToJSON(messageCTA: MessageCTA): string {
+  return JSON.stringify(MessageCTA$outboundSchema.parse(messageCTA));
+}
+
+export function messageCTAFromJSON(
+  jsonString: string,
+): SafeParseResult<MessageCTA, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => MessageCTA$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'MessageCTA' from JSON`,
+  );
 }

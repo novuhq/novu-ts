@@ -3,7 +3,10 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export const DelayScheduledMetadataType = {
   Scheduled: "scheduled",
@@ -13,8 +16,8 @@ export type DelayScheduledMetadataType = ClosedEnum<
 >;
 
 export type DelayScheduledMetadata = {
-  delayPath: string;
   type: DelayScheduledMetadataType;
+  delayPath: string;
 };
 
 /** @internal */
@@ -44,14 +47,14 @@ export const DelayScheduledMetadata$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  delayPath: z.string(),
   type: DelayScheduledMetadataType$inboundSchema,
+  delayPath: z.string(),
 });
 
 /** @internal */
 export type DelayScheduledMetadata$Outbound = {
-  delayPath: string;
   type: string;
+  delayPath: string;
 };
 
 /** @internal */
@@ -60,8 +63,8 @@ export const DelayScheduledMetadata$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   DelayScheduledMetadata
 > = z.object({
-  delayPath: z.string(),
   type: DelayScheduledMetadataType$outboundSchema,
+  delayPath: z.string(),
 });
 
 /**
@@ -75,4 +78,22 @@ export namespace DelayScheduledMetadata$ {
   export const outboundSchema = DelayScheduledMetadata$outboundSchema;
   /** @deprecated use `DelayScheduledMetadata$Outbound` instead. */
   export type Outbound = DelayScheduledMetadata$Outbound;
+}
+
+export function delayScheduledMetadataToJSON(
+  delayScheduledMetadata: DelayScheduledMetadata,
+): string {
+  return JSON.stringify(
+    DelayScheduledMetadata$outboundSchema.parse(delayScheduledMetadata),
+  );
+}
+
+export function delayScheduledMetadataFromJSON(
+  jsonString: string,
+): SafeParseResult<DelayScheduledMetadata, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DelayScheduledMetadata$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DelayScheduledMetadata' from JSON`,
+  );
 }
