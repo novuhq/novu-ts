@@ -21,7 +21,7 @@ import {
   ActivityNotificationTemplateResponseDto$outboundSchema,
 } from "./activitynotificationtemplateresponsedto.js";
 
-export const ActivityNotificationResponseDtoChannels = {
+export const Channels = {
   InApp: "in_app",
   Email: "email",
   Sms: "sms",
@@ -32,9 +32,7 @@ export const ActivityNotificationResponseDtoChannels = {
   Delay: "delay",
   Custom: "custom",
 } as const;
-export type ActivityNotificationResponseDtoChannels = ClosedEnum<
-  typeof ActivityNotificationResponseDtoChannels
->;
+export type Channels = ClosedEnum<typeof Channels>;
 
 export type ActivityNotificationResponseDto = {
   id?: string | undefined;
@@ -42,33 +40,29 @@ export type ActivityNotificationResponseDto = {
   organizationId: string;
   transactionId: string;
   createdAt?: string | undefined;
-  channels?: ActivityNotificationResponseDtoChannels | undefined;
+  channels?: Channels | undefined;
   subscriber?: ActivityNotificationSubscriberResponseDto | undefined;
   template?: ActivityNotificationTemplateResponseDto | undefined;
   jobs?: Array<string> | undefined;
 };
 
 /** @internal */
-export const ActivityNotificationResponseDtoChannels$inboundSchema:
-  z.ZodNativeEnum<typeof ActivityNotificationResponseDtoChannels> = z
-    .nativeEnum(ActivityNotificationResponseDtoChannels);
+export const Channels$inboundSchema: z.ZodNativeEnum<typeof Channels> = z
+  .nativeEnum(Channels);
 
 /** @internal */
-export const ActivityNotificationResponseDtoChannels$outboundSchema:
-  z.ZodNativeEnum<typeof ActivityNotificationResponseDtoChannels> =
-    ActivityNotificationResponseDtoChannels$inboundSchema;
+export const Channels$outboundSchema: z.ZodNativeEnum<typeof Channels> =
+  Channels$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace ActivityNotificationResponseDtoChannels$ {
-  /** @deprecated use `ActivityNotificationResponseDtoChannels$inboundSchema` instead. */
-  export const inboundSchema =
-    ActivityNotificationResponseDtoChannels$inboundSchema;
-  /** @deprecated use `ActivityNotificationResponseDtoChannels$outboundSchema` instead. */
-  export const outboundSchema =
-    ActivityNotificationResponseDtoChannels$outboundSchema;
+export namespace Channels$ {
+  /** @deprecated use `Channels$inboundSchema` instead. */
+  export const inboundSchema = Channels$inboundSchema;
+  /** @deprecated use `Channels$outboundSchema` instead. */
+  export const outboundSchema = Channels$outboundSchema;
 }
 
 /** @internal */
@@ -82,7 +76,7 @@ export const ActivityNotificationResponseDto$inboundSchema: z.ZodType<
   _organizationId: z.string(),
   transactionId: z.string(),
   createdAt: z.string().optional(),
-  channels: ActivityNotificationResponseDtoChannels$inboundSchema.optional(),
+  channels: Channels$inboundSchema.optional(),
   subscriber: ActivityNotificationSubscriberResponseDto$inboundSchema
     .optional(),
   template: ActivityNotificationTemplateResponseDto$inboundSchema.optional(),
@@ -119,7 +113,7 @@ export const ActivityNotificationResponseDto$outboundSchema: z.ZodType<
   organizationId: z.string(),
   transactionId: z.string(),
   createdAt: z.string().optional(),
-  channels: ActivityNotificationResponseDtoChannels$outboundSchema.optional(),
+  channels: Channels$outboundSchema.optional(),
   subscriber: ActivityNotificationSubscriberResponseDto$outboundSchema
     .optional(),
   template: ActivityNotificationTemplateResponseDto$outboundSchema.optional(),

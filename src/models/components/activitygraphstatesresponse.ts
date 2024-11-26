@@ -9,39 +9,45 @@ import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
-export const Channels = {
+export const ActivityGraphStatesResponseChannels = {
   InApp: "in_app",
   Email: "email",
   Sms: "sms",
   Chat: "chat",
   Push: "push",
 } as const;
-export type Channels = ClosedEnum<typeof Channels>;
+export type ActivityGraphStatesResponseChannels = ClosedEnum<
+  typeof ActivityGraphStatesResponseChannels
+>;
 
 export type ActivityGraphStatesResponse = {
   id: string;
   count: number;
   templates: Array<string>;
-  channels: Array<Channels>;
+  channels: Array<ActivityGraphStatesResponseChannels>;
 };
 
 /** @internal */
-export const Channels$inboundSchema: z.ZodNativeEnum<typeof Channels> = z
-  .nativeEnum(Channels);
+export const ActivityGraphStatesResponseChannels$inboundSchema: z.ZodNativeEnum<
+  typeof ActivityGraphStatesResponseChannels
+> = z.nativeEnum(ActivityGraphStatesResponseChannels);
 
 /** @internal */
-export const Channels$outboundSchema: z.ZodNativeEnum<typeof Channels> =
-  Channels$inboundSchema;
+export const ActivityGraphStatesResponseChannels$outboundSchema:
+  z.ZodNativeEnum<typeof ActivityGraphStatesResponseChannels> =
+    ActivityGraphStatesResponseChannels$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Channels$ {
-  /** @deprecated use `Channels$inboundSchema` instead. */
-  export const inboundSchema = Channels$inboundSchema;
-  /** @deprecated use `Channels$outboundSchema` instead. */
-  export const outboundSchema = Channels$outboundSchema;
+export namespace ActivityGraphStatesResponseChannels$ {
+  /** @deprecated use `ActivityGraphStatesResponseChannels$inboundSchema` instead. */
+  export const inboundSchema =
+    ActivityGraphStatesResponseChannels$inboundSchema;
+  /** @deprecated use `ActivityGraphStatesResponseChannels$outboundSchema` instead. */
+  export const outboundSchema =
+    ActivityGraphStatesResponseChannels$outboundSchema;
 }
 
 /** @internal */
@@ -53,7 +59,7 @@ export const ActivityGraphStatesResponse$inboundSchema: z.ZodType<
   _id: z.string(),
   count: z.number(),
   templates: z.array(z.string()),
-  channels: z.array(Channels$inboundSchema),
+  channels: z.array(ActivityGraphStatesResponseChannels$inboundSchema),
 }).transform((v) => {
   return remap$(v, {
     "_id": "id",
@@ -77,7 +83,7 @@ export const ActivityGraphStatesResponse$outboundSchema: z.ZodType<
   id: z.string(),
   count: z.number(),
   templates: z.array(z.string()),
-  channels: z.array(Channels$outboundSchema),
+  channels: z.array(ActivityGraphStatesResponseChannels$outboundSchema),
 }).transform((v) => {
   return remap$(v, {
     id: "_id",

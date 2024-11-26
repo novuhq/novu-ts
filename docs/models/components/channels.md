@@ -5,11 +5,11 @@
 ```typescript
 import { Channels } from "@novu/api/models/components";
 
-let value: Channels = "in_app";
+let value: Channels = "trigger";
 ```
 
 ## Values
 
 ```typescript
-"in_app" | "email" | "sms" | "chat" | "push"
+"in_app" | "email" | "sms" | "chat" | "push" | "digest" | "trigger" | "delay" | "custom"
 ```

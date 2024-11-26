@@ -8,7 +8,11 @@ import { ActivitiesResponseDto } from "@novu/api/models/components";
 let value: ActivitiesResponseDto = {
   hasMore: false,
   data: [
-    "<value>",
+    {
+      environmentId: "<id>",
+      organizationId: "<id>",
+      transactionId: "<id>",
+    },
   ],
   pageSize: 9767.61,
   page: 6048.46,
@@ -17,9 +21,9 @@ let value: ActivitiesResponseDto = {
 
 ## Fields
 
-| Field              | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `hasMore`          | *boolean*          | :heavy_check_mark: | N/A                |
-| `data`             | *string*[]         | :heavy_check_mark: | N/A                |
-| `pageSize`         | *number*           | :heavy_check_mark: | N/A                |
-| `page`             | *number*           | :heavy_check_mark: | N/A                |
+| Field                                                                                                      | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
+| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `hasMore`                                                                                                  | *boolean*                                                                                                  | :heavy_check_mark:                                                                                         | N/A                                                                                                        |
+| `data`                                                                                                     | [components.ActivityNotificationResponseDto](../../models/components/activitynotificationresponsedto.md)[] | :heavy_check_mark:                                                                                         | Array of Activity notifications                                                                            |
+| `pageSize`                                                                                                 | *number*                                                                                                   | :heavy_check_mark:                                                                                         | N/A                                                                                                        |
+| `page`                                                                                                     | *number*                                                                                                   | :heavy_check_mark:                                                                                         | N/A                                                                                                        |
