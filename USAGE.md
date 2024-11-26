@@ -11,8 +11,6 @@ const novu = new Novu({
 async function run() {
   const result = await novu.trigger({
     name: "workflow_identifier",
-    payload: {},
-    overrides: {},
     to: [
       {
         topicKey: "<value>",
@@ -47,8 +45,6 @@ async function run() {
     events: [
       {
         name: "workflow_identifier",
-        payload: {},
-        overrides: {},
         to: [
           {
             topicKey: "<value>",
@@ -61,8 +57,6 @@ async function run() {
       },
       {
         name: "workflow_identifier",
-        payload: {},
-        overrides: {},
         to: [
           {
             topicKey: "<value>",
@@ -72,8 +66,6 @@ async function run() {
       },
       {
         name: "workflow_identifier",
-        payload: {},
-        overrides: {},
         to: [
           {
             topicKey: "<value>",
@@ -109,7 +101,6 @@ async function run() {
   const result = await novu.triggerBroadcast({
     name: "<value>",
     payload: {},
-    overrides: {},
   });
 
   // Handle the result
@@ -130,7 +121,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.cancelByTransactionId("<id>");
+  const result = await novu.cancel("<id>");
 
   // Handle the result
   console.log(result);

@@ -1,17 +1,10 @@
-<<<<<<< Updated upstream
 /__tests__
-=======
->>>>>>> Stashed changes
 /funcs
 /core.*
 /esm
 /dist
 /.tshy
 /.tshy-*
-<<<<<<< Updated upstream
-=======
-/__tests__
->>>>>>> Stashed changes
 /models
 /models/errors
 /types

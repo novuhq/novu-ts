@@ -1234,7 +1234,7 @@
         "x-speakeasy-usage-example": {
           "title": "Cancel Triggered Event"
         },
-        "x-speakeasy-name-override": "cancelByTransactionId",
+        "x-speakeasy-name-override": "cancel",
         "summary": "Cancel triggered event",
         "description": "\n    Using a previously generated transactionId during the event trigger,\n     will cancel any active or pending workflows. This is useful to cancel active digests, delays etc...\n    ",
         "parameters": [

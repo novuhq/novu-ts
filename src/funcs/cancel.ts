@@ -29,7 +29,7 @@ import { Result } from "../types/fp.js";
  *     Using a previously generated transactionId during the event trigger,
  *      will cancel any active or pending workflows. This is useful to cancel active digests, delays etc...
  */
-export async function cancelByTransactionId(
+export async function cancel(
   client: NovuCore,
   transactionId: string,
   options?: RequestOptions,

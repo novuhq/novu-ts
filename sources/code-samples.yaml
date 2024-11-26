@@ -26,25 +26,25 @@ actions:
       "x-codeSamples":
         - "lang": "typescript"
           "label": "EventsController_trigger"
-          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n});\n\nasync function run() {\n  const result = await novu.trigger({\n    name: \"workflow_identifier\",\n    payload: {},\n    overrides: {},\n    to: [\n      {\n        topicKey: \"<value>\",\n        type: \"Topic\",\n      },\n      {\n        topicKey: \"<value>\",\n        type: \"Topic\",\n      },\n    ],\n  });\n\n  // Handle the result\n  console.log(result);\n}\n\nrun();"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n});\n\nasync function run() {\n  const result = await novu.trigger({\n    name: \"workflow_identifier\",\n    to: [\n      {\n        topicKey: \"<value>\",\n        type: \"Topic\",\n      },\n      {\n        topicKey: \"<value>\",\n        type: \"Topic\",\n      },\n    ],\n  });\n\n  // Handle the result\n  console.log(result);\n}\n\nrun();"
   - target: $["paths"]["/v1/events/trigger/broadcast"]["post"]
     update:
       "x-codeSamples":
         - "lang": "typescript"
           "label": "EventsController_broadcastEventToAll"
-          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n});\n\nasync function run() {\n  const result = await novu.triggerBroadcast({\n    name: \"<value>\",\n    payload: {},\n    overrides: {},\n  });\n\n  // Handle the result\n  console.log(result);\n}\n\nrun();"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n});\n\nasync function run() {\n  const result = await novu.triggerBroadcast({\n    name: \"<value>\",\n    payload: {},\n  });\n\n  // Handle the result\n  console.log(result);\n}\n\nrun();"
   - target: $["paths"]["/v1/events/trigger/bulk"]["post"]
     update:
       "x-codeSamples":
         - "lang": "typescript"
           "label": "EventsController_triggerBulk"
-          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n});\n\nasync function run() {\n  const result = await novu.triggerBulk({\n    events: [\n      {\n        name: \"workflow_identifier\",\n        payload: {},\n        overrides: {},\n        to: [\n          {\n            topicKey: \"<value>\",\n            type: \"Topic\",\n          },\n          {\n            subscriberId: \"<id>\",\n          },\n        ],\n      },\n      {\n        name: \"workflow_identifier\",\n        payload: {},\n        overrides: {},\n        to: [\n          {\n            topicKey: \"<value>\",\n            type: \"Topic\",\n          },\n        ],\n      },\n      {\n        name: \"workflow_identifier\",\n        payload: {},\n        overrides: {},\n        to: [\n          {\n            topicKey: \"<value>\",\n            type: \"Topic\",\n          },\n          {\n            topicKey: \"<value>\",\n            type: \"Topic\",\n          },\n        ],\n      },\n    ],\n  });\n\n  // Handle the result\n  console.log(result);\n}\n\nrun();"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n});\n\nasync function run() {\n  const result = await novu.triggerBulk({\n    events: [\n      {\n        name: \"workflow_identifier\",\n        to: [\n          {\n            topicKey: \"<value>\",\n            type: \"Topic\",\n          },\n          {\n            subscriberId: \"<id>\",\n          },\n        ],\n      },\n      {\n        name: \"workflow_identifier\",\n        to: [\n          {\n            topicKey: \"<value>\",\n            type: \"Topic\",\n          },\n        ],\n      },\n      {\n        name: \"workflow_identifier\",\n        to: [\n          {\n            topicKey: \"<value>\",\n            type: \"Topic\",\n          },\n          {\n            topicKey: \"<value>\",\n            type: \"Topic\",\n          },\n        ],\n      },\n    ],\n  });\n\n  // Handle the result\n  console.log(result);\n}\n\nrun();"
   - target: $["paths"]["/v1/events/trigger/{transactionId}"]["delete"]
     update:
       "x-codeSamples":
         - "lang": "typescript"
           "label": "EventsController_cancel"
-          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n});\n\nasync function run() {\n  const result = await novu.cancelByTransactionId(\"<id>\");\n\n  // Handle the result\n  console.log(result);\n}\n\nrun();"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n});\n\nasync function run() {\n  const result = await novu.cancel(\"<id>\");\n\n  // Handle the result\n  console.log(result);\n}\n\nrun();"
   - target: $["paths"]["/v1/execution-details"]["get"]
     update:
       "x-codeSamples":

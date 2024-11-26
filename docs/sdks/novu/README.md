@@ -12,7 +12,7 @@ Novu Documentation
 * [trigger](#trigger) - Trigger event
 * [triggerBulk](#triggerbulk) - Bulk trigger event
 * [triggerBroadcast](#triggerbroadcast) - Broadcast event to all
-* [cancelByTransactionId](#cancelbytransactionid) - Cancel triggered event
+* [cancel](#cancel) - Cancel triggered event
 
 ## trigger
 
@@ -34,8 +34,6 @@ const novu = new Novu({
 async function run() {
   const result = await novu.trigger({
     name: "workflow_identifier",
-    payload: {},
-    overrides: {},
     to: [
       {
         topicKey: "<value>",
@@ -72,8 +70,6 @@ const novu = new NovuCore({
 async function run() {
   const res = await trigger(novu, {
     name: "workflow_identifier",
-    payload: {},
-    overrides: {},
     to: [
       {
         topicKey: "<value>",
@@ -139,8 +135,6 @@ async function run() {
     events: [
       {
         name: "workflow_identifier",
-        payload: {},
-        overrides: {},
         to: [
           {
             topicKey: "<value>",
@@ -153,8 +147,6 @@ async function run() {
       },
       {
         name: "workflow_identifier",
-        payload: {},
-        overrides: {},
         to: [
           {
             topicKey: "<value>",
@@ -164,8 +156,6 @@ async function run() {
       },
       {
         name: "workflow_identifier",
-        payload: {},
-        overrides: {},
         to: [
           {
             topicKey: "<value>",
@@ -206,8 +196,6 @@ async function run() {
     events: [
       {
         name: "workflow_identifier",
-        payload: {},
-        overrides: {},
         to: [
           {
             topicKey: "<value>",
@@ -220,8 +208,6 @@ async function run() {
       },
       {
         name: "workflow_identifier",
-        payload: {},
-        overrides: {},
         to: [
           {
             topicKey: "<value>",
@@ -231,8 +217,6 @@ async function run() {
       },
       {
         name: "workflow_identifier",
-        payload: {},
-        overrides: {},
         to: [
           {
             topicKey: "<value>",
@@ -298,7 +282,6 @@ async function run() {
   const result = await novu.triggerBroadcast({
     name: "<value>",
     payload: {},
-    overrides: {},
   });
 
   // Handle the result
@@ -326,7 +309,6 @@ async function run() {
   const res = await triggerBroadcast(novu, {
     name: "<value>",
     payload: {},
-    overrides: {},
   });
 
   if (!res.ok) {
@@ -361,7 +343,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4XX, 5XX        | \*/\*           |
 
-## cancelByTransactionId
+## cancel
 
 
     Using a previously generated transactionId during the event trigger,
@@ -378,7 +360,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.cancelByTransactionId("<id>");
+  const result = await novu.cancel("<id>");
 
   // Handle the result
   console.log(result);
@@ -393,7 +375,7 @@ The standalone function version of this method:
 
 ```typescript
 import { NovuCore } from "@novu/api/core.js";
-import { cancelByTransactionId } from "@novu/api/funcs/cancelByTransactionId.js";
+import { cancel } from "@novu/api/funcs/cancel.js";
 
 // Use `NovuCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -402,7 +384,7 @@ const novu = new NovuCore({
 });
 
 async function run() {
-  const res = await cancelByTransactionId(novu, "<id>");
+  const res = await cancel(novu, "<id>");
 
   if (!res.ok) {
     throw res.error;

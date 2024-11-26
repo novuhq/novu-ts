@@ -85,8 +85,6 @@ const novu = new Novu({
 async function run() {
   const result = await novu.trigger({
     name: "workflow_identifier",
-    payload: {},
-    overrides: {},
     to: [
       {
         topicKey: "<value>",
@@ -121,8 +119,6 @@ async function run() {
     events: [
       {
         name: "workflow_identifier",
-        payload: {},
-        overrides: {},
         to: [
           {
             topicKey: "<value>",
@@ -135,8 +131,6 @@ async function run() {
       },
       {
         name: "workflow_identifier",
-        payload: {},
-        overrides: {},
         to: [
           {
             topicKey: "<value>",
@@ -146,8 +140,6 @@ async function run() {
       },
       {
         name: "workflow_identifier",
-        payload: {},
-        overrides: {},
         to: [
           {
             topicKey: "<value>",
@@ -183,7 +175,6 @@ async function run() {
   const result = await novu.triggerBroadcast({
     name: "<value>",
     payload: {},
-    overrides: {},
   });
 
   // Handle the result
@@ -204,7 +195,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.cancelByTransactionId("<id>");
+  const result = await novu.cancel("<id>");
 
   // Handle the result
   console.log(result);
@@ -268,7 +259,7 @@ run();
 * [trigger](docs/sdks/novu/README.md#trigger) - Trigger event
 * [triggerBulk](docs/sdks/novu/README.md#triggerbulk) - Bulk trigger event
 * [triggerBroadcast](docs/sdks/novu/README.md#triggerbroadcast) - Broadcast event to all
-* [cancelByTransactionId](docs/sdks/novu/README.md#cancelbytransactionid) - Cancel triggered event
+* [cancel](docs/sdks/novu/README.md#cancel) - Cancel triggered event
 
 ### [subscribers](docs/sdks/subscribers/README.md)
 
@@ -352,7 +343,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 <summary>Available standalone functions</summary>
 
-- [`cancelByTransactionId`](docs/sdks/novu/README.md#cancelbytransactionid) - Cancel triggered event
+- [`cancel`](docs/sdks/novu/README.md#cancel) - Cancel triggered event
 - [`environmentsApiKeysList`](docs/sdks/apikeys/README.md#list) - Get api keys
 - [`environmentsList`](docs/sdks/environments/README.md#list) - Get environments
 - [`environmentsRetrieve`](docs/sdks/environments/README.md#retrieve) - Get current environment
@@ -479,8 +470,6 @@ async function run() {
   try {
     result = await novu.trigger({
       name: "workflow_identifier",
-      payload: {},
-      overrides: {},
       to: [
         {
           topicKey: "<value>",
@@ -543,8 +532,6 @@ const novu = new Novu({
 async function run() {
   const result = await novu.trigger({
     name: "workflow_identifier",
-    payload: {},
-    overrides: {},
     to: [
       {
         topicKey: "<value>",
@@ -579,8 +566,6 @@ const novu = new Novu({
 async function run() {
   const result = await novu.trigger({
     name: "workflow_identifier",
-    payload: {},
-    overrides: {},
     to: [
       {
         topicKey: "<value>",
@@ -673,8 +658,6 @@ const novu = new Novu({
 async function run() {
   const result = await novu.trigger({
     name: "workflow_identifier",
-    payload: {},
-    overrides: {},
     to: [
       {
         topicKey: "<value>",
@@ -712,8 +695,6 @@ const novu = new Novu({
 async function run() {
   const result = await novu.trigger({
     name: "workflow_identifier",
-    payload: {},
-    overrides: {},
     to: [
       {
         topicKey: "<value>",
@@ -766,8 +747,6 @@ const novu = new Novu({
 async function run() {
   const result = await novu.trigger({
     name: "workflow_identifier",
-    payload: {},
-    overrides: {},
     to: [
       {
         topicKey: "<value>",

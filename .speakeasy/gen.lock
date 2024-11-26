@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 6bff3a53-3f0b-40b4-942f-ff70dc583ae5
 management:
-  docChecksum: 94d6ad7aa34a4727c08897680b358b24
+  docChecksum: 10932993b99f723bb4dec08261897258
   docVersion: "1.0"
-  speakeasyVersion: 1.445.2
-  generationVersion: 2.461.4
-  releaseVersion: 0.0.1-alpha.21
-  configChecksum: fabf13d55adfbfa964856669a7e51924
+  speakeasyVersion: 1.446.1
+  generationVersion: 2.462.1
+  releaseVersion: 0.0.1-alpha.25
+  configChecksum: 3e76faf756c7c8551645e6079f12b9af
   published: true
 features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.11
-    core: 3.18.6
+    core: 3.18.7
     defaultEnabledRetries: 0.1.0
     deprecations: 2.81.1
     enumUnions: 0.1.0
@@ -30,7 +30,6 @@ features:
     responseFormat: 0.2.3
     retries: 2.83.0
     sdkHooks: 0.2.0
-    tests: 0.7.0
     unions: 2.85.8
 generatedFiles:
   - .eslintrc.cjs
@@ -321,7 +320,7 @@ generatedFiles:
   - jsr.json
   - package.json
   - src/core.ts
-  - src/funcs/cancelByTransactionId.ts
+  - src/funcs/cancel.ts
   - src/funcs/environmentsApiKeysList.ts
   - src/funcs/environmentsList.ts
   - src/funcs/environmentsRetrieve.ts
@@ -998,3 +997,4 @@ examples:
           topicKey: "<value>"
       requestBody:
         application/json: {"subscribers": ["<value>", "<value>"]}
+generatedTests: {}

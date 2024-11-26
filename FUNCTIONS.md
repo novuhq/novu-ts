@@ -32,8 +32,6 @@ const novu = new NovuCore({
 async function run() {
   const res = await trigger(novu, {
     name: "workflow_identifier",
-    payload: {},
-    overrides: {},
     to: [
       {
         topicKey: "<value>",
