@@ -148,10 +148,7 @@ async function run() {
       {
         name: "workflow_identifier",
         to: [
-          {
-            topicKey: "<value>",
-            type: "Topic",
-          },
+          "SUBSCRIBER_ID",
         ],
       },
       {
@@ -209,10 +206,7 @@ async function run() {
       {
         name: "workflow_identifier",
         to: [
-          {
-            topicKey: "<value>",
-            type: "Topic",
-          },
+          "SUBSCRIBER_ID",
         ],
       },
       {

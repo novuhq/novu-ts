@@ -1,15 +1,9 @@
-import {
-    AfterSuccessContext,
-    AfterSuccessHook,
-    BeforeRequestContext,
-    BeforeRequestHook,
-} from "./types";
+import {AfterSuccessContext, AfterSuccessHook, BeforeRequestContext, BeforeRequestHook} from "./types";
 
 export class NovuCustomHook
     implements  BeforeRequestHook, AfterSuccessHook
 {
-    // @ts-ignore
-    beforeRequest(hookCtx: BeforeRequestContext, request: Request): Request {
+    beforeRequest(_hookCtx: BeforeRequestContext, request: Request): Request {
         const authKey = 'authorization';
         const hasAuthorization = request.headers.has(authKey);
         const apiKeyPrefix = 'ApiKey';
