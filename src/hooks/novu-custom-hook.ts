@@ -18,7 +18,7 @@ export class NovuCustomHook
     }
 
     async afterSuccess(_hookCtx: AfterSuccessContext, response: Response): Promise<Response> {
-        const jsonResponse = await response.json();
+        const jsonResponse = await response.clone().json();
 
         if (jsonResponse && Object.keys(jsonResponse).length === 1 && jsonResponse.data) {
             return new Response(JSON.stringify(jsonResponse.data), {
