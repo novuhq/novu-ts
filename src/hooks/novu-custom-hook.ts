@@ -11,7 +11,7 @@ export class NovuCustomHook
             const key = request.headers.get(authKey);
 
             if (key && !key.includes(apiKeyPrefix)) {
-                request.headers.set(authKey,`${apiKeyPrefix} ${authKey}`)
+                request.headers.set(authKey,`${apiKeyPrefix} ${key}`)
             }
         }
         return request;
