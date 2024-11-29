@@ -10644,12 +10644,12 @@
                   "$ref": "#/components/schemas/SubscriberPayloadDto"
                 },
                 {
+                  "$ref": "#/components/schemas/TopicPayloadDto"
+                },
+                {
                   "type": "string",
                   "description": "Unique identifier of a subscriber in your systems",
                   "example": "SUBSCRIBER_ID"
-                },
-                {
-                  "$ref": "#/components/schemas/TopicPayloadDto"
                 }
               ]
             }

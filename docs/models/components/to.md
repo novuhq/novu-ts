@@ -11,12 +11,6 @@ const value: components.SubscriberPayloadDto = {
 };
 ```
 
-### `string`
-
-```typescript
-const value: string = "SUBSCRIBER_ID";
-```
-
 ### `components.TopicPayloadDto`
 
 ```typescript
@@ -24,5 +18,11 @@ const value: components.TopicPayloadDto = {
   topicKey: "<value>",
   type: "Topic",
 };
+```
+
+### `string`
+
+```typescript
+const value: string = "SUBSCRIBER_ID";
 ```
 
