@@ -8,9 +8,9 @@ import { SubscribersControllerUpdateSubscriberChannelRequest } from "@novu/api/m
 let value: SubscribersControllerUpdateSubscriberChannelRequest = {
   subscriberId: "<id>",
   updateSubscriberChannelRequestDto: {
-    providerId: "msteams",
+    providerId: "one-signal",
     credentials: {
-      webhookUrl: "https://corrupt-unblinking.name",
+      webhookUrl: "https://productive-charm.org/",
     },
   },
 };

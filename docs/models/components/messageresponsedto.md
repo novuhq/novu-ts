@@ -15,7 +15,7 @@ let value: MessageResponseDto = {
   createdAt: "<value>",
   content: "<value>",
   transactionId: "<id>",
-  channel: "sms",
+  channel: "push",
   read: false,
   seen: false,
   cta: {

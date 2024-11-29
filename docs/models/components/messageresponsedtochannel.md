@@ -5,7 +5,7 @@
 ```typescript
 import { MessageResponseDtoChannel } from "@novu/api/models/components";
 
-let value: MessageResponseDtoChannel = "sms";
+let value: MessageResponseDtoChannel = "chat";
 ```
 
 ## Values

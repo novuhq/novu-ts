@@ -7,7 +7,7 @@ The channel of the message to be deleted
 ```typescript
 import { QueryParamChannel } from "@novu/api/models/operations";
 
-let value: QueryParamChannel = "sms";
+let value: QueryParamChannel = "chat";
 ```
 
 ## Values

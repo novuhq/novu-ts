@@ -1413,7 +1413,7 @@
         "parameters": [
           {
             "name": "channels",
-            "required": true,
+            "required": false,
             "in": "query",
             "schema": {
               "type": "array",
@@ -1431,7 +1431,7 @@
           },
           {
             "name": "templates",
-            "required": true,
+            "required": false,
             "in": "query",
             "schema": {
               "type": "array",
@@ -1442,7 +1442,7 @@
           },
           {
             "name": "emails",
-            "required": true,
+            "required": false,
             "in": "query",
             "schema": {
               "type": "array",
@@ -1453,7 +1453,7 @@
           },
           {
             "name": "search",
-            "required": true,
+            "required": false,
             "in": "query",
             "deprecated": true,
             "schema": {
@@ -1462,7 +1462,7 @@
           },
           {
             "name": "subscriberIds",
-            "required": true,
+            "required": false,
             "in": "query",
             "schema": {
               "type": "array",

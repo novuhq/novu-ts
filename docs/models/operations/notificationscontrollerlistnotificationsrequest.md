@@ -5,31 +5,17 @@
 ```typescript
 import { NotificationsControllerListNotificationsRequest } from "@novu/api/models/operations";
 
-let value: NotificationsControllerListNotificationsRequest = {
-  channels: [
-    "push",
-  ],
-  templates: [
-    "<value>",
-  ],
-  emails: [
-    "<value>",
-  ],
-  search: "<value>",
-  subscriberIds: [
-    "<value>",
-  ],
-};
+let value: NotificationsControllerListNotificationsRequest = {};
 ```
 
 ## Fields
 
 | Field                                                                                                                   | Type                                                                                                                    | Required                                                                                                                | Description                                                                                                             |
 | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| `channels`                                                                                                              | [operations.Channels](../../models/operations/channels.md)[]                                                            | :heavy_check_mark:                                                                                                      | N/A                                                                                                                     |
-| `templates`                                                                                                             | *string*[]                                                                                                              | :heavy_check_mark:                                                                                                      | N/A                                                                                                                     |
-| `emails`                                                                                                                | *string*[]                                                                                                              | :heavy_check_mark:                                                                                                      | N/A                                                                                                                     |
-| ~~`search`~~                                                                                                            | *string*                                                                                                                | :heavy_check_mark:                                                                                                      | : warning: ** DEPRECATED **: This will be removed in a future release, please migrate away from it as soon as possible. |
-| `subscriberIds`                                                                                                         | *string*[]                                                                                                              | :heavy_check_mark:                                                                                                      | N/A                                                                                                                     |
+| `channels`                                                                                                              | [operations.Channels](../../models/operations/channels.md)[]                                                            | :heavy_minus_sign:                                                                                                      | N/A                                                                                                                     |
+| `templates`                                                                                                             | *string*[]                                                                                                              | :heavy_minus_sign:                                                                                                      | N/A                                                                                                                     |
+| `emails`                                                                                                                | *string*[]                                                                                                              | :heavy_minus_sign:                                                                                                      | N/A                                                                                                                     |
+| ~~`search`~~                                                                                                            | *string*                                                                                                                | :heavy_minus_sign:                                                                                                      | : warning: ** DEPRECATED **: This will be removed in a future release, please migrate away from it as soon as possible. |
+| `subscriberIds`                                                                                                         | *string*[]                                                                                                              | :heavy_minus_sign:                                                                                                      | N/A                                                                                                                     |
 | `page`                                                                                                                  | *number*                                                                                                                | :heavy_minus_sign:                                                                                                      | N/A                                                                                                                     |
 | `transactionId`                                                                                                         | *string*                                                                                                                | :heavy_minus_sign:                                                                                                      | N/A                                                                                                                     |
