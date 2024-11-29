@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 6bff3a53-3f0b-40b4-942f-ff70dc583ae5
 management:
-  docChecksum: 9fbeac5295c06c5aebf73b2de10091d9
+  docChecksum: cdf89dedbe8013b04f55587a27febc29
   docVersion: "1.0"
   speakeasyVersion: 1.448.2
   generationVersion: 2.467.4
-  releaseVersion: 0.0.1-alpha.38
-  configChecksum: 4a178ddd5c5d122d42c5cb71da89fc46
+  releaseVersion: 0.0.1-alpha.39
+  configChecksum: a5d0085ae533401540fea94244d6a3ff
   published: true
 features:
   typescript:
@@ -175,7 +175,6 @@ generatedFiles:
   - docs/models/components/triggereventtoallrequestdto.md
   - docs/models/components/triggereventtoallrequestdtoactor.md
   - docs/models/components/triggereventtoallrequestdtooverrides.md
-  - docs/models/components/triggereventtoallrequestdtopayload.md
   - docs/models/components/triggereventtoallrequestdtotenant.md
   - docs/models/components/type.md
   - docs/models/components/unit.md

@@ -9,7 +9,12 @@ let value: BulkTriggerEventDto = {
   events: [
     {
       name: "workflow_identifier",
-      payload: {},
+      payload: {
+        "comment_id": "string",
+        "post": {
+          "text": "string",
+        },
+      },
       overrides: {},
       to: [
         {

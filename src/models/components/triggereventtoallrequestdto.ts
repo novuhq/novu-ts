@@ -25,7 +25,7 @@ import {
  * @remarks
  *       This data will also be available when fetching the notifications feed from the API to display certain parts of the UI.
  */
-export type TriggerEventToAllRequestDtoPayload = {};
+export type Payload = {};
 
 /**
  * This could be used to override provider specific configurations
@@ -59,7 +59,7 @@ export type TriggerEventToAllRequestDto = {
    * @remarks
    *       This data will also be available when fetching the notifications feed from the API to display certain parts of the UI.
    */
-  payload: TriggerEventToAllRequestDtoPayload;
+  payload: Payload;
   /**
    * This could be used to override provider specific configurations
    */
@@ -85,54 +85,43 @@ export type TriggerEventToAllRequestDto = {
 };
 
 /** @internal */
-export const TriggerEventToAllRequestDtoPayload$inboundSchema: z.ZodType<
-  TriggerEventToAllRequestDtoPayload,
-  z.ZodTypeDef,
-  unknown
-> = z.object({});
+export const Payload$inboundSchema: z.ZodType<Payload, z.ZodTypeDef, unknown> =
+  z.object({});
 
 /** @internal */
-export type TriggerEventToAllRequestDtoPayload$Outbound = {};
+export type Payload$Outbound = {};
 
 /** @internal */
-export const TriggerEventToAllRequestDtoPayload$outboundSchema: z.ZodType<
-  TriggerEventToAllRequestDtoPayload$Outbound,
+export const Payload$outboundSchema: z.ZodType<
+  Payload$Outbound,
   z.ZodTypeDef,
-  TriggerEventToAllRequestDtoPayload
+  Payload
 > = z.object({});
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace TriggerEventToAllRequestDtoPayload$ {
-  /** @deprecated use `TriggerEventToAllRequestDtoPayload$inboundSchema` instead. */
-  export const inboundSchema = TriggerEventToAllRequestDtoPayload$inboundSchema;
-  /** @deprecated use `TriggerEventToAllRequestDtoPayload$outboundSchema` instead. */
-  export const outboundSchema =
-    TriggerEventToAllRequestDtoPayload$outboundSchema;
-  /** @deprecated use `TriggerEventToAllRequestDtoPayload$Outbound` instead. */
-  export type Outbound = TriggerEventToAllRequestDtoPayload$Outbound;
+export namespace Payload$ {
+  /** @deprecated use `Payload$inboundSchema` instead. */
+  export const inboundSchema = Payload$inboundSchema;
+  /** @deprecated use `Payload$outboundSchema` instead. */
+  export const outboundSchema = Payload$outboundSchema;
+  /** @deprecated use `Payload$Outbound` instead. */
+  export type Outbound = Payload$Outbound;
 }
 
-export function triggerEventToAllRequestDtoPayloadToJSON(
-  triggerEventToAllRequestDtoPayload: TriggerEventToAllRequestDtoPayload,
-): string {
-  return JSON.stringify(
-    TriggerEventToAllRequestDtoPayload$outboundSchema.parse(
-      triggerEventToAllRequestDtoPayload,
-    ),
-  );
+export function payloadToJSON(payload: Payload): string {
+  return JSON.stringify(Payload$outboundSchema.parse(payload));
 }
 
-export function triggerEventToAllRequestDtoPayloadFromJSON(
+export function payloadFromJSON(
   jsonString: string,
-): SafeParseResult<TriggerEventToAllRequestDtoPayload, SDKValidationError> {
+): SafeParseResult<Payload, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) =>
-      TriggerEventToAllRequestDtoPayload$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'TriggerEventToAllRequestDtoPayload' from JSON`,
+    (x) => Payload$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Payload' from JSON`,
   );
 }
 
@@ -301,7 +290,7 @@ export const TriggerEventToAllRequestDto$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   name: z.string(),
-  payload: z.lazy(() => TriggerEventToAllRequestDtoPayload$inboundSchema),
+  payload: z.lazy(() => Payload$inboundSchema),
   overrides: z.lazy(() => TriggerEventToAllRequestDtoOverrides$inboundSchema)
     .optional(),
   transactionId: z.string().optional(),
@@ -312,7 +301,7 @@ export const TriggerEventToAllRequestDto$inboundSchema: z.ZodType<
 /** @internal */
 export type TriggerEventToAllRequestDto$Outbound = {
   name: string;
-  payload: TriggerEventToAllRequestDtoPayload$Outbound;
+  payload: Payload$Outbound;
   overrides?: TriggerEventToAllRequestDtoOverrides$Outbound | undefined;
   transactionId?: string | undefined;
   actor?: SubscriberPayloadDto$Outbound | string | undefined;
@@ -326,7 +315,7 @@ export const TriggerEventToAllRequestDto$outboundSchema: z.ZodType<
   TriggerEventToAllRequestDto
 > = z.object({
   name: z.string(),
-  payload: z.lazy(() => TriggerEventToAllRequestDtoPayload$outboundSchema),
+  payload: z.lazy(() => Payload$outboundSchema),
   overrides: z.lazy(() => TriggerEventToAllRequestDtoOverrides$outboundSchema)
     .optional(),
   transactionId: z.string().optional(),
