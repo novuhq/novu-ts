@@ -6,9 +6,9 @@
 import { ChannelSettings } from "@novu/api/models/components";
 
 let value: ChannelSettings = {
-  providerId: "mattermost",
+  providerId: "expo",
   credentials: {
-    webhookUrl: "https://ajar-solvency.com",
+    webhookUrl: "https://dental-morbidity.com/",
   },
   integrationId: "<id>",
 };

@@ -5,7 +5,7 @@
 ```typescript
 import { Operator } from "@novu/api/models/components";
 
-let value: Operator = "NOT_IN";
+let value: Operator = "ANY_IN";
 ```
 
 ## Values

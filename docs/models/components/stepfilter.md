@@ -7,8 +7,8 @@ import { StepFilter } from "@novu/api/models/components";
 
 let value: StepFilter = {
   isNegated: false,
-  type: "STATEMENT",
-  value: "AND",
+  type: "BOOLEAN",
+  value: "OR",
   children: [
     {
       field: "<value>",

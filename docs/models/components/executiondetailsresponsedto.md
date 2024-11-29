@@ -16,7 +16,7 @@ let value: ExecutionDetailsResponseDto = {
   channel: "in_app",
   detail: "<value>",
   source: "Webhook",
-  status: "Failed",
+  status: "Success",
   isTest: false,
   isRetry: false,
 };

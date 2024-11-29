@@ -12,17 +12,17 @@ let value: SubscribersControllerGetNotificationsFeedResponse = {
     ],
   },
   result: {
-    page: 3595.08,
+    page: 6818.20,
     hasMore: false,
-    pageSize: 4370.32,
+    pageSize: 3595.08,
     data: [
       {
         hasMore: false,
         data: [
           "<value>",
         ],
-        pageSize: 6976.31,
-        page: 602.25,
+        pageSize: 4370.32,
+        page: 6976.31,
       },
     ],
   },

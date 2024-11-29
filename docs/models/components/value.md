@@ -5,7 +5,7 @@
 ```typescript
 import { Value } from "@novu/api/models/components";
 
-let value: Value = "OR";
+let value: Value = "AND";
 ```
 
 ## Values

@@ -20,14 +20,14 @@ export const Channels = {
 export type Channels = ClosedEnum<typeof Channels>;
 
 export type NotificationsControllerListNotificationsRequest = {
-  channels: Array<Channels>;
-  templates: Array<string>;
-  emails: Array<string>;
+  channels?: Array<Channels> | undefined;
+  templates?: Array<string> | undefined;
+  emails?: Array<string> | undefined;
   /**
    * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
    */
-  search: string;
-  subscriberIds: Array<string>;
+  search?: string | undefined;
+  subscriberIds?: Array<string> | undefined;
   page?: number | undefined;
   transactionId?: string | undefined;
 };
@@ -63,22 +63,22 @@ export const NotificationsControllerListNotificationsRequest$inboundSchema:
     z.ZodTypeDef,
     unknown
   > = z.object({
-    channels: z.array(Channels$inboundSchema),
-    templates: z.array(z.string()),
-    emails: z.array(z.string()),
-    search: z.string(),
-    subscriberIds: z.array(z.string()),
+    channels: z.array(Channels$inboundSchema).optional(),
+    templates: z.array(z.string()).optional(),
+    emails: z.array(z.string()).optional(),
+    search: z.string().optional(),
+    subscriberIds: z.array(z.string()).optional(),
     page: z.number().default(0),
     transactionId: z.string().optional(),
   });
 
 /** @internal */
 export type NotificationsControllerListNotificationsRequest$Outbound = {
-  channels: Array<string>;
-  templates: Array<string>;
-  emails: Array<string>;
-  search: string;
-  subscriberIds: Array<string>;
+  channels?: Array<string> | undefined;
+  templates?: Array<string> | undefined;
+  emails?: Array<string> | undefined;
+  search?: string | undefined;
+  subscriberIds?: Array<string> | undefined;
   page: number;
   transactionId?: string | undefined;
 };
@@ -90,11 +90,11 @@ export const NotificationsControllerListNotificationsRequest$outboundSchema:
     z.ZodTypeDef,
     NotificationsControllerListNotificationsRequest
   > = z.object({
-    channels: z.array(Channels$outboundSchema),
-    templates: z.array(z.string()),
-    emails: z.array(z.string()),
-    search: z.string(),
-    subscriberIds: z.array(z.string()),
+    channels: z.array(Channels$outboundSchema).optional(),
+    templates: z.array(z.string()).optional(),
+    emails: z.array(z.string()).optional(),
+    search: z.string().optional(),
+    subscriberIds: z.array(z.string()).optional(),
     page: z.number().default(0),
     transactionId: z.string().optional(),
   });

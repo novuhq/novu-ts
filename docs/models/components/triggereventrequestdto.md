@@ -11,7 +11,8 @@ let value: TriggerEventRequestDto = {
   overrides: {},
   to: [
     {
-      subscriberId: "<id>",
+      topicKey: "<value>",
+      type: "Topic",
     },
   ],
 };

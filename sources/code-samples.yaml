@@ -146,7 +146,7 @@ actions:
       "x-codeSamples":
         - "lang": "typescript"
           "label": "NotificationsController_listNotifications"
-          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n});\n\nasync function run() {\n  const result = await novu.notifications.list({\n    channels: [\n      \"sms\",\n      \"chat\",\n      \"in_app\",\n    ],\n    templates: [\n      \"<value>\",\n    ],\n    emails: [\n      \"<value>\",\n    ],\n    search: \"<value>\",\n    subscriberIds: [\n      \"<value>\",\n      \"<value>\",\n    ],\n  });\n\n  // Handle the result\n  console.log(result);\n}\n\nrun();"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n});\n\nasync function run() {\n  const result = await novu.notifications.list({});\n\n  // Handle the result\n  console.log(result);\n}\n\nrun();"
   - target: $["paths"]["/v1/notifications/graph/stats"]["get"]
     update:
       "x-codeSamples":
