@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 6bff3a53-3f0b-40b4-942f-ff70dc583ae5
 management:
-  docChecksum: cdf89dedbe8013b04f55587a27febc29
+  docChecksum: ba6e0a02a85bb063cd1902a3864c6468
   docVersion: "1.0"
   speakeasyVersion: 1.448.2
   generationVersion: 2.467.4
-  releaseVersion: 0.0.1-alpha.39
-  configChecksum: a5d0085ae533401540fea94244d6a3ff
+  releaseVersion: 0.0.1-alpha.40
+  configChecksum: 197020505ecb83b8cf3b6f5b3b00dcf2
   published: true
 features:
   typescript:
@@ -54,10 +54,12 @@ generatedFiles:
   - docs/models/components/bulktriggereventdto.md
   - docs/models/components/channel.md
   - docs/models/components/channelcredentials.md
+  - docs/models/components/channelcredentialsdto.md
   - docs/models/components/channelpreference.md
   - docs/models/components/channelpreferencetype.md
   - docs/models/components/channels.md
   - docs/models/components/channelsettings.md
+  - docs/models/components/channelsettingsproviderid.md
   - docs/models/components/content.md
   - docs/models/components/controls.md
   - docs/models/components/createintegrationrequestdto.md
@@ -156,6 +158,7 @@ generatedFiles:
   - docs/models/components/status.md
   - docs/models/components/stepfilter.md
   - docs/models/components/stepfiltertype.md
+  - docs/models/components/subscriberchanneldto.md
   - docs/models/components/subscriberpayloaddto.md
   - docs/models/components/subscriberresponsedto.md
   - docs/models/components/templateresponse.md
@@ -405,6 +408,7 @@ generatedFiles:
   - src/models/components/bulksubscribercreatedto.ts
   - src/models/components/bulktriggereventdto.ts
   - src/models/components/channelcredentials.ts
+  - src/models/components/channelcredentialsdto.ts
   - src/models/components/channelpreference.ts
   - src/models/components/channelsettings.ts
   - src/models/components/createintegrationrequestdto.ts
@@ -456,6 +460,7 @@ generatedFiles:
   - src/models/components/renametopicresponsedto.ts
   - src/models/components/security.ts
   - src/models/components/stepfilter.ts
+  - src/models/components/subscriberchanneldto.ts
   - src/models/components/subscriberpayloaddto.ts
   - src/models/components/subscriberresponsedto.ts
   - src/models/components/templateresponse.ts

@@ -6,6 +6,12 @@ import * as z from "zod";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+import {
+  SubscriberChannelDto,
+  SubscriberChannelDto$inboundSchema,
+  SubscriberChannelDto$Outbound,
+  SubscriberChannelDto$outboundSchema,
+} from "./subscriberchanneldto.js";
 
 export type CreateSubscriberRequestDtoData = {};
 
@@ -24,7 +30,7 @@ export type CreateSubscriberRequestDto = {
   avatar?: string | undefined;
   locale?: string | undefined;
   data?: CreateSubscriberRequestDtoData | undefined;
-  channels?: Array<string> | undefined;
+  channels?: Array<SubscriberChannelDto> | undefined;
 };
 
 /** @internal */
@@ -91,7 +97,7 @@ export const CreateSubscriberRequestDto$inboundSchema: z.ZodType<
   avatar: z.string().optional(),
   locale: z.string().optional(),
   data: z.lazy(() => CreateSubscriberRequestDtoData$inboundSchema).optional(),
-  channels: z.array(z.string()).optional(),
+  channels: z.array(SubscriberChannelDto$inboundSchema).optional(),
 });
 
 /** @internal */
@@ -104,7 +110,7 @@ export type CreateSubscriberRequestDto$Outbound = {
   avatar?: string | undefined;
   locale?: string | undefined;
   data?: CreateSubscriberRequestDtoData$Outbound | undefined;
-  channels?: Array<string> | undefined;
+  channels?: Array<SubscriberChannelDto$Outbound> | undefined;
 };
 
 /** @internal */
@@ -121,7 +127,7 @@ export const CreateSubscriberRequestDto$outboundSchema: z.ZodType<
   avatar: z.string().optional(),
   locale: z.string().optional(),
   data: z.lazy(() => CreateSubscriberRequestDtoData$outboundSchema).optional(),
-  channels: z.array(z.string()).optional(),
+  channels: z.array(SubscriberChannelDto$outboundSchema).optional(),
 });
 
 /**
