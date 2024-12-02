@@ -10566,6 +10566,38 @@
           }
         }
       },
+      "ChannelCredentialsDto": {
+        "type": "object",
+        "properties": {
+          "webhookUrl": {
+            "type": "string"
+          },
+          "deviceTokens": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "SubscriberChannelDto": {
+        "type": "object",
+        "properties": {
+          "integrationIdentifier": {
+            "type": "string"
+          },
+          "providerId": {
+            "type": "object"
+          },
+          "credentials": {
+            "$ref": "#/components/schemas/ChannelCredentialsDto"
+          }
+        },
+        "required": [
+          "providerId",
+          "credentials"
+        ]
+      },
       "SubscriberPayloadDto": {
         "type": "object",
         "properties": {
@@ -10598,7 +10630,7 @@
           "channels": {
             "type": "array",
             "items": {
-              "type": "string"
+              "$ref": "#/components/schemas/SubscriberChannelDto"
             }
           }
         },
@@ -11622,7 +11654,7 @@
           "channels": {
             "type": "array",
             "items": {
-              "type": "string"
+              "$ref": "#/components/schemas/SubscriberChannelDto"
             }
           }
         },
