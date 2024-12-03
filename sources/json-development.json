@@ -10626,7 +10626,26 @@
           },
           "data": {
             "type": "object",
-            "description": "Optional custom data for the subscriber"
+            "description": "An optional payload object that can contain any properties",
+            "additionalProperties": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "number"
+                }
+              ]
+            }
           },
           "channels": {
             "type": "array",
@@ -11651,7 +11670,26 @@
           },
           "data": {
             "type": "object",
-            "description": "Optional custom data for the subscriber"
+            "description": "An optional payload object that can contain any properties",
+            "additionalProperties": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "number"
+                }
+              ]
+            }
           },
           "channels": {
             "type": "array",

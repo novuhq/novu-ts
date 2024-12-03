@@ -5,7 +5,7 @@
 ```typescript
 import { StepFilterType } from "@novu/api/models/components";
 
-let value: StepFilterType = "DATE";
+let value: StepFilterType = "NUMBER";
 ```
 
 ## Values

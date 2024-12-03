@@ -6,7 +6,7 @@
 import { ChannelCredentials } from "@novu/api/models/components";
 
 let value: ChannelCredentials = {
-  webhookUrl: "https://accomplished-planula.biz",
+  webhookUrl: "https://remarkable-dream.net/",
 };
 ```
 

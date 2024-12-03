@@ -13,10 +13,11 @@ import {
   SubscriberChannelDto$outboundSchema,
 } from "./subscriberchanneldto.js";
 
-/**
- * Optional custom data for the subscriber
- */
-export type CreateSubscriberRequestDtoData = {};
+export type CreateSubscriberRequestDtoData =
+  | string
+  | Array<string>
+  | boolean
+  | number;
 
 export type CreateSubscriberRequestDto = {
   /**
@@ -33,9 +34,9 @@ export type CreateSubscriberRequestDto = {
   avatar?: string | undefined;
   locale?: string | undefined;
   /**
-   * Optional custom data for the subscriber
+   * An optional payload object that can contain any properties
    */
-  data?: CreateSubscriberRequestDtoData | undefined;
+  data?: { [k: string]: string | Array<string> | boolean | number } | undefined;
   channels?: Array<SubscriberChannelDto> | undefined;
 };
 
@@ -44,17 +45,21 @@ export const CreateSubscriberRequestDtoData$inboundSchema: z.ZodType<
   CreateSubscriberRequestDtoData,
   z.ZodTypeDef,
   unknown
-> = z.object({});
+> = z.union([z.string(), z.array(z.string()), z.boolean(), z.number()]);
 
 /** @internal */
-export type CreateSubscriberRequestDtoData$Outbound = {};
+export type CreateSubscriberRequestDtoData$Outbound =
+  | string
+  | Array<string>
+  | boolean
+  | number;
 
 /** @internal */
 export const CreateSubscriberRequestDtoData$outboundSchema: z.ZodType<
   CreateSubscriberRequestDtoData$Outbound,
   z.ZodTypeDef,
   CreateSubscriberRequestDtoData
-> = z.object({});
+> = z.union([z.string(), z.array(z.string()), z.boolean(), z.number()]);
 
 /**
  * @internal
@@ -102,7 +107,9 @@ export const CreateSubscriberRequestDto$inboundSchema: z.ZodType<
   phone: z.string().optional(),
   avatar: z.string().optional(),
   locale: z.string().optional(),
-  data: z.lazy(() => CreateSubscriberRequestDtoData$inboundSchema).optional(),
+  data: z.record(
+    z.union([z.string(), z.array(z.string()), z.boolean(), z.number()]),
+  ).optional(),
   channels: z.array(SubscriberChannelDto$inboundSchema).optional(),
 });
 
@@ -115,7 +122,7 @@ export type CreateSubscriberRequestDto$Outbound = {
   phone?: string | undefined;
   avatar?: string | undefined;
   locale?: string | undefined;
-  data?: CreateSubscriberRequestDtoData$Outbound | undefined;
+  data?: { [k: string]: string | Array<string> | boolean | number } | undefined;
   channels?: Array<SubscriberChannelDto$Outbound> | undefined;
 };
 
@@ -132,7 +139,9 @@ export const CreateSubscriberRequestDto$outboundSchema: z.ZodType<
   phone: z.string().optional(),
   avatar: z.string().optional(),
   locale: z.string().optional(),
-  data: z.lazy(() => CreateSubscriberRequestDtoData$outboundSchema).optional(),
+  data: z.record(
+    z.union([z.string(), z.array(z.string()), z.boolean(), z.number()]),
+  ).optional(),
   channels: z.array(SubscriberChannelDto$outboundSchema).optional(),
 });
 
