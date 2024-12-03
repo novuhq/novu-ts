@@ -1,5 +1,7 @@
 # CreateSubscriberRequestDtoData
 
+Optional custom data for the subscriber
+
 ## Example Usage
 
 ```typescript

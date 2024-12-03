@@ -10625,7 +10625,8 @@
             "type": "string"
           },
           "data": {
-            "type": "object"
+            "type": "object",
+            "description": "Optional custom data for the subscriber"
           },
           "channels": {
             "type": "array",
@@ -11649,7 +11650,8 @@
             "type": "string"
           },
           "data": {
-            "type": "object"
+            "type": "object",
+            "description": "Optional custom data for the subscriber"
           },
           "channels": {
             "type": "array",
