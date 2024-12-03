@@ -13,6 +13,9 @@ import {
   SubscriberChannelDto$outboundSchema,
 } from "./subscriberchanneldto.js";
 
+/**
+ * Optional custom data for the subscriber
+ */
 export type Data = {};
 
 export type SubscriberPayloadDto = {
@@ -29,6 +32,9 @@ export type SubscriberPayloadDto = {
    */
   avatar?: string | undefined;
   locale?: string | undefined;
+  /**
+   * Optional custom data for the subscriber
+   */
   data?: Data | undefined;
   channels?: Array<SubscriberChannelDto> | undefined;
 };

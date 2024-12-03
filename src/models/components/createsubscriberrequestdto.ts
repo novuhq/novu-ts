@@ -13,6 +13,9 @@ import {
   SubscriberChannelDto$outboundSchema,
 } from "./subscriberchanneldto.js";
 
+/**
+ * Optional custom data for the subscriber
+ */
 export type CreateSubscriberRequestDtoData = {};
 
 export type CreateSubscriberRequestDto = {
@@ -29,6 +32,9 @@ export type CreateSubscriberRequestDto = {
    */
   avatar?: string | undefined;
   locale?: string | undefined;
+  /**
+   * Optional custom data for the subscriber
+   */
   data?: CreateSubscriberRequestDtoData | undefined;
   channels?: Array<SubscriberChannelDto> | undefined;
 };
