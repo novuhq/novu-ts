@@ -1,16 +1,31 @@
 # CreateSubscriberRequestDtoData
 
-Optional custom data for the subscriber
 
-## Example Usage
+## Supported Types
+
+### `string`
 
 ```typescript
-import { CreateSubscriberRequestDtoData } from "@novu/api/models/components";
-
-let value: CreateSubscriberRequestDtoData = {};
+const value: string = "<value>";
 ```
 
-## Fields
+### `string[]`
 
-| Field       | Type        | Required    | Description |
-| ----------- | ----------- | ----------- | ----------- |
+```typescript
+const value: string[] = [
+  "<value>",
+];
+```
+
+### `boolean`
+
+```typescript
+const value: boolean = false;
+```
+
+### `number`
+
+```typescript
+const value: number = 9621.89;
+```
+

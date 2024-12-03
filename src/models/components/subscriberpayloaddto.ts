@@ -13,10 +13,7 @@ import {
   SubscriberChannelDto$outboundSchema,
 } from "./subscriberchanneldto.js";
 
-/**
- * Optional custom data for the subscriber
- */
-export type Data = {};
+export type Data = string | Array<string> | boolean | number;
 
 export type SubscriberPayloadDto = {
   /**
@@ -33,22 +30,22 @@ export type SubscriberPayloadDto = {
   avatar?: string | undefined;
   locale?: string | undefined;
   /**
-   * Optional custom data for the subscriber
+   * An optional payload object that can contain any properties
    */
-  data?: Data | undefined;
+  data?: { [k: string]: string | Array<string> | boolean | number } | undefined;
   channels?: Array<SubscriberChannelDto> | undefined;
 };
 
 /** @internal */
 export const Data$inboundSchema: z.ZodType<Data, z.ZodTypeDef, unknown> = z
-  .object({});
+  .union([z.string(), z.array(z.string()), z.boolean(), z.number()]);
 
 /** @internal */
-export type Data$Outbound = {};
+export type Data$Outbound = string | Array<string> | boolean | number;
 
 /** @internal */
 export const Data$outboundSchema: z.ZodType<Data$Outbound, z.ZodTypeDef, Data> =
-  z.object({});
+  z.union([z.string(), z.array(z.string()), z.boolean(), z.number()]);
 
 /**
  * @internal
@@ -90,7 +87,9 @@ export const SubscriberPayloadDto$inboundSchema: z.ZodType<
   phone: z.string().optional(),
   avatar: z.string().optional(),
   locale: z.string().optional(),
-  data: z.lazy(() => Data$inboundSchema).optional(),
+  data: z.record(
+    z.union([z.string(), z.array(z.string()), z.boolean(), z.number()]),
+  ).optional(),
   channels: z.array(SubscriberChannelDto$inboundSchema).optional(),
 });
 
@@ -103,7 +102,7 @@ export type SubscriberPayloadDto$Outbound = {
   phone?: string | undefined;
   avatar?: string | undefined;
   locale?: string | undefined;
-  data?: Data$Outbound | undefined;
+  data?: { [k: string]: string | Array<string> | boolean | number } | undefined;
   channels?: Array<SubscriberChannelDto$Outbound> | undefined;
 };
 
@@ -120,7 +119,9 @@ export const SubscriberPayloadDto$outboundSchema: z.ZodType<
   phone: z.string().optional(),
   avatar: z.string().optional(),
   locale: z.string().optional(),
-  data: z.lazy(() => Data$outboundSchema).optional(),
+  data: z.record(
+    z.union([z.string(), z.array(z.string()), z.boolean(), z.number()]),
+  ).optional(),
   channels: z.array(SubscriberChannelDto$outboundSchema).optional(),
 });
 

@@ -9,7 +9,7 @@ let value: MessageMarkAsRequestDto = {
   messageId: [
     "<id>",
   ],
-  markAs: "seen",
+  markAs: "unread",
 };
 ```
 

@@ -5,7 +5,7 @@
 ```typescript
 import { Status } from "@novu/api/models/components";
 
-let value: Status = "Queued";
+let value: Status = "Success";
 ```
 
 ## Values
