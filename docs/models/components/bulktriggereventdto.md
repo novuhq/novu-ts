@@ -16,7 +16,13 @@ let value: BulkTriggerEventDto = {
         },
       },
       bridgeUrl: "https://example.com/bridge",
-      overrides: {},
+      overrides: {
+        "fcm": {
+          "data": {
+            "key": "value",
+          },
+        },
+      },
       to: [
         "SUBSCRIBER_ID",
       ],

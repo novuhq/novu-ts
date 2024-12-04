@@ -1103,7 +1103,7 @@
             }
           },
           "201": {
-            "description": "The trigger event has been successfully created.",
+            "description": "Broadcast request has been registered successfully ",
             "headers": {
               "Content-Type": {
                 "$ref": "#/components/headers/Content-Type"
@@ -10557,7 +10557,7 @@
           },
           "transactionId": {
             "type": "string",
-            "description": "Transaction ID for the trigger"
+            "description": "The returned transaction ID of the trigger"
           }
         },
         "required": [
@@ -10771,6 +10771,10 @@
                   "key": "value"
                 }
               }
+            },
+            "additionalProperties": {
+              "type": "object",
+              "additionalProperties": true
             }
           },
           "to": {
@@ -10863,7 +10867,7 @@
                 "text": "string"
               }
             },
-            "description": "The payload object is used to pass additional custom information that \n    could be used to render the template, or perform routing rules based on it. \n      This data will also be available when fetching the notifications feed from the API to display certain parts of the UI.",
+            "description": "The payload object is used to pass additional information that \n    could be used to render the template, or perform routing rules based on it. \n      For In-App channel, payload data are also available in \u003cInbox /\u003e",
             "additionalProperties": true
           },
           "overrides": {

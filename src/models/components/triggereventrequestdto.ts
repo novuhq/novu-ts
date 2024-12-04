@@ -31,11 +31,6 @@ import {
   WorkflowToStepControlValuesDto$outboundSchema,
 } from "./workflowtostepcontrolvaluesdto.js";
 
-/**
- * This could be used to override provider specific configurations
- */
-export type Overrides = {};
-
 export type To = TopicPayloadDto | SubscriberPayloadDto | string;
 
 /**
@@ -75,7 +70,7 @@ export type TriggerEventRequestDto = {
   /**
    * This could be used to override provider specific configurations
    */
-  overrides?: Overrides | undefined;
+  overrides?: { [k: string]: { [k: string]: any } } | undefined;
   /**
    * The recipients list of people who will receive the notification.
    */
@@ -104,50 +99,6 @@ export type TriggerEventRequestDto = {
    */
   controls?: WorkflowToStepControlValuesDto | undefined;
 };
-
-/** @internal */
-export const Overrides$inboundSchema: z.ZodType<
-  Overrides,
-  z.ZodTypeDef,
-  unknown
-> = z.object({});
-
-/** @internal */
-export type Overrides$Outbound = {};
-
-/** @internal */
-export const Overrides$outboundSchema: z.ZodType<
-  Overrides$Outbound,
-  z.ZodTypeDef,
-  Overrides
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Overrides$ {
-  /** @deprecated use `Overrides$inboundSchema` instead. */
-  export const inboundSchema = Overrides$inboundSchema;
-  /** @deprecated use `Overrides$outboundSchema` instead. */
-  export const outboundSchema = Overrides$outboundSchema;
-  /** @deprecated use `Overrides$Outbound` instead. */
-  export type Outbound = Overrides$Outbound;
-}
-
-export function overridesToJSON(overrides: Overrides): string {
-  return JSON.stringify(Overrides$outboundSchema.parse(overrides));
-}
-
-export function overridesFromJSON(
-  jsonString: string,
-): SafeParseResult<Overrides, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Overrides$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Overrides' from JSON`,
-  );
-}
 
 /** @internal */
 export const To$inboundSchema: z.ZodType<To, z.ZodTypeDef, unknown> = z.union([
@@ -288,7 +239,7 @@ export const TriggerEventRequestDto$inboundSchema: z.ZodType<
   name: z.string(),
   payload: z.record(z.any()).optional(),
   bridgeUrl: z.string().optional(),
-  overrides: z.lazy(() => Overrides$inboundSchema).optional(),
+  overrides: z.record(z.record(z.any())).optional(),
   to: z.array(
     z.union([
       TopicPayloadDto$inboundSchema,
@@ -307,7 +258,7 @@ export type TriggerEventRequestDto$Outbound = {
   name: string;
   payload?: { [k: string]: any } | undefined;
   bridgeUrl?: string | undefined;
-  overrides?: Overrides$Outbound | undefined;
+  overrides?: { [k: string]: { [k: string]: any } } | undefined;
   to: Array<TopicPayloadDto$Outbound | SubscriberPayloadDto$Outbound | string>;
   transactionId?: string | undefined;
   actor?: SubscriberPayloadDto$Outbound | string | undefined;
@@ -324,7 +275,7 @@ export const TriggerEventRequestDto$outboundSchema: z.ZodType<
   name: z.string(),
   payload: z.record(z.any()).optional(),
   bridgeUrl: z.string().optional(),
-  overrides: z.lazy(() => Overrides$outboundSchema).optional(),
+  overrides: z.record(z.record(z.any())).optional(),
   to: z.array(
     z.union([
       TopicPayloadDto$outboundSchema,
