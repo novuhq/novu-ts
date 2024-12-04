@@ -15,6 +15,7 @@ let value: BulkTriggerEventDto = {
           "text": "string",
         },
       },
+      bridgeUrl: "https://example.com/bridge",
       overrides: {},
       to: [
         "SUBSCRIBER_ID",

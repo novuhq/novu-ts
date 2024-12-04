@@ -16,6 +16,7 @@ export * from "./channelcredentials.js";
 export * from "./channelcredentialsdto.js";
 export * from "./channelpreference.js";
 export * from "./channelsettings.js";
+export * from "./controlsdto.js";
 export * from "./createintegrationrequestdto.js";
 export * from "./createnotificationgrouprequestdto.js";
 export * from "./createsubscriberrequestdto.js";
