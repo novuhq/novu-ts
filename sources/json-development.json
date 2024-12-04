@@ -1102,6 +1102,39 @@
               }
             }
           },
+          "201": {
+            "description": "The trigger event has been successfully created.",
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TriggerEventResponseDto"
+                }
+              }
+            }
+          },
           "409": {
             "description": "The request could not be completed due to a conflict with the current state of the target resource.",
             "headers": {
@@ -10500,7 +10533,7 @@
         "properties": {
           "acknowledged": {
             "type": "boolean",
-            "description": "If trigger was acknowledged or not"
+            "description": "Indicates whether the trigger was acknowledged or not"
           },
           "status": {
             "enum": [
@@ -10513,10 +10546,10 @@
               "no_tenant_found"
             ],
             "type": "string",
-            "description": "Status for trigger"
+            "description": "Status of the trigger"
           },
           "error": {
-            "description": "In case of an error, this field will contain the error message",
+            "description": "In case of an error, this field will contain the error message(s)",
             "type": "array",
             "items": {
               "type": "string"
@@ -10524,7 +10557,7 @@
           },
           "transactionId": {
             "type": "string",
-            "description": "Transaction id for trigger"
+            "description": "Transaction ID for the trigger"
           }
         },
         "required": [

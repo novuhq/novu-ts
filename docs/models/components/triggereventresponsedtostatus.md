@@ -1,6 +1,6 @@
 # TriggerEventResponseDtoStatus
 
-Status for trigger
+Status of the trigger
 
 ## Example Usage
 
