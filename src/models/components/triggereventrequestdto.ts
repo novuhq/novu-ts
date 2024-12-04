@@ -7,6 +7,12 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
+  ControlsDto,
+  ControlsDto$inboundSchema,
+  ControlsDto$Outbound,
+  ControlsDto$outboundSchema,
+} from "./controlsdto.js";
+import {
   SubscriberPayloadDto,
   SubscriberPayloadDto$inboundSchema,
   SubscriberPayloadDto$Outbound,
@@ -36,6 +42,7 @@ export type To = TopicPayloadDto | SubscriberPayloadDto | string;
  * It is used to display the Avatar of the provided actor's subscriber id or actor object.
  *
  * @remarks
+ *
  *     If a new actor object is provided, we will create a new subscriber in our system
  */
 export type Actor = SubscriberPayloadDto | string;
@@ -47,8 +54,6 @@ export type Actor = SubscriberPayloadDto | string;
  *     Existing tenants will be updated with the provided details.
  */
 export type Tenant = TenantPayloadDto | string;
-
-export type Controls = {};
 
 export type TriggerEventRequestDto = {
   /**
@@ -63,6 +68,10 @@ export type TriggerEventRequestDto = {
    */
   payload?: { [k: string]: any } | undefined;
   /**
+   * A URL to bridge for additional processing.
+   */
+  bridgeUrl?: string | undefined;
+  /**
    * This could be used to override provider specific configurations
    */
   overrides?: Overrides | undefined;
@@ -71,13 +80,14 @@ export type TriggerEventRequestDto = {
    */
   to: Array<TopicPayloadDto | SubscriberPayloadDto | string>;
   /**
-   * A unique identifier for this transaction, we will generated a UUID if not provided.
+   * A unique identifier for this transaction, we will generate a UUID if not provided.
    */
   transactionId?: string | undefined;
   /**
    * It is used to display the Avatar of the provided actor's subscriber id or actor object.
    *
    * @remarks
+   *
    *     If a new actor object is provided, we will create a new subscriber in our system
    */
   actor?: SubscriberPayloadDto | string | undefined;
@@ -88,8 +98,10 @@ export type TriggerEventRequestDto = {
    *     Existing tenants will be updated with the provided details.
    */
   tenant?: TenantPayloadDto | string | undefined;
-  bridgeUrl?: string | undefined;
-  controls?: Controls | undefined;
+  /**
+   * Additional control configurations.
+   */
+  controls?: ControlsDto | undefined;
 };
 
 /** @internal */
@@ -267,50 +279,6 @@ export function tenantFromJSON(
 }
 
 /** @internal */
-export const Controls$inboundSchema: z.ZodType<
-  Controls,
-  z.ZodTypeDef,
-  unknown
-> = z.object({});
-
-/** @internal */
-export type Controls$Outbound = {};
-
-/** @internal */
-export const Controls$outboundSchema: z.ZodType<
-  Controls$Outbound,
-  z.ZodTypeDef,
-  Controls
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Controls$ {
-  /** @deprecated use `Controls$inboundSchema` instead. */
-  export const inboundSchema = Controls$inboundSchema;
-  /** @deprecated use `Controls$outboundSchema` instead. */
-  export const outboundSchema = Controls$outboundSchema;
-  /** @deprecated use `Controls$Outbound` instead. */
-  export type Outbound = Controls$Outbound;
-}
-
-export function controlsToJSON(controls: Controls): string {
-  return JSON.stringify(Controls$outboundSchema.parse(controls));
-}
-
-export function controlsFromJSON(
-  jsonString: string,
-): SafeParseResult<Controls, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Controls$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Controls' from JSON`,
-  );
-}
-
-/** @internal */
 export const TriggerEventRequestDto$inboundSchema: z.ZodType<
   TriggerEventRequestDto,
   z.ZodTypeDef,
@@ -318,6 +286,7 @@ export const TriggerEventRequestDto$inboundSchema: z.ZodType<
 > = z.object({
   name: z.string(),
   payload: z.record(z.any()).optional(),
+  bridgeUrl: z.string().optional(),
   overrides: z.lazy(() => Overrides$inboundSchema).optional(),
   to: z.array(
     z.union([
@@ -329,21 +298,20 @@ export const TriggerEventRequestDto$inboundSchema: z.ZodType<
   transactionId: z.string().optional(),
   actor: z.union([SubscriberPayloadDto$inboundSchema, z.string()]).optional(),
   tenant: z.union([TenantPayloadDto$inboundSchema, z.string()]).optional(),
-  bridgeUrl: z.string().optional(),
-  controls: z.lazy(() => Controls$inboundSchema).optional(),
+  controls: ControlsDto$inboundSchema.optional(),
 });
 
 /** @internal */
 export type TriggerEventRequestDto$Outbound = {
   name: string;
   payload?: { [k: string]: any } | undefined;
+  bridgeUrl?: string | undefined;
   overrides?: Overrides$Outbound | undefined;
   to: Array<TopicPayloadDto$Outbound | SubscriberPayloadDto$Outbound | string>;
   transactionId?: string | undefined;
   actor?: SubscriberPayloadDto$Outbound | string | undefined;
   tenant?: TenantPayloadDto$Outbound | string | undefined;
-  bridgeUrl?: string | undefined;
-  controls?: Controls$Outbound | undefined;
+  controls?: ControlsDto$Outbound | undefined;
 };
 
 /** @internal */
@@ -354,6 +322,7 @@ export const TriggerEventRequestDto$outboundSchema: z.ZodType<
 > = z.object({
   name: z.string(),
   payload: z.record(z.any()).optional(),
+  bridgeUrl: z.string().optional(),
   overrides: z.lazy(() => Overrides$outboundSchema).optional(),
   to: z.array(
     z.union([
@@ -365,8 +334,7 @@ export const TriggerEventRequestDto$outboundSchema: z.ZodType<
   transactionId: z.string().optional(),
   actor: z.union([SubscriberPayloadDto$outboundSchema, z.string()]).optional(),
   tenant: z.union([TenantPayloadDto$outboundSchema, z.string()]).optional(),
-  bridgeUrl: z.string().optional(),
-  controls: z.lazy(() => Controls$outboundSchema).optional(),
+  controls: ControlsDto$outboundSchema.optional(),
 });
 
 /**

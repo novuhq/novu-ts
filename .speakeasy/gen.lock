@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 6bff3a53-3f0b-40b4-942f-ff70dc583ae5
 management:
-  docChecksum: 4319bdc134de052ed8efacb8a45133b7
+  docChecksum: 5781a44fd85d99190d959055f998baf0
   docVersion: "1.0"
   speakeasyVersion: 1.451.1
   generationVersion: 2.470.1
-  releaseVersion: 0.0.1-alpha.53
-  configChecksum: 4277a522b4a168bf16da21fc54ee84d2
+  releaseVersion: 0.0.1-alpha.54
+  configChecksum: bbe182eeb58609e7daaf6e435bca3fe4
   published: true
 features:
   typescript:
@@ -61,7 +61,7 @@ generatedFiles:
   - docs/models/components/channelsettings.md
   - docs/models/components/channelsettingsproviderid.md
   - docs/models/components/content.md
-  - docs/models/components/controls.md
+  - docs/models/components/controlsdto.md
   - docs/models/components/createintegrationrequestdto.md
   - docs/models/components/createintegrationrequestdtochannel.md
   - docs/models/components/createnotificationgrouprequestdto.md
@@ -410,6 +410,7 @@ generatedFiles:
   - src/models/components/channelcredentialsdto.ts
   - src/models/components/channelpreference.ts
   - src/models/components/channelsettings.ts
+  - src/models/components/controlsdto.ts
   - src/models/components/createintegrationrequestdto.ts
   - src/models/components/createnotificationgrouprequestdto.ts
   - src/models/components/createsubscriberrequestdto.ts

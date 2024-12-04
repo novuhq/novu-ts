@@ -1,11 +1,11 @@
-# Controls
+# ControlsDto
 
 ## Example Usage
 
 ```typescript
-import { Controls } from "@novu/api/models/components";
+import { ControlsDto } from "@novu/api/models/components";
 
-let value: Controls = {};
+let value: ControlsDto = {};
 ```
 
 ## Fields

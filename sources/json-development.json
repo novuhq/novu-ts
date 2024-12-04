@@ -10565,40 +10565,6 @@
           "status"
         ]
       },
-      "TopicPayloadDto": {
-        "type": "object",
-        "properties": {
-          "topicKey": {
-            "type": "string"
-          },
-          "type": {
-            "enum": [
-              "Subscriber",
-              "Topic"
-            ],
-            "type": "string",
-            "example": "Topic"
-          }
-        },
-        "required": [
-          "topicKey",
-          "type"
-        ]
-      },
-      "TenantPayloadDto": {
-        "type": "object",
-        "properties": {
-          "identifier": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "data": {
-            "type": "object"
-          }
-        }
-      },
       "ChannelCredentialsDto": {
         "type": "object",
         "properties": {
@@ -10725,6 +10691,44 @@
           "subscriberId"
         ]
       },
+      "TenantPayloadDto": {
+        "type": "object",
+        "properties": {
+          "identifier": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "data": {
+            "type": "object"
+          }
+        }
+      },
+      "TopicPayloadDto": {
+        "type": "object",
+        "properties": {
+          "topicKey": {
+            "type": "string"
+          },
+          "type": {
+            "enum": [
+              "Subscriber",
+              "Topic"
+            ],
+            "type": "string",
+            "example": "Topic"
+          }
+        },
+        "required": [
+          "topicKey",
+          "type"
+        ]
+      },
+      "ControlsDto": {
+        "type": "object",
+        "properties": {}
+      },
       "TriggerEventRequestDto": {
         "type": "object",
         "properties": {
@@ -10743,6 +10747,11 @@
                 "text": "string"
               }
             }
+          },
+          "bridgeUrl": {
+            "type": "string",
+            "description": "A URL to bridge for additional processing.",
+            "example": "https://example.com/bridge"
           },
           "overrides": {
             "type": "object",
@@ -10776,10 +10785,10 @@
           },
           "transactionId": {
             "type": "string",
-            "description": "A unique identifier for this transaction, we will generated a UUID if not provided."
+            "description": "A unique identifier for this transaction, we will generate a UUID if not provided."
           },
           "actor": {
-            "description": "It is used to display the Avatar of the provided actor's subscriber id or actor object.\n    If a new actor object is provided, we will create a new subscriber in our system\n    ",
+            "description": "It is used to display the Avatar of the provided actor's subscriber id or actor object.\n\n    If a new actor object is provided, we will create a new subscriber in our system",
             "oneOf": [
               {
                 "type": "string",
@@ -10791,7 +10800,7 @@
             ]
           },
           "tenant": {
-            "description": "It is used to specify a tenant context during trigger event.\n    Existing tenants will be updated with the provided details.\n    ",
+            "description": "It is used to specify a tenant context during trigger event.\n    Existing tenants will be updated with the provided details.",
             "oneOf": [
               {
                 "type": "string",
@@ -10802,11 +10811,13 @@
               }
             ]
           },
-          "bridgeUrl": {
-            "type": "string"
-          },
           "controls": {
-            "type": "object"
+            "description": "Additional control configurations.",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ControlsDto"
+              }
+            ]
           }
         },
         "required": [
