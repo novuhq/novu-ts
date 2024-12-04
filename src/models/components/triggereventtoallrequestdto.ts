@@ -20,14 +20,6 @@ import {
 } from "./tenantpayloaddto.js";
 
 /**
- * The payload object is used to pass additional custom information that could be used to render the template, or perform routing rules based on it.
- *
- * @remarks
- *       This data will also be available when fetching the notifications feed from the API to display certain parts of the UI.
- */
-export type Payload = {};
-
-/**
  * This could be used to override provider specific configurations
  */
 export type TriggerEventToAllRequestDtoOverrides = {};
@@ -54,12 +46,13 @@ export type TriggerEventToAllRequestDto = {
    */
   name: string;
   /**
-   * The payload object is used to pass additional custom information that could be used to render the template, or perform routing rules based on it.
+   * The payload object is used to pass additional custom information that
    *
    * @remarks
+   *     could be used to render the template, or perform routing rules based on it.
    *       This data will also be available when fetching the notifications feed from the API to display certain parts of the UI.
    */
-  payload: Payload;
+  payload: { [k: string]: any };
   /**
    * This could be used to override provider specific configurations
    */
@@ -83,47 +76,6 @@ export type TriggerEventToAllRequestDto = {
    */
   tenant?: TenantPayloadDto | string | undefined;
 };
-
-/** @internal */
-export const Payload$inboundSchema: z.ZodType<Payload, z.ZodTypeDef, unknown> =
-  z.object({});
-
-/** @internal */
-export type Payload$Outbound = {};
-
-/** @internal */
-export const Payload$outboundSchema: z.ZodType<
-  Payload$Outbound,
-  z.ZodTypeDef,
-  Payload
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Payload$ {
-  /** @deprecated use `Payload$inboundSchema` instead. */
-  export const inboundSchema = Payload$inboundSchema;
-  /** @deprecated use `Payload$outboundSchema` instead. */
-  export const outboundSchema = Payload$outboundSchema;
-  /** @deprecated use `Payload$Outbound` instead. */
-  export type Outbound = Payload$Outbound;
-}
-
-export function payloadToJSON(payload: Payload): string {
-  return JSON.stringify(Payload$outboundSchema.parse(payload));
-}
-
-export function payloadFromJSON(
-  jsonString: string,
-): SafeParseResult<Payload, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Payload$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Payload' from JSON`,
-  );
-}
 
 /** @internal */
 export const TriggerEventToAllRequestDtoOverrides$inboundSchema: z.ZodType<
@@ -290,7 +242,7 @@ export const TriggerEventToAllRequestDto$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   name: z.string(),
-  payload: z.lazy(() => Payload$inboundSchema),
+  payload: z.record(z.any()),
   overrides: z.lazy(() => TriggerEventToAllRequestDtoOverrides$inboundSchema)
     .optional(),
   transactionId: z.string().optional(),
@@ -301,7 +253,7 @@ export const TriggerEventToAllRequestDto$inboundSchema: z.ZodType<
 /** @internal */
 export type TriggerEventToAllRequestDto$Outbound = {
   name: string;
-  payload: Payload$Outbound;
+  payload: { [k: string]: any };
   overrides?: TriggerEventToAllRequestDtoOverrides$Outbound | undefined;
   transactionId?: string | undefined;
   actor?: SubscriberPayloadDto$Outbound | string | undefined;
@@ -315,7 +267,7 @@ export const TriggerEventToAllRequestDto$outboundSchema: z.ZodType<
   TriggerEventToAllRequestDto
 > = z.object({
   name: z.string(),
-  payload: z.lazy(() => Payload$outboundSchema),
+  payload: z.record(z.any()),
   overrides: z.lazy(() => TriggerEventToAllRequestDtoOverrides$outboundSchema)
     .optional(),
   transactionId: z.string().optional(),

@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 6bff3a53-3f0b-40b4-942f-ff70dc583ae5
 management:
-  docChecksum: 2f63e7a28d45a69a946a65b5de961615
+  docChecksum: e1adea31658b01c5d6e9575ce6045e31
   docVersion: "1.0"
-  speakeasyVersion: 1.449.0
-  generationVersion: 2.467.4
-  releaseVersion: 0.0.1-alpha.46
-  configChecksum: be65e72460544cf2e1ca212f663f1107
+  speakeasyVersion: 1.451.1
+  generationVersion: 2.470.1
+  releaseVersion: 0.0.1-alpha.48
+  configChecksum: 6de589a9b1a5c97c83ef26dcf13fd68a
   published: true
 features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.11
-    core: 3.18.7
+    core: 3.18.8
     defaultEnabledRetries: 0.1.0
     deprecations: 2.81.1
     enumUnions: 0.1.0
@@ -106,7 +106,6 @@ generatedFiles:
   - docs/models/components/markallmessageasrequestdtomarkas.md
   - docs/models/components/markas.md
   - docs/models/components/markmessageactionasseendto.md
-  - docs/models/components/markmessageactionasseendtopayload.md
   - docs/models/components/markmessageactionasseendtostatus.md
   - docs/models/components/messageaction.md
   - docs/models/components/messageactionresult.md
@@ -589,7 +588,7 @@ examples:
   EventsController_broadcastEventToAll:
     speakeasy-default-events-controller-broadcast-event-to-all:
       requestBody:
-        application/json: {"name": "<value>"}
+        application/json: {"name": "<value>", "payload": {"comment_id": "string", "post": {"text": "string"}}}
       responses:
         "200":
           application/json: {"acknowledged": true, "status": "trigger_not_active"}

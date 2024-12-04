@@ -275,7 +275,12 @@ const novu = new Novu({
 async function run() {
   const result = await novu.triggerBroadcast({
     name: "<value>",
-    payload: {},
+    payload: {
+      "comment_id": "string",
+      "post": {
+        "text": "string",
+      },
+    },
   });
 
   // Handle the result
@@ -302,7 +307,12 @@ const novu = new NovuCore({
 async function run() {
   const res = await triggerBroadcast(novu, {
     name: "<value>",
-    payload: {},
+    payload: {
+      "comment_id": "string",
+      "post": {
+        "text": "string",
+      },
+    },
   });
 
   if (!res.ok) {
