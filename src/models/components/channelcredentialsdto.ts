@@ -8,7 +8,13 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ChannelCredentialsDto = {
+  /**
+   * The URL for the webhook associated with the channel.
+   */
   webhookUrl?: string | undefined;
+  /**
+   * An array of device tokens for push notifications.
+   */
   deviceTokens?: Array<string> | undefined;
 };
 

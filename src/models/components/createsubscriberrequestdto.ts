@@ -24,19 +24,37 @@ export type CreateSubscriberRequestDto = {
    * The internal identifier you used to create this subscriber, usually correlates to the id the user in your systems
    */
   subscriberId: string;
+  /**
+   * The email address of the subscriber.
+   */
   email?: string | undefined;
+  /**
+   * The first name of the subscriber.
+   */
   firstName?: string | undefined;
+  /**
+   * The last name of the subscriber.
+   */
   lastName?: string | undefined;
+  /**
+   * The phone number of the subscriber.
+   */
   phone?: string | undefined;
   /**
-   * An http url to the profile image of your subscriber
+   * An HTTP URL to the profile image of your subscriber.
    */
   avatar?: string | undefined;
+  /**
+   * The locale of the subscriber.
+   */
   locale?: string | undefined;
   /**
-   * An optional payload object that can contain any properties
+   * An optional payload object that can contain any properties.
    */
   data?: { [k: string]: string | Array<string> | boolean | number } | undefined;
+  /**
+   * An optional array of subscriber channels.
+   */
   channels?: Array<SubscriberChannelDto> | undefined;
 };
 

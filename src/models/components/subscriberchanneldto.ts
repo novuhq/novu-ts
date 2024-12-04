@@ -13,57 +13,20 @@ import {
   ChannelCredentialsDto$outboundSchema,
 } from "./channelcredentialsdto.js";
 
-export type ProviderId = {};
-
 export type SubscriberChannelDto = {
+  /**
+   * The ID of the chat or push provider.
+   */
+  providerId: number;
+  /**
+   * An optional identifier for the integration.
+   */
   integrationIdentifier?: string | undefined;
-  providerId: ProviderId;
+  /**
+   * Credentials for the channel.
+   */
   credentials: ChannelCredentialsDto;
 };
-
-/** @internal */
-export const ProviderId$inboundSchema: z.ZodType<
-  ProviderId,
-  z.ZodTypeDef,
-  unknown
-> = z.object({});
-
-/** @internal */
-export type ProviderId$Outbound = {};
-
-/** @internal */
-export const ProviderId$outboundSchema: z.ZodType<
-  ProviderId$Outbound,
-  z.ZodTypeDef,
-  ProviderId
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ProviderId$ {
-  /** @deprecated use `ProviderId$inboundSchema` instead. */
-  export const inboundSchema = ProviderId$inboundSchema;
-  /** @deprecated use `ProviderId$outboundSchema` instead. */
-  export const outboundSchema = ProviderId$outboundSchema;
-  /** @deprecated use `ProviderId$Outbound` instead. */
-  export type Outbound = ProviderId$Outbound;
-}
-
-export function providerIdToJSON(providerId: ProviderId): string {
-  return JSON.stringify(ProviderId$outboundSchema.parse(providerId));
-}
-
-export function providerIdFromJSON(
-  jsonString: string,
-): SafeParseResult<ProviderId, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ProviderId$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ProviderId' from JSON`,
-  );
-}
 
 /** @internal */
 export const SubscriberChannelDto$inboundSchema: z.ZodType<
@@ -71,15 +34,15 @@ export const SubscriberChannelDto$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
+  providerId: z.number(),
   integrationIdentifier: z.string().optional(),
-  providerId: z.lazy(() => ProviderId$inboundSchema),
   credentials: ChannelCredentialsDto$inboundSchema,
 });
 
 /** @internal */
 export type SubscriberChannelDto$Outbound = {
+  providerId: number;
   integrationIdentifier?: string | undefined;
-  providerId: ProviderId$Outbound;
   credentials: ChannelCredentialsDto$Outbound;
 };
 
@@ -89,8 +52,8 @@ export const SubscriberChannelDto$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   SubscriberChannelDto
 > = z.object({
+  providerId: z.number(),
   integrationIdentifier: z.string().optional(),
-  providerId: z.lazy(() => ProviderId$outboundSchema),
   credentials: ChannelCredentialsDto$outboundSchema,
 });
 

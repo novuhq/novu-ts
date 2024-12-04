@@ -5,7 +5,7 @@
 ```typescript
 import { MessageActionStatus } from "@novu/api/models/components";
 
-let value: MessageActionStatus = "pending";
+let value: MessageActionStatus = "done";
 ```
 
 ## Values
