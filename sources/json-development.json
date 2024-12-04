@@ -10619,30 +10619,26 @@
         "type": "object",
         "properties": {
           "providerId": {
-            "type": "number",
+            "type": "string",
             "description": "The ID of the chat or push provider.",
             "enum": [
-              {
-                "Slack": "slack",
-                "Discord": "discord",
-                "MsTeams": "msteams",
-                "Mattermost": "mattermost",
-                "Ryver": "ryver",
-                "Zulip": "zulip",
-                "GrafanaOnCall": "grafana-on-call",
-                "GetStream": "getstream",
-                "RocketChat": "rocket-chat",
-                "WhatsAppBusiness": "whatsapp-business"
-              },
-              {
-                "FCM": "fcm",
-                "APNS": "apns",
-                "EXPO": "expo",
-                "OneSignal": "one-signal",
-                "Pushpad": "pushpad",
-                "PushWebhook": "push-webhook",
-                "PusherBeams": "pusher-beams"
-              }
+              "slack",
+              "discord",
+              "msteams",
+              "mattermost",
+              "ryver",
+              "zulip",
+              "grafana-on-call",
+              "getstream",
+              "rocket-chat",
+              "whatsapp-business",
+              "fcm",
+              "apns",
+              "expo",
+              "one-signal",
+              "pushpad",
+              "push-webhook",
+              "pusher-beams"
             ]
           },
           "integrationIdentifier": {

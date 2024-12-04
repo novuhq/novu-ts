@@ -7,7 +7,7 @@ The provider identifier for the credentials
 ```typescript
 import { UpdateSubscriberChannelRequestDtoProviderId } from "@novu/api/models/components";
 
-let value: UpdateSubscriberChannelRequestDtoProviderId = "whatsapp-business";
+let value: UpdateSubscriberChannelRequestDtoProviderId = "fcm";
 ```
 
 ## Values

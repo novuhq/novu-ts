@@ -5,7 +5,7 @@
 ```typescript
 import { StepFilterType } from "@novu/api/models/components";
 
-let value: StepFilterType = "BOOLEAN";
+let value: StepFilterType = "LIST";
 ```
 
 ## Values

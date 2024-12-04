@@ -13,10 +13,7 @@ let value: MessageResponseDto = {
   notificationId: "<id>",
   subscriberId: "<id>",
   createdAt: "<value>",
-  content: {
-    type: "text",
-    content: "<value>",
-  },
+  content: "<value>",
   transactionId: "<id>",
   channel: "in_app",
   read: false,

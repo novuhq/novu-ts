@@ -18,7 +18,7 @@ import {
 /**
  * The provider identifier for the credentials
  */
-export const ProviderId = {
+export const ChannelSettingsProviderId = {
   Slack: "slack",
   Discord: "discord",
   Msteams: "msteams",
@@ -40,13 +40,15 @@ export const ProviderId = {
 /**
  * The provider identifier for the credentials
  */
-export type ProviderId = ClosedEnum<typeof ProviderId>;
+export type ChannelSettingsProviderId = ClosedEnum<
+  typeof ChannelSettingsProviderId
+>;
 
 export type ChannelSettings = {
   /**
    * The provider identifier for the credentials
    */
-  providerId: ProviderId;
+  providerId: ChannelSettingsProviderId;
   /**
    * The integration identifier
    */
@@ -62,22 +64,24 @@ export type ChannelSettings = {
 };
 
 /** @internal */
-export const ProviderId$inboundSchema: z.ZodNativeEnum<typeof ProviderId> = z
-  .nativeEnum(ProviderId);
+export const ChannelSettingsProviderId$inboundSchema: z.ZodNativeEnum<
+  typeof ChannelSettingsProviderId
+> = z.nativeEnum(ChannelSettingsProviderId);
 
 /** @internal */
-export const ProviderId$outboundSchema: z.ZodNativeEnum<typeof ProviderId> =
-  ProviderId$inboundSchema;
+export const ChannelSettingsProviderId$outboundSchema: z.ZodNativeEnum<
+  typeof ChannelSettingsProviderId
+> = ChannelSettingsProviderId$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace ProviderId$ {
-  /** @deprecated use `ProviderId$inboundSchema` instead. */
-  export const inboundSchema = ProviderId$inboundSchema;
-  /** @deprecated use `ProviderId$outboundSchema` instead. */
-  export const outboundSchema = ProviderId$outboundSchema;
+export namespace ChannelSettingsProviderId$ {
+  /** @deprecated use `ChannelSettingsProviderId$inboundSchema` instead. */
+  export const inboundSchema = ChannelSettingsProviderId$inboundSchema;
+  /** @deprecated use `ChannelSettingsProviderId$outboundSchema` instead. */
+  export const outboundSchema = ChannelSettingsProviderId$outboundSchema;
 }
 
 /** @internal */
@@ -86,7 +90,7 @@ export const ChannelSettings$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  providerId: ProviderId$inboundSchema,
+  providerId: ChannelSettingsProviderId$inboundSchema,
   integrationIdentifier: z.string().optional(),
   credentials: ChannelCredentials$inboundSchema,
   _integrationId: z.string(),
@@ -110,7 +114,7 @@ export const ChannelSettings$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ChannelSettings
 > = z.object({
-  providerId: ProviderId$outboundSchema,
+  providerId: ChannelSettingsProviderId$outboundSchema,
   integrationIdentifier: z.string().optional(),
   credentials: ChannelCredentials$outboundSchema,
   integrationId: z.string(),
