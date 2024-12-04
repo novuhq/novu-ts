@@ -41,7 +41,7 @@ export type TriggerEventResponseDto = {
    */
   error?: Array<string> | undefined;
   /**
-   * Transaction ID for the trigger
+   * The returned transaction ID of the trigger
    */
   transactionId?: string | undefined;
 };
