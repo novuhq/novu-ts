@@ -10725,9 +10725,18 @@
           "type"
         ]
       },
-      "ControlsDto": {
+      "WorkflowToStepControlValuesDto": {
         "type": "object",
-        "properties": {}
+        "properties": {
+          "steps": {
+            "type": "object",
+            "description": "A mapping of step IDs to their corresponding data.",
+            "additionalProperties": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          }
+        }
       },
       "TriggerEventRequestDto": {
         "type": "object",
@@ -10739,7 +10748,7 @@
           },
           "payload": {
             "type": "object",
-            "description": "The payload object is used to pass additional custom information that could be used to render the workflow, or perform routing rules based on it. \n      This data will also be available when fetching the notifications feed from the API to display certain parts of the UI.",
+            "description": "The payload object is used to pass additional custom information that could be \n    used to render the workflow, or perform routing rules based on it. \n      This data will also be available when fetching the notifications feed from the API to display certain parts of the UI.",
             "additionalProperties": true,
             "example": {
               "comment_id": "string",
@@ -10815,7 +10824,7 @@
             "description": "Additional control configurations.",
             "allOf": [
               {
-                "$ref": "#/components/schemas/ControlsDto"
+                "$ref": "#/components/schemas/WorkflowToStepControlValuesDto"
               }
             ]
           }
