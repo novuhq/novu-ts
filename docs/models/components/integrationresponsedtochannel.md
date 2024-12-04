@@ -1,5 +1,7 @@
 # IntegrationResponseDtoChannel
 
+The channel type for the integration, which defines how the integration communicates (e.g., email, SMS).
+
 ## Example Usage
 
 ```typescript

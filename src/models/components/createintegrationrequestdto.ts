@@ -21,6 +21,9 @@ import {
   StepFilter$outboundSchema,
 } from "./stepfilter.js";
 
+/**
+ * The channel type for the integration
+ */
 export const CreateIntegrationRequestDtoChannel = {
   InApp: "in_app",
   Email: "email",
@@ -28,22 +31,49 @@ export const CreateIntegrationRequestDtoChannel = {
   Chat: "chat",
   Push: "push",
 } as const;
+/**
+ * The channel type for the integration
+ */
 export type CreateIntegrationRequestDtoChannel = ClosedEnum<
   typeof CreateIntegrationRequestDtoChannel
 >;
 
 export type CreateIntegrationRequestDto = {
+  /**
+   * The name of the integration
+   */
   name?: string | undefined;
+  /**
+   * The unique identifier for the integration
+   */
   identifier?: string | undefined;
+  /**
+   * The ID of the associated environment
+   */
   environmentId?: string | undefined;
+  /**
+   * The provider ID for the integration
+   */
   providerId: string;
+  /**
+   * The channel type for the integration
+   */
   channel: CreateIntegrationRequestDtoChannel;
+  /**
+   * The credentials for the integration
+   */
   credentials?: CredentialsDto | undefined;
   /**
-   * If the integration is active the validation on the credentials field will run
+   * If the integration is active, the validation on the credentials field will run
    */
   active?: boolean | undefined;
+  /**
+   * Flag to check the integration status
+   */
   check?: boolean | undefined;
+  /**
+   * Conditions for the integration
+   */
   conditions?: Array<StepFilter> | undefined;
 };
 

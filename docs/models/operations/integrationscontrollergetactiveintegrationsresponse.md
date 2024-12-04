@@ -22,8 +22,6 @@ let value: IntegrationsControllerGetActiveIntegrationsResponse = {
       credentials: {},
       active: false,
       deleted: false,
-      deletedAt: "<value>",
-      deletedBy: "<value>",
       primary: false,
     },
   ],

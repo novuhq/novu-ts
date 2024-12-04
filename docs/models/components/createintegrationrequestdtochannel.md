@@ -1,5 +1,7 @@
 # CreateIntegrationRequestDtoChannel
 
+The channel type for the integration
+
 ## Example Usage
 
 ```typescript

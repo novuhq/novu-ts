@@ -11363,22 +11363,28 @@
         "type": "object",
         "properties": {
           "_id": {
-            "type": "string"
+            "type": "string",
+            "description": "The unique identifier of the integration record in the database. This is automatically generated."
           },
           "_environmentId": {
-            "type": "string"
+            "type": "string",
+            "description": "The unique identifier for the environment associated with this integration. This links to the Environment collection."
           },
           "_organizationId": {
-            "type": "string"
+            "type": "string",
+            "description": "The unique identifier for the organization that owns this integration. This links to the Organization collection."
           },
           "name": {
-            "type": "string"
+            "type": "string",
+            "description": "The name of the integration, which is used to identify it in the user interface."
           },
           "identifier": {
-            "type": "string"
+            "type": "string",
+            "description": "A unique string identifier for the integration, often used for API calls or internal references."
           },
           "providerId": {
-            "type": "string"
+            "type": "string",
+            "description": "The identifier for the provider of the integration (e.g., \"mailgun\", \"twilio\")."
           },
           "channel": {
             "enum": [
@@ -11388,27 +11394,39 @@
               "chat",
               "push"
             ],
-            "type": "string"
+            "type": "string",
+            "description": "The channel type for the integration, which defines how the integration communicates (e.g., email, SMS)."
           },
           "credentials": {
-            "$ref": "#/components/schemas/CredentialsDto"
+            "description": "The credentials required for the integration to function, including API keys and other sensitive information.",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CredentialsDto"
+              }
+            ]
           },
           "active": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "Indicates whether the integration is currently active. An active integration will process events and messages."
           },
           "deleted": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "Indicates whether the integration has been marked as deleted (soft delete)."
           },
           "deletedAt": {
-            "type": "string"
+            "type": "string",
+            "description": "The timestamp indicating when the integration was deleted. This is set when the integration is soft deleted."
           },
           "deletedBy": {
-            "type": "string"
+            "type": "string",
+            "description": "The identifier of the user who performed the deletion of this integration. Useful for audit trails."
           },
           "primary": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "Indicates whether this integration is marked as primary. A primary integration is often the default choice for processing."
           },
           "conditions": {
+            "description": "An array of conditions associated with the integration that may influence its behavior or processing logic.",
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/StepFilter"
@@ -11425,8 +11443,6 @@
           "credentials",
           "active",
           "deleted",
-          "deletedAt",
-          "deletedBy",
           "primary"
         ]
       },
@@ -11434,16 +11450,21 @@
         "type": "object",
         "properties": {
           "name": {
-            "type": "string"
+            "type": "string",
+            "description": "The name of the integration"
           },
           "identifier": {
-            "type": "string"
+            "type": "string",
+            "description": "The unique identifier for the integration"
           },
           "_environmentId": {
-            "type": "string"
+            "type": "string",
+            "description": "The ID of the associated environment",
+            "format": "uuid"
           },
           "providerId": {
-            "type": "string"
+            "type": "string",
+            "description": "The provider ID for the integration"
           },
           "channel": {
             "enum": [
@@ -11453,19 +11474,27 @@
               "chat",
               "push"
             ],
-            "type": "string"
+            "type": "string",
+            "description": "The channel type for the integration"
           },
           "credentials": {
-            "$ref": "#/components/schemas/CredentialsDto"
+            "description": "The credentials for the integration",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CredentialsDto"
+              }
+            ]
           },
           "active": {
             "type": "boolean",
-            "description": "If the integration is active the validation on the credentials field will run"
+            "description": "If the integration is active, the validation on the credentials field will run"
           },
           "check": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "Flag to check the integration status"
           },
           "conditions": {
+            "description": "Conditions for the integration",
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/StepFilter"
