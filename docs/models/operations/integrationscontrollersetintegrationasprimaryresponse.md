@@ -21,8 +21,6 @@ let value: IntegrationsControllerSetIntegrationAsPrimaryResponse = {
     credentials: {},
     active: false,
     deleted: false,
-    deletedAt: "<value>",
-    deletedBy: "<value>",
     primary: false,
   },
 };

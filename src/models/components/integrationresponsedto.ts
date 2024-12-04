@@ -21,6 +21,9 @@ import {
   StepFilter$outboundSchema,
 } from "./stepfilter.js";
 
+/**
+ * The channel type for the integration, which defines how the integration communicates (e.g., email, SMS).
+ */
 export const IntegrationResponseDtoChannel = {
   InApp: "in_app",
   Email: "email",
@@ -28,24 +31,69 @@ export const IntegrationResponseDtoChannel = {
   Chat: "chat",
   Push: "push",
 } as const;
+/**
+ * The channel type for the integration, which defines how the integration communicates (e.g., email, SMS).
+ */
 export type IntegrationResponseDtoChannel = ClosedEnum<
   typeof IntegrationResponseDtoChannel
 >;
 
 export type IntegrationResponseDto = {
+  /**
+   * The unique identifier of the integration record in the database. This is automatically generated.
+   */
   id?: string | undefined;
+  /**
+   * The unique identifier for the environment associated with this integration. This links to the Environment collection.
+   */
   environmentId: string;
+  /**
+   * The unique identifier for the organization that owns this integration. This links to the Organization collection.
+   */
   organizationId: string;
+  /**
+   * The name of the integration, which is used to identify it in the user interface.
+   */
   name: string;
+  /**
+   * A unique string identifier for the integration, often used for API calls or internal references.
+   */
   identifier: string;
+  /**
+   * The identifier for the provider of the integration (e.g., "mailgun", "twilio").
+   */
   providerId: string;
+  /**
+   * The channel type for the integration, which defines how the integration communicates (e.g., email, SMS).
+   */
   channel: IntegrationResponseDtoChannel;
+  /**
+   * The credentials required for the integration to function, including API keys and other sensitive information.
+   */
   credentials: CredentialsDto;
+  /**
+   * Indicates whether the integration is currently active. An active integration will process events and messages.
+   */
   active: boolean;
+  /**
+   * Indicates whether the integration has been marked as deleted (soft delete).
+   */
   deleted: boolean;
-  deletedAt: string;
-  deletedBy: string;
+  /**
+   * The timestamp indicating when the integration was deleted. This is set when the integration is soft deleted.
+   */
+  deletedAt?: string | undefined;
+  /**
+   * The identifier of the user who performed the deletion of this integration. Useful for audit trails.
+   */
+  deletedBy?: string | undefined;
+  /**
+   * Indicates whether this integration is marked as primary. A primary integration is often the default choice for processing.
+   */
   primary: boolean;
+  /**
+   * An array of conditions associated with the integration that may influence its behavior or processing logic.
+   */
   conditions?: Array<StepFilter> | undefined;
 };
 
@@ -86,8 +134,8 @@ export const IntegrationResponseDto$inboundSchema: z.ZodType<
   credentials: CredentialsDto$inboundSchema,
   active: z.boolean(),
   deleted: z.boolean(),
-  deletedAt: z.string(),
-  deletedBy: z.string(),
+  deletedAt: z.string().optional(),
+  deletedBy: z.string().optional(),
   primary: z.boolean(),
   conditions: z.array(StepFilter$inboundSchema).optional(),
 }).transform((v) => {
@@ -110,8 +158,8 @@ export type IntegrationResponseDto$Outbound = {
   credentials: CredentialsDto$Outbound;
   active: boolean;
   deleted: boolean;
-  deletedAt: string;
-  deletedBy: string;
+  deletedAt?: string | undefined;
+  deletedBy?: string | undefined;
   primary: boolean;
   conditions?: Array<StepFilter$Outbound> | undefined;
 };
@@ -132,8 +180,8 @@ export const IntegrationResponseDto$outboundSchema: z.ZodType<
   credentials: CredentialsDto$outboundSchema,
   active: z.boolean(),
   deleted: z.boolean(),
-  deletedAt: z.string(),
-  deletedBy: z.string(),
+  deletedAt: z.string().optional(),
+  deletedBy: z.string().optional(),
   primary: z.boolean(),
   conditions: z.array(StepFilter$outboundSchema).optional(),
 }).transform((v) => {
