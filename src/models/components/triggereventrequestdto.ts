@@ -7,12 +7,6 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
-  ControlsDto,
-  ControlsDto$inboundSchema,
-  ControlsDto$Outbound,
-  ControlsDto$outboundSchema,
-} from "./controlsdto.js";
-import {
   SubscriberPayloadDto,
   SubscriberPayloadDto$inboundSchema,
   SubscriberPayloadDto$Outbound,
@@ -30,6 +24,12 @@ import {
   TopicPayloadDto$Outbound,
   TopicPayloadDto$outboundSchema,
 } from "./topicpayloaddto.js";
+import {
+  WorkflowToStepControlValuesDto,
+  WorkflowToStepControlValuesDto$inboundSchema,
+  WorkflowToStepControlValuesDto$Outbound,
+  WorkflowToStepControlValuesDto$outboundSchema,
+} from "./workflowtostepcontrolvaluesdto.js";
 
 /**
  * This could be used to override provider specific configurations
@@ -61,9 +61,10 @@ export type TriggerEventRequestDto = {
    */
   name: string;
   /**
-   * The payload object is used to pass additional custom information that could be used to render the workflow, or perform routing rules based on it.
+   * The payload object is used to pass additional custom information that could be
    *
    * @remarks
+   *     used to render the workflow, or perform routing rules based on it.
    *       This data will also be available when fetching the notifications feed from the API to display certain parts of the UI.
    */
   payload?: { [k: string]: any } | undefined;
@@ -101,7 +102,7 @@ export type TriggerEventRequestDto = {
   /**
    * Additional control configurations.
    */
-  controls?: ControlsDto | undefined;
+  controls?: WorkflowToStepControlValuesDto | undefined;
 };
 
 /** @internal */
@@ -298,7 +299,7 @@ export const TriggerEventRequestDto$inboundSchema: z.ZodType<
   transactionId: z.string().optional(),
   actor: z.union([SubscriberPayloadDto$inboundSchema, z.string()]).optional(),
   tenant: z.union([TenantPayloadDto$inboundSchema, z.string()]).optional(),
-  controls: ControlsDto$inboundSchema.optional(),
+  controls: WorkflowToStepControlValuesDto$inboundSchema.optional(),
 });
 
 /** @internal */
@@ -311,7 +312,7 @@ export type TriggerEventRequestDto$Outbound = {
   transactionId?: string | undefined;
   actor?: SubscriberPayloadDto$Outbound | string | undefined;
   tenant?: TenantPayloadDto$Outbound | string | undefined;
-  controls?: ControlsDto$Outbound | undefined;
+  controls?: WorkflowToStepControlValuesDto$Outbound | undefined;
 };
 
 /** @internal */
@@ -334,7 +335,7 @@ export const TriggerEventRequestDto$outboundSchema: z.ZodType<
   transactionId: z.string().optional(),
   actor: z.union([SubscriberPayloadDto$outboundSchema, z.string()]).optional(),
   tenant: z.union([TenantPayloadDto$outboundSchema, z.string()]).optional(),
-  controls: ControlsDto$outboundSchema.optional(),
+  controls: WorkflowToStepControlValuesDto$outboundSchema.optional(),
 });
 
 /**
