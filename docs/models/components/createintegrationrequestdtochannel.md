@@ -5,7 +5,7 @@
 ```typescript
 import { CreateIntegrationRequestDtoChannel } from "@novu/api/models/components";
 
-let value: CreateIntegrationRequestDtoChannel = "in_app";
+let value: CreateIntegrationRequestDtoChannel = "chat";
 ```
 
 ## Values

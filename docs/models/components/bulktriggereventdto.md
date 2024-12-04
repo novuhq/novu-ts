@@ -17,10 +17,7 @@ let value: BulkTriggerEventDto = {
       },
       overrides: {},
       to: [
-        {
-          topicKey: "<value>",
-          type: "Topic",
-        },
+        "SUBSCRIBER_ID",
       ],
     },
   ],
