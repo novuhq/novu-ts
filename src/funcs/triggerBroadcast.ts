@@ -131,7 +131,7 @@ export async function triggerBroadcast(
     | ConnectionError
   >(
     M.json(
-      200,
+      [200, 201],
       operations.EventsControllerBroadcastEventToAllResponse$inboundSchema,
       { hdrs: true, key: "Result" },
     ),

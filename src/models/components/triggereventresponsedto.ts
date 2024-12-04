@@ -9,7 +9,7 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
- * Status for trigger
+ * Status of the trigger
  */
 export const TriggerEventResponseDtoStatus = {
   Error: "error",
@@ -21,7 +21,7 @@ export const TriggerEventResponseDtoStatus = {
   NoTenantFound: "no_tenant_found",
 } as const;
 /**
- * Status for trigger
+ * Status of the trigger
  */
 export type TriggerEventResponseDtoStatus = ClosedEnum<
   typeof TriggerEventResponseDtoStatus
@@ -29,19 +29,19 @@ export type TriggerEventResponseDtoStatus = ClosedEnum<
 
 export type TriggerEventResponseDto = {
   /**
-   * If trigger was acknowledged or not
+   * Indicates whether the trigger was acknowledged or not
    */
   acknowledged: boolean;
   /**
-   * Status for trigger
+   * Status of the trigger
    */
   status: TriggerEventResponseDtoStatus;
   /**
-   * In case of an error, this field will contain the error message
+   * In case of an error, this field will contain the error message(s)
    */
   error?: Array<string> | undefined;
   /**
-   * Transaction id for trigger
+   * Transaction ID for the trigger
    */
   transactionId?: string | undefined;
 };
