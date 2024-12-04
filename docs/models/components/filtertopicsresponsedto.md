@@ -17,9 +17,9 @@ let value: FilterTopicsResponseDto = {
       ],
     },
   ],
-  page: 580.29,
-  pageSize: 4344.17,
-  totalCount: 3117.96,
+  page: 3117.96,
+  pageSize: 6963.43,
+  totalCount: 3777.52,
 };
 ```
 

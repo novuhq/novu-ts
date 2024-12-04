@@ -10,7 +10,7 @@ let value: ChannelCredentialsDto = {};
 
 ## Fields
 
-| Field              | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `webhookUrl`       | *string*           | :heavy_minus_sign: | N/A                |
-| `deviceTokens`     | *string*[]         | :heavy_minus_sign: | N/A                |
+| Field                                                | Type                                                 | Required                                             | Description                                          |
+| ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- |
+| `webhookUrl`                                         | *string*                                             | :heavy_minus_sign:                                   | The URL for the webhook associated with the channel. |
+| `deviceTokens`                                       | *string*[]                                           | :heavy_minus_sign:                                   | An array of device tokens for push notifications.    |

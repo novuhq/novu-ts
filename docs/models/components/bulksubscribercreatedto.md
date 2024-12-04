@@ -14,6 +14,6 @@ let value: BulkSubscriberCreateDto = {
 
 ## Fields
 
-| Field              | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `subscribers`      | *string*[]         | :heavy_check_mark: | N/A                |
+| Field                                          | Type                                           | Required                                       | Description                                    |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| `subscribers`                                  | *string*[]                                     | :heavy_check_mark:                             | An array of subscribers to be created in bulk. |

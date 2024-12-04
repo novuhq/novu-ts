@@ -10603,9 +10603,11 @@
         "type": "object",
         "properties": {
           "webhookUrl": {
-            "type": "string"
+            "type": "string",
+            "description": "The URL for the webhook associated with the channel."
           },
           "deviceTokens": {
+            "description": "An array of device tokens for push notifications.",
             "type": "array",
             "items": {
               "type": "string"
@@ -10616,14 +10618,44 @@
       "SubscriberChannelDto": {
         "type": "object",
         "properties": {
-          "integrationIdentifier": {
-            "type": "string"
-          },
           "providerId": {
-            "type": "object"
+            "type": "number",
+            "description": "The ID of the chat or push provider.",
+            "enum": [
+              {
+                "Slack": "slack",
+                "Discord": "discord",
+                "MsTeams": "msteams",
+                "Mattermost": "mattermost",
+                "Ryver": "ryver",
+                "Zulip": "zulip",
+                "GrafanaOnCall": "grafana-on-call",
+                "GetStream": "getstream",
+                "RocketChat": "rocket-chat",
+                "WhatsAppBusiness": "whatsapp-business"
+              },
+              {
+                "FCM": "fcm",
+                "APNS": "apns",
+                "EXPO": "expo",
+                "OneSignal": "one-signal",
+                "Pushpad": "pushpad",
+                "PushWebhook": "push-webhook",
+                "PusherBeams": "pusher-beams"
+              }
+            ]
+          },
+          "integrationIdentifier": {
+            "type": "string",
+            "description": "An optional identifier for the integration."
           },
           "credentials": {
-            "$ref": "#/components/schemas/ChannelCredentialsDto"
+            "description": "Credentials for the channel.",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ChannelCredentialsDto"
+              }
+            ]
           }
         },
         "required": [
@@ -10639,27 +10671,32 @@
             "description": "The internal identifier you used to create this subscriber, usually correlates to the id the user in your systems"
           },
           "email": {
-            "type": "string"
+            "type": "string",
+            "description": "The email address of the subscriber."
           },
           "firstName": {
-            "type": "string"
+            "type": "string",
+            "description": "The first name of the subscriber."
           },
           "lastName": {
-            "type": "string"
+            "type": "string",
+            "description": "The last name of the subscriber."
           },
           "phone": {
-            "type": "string"
+            "type": "string",
+            "description": "The phone number of the subscriber."
           },
           "avatar": {
             "type": "string",
-            "description": "An http url to the profile image of your subscriber"
+            "description": "An HTTP URL to the profile image of your subscriber."
           },
           "locale": {
-            "type": "string"
+            "type": "string",
+            "description": "The locale of the subscriber."
           },
           "data": {
             "type": "object",
-            "description": "An optional payload object that can contain any properties",
+            "description": "An optional payload object that can contain any properties.",
             "additionalProperties": {
               "oneOf": [
                 {
@@ -10681,6 +10718,7 @@
             }
           },
           "channels": {
+            "description": "An optional array of subscriber channels.",
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/SubscriberChannelDto"
@@ -11684,27 +11722,32 @@
             "description": "The internal identifier you used to create this subscriber, usually correlates to the id the user in your systems"
           },
           "email": {
-            "type": "string"
+            "type": "string",
+            "description": "The email address of the subscriber."
           },
           "firstName": {
-            "type": "string"
+            "type": "string",
+            "description": "The first name of the subscriber."
           },
           "lastName": {
-            "type": "string"
+            "type": "string",
+            "description": "The last name of the subscriber."
           },
           "phone": {
-            "type": "string"
+            "type": "string",
+            "description": "The phone number of the subscriber."
           },
           "avatar": {
             "type": "string",
-            "description": "An http url to the profile image of your subscriber"
+            "description": "An HTTP URL to the profile image of your subscriber."
           },
           "locale": {
-            "type": "string"
+            "type": "string",
+            "description": "The locale of the subscriber."
           },
           "data": {
             "type": "object",
-            "description": "An optional payload object that can contain any properties",
+            "description": "An optional payload object that can contain any properties.",
             "additionalProperties": {
               "oneOf": [
                 {
@@ -11726,6 +11769,7 @@
             }
           },
           "channels": {
+            "description": "An optional array of subscriber channels.",
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/SubscriberChannelDto"
@@ -11740,6 +11784,7 @@
         "type": "object",
         "properties": {
           "subscribers": {
+            "description": "An array of subscribers to be created in bulk.",
             "type": "array",
             "items": {
               "type": "string"
