@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 6bff3a53-3f0b-40b4-942f-ff70dc583ae5
 management:
-  docChecksum: 0f6e7715212243dd279a1907bbf6baaf
+  docChecksum: 57f6e35238d3635d878c37b1934801d2
   docVersion: "1.0"
   speakeasyVersion: 1.451.7
   generationVersion: 2.471.2
-  releaseVersion: 0.0.1-alpha.58
-  configChecksum: a45bb54d3652677ad0db9f1e827d28ce
+  releaseVersion: 0.0.1-alpha.60
+  configChecksum: 96f1901549b4611d11aa29a432c98ae8
   published: true
 features:
   typescript:
@@ -1014,4 +1014,6 @@ examples:
       responses:
         "201":
           application/json: {"succeeded": []}
+        "200":
+          application/json: {"succeeded": ["<value>", "<value>", "<value>"]}
 generatedTests: {}

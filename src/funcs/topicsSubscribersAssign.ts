@@ -143,7 +143,7 @@ export async function topicsSubscribersAssign(
     | RequestTimeoutError
     | ConnectionError
   >(
-    M.json(201, operations.TopicsControllerAssignResponse$inboundSchema, {
+    M.json(200, operations.TopicsControllerAssignResponse$inboundSchema, {
       hdrs: true,
       key: "Result",
     }),

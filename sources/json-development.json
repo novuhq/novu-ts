@@ -9185,8 +9185,7 @@
           }
         },
         "responses": {
-          "201": {
-            "description": "Created",
+          "200": {
             "headers": {
               "Content-Type": {
                 "$ref": "#/components/headers/Content-Type"
@@ -9210,6 +9209,7 @@
                 "$ref": "#/components/headers/Idempotency-Replay"
               }
             },
+            "description": "",
             "content": {
               "application/json": {
                 "schema": {
@@ -13059,6 +13059,21 @@
           "name"
         ]
       },
+      "AddSubscribersRequestDto": {
+        "type": "object",
+        "properties": {
+          "subscribers": {
+            "description": "List of subscriber identifiers that will be associated to the topic",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "subscribers"
+        ]
+      },
       "FailedAssignmentsDto": {
         "type": "object",
         "properties": {
@@ -13092,21 +13107,6 @@
         },
         "required": [
           "succeeded"
-        ]
-      },
-      "AddSubscribersRequestDto": {
-        "type": "object",
-        "properties": {
-          "subscribers": {
-            "description": "List of subscriber identifiers that will be associated to the topic",
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          }
-        },
-        "required": [
-          "subscribers"
         ]
       },
       "TopicSubscriberDto": {
