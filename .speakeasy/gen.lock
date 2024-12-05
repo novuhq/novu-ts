@@ -5,8 +5,8 @@ management:
   docVersion: "1.0"
   speakeasyVersion: 1.451.7
   generationVersion: 2.471.2
-  releaseVersion: 0.0.1-alpha.60
-  configChecksum: 96f1901549b4611d11aa29a432c98ae8
+  releaseVersion: 0.0.1-alpha.61
+  configChecksum: 7e43c4b9bbf91a1bd8bc2852a0ccef3f
   published: true
 features:
   typescript:
