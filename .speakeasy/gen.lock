@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 6bff3a53-3f0b-40b4-942f-ff70dc583ae5
 management:
-  docChecksum: 04a032015754ec0b90c933ea5ae6f382
+  docChecksum: b0ce63526e7ed8d2c414c66b6db86d03
   docVersion: "1.0"
-  speakeasyVersion: 1.451.1
-  generationVersion: 2.470.1
-  releaseVersion: 0.0.1-alpha.56
-  configChecksum: 9301154e8693dcd83a6f0d2f6c670a72
+  speakeasyVersion: 1.451.7
+  generationVersion: 2.471.2
+  releaseVersion: 0.0.1-alpha.57
+  configChecksum: b034568fccae1ba52fcf5621e92a4485
   published: true
 features:
   typescript:
@@ -49,6 +49,7 @@ generatedFiles:
   - docs/models/components/actor.md
   - docs/models/components/addsubscribersrequestdto.md
   - docs/models/components/apikey.md
+  - docs/models/components/assignsubscribertotopicdto.md
   - docs/models/components/backoffunit.md
   - docs/models/components/bulksubscribercreatedto.md
   - docs/models/components/bulktriggereventdto.md
@@ -92,6 +93,7 @@ generatedFiles:
   - docs/models/components/emailblocktype.md
   - docs/models/components/environmentresponsedto.md
   - docs/models/components/executiondetailsresponsedto.md
+  - docs/models/components/failedassignmentsdto.md
   - docs/models/components/feedid.md
   - docs/models/components/feedidentifier.md
   - docs/models/components/feedresponsedto.md
@@ -283,8 +285,8 @@ generatedFiles:
   - docs/models/operations/subscriberscontrollerupdatesubscriberpreferenceresponse.md
   - docs/models/operations/subscriberscontrollerupdatesubscriberrequest.md
   - docs/models/operations/subscriberscontrollerupdatesubscriberresponse.md
-  - docs/models/operations/topicscontrolleraddsubscribersrequest.md
-  - docs/models/operations/topicscontrolleraddsubscribersresponse.md
+  - docs/models/operations/topicscontrollerassignrequest.md
+  - docs/models/operations/topicscontrollerassignresponse.md
   - docs/models/operations/topicscontrollercreatetopicresponse.md
   - docs/models/operations/topicscontrollerdeletetopicrequest.md
   - docs/models/operations/topicscontrollerdeletetopicresponse.md
@@ -403,6 +405,7 @@ generatedFiles:
   - src/models/components/activitystatsresponsedto.ts
   - src/models/components/addsubscribersrequestdto.ts
   - src/models/components/apikey.ts
+  - src/models/components/assignsubscribertotopicdto.ts
   - src/models/components/bulksubscribercreatedto.ts
   - src/models/components/bulktriggereventdto.ts
   - src/models/components/channelcredentials.ts
@@ -427,6 +430,7 @@ generatedFiles:
   - src/models/components/emailblockstyles.ts
   - src/models/components/environmentresponsedto.ts
   - src/models/components/executiondetailsresponsedto.ts
+  - src/models/components/failedassignmentsdto.ts
   - src/models/components/feedresponsedto.ts
   - src/models/components/fieldfilterpart.ts
   - src/models/components/filtertopicsresponsedto.ts
@@ -533,7 +537,7 @@ generatedFiles:
   - src/models/operations/subscriberscontrollerupdatesubscriberglobalpreferences.ts
   - src/models/operations/subscriberscontrollerupdatesubscriberonlineflag.ts
   - src/models/operations/subscriberscontrollerupdatesubscriberpreference.ts
-  - src/models/operations/topicscontrolleraddsubscribers.ts
+  - src/models/operations/topicscontrollerassign.ts
   - src/models/operations/topicscontrollercreatetopic.ts
   - src/models/operations/topicscontrollerdeletetopic.ts
   - src/models/operations/topicscontrollergettopic.ts
@@ -1000,4 +1004,14 @@ examples:
           topicKey: "<value>"
       requestBody:
         application/json: {"subscribers": ["<value>", "<value>"]}
+  TopicsController_assign:
+    speakeasy-default-topics-controller-assign:
+      parameters:
+        path:
+          topicKey: "<value>"
+      requestBody:
+        application/json: {"subscribers": ["<value>", "<value>", "<value>"]}
+      responses:
+        "201":
+          application/json: {"succeeded": []}
 generatedTests: {}

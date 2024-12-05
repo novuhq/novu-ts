@@ -21,7 +21,7 @@ export class NovuSubscribers extends ClientSDK {
     addSubscribersRequestDto: components.AddSubscribersRequestDto,
     topicKey: string,
     options?: RequestOptions,
-  ): Promise<operations.TopicsControllerAddSubscribersResponse | undefined> {
+  ): Promise<operations.TopicsControllerAssignResponse | undefined> {
     return unwrapAsync(topicsSubscribersAssign(
       this,
       addSubscribersRequestDto,

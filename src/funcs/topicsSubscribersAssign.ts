@@ -35,7 +35,7 @@ export async function topicsSubscribersAssign(
   options?: RequestOptions,
 ): Promise<
   Result<
-    operations.TopicsControllerAddSubscribersResponse | undefined,
+    operations.TopicsControllerAssignResponse | undefined,
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -45,7 +45,7 @@ export async function topicsSubscribersAssign(
     | ConnectionError
   >
 > {
-  const input: operations.TopicsControllerAddSubscribersRequest = {
+  const input: operations.TopicsControllerAssignRequest = {
     addSubscribersRequestDto: addSubscribersRequestDto,
     topicKey: topicKey,
   };
@@ -53,9 +53,7 @@ export async function topicsSubscribersAssign(
   const parsed = safeParse(
     input,
     (value) =>
-      operations.TopicsControllerAddSubscribersRequest$outboundSchema.parse(
-        value,
-      ),
+      operations.TopicsControllerAssignRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
@@ -77,7 +75,7 @@ export async function topicsSubscribersAssign(
 
   const headers = new Headers({
     "Content-Type": "application/json",
-    Accept: "*/*",
+    Accept: "application/json",
   });
 
   const secConfig = await extractSecurity(client._options.apiKey);
@@ -85,7 +83,7 @@ export async function topicsSubscribersAssign(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
-    operationID: "TopicsController_addSubscribers",
+    operationID: "TopicsController_assign",
     oAuth2Scopes: [],
 
     resolvedSecurity: requestSecurity,
@@ -136,7 +134,7 @@ export async function topicsSubscribersAssign(
   };
 
   const [result] = await M.match<
-    operations.TopicsControllerAddSubscribersResponse | undefined,
+    operations.TopicsControllerAssignResponse | undefined,
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -145,10 +143,14 @@ export async function topicsSubscribersAssign(
     | RequestTimeoutError
     | ConnectionError
   >(
+    M.json(
+      201,
+      operations.TopicsControllerAssignResponse$inboundSchema.optional(),
+      { hdrs: true, key: "Result" },
+    ),
     M.nil(
       204,
-      operations.TopicsControllerAddSubscribersResponse$inboundSchema
-        .optional(),
+      operations.TopicsControllerAssignResponse$inboundSchema.optional(),
       { hdrs: true },
     ),
     M.fail([409, 429, 503]),

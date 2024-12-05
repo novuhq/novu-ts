@@ -27,6 +27,7 @@ async function run() {
     subscribers: [
       "<value>",
       "<value>",
+      "<value>",
     ],
   }, "<value>");
 
@@ -54,6 +55,7 @@ const novu = new NovuCore({
 async function run() {
   const res = await topicsSubscribersAssign(novu, {
     subscribers: [
+      "<value>",
       "<value>",
       "<value>",
     ],
@@ -84,7 +86,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.TopicsControllerAddSubscribersResponse](../../models/operations/topicscontrolleraddsubscribersresponse.md)\>**
+**Promise\<[operations.TopicsControllerAssignResponse](../../models/operations/topicscontrollerassignresponse.md)\>**
 
 ### Errors
 

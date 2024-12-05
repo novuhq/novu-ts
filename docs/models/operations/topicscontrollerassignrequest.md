@@ -1,11 +1,11 @@
-# TopicsControllerAddSubscribersRequest
+# TopicsControllerAssignRequest
 
 ## Example Usage
 
 ```typescript
-import { TopicsControllerAddSubscribersRequest } from "@novu/api/models/operations";
+import { TopicsControllerAssignRequest } from "@novu/api/models/operations";
 
-let value: TopicsControllerAddSubscribersRequest = {
+let value: TopicsControllerAssignRequest = {
   topicKey: "<value>",
   addSubscribersRequestDto: {
     subscribers: [
