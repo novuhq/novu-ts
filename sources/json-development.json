@@ -9218,32 +9218,6 @@
               }
             }
           },
-          "204": {
-            "headers": {
-              "Content-Type": {
-                "$ref": "#/components/headers/Content-Type"
-              },
-              "RateLimit-Limit": {
-                "$ref": "#/components/headers/RateLimit-Limit"
-              },
-              "RateLimit-Remaining": {
-                "$ref": "#/components/headers/RateLimit-Remaining"
-              },
-              "RateLimit-Reset": {
-                "$ref": "#/components/headers/RateLimit-Reset"
-              },
-              "RateLimit-Policy": {
-                "$ref": "#/components/headers/RateLimit-Policy"
-              },
-              "Idempotency-Key": {
-                "$ref": "#/components/headers/Idempotency-Key"
-              },
-              "Idempotency-Replay": {
-                "$ref": "#/components/headers/Idempotency-Replay"
-              }
-            },
-            "description": ""
-          },
           "409": {
             "description": "The request could not be completed due to a conflict with the current state of the target resource.",
             "headers": {
