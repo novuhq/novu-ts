@@ -9158,7 +9158,7 @@
     },
     "/v1/topics/{topicKey}/subscribers": {
       "post": {
-        "operationId": "TopicsController_addSubscribers",
+        "operationId": "TopicsController_assign",
         "x-speakeasy-name-override": "assign",
         "x-speakeasy-group": "Topics.Subscribers",
         "summary": "Subscribers addition",
@@ -9185,6 +9185,39 @@
           }
         },
         "responses": {
+          "201": {
+            "description": "Created",
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AssignSubscriberToTopicDto"
+                }
+              }
+            }
+          },
           "204": {
             "headers": {
               "Content-Type": {
@@ -13050,6 +13083,41 @@
         "required": [
           "key",
           "name"
+        ]
+      },
+      "FailedAssignmentsDto": {
+        "type": "object",
+        "properties": {
+          "notFound": {
+            "description": "List of subscriber IDs that were not found",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "AssignSubscriberToTopicDto": {
+        "type": "object",
+        "properties": {
+          "succeeded": {
+            "description": "List of successfully assigned subscriber IDs",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "failed": {
+            "description": "Details about failed assignments",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/FailedAssignmentsDto"
+              }
+            ]
+          }
+        },
+        "required": [
+          "succeeded"
         ]
       },
       "AddSubscribersRequestDto": {
