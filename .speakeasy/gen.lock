@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 6bff3a53-3f0b-40b4-942f-ff70dc583ae5
 management:
-  docChecksum: e66c503a7f777183e8ca7961d8bd085c
+  docChecksum: e0965dcae4636ea046bdbf2de617abc0
   docVersion: "1.0"
   speakeasyVersion: 1.453.0
   generationVersion: 2.472.1
-  releaseVersion: 0.0.1-alpha.62
-  configChecksum: fdb6be2b95b943c4df9e0af6cef2724f
+  releaseVersion: 0.0.1-alpha.63
+  configChecksum: ae72dd78c90b3c3f2fa0596a2dfa792f
   published: true
 features:
   typescript:
@@ -368,7 +368,7 @@ generatedFiles:
   - src/funcs/topicsRename.ts
   - src/funcs/topicsRetrieve.ts
   - src/funcs/topicsSubscribersAssign.ts
-  - src/funcs/topicsSubscribersDelete.ts
+  - src/funcs/topicsSubscribersRemove.ts
   - src/funcs/topicsSubscribersRetrieve.ts
   - src/funcs/trigger.ts
   - src/funcs/triggerBroadcast.ts

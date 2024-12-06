@@ -321,7 +321,7 @@ run();
 
 * [assign](docs/sdks/novusubscribers/README.md#assign) - Subscribers addition
 * [retrieve](docs/sdks/novusubscribers/README.md#retrieve) - Check topic subscriber
-* [delete](docs/sdks/novusubscribers/README.md#delete) - Subscribers removal
+* [remove](docs/sdks/novusubscribers/README.md#remove) - Subscribers removal
 
 ### [workflowGroups](docs/sdks/workflowgroups/README.md)
 
@@ -395,7 +395,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`topicsRename`](docs/sdks/topics/README.md#rename) - Rename a topic
 - [`topicsRetrieve`](docs/sdks/topics/README.md#retrieve) - Get topic
 - [`topicsSubscribersAssign`](docs/sdks/novusubscribers/README.md#assign) - Subscribers addition
-- [`topicsSubscribersDelete`](docs/sdks/novusubscribers/README.md#delete) - Subscribers removal
+- [`topicsSubscribersRemove`](docs/sdks/novusubscribers/README.md#remove) - Subscribers removal
 - [`topicsSubscribersRetrieve`](docs/sdks/novusubscribers/README.md#retrieve) - Check topic subscriber
 - [`trigger`](docs/sdks/novu/README.md#trigger) - Trigger event
 - [`triggerBroadcast`](docs/sdks/novu/README.md#triggerbroadcast) - Broadcast event to all

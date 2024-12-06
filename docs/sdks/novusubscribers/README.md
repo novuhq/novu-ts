@@ -7,7 +7,7 @@
 
 * [assign](#assign) - Subscribers addition
 * [retrieve](#retrieve) - Check topic subscriber
-* [delete](#delete) - Subscribers removal
+* [remove](#remove) - Subscribers removal
 
 ## assign
 
@@ -167,7 +167,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4XX, 5XX        | \*/\*           |
 
-## delete
+## remove
 
 Remove subscribers from a topic
 
@@ -181,7 +181,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.topics.subscribers.delete({
+  const result = await novu.topics.subscribers.remove({
     subscribers: [
       "<value>",
       "<value>",
@@ -201,7 +201,7 @@ The standalone function version of this method:
 
 ```typescript
 import { NovuCore } from "@novu/api/core.js";
-import { topicsSubscribersDelete } from "@novu/api/funcs/topicsSubscribersDelete.js";
+import { topicsSubscribersRemove } from "@novu/api/funcs/topicsSubscribersRemove.js";
 
 // Use `NovuCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -210,7 +210,7 @@ const novu = new NovuCore({
 });
 
 async function run() {
-  const res = await topicsSubscribersDelete(novu, {
+  const res = await topicsSubscribersRemove(novu, {
     subscribers: [
       "<value>",
       "<value>",

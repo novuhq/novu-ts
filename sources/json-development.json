@@ -9508,6 +9508,7 @@
     "/v1/topics/{topicKey}/subscribers/removal": {
       "post": {
         "operationId": "TopicsController_removeSubscribers",
+        "x-speakeasy-name-override": "remove",
         "x-speakeasy-group": "Topics.Subscribers",
         "summary": "Subscribers removal",
         "description": "Remove subscribers from a topic",

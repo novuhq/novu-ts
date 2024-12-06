@@ -3,7 +3,7 @@
  */
 
 import { topicsSubscribersAssign } from "../funcs/topicsSubscribersAssign.js";
-import { topicsSubscribersDelete } from "../funcs/topicsSubscribersDelete.js";
+import { topicsSubscribersRemove } from "../funcs/topicsSubscribersRemove.js";
 import { topicsSubscribersRetrieve } from "../funcs/topicsSubscribersRetrieve.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as components from "../models/components/index.js";
@@ -55,12 +55,12 @@ export class NovuSubscribers extends ClientSDK {
    * @remarks
    * Remove subscribers from a topic
    */
-  async delete(
+  async remove(
     removeSubscribersRequestDto: components.RemoveSubscribersRequestDto,
     topicKey: string,
     options?: RequestOptions,
   ): Promise<operations.TopicsControllerRemoveSubscribersResponse | undefined> {
-    return unwrapAsync(topicsSubscribersDelete(
+    return unwrapAsync(topicsSubscribersRemove(
       this,
       removeSubscribersRequestDto,
       topicKey,

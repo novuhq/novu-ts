@@ -28,7 +28,7 @@ import { Result } from "../types/fp.js";
  * @remarks
  * Remove subscribers from a topic
  */
-export async function topicsSubscribersDelete(
+export async function topicsSubscribersRemove(
   client: NovuCore,
   removeSubscribersRequestDto: components.RemoveSubscribersRequestDto,
   topicKey: string,
