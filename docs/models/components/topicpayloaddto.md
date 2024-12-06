@@ -7,13 +7,13 @@ import { TopicPayloadDto } from "@novu/api/models/components";
 
 let value: TopicPayloadDto = {
   topicKey: "<value>",
-  type: "Topic",
+  type: "Subscriber",
 };
 ```
 
 ## Fields
 
-| Field                                              | Type                                               | Required                                           | Description                                        | Example                                            |
-| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
-| `topicKey`                                         | *string*                                           | :heavy_check_mark:                                 | N/A                                                |                                                    |
-| `type`                                             | [components.Type](../../models/components/type.md) | :heavy_check_mark:                                 | N/A                                                | Topic                                              |
+| Field                                                                                        | Type                                                                                         | Required                                                                                     | Description                                                                                  |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `topicKey`                                                                                   | *string*                                                                                     | :heavy_check_mark:                                                                           | N/A                                                                                          |
+| `type`                                                                                       | [components.TriggerRecipientsTypeEnum](../../models/components/triggerrecipientstypeenum.md) | :heavy_check_mark:                                                                           | N/A                                                                                          |

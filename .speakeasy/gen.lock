@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 6bff3a53-3f0b-40b4-942f-ff70dc583ae5
 management:
-  docChecksum: 57f6e35238d3635d878c37b1934801d2
+  docChecksum: e66c503a7f777183e8ca7961d8bd085c
   docVersion: "1.0"
-  speakeasyVersion: 1.451.7
-  generationVersion: 2.471.2
-  releaseVersion: 0.0.1-alpha.61
-  configChecksum: 7e43c4b9bbf91a1bd8bc2852a0ccef3f
+  speakeasyVersion: 1.453.0
+  generationVersion: 2.472.1
+  releaseVersion: 0.0.1-alpha.62
+  configChecksum: fdb6be2b95b943c4df9e0af6cef2724f
   published: true
 features:
   typescript:
@@ -157,7 +157,6 @@ generatedFiles:
   - docs/models/components/source.md
   - docs/models/components/status.md
   - docs/models/components/stepfilter.md
-  - docs/models/components/stepfiltertype.md
   - docs/models/components/subscriberchanneldto.md
   - docs/models/components/subscriberpayloaddto.md
   - docs/models/components/subscriberresponsedto.md
@@ -178,6 +177,7 @@ generatedFiles:
   - docs/models/components/triggereventtoallrequestdto.md
   - docs/models/components/triggereventtoallrequestdtoactor.md
   - docs/models/components/triggereventtoallrequestdtotenant.md
+  - docs/models/components/triggerrecipientstypeenum.md
   - docs/models/components/type.md
   - docs/models/components/unit.md
   - docs/models/components/unseencountresponse.md
@@ -474,6 +474,7 @@ generatedFiles:
   - src/models/components/triggereventrequestdto.ts
   - src/models/components/triggereventresponsedto.ts
   - src/models/components/triggereventtoallrequestdto.ts
+  - src/models/components/triggerrecipientstypeenum.ts
   - src/models/components/unseencountresponse.ts
   - src/models/components/updateintegrationrequestdto.ts
   - src/models/components/updatesubscriberchannelrequestdto.ts

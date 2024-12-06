@@ -10,8 +10,8 @@ let value: FeedResponseDto = {
   data: [
     "<value>",
   ],
-  pageSize: 8137.98,
-  page: 3965.06,
+  pageSize: 5812.73,
+  page: 8817.35,
 };
 ```
 

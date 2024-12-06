@@ -14,7 +14,7 @@ import {
   FieldFilterPart$outboundSchema,
 } from "./fieldfilterpart.js";
 
-export const StepFilterType = {
+export const Type = {
   Boolean: "BOOLEAN",
   Text: "TEXT",
   Date: "DATE",
@@ -24,7 +24,7 @@ export const StepFilterType = {
   MultiList: "MULTI_LIST",
   Group: "GROUP",
 } as const;
-export type StepFilterType = ClosedEnum<typeof StepFilterType>;
+export type Type = ClosedEnum<typeof Type>;
 
 export const Value = {
   And: "AND",
@@ -34,30 +34,29 @@ export type Value = ClosedEnum<typeof Value>;
 
 export type StepFilter = {
   isNegated: boolean;
-  type: StepFilterType;
+  type: Type;
   value: Value;
   children: Array<FieldFilterPart>;
 };
 
 /** @internal */
-export const StepFilterType$inboundSchema: z.ZodNativeEnum<
-  typeof StepFilterType
-> = z.nativeEnum(StepFilterType);
+export const Type$inboundSchema: z.ZodNativeEnum<typeof Type> = z.nativeEnum(
+  Type,
+);
 
 /** @internal */
-export const StepFilterType$outboundSchema: z.ZodNativeEnum<
-  typeof StepFilterType
-> = StepFilterType$inboundSchema;
+export const Type$outboundSchema: z.ZodNativeEnum<typeof Type> =
+  Type$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace StepFilterType$ {
-  /** @deprecated use `StepFilterType$inboundSchema` instead. */
-  export const inboundSchema = StepFilterType$inboundSchema;
-  /** @deprecated use `StepFilterType$outboundSchema` instead. */
-  export const outboundSchema = StepFilterType$outboundSchema;
+export namespace Type$ {
+  /** @deprecated use `Type$inboundSchema` instead. */
+  export const inboundSchema = Type$inboundSchema;
+  /** @deprecated use `Type$outboundSchema` instead. */
+  export const outboundSchema = Type$outboundSchema;
 }
 
 /** @internal */
@@ -87,7 +86,7 @@ export const StepFilter$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   isNegated: z.boolean(),
-  type: StepFilterType$inboundSchema,
+  type: Type$inboundSchema,
   value: Value$inboundSchema,
   children: z.array(FieldFilterPart$inboundSchema),
 });
@@ -107,7 +106,7 @@ export const StepFilter$outboundSchema: z.ZodType<
   StepFilter
 > = z.object({
   isNegated: z.boolean(),
-  type: StepFilterType$outboundSchema,
+  type: Type$outboundSchema,
   value: Value$outboundSchema,
   children: z.array(FieldFilterPart$outboundSchema),
 });

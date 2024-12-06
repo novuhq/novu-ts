@@ -5,7 +5,7 @@
 ```typescript
 import { BackoffUnit } from "@novu/api/models/components";
 
-let value: BackoffUnit = "hours";
+let value: BackoffUnit = "days";
 ```
 
 ## Values

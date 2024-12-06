@@ -6,7 +6,7 @@
 import { SubscriberChannelDto } from "@novu/api/models/components";
 
 let value: SubscriberChannelDto = {
-  providerId: "grafana-on-call",
+  providerId: "one-signal",
   credentials: {},
 };
 ```

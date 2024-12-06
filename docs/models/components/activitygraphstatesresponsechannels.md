@@ -5,7 +5,7 @@
 ```typescript
 import { ActivityGraphStatesResponseChannels } from "@novu/api/models/components";
 
-let value: ActivityGraphStatesResponseChannels = "email";
+let value: ActivityGraphStatesResponseChannels = "sms";
 ```
 
 ## Values

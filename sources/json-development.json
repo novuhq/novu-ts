@@ -10712,6 +10712,13 @@
           }
         }
       },
+      "TriggerRecipientsTypeEnum": {
+        "type": "string",
+        "enum": [
+          "Subscriber",
+          "Topic"
+        ]
+      },
       "TopicPayloadDto": {
         "type": "object",
         "properties": {
@@ -10719,12 +10726,8 @@
             "type": "string"
           },
           "type": {
-            "enum": [
-              "Subscriber",
-              "Topic"
-            ],
-            "type": "string",
-            "example": "Topic"
+            "example": "Topic",
+            "$ref": "#/components/schemas/TriggerRecipientsTypeEnum"
           }
         },
         "required": [

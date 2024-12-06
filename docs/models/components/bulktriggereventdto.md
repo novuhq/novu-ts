@@ -24,7 +24,9 @@ let value: BulkTriggerEventDto = {
         },
       },
       to: [
-        "SUBSCRIBER_ID",
+        {
+          subscriberId: "<id>",
+        },
       ],
     },
   ],

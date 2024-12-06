@@ -8,7 +8,7 @@ import { FieldFilterPart } from "@novu/api/models/components";
 let value: FieldFilterPart = {
   field: "<value>",
   value: "<value>",
-  operator: "BETWEEN",
+  operator: "EQUAL",
   on: "subscriber",
 };
 ```

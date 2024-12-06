@@ -7,7 +7,7 @@ The provider identifier for the credentials
 ```typescript
 import { UpdateSubscriberChannelRequestDtoProviderId } from "@novu/api/models/components";
 
-let value: UpdateSubscriberChannelRequestDtoProviderId = "fcm";
+let value: UpdateSubscriberChannelRequestDtoProviderId = "pusher-beams";
 ```
 
 ## Values

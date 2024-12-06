@@ -5,11 +5,11 @@
 ```typescript
 import { Type } from "@novu/api/models/components";
 
-let value: Type = "Topic";
+let value: Type = "STATEMENT";
 ```
 
 ## Values
 
 ```typescript
-"Subscriber" | "Topic"
+"BOOLEAN" | "TEXT" | "DATE" | "NUMBER" | "STATEMENT" | "LIST" | "MULTI_LIST" | "GROUP"
 ```
