@@ -18,14 +18,29 @@ export class NovuCustomHook
     }
 
     async afterSuccess(_hookCtx: AfterSuccessContext, response: Response): Promise<Response> {
-        const jsonResponse = await response.clone().json();
+        if (!response || !response.ok) {
+            return response;
+        }
 
-        if (jsonResponse && Object.keys(jsonResponse).length === 1 && jsonResponse.data) {
+        const clonedResponse = response.clone();
+        const contentLength = clonedResponse.headers.get('Content-Length');
+        if (!contentLength || contentLength === '0') {
+            return response;
+        }
+
+        let jsonResponse;
+        try {
+            jsonResponse = await clonedResponse.json();
+        } catch (error) {
+            return response;
+        }
+
+        if (jsonResponse && typeof jsonResponse === 'object' && Object.keys(jsonResponse).length === 1 && jsonResponse.data) {
             return new Response(JSON.stringify(jsonResponse.data), {
                 status: response.status,
                 statusText: response.statusText,
                 headers: response.headers,
-            }); // Return the new Response object
+            });
         }
 
         return response;
