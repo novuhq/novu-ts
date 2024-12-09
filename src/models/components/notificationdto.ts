@@ -159,7 +159,7 @@ export type NotificationDto = {
   /**
    * The payload that was used to send the notification trigger.
    */
-  payload: { [k: string]: any };
+  payload?: { [k: string]: any } | undefined;
   /**
    * Provider-specific overrides used when triggering the notification.
    */
@@ -243,7 +243,7 @@ export const NotificationDto$inboundSchema: z.ZodType<
   deviceTokens: z.nullable(z.array(z.string())).optional(),
   cta: MessageCTA$inboundSchema,
   status: NotificationDtoStatus$inboundSchema,
-  payload: z.record(z.any()),
+  payload: z.record(z.any()).optional(),
   overrides: z.record(z.any()).optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -286,7 +286,7 @@ export type NotificationDto$Outbound = {
   deviceTokens?: Array<string> | null | undefined;
   cta: MessageCTA$Outbound;
   status: string;
-  payload: { [k: string]: any };
+  payload?: { [k: string]: any } | undefined;
   overrides?: { [k: string]: any } | undefined;
 };
 
@@ -321,7 +321,7 @@ export const NotificationDto$outboundSchema: z.ZodType<
   deviceTokens: z.nullable(z.array(z.string())).optional(),
   cta: MessageCTA$outboundSchema,
   status: NotificationDtoStatus$outboundSchema,
-  payload: z.record(z.any()),
+  payload: z.record(z.any()).optional(),
   overrides: z.record(z.any()).optional(),
 }).transform((v) => {
   return remap$(v, {

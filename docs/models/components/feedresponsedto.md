@@ -28,9 +28,6 @@ let value: FeedResponseDto = {
         data: {},
       },
       status: "error",
-      payload: {
-        "key": "<value>",
-      },
     },
   ],
   pageSize: 4238.55,

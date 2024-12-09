@@ -33,9 +33,6 @@ let value: SubscribersControllerGetNotificationsFeedResponseBody = {
             data: {},
           },
           status: "warning",
-          payload: {
-            "key": "<value>",
-          },
         },
       ],
       pageSize: 6818.20,

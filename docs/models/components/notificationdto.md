@@ -25,9 +25,6 @@ let value: NotificationDto = {
     data: {},
   },
   status: "sent",
-  payload: {
-    "key": "<value>",
-  },
 };
 ```
 
@@ -60,5 +57,5 @@ let value: NotificationDto = {
 | `deviceTokens`                                                                                | *string*[]                                                                                    | :heavy_minus_sign:                                                                            | Device tokens for push notifications, if applicable.                                          |
 | `cta`                                                                                         | [components.MessageCTA](../../models/components/messagecta.md)                                | :heavy_check_mark:                                                                            | Call-to-action information associated with the notification.                                  |
 | `status`                                                                                      | [components.NotificationDtoStatus](../../models/components/notificationdtostatus.md)          | :heavy_check_mark:                                                                            | Current status of the notification.                                                           |
-| `payload`                                                                                     | Record<string, *any*>                                                                         | :heavy_check_mark:                                                                            | The payload that was used to send the notification trigger.                                   |
+| `payload`                                                                                     | Record<string, *any*>                                                                         | :heavy_minus_sign:                                                                            | The payload that was used to send the notification trigger.                                   |
 | `overrides`                                                                                   | Record<string, *any*>                                                                         | :heavy_minus_sign:                                                                            | Provider-specific overrides used when triggering the notification.                            |

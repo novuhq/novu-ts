@@ -12476,8 +12476,7 @@
           "seen",
           "deleted",
           "cta",
-          "status",
-          "payload"
+          "status"
         ]
       },
       "FeedResponseDto": {
