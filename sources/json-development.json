@@ -8221,14 +8221,7 @@
             "required": false,
             "in": "query",
             "schema": {
-              "enum": [
-                "in_app",
-                "email",
-                "sms",
-                "chat",
-                "push"
-              ],
-              "type": "string"
+              "$ref": "#/components/schemas/ChannelTypeEnum"
             }
           },
           {
@@ -13031,6 +13024,16 @@
         },
         "required": [
           "status"
+        ]
+      },
+      "ChannelTypeEnum": {
+        "type": "string",
+        "enum": [
+          "in_app",
+          "email",
+          "sms",
+          "chat",
+          "push"
         ]
       },
       "DeleteMessageResponseDto": {

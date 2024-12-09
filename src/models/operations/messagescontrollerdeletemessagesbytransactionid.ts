@@ -12,7 +12,7 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 /**
  * The channel of the message to be deleted
  */
-export const QueryParamChannel = {
+export const Channel = {
   InApp: "in_app",
   Email: "email",
   Sms: "sms",
@@ -22,13 +22,13 @@ export const QueryParamChannel = {
 /**
  * The channel of the message to be deleted
  */
-export type QueryParamChannel = ClosedEnum<typeof QueryParamChannel>;
+export type Channel = ClosedEnum<typeof Channel>;
 
 export type MessagesControllerDeleteMessagesByTransactionIdRequest = {
   /**
    * The channel of the message to be deleted
    */
-  channel?: QueryParamChannel | undefined;
+  channel?: Channel | undefined;
   transactionId: string;
 };
 
@@ -37,24 +37,22 @@ export type MessagesControllerDeleteMessagesByTransactionIdResponse = {
 };
 
 /** @internal */
-export const QueryParamChannel$inboundSchema: z.ZodNativeEnum<
-  typeof QueryParamChannel
-> = z.nativeEnum(QueryParamChannel);
+export const Channel$inboundSchema: z.ZodNativeEnum<typeof Channel> = z
+  .nativeEnum(Channel);
 
 /** @internal */
-export const QueryParamChannel$outboundSchema: z.ZodNativeEnum<
-  typeof QueryParamChannel
-> = QueryParamChannel$inboundSchema;
+export const Channel$outboundSchema: z.ZodNativeEnum<typeof Channel> =
+  Channel$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace QueryParamChannel$ {
-  /** @deprecated use `QueryParamChannel$inboundSchema` instead. */
-  export const inboundSchema = QueryParamChannel$inboundSchema;
-  /** @deprecated use `QueryParamChannel$outboundSchema` instead. */
-  export const outboundSchema = QueryParamChannel$outboundSchema;
+export namespace Channel$ {
+  /** @deprecated use `Channel$inboundSchema` instead. */
+  export const inboundSchema = Channel$inboundSchema;
+  /** @deprecated use `Channel$outboundSchema` instead. */
+  export const outboundSchema = Channel$outboundSchema;
 }
 
 /** @internal */
@@ -64,7 +62,7 @@ export const MessagesControllerDeleteMessagesByTransactionIdRequest$inboundSchem
     z.ZodTypeDef,
     unknown
   > = z.object({
-    channel: QueryParamChannel$inboundSchema.optional(),
+    channel: Channel$inboundSchema.optional(),
     transactionId: z.string(),
   });
 
@@ -81,7 +79,7 @@ export const MessagesControllerDeleteMessagesByTransactionIdRequest$outboundSche
     z.ZodTypeDef,
     MessagesControllerDeleteMessagesByTransactionIdRequest
   > = z.object({
-    channel: QueryParamChannel$outboundSchema.optional(),
+    channel: Channel$outboundSchema.optional(),
     transactionId: z.string(),
   });
 

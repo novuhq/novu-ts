@@ -5,22 +5,12 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
-export const Channel = {
-  InApp: "in_app",
-  Email: "email",
-  Sms: "sms",
-  Chat: "chat",
-  Push: "push",
-} as const;
-export type Channel = ClosedEnum<typeof Channel>;
-
 export type MessagesControllerGetMessagesRequest = {
-  channel?: Channel | undefined;
+  channel?: components.ChannelTypeEnum | undefined;
   subscriberId?: string | undefined;
   transactionId?: Array<string> | undefined;
   page?: number | undefined;
@@ -33,31 +23,12 @@ export type MessagesControllerGetMessagesResponse = {
 };
 
 /** @internal */
-export const Channel$inboundSchema: z.ZodNativeEnum<typeof Channel> = z
-  .nativeEnum(Channel);
-
-/** @internal */
-export const Channel$outboundSchema: z.ZodNativeEnum<typeof Channel> =
-  Channel$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Channel$ {
-  /** @deprecated use `Channel$inboundSchema` instead. */
-  export const inboundSchema = Channel$inboundSchema;
-  /** @deprecated use `Channel$outboundSchema` instead. */
-  export const outboundSchema = Channel$outboundSchema;
-}
-
-/** @internal */
 export const MessagesControllerGetMessagesRequest$inboundSchema: z.ZodType<
   MessagesControllerGetMessagesRequest,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  channel: Channel$inboundSchema.optional(),
+  channel: components.ChannelTypeEnum$inboundSchema.optional(),
   subscriberId: z.string().optional(),
   transactionId: z.array(z.string()).optional(),
   page: z.number().default(0),
@@ -79,7 +50,7 @@ export const MessagesControllerGetMessagesRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   MessagesControllerGetMessagesRequest
 > = z.object({
-  channel: Channel$outboundSchema.optional(),
+  channel: components.ChannelTypeEnum$outboundSchema.optional(),
   subscriberId: z.string().optional(),
   transactionId: z.array(z.string()).optional(),
   page: z.number().default(0),

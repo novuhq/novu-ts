@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 6bff3a53-3f0b-40b4-942f-ff70dc583ae5
 management:
-  docChecksum: 4bdea392d15f54e63cfe855897ad7dbe
+  docChecksum: 92fd174fcec8436e782e2dd65b9ca913
   docVersion: "1.0"
   speakeasyVersion: 1.453.4
   generationVersion: 2.474.6
-  releaseVersion: 0.0.1-alpha.68
-  configChecksum: 96f7706936a94f35a6180d92c372a18e
+  releaseVersion: 0.0.1-alpha.70
+  configChecksum: 1a90fadeceee20d1afea263bbcad6182
   published: true
 features:
   typescript:
@@ -61,6 +61,7 @@ generatedFiles:
   - docs/models/components/channels.md
   - docs/models/components/channelsettings.md
   - docs/models/components/channelsettingsproviderid.md
+  - docs/models/components/channeltypeenum.md
   - docs/models/components/content.md
   - docs/models/components/createintegrationrequestdto.md
   - docs/models/components/createintegrationrequestdtochannel.md
@@ -241,7 +242,6 @@ generatedFiles:
   - docs/models/operations/notificationscontrollerlistnotificationsrequest.md
   - docs/models/operations/notificationscontrollerlistnotificationsresponse.md
   - docs/models/operations/parameter.md
-  - docs/models/operations/queryparamchannel.md
   - docs/models/operations/subscriberscontrollerbulkcreatesubscribersresponse.md
   - docs/models/operations/subscriberscontrollerchataccessoauthrequest.md
   - docs/models/operations/subscriberscontrollerchataccessoauthresponse.md
@@ -412,6 +412,7 @@ generatedFiles:
   - src/models/components/channelcredentialsdto.ts
   - src/models/components/channelpreference.ts
   - src/models/components/channelsettings.ts
+  - src/models/components/channeltypeenum.ts
   - src/models/components/createintegrationrequestdto.ts
   - src/models/components/createnotificationgrouprequestdto.ts
   - src/models/components/createsubscriberrequestdto.ts

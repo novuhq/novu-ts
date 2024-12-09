@@ -30,7 +30,7 @@ import { Result } from "../types/fp.js";
 export async function messagesDeleteByTransactionId(
   client: NovuCore,
   transactionId: string,
-  channel?: operations.QueryParamChannel | undefined,
+  channel?: operations.Channel | undefined,
   options?: RequestOptions,
 ): Promise<
   Result<
