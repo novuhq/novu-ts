@@ -24,7 +24,7 @@ import { Result } from "../types/fp.js";
 /**
  * Get in-app notification feed for a particular subscriber
  */
-export async function subscribersNotificationsRetrieve(
+export async function subscribersNotificationsFeed(
   client: NovuCore,
   request: operations.SubscribersControllerGetNotificationsFeedRequest,
   options?: RequestOptions,

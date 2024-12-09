@@ -6,9 +6,9 @@
 import { ChannelSettings } from "@novu/api/models/components";
 
 let value: ChannelSettings = {
-  providerId: "slack",
+  providerId: "ryver",
   credentials: {
-    webhookUrl: "https://finished-receptor.org",
+    webhookUrl: "https://pale-milestone.biz",
   },
   integrationId: "<id>",
 };

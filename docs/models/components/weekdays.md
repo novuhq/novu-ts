@@ -5,7 +5,7 @@
 ```typescript
 import { WeekDays } from "@novu/api/models/components";
 
-let value: WeekDays = "wednesday";
+let value: WeekDays = "saturday";
 ```
 
 ## Values

@@ -7,7 +7,7 @@ The channel type for the integration, which defines how the integration communic
 ```typescript
 import { IntegrationResponseDtoChannel } from "@novu/api/models/components";
 
-let value: IntegrationResponseDtoChannel = "sms";
+let value: IntegrationResponseDtoChannel = "push";
 ```
 
 ## Values

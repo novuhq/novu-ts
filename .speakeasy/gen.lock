@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 6bff3a53-3f0b-40b4-942f-ff70dc583ae5
 management:
-  docChecksum: 92fd174fcec8436e782e2dd65b9ca913
+  docChecksum: 7656686695d54efcc007c3194bb9e9d6
   docVersion: "1.0"
   speakeasyVersion: 1.453.4
   generationVersion: 2.474.6
-  releaseVersion: 0.0.1-alpha.70
-  configChecksum: 1a90fadeceee20d1afea263bbcad6182
+  releaseVersion: 0.0.1-alpha.74
+  configChecksum: 2ff328e4ac26a8a420b393b999a2c223
   published: true
 features:
   typescript:
@@ -47,6 +47,8 @@ generatedFiles:
   - docs/models/components/activitynotificationtemplateresponsedto.md
   - docs/models/components/activitystatsresponsedto.md
   - docs/models/components/actor.md
+  - docs/models/components/actordata.md
+  - docs/models/components/actortypeenum.md
   - docs/models/components/addsubscribersrequestdto.md
   - docs/models/components/apikey.md
   - docs/models/components/assignsubscribertotopicdto.md
@@ -108,10 +110,10 @@ generatedFiles:
   - docs/models/components/markallmessageasrequestdtomarkas.md
   - docs/models/components/markas.md
   - docs/models/components/markmessageactionasseendto.md
+  - docs/models/components/markmessageactionasseendtopayload.md
   - docs/models/components/markmessageactionasseendtostatus.md
   - docs/models/components/messageaction.md
   - docs/models/components/messageactionresult.md
-  - docs/models/components/messageactionresultpayload.md
   - docs/models/components/messageactionresulttype.md
   - docs/models/components/messageactionstatus.md
   - docs/models/components/messagebutton.md
@@ -130,6 +132,9 @@ generatedFiles:
   - docs/models/components/messagetemplate.md
   - docs/models/components/metadata.md
   - docs/models/components/monthlytype.md
+  - docs/models/components/notificationdto.md
+  - docs/models/components/notificationdtochannel.md
+  - docs/models/components/notificationdtostatus.md
   - docs/models/components/notificationgroup.md
   - docs/models/components/notificationgroupresponsedto.md
   - docs/models/components/notificationstep.md
@@ -173,6 +178,7 @@ generatedFiles:
   - docs/models/components/topicpayloaddto.md
   - docs/models/components/topicsubscriberdto.md
   - docs/models/components/triggereventrequestdto.md
+  - docs/models/components/triggereventrequestdtoactor.md
   - docs/models/components/triggereventresponsedto.md
   - docs/models/components/triggereventresponsedtostatus.md
   - docs/models/components/triggereventtoallrequestdto.md
@@ -353,7 +359,7 @@ generatedFiles:
   - src/funcs/subscribersMessagesMarkAll.ts
   - src/funcs/subscribersMessagesMarkAllAs.ts
   - src/funcs/subscribersMessagesUpdateAsSeen.ts
-  - src/funcs/subscribersNotificationsRetrieve.ts
+  - src/funcs/subscribersNotificationsFeed.ts
   - src/funcs/subscribersNotificationsUnseenCount.ts
   - src/funcs/subscribersPreferencesList.ts
   - src/funcs/subscribersPreferencesRetrieveByLevel.ts
@@ -403,6 +409,8 @@ generatedFiles:
   - src/models/components/activitynotificationsubscriberresponsedto.ts
   - src/models/components/activitynotificationtemplateresponsedto.ts
   - src/models/components/activitystatsresponsedto.ts
+  - src/models/components/actor.ts
+  - src/models/components/actortypeenum.ts
   - src/models/components/addsubscribersrequestdto.ts
   - src/models/components/apikey.ts
   - src/models/components/assignsubscribertotopicdto.ts
@@ -450,6 +458,7 @@ generatedFiles:
   - src/models/components/messagemarkasrequestdto.ts
   - src/models/components/messageresponsedto.ts
   - src/models/components/messagetemplate.ts
+  - src/models/components/notificationdto.ts
   - src/models/components/notificationgroup.ts
   - src/models/components/notificationgroupresponsedto.ts
   - src/models/components/notificationstep.ts
@@ -861,7 +870,7 @@ examples:
           payload: "btoa(JSON.stringify({ foo: 123 })) results in base64 encoded string like eyJmb28iOjEyM30="
       responses:
         "200":
-          application/json: {"page": "1526.70", "hasMore": true, "pageSize": "9643.05", "data": [{"hasMore": true, "data": ["<value>", "<value>"], "pageSize": "1031.10", "page": "1522.73"}, {"hasMore": false, "data": [], "pageSize": "5271.67", "page": "9499.10"}]}
+          application/json: {"page": "1526.70", "hasMore": true, "pageSize": "9643.05", "data": [{"hasMore": true, "data": [{"_id": "<id>", "_templateId": "<id>", "_environmentId": "<id>", "_messageTemplateId": "<id>", "_organizationId": "<id>", "_notificationId": "<id>", "_subscriberId": "<id>", "_feedId": "<id>", "_jobId": "<id>", "transactionId": "<id>", "content": "<value>", "channel": "push", "read": false, "seen": false, "deleted": false, "cta": {}, "status": "warning", "payload": {"key": "<value>", "key1": "<value>", "key2": "<value>"}, "overrides": {"key": "<value>", "key1": "<value>", "key2": "<value>"}}, {"_id": "<id>", "_templateId": "<id>", "_environmentId": "<id>", "_messageTemplateId": "<id>", "_organizationId": "<id>", "_notificationId": "<id>", "_subscriberId": "<id>", "_feedId": "<id>", "_jobId": "<id>", "transactionId": "<id>", "content": "<value>", "channel": "sms", "read": true, "seen": false, "deleted": true, "cta": {}, "status": "warning", "payload": {"key": "<value>", "key1": "<value>"}, "overrides": {"key": "<value>", "key1": "<value>"}}], "pageSize": "1031.10", "page": "1522.73"}, {"hasMore": false, "data": [], "pageSize": "5271.67", "page": "9499.10"}]}
   SubscribersController_markMessagesAs:
     speakeasy-default-subscribers-controller-mark-messages-as:
       parameters:

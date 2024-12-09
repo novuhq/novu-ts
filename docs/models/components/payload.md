@@ -1,7 +1,5 @@
 # Payload
 
-Message action payload
-
 ## Example Usage
 
 ```typescript

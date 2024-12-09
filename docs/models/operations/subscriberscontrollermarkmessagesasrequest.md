@@ -8,10 +8,8 @@ import { SubscribersControllerMarkMessagesAsRequest } from "@novu/api/models/ope
 let value: SubscribersControllerMarkMessagesAsRequest = {
   subscriberId: "<id>",
   messageMarkAsRequestDto: {
-    messageId: [
-      "<id>",
-    ],
-    markAs: "read",
+    messageId: "<id>",
+    markAs: "unread",
   },
 };
 ```

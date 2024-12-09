@@ -5,7 +5,7 @@
 ```typescript
 import { MessageResponseDtoStatus } from "@novu/api/models/components";
 
-let value: MessageResponseDtoStatus = "sent";
+let value: MessageResponseDtoStatus = "warning";
 ```
 
 ## Values

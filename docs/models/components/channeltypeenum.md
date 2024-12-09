@@ -5,7 +5,7 @@
 ```typescript
 import { ChannelTypeEnum } from "@novu/api/models/components";
 
-let value: ChannelTypeEnum = "email";
+let value: ChannelTypeEnum = "sms";
 ```
 
 ## Values

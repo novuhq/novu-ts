@@ -40,7 +40,7 @@ export type To = TopicPayloadDto | SubscriberPayloadDto | string;
  *
  *     If a new actor object is provided, we will create a new subscriber in our system
  */
-export type Actor = SubscriberPayloadDto | string;
+export type TriggerEventRequestDtoActor = SubscriberPayloadDto | string;
 
 /**
  * It is used to specify a tenant context during trigger event.
@@ -149,43 +149,54 @@ export function toFromJSON(
 }
 
 /** @internal */
-export const Actor$inboundSchema: z.ZodType<Actor, z.ZodTypeDef, unknown> = z
-  .union([SubscriberPayloadDto$inboundSchema, z.string()]);
-
-/** @internal */
-export type Actor$Outbound = SubscriberPayloadDto$Outbound | string;
-
-/** @internal */
-export const Actor$outboundSchema: z.ZodType<
-  Actor$Outbound,
+export const TriggerEventRequestDtoActor$inboundSchema: z.ZodType<
+  TriggerEventRequestDtoActor,
   z.ZodTypeDef,
-  Actor
+  unknown
+> = z.union([SubscriberPayloadDto$inboundSchema, z.string()]);
+
+/** @internal */
+export type TriggerEventRequestDtoActor$Outbound =
+  | SubscriberPayloadDto$Outbound
+  | string;
+
+/** @internal */
+export const TriggerEventRequestDtoActor$outboundSchema: z.ZodType<
+  TriggerEventRequestDtoActor$Outbound,
+  z.ZodTypeDef,
+  TriggerEventRequestDtoActor
 > = z.union([SubscriberPayloadDto$outboundSchema, z.string()]);
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Actor$ {
-  /** @deprecated use `Actor$inboundSchema` instead. */
-  export const inboundSchema = Actor$inboundSchema;
-  /** @deprecated use `Actor$outboundSchema` instead. */
-  export const outboundSchema = Actor$outboundSchema;
-  /** @deprecated use `Actor$Outbound` instead. */
-  export type Outbound = Actor$Outbound;
+export namespace TriggerEventRequestDtoActor$ {
+  /** @deprecated use `TriggerEventRequestDtoActor$inboundSchema` instead. */
+  export const inboundSchema = TriggerEventRequestDtoActor$inboundSchema;
+  /** @deprecated use `TriggerEventRequestDtoActor$outboundSchema` instead. */
+  export const outboundSchema = TriggerEventRequestDtoActor$outboundSchema;
+  /** @deprecated use `TriggerEventRequestDtoActor$Outbound` instead. */
+  export type Outbound = TriggerEventRequestDtoActor$Outbound;
 }
 
-export function actorToJSON(actor: Actor): string {
-  return JSON.stringify(Actor$outboundSchema.parse(actor));
+export function triggerEventRequestDtoActorToJSON(
+  triggerEventRequestDtoActor: TriggerEventRequestDtoActor,
+): string {
+  return JSON.stringify(
+    TriggerEventRequestDtoActor$outboundSchema.parse(
+      triggerEventRequestDtoActor,
+    ),
+  );
 }
 
-export function actorFromJSON(
+export function triggerEventRequestDtoActorFromJSON(
   jsonString: string,
-): SafeParseResult<Actor, SDKValidationError> {
+): SafeParseResult<TriggerEventRequestDtoActor, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => Actor$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Actor' from JSON`,
+    (x) => TriggerEventRequestDtoActor$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TriggerEventRequestDtoActor' from JSON`,
   );
 }
 

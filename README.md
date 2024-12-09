@@ -295,7 +295,7 @@ run();
 
 #### [subscribers.notifications](docs/sdks/novunotifications/README.md)
 
-* [retrieve](docs/sdks/novunotifications/README.md#retrieve) - Get in-app notification feed for a particular subscriber
+* [feed](docs/sdks/novunotifications/README.md#feed) - Get in-app notification feed for a particular subscriber
 * [unseenCount](docs/sdks/novunotifications/README.md#unseencount) - Get the unseen in-app notifications count for subscribers feed
 
 #### [subscribers.preferences](docs/sdks/preferences/README.md)
@@ -380,7 +380,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`subscribersMessagesMarkAll`](docs/sdks/novumessages/README.md#markall) - Marks all the subscriber messages as read, unread, seen or unseen. Optionally you can pass feed id (or array) to mark messages of a particular feed.
 - [`subscribersMessagesMarkAllAs`](docs/sdks/novumessages/README.md#markallas) - Mark a subscriber messages as seen, read, unseen or unread
 - [`subscribersMessagesUpdateAsSeen`](docs/sdks/novumessages/README.md#updateasseen) - Mark message action as seen
-- [`subscribersNotificationsRetrieve`](docs/sdks/novunotifications/README.md#retrieve) - Get in-app notification feed for a particular subscriber
+- [`subscribersNotificationsFeed`](docs/sdks/novunotifications/README.md#feed) - Get in-app notification feed for a particular subscriber
 - [`subscribersNotificationsUnseenCount`](docs/sdks/novunotifications/README.md#unseencount) - Get the unseen in-app notifications count for subscribers feed
 - [`subscribersPreferencesList`](docs/sdks/preferences/README.md#list) - Get subscriber preferences
 - [`subscribersPreferencesRetrieveByLevel`](docs/sdks/preferences/README.md#retrievebylevel) - Get subscriber preferences by level

@@ -7,7 +7,7 @@ The ID of the chat or push provider.
 ```typescript
 import { ProviderId } from "@novu/api/models/components";
 
-let value: ProviderId = "grafana-on-call";
+let value: ProviderId = "discord";
 ```
 
 ## Values

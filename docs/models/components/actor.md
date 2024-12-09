@@ -1,23 +1,19 @@
 # Actor
 
-It is used to display the Avatar of the provided actor's subscriber id or actor object.
-
-    If a new actor object is provided, we will create a new subscriber in our system
-
-
-## Supported Types
-
-### `string`
+## Example Usage
 
 ```typescript
-const value: string = "<value>";
-```
+import { Actor } from "@novu/api/models/components";
 
-### `components.SubscriberPayloadDto`
-
-```typescript
-const value: components.SubscriberPayloadDto = {
-  subscriberId: "<id>",
+let value: Actor = {
+  data: {},
+  type: "system_icon",
 };
 ```
 
+## Fields
+
+| Field                                                                   | Type                                                                    | Required                                                                | Description                                                             |
+| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `data`                                                                  | [components.ActorData](../../models/components/actordata.md)            | :heavy_check_mark:                                                      | The data associated with the actor, can be null if not applicable.      |
+| `type`                                                                  | [components.ActorTypeEnum](../../models/components/actortypeenum.md)    | :heavy_check_mark:                                                      | The type of the actor, indicating the role in the notification process. |

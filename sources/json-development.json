@@ -6899,6 +6899,7 @@
     "/v1/subscribers/{subscriberId}/notifications/feed": {
       "get": {
         "operationId": "SubscribersController_getNotificationsFeed",
+        "x-speakeasy-name-override": "feed",
         "x-speakeasy-group": "Subscribers.Notifications",
         "summary": "Get in-app notification feed for a particular subscriber",
         "parameters": [
@@ -12155,113 +12156,6 @@
           }
         }
       },
-      "FeedResponseDto": {
-        "type": "object",
-        "properties": {
-          "totalCount": {
-            "type": "number"
-          },
-          "hasMore": {
-            "type": "boolean"
-          },
-          "data": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "pageSize": {
-            "type": "number"
-          },
-          "page": {
-            "type": "number"
-          }
-        },
-        "required": [
-          "hasMore",
-          "data",
-          "pageSize",
-          "page"
-        ]
-      },
-      "UnseenCountResponse": {
-        "type": "object",
-        "properties": {
-          "count": {
-            "type": "number"
-          }
-        },
-        "required": [
-          "count"
-        ]
-      },
-      "MessageMarkAsRequestDto": {
-        "type": "object",
-        "properties": {
-          "messageId": {
-            "oneOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              }
-            ]
-          },
-          "markAs": {
-            "enum": [
-              "read",
-              "seen",
-              "unread",
-              "unseen"
-            ],
-            "type": "string"
-          }
-        },
-        "required": [
-          "messageId",
-          "markAs"
-        ]
-      },
-      "MessageEntity": {
-        "type": "object",
-        "properties": {}
-      },
-      "MarkAllMessageAsRequestDto": {
-        "type": "object",
-        "properties": {
-          "feedIdentifier": {
-            "oneOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              }
-            ],
-            "description": "Optional feed identifier or array of feed identifiers"
-          },
-          "markAs": {
-            "enum": [
-              "read",
-              "seen",
-              "unread",
-              "unseen"
-            ],
-            "type": "string",
-            "description": "Mark all subscriber messages as read, unread, seen or unseen"
-          }
-        },
-        "required": [
-          "markAs"
-        ]
-      },
       "EmailBlockStyles": {
         "type": "object",
         "properties": {
@@ -12387,6 +12281,316 @@
         },
         "required": [
           "data"
+        ]
+      },
+      "ActorTypeEnum": {
+        "type": "string",
+        "description": "The type of the actor, indicating the role in the notification process.",
+        "enum": [
+          "none",
+          "user",
+          "system_icon",
+          "system_custom"
+        ]
+      },
+      "Actor": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "description": "The data associated with the actor, can be null if not applicable.",
+            "nullable": true
+          },
+          "type": {
+            "$ref": "#/components/schemas/ActorTypeEnum"
+          }
+        },
+        "required": [
+          "data",
+          "type"
+        ]
+      },
+      "NotificationDto": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "Unique identifier for the notification."
+          },
+          "_templateId": {
+            "type": "string",
+            "description": "Identifier for the template used to generate the notification."
+          },
+          "_environmentId": {
+            "type": "string",
+            "description": "Identifier for the environment where the notification is sent."
+          },
+          "_messageTemplateId": {
+            "type": "string",
+            "description": "Identifier for the message template used."
+          },
+          "_organizationId": {
+            "type": "string",
+            "description": "Identifier for the organization sending the notification."
+          },
+          "_notificationId": {
+            "type": "string",
+            "description": "Unique identifier for the notification instance."
+          },
+          "_subscriberId": {
+            "type": "string",
+            "description": "Unique identifier for the subscriber receiving the notification."
+          },
+          "_feedId": {
+            "type": "string",
+            "description": "Identifier for the feed associated with the notification."
+          },
+          "_jobId": {
+            "type": "string",
+            "description": "Identifier for the job that triggered the notification."
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "Timestamp indicating when the notification was created.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "Timestamp indicating when the notification was last updated.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "actor": {
+            "description": "Actor details related to the notification, if applicable.",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Actor"
+              }
+            ]
+          },
+          "subscriber": {
+            "description": "Subscriber details associated with this notification.",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SubscriberResponseDto"
+              }
+            ]
+          },
+          "transactionId": {
+            "type": "string",
+            "description": "Unique identifier for the transaction associated with the notification."
+          },
+          "templateIdentifier": {
+            "type": "string",
+            "description": "Identifier for the template used, if applicable.",
+            "nullable": true
+          },
+          "providerId": {
+            "type": "string",
+            "description": "Identifier for the provider that sends the notification.",
+            "nullable": true
+          },
+          "content": {
+            "type": "string",
+            "description": "The main content of the notification."
+          },
+          "subject": {
+            "type": "string",
+            "description": "The subject line for email notifications, if applicable.",
+            "nullable": true
+          },
+          "channel": {
+            "enum": [
+              "in_app",
+              "email",
+              "sms",
+              "chat",
+              "push"
+            ],
+            "type": "string",
+            "description": "The channel through which the notification is sent."
+          },
+          "read": {
+            "type": "boolean",
+            "description": "Indicates whether the notification has been read by the subscriber."
+          },
+          "seen": {
+            "type": "boolean",
+            "description": "Indicates whether the notification has been seen by the subscriber."
+          },
+          "deleted": {
+            "type": "boolean",
+            "description": "Indicates whether the notification has been deleted."
+          },
+          "deviceTokens": {
+            "description": "Device tokens for push notifications, if applicable.",
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "cta": {
+            "description": "Call-to-action information associated with the notification.",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MessageCTA"
+              }
+            ]
+          },
+          "status": {
+            "type": "string",
+            "description": "Current status of the notification.",
+            "enum": [
+              "sent",
+              "error",
+              "warning"
+            ]
+          },
+          "payload": {
+            "type": "object",
+            "description": "The payload that was used to send the notification trigger.",
+            "additionalProperties": true
+          },
+          "overrides": {
+            "type": "object",
+            "description": "Provider-specific overrides used when triggering the notification.",
+            "additionalProperties": true
+          }
+        },
+        "required": [
+          "_id",
+          "_templateId",
+          "_environmentId",
+          "_messageTemplateId",
+          "_organizationId",
+          "_notificationId",
+          "_subscriberId",
+          "_feedId",
+          "_jobId",
+          "transactionId",
+          "content",
+          "channel",
+          "read",
+          "seen",
+          "deleted",
+          "cta",
+          "status",
+          "payload"
+        ]
+      },
+      "FeedResponseDto": {
+        "type": "object",
+        "properties": {
+          "totalCount": {
+            "type": "number",
+            "description": "Total number of notifications available.",
+            "nullable": true
+          },
+          "hasMore": {
+            "type": "boolean",
+            "description": "Indicates if there are more notifications to load."
+          },
+          "data": {
+            "description": "Array of notifications returned in the response.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NotificationDto"
+            }
+          },
+          "pageSize": {
+            "type": "number",
+            "description": "The number of notifications returned in this response."
+          },
+          "page": {
+            "type": "number",
+            "description": "The current page number of the notifications."
+          }
+        },
+        "required": [
+          "hasMore",
+          "data",
+          "pageSize",
+          "page"
+        ]
+      },
+      "UnseenCountResponse": {
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "count"
+        ]
+      },
+      "MessageMarkAsRequestDto": {
+        "type": "object",
+        "properties": {
+          "messageId": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "markAs": {
+            "enum": [
+              "read",
+              "seen",
+              "unread",
+              "unseen"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "messageId",
+          "markAs"
+        ]
+      },
+      "MessageEntity": {
+        "type": "object",
+        "properties": {}
+      },
+      "MarkAllMessageAsRequestDto": {
+        "type": "object",
+        "properties": {
+          "feedIdentifier": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ],
+            "description": "Optional feed identifier or array of feed identifiers"
+          },
+          "markAs": {
+            "enum": [
+              "read",
+              "seen",
+              "unread",
+              "unseen"
+            ],
+            "type": "string",
+            "description": "Mark all subscriber messages as read, unread, seen or unseen"
+          }
+        },
+        "required": [
+          "markAs"
         ]
       },
       "NotificationGroup": {

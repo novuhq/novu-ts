@@ -25,7 +25,7 @@ export type MarkMessageActionAsSeenDtoStatus = ClosedEnum<
 /**
  * Message action payload
  */
-export type Payload = {};
+export type MarkMessageActionAsSeenDtoPayload = {};
 
 export type MarkMessageActionAsSeenDto = {
   /**
@@ -35,7 +35,7 @@ export type MarkMessageActionAsSeenDto = {
   /**
    * Message action payload
    */
-  payload?: Payload | undefined;
+  payload?: MarkMessageActionAsSeenDtoPayload | undefined;
 };
 
 /** @internal */
@@ -60,43 +60,53 @@ export namespace MarkMessageActionAsSeenDtoStatus$ {
 }
 
 /** @internal */
-export const Payload$inboundSchema: z.ZodType<Payload, z.ZodTypeDef, unknown> =
-  z.object({});
-
-/** @internal */
-export type Payload$Outbound = {};
-
-/** @internal */
-export const Payload$outboundSchema: z.ZodType<
-  Payload$Outbound,
+export const MarkMessageActionAsSeenDtoPayload$inboundSchema: z.ZodType<
+  MarkMessageActionAsSeenDtoPayload,
   z.ZodTypeDef,
-  Payload
+  unknown
+> = z.object({});
+
+/** @internal */
+export type MarkMessageActionAsSeenDtoPayload$Outbound = {};
+
+/** @internal */
+export const MarkMessageActionAsSeenDtoPayload$outboundSchema: z.ZodType<
+  MarkMessageActionAsSeenDtoPayload$Outbound,
+  z.ZodTypeDef,
+  MarkMessageActionAsSeenDtoPayload
 > = z.object({});
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Payload$ {
-  /** @deprecated use `Payload$inboundSchema` instead. */
-  export const inboundSchema = Payload$inboundSchema;
-  /** @deprecated use `Payload$outboundSchema` instead. */
-  export const outboundSchema = Payload$outboundSchema;
-  /** @deprecated use `Payload$Outbound` instead. */
-  export type Outbound = Payload$Outbound;
+export namespace MarkMessageActionAsSeenDtoPayload$ {
+  /** @deprecated use `MarkMessageActionAsSeenDtoPayload$inboundSchema` instead. */
+  export const inboundSchema = MarkMessageActionAsSeenDtoPayload$inboundSchema;
+  /** @deprecated use `MarkMessageActionAsSeenDtoPayload$outboundSchema` instead. */
+  export const outboundSchema =
+    MarkMessageActionAsSeenDtoPayload$outboundSchema;
+  /** @deprecated use `MarkMessageActionAsSeenDtoPayload$Outbound` instead. */
+  export type Outbound = MarkMessageActionAsSeenDtoPayload$Outbound;
 }
 
-export function payloadToJSON(payload: Payload): string {
-  return JSON.stringify(Payload$outboundSchema.parse(payload));
+export function markMessageActionAsSeenDtoPayloadToJSON(
+  markMessageActionAsSeenDtoPayload: MarkMessageActionAsSeenDtoPayload,
+): string {
+  return JSON.stringify(
+    MarkMessageActionAsSeenDtoPayload$outboundSchema.parse(
+      markMessageActionAsSeenDtoPayload,
+    ),
+  );
 }
 
-export function payloadFromJSON(
+export function markMessageActionAsSeenDtoPayloadFromJSON(
   jsonString: string,
-): SafeParseResult<Payload, SDKValidationError> {
+): SafeParseResult<MarkMessageActionAsSeenDtoPayload, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => Payload$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Payload' from JSON`,
+    (x) => MarkMessageActionAsSeenDtoPayload$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'MarkMessageActionAsSeenDtoPayload' from JSON`,
   );
 }
 
@@ -107,13 +117,14 @@ export const MarkMessageActionAsSeenDto$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   status: MarkMessageActionAsSeenDtoStatus$inboundSchema,
-  payload: z.lazy(() => Payload$inboundSchema).optional(),
+  payload: z.lazy(() => MarkMessageActionAsSeenDtoPayload$inboundSchema)
+    .optional(),
 });
 
 /** @internal */
 export type MarkMessageActionAsSeenDto$Outbound = {
   status: string;
-  payload?: Payload$Outbound | undefined;
+  payload?: MarkMessageActionAsSeenDtoPayload$Outbound | undefined;
 };
 
 /** @internal */
@@ -123,7 +134,8 @@ export const MarkMessageActionAsSeenDto$outboundSchema: z.ZodType<
   MarkMessageActionAsSeenDto
 > = z.object({
   status: MarkMessageActionAsSeenDtoStatus$outboundSchema,
-  payload: z.lazy(() => Payload$outboundSchema).optional(),
+  payload: z.lazy(() => MarkMessageActionAsSeenDtoPayload$outboundSchema)
+    .optional(),
 });
 
 /**

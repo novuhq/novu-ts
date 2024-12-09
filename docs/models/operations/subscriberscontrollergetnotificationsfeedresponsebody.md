@@ -13,10 +13,33 @@ let value: SubscribersControllerGetNotificationsFeedResponseBody = {
     {
       hasMore: false,
       data: [
-        "<value>",
+        {
+          id: "<id>",
+          templateId: "<id>",
+          environmentId: "<id>",
+          messageTemplateId: "<id>",
+          organizationId: "<id>",
+          notificationId: "<id>",
+          subscriberId: "<id>",
+          feedId: "<id>",
+          jobId: "<id>",
+          transactionId: "<id>",
+          content: "<value>",
+          channel: "chat",
+          read: false,
+          seen: false,
+          deleted: false,
+          cta: {
+            data: {},
+          },
+          status: "warning",
+          payload: {
+            "key": "<value>",
+          },
+        },
       ],
-      pageSize: 6169.34,
-      page: 9437.48,
+      pageSize: 6818.20,
+      page: 3595.08,
     },
   ],
 };

@@ -1,11 +1,13 @@
-# MessageActionResultPayload
+# ActorData
+
+The data associated with the actor, can be null if not applicable.
 
 ## Example Usage
 
 ```typescript
-import { MessageActionResultPayload } from "@novu/api/models/components";
+import { ActorData } from "@novu/api/models/components";
 
-let value: MessageActionResultPayload = {};
+let value: ActorData = {};
 ```
 
 ## Fields

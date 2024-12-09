@@ -5,10 +5,10 @@
 
 ### Available Operations
 
-* [retrieve](#retrieve) - Get in-app notification feed for a particular subscriber
+* [feed](#feed) - Get in-app notification feed for a particular subscriber
 * [unseenCount](#unseencount) - Get the unseen in-app notifications count for subscribers feed
 
-## retrieve
+## feed
 
 Get in-app notification feed for a particular subscriber
 
@@ -22,7 +22,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.subscribers.notifications.retrieve({
+  const result = await novu.subscribers.notifications.feed({
     subscriberId: "<id>",
     payload: "btoa(JSON.stringify({ foo: 123 })) results in base64 encoded string like eyJmb28iOjEyM30=",
   });
@@ -40,7 +40,7 @@ The standalone function version of this method:
 
 ```typescript
 import { NovuCore } from "@novu/api/core.js";
-import { subscribersNotificationsRetrieve } from "@novu/api/funcs/subscribersNotificationsRetrieve.js";
+import { subscribersNotificationsFeed } from "@novu/api/funcs/subscribersNotificationsFeed.js";
 
 // Use `NovuCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -49,7 +49,7 @@ const novu = new NovuCore({
 });
 
 async function run() {
-  const res = await subscribersNotificationsRetrieve(novu, {
+  const res = await subscribersNotificationsFeed(novu, {
     subscriberId: "<id>",
     payload: "btoa(JSON.stringify({ foo: 123 })) results in base64 encoded string like eyJmb28iOjEyM30=",
   });

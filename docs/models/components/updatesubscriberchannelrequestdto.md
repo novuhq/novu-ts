@@ -6,9 +6,9 @@
 import { UpdateSubscriberChannelRequestDto } from "@novu/api/models/components";
 
 let value: UpdateSubscriberChannelRequestDto = {
-  providerId: "getstream",
+  providerId: "grafana-on-call",
   credentials: {
-    webhookUrl: "https://runny-epic.net",
+    webhookUrl: "https://other-swine.net",
   },
 };
 ```

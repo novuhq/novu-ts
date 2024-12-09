@@ -7,7 +7,7 @@
 
 ```typescript
 const value: components.EmailBlock = {
-  type: "text",
+  type: "button",
   content: "<value>",
 };
 ```

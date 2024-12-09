@@ -5,7 +5,7 @@
 ```typescript
 import { Operator } from "@novu/api/models/components";
 
-let value: Operator = "SMALLER";
+let value: Operator = "LARGER";
 ```
 
 ## Values
