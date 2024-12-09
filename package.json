@@ -1,6 +1,6 @@
 {
   "name": "@novu/api",
-  "version": "0.0.1-alpha.65",
+  "version": "0.0.1-alpha.66",
   "author": "Novu",
   "main": "./index.js",
   "sideEffects": false,
@@ -10,8 +10,6 @@
     "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
-    "react": "^18 || ^19",
-    "react-dom": "^18 || ^19",
     "zod": ">= 3"
   },
   "devDependencies": {
