@@ -30,7 +30,7 @@ import { Result } from "../types/fp.js";
 export async function subscribersRetrieve(
   client: NovuCore,
   subscriberId: string,
-  includeTopics?: string | undefined,
+  includeTopics?: boolean | undefined,
   options?: RequestOptions,
 ): Promise<
   Result<

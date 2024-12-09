@@ -4743,7 +4743,7 @@
             "in": "query",
             "description": "Includes the topics associated with the subscriber",
             "schema": {
-              "type": "string"
+              "type": "boolean"
             }
           }
         ],
@@ -9371,6 +9371,29 @@
         ],
         "responses": {
           "200": {
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              }
+            },
             "description": "",
             "content": {
               "application/json": {
@@ -13117,22 +13140,34 @@
         "type": "object",
         "properties": {
           "_organizationId": {
-            "type": "string"
+            "type": "string",
+            "description": "Unique identifier for the organization",
+            "example": "org_123456789"
           },
           "_environmentId": {
-            "type": "string"
+            "type": "string",
+            "description": "Unique identifier for the environment",
+            "example": "env_123456789"
           },
           "_subscriberId": {
-            "type": "string"
+            "type": "string",
+            "description": "Unique identifier for the subscriber",
+            "example": "sub_123456789"
           },
           "_topicId": {
-            "type": "string"
+            "type": "string",
+            "description": "Unique identifier for the topic",
+            "example": "topic_123456789"
           },
           "topicKey": {
-            "type": "string"
+            "type": "string",
+            "description": "Key associated with the topic",
+            "example": "my_topic_key"
           },
           "externalSubscriberId": {
-            "type": "string"
+            "type": "string",
+            "description": "External identifier for the subscriber",
+            "example": "external_subscriber_123"
           }
         },
         "required": [

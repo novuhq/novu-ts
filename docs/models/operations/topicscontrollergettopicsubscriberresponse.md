@@ -12,12 +12,12 @@ let value: TopicsControllerGetTopicSubscriberResponse = {
     ],
   },
   result: {
-    organizationId: "<id>",
-    environmentId: "<id>",
-    subscriberId: "<id>",
-    topicId: "<id>",
-    topicKey: "<value>",
-    externalSubscriberId: "<id>",
+    organizationId: "org_123456789",
+    environmentId: "env_123456789",
+    subscriberId: "sub_123456789",
+    topicId: "topic_123456789",
+    topicKey: "my_topic_key",
+    externalSubscriberId: "external_subscriber_123",
   },
 };
 ```

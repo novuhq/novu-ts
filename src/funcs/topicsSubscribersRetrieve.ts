@@ -151,7 +151,7 @@ export async function topicsSubscribersRetrieve(
     M.json(
       200,
       operations.TopicsControllerGetTopicSubscriberResponse$inboundSchema,
-      { key: "Result" },
+      { hdrs: true, key: "Result" },
     ),
     M.fail([409, 429, 503]),
     M.fail(["4XX", "5XX"]),

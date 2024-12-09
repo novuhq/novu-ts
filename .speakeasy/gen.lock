@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 6bff3a53-3f0b-40b4-942f-ff70dc583ae5
 management:
-  docChecksum: e0965dcae4636ea046bdbf2de617abc0
+  docChecksum: 4bdea392d15f54e63cfe855897ad7dbe
   docVersion: "1.0"
   speakeasyVersion: 1.453.4
   generationVersion: 2.474.6
-  releaseVersion: 0.0.1-alpha.66
-  configChecksum: 43c79740f48a0f0f42b7bf154e8e62d9
+  releaseVersion: 0.0.1-alpha.68
+  configChecksum: 96f7706936a94f35a6180d92c372a18e
   published: true
 features:
   typescript:
@@ -997,7 +997,7 @@ examples:
           topicKey: "<value>"
       responses:
         "200":
-          application/json: {"_organizationId": "<id>", "_environmentId": "<id>", "_subscriberId": "<id>", "_topicId": "<id>", "topicKey": "<value>", "externalSubscriberId": "<id>"}
+          application/json: {"_organizationId": "org_123456789", "_environmentId": "env_123456789", "_subscriberId": "sub_123456789", "_topicId": "topic_123456789", "topicKey": "my_topic_key", "externalSubscriberId": "external_subscriber_123"}
   TopicsController_removeSubscribers:
     speakeasy-default-topics-controller-remove-subscribers:
       parameters:

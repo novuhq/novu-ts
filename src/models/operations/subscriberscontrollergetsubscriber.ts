@@ -14,7 +14,7 @@ export type SubscribersControllerGetSubscriberRequest = {
   /**
    * Includes the topics associated with the subscriber
    */
-  includeTopics?: string | undefined;
+  includeTopics?: boolean | undefined;
 };
 
 export type SubscribersControllerGetSubscriberResponse = {
@@ -29,13 +29,13 @@ export const SubscribersControllerGetSubscriberRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   subscriberId: z.string(),
-  includeTopics: z.string().optional(),
+  includeTopics: z.boolean().optional(),
 });
 
 /** @internal */
 export type SubscribersControllerGetSubscriberRequest$Outbound = {
   subscriberId: string;
-  includeTopics?: string | undefined;
+  includeTopics?: boolean | undefined;
 };
 
 /** @internal */
@@ -46,7 +46,7 @@ export const SubscribersControllerGetSubscriberRequest$outboundSchema:
     SubscribersControllerGetSubscriberRequest
   > = z.object({
     subscriberId: z.string(),
-    includeTopics: z.string().optional(),
+    includeTopics: z.boolean().optional(),
   });
 
 /**

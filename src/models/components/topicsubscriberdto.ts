@@ -9,11 +9,29 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type TopicSubscriberDto = {
+  /**
+   * Unique identifier for the organization
+   */
   organizationId: string;
+  /**
+   * Unique identifier for the environment
+   */
   environmentId: string;
+  /**
+   * Unique identifier for the subscriber
+   */
   subscriberId: string;
+  /**
+   * Unique identifier for the topic
+   */
   topicId: string;
+  /**
+   * Key associated with the topic
+   */
   topicKey: string;
+  /**
+   * External identifier for the subscriber
+   */
   externalSubscriberId: string;
 };
 

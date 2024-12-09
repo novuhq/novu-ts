@@ -6,22 +6,22 @@
 import { TopicSubscriberDto } from "@novu/api/models/components";
 
 let value: TopicSubscriberDto = {
-  organizationId: "<id>",
-  environmentId: "<id>",
-  subscriberId: "<id>",
-  topicId: "<id>",
-  topicKey: "<value>",
-  externalSubscriberId: "<id>",
+  organizationId: "org_123456789",
+  environmentId: "env_123456789",
+  subscriberId: "sub_123456789",
+  topicId: "topic_123456789",
+  topicKey: "my_topic_key",
+  externalSubscriberId: "external_subscriber_123",
 };
 ```
 
 ## Fields
 
-| Field                  | Type                   | Required               | Description            |
-| ---------------------- | ---------------------- | ---------------------- | ---------------------- |
-| `organizationId`       | *string*               | :heavy_check_mark:     | N/A                    |
-| `environmentId`        | *string*               | :heavy_check_mark:     | N/A                    |
-| `subscriberId`         | *string*               | :heavy_check_mark:     | N/A                    |
-| `topicId`              | *string*               | :heavy_check_mark:     | N/A                    |
-| `topicKey`             | *string*               | :heavy_check_mark:     | N/A                    |
-| `externalSubscriberId` | *string*               | :heavy_check_mark:     | N/A                    |
+| Field                                  | Type                                   | Required                               | Description                            | Example                                |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| `organizationId`                       | *string*                               | :heavy_check_mark:                     | Unique identifier for the organization | org_123456789                          |
+| `environmentId`                        | *string*                               | :heavy_check_mark:                     | Unique identifier for the environment  | env_123456789                          |
+| `subscriberId`                         | *string*                               | :heavy_check_mark:                     | Unique identifier for the subscriber   | sub_123456789                          |
+| `topicId`                              | *string*                               | :heavy_check_mark:                     | Unique identifier for the topic        | topic_123456789                        |
+| `topicKey`                             | *string*                               | :heavy_check_mark:                     | Key associated with the topic          | my_topic_key                           |
+| `externalSubscriberId`                 | *string*                               | :heavy_check_mark:                     | External identifier for the subscriber | external_subscriber_123                |

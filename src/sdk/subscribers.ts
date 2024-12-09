@@ -100,7 +100,7 @@ export class Subscribers extends ClientSDK {
    */
   async retrieve(
     subscriberId: string,
-    includeTopics?: string | undefined,
+    includeTopics?: boolean | undefined,
     options?: RequestOptions,
   ): Promise<operations.SubscribersControllerGetSubscriberResponse> {
     return unwrapAsync(subscribersRetrieve(
