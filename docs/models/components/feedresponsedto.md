@@ -30,8 +30,8 @@ let value: FeedResponseDto = {
       status: "error",
     },
   ],
-  pageSize: 4238.55,
-  page: 6063.93,
+  pageSize: 8811.03,
+  page: 5812.73,
 };
 ```
 

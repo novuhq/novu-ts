@@ -24,7 +24,7 @@ let value: NotificationDto = {
   cta: {
     data: {},
   },
-  status: "sent",
+  status: "error",
 };
 ```
 

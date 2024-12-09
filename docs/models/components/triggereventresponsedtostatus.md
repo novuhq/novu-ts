@@ -7,7 +7,7 @@ Status of the trigger
 ```typescript
 import { TriggerEventResponseDtoStatus } from "@novu/api/models/components";
 
-let value: TriggerEventResponseDtoStatus = "trigger_not_active";
+let value: TriggerEventResponseDtoStatus = "processed";
 ```
 
 ## Values

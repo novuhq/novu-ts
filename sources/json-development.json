@@ -6958,6 +6958,7 @@
         ],
         "responses": {
           "200": {
+            "description": "Ok",
             "headers": {
               "Content-Type": {
                 "$ref": "#/components/headers/Content-Type"
@@ -6981,25 +6982,10 @@
                 "$ref": "#/components/headers/Idempotency-Replay"
               }
             },
-            "description": "",
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/PaginatedResponseDto"
-                    },
-                    {
-                      "properties": {
-                        "data": {
-                          "type": "array",
-                          "items": {
-                            "$ref": "#/components/schemas/FeedResponseDto"
-                          }
-                        }
-                      }
-                    }
-                  ]
+                  "$ref": "#/components/schemas/FeedResponseDto"
                 }
               }
             }
@@ -12484,8 +12470,7 @@
         "properties": {
           "totalCount": {
             "type": "number",
-            "description": "Total number of notifications available.",
-            "nullable": true
+            "description": "Total number of notifications available."
           },
           "hasMore": {
             "type": "boolean",

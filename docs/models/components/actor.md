@@ -7,7 +7,7 @@ import { Actor } from "@novu/api/models/components";
 
 let value: Actor = {
   data: {},
-  type: "system_icon",
+  type: "none",
 };
 ```
 

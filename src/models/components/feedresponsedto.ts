@@ -17,7 +17,7 @@ export type FeedResponseDto = {
   /**
    * Total number of notifications available.
    */
-  totalCount?: number | null | undefined;
+  totalCount?: number | undefined;
   /**
    * Indicates if there are more notifications to load.
    */
@@ -42,7 +42,7 @@ export const FeedResponseDto$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  totalCount: z.nullable(z.number()).optional(),
+  totalCount: z.number().optional(),
   hasMore: z.boolean(),
   data: z.array(NotificationDto$inboundSchema),
   pageSize: z.number(),
@@ -51,7 +51,7 @@ export const FeedResponseDto$inboundSchema: z.ZodType<
 
 /** @internal */
 export type FeedResponseDto$Outbound = {
-  totalCount?: number | null | undefined;
+  totalCount?: number | undefined;
   hasMore: boolean;
   data: Array<NotificationDto$Outbound>;
   pageSize: number;
@@ -64,7 +64,7 @@ export const FeedResponseDto$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   FeedResponseDto
 > = z.object({
-  totalCount: z.nullable(z.number()).optional(),
+  totalCount: z.number().optional(),
   hasMore: z.boolean(),
   data: z.array(NotificationDto$outboundSchema),
   pageSize: z.number(),

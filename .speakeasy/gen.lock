@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 6bff3a53-3f0b-40b4-942f-ff70dc583ae5
 management:
-  docChecksum: d22301697637bdf600871555a2a74ab2
+  docChecksum: 953e7804a0485fa5e5b0422a73c055a3
   docVersion: "1.0"
   speakeasyVersion: 1.453.4
   generationVersion: 2.474.6
-  releaseVersion: 0.0.1-alpha.76
-  configChecksum: b085565516e05d5d37ca08b3e3149b76
+  releaseVersion: 0.0.1-alpha.77
+  configChecksum: ab03311e8d757787eefe4cc94a1b5a54
   published: true
 features:
   typescript:
@@ -259,7 +259,6 @@ generatedFiles:
   - docs/models/operations/subscriberscontrollerdeletesubscribercredentialsresponse.md
   - docs/models/operations/subscriberscontrollergetnotificationsfeedrequest.md
   - docs/models/operations/subscriberscontrollergetnotificationsfeedresponse.md
-  - docs/models/operations/subscriberscontrollergetnotificationsfeedresponsebody.md
   - docs/models/operations/subscriberscontrollergetsubscriberpreferencebylevelrequest.md
   - docs/models/operations/subscriberscontrollergetsubscriberpreferencebylevelresponse.md
   - docs/models/operations/subscriberscontrollergetsubscriberrequest.md
@@ -870,7 +869,7 @@ examples:
           payload: "btoa(JSON.stringify({ foo: 123 })) results in base64 encoded string like eyJmb28iOjEyM30="
       responses:
         "200":
-          application/json: {"page": "1526.70", "hasMore": true, "pageSize": "9643.05", "data": [{"hasMore": true, "data": [{"_id": "<id>", "_templateId": "<id>", "_environmentId": "<id>", "_messageTemplateId": "<id>", "_organizationId": "<id>", "_notificationId": "<id>", "_subscriberId": "<id>", "_feedId": "<id>", "_jobId": "<id>", "transactionId": "<id>", "content": "<value>", "channel": "push", "read": false, "seen": false, "deleted": false, "cta": {}, "status": "warning", "payload": {"key": "<value>", "key1": "<value>", "key2": "<value>"}, "overrides": {"key": "<value>", "key1": "<value>", "key2": "<value>"}}, {"_id": "<id>", "_templateId": "<id>", "_environmentId": "<id>", "_messageTemplateId": "<id>", "_organizationId": "<id>", "_notificationId": "<id>", "_subscriberId": "<id>", "_feedId": "<id>", "_jobId": "<id>", "transactionId": "<id>", "content": "<value>", "channel": "sms", "read": true, "seen": false, "deleted": true, "cta": {}, "status": "warning", "payload": {"key": "<value>", "key1": "<value>"}, "overrides": {"key": "<value>", "key1": "<value>"}}], "pageSize": "1031.10", "page": "1522.73"}, {"hasMore": false, "data": [], "pageSize": "5271.67", "page": "9499.10"}]}
+          application/json: {"hasMore": true, "data": [{"_id": "<id>", "_templateId": "<id>", "_environmentId": "<id>", "_messageTemplateId": "<id>", "_organizationId": "<id>", "_notificationId": "<id>", "_subscriberId": "<id>", "_feedId": "<id>", "_jobId": "<id>", "transactionId": "<id>", "content": "<value>", "channel": "push", "read": false, "seen": false, "deleted": false, "cta": {}, "status": "warning"}, {"_id": "<id>", "_templateId": "<id>", "_environmentId": "<id>", "_messageTemplateId": "<id>", "_organizationId": "<id>", "_notificationId": "<id>", "_subscriberId": "<id>", "_feedId": "<id>", "_jobId": "<id>", "transactionId": "<id>", "content": "<value>", "channel": "sms", "read": true, "seen": false, "deleted": true, "cta": {}, "status": "warning"}], "pageSize": "9643.05", "page": "1526.70"}
   SubscribersController_markMessagesAs:
     speakeasy-default-subscribers-controller-mark-messages-as:
       parameters:

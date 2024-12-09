@@ -6,7 +6,7 @@
 import { SubscriberChannelDto } from "@novu/api/models/components";
 
 let value: SubscriberChannelDto = {
-  providerId: "pusher-beams",
+  providerId: "apns",
   credentials: {},
 };
 ```

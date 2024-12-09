@@ -5,7 +5,7 @@
 ```typescript
 import { Source } from "@novu/api/models/components";
 
-let value: Source = "Internal";
+let value: Source = "Webhook";
 ```
 
 ## Values

@@ -12,46 +12,39 @@ let value: SubscribersControllerGetNotificationsFeedResponse = {
     ],
   },
   result: {
-    page: 4370.32,
     hasMore: false,
-    pageSize: 6976.31,
     data: [
       {
-        hasMore: false,
-        data: [
-          {
-            id: "<id>",
-            templateId: "<id>",
-            environmentId: "<id>",
-            messageTemplateId: "<id>",
-            organizationId: "<id>",
-            notificationId: "<id>",
-            subscriberId: "<id>",
-            feedId: "<id>",
-            jobId: "<id>",
-            transactionId: "<id>",
-            content: "<value>",
-            channel: "in_app",
-            read: false,
-            seen: false,
-            deleted: false,
-            cta: {
-              data: {},
-            },
-            status: "warning",
-          },
-        ],
-        pageSize: 6706.38,
-        page: 2103.83,
+        id: "<id>",
+        templateId: "<id>",
+        environmentId: "<id>",
+        messageTemplateId: "<id>",
+        organizationId: "<id>",
+        notificationId: "<id>",
+        subscriberId: "<id>",
+        feedId: "<id>",
+        jobId: "<id>",
+        transactionId: "<id>",
+        content: "<value>",
+        channel: "chat",
+        read: false,
+        seen: false,
+        deleted: false,
+        cta: {
+          data: {},
+        },
+        status: "error",
       },
     ],
+    pageSize: 6169.34,
+    page: 9437.48,
   },
 };
 ```
 
 ## Fields
 
-| Field                                                                                                                                                | Type                                                                                                                                                 | Required                                                                                                                                             | Description                                                                                                                                          |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `headers`                                                                                                                                            | Record<string, *string*[]>                                                                                                                           | :heavy_check_mark:                                                                                                                                   | N/A                                                                                                                                                  |
-| `result`                                                                                                                                             | [operations.SubscribersControllerGetNotificationsFeedResponseBody](../../models/operations/subscriberscontrollergetnotificationsfeedresponsebody.md) | :heavy_check_mark:                                                                                                                                   | N/A                                                                                                                                                  |
+| Field                                                                    | Type                                                                     | Required                                                                 | Description                                                              |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| `headers`                                                                | Record<string, *string*[]>                                               | :heavy_check_mark:                                                       | N/A                                                                      |
+| `result`                                                                 | [components.FeedResponseDto](../../models/components/feedresponsedto.md) | :heavy_check_mark:                                                       | N/A                                                                      |

@@ -21,25 +21,9 @@ export type SubscribersControllerGetNotificationsFeedRequest = {
   payload?: string | undefined;
 };
 
-export type SubscribersControllerGetNotificationsFeedResponseBody = {
-  /**
-   * The current page of the paginated response
-   */
-  page: number;
-  /**
-   * Does the list have more items to fetch
-   */
-  hasMore: boolean;
-  /**
-   * Number of items on each page
-   */
-  pageSize: number;
-  data: Array<components.FeedResponseDto>;
-};
-
 export type SubscribersControllerGetNotificationsFeedResponse = {
   headers: { [k: string]: Array<string> };
-  result: SubscribersControllerGetNotificationsFeedResponseBody;
+  result: components.FeedResponseDto;
 };
 
 /** @internal */
@@ -126,83 +110,6 @@ export function subscribersControllerGetNotificationsFeedRequestFromJSON(
 }
 
 /** @internal */
-export const SubscribersControllerGetNotificationsFeedResponseBody$inboundSchema:
-  z.ZodType<
-    SubscribersControllerGetNotificationsFeedResponseBody,
-    z.ZodTypeDef,
-    unknown
-  > = z.object({
-    page: z.number(),
-    hasMore: z.boolean(),
-    pageSize: z.number(),
-    data: z.array(components.FeedResponseDto$inboundSchema),
-  });
-
-/** @internal */
-export type SubscribersControllerGetNotificationsFeedResponseBody$Outbound = {
-  page: number;
-  hasMore: boolean;
-  pageSize: number;
-  data: Array<components.FeedResponseDto$Outbound>;
-};
-
-/** @internal */
-export const SubscribersControllerGetNotificationsFeedResponseBody$outboundSchema:
-  z.ZodType<
-    SubscribersControllerGetNotificationsFeedResponseBody$Outbound,
-    z.ZodTypeDef,
-    SubscribersControllerGetNotificationsFeedResponseBody
-  > = z.object({
-    page: z.number(),
-    hasMore: z.boolean(),
-    pageSize: z.number(),
-    data: z.array(components.FeedResponseDto$outboundSchema),
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SubscribersControllerGetNotificationsFeedResponseBody$ {
-  /** @deprecated use `SubscribersControllerGetNotificationsFeedResponseBody$inboundSchema` instead. */
-  export const inboundSchema =
-    SubscribersControllerGetNotificationsFeedResponseBody$inboundSchema;
-  /** @deprecated use `SubscribersControllerGetNotificationsFeedResponseBody$outboundSchema` instead. */
-  export const outboundSchema =
-    SubscribersControllerGetNotificationsFeedResponseBody$outboundSchema;
-  /** @deprecated use `SubscribersControllerGetNotificationsFeedResponseBody$Outbound` instead. */
-  export type Outbound =
-    SubscribersControllerGetNotificationsFeedResponseBody$Outbound;
-}
-
-export function subscribersControllerGetNotificationsFeedResponseBodyToJSON(
-  subscribersControllerGetNotificationsFeedResponseBody:
-    SubscribersControllerGetNotificationsFeedResponseBody,
-): string {
-  return JSON.stringify(
-    SubscribersControllerGetNotificationsFeedResponseBody$outboundSchema.parse(
-      subscribersControllerGetNotificationsFeedResponseBody,
-    ),
-  );
-}
-
-export function subscribersControllerGetNotificationsFeedResponseBodyFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  SubscribersControllerGetNotificationsFeedResponseBody,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      SubscribersControllerGetNotificationsFeedResponseBody$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'SubscribersControllerGetNotificationsFeedResponseBody' from JSON`,
-  );
-}
-
-/** @internal */
 export const SubscribersControllerGetNotificationsFeedResponse$inboundSchema:
   z.ZodType<
     SubscribersControllerGetNotificationsFeedResponse,
@@ -210,9 +117,7 @@ export const SubscribersControllerGetNotificationsFeedResponse$inboundSchema:
     unknown
   > = z.object({
     Headers: z.record(z.array(z.string())),
-    Result: z.lazy(() =>
-      SubscribersControllerGetNotificationsFeedResponseBody$inboundSchema
-    ),
+    Result: components.FeedResponseDto$inboundSchema,
   }).transform((v) => {
     return remap$(v, {
       "Headers": "headers",
@@ -223,7 +128,7 @@ export const SubscribersControllerGetNotificationsFeedResponse$inboundSchema:
 /** @internal */
 export type SubscribersControllerGetNotificationsFeedResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
-  Result: SubscribersControllerGetNotificationsFeedResponseBody$Outbound;
+  Result: components.FeedResponseDto$Outbound;
 };
 
 /** @internal */
@@ -234,9 +139,7 @@ export const SubscribersControllerGetNotificationsFeedResponse$outboundSchema:
     SubscribersControllerGetNotificationsFeedResponse
   > = z.object({
     headers: z.record(z.array(z.string())),
-    result: z.lazy(() =>
-      SubscribersControllerGetNotificationsFeedResponseBody$outboundSchema
-    ),
+    result: components.FeedResponseDto$outboundSchema,
   }).transform((v) => {
     return remap$(v, {
       headers: "Headers",

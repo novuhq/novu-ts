@@ -7,7 +7,7 @@ The provider identifier for the credentials
 ```typescript
 import { ChannelSettingsProviderId } from "@novu/api/models/components";
 
-let value: ChannelSettingsProviderId = "pusher-beams";
+let value: ChannelSettingsProviderId = "mattermost";
 ```
 
 ## Values
