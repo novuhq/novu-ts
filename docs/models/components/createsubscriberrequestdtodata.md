@@ -26,6 +26,6 @@ const value: boolean = false;
 ### `number`
 
 ```typescript
-const value: number = 5761.57;
+const value: number = 7351.94;
 ```
 

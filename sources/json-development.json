@@ -12297,11 +12297,13 @@
         "type": "object",
         "properties": {
           "data": {
-            "type": "object",
+            "type": "string",
             "description": "The data associated with the actor, can be null if not applicable.",
-            "nullable": true
+            "nullable": true,
+            "example": null
           },
           "type": {
+            "example": "user",
             "$ref": "#/components/schemas/ActorTypeEnum"
           }
         },
@@ -12354,51 +12356,62 @@
         "properties": {
           "_id": {
             "type": "string",
-            "description": "Unique identifier for the notification."
+            "description": "Unique identifier for the notification.",
+            "example": "615c1f2f9b0c5b001f8e4e3b"
           },
           "_templateId": {
             "type": "string",
-            "description": "Identifier for the template used to generate the notification."
+            "description": "Identifier for the template used to generate the notification.",
+            "example": "template_12345"
           },
           "_environmentId": {
             "type": "string",
-            "description": "Identifier for the environment where the notification is sent."
+            "description": "Identifier for the environment where the notification is sent.",
+            "example": "env_67890"
           },
           "_messageTemplateId": {
             "type": "string",
-            "description": "Identifier for the message template used."
+            "description": "Identifier for the message template used.",
+            "example": "message_template_54321"
           },
           "_organizationId": {
             "type": "string",
-            "description": "Identifier for the organization sending the notification."
+            "description": "Identifier for the organization sending the notification.",
+            "example": "org_98765"
           },
           "_notificationId": {
             "type": "string",
-            "description": "Unique identifier for the notification instance."
+            "description": "Unique identifier for the notification instance.",
+            "example": "notification_123456"
           },
           "_subscriberId": {
             "type": "string",
-            "description": "Unique identifier for the subscriber receiving the notification."
+            "description": "Unique identifier for the subscriber receiving the notification.",
+            "example": "subscriber_112233"
           },
           "_feedId": {
             "type": "string",
-            "description": "Identifier for the feed associated with the notification."
+            "description": "Identifier for the feed associated with the notification.",
+            "example": "feed_445566"
           },
           "_jobId": {
             "type": "string",
-            "description": "Identifier for the job that triggered the notification."
+            "description": "Identifier for the job that triggered the notification.",
+            "example": "job_778899"
           },
           "createdAt": {
             "type": "string",
             "nullable": true,
             "description": "Timestamp indicating when the notification was created.",
-            "format": "date-time"
+            "format": "date-time",
+            "example": "2024-12-10T10:10:59.639Z"
           },
           "updatedAt": {
             "type": "string",
             "nullable": true,
             "description": "Timestamp indicating when the notification was last updated.",
-            "format": "date-time"
+            "format": "date-time",
+            "example": "2024-12-10T10:10:59.639Z"
           },
           "actor": {
             "description": "Actor details related to the notification, if applicable.",
@@ -12418,45 +12431,58 @@
           },
           "transactionId": {
             "type": "string",
-            "description": "Unique identifier for the transaction associated with the notification."
+            "description": "Unique identifier for the transaction associated with the notification.",
+            "example": "transaction_123456"
           },
           "templateIdentifier": {
-            "type": "object",
+            "type": "string",
             "nullable": true,
-            "description": "Identifier for the template used, if applicable."
+            "description": "Identifier for the template used, if applicable.",
+            "example": "template_abcdef"
           },
           "providerId": {
-            "type": "object",
+            "type": "string",
             "nullable": true,
-            "description": "Identifier for the provider that sends the notification."
+            "description": "Identifier for the provider that sends the notification.",
+            "example": "provider_xyz"
           },
           "content": {
             "type": "string",
-            "description": "The main content of the notification."
+            "description": "The main content of the notification.",
+            "example": "This is a test notification content."
           },
           "subject": {
-            "type": "object",
+            "type": "string",
             "nullable": true,
-            "description": "The subject line for email notifications, if applicable."
+            "description": "The subject line for email notifications, if applicable.",
+            "example": "Test Notification Subject"
           },
           "channel": {
+            "example": "email",
             "$ref": "#/components/schemas/ChannelTypeEnum"
           },
           "read": {
             "type": "boolean",
-            "description": "Indicates whether the notification has been read by the subscriber."
+            "description": "Indicates whether the notification has been read by the subscriber.",
+            "example": false
           },
           "seen": {
             "type": "boolean",
-            "description": "Indicates whether the notification has been seen by the subscriber."
+            "description": "Indicates whether the notification has been seen by the subscriber.",
+            "example": true
           },
           "deleted": {
             "type": "boolean",
-            "description": "Indicates whether the notification has been deleted."
+            "description": "Indicates whether the notification has been deleted.",
+            "example": false
           },
           "deviceTokens": {
             "nullable": true,
             "description": "Device tokens for push notifications, if applicable.",
+            "example": [
+              "token1",
+              "token2"
+            ],
             "type": "array",
             "items": {
               "type": "string"
@@ -12477,17 +12503,24 @@
               "sent",
               "error",
               "warning"
-            ]
+            ],
+            "example": "sent"
           },
           "payload": {
             "type": "object",
             "description": "The payload that was used to send the notification trigger.",
-            "additionalProperties": true
+            "additionalProperties": true,
+            "example": {
+              "key": "value"
+            }
           },
           "overrides": {
             "type": "object",
             "description": "Provider-specific overrides used when triggering the notification.",
-            "additionalProperties": true
+            "additionalProperties": true,
+            "example": {
+              "overrideKey": "overrideValue"
+            }
           }
         },
         "required": [
@@ -12515,11 +12548,13 @@
         "properties": {
           "totalCount": {
             "type": "number",
-            "description": "Total number of notifications available."
+            "description": "Total number of notifications available.",
+            "example": 5
           },
           "hasMore": {
             "type": "boolean",
-            "description": "Indicates if there are more notifications to load."
+            "description": "Indicates if there are more notifications to load.",
+            "example": true
           },
           "data": {
             "description": "Array of notifications returned in the response.",
@@ -12530,11 +12565,13 @@
           },
           "pageSize": {
             "type": "number",
-            "description": "The number of notifications returned in this response."
+            "description": "The number of notifications returned in this response.",
+            "example": 2
           },
           "page": {
             "type": "number",
-            "description": "The current page number of the notifications."
+            "description": "The current page number of the notifications.",
+            "example": 1
           }
         },
         "required": [

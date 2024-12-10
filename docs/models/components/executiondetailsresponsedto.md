@@ -13,10 +13,10 @@ let value: ExecutionDetailsResponseDto = {
   notificationTemplateId: "<id>",
   subscriberId: "<id>",
   transactionId: "<id>",
-  channel: "custom",
+  channel: "in_app",
   detail: "<value>",
-  source: "Internal",
-  status: "ReadConfirmation",
+  source: "Webhook",
+  status: "Success",
   isTest: false,
   isRetry: false,
 };

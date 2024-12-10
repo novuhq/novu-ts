@@ -33,21 +33,6 @@ import {
 } from "./subscriberfeedresponsedto.js";
 
 /**
- * Identifier for the template used, if applicable.
- */
-export type TemplateIdentifier = {};
-
-/**
- * Identifier for the provider that sends the notification.
- */
-export type NotificationFeedItemDtoProviderId = {};
-
-/**
- * The subject line for email notifications, if applicable.
- */
-export type Subject = {};
-
-/**
  * Current status of the notification.
  */
 export const NotificationFeedItemDtoStatus = {
@@ -122,11 +107,11 @@ export type NotificationFeedItemDto = {
   /**
    * Identifier for the template used, if applicable.
    */
-  templateIdentifier?: TemplateIdentifier | null | undefined;
+  templateIdentifier?: string | null | undefined;
   /**
    * Identifier for the provider that sends the notification.
    */
-  providerId?: NotificationFeedItemDtoProviderId | null | undefined;
+  providerId?: string | null | undefined;
   /**
    * The main content of the notification.
    */
@@ -134,7 +119,7 @@ export type NotificationFeedItemDto = {
   /**
    * The subject line for email notifications, if applicable.
    */
-  subject?: Subject | null | undefined;
+  subject?: string | null | undefined;
   /**
    * The channel through which the notification is sent.
    */
@@ -172,146 +157,6 @@ export type NotificationFeedItemDto = {
    */
   overrides?: { [k: string]: any } | undefined;
 };
-
-/** @internal */
-export const TemplateIdentifier$inboundSchema: z.ZodType<
-  TemplateIdentifier,
-  z.ZodTypeDef,
-  unknown
-> = z.object({});
-
-/** @internal */
-export type TemplateIdentifier$Outbound = {};
-
-/** @internal */
-export const TemplateIdentifier$outboundSchema: z.ZodType<
-  TemplateIdentifier$Outbound,
-  z.ZodTypeDef,
-  TemplateIdentifier
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TemplateIdentifier$ {
-  /** @deprecated use `TemplateIdentifier$inboundSchema` instead. */
-  export const inboundSchema = TemplateIdentifier$inboundSchema;
-  /** @deprecated use `TemplateIdentifier$outboundSchema` instead. */
-  export const outboundSchema = TemplateIdentifier$outboundSchema;
-  /** @deprecated use `TemplateIdentifier$Outbound` instead. */
-  export type Outbound = TemplateIdentifier$Outbound;
-}
-
-export function templateIdentifierToJSON(
-  templateIdentifier: TemplateIdentifier,
-): string {
-  return JSON.stringify(
-    TemplateIdentifier$outboundSchema.parse(templateIdentifier),
-  );
-}
-
-export function templateIdentifierFromJSON(
-  jsonString: string,
-): SafeParseResult<TemplateIdentifier, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => TemplateIdentifier$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'TemplateIdentifier' from JSON`,
-  );
-}
-
-/** @internal */
-export const NotificationFeedItemDtoProviderId$inboundSchema: z.ZodType<
-  NotificationFeedItemDtoProviderId,
-  z.ZodTypeDef,
-  unknown
-> = z.object({});
-
-/** @internal */
-export type NotificationFeedItemDtoProviderId$Outbound = {};
-
-/** @internal */
-export const NotificationFeedItemDtoProviderId$outboundSchema: z.ZodType<
-  NotificationFeedItemDtoProviderId$Outbound,
-  z.ZodTypeDef,
-  NotificationFeedItemDtoProviderId
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace NotificationFeedItemDtoProviderId$ {
-  /** @deprecated use `NotificationFeedItemDtoProviderId$inboundSchema` instead. */
-  export const inboundSchema = NotificationFeedItemDtoProviderId$inboundSchema;
-  /** @deprecated use `NotificationFeedItemDtoProviderId$outboundSchema` instead. */
-  export const outboundSchema =
-    NotificationFeedItemDtoProviderId$outboundSchema;
-  /** @deprecated use `NotificationFeedItemDtoProviderId$Outbound` instead. */
-  export type Outbound = NotificationFeedItemDtoProviderId$Outbound;
-}
-
-export function notificationFeedItemDtoProviderIdToJSON(
-  notificationFeedItemDtoProviderId: NotificationFeedItemDtoProviderId,
-): string {
-  return JSON.stringify(
-    NotificationFeedItemDtoProviderId$outboundSchema.parse(
-      notificationFeedItemDtoProviderId,
-    ),
-  );
-}
-
-export function notificationFeedItemDtoProviderIdFromJSON(
-  jsonString: string,
-): SafeParseResult<NotificationFeedItemDtoProviderId, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => NotificationFeedItemDtoProviderId$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'NotificationFeedItemDtoProviderId' from JSON`,
-  );
-}
-
-/** @internal */
-export const Subject$inboundSchema: z.ZodType<Subject, z.ZodTypeDef, unknown> =
-  z.object({});
-
-/** @internal */
-export type Subject$Outbound = {};
-
-/** @internal */
-export const Subject$outboundSchema: z.ZodType<
-  Subject$Outbound,
-  z.ZodTypeDef,
-  Subject
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Subject$ {
-  /** @deprecated use `Subject$inboundSchema` instead. */
-  export const inboundSchema = Subject$inboundSchema;
-  /** @deprecated use `Subject$outboundSchema` instead. */
-  export const outboundSchema = Subject$outboundSchema;
-  /** @deprecated use `Subject$Outbound` instead. */
-  export type Outbound = Subject$Outbound;
-}
-
-export function subjectToJSON(subject: Subject): string {
-  return JSON.stringify(Subject$outboundSchema.parse(subject));
-}
-
-export function subjectFromJSON(
-  jsonString: string,
-): SafeParseResult<Subject, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Subject$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Subject' from JSON`,
-  );
-}
 
 /** @internal */
 export const NotificationFeedItemDtoStatus$inboundSchema: z.ZodNativeEnum<
@@ -358,13 +203,10 @@ export const NotificationFeedItemDto$inboundSchema: z.ZodType<
   actor: ActorFeedItemDto$inboundSchema.optional(),
   subscriber: SubscriberFeedResponseDto$inboundSchema.optional(),
   transactionId: z.string(),
-  templateIdentifier: z.nullable(z.lazy(() => TemplateIdentifier$inboundSchema))
-    .optional(),
-  providerId: z.nullable(
-    z.lazy(() => NotificationFeedItemDtoProviderId$inboundSchema),
-  ).optional(),
+  templateIdentifier: z.nullable(z.string()).optional(),
+  providerId: z.nullable(z.string()).optional(),
   content: z.string(),
-  subject: z.nullable(z.lazy(() => Subject$inboundSchema)).optional(),
+  subject: z.nullable(z.string()).optional(),
   channel: ChannelTypeEnum$inboundSchema,
   read: z.boolean(),
   seen: z.boolean(),
@@ -404,10 +246,10 @@ export type NotificationFeedItemDto$Outbound = {
   actor?: ActorFeedItemDto$Outbound | undefined;
   subscriber?: SubscriberFeedResponseDto$Outbound | undefined;
   transactionId: string;
-  templateIdentifier?: TemplateIdentifier$Outbound | null | undefined;
-  providerId?: NotificationFeedItemDtoProviderId$Outbound | null | undefined;
+  templateIdentifier?: string | null | undefined;
+  providerId?: string | null | undefined;
   content: string;
-  subject?: Subject$Outbound | null | undefined;
+  subject?: string | null | undefined;
   channel: string;
   read: boolean;
   seen: boolean;
@@ -439,14 +281,10 @@ export const NotificationFeedItemDto$outboundSchema: z.ZodType<
   actor: ActorFeedItemDto$outboundSchema.optional(),
   subscriber: SubscriberFeedResponseDto$outboundSchema.optional(),
   transactionId: z.string(),
-  templateIdentifier: z.nullable(
-    z.lazy(() => TemplateIdentifier$outboundSchema),
-  ).optional(),
-  providerId: z.nullable(
-    z.lazy(() => NotificationFeedItemDtoProviderId$outboundSchema),
-  ).optional(),
+  templateIdentifier: z.nullable(z.string()).optional(),
+  providerId: z.nullable(z.string()).optional(),
   content: z.string(),
-  subject: z.nullable(z.lazy(() => Subject$outboundSchema)).optional(),
+  subject: z.nullable(z.string()).optional(),
   channel: ChannelTypeEnum$outboundSchema,
   read: z.boolean(),
   seen: z.boolean(),

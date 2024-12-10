@@ -7,7 +7,7 @@ Current status of the notification.
 ```typescript
 import { NotificationFeedItemDtoStatus } from "@novu/api/models/components";
 
-let value: NotificationFeedItemDtoStatus = "warning";
+let value: NotificationFeedItemDtoStatus = "sent";
 ```
 
 ## Values

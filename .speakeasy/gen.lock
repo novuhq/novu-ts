@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 6bff3a53-3f0b-40b4-942f-ff70dc583ae5
 management:
-  docChecksum: 3f7f8bee8fb96a1d61fcae878f0589d8
+  docChecksum: 8c8e7045866c4790207e2e8f19fac7d9
   docVersion: "1.0"
   speakeasyVersion: 1.453.8
   generationVersion: 2.474.15
-  releaseVersion: 0.0.1-alpha.78
-  configChecksum: f7ed5a2a60c86e97ffcf9913b1c262d8
+  releaseVersion: 0.0.1-alpha.79
+  configChecksum: b6b4fd07492aeb701bbc5ff6a47528f3
   published: true
 features:
   typescript:
@@ -48,7 +48,6 @@ generatedFiles:
   - docs/models/components/activitystatsresponsedto.md
   - docs/models/components/actor.md
   - docs/models/components/actorfeeditemdto.md
-  - docs/models/components/actorfeeditemdtodata.md
   - docs/models/components/actortypeenum.md
   - docs/models/components/addsubscribersrequestdto.md
   - docs/models/components/apikey.md
@@ -134,7 +133,6 @@ generatedFiles:
   - docs/models/components/metadata.md
   - docs/models/components/monthlytype.md
   - docs/models/components/notificationfeeditemdto.md
-  - docs/models/components/notificationfeeditemdtoproviderid.md
   - docs/models/components/notificationfeeditemdtostatus.md
   - docs/models/components/notificationgroup.md
   - docs/models/components/notificationgroupresponsedto.md
@@ -164,12 +162,10 @@ generatedFiles:
   - docs/models/components/source.md
   - docs/models/components/status.md
   - docs/models/components/stepfilter.md
-  - docs/models/components/subject.md
   - docs/models/components/subscriberchanneldto.md
   - docs/models/components/subscriberfeedresponsedto.md
   - docs/models/components/subscriberpayloaddto.md
   - docs/models/components/subscriberresponsedto.md
-  - docs/models/components/templateidentifier.md
   - docs/models/components/templateresponse.md
   - docs/models/components/tenant.md
   - docs/models/components/tenantpayloaddto.md

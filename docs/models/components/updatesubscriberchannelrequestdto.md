@@ -6,9 +6,9 @@
 import { UpdateSubscriberChannelRequestDto } from "@novu/api/models/components";
 
 let value: UpdateSubscriberChannelRequestDto = {
-  providerId: "whatsapp-business",
+  providerId: "ryver",
   credentials: {
-    webhookUrl: "https://well-groomed-hyena.org/",
+    webhookUrl: "https://pale-milestone.biz",
   },
 };
 ```

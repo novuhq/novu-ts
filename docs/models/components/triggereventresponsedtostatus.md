@@ -7,7 +7,7 @@ Status of the trigger
 ```typescript
 import { TriggerEventResponseDtoStatus } from "@novu/api/models/components";
 
-let value: TriggerEventResponseDtoStatus = "processed";
+let value: TriggerEventResponseDtoStatus = "error";
 ```
 
 ## Values

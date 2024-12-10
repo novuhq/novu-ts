@@ -12,16 +12,11 @@ import {
   ActorTypeEnum$outboundSchema,
 } from "./actortypeenum.js";
 
-/**
- * The data associated with the actor, can be null if not applicable.
- */
-export type ActorFeedItemDtoData = {};
-
 export type ActorFeedItemDto = {
   /**
    * The data associated with the actor, can be null if not applicable.
    */
-  data: ActorFeedItemDtoData | null;
+  data: string | null;
   /**
    * The type of the actor, indicating the role in the notification process.
    */
@@ -29,66 +24,18 @@ export type ActorFeedItemDto = {
 };
 
 /** @internal */
-export const ActorFeedItemDtoData$inboundSchema: z.ZodType<
-  ActorFeedItemDtoData,
-  z.ZodTypeDef,
-  unknown
-> = z.object({});
-
-/** @internal */
-export type ActorFeedItemDtoData$Outbound = {};
-
-/** @internal */
-export const ActorFeedItemDtoData$outboundSchema: z.ZodType<
-  ActorFeedItemDtoData$Outbound,
-  z.ZodTypeDef,
-  ActorFeedItemDtoData
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ActorFeedItemDtoData$ {
-  /** @deprecated use `ActorFeedItemDtoData$inboundSchema` instead. */
-  export const inboundSchema = ActorFeedItemDtoData$inboundSchema;
-  /** @deprecated use `ActorFeedItemDtoData$outboundSchema` instead. */
-  export const outboundSchema = ActorFeedItemDtoData$outboundSchema;
-  /** @deprecated use `ActorFeedItemDtoData$Outbound` instead. */
-  export type Outbound = ActorFeedItemDtoData$Outbound;
-}
-
-export function actorFeedItemDtoDataToJSON(
-  actorFeedItemDtoData: ActorFeedItemDtoData,
-): string {
-  return JSON.stringify(
-    ActorFeedItemDtoData$outboundSchema.parse(actorFeedItemDtoData),
-  );
-}
-
-export function actorFeedItemDtoDataFromJSON(
-  jsonString: string,
-): SafeParseResult<ActorFeedItemDtoData, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ActorFeedItemDtoData$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ActorFeedItemDtoData' from JSON`,
-  );
-}
-
-/** @internal */
 export const ActorFeedItemDto$inboundSchema: z.ZodType<
   ActorFeedItemDto,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  data: z.nullable(z.lazy(() => ActorFeedItemDtoData$inboundSchema)),
+  data: z.nullable(z.string()),
   type: ActorTypeEnum$inboundSchema,
 });
 
 /** @internal */
 export type ActorFeedItemDto$Outbound = {
-  data: ActorFeedItemDtoData$Outbound | null;
+  data: string | null;
   type: string;
 };
 
@@ -98,7 +45,7 @@ export const ActorFeedItemDto$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ActorFeedItemDto
 > = z.object({
-  data: z.nullable(z.lazy(() => ActorFeedItemDtoData$outboundSchema)),
+  data: z.nullable(z.string()),
   type: ActorTypeEnum$outboundSchema,
 });
 

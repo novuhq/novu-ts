@@ -13,9 +13,12 @@ let value: MessageResponseDto = {
   notificationId: "<id>",
   subscriberId: "<id>",
   createdAt: "<value>",
-  content: "<value>",
+  content: {
+    type: "button",
+    content: "<value>",
+  },
   transactionId: "<id>",
-  channel: "chat",
+  channel: "email",
   read: false,
   seen: false,
   cta: {
