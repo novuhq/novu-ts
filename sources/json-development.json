@@ -7498,8 +7498,7 @@
           }
         },
         "responses": {
-          "201": {
-            "description": "Created",
+          "200": {
             "headers": {
               "Content-Type": {
                 "$ref": "#/components/headers/Content-Type"
@@ -7523,10 +7522,11 @@
                 "$ref": "#/components/headers/Idempotency-Replay"
               }
             },
+            "description": "",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Number"
+                  "type": "number"
                 }
               }
             }
@@ -12647,10 +12647,6 @@
         ]
       },
       "MessageEntity": {
-        "type": "object",
-        "properties": {}
-      },
-      "Number": {
         "type": "object",
         "properties": {}
       },

@@ -144,7 +144,7 @@ export async function subscribersMessagesMarkAll(
     | ConnectionError
   >(
     M.json(
-      201,
+      200,
       operations.SubscribersControllerMarkAllUnreadAsReadResponse$inboundSchema,
       { hdrs: true, key: "Result" },
     ),

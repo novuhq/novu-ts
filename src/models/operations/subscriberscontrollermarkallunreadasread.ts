@@ -16,7 +16,7 @@ export type SubscribersControllerMarkAllUnreadAsReadRequest = {
 
 export type SubscribersControllerMarkAllUnreadAsReadResponse = {
   headers: { [k: string]: Array<string> };
-  result: components.NumberT;
+  result: number;
 };
 
 /** @internal */
@@ -108,7 +108,7 @@ export const SubscribersControllerMarkAllUnreadAsReadResponse$inboundSchema:
     unknown
   > = z.object({
     Headers: z.record(z.array(z.string())),
-    Result: components.NumberT$inboundSchema,
+    Result: z.number(),
   }).transform((v) => {
     return remap$(v, {
       "Headers": "headers",
@@ -119,7 +119,7 @@ export const SubscribersControllerMarkAllUnreadAsReadResponse$inboundSchema:
 /** @internal */
 export type SubscribersControllerMarkAllUnreadAsReadResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
-  Result: components.NumberT$Outbound;
+  Result: number;
 };
 
 /** @internal */
@@ -130,7 +130,7 @@ export const SubscribersControllerMarkAllUnreadAsReadResponse$outboundSchema:
     SubscribersControllerMarkAllUnreadAsReadResponse
   > = z.object({
     headers: z.record(z.array(z.string())),
-    result: components.NumberT$outboundSchema,
+    result: z.number(),
   }).transform((v) => {
     return remap$(v, {
       headers: "Headers",

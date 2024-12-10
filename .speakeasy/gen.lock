@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 6bff3a53-3f0b-40b4-942f-ff70dc583ae5
 management:
-  docChecksum: 512b148f741d54a6e7fe494ba2d46b85
+  docChecksum: bc66a6e599bebc8094a252c1107d666e
   docVersion: "1.0"
   speakeasyVersion: 1.453.8
   generationVersion: 2.474.15
-  releaseVersion: 0.0.1-alpha.81
-  configChecksum: 30bd25ca1ef6855406a66ed36ea1bab1
+  releaseVersion: 0.0.1-alpha.82
+  configChecksum: ee370b0c36dc460fa3491da03a1700e1
   published: true
 features:
   typescript:
@@ -144,7 +144,6 @@ generatedFiles:
   - docs/models/components/notificationtrigger.md
   - docs/models/components/notificationtriggertype.md
   - docs/models/components/notificationtriggervariable.md
-  - docs/models/components/numbert.md
   - docs/models/components/on.md
   - docs/models/components/operator.md
   - docs/models/components/ordinal.md
@@ -464,7 +463,6 @@ generatedFiles:
   - src/models/components/notificationstepvariant.ts
   - src/models/components/notificationtrigger.ts
   - src/models/components/notificationtriggervariable.ts
-  - src/models/components/number.ts
   - src/models/components/preference.ts
   - src/models/components/preferencechannels.ts
   - src/models/components/removesubscribersrequestdto.ts
@@ -927,7 +925,8 @@ examples:
       responses:
         "201":
           application/json: "4603.37"
-        "200": {}
+        "200":
+          application/json: "4645.84"
   SubscribersController_markActionAsSeen:
     speakeasy-default-subscribers-controller-mark-action-as-seen:
       parameters:

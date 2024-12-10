@@ -2,7 +2,7 @@
 
 {
   "name": "@novu/api",
-  "version": "0.0.1-alpha.81",
+  "version": "0.0.1-alpha.82",
   "exports": {
     ".": "./src/index.ts",    
     "./models/errors": "./src/models/errors/index.ts",    
