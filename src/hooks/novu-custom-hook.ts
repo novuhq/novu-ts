@@ -24,7 +24,7 @@ export class NovuCustomHook
         }
         const jsonResponse = await response.clone().json();
 
-        if (jsonResponse && Object.keys(jsonResponse).length === 1 && jsonResponse.data) {
+        if (jsonResponse && Object.keys(jsonResponse).length === 1 && 'data' in jsonResponse) {
             return new Response(JSON.stringify(jsonResponse.data), {
                 status: response.status,
                 statusText: response.statusText,
