@@ -19,7 +19,10 @@ let value: SubscribersControllerMarkActionAsSeenResponse = {
     notificationId: "<id>",
     subscriberId: "<id>",
     createdAt: "<value>",
-    content: "<value>",
+    content: {
+      type: "text",
+      content: "<value>",
+    },
     transactionId: "<id>",
     channel: "chat",
     read: false,

@@ -146,7 +146,7 @@ export async function subscribersMessagesMarkAll(
     M.json(
       201,
       operations.SubscribersControllerMarkAllUnreadAsReadResponse$inboundSchema,
-      { key: "Result" },
+      { hdrs: true, key: "Result" },
     ),
     M.fail([409, 429, 503]),
     M.fail(["4XX", "5XX"]),

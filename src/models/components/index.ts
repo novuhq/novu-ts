@@ -63,6 +63,7 @@ export * from "./notificationstep.js";
 export * from "./notificationstepvariant.js";
 export * from "./notificationtrigger.js";
 export * from "./notificationtriggervariable.js";
+export * from "./number.js";
 export * from "./preference.js";
 export * from "./preferencechannels.js";
 export * from "./removesubscribersrequestdto.js";
