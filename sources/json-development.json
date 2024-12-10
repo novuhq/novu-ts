@@ -7498,7 +7498,7 @@
           }
         },
         "responses": {
-          "200": {
+          "201": {
             "headers": {
               "Content-Type": {
                 "$ref": "#/components/headers/Content-Type"
