@@ -7,11 +7,11 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
-  NotificationDto,
-  NotificationDto$inboundSchema,
-  NotificationDto$Outbound,
-  NotificationDto$outboundSchema,
-} from "./notificationdto.js";
+  NotificationFeedItemDto,
+  NotificationFeedItemDto$inboundSchema,
+  NotificationFeedItemDto$Outbound,
+  NotificationFeedItemDto$outboundSchema,
+} from "./notificationfeeditemdto.js";
 
 export type FeedResponseDto = {
   /**
@@ -25,7 +25,7 @@ export type FeedResponseDto = {
   /**
    * Array of notifications returned in the response.
    */
-  data: Array<NotificationDto>;
+  data: Array<NotificationFeedItemDto>;
   /**
    * The number of notifications returned in this response.
    */
@@ -44,7 +44,7 @@ export const FeedResponseDto$inboundSchema: z.ZodType<
 > = z.object({
   totalCount: z.number().optional(),
   hasMore: z.boolean(),
-  data: z.array(NotificationDto$inboundSchema),
+  data: z.array(NotificationFeedItemDto$inboundSchema),
   pageSize: z.number(),
   page: z.number(),
 });
@@ -53,7 +53,7 @@ export const FeedResponseDto$inboundSchema: z.ZodType<
 export type FeedResponseDto$Outbound = {
   totalCount?: number | undefined;
   hasMore: boolean;
-  data: Array<NotificationDto$Outbound>;
+  data: Array<NotificationFeedItemDto$Outbound>;
   pageSize: number;
   page: number;
 };
@@ -66,7 +66,7 @@ export const FeedResponseDto$outboundSchema: z.ZodType<
 > = z.object({
   totalCount: z.number().optional(),
   hasMore: z.boolean(),
-  data: z.array(NotificationDto$outboundSchema),
+  data: z.array(NotificationFeedItemDto$outboundSchema),
   pageSize: z.number(),
   page: z.number(),
 });

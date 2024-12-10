@@ -10,6 +10,9 @@ import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type MessagesControllerGetMessagesRequest = {
+  /**
+   * The channel through which the notification is sent.
+   */
   channel?: components.ChannelTypeEnum | undefined;
   subscriberId?: string | undefined;
   transactionId?: Array<string> | undefined;

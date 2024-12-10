@@ -58,7 +58,7 @@ export type ChannelSettings = {
    */
   credentials: ChannelCredentials;
   /**
-   * Id of the integration that is used for this channel
+   * The unique identifier of the integration associated with this channel.
    */
   integrationId: string;
 };

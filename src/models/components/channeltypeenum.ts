@@ -5,6 +5,9 @@
 import * as z from "zod";
 import { ClosedEnum } from "../../types/enums.js";
 
+/**
+ * The channel through which the notification is sent.
+ */
 export const ChannelTypeEnum = {
   InApp: "in_app",
   Email: "email",
@@ -12,6 +15,9 @@ export const ChannelTypeEnum = {
   Chat: "chat",
   Push: "push",
 } as const;
+/**
+ * The channel through which the notification is sent.
+ */
 export type ChannelTypeEnum = ClosedEnum<typeof ChannelTypeEnum>;
 
 /** @internal */

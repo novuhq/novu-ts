@@ -1,24 +1,24 @@
 lockVersion: 2.0.0
 id: 6bff3a53-3f0b-40b4-942f-ff70dc583ae5
 management:
-  docChecksum: 953e7804a0485fa5e5b0422a73c055a3
+  docChecksum: 3f7f8bee8fb96a1d61fcae878f0589d8
   docVersion: "1.0"
-  speakeasyVersion: 1.453.4
-  generationVersion: 2.474.6
-  releaseVersion: 0.0.1-alpha.77
-  configChecksum: ab03311e8d757787eefe4cc94a1b5a54
+  speakeasyVersion: 1.453.8
+  generationVersion: 2.474.15
+  releaseVersion: 0.0.1-alpha.78
+  configChecksum: f7ed5a2a60c86e97ffcf9913b1c262d8
   published: true
 features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.11
-    core: 3.18.8
+    core: 3.18.9
     defaultEnabledRetries: 0.1.0
     deprecations: 2.81.1
     enumUnions: 0.1.0
     envVarSecurityUsage: 0.1.2
     examples: 2.81.4
-    flattening: 2.82.0
+    flattening: 2.82.1
     globalSecurity: 2.82.11
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
@@ -47,7 +47,8 @@ generatedFiles:
   - docs/models/components/activitynotificationtemplateresponsedto.md
   - docs/models/components/activitystatsresponsedto.md
   - docs/models/components/actor.md
-  - docs/models/components/actordata.md
+  - docs/models/components/actorfeeditemdto.md
+  - docs/models/components/actorfeeditemdtodata.md
   - docs/models/components/actortypeenum.md
   - docs/models/components/addsubscribersrequestdto.md
   - docs/models/components/apikey.md
@@ -132,9 +133,9 @@ generatedFiles:
   - docs/models/components/messagetemplate.md
   - docs/models/components/metadata.md
   - docs/models/components/monthlytype.md
-  - docs/models/components/notificationdto.md
-  - docs/models/components/notificationdtochannel.md
-  - docs/models/components/notificationdtostatus.md
+  - docs/models/components/notificationfeeditemdto.md
+  - docs/models/components/notificationfeeditemdtoproviderid.md
+  - docs/models/components/notificationfeeditemdtostatus.md
   - docs/models/components/notificationgroup.md
   - docs/models/components/notificationgroupresponsedto.md
   - docs/models/components/notificationstep.md
@@ -163,9 +164,12 @@ generatedFiles:
   - docs/models/components/source.md
   - docs/models/components/status.md
   - docs/models/components/stepfilter.md
+  - docs/models/components/subject.md
   - docs/models/components/subscriberchanneldto.md
+  - docs/models/components/subscriberfeedresponsedto.md
   - docs/models/components/subscriberpayloaddto.md
   - docs/models/components/subscriberresponsedto.md
+  - docs/models/components/templateidentifier.md
   - docs/models/components/templateresponse.md
   - docs/models/components/tenant.md
   - docs/models/components/tenantpayloaddto.md
@@ -178,7 +182,6 @@ generatedFiles:
   - docs/models/components/topicpayloaddto.md
   - docs/models/components/topicsubscriberdto.md
   - docs/models/components/triggereventrequestdto.md
-  - docs/models/components/triggereventrequestdtoactor.md
   - docs/models/components/triggereventresponsedto.md
   - docs/models/components/triggereventresponsedtostatus.md
   - docs/models/components/triggereventtoallrequestdto.md
@@ -408,7 +411,7 @@ generatedFiles:
   - src/models/components/activitynotificationsubscriberresponsedto.ts
   - src/models/components/activitynotificationtemplateresponsedto.ts
   - src/models/components/activitystatsresponsedto.ts
-  - src/models/components/actor.ts
+  - src/models/components/actorfeeditemdto.ts
   - src/models/components/actortypeenum.ts
   - src/models/components/addsubscribersrequestdto.ts
   - src/models/components/apikey.ts
@@ -457,7 +460,7 @@ generatedFiles:
   - src/models/components/messagemarkasrequestdto.ts
   - src/models/components/messageresponsedto.ts
   - src/models/components/messagetemplate.ts
-  - src/models/components/notificationdto.ts
+  - src/models/components/notificationfeeditemdto.ts
   - src/models/components/notificationgroup.ts
   - src/models/components/notificationgroupresponsedto.ts
   - src/models/components/notificationstep.ts
@@ -472,6 +475,7 @@ generatedFiles:
   - src/models/components/security.ts
   - src/models/components/stepfilter.ts
   - src/models/components/subscriberchanneldto.ts
+  - src/models/components/subscriberfeedresponsedto.ts
   - src/models/components/subscriberpayloaddto.ts
   - src/models/components/subscriberresponsedto.ts
   - src/models/components/templateresponse.ts
