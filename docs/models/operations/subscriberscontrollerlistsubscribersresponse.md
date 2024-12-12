@@ -12,9 +12,9 @@ let value: SubscribersControllerListSubscribersResponse = {
     ],
   },
   result: {
-    page: 7991.59,
+    page: 7781.57,
     hasMore: false,
-    pageSize: 4614.79,
+    pageSize: 8700.12,
     data: [
       {
         subscriberId: "<id>",

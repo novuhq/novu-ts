@@ -8,9 +8,9 @@ import { SubscribersControllerModifySubscriberChannelRequest } from "@novu/api/m
 let value: SubscribersControllerModifySubscriberChannelRequest = {
   subscriberId: "<id>",
   updateSubscriberChannelRequestDto: {
-    providerId: "rocket-chat",
+    providerId: "fcm",
     credentials: {
-      webhookUrl: "https://favorable-sand.info/",
+      webhookUrl: "https://wealthy-lender.info/",
     },
   },
 };

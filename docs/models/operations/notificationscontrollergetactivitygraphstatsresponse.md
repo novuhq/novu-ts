@@ -14,12 +14,12 @@ let value: NotificationsControllerGetActivityGraphStatsResponse = {
   result: [
     {
       id: "<id>",
-      count: 5288.95,
+      count: 9636.63,
       templates: [
         "<value>",
       ],
       channels: [
-        "sms",
+        "email",
       ],
     },
   ],

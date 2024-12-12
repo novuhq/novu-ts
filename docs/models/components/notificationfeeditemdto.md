@@ -19,14 +19,14 @@ let value: NotificationFeedItemDto = {
   updatedAt: new Date("2024-12-10T10:10:59.639Z"),
   actor: {
     data: null,
-    type: "user",
+    type: "none",
   },
   transactionId: "transaction_123456",
   templateIdentifier: "template_abcdef",
   providerId: "provider_xyz",
   content: "This is a test notification content.",
   subject: "Test Notification Subject",
-  channel: "push",
+  channel: "sms",
   read: false,
   seen: true,
   deleted: false,
@@ -76,5 +76,5 @@ let value: NotificationFeedItemDto = {
 | `deviceTokens`                                                                                       | *string*[]                                                                                           | :heavy_minus_sign:                                                                                   | Device tokens for push notifications, if applicable.                                                 | [<br/>"token1",<br/>"token2"<br/>]                                                                   |
 | `cta`                                                                                                | [components.MessageCTA](../../models/components/messagecta.md)                                       | :heavy_check_mark:                                                                                   | Call-to-action information associated with the notification.                                         |                                                                                                      |
 | `status`                                                                                             | [components.NotificationFeedItemDtoStatus](../../models/components/notificationfeeditemdtostatus.md) | :heavy_check_mark:                                                                                   | Current status of the notification.                                                                  | sent                                                                                                 |
-| `payload`                                                                                            | Record<string, *any*>                                                                                | :heavy_minus_sign:                                                                                   | The payload that was used to send the notification trigger.                                          | {<br/>"key": "value"<br/>}                                                                           |
+| `payload`                                                                                            | Record<string, *any*>                                                                                | :heavy_check_mark:                                                                                   | The payload that was used to send the notification trigger.                                          | {<br/>"key": "value"<br/>}                                                                           |
 | `overrides`                                                                                          | Record<string, *any*>                                                                                | :heavy_minus_sign:                                                                                   | Provider-specific overrides used when triggering the notification.                                   | {<br/>"overrideKey": "overrideValue"<br/>}                                                           |

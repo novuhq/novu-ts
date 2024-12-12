@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 6bff3a53-3f0b-40b4-942f-ff70dc583ae5
 management:
-  docChecksum: 7e4451ce345d266c392b1061e75d0cba
+  docChecksum: 1fc4158669741fd38b601c30896fc88a
   docVersion: "1.0"
-  speakeasyVersion: 1.453.8
-  generationVersion: 2.474.15
-  releaseVersion: 0.0.1-alpha.85
-  configChecksum: 0cb043648739bd8be380506a641de58c
+  speakeasyVersion: 1.454.0
+  generationVersion: 2.477.0
+  releaseVersion: 0.0.1-alpha.86
+  configChecksum: af3412b2f55e9242b1bafad6f89eb80f
   published: true
 features:
   typescript:
@@ -50,7 +50,6 @@ generatedFiles:
   - docs/models/components/actorfeeditemdto.md
   - docs/models/components/actortypeenum.md
   - docs/models/components/addsubscribersrequestdto.md
-  - docs/models/components/apikey.md
   - docs/models/components/assignsubscribertotopicdto.md
   - docs/models/components/backoffunit.md
   - docs/models/components/bulksubscribercreatedto.md
@@ -67,7 +66,6 @@ generatedFiles:
   - docs/models/components/content.md
   - docs/models/components/createintegrationrequestdto.md
   - docs/models/components/createintegrationrequestdtochannel.md
-  - docs/models/components/createnotificationgrouprequestdto.md
   - docs/models/components/createsubscriberrequestdto.md
   - docs/models/components/createsubscriberrequestdtodata.md
   - docs/models/components/createtopicrequestdto.md
@@ -82,8 +80,6 @@ generatedFiles:
   - docs/models/components/delayscheduledmetadatatype.md
   - docs/models/components/deletemessageresponsedto.md
   - docs/models/components/deletemessageresponsedtostatus.md
-  - docs/models/components/deletenotificationgroupresponsedto.md
-  - docs/models/components/deletenotificationgroupresponsedtostatus.md
   - docs/models/components/deletesubscriberresponsedto.md
   - docs/models/components/deletesubscriberresponsedtostatus.md
   - docs/models/components/digestregularmetadata.md
@@ -94,8 +90,6 @@ generatedFiles:
   - docs/models/components/emailblock.md
   - docs/models/components/emailblockstyles.md
   - docs/models/components/emailblocktype.md
-  - docs/models/components/environmentresponsedto.md
-  - docs/models/components/executiondetailsresponsedto.md
   - docs/models/components/failedassignmentsdto.md
   - docs/models/components/feedid.md
   - docs/models/components/feedidentifier.md
@@ -105,7 +99,6 @@ generatedFiles:
   - docs/models/components/getsubscriberpreferencesresponsedto.md
   - docs/models/components/gettopicresponsedto.md
   - docs/models/components/integrationresponsedto.md
-  - docs/models/components/integrationresponsedtochannel.md
   - docs/models/components/markallmessageasrequestdto.md
   - docs/models/components/markallmessageasrequestdtomarkas.md
   - docs/models/components/markas.md
@@ -135,7 +128,6 @@ generatedFiles:
   - docs/models/components/notificationfeeditemdto.md
   - docs/models/components/notificationfeeditemdtostatus.md
   - docs/models/components/notificationgroup.md
-  - docs/models/components/notificationgroupresponsedto.md
   - docs/models/components/notificationstep.md
   - docs/models/components/notificationstepvariant.md
   - docs/models/components/notificationstepvariantmetadata.md
@@ -159,7 +151,6 @@ generatedFiles:
   - docs/models/components/renametopicresponsedto.md
   - docs/models/components/replycallback.md
   - docs/models/components/security.md
-  - docs/models/components/source.md
   - docs/models/components/status.md
   - docs/models/components/stepfilter.md
   - docs/models/components/subscriberchanneldto.md
@@ -179,7 +170,6 @@ generatedFiles:
   - docs/models/components/topicsubscriberdto.md
   - docs/models/components/triggereventrequestdto.md
   - docs/models/components/triggereventresponsedto.md
-  - docs/models/components/triggereventresponsedtostatus.md
   - docs/models/components/triggereventtoallrequestdto.md
   - docs/models/components/triggereventtoallrequestdtoactor.md
   - docs/models/components/triggereventtoallrequestdtotenant.md
@@ -204,16 +194,11 @@ generatedFiles:
   - docs/models/components/workflowtostepcontrolvaluesdto.md
   - docs/models/operations/channel.md
   - docs/models/operations/channels.md
-  - docs/models/operations/environmentscontrollerv1getcurrentenvironmentresponse.md
-  - docs/models/operations/environmentscontrollerv1listmyenvironmentsresponse.md
-  - docs/models/operations/environmentscontrollerv1listorganizationapikeysresponse.md
   - docs/models/operations/eventscontrollerbroadcasteventtoallresponse.md
   - docs/models/operations/eventscontrollercancelrequest.md
   - docs/models/operations/eventscontrollercancelresponse.md
   - docs/models/operations/eventscontrollertriggerbulkresponse.md
   - docs/models/operations/eventscontrollertriggerresponse.md
-  - docs/models/operations/executiondetailscontrollergetexecutiondetailsfornotificationrequest.md
-  - docs/models/operations/executiondetailscontrollergetexecutiondetailsfornotificationresponse.md
   - docs/models/operations/integrationscontrollercreateintegrationresponse.md
   - docs/models/operations/integrationscontrollergetactiveintegrationsresponse.md
   - docs/models/operations/integrationscontrollergetwebhooksupportstatusrequest.md
@@ -231,14 +216,6 @@ generatedFiles:
   - docs/models/operations/messagescontrollerdeletemessagesbytransactionidresponse.md
   - docs/models/operations/messagescontrollergetmessagesrequest.md
   - docs/models/operations/messagescontrollergetmessagesresponse.md
-  - docs/models/operations/notificationgroupscontrollercreatenotificationgroupresponse.md
-  - docs/models/operations/notificationgroupscontrollerdeletenotificationgrouprequest.md
-  - docs/models/operations/notificationgroupscontrollerdeletenotificationgroupresponse.md
-  - docs/models/operations/notificationgroupscontrollergetnotificationgrouprequest.md
-  - docs/models/operations/notificationgroupscontrollergetnotificationgroupresponse.md
-  - docs/models/operations/notificationgroupscontrollerlistnotificationgroupsresponse.md
-  - docs/models/operations/notificationgroupscontrollerupdatenotificationgrouprequest.md
-  - docs/models/operations/notificationgroupscontrollerupdatenotificationgroupresponse.md
   - docs/models/operations/notificationscontrollergetactivitygraphstatsrequest.md
   - docs/models/operations/notificationscontrollergetactivitygraphstatsresponse.md
   - docs/models/operations/notificationscontrollergetactivitystatsresponse.md
@@ -304,11 +281,8 @@ generatedFiles:
   - docs/models/operations/topicscontrollerremovesubscribersresponse.md
   - docs/models/operations/topicscontrollerrenametopicrequest.md
   - docs/models/operations/topicscontrollerrenametopicresponse.md
-  - docs/sdks/apikeys/README.md
   - docs/sdks/authentication/README.md
   - docs/sdks/credentials/README.md
-  - docs/sdks/environments/README.md
-  - docs/sdks/executiondetails/README.md
   - docs/sdks/integrations/README.md
   - docs/sdks/messages/README.md
   - docs/sdks/notifications/README.md
@@ -322,15 +296,10 @@ generatedFiles:
   - docs/sdks/subscribers/README.md
   - docs/sdks/topics/README.md
   - docs/sdks/webhooks/README.md
-  - docs/sdks/workflowgroups/README.md
   - jsr.json
   - package.json
   - src/core.ts
   - src/funcs/cancel.ts
-  - src/funcs/environmentsApiKeysList.ts
-  - src/funcs/environmentsList.ts
-  - src/funcs/environmentsRetrieve.ts
-  - src/funcs/executionDetailsRetrieve.ts
   - src/funcs/integrationsCreate.ts
   - src/funcs/integrationsDelete.ts
   - src/funcs/integrationsList.ts
@@ -377,11 +346,6 @@ generatedFiles:
   - src/funcs/trigger.ts
   - src/funcs/triggerBroadcast.ts
   - src/funcs/triggerBulk.ts
-  - src/funcs/workflowGroupsCreate.ts
-  - src/funcs/workflowGroupsDelete.ts
-  - src/funcs/workflowGroupsList.ts
-  - src/funcs/workflowGroupsRetrieve.ts
-  - src/funcs/workflowGroupsUpdate.ts
   - src/hooks/hooks.ts
   - src/hooks/index.ts
   - src/hooks/types.ts
@@ -410,7 +374,6 @@ generatedFiles:
   - src/models/components/actorfeeditemdto.ts
   - src/models/components/actortypeenum.ts
   - src/models/components/addsubscribersrequestdto.ts
-  - src/models/components/apikey.ts
   - src/models/components/assignsubscribertotopicdto.ts
   - src/models/components/bulksubscribercreatedto.ts
   - src/models/components/bulktriggereventdto.ts
@@ -420,7 +383,6 @@ generatedFiles:
   - src/models/components/channelsettings.ts
   - src/models/components/channeltypeenum.ts
   - src/models/components/createintegrationrequestdto.ts
-  - src/models/components/createnotificationgrouprequestdto.ts
   - src/models/components/createsubscriberrequestdto.ts
   - src/models/components/createtopicrequestdto.ts
   - src/models/components/createtopicresponsedto.ts
@@ -429,14 +391,11 @@ generatedFiles:
   - src/models/components/delayregularmetadata.ts
   - src/models/components/delayscheduledmetadata.ts
   - src/models/components/deletemessageresponsedto.ts
-  - src/models/components/deletenotificationgroupresponsedto.ts
   - src/models/components/deletesubscriberresponsedto.ts
   - src/models/components/digestregularmetadata.ts
   - src/models/components/digesttimedmetadata.ts
   - src/models/components/emailblock.ts
   - src/models/components/emailblockstyles.ts
-  - src/models/components/environmentresponsedto.ts
-  - src/models/components/executiondetailsresponsedto.ts
   - src/models/components/failedassignmentsdto.ts
   - src/models/components/feedresponsedto.ts
   - src/models/components/fieldfilterpart.ts
@@ -458,7 +417,6 @@ generatedFiles:
   - src/models/components/messagetemplate.ts
   - src/models/components/notificationfeeditemdto.ts
   - src/models/components/notificationgroup.ts
-  - src/models/components/notificationgroupresponsedto.ts
   - src/models/components/notificationstep.ts
   - src/models/components/notificationstepvariant.ts
   - src/models/components/notificationtrigger.ts
@@ -498,14 +456,10 @@ generatedFiles:
   - src/models/errors/index.ts
   - src/models/errors/sdkerror.ts
   - src/models/errors/sdkvalidationerror.ts
-  - src/models/operations/environmentscontrollerv1getcurrentenvironment.ts
-  - src/models/operations/environmentscontrollerv1listmyenvironments.ts
-  - src/models/operations/environmentscontrollerv1listorganizationapikeys.ts
   - src/models/operations/eventscontrollerbroadcasteventtoall.ts
   - src/models/operations/eventscontrollercancel.ts
   - src/models/operations/eventscontrollertrigger.ts
   - src/models/operations/eventscontrollertriggerbulk.ts
-  - src/models/operations/executiondetailscontrollergetexecutiondetailsfornotification.ts
   - src/models/operations/index.ts
   - src/models/operations/integrationscontrollercreateintegration.ts
   - src/models/operations/integrationscontrollergetactiveintegrations.ts
@@ -517,11 +471,6 @@ generatedFiles:
   - src/models/operations/messagescontrollerdeletemessage.ts
   - src/models/operations/messagescontrollerdeletemessagesbytransactionid.ts
   - src/models/operations/messagescontrollergetmessages.ts
-  - src/models/operations/notificationgroupscontrollercreatenotificationgroup.ts
-  - src/models/operations/notificationgroupscontrollerdeletenotificationgroup.ts
-  - src/models/operations/notificationgroupscontrollergetnotificationgroup.ts
-  - src/models/operations/notificationgroupscontrollerlistnotificationgroups.ts
-  - src/models/operations/notificationgroupscontrollerupdatenotificationgroup.ts
   - src/models/operations/notificationscontrollergetactivitygraphstats.ts
   - src/models/operations/notificationscontrollergetactivitystats.ts
   - src/models/operations/notificationscontrollergetnotification.ts
@@ -555,11 +504,8 @@ generatedFiles:
   - src/models/operations/topicscontrollerlisttopics.ts
   - src/models/operations/topicscontrollerremovesubscribers.ts
   - src/models/operations/topicscontrollerrenametopic.ts
-  - src/sdk/apikeys.ts
   - src/sdk/authentication.ts
   - src/sdk/credentials.ts
-  - src/sdk/environments.ts
-  - src/sdk/executiondetails.ts
   - src/sdk/index.ts
   - src/sdk/integrations.ts
   - src/sdk/messages.ts
@@ -574,7 +520,6 @@ generatedFiles:
   - src/sdk/subscribers.ts
   - src/sdk/topics.ts
   - src/sdk/webhooks.ts
-  - src/sdk/workflowgroups.ts
   - src/types/blobs.ts
   - src/types/constdatetime.ts
   - src/types/enums.ts
@@ -869,7 +814,7 @@ examples:
           payload: "btoa(JSON.stringify({ foo: 123 })) results in base64 encoded string like eyJmb28iOjEyM30="
       responses:
         "200":
-          application/json: {"hasMore": true, "data": [{"_id": "<id>", "_templateId": "<id>", "_environmentId": "<id>", "_messageTemplateId": "<id>", "_organizationId": "<id>", "_notificationId": "<id>", "_subscriberId": "<id>", "_feedId": "<id>", "_jobId": "<id>", "transactionId": "<id>", "content": "<value>", "channel": "push", "read": false, "seen": false, "deleted": false, "cta": {}, "status": "warning"}, {"_id": "<id>", "_templateId": "<id>", "_environmentId": "<id>", "_messageTemplateId": "<id>", "_organizationId": "<id>", "_notificationId": "<id>", "_subscriberId": "<id>", "_feedId": "<id>", "_jobId": "<id>", "transactionId": "<id>", "content": "<value>", "channel": "sms", "read": true, "seen": false, "deleted": true, "cta": {}, "status": "warning"}], "pageSize": "9643.05", "page": "1526.70"}
+          application/json: {"hasMore": true, "data": [{"_id": "<id>", "_templateId": "<id>", "_environmentId": "<id>", "_messageTemplateId": "<id>", "_organizationId": "<id>", "_notificationId": "<id>", "_subscriberId": "<id>", "_feedId": "<id>", "_jobId": "<id>", "transactionId": "<id>", "content": "<value>", "channel": "push", "read": false, "seen": false, "deleted": false, "cta": {}, "status": "warning", "payload": {"key": "value"}}, {"_id": "<id>", "_templateId": "<id>", "_environmentId": "<id>", "_messageTemplateId": "<id>", "_organizationId": "<id>", "_notificationId": "<id>", "_subscriberId": "<id>", "_feedId": "<id>", "_jobId": "<id>", "transactionId": "<id>", "content": "<value>", "channel": "sms", "read": true, "seen": false, "deleted": true, "cta": {}, "status": "warning", "payload": {"key": "value"}}], "pageSize": "9643.05", "page": "1526.70"}
   SubscribersController_markMessagesAs:
     speakeasy-default-subscribers-controller-mark-messages-as:
       parameters:

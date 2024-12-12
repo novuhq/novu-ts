@@ -218,19 +218,6 @@ run();
 <details open>
 <summary>Available methods</summary>
 
-### [environments](docs/sdks/environments/README.md)
-
-* [retrieve](docs/sdks/environments/README.md#retrieve) - Get current environment
-* [list](docs/sdks/environments/README.md#list) - Get environments
-
-#### [environments.apiKeys](docs/sdks/apikeys/README.md)
-
-* [list](docs/sdks/apikeys/README.md#list) - Get api keys
-
-### [executionDetails](docs/sdks/executiondetails/README.md)
-
-* [retrieve](docs/sdks/executiondetails/README.md#retrieve) - Get execution details
-
 ### [integrations](docs/sdks/integrations/README.md)
 
 * [list](docs/sdks/integrations/README.md#list) - Get integrations
@@ -323,14 +310,6 @@ run();
 * [retrieve](docs/sdks/novusubscribers/README.md#retrieve) - Check topic subscriber
 * [remove](docs/sdks/novusubscribers/README.md#remove) - Subscribers removal
 
-### [workflowGroups](docs/sdks/workflowgroups/README.md)
-
-* [create](docs/sdks/workflowgroups/README.md#create) - Create workflow group
-* [list](docs/sdks/workflowgroups/README.md#list) - Get workflow groups
-* [retrieve](docs/sdks/workflowgroups/README.md#retrieve) - Get workflow group
-* [update](docs/sdks/workflowgroups/README.md#update) - Update workflow group
-* [delete](docs/sdks/workflowgroups/README.md#delete) - Delete workflow group
-
 </details>
 <!-- End Available Resources and Operations [operations] -->
 
@@ -350,10 +329,6 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 <summary>Available standalone functions</summary>
 
 - [`cancel`](docs/sdks/novu/README.md#cancel) - Cancel triggered event
-- [`environmentsApiKeysList`](docs/sdks/apikeys/README.md#list) - Get api keys
-- [`environmentsList`](docs/sdks/environments/README.md#list) - Get environments
-- [`environmentsRetrieve`](docs/sdks/environments/README.md#retrieve) - Get current environment
-- [`executionDetailsRetrieve`](docs/sdks/executiondetails/README.md#retrieve) - Get execution details
 - [`integrationsCreate`](docs/sdks/integrations/README.md#create) - Create integration
 - [`integrationsDelete`](docs/sdks/integrations/README.md#delete) - Delete integration
 - [`integrationsList`](docs/sdks/integrations/README.md#list) - Get integrations
@@ -400,11 +375,6 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`trigger`](docs/sdks/novu/README.md#trigger) - Trigger event
 - [`triggerBroadcast`](docs/sdks/novu/README.md#triggerbroadcast) - Broadcast event to all
 - [`triggerBulk`](docs/sdks/novu/README.md#triggerbulk) - Bulk trigger event
-- [`workflowGroupsCreate`](docs/sdks/workflowgroups/README.md#create) - Create workflow group
-- [`workflowGroupsDelete`](docs/sdks/workflowgroups/README.md#delete) - Delete workflow group
-- [`workflowGroupsList`](docs/sdks/workflowgroups/README.md#list) - Get workflow groups
-- [`workflowGroupsRetrieve`](docs/sdks/workflowgroups/README.md#retrieve) - Get workflow group
-- [`workflowGroupsUpdate`](docs/sdks/workflowgroups/README.md#update) - Update workflow group
 
 </details>
 <!-- End Standalone functions [standalone-funcs] -->

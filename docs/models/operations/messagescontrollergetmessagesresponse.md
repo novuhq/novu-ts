@@ -20,8 +20,8 @@ let value: MessagesControllerGetMessagesResponse = {
         transactionId: "<id>",
       },
     ],
-    pageSize: 1289.26,
-    page: 3154.28,
+    pageSize: 6706.38,
+    page: 2103.83,
   },
 };
 ```

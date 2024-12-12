@@ -5,7 +5,7 @@
 ```typescript
 import { Type } from "@novu/api/models/components";
 
-let value: Type = "DATE";
+let value: Type = "NUMBER";
 ```
 
 ## Values

@@ -7,13 +7,13 @@ import { StepFilter } from "@novu/api/models/components";
 
 let value: StepFilter = {
   isNegated: false,
-  type: "BOOLEAN",
+  type: "STATEMENT",
   value: "OR",
   children: [
     {
       field: "<value>",
       value: "<value>",
-      operator: "ANY_IN",
+      operator: "LARGER",
       on: "subscriber",
     },
   ],

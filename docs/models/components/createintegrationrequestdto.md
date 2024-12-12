@@ -7,7 +7,7 @@ import { CreateIntegrationRequestDto } from "@novu/api/models/components";
 
 let value: CreateIntegrationRequestDto = {
   providerId: "<id>",
-  channel: "chat",
+  channel: "in_app",
 };
 ```
 

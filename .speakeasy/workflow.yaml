@@ -20,3 +20,5 @@ targets:
             output: sources/code-samples.yaml
             registry:
                 location: registry.speakeasyapi.dev/novu/novu/code-samples-typescript
+            labelOverride:
+                fixedValue: TypeScript
