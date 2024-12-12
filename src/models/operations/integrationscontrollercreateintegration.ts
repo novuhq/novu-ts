@@ -9,10 +9,84 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export type IntegrationsControllerCreateIntegrationResponseResult =
+  | components.ValidationErrorDto
+  | components.IntegrationResponseDto;
+
 export type IntegrationsControllerCreateIntegrationResponse = {
   headers: { [k: string]: Array<string> };
-  result: components.IntegrationResponseDto;
+  result: components.ValidationErrorDto | components.IntegrationResponseDto;
 };
+
+/** @internal */
+export const IntegrationsControllerCreateIntegrationResponseResult$inboundSchema:
+  z.ZodType<
+    IntegrationsControllerCreateIntegrationResponseResult,
+    z.ZodTypeDef,
+    unknown
+  > = z.union([
+    components.ValidationErrorDto$inboundSchema,
+    components.IntegrationResponseDto$inboundSchema,
+  ]);
+
+/** @internal */
+export type IntegrationsControllerCreateIntegrationResponseResult$Outbound =
+  | components.ValidationErrorDto$Outbound
+  | components.IntegrationResponseDto$Outbound;
+
+/** @internal */
+export const IntegrationsControllerCreateIntegrationResponseResult$outboundSchema:
+  z.ZodType<
+    IntegrationsControllerCreateIntegrationResponseResult$Outbound,
+    z.ZodTypeDef,
+    IntegrationsControllerCreateIntegrationResponseResult
+  > = z.union([
+    components.ValidationErrorDto$outboundSchema,
+    components.IntegrationResponseDto$outboundSchema,
+  ]);
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace IntegrationsControllerCreateIntegrationResponseResult$ {
+  /** @deprecated use `IntegrationsControllerCreateIntegrationResponseResult$inboundSchema` instead. */
+  export const inboundSchema =
+    IntegrationsControllerCreateIntegrationResponseResult$inboundSchema;
+  /** @deprecated use `IntegrationsControllerCreateIntegrationResponseResult$outboundSchema` instead. */
+  export const outboundSchema =
+    IntegrationsControllerCreateIntegrationResponseResult$outboundSchema;
+  /** @deprecated use `IntegrationsControllerCreateIntegrationResponseResult$Outbound` instead. */
+  export type Outbound =
+    IntegrationsControllerCreateIntegrationResponseResult$Outbound;
+}
+
+export function integrationsControllerCreateIntegrationResponseResultToJSON(
+  integrationsControllerCreateIntegrationResponseResult:
+    IntegrationsControllerCreateIntegrationResponseResult,
+): string {
+  return JSON.stringify(
+    IntegrationsControllerCreateIntegrationResponseResult$outboundSchema.parse(
+      integrationsControllerCreateIntegrationResponseResult,
+    ),
+  );
+}
+
+export function integrationsControllerCreateIntegrationResponseResultFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  IntegrationsControllerCreateIntegrationResponseResult,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      IntegrationsControllerCreateIntegrationResponseResult$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'IntegrationsControllerCreateIntegrationResponseResult' from JSON`,
+  );
+}
 
 /** @internal */
 export const IntegrationsControllerCreateIntegrationResponse$inboundSchema:
@@ -22,7 +96,10 @@ export const IntegrationsControllerCreateIntegrationResponse$inboundSchema:
     unknown
   > = z.object({
     Headers: z.record(z.array(z.string())),
-    Result: components.IntegrationResponseDto$inboundSchema,
+    Result: z.union([
+      components.ValidationErrorDto$inboundSchema,
+      components.IntegrationResponseDto$inboundSchema,
+    ]),
   }).transform((v) => {
     return remap$(v, {
       "Headers": "headers",
@@ -33,7 +110,9 @@ export const IntegrationsControllerCreateIntegrationResponse$inboundSchema:
 /** @internal */
 export type IntegrationsControllerCreateIntegrationResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
-  Result: components.IntegrationResponseDto$Outbound;
+  Result:
+    | components.ValidationErrorDto$Outbound
+    | components.IntegrationResponseDto$Outbound;
 };
 
 /** @internal */
@@ -44,7 +123,10 @@ export const IntegrationsControllerCreateIntegrationResponse$outboundSchema:
     IntegrationsControllerCreateIntegrationResponse
   > = z.object({
     headers: z.record(z.array(z.string())),
-    result: components.IntegrationResponseDto$outboundSchema,
+    result: z.union([
+      components.ValidationErrorDto$outboundSchema,
+      components.IntegrationResponseDto$outboundSchema,
+    ]),
   }).transform((v) => {
     return remap$(v, {
       headers: "Headers",

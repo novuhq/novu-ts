@@ -81,7 +81,7 @@ run();
 
 | Error Type       | Status Code      | Content Type     |
 | ---------------- | ---------------- | ---------------- |
-| errors.ErrorDto  | 400, 404         | application/json |
+| errors.ErrorDto  | 400, 404, 409    | application/json |
 | errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## updateGlobal
@@ -155,7 +155,7 @@ run();
 
 | Error Type       | Status Code      | Content Type     |
 | ---------------- | ---------------- | ---------------- |
-| errors.ErrorDto  | 400, 404         | application/json |
+| errors.ErrorDto  | 400, 404, 409    | application/json |
 | errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## retrieveByLevel
@@ -234,7 +234,7 @@ run();
 
 | Error Type       | Status Code      | Content Type     |
 | ---------------- | ---------------- | ---------------- |
-| errors.ErrorDto  | 400, 404         | application/json |
+| errors.ErrorDto  | 400, 404, 409    | application/json |
 | errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## update
@@ -315,5 +315,5 @@ run();
 
 | Error Type       | Status Code      | Content Type     |
 | ---------------- | ---------------- | ---------------- |
-| errors.ErrorDto  | 400, 404         | application/json |
+| errors.ErrorDto  | 400, 404, 409    | application/json |
 | errors.SDKError  | 4XX, 5XX         | \*/\*            |

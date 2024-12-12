@@ -112,7 +112,7 @@ run();
 
 | Error Type       | Status Code      | Content Type     |
 | ---------------- | ---------------- | ---------------- |
-| errors.ErrorDto  | 400, 404         | application/json |
+| errors.ErrorDto  | 400, 404, 409    | application/json |
 | errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## triggerBulk
@@ -256,7 +256,7 @@ run();
 
 | Error Type       | Status Code      | Content Type     |
 | ---------------- | ---------------- | ---------------- |
-| errors.ErrorDto  | 400, 404         | application/json |
+| errors.ErrorDto  | 400, 404, 409    | application/json |
 | errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## triggerBroadcast
@@ -347,7 +347,7 @@ run();
 
 | Error Type       | Status Code      | Content Type     |
 | ---------------- | ---------------- | ---------------- |
-| errors.ErrorDto  | 400, 404         | application/json |
+| errors.ErrorDto  | 400, 404, 409    | application/json |
 | errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## cancel
@@ -423,5 +423,5 @@ run();
 
 | Error Type       | Status Code      | Content Type     |
 | ---------------- | ---------------- | ---------------- |
-| errors.ErrorDto  | 400, 404         | application/json |
+| errors.ErrorDto  | 400, 404, 409    | application/json |
 | errors.SDKError  | 4XX, 5XX         | \*/\*            |

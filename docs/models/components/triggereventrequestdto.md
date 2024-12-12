@@ -21,9 +21,9 @@ let value: TriggerEventRequestDto = {
       },
     },
   },
-  to: {
-    subscriberId: "<id>",
-  },
+  to: [
+    "SUBSCRIBER_ID",
+  ],
 };
 ```
 

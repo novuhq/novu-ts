@@ -7,7 +7,7 @@ The channel through which the notification is sent.
 ```typescript
 import { ChannelTypeEnum } from "@novu/api/models/components";
 
-let value: ChannelTypeEnum = "chat";
+let value: ChannelTypeEnum = "in_app";
 ```
 
 ## Values

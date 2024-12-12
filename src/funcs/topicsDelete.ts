@@ -140,6 +140,11 @@ export async function topicsDelete(
     | RequestTimeoutError
     | ConnectionError
   >(
+    M.json(
+      200,
+      operations.TopicsControllerDeleteTopicResponse$inboundSchema.optional(),
+      { hdrs: true, key: "Result" },
+    ),
     M.nil(
       204,
       operations.TopicsControllerDeleteTopicResponse$inboundSchema.optional(),

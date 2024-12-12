@@ -13,7 +13,7 @@ let value: EventsControllerBroadcastEventToAllResponse = {
   },
   result: {
     acknowledged: false,
-    status: "processed",
+    status: "no_workflow_active_steps_defined",
   },
 };
 ```

@@ -34,7 +34,7 @@ const value: components.SubscriberPayloadDto = {
 ```typescript
 const value: components.TopicPayloadDto = {
   topicKey: "<value>",
-  type: "Subscriber",
+  type: "Topic",
 };
 ```
 

@@ -11,7 +11,7 @@ let value: SubscribersControllerMarkMessagesAsRequest = {
     messageId: [
       "<id>",
     ],
-    markAs: "unread",
+    markAs: "read",
   },
 };
 ```

@@ -23,6 +23,39 @@
           }
         },
         "responses": {
+          "200": {
+            "description": "Ok",
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationErrorDto"
+                }
+              }
+            }
+          },
           "201": {
             "description": "Created",
             "headers": {
@@ -123,7 +156,7 @@
             }
           },
           "409": {
-            "description": "The request could not be completed due to a conflict with the current state of the target resource.",
+            "description": "Conflict",
             "headers": {
               "Content-Type": {
                 "$ref": "#/components/headers/Content-Type"
@@ -145,19 +178,12 @@
               },
               "Idempotency-Replay": {
                 "$ref": "#/components/headers/Idempotency-Replay"
-              },
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              },
-              "Link": {
-                "$ref": "#/components/headers/Link"
               }
             },
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string",
-                  "example": "Request with key 3909d656-d4fe-4e80-ba86-90d3861afcd7 is currently being processed. Please retry after 1 second"
+                  "$ref": "#/components/schemas/ErrorDto"
                 }
               }
             }
@@ -269,6 +295,39 @@
           }
         },
         "responses": {
+          "200": {
+            "description": "Ok",
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationErrorDto"
+                }
+              }
+            }
+          },
           "201": {
             "description": "Created",
             "headers": {
@@ -372,7 +431,7 @@
             }
           },
           "409": {
-            "description": "The request could not be completed due to a conflict with the current state of the target resource.",
+            "description": "Conflict",
             "headers": {
               "Content-Type": {
                 "$ref": "#/components/headers/Content-Type"
@@ -394,19 +453,12 @@
               },
               "Idempotency-Replay": {
                 "$ref": "#/components/headers/Idempotency-Replay"
-              },
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              },
-              "Link": {
-                "$ref": "#/components/headers/Link"
               }
             },
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string",
-                  "example": "Request with key 3909d656-d4fe-4e80-ba86-90d3861afcd7 is currently being processed. Please retry after 1 second"
+                  "$ref": "#/components/schemas/ErrorDto"
                 }
               }
             }
@@ -651,7 +703,7 @@
             }
           },
           "409": {
-            "description": "The request could not be completed due to a conflict with the current state of the target resource.",
+            "description": "Conflict",
             "headers": {
               "Content-Type": {
                 "$ref": "#/components/headers/Content-Type"
@@ -673,19 +725,12 @@
               },
               "Idempotency-Replay": {
                 "$ref": "#/components/headers/Idempotency-Replay"
-              },
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              },
-              "Link": {
-                "$ref": "#/components/headers/Link"
               }
             },
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string",
-                  "example": "Request with key 3909d656-d4fe-4e80-ba86-90d3861afcd7 is currently being processed. Please retry after 1 second"
+                  "$ref": "#/components/schemas/ErrorDto"
                 }
               }
             }
@@ -896,7 +941,7 @@
             }
           },
           "409": {
-            "description": "The request could not be completed due to a conflict with the current state of the target resource.",
+            "description": "Conflict",
             "headers": {
               "Content-Type": {
                 "$ref": "#/components/headers/Content-Type"
@@ -918,19 +963,12 @@
               },
               "Idempotency-Replay": {
                 "$ref": "#/components/headers/Idempotency-Replay"
-              },
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              },
-              "Link": {
-                "$ref": "#/components/headers/Link"
               }
             },
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string",
-                  "example": "Request with key 3909d656-d4fe-4e80-ba86-90d3861afcd7 is currently being processed. Please retry after 1 second"
+                  "$ref": "#/components/schemas/ErrorDto"
                 }
               }
             }
@@ -1204,7 +1242,7 @@
             }
           },
           "409": {
-            "description": "The request could not be completed due to a conflict with the current state of the target resource.",
+            "description": "Conflict",
             "headers": {
               "Content-Type": {
                 "$ref": "#/components/headers/Content-Type"
@@ -1226,19 +1264,12 @@
               },
               "Idempotency-Replay": {
                 "$ref": "#/components/headers/Idempotency-Replay"
-              },
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              },
-              "Link": {
-                "$ref": "#/components/headers/Link"
               }
             },
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string",
-                  "example": "Request with key 3909d656-d4fe-4e80-ba86-90d3861afcd7 is currently being processed. Please retry after 1 second"
+                  "$ref": "#/components/schemas/ErrorDto"
                 }
               }
             }
@@ -1435,7 +1466,7 @@
             }
           },
           "409": {
-            "description": "The request could not be completed due to a conflict with the current state of the target resource.",
+            "description": "Conflict",
             "headers": {
               "Content-Type": {
                 "$ref": "#/components/headers/Content-Type"
@@ -1457,19 +1488,12 @@
               },
               "Idempotency-Replay": {
                 "$ref": "#/components/headers/Idempotency-Replay"
-              },
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              },
-              "Link": {
-                "$ref": "#/components/headers/Link"
               }
             },
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string",
-                  "example": "Request with key 3909d656-d4fe-4e80-ba86-90d3861afcd7 is currently being processed. Please retry after 1 second"
+                  "$ref": "#/components/schemas/ErrorDto"
                 }
               }
             }
@@ -1679,7 +1703,7 @@
             }
           },
           "409": {
-            "description": "The request could not be completed due to a conflict with the current state of the target resource.",
+            "description": "Conflict",
             "headers": {
               "Content-Type": {
                 "$ref": "#/components/headers/Content-Type"
@@ -1701,19 +1725,12 @@
               },
               "Idempotency-Replay": {
                 "$ref": "#/components/headers/Idempotency-Replay"
-              },
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              },
-              "Link": {
-                "$ref": "#/components/headers/Link"
               }
             },
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string",
-                  "example": "Request with key 3909d656-d4fe-4e80-ba86-90d3861afcd7 is currently being processed. Please retry after 1 second"
+                  "$ref": "#/components/schemas/ErrorDto"
                 }
               }
             }
@@ -1918,7 +1935,7 @@
             }
           },
           "409": {
-            "description": "The request could not be completed due to a conflict with the current state of the target resource.",
+            "description": "Conflict",
             "headers": {
               "Content-Type": {
                 "$ref": "#/components/headers/Content-Type"
@@ -1940,19 +1957,12 @@
               },
               "Idempotency-Replay": {
                 "$ref": "#/components/headers/Idempotency-Replay"
-              },
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              },
-              "Link": {
-                "$ref": "#/components/headers/Link"
               }
             },
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string",
-                  "example": "Request with key 3909d656-d4fe-4e80-ba86-90d3861afcd7 is currently being processed. Please retry after 1 second"
+                  "$ref": "#/components/schemas/ErrorDto"
                 }
               }
             }
@@ -2152,7 +2162,7 @@
             }
           },
           "409": {
-            "description": "The request could not be completed due to a conflict with the current state of the target resource.",
+            "description": "Conflict",
             "headers": {
               "Content-Type": {
                 "$ref": "#/components/headers/Content-Type"
@@ -2174,19 +2184,12 @@
               },
               "Idempotency-Replay": {
                 "$ref": "#/components/headers/Idempotency-Replay"
-              },
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              },
-              "Link": {
-                "$ref": "#/components/headers/Link"
               }
             },
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string",
-                  "example": "Request with key 3909d656-d4fe-4e80-ba86-90d3861afcd7 is currently being processed. Please retry after 1 second"
+                  "$ref": "#/components/schemas/ErrorDto"
                 }
               }
             }
@@ -2291,6 +2294,39 @@
           }
         },
         "responses": {
+          "200": {
+            "description": "Ok",
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationErrorDto"
+                }
+              }
+            }
+          },
           "201": {
             "description": "Created",
             "headers": {
@@ -2391,7 +2427,7 @@
             }
           },
           "409": {
-            "description": "The request could not be completed due to a conflict with the current state of the target resource.",
+            "description": "Conflict",
             "headers": {
               "Content-Type": {
                 "$ref": "#/components/headers/Content-Type"
@@ -2413,19 +2449,12 @@
               },
               "Idempotency-Replay": {
                 "$ref": "#/components/headers/Idempotency-Replay"
-              },
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              },
-              "Link": {
-                "$ref": "#/components/headers/Link"
               }
             },
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string",
-                  "example": "Request with key 3909d656-d4fe-4e80-ba86-90d3861afcd7 is currently being processed. Please retry after 1 second"
+                  "$ref": "#/components/schemas/ErrorDto"
                 }
               }
             }
@@ -2626,7 +2655,7 @@
             }
           },
           "409": {
-            "description": "The request could not be completed due to a conflict with the current state of the target resource.",
+            "description": "Conflict",
             "headers": {
               "Content-Type": {
                 "$ref": "#/components/headers/Content-Type"
@@ -2648,19 +2677,12 @@
               },
               "Idempotency-Replay": {
                 "$ref": "#/components/headers/Idempotency-Replay"
-              },
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              },
-              "Link": {
-                "$ref": "#/components/headers/Link"
               }
             },
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string",
-                  "example": "Request with key 3909d656-d4fe-4e80-ba86-90d3861afcd7 is currently being processed. Please retry after 1 second"
+                  "$ref": "#/components/schemas/ErrorDto"
                 }
               }
             }
@@ -2867,7 +2889,7 @@
             }
           },
           "409": {
-            "description": "The request could not be completed due to a conflict with the current state of the target resource.",
+            "description": "Conflict",
             "headers": {
               "Content-Type": {
                 "$ref": "#/components/headers/Content-Type"
@@ -2889,19 +2911,12 @@
               },
               "Idempotency-Replay": {
                 "$ref": "#/components/headers/Idempotency-Replay"
-              },
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              },
-              "Link": {
-                "$ref": "#/components/headers/Link"
               }
             },
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string",
-                  "example": "Request with key 3909d656-d4fe-4e80-ba86-90d3861afcd7 is currently being processed. Please retry after 1 second"
+                  "$ref": "#/components/schemas/ErrorDto"
                 }
               }
             }
@@ -3109,7 +3124,7 @@
             }
           },
           "409": {
-            "description": "The request could not be completed due to a conflict with the current state of the target resource.",
+            "description": "Conflict",
             "headers": {
               "Content-Type": {
                 "$ref": "#/components/headers/Content-Type"
@@ -3131,19 +3146,12 @@
               },
               "Idempotency-Replay": {
                 "$ref": "#/components/headers/Idempotency-Replay"
-              },
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              },
-              "Link": {
-                "$ref": "#/components/headers/Link"
               }
             },
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string",
-                  "example": "Request with key 3909d656-d4fe-4e80-ba86-90d3861afcd7 is currently being processed. Please retry after 1 second"
+                  "$ref": "#/components/schemas/ErrorDto"
                 }
               }
             }
@@ -3349,7 +3357,7 @@
             }
           },
           "409": {
-            "description": "The request could not be completed due to a conflict with the current state of the target resource.",
+            "description": "Conflict",
             "headers": {
               "Content-Type": {
                 "$ref": "#/components/headers/Content-Type"
@@ -3371,19 +3379,12 @@
               },
               "Idempotency-Replay": {
                 "$ref": "#/components/headers/Idempotency-Replay"
-              },
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              },
-              "Link": {
-                "$ref": "#/components/headers/Link"
               }
             },
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string",
-                  "example": "Request with key 3909d656-d4fe-4e80-ba86-90d3861afcd7 is currently being processed. Please retry after 1 second"
+                  "$ref": "#/components/schemas/ErrorDto"
                 }
               }
             }
@@ -3582,7 +3583,7 @@
             }
           },
           "409": {
-            "description": "The request could not be completed due to a conflict with the current state of the target resource.",
+            "description": "Conflict",
             "headers": {
               "Content-Type": {
                 "$ref": "#/components/headers/Content-Type"
@@ -3604,19 +3605,12 @@
               },
               "Idempotency-Replay": {
                 "$ref": "#/components/headers/Idempotency-Replay"
-              },
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              },
-              "Link": {
-                "$ref": "#/components/headers/Link"
               }
             },
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string",
-                  "example": "Request with key 3909d656-d4fe-4e80-ba86-90d3861afcd7 is currently being processed. Please retry after 1 second"
+                  "$ref": "#/components/schemas/ErrorDto"
                 }
               }
             }
@@ -3864,7 +3858,7 @@
             }
           },
           "409": {
-            "description": "The request could not be completed due to a conflict with the current state of the target resource.",
+            "description": "Conflict",
             "headers": {
               "Content-Type": {
                 "$ref": "#/components/headers/Content-Type"
@@ -3886,19 +3880,12 @@
               },
               "Idempotency-Replay": {
                 "$ref": "#/components/headers/Idempotency-Replay"
-              },
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              },
-              "Link": {
-                "$ref": "#/components/headers/Link"
               }
             },
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string",
-                  "example": "Request with key 3909d656-d4fe-4e80-ba86-90d3861afcd7 is currently being processed. Please retry after 1 second"
+                  "$ref": "#/components/schemas/ErrorDto"
                 }
               }
             }
@@ -4003,6 +3990,39 @@
           }
         },
         "responses": {
+          "200": {
+            "description": "Ok",
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationErrorDto"
+                }
+              }
+            }
+          },
           "201": {
             "description": "Created",
             "headers": {
@@ -4103,7 +4123,7 @@
             }
           },
           "409": {
-            "description": "The request could not be completed due to a conflict with the current state of the target resource.",
+            "description": "Conflict",
             "headers": {
               "Content-Type": {
                 "$ref": "#/components/headers/Content-Type"
@@ -4125,19 +4145,12 @@
               },
               "Idempotency-Replay": {
                 "$ref": "#/components/headers/Idempotency-Replay"
-              },
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              },
-              "Link": {
-                "$ref": "#/components/headers/Link"
               }
             },
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string",
-                  "example": "Request with key 3909d656-d4fe-4e80-ba86-90d3861afcd7 is currently being processed. Please retry after 1 second"
+                  "$ref": "#/components/schemas/ErrorDto"
                 }
               }
             }
@@ -4352,7 +4365,7 @@
             }
           },
           "409": {
-            "description": "The request could not be completed due to a conflict with the current state of the target resource.",
+            "description": "Conflict",
             "headers": {
               "Content-Type": {
                 "$ref": "#/components/headers/Content-Type"
@@ -4374,19 +4387,12 @@
               },
               "Idempotency-Replay": {
                 "$ref": "#/components/headers/Idempotency-Replay"
-              },
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              },
-              "Link": {
-                "$ref": "#/components/headers/Link"
               }
             },
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string",
-                  "example": "Request with key 3909d656-d4fe-4e80-ba86-90d3861afcd7 is currently being processed. Please retry after 1 second"
+                  "$ref": "#/components/schemas/ErrorDto"
                 }
               }
             }
@@ -4600,7 +4606,7 @@
             }
           },
           "409": {
-            "description": "The request could not be completed due to a conflict with the current state of the target resource.",
+            "description": "Conflict",
             "headers": {
               "Content-Type": {
                 "$ref": "#/components/headers/Content-Type"
@@ -4622,19 +4628,12 @@
               },
               "Idempotency-Replay": {
                 "$ref": "#/components/headers/Idempotency-Replay"
-              },
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              },
-              "Link": {
-                "$ref": "#/components/headers/Link"
               }
             },
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string",
-                  "example": "Request with key 3909d656-d4fe-4e80-ba86-90d3861afcd7 is currently being processed. Please retry after 1 second"
+                  "$ref": "#/components/schemas/ErrorDto"
                 }
               }
             }
@@ -4838,7 +4837,7 @@
             }
           },
           "409": {
-            "description": "The request could not be completed due to a conflict with the current state of the target resource.",
+            "description": "Conflict",
             "headers": {
               "Content-Type": {
                 "$ref": "#/components/headers/Content-Type"
@@ -4860,19 +4859,12 @@
               },
               "Idempotency-Replay": {
                 "$ref": "#/components/headers/Idempotency-Replay"
-              },
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              },
-              "Link": {
-                "$ref": "#/components/headers/Link"
               }
             },
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string",
-                  "example": "Request with key 3909d656-d4fe-4e80-ba86-90d3861afcd7 is currently being processed. Please retry after 1 second"
+                  "$ref": "#/components/schemas/ErrorDto"
                 }
               }
             }
@@ -4980,6 +4972,39 @@
           }
         },
         "responses": {
+          "200": {
+            "description": "Ok",
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationErrorDto"
+                }
+              }
+            }
+          },
           "201": {
             "description": ""
           },
@@ -5050,7 +5075,7 @@
             }
           },
           "409": {
-            "description": "The request could not be completed due to a conflict with the current state of the target resource.",
+            "description": "Conflict",
             "headers": {
               "Content-Type": {
                 "$ref": "#/components/headers/Content-Type"
@@ -5072,19 +5097,12 @@
               },
               "Idempotency-Replay": {
                 "$ref": "#/components/headers/Idempotency-Replay"
-              },
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              },
-              "Link": {
-                "$ref": "#/components/headers/Link"
               }
             },
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string",
-                  "example": "Request with key 3909d656-d4fe-4e80-ba86-90d3861afcd7 is currently being processed. Please retry after 1 second"
+                  "$ref": "#/components/schemas/ErrorDto"
                 }
               }
             }
@@ -5301,7 +5319,7 @@
             }
           },
           "409": {
-            "description": "The request could not be completed due to a conflict with the current state of the target resource.",
+            "description": "Conflict",
             "headers": {
               "Content-Type": {
                 "$ref": "#/components/headers/Content-Type"
@@ -5323,19 +5341,12 @@
               },
               "Idempotency-Replay": {
                 "$ref": "#/components/headers/Idempotency-Replay"
-              },
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              },
-              "Link": {
-                "$ref": "#/components/headers/Link"
               }
             },
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string",
-                  "example": "Request with key 3909d656-d4fe-4e80-ba86-90d3861afcd7 is currently being processed. Please retry after 1 second"
+                  "$ref": "#/components/schemas/ErrorDto"
                 }
               }
             }
@@ -5551,7 +5562,7 @@
             }
           },
           "409": {
-            "description": "The request could not be completed due to a conflict with the current state of the target resource.",
+            "description": "Conflict",
             "headers": {
               "Content-Type": {
                 "$ref": "#/components/headers/Content-Type"
@@ -5573,19 +5584,12 @@
               },
               "Idempotency-Replay": {
                 "$ref": "#/components/headers/Idempotency-Replay"
-              },
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              },
-              "Link": {
-                "$ref": "#/components/headers/Link"
               }
             },
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string",
-                  "example": "Request with key 3909d656-d4fe-4e80-ba86-90d3861afcd7 is currently being processed. Please retry after 1 second"
+                  "$ref": "#/components/schemas/ErrorDto"
                 }
               }
             }
@@ -5700,6 +5704,39 @@
           }
         ],
         "responses": {
+          "200": {
+            "description": "Ok",
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationErrorDto"
+                }
+              }
+            }
+          },
           "204": {
             "headers": {
               "Content-Type": {
@@ -5793,7 +5830,7 @@
             }
           },
           "409": {
-            "description": "The request could not be completed due to a conflict with the current state of the target resource.",
+            "description": "Conflict",
             "headers": {
               "Content-Type": {
                 "$ref": "#/components/headers/Content-Type"
@@ -5815,19 +5852,12 @@
               },
               "Idempotency-Replay": {
                 "$ref": "#/components/headers/Idempotency-Replay"
-              },
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              },
-              "Link": {
-                "$ref": "#/components/headers/Link"
               }
             },
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string",
-                  "example": "Request with key 3909d656-d4fe-4e80-ba86-90d3861afcd7 is currently being processed. Please retry after 1 second"
+                  "$ref": "#/components/schemas/ErrorDto"
                 }
               }
             }
@@ -6045,7 +6075,7 @@
             }
           },
           "409": {
-            "description": "The request could not be completed due to a conflict with the current state of the target resource.",
+            "description": "Conflict",
             "headers": {
               "Content-Type": {
                 "$ref": "#/components/headers/Content-Type"
@@ -6067,19 +6097,12 @@
               },
               "Idempotency-Replay": {
                 "$ref": "#/components/headers/Idempotency-Replay"
-              },
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              },
-              "Link": {
-                "$ref": "#/components/headers/Link"
               }
             },
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string",
-                  "example": "Request with key 3909d656-d4fe-4e80-ba86-90d3861afcd7 is currently being processed. Please retry after 1 second"
+                  "$ref": "#/components/schemas/ErrorDto"
                 }
               }
             }
@@ -6297,7 +6320,7 @@
             }
           },
           "409": {
-            "description": "The request could not be completed due to a conflict with the current state of the target resource.",
+            "description": "Conflict",
             "headers": {
               "Content-Type": {
                 "$ref": "#/components/headers/Content-Type"
@@ -6319,19 +6342,12 @@
               },
               "Idempotency-Replay": {
                 "$ref": "#/components/headers/Idempotency-Replay"
-              },
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              },
-              "Link": {
-                "$ref": "#/components/headers/Link"
               }
             },
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string",
-                  "example": "Request with key 3909d656-d4fe-4e80-ba86-90d3861afcd7 is currently being processed. Please retry after 1 second"
+                  "$ref": "#/components/schemas/ErrorDto"
                 }
               }
             }
@@ -6546,7 +6562,7 @@
             }
           },
           "409": {
-            "description": "The request could not be completed due to a conflict with the current state of the target resource.",
+            "description": "Conflict",
             "headers": {
               "Content-Type": {
                 "$ref": "#/components/headers/Content-Type"
@@ -6568,19 +6584,12 @@
               },
               "Idempotency-Replay": {
                 "$ref": "#/components/headers/Idempotency-Replay"
-              },
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              },
-              "Link": {
-                "$ref": "#/components/headers/Link"
               }
             },
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string",
-                  "example": "Request with key 3909d656-d4fe-4e80-ba86-90d3861afcd7 is currently being processed. Please retry after 1 second"
+                  "$ref": "#/components/schemas/ErrorDto"
                 }
               }
             }
@@ -6812,7 +6821,7 @@
             }
           },
           "409": {
-            "description": "The request could not be completed due to a conflict with the current state of the target resource.",
+            "description": "Conflict",
             "headers": {
               "Content-Type": {
                 "$ref": "#/components/headers/Content-Type"
@@ -6834,19 +6843,12 @@
               },
               "Idempotency-Replay": {
                 "$ref": "#/components/headers/Idempotency-Replay"
-              },
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              },
-              "Link": {
-                "$ref": "#/components/headers/Link"
               }
             },
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string",
-                  "example": "Request with key 3909d656-d4fe-4e80-ba86-90d3861afcd7 is currently being processed. Please retry after 1 second"
+                  "$ref": "#/components/schemas/ErrorDto"
                 }
               }
             }
@@ -7068,7 +7070,7 @@
             }
           },
           "409": {
-            "description": "The request could not be completed due to a conflict with the current state of the target resource.",
+            "description": "Conflict",
             "headers": {
               "Content-Type": {
                 "$ref": "#/components/headers/Content-Type"
@@ -7090,19 +7092,12 @@
               },
               "Idempotency-Replay": {
                 "$ref": "#/components/headers/Idempotency-Replay"
-              },
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              },
-              "Link": {
-                "$ref": "#/components/headers/Link"
               }
             },
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string",
-                  "example": "Request with key 3909d656-d4fe-4e80-ba86-90d3861afcd7 is currently being processed. Please retry after 1 second"
+                  "$ref": "#/components/schemas/ErrorDto"
                 }
               }
             }
@@ -7353,7 +7348,7 @@
             }
           },
           "409": {
-            "description": "The request could not be completed due to a conflict with the current state of the target resource.",
+            "description": "Conflict",
             "headers": {
               "Content-Type": {
                 "$ref": "#/components/headers/Content-Type"
@@ -7375,19 +7370,12 @@
               },
               "Idempotency-Replay": {
                 "$ref": "#/components/headers/Idempotency-Replay"
-              },
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              },
-              "Link": {
-                "$ref": "#/components/headers/Link"
               }
             },
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string",
-                  "example": "Request with key 3909d656-d4fe-4e80-ba86-90d3861afcd7 is currently being processed. Please retry after 1 second"
+                  "$ref": "#/components/schemas/ErrorDto"
                 }
               }
             }
@@ -7610,7 +7598,7 @@
             }
           },
           "409": {
-            "description": "The request could not be completed due to a conflict with the current state of the target resource.",
+            "description": "Conflict",
             "headers": {
               "Content-Type": {
                 "$ref": "#/components/headers/Content-Type"
@@ -7632,19 +7620,12 @@
               },
               "Idempotency-Replay": {
                 "$ref": "#/components/headers/Idempotency-Replay"
-              },
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              },
-              "Link": {
-                "$ref": "#/components/headers/Link"
               }
             },
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string",
-                  "example": "Request with key 3909d656-d4fe-4e80-ba86-90d3861afcd7 is currently being processed. Please retry after 1 second"
+                  "$ref": "#/components/schemas/ErrorDto"
                 }
               }
             }
@@ -7761,6 +7742,39 @@
           }
         },
         "responses": {
+          "200": {
+            "description": "Ok",
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationErrorDto"
+                }
+              }
+            }
+          },
           "201": {
             "description": "",
             "content": {
@@ -7841,7 +7855,7 @@
             }
           },
           "409": {
-            "description": "The request could not be completed due to a conflict with the current state of the target resource.",
+            "description": "Conflict",
             "headers": {
               "Content-Type": {
                 "$ref": "#/components/headers/Content-Type"
@@ -7863,19 +7877,12 @@
               },
               "Idempotency-Replay": {
                 "$ref": "#/components/headers/Idempotency-Replay"
-              },
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              },
-              "Link": {
-                "$ref": "#/components/headers/Link"
               }
             },
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string",
-                  "example": "Request with key 3909d656-d4fe-4e80-ba86-90d3861afcd7 is currently being processed. Please retry after 1 second"
+                  "$ref": "#/components/schemas/ErrorDto"
                 }
               }
             }
@@ -7992,6 +7999,39 @@
           }
         },
         "responses": {
+          "200": {
+            "description": "Ok",
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationErrorDto"
+                }
+              }
+            }
+          },
           "201": {
             "headers": {
               "Content-Type": {
@@ -8092,7 +8132,7 @@
             }
           },
           "409": {
-            "description": "The request could not be completed due to a conflict with the current state of the target resource.",
+            "description": "Conflict",
             "headers": {
               "Content-Type": {
                 "$ref": "#/components/headers/Content-Type"
@@ -8114,19 +8154,12 @@
               },
               "Idempotency-Replay": {
                 "$ref": "#/components/headers/Idempotency-Replay"
-              },
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              },
-              "Link": {
-                "$ref": "#/components/headers/Link"
               }
             },
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string",
-                  "example": "Request with key 3909d656-d4fe-4e80-ba86-90d3861afcd7 is currently being processed. Please retry after 1 second"
+                  "$ref": "#/components/schemas/ErrorDto"
                 }
               }
             }
@@ -8257,6 +8290,39 @@
           }
         },
         "responses": {
+          "200": {
+            "description": "Ok",
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationErrorDto"
+                }
+              }
+            }
+          },
           "201": {
             "description": "Created",
             "headers": {
@@ -8357,7 +8423,7 @@
             }
           },
           "409": {
-            "description": "The request could not be completed due to a conflict with the current state of the target resource.",
+            "description": "Conflict",
             "headers": {
               "Content-Type": {
                 "$ref": "#/components/headers/Content-Type"
@@ -8379,19 +8445,12 @@
               },
               "Idempotency-Replay": {
                 "$ref": "#/components/headers/Idempotency-Replay"
-              },
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              },
-              "Link": {
-                "$ref": "#/components/headers/Link"
               }
             },
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string",
-                  "example": "Request with key 3909d656-d4fe-4e80-ba86-90d3861afcd7 is currently being processed. Please retry after 1 second"
+                  "$ref": "#/components/schemas/ErrorDto"
                 }
               }
             }
@@ -8613,7 +8672,7 @@
             }
           },
           "409": {
-            "description": "The request could not be completed due to a conflict with the current state of the target resource.",
+            "description": "Conflict",
             "headers": {
               "Content-Type": {
                 "$ref": "#/components/headers/Content-Type"
@@ -8635,19 +8694,12 @@
               },
               "Idempotency-Replay": {
                 "$ref": "#/components/headers/Idempotency-Replay"
-              },
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              },
-              "Link": {
-                "$ref": "#/components/headers/Link"
               }
             },
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string",
-                  "example": "Request with key 3909d656-d4fe-4e80-ba86-90d3861afcd7 is currently being processed. Please retry after 1 second"
+                  "$ref": "#/components/schemas/ErrorDto"
                 }
               }
             }
@@ -8854,7 +8906,7 @@
             }
           },
           "409": {
-            "description": "The request could not be completed due to a conflict with the current state of the target resource.",
+            "description": "Conflict",
             "headers": {
               "Content-Type": {
                 "$ref": "#/components/headers/Content-Type"
@@ -8876,19 +8928,12 @@
               },
               "Idempotency-Replay": {
                 "$ref": "#/components/headers/Idempotency-Replay"
-              },
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              },
-              "Link": {
-                "$ref": "#/components/headers/Link"
               }
             },
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string",
-                  "example": "Request with key 3909d656-d4fe-4e80-ba86-90d3861afcd7 is currently being processed. Please retry after 1 second"
+                  "$ref": "#/components/schemas/ErrorDto"
                 }
               }
             }
@@ -9131,7 +9176,7 @@
             }
           },
           "409": {
-            "description": "The request could not be completed due to a conflict with the current state of the target resource.",
+            "description": "Conflict",
             "headers": {
               "Content-Type": {
                 "$ref": "#/components/headers/Content-Type"
@@ -9153,19 +9198,12 @@
               },
               "Idempotency-Replay": {
                 "$ref": "#/components/headers/Idempotency-Replay"
-              },
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              },
-              "Link": {
-                "$ref": "#/components/headers/Link"
               }
             },
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string",
-                  "example": "Request with key 3909d656-d4fe-4e80-ba86-90d3861afcd7 is currently being processed. Please retry after 1 second"
+                  "$ref": "#/components/schemas/ErrorDto"
                 }
               }
             }
@@ -9371,7 +9409,7 @@
             }
           },
           "409": {
-            "description": "The request could not be completed due to a conflict with the current state of the target resource.",
+            "description": "Conflict",
             "headers": {
               "Content-Type": {
                 "$ref": "#/components/headers/Content-Type"
@@ -9393,19 +9431,12 @@
               },
               "Idempotency-Replay": {
                 "$ref": "#/components/headers/Idempotency-Replay"
-              },
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              },
-              "Link": {
-                "$ref": "#/components/headers/Link"
               }
             },
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string",
-                  "example": "Request with key 3909d656-d4fe-4e80-ba86-90d3861afcd7 is currently being processed. Please retry after 1 second"
+                  "$ref": "#/components/schemas/ErrorDto"
                 }
               }
             }
@@ -9528,6 +9559,39 @@
           }
         ],
         "responses": {
+          "200": {
+            "description": "Ok",
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationErrorDto"
+                }
+              }
+            }
+          },
           "204": {
             "headers": {
               "Content-Type": {
@@ -9621,7 +9685,7 @@
             }
           },
           "409": {
-            "description": "The request could not be completed due to a conflict with the current state of the target resource.",
+            "description": "Conflict",
             "headers": {
               "Content-Type": {
                 "$ref": "#/components/headers/Content-Type"
@@ -9643,19 +9707,12 @@
               },
               "Idempotency-Replay": {
                 "$ref": "#/components/headers/Idempotency-Replay"
-              },
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              },
-              "Link": {
-                "$ref": "#/components/headers/Link"
               }
             },
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string",
-                  "example": "Request with key 3909d656-d4fe-4e80-ba86-90d3861afcd7 is currently being processed. Please retry after 1 second"
+                  "$ref": "#/components/schemas/ErrorDto"
                 }
               }
             }
@@ -9762,6 +9819,39 @@
           }
         },
         "responses": {
+          "200": {
+            "description": "Ok",
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationErrorDto"
+                }
+              }
+            }
+          },
           "201": {
             "description": "Created",
             "headers": {
@@ -9862,7 +9952,7 @@
             }
           },
           "409": {
-            "description": "The request could not be completed due to a conflict with the current state of the target resource.",
+            "description": "Conflict",
             "headers": {
               "Content-Type": {
                 "$ref": "#/components/headers/Content-Type"
@@ -9884,19 +9974,12 @@
               },
               "Idempotency-Replay": {
                 "$ref": "#/components/headers/Idempotency-Replay"
-              },
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              },
-              "Link": {
-                "$ref": "#/components/headers/Link"
               }
             },
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string",
-                  "example": "Request with key 3909d656-d4fe-4e80-ba86-90d3861afcd7 is currently being processed. Please retry after 1 second"
+                  "$ref": "#/components/schemas/ErrorDto"
                 }
               }
             }
@@ -10123,7 +10206,7 @@
             }
           },
           "409": {
-            "description": "The request could not be completed due to a conflict with the current state of the target resource.",
+            "description": "Conflict",
             "headers": {
               "Content-Type": {
                 "$ref": "#/components/headers/Content-Type"
@@ -10145,19 +10228,12 @@
               },
               "Idempotency-Replay": {
                 "$ref": "#/components/headers/Idempotency-Replay"
-              },
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              },
-              "Link": {
-                "$ref": "#/components/headers/Link"
               }
             },
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string",
-                  "example": "Request with key 3909d656-d4fe-4e80-ba86-90d3861afcd7 is currently being processed. Please retry after 1 second"
+                  "$ref": "#/components/schemas/ErrorDto"
                 }
               }
             }
@@ -10376,7 +10452,7 @@
             }
           },
           "409": {
-            "description": "The request could not be completed due to a conflict with the current state of the target resource.",
+            "description": "Conflict",
             "headers": {
               "Content-Type": {
                 "$ref": "#/components/headers/Content-Type"
@@ -10398,19 +10474,12 @@
               },
               "Idempotency-Replay": {
                 "$ref": "#/components/headers/Idempotency-Replay"
-              },
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              },
-              "Link": {
-                "$ref": "#/components/headers/Link"
               }
             },
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string",
-                  "example": "Request with key 3909d656-d4fe-4e80-ba86-90d3861afcd7 is currently being processed. Please retry after 1 second"
+                  "$ref": "#/components/schemas/ErrorDto"
                 }
               }
             }
@@ -10627,7 +10696,7 @@
             }
           },
           "409": {
-            "description": "The request could not be completed due to a conflict with the current state of the target resource.",
+            "description": "Conflict",
             "headers": {
               "Content-Type": {
                 "$ref": "#/components/headers/Content-Type"
@@ -10649,19 +10718,12 @@
               },
               "Idempotency-Replay": {
                 "$ref": "#/components/headers/Idempotency-Replay"
-              },
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              },
-              "Link": {
-                "$ref": "#/components/headers/Link"
               }
             },
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string",
-                  "example": "Request with key 3909d656-d4fe-4e80-ba86-90d3861afcd7 is currently being processed. Please retry after 1 second"
+                  "$ref": "#/components/schemas/ErrorDto"
                 }
               }
             }
@@ -10780,6 +10842,39 @@
           }
         },
         "responses": {
+          "200": {
+            "description": "Ok",
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationErrorDto"
+                }
+              }
+            }
+          },
           "204": {
             "headers": {
               "Content-Type": {
@@ -10873,7 +10968,7 @@
             }
           },
           "409": {
-            "description": "The request could not be completed due to a conflict with the current state of the target resource.",
+            "description": "Conflict",
             "headers": {
               "Content-Type": {
                 "$ref": "#/components/headers/Content-Type"
@@ -10895,19 +10990,12 @@
               },
               "Idempotency-Replay": {
                 "$ref": "#/components/headers/Idempotency-Replay"
-              },
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              },
-              "Link": {
-                "$ref": "#/components/headers/Link"
               }
             },
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string",
-                  "example": "Request with key 3909d656-d4fe-4e80-ba86-90d3861afcd7 is currently being processed. Please retry after 1 second"
+                  "$ref": "#/components/schemas/ErrorDto"
                 }
               }
             }
@@ -11014,6 +11102,39 @@
           }
         ],
         "responses": {
+          "200": {
+            "description": "Ok",
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationErrorDto"
+                }
+              }
+            }
+          },
           "204": {
             "description": "The topic has been deleted correctly",
             "headers": {
@@ -11333,7 +11454,7 @@
             }
           },
           "409": {
-            "description": "The request could not be completed due to a conflict with the current state of the target resource.",
+            "description": "Conflict",
             "headers": {
               "Content-Type": {
                 "$ref": "#/components/headers/Content-Type"
@@ -11355,19 +11476,12 @@
               },
               "Idempotency-Replay": {
                 "$ref": "#/components/headers/Idempotency-Replay"
-              },
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              },
-              "Link": {
-                "$ref": "#/components/headers/Link"
               }
             },
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string",
-                  "example": "Request with key 3909d656-d4fe-4e80-ba86-90d3861afcd7 is currently being processed. Please retry after 1 second"
+                  "$ref": "#/components/schemas/ErrorDto"
                 }
               }
             }
@@ -11583,7 +11697,7 @@
             }
           },
           "409": {
-            "description": "The request could not be completed due to a conflict with the current state of the target resource.",
+            "description": "Conflict",
             "headers": {
               "Content-Type": {
                 "$ref": "#/components/headers/Content-Type"
@@ -11605,19 +11719,12 @@
               },
               "Idempotency-Replay": {
                 "$ref": "#/components/headers/Idempotency-Replay"
-              },
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              },
-              "Link": {
-                "$ref": "#/components/headers/Link"
               }
             },
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string",
-                  "example": "Request with key 3909d656-d4fe-4e80-ba86-90d3861afcd7 is currently being processed. Please retry after 1 second"
+                  "$ref": "#/components/schemas/ErrorDto"
                 }
               }
             }
@@ -11910,6 +12017,113 @@
           "timestamp",
           "path",
           "message"
+        ]
+      },
+      "ValidationErrorDto": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "number",
+            "description": "HTTP status code of the error response.",
+            "example": 404
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "Timestamp of when the error occurred.",
+            "example": "2024-12-12T13:00:00Z"
+          },
+          "path": {
+            "type": "string",
+            "description": "The path where the error occurred.",
+            "example": "/api/v1/resource"
+          },
+          "message": {
+            "type": "string",
+            "description": "A detailed error message.",
+            "example": "Resource not found."
+          },
+          "ctx": {
+            "type": "object",
+            "description": "Optional context object for additional error details.",
+            "additionalProperties": true,
+            "example": {
+              "workflowId": "some_wf_id",
+              "stepId": "some_wf_id"
+            }
+          },
+          "errorId": {
+            "type": "string",
+            "description": "Optional unique identifier for the error, useful for tracking using Sentry and \n      New Relic, only available for 500.",
+            "example": "abc123"
+          },
+          "errors": {
+            "type": "object",
+            "description": "A record of validation errors keyed by field name",
+            "additionalProperties": {
+              "type": "object",
+              "properties": {
+                "messages": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "value": {
+                  "oneOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "boolean"
+                    },
+                    {
+                      "type": "object"
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "messages"
+              ],
+              "example": {
+                "messages": [
+                  "Field is required",
+                  "Invalid format"
+                ]
+              }
+            },
+            "example": {
+              "fieldName1": {
+                "messages": [
+                  "Field is required",
+                  "Must be a valid email address"
+                ],
+                "value": "invalidEmail"
+              },
+              "fieldName2": {
+                "messages": [
+                  "Must be at least 18 years old"
+                ],
+                "value": 17
+              },
+              "fieldName3": {
+                "messages": [
+                  "Field cannot be null"
+                ],
+                "value": null
+              }
+            }
+          }
+        },
+        "required": [
+          "statusCode",
+          "timestamp",
+          "path",
+          "message",
+          "errors"
         ]
       },
       "TriggerEventResponseDto": {

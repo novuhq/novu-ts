@@ -90,7 +90,7 @@ run();
 
 | Error Type       | Status Code      | Content Type     |
 | ---------------- | ---------------- | ---------------- |
-| errors.ErrorDto  | 400, 404         | application/json |
+| errors.ErrorDto  | 400, 404, 409    | application/json |
 | errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## create
@@ -167,7 +167,7 @@ run();
 
 | Error Type       | Status Code      | Content Type     |
 | ---------------- | ---------------- | ---------------- |
-| errors.ErrorDto  | 400, 404         | application/json |
+| errors.ErrorDto  | 400, 404, 409    | application/json |
 | errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## retrieve
@@ -241,7 +241,7 @@ run();
 
 | Error Type       | Status Code      | Content Type     |
 | ---------------- | ---------------- | ---------------- |
-| errors.ErrorDto  | 400, 404         | application/json |
+| errors.ErrorDto  | 400, 404, 409    | application/json |
 | errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## update
@@ -315,7 +315,7 @@ run();
 
 | Error Type       | Status Code      | Content Type     |
 | ---------------- | ---------------- | ---------------- |
-| errors.ErrorDto  | 400, 404         | application/json |
+| errors.ErrorDto  | 400, 404, 409    | application/json |
 | errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## delete
@@ -388,7 +388,7 @@ run();
 
 | Error Type       | Status Code      | Content Type     |
 | ---------------- | ---------------- | ---------------- |
-| errors.ErrorDto  | 400, 404         | application/json |
+| errors.ErrorDto  | 400, 404, 409    | application/json |
 | errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## createBulk
@@ -472,5 +472,5 @@ run();
 
 | Error Type       | Status Code      | Content Type     |
 | ---------------- | ---------------- | ---------------- |
-| errors.ErrorDto  | 400, 404         | application/json |
+| errors.ErrorDto  | 400, 404, 409    | application/json |
 | errors.SDKError  | 4XX, 5XX         | \*/\*            |

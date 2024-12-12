@@ -16,9 +16,13 @@ export type SubscribersControllerMarkActionAsSeenRequest = {
   markMessageActionAsSeenDto: components.MarkMessageActionAsSeenDto;
 };
 
+export type SubscribersControllerMarkActionAsSeenResponseResult =
+  | components.ValidationErrorDto
+  | components.MessageResponseDto;
+
 export type SubscribersControllerMarkActionAsSeenResponse = {
   headers: { [k: string]: Array<string> };
-  result: components.MessageResponseDto;
+  result: components.ValidationErrorDto | components.MessageResponseDto;
 };
 
 /** @internal */
@@ -108,6 +112,76 @@ export function subscribersControllerMarkActionAsSeenRequestFromJSON(
 }
 
 /** @internal */
+export const SubscribersControllerMarkActionAsSeenResponseResult$inboundSchema:
+  z.ZodType<
+    SubscribersControllerMarkActionAsSeenResponseResult,
+    z.ZodTypeDef,
+    unknown
+  > = z.union([
+    components.ValidationErrorDto$inboundSchema,
+    components.MessageResponseDto$inboundSchema,
+  ]);
+
+/** @internal */
+export type SubscribersControllerMarkActionAsSeenResponseResult$Outbound =
+  | components.ValidationErrorDto$Outbound
+  | components.MessageResponseDto$Outbound;
+
+/** @internal */
+export const SubscribersControllerMarkActionAsSeenResponseResult$outboundSchema:
+  z.ZodType<
+    SubscribersControllerMarkActionAsSeenResponseResult$Outbound,
+    z.ZodTypeDef,
+    SubscribersControllerMarkActionAsSeenResponseResult
+  > = z.union([
+    components.ValidationErrorDto$outboundSchema,
+    components.MessageResponseDto$outboundSchema,
+  ]);
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace SubscribersControllerMarkActionAsSeenResponseResult$ {
+  /** @deprecated use `SubscribersControllerMarkActionAsSeenResponseResult$inboundSchema` instead. */
+  export const inboundSchema =
+    SubscribersControllerMarkActionAsSeenResponseResult$inboundSchema;
+  /** @deprecated use `SubscribersControllerMarkActionAsSeenResponseResult$outboundSchema` instead. */
+  export const outboundSchema =
+    SubscribersControllerMarkActionAsSeenResponseResult$outboundSchema;
+  /** @deprecated use `SubscribersControllerMarkActionAsSeenResponseResult$Outbound` instead. */
+  export type Outbound =
+    SubscribersControllerMarkActionAsSeenResponseResult$Outbound;
+}
+
+export function subscribersControllerMarkActionAsSeenResponseResultToJSON(
+  subscribersControllerMarkActionAsSeenResponseResult:
+    SubscribersControllerMarkActionAsSeenResponseResult,
+): string {
+  return JSON.stringify(
+    SubscribersControllerMarkActionAsSeenResponseResult$outboundSchema.parse(
+      subscribersControllerMarkActionAsSeenResponseResult,
+    ),
+  );
+}
+
+export function subscribersControllerMarkActionAsSeenResponseResultFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  SubscribersControllerMarkActionAsSeenResponseResult,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      SubscribersControllerMarkActionAsSeenResponseResult$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'SubscribersControllerMarkActionAsSeenResponseResult' from JSON`,
+  );
+}
+
+/** @internal */
 export const SubscribersControllerMarkActionAsSeenResponse$inboundSchema:
   z.ZodType<
     SubscribersControllerMarkActionAsSeenResponse,
@@ -115,7 +189,10 @@ export const SubscribersControllerMarkActionAsSeenResponse$inboundSchema:
     unknown
   > = z.object({
     Headers: z.record(z.array(z.string())),
-    Result: components.MessageResponseDto$inboundSchema,
+    Result: z.union([
+      components.ValidationErrorDto$inboundSchema,
+      components.MessageResponseDto$inboundSchema,
+    ]),
   }).transform((v) => {
     return remap$(v, {
       "Headers": "headers",
@@ -126,7 +203,9 @@ export const SubscribersControllerMarkActionAsSeenResponse$inboundSchema:
 /** @internal */
 export type SubscribersControllerMarkActionAsSeenResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
-  Result: components.MessageResponseDto$Outbound;
+  Result:
+    | components.ValidationErrorDto$Outbound
+    | components.MessageResponseDto$Outbound;
 };
 
 /** @internal */
@@ -137,7 +216,10 @@ export const SubscribersControllerMarkActionAsSeenResponse$outboundSchema:
     SubscribersControllerMarkActionAsSeenResponse
   > = z.object({
     headers: z.record(z.array(z.string())),
-    result: components.MessageResponseDto$outboundSchema,
+    result: z.union([
+      components.ValidationErrorDto$outboundSchema,
+      components.MessageResponseDto$outboundSchema,
+    ]),
   }).transform((v) => {
     return remap$(v, {
       headers: "Headers",

@@ -154,6 +154,13 @@ export async function messagesDeleteByTransactionId(
     | RequestTimeoutError
     | ConnectionError
   >(
+    M.json(
+      200,
+      operations
+        .MessagesControllerDeleteMessagesByTransactionIdResponse$inboundSchema
+        .optional(),
+      { hdrs: true, key: "Result" },
+    ),
     M.nil(
       204,
       operations
@@ -161,8 +168,8 @@ export async function messagesDeleteByTransactionId(
         .optional(),
       { hdrs: true },
     ),
-    M.jsonErr([400, 404], errors.ErrorDto$inboundSchema, { hdrs: true }),
-    M.fail([409, 429, 503]),
+    M.jsonErr([400, 404, 409], errors.ErrorDto$inboundSchema, { hdrs: true }),
+    M.fail([429, 503]),
     M.fail(["4XX", "5XX"]),
   )(response, { extraFields: responseFields });
   if (!result.ok) {

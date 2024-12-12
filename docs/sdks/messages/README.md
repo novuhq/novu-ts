@@ -82,7 +82,7 @@ run();
 
 | Error Type       | Status Code      | Content Type     |
 | ---------------- | ---------------- | ---------------- |
-| errors.ErrorDto  | 400, 404         | application/json |
+| errors.ErrorDto  | 400, 404, 409    | application/json |
 | errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## delete
@@ -155,7 +155,7 @@ run();
 
 | Error Type       | Status Code      | Content Type     |
 | ---------------- | ---------------- | ---------------- |
-| errors.ErrorDto  | 400, 404         | application/json |
+| errors.ErrorDto  | 400, 404, 409    | application/json |
 | errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## deleteByTransactionId
@@ -229,5 +229,5 @@ run();
 
 | Error Type       | Status Code      | Content Type     |
 | ---------------- | ---------------- | ---------------- |
-| errors.ErrorDto  | 400, 404         | application/json |
+| errors.ErrorDto  | 400, 404, 409    | application/json |
 | errors.SDKError  | 4XX, 5XX         | \*/\*            |

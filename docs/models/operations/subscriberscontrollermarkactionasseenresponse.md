@@ -12,36 +12,43 @@ let value: SubscribersControllerMarkActionAsSeenResponse = {
     ],
   },
   result: {
-    templateId: "<id>",
-    environmentId: "<id>",
-    messageTemplateId: "<id>",
-    organizationId: "<id>",
-    notificationId: "<id>",
-    subscriberId: "<id>",
-    createdAt: "<value>",
-    content: {
-      type: "text",
-      content: "<value>",
+    statusCode: 404,
+    timestamp: "2024-12-12T13:00:00Z",
+    path: "/api/v1/resource",
+    message: "Resource not found.",
+    ctx: {
+      "workflowId": "some_wf_id",
+      "stepId": "some_wf_id",
     },
-    transactionId: "<id>",
-    channel: "in_app",
-    read: false,
-    seen: false,
-    cta: {
-      data: {},
+    errorId: "abc123",
+    errors: {
+      "fieldName1": {
+        messages: [
+          "Field is required",
+          "Must be a valid email address",
+        ],
+        value: "invalidEmail",
+      },
+      "fieldName2": {
+        messages: [
+          "Must be at least 18 years old",
+        ],
+        value: 17,
+      },
+      "fieldName3": {
+        messages: [
+          "Field cannot be null",
+        ],
+        value: {},
+      },
     },
-    status: "warning",
-    errorId: "<id>",
-    errorText: "<value>",
-    payload: {},
-    overrides: {},
   },
 };
 ```
 
 ## Fields
 
-| Field                                                                          | Type                                                                           | Required                                                                       | Description                                                                    |
-| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| `headers`                                                                      | Record<string, *string*[]>                                                     | :heavy_check_mark:                                                             | N/A                                                                            |
-| `result`                                                                       | [components.MessageResponseDto](../../models/components/messageresponsedto.md) | :heavy_check_mark:                                                             | N/A                                                                            |
+| Field                                                            | Type                                                             | Required                                                         | Description                                                      |
+| ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
+| `headers`                                                        | Record<string, *string*[]>                                       | :heavy_check_mark:                                               | N/A                                                              |
+| `result`                                                         | *operations.SubscribersControllerMarkActionAsSeenResponseResult* | :heavy_check_mark:                                               | N/A                                                              |

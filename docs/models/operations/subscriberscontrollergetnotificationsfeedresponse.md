@@ -36,7 +36,7 @@ let value: SubscribersControllerGetNotificationsFeedResponse = {
         providerId: "provider_xyz",
         content: "This is a test notification content.",
         subject: "Test Notification Subject",
-        channel: "sms",
+        channel: "email",
         read: false,
         seen: true,
         deleted: false,

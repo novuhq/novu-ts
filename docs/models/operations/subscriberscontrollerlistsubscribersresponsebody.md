@@ -6,9 +6,9 @@
 import { SubscribersControllerListSubscribersResponseBody } from "@novu/api/models/operations";
 
 let value: SubscribersControllerListSubscribersResponseBody = {
-  page: 202.18,
+  page: 1433.53,
   hasMore: false,
-  pageSize: 8326.20,
+  pageSize: 9446.69,
   data: [
     {
       subscriberId: "<id>",

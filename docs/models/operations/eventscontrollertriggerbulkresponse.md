@@ -14,7 +14,7 @@ let value: EventsControllerTriggerBulkResponse = {
   result: [
     {
       acknowledged: false,
-      status: "subscriber_id_missing",
+      status: "no_tenant_found",
     },
   ],
 };
@@ -22,7 +22,7 @@ let value: EventsControllerTriggerBulkResponse = {
 
 ## Fields
 
-| Field                                                                                      | Type                                                                                       | Required                                                                                   | Description                                                                                |
-| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
-| `headers`                                                                                  | Record<string, *string*[]>                                                                 | :heavy_check_mark:                                                                         | N/A                                                                                        |
-| `result`                                                                                   | [components.TriggerEventResponseDto](../../models/components/triggereventresponsedto.md)[] | :heavy_check_mark:                                                                         | N/A                                                                                        |
+| Field                                                  | Type                                                   | Required                                               | Description                                            |
+| ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ |
+| `headers`                                              | Record<string, *string*[]>                             | :heavy_check_mark:                                     | N/A                                                    |
+| `result`                                               | *operations.EventsControllerTriggerBulkResponseResult* | :heavy_check_mark:                                     | N/A                                                    |

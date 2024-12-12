@@ -84,7 +84,7 @@ run();
 
 | Error Type       | Status Code      | Content Type     |
 | ---------------- | ---------------- | ---------------- |
-| errors.ErrorDto  | 400, 404         | application/json |
+| errors.ErrorDto  | 400, 404, 409    | application/json |
 | errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## create
@@ -163,7 +163,7 @@ run();
 
 | Error Type       | Status Code      | Content Type     |
 | ---------------- | ---------------- | ---------------- |
-| errors.ErrorDto  | 400, 404         | application/json |
+| errors.ErrorDto  | 400, 404, 409    | application/json |
 | errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## listActive
@@ -235,7 +235,7 @@ run();
 
 | Error Type       | Status Code      | Content Type     |
 | ---------------- | ---------------- | ---------------- |
-| errors.ErrorDto  | 400, 404         | application/json |
+| errors.ErrorDto  | 400, 404, 409    | application/json |
 | errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## update
@@ -309,7 +309,7 @@ run();
 
 | Error Type       | Status Code      | Content Type     |
 | ---------------- | ---------------- | ---------------- |
-| errors.ErrorDto  | 400              | application/json |
+| errors.ErrorDto  | 400, 409         | application/json |
 | errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## delete
@@ -382,7 +382,7 @@ run();
 
 | Error Type       | Status Code      | Content Type     |
 | ---------------- | ---------------- | ---------------- |
-| errors.ErrorDto  | 400, 404         | application/json |
+| errors.ErrorDto  | 400, 404, 409    | application/json |
 | errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## setAsPrimary
@@ -455,5 +455,5 @@ run();
 
 | Error Type       | Status Code      | Content Type     |
 | ---------------- | ---------------- | ---------------- |
-| errors.ErrorDto  | 400              | application/json |
+| errors.ErrorDto  | 400, 409         | application/json |
 | errors.SDKError  | 4XX, 5XX         | \*/\*            |
