@@ -17,6 +17,7 @@ import {
   RequestTimeoutError,
   UnexpectedClientError,
 } from "../models/errors/httpclienterrors.js";
+import * as errors from "../models/errors/index.js";
 import { SDKError } from "../models/errors/sdkerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import * as operations from "../models/operations/index.js";
@@ -35,6 +36,8 @@ export async function integrationsCreate(
 ): Promise<
   Result<
     operations.IntegrationsControllerCreateIntegrationResponse,
+    | errors.IntegrationsControllerCreateIntegrationResponseBody
+    | errors.IntegrationsControllerCreateIntegrationIntegrationsResponseBody
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -105,7 +108,7 @@ export async function integrationsCreate(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["409", "429", "4XX", "503", "5XX"],
+    errorCodes: ["400", "404", "409", "429", "4XX", "503", "5XX"],
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
@@ -120,6 +123,8 @@ export async function integrationsCreate(
 
   const [result] = await M.match<
     operations.IntegrationsControllerCreateIntegrationResponse,
+    | errors.IntegrationsControllerCreateIntegrationResponseBody
+    | errors.IntegrationsControllerCreateIntegrationIntegrationsResponseBody
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -132,6 +137,17 @@ export async function integrationsCreate(
       201,
       operations.IntegrationsControllerCreateIntegrationResponse$inboundSchema,
       { hdrs: true, key: "Result" },
+    ),
+    M.jsonErr(
+      400,
+      errors.IntegrationsControllerCreateIntegrationResponseBody$inboundSchema,
+      { hdrs: true },
+    ),
+    M.jsonErr(
+      404,
+      errors
+        .IntegrationsControllerCreateIntegrationIntegrationsResponseBody$inboundSchema,
+      { hdrs: true },
     ),
     M.fail([409, 429, 503]),
     M.fail(["4XX", "5XX"]),

@@ -17,6 +17,7 @@ import {
   RequestTimeoutError,
   UnexpectedClientError,
 } from "../models/errors/httpclienterrors.js";
+import * as errors from "../models/errors/index.js";
 import { SDKError } from "../models/errors/sdkerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import * as operations from "../models/operations/index.js";
@@ -36,6 +37,8 @@ export async function topicsSubscribersRemove(
 ): Promise<
   Result<
     operations.TopicsControllerRemoveSubscribersResponse | undefined,
+    | errors.TopicsControllerRemoveSubscribersResponseBody
+    | errors.TopicsControllerRemoveSubscribersTopicsSubscribersResponseBody
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -79,7 +82,7 @@ export async function topicsSubscribersRemove(
 
   const headers = new Headers({
     "Content-Type": "application/json",
-    Accept: "*/*",
+    Accept: "application/json",
   });
 
   const secConfig = await extractSecurity(client._options.apiKey);
@@ -124,7 +127,7 @@ export async function topicsSubscribersRemove(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["409", "429", "4XX", "503", "5XX"],
+    errorCodes: ["400", "404", "409", "429", "4XX", "503", "5XX"],
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
@@ -139,6 +142,8 @@ export async function topicsSubscribersRemove(
 
   const [result] = await M.match<
     operations.TopicsControllerRemoveSubscribersResponse | undefined,
+    | errors.TopicsControllerRemoveSubscribersResponseBody
+    | errors.TopicsControllerRemoveSubscribersTopicsSubscribersResponseBody
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -151,6 +156,17 @@ export async function topicsSubscribersRemove(
       204,
       operations.TopicsControllerRemoveSubscribersResponse$inboundSchema
         .optional(),
+      { hdrs: true },
+    ),
+    M.jsonErr(
+      400,
+      errors.TopicsControllerRemoveSubscribersResponseBody$inboundSchema,
+      { hdrs: true },
+    ),
+    M.jsonErr(
+      404,
+      errors
+        .TopicsControllerRemoveSubscribersTopicsSubscribersResponseBody$inboundSchema,
       { hdrs: true },
     ),
     M.fail([409, 429, 503]),

@@ -110,9 +110,11 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type                                                               | Status Code                                                              | Content Type                                                             |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| errors.NotificationsControllerListNotificationsResponseBody              | 400                                                                      | application/json                                                         |
+| errors.NotificationsControllerListNotificationsNotificationsResponseBody | 404                                                                      | application/json                                                         |
+| errors.SDKError                                                          | 4XX, 5XX                                                                 | \*/\*                                                                    |
 
 ## retrieve
 
@@ -182,6 +184,8 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type                                                             | Status Code                                                            | Content Type                                                           |
+| ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| errors.NotificationsControllerGetNotificationResponseBody              | 400                                                                    | application/json                                                       |
+| errors.NotificationsControllerGetNotificationNotificationsResponseBody | 404                                                                    | application/json                                                       |
+| errors.SDKError                                                        | 4XX, 5XX                                                               | \*/\*                                                                  |

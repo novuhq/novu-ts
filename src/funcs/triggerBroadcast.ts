@@ -17,6 +17,7 @@ import {
   RequestTimeoutError,
   UnexpectedClientError,
 } from "../models/errors/httpclienterrors.js";
+import * as errors from "../models/errors/index.js";
 import { SDKError } from "../models/errors/sdkerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import * as operations from "../models/operations/index.js";
@@ -37,6 +38,8 @@ export async function triggerBroadcast(
 ): Promise<
   Result<
     operations.EventsControllerBroadcastEventToAllResponse,
+    | errors.EventsControllerBroadcastEventToAllResponseBody
+    | errors.EventsControllerBroadcastEventToAllResponseResponseBody
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -107,7 +110,7 @@ export async function triggerBroadcast(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["409", "429", "4XX", "503", "5XX"],
+    errorCodes: ["400", "404", "409", "429", "4XX", "503", "5XX"],
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
@@ -122,6 +125,8 @@ export async function triggerBroadcast(
 
   const [result] = await M.match<
     operations.EventsControllerBroadcastEventToAllResponse,
+    | errors.EventsControllerBroadcastEventToAllResponseBody
+    | errors.EventsControllerBroadcastEventToAllResponseResponseBody
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -134,6 +139,17 @@ export async function triggerBroadcast(
       [200, 201],
       operations.EventsControllerBroadcastEventToAllResponse$inboundSchema,
       { hdrs: true, key: "Result" },
+    ),
+    M.jsonErr(
+      400,
+      errors.EventsControllerBroadcastEventToAllResponseBody$inboundSchema,
+      { hdrs: true },
+    ),
+    M.jsonErr(
+      404,
+      errors
+        .EventsControllerBroadcastEventToAllResponseResponseBody$inboundSchema,
+      { hdrs: true },
     ),
     M.fail([409, 429, 503]),
     M.fail(["4XX", "5XX"]),

@@ -110,9 +110,11 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type                                         | Status Code                                        | Content Type                                       |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| errors.EventsControllerTriggerResponseBody         | 400                                                | application/json                                   |
+| errors.EventsControllerTriggerResponseResponseBody | 404                                                | application/json                                   |
+| errors.SDKError                                    | 4XX, 5XX                                           | \*/\*                                              |
 
 ## triggerBulk
 
@@ -253,9 +255,11 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type                                             | Status Code                                            | Content Type                                           |
+| ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ |
+| errors.EventsControllerTriggerBulkResponseBody         | 400                                                    | application/json                                       |
+| errors.EventsControllerTriggerBulkResponseResponseBody | 404                                                    | application/json                                       |
+| errors.SDKError                                        | 4XX, 5XX                                               | \*/\*                                                  |
 
 ## triggerBroadcast
 
@@ -343,9 +347,11 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type                                                     | Status Code                                                    | Content Type                                                   |
+| -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- |
+| errors.EventsControllerBroadcastEventToAllResponseBody         | 400                                                            | application/json                                               |
+| errors.EventsControllerBroadcastEventToAllResponseResponseBody | 404                                                            | application/json                                               |
+| errors.SDKError                                                | 4XX, 5XX                                                       | \*/\*                                                          |
 
 ## cancel
 
@@ -418,6 +424,8 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type                                        | Status Code                                       | Content Type                                      |
+| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
+| errors.EventsControllerCancelResponseBody         | 400                                               | application/json                                  |
+| errors.EventsControllerCancelResponseResponseBody | 404                                               | application/json                                  |
+| errors.SDKError                                   | 4XX, 5XX                                          | \*/\*                                             |

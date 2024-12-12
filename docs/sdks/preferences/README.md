@@ -79,9 +79,11 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type                                                                              | Status Code                                                                             | Content Type                                                                            |
+| --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| errors.SubscribersControllerListSubscriberPreferencesResponseBody                       | 400                                                                                     | application/json                                                                        |
+| errors.SubscribersControllerListSubscriberPreferencesSubscribersPreferencesResponseBody | 404                                                                                     | application/json                                                                        |
+| errors.SDKError                                                                         | 4XX, 5XX                                                                                | \*/\*                                                                                   |
 
 ## updateGlobal
 
@@ -152,9 +154,11 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type                                                                                      | Status Code                                                                                     | Content Type                                                                                    |
+| ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| errors.SubscribersControllerUpdateSubscriberGlobalPreferencesResponseBody                       | 400                                                                                             | application/json                                                                                |
+| errors.SubscribersControllerUpdateSubscriberGlobalPreferencesSubscribersPreferencesResponseBody | 404                                                                                             | application/json                                                                                |
+| errors.SDKError                                                                                 | 4XX, 5XX                                                                                        | \*/\*                                                                                           |
 
 ## retrieveByLevel
 
@@ -230,9 +234,11 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type                                                                                   | Status Code                                                                                  | Content Type                                                                                 |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| errors.SubscribersControllerGetSubscriberPreferenceByLevelResponseBody                       | 400                                                                                          | application/json                                                                             |
+| errors.SubscribersControllerGetSubscriberPreferenceByLevelSubscribersPreferencesResponseBody | 404                                                                                          | application/json                                                                             |
+| errors.SDKError                                                                              | 4XX, 5XX                                                                                     | \*/\*                                                                                        |
 
 ## update
 
@@ -310,6 +316,8 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type                                                                               | Status Code                                                                              | Content Type                                                                             |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| errors.SubscribersControllerUpdateSubscriberPreferenceResponseBody                       | 400                                                                                      | application/json                                                                         |
+| errors.SubscribersControllerUpdateSubscriberPreferenceSubscribersPreferencesResponseBody | 404                                                                                      | application/json                                                                         |
+| errors.SDKError                                                                          | 4XX, 5XX                                                                                 | \*/\*                                                                                    |

@@ -16,6 +16,7 @@ import {
   RequestTimeoutError,
   UnexpectedClientError,
 } from "../models/errors/httpclienterrors.js";
+import * as errors from "../models/errors/index.js";
 import { SDKError } from "../models/errors/sdkerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import * as operations from "../models/operations/index.js";
@@ -34,6 +35,8 @@ export async function subscribersDelete(
 ): Promise<
   Result<
     operations.SubscribersControllerRemoveSubscriberResponse,
+    | errors.SubscribersControllerRemoveSubscriberResponseBody
+    | errors.SubscribersControllerRemoveSubscriberSubscribersResponseBody
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -115,7 +118,7 @@ export async function subscribersDelete(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["409", "429", "4XX", "503", "5XX"],
+    errorCodes: ["400", "404", "409", "429", "4XX", "503", "5XX"],
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
@@ -130,6 +133,8 @@ export async function subscribersDelete(
 
   const [result] = await M.match<
     operations.SubscribersControllerRemoveSubscriberResponse,
+    | errors.SubscribersControllerRemoveSubscriberResponseBody
+    | errors.SubscribersControllerRemoveSubscriberSubscribersResponseBody
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -142,6 +147,17 @@ export async function subscribersDelete(
       200,
       operations.SubscribersControllerRemoveSubscriberResponse$inboundSchema,
       { hdrs: true, key: "Result" },
+    ),
+    M.jsonErr(
+      400,
+      errors.SubscribersControllerRemoveSubscriberResponseBody$inboundSchema,
+      { hdrs: true },
+    ),
+    M.jsonErr(
+      404,
+      errors
+        .SubscribersControllerRemoveSubscriberSubscribersResponseBody$inboundSchema,
+      { hdrs: true },
     ),
     M.fail([409, 429, 503]),
     M.fail(["4XX", "5XX"]),

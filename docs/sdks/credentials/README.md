@@ -88,9 +88,11 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type                                                                            | Status Code                                                                           | Content Type                                                                          |
+| ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| errors.SubscribersControllerUpdateSubscriberChannelResponseBody                       | 400                                                                                   | application/json                                                                      |
+| errors.SubscribersControllerUpdateSubscriberChannelSubscribersCredentialsResponseBody | 404                                                                                   | application/json                                                                      |
+| errors.SDKError                                                                       | 4XX, 5XX                                                                              | \*/\*                                                                                 |
 
 ## append
 
@@ -173,9 +175,11 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type                                                                            | Status Code                                                                           | Content Type                                                                          |
+| ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| errors.SubscribersControllerModifySubscriberChannelResponseBody                       | 400                                                                                   | application/json                                                                      |
+| errors.SubscribersControllerModifySubscriberChannelSubscribersCredentialsResponseBody | 404                                                                                   | application/json                                                                      |
+| errors.SDKError                                                                       | 4XX, 5XX                                                                              | \*/\*                                                                                 |
 
 ## delete
 
@@ -246,6 +250,8 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type                                                                                | Status Code                                                                               | Content Type                                                                              |
+| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| errors.SubscribersControllerDeleteSubscriberCredentialsResponseBody                       | 400                                                                                       | application/json                                                                          |
+| errors.SubscribersControllerDeleteSubscriberCredentialsSubscribersCredentialsResponseBody | 404                                                                                       | application/json                                                                          |
+| errors.SDKError                                                                           | 4XX, 5XX                                                                                  | \*/\*                                                                                     |

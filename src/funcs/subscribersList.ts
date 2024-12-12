@@ -17,6 +17,7 @@ import {
   RequestTimeoutError,
   UnexpectedClientError,
 } from "../models/errors/httpclienterrors.js";
+import * as errors from "../models/errors/index.js";
 import { SDKError } from "../models/errors/sdkerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import * as operations from "../models/operations/index.js";
@@ -43,6 +44,8 @@ export async function subscribersList(
   PageIterator<
     Result<
       operations.SubscribersControllerListSubscribersResponse,
+      | errors.SubscribersControllerListSubscribersResponseBody
+      | errors.SubscribersControllerListSubscribersSubscribersResponseBody
       | SDKError
       | SDKValidationError
       | UnexpectedClientError
@@ -126,7 +129,7 @@ export async function subscribersList(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["409", "429", "4XX", "503", "5XX"],
+    errorCodes: ["400", "404", "409", "429", "4XX", "503", "5XX"],
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
@@ -141,6 +144,8 @@ export async function subscribersList(
 
   const [result, raw] = await M.match<
     operations.SubscribersControllerListSubscribersResponse,
+    | errors.SubscribersControllerListSubscribersResponseBody
+    | errors.SubscribersControllerListSubscribersSubscribersResponseBody
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -153,6 +158,17 @@ export async function subscribersList(
       200,
       operations.SubscribersControllerListSubscribersResponse$inboundSchema,
       { hdrs: true, key: "Result" },
+    ),
+    M.jsonErr(
+      400,
+      errors.SubscribersControllerListSubscribersResponseBody$inboundSchema,
+      { hdrs: true },
+    ),
+    M.jsonErr(
+      404,
+      errors
+        .SubscribersControllerListSubscribersSubscribersResponseBody$inboundSchema,
+      { hdrs: true },
     ),
     M.fail([409, 429, 503]),
     M.fail(["4XX", "5XX"]),
@@ -167,6 +183,8 @@ export async function subscribersList(
     next: Paginator<
       Result<
         operations.SubscribersControllerListSubscribersResponse,
+        | errors.SubscribersControllerListSubscribersResponseBody
+        | errors.SubscribersControllerListSubscribersSubscribersResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError

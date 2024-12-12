@@ -17,6 +17,7 @@ import {
   RequestTimeoutError,
   UnexpectedClientError,
 } from "../models/errors/httpclienterrors.js";
+import * as errors from "../models/errors/index.js";
 import { SDKError } from "../models/errors/sdkerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import * as operations from "../models/operations/index.js";
@@ -38,6 +39,8 @@ export async function trigger(
 ): Promise<
   Result<
     operations.EventsControllerTriggerResponse,
+    | errors.EventsControllerTriggerResponseBody
+    | errors.EventsControllerTriggerResponseResponseBody
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -107,7 +110,7 @@ export async function trigger(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["409", "429", "4XX", "503", "5XX"],
+    errorCodes: ["400", "404", "409", "429", "4XX", "503", "5XX"],
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
@@ -122,6 +125,8 @@ export async function trigger(
 
   const [result] = await M.match<
     operations.EventsControllerTriggerResponse,
+    | errors.EventsControllerTriggerResponseBody
+    | errors.EventsControllerTriggerResponseResponseBody
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -134,6 +139,14 @@ export async function trigger(
       hdrs: true,
       key: "Result",
     }),
+    M.jsonErr(400, errors.EventsControllerTriggerResponseBody$inboundSchema, {
+      hdrs: true,
+    }),
+    M.jsonErr(
+      404,
+      errors.EventsControllerTriggerResponseResponseBody$inboundSchema,
+      { hdrs: true },
+    ),
     M.fail([409, 429, 503]),
     M.fail(["4XX", "5XX"]),
   )(response, { extraFields: responseFields });

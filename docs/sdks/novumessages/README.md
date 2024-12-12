@@ -84,9 +84,11 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type                                                                | Status Code                                                               | Content Type                                                              |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| errors.SubscribersControllerMarkMessagesAsResponseBody                    | 400                                                                       | application/json                                                          |
+| errors.SubscribersControllerMarkMessagesAsSubscribersMessagesResponseBody | 404                                                                       | application/json                                                          |
+| errors.SDKError                                                           | 4XX, 5XX                                                                  | \*/\*                                                                     |
 
 ## markAll
 
@@ -161,9 +163,11 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type                                                                     | Status Code                                                                    | Content Type                                                                   |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| errors.SubscribersControllerMarkAllUnreadAsReadResponseBody                    | 400                                                                            | application/json                                                               |
+| errors.SubscribersControllerMarkAllUnreadAsReadSubscribersMessagesResponseBody | 404                                                                            | application/json                                                               |
+| errors.SDKError                                                                | 4XX, 5XX                                                                       | \*/\*                                                                          |
 
 ## updateAsSeen
 
@@ -247,6 +251,8 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type                                                                  | Status Code                                                                 | Content Type                                                                |
+| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| errors.SubscribersControllerMarkActionAsSeenResponseBody                    | 400                                                                         | application/json                                                            |
+| errors.SubscribersControllerMarkActionAsSeenSubscribersMessagesResponseBody | 404                                                                         | application/json                                                            |
+| errors.SDKError                                                             | 4XX, 5XX                                                                    | \*/\*                                                                       |

@@ -75,9 +75,11 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type                                                                   | Status Code                                                                  | Content Type                                                                 |
+| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| errors.NotificationsControllerGetActivityStatsResponseBody                   | 400                                                                          | application/json                                                             |
+| errors.NotificationsControllerGetActivityStatsNotificationsStatsResponseBody | 404                                                                          | application/json                                                             |
+| errors.SDKError                                                              | 4XX, 5XX                                                                     | \*/\*                                                                        |
 
 ## graph
 
@@ -147,6 +149,8 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type                                                                        | Status Code                                                                       | Content Type                                                                      |
+| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| errors.NotificationsControllerGetActivityGraphStatsResponseBody                   | 400                                                                               | application/json                                                                  |
+| errors.NotificationsControllerGetActivityGraphStatsNotificationsStatsResponseBody | 404                                                                               | application/json                                                                  |
+| errors.SDKError                                                                   | 4XX, 5XX                                                                          | \*/\*                                                                             |

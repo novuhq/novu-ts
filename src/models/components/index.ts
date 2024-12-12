@@ -34,6 +34,7 @@ export * from "./digestregularmetadata.js";
 export * from "./digesttimedmetadata.js";
 export * from "./emailblock.js";
 export * from "./emailblockstyles.js";
+export * from "./errordto.js";
 export * from "./failedassignmentsdto.js";
 export * from "./feedresponsedto.js";
 export * from "./fieldfilterpart.js";

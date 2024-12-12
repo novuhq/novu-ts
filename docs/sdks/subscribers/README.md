@@ -88,9 +88,11 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type                                                         | Status Code                                                        | Content Type                                                       |
+| ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
+| errors.SubscribersControllerListSubscribersResponseBody            | 400                                                                | application/json                                                   |
+| errors.SubscribersControllerListSubscribersSubscribersResponseBody | 404                                                                | application/json                                                   |
+| errors.SDKError                                                    | 4XX, 5XX                                                           | \*/\*                                                              |
 
 ## create
 
@@ -164,9 +166,11 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type                                                          | Status Code                                                         | Content Type                                                        |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| errors.SubscribersControllerCreateSubscriberResponseBody            | 400                                                                 | application/json                                                    |
+| errors.SubscribersControllerCreateSubscriberSubscribersResponseBody | 404                                                                 | application/json                                                    |
+| errors.SDKError                                                     | 4XX, 5XX                                                            | \*/\*                                                               |
 
 ## retrieve
 
@@ -237,9 +241,11 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type                                                       | Status Code                                                      | Content Type                                                     |
+| ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
+| errors.SubscribersControllerGetSubscriberResponseBody            | 400                                                              | application/json                                                 |
+| errors.SubscribersControllerGetSubscriberSubscribersResponseBody | 404                                                              | application/json                                                 |
+| errors.SDKError                                                  | 4XX, 5XX                                                         | \*/\*                                                            |
 
 ## update
 
@@ -310,9 +316,11 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type                                                          | Status Code                                                         | Content Type                                                        |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| errors.SubscribersControllerUpdateSubscriberResponseBody            | 400                                                                 | application/json                                                    |
+| errors.SubscribersControllerUpdateSubscriberSubscribersResponseBody | 404                                                                 | application/json                                                    |
+| errors.SDKError                                                     | 4XX, 5XX                                                            | \*/\*                                                               |
 
 ## delete
 
@@ -382,9 +390,11 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type                                                          | Status Code                                                         | Content Type                                                        |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| errors.SubscribersControllerRemoveSubscriberResponseBody            | 400                                                                 | application/json                                                    |
+| errors.SubscribersControllerRemoveSubscriberSubscribersResponseBody | 404                                                                 | application/json                                                    |
+| errors.SDKError                                                     | 4XX, 5XX                                                            | \*/\*                                                               |
 
 ## createBulk
 
@@ -465,6 +475,8 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type                                                               | Status Code                                                              | Content Type                                                             |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| errors.SubscribersControllerBulkCreateSubscribersResponseBody            | 400                                                                      | application/json                                                         |
+| errors.SubscribersControllerBulkCreateSubscribersSubscribersResponseBody | 404                                                                      | application/json                                                         |
+| errors.SDKError                                                          | 4XX, 5XX                                                                 | \*/\*                                                                    |

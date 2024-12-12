@@ -16,6 +16,7 @@ import {
   RequestTimeoutError,
   UnexpectedClientError,
 } from "../models/errors/httpclienterrors.js";
+import * as errors from "../models/errors/index.js";
 import { SDKError } from "../models/errors/sdkerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import * as operations from "../models/operations/index.js";
@@ -34,6 +35,7 @@ export async function topicsDelete(
 ): Promise<
   Result<
     operations.TopicsControllerDeleteTopicResponse | undefined,
+    | errors.TopicsControllerDeleteTopicResponseBody
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -69,7 +71,7 @@ export async function topicsDelete(
   const path = pathToFunc("/v1/topics/{topicKey}")(pathParams);
 
   const headers = new Headers({
-    Accept: "*/*",
+    Accept: "application/json",
   });
 
   const secConfig = await extractSecurity(client._options.apiKey);
@@ -114,7 +116,7 @@ export async function topicsDelete(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["404", "409", "429", "4XX", "503", "5XX"],
+    errorCodes: ["400", "404", "409", "429", "4XX", "503", "5XX"],
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
@@ -129,6 +131,7 @@ export async function topicsDelete(
 
   const [result] = await M.match<
     operations.TopicsControllerDeleteTopicResponse | undefined,
+    | errors.TopicsControllerDeleteTopicResponseBody
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -140,6 +143,11 @@ export async function topicsDelete(
     M.nil(
       204,
       operations.TopicsControllerDeleteTopicResponse$inboundSchema.optional(),
+      { hdrs: true },
+    ),
+    M.jsonErr(
+      400,
+      errors.TopicsControllerDeleteTopicResponseBody$inboundSchema,
       { hdrs: true },
     ),
     M.fail([404, 409, 429, 503]),

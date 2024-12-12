@@ -17,6 +17,7 @@ import {
   RequestTimeoutError,
   UnexpectedClientError,
 } from "../models/errors/httpclienterrors.js";
+import * as errors from "../models/errors/index.js";
 import { SDKError } from "../models/errors/sdkerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import * as operations from "../models/operations/index.js";
@@ -36,6 +37,8 @@ export async function subscribersUpdate(
 ): Promise<
   Result<
     operations.SubscribersControllerUpdateSubscriberResponse,
+    | errors.SubscribersControllerUpdateSubscriberResponseBody
+    | errors.SubscribersControllerUpdateSubscriberSubscribersResponseBody
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -121,7 +124,7 @@ export async function subscribersUpdate(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["409", "429", "4XX", "503", "5XX"],
+    errorCodes: ["400", "404", "409", "429", "4XX", "503", "5XX"],
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
@@ -136,6 +139,8 @@ export async function subscribersUpdate(
 
   const [result] = await M.match<
     operations.SubscribersControllerUpdateSubscriberResponse,
+    | errors.SubscribersControllerUpdateSubscriberResponseBody
+    | errors.SubscribersControllerUpdateSubscriberSubscribersResponseBody
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -148,6 +153,17 @@ export async function subscribersUpdate(
       200,
       operations.SubscribersControllerUpdateSubscriberResponse$inboundSchema,
       { hdrs: true, key: "Result" },
+    ),
+    M.jsonErr(
+      400,
+      errors.SubscribersControllerUpdateSubscriberResponseBody$inboundSchema,
+      { hdrs: true },
+    ),
+    M.jsonErr(
+      404,
+      errors
+        .SubscribersControllerUpdateSubscriberSubscribersResponseBody$inboundSchema,
+      { hdrs: true },
     ),
     M.fail([409, 429, 503]),
     M.fail(["4XX", "5XX"]),

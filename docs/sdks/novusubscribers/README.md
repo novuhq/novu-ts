@@ -90,9 +90,11 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type                                                 | Status Code                                                | Content Type                                               |
+| ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- |
+| errors.TopicsControllerAssignResponseBody                  | 400                                                        | application/json                                           |
+| errors.TopicsControllerAssignTopicsSubscribersResponseBody | 404                                                        | application/json                                           |
+| errors.SDKError                                            | 4XX, 5XX                                                   | \*/\*                                                      |
 
 ## retrieve
 
@@ -163,9 +165,11 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type                                                             | Status Code                                                            | Content Type                                                           |
+| ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| errors.TopicsControllerGetTopicSubscriberResponseBody                  | 400                                                                    | application/json                                                       |
+| errors.TopicsControllerGetTopicSubscriberTopicsSubscribersResponseBody | 404                                                                    | application/json                                                       |
+| errors.SDKError                                                        | 4XX, 5XX                                                               | \*/\*                                                                  |
 
 ## remove
 
@@ -246,6 +250,8 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type                                                            | Status Code                                                           | Content Type                                                          |
+| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| errors.TopicsControllerRemoveSubscribersResponseBody                  | 400                                                                   | application/json                                                      |
+| errors.TopicsControllerRemoveSubscribersTopicsSubscribersResponseBody | 404                                                                   | application/json                                                      |
+| errors.SDKError                                                       | 4XX, 5XX                                                              | \*/\*                                                                 |

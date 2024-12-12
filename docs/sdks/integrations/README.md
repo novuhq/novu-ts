@@ -82,9 +82,11 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type                                                            | Status Code                                                           | Content Type                                                          |
+| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| errors.IntegrationsControllerListIntegrationsResponseBody             | 400                                                                   | application/json                                                      |
+| errors.IntegrationsControllerListIntegrationsIntegrationsResponseBody | 404                                                                   | application/json                                                      |
+| errors.SDKError                                                       | 4XX, 5XX                                                              | \*/\*                                                                 |
 
 ## create
 
@@ -160,9 +162,11 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type                                                             | Status Code                                                            | Content Type                                                           |
+| ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| errors.IntegrationsControllerCreateIntegrationResponseBody             | 400                                                                    | application/json                                                       |
+| errors.IntegrationsControllerCreateIntegrationIntegrationsResponseBody | 404                                                                    | application/json                                                       |
+| errors.SDKError                                                        | 4XX, 5XX                                                               | \*/\*                                                                  |
 
 ## listActive
 
@@ -231,9 +235,11 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type                                                                 | Status Code                                                                | Content Type                                                               |
+| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| errors.IntegrationsControllerGetActiveIntegrationsResponseBody             | 400                                                                        | application/json                                                           |
+| errors.IntegrationsControllerGetActiveIntegrationsIntegrationsResponseBody | 404                                                                        | application/json                                                           |
+| errors.SDKError                                                            | 4XX, 5XX                                                                   | \*/\*                                                                      |
 
 ## update
 
@@ -304,9 +310,10 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type                                                     | Status Code                                                    | Content Type                                                   |
+| -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- |
+| errors.IntegrationsControllerUpdateIntegrationByIdResponseBody | 400                                                            | application/json                                               |
+| errors.SDKError                                                | 4XX, 5XX                                                       | \*/\*                                                          |
 
 ## delete
 
@@ -376,9 +383,11 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type                                                             | Status Code                                                            | Content Type                                                           |
+| ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| errors.IntegrationsControllerRemoveIntegrationResponseBody             | 400                                                                    | application/json                                                       |
+| errors.IntegrationsControllerRemoveIntegrationIntegrationsResponseBody | 404                                                                    | application/json                                                       |
+| errors.SDKError                                                        | 4XX, 5XX                                                               | \*/\*                                                                  |
 
 ## setAsPrimary
 
@@ -448,6 +457,7 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type                                                       | Status Code                                                      | Content Type                                                     |
+| ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
+| errors.IntegrationsControllerSetIntegrationAsPrimaryResponseBody | 400                                                              | application/json                                                 |
+| errors.SDKError                                                  | 4XX, 5XX                                                         | \*/\*                                                            |

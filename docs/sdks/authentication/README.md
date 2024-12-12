@@ -88,9 +88,11 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type                                                                         | Status Code                                                                        | Content Type                                                                       |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| errors.SubscribersControllerChatOauthCallbackResponseBody                          | 400                                                                                | application/json                                                                   |
+| errors.SubscribersControllerChatOauthCallbackSubscribersAuthenticationResponseBody | 404                                                                                | application/json                                                                   |
+| errors.SDKError                                                                    | 4XX, 5XX                                                                           | \*/\*                                                                              |
 
 ## chatAccessOauth
 
@@ -170,6 +172,8 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type                                                                       | Status Code                                                                      | Content Type                                                                     |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| errors.SubscribersControllerChatAccessOauthResponseBody                          | 400                                                                              | application/json                                                                 |
+| errors.SubscribersControllerChatAccessOauthSubscribersAuthenticationResponseBody | 404                                                                              | application/json                                                                 |
+| errors.SDKError                                                                  | 4XX, 5XX                                                                         | \*/\*                                                                            |

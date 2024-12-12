@@ -16,6 +16,7 @@ import {
   RequestTimeoutError,
   UnexpectedClientError,
 } from "../models/errors/httpclienterrors.js";
+import * as errors from "../models/errors/index.js";
 import { SDKError } from "../models/errors/sdkerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import * as operations from "../models/operations/index.js";
@@ -34,6 +35,8 @@ export async function messagesRetrieve(
 ): Promise<
   Result<
     operations.MessagesControllerGetMessagesResponse,
+    | errors.MessagesControllerGetMessagesResponseBody
+    | errors.MessagesControllerGetMessagesMessagesResponseBody
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -114,7 +117,7 @@ export async function messagesRetrieve(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["409", "429", "4XX", "503", "5XX"],
+    errorCodes: ["400", "404", "409", "429", "4XX", "503", "5XX"],
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
@@ -129,6 +132,8 @@ export async function messagesRetrieve(
 
   const [result] = await M.match<
     operations.MessagesControllerGetMessagesResponse,
+    | errors.MessagesControllerGetMessagesResponseBody
+    | errors.MessagesControllerGetMessagesMessagesResponseBody
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -141,6 +146,16 @@ export async function messagesRetrieve(
       200,
       operations.MessagesControllerGetMessagesResponse$inboundSchema,
       { hdrs: true, key: "Result" },
+    ),
+    M.jsonErr(
+      400,
+      errors.MessagesControllerGetMessagesResponseBody$inboundSchema,
+      { hdrs: true },
+    ),
+    M.jsonErr(
+      404,
+      errors.MessagesControllerGetMessagesMessagesResponseBody$inboundSchema,
+      { hdrs: true },
     ),
     M.fail([409, 429, 503]),
     M.fail(["4XX", "5XX"]),

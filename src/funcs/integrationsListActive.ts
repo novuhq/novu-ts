@@ -14,6 +14,7 @@ import {
   RequestTimeoutError,
   UnexpectedClientError,
 } from "../models/errors/httpclienterrors.js";
+import * as errors from "../models/errors/index.js";
 import { SDKError } from "../models/errors/sdkerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import * as operations from "../models/operations/index.js";
@@ -31,6 +32,8 @@ export async function integrationsListActive(
 ): Promise<
   Result<
     operations.IntegrationsControllerGetActiveIntegrationsResponse,
+    | errors.IntegrationsControllerGetActiveIntegrationsResponseBody
+    | errors.IntegrationsControllerGetActiveIntegrationsIntegrationsResponseBody
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -87,7 +90,7 @@ export async function integrationsListActive(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["409", "429", "4XX", "503", "5XX"],
+    errorCodes: ["400", "404", "409", "429", "4XX", "503", "5XX"],
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
@@ -102,6 +105,8 @@ export async function integrationsListActive(
 
   const [result] = await M.match<
     operations.IntegrationsControllerGetActiveIntegrationsResponse,
+    | errors.IntegrationsControllerGetActiveIntegrationsResponseBody
+    | errors.IntegrationsControllerGetActiveIntegrationsIntegrationsResponseBody
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -115,6 +120,18 @@ export async function integrationsListActive(
       operations
         .IntegrationsControllerGetActiveIntegrationsResponse$inboundSchema,
       { hdrs: true, key: "Result" },
+    ),
+    M.jsonErr(
+      400,
+      errors
+        .IntegrationsControllerGetActiveIntegrationsResponseBody$inboundSchema,
+      { hdrs: true },
+    ),
+    M.jsonErr(
+      404,
+      errors
+        .IntegrationsControllerGetActiveIntegrationsIntegrationsResponseBody$inboundSchema,
+      { hdrs: true },
     ),
     M.fail([409, 429, 503]),
     M.fail(["4XX", "5XX"]),

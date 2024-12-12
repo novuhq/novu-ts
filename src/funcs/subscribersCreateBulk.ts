@@ -17,6 +17,7 @@ import {
   RequestTimeoutError,
   UnexpectedClientError,
 } from "../models/errors/httpclienterrors.js";
+import * as errors from "../models/errors/index.js";
 import { SDKError } from "../models/errors/sdkerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import * as operations from "../models/operations/index.js";
@@ -37,6 +38,8 @@ export async function subscribersCreateBulk(
 ): Promise<
   Result<
     operations.SubscribersControllerBulkCreateSubscribersResponse | undefined,
+    | errors.SubscribersControllerBulkCreateSubscribersResponseBody
+    | errors.SubscribersControllerBulkCreateSubscribersSubscribersResponseBody
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -61,7 +64,7 @@ export async function subscribersCreateBulk(
 
   const headers = new Headers({
     "Content-Type": "application/json",
-    Accept: "*/*",
+    Accept: "application/json",
   });
 
   const secConfig = await extractSecurity(client._options.apiKey);
@@ -106,7 +109,7 @@ export async function subscribersCreateBulk(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["409", "429", "4XX", "503", "5XX"],
+    errorCodes: ["400", "404", "409", "429", "4XX", "503", "5XX"],
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
@@ -121,6 +124,8 @@ export async function subscribersCreateBulk(
 
   const [result] = await M.match<
     operations.SubscribersControllerBulkCreateSubscribersResponse | undefined,
+    | errors.SubscribersControllerBulkCreateSubscribersResponseBody
+    | errors.SubscribersControllerBulkCreateSubscribersSubscribersResponseBody
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -134,6 +139,18 @@ export async function subscribersCreateBulk(
       operations
         .SubscribersControllerBulkCreateSubscribersResponse$inboundSchema
         .optional(),
+    ),
+    M.jsonErr(
+      400,
+      errors
+        .SubscribersControllerBulkCreateSubscribersResponseBody$inboundSchema,
+      { hdrs: true },
+    ),
+    M.jsonErr(
+      404,
+      errors
+        .SubscribersControllerBulkCreateSubscribersSubscribersResponseBody$inboundSchema,
+      { hdrs: true },
     ),
     M.fail([409, 429, 503]),
     M.fail(["4XX", "5XX"]),

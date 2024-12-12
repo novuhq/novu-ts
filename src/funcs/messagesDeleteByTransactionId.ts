@@ -16,6 +16,7 @@ import {
   RequestTimeoutError,
   UnexpectedClientError,
 } from "../models/errors/httpclienterrors.js";
+import * as errors from "../models/errors/index.js";
 import { SDKError } from "../models/errors/sdkerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import * as operations from "../models/operations/index.js";
@@ -36,6 +37,8 @@ export async function messagesDeleteByTransactionId(
   Result<
     | operations.MessagesControllerDeleteMessagesByTransactionIdResponse
     | undefined,
+    | errors.MessagesControllerDeleteMessagesByTransactionIdResponseBody
+    | errors.MessagesControllerDeleteMessagesByTransactionIdMessagesResponseBody
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -81,7 +84,7 @@ export async function messagesDeleteByTransactionId(
   });
 
   const headers = new Headers({
-    Accept: "*/*",
+    Accept: "application/json",
   });
 
   const secConfig = await extractSecurity(client._options.apiKey);
@@ -127,7 +130,7 @@ export async function messagesDeleteByTransactionId(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["409", "429", "4XX", "503", "5XX"],
+    errorCodes: ["400", "404", "409", "429", "4XX", "503", "5XX"],
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
@@ -143,6 +146,8 @@ export async function messagesDeleteByTransactionId(
   const [result] = await M.match<
     | operations.MessagesControllerDeleteMessagesByTransactionIdResponse
     | undefined,
+    | errors.MessagesControllerDeleteMessagesByTransactionIdResponseBody
+    | errors.MessagesControllerDeleteMessagesByTransactionIdMessagesResponseBody
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -156,6 +161,18 @@ export async function messagesDeleteByTransactionId(
       operations
         .MessagesControllerDeleteMessagesByTransactionIdResponse$inboundSchema
         .optional(),
+      { hdrs: true },
+    ),
+    M.jsonErr(
+      400,
+      errors
+        .MessagesControllerDeleteMessagesByTransactionIdResponseBody$inboundSchema,
+      { hdrs: true },
+    ),
+    M.jsonErr(
+      404,
+      errors
+        .MessagesControllerDeleteMessagesByTransactionIdMessagesResponseBody$inboundSchema,
       { hdrs: true },
     ),
     M.fail([409, 429, 503]),
