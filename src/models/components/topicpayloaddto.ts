@@ -4,40 +4,18 @@
 
 import * as z from "zod";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-
-export const Type = {
-  Subscriber: "Subscriber",
-  Topic: "Topic",
-} as const;
-export type Type = ClosedEnum<typeof Type>;
+import {
+  TriggerRecipientsTypeEnum,
+  TriggerRecipientsTypeEnum$inboundSchema,
+  TriggerRecipientsTypeEnum$outboundSchema,
+} from "./triggerrecipientstypeenum.js";
 
 export type TopicPayloadDto = {
   topicKey: string;
-  type: Type;
+  type: TriggerRecipientsTypeEnum;
 };
-
-/** @internal */
-export const Type$inboundSchema: z.ZodNativeEnum<typeof Type> = z.nativeEnum(
-  Type,
-);
-
-/** @internal */
-export const Type$outboundSchema: z.ZodNativeEnum<typeof Type> =
-  Type$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Type$ {
-  /** @deprecated use `Type$inboundSchema` instead. */
-  export const inboundSchema = Type$inboundSchema;
-  /** @deprecated use `Type$outboundSchema` instead. */
-  export const outboundSchema = Type$outboundSchema;
-}
 
 /** @internal */
 export const TopicPayloadDto$inboundSchema: z.ZodType<
@@ -46,7 +24,7 @@ export const TopicPayloadDto$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   topicKey: z.string(),
-  type: Type$inboundSchema,
+  type: TriggerRecipientsTypeEnum$inboundSchema,
 });
 
 /** @internal */
@@ -62,7 +40,7 @@ export const TopicPayloadDto$outboundSchema: z.ZodType<
   TopicPayloadDto
 > = z.object({
   topicKey: z.string(),
-  type: Type$outboundSchema,
+  type: TriggerRecipientsTypeEnum$outboundSchema,
 });
 
 /**

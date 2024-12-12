@@ -7,7 +7,7 @@
 
 ```typescript
 const value: components.DigestRegularMetadata = {
-  type: "regular",
+  type: "backoff",
 };
 ```
 

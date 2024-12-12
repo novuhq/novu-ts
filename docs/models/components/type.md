@@ -1,15 +1,17 @@
 # Type
 
+The type of channel that is enabled or not
+
 ## Example Usage
 
 ```typescript
 import { Type } from "@novu/api/models/components";
 
-let value: Type = "Topic";
+let value: Type = "chat";
 ```
 
 ## Values
 
 ```typescript
-"Subscriber" | "Topic"
+"in_app" | "email" | "sms" | "chat" | "push"
 ```

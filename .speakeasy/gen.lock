@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 6bff3a53-3f0b-40b4-942f-ff70dc583ae5
 management:
-  docChecksum: 008b25f13cc6a43ace98f0232da0d922
+  docChecksum: 352ec9731f94f27ac8f6f67e04f84918
   docVersion: "1.0"
   speakeasyVersion: 1.454.0
   generationVersion: 2.477.0
-  releaseVersion: 0.0.1-alpha.92
-  configChecksum: 9d6ec75f19225ba063e7fc81d5c455eb
+  releaseVersion: 0.0.1-alpha.94
+  configChecksum: 1ff1e678475321b2beb9828ede22d719
   published: true
 features:
   typescript:
@@ -52,13 +52,13 @@ generatedFiles:
   - docs/models/components/addsubscribersrequestdto.md
   - docs/models/components/assignsubscribertotopicdto.md
   - docs/models/components/backoffunit.md
+  - docs/models/components/builderfieldtype.md
   - docs/models/components/bulksubscribercreatedto.md
   - docs/models/components/bulktriggereventdto.md
   - docs/models/components/channel.md
   - docs/models/components/channelcredentials.md
   - docs/models/components/channelcredentialsdto.md
   - docs/models/components/channelpreference.md
-  - docs/models/components/channelpreferencetype.md
   - docs/models/components/channels.md
   - docs/models/components/channelsettings.md
   - docs/models/components/channelsettingsproviderid.md
@@ -154,7 +154,6 @@ generatedFiles:
   - docs/models/components/security.md
   - docs/models/components/status.md
   - docs/models/components/stepfilter.md
-  - docs/models/components/stepfiltertype.md
   - docs/models/components/subscriberchanneldto.md
   - docs/models/components/subscriberfeedresponsedto.md
   - docs/models/components/subscriberpayloaddto.md
@@ -175,6 +174,7 @@ generatedFiles:
   - docs/models/components/triggereventtoallrequestdto.md
   - docs/models/components/triggereventtoallrequestdtoactor.md
   - docs/models/components/triggereventtoallrequestdtotenant.md
+  - docs/models/components/triggerrecipientstypeenum.md
   - docs/models/components/type.md
   - docs/models/components/unit.md
   - docs/models/components/unseencountresponse.md
@@ -376,6 +376,7 @@ generatedFiles:
   - src/models/components/actortypeenum.ts
   - src/models/components/addsubscribersrequestdto.ts
   - src/models/components/assignsubscribertotopicdto.ts
+  - src/models/components/builderfieldtype.ts
   - src/models/components/bulksubscribercreatedto.ts
   - src/models/components/bulktriggereventdto.ts
   - src/models/components/channelcredentials.ts
@@ -442,6 +443,7 @@ generatedFiles:
   - src/models/components/triggereventrequestdto.ts
   - src/models/components/triggereventresponsedto.ts
   - src/models/components/triggereventtoallrequestdto.ts
+  - src/models/components/triggerrecipientstypeenum.ts
   - src/models/components/unseencountresponse.ts
   - src/models/components/updateintegrationrequestdto.ts
   - src/models/components/updatesubscriberchannelrequestdto.ts

@@ -1,11 +1,11 @@
-# StepFilterType
+# BuilderFieldType
 
 ## Example Usage
 
 ```typescript
-import { StepFilterType } from "@novu/api/models/components";
+import { BuilderFieldType } from "@novu/api/models/components";
 
-let value: StepFilterType = "NUMBER";
+let value: BuilderFieldType = "BOOLEAN";
 ```
 
 ## Values
