@@ -10584,7 +10584,6 @@
             "example": null
           },
           "type": {
-            "example": "user",
             "$ref": "#/components/schemas/ActorTypeEnum"
           }
         },
@@ -10739,7 +10738,6 @@
             "example": "Test Notification Subject"
           },
           "channel": {
-            "example": "email",
             "$ref": "#/components/schemas/ChannelTypeEnum"
           },
           "read": {
