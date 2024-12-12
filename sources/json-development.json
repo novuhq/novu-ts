@@ -12233,7 +12233,48 @@
       },
       "ErrorDto": {
         "type": "object",
-        "properties": {}
+        "properties": {
+          "statusCode": {
+            "type": "number",
+            "description": "HTTP status code of the error response.",
+            "example": 404
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "Timestamp of when the error occurred.",
+            "example": "2024-12-12T13:00:00Z"
+          },
+          "path": {
+            "type": "string",
+            "description": "The path where the error occurred.",
+            "example": "/api/v1/resource"
+          },
+          "message": {
+            "type": "string",
+            "description": "A detailed error message.",
+            "example": "Resource not found."
+          },
+          "ctx": {
+            "type": "object",
+            "description": "Optional context object for additional error details.",
+            "additionalProperties": true,
+            "example": {
+              "workflowId": "some_wf_id",
+              "stepId": "some_wf_id"
+            }
+          },
+          "errorId": {
+            "type": "string",
+            "description": "Optional unique identifier for the error, useful for tracking using Sentry and \n      New Relic, only available for 500.",
+            "example": "abc123"
+          }
+        },
+        "required": [
+          "statusCode",
+          "timestamp",
+          "path",
+          "message"
+        ]
       },
       "TriggerEventResponseDto": {
         "type": "object",

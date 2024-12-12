@@ -7,24 +7,73 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
-export type ErrorDto = {};
+export type ErrorDto = {
+  /**
+   * HTTP status code of the error response.
+   */
+  statusCode: number;
+  /**
+   * Timestamp of when the error occurred.
+   */
+  timestamp: string;
+  /**
+   * The path where the error occurred.
+   */
+  path: string;
+  /**
+   * A detailed error message.
+   */
+  message: string;
+  /**
+   * Optional context object for additional error details.
+   */
+  ctx?: { [k: string]: any } | undefined;
+  /**
+   * Optional unique identifier for the error, useful for tracking using Sentry and
+   *
+   * @remarks
+   *       New Relic, only available for 500.
+   */
+  errorId?: string | undefined;
+};
 
 /** @internal */
 export const ErrorDto$inboundSchema: z.ZodType<
   ErrorDto,
   z.ZodTypeDef,
   unknown
-> = z.object({});
+> = z.object({
+  statusCode: z.number(),
+  timestamp: z.string(),
+  path: z.string(),
+  message: z.string(),
+  ctx: z.record(z.any()).optional(),
+  errorId: z.string().optional(),
+});
 
 /** @internal */
-export type ErrorDto$Outbound = {};
+export type ErrorDto$Outbound = {
+  statusCode: number;
+  timestamp: string;
+  path: string;
+  message: string;
+  ctx?: { [k: string]: any } | undefined;
+  errorId?: string | undefined;
+};
 
 /** @internal */
 export const ErrorDto$outboundSchema: z.ZodType<
   ErrorDto$Outbound,
   z.ZodTypeDef,
   ErrorDto
-> = z.object({});
+> = z.object({
+  statusCode: z.number(),
+  timestamp: z.string(),
+  path: z.string(),
+  message: z.string(),
+  ctx: z.record(z.any()).optional(),
+  errorId: z.string().optional(),
+});
 
 /**
  * @internal
