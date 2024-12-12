@@ -31,7 +31,16 @@ import {
   WorkflowToStepControlValuesDto$outboundSchema,
 } from "./workflowtostepcontrolvaluesdto.js";
 
-export type To = TopicPayloadDto | SubscriberPayloadDto | string;
+export type One = TopicPayloadDto | SubscriberPayloadDto | string;
+
+/**
+ * The recipients list of people who will receive the notification.
+ */
+export type To =
+  | TopicPayloadDto
+  | SubscriberPayloadDto
+  | Array<TopicPayloadDto | SubscriberPayloadDto | string>
+  | string;
 
 /**
  * It is used to display the Avatar of the provided actor's subscriber id or actor object.
@@ -74,7 +83,11 @@ export type TriggerEventRequestDto = {
   /**
    * The recipients list of people who will receive the notification.
    */
-  to: Array<TopicPayloadDto | SubscriberPayloadDto | string>;
+  to:
+    | TopicPayloadDto
+    | SubscriberPayloadDto
+    | Array<TopicPayloadDto | SubscriberPayloadDto | string>
+    | string;
   /**
    * A unique identifier for this transaction, we will generate a UUID if not provided.
    */
@@ -101,9 +114,66 @@ export type TriggerEventRequestDto = {
 };
 
 /** @internal */
+export const One$inboundSchema: z.ZodType<One, z.ZodTypeDef, unknown> = z.union(
+  [
+    TopicPayloadDto$inboundSchema,
+    SubscriberPayloadDto$inboundSchema,
+    z.string(),
+  ],
+);
+
+/** @internal */
+export type One$Outbound =
+  | TopicPayloadDto$Outbound
+  | SubscriberPayloadDto$Outbound
+  | string;
+
+/** @internal */
+export const One$outboundSchema: z.ZodType<One$Outbound, z.ZodTypeDef, One> = z
+  .union([
+    TopicPayloadDto$outboundSchema,
+    SubscriberPayloadDto$outboundSchema,
+    z.string(),
+  ]);
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace One$ {
+  /** @deprecated use `One$inboundSchema` instead. */
+  export const inboundSchema = One$inboundSchema;
+  /** @deprecated use `One$outboundSchema` instead. */
+  export const outboundSchema = One$outboundSchema;
+  /** @deprecated use `One$Outbound` instead. */
+  export type Outbound = One$Outbound;
+}
+
+export function oneToJSON(one: One): string {
+  return JSON.stringify(One$outboundSchema.parse(one));
+}
+
+export function oneFromJSON(
+  jsonString: string,
+): SafeParseResult<One, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => One$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'One' from JSON`,
+  );
+}
+
+/** @internal */
 export const To$inboundSchema: z.ZodType<To, z.ZodTypeDef, unknown> = z.union([
   TopicPayloadDto$inboundSchema,
   SubscriberPayloadDto$inboundSchema,
+  z.array(
+    z.union([
+      TopicPayloadDto$inboundSchema,
+      SubscriberPayloadDto$inboundSchema,
+      z.string(),
+    ]),
+  ),
   z.string(),
 ]);
 
@@ -111,6 +181,7 @@ export const To$inboundSchema: z.ZodType<To, z.ZodTypeDef, unknown> = z.union([
 export type To$Outbound =
   | TopicPayloadDto$Outbound
   | SubscriberPayloadDto$Outbound
+  | Array<TopicPayloadDto$Outbound | SubscriberPayloadDto$Outbound | string>
   | string;
 
 /** @internal */
@@ -118,6 +189,13 @@ export const To$outboundSchema: z.ZodType<To$Outbound, z.ZodTypeDef, To> = z
   .union([
     TopicPayloadDto$outboundSchema,
     SubscriberPayloadDto$outboundSchema,
+    z.array(
+      z.union([
+        TopicPayloadDto$outboundSchema,
+        SubscriberPayloadDto$outboundSchema,
+        z.string(),
+      ]),
+    ),
     z.string(),
   ]);
 
@@ -240,13 +318,18 @@ export const TriggerEventRequestDto$inboundSchema: z.ZodType<
   payload: z.record(z.any()).optional(),
   bridgeUrl: z.string().optional(),
   overrides: z.record(z.record(z.any())).optional(),
-  to: z.array(
-    z.union([
-      TopicPayloadDto$inboundSchema,
-      SubscriberPayloadDto$inboundSchema,
-      z.string(),
-    ]),
-  ),
+  to: z.union([
+    TopicPayloadDto$inboundSchema,
+    SubscriberPayloadDto$inboundSchema,
+    z.array(
+      z.union([
+        TopicPayloadDto$inboundSchema,
+        SubscriberPayloadDto$inboundSchema,
+        z.string(),
+      ]),
+    ),
+    z.string(),
+  ]),
   transactionId: z.string().optional(),
   actor: z.union([SubscriberPayloadDto$inboundSchema, z.string()]).optional(),
   tenant: z.union([TenantPayloadDto$inboundSchema, z.string()]).optional(),
@@ -259,7 +342,11 @@ export type TriggerEventRequestDto$Outbound = {
   payload?: { [k: string]: any } | undefined;
   bridgeUrl?: string | undefined;
   overrides?: { [k: string]: { [k: string]: any } } | undefined;
-  to: Array<TopicPayloadDto$Outbound | SubscriberPayloadDto$Outbound | string>;
+  to:
+    | TopicPayloadDto$Outbound
+    | SubscriberPayloadDto$Outbound
+    | Array<TopicPayloadDto$Outbound | SubscriberPayloadDto$Outbound | string>
+    | string;
   transactionId?: string | undefined;
   actor?: SubscriberPayloadDto$Outbound | string | undefined;
   tenant?: TenantPayloadDto$Outbound | string | undefined;
@@ -276,13 +363,18 @@ export const TriggerEventRequestDto$outboundSchema: z.ZodType<
   payload: z.record(z.any()).optional(),
   bridgeUrl: z.string().optional(),
   overrides: z.record(z.record(z.any())).optional(),
-  to: z.array(
-    z.union([
-      TopicPayloadDto$outboundSchema,
-      SubscriberPayloadDto$outboundSchema,
-      z.string(),
-    ]),
-  ),
+  to: z.union([
+    TopicPayloadDto$outboundSchema,
+    SubscriberPayloadDto$outboundSchema,
+    z.array(
+      z.union([
+        TopicPayloadDto$outboundSchema,
+        SubscriberPayloadDto$outboundSchema,
+        z.string(),
+      ]),
+    ),
+    z.string(),
+  ]),
   transactionId: z.string().optional(),
   actor: z.union([SubscriberPayloadDto$outboundSchema, z.string()]).optional(),
   tenant: z.union([TenantPayloadDto$outboundSchema, z.string()]).optional(),

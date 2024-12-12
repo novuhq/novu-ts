@@ -1,25 +1,7 @@
-# To
-
-The recipients list of people who will receive the notification.
+# One
 
 
 ## Supported Types
-
-### `components.One[]`
-
-```typescript
-const value: components.One[] = [
-  {
-    subscriberId: "<id>",
-  },
-];
-```
-
-### `string`
-
-```typescript
-const value: string = "SUBSCRIBER_ID";
-```
 
 ### `components.SubscriberPayloadDto`
 
@@ -36,5 +18,11 @@ const value: components.TopicPayloadDto = {
   topicKey: "<value>",
   type: "Topic",
 };
+```
+
+### `string`
+
+```typescript
+const value: string = "SUBSCRIBER_ID";
 ```
 

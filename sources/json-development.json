@@ -9041,13 +9041,6 @@
           }
         }
       },
-      "TriggerRecipientsTypeEnum": {
-        "type": "string",
-        "enum": [
-          "Subscriber",
-          "Topic"
-        ]
-      },
       "TopicPayloadDto": {
         "type": "object",
         "properties": {
@@ -9055,8 +9048,12 @@
             "type": "string"
           },
           "type": {
-            "example": "Topic",
-            "$ref": "#/components/schemas/TriggerRecipientsTypeEnum"
+            "enum": [
+              "Subscriber",
+              "Topic"
+            ],
+            "type": "string",
+            "example": "Topic"
           }
         },
         "required": [
@@ -9117,23 +9114,38 @@
             }
           },
           "to": {
-            "type": "array",
             "description": "The recipients list of people who will receive the notification.",
-            "items": {
-              "oneOf": [
-                {
-                  "$ref": "#/components/schemas/SubscriberPayloadDto"
-                },
-                {
-                  "$ref": "#/components/schemas/TopicPayloadDto"
-                },
-                {
-                  "type": "string",
-                  "description": "Unique identifier of a subscriber in your systems",
-                  "example": "SUBSCRIBER_ID"
+            "oneOf": [
+              {
+                "type": "array",
+                "items": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/SubscriberPayloadDto"
+                    },
+                    {
+                      "$ref": "#/components/schemas/TopicPayloadDto"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Unique identifier of a subscriber in your systems",
+                      "example": "SUBSCRIBER_ID"
+                    }
+                  ]
                 }
-              ]
-            }
+              },
+              {
+                "type": "string",
+                "description": "Unique identifier of a subscriber in your systems",
+                "example": "SUBSCRIBER_ID"
+              },
+              {
+                "$ref": "#/components/schemas/SubscriberPayloadDto"
+              },
+              {
+                "$ref": "#/components/schemas/TopicPayloadDto"
+              }
+            ]
           },
           "transactionId": {
             "type": "string",

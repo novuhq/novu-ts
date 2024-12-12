@@ -77,7 +77,6 @@ export * from "./topicsubscriberdto.js";
 export * from "./triggereventrequestdto.js";
 export * from "./triggereventresponsedto.js";
 export * from "./triggereventtoallrequestdto.js";
-export * from "./triggerrecipientstypeenum.js";
 export * from "./unseencountresponse.js";
 export * from "./updateintegrationrequestdto.js";
 export * from "./updatesubscriberchannelrequestdto.js";
