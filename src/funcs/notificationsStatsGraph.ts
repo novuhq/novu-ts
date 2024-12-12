@@ -32,8 +32,7 @@ export async function notificationsStatsGraph(
 ): Promise<
   Result<
     operations.NotificationsControllerGetActivityGraphStatsResponse,
-    | errors.NotificationsControllerGetActivityGraphStatsResponseBody
-    | errors.NotificationsControllerGetActivityGraphStatsNotificationsStatsResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -130,8 +129,7 @@ export async function notificationsStatsGraph(
 
   const [result] = await M.match<
     operations.NotificationsControllerGetActivityGraphStatsResponse,
-    | errors.NotificationsControllerGetActivityGraphStatsResponseBody
-    | errors.NotificationsControllerGetActivityGraphStatsNotificationsStatsResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -146,18 +144,7 @@ export async function notificationsStatsGraph(
         .NotificationsControllerGetActivityGraphStatsResponse$inboundSchema,
       { hdrs: true, key: "Result" },
     ),
-    M.jsonErr(
-      400,
-      errors
-        .NotificationsControllerGetActivityGraphStatsResponseBody$inboundSchema,
-      { hdrs: true },
-    ),
-    M.jsonErr(
-      404,
-      errors
-        .NotificationsControllerGetActivityGraphStatsNotificationsStatsResponseBody$inboundSchema,
-      { hdrs: true },
-    ),
+    M.jsonErr([400, 404], errors.ErrorDto$inboundSchema, { hdrs: true }),
     M.fail([409, 429, 503]),
     M.fail(["4XX", "5XX"]),
   )(response, { extraFields: responseFields });

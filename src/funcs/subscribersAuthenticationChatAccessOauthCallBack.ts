@@ -32,8 +32,7 @@ export async function subscribersAuthenticationChatAccessOauthCallBack(
 ): Promise<
   Result<
     operations.SubscribersControllerChatOauthCallbackResponse,
-    | errors.SubscribersControllerChatOauthCallbackResponseBody
-    | errors.SubscribersControllerChatOauthCallbackSubscribersAuthenticationResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -140,8 +139,7 @@ export async function subscribersAuthenticationChatAccessOauthCallBack(
 
   const [result] = await M.match<
     operations.SubscribersControllerChatOauthCallbackResponse,
-    | errors.SubscribersControllerChatOauthCallbackResponseBody
-    | errors.SubscribersControllerChatOauthCallbackSubscribersAuthenticationResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -155,17 +153,7 @@ export async function subscribersAuthenticationChatAccessOauthCallBack(
       operations.SubscribersControllerChatOauthCallbackResponse$inboundSchema,
       { key: "Result" },
     ),
-    M.jsonErr(
-      400,
-      errors.SubscribersControllerChatOauthCallbackResponseBody$inboundSchema,
-      { hdrs: true },
-    ),
-    M.jsonErr(
-      404,
-      errors
-        .SubscribersControllerChatOauthCallbackSubscribersAuthenticationResponseBody$inboundSchema,
-      { hdrs: true },
-    ),
+    M.jsonErr([400, 404], errors.ErrorDto$inboundSchema, { hdrs: true }),
     M.fail([409, 429, 503]),
     M.fail(["4XX", "5XX"]),
   )(response, { extraFields: responseFields });

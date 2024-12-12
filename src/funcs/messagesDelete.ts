@@ -35,8 +35,7 @@ export async function messagesDelete(
 ): Promise<
   Result<
     operations.MessagesControllerDeleteMessageResponse,
-    | errors.MessagesControllerDeleteMessageResponseBody
-    | errors.MessagesControllerDeleteMessageMessagesResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -134,8 +133,7 @@ export async function messagesDelete(
 
   const [result] = await M.match<
     operations.MessagesControllerDeleteMessageResponse,
-    | errors.MessagesControllerDeleteMessageResponseBody
-    | errors.MessagesControllerDeleteMessageMessagesResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -149,16 +147,7 @@ export async function messagesDelete(
       operations.MessagesControllerDeleteMessageResponse$inboundSchema,
       { hdrs: true, key: "Result" },
     ),
-    M.jsonErr(
-      400,
-      errors.MessagesControllerDeleteMessageResponseBody$inboundSchema,
-      { hdrs: true },
-    ),
-    M.jsonErr(
-      404,
-      errors.MessagesControllerDeleteMessageMessagesResponseBody$inboundSchema,
-      { hdrs: true },
-    ),
+    M.jsonErr([400, 404], errors.ErrorDto$inboundSchema, { hdrs: true }),
     M.fail([409, 429, 503]),
     M.fail(["4XX", "5XX"]),
   )(response, { extraFields: responseFields });

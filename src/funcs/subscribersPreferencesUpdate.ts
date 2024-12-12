@@ -32,8 +32,7 @@ export async function subscribersPreferencesUpdate(
 ): Promise<
   Result<
     operations.SubscribersControllerUpdateSubscriberPreferenceResponse,
-    | errors.SubscribersControllerUpdateSubscriberPreferenceResponseBody
-    | errors.SubscribersControllerUpdateSubscriberPreferenceSubscribersPreferencesResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -138,8 +137,7 @@ export async function subscribersPreferencesUpdate(
 
   const [result] = await M.match<
     operations.SubscribersControllerUpdateSubscriberPreferenceResponse,
-    | errors.SubscribersControllerUpdateSubscriberPreferenceResponseBody
-    | errors.SubscribersControllerUpdateSubscriberPreferenceSubscribersPreferencesResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -154,18 +152,7 @@ export async function subscribersPreferencesUpdate(
         .SubscribersControllerUpdateSubscriberPreferenceResponse$inboundSchema,
       { hdrs: true, key: "Result" },
     ),
-    M.jsonErr(
-      400,
-      errors
-        .SubscribersControllerUpdateSubscriberPreferenceResponseBody$inboundSchema,
-      { hdrs: true },
-    ),
-    M.jsonErr(
-      404,
-      errors
-        .SubscribersControllerUpdateSubscriberPreferenceSubscribersPreferencesResponseBody$inboundSchema,
-      { hdrs: true },
-    ),
+    M.jsonErr([400, 404], errors.ErrorDto$inboundSchema, { hdrs: true }),
     M.fail([409, 429, 503]),
     M.fail(["4XX", "5XX"]),
   )(response, { extraFields: responseFields });

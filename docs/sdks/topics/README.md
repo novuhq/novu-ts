@@ -88,11 +88,10 @@ run();
 
 ### Errors
 
-| Error Type                                           | Status Code                                          | Content Type                                         |
-| ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- |
-| errors.TopicsControllerCreateTopicResponseBody       | 400                                                  | application/json                                     |
-| errors.TopicsControllerCreateTopicTopicsResponseBody | 404                                                  | application/json                                     |
-| errors.SDKError                                      | 4XX, 5XX                                             | \*/\*                                                |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorDto  | 400, 404         | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## list
 
@@ -162,11 +161,10 @@ run();
 
 ### Errors
 
-| Error Type                                          | Status Code                                         | Content Type                                        |
-| --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- |
-| errors.TopicsControllerListTopicsResponseBody       | 400                                                 | application/json                                    |
-| errors.TopicsControllerListTopicsTopicsResponseBody | 404                                                 | application/json                                    |
-| errors.SDKError                                     | 4XX, 5XX                                            | \*/\*                                               |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorDto  | 400, 404         | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## delete
 
@@ -236,10 +234,10 @@ run();
 
 ### Errors
 
-| Error Type                                     | Status Code                                    | Content Type                                   |
-| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
-| errors.TopicsControllerDeleteTopicResponseBody | 400                                            | application/json                               |
-| errors.SDKError                                | 4XX, 5XX                                       | \*/\*                                          |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorDto  | 400              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## retrieve
 
@@ -309,11 +307,10 @@ run();
 
 ### Errors
 
-| Error Type                                        | Status Code                                       | Content Type                                      |
-| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
-| errors.TopicsControllerGetTopicResponseBody       | 400                                               | application/json                                  |
-| errors.TopicsControllerGetTopicTopicsResponseBody | 404                                               | application/json                                  |
-| errors.SDKError                                   | 4XX, 5XX                                          | \*/\*                                             |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorDto  | 400, 404         | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## rename
 
@@ -388,8 +385,7 @@ run();
 
 ### Errors
 
-| Error Type                                           | Status Code                                          | Content Type                                         |
-| ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- |
-| errors.TopicsControllerRenameTopicResponseBody       | 400                                                  | application/json                                     |
-| errors.TopicsControllerRenameTopicTopicsResponseBody | 404                                                  | application/json                                     |
-| errors.SDKError                                      | 4XX, 5XX                                             | \*/\*                                                |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorDto  | 400, 404         | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |

@@ -38,8 +38,7 @@ export async function subscribersCreateBulk(
 ): Promise<
   Result<
     operations.SubscribersControllerBulkCreateSubscribersResponse | undefined,
-    | errors.SubscribersControllerBulkCreateSubscribersResponseBody
-    | errors.SubscribersControllerBulkCreateSubscribersSubscribersResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -124,8 +123,7 @@ export async function subscribersCreateBulk(
 
   const [result] = await M.match<
     operations.SubscribersControllerBulkCreateSubscribersResponse | undefined,
-    | errors.SubscribersControllerBulkCreateSubscribersResponseBody
-    | errors.SubscribersControllerBulkCreateSubscribersSubscribersResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -140,18 +138,7 @@ export async function subscribersCreateBulk(
         .SubscribersControllerBulkCreateSubscribersResponse$inboundSchema
         .optional(),
     ),
-    M.jsonErr(
-      400,
-      errors
-        .SubscribersControllerBulkCreateSubscribersResponseBody$inboundSchema,
-      { hdrs: true },
-    ),
-    M.jsonErr(
-      404,
-      errors
-        .SubscribersControllerBulkCreateSubscribersSubscribersResponseBody$inboundSchema,
-      { hdrs: true },
-    ),
+    M.jsonErr([400, 404], errors.ErrorDto$inboundSchema, { hdrs: true }),
     M.fail([409, 429, 503]),
     M.fail(["4XX", "5XX"]),
   )(response, { extraFields: responseFields });

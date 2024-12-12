@@ -34,7 +34,7 @@ export async function integrationsUpdate(
 ): Promise<
   Result<
     operations.IntegrationsControllerUpdateIntegrationByIdResponse,
-    | errors.IntegrationsControllerUpdateIntegrationByIdResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -136,7 +136,7 @@ export async function integrationsUpdate(
 
   const [result] = await M.match<
     operations.IntegrationsControllerUpdateIntegrationByIdResponse,
-    | errors.IntegrationsControllerUpdateIntegrationByIdResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -151,12 +151,7 @@ export async function integrationsUpdate(
         .IntegrationsControllerUpdateIntegrationByIdResponse$inboundSchema,
       { hdrs: true, key: "Result" },
     ),
-    M.jsonErr(
-      400,
-      errors
-        .IntegrationsControllerUpdateIntegrationByIdResponseBody$inboundSchema,
-      { hdrs: true },
-    ),
+    M.jsonErr(400, errors.ErrorDto$inboundSchema, { hdrs: true }),
     M.fail([404, 409, 429, 503]),
     M.fail(["4XX", "5XX"]),
   )(response, { extraFields: responseFields });

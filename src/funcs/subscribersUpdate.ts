@@ -37,8 +37,7 @@ export async function subscribersUpdate(
 ): Promise<
   Result<
     operations.SubscribersControllerUpdateSubscriberResponse,
-    | errors.SubscribersControllerUpdateSubscriberResponseBody
-    | errors.SubscribersControllerUpdateSubscriberSubscribersResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -139,8 +138,7 @@ export async function subscribersUpdate(
 
   const [result] = await M.match<
     operations.SubscribersControllerUpdateSubscriberResponse,
-    | errors.SubscribersControllerUpdateSubscriberResponseBody
-    | errors.SubscribersControllerUpdateSubscriberSubscribersResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -154,17 +152,7 @@ export async function subscribersUpdate(
       operations.SubscribersControllerUpdateSubscriberResponse$inboundSchema,
       { hdrs: true, key: "Result" },
     ),
-    M.jsonErr(
-      400,
-      errors.SubscribersControllerUpdateSubscriberResponseBody$inboundSchema,
-      { hdrs: true },
-    ),
-    M.jsonErr(
-      404,
-      errors
-        .SubscribersControllerUpdateSubscriberSubscribersResponseBody$inboundSchema,
-      { hdrs: true },
-    ),
+    M.jsonErr([400, 404], errors.ErrorDto$inboundSchema, { hdrs: true }),
     M.fail([409, 429, 503]),
     M.fail(["4XX", "5XX"]),
   )(response, { extraFields: responseFields });

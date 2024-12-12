@@ -32,8 +32,7 @@ export async function subscribersNotificationsUnseenCount(
 ): Promise<
   Result<
     operations.SubscribersControllerGetUnseenCountResponse,
-    | errors.SubscribersControllerGetUnseenCountResponseBody
-    | errors.SubscribersControllerGetUnseenCountSubscribersNotificationsResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -134,8 +133,7 @@ export async function subscribersNotificationsUnseenCount(
 
   const [result] = await M.match<
     operations.SubscribersControllerGetUnseenCountResponse,
-    | errors.SubscribersControllerGetUnseenCountResponseBody
-    | errors.SubscribersControllerGetUnseenCountSubscribersNotificationsResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -149,17 +147,7 @@ export async function subscribersNotificationsUnseenCount(
       operations.SubscribersControllerGetUnseenCountResponse$inboundSchema,
       { hdrs: true, key: "Result" },
     ),
-    M.jsonErr(
-      400,
-      errors.SubscribersControllerGetUnseenCountResponseBody$inboundSchema,
-      { hdrs: true },
-    ),
-    M.jsonErr(
-      404,
-      errors
-        .SubscribersControllerGetUnseenCountSubscribersNotificationsResponseBody$inboundSchema,
-      { hdrs: true },
-    ),
+    M.jsonErr([400, 404], errors.ErrorDto$inboundSchema, { hdrs: true }),
     M.fail([409, 429, 503]),
     M.fail(["4XX", "5XX"]),
   )(response, { extraFields: responseFields });

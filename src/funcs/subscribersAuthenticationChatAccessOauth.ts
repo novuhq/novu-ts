@@ -32,8 +32,7 @@ export async function subscribersAuthenticationChatAccessOauth(
 ): Promise<
   Result<
     operations.SubscribersControllerChatAccessOauthResponse | undefined,
-    | errors.SubscribersControllerChatAccessOauthResponseBody
-    | errors.SubscribersControllerChatAccessOauthSubscribersAuthenticationResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -139,8 +138,7 @@ export async function subscribersAuthenticationChatAccessOauth(
 
   const [result] = await M.match<
     operations.SubscribersControllerChatAccessOauthResponse | undefined,
-    | errors.SubscribersControllerChatAccessOauthResponseBody
-    | errors.SubscribersControllerChatAccessOauthSubscribersAuthenticationResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -154,17 +152,7 @@ export async function subscribersAuthenticationChatAccessOauth(
       operations.SubscribersControllerChatAccessOauthResponse$inboundSchema
         .optional(),
     ),
-    M.jsonErr(
-      400,
-      errors.SubscribersControllerChatAccessOauthResponseBody$inboundSchema,
-      { hdrs: true },
-    ),
-    M.jsonErr(
-      404,
-      errors
-        .SubscribersControllerChatAccessOauthSubscribersAuthenticationResponseBody$inboundSchema,
-      { hdrs: true },
-    ),
+    M.jsonErr([400, 404], errors.ErrorDto$inboundSchema, { hdrs: true }),
     M.fail([409, 429, 503]),
     M.fail(["4XX", "5XX"]),
   )(response, { extraFields: responseFields });

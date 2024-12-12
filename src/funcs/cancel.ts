@@ -37,8 +37,7 @@ export async function cancel(
 ): Promise<
   Result<
     operations.EventsControllerCancelResponse,
-    | errors.EventsControllerCancelResponseBody
-    | errors.EventsControllerCancelResponseResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -134,8 +133,7 @@ export async function cancel(
 
   const [result] = await M.match<
     operations.EventsControllerCancelResponse,
-    | errors.EventsControllerCancelResponseBody
-    | errors.EventsControllerCancelResponseResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -148,14 +146,7 @@ export async function cancel(
       hdrs: true,
       key: "Result",
     }),
-    M.jsonErr(400, errors.EventsControllerCancelResponseBody$inboundSchema, {
-      hdrs: true,
-    }),
-    M.jsonErr(
-      404,
-      errors.EventsControllerCancelResponseResponseBody$inboundSchema,
-      { hdrs: true },
-    ),
+    M.jsonErr([400, 404], errors.ErrorDto$inboundSchema, { hdrs: true }),
     M.fail([409, 429, 503]),
     M.fail(["4XX", "5XX"]),
   )(response, { extraFields: responseFields });

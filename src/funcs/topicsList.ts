@@ -35,8 +35,7 @@ export async function topicsList(
 ): Promise<
   Result<
     operations.TopicsControllerListTopicsResponse,
-    | errors.TopicsControllerListTopicsResponseBody
-    | errors.TopicsControllerListTopicsTopicsResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -128,8 +127,7 @@ export async function topicsList(
 
   const [result] = await M.match<
     operations.TopicsControllerListTopicsResponse,
-    | errors.TopicsControllerListTopicsResponseBody
-    | errors.TopicsControllerListTopicsTopicsResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -142,16 +140,7 @@ export async function topicsList(
       hdrs: true,
       key: "Result",
     }),
-    M.jsonErr(
-      400,
-      errors.TopicsControllerListTopicsResponseBody$inboundSchema,
-      { hdrs: true },
-    ),
-    M.jsonErr(
-      404,
-      errors.TopicsControllerListTopicsTopicsResponseBody$inboundSchema,
-      { hdrs: true },
-    ),
+    M.jsonErr([400, 404], errors.ErrorDto$inboundSchema, { hdrs: true }),
     M.fail([409, 429, 503]),
     M.fail(["4XX", "5XX"]),
   )(response, { extraFields: responseFields });

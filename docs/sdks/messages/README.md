@@ -80,11 +80,10 @@ run();
 
 ### Errors
 
-| Error Type                                               | Status Code                                              | Content Type                                             |
-| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
-| errors.MessagesControllerGetMessagesResponseBody         | 400                                                      | application/json                                         |
-| errors.MessagesControllerGetMessagesMessagesResponseBody | 404                                                      | application/json                                         |
-| errors.SDKError                                          | 4XX, 5XX                                                 | \*/\*                                                    |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorDto  | 400, 404         | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## delete
 
@@ -154,11 +153,10 @@ run();
 
 ### Errors
 
-| Error Type                                                 | Status Code                                                | Content Type                                               |
-| ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- |
-| errors.MessagesControllerDeleteMessageResponseBody         | 400                                                        | application/json                                           |
-| errors.MessagesControllerDeleteMessageMessagesResponseBody | 404                                                        | application/json                                           |
-| errors.SDKError                                            | 4XX, 5XX                                                   | \*/\*                                                      |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorDto  | 400, 404         | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## deleteByTransactionId
 
@@ -229,8 +227,7 @@ run();
 
 ### Errors
 
-| Error Type                                                                 | Status Code                                                                | Content Type                                                               |
-| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| errors.MessagesControllerDeleteMessagesByTransactionIdResponseBody         | 400                                                                        | application/json                                                           |
-| errors.MessagesControllerDeleteMessagesByTransactionIdMessagesResponseBody | 404                                                                        | application/json                                                           |
-| errors.SDKError                                                            | 4XX, 5XX                                                                   | \*/\*                                                                      |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorDto  | 400, 404         | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |

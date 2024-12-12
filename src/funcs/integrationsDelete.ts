@@ -32,8 +32,7 @@ export async function integrationsDelete(
 ): Promise<
   Result<
     operations.IntegrationsControllerRemoveIntegrationResponse,
-    | errors.IntegrationsControllerRemoveIntegrationResponseBody
-    | errors.IntegrationsControllerRemoveIntegrationIntegrationsResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -130,8 +129,7 @@ export async function integrationsDelete(
 
   const [result] = await M.match<
     operations.IntegrationsControllerRemoveIntegrationResponse,
-    | errors.IntegrationsControllerRemoveIntegrationResponseBody
-    | errors.IntegrationsControllerRemoveIntegrationIntegrationsResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -145,17 +143,7 @@ export async function integrationsDelete(
       operations.IntegrationsControllerRemoveIntegrationResponse$inboundSchema,
       { hdrs: true, key: "Result" },
     ),
-    M.jsonErr(
-      400,
-      errors.IntegrationsControllerRemoveIntegrationResponseBody$inboundSchema,
-      { hdrs: true },
-    ),
-    M.jsonErr(
-      404,
-      errors
-        .IntegrationsControllerRemoveIntegrationIntegrationsResponseBody$inboundSchema,
-      { hdrs: true },
-    ),
+    M.jsonErr([400, 404], errors.ErrorDto$inboundSchema, { hdrs: true }),
     M.fail([409, 429, 503]),
     M.fail(["4XX", "5XX"]),
   )(response, { extraFields: responseFields });

@@ -37,8 +37,7 @@ export async function topicsSubscribersRemove(
 ): Promise<
   Result<
     operations.TopicsControllerRemoveSubscribersResponse | undefined,
-    | errors.TopicsControllerRemoveSubscribersResponseBody
-    | errors.TopicsControllerRemoveSubscribersTopicsSubscribersResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -142,8 +141,7 @@ export async function topicsSubscribersRemove(
 
   const [result] = await M.match<
     operations.TopicsControllerRemoveSubscribersResponse | undefined,
-    | errors.TopicsControllerRemoveSubscribersResponseBody
-    | errors.TopicsControllerRemoveSubscribersTopicsSubscribersResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -158,17 +156,7 @@ export async function topicsSubscribersRemove(
         .optional(),
       { hdrs: true },
     ),
-    M.jsonErr(
-      400,
-      errors.TopicsControllerRemoveSubscribersResponseBody$inboundSchema,
-      { hdrs: true },
-    ),
-    M.jsonErr(
-      404,
-      errors
-        .TopicsControllerRemoveSubscribersTopicsSubscribersResponseBody$inboundSchema,
-      { hdrs: true },
-    ),
+    M.jsonErr([400, 404], errors.ErrorDto$inboundSchema, { hdrs: true }),
     M.fail([409, 429, 503]),
     M.fail(["4XX", "5XX"]),
   )(response, { extraFields: responseFields });

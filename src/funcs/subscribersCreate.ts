@@ -36,8 +36,7 @@ export async function subscribersCreate(
 ): Promise<
   Result<
     operations.SubscribersControllerCreateSubscriberResponse,
-    | errors.SubscribersControllerCreateSubscriberResponseBody
-    | errors.SubscribersControllerCreateSubscriberSubscribersResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -123,8 +122,7 @@ export async function subscribersCreate(
 
   const [result] = await M.match<
     operations.SubscribersControllerCreateSubscriberResponse,
-    | errors.SubscribersControllerCreateSubscriberResponseBody
-    | errors.SubscribersControllerCreateSubscriberSubscribersResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -138,17 +136,7 @@ export async function subscribersCreate(
       operations.SubscribersControllerCreateSubscriberResponse$inboundSchema,
       { hdrs: true, key: "Result" },
     ),
-    M.jsonErr(
-      400,
-      errors.SubscribersControllerCreateSubscriberResponseBody$inboundSchema,
-      { hdrs: true },
-    ),
-    M.jsonErr(
-      404,
-      errors
-        .SubscribersControllerCreateSubscriberSubscribersResponseBody$inboundSchema,
-      { hdrs: true },
-    ),
+    M.jsonErr([400, 404], errors.ErrorDto$inboundSchema, { hdrs: true }),
     M.fail([409, 429, 503]),
     M.fail(["4XX", "5XX"]),
   )(response, { extraFields: responseFields });

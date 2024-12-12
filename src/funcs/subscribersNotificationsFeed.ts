@@ -32,8 +32,7 @@ export async function subscribersNotificationsFeed(
 ): Promise<
   Result<
     operations.SubscribersControllerGetNotificationsFeedResponse,
-    | errors.SubscribersControllerGetNotificationsFeedResponseBody
-    | errors.SubscribersControllerGetNotificationsFeedSubscribersNotificationsResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -137,8 +136,7 @@ export async function subscribersNotificationsFeed(
 
   const [result] = await M.match<
     operations.SubscribersControllerGetNotificationsFeedResponse,
-    | errors.SubscribersControllerGetNotificationsFeedResponseBody
-    | errors.SubscribersControllerGetNotificationsFeedSubscribersNotificationsResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -153,18 +151,7 @@ export async function subscribersNotificationsFeed(
         .SubscribersControllerGetNotificationsFeedResponse$inboundSchema,
       { hdrs: true, key: "Result" },
     ),
-    M.jsonErr(
-      400,
-      errors
-        .SubscribersControllerGetNotificationsFeedResponseBody$inboundSchema,
-      { hdrs: true },
-    ),
-    M.jsonErr(
-      404,
-      errors
-        .SubscribersControllerGetNotificationsFeedSubscribersNotificationsResponseBody$inboundSchema,
-      { hdrs: true },
-    ),
+    M.jsonErr([400, 404], errors.ErrorDto$inboundSchema, { hdrs: true }),
     M.fail([409, 429, 503]),
     M.fail(["4XX", "5XX"]),
   )(response, { extraFields: responseFields });

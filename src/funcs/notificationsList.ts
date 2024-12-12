@@ -32,8 +32,7 @@ export async function notificationsList(
 ): Promise<
   Result<
     operations.NotificationsControllerListNotificationsResponse,
-    | errors.NotificationsControllerListNotificationsResponseBody
-    | errors.NotificationsControllerListNotificationsNotificationsResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -130,8 +129,7 @@ export async function notificationsList(
 
   const [result] = await M.match<
     operations.NotificationsControllerListNotificationsResponse,
-    | errors.NotificationsControllerListNotificationsResponseBody
-    | errors.NotificationsControllerListNotificationsNotificationsResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -145,17 +143,7 @@ export async function notificationsList(
       operations.NotificationsControllerListNotificationsResponse$inboundSchema,
       { hdrs: true, key: "Result" },
     ),
-    M.jsonErr(
-      400,
-      errors.NotificationsControllerListNotificationsResponseBody$inboundSchema,
-      { hdrs: true },
-    ),
-    M.jsonErr(
-      404,
-      errors
-        .NotificationsControllerListNotificationsNotificationsResponseBody$inboundSchema,
-      { hdrs: true },
-    ),
+    M.jsonErr([400, 404], errors.ErrorDto$inboundSchema, { hdrs: true }),
     M.fail([409, 429, 503]),
     M.fail(["4XX", "5XX"]),
   )(response, { extraFields: responseFields });

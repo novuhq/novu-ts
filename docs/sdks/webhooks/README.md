@@ -75,8 +75,7 @@ run();
 
 ### Errors
 
-| Error Type                                                                           | Status Code                                                                          | Content Type                                                                         |
-| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
-| errors.IntegrationsControllerGetWebhookSupportStatusResponseBody                     | 400                                                                                  | application/json                                                                     |
-| errors.IntegrationsControllerGetWebhookSupportStatusIntegrationsWebhooksResponseBody | 404                                                                                  | application/json                                                                     |
-| errors.SDKError                                                                      | 4XX, 5XX                                                                             | \*/\*                                                                                |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorDto  | 400, 404         | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |

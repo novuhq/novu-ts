@@ -34,8 +34,7 @@ export async function subscribersMessagesMarkAllAs(
 ): Promise<
   Result<
     operations.SubscribersControllerMarkMessagesAsResponse,
-    | errors.SubscribersControllerMarkMessagesAsResponseBody
-    | errors.SubscribersControllerMarkMessagesAsSubscribersMessagesResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -138,8 +137,7 @@ export async function subscribersMessagesMarkAllAs(
 
   const [result] = await M.match<
     operations.SubscribersControllerMarkMessagesAsResponse,
-    | errors.SubscribersControllerMarkMessagesAsResponseBody
-    | errors.SubscribersControllerMarkMessagesAsSubscribersMessagesResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -153,17 +151,7 @@ export async function subscribersMessagesMarkAllAs(
       operations.SubscribersControllerMarkMessagesAsResponse$inboundSchema,
       { key: "Result" },
     ),
-    M.jsonErr(
-      400,
-      errors.SubscribersControllerMarkMessagesAsResponseBody$inboundSchema,
-      { hdrs: true },
-    ),
-    M.jsonErr(
-      404,
-      errors
-        .SubscribersControllerMarkMessagesAsSubscribersMessagesResponseBody$inboundSchema,
-      { hdrs: true },
-    ),
+    M.jsonErr([400, 404], errors.ErrorDto$inboundSchema, { hdrs: true }),
     M.fail([409, 429, 503]),
     M.fail(["4XX", "5XX"]),
   )(response, { extraFields: responseFields });

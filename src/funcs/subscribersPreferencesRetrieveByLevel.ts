@@ -33,8 +33,7 @@ export async function subscribersPreferencesRetrieveByLevel(
 ): Promise<
   Result<
     operations.SubscribersControllerGetSubscriberPreferenceByLevelResponse,
-    | errors.SubscribersControllerGetSubscriberPreferenceByLevelResponseBody
-    | errors.SubscribersControllerGetSubscriberPreferenceByLevelSubscribersPreferencesResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -139,8 +138,7 @@ export async function subscribersPreferencesRetrieveByLevel(
 
   const [result] = await M.match<
     operations.SubscribersControllerGetSubscriberPreferenceByLevelResponse,
-    | errors.SubscribersControllerGetSubscriberPreferenceByLevelResponseBody
-    | errors.SubscribersControllerGetSubscriberPreferenceByLevelSubscribersPreferencesResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -155,18 +153,7 @@ export async function subscribersPreferencesRetrieveByLevel(
         .SubscribersControllerGetSubscriberPreferenceByLevelResponse$inboundSchema,
       { hdrs: true, key: "Result" },
     ),
-    M.jsonErr(
-      400,
-      errors
-        .SubscribersControllerGetSubscriberPreferenceByLevelResponseBody$inboundSchema,
-      { hdrs: true },
-    ),
-    M.jsonErr(
-      404,
-      errors
-        .SubscribersControllerGetSubscriberPreferenceByLevelSubscribersPreferencesResponseBody$inboundSchema,
-      { hdrs: true },
-    ),
+    M.jsonErr([400, 404], errors.ErrorDto$inboundSchema, { hdrs: true }),
     M.fail([409, 429, 503]),
     M.fail(["4XX", "5XX"]),
   )(response, { extraFields: responseFields });

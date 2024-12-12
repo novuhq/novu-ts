@@ -36,8 +36,7 @@ export async function integrationsCreate(
 ): Promise<
   Result<
     operations.IntegrationsControllerCreateIntegrationResponse,
-    | errors.IntegrationsControllerCreateIntegrationResponseBody
-    | errors.IntegrationsControllerCreateIntegrationIntegrationsResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -123,8 +122,7 @@ export async function integrationsCreate(
 
   const [result] = await M.match<
     operations.IntegrationsControllerCreateIntegrationResponse,
-    | errors.IntegrationsControllerCreateIntegrationResponseBody
-    | errors.IntegrationsControllerCreateIntegrationIntegrationsResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -138,17 +136,7 @@ export async function integrationsCreate(
       operations.IntegrationsControllerCreateIntegrationResponse$inboundSchema,
       { hdrs: true, key: "Result" },
     ),
-    M.jsonErr(
-      400,
-      errors.IntegrationsControllerCreateIntegrationResponseBody$inboundSchema,
-      { hdrs: true },
-    ),
-    M.jsonErr(
-      404,
-      errors
-        .IntegrationsControllerCreateIntegrationIntegrationsResponseBody$inboundSchema,
-      { hdrs: true },
-    ),
+    M.jsonErr([400, 404], errors.ErrorDto$inboundSchema, { hdrs: true }),
     M.fail([409, 429, 503]),
     M.fail(["4XX", "5XX"]),
   )(response, { extraFields: responseFields });

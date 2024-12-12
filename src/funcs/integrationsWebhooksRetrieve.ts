@@ -35,8 +35,7 @@ export async function integrationsWebhooksRetrieve(
 ): Promise<
   Result<
     operations.IntegrationsControllerGetWebhookSupportStatusResponse,
-    | errors.IntegrationsControllerGetWebhookSupportStatusResponseBody
-    | errors.IntegrationsControllerGetWebhookSupportStatusIntegrationsWebhooksResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -138,8 +137,7 @@ export async function integrationsWebhooksRetrieve(
 
   const [result] = await M.match<
     operations.IntegrationsControllerGetWebhookSupportStatusResponse,
-    | errors.IntegrationsControllerGetWebhookSupportStatusResponseBody
-    | errors.IntegrationsControllerGetWebhookSupportStatusIntegrationsWebhooksResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -154,18 +152,7 @@ export async function integrationsWebhooksRetrieve(
         .IntegrationsControllerGetWebhookSupportStatusResponse$inboundSchema,
       { hdrs: true, key: "Result" },
     ),
-    M.jsonErr(
-      400,
-      errors
-        .IntegrationsControllerGetWebhookSupportStatusResponseBody$inboundSchema,
-      { hdrs: true },
-    ),
-    M.jsonErr(
-      404,
-      errors
-        .IntegrationsControllerGetWebhookSupportStatusIntegrationsWebhooksResponseBody$inboundSchema,
-      { hdrs: true },
-    ),
+    M.jsonErr([400, 404], errors.ErrorDto$inboundSchema, { hdrs: true }),
     M.fail([409, 429, 503]),
     M.fail(["4XX", "5XX"]),
   )(response, { extraFields: responseFields });

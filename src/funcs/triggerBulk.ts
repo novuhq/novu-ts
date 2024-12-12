@@ -38,8 +38,7 @@ export async function triggerBulk(
 ): Promise<
   Result<
     operations.EventsControllerTriggerBulkResponse,
-    | errors.EventsControllerTriggerBulkResponseBody
-    | errors.EventsControllerTriggerBulkResponseResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -124,8 +123,7 @@ export async function triggerBulk(
 
   const [result] = await M.match<
     operations.EventsControllerTriggerBulkResponse,
-    | errors.EventsControllerTriggerBulkResponseBody
-    | errors.EventsControllerTriggerBulkResponseResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -138,16 +136,7 @@ export async function triggerBulk(
       hdrs: true,
       key: "Result",
     }),
-    M.jsonErr(
-      400,
-      errors.EventsControllerTriggerBulkResponseBody$inboundSchema,
-      { hdrs: true },
-    ),
-    M.jsonErr(
-      404,
-      errors.EventsControllerTriggerBulkResponseResponseBody$inboundSchema,
-      { hdrs: true },
-    ),
+    M.jsonErr([400, 404], errors.ErrorDto$inboundSchema, { hdrs: true }),
     M.fail([409, 429, 503]),
     M.fail(["4XX", "5XX"]),
   )(response, { extraFields: responseFields });

@@ -429,19 +429,14 @@ If a HTTP request fails, an operation my also throw an error from the `models/er
 
 In addition, when custom error responses are specified for an operation, the SDK may throw their associated Error type. You can refer to respective *Errors* tables in SDK docs for more details on possible error types for each operation. For example, the `trigger` method may throw the following errors:
 
-| Error Type                                         | Status Code | Content Type     |
-| -------------------------------------------------- | ----------- | ---------------- |
-| errors.EventsControllerTriggerResponseBody         | 400         | application/json |
-| errors.EventsControllerTriggerResponseResponseBody | 404         | application/json |
-| errors.SDKError                                    | 4XX, 5XX    | \*/\*            |
+| Error Type      | Status Code | Content Type     |
+| --------------- | ----------- | ---------------- |
+| errors.ErrorDto | 400, 404    | application/json |
+| errors.SDKError | 4XX, 5XX    | \*/\*            |
 
 ```typescript
 import { Novu } from "@novu/api";
-import {
-  EventsControllerTriggerResponseBody,
-  EventsControllerTriggerResponseResponseBody,
-  SDKValidationError,
-} from "@novu/api/models/errors";
+import { ErrorDto, SDKValidationError } from "@novu/api/models/errors";
 
 const novu = new Novu({
   apiKey: "<YOUR_API_KEY_HERE>",
@@ -475,13 +470,8 @@ async function run() {
         console.error(err.rawValue);
         return;
       }
-      case (err instanceof EventsControllerTriggerResponseBody): {
-        // Handle err.data$: EventsControllerTriggerResponseBodyData
-        console.error(err);
-        return;
-      }
-      case (err instanceof EventsControllerTriggerResponseResponseBody): {
-        // Handle err.data$: EventsControllerTriggerResponseResponseBodyData
+      case (err instanceof ErrorDto): {
+        // Handle err.data$: ErrorDtoData
         console.error(err);
         return;
       }

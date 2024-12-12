@@ -37,8 +37,7 @@ export async function topicsSubscribersAssign(
 ): Promise<
   Result<
     operations.TopicsControllerAssignResponse,
-    | errors.TopicsControllerAssignResponseBody
-    | errors.TopicsControllerAssignTopicsSubscribersResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -138,8 +137,7 @@ export async function topicsSubscribersAssign(
 
   const [result] = await M.match<
     operations.TopicsControllerAssignResponse,
-    | errors.TopicsControllerAssignResponseBody
-    | errors.TopicsControllerAssignTopicsSubscribersResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -152,14 +150,7 @@ export async function topicsSubscribersAssign(
       hdrs: true,
       key: "Result",
     }),
-    M.jsonErr(400, errors.TopicsControllerAssignResponseBody$inboundSchema, {
-      hdrs: true,
-    }),
-    M.jsonErr(
-      404,
-      errors.TopicsControllerAssignTopicsSubscribersResponseBody$inboundSchema,
-      { hdrs: true },
-    ),
+    M.jsonErr([400, 404], errors.ErrorDto$inboundSchema, { hdrs: true }),
     M.fail([409, 429, 503]),
     M.fail(["4XX", "5XX"]),
   )(response, { extraFields: responseFields });

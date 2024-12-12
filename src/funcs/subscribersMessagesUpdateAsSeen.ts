@@ -32,8 +32,7 @@ export async function subscribersMessagesUpdateAsSeen(
 ): Promise<
   Result<
     operations.SubscribersControllerMarkActionAsSeenResponse,
-    | errors.SubscribersControllerMarkActionAsSeenResponseBody
-    | errors.SubscribersControllerMarkActionAsSeenSubscribersMessagesResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -139,8 +138,7 @@ export async function subscribersMessagesUpdateAsSeen(
 
   const [result] = await M.match<
     operations.SubscribersControllerMarkActionAsSeenResponse,
-    | errors.SubscribersControllerMarkActionAsSeenResponseBody
-    | errors.SubscribersControllerMarkActionAsSeenSubscribersMessagesResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -154,17 +152,7 @@ export async function subscribersMessagesUpdateAsSeen(
       operations.SubscribersControllerMarkActionAsSeenResponse$inboundSchema,
       { hdrs: true, key: "Result" },
     ),
-    M.jsonErr(
-      400,
-      errors.SubscribersControllerMarkActionAsSeenResponseBody$inboundSchema,
-      { hdrs: true },
-    ),
-    M.jsonErr(
-      404,
-      errors
-        .SubscribersControllerMarkActionAsSeenSubscribersMessagesResponseBody$inboundSchema,
-      { hdrs: true },
-    ),
+    M.jsonErr([400, 404], errors.ErrorDto$inboundSchema, { hdrs: true }),
     M.fail([409, 429, 503]),
     M.fail(["4XX", "5XX"]),
   )(response, { extraFields: responseFields });

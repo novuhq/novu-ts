@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 6bff3a53-3f0b-40b4-942f-ff70dc583ae5
 management:
-  docChecksum: 87e5e609b5f1e1df0f80a1bd7e02a415
+  docChecksum: 41aec43ed41321c13fe73567cfcddc81
   docVersion: "1.0"
   speakeasyVersion: 1.454.0
   generationVersion: 2.477.0
-  releaseVersion: 0.0.1-alpha.96
-  configChecksum: eb3972dfd3e77b2147951f9c8d9dce4b
+  releaseVersion: 0.0.1-alpha.98
+  configChecksum: 61275ac03e8f4a08921d1aa57cb6e85a
   published: true
 features:
   typescript:
@@ -90,7 +90,6 @@ generatedFiles:
   - docs/models/components/emailblock.md
   - docs/models/components/emailblockstyles.md
   - docs/models/components/emailblocktype.md
-  - docs/models/components/errordto.md
   - docs/models/components/failedassignmentsdto.md
   - docs/models/components/feedid.md
   - docs/models/components/feedidentifier.md
@@ -194,97 +193,7 @@ generatedFiles:
   - docs/models/components/workflowresponse.md
   - docs/models/components/workflowresponsedata.md
   - docs/models/components/workflowtostepcontrolvaluesdto.md
-  - docs/models/errors/eventscontrollerbroadcasteventtoallresponsebody.md
-  - docs/models/errors/eventscontrollerbroadcasteventtoallresponseresponsebody.md
-  - docs/models/errors/eventscontrollercancelresponsebody.md
-  - docs/models/errors/eventscontrollercancelresponseresponsebody.md
-  - docs/models/errors/eventscontrollertriggerbulkresponsebody.md
-  - docs/models/errors/eventscontrollertriggerbulkresponseresponsebody.md
-  - docs/models/errors/eventscontrollertriggerresponsebody.md
-  - docs/models/errors/eventscontrollertriggerresponseresponsebody.md
-  - docs/models/errors/integrationscontrollercreateintegrationintegrationsresponsebody.md
-  - docs/models/errors/integrationscontrollercreateintegrationresponsebody.md
-  - docs/models/errors/integrationscontrollergetactiveintegrationsintegrationsresponsebody.md
-  - docs/models/errors/integrationscontrollergetactiveintegrationsresponsebody.md
-  - docs/models/errors/integrationscontrollergetwebhooksupportstatusintegrationswebhooksresponsebody.md
-  - docs/models/errors/integrationscontrollergetwebhooksupportstatusresponsebody.md
-  - docs/models/errors/integrationscontrollerlistintegrationsintegrationsresponsebody.md
-  - docs/models/errors/integrationscontrollerlistintegrationsresponsebody.md
-  - docs/models/errors/integrationscontrollerremoveintegrationintegrationsresponsebody.md
-  - docs/models/errors/integrationscontrollerremoveintegrationresponsebody.md
-  - docs/models/errors/integrationscontrollersetintegrationasprimaryresponsebody.md
-  - docs/models/errors/integrationscontrollerupdateintegrationbyidresponsebody.md
-  - docs/models/errors/messagescontrollerdeletemessagemessagesresponsebody.md
-  - docs/models/errors/messagescontrollerdeletemessageresponsebody.md
-  - docs/models/errors/messagescontrollerdeletemessagesbytransactionidmessagesresponsebody.md
-  - docs/models/errors/messagescontrollerdeletemessagesbytransactionidresponsebody.md
-  - docs/models/errors/messagescontrollergetmessagesmessagesresponsebody.md
-  - docs/models/errors/messagescontrollergetmessagesresponsebody.md
-  - docs/models/errors/notificationscontrollergetactivitygraphstatsnotificationsstatsresponsebody.md
-  - docs/models/errors/notificationscontrollergetactivitygraphstatsresponsebody.md
-  - docs/models/errors/notificationscontrollergetactivitystatsnotificationsstatsresponsebody.md
-  - docs/models/errors/notificationscontrollergetactivitystatsresponsebody.md
-  - docs/models/errors/notificationscontrollergetnotificationnotificationsresponsebody.md
-  - docs/models/errors/notificationscontrollergetnotificationresponsebody.md
-  - docs/models/errors/notificationscontrollerlistnotificationsnotificationsresponsebody.md
-  - docs/models/errors/notificationscontrollerlistnotificationsresponsebody.md
-  - docs/models/errors/subscriberscontrollerbulkcreatesubscribersresponsebody.md
-  - docs/models/errors/subscriberscontrollerbulkcreatesubscriberssubscribersresponsebody.md
-  - docs/models/errors/subscriberscontrollerchataccessoauthresponsebody.md
-  - docs/models/errors/subscriberscontrollerchataccessoauthsubscribersauthenticationresponsebody.md
-  - docs/models/errors/subscriberscontrollerchatoauthcallbackresponsebody.md
-  - docs/models/errors/subscriberscontrollerchatoauthcallbacksubscribersauthenticationresponsebody.md
-  - docs/models/errors/subscriberscontrollercreatesubscriberresponsebody.md
-  - docs/models/errors/subscriberscontrollercreatesubscribersubscribersresponsebody.md
-  - docs/models/errors/subscriberscontrollerdeletesubscribercredentialsresponsebody.md
-  - docs/models/errors/subscriberscontrollerdeletesubscribercredentialssubscriberscredentialsresponsebody.md
-  - docs/models/errors/subscriberscontrollergetnotificationsfeedresponsebody.md
-  - docs/models/errors/subscriberscontrollergetnotificationsfeedsubscribersnotificationsresponsebody.md
-  - docs/models/errors/subscriberscontrollergetsubscriberpreferencebylevelresponsebody.md
-  - docs/models/errors/subscriberscontrollergetsubscriberpreferencebylevelsubscriberspreferencesresponsebody.md
-  - docs/models/errors/subscriberscontrollergetsubscriberresponsebody.md
-  - docs/models/errors/subscriberscontrollergetsubscribersubscribersresponsebody.md
-  - docs/models/errors/subscriberscontrollergetunseencountresponsebody.md
-  - docs/models/errors/subscriberscontrollergetunseencountsubscribersnotificationsresponsebody.md
-  - docs/models/errors/subscriberscontrollerlistsubscriberpreferencesresponsebody.md
-  - docs/models/errors/subscriberscontrollerlistsubscriberpreferencessubscriberspreferencesresponsebody.md
-  - docs/models/errors/subscriberscontrollerlistsubscribersresponsebody.md
-  - docs/models/errors/subscriberscontrollerlistsubscriberssubscribersresponsebody.md
-  - docs/models/errors/subscriberscontrollermarkactionasseenresponsebody.md
-  - docs/models/errors/subscriberscontrollermarkactionasseensubscribersmessagesresponsebody.md
-  - docs/models/errors/subscriberscontrollermarkallunreadasreadresponsebody.md
-  - docs/models/errors/subscriberscontrollermarkallunreadasreadsubscribersmessagesresponsebody.md
-  - docs/models/errors/subscriberscontrollermarkmessagesasresponsebody.md
-  - docs/models/errors/subscriberscontrollermarkmessagesassubscribersmessagesresponsebody.md
-  - docs/models/errors/subscriberscontrollermodifysubscriberchannelresponsebody.md
-  - docs/models/errors/subscriberscontrollermodifysubscriberchannelsubscriberscredentialsresponsebody.md
-  - docs/models/errors/subscriberscontrollerremovesubscriberresponsebody.md
-  - docs/models/errors/subscriberscontrollerremovesubscribersubscribersresponsebody.md
-  - docs/models/errors/subscriberscontrollerupdatesubscriberchannelresponsebody.md
-  - docs/models/errors/subscriberscontrollerupdatesubscriberchannelsubscriberscredentialsresponsebody.md
-  - docs/models/errors/subscriberscontrollerupdatesubscriberglobalpreferencesresponsebody.md
-  - docs/models/errors/subscriberscontrollerupdatesubscriberglobalpreferencessubscriberspreferencesresponsebody.md
-  - docs/models/errors/subscriberscontrollerupdatesubscriberonlineflagresponsebody.md
-  - docs/models/errors/subscriberscontrollerupdatesubscriberonlineflagsubscriberspropertiesresponsebody.md
-  - docs/models/errors/subscriberscontrollerupdatesubscriberpreferenceresponsebody.md
-  - docs/models/errors/subscriberscontrollerupdatesubscriberpreferencesubscriberspreferencesresponsebody.md
-  - docs/models/errors/subscriberscontrollerupdatesubscriberresponsebody.md
-  - docs/models/errors/subscriberscontrollerupdatesubscribersubscribersresponsebody.md
-  - docs/models/errors/topicscontrollerassignresponsebody.md
-  - docs/models/errors/topicscontrollerassigntopicssubscribersresponsebody.md
-  - docs/models/errors/topicscontrollercreatetopicresponsebody.md
-  - docs/models/errors/topicscontrollercreatetopictopicsresponsebody.md
-  - docs/models/errors/topicscontrollerdeletetopicresponsebody.md
-  - docs/models/errors/topicscontrollergettopicresponsebody.md
-  - docs/models/errors/topicscontrollergettopicsubscriberresponsebody.md
-  - docs/models/errors/topicscontrollergettopicsubscribertopicssubscribersresponsebody.md
-  - docs/models/errors/topicscontrollergettopictopicsresponsebody.md
-  - docs/models/errors/topicscontrollerlisttopicsresponsebody.md
-  - docs/models/errors/topicscontrollerlisttopicstopicsresponsebody.md
-  - docs/models/errors/topicscontrollerremovesubscribersresponsebody.md
-  - docs/models/errors/topicscontrollerremovesubscriberstopicssubscribersresponsebody.md
-  - docs/models/errors/topicscontrollerrenametopicresponsebody.md
-  - docs/models/errors/topicscontrollerrenametopictopicsresponsebody.md
+  - docs/models/errors/errordto.md
   - docs/models/operations/channel.md
   - docs/models/operations/channels.md
   - docs/models/operations/eventscontrollerbroadcasteventtoallresponse.md
@@ -490,7 +399,6 @@ generatedFiles:
   - src/models/components/digesttimedmetadata.ts
   - src/models/components/emailblock.ts
   - src/models/components/emailblockstyles.ts
-  - src/models/components/errordto.ts
   - src/models/components/failedassignmentsdto.ts
   - src/models/components/feedresponsedto.ts
   - src/models/components/fieldfilterpart.ts
@@ -547,57 +455,11 @@ generatedFiles:
   - src/models/components/updatesubscriberrequestdto.ts
   - src/models/components/workflowresponse.ts
   - src/models/components/workflowtostepcontrolvaluesdto.ts
-  - src/models/errors/eventscontrollerbroadcasteventtoall.ts
-  - src/models/errors/eventscontrollercancel.ts
-  - src/models/errors/eventscontrollertrigger.ts
-  - src/models/errors/eventscontrollertriggerbulk.ts
+  - src/models/errors/errordto.ts
   - src/models/errors/httpclienterrors.ts
   - src/models/errors/index.ts
-  - src/models/errors/integrationscontrollercreateintegration.ts
-  - src/models/errors/integrationscontrollergetactiveintegrations.ts
-  - src/models/errors/integrationscontrollergetwebhooksupportstatus.ts
-  - src/models/errors/integrationscontrollerlistintegrations.ts
-  - src/models/errors/integrationscontrollerremoveintegration.ts
-  - src/models/errors/integrationscontrollersetintegrationasprimary.ts
-  - src/models/errors/integrationscontrollerupdateintegrationbyid.ts
-  - src/models/errors/messagescontrollerdeletemessage.ts
-  - src/models/errors/messagescontrollerdeletemessagesbytransactionid.ts
-  - src/models/errors/messagescontrollergetmessages.ts
-  - src/models/errors/notificationscontrollergetactivitygraphstats.ts
-  - src/models/errors/notificationscontrollergetactivitystats.ts
-  - src/models/errors/notificationscontrollergetnotification.ts
-  - src/models/errors/notificationscontrollerlistnotifications.ts
   - src/models/errors/sdkerror.ts
   - src/models/errors/sdkvalidationerror.ts
-  - src/models/errors/subscriberscontrollerbulkcreatesubscribers.ts
-  - src/models/errors/subscriberscontrollerchataccessoauth.ts
-  - src/models/errors/subscriberscontrollerchatoauthcallback.ts
-  - src/models/errors/subscriberscontrollercreatesubscriber.ts
-  - src/models/errors/subscriberscontrollerdeletesubscribercredentials.ts
-  - src/models/errors/subscriberscontrollergetnotificationsfeed.ts
-  - src/models/errors/subscriberscontrollergetsubscriber.ts
-  - src/models/errors/subscriberscontrollergetsubscriberpreferencebylevel.ts
-  - src/models/errors/subscriberscontrollergetunseencount.ts
-  - src/models/errors/subscriberscontrollerlistsubscriberpreferences.ts
-  - src/models/errors/subscriberscontrollerlistsubscribers.ts
-  - src/models/errors/subscriberscontrollermarkactionasseen.ts
-  - src/models/errors/subscriberscontrollermarkallunreadasread.ts
-  - src/models/errors/subscriberscontrollermarkmessagesas.ts
-  - src/models/errors/subscriberscontrollermodifysubscriberchannel.ts
-  - src/models/errors/subscriberscontrollerremovesubscriber.ts
-  - src/models/errors/subscriberscontrollerupdatesubscriber.ts
-  - src/models/errors/subscriberscontrollerupdatesubscriberchannel.ts
-  - src/models/errors/subscriberscontrollerupdatesubscriberglobalpreferences.ts
-  - src/models/errors/subscriberscontrollerupdatesubscriberonlineflag.ts
-  - src/models/errors/subscriberscontrollerupdatesubscriberpreference.ts
-  - src/models/errors/topicscontrollerassign.ts
-  - src/models/errors/topicscontrollercreatetopic.ts
-  - src/models/errors/topicscontrollerdeletetopic.ts
-  - src/models/errors/topicscontrollergettopic.ts
-  - src/models/errors/topicscontrollergettopicsubscriber.ts
-  - src/models/errors/topicscontrollerlisttopics.ts
-  - src/models/errors/topicscontrollerremovesubscribers.ts
-  - src/models/errors/topicscontrollerrenametopic.ts
   - src/models/operations/eventscontrollerbroadcasteventtoall.ts
   - src/models/operations/eventscontrollercancel.ts
   - src/models/operations/eventscontrollertrigger.ts
@@ -680,7 +542,7 @@ examples:
         "201":
           application/json: {"acknowledged": true, "status": "processed"}
         "400":
-          application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found."}
         "404":
           application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
   EventsController_triggerBulk:
@@ -691,7 +553,7 @@ examples:
         "201":
           application/json: [{"acknowledged": true, "status": "error"}, {"acknowledged": true, "status": "no_workflow_active_steps_defined"}, {"acknowledged": true, "status": "trigger_not_active"}]
         "400":
-          application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found."}
         "404":
           application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
   EventsController_broadcastEventToAll:
@@ -702,7 +564,7 @@ examples:
         "200":
           application/json: {"acknowledged": true, "status": "trigger_not_active"}
         "400":
-          application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found."}
         "404":
           application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
   EventsController_cancel:
@@ -714,7 +576,7 @@ examples:
         "200":
           application/json: {"data": true}
         "400":
-          application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found."}
         "404":
           application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
   EnvironmentsControllerV1_getCurrentEnvironment:
@@ -754,7 +616,7 @@ examples:
         "200":
           application/json: {"hasMore": false, "data": [], "pageSize": "7183.03", "page": "861.40"}
         "400":
-          application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found."}
         "404":
           application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
   NotificationsController_getNotification:
@@ -766,7 +628,7 @@ examples:
         "200":
           application/json: {"_environmentId": "<id>", "_organizationId": "<id>", "transactionId": "<id>"}
         "400":
-          application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found."}
         "404":
           application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
   NotificationsController_getActivityStats:
@@ -775,7 +637,7 @@ examples:
         "200":
           application/json: {"weeklySent": "7003.46", "monthlySent": "5588.34"}
         "400":
-          application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found."}
         "404":
           application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
   NotificationsController_getActivityGraphStats:
@@ -784,7 +646,7 @@ examples:
         "200":
           application/json: [{"_id": "<id>", "count": "5588.34", "templates": ["<value>", "<value>"], "channels": ["push", "sms"]}, {"_id": "<id>", "count": "4508.24", "templates": ["<value>"], "channels": []}]
         "400":
-          application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found."}
         "404":
           application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
   NotificationGroupsController_createNotificationGroup:
@@ -831,7 +693,7 @@ examples:
         "200":
           application/json: [{"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>", "identifier": "<value>", "providerId": "<id>", "channel": "sms", "active": false, "deleted": true, "deletedAt": "<value>", "deletedBy": "<value>", "primary": true}, {"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>", "identifier": "<value>", "providerId": "<id>", "channel": "in_app", "active": false, "deleted": false, "deletedAt": "<value>", "deletedBy": "<value>", "primary": true}, {"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>", "identifier": "<value>", "providerId": "<id>", "channel": "chat", "active": true, "deleted": true, "deletedAt": "<value>", "deletedBy": "<value>", "primary": false}]
         "400":
-          application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found."}
         "404":
           application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
   IntegrationsController_createIntegration:
@@ -842,7 +704,7 @@ examples:
         "201":
           application/json: {"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>", "identifier": "<value>", "providerId": "<id>", "channel": "chat", "active": true, "deleted": true, "deletedAt": "<value>", "deletedBy": "<value>", "primary": true}
         "400":
-          application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found."}
         "404":
           application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
   IntegrationsController_getActiveIntegrations:
@@ -851,7 +713,7 @@ examples:
         "200":
           application/json: [{"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>", "identifier": "<value>", "providerId": "<id>", "channel": "email", "active": true, "deleted": true, "deletedAt": "<value>", "deletedBy": "<value>", "primary": true}, {"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>", "identifier": "<value>", "providerId": "<id>", "channel": "chat", "active": false, "deleted": true, "deletedAt": "<value>", "deletedBy": "<value>", "primary": true}, {"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>", "identifier": "<value>", "providerId": "<id>", "channel": "chat", "active": false, "deleted": true, "deletedAt": "<value>", "deletedBy": "<value>", "primary": true}]
         "400":
-          application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found."}
         "404":
           application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
   IntegrationsController_updateIntegrationById:
@@ -863,7 +725,7 @@ examples:
         "200":
           application/json: {"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>", "identifier": "<value>", "providerId": "<id>", "channel": "push", "active": false, "deleted": true, "deletedAt": "<value>", "deletedBy": "<value>", "primary": false}
         "400":
-          application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found."}
   IntegrationsController_removeIntegration:
     speakeasy-default-integrations-controller-remove-integration:
       parameters:
@@ -873,7 +735,7 @@ examples:
         "200":
           application/json: [{"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>", "identifier": "<value>", "providerId": "<id>", "channel": "chat", "active": true, "deleted": false, "deletedAt": "<value>", "deletedBy": "<value>", "primary": false}, {"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>", "identifier": "<value>", "providerId": "<id>", "channel": "chat", "active": true, "deleted": false, "deletedAt": "<value>", "deletedBy": "<value>", "primary": false}]
         "400":
-          application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found."}
         "404":
           application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
   IntegrationsController_setIntegrationAsPrimary:
@@ -885,7 +747,7 @@ examples:
         "200":
           application/json: {"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>", "identifier": "<value>", "providerId": "<id>", "channel": "push", "active": true, "deleted": true, "deletedAt": "<value>", "deletedBy": "<value>", "primary": false}
         "400":
-          application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found."}
   IntegrationsController_getWebhookSupportStatus:
     speakeasy-default-integrations-controller-get-webhook-support-status:
       parameters:
@@ -895,7 +757,7 @@ examples:
         "200":
           application/json: true
         "400":
-          application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found."}
         "404":
           application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
   SubscribersController_listSubscribers:
@@ -904,7 +766,7 @@ examples:
         "200":
           application/json: {"page": "4610.08", "hasMore": true, "pageSize": "5984.80", "data": [{"subscriberId": "<id>", "_organizationId": "<id>", "_environmentId": "<id>", "deleted": true, "createdAt": "<value>", "updatedAt": "<value>"}, {"subscriberId": "<id>", "_organizationId": "<id>", "_environmentId": "<id>", "deleted": true, "createdAt": "<value>", "updatedAt": "<value>"}]}
         "400":
-          application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found."}
         "404":
           application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
   SubscribersController_createSubscriber:
@@ -915,7 +777,7 @@ examples:
         "201":
           application/json: {"subscriberId": "<id>", "_organizationId": "<id>", "_environmentId": "<id>", "deleted": true, "createdAt": "<value>", "updatedAt": "<value>"}
         "400":
-          application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found."}
         "404":
           application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
   SubscribersController_getSubscriber:
@@ -928,7 +790,7 @@ examples:
         "200":
           application/json: {"subscriberId": "<id>", "_organizationId": "<id>", "_environmentId": "<id>", "deleted": false, "createdAt": "<value>", "updatedAt": "<value>"}
         "400":
-          application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found."}
         "404":
           application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
   SubscribersController_updateSubscriber:
@@ -940,7 +802,7 @@ examples:
         "200":
           application/json: {"subscriberId": "<id>", "_organizationId": "<id>", "_environmentId": "<id>", "deleted": false, "createdAt": "<value>", "updatedAt": "<value>"}
         "400":
-          application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found."}
         "404":
           application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
   SubscribersController_removeSubscriber:
@@ -952,7 +814,7 @@ examples:
         "200":
           application/json: {"acknowledged": false, "status": "deleted"}
         "400":
-          application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found."}
         "404":
           application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
   SubscribersController_bulkCreateSubscribers:
@@ -961,7 +823,7 @@ examples:
         application/json: {"subscribers": ["<value>"]}
       responses:
         "400":
-          application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found."}
         "404":
           application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
   SubscribersController_updateSubscriberChannel:
@@ -975,7 +837,7 @@ examples:
         "200":
           application/json: {"subscriberId": "<id>", "_organizationId": "<id>", "_environmentId": "<id>", "deleted": true, "createdAt": "<value>", "updatedAt": "<value>"}
         "400":
-          application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found."}
         "404":
           application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
   SubscribersController_modifySubscriberChannel:
@@ -989,7 +851,7 @@ examples:
         "200":
           application/json: {"subscriberId": "<id>", "_organizationId": "<id>", "_environmentId": "<id>", "deleted": false, "createdAt": "<value>", "updatedAt": "<value>"}
         "400":
-          application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found."}
         "404":
           application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
   SubscribersController_deleteSubscriberCredentials:
@@ -1000,7 +862,7 @@ examples:
           providerId: "<id>"
       responses:
         "400":
-          application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found."}
         "404":
           application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
   SubscribersController_updateSubscriberOnlineFlag:
@@ -1014,7 +876,7 @@ examples:
         "200":
           application/json: {"subscriberId": "<id>", "_organizationId": "<id>", "_environmentId": "<id>", "deleted": true, "createdAt": "<value>", "updatedAt": "<value>"}
         "400":
-          application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found."}
         "404":
           application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
   SubscribersController_listSubscriberPreferences:
@@ -1027,7 +889,7 @@ examples:
         "200":
           application/json: [{"template": {"_id": "<id>", "name": "<value>", "critical": false, "triggers": ["<value>", "<value>"]}, "preference": {"enabled": false}}, {"template": {"_id": "<id>", "name": "<value>", "critical": false, "triggers": ["<value>"]}, "preference": {"enabled": true}}]
         "400":
-          application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found."}
         "404":
           application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
   SubscribersController_getSubscriberPreferenceByLevel:
@@ -1041,7 +903,7 @@ examples:
         "200":
           application/json: [{"preference": {"enabled": true}}, {"preference": {"enabled": true}}]
         "400":
-          application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found."}
         "404":
           application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
   SubscribersController_updateSubscriberPreference:
@@ -1054,7 +916,7 @@ examples:
         "200":
           application/json: {"template": {"_id": "<id>", "name": "<value>", "critical": false, "triggers": ["<value>", "<value>"]}, "preference": {"enabled": true}}
         "400":
-          application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found."}
         "404":
           application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
   SubscribersController_getNotificationsFeed:
@@ -1068,7 +930,7 @@ examples:
         "200":
           application/json: {"hasMore": true, "data": [{"_id": "<id>", "_templateId": "<id>", "_environmentId": "<id>", "_messageTemplateId": "<id>", "_organizationId": "<id>", "_notificationId": "<id>", "_subscriberId": "<id>", "_feedId": "<id>", "_jobId": "<id>", "transactionId": "<id>", "content": "<value>", "channel": "push", "read": false, "seen": false, "deleted": false, "cta": {}, "status": "warning", "payload": {"key": "value"}}, {"_id": "<id>", "_templateId": "<id>", "_environmentId": "<id>", "_messageTemplateId": "<id>", "_organizationId": "<id>", "_notificationId": "<id>", "_subscriberId": "<id>", "_feedId": "<id>", "_jobId": "<id>", "transactionId": "<id>", "content": "<value>", "channel": "sms", "read": true, "seen": false, "deleted": true, "cta": {}, "status": "warning", "payload": {"key": "value"}}], "pageSize": "9643.05", "page": "1526.70"}
         "400":
-          application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found."}
         "404":
           application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
   SubscribersController_markMessagesAs:
@@ -1080,9 +942,10 @@ examples:
         application/json: {"messageId": "<value>", "markAs": "read"}
       responses:
         "400":
-          application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found."}
         "404":
           application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
+        "201": {}
   SubscribersController_chatOauthCallback:
     speakeasy-default-subscribers-controller-chat-oauth-callback:
       parameters:
@@ -1095,9 +958,10 @@ examples:
           environmentId: "<id>"
       responses:
         "400":
-          application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found."}
         "404":
           application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
+        "200": {}
   SubscribersController_chatAccessOauth:
     speakeasy-default-subscribers-controller-chat-access-oauth:
       parameters:
@@ -1109,7 +973,7 @@ examples:
           environmentId: "<id>"
       responses:
         "400":
-          application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found."}
         "404":
           application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
   SubscribersController_updateSubscriberGlobalPreferences:
@@ -1121,7 +985,7 @@ examples:
         "200":
           application/json: {"template": {"_id": "<id>", "name": "<value>", "critical": true, "triggers": ["<value>"]}, "preference": {"enabled": true}}
         "400":
-          application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found."}
         "404":
           application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
   SubscribersController_getUnseenCount:
@@ -1136,7 +1000,7 @@ examples:
         "200":
           application/json: {"count": "5438.83"}
         "400":
-          application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found."}
         "404":
           application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
   SubscribersController_markAllUnreadAsRead:
@@ -1152,7 +1016,7 @@ examples:
         "200":
           application/json: "4645.84"
         "400":
-          application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found."}
         "404":
           application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
   SubscribersController_markActionAsSeen:
@@ -1168,7 +1032,7 @@ examples:
         "201":
           application/json: {"_templateId": "<id>", "_environmentId": "<id>", "_messageTemplateId": "<id>", "_organizationId": "<id>", "_notificationId": "<id>", "_subscriberId": "<id>", "createdAt": "<value>", "content": {"type": "text", "content": "<value>"}, "transactionId": "<id>", "channel": "email", "read": true, "seen": false, "cta": {}, "status": "sent", "errorId": "<id>", "errorText": "<value>"}
         "400":
-          application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found."}
         "404":
           application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
   MessagesController_getMessages:
@@ -1177,7 +1041,7 @@ examples:
         "200":
           application/json: {"hasMore": false, "data": [{"_environmentId": "<id>", "_organizationId": "<id>", "transactionId": "<id>"}, {"_environmentId": "<id>", "_organizationId": "<id>", "transactionId": "<id>"}], "pageSize": "5442.21", "page": "5212.35"}
         "400":
-          application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found."}
         "404":
           application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
   MessagesController_deleteMessage:
@@ -1189,7 +1053,7 @@ examples:
         "200":
           application/json: {"acknowledged": false, "status": "deleted"}
         "400":
-          application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found."}
         "404":
           application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
   MessagesController_deleteMessagesByTransactionId:
@@ -1200,7 +1064,7 @@ examples:
         query: {}
       responses:
         "400":
-          application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found."}
         "404":
           application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
   TopicsController_createTopic:
@@ -1211,7 +1075,7 @@ examples:
         "201":
           application/json: {"key": "<key>"}
         "400":
-          application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found."}
         "404":
           application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
   TopicsController_listTopics:
@@ -1220,7 +1084,7 @@ examples:
         "200":
           application/json: {"data": [{"_organizationId": "<id>", "_environmentId": "<id>", "key": "<key>", "name": "<value>", "subscribers": []}], "page": "5984.80", "pageSize": "6512.03", "totalCount": "163.09"}
         "400":
-          application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found."}
         "404":
           application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
   TopicsController_deleteTopic:
@@ -1230,7 +1094,7 @@ examples:
           topicKey: "<value>"
       responses:
         "400":
-          application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found."}
   TopicsController_getTopic:
     speakeasy-default-topics-controller-get-topic:
       parameters:
@@ -1240,7 +1104,7 @@ examples:
         "200":
           application/json: {"_organizationId": "<id>", "_environmentId": "<id>", "key": "<key>", "name": "<value>", "subscribers": ["<value>", "<value>"]}
         "400":
-          application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found."}
         "404":
           application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
   TopicsController_renameTopic:
@@ -1254,7 +1118,7 @@ examples:
         "200":
           application/json: {"_organizationId": "<id>", "_environmentId": "<id>", "key": "<key>", "name": "<value>", "subscribers": ["<value>", "<value>", "<value>"]}
         "400":
-          application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found."}
         "404":
           application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
   TopicsController_addSubscribers:
@@ -1274,7 +1138,7 @@ examples:
         "200":
           application/json: {"_organizationId": "org_123456789", "_environmentId": "env_123456789", "_subscriberId": "sub_123456789", "_topicId": "topic_123456789", "topicKey": "my_topic_key", "externalSubscriberId": "external_subscriber_123"}
         "400":
-          application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found."}
         "404":
           application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
   TopicsController_removeSubscribers:
@@ -1286,7 +1150,7 @@ examples:
         application/json: {"subscribers": ["<value>", "<value>"]}
       responses:
         "400":
-          application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found."}
         "404":
           application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
   TopicsController_assign:
@@ -1302,7 +1166,7 @@ examples:
         "200":
           application/json: {"succeeded": ["<value>", "<value>", "<value>"]}
         "400":
-          application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found."}
         "404":
           application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
 generatedTests: {}

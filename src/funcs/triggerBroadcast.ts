@@ -38,8 +38,7 @@ export async function triggerBroadcast(
 ): Promise<
   Result<
     operations.EventsControllerBroadcastEventToAllResponse,
-    | errors.EventsControllerBroadcastEventToAllResponseBody
-    | errors.EventsControllerBroadcastEventToAllResponseResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -125,8 +124,7 @@ export async function triggerBroadcast(
 
   const [result] = await M.match<
     operations.EventsControllerBroadcastEventToAllResponse,
-    | errors.EventsControllerBroadcastEventToAllResponseBody
-    | errors.EventsControllerBroadcastEventToAllResponseResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -140,17 +138,7 @@ export async function triggerBroadcast(
       operations.EventsControllerBroadcastEventToAllResponse$inboundSchema,
       { hdrs: true, key: "Result" },
     ),
-    M.jsonErr(
-      400,
-      errors.EventsControllerBroadcastEventToAllResponseBody$inboundSchema,
-      { hdrs: true },
-    ),
-    M.jsonErr(
-      404,
-      errors
-        .EventsControllerBroadcastEventToAllResponseResponseBody$inboundSchema,
-      { hdrs: true },
-    ),
+    M.jsonErr([400, 404], errors.ErrorDto$inboundSchema, { hdrs: true }),
     M.fail([409, 429, 503]),
     M.fail(["4XX", "5XX"]),
   )(response, { extraFields: responseFields });

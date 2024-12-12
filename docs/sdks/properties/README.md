@@ -80,8 +80,7 @@ run();
 
 ### Errors
 
-| Error Type                                                                              | Status Code                                                                             | Content Type                                                                            |
-| --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
-| errors.SubscribersControllerUpdateSubscriberOnlineFlagResponseBody                      | 400                                                                                     | application/json                                                                        |
-| errors.SubscribersControllerUpdateSubscriberOnlineFlagSubscribersPropertiesResponseBody | 404                                                                                     | application/json                                                                        |
-| errors.SDKError                                                                         | 4XX, 5XX                                                                                | \*/\*                                                                                   |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorDto  | 400, 404         | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |

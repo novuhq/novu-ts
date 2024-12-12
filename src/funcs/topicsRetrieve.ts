@@ -35,8 +35,7 @@ export async function topicsRetrieve(
 ): Promise<
   Result<
     operations.TopicsControllerGetTopicResponse,
-    | errors.TopicsControllerGetTopicResponseBody
-    | errors.TopicsControllerGetTopicTopicsResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -132,8 +131,7 @@ export async function topicsRetrieve(
 
   const [result] = await M.match<
     operations.TopicsControllerGetTopicResponse,
-    | errors.TopicsControllerGetTopicResponseBody
-    | errors.TopicsControllerGetTopicTopicsResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -146,14 +144,7 @@ export async function topicsRetrieve(
       hdrs: true,
       key: "Result",
     }),
-    M.jsonErr(400, errors.TopicsControllerGetTopicResponseBody$inboundSchema, {
-      hdrs: true,
-    }),
-    M.jsonErr(
-      404,
-      errors.TopicsControllerGetTopicTopicsResponseBody$inboundSchema,
-      { hdrs: true },
-    ),
+    M.jsonErr([400, 404], errors.ErrorDto$inboundSchema, { hdrs: true }),
     M.fail([409, 429, 503]),
     M.fail(["4XX", "5XX"]),
   )(response, { extraFields: responseFields });

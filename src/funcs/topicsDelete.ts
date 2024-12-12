@@ -35,7 +35,7 @@ export async function topicsDelete(
 ): Promise<
   Result<
     operations.TopicsControllerDeleteTopicResponse | undefined,
-    | errors.TopicsControllerDeleteTopicResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -131,7 +131,7 @@ export async function topicsDelete(
 
   const [result] = await M.match<
     operations.TopicsControllerDeleteTopicResponse | undefined,
-    | errors.TopicsControllerDeleteTopicResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -145,11 +145,7 @@ export async function topicsDelete(
       operations.TopicsControllerDeleteTopicResponse$inboundSchema.optional(),
       { hdrs: true },
     ),
-    M.jsonErr(
-      400,
-      errors.TopicsControllerDeleteTopicResponseBody$inboundSchema,
-      { hdrs: true },
-    ),
+    M.jsonErr(400, errors.ErrorDto$inboundSchema, { hdrs: true }),
     M.fail([404, 409, 429, 503]),
     M.fail(["4XX", "5XX"]),
   )(response, { extraFields: responseFields });

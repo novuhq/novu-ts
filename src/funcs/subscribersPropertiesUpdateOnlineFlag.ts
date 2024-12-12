@@ -38,8 +38,7 @@ export async function subscribersPropertiesUpdateOnlineFlag(
 ): Promise<
   Result<
     operations.SubscribersControllerUpdateSubscriberOnlineFlagResponse,
-    | errors.SubscribersControllerUpdateSubscriberOnlineFlagResponseBody
-    | errors.SubscribersControllerUpdateSubscriberOnlineFlagSubscribersPropertiesResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -147,8 +146,7 @@ export async function subscribersPropertiesUpdateOnlineFlag(
 
   const [result] = await M.match<
     operations.SubscribersControllerUpdateSubscriberOnlineFlagResponse,
-    | errors.SubscribersControllerUpdateSubscriberOnlineFlagResponseBody
-    | errors.SubscribersControllerUpdateSubscriberOnlineFlagSubscribersPropertiesResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -163,18 +161,7 @@ export async function subscribersPropertiesUpdateOnlineFlag(
         .SubscribersControllerUpdateSubscriberOnlineFlagResponse$inboundSchema,
       { hdrs: true, key: "Result" },
     ),
-    M.jsonErr(
-      400,
-      errors
-        .SubscribersControllerUpdateSubscriberOnlineFlagResponseBody$inboundSchema,
-      { hdrs: true },
-    ),
-    M.jsonErr(
-      404,
-      errors
-        .SubscribersControllerUpdateSubscriberOnlineFlagSubscribersPropertiesResponseBody$inboundSchema,
-      { hdrs: true },
-    ),
+    M.jsonErr([400, 404], errors.ErrorDto$inboundSchema, { hdrs: true }),
     M.fail([409, 429, 503]),
     M.fail(["4XX", "5XX"]),
   )(response, { extraFields: responseFields });

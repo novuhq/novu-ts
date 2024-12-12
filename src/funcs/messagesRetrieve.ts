@@ -35,8 +35,7 @@ export async function messagesRetrieve(
 ): Promise<
   Result<
     operations.MessagesControllerGetMessagesResponse,
-    | errors.MessagesControllerGetMessagesResponseBody
-    | errors.MessagesControllerGetMessagesMessagesResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -132,8 +131,7 @@ export async function messagesRetrieve(
 
   const [result] = await M.match<
     operations.MessagesControllerGetMessagesResponse,
-    | errors.MessagesControllerGetMessagesResponseBody
-    | errors.MessagesControllerGetMessagesMessagesResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -147,16 +145,7 @@ export async function messagesRetrieve(
       operations.MessagesControllerGetMessagesResponse$inboundSchema,
       { hdrs: true, key: "Result" },
     ),
-    M.jsonErr(
-      400,
-      errors.MessagesControllerGetMessagesResponseBody$inboundSchema,
-      { hdrs: true },
-    ),
-    M.jsonErr(
-      404,
-      errors.MessagesControllerGetMessagesMessagesResponseBody$inboundSchema,
-      { hdrs: true },
-    ),
+    M.jsonErr([400, 404], errors.ErrorDto$inboundSchema, { hdrs: true }),
     M.fail([409, 429, 503]),
     M.fail(["4XX", "5XX"]),
   )(response, { extraFields: responseFields });

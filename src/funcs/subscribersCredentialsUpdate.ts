@@ -38,8 +38,7 @@ export async function subscribersCredentialsUpdate(
 ): Promise<
   Result<
     operations.SubscribersControllerUpdateSubscriberChannelResponse,
-    | errors.SubscribersControllerUpdateSubscriberChannelResponseBody
-    | errors.SubscribersControllerUpdateSubscriberChannelSubscribersCredentialsResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -144,8 +143,7 @@ export async function subscribersCredentialsUpdate(
 
   const [result] = await M.match<
     operations.SubscribersControllerUpdateSubscriberChannelResponse,
-    | errors.SubscribersControllerUpdateSubscriberChannelResponseBody
-    | errors.SubscribersControllerUpdateSubscriberChannelSubscribersCredentialsResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -160,18 +158,7 @@ export async function subscribersCredentialsUpdate(
         .SubscribersControllerUpdateSubscriberChannelResponse$inboundSchema,
       { hdrs: true, key: "Result" },
     ),
-    M.jsonErr(
-      400,
-      errors
-        .SubscribersControllerUpdateSubscriberChannelResponseBody$inboundSchema,
-      { hdrs: true },
-    ),
-    M.jsonErr(
-      404,
-      errors
-        .SubscribersControllerUpdateSubscriberChannelSubscribersCredentialsResponseBody$inboundSchema,
-      { hdrs: true },
-    ),
+    M.jsonErr([400, 404], errors.ErrorDto$inboundSchema, { hdrs: true }),
     M.fail([409, 429, 503]),
     M.fail(["4XX", "5XX"]),
   )(response, { extraFields: responseFields });

@@ -37,8 +37,7 @@ export async function subscribersCredentialsDelete(
   Result<
     | operations.SubscribersControllerDeleteSubscriberCredentialsResponse
     | undefined,
-    | errors.SubscribersControllerDeleteSubscriberCredentialsResponseBody
-    | errors.SubscribersControllerDeleteSubscriberCredentialsSubscribersCredentialsResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -145,8 +144,7 @@ export async function subscribersCredentialsDelete(
   const [result] = await M.match<
     | operations.SubscribersControllerDeleteSubscriberCredentialsResponse
     | undefined,
-    | errors.SubscribersControllerDeleteSubscriberCredentialsResponseBody
-    | errors.SubscribersControllerDeleteSubscriberCredentialsSubscribersCredentialsResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -162,18 +160,7 @@ export async function subscribersCredentialsDelete(
         .optional(),
       { hdrs: true },
     ),
-    M.jsonErr(
-      400,
-      errors
-        .SubscribersControllerDeleteSubscriberCredentialsResponseBody$inboundSchema,
-      { hdrs: true },
-    ),
-    M.jsonErr(
-      404,
-      errors
-        .SubscribersControllerDeleteSubscriberCredentialsSubscribersCredentialsResponseBody$inboundSchema,
-      { hdrs: true },
-    ),
+    M.jsonErr([400, 404], errors.ErrorDto$inboundSchema, { hdrs: true }),
     M.fail([409, 429, 503]),
     M.fail(["4XX", "5XX"]),
   )(response, { extraFields: responseFields });

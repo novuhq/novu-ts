@@ -37,8 +37,7 @@ export async function messagesDeleteByTransactionId(
   Result<
     | operations.MessagesControllerDeleteMessagesByTransactionIdResponse
     | undefined,
-    | errors.MessagesControllerDeleteMessagesByTransactionIdResponseBody
-    | errors.MessagesControllerDeleteMessagesByTransactionIdMessagesResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -146,8 +145,7 @@ export async function messagesDeleteByTransactionId(
   const [result] = await M.match<
     | operations.MessagesControllerDeleteMessagesByTransactionIdResponse
     | undefined,
-    | errors.MessagesControllerDeleteMessagesByTransactionIdResponseBody
-    | errors.MessagesControllerDeleteMessagesByTransactionIdMessagesResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -163,18 +161,7 @@ export async function messagesDeleteByTransactionId(
         .optional(),
       { hdrs: true },
     ),
-    M.jsonErr(
-      400,
-      errors
-        .MessagesControllerDeleteMessagesByTransactionIdResponseBody$inboundSchema,
-      { hdrs: true },
-    ),
-    M.jsonErr(
-      404,
-      errors
-        .MessagesControllerDeleteMessagesByTransactionIdMessagesResponseBody$inboundSchema,
-      { hdrs: true },
-    ),
+    M.jsonErr([400, 404], errors.ErrorDto$inboundSchema, { hdrs: true }),
     M.fail([409, 429, 503]),
     M.fail(["4XX", "5XX"]),
   )(response, { extraFields: responseFields });

@@ -32,7 +32,7 @@ export async function integrationsSetAsPrimary(
 ): Promise<
   Result<
     operations.IntegrationsControllerSetIntegrationAsPrimaryResponse,
-    | errors.IntegrationsControllerSetIntegrationAsPrimaryResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -133,7 +133,7 @@ export async function integrationsSetAsPrimary(
 
   const [result] = await M.match<
     operations.IntegrationsControllerSetIntegrationAsPrimaryResponse,
-    | errors.IntegrationsControllerSetIntegrationAsPrimaryResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -148,12 +148,7 @@ export async function integrationsSetAsPrimary(
         .IntegrationsControllerSetIntegrationAsPrimaryResponse$inboundSchema,
       { hdrs: true, key: "Result" },
     ),
-    M.jsonErr(
-      400,
-      errors
-        .IntegrationsControllerSetIntegrationAsPrimaryResponseBody$inboundSchema,
-      { hdrs: true },
-    ),
+    M.jsonErr(400, errors.ErrorDto$inboundSchema, { hdrs: true }),
     M.fail([404, 409, 429, 503]),
     M.fail(["4XX", "5XX"]),
   )(response, { extraFields: responseFields });

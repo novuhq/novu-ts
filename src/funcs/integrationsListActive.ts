@@ -32,8 +32,7 @@ export async function integrationsListActive(
 ): Promise<
   Result<
     operations.IntegrationsControllerGetActiveIntegrationsResponse,
-    | errors.IntegrationsControllerGetActiveIntegrationsResponseBody
-    | errors.IntegrationsControllerGetActiveIntegrationsIntegrationsResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -105,8 +104,7 @@ export async function integrationsListActive(
 
   const [result] = await M.match<
     operations.IntegrationsControllerGetActiveIntegrationsResponse,
-    | errors.IntegrationsControllerGetActiveIntegrationsResponseBody
-    | errors.IntegrationsControllerGetActiveIntegrationsIntegrationsResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -121,18 +119,7 @@ export async function integrationsListActive(
         .IntegrationsControllerGetActiveIntegrationsResponse$inboundSchema,
       { hdrs: true, key: "Result" },
     ),
-    M.jsonErr(
-      400,
-      errors
-        .IntegrationsControllerGetActiveIntegrationsResponseBody$inboundSchema,
-      { hdrs: true },
-    ),
-    M.jsonErr(
-      404,
-      errors
-        .IntegrationsControllerGetActiveIntegrationsIntegrationsResponseBody$inboundSchema,
-      { hdrs: true },
-    ),
+    M.jsonErr([400, 404], errors.ErrorDto$inboundSchema, { hdrs: true }),
     M.fail([409, 429, 503]),
     M.fail(["4XX", "5XX"]),
   )(response, { extraFields: responseFields });

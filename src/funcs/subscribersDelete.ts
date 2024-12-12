@@ -35,8 +35,7 @@ export async function subscribersDelete(
 ): Promise<
   Result<
     operations.SubscribersControllerRemoveSubscriberResponse,
-    | errors.SubscribersControllerRemoveSubscriberResponseBody
-    | errors.SubscribersControllerRemoveSubscriberSubscribersResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -133,8 +132,7 @@ export async function subscribersDelete(
 
   const [result] = await M.match<
     operations.SubscribersControllerRemoveSubscriberResponse,
-    | errors.SubscribersControllerRemoveSubscriberResponseBody
-    | errors.SubscribersControllerRemoveSubscriberSubscribersResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -148,17 +146,7 @@ export async function subscribersDelete(
       operations.SubscribersControllerRemoveSubscriberResponse$inboundSchema,
       { hdrs: true, key: "Result" },
     ),
-    M.jsonErr(
-      400,
-      errors.SubscribersControllerRemoveSubscriberResponseBody$inboundSchema,
-      { hdrs: true },
-    ),
-    M.jsonErr(
-      404,
-      errors
-        .SubscribersControllerRemoveSubscriberSubscribersResponseBody$inboundSchema,
-      { hdrs: true },
-    ),
+    M.jsonErr([400, 404], errors.ErrorDto$inboundSchema, { hdrs: true }),
     M.fail([409, 429, 503]),
     M.fail(["4XX", "5XX"]),
   )(response, { extraFields: responseFields });

@@ -37,8 +37,7 @@ export async function topicsRename(
 ): Promise<
   Result<
     operations.TopicsControllerRenameTopicResponse,
-    | errors.TopicsControllerRenameTopicResponseBody
-    | errors.TopicsControllerRenameTopicTopicsResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -138,8 +137,7 @@ export async function topicsRename(
 
   const [result] = await M.match<
     operations.TopicsControllerRenameTopicResponse,
-    | errors.TopicsControllerRenameTopicResponseBody
-    | errors.TopicsControllerRenameTopicTopicsResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -152,16 +150,7 @@ export async function topicsRename(
       hdrs: true,
       key: "Result",
     }),
-    M.jsonErr(
-      400,
-      errors.TopicsControllerRenameTopicResponseBody$inboundSchema,
-      { hdrs: true },
-    ),
-    M.jsonErr(
-      404,
-      errors.TopicsControllerRenameTopicTopicsResponseBody$inboundSchema,
-      { hdrs: true },
-    ),
+    M.jsonErr([400, 404], errors.ErrorDto$inboundSchema, { hdrs: true }),
     M.fail([409, 429, 503]),
     M.fail(["4XX", "5XX"]),
   )(response, { extraFields: responseFields });

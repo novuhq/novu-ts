@@ -32,8 +32,7 @@ export async function notificationsRetrieve(
 ): Promise<
   Result<
     operations.NotificationsControllerGetNotificationResponse,
-    | errors.NotificationsControllerGetNotificationResponseBody
-    | errors.NotificationsControllerGetNotificationNotificationsResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -130,8 +129,7 @@ export async function notificationsRetrieve(
 
   const [result] = await M.match<
     operations.NotificationsControllerGetNotificationResponse,
-    | errors.NotificationsControllerGetNotificationResponseBody
-    | errors.NotificationsControllerGetNotificationNotificationsResponseBody
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -145,17 +143,7 @@ export async function notificationsRetrieve(
       operations.NotificationsControllerGetNotificationResponse$inboundSchema,
       { hdrs: true, key: "Result" },
     ),
-    M.jsonErr(
-      400,
-      errors.NotificationsControllerGetNotificationResponseBody$inboundSchema,
-      { hdrs: true },
-    ),
-    M.jsonErr(
-      404,
-      errors
-        .NotificationsControllerGetNotificationNotificationsResponseBody$inboundSchema,
-      { hdrs: true },
-    ),
+    M.jsonErr([400, 404], errors.ErrorDto$inboundSchema, { hdrs: true }),
     M.fail([409, 429, 503]),
     M.fail(["4XX", "5XX"]),
   )(response, { extraFields: responseFields });
