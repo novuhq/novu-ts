@@ -27,3 +27,11 @@ const value: boolean = false;
 const value: errors.Four = {};
 ```
 
+### `errors.Five[]`
+
+```typescript
+const value: errors.Five[] = [
+  {},
+];
+```
+

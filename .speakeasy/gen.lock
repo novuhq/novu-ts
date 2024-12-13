@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 6bff3a53-3f0b-40b4-942f-ff70dc583ae5
 management:
-  docChecksum: b3f0af95b9e01d6bc4686338d5340652
+  docChecksum: 976b0d4fdeb06e569eb28fd0fe4228a0
   docVersion: "1.0"
   speakeasyVersion: 1.454.2
   generationVersion: 2.477.4
-  releaseVersion: 0.0.1-alpha.106
-  configChecksum: c0bc018cdd2e83bd04de968a24ee5a80
+  releaseVersion: 0.0.1-alpha.107
+  configChecksum: a055fc1a3deb388ed0cf43b00e8c9118
   published: true
 features:
   typescript:
@@ -195,6 +195,7 @@ generatedFiles:
   - docs/models/components/workflowtostepcontrolvaluesdto.md
   - docs/models/errors/errordto.md
   - docs/models/errors/errors.md
+  - docs/models/errors/five.md
   - docs/models/errors/four.md
   - docs/models/errors/validationerrordto.md
   - docs/models/errors/value.md

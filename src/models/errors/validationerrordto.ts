@@ -7,13 +7,15 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "./sdkvalidationerror.js";
 
+export type Five = {};
+
 export type Four = {};
 
-export type Value = Four | string | number | boolean;
+export type Value = Four | string | number | boolean | Array<Five>;
 
 export type Errors = {
   messages: Array<string>;
-  value: Four | string | number | boolean | null;
+  value: Four | string | number | boolean | Array<Five> | null;
 };
 
 export type ValidationErrorDtoData = {
@@ -101,6 +103,44 @@ export class ValidationErrorDto extends Error {
 }
 
 /** @internal */
+export const Five$inboundSchema: z.ZodType<Five, z.ZodTypeDef, unknown> = z
+  .object({});
+
+/** @internal */
+export type Five$Outbound = {};
+
+/** @internal */
+export const Five$outboundSchema: z.ZodType<Five$Outbound, z.ZodTypeDef, Five> =
+  z.object({});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Five$ {
+  /** @deprecated use `Five$inboundSchema` instead. */
+  export const inboundSchema = Five$inboundSchema;
+  /** @deprecated use `Five$outboundSchema` instead. */
+  export const outboundSchema = Five$outboundSchema;
+  /** @deprecated use `Five$Outbound` instead. */
+  export type Outbound = Five$Outbound;
+}
+
+export function fiveToJSON(five: Five): string {
+  return JSON.stringify(Five$outboundSchema.parse(five));
+}
+
+export function fiveFromJSON(
+  jsonString: string,
+): SafeParseResult<Five, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Five$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Five' from JSON`,
+  );
+}
+
+/** @internal */
 export const Four$inboundSchema: z.ZodType<Four, z.ZodTypeDef, unknown> = z
   .object({});
 
@@ -145,10 +185,16 @@ export const Value$inboundSchema: z.ZodType<Value, z.ZodTypeDef, unknown> = z
     z.string(),
     z.number(),
     z.boolean(),
+    z.array(z.lazy(() => Five$inboundSchema)),
   ]);
 
 /** @internal */
-export type Value$Outbound = Four$Outbound | string | number | boolean;
+export type Value$Outbound =
+  | Four$Outbound
+  | string
+  | number
+  | boolean
+  | Array<Five$Outbound>;
 
 /** @internal */
 export const Value$outboundSchema: z.ZodType<
@@ -160,6 +206,7 @@ export const Value$outboundSchema: z.ZodType<
   z.string(),
   z.number(),
   z.boolean(),
+  z.array(z.lazy(() => Five$outboundSchema)),
 ]);
 
 /**
@@ -199,6 +246,7 @@ export const Errors$inboundSchema: z.ZodType<Errors, z.ZodTypeDef, unknown> = z
         z.string(),
         z.number(),
         z.boolean(),
+        z.array(z.lazy(() => Five$inboundSchema)),
       ]),
     ),
   });
@@ -206,7 +254,13 @@ export const Errors$inboundSchema: z.ZodType<Errors, z.ZodTypeDef, unknown> = z
 /** @internal */
 export type Errors$Outbound = {
   messages: Array<string>;
-  value: Four$Outbound | string | number | boolean | null;
+  value:
+    | Four$Outbound
+    | string
+    | number
+    | boolean
+    | Array<Five$Outbound>
+    | null;
 };
 
 /** @internal */
@@ -222,6 +276,7 @@ export const Errors$outboundSchema: z.ZodType<
       z.string(),
       z.number(),
       z.boolean(),
+      z.array(z.lazy(() => Five$outboundSchema)),
     ]),
   ),
 });

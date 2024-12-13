@@ -13227,6 +13227,13 @@
                     },
                     {
                       "type": "object"
+                    },
+                    {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      },
+                      "additionalProperties": true
                     }
                   ]
                 }
