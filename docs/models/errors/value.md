@@ -21,17 +21,21 @@ const value: number = 7044.14;
 const value: boolean = false;
 ```
 
-### `errors.Four`
+### `{ [k: string]: any }`
 
 ```typescript
-const value: errors.Four = {};
+const value: { [k: string]: any } = {
+  "key": "<value>",
+};
 ```
 
-### `errors.Five[]`
+### `{ [k: string]: any }[]`
 
 ```typescript
-const value: errors.Five[] = [
-  {},
+const value: { [k: string]: any }[] = [
+  {
+    "key": "<value>",
+  },
 ];
 ```
 
