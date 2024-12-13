@@ -38,6 +38,7 @@ export async function subscribersCredentialsDelete(
     | operations.SubscribersControllerDeleteSubscriberCredentialsResponse
     | undefined,
     | errors.ErrorDto
+    | errors.ValidationErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -128,7 +129,7 @@ export async function subscribersCredentialsDelete(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["400", "404", "409", "429", "4XX", "503", "5XX"],
+    errorCodes: ["400", "404", "409", "422", "429", "4XX", "503", "5XX"],
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
@@ -145,6 +146,7 @@ export async function subscribersCredentialsDelete(
     | operations.SubscribersControllerDeleteSubscriberCredentialsResponse
     | undefined,
     | errors.ErrorDto
+    | errors.ValidationErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -153,13 +155,6 @@ export async function subscribersCredentialsDelete(
     | RequestTimeoutError
     | ConnectionError
   >(
-    M.json(
-      200,
-      operations
-        .SubscribersControllerDeleteSubscriberCredentialsResponse$inboundSchema
-        .optional(),
-      { hdrs: true, key: "Result" },
-    ),
     M.nil(
       204,
       operations
@@ -168,6 +163,7 @@ export async function subscribersCredentialsDelete(
       { hdrs: true },
     ),
     M.jsonErr([400, 404, 409], errors.ErrorDto$inboundSchema, { hdrs: true }),
+    M.jsonErr(422, errors.ValidationErrorDto$inboundSchema, { hdrs: true }),
     M.fail([429, 503]),
     M.fail(["4XX", "5XX"]),
   )(response, { extraFields: responseFields });

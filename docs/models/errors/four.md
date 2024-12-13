@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { Four } from "@novu/api/models/components";
+import { Four } from "@novu/api/models/errors";
 
 let value: Four = {};
 ```

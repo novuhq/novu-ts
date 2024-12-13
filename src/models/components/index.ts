@@ -87,6 +87,5 @@ export * from "./updatesubscriberonlineflagrequestdto.js";
 export * from "./updatesubscriberpreferencerequestdto.js";
 export * from "./updatesubscriberpreferenceresponsedto.js";
 export * from "./updatesubscriberrequestdto.js";
-export * from "./validationerrordto.js";
 export * from "./workflowresponse.js";
 export * from "./workflowtostepcontrolvaluesdto.js";

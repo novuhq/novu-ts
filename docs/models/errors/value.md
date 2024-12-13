@@ -1,4 +1,4 @@
-# ValidationErrorDtoValue
+# Value
 
 
 ## Supported Types
@@ -12,7 +12,7 @@ const value: string = "<value>";
 ### `number`
 
 ```typescript
-const value: number = 5666.01;
+const value: number = 7044.14;
 ```
 
 ### `boolean`
@@ -21,9 +21,9 @@ const value: number = 5666.01;
 const value: boolean = false;
 ```
 
-### `components.Four`
+### `errors.Four`
 
 ```typescript
-const value: components.Four = {};
+const value: errors.Four = {};
 ```
 

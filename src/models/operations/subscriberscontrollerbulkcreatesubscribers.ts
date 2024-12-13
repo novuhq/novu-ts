@@ -6,12 +6,10 @@ import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
-import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type SubscribersControllerBulkCreateSubscribersResponse = {
   headers: { [k: string]: Array<string> };
-  result: components.ValidationErrorDto;
 };
 
 /** @internal */
@@ -22,18 +20,15 @@ export const SubscribersControllerBulkCreateSubscribersResponse$inboundSchema:
     unknown
   > = z.object({
     Headers: z.record(z.array(z.string())),
-    Result: components.ValidationErrorDto$inboundSchema,
   }).transform((v) => {
     return remap$(v, {
       "Headers": "headers",
-      "Result": "result",
     });
   });
 
 /** @internal */
 export type SubscribersControllerBulkCreateSubscribersResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
-  Result: components.ValidationErrorDto$Outbound;
 };
 
 /** @internal */
@@ -44,11 +39,9 @@ export const SubscribersControllerBulkCreateSubscribersResponse$outboundSchema:
     SubscribersControllerBulkCreateSubscribersResponse
   > = z.object({
     headers: z.record(z.array(z.string())),
-    result: components.ValidationErrorDto$outboundSchema,
   }).transform((v) => {
     return remap$(v, {
       headers: "Headers",
-      result: "Result",
     });
   });
 

@@ -417,16 +417,21 @@ run();
 
 Some methods specify known errors which can be thrown. All the known errors are enumerated in the `models/errors/errors.ts` module. The known errors for a method are documented under the *Errors* tables in SDK docs. For example, the `trigger` method may throw the following errors:
 
-| Error Type      | Status Code   | Content Type     |
-| --------------- | ------------- | ---------------- |
-| errors.ErrorDto | 400, 404, 409 | application/json |
-| errors.SDKError | 4XX, 5XX      | \*/\*            |
+| Error Type                | Status Code   | Content Type     |
+| ------------------------- | ------------- | ---------------- |
+| errors.ErrorDto           | 400, 404, 409 | application/json |
+| errors.ValidationErrorDto | 422           | application/json |
+| errors.SDKError           | 4XX, 5XX      | \*/\*            |
 
 If the method throws an error and it is not captured by the known errors, it will default to throwing a `SDKError`.
 
 ```typescript
 import { Novu } from "@novu/api";
-import { ErrorDto, SDKValidationError } from "@novu/api/models/errors";
+import {
+  ErrorDto,
+  SDKValidationError,
+  ValidationErrorDto,
+} from "@novu/api/models/errors";
 
 const novu = new Novu({
   apiKey: "<YOUR_API_KEY_HERE>",
@@ -463,6 +468,11 @@ async function run() {
       }
       case (err instanceof ErrorDto): {
         // Handle err.data$: ErrorDtoData
+        console.error(err);
+        return;
+      }
+      case (err instanceof ValidationErrorDto): {
+        // Handle err.data$: ValidationErrorDtoData
         console.error(err);
         return;
       }

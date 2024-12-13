@@ -9,84 +9,10 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
-export type EventsControllerTriggerBulkResponseResult =
-  | components.ValidationErrorDto
-  | Array<components.TriggerEventResponseDto>;
-
 export type EventsControllerTriggerBulkResponse = {
   headers: { [k: string]: Array<string> };
-  result:
-    | components.ValidationErrorDto
-    | Array<components.TriggerEventResponseDto>;
+  result: Array<components.TriggerEventResponseDto>;
 };
-
-/** @internal */
-export const EventsControllerTriggerBulkResponseResult$inboundSchema: z.ZodType<
-  EventsControllerTriggerBulkResponseResult,
-  z.ZodTypeDef,
-  unknown
-> = z.union([
-  components.ValidationErrorDto$inboundSchema,
-  z.array(components.TriggerEventResponseDto$inboundSchema),
-]);
-
-/** @internal */
-export type EventsControllerTriggerBulkResponseResult$Outbound =
-  | components.ValidationErrorDto$Outbound
-  | Array<components.TriggerEventResponseDto$Outbound>;
-
-/** @internal */
-export const EventsControllerTriggerBulkResponseResult$outboundSchema:
-  z.ZodType<
-    EventsControllerTriggerBulkResponseResult$Outbound,
-    z.ZodTypeDef,
-    EventsControllerTriggerBulkResponseResult
-  > = z.union([
-    components.ValidationErrorDto$outboundSchema,
-    z.array(components.TriggerEventResponseDto$outboundSchema),
-  ]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EventsControllerTriggerBulkResponseResult$ {
-  /** @deprecated use `EventsControllerTriggerBulkResponseResult$inboundSchema` instead. */
-  export const inboundSchema =
-    EventsControllerTriggerBulkResponseResult$inboundSchema;
-  /** @deprecated use `EventsControllerTriggerBulkResponseResult$outboundSchema` instead. */
-  export const outboundSchema =
-    EventsControllerTriggerBulkResponseResult$outboundSchema;
-  /** @deprecated use `EventsControllerTriggerBulkResponseResult$Outbound` instead. */
-  export type Outbound = EventsControllerTriggerBulkResponseResult$Outbound;
-}
-
-export function eventsControllerTriggerBulkResponseResultToJSON(
-  eventsControllerTriggerBulkResponseResult:
-    EventsControllerTriggerBulkResponseResult,
-): string {
-  return JSON.stringify(
-    EventsControllerTriggerBulkResponseResult$outboundSchema.parse(
-      eventsControllerTriggerBulkResponseResult,
-    ),
-  );
-}
-
-export function eventsControllerTriggerBulkResponseResultFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  EventsControllerTriggerBulkResponseResult,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      EventsControllerTriggerBulkResponseResult$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'EventsControllerTriggerBulkResponseResult' from JSON`,
-  );
-}
 
 /** @internal */
 export const EventsControllerTriggerBulkResponse$inboundSchema: z.ZodType<
@@ -95,10 +21,7 @@ export const EventsControllerTriggerBulkResponse$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   Headers: z.record(z.array(z.string())),
-  Result: z.union([
-    components.ValidationErrorDto$inboundSchema,
-    z.array(components.TriggerEventResponseDto$inboundSchema),
-  ]),
+  Result: z.array(components.TriggerEventResponseDto$inboundSchema),
 }).transform((v) => {
   return remap$(v, {
     "Headers": "headers",
@@ -109,9 +32,7 @@ export const EventsControllerTriggerBulkResponse$inboundSchema: z.ZodType<
 /** @internal */
 export type EventsControllerTriggerBulkResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
-  Result:
-    | components.ValidationErrorDto$Outbound
-    | Array<components.TriggerEventResponseDto$Outbound>;
+  Result: Array<components.TriggerEventResponseDto$Outbound>;
 };
 
 /** @internal */
@@ -121,10 +42,7 @@ export const EventsControllerTriggerBulkResponse$outboundSchema: z.ZodType<
   EventsControllerTriggerBulkResponse
 > = z.object({
   headers: z.record(z.array(z.string())),
-  result: z.union([
-    components.ValidationErrorDto$outboundSchema,
-    z.array(components.TriggerEventResponseDto$outboundSchema),
-  ]),
+  result: z.array(components.TriggerEventResponseDto$outboundSchema),
 }).transform((v) => {
   return remap$(v, {
     headers: "Headers",

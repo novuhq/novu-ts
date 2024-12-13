@@ -8,9 +8,9 @@ import { SubscribersControllerModifySubscriberChannelRequest } from "@novu/api/m
 let value: SubscribersControllerModifySubscriberChannelRequest = {
   subscriberId: "<id>",
   updateSubscriberChannelRequestDto: {
-    providerId: "grafana-on-call",
+    providerId: "fcm",
     credentials: {
-      webhookUrl: "https://ruddy-bandwidth.net/",
+      webhookUrl: "https://wealthy-lender.info/",
     },
   },
 };

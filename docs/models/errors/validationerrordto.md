@@ -3,46 +3,9 @@
 ## Example Usage
 
 ```typescript
-import { ValidationErrorDto } from "@novu/api/models/components";
+import { ValidationErrorDto } from "@novu/api/models/errors";
 
-let value: ValidationErrorDto = {
-  statusCode: 404,
-  timestamp: "2024-12-12T13:00:00Z",
-  path: "/api/v1/resource",
-  message: "Resource not found.",
-  ctx: {
-    "workflowId": "some_wf_id",
-    "stepId": "some_wf_id",
-  },
-  errorId: "abc123",
-  errors: {
-    "fieldName1": {
-      messages: [
-        "Field is required",
-        "Must be a valid email address",
-      ],
-      value: "invalidEmail",
-    },
-    "fieldName2": {
-      messages: [
-        "Must be at least 18 years old",
-      ],
-      value: 17,
-    },
-    "fieldName3": {
-      messages: [
-        "Must be a boolean value",
-      ],
-      value: true,
-    },
-    "fieldName4": {
-      messages: [
-        "Must be a valid object",
-      ],
-      value: 5232.48,
-    },
-  },
-};
+// No examples available for this model
 ```
 
 ## Fields
@@ -55,4 +18,4 @@ let value: ValidationErrorDto = {
 | `message`                                                                                                                                                                                                                                                                                                                                                                | *string*                                                                                                                                                                                                                                                                                                                                                                 | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                       | A detailed error message.                                                                                                                                                                                                                                                                                                                                                | Resource not found.                                                                                                                                                                                                                                                                                                                                                      |
 | `ctx`                                                                                                                                                                                                                                                                                                                                                                    | Record<string, *any*>                                                                                                                                                                                                                                                                                                                                                    | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                       | Optional context object for additional error details.                                                                                                                                                                                                                                                                                                                    | {<br/>"workflowId": "some_wf_id",<br/>"stepId": "some_wf_id"<br/>}                                                                                                                                                                                                                                                                                                       |
 | `errorId`                                                                                                                                                                                                                                                                                                                                                                | *string*                                                                                                                                                                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                       | Optional unique identifier for the error, useful for tracking using Sentry and <br/>      New Relic, only available for 500.                                                                                                                                                                                                                                             | abc123                                                                                                                                                                                                                                                                                                                                                                   |
-| `errors`                                                                                                                                                                                                                                                                                                                                                                 | Record<string, [components.Errors](../../models/components/errors.md)>                                                                                                                                                                                                                                                                                                   | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                       | A record of validation errors keyed by field name                                                                                                                                                                                                                                                                                                                        | {<br/>"fieldName1": {<br/>"messages": [<br/>"Field is required",<br/>"Must be a valid email address"<br/>],<br/>"value": "invalidEmail"<br/>},<br/>"fieldName2": {<br/>"messages": [<br/>"Must be at least 18 years old"<br/>],<br/>"value": 17<br/>},<br/>"fieldName3": {<br/>"messages": [<br/>"Must be a boolean value"<br/>],<br/>"value": true<br/>},<br/>"fieldName4": {<br/>"messages": [<br/>"Must be a valid object"<br/>],<br/>"value": {<br/>"key": "value"<br/>}<br/>}<br/>} |
+| `errors`                                                                                                                                                                                                                                                                                                                                                                 | Record<string, [errors.Errors](../../models/errors/errors.md)>                                                                                                                                                                                                                                                                                                           | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                       | A record of validation errors keyed by field name                                                                                                                                                                                                                                                                                                                        | {<br/>"fieldName1": {<br/>"messages": [<br/>"Field is required",<br/>"Must be a valid email address"<br/>],<br/>"value": "invalidEmail"<br/>},<br/>"fieldName2": {<br/>"messages": [<br/>"Must be at least 18 years old"<br/>],<br/>"value": 17<br/>},<br/>"fieldName3": {<br/>"messages": [<br/>"Must be a boolean value"<br/>],<br/>"value": true<br/>},<br/>"fieldName4": {<br/>"messages": [<br/>"Must be a valid object"<br/>],<br/>"value": {<br/>"key": "value"<br/>}<br/>}<br/>} |

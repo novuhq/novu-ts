@@ -14,13 +14,9 @@ export type SubscribersControllerMarkMessagesAsRequest = {
   messageMarkAsRequestDto: components.MessageMarkAsRequestDto;
 };
 
-export type SubscribersControllerMarkMessagesAsResponseResult =
-  | components.ValidationErrorDto
-  | Array<components.MessageEntity>;
-
 export type SubscribersControllerMarkMessagesAsResponse = {
   headers: { [k: string]: Array<string> };
-  result: components.ValidationErrorDto | Array<components.MessageEntity>;
+  result: Array<components.MessageEntity>;
 };
 
 /** @internal */
@@ -99,76 +95,6 @@ export function subscribersControllerMarkMessagesAsRequestFromJSON(
 }
 
 /** @internal */
-export const SubscribersControllerMarkMessagesAsResponseResult$inboundSchema:
-  z.ZodType<
-    SubscribersControllerMarkMessagesAsResponseResult,
-    z.ZodTypeDef,
-    unknown
-  > = z.union([
-    components.ValidationErrorDto$inboundSchema,
-    z.array(components.MessageEntity$inboundSchema),
-  ]);
-
-/** @internal */
-export type SubscribersControllerMarkMessagesAsResponseResult$Outbound =
-  | components.ValidationErrorDto$Outbound
-  | Array<components.MessageEntity$Outbound>;
-
-/** @internal */
-export const SubscribersControllerMarkMessagesAsResponseResult$outboundSchema:
-  z.ZodType<
-    SubscribersControllerMarkMessagesAsResponseResult$Outbound,
-    z.ZodTypeDef,
-    SubscribersControllerMarkMessagesAsResponseResult
-  > = z.union([
-    components.ValidationErrorDto$outboundSchema,
-    z.array(components.MessageEntity$outboundSchema),
-  ]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SubscribersControllerMarkMessagesAsResponseResult$ {
-  /** @deprecated use `SubscribersControllerMarkMessagesAsResponseResult$inboundSchema` instead. */
-  export const inboundSchema =
-    SubscribersControllerMarkMessagesAsResponseResult$inboundSchema;
-  /** @deprecated use `SubscribersControllerMarkMessagesAsResponseResult$outboundSchema` instead. */
-  export const outboundSchema =
-    SubscribersControllerMarkMessagesAsResponseResult$outboundSchema;
-  /** @deprecated use `SubscribersControllerMarkMessagesAsResponseResult$Outbound` instead. */
-  export type Outbound =
-    SubscribersControllerMarkMessagesAsResponseResult$Outbound;
-}
-
-export function subscribersControllerMarkMessagesAsResponseResultToJSON(
-  subscribersControllerMarkMessagesAsResponseResult:
-    SubscribersControllerMarkMessagesAsResponseResult,
-): string {
-  return JSON.stringify(
-    SubscribersControllerMarkMessagesAsResponseResult$outboundSchema.parse(
-      subscribersControllerMarkMessagesAsResponseResult,
-    ),
-  );
-}
-
-export function subscribersControllerMarkMessagesAsResponseResultFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  SubscribersControllerMarkMessagesAsResponseResult,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      SubscribersControllerMarkMessagesAsResponseResult$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'SubscribersControllerMarkMessagesAsResponseResult' from JSON`,
-  );
-}
-
-/** @internal */
 export const SubscribersControllerMarkMessagesAsResponse$inboundSchema:
   z.ZodType<
     SubscribersControllerMarkMessagesAsResponse,
@@ -176,10 +102,7 @@ export const SubscribersControllerMarkMessagesAsResponse$inboundSchema:
     unknown
   > = z.object({
     Headers: z.record(z.array(z.string())),
-    Result: z.union([
-      components.ValidationErrorDto$inboundSchema,
-      z.array(components.MessageEntity$inboundSchema),
-    ]),
+    Result: z.array(components.MessageEntity$inboundSchema),
   }).transform((v) => {
     return remap$(v, {
       "Headers": "headers",
@@ -190,9 +113,7 @@ export const SubscribersControllerMarkMessagesAsResponse$inboundSchema:
 /** @internal */
 export type SubscribersControllerMarkMessagesAsResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
-  Result:
-    | components.ValidationErrorDto$Outbound
-    | Array<components.MessageEntity$Outbound>;
+  Result: Array<components.MessageEntity$Outbound>;
 };
 
 /** @internal */
@@ -203,10 +124,7 @@ export const SubscribersControllerMarkMessagesAsResponse$outboundSchema:
     SubscribersControllerMarkMessagesAsResponse
   > = z.object({
     headers: z.record(z.array(z.string())),
-    result: z.union([
-      components.ValidationErrorDto$outboundSchema,
-      z.array(components.MessageEntity$outboundSchema),
-    ]),
+    result: z.array(components.MessageEntity$outboundSchema),
   }).transform((v) => {
     return remap$(v, {
       headers: "Headers",

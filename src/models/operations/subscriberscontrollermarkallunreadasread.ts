@@ -14,13 +14,9 @@ export type SubscribersControllerMarkAllUnreadAsReadRequest = {
   markAllMessageAsRequestDto: components.MarkAllMessageAsRequestDto;
 };
 
-export type SubscribersControllerMarkAllUnreadAsReadResponseResult =
-  | components.ValidationErrorDto
-  | number;
-
 export type SubscribersControllerMarkAllUnreadAsReadResponse = {
   headers: { [k: string]: Array<string> };
-  result: components.ValidationErrorDto | number;
+  result: number;
 };
 
 /** @internal */
@@ -105,69 +101,6 @@ export function subscribersControllerMarkAllUnreadAsReadRequestFromJSON(
 }
 
 /** @internal */
-export const SubscribersControllerMarkAllUnreadAsReadResponseResult$inboundSchema:
-  z.ZodType<
-    SubscribersControllerMarkAllUnreadAsReadResponseResult,
-    z.ZodTypeDef,
-    unknown
-  > = z.union([components.ValidationErrorDto$inboundSchema, z.number()]);
-
-/** @internal */
-export type SubscribersControllerMarkAllUnreadAsReadResponseResult$Outbound =
-  | components.ValidationErrorDto$Outbound
-  | number;
-
-/** @internal */
-export const SubscribersControllerMarkAllUnreadAsReadResponseResult$outboundSchema:
-  z.ZodType<
-    SubscribersControllerMarkAllUnreadAsReadResponseResult$Outbound,
-    z.ZodTypeDef,
-    SubscribersControllerMarkAllUnreadAsReadResponseResult
-  > = z.union([components.ValidationErrorDto$outboundSchema, z.number()]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SubscribersControllerMarkAllUnreadAsReadResponseResult$ {
-  /** @deprecated use `SubscribersControllerMarkAllUnreadAsReadResponseResult$inboundSchema` instead. */
-  export const inboundSchema =
-    SubscribersControllerMarkAllUnreadAsReadResponseResult$inboundSchema;
-  /** @deprecated use `SubscribersControllerMarkAllUnreadAsReadResponseResult$outboundSchema` instead. */
-  export const outboundSchema =
-    SubscribersControllerMarkAllUnreadAsReadResponseResult$outboundSchema;
-  /** @deprecated use `SubscribersControllerMarkAllUnreadAsReadResponseResult$Outbound` instead. */
-  export type Outbound =
-    SubscribersControllerMarkAllUnreadAsReadResponseResult$Outbound;
-}
-
-export function subscribersControllerMarkAllUnreadAsReadResponseResultToJSON(
-  subscribersControllerMarkAllUnreadAsReadResponseResult:
-    SubscribersControllerMarkAllUnreadAsReadResponseResult,
-): string {
-  return JSON.stringify(
-    SubscribersControllerMarkAllUnreadAsReadResponseResult$outboundSchema.parse(
-      subscribersControllerMarkAllUnreadAsReadResponseResult,
-    ),
-  );
-}
-
-export function subscribersControllerMarkAllUnreadAsReadResponseResultFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  SubscribersControllerMarkAllUnreadAsReadResponseResult,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      SubscribersControllerMarkAllUnreadAsReadResponseResult$inboundSchema
-        .parse(JSON.parse(x)),
-    `Failed to parse 'SubscribersControllerMarkAllUnreadAsReadResponseResult' from JSON`,
-  );
-}
-
-/** @internal */
 export const SubscribersControllerMarkAllUnreadAsReadResponse$inboundSchema:
   z.ZodType<
     SubscribersControllerMarkAllUnreadAsReadResponse,
@@ -175,7 +108,7 @@ export const SubscribersControllerMarkAllUnreadAsReadResponse$inboundSchema:
     unknown
   > = z.object({
     Headers: z.record(z.array(z.string())),
-    Result: z.union([components.ValidationErrorDto$inboundSchema, z.number()]),
+    Result: z.number(),
   }).transform((v) => {
     return remap$(v, {
       "Headers": "headers",
@@ -186,7 +119,7 @@ export const SubscribersControllerMarkAllUnreadAsReadResponse$inboundSchema:
 /** @internal */
 export type SubscribersControllerMarkAllUnreadAsReadResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
-  Result: components.ValidationErrorDto$Outbound | number;
+  Result: number;
 };
 
 /** @internal */
@@ -197,7 +130,7 @@ export const SubscribersControllerMarkAllUnreadAsReadResponse$outboundSchema:
     SubscribersControllerMarkAllUnreadAsReadResponse
   > = z.object({
     headers: z.record(z.array(z.string())),
-    result: z.union([components.ValidationErrorDto$outboundSchema, z.number()]),
+    result: z.number(),
   }).transform((v) => {
     return remap$(v, {
       headers: "Headers",

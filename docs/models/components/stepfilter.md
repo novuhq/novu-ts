@@ -13,7 +13,7 @@ let value: StepFilter = {
     {
       field: "<value>",
       value: "<value>",
-      operator: "LIKE",
+      operator: "SMALLER_EQUAL",
       on: "subscriber",
     },
   ],

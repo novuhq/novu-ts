@@ -18,7 +18,7 @@ let value: IntegrationsControllerListIntegrationsResponse = {
       name: "<value>",
       identifier: "<value>",
       providerId: "<id>",
-      channel: "push",
+      channel: "chat",
       credentials: {},
       active: false,
       deleted: false,

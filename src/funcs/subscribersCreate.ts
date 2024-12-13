@@ -37,6 +37,7 @@ export async function subscribersCreate(
   Result<
     operations.SubscribersControllerCreateSubscriberResponse,
     | errors.ErrorDto
+    | errors.ValidationErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -107,7 +108,7 @@ export async function subscribersCreate(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["400", "404", "409", "429", "4XX", "503", "5XX"],
+    errorCodes: ["400", "404", "409", "422", "429", "4XX", "503", "5XX"],
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
@@ -123,6 +124,7 @@ export async function subscribersCreate(
   const [result] = await M.match<
     operations.SubscribersControllerCreateSubscriberResponse,
     | errors.ErrorDto
+    | errors.ValidationErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -132,16 +134,12 @@ export async function subscribersCreate(
     | ConnectionError
   >(
     M.json(
-      200,
-      operations.SubscribersControllerCreateSubscriberResponse$inboundSchema,
-      { hdrs: true, key: "Result" },
-    ),
-    M.json(
       201,
       operations.SubscribersControllerCreateSubscriberResponse$inboundSchema,
       { hdrs: true, key: "Result" },
     ),
     M.jsonErr([400, 404, 409], errors.ErrorDto$inboundSchema, { hdrs: true }),
+    M.jsonErr(422, errors.ValidationErrorDto$inboundSchema, { hdrs: true }),
     M.fail([429, 503]),
     M.fail(["4XX", "5XX"]),
   )(response, { extraFields: responseFields });

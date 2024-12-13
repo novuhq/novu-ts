@@ -90,10 +90,11 @@ run();
 
 ### Errors
 
-| Error Type       | Status Code      | Content Type     |
-| ---------------- | ---------------- | ---------------- |
-| errors.ErrorDto  | 400, 404, 409    | application/json |
-| errors.SDKError  | 4XX, 5XX         | \*/\*            |
+| Error Type                | Status Code               | Content Type              |
+| ------------------------- | ------------------------- | ------------------------- |
+| errors.ErrorDto           | 400, 404, 409             | application/json          |
+| errors.ValidationErrorDto | 422                       | application/json          |
+| errors.SDKError           | 4XX, 5XX                  | \*/\*                     |
 
 ## retrieve
 
@@ -164,10 +165,11 @@ run();
 
 ### Errors
 
-| Error Type       | Status Code      | Content Type     |
-| ---------------- | ---------------- | ---------------- |
-| errors.ErrorDto  | 400, 404, 409    | application/json |
-| errors.SDKError  | 4XX, 5XX         | \*/\*            |
+| Error Type                | Status Code               | Content Type              |
+| ------------------------- | ------------------------- | ------------------------- |
+| errors.ErrorDto           | 400, 404, 409             | application/json          |
+| errors.ValidationErrorDto | 422                       | application/json          |
+| errors.SDKError           | 4XX, 5XX                  | \*/\*                     |
 
 ## remove
 
@@ -248,7 +250,8 @@ run();
 
 ### Errors
 
-| Error Type       | Status Code      | Content Type     |
-| ---------------- | ---------------- | ---------------- |
-| errors.ErrorDto  | 400, 404, 409    | application/json |
-| errors.SDKError  | 4XX, 5XX         | \*/\*            |
+| Error Type                | Status Code               | Content Type              |
+| ------------------------- | ------------------------- | ------------------------- |
+| errors.ErrorDto           | 400, 404, 409             | application/json          |
+| errors.ValidationErrorDto | 422                       | application/json          |
+| errors.SDKError           | 4XX, 5XX                  | \*/\*                     |

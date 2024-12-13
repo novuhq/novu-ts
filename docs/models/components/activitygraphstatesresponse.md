@@ -7,12 +7,12 @@ import { ActivityGraphStatesResponse } from "@novu/api/models/components";
 
 let value: ActivityGraphStatesResponse = {
   id: "<id>",
-  count: 5722.52,
+  count: 960.98,
   templates: [
     "<value>",
   ],
   channels: [
-    "email",
+    "push",
   ],
 };
 ```

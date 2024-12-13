@@ -36,6 +36,7 @@ export async function topicsDelete(
   Result<
     operations.TopicsControllerDeleteTopicResponse | undefined,
     | errors.ErrorDto
+    | errors.ValidationErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -116,7 +117,7 @@ export async function topicsDelete(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["400", "404", "409", "429", "4XX", "503", "5XX"],
+    errorCodes: ["400", "404", "409", "422", "429", "4XX", "503", "5XX"],
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
@@ -132,6 +133,7 @@ export async function topicsDelete(
   const [result] = await M.match<
     operations.TopicsControllerDeleteTopicResponse | undefined,
     | errors.ErrorDto
+    | errors.ValidationErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -140,11 +142,6 @@ export async function topicsDelete(
     | RequestTimeoutError
     | ConnectionError
   >(
-    M.json(
-      200,
-      operations.TopicsControllerDeleteTopicResponse$inboundSchema.optional(),
-      { hdrs: true, key: "Result" },
-    ),
     M.nil(
       204,
       operations.TopicsControllerDeleteTopicResponse$inboundSchema.optional(),
@@ -152,6 +149,7 @@ export async function topicsDelete(
     ),
     M.jsonErr(400, errors.ErrorDto$inboundSchema, { hdrs: true }),
     M.fail([404, 409, 429, 503]),
+    M.jsonErr(422, errors.ValidationErrorDto$inboundSchema, { hdrs: true }),
     M.fail(["4XX", "5XX"]),
   )(response, { extraFields: responseFields });
   if (!result.ok) {

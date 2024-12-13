@@ -35,6 +35,7 @@ export async function subscribersMessagesMarkAllAs(
   Result<
     operations.SubscribersControllerMarkMessagesAsResponse,
     | errors.ErrorDto
+    | errors.ValidationErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -122,7 +123,7 @@ export async function subscribersMessagesMarkAllAs(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["400", "404", "409", "429", "4XX", "503", "5XX"],
+    errorCodes: ["400", "404", "409", "422", "429", "4XX", "503", "5XX"],
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
@@ -138,6 +139,7 @@ export async function subscribersMessagesMarkAllAs(
   const [result] = await M.match<
     operations.SubscribersControllerMarkMessagesAsResponse,
     | errors.ErrorDto
+    | errors.ValidationErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -147,16 +149,12 @@ export async function subscribersMessagesMarkAllAs(
     | ConnectionError
   >(
     M.json(
-      200,
-      operations.SubscribersControllerMarkMessagesAsResponse$inboundSchema,
-      { hdrs: true, key: "Result" },
-    ),
-    M.json(
       201,
       operations.SubscribersControllerMarkMessagesAsResponse$inboundSchema,
       { key: "Result" },
     ),
     M.jsonErr([400, 404, 409], errors.ErrorDto$inboundSchema, { hdrs: true }),
+    M.jsonErr(422, errors.ValidationErrorDto$inboundSchema, { hdrs: true }),
     M.fail([429, 503]),
     M.fail(["4XX", "5XX"]),
   )(response, { extraFields: responseFields });
