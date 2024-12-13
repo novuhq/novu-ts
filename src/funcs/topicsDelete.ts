@@ -147,8 +147,8 @@ export async function topicsDelete(
       operations.TopicsControllerDeleteTopicResponse$inboundSchema.optional(),
       { hdrs: true },
     ),
-    M.jsonErr(400, errors.ErrorDto$inboundSchema, { hdrs: true }),
-    M.fail([404, 409, 429, 503]),
+    M.jsonErr([400, 404], errors.ErrorDto$inboundSchema, { hdrs: true }),
+    M.fail([409, 429, 503]),
     M.jsonErr(422, errors.ValidationErrorDto$inboundSchema, { hdrs: true }),
     M.fail(["4XX", "5XX"]),
   )(response, { extraFields: responseFields });

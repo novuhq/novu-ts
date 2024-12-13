@@ -12234,7 +12234,7 @@
             }
           },
           "404": {
-            "description": "The topic with the key provided does not exist in the database so it can not be deleted.",
+            "description": "Not Found",
             "headers": {
               "Content-Type": {
                 "$ref": "#/components/headers/Content-Type"
@@ -12256,6 +12256,13 @@
               },
               "Idempotency-Replay": {
                 "$ref": "#/components/headers/Idempotency-Replay"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
               }
             }
           },
