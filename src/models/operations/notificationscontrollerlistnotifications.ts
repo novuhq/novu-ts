@@ -30,6 +30,8 @@ export type NotificationsControllerListNotificationsRequest = {
   subscriberIds?: Array<string> | undefined;
   page?: number | undefined;
   transactionId?: string | undefined;
+  after?: string | undefined;
+  before?: string | undefined;
 };
 
 export type NotificationsControllerListNotificationsResponse = {
@@ -70,6 +72,8 @@ export const NotificationsControllerListNotificationsRequest$inboundSchema:
     subscriberIds: z.array(z.string()).optional(),
     page: z.number().default(0),
     transactionId: z.string().optional(),
+    after: z.string().optional(),
+    before: z.string().optional(),
   });
 
 /** @internal */
@@ -81,6 +85,8 @@ export type NotificationsControllerListNotificationsRequest$Outbound = {
   subscriberIds?: Array<string> | undefined;
   page: number;
   transactionId?: string | undefined;
+  after?: string | undefined;
+  before?: string | undefined;
 };
 
 /** @internal */
@@ -97,6 +103,8 @@ export const NotificationsControllerListNotificationsRequest$outboundSchema:
     subscriberIds: z.array(z.string()).optional(),
     page: z.number().default(0),
     transactionId: z.string().optional(),
+    after: z.string().optional(),
+    before: z.string().optional(),
   });
 
 /**

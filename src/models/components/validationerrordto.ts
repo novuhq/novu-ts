@@ -13,7 +13,7 @@ export type ValidationErrorDtoValue = Four | string | number | boolean;
 
 export type Errors = {
   messages: Array<string>;
-  value?: Four | string | number | boolean | undefined;
+  value: Four | string | number | boolean | null;
 };
 
 export type ValidationErrorDto = {
@@ -154,18 +154,20 @@ export function validationErrorDtoValueFromJSON(
 export const Errors$inboundSchema: z.ZodType<Errors, z.ZodTypeDef, unknown> = z
   .object({
     messages: z.array(z.string()),
-    value: z.union([
-      z.lazy(() => Four$inboundSchema),
-      z.string(),
-      z.number(),
-      z.boolean(),
-    ]).optional(),
+    value: z.nullable(
+      z.union([
+        z.lazy(() => Four$inboundSchema),
+        z.string(),
+        z.number(),
+        z.boolean(),
+      ]),
+    ),
   });
 
 /** @internal */
 export type Errors$Outbound = {
   messages: Array<string>;
-  value?: Four$Outbound | string | number | boolean | undefined;
+  value: Four$Outbound | string | number | boolean | null;
 };
 
 /** @internal */
@@ -175,12 +177,14 @@ export const Errors$outboundSchema: z.ZodType<
   Errors
 > = z.object({
   messages: z.array(z.string()),
-  value: z.union([
-    z.lazy(() => Four$outboundSchema),
-    z.string(),
-    z.number(),
-    z.boolean(),
-  ]).optional(),
+  value: z.nullable(
+    z.union([
+      z.lazy(() => Four$outboundSchema),
+      z.string(),
+      z.number(),
+      z.boolean(),
+    ]),
+  ),
 });
 
 /**

@@ -58,6 +58,8 @@ export async function notificationsList(
   const path = pathToFunc("/v1/notifications")();
 
   const query = encodeFormQuery({
+    "after": payload.after,
+    "before": payload.before,
     "channels": payload.channels,
     "emails": payload.emails,
     "page": payload.page,

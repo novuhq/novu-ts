@@ -37,7 +37,13 @@ let value: TopicsControllerDeleteTopicResponse = {
       },
       "fieldName3": {
         messages: [
-          "Field cannot be null",
+          "Must be a boolean value",
+        ],
+        value: true,
+      },
+      "fieldName4": {
+        messages: [
+          "Must be a valid object",
         ],
         value: 641.47,
       },

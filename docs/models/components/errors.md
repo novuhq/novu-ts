@@ -10,6 +10,7 @@ let value: Errors = {
     "Field is required",
     "Invalid format",
   ],
+  value: "xx xx xx ",
 };
 ```
 
@@ -18,4 +19,4 @@ let value: Errors = {
 | Field                                | Type                                 | Required                             | Description                          |
 | ------------------------------------ | ------------------------------------ | ------------------------------------ | ------------------------------------ |
 | `messages`                           | *string*[]                           | :heavy_check_mark:                   | N/A                                  |
-| `value`                              | *components.ValidationErrorDtoValue* | :heavy_minus_sign:                   | N/A                                  |
+| `value`                              | *components.ValidationErrorDtoValue* | :heavy_check_mark:                   | N/A                                  |

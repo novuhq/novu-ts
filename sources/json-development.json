@@ -1139,6 +1139,22 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "after",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "before",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -12071,7 +12087,8 @@
                 "value": {
                   "oneOf": [
                     {
-                      "type": "string"
+                      "type": "string",
+                      "nullable": true
                     },
                     {
                       "type": "number"
@@ -12086,13 +12103,15 @@
                 }
               },
               "required": [
-                "messages"
+                "messages",
+                "value"
               ],
               "example": {
                 "messages": [
                   "Field is required",
                   "Invalid format"
-                ]
+                ],
+                "value": "xx xx xx "
               }
             },
             "example": {
@@ -12111,9 +12130,17 @@
               },
               "fieldName3": {
                 "messages": [
-                  "Field cannot be null"
+                  "Must be a boolean value"
                 ],
-                "value": null
+                "value": true
+              },
+              "fieldName4": {
+                "messages": [
+                  "Must be a valid object"
+                ],
+                "value": {
+                  "key": "value"
+                }
               }
             }
           }
