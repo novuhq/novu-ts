@@ -9,10 +9,25 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ActivityNotificationSubscriberResponseDto = {
+  /**
+   * First name of the subscriber
+   */
   firstName?: string | undefined;
+  /**
+   * Unique identifier of the subscriber
+   */
   id: string;
+  /**
+   * Last name of the subscriber
+   */
   lastName?: string | undefined;
+  /**
+   * Email of the subscriber
+   */
   email?: string | undefined;
+  /**
+   * Phone number of the subscriber
+   */
   phone?: string | undefined;
 };
 

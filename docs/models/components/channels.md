@@ -1,11 +1,13 @@
 # Channels
 
+Channels of the notification
+
 ## Example Usage
 
 ```typescript
 import { Channels } from "@novu/api/models/components";
 
-let value: Channels = "in_app";
+let value: Channels = "delay";
 ```
 
 ## Values

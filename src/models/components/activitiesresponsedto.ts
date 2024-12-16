@@ -14,12 +14,21 @@ import {
 } from "./activitynotificationresponsedto.js";
 
 export type ActivitiesResponseDto = {
+  /**
+   * Whether there are more activities
+   */
   hasMore: boolean;
   /**
-   * Array of Activity notifications
+   * Array of activity notifications
    */
   data: Array<ActivityNotificationResponseDto>;
+  /**
+   * Page size of the activities
+   */
   pageSize: number;
+  /**
+   * Current page of the activities
+   */
   page: number;
 };
 

@@ -1,17 +1,17 @@
 # Type
 
-The type of channel that is enabled or not
+Type of the trigger
 
 ## Example Usage
 
 ```typescript
 import { Type } from "@novu/api/models/components";
 
-let value: Type = "sms";
+let value: Type = "event";
 ```
 
 ## Values
 
 ```typescript
-"in_app" | "email" | "sms" | "chat" | "push"
+"event"
 ```

@@ -6,9 +6,9 @@
 import { UpdateSubscriberChannelRequestDto } from "@novu/api/models/components";
 
 let value: UpdateSubscriberChannelRequestDto = {
-  providerId: "apns",
+  providerId: "pushpad",
   credentials: {
-    webhookUrl: "https://shocked-vestment.biz/",
+    webhookUrl: "https://remarkable-dream.net/",
   },
 };
 ```

@@ -5,7 +5,7 @@
 ```typescript
 import { OrdinalValue } from "@novu/api/models/components";
 
-let value: OrdinalValue = "saturday";
+let value: OrdinalValue = "tuesday";
 ```
 
 ## Values

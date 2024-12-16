@@ -14,39 +14,54 @@ import {
   NotificationTriggerVariable$outboundSchema,
 } from "./notificationtriggervariable.js";
 
-export const NotificationTriggerType = {
+/**
+ * Type of the trigger
+ */
+export const Type = {
   Event: "event",
 } as const;
-export type NotificationTriggerType = ClosedEnum<
-  typeof NotificationTriggerType
->;
+/**
+ * Type of the trigger
+ */
+export type Type = ClosedEnum<typeof Type>;
 
 export type NotificationTrigger = {
-  type: NotificationTriggerType;
+  /**
+   * Type of the trigger
+   */
+  type: Type;
+  /**
+   * Identifier of the trigger
+   */
   identifier: string;
+  /**
+   * Variables of the trigger
+   */
   variables: Array<NotificationTriggerVariable>;
+  /**
+   * Subscriber variables of the trigger
+   */
   subscriberVariables?: Array<NotificationTriggerVariable> | undefined;
 };
 
 /** @internal */
-export const NotificationTriggerType$inboundSchema: z.ZodNativeEnum<
-  typeof NotificationTriggerType
-> = z.nativeEnum(NotificationTriggerType);
+export const Type$inboundSchema: z.ZodNativeEnum<typeof Type> = z.nativeEnum(
+  Type,
+);
 
 /** @internal */
-export const NotificationTriggerType$outboundSchema: z.ZodNativeEnum<
-  typeof NotificationTriggerType
-> = NotificationTriggerType$inboundSchema;
+export const Type$outboundSchema: z.ZodNativeEnum<typeof Type> =
+  Type$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace NotificationTriggerType$ {
-  /** @deprecated use `NotificationTriggerType$inboundSchema` instead. */
-  export const inboundSchema = NotificationTriggerType$inboundSchema;
-  /** @deprecated use `NotificationTriggerType$outboundSchema` instead. */
-  export const outboundSchema = NotificationTriggerType$outboundSchema;
+export namespace Type$ {
+  /** @deprecated use `Type$inboundSchema` instead. */
+  export const inboundSchema = Type$inboundSchema;
+  /** @deprecated use `Type$outboundSchema` instead. */
+  export const outboundSchema = Type$outboundSchema;
 }
 
 /** @internal */
@@ -55,7 +70,7 @@ export const NotificationTrigger$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  type: NotificationTriggerType$inboundSchema,
+  type: Type$inboundSchema,
   identifier: z.string(),
   variables: z.array(NotificationTriggerVariable$inboundSchema),
   subscriberVariables: z.array(NotificationTriggerVariable$inboundSchema)
@@ -76,7 +91,7 @@ export const NotificationTrigger$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   NotificationTrigger
 > = z.object({
-  type: NotificationTriggerType$outboundSchema,
+  type: Type$outboundSchema,
   identifier: z.string(),
   variables: z.array(NotificationTriggerVariable$outboundSchema),
   subscriberVariables: z.array(NotificationTriggerVariable$outboundSchema)

@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 6bff3a53-3f0b-40b4-942f-ff70dc583ae5
 management:
-  docChecksum: d0edefcbdeb65b61039063f3c6af8075
+  docChecksum: a9703d5643e8ba816486f931480f58c3
   docVersion: "1.0"
-  speakeasyVersion: 1.455.3
+  speakeasyVersion: 1.455.5
   generationVersion: 2.479.3
-  releaseVersion: 0.0.1-alpha.110
-  configChecksum: 276f260dc86e53cd52a3f75515fff941
+  releaseVersion: 0.0.1-alpha.114
+  configChecksum: 7a45b645106294d7afc252f0843fd3ec
   published: true
 features:
   typescript:
@@ -42,7 +42,11 @@ generatedFiles:
   - docs/models/components/activitiesresponsedto.md
   - docs/models/components/activitygraphstatesresponse.md
   - docs/models/components/activitygraphstatesresponsechannels.md
+  - docs/models/components/activitynotificationexecutiondetailresponsedto.md
+  - docs/models/components/activitynotificationexecutiondetailresponsedtostatus.md
+  - docs/models/components/activitynotificationjobresponsedto.md
   - docs/models/components/activitynotificationresponsedto.md
+  - docs/models/components/activitynotificationstepresponsedto.md
   - docs/models/components/activitynotificationsubscriberresponsedto.md
   - docs/models/components/activitynotificationtemplateresponsedto.md
   - docs/models/components/activitystatsresponsedto.md
@@ -52,13 +56,13 @@ generatedFiles:
   - docs/models/components/addsubscribersrequestdto.md
   - docs/models/components/assignsubscribertotopicdto.md
   - docs/models/components/backoffunit.md
-  - docs/models/components/builderfieldtype.md
   - docs/models/components/bulksubscribercreatedto.md
   - docs/models/components/bulktriggereventdto.md
   - docs/models/components/channel.md
   - docs/models/components/channelcredentials.md
   - docs/models/components/channelcredentialsdto.md
   - docs/models/components/channelpreference.md
+  - docs/models/components/channelpreferencetype.md
   - docs/models/components/channels.md
   - docs/models/components/channelsettings.md
   - docs/models/components/channelsettingsproviderid.md
@@ -82,6 +86,7 @@ generatedFiles:
   - docs/models/components/deletemessageresponsedtostatus.md
   - docs/models/components/deletesubscriberresponsedto.md
   - docs/models/components/deletesubscriberresponsedtostatus.md
+  - docs/models/components/digest.md
   - docs/models/components/digestregularmetadata.md
   - docs/models/components/digestregularmetadatatype.md
   - docs/models/components/digesttimedmetadata.md
@@ -94,7 +99,6 @@ generatedFiles:
   - docs/models/components/feedid.md
   - docs/models/components/feedidentifier.md
   - docs/models/components/feedresponsedto.md
-  - docs/models/components/fieldfilterpart.md
   - docs/models/components/filtertopicsresponsedto.md
   - docs/models/components/getsubscriberpreferencesresponsedto.md
   - docs/models/components/gettopicresponsedto.md
@@ -107,6 +111,7 @@ generatedFiles:
   - docs/models/components/markmessageactionasseendtostatus.md
   - docs/models/components/messageaction.md
   - docs/models/components/messageactionresult.md
+  - docs/models/components/messageactionresultpayload.md
   - docs/models/components/messageactionresulttype.md
   - docs/models/components/messageactionstatus.md
   - docs/models/components/messagebutton.md
@@ -123,6 +128,7 @@ generatedFiles:
   - docs/models/components/messageresponsedtopayload.md
   - docs/models/components/messageresponsedtostatus.md
   - docs/models/components/messagetemplate.md
+  - docs/models/components/messagetemplatedto.md
   - docs/models/components/metadata.md
   - docs/models/components/monthlytype.md
   - docs/models/components/notificationfeeditemdto.md
@@ -134,11 +140,8 @@ generatedFiles:
   - docs/models/components/notificationstepvariantparentid.md
   - docs/models/components/notificationstepvariantreplycallback.md
   - docs/models/components/notificationtrigger.md
-  - docs/models/components/notificationtriggertype.md
   - docs/models/components/notificationtriggervariable.md
-  - docs/models/components/on.md
   - docs/models/components/one.md
-  - docs/models/components/operator.md
   - docs/models/components/ordinal.md
   - docs/models/components/ordinalvalue.md
   - docs/models/components/overrides.md
@@ -152,6 +155,7 @@ generatedFiles:
   - docs/models/components/renametopicresponsedto.md
   - docs/models/components/replycallback.md
   - docs/models/components/security.md
+  - docs/models/components/source.md
   - docs/models/components/status.md
   - docs/models/components/stepfilter.md
   - docs/models/components/subscriberchanneldto.md
@@ -187,7 +191,6 @@ generatedFiles:
   - docs/models/components/updatesubscriberpreferenceresponsedto.md
   - docs/models/components/updatesubscriberrequestdto.md
   - docs/models/components/updatesubscriberrequestdtodata.md
-  - docs/models/components/value.md
   - docs/models/components/weekdays.md
   - docs/models/components/workflowintegrationstatus.md
   - docs/models/components/workflowresponse.md
@@ -371,7 +374,10 @@ generatedFiles:
   - src/lib/url.ts
   - src/models/components/activitiesresponsedto.ts
   - src/models/components/activitygraphstatesresponse.ts
+  - src/models/components/activitynotificationexecutiondetailresponsedto.ts
+  - src/models/components/activitynotificationjobresponsedto.ts
   - src/models/components/activitynotificationresponsedto.ts
+  - src/models/components/activitynotificationstepresponsedto.ts
   - src/models/components/activitynotificationsubscriberresponsedto.ts
   - src/models/components/activitynotificationtemplateresponsedto.ts
   - src/models/components/activitystatsresponsedto.ts
@@ -379,7 +385,6 @@ generatedFiles:
   - src/models/components/actortypeenum.ts
   - src/models/components/addsubscribersrequestdto.ts
   - src/models/components/assignsubscribertotopicdto.ts
-  - src/models/components/builderfieldtype.ts
   - src/models/components/bulksubscribercreatedto.ts
   - src/models/components/bulktriggereventdto.ts
   - src/models/components/channelcredentials.ts
@@ -403,7 +408,6 @@ generatedFiles:
   - src/models/components/emailblockstyles.ts
   - src/models/components/failedassignmentsdto.ts
   - src/models/components/feedresponsedto.ts
-  - src/models/components/fieldfilterpart.ts
   - src/models/components/filtertopicsresponsedto.ts
   - src/models/components/getsubscriberpreferencesresponsedto.ts
   - src/models/components/gettopicresponsedto.ts
@@ -420,6 +424,7 @@ generatedFiles:
   - src/models/components/messagemarkasrequestdto.ts
   - src/models/components/messageresponsedto.ts
   - src/models/components/messagetemplate.ts
+  - src/models/components/messagetemplatedto.ts
   - src/models/components/notificationfeeditemdto.ts
   - src/models/components/notificationgroup.ts
   - src/models/components/notificationstep.ts

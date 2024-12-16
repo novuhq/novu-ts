@@ -1,5 +1,7 @@
 # Payload
 
+Optional payload for the job
+
 ## Example Usage
 
 ```typescript

@@ -7,11 +7,26 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+import {
+  NotificationTrigger,
+  NotificationTrigger$inboundSchema,
+  NotificationTrigger$Outbound,
+  NotificationTrigger$outboundSchema,
+} from "./notificationtrigger.js";
 
 export type ActivityNotificationTemplateResponseDto = {
+  /**
+   * Unique identifier of the template
+   */
   id?: string | undefined;
+  /**
+   * Name of the template
+   */
   name: string;
-  triggers: Array<string>;
+  /**
+   * Triggers of the template
+   */
+  triggers: Array<NotificationTrigger>;
 };
 
 /** @internal */
@@ -22,7 +37,7 @@ export const ActivityNotificationTemplateResponseDto$inboundSchema: z.ZodType<
 > = z.object({
   _id: z.string().optional(),
   name: z.string(),
-  triggers: z.array(z.string()),
+  triggers: z.array(NotificationTrigger$inboundSchema),
 }).transform((v) => {
   return remap$(v, {
     "_id": "id",
@@ -33,7 +48,7 @@ export const ActivityNotificationTemplateResponseDto$inboundSchema: z.ZodType<
 export type ActivityNotificationTemplateResponseDto$Outbound = {
   _id?: string | undefined;
   name: string;
-  triggers: Array<string>;
+  triggers: Array<NotificationTrigger$Outbound>;
 };
 
 /** @internal */
@@ -44,7 +59,7 @@ export const ActivityNotificationTemplateResponseDto$outboundSchema: z.ZodType<
 > = z.object({
   id: z.string().optional(),
   name: z.string(),
-  triggers: z.array(z.string()),
+  triggers: z.array(NotificationTrigger$outboundSchema),
 }).transform((v) => {
   return remap$(v, {
     id: "_id",

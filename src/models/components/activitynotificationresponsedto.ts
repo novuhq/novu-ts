@@ -9,6 +9,12 @@ import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
+  ActivityNotificationJobResponseDto,
+  ActivityNotificationJobResponseDto$inboundSchema,
+  ActivityNotificationJobResponseDto$Outbound,
+  ActivityNotificationJobResponseDto$outboundSchema,
+} from "./activitynotificationjobresponsedto.js";
+import {
   ActivityNotificationSubscriberResponseDto,
   ActivityNotificationSubscriberResponseDto$inboundSchema,
   ActivityNotificationSubscriberResponseDto$Outbound,
@@ -21,6 +27,9 @@ import {
   ActivityNotificationTemplateResponseDto$outboundSchema,
 } from "./activitynotificationtemplateresponsedto.js";
 
+/**
+ * Channels of the notification
+ */
 export const Channels = {
   InApp: "in_app",
   Email: "email",
@@ -32,18 +41,48 @@ export const Channels = {
   Delay: "delay",
   Custom: "custom",
 } as const;
+/**
+ * Channels of the notification
+ */
 export type Channels = ClosedEnum<typeof Channels>;
 
 export type ActivityNotificationResponseDto = {
+  /**
+   * Unique identifier of the notification
+   */
   id?: string | undefined;
+  /**
+   * Environment ID of the notification
+   */
   environmentId: string;
+  /**
+   * Organization ID of the notification
+   */
   organizationId: string;
+  /**
+   * Transaction ID of the notification
+   */
   transactionId: string;
+  /**
+   * Creation time of the notification
+   */
   createdAt?: string | undefined;
+  /**
+   * Channels of the notification
+   */
   channels?: Channels | undefined;
+  /**
+   * Subscriber of the notification
+   */
   subscriber?: ActivityNotificationSubscriberResponseDto | undefined;
+  /**
+   * Template of the notification
+   */
   template?: ActivityNotificationTemplateResponseDto | undefined;
-  jobs?: Array<string> | undefined;
+  /**
+   * Jobs of the notification
+   */
+  jobs?: Array<ActivityNotificationJobResponseDto> | undefined;
 };
 
 /** @internal */
@@ -80,7 +119,7 @@ export const ActivityNotificationResponseDto$inboundSchema: z.ZodType<
   subscriber: ActivityNotificationSubscriberResponseDto$inboundSchema
     .optional(),
   template: ActivityNotificationTemplateResponseDto$inboundSchema.optional(),
-  jobs: z.array(z.string()).optional(),
+  jobs: z.array(ActivityNotificationJobResponseDto$inboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
     "_id": "id",
@@ -99,7 +138,7 @@ export type ActivityNotificationResponseDto$Outbound = {
   channels?: string | undefined;
   subscriber?: ActivityNotificationSubscriberResponseDto$Outbound | undefined;
   template?: ActivityNotificationTemplateResponseDto$Outbound | undefined;
-  jobs?: Array<string> | undefined;
+  jobs?: Array<ActivityNotificationJobResponseDto$Outbound> | undefined;
 };
 
 /** @internal */
@@ -117,7 +156,7 @@ export const ActivityNotificationResponseDto$outboundSchema: z.ZodType<
   subscriber: ActivityNotificationSubscriberResponseDto$outboundSchema
     .optional(),
   template: ActivityNotificationTemplateResponseDto$outboundSchema.optional(),
-  jobs: z.array(z.string()).optional(),
+  jobs: z.array(ActivityNotificationJobResponseDto$outboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
     id: "_id",

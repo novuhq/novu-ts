@@ -8283,14 +8283,6 @@
         "summary": "Get the unseen in-app notifications count for subscribers feed",
         "parameters": [
           {
-            "name": "seen",
-            "required": true,
-            "in": "query",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
             "name": "subscriberId",
             "required": true,
             "in": "path",
@@ -8299,10 +8291,22 @@
             }
           },
           {
-            "name": "limit",
-            "required": true,
+            "name": "seen",
+            "required": false,
             "in": "query",
+            "description": "Indicates whether to count seen notifications.",
             "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "description": "The maximum number of notifications to return.",
+            "schema": {
+              "default": 100,
               "type": "number"
             }
           }
@@ -13722,38 +13726,93 @@
         "type": "object",
         "properties": {
           "firstName": {
-            "type": "string"
+            "type": "string",
+            "description": "First name of the subscriber"
           },
           "_id": {
-            "type": "string"
+            "type": "string",
+            "description": "Unique identifier of the subscriber"
           },
           "lastName": {
-            "type": "string"
+            "type": "string",
+            "description": "Last name of the subscriber"
           },
           "email": {
-            "type": "string"
+            "type": "string",
+            "description": "Email of the subscriber"
           },
           "phone": {
-            "type": "string"
+            "type": "string",
+            "description": "Phone number of the subscriber"
           }
         },
         "required": [
           "_id"
         ]
       },
+      "NotificationTriggerVariable": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the variable"
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "NotificationTrigger": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "event"
+            ],
+            "description": "Type of the trigger"
+          },
+          "identifier": {
+            "type": "string",
+            "description": "Identifier of the trigger"
+          },
+          "variables": {
+            "description": "Variables of the trigger",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NotificationTriggerVariable"
+            }
+          },
+          "subscriberVariables": {
+            "description": "Subscriber variables of the trigger",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NotificationTriggerVariable"
+            }
+          }
+        },
+        "required": [
+          "type",
+          "identifier",
+          "variables"
+        ]
+      },
       "ActivityNotificationTemplateResponseDto": {
         "type": "object",
         "properties": {
           "_id": {
-            "type": "string"
+            "type": "string",
+            "description": "Unique identifier of the template"
           },
           "name": {
-            "type": "string"
+            "type": "string",
+            "description": "Name of the template"
           },
           "triggers": {
+            "description": "Triggers of the template",
             "type": "array",
             "items": {
-              "type": "string"
+              "$ref": "#/components/schemas/NotificationTrigger"
             }
           }
         },
@@ -13762,23 +13821,271 @@
           "triggers"
         ]
       },
+      "ProvidersIdEnum": {
+        "type": "number",
+        "description": "Provider ID of the job",
+        "enum": [
+          {
+            "EmailJS": "emailjs",
+            "Mailgun": "mailgun",
+            "Mailjet": "mailjet",
+            "Mandrill": "mandrill",
+            "CustomSMTP": "nodemailer",
+            "Postmark": "postmark",
+            "SendGrid": "sendgrid",
+            "Sendinblue": "sendinblue",
+            "SES": "ses",
+            "NetCore": "netcore",
+            "Infobip": "infobip-email",
+            "Resend": "resend",
+            "Plunk": "plunk",
+            "MailerSend": "mailersend",
+            "Mailtrap": "mailtrap",
+            "Clickatell": "clickatell",
+            "Outlook365": "outlook365",
+            "Novu": "novu-email",
+            "SparkPost": "sparkpost",
+            "EmailWebhook": "email-webhook",
+            "Braze": "braze"
+          },
+          {
+            "Nexmo": "nexmo",
+            "Plivo": "plivo",
+            "Sms77": "sms77",
+            "SmsCentral": "sms-central",
+            "SNS": "sns",
+            "Telnyx": "telnyx",
+            "Twilio": "twilio",
+            "Gupshup": "gupshup",
+            "Firetext": "firetext",
+            "Infobip": "infobip-sms",
+            "BurstSms": "burst-sms",
+            "BulkSms": "bulk-sms",
+            "ISendSms": "isend-sms",
+            "Clickatell": "clickatell",
+            "FortySixElks": "forty-six-elks",
+            "Kannel": "kannel",
+            "Maqsam": "maqsam",
+            "Termii": "termii",
+            "AfricasTalking": "africas-talking",
+            "Novu": "novu-sms",
+            "Sendchamp": "sendchamp",
+            "GenericSms": "generic-sms",
+            "Clicksend": "clicksend",
+            "Bandwidth": "bandwidth",
+            "MessageBird": "messagebird",
+            "Simpletexting": "simpletexting",
+            "AzureSms": "azure-sms",
+            "RingCentral": "ring-central",
+            "BrevoSms": "brevo-sms",
+            "EazySms": "eazy-sms",
+            "Mobishastra": "mobishastra"
+          },
+          {
+            "FCM": "fcm",
+            "APNS": "apns",
+            "EXPO": "expo",
+            "OneSignal": "one-signal",
+            "Pushpad": "pushpad",
+            "PushWebhook": "push-webhook",
+            "PusherBeams": "pusher-beams"
+          },
+          {
+            "Novu": "novu"
+          },
+          {
+            "Slack": "slack",
+            "Discord": "discord",
+            "MsTeams": "msteams",
+            "Mattermost": "mattermost",
+            "Ryver": "ryver",
+            "Zulip": "zulip",
+            "GrafanaOnCall": "grafana-on-call",
+            "GetStream": "getstream",
+            "RocketChat": "rocket-chat",
+            "WhatsAppBusiness": "whatsapp-business"
+          }
+        ]
+      },
+      "ActivityNotificationExecutionDetailResponseDto": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "Unique identifier of the execution detail"
+          },
+          "_jobId": {
+            "type": "string",
+            "description": "Unique identifier of the job"
+          },
+          "status": {
+            "enum": [
+              "Success",
+              "Warning",
+              "Failed",
+              "Pending",
+              "Queued",
+              "ReadConfirmation"
+            ],
+            "type": "string",
+            "description": "Status of the execution detail"
+          },
+          "detail": {
+            "type": "string",
+            "description": "Detailed information about the execution"
+          },
+          "isRetry": {
+            "type": "boolean",
+            "description": "Whether the execution is a retry or not"
+          },
+          "isTest": {
+            "type": "boolean",
+            "description": "Whether the execution is a test or not"
+          },
+          "providerId": {
+            "$ref": "#/components/schemas/ProvidersIdEnum"
+          },
+          "raw": {
+            "type": "string",
+            "description": "Raw data of the execution"
+          },
+          "source": {
+            "enum": [
+              "Credentials",
+              "Internal",
+              "Payload",
+              "Webhook"
+            ],
+            "type": "string",
+            "description": "Source of the execution detail"
+          }
+        },
+        "required": [
+          "_id",
+          "_jobId",
+          "status",
+          "detail",
+          "isRetry",
+          "isTest",
+          "providerId",
+          "source"
+        ]
+      },
+      "StepFilter": {
+        "type": "object",
+        "properties": {}
+      },
+      "MessageTemplateDto": {
+        "type": "object",
+        "properties": {}
+      },
+      "ActivityNotificationStepResponseDto": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "Unique identifier of the step"
+          },
+          "active": {
+            "type": "boolean",
+            "description": "Whether the step is active or not"
+          },
+          "filters": {
+            "description": "Filter criteria for the step",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StepFilter"
+              }
+            ]
+          },
+          "template": {
+            "description": "Optional template for the step",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MessageTemplateDto"
+              }
+            ]
+          }
+        },
+        "required": [
+          "_id",
+          "active",
+          "filters"
+        ]
+      },
+      "ActivityNotificationJobResponseDto": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "Unique identifier of the job"
+          },
+          "type": {
+            "type": "string",
+            "description": "Type of the job"
+          },
+          "digest": {
+            "type": "object",
+            "description": "Optional digest for the job"
+          },
+          "executionDetails": {
+            "description": "Execution details of the job",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ActivityNotificationExecutionDetailResponseDto"
+            }
+          },
+          "step": {
+            "description": "Step details of the job",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ActivityNotificationStepResponseDto"
+              }
+            ]
+          },
+          "payload": {
+            "type": "object",
+            "description": "Optional payload for the job"
+          },
+          "providerId": {
+            "$ref": "#/components/schemas/ProvidersIdEnum"
+          },
+          "status": {
+            "type": "string",
+            "description": "Status of the job"
+          }
+        },
+        "required": [
+          "_id",
+          "type",
+          "executionDetails",
+          "step",
+          "providerId",
+          "status"
+        ]
+      },
       "ActivityNotificationResponseDto": {
         "type": "object",
         "properties": {
           "_id": {
-            "type": "string"
+            "type": "string",
+            "description": "Unique identifier of the notification"
           },
           "_environmentId": {
-            "type": "string"
+            "type": "string",
+            "description": "Environment ID of the notification"
           },
           "_organizationId": {
-            "type": "string"
+            "type": "string",
+            "description": "Organization ID of the notification"
           },
           "transactionId": {
-            "type": "string"
+            "type": "string",
+            "description": "Transaction ID of the notification"
           },
           "createdAt": {
-            "type": "string"
+            "type": "string",
+            "description": "Creation time of the notification"
           },
           "channels": {
             "type": "string",
@@ -13796,6 +14103,7 @@
                 "custom"
               ]
             },
+            "description": "Channels of the notification",
             "enum": [
               "in_app",
               "email",
@@ -13809,15 +14117,26 @@
             ]
           },
           "subscriber": {
-            "$ref": "#/components/schemas/ActivityNotificationSubscriberResponseDto"
+            "description": "Subscriber of the notification",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ActivityNotificationSubscriberResponseDto"
+              }
+            ]
           },
           "template": {
-            "$ref": "#/components/schemas/ActivityNotificationTemplateResponseDto"
+            "description": "Template of the notification",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ActivityNotificationTemplateResponseDto"
+              }
+            ]
           },
           "jobs": {
+            "description": "Jobs of the notification",
             "type": "array",
             "items": {
-              "type": "string"
+              "$ref": "#/components/schemas/ActivityNotificationJobResponseDto"
             }
           }
         },
@@ -13831,20 +14150,23 @@
         "type": "object",
         "properties": {
           "hasMore": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "Whether there are more activities"
           },
           "data": {
-            "description": "Array of Activity notifications",
+            "description": "Array of activity notifications",
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/ActivityNotificationResponseDto"
             }
           },
           "pageSize": {
-            "type": "number"
+            "type": "number",
+            "description": "Page size of the activities"
           },
           "page": {
-            "type": "number"
+            "type": "number",
+            "description": "Current page of the activities"
           }
         },
         "required": [
@@ -14035,92 +14357,6 @@
             "type": "string"
           }
         }
-      },
-      "BuilderFieldType": {
-        "type": "string",
-        "enum": [
-          "BOOLEAN",
-          "TEXT",
-          "DATE",
-          "NUMBER",
-          "STATEMENT",
-          "LIST",
-          "MULTI_LIST",
-          "GROUP"
-        ]
-      },
-      "FieldFilterPart": {
-        "type": "object",
-        "properties": {
-          "field": {
-            "type": "string"
-          },
-          "value": {
-            "type": "string"
-          },
-          "operator": {
-            "type": "string",
-            "enum": [
-              "LARGER",
-              "SMALLER",
-              "LARGER_EQUAL",
-              "SMALLER_EQUAL",
-              "EQUAL",
-              "NOT_EQUAL",
-              "ALL_IN",
-              "ANY_IN",
-              "NOT_IN",
-              "BETWEEN",
-              "NOT_BETWEEN",
-              "LIKE",
-              "NOT_LIKE",
-              "IN"
-            ]
-          },
-          "on": {
-            "type": "string",
-            "enum": [
-              "subscriber",
-              "payload"
-            ]
-          }
-        },
-        "required": [
-          "field",
-          "value",
-          "operator",
-          "on"
-        ]
-      },
-      "StepFilter": {
-        "type": "object",
-        "properties": {
-          "isNegated": {
-            "type": "boolean"
-          },
-          "type": {
-            "$ref": "#/components/schemas/BuilderFieldType"
-          },
-          "value": {
-            "type": "string",
-            "enum": [
-              "AND",
-              "OR"
-            ]
-          },
-          "children": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/FieldFilterPart"
-            }
-          }
-        },
-        "required": [
-          "isNegated",
-          "type",
-          "value",
-          "children"
-        ]
       },
       "IntegrationResponseDto": {
         "type": "object",
@@ -15704,48 +15940,6 @@
             "$ref": "#/components/schemas/NotificationStepVariant"
           }
         }
-      },
-      "NotificationTriggerVariable": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "name"
-        ]
-      },
-      "NotificationTrigger": {
-        "type": "object",
-        "properties": {
-          "type": {
-            "type": "string",
-            "enum": [
-              "event"
-            ]
-          },
-          "identifier": {
-            "type": "string"
-          },
-          "variables": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/NotificationTriggerVariable"
-            }
-          },
-          "subscriberVariables": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/NotificationTriggerVariable"
-            }
-          }
-        },
-        "required": [
-          "type",
-          "identifier",
-          "variables"
-        ]
       },
       "WorkflowResponse": {
         "type": "object",

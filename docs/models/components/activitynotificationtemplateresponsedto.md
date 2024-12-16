@@ -8,15 +8,23 @@ import { ActivityNotificationTemplateResponseDto } from "@novu/api/models/compon
 let value: ActivityNotificationTemplateResponseDto = {
   name: "<value>",
   triggers: [
-    "<value>",
+    {
+      type: "event",
+      identifier: "<value>",
+      variables: [
+        {
+          name: "<value>",
+        },
+      ],
+    },
   ],
 };
 ```
 
 ## Fields
 
-| Field              | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `id`               | *string*           | :heavy_minus_sign: | N/A                |
-| `name`             | *string*           | :heavy_check_mark: | N/A                |
-| `triggers`         | *string*[]         | :heavy_check_mark: | N/A                |
+| Field                                                                              | Type                                                                               | Required                                                                           | Description                                                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `id`                                                                               | *string*                                                                           | :heavy_minus_sign:                                                                 | Unique identifier of the template                                                  |
+| `name`                                                                             | *string*                                                                           | :heavy_check_mark:                                                                 | Name of the template                                                               |
+| `triggers`                                                                         | [components.NotificationTrigger](../../models/components/notificationtrigger.md)[] | :heavy_check_mark:                                                                 | Triggers of the template                                                           |
