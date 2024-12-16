@@ -7,7 +7,7 @@ The type of channel that is enabled or not
 ```typescript
 import { Type } from "@novu/api/models/components";
 
-let value: Type = "chat";
+let value: Type = "sms";
 ```
 
 ## Values

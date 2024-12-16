@@ -6,9 +6,9 @@
 import { ChannelSettings } from "@novu/api/models/components";
 
 let value: ChannelSettings = {
-  providerId: "rocket-chat",
+  providerId: "push-webhook",
   credentials: {
-    webhookUrl: "https://optimistic-travel.biz/",
+    webhookUrl: "https://raw-ceramic.net/",
   },
   integrationId: "<id>",
 };

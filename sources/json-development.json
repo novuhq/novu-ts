@@ -1133,17 +1133,11 @@
             "name": "channels",
             "required": false,
             "in": "query",
+            "description": "Array of channel types",
             "schema": {
               "type": "array",
               "items": {
-                "type": "string",
-                "enum": [
-                  "in_app",
-                  "email",
-                  "sms",
-                  "chat",
-                  "push"
-                ]
+                "$ref": "#/components/schemas/ChannelTypeEnum"
               }
             }
           },
@@ -1151,6 +1145,7 @@
             "name": "templates",
             "required": false,
             "in": "query",
+            "description": "Array of template IDs or a single template ID",
             "schema": {
               "type": "array",
               "items": {
@@ -1162,6 +1157,7 @@
             "name": "emails",
             "required": false,
             "in": "query",
+            "description": "Array of email addresses or a single email address",
             "schema": {
               "type": "array",
               "items": {
@@ -1174,6 +1170,7 @@
             "required": false,
             "in": "query",
             "deprecated": true,
+            "description": "Search term (deprecated)",
             "schema": {
               "type": "string"
             }
@@ -1182,6 +1179,7 @@
             "name": "subscriberIds",
             "required": false,
             "in": "query",
+            "description": "Array of subscriber IDs or a single subscriber ID",
             "schema": {
               "type": "array",
               "items": {
@@ -1193,6 +1191,7 @@
             "name": "page",
             "required": false,
             "in": "query",
+            "description": "Page number for pagination",
             "schema": {
               "default": 0,
               "type": "number"
@@ -1202,6 +1201,7 @@
             "name": "transactionId",
             "required": false,
             "in": "query",
+            "description": "Transaction ID for filtering",
             "schema": {
               "type": "string"
             }
@@ -1210,6 +1210,7 @@
             "name": "after",
             "required": false,
             "in": "query",
+            "description": "Date filter for records after this timestamp",
             "schema": {
               "type": "string"
             }
@@ -1218,6 +1219,7 @@
             "name": "before",
             "required": false,
             "in": "query",
+            "description": "Date filter for records before this timestamp",
             "schema": {
               "type": "string"
             }
@@ -13705,6 +13707,17 @@
           "data"
         ]
       },
+      "ChannelTypeEnum": {
+        "type": "string",
+        "description": "The channel through which the notification is sent.",
+        "enum": [
+          "in_app",
+          "email",
+          "sms",
+          "chat",
+          "push"
+        ]
+      },
       "ActivityNotificationSubscriberResponseDto": {
         "type": "object",
         "properties": {
@@ -15049,17 +15062,6 @@
         },
         "required": [
           "subscriberId"
-        ]
-      },
-      "ChannelTypeEnum": {
-        "type": "string",
-        "description": "The channel through which the notification is sent.",
-        "enum": [
-          "in_app",
-          "email",
-          "sms",
-          "chat",
-          "push"
         ]
       },
       "NotificationFeedItemDto": {

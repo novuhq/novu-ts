@@ -5,32 +5,48 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
-export const Channels = {
-  InApp: "in_app",
-  Email: "email",
-  Sms: "sms",
-  Chat: "chat",
-  Push: "push",
-} as const;
-export type Channels = ClosedEnum<typeof Channels>;
-
 export type NotificationsControllerListNotificationsRequest = {
-  channels?: Array<Channels> | undefined;
+  /**
+   * Array of channel types
+   */
+  channels?: Array<components.ChannelTypeEnum> | undefined;
+  /**
+   * Array of template IDs or a single template ID
+   */
   templates?: Array<string> | undefined;
+  /**
+   * Array of email addresses or a single email address
+   */
   emails?: Array<string> | undefined;
   /**
+   * Search term (deprecated)
+   *
    * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
    */
   search?: string | undefined;
+  /**
+   * Array of subscriber IDs or a single subscriber ID
+   */
   subscriberIds?: Array<string> | undefined;
+  /**
+   * Page number for pagination
+   */
   page?: number | undefined;
+  /**
+   * Transaction ID for filtering
+   */
   transactionId?: string | undefined;
+  /**
+   * Date filter for records after this timestamp
+   */
   after?: string | undefined;
+  /**
+   * Date filter for records before this timestamp
+   */
   before?: string | undefined;
 };
 
@@ -40,32 +56,13 @@ export type NotificationsControllerListNotificationsResponse = {
 };
 
 /** @internal */
-export const Channels$inboundSchema: z.ZodNativeEnum<typeof Channels> = z
-  .nativeEnum(Channels);
-
-/** @internal */
-export const Channels$outboundSchema: z.ZodNativeEnum<typeof Channels> =
-  Channels$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Channels$ {
-  /** @deprecated use `Channels$inboundSchema` instead. */
-  export const inboundSchema = Channels$inboundSchema;
-  /** @deprecated use `Channels$outboundSchema` instead. */
-  export const outboundSchema = Channels$outboundSchema;
-}
-
-/** @internal */
 export const NotificationsControllerListNotificationsRequest$inboundSchema:
   z.ZodType<
     NotificationsControllerListNotificationsRequest,
     z.ZodTypeDef,
     unknown
   > = z.object({
-    channels: z.array(Channels$inboundSchema).optional(),
+    channels: z.array(components.ChannelTypeEnum$inboundSchema).optional(),
     templates: z.array(z.string()).optional(),
     emails: z.array(z.string()).optional(),
     search: z.string().optional(),
@@ -96,7 +93,7 @@ export const NotificationsControllerListNotificationsRequest$outboundSchema:
     z.ZodTypeDef,
     NotificationsControllerListNotificationsRequest
   > = z.object({
-    channels: z.array(Channels$outboundSchema).optional(),
+    channels: z.array(components.ChannelTypeEnum$outboundSchema).optional(),
     templates: z.array(z.string()).optional(),
     emails: z.array(z.string()).optional(),
     search: z.string().optional(),

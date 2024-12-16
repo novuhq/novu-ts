@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 6bff3a53-3f0b-40b4-942f-ff70dc583ae5
 management:
-  docChecksum: 14e08f3be04cf22a878b1d2fd421e71f
+  docChecksum: d0edefcbdeb65b61039063f3c6af8075
   docVersion: "1.0"
-  speakeasyVersion: 1.454.2
-  generationVersion: 2.477.4
-  releaseVersion: 0.0.1-alpha.109
-  configChecksum: 95bb9af59bfbc349de9c5569d35d402f
+  speakeasyVersion: 1.455.3
+  generationVersion: 2.479.3
+  releaseVersion: 0.0.1-alpha.110
+  configChecksum: 276f260dc86e53cd52a3f75515fff941
   published: true
 features:
   typescript:
@@ -198,7 +198,6 @@ generatedFiles:
   - docs/models/errors/validationerrordto.md
   - docs/models/errors/value.md
   - docs/models/operations/channel.md
-  - docs/models/operations/channels.md
   - docs/models/operations/eventscontrollerbroadcasteventtoallresponse.md
   - docs/models/operations/eventscontrollercancelrequest.md
   - docs/models/operations/eventscontrollercancelresponse.md

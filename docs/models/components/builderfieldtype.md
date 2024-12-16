@@ -5,7 +5,7 @@
 ```typescript
 import { BuilderFieldType } from "@novu/api/models/components";
 
-let value: BuilderFieldType = "BOOLEAN";
+let value: BuilderFieldType = "DATE";
 ```
 
 ## Values

@@ -6,9 +6,9 @@
 import { UpdateSubscriberChannelRequestDto } from "@novu/api/models/components";
 
 let value: UpdateSubscriberChannelRequestDto = {
-  providerId: "slack",
+  providerId: "apns",
   credentials: {
-    webhookUrl: "https://accomplished-planula.biz",
+    webhookUrl: "https://shocked-vestment.biz/",
   },
 };
 ```
