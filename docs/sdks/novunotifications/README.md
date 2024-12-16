@@ -103,8 +103,8 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.subscribers.notifications.unseenCount({
-    seen: false,
     subscriberId: "<id>",
+    seen: false,
     limit: 2979.49,
   });
 
@@ -131,8 +131,8 @@ const novu = new NovuCore({
 
 async function run() {
   const res = await subscribersNotificationsUnseenCount(novu, {
-    seen: false,
     subscriberId: "<id>",
+    seen: false,
     limit: 2979.49,
   });
 

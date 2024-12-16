@@ -10,9 +10,15 @@ import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type SubscribersControllerGetUnseenCountRequest = {
-  seen: boolean;
   subscriberId: string;
-  limit: number;
+  /**
+   * Indicates whether to count seen notifications.
+   */
+  seen?: boolean | undefined;
+  /**
+   * The maximum number of notifications to return.
+   */
+  limit?: number | undefined;
 };
 
 export type SubscribersControllerGetUnseenCountResponse = {
@@ -24,15 +30,15 @@ export type SubscribersControllerGetUnseenCountResponse = {
 export const SubscribersControllerGetUnseenCountRequest$inboundSchema:
   z.ZodType<SubscribersControllerGetUnseenCountRequest, z.ZodTypeDef, unknown> =
     z.object({
-      seen: z.boolean(),
       subscriberId: z.string(),
-      limit: z.number(),
+      seen: z.boolean().default(false),
+      limit: z.number().default(100),
     });
 
 /** @internal */
 export type SubscribersControllerGetUnseenCountRequest$Outbound = {
-  seen: boolean;
   subscriberId: string;
+  seen: boolean;
   limit: number;
 };
 
@@ -43,9 +49,9 @@ export const SubscribersControllerGetUnseenCountRequest$outboundSchema:
     z.ZodTypeDef,
     SubscribersControllerGetUnseenCountRequest
   > = z.object({
-    seen: z.boolean(),
     subscriberId: z.string(),
-    limit: z.number(),
+    seen: z.boolean().default(false),
+    limit: z.number().default(100),
   });
 
 /**

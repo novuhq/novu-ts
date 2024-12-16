@@ -6,16 +6,14 @@
 import { SubscribersControllerGetUnseenCountRequest } from "@novu/api/models/operations";
 
 let value: SubscribersControllerGetUnseenCountRequest = {
-  seen: false,
   subscriberId: "<id>",
-  limit: 5684.34,
 };
 ```
 
 ## Fields
 
-| Field              | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `seen`             | *boolean*          | :heavy_check_mark: | N/A                |
-| `subscriberId`     | *string*           | :heavy_check_mark: | N/A                |
-| `limit`            | *number*           | :heavy_check_mark: | N/A                |
+| Field                                          | Type                                           | Required                                       | Description                                    |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| `subscriberId`                                 | *string*                                       | :heavy_check_mark:                             | N/A                                            |
+| `seen`                                         | *boolean*                                      | :heavy_minus_sign:                             | Indicates whether to count seen notifications. |
+| `limit`                                        | *number*                                       | :heavy_minus_sign:                             | The maximum number of notifications to return. |
