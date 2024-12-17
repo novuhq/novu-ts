@@ -7,7 +7,7 @@ The type of channel that is enabled or not
 ```typescript
 import { ChannelPreferenceType } from "@novu/api/models/components";
 
-let value: ChannelPreferenceType = "push";
+let value: ChannelPreferenceType = "sms";
 ```
 
 ## Values

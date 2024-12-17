@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 6bff3a53-3f0b-40b4-942f-ff70dc583ae5
 management:
-  docChecksum: a9703d5643e8ba816486f931480f58c3
+  docChecksum: e433af56cec249c24c2247377e8bb0da
   docVersion: "1.0"
   speakeasyVersion: 1.455.7
   generationVersion: 2.480.1
-  releaseVersion: 0.0.1-alpha.115
-  configChecksum: 23e2dc35ee7dd20bfc9e099fa0d22755
+  releaseVersion: 0.0.1-alpha.116
+  configChecksum: a1fc3b15ca60c64e72ff938f46047199
   published: true
 features:
   typescript:
@@ -1198,6 +1198,19 @@ examples:
           application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
         "422":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123", "errors": {"fieldName1": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName2": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName3": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName4": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}}}
+    "":
+      parameters:
+        query:
+          page: 0
+          pageSize: 10
+          key: "exampleKey"
+      responses:
+        "200":
+          application/json: {"data": [], "page": 1, "pageSize": 10, "totalCount": 10}
+        "400":
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
+        "422":
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123", "errors": {"fieldName1": {"messages": ["Field is required", "Must be a valid email address"], "value": "invalidEmail"}, "fieldName2": {"messages": ["Must be at least 18 years old"], "value": 17}, "fieldName3": {"messages": ["Must be a boolean value"], "value": true}, "fieldName4": {"messages": ["Must be a valid object"], "value": {"key": "<value>", "key1": "<value>"}}}}
   TopicsController_deleteTopic:
     speakeasy-default-topics-controller-delete-topic:
       parameters:

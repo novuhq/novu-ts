@@ -11049,36 +11049,41 @@
       },
       "get": {
         "operationId": "TopicsController_listTopics",
-        "summary": "Filter topics",
+        "summary": "Get topic list filtered ",
         "description": "Returns a list of topics that can be paginated using the `page` query parameter and filtered by the topic key with the `key` query parameter",
         "parameters": [
           {
             "name": "page",
             "required": false,
             "in": "query",
-            "description": "Number of page for the pagination",
+            "example": 0,
+            "description": "The page number to retrieve (starts from 0)",
             "schema": {
               "minimum": 0,
+              "format": "int64",
               "default": 0,
-              "type": "number"
+              "type": "integer"
             }
           },
           {
             "name": "pageSize",
             "required": false,
             "in": "query",
-            "description": "Size of page for the pagination",
+            "example": 10,
+            "description": "The number of items to return per page (default: 10)",
             "schema": {
               "minimum": 0,
+              "format": "int64",
               "default": 10,
-              "type": "number"
+              "type": "integer"
             }
           },
           {
             "name": "key",
             "required": false,
             "in": "query",
-            "description": "Topic key",
+            "example": "exampleKey",
+            "description": "A filter key to apply to the results",
             "schema": {
               "type": "string"
             }
@@ -16400,19 +16405,27 @@
         "type": "object",
         "properties": {
           "data": {
+            "example": [],
+            "description": "The list of topics",
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TopicDto"
             }
           },
           "page": {
-            "type": "number"
+            "type": "number",
+            "example": 1,
+            "description": "The current page number"
           },
           "pageSize": {
-            "type": "number"
+            "type": "number",
+            "example": 10,
+            "description": "The number of items per page"
           },
           "totalCount": {
-            "type": "number"
+            "type": "number",
+            "example": 10,
+            "description": "The total number of items"
           }
         },
         "required": [

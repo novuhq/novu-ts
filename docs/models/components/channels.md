@@ -7,7 +7,7 @@ Channels of the notification
 ```typescript
 import { Channels } from "@novu/api/models/components";
 
-let value: Channels = "delay";
+let value: Channels = "sms";
 ```
 
 ## Values

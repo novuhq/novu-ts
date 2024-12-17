@@ -11,15 +11,15 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type TopicsControllerListTopicsRequest = {
   /**
-   * Number of page for the pagination
+   * The page number to retrieve (starts from 0)
    */
   page?: number | undefined;
   /**
-   * Size of page for the pagination
+   * The number of items to return per page (default: 10)
    */
   pageSize?: number | undefined;
   /**
-   * Topic key
+   * A filter key to apply to the results
    */
   key?: string | undefined;
 };
@@ -35,8 +35,8 @@ export const TopicsControllerListTopicsRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  page: z.number().default(0),
-  pageSize: z.number().default(10),
+  page: z.number().int().default(0),
+  pageSize: z.number().int().default(10),
   key: z.string().optional(),
 });
 
@@ -53,8 +53,8 @@ export const TopicsControllerListTopicsRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   TopicsControllerListTopicsRequest
 > = z.object({
-  page: z.number().default(0),
-  pageSize: z.number().default(10),
+  page: z.number().int().default(0),
+  pageSize: z.number().int().default(10),
   key: z.string().optional(),
 });
 

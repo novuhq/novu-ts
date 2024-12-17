@@ -16,8 +16,8 @@ let value: ActivityNotificationJobResponseDto = {
       detail: "<value>",
       isRetry: false,
       isTest: false,
-      providerId: 8379.45,
-      source: "Credentials",
+      providerId: 1103.75,
+      source: "Payload",
     },
   ],
   step: {
@@ -25,7 +25,7 @@ let value: ActivityNotificationJobResponseDto = {
     active: false,
     filters: {},
   },
-  providerId: 9764.59,
+  providerId: 1381.83,
   status: "<value>",
 };
 ```

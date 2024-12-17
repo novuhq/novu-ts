@@ -37,7 +37,7 @@ export class Topics extends ClientSDK {
   }
 
   /**
-   * Filter topics
+   * Get topic list filtered
    *
    * @remarks
    * Returns a list of topics that can be paginated using the `page` query parameter and filtered by the topic key with the `key` query parameter

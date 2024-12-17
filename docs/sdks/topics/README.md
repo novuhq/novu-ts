@@ -9,7 +9,7 @@ Topics are a way to group subscribers together so that they can be notified of e
 ### Available Operations
 
 * [create](#create) - Topic creation
-* [list](#list) - Filter topics
+* [list](#list) - Get topic list filtered 
 * [delete](#delete) - Delete topic
 * [retrieve](#retrieve) - Get topic
 * [rename](#rename) - Rename a topic
@@ -108,7 +108,11 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.topics.list({});
+  const result = await novu.topics.list({
+    page: 0,
+    pageSize: 10,
+    key: "exampleKey",
+  });
 
   // Handle the result
   console.log(result);
@@ -132,7 +136,11 @@ const novu = new NovuCore({
 });
 
 async function run() {
-  const res = await topicsList(novu, {});
+  const res = await topicsList(novu, {
+    page: 0,
+    pageSize: 10,
+    key: "exampleKey",
+  });
 
   if (!res.ok) {
     throw res.error;

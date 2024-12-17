@@ -14,9 +14,21 @@ import {
 } from "./topicdto.js";
 
 export type FilterTopicsResponseDto = {
+  /**
+   * The list of topics
+   */
   data: Array<TopicDto>;
+  /**
+   * The current page number
+   */
   page: number;
+  /**
+   * The number of items per page
+   */
   pageSize: number;
+  /**
+   * The total number of items
+   */
   totalCount: number;
 };
 

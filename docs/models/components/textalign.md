@@ -5,7 +5,7 @@
 ```typescript
 import { TextAlign } from "@novu/api/models/components";
 
-let value: TextAlign = "left";
+let value: TextAlign = "right";
 ```
 
 ## Values

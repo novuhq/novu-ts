@@ -6,9 +6,9 @@
 import { ChannelSettings } from "@novu/api/models/components";
 
 let value: ChannelSettings = {
-  providerId: "discord",
+  providerId: "zulip",
   credentials: {
-    webhookUrl: "https://vengeful-farmer.net",
+    webhookUrl: "https://better-poppy.name/",
   },
   integrationId: "<id>",
 };

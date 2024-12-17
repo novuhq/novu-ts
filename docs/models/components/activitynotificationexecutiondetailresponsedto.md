@@ -8,12 +8,12 @@ import { ActivityNotificationExecutionDetailResponseDto } from "@novu/api/models
 let value: ActivityNotificationExecutionDetailResponseDto = {
   id: "<id>",
   jobId: "<id>",
-  status: "Pending",
+  status: "Queued",
   detail: "<value>",
   isRetry: false,
   isTest: false,
-  providerId: 7392.64,
-  source: "Credentials",
+  providerId: 971.01,
+  source: "Webhook",
 };
 ```
 

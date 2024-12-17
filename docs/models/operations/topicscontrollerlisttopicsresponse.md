@@ -23,9 +23,9 @@ let value: TopicsControllerListTopicsResponse = {
         ],
       },
     ],
-    page: 6706.38,
-    pageSize: 2103.83,
-    totalCount: 1289.26,
+    page: 1,
+    pageSize: 10,
+    totalCount: 10,
   },
 };
 ```

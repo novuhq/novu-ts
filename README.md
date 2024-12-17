@@ -299,7 +299,7 @@ run();
 ### [topics](docs/sdks/topics/README.md)
 
 * [create](docs/sdks/topics/README.md#create) - Topic creation
-* [list](docs/sdks/topics/README.md#list) - Filter topics
+* [list](docs/sdks/topics/README.md#list) - Get topic list filtered 
 * [delete](docs/sdks/topics/README.md#delete) - Delete topic
 * [retrieve](docs/sdks/topics/README.md#retrieve) - Get topic
 * [rename](docs/sdks/topics/README.md#rename) - Rename a topic
@@ -366,7 +366,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`subscribersUpdate`](docs/sdks/subscribers/README.md#update) - Update subscriber
 - [`topicsCreate`](docs/sdks/topics/README.md#create) - Topic creation
 - [`topicsDelete`](docs/sdks/topics/README.md#delete) - Delete topic
-- [`topicsList`](docs/sdks/topics/README.md#list) - Filter topics
+- [`topicsList`](docs/sdks/topics/README.md#list) - Get topic list filtered 
 - [`topicsRename`](docs/sdks/topics/README.md#rename) - Rename a topic
 - [`topicsRetrieve`](docs/sdks/topics/README.md#retrieve) - Get topic
 - [`topicsSubscribersAssign`](docs/sdks/novusubscribers/README.md#assign) - Subscribers addition
