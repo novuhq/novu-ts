@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 6bff3a53-3f0b-40b4-942f-ff70dc583ae5
 management:
-  docChecksum: e433af56cec249c24c2247377e8bb0da
+  docChecksum: 29c60c28128438c7bb2125c41c7b6786
   docVersion: "1.0"
   speakeasyVersion: 1.455.7
   generationVersion: 2.480.1
-  releaseVersion: 0.0.1-alpha.116
-  configChecksum: a1fc3b15ca60c64e72ff938f46047199
+  releaseVersion: 0.0.1-alpha.118
+  configChecksum: fe11922b6616742ab63b8d412c92f557
   published: true
 features:
   typescript:
@@ -985,7 +985,7 @@ examples:
       parameters:
         path:
           subscriberId: "<id>"
-          parameter: "<value>"
+          parameter: "exampleValue"
       responses:
         "200":
           application/json: {"template": {"_id": "<id>", "name": "<value>", "critical": false, "triggers": ["<value>", "<value>"]}, "preference": {"enabled": true}}

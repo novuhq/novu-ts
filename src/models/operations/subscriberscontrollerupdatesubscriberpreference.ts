@@ -11,7 +11,7 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type SubscribersControllerUpdateSubscriberPreferenceRequest = {
   subscriberId: string;
-  parameter: string;
+  workflowId: string;
   updateSubscriberPreferenceRequestDto:
     components.UpdateSubscriberPreferenceRequestDto;
 };
@@ -29,7 +29,7 @@ export const SubscribersControllerUpdateSubscriberPreferenceRequest$inboundSchem
     unknown
   > = z.object({
     subscriberId: z.string(),
-    parameter: z.string(),
+    workflowId: z.string(),
     UpdateSubscriberPreferenceRequestDto:
       components.UpdateSubscriberPreferenceRequestDto$inboundSchema,
   }).transform((v) => {
@@ -42,7 +42,7 @@ export const SubscribersControllerUpdateSubscriberPreferenceRequest$inboundSchem
 /** @internal */
 export type SubscribersControllerUpdateSubscriberPreferenceRequest$Outbound = {
   subscriberId: string;
-  parameter: string;
+  workflowId: string;
   UpdateSubscriberPreferenceRequestDto:
     components.UpdateSubscriberPreferenceRequestDto$Outbound;
 };
@@ -55,7 +55,7 @@ export const SubscribersControllerUpdateSubscriberPreferenceRequest$outboundSche
     SubscribersControllerUpdateSubscriberPreferenceRequest
   > = z.object({
     subscriberId: z.string(),
-    parameter: z.string(),
+    workflowId: z.string(),
     updateSubscriberPreferenceRequestDto:
       components.UpdateSubscriberPreferenceRequestDto$outboundSchema,
   }).transform((v) => {

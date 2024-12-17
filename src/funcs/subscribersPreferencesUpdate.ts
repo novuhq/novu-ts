@@ -62,11 +62,11 @@ export async function subscribersPreferencesUpdate(
   );
 
   const pathParams = {
-    parameter: encodeSimple("parameter", payload.parameter, {
+    subscriberId: encodeSimple("subscriberId", payload.subscriberId, {
       explode: false,
       charEncoding: "percent",
     }),
-    subscriberId: encodeSimple("subscriberId", payload.subscriberId, {
+    parameter: encodeSimple("parameter", payload.workflowId, {
       explode: false,
       charEncoding: "percent",
     }),

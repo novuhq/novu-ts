@@ -6840,6 +6840,7 @@
     "/v1/subscribers/{subscriberId}/preferences": {
       "get": {
         "operationId": "SubscribersController_listSubscriberPreferences",
+        "x-speakeasy-name-override": "list",
         "x-speakeasy-group": "Subscribers.Preferences",
         "summary": "Get subscriber preferences",
         "parameters": [
@@ -7698,8 +7699,10 @@
             "name": "parameter",
             "required": true,
             "in": "path",
+            "x-speakeasy-name-override": "workflowId",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "example": "exampleValue"
             }
           }
         ],

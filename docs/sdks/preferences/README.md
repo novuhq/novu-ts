@@ -256,7 +256,7 @@ const novu = new Novu({
 async function run() {
   const result = await novu.subscribers.preferences.update({
     subscriberId: "<id>",
-    parameter: "<value>",
+    workflowId: "exampleValue",
     updateSubscriberPreferenceRequestDto: {},
   });
 
@@ -284,7 +284,7 @@ const novu = new NovuCore({
 async function run() {
   const res = await subscribersPreferencesUpdate(novu, {
     subscriberId: "<id>",
-    parameter: "<value>",
+    workflowId: "exampleValue",
     updateSubscriberPreferenceRequestDto: {},
   });
 
