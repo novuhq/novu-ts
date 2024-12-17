@@ -3,16 +3,16 @@ id: 6bff3a53-3f0b-40b4-942f-ff70dc583ae5
 management:
   docChecksum: a9703d5643e8ba816486f931480f58c3
   docVersion: "1.0"
-  speakeasyVersion: 1.455.5
-  generationVersion: 2.479.3
-  releaseVersion: 0.0.1-alpha.114
-  configChecksum: 7a45b645106294d7afc252f0843fd3ec
+  speakeasyVersion: 1.455.7
+  generationVersion: 2.480.1
+  releaseVersion: 0.0.1-alpha.115
+  configChecksum: 23e2dc35ee7dd20bfc9e099fa0d22755
   published: true
 features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.11
-    core: 3.18.9
+    core: 3.18.11
     defaultEnabledRetries: 0.1.0
     deprecations: 2.81.1
     enumUnions: 0.1.0
