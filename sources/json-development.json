@@ -7412,6 +7412,7 @@
             "required": true,
             "in": "path",
             "description": "the preferences level to be retrieved (template / global) ",
+            "x-speakeasy-name-override": "preferenceLevel",
             "schema": {
               "enum": [
                 "global",
@@ -7701,8 +7702,7 @@
             "in": "path",
             "x-speakeasy-name-override": "workflowId",
             "schema": {
-              "type": "string",
-              "example": "exampleValue"
+              "type": "string"
             }
           }
         ],

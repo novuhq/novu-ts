@@ -175,7 +175,7 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.subscribers.preferences.retrieveByLevel({
-    parameter: "global",
+    preferenceLevel: "global",
     subscriberId: "<id>",
   });
 
@@ -202,7 +202,7 @@ const novu = new NovuCore({
 
 async function run() {
   const res = await subscribersPreferencesRetrieveByLevel(novu, {
-    parameter: "global",
+    preferenceLevel: "global",
     subscriberId: "<id>",
   });
 

@@ -59,7 +59,7 @@ export async function subscribersPreferencesRetrieveByLevel(
   const body = null;
 
   const pathParams = {
-    parameter: encodeSimple("parameter", payload.parameter, {
+    parameter: encodeSimple("parameter", payload.preferenceLevel, {
       explode: false,
       charEncoding: "percent",
     }),

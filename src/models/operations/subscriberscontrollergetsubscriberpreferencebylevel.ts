@@ -30,7 +30,7 @@ export type SubscribersControllerGetSubscriberPreferenceByLevelRequest = {
   /**
    * the preferences level to be retrieved (template / global)
    */
-  parameter: Parameter;
+  preferenceLevel: Parameter;
   subscriberId: string;
 };
 
@@ -66,7 +66,7 @@ export const SubscribersControllerGetSubscriberPreferenceByLevelRequest$inboundS
     unknown
   > = z.object({
     includeInactiveChannels: z.boolean().optional(),
-    parameter: Parameter$inboundSchema,
+    preferenceLevel: Parameter$inboundSchema,
     subscriberId: z.string(),
   });
 
@@ -74,7 +74,7 @@ export const SubscribersControllerGetSubscriberPreferenceByLevelRequest$inboundS
 export type SubscribersControllerGetSubscriberPreferenceByLevelRequest$Outbound =
   {
     includeInactiveChannels?: boolean | undefined;
-    parameter: string;
+    preferenceLevel: string;
     subscriberId: string;
   };
 
@@ -86,7 +86,7 @@ export const SubscribersControllerGetSubscriberPreferenceByLevelRequest$outbound
     SubscribersControllerGetSubscriberPreferenceByLevelRequest
   > = z.object({
     includeInactiveChannels: z.boolean().optional(),
-    parameter: Parameter$outboundSchema,
+    preferenceLevel: Parameter$outboundSchema,
     subscriberId: z.string(),
   });
 

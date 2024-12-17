@@ -230,13 +230,13 @@ actions:
       "x-codeSamples":
         - "lang": "typescript"
           "label": "TypeScript"
-          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n});\n\nasync function run() {\n  const result = await novu.subscribers.preferences.retrieveByLevel({\n    parameter: \"template\",\n    subscriberId: \"<id>\",\n  });\n\n  // Handle the result\n  console.log(result);\n}\n\nrun();"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n});\n\nasync function run() {\n  const result = await novu.subscribers.preferences.retrieveByLevel({\n    preferenceLevel: \"template\",\n    subscriberId: \"<id>\",\n  });\n\n  // Handle the result\n  console.log(result);\n}\n\nrun();"
   - target: $["paths"]["/v1/subscribers/{subscriberId}/preferences/{parameter}"]["patch"]
     update:
       "x-codeSamples":
         - "lang": "typescript"
           "label": "TypeScript"
-          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n});\n\nasync function run() {\n  const result = await novu.subscribers.preferences.update({\n    subscriberId: \"<id>\",\n    workflowId: \"exampleValue\",\n    updateSubscriberPreferenceRequestDto: {},\n  });\n\n  // Handle the result\n  console.log(result);\n}\n\nrun();"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n});\n\nasync function run() {\n  const result = await novu.subscribers.preferences.update({\n    subscriberId: \"<id>\",\n    workflowId: \"<id>\",\n    updateSubscriberPreferenceRequestDto: {},\n  });\n\n  // Handle the result\n  console.log(result);\n}\n\nrun();"
   - target: $["paths"]["/v1/topics"]["get"]
     update:
       "x-codeSamples":
