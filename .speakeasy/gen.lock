@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 6bff3a53-3f0b-40b4-942f-ff70dc583ae5
 management:
-  docChecksum: 99162d9f620cd49b11fca4e95d802506
+  docChecksum: cbd260dfb2907bdac6973bda69afa657
   docVersion: "1.0"
-  speakeasyVersion: 1.455.7
-  generationVersion: 2.480.1
-  releaseVersion: 0.0.1-alpha.119
-  configChecksum: 67bbc1e708dc9178e722ba52e2bc99c6
+  speakeasyVersion: 1.456.0
+  generationVersion: 2.481.0
+  releaseVersion: 0.0.1-alpha.121
+  configChecksum: 416e6de072c3357ef9ee4f4a92dce874
   published: true
 features:
   typescript:
@@ -236,7 +236,6 @@ generatedFiles:
   - docs/models/operations/subscriberscontrollerchataccessoauthresponse.md
   - docs/models/operations/subscriberscontrollerchatoauthcallbackrequest.md
   - docs/models/operations/subscriberscontrollerchatoauthcallbackresponse.md
-  - docs/models/operations/subscriberscontrollerchatoauthcallbackresponsebody.md
   - docs/models/operations/subscriberscontrollercreatesubscriberresponse.md
   - docs/models/operations/subscriberscontrollerdeletesubscribercredentialsrequest.md
   - docs/models/operations/subscriberscontrollerdeletesubscribercredentialsresponse.md
@@ -1044,7 +1043,8 @@ examples:
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found."}
         "404":
           application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
-        "200": {}
+        "200":
+          application/json: "{}"
         "422":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123", "errors": {"fieldName1": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName2": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName3": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName4": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}}}
   SubscribersController_chatAccessOauth:

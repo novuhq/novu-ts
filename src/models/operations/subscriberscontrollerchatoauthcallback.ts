@@ -11,17 +11,27 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 export type SubscribersControllerChatOauthCallbackRequest = {
   subscriberId: string;
   providerId?: any | undefined;
-  code: string;
+  /**
+   * HMAC hash for the request
+   */
   hmacHash: string;
+  /**
+   * The ID of the environment, must be a valid MongoDB ID
+   */
   environmentId: string;
+  /**
+   * Optional integration identifier
+   */
   integrationIdentifier?: string | undefined;
+  /**
+   * Optional authorization code returned from the OAuth provider
+   */
+  code: string;
 };
-
-export type SubscribersControllerChatOauthCallbackResponseBody = {};
 
 export type SubscribersControllerChatOauthCallbackResponse = {
   headers: { [k: string]: Array<string> };
-  result: SubscribersControllerChatOauthCallbackResponseBody;
+  result: string;
 };
 
 /** @internal */
@@ -33,20 +43,20 @@ export const SubscribersControllerChatOauthCallbackRequest$inboundSchema:
   > = z.object({
     subscriberId: z.string(),
     providerId: z.any().optional(),
-    code: z.string(),
     hmacHash: z.string(),
     environmentId: z.string(),
     integrationIdentifier: z.string().optional(),
+    code: z.string(),
   });
 
 /** @internal */
 export type SubscribersControllerChatOauthCallbackRequest$Outbound = {
   subscriberId: string;
   providerId?: any | undefined;
-  code: string;
   hmacHash: string;
   environmentId: string;
   integrationIdentifier?: string | undefined;
+  code: string;
 };
 
 /** @internal */
@@ -58,10 +68,10 @@ export const SubscribersControllerChatOauthCallbackRequest$outboundSchema:
   > = z.object({
     subscriberId: z.string(),
     providerId: z.any().optional(),
-    code: z.string(),
     hmacHash: z.string(),
     environmentId: z.string(),
     integrationIdentifier: z.string().optional(),
+    code: z.string(),
   });
 
 /**
@@ -107,68 +117,6 @@ export function subscribersControllerChatOauthCallbackRequestFromJSON(
 }
 
 /** @internal */
-export const SubscribersControllerChatOauthCallbackResponseBody$inboundSchema:
-  z.ZodType<
-    SubscribersControllerChatOauthCallbackResponseBody,
-    z.ZodTypeDef,
-    unknown
-  > = z.object({});
-
-/** @internal */
-export type SubscribersControllerChatOauthCallbackResponseBody$Outbound = {};
-
-/** @internal */
-export const SubscribersControllerChatOauthCallbackResponseBody$outboundSchema:
-  z.ZodType<
-    SubscribersControllerChatOauthCallbackResponseBody$Outbound,
-    z.ZodTypeDef,
-    SubscribersControllerChatOauthCallbackResponseBody
-  > = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SubscribersControllerChatOauthCallbackResponseBody$ {
-  /** @deprecated use `SubscribersControllerChatOauthCallbackResponseBody$inboundSchema` instead. */
-  export const inboundSchema =
-    SubscribersControllerChatOauthCallbackResponseBody$inboundSchema;
-  /** @deprecated use `SubscribersControllerChatOauthCallbackResponseBody$outboundSchema` instead. */
-  export const outboundSchema =
-    SubscribersControllerChatOauthCallbackResponseBody$outboundSchema;
-  /** @deprecated use `SubscribersControllerChatOauthCallbackResponseBody$Outbound` instead. */
-  export type Outbound =
-    SubscribersControllerChatOauthCallbackResponseBody$Outbound;
-}
-
-export function subscribersControllerChatOauthCallbackResponseBodyToJSON(
-  subscribersControllerChatOauthCallbackResponseBody:
-    SubscribersControllerChatOauthCallbackResponseBody,
-): string {
-  return JSON.stringify(
-    SubscribersControllerChatOauthCallbackResponseBody$outboundSchema.parse(
-      subscribersControllerChatOauthCallbackResponseBody,
-    ),
-  );
-}
-
-export function subscribersControllerChatOauthCallbackResponseBodyFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  SubscribersControllerChatOauthCallbackResponseBody,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      SubscribersControllerChatOauthCallbackResponseBody$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'SubscribersControllerChatOauthCallbackResponseBody' from JSON`,
-  );
-}
-
-/** @internal */
 export const SubscribersControllerChatOauthCallbackResponse$inboundSchema:
   z.ZodType<
     SubscribersControllerChatOauthCallbackResponse,
@@ -176,9 +124,7 @@ export const SubscribersControllerChatOauthCallbackResponse$inboundSchema:
     unknown
   > = z.object({
     Headers: z.record(z.array(z.string())),
-    Result: z.lazy(() =>
-      SubscribersControllerChatOauthCallbackResponseBody$inboundSchema
-    ),
+    Result: z.string(),
   }).transform((v) => {
     return remap$(v, {
       "Headers": "headers",
@@ -189,7 +135,7 @@ export const SubscribersControllerChatOauthCallbackResponse$inboundSchema:
 /** @internal */
 export type SubscribersControllerChatOauthCallbackResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
-  Result: SubscribersControllerChatOauthCallbackResponseBody$Outbound;
+  Result: string;
 };
 
 /** @internal */
@@ -200,9 +146,7 @@ export const SubscribersControllerChatOauthCallbackResponse$outboundSchema:
     SubscribersControllerChatOauthCallbackResponse
   > = z.object({
     headers: z.record(z.array(z.string())),
-    result: z.lazy(() =>
-      SubscribersControllerChatOauthCallbackResponseBody$outboundSchema
-    ),
+    result: z.string(),
   }).transform((v) => {
     return remap$(v, {
       headers: "Headers",

@@ -11,8 +11,17 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 export type SubscribersControllerChatAccessOauthRequest = {
   subscriberId: string;
   providerId?: any | undefined;
+  /**
+   * HMAC hash for the request
+   */
   hmacHash: string;
+  /**
+   * The ID of the environment, must be a valid MongoDB ID
+   */
   environmentId: string;
+  /**
+   * Optional integration identifier
+   */
   integrationIdentifier?: string | undefined;
 };
 

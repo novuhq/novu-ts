@@ -176,7 +176,7 @@ actions:
       "x-codeSamples":
         - "lang": "typescript"
           "label": "TypeScript"
-          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n});\n\nasync function run() {\n  const result = await novu.subscribers.authentication.chatAccessOauthCallBack({\n    subscriberId: \"<id>\",\n    providerId: \"<id>\",\n    code: \"<value>\",\n    hmacHash: \"<value>\",\n    environmentId: \"<id>\",\n  });\n\n  // Handle the result\n  console.log(result);\n}\n\nrun();"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n});\n\nasync function run() {\n  const result = await novu.subscribers.authentication.chatAccessOauthCallBack({\n    subscriberId: \"<id>\",\n    providerId: \"<id>\",\n    hmacHash: \"<value>\",\n    environmentId: \"<id>\",\n    code: \"<value>\",\n  });\n\n  // Handle the result\n  console.log(result);\n}\n\nrun();"
   - target: $["paths"]["/v1/subscribers/{subscriberId}/messages/mark-all"]["post"]
     update:
       "x-codeSamples":

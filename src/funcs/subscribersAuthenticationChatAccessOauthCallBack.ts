@@ -31,7 +31,7 @@ export async function subscribersAuthenticationChatAccessOauthCallBack(
   options?: RequestOptions,
 ): Promise<
   Result<
-    operations.SubscribersControllerChatOauthCallbackResponse,
+    operations.SubscribersControllerChatOauthCallbackResponse | undefined,
     | errors.ErrorDto
     | errors.ValidationErrorDto
     | SDKError
@@ -140,7 +140,7 @@ export async function subscribersAuthenticationChatAccessOauthCallBack(
   };
 
   const [result] = await M.match<
-    operations.SubscribersControllerChatOauthCallbackResponse,
+    operations.SubscribersControllerChatOauthCallbackResponse | undefined,
     | errors.ErrorDto
     | errors.ValidationErrorDto
     | SDKError
@@ -153,8 +153,15 @@ export async function subscribersAuthenticationChatAccessOauthCallBack(
   >(
     M.json(
       200,
-      operations.SubscribersControllerChatOauthCallbackResponse$inboundSchema,
-      { key: "Result" },
+      operations.SubscribersControllerChatOauthCallbackResponse$inboundSchema
+        .optional(),
+      { hdrs: true, key: "Result" },
+    ),
+    M.nil(
+      302,
+      operations.SubscribersControllerChatOauthCallbackResponse$inboundSchema
+        .optional(),
+      { hdrs: true },
     ),
     M.jsonErr([400, 404, 409], errors.ErrorDto$inboundSchema, { hdrs: true }),
     M.jsonErr(422, errors.ValidationErrorDto$inboundSchema, { hdrs: true }),

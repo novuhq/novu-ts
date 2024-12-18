@@ -25,9 +25,9 @@ async function run() {
   const result = await novu.subscribers.authentication.chatAccessOauthCallBack({
     subscriberId: "<id>",
     providerId: "<id>",
-    code: "<value>",
     hmacHash: "<value>",
     environmentId: "<id>",
+    code: "<value>",
   });
 
   // Handle the result
@@ -55,9 +55,9 @@ async function run() {
   const res = await subscribersAuthenticationChatAccessOauthCallBack(novu, {
     subscriberId: "<id>",
     providerId: "<id>",
-    code: "<value>",
     hmacHash: "<value>",
     environmentId: "<id>",
+    code: "<value>",
   });
 
   if (!res.ok) {

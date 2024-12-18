@@ -15,7 +15,9 @@ export class Authentication extends ClientSDK {
   async chatAccessOauthCallBack(
     request: operations.SubscribersControllerChatOauthCallbackRequest,
     options?: RequestOptions,
-  ): Promise<operations.SubscribersControllerChatOauthCallbackResponse> {
+  ): Promise<
+    operations.SubscribersControllerChatOauthCallbackResponse | undefined
+  > {
     return unwrapAsync(subscribersAuthenticationChatAccessOauthCallBack(
       this,
       request,

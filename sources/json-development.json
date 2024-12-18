@@ -9412,17 +9412,10 @@
             "schema": {}
           },
           {
-            "name": "code",
-            "required": true,
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "hmacHash",
             "required": true,
             "in": "query",
+            "description": "HMAC hash for the request",
             "schema": {
               "type": "string"
             }
@@ -9431,6 +9424,7 @@
             "name": "environmentId",
             "required": true,
             "in": "query",
+            "description": "The ID of the environment, must be a valid MongoDB ID",
             "schema": {
               "type": "string"
             }
@@ -9439,6 +9433,16 @@
             "name": "integrationIdentifier",
             "required": false,
             "in": "query",
+            "description": "Optional integration identifier",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "code",
+            "required": true,
+            "in": "query",
+            "description": "Optional authorization code returned from the OAuth provider",
             "schema": {
               "type": "string"
             }
@@ -9446,11 +9450,78 @@
         ],
         "responses": {
           "200": {
+            "headers": {
+              "Content-Type": {
+                "description": "content-type",
+                "schema": {
+                  "type": "string",
+                  "example": "text/html; charset=UTF-8"
+                }
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              },
+              "Content-Security-Policy": {
+                "description": "security policy",
+                "schema": {
+                  "type": "string",
+                  "example": "default-src 'self'; script-src 'self' 'unsafe-inline'"
+                }
+              }
+            },
             "description": "",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "302": {
+            "description": "Redirects to the specified URL.",
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              },
+              "Location": {
+                "description": "The URL to redirect to.",
+                "schema": {
+                  "type": "string",
+                  "example": "https://www.novu.co"
                 }
               }
             }
@@ -9697,6 +9768,7 @@
             "name": "hmacHash",
             "required": true,
             "in": "query",
+            "description": "HMAC hash for the request",
             "schema": {
               "type": "string"
             }
@@ -9705,6 +9777,7 @@
             "name": "environmentId",
             "required": true,
             "in": "query",
+            "description": "The ID of the environment, must be a valid MongoDB ID",
             "schema": {
               "type": "string"
             }
@@ -9713,6 +9786,7 @@
             "name": "integrationIdentifier",
             "required": false,
             "in": "query",
+            "description": "Optional integration identifier",
             "schema": {
               "type": "string"
             }
