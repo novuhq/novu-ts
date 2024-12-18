@@ -5,7 +5,7 @@
 ```typescript
 import { EmailBlockType } from "@novu/api/models/components";
 
-let value: EmailBlockType = "text";
+let value: EmailBlockType = "button";
 ```
 
 ## Values

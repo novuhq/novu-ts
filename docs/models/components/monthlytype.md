@@ -5,7 +5,7 @@
 ```typescript
 import { MonthlyType } from "@novu/api/models/components";
 
-let value: MonthlyType = "on";
+let value: MonthlyType = "each";
 ```
 
 ## Values

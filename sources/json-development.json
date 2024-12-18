@@ -9524,6 +9524,13 @@
                   "example": "https://www.novu.co"
                 }
               }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
             }
           },
           "400": {

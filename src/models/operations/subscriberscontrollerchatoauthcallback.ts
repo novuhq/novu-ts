@@ -29,9 +29,13 @@ export type SubscribersControllerChatOauthCallbackRequest = {
   code: string;
 };
 
+export type SubscribersControllerChatOauthCallbackResponseResult =
+  | string
+  | string;
+
 export type SubscribersControllerChatOauthCallbackResponse = {
   headers: { [k: string]: Array<string> };
-  result: string;
+  result: string | string;
 };
 
 /** @internal */
@@ -117,6 +121,70 @@ export function subscribersControllerChatOauthCallbackRequestFromJSON(
 }
 
 /** @internal */
+export const SubscribersControllerChatOauthCallbackResponseResult$inboundSchema:
+  z.ZodType<
+    SubscribersControllerChatOauthCallbackResponseResult,
+    z.ZodTypeDef,
+    unknown
+  > = z.union([z.string(), z.string()]);
+
+/** @internal */
+export type SubscribersControllerChatOauthCallbackResponseResult$Outbound =
+  | string
+  | string;
+
+/** @internal */
+export const SubscribersControllerChatOauthCallbackResponseResult$outboundSchema:
+  z.ZodType<
+    SubscribersControllerChatOauthCallbackResponseResult$Outbound,
+    z.ZodTypeDef,
+    SubscribersControllerChatOauthCallbackResponseResult
+  > = z.union([z.string(), z.string()]);
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace SubscribersControllerChatOauthCallbackResponseResult$ {
+  /** @deprecated use `SubscribersControllerChatOauthCallbackResponseResult$inboundSchema` instead. */
+  export const inboundSchema =
+    SubscribersControllerChatOauthCallbackResponseResult$inboundSchema;
+  /** @deprecated use `SubscribersControllerChatOauthCallbackResponseResult$outboundSchema` instead. */
+  export const outboundSchema =
+    SubscribersControllerChatOauthCallbackResponseResult$outboundSchema;
+  /** @deprecated use `SubscribersControllerChatOauthCallbackResponseResult$Outbound` instead. */
+  export type Outbound =
+    SubscribersControllerChatOauthCallbackResponseResult$Outbound;
+}
+
+export function subscribersControllerChatOauthCallbackResponseResultToJSON(
+  subscribersControllerChatOauthCallbackResponseResult:
+    SubscribersControllerChatOauthCallbackResponseResult,
+): string {
+  return JSON.stringify(
+    SubscribersControllerChatOauthCallbackResponseResult$outboundSchema.parse(
+      subscribersControllerChatOauthCallbackResponseResult,
+    ),
+  );
+}
+
+export function subscribersControllerChatOauthCallbackResponseResultFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  SubscribersControllerChatOauthCallbackResponseResult,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      SubscribersControllerChatOauthCallbackResponseResult$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'SubscribersControllerChatOauthCallbackResponseResult' from JSON`,
+  );
+}
+
+/** @internal */
 export const SubscribersControllerChatOauthCallbackResponse$inboundSchema:
   z.ZodType<
     SubscribersControllerChatOauthCallbackResponse,
@@ -124,7 +192,7 @@ export const SubscribersControllerChatOauthCallbackResponse$inboundSchema:
     unknown
   > = z.object({
     Headers: z.record(z.array(z.string())),
-    Result: z.string(),
+    Result: z.union([z.string(), z.string()]),
   }).transform((v) => {
     return remap$(v, {
       "Headers": "headers",
@@ -135,7 +203,7 @@ export const SubscribersControllerChatOauthCallbackResponse$inboundSchema:
 /** @internal */
 export type SubscribersControllerChatOauthCallbackResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
-  Result: string;
+  Result: string | string;
 };
 
 /** @internal */
@@ -146,7 +214,7 @@ export const SubscribersControllerChatOauthCallbackResponse$outboundSchema:
     SubscribersControllerChatOauthCallbackResponse
   > = z.object({
     headers: z.record(z.array(z.string())),
-    result: z.string(),
+    result: z.union([z.string(), z.string()]),
   }).transform((v) => {
     return remap$(v, {
       headers: "Headers",

@@ -21,7 +21,7 @@ let value: MessageResponseDto = {
   cta: {
     data: {},
   },
-  status: "warning",
+  status: "error",
   errorId: "<id>",
   errorText: "<value>",
   payload: {},

@@ -7,7 +7,7 @@ import { WorkflowResponse } from "@novu/api/models/components";
 
 let value: WorkflowResponse = {
   name: "<value>",
-  description: "woot purse salty even as advanced",
+  description: "mouser inject worth uh-huh substitution psst upon er",
   active: false,
   draft: false,
   preferenceSettings: {},

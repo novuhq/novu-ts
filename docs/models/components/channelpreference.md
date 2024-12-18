@@ -6,7 +6,7 @@
 import { ChannelPreference } from "@novu/api/models/components";
 
 let value: ChannelPreference = {
-  type: "in_app",
+  type: "email",
   enabled: false,
 };
 ```
