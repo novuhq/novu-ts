@@ -13841,6 +13841,21 @@
           "push"
         ]
       },
+      "StepTypeEnum": {
+        "type": "string",
+        "description": "Channels of the notification",
+        "enum": [
+          "in_app",
+          "email",
+          "sms",
+          "chat",
+          "push",
+          "digest",
+          "trigger",
+          "delay",
+          "custom"
+        ]
+      },
       "ActivityNotificationSubscriberResponseDto": {
         "type": "object",
         "properties": {
@@ -14207,33 +14222,10 @@
             "description": "Creation time of the notification"
           },
           "channels": {
-            "type": "string",
+            "type": "array",
             "items": {
-              "type": "string",
-              "enum": [
-                "in_app",
-                "email",
-                "sms",
-                "chat",
-                "push",
-                "digest",
-                "trigger",
-                "delay",
-                "custom"
-              ]
-            },
-            "description": "Channels of the notification",
-            "enum": [
-              "in_app",
-              "email",
-              "sms",
-              "chat",
-              "push",
-              "digest",
-              "trigger",
-              "delay",
-              "custom"
-            ]
+              "$ref": "#/components/schemas/StepTypeEnum"
+            }
           },
           "subscriber": {
             "description": "Subscriber of the notification",

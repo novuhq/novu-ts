@@ -70,6 +70,7 @@ export * from "./renametopicrequestdto.js";
 export * from "./renametopicresponsedto.js";
 export * from "./security.js";
 export * from "./stepfilter.js";
+export * from "./steptypeenum.js";
 export * from "./subscriberchanneldto.js";
 export * from "./subscriberfeedresponsedto.js";
 export * from "./subscriberpayloaddto.js";

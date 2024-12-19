@@ -12,12 +12,12 @@ let value: ActivityNotificationJobResponseDto = {
     {
       id: "<id>",
       jobId: "<id>",
-      status: "Warning",
+      status: "Success",
       detail: "<value>",
       isRetry: false,
       isTest: false,
-      providerId: 3687.25,
-      source: "Webhook",
+      providerId: 1965.82,
+      source: "Internal",
     },
   ],
   step: {
@@ -25,7 +25,7 @@ let value: ActivityNotificationJobResponseDto = {
     active: false,
     filters: {},
   },
-  providerId: 971.01,
+  providerId: 8209.93,
   status: "<value>",
 };
 ```

@@ -5,7 +5,6 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -26,25 +25,11 @@ import {
   ActivityNotificationTemplateResponseDto$Outbound,
   ActivityNotificationTemplateResponseDto$outboundSchema,
 } from "./activitynotificationtemplateresponsedto.js";
-
-/**
- * Channels of the notification
- */
-export const Channels = {
-  InApp: "in_app",
-  Email: "email",
-  Sms: "sms",
-  Chat: "chat",
-  Push: "push",
-  Digest: "digest",
-  Trigger: "trigger",
-  Delay: "delay",
-  Custom: "custom",
-} as const;
-/**
- * Channels of the notification
- */
-export type Channels = ClosedEnum<typeof Channels>;
+import {
+  StepTypeEnum,
+  StepTypeEnum$inboundSchema,
+  StepTypeEnum$outboundSchema,
+} from "./steptypeenum.js";
 
 export type ActivityNotificationResponseDto = {
   /**
@@ -67,10 +52,7 @@ export type ActivityNotificationResponseDto = {
    * Creation time of the notification
    */
   createdAt?: string | undefined;
-  /**
-   * Channels of the notification
-   */
-  channels?: Channels | undefined;
+  channels?: Array<StepTypeEnum> | undefined;
   /**
    * Subscriber of the notification
    */
@@ -86,25 +68,6 @@ export type ActivityNotificationResponseDto = {
 };
 
 /** @internal */
-export const Channels$inboundSchema: z.ZodNativeEnum<typeof Channels> = z
-  .nativeEnum(Channels);
-
-/** @internal */
-export const Channels$outboundSchema: z.ZodNativeEnum<typeof Channels> =
-  Channels$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Channels$ {
-  /** @deprecated use `Channels$inboundSchema` instead. */
-  export const inboundSchema = Channels$inboundSchema;
-  /** @deprecated use `Channels$outboundSchema` instead. */
-  export const outboundSchema = Channels$outboundSchema;
-}
-
-/** @internal */
 export const ActivityNotificationResponseDto$inboundSchema: z.ZodType<
   ActivityNotificationResponseDto,
   z.ZodTypeDef,
@@ -115,7 +78,7 @@ export const ActivityNotificationResponseDto$inboundSchema: z.ZodType<
   _organizationId: z.string(),
   transactionId: z.string(),
   createdAt: z.string().optional(),
-  channels: Channels$inboundSchema.optional(),
+  channels: z.array(StepTypeEnum$inboundSchema).optional(),
   subscriber: ActivityNotificationSubscriberResponseDto$inboundSchema
     .optional(),
   template: ActivityNotificationTemplateResponseDto$inboundSchema.optional(),
@@ -135,7 +98,7 @@ export type ActivityNotificationResponseDto$Outbound = {
   _organizationId: string;
   transactionId: string;
   createdAt?: string | undefined;
-  channels?: string | undefined;
+  channels?: Array<string> | undefined;
   subscriber?: ActivityNotificationSubscriberResponseDto$Outbound | undefined;
   template?: ActivityNotificationTemplateResponseDto$Outbound | undefined;
   jobs?: Array<ActivityNotificationJobResponseDto$Outbound> | undefined;
@@ -152,7 +115,7 @@ export const ActivityNotificationResponseDto$outboundSchema: z.ZodType<
   organizationId: z.string(),
   transactionId: z.string(),
   createdAt: z.string().optional(),
-  channels: Channels$outboundSchema.optional(),
+  channels: z.array(StepTypeEnum$outboundSchema).optional(),
   subscriber: ActivityNotificationSubscriberResponseDto$outboundSchema
     .optional(),
   template: ActivityNotificationTemplateResponseDto$outboundSchema.optional(),

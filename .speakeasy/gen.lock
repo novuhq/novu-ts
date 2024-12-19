@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 6bff3a53-3f0b-40b4-942f-ff70dc583ae5
 management:
-  docChecksum: 16dd020f6df7a2248312d6e6929c5bd8
+  docChecksum: 838446a9e5c749ec862a43ada4a50f9c
   docVersion: "1.0"
   speakeasyVersion: 1.456.1
   generationVersion: 2.481.0
-  releaseVersion: 0.0.1-alpha.128
-  configChecksum: 81be7c124849006891a1ec2be722fec7
+  releaseVersion: 0.0.1-alpha.129
+  configChecksum: 83e84c46494734a1755097c9c21dd905
   published: true
 features:
   typescript:
@@ -41,7 +41,6 @@ generatedFiles:
   - docs/lib/utils/retryconfig.md
   - docs/models/components/activitiesresponsedto.md
   - docs/models/components/activitygraphstatesresponse.md
-  - docs/models/components/activitygraphstatesresponsechannels.md
   - docs/models/components/activitynotificationexecutiondetailresponsedto.md
   - docs/models/components/activitynotificationexecutiondetailresponsedtostatus.md
   - docs/models/components/activitynotificationjobresponsedto.md
@@ -161,6 +160,7 @@ generatedFiles:
   - docs/models/components/source.md
   - docs/models/components/status.md
   - docs/models/components/stepfilter.md
+  - docs/models/components/steptypeenum.md
   - docs/models/components/subscriberchanneldto.md
   - docs/models/components/subscriberfeedresponsedto.md
   - docs/models/components/subscriberpayloaddto.md
@@ -445,6 +445,7 @@ generatedFiles:
   - src/models/components/renametopicresponsedto.ts
   - src/models/components/security.ts
   - src/models/components/stepfilter.ts
+  - src/models/components/steptypeenum.ts
   - src/models/components/subscriberchanneldto.ts
   - src/models/components/subscriberfeedresponsedto.ts
   - src/models/components/subscriberpayloaddto.ts

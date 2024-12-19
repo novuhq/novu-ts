@@ -1,7 +1,5 @@
 # Channels
 
-Channels of the notification
-
 ## Example Usage
 
 ```typescript
@@ -13,5 +11,5 @@ let value: Channels = "email";
 ## Values
 
 ```typescript
-"in_app" | "email" | "sms" | "chat" | "push" | "digest" | "trigger" | "delay" | "custom"
+"in_app" | "email" | "sms" | "chat" | "push"
 ```
