@@ -10,7 +10,15 @@ let value: TemplateResponse = {
   name: "<value>",
   critical: false,
   triggers: [
-    "<value>",
+    {
+      type: "event",
+      identifier: "<value>",
+      variables: [
+        {
+          name: "<value>",
+        },
+      ],
+    },
   ],
 };
 ```
@@ -22,4 +30,4 @@ let value: TemplateResponse = {
 | `id`                                                                                                                    | *string*                                                                                                                | :heavy_check_mark:                                                                                                      | Unique identifier of the workflow                                                                                       |
 | `name`                                                                                                                  | *string*                                                                                                                | :heavy_check_mark:                                                                                                      | Name of the workflow                                                                                                    |
 | `critical`                                                                                                              | *boolean*                                                                                                               | :heavy_check_mark:                                                                                                      | Critical templates will always be delivered to the end user and should be hidden from the subscriber preferences screen |
-| `triggers`                                                                                                              | *string*[]                                                                                                              | :heavy_check_mark:                                                                                                      | Triggers are the events that will trigger the workflow.                                                                 |
+| `triggers`                                                                                                              | [components.NotificationTriggerResponse](../../models/components/notificationtriggerresponse.md)[]                      | :heavy_check_mark:                                                                                                      | Triggers are the events that will trigger the workflow.                                                                 |

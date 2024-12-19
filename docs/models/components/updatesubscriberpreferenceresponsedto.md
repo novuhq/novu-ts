@@ -11,7 +11,15 @@ let value: UpdateSubscriberPreferenceResponseDto = {
     name: "<value>",
     critical: false,
     triggers: [
-      "<value>",
+      {
+        type: "event",
+        identifier: "<value>",
+        variables: [
+          {
+            name: "<value>",
+          },
+        ],
+      },
     ],
   },
   preference: {

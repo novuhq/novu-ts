@@ -11162,7 +11162,6 @@
             "example": 0,
             "description": "The page number to retrieve (starts from 0)",
             "schema": {
-              "minimum": 0,
               "format": "int64",
               "default": 0,
               "type": "integer"
@@ -11175,7 +11174,6 @@
             "example": 10,
             "description": "The number of items to return per page (default: 10)",
             "schema": {
-              "minimum": 0,
               "format": "int64",
               "default": 10,
               "type": "integer"
@@ -15106,6 +15104,100 @@
           "status"
         ]
       },
+      "TriggerTypeEnum": {
+        "type": "string",
+        "description": "The type of the trigger",
+        "enum": [
+          "event"
+        ]
+      },
+      "NotificationTriggerVariableResponse": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the variable"
+          },
+          "value": {
+            "type": "object",
+            "description": "The value of the variable"
+          },
+          "type": {
+            "enum": [
+              "String",
+              "Array",
+              "Boolean"
+            ],
+            "type": "string",
+            "description": "The type of the variable"
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "TriggerReservedVariableResponse": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "enum": [
+              "tenant",
+              "actor"
+            ],
+            "type": "string",
+            "description": "The type of the reserved variable"
+          },
+          "variables": {
+            "description": "The reserved variables of the trigger",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "type",
+          "variables"
+        ]
+      },
+      "NotificationTriggerResponse": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/TriggerTypeEnum"
+          },
+          "identifier": {
+            "type": "string",
+            "description": "The identifier of the trigger"
+          },
+          "variables": {
+            "description": "The variables of the trigger",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NotificationTriggerVariableResponse"
+            }
+          },
+          "subscriberVariables": {
+            "description": "The subscriber variables of the trigger",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NotificationTriggerVariableResponse"
+            }
+          },
+          "reservedVariables": {
+            "description": "The reserved variables of the trigger",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TriggerReservedVariableResponse"
+            }
+          }
+        },
+        "required": [
+          "type",
+          "identifier",
+          "variables"
+        ]
+      },
       "TemplateResponse": {
         "type": "object",
         "properties": {
@@ -15125,7 +15217,7 @@
             "description": "Triggers are the events that will trigger the workflow.",
             "type": "array",
             "items": {
-              "type": "string"
+              "$ref": "#/components/schemas/NotificationTriggerResponse"
             }
           }
         },

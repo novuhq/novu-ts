@@ -18,7 +18,15 @@ let value: SubscribersControllerListSubscriberPreferencesResponse = {
         name: "<value>",
         critical: false,
         triggers: [
-          "<value>",
+          {
+            type: "event",
+            identifier: "<value>",
+            variables: [
+              {
+                name: "<value>",
+              },
+            ],
+          },
         ],
       },
       preference: {

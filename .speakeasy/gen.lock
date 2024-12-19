@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 6bff3a53-3f0b-40b4-942f-ff70dc583ae5
 management:
-  docChecksum: 146d3918722b8540594584c86733431f
+  docChecksum: c0f64442bc4daa293218b56c6e1eddd3
   docVersion: "1.0"
   speakeasyVersion: 1.456.1
   generationVersion: 2.481.0
-  releaseVersion: 0.0.1-alpha.140
-  configChecksum: 0176d5901e49aeb57495dbd8c056c450
+  releaseVersion: 0.0.1-alpha.141
+  configChecksum: 466978b08e1eb51a180ce4f3d980f9d2
   published: true
 features:
   typescript:
@@ -143,7 +143,10 @@ generatedFiles:
   - docs/models/components/notificationstepvariantparentid.md
   - docs/models/components/notificationstepvariantreplycallback.md
   - docs/models/components/notificationtrigger.md
+  - docs/models/components/notificationtriggerresponse.md
   - docs/models/components/notificationtriggervariable.md
+  - docs/models/components/notificationtriggervariableresponse.md
+  - docs/models/components/notificationtriggervariableresponsetype.md
   - docs/models/components/one.md
   - docs/models/components/ordinal.md
   - docs/models/components/ordinalvalue.md
@@ -184,6 +187,9 @@ generatedFiles:
   - docs/models/components/triggereventtoallrequestdtoactor.md
   - docs/models/components/triggereventtoallrequestdtotenant.md
   - docs/models/components/triggerrecipientstypeenum.md
+  - docs/models/components/triggerreservedvariableresponse.md
+  - docs/models/components/triggerreservedvariableresponsetype.md
+  - docs/models/components/triggertypeenum.md
   - docs/models/components/type.md
   - docs/models/components/unit.md
   - docs/models/components/unseencountresponse.md
@@ -197,6 +203,7 @@ generatedFiles:
   - docs/models/components/updatesubscriberpreferenceresponsedto.md
   - docs/models/components/updatesubscriberrequestdto.md
   - docs/models/components/updatesubscriberrequestdtodata.md
+  - docs/models/components/value.md
   - docs/models/components/weekdays.md
   - docs/models/components/workflowintegrationstatus.md
   - docs/models/components/workflowresponse.md
@@ -439,7 +446,9 @@ generatedFiles:
   - src/models/components/notificationstep.ts
   - src/models/components/notificationstepvariant.ts
   - src/models/components/notificationtrigger.ts
+  - src/models/components/notificationtriggerresponse.ts
   - src/models/components/notificationtriggervariable.ts
+  - src/models/components/notificationtriggervariableresponse.ts
   - src/models/components/preference.ts
   - src/models/components/preferencechannels.ts
   - src/models/components/providersidenum.ts
@@ -463,6 +472,8 @@ generatedFiles:
   - src/models/components/triggereventresponsedto.ts
   - src/models/components/triggereventtoallrequestdto.ts
   - src/models/components/triggerrecipientstypeenum.ts
+  - src/models/components/triggerreservedvariableresponse.ts
+  - src/models/components/triggertypeenum.ts
   - src/models/components/unseencountresponse.ts
   - src/models/components/updatedsubscriberdto.ts
   - src/models/components/updateintegrationrequestdto.ts
@@ -971,7 +982,7 @@ examples:
         query: {}
       responses:
         "200":
-          application/json: [{"template": {"_id": "<id>", "name": "<value>", "critical": false, "triggers": ["<value>", "<value>"]}, "preference": {"enabled": false}}, {"template": {"_id": "<id>", "name": "<value>", "critical": false, "triggers": ["<value>"]}, "preference": {"enabled": true}}]
+          application/json: [{"template": {"_id": "<id>", "name": "<value>", "critical": false, "triggers": [{"type": "event", "identifier": "<value>", "variables": [{"name": "<value>"}, {"name": "<value>"}, {"name": "<value>"}]}, {"type": "event", "identifier": "<value>", "variables": [{"name": "<value>"}, {"name": "<value>"}]}]}, "preference": {"enabled": false}}, {"template": {"_id": "<id>", "name": "<value>", "critical": false, "triggers": [{"type": "event", "identifier": "<value>", "variables": [{"name": "<value>"}, {"name": "<value>"}]}]}, "preference": {"enabled": true}}]
         "400":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found."}
         "404":
@@ -1002,7 +1013,7 @@ examples:
           parameter: "exampleValue"
       responses:
         "200":
-          application/json: {"template": {"_id": "<id>", "name": "<value>", "critical": false, "triggers": ["<value>", "<value>"]}, "preference": {"enabled": true}}
+          application/json: {"template": {"_id": "<id>", "name": "<value>", "critical": false, "triggers": [{"type": "event", "identifier": "<value>", "variables": [{"name": "<value>"}, {"name": "<value>"}, {"name": "<value>"}]}, {"type": "event", "identifier": "<value>", "variables": [{"name": "<value>"}, {"name": "<value>"}]}]}, "preference": {"enabled": true}}
         "400":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found."}
         "404":
@@ -1088,7 +1099,7 @@ examples:
           subscriberId: "<id>"
       responses:
         "200":
-          application/json: {"template": {"_id": "<id>", "name": "<value>", "critical": true, "triggers": ["<value>"]}, "preference": {"enabled": true}}
+          application/json: {"template": {"_id": "<id>", "name": "<value>", "critical": true, "triggers": [{"type": "event", "identifier": "<value>", "variables": [{"name": "<value>"}]}]}, "preference": {"enabled": true}}
         "400":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found."}
         "404":

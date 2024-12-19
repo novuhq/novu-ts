@@ -7,6 +7,12 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+import {
+  NotificationTriggerResponse,
+  NotificationTriggerResponse$inboundSchema,
+  NotificationTriggerResponse$Outbound,
+  NotificationTriggerResponse$outboundSchema,
+} from "./notificationtriggerresponse.js";
 
 export type TemplateResponse = {
   /**
@@ -24,7 +30,7 @@ export type TemplateResponse = {
   /**
    * Triggers are the events that will trigger the workflow.
    */
-  triggers: Array<string>;
+  triggers: Array<NotificationTriggerResponse>;
 };
 
 /** @internal */
@@ -36,7 +42,7 @@ export const TemplateResponse$inboundSchema: z.ZodType<
   _id: z.string(),
   name: z.string(),
   critical: z.boolean(),
-  triggers: z.array(z.string()),
+  triggers: z.array(NotificationTriggerResponse$inboundSchema),
 }).transform((v) => {
   return remap$(v, {
     "_id": "id",
@@ -48,7 +54,7 @@ export type TemplateResponse$Outbound = {
   _id: string;
   name: string;
   critical: boolean;
-  triggers: Array<string>;
+  triggers: Array<NotificationTriggerResponse$Outbound>;
 };
 
 /** @internal */
@@ -60,7 +66,7 @@ export const TemplateResponse$outboundSchema: z.ZodType<
   id: z.string(),
   name: z.string(),
   critical: z.boolean(),
-  triggers: z.array(z.string()),
+  triggers: z.array(NotificationTriggerResponse$outboundSchema),
 }).transform((v) => {
   return remap$(v, {
     id: "_id",
