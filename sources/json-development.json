@@ -9480,13 +9480,17 @@
         ],
         "responses": {
           "200": {
+            "description": "Returns plain text response.",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
             "headers": {
               "Content-Type": {
-                "description": "content-type",
-                "schema": {
-                  "type": "string",
-                  "example": "text/html; charset=UTF-8"
-                }
+                "$ref": "#/components/headers/Content-Type"
               },
               "RateLimit-Limit": {
                 "$ref": "#/components/headers/RateLimit-Limit"
@@ -9505,21 +9509,6 @@
               },
               "Idempotency-Replay": {
                 "$ref": "#/components/headers/Idempotency-Replay"
-              },
-              "Content-Security-Policy": {
-                "description": "security policy",
-                "schema": {
-                  "type": "string",
-                  "example": "default-src 'self'; script-src 'self' 'unsafe-inline'"
-                }
-              }
-            },
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "string"
-                }
               }
             }
           },
@@ -16375,6 +16364,10 @@
         "required": [
           "status"
         ]
+      },
+      "String": {
+        "type": "object",
+        "properties": {}
       },
       "DeleteMessageResponseDto": {
         "type": "object",

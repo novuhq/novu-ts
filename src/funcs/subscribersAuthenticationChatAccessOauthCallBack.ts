@@ -22,13 +22,20 @@ import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import * as operations from "../models/operations/index.js";
 import { Result } from "../types/fp.js";
 
+export enum ChatAccessOauthCallBackAcceptEnum {
+  applicationJson = "application/json",
+  textHtml = "text/html",
+}
+
 /**
  * Handle providers oauth redirect
  */
 export async function subscribersAuthenticationChatAccessOauthCallBack(
   client: NovuCore,
   request: operations.SubscribersControllerChatOauthCallbackRequest,
-  options?: RequestOptions,
+  options?: RequestOptions & {
+    acceptHeaderOverride?: ChatAccessOauthCallBackAcceptEnum;
+  },
 ): Promise<
   Result<
     operations.SubscribersControllerChatOauthCallbackResponse,
@@ -79,7 +86,8 @@ export async function subscribersAuthenticationChatAccessOauthCallBack(
   });
 
   const headers = new Headers({
-    Accept: "application/json",
+    Accept: options?.acceptHeaderOverride
+      || "application/json;q=1, text/html;q=0",
   });
 
   const secConfig = await extractSecurity(client._options.apiKey);
@@ -151,10 +159,10 @@ export async function subscribersAuthenticationChatAccessOauthCallBack(
     | RequestTimeoutError
     | ConnectionError
   >(
-    M.json(
+    M.text(
       200,
       operations.SubscribersControllerChatOauthCallbackResponse$inboundSchema,
-      { hdrs: true, key: "Result" },
+      { ctype: "text/html", hdrs: true, key: "Result" },
     ),
     M.json(
       302,
