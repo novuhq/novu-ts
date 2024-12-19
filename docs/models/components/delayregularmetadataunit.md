@@ -5,7 +5,7 @@
 ```typescript
 import { DelayRegularMetadataUnit } from "@novu/api/models/components";
 
-let value: DelayRegularMetadataUnit = "minutes";
+let value: DelayRegularMetadataUnit = "hours";
 ```
 
 ## Values

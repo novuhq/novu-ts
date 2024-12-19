@@ -19,6 +19,11 @@ import {
   ActivityNotificationStepResponseDto$Outbound,
   ActivityNotificationStepResponseDto$outboundSchema,
 } from "./activitynotificationstepresponsedto.js";
+import {
+  ProvidersIdEnum,
+  ProvidersIdEnum$inboundSchema,
+  ProvidersIdEnum$outboundSchema,
+} from "./providersidenum.js";
 
 /**
  * Optional digest for the job
@@ -58,7 +63,7 @@ export type ActivityNotificationJobResponseDto = {
   /**
    * Provider ID of the job
    */
-  providerId: number;
+  providerId: ProvidersIdEnum;
   /**
    * Status of the job
    */
@@ -161,7 +166,7 @@ export const ActivityNotificationJobResponseDto$inboundSchema: z.ZodType<
   ),
   step: ActivityNotificationStepResponseDto$inboundSchema,
   payload: z.lazy(() => Payload$inboundSchema).optional(),
-  providerId: z.number(),
+  providerId: ProvidersIdEnum$inboundSchema,
   status: z.string(),
 }).transform((v) => {
   return remap$(v, {
@@ -179,7 +184,7 @@ export type ActivityNotificationJobResponseDto$Outbound = {
   >;
   step: ActivityNotificationStepResponseDto$Outbound;
   payload?: Payload$Outbound | undefined;
-  providerId: number;
+  providerId: string;
   status: string;
 };
 
@@ -197,7 +202,7 @@ export const ActivityNotificationJobResponseDto$outboundSchema: z.ZodType<
   ),
   step: ActivityNotificationStepResponseDto$outboundSchema,
   payload: z.lazy(() => Payload$outboundSchema).optional(),
-  providerId: z.number(),
+  providerId: ProvidersIdEnum$outboundSchema,
   status: z.string(),
 }).transform((v) => {
   return remap$(v, {

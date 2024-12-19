@@ -65,6 +65,7 @@ export * from "./notificationtrigger.js";
 export * from "./notificationtriggervariable.js";
 export * from "./preference.js";
 export * from "./preferencechannels.js";
+export * from "./providersidenum.js";
 export * from "./removesubscribersrequestdto.js";
 export * from "./renametopicrequestdto.js";
 export * from "./renametopicresponsedto.js";

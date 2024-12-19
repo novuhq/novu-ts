@@ -16,16 +16,18 @@ let value: ActivityNotificationJobResponseDto = {
       detail: "<value>",
       isRetry: false,
       isTest: false,
-      providerId: 1965.82,
+      providerId: "mailersend",
       source: "Internal",
     },
   ],
   step: {
     id: "<id>",
     active: false,
-    filters: {},
+    filters: [
+      {},
+    ],
   },
-  providerId: 8209.93,
+  providerId: "push-webhook",
   status: "<value>",
 };
 ```
@@ -40,5 +42,5 @@ let value: ActivityNotificationJobResponseDto = {
 | `executionDetails`                                                                                                                       | [components.ActivityNotificationExecutionDetailResponseDto](../../models/components/activitynotificationexecutiondetailresponsedto.md)[] | :heavy_check_mark:                                                                                                                       | Execution details of the job                                                                                                             |
 | `step`                                                                                                                                   | [components.ActivityNotificationStepResponseDto](../../models/components/activitynotificationstepresponsedto.md)                         | :heavy_check_mark:                                                                                                                       | Step details of the job                                                                                                                  |
 | `payload`                                                                                                                                | [components.Payload](../../models/components/payload.md)                                                                                 | :heavy_minus_sign:                                                                                                                       | Optional payload for the job                                                                                                             |
-| `providerId`                                                                                                                             | *number*                                                                                                                                 | :heavy_check_mark:                                                                                                                       | Provider ID of the job                                                                                                                   |
+| `providerId`                                                                                                                             | [components.ProvidersIdEnum](../../models/components/providersidenum.md)                                                                 | :heavy_check_mark:                                                                                                                       | Provider ID of the job                                                                                                                   |
 | `status`                                                                                                                                 | *string*                                                                                                                                 | :heavy_check_mark:                                                                                                                       | Status of the job                                                                                                                        |

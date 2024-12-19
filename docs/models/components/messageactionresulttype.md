@@ -5,7 +5,7 @@
 ```typescript
 import { MessageActionResultType } from "@novu/api/models/components";
 
-let value: MessageActionResultType = "secondary";
+let value: MessageActionResultType = "primary";
 ```
 
 ## Values

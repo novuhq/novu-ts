@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 6bff3a53-3f0b-40b4-942f-ff70dc583ae5
 management:
-  docChecksum: 838446a9e5c749ec862a43ada4a50f9c
+  docChecksum: e90510d550621b4e7b02b40827acdbb0
   docVersion: "1.0"
   speakeasyVersion: 1.456.1
   generationVersion: 2.481.0
-  releaseVersion: 0.0.1-alpha.129
-  configChecksum: 83e84c46494734a1755097c9c21dd905
+  releaseVersion: 0.0.1-alpha.131
+  configChecksum: 6204c50ddf1671ac5cbfea57ead36d40
   published: true
 features:
   typescript:
@@ -152,6 +152,7 @@ generatedFiles:
   - docs/models/components/preference.md
   - docs/models/components/preferencechannels.md
   - docs/models/components/providerid.md
+  - docs/models/components/providersidenum.md
   - docs/models/components/removesubscribersrequestdto.md
   - docs/models/components/renametopicrequestdto.md
   - docs/models/components/renametopicresponsedto.md
@@ -440,6 +441,7 @@ generatedFiles:
   - src/models/components/notificationtriggervariable.ts
   - src/models/components/preference.ts
   - src/models/components/preferencechannels.ts
+  - src/models/components/providersidenum.ts
   - src/models/components/removesubscribersrequestdto.ts
   - src/models/components/renametopicrequestdto.ts
   - src/models/components/renametopicresponsedto.ts

@@ -32,7 +32,7 @@ export type ActivityNotificationStepResponseDto = {
   /**
    * Filter criteria for the step
    */
-  filters: StepFilter;
+  filters: Array<StepFilter>;
   /**
    * Optional template for the step
    */
@@ -47,7 +47,7 @@ export const ActivityNotificationStepResponseDto$inboundSchema: z.ZodType<
 > = z.object({
   _id: z.string(),
   active: z.boolean(),
-  filters: StepFilter$inboundSchema,
+  filters: z.array(StepFilter$inboundSchema),
   template: MessageTemplateDto$inboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -59,7 +59,7 @@ export const ActivityNotificationStepResponseDto$inboundSchema: z.ZodType<
 export type ActivityNotificationStepResponseDto$Outbound = {
   _id: string;
   active: boolean;
-  filters: StepFilter$Outbound;
+  filters: Array<StepFilter$Outbound>;
   template?: MessageTemplateDto$Outbound | undefined;
 };
 
@@ -71,7 +71,7 @@ export const ActivityNotificationStepResponseDto$outboundSchema: z.ZodType<
 > = z.object({
   id: z.string(),
   active: z.boolean(),
-  filters: StepFilter$outboundSchema,
+  filters: z.array(StepFilter$outboundSchema),
   template: MessageTemplateDto$outboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {

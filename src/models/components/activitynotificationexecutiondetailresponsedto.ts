@@ -8,6 +8,11 @@ import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+import {
+  ProvidersIdEnum,
+  ProvidersIdEnum$inboundSchema,
+  ProvidersIdEnum$outboundSchema,
+} from "./providersidenum.js";
 
 /**
  * Status of the execution detail
@@ -69,7 +74,7 @@ export type ActivityNotificationExecutionDetailResponseDto = {
   /**
    * Provider ID of the job
    */
-  providerId: number;
+  providerId: ProvidersIdEnum;
   /**
    * Raw data of the execution
    */
@@ -135,7 +140,7 @@ export const ActivityNotificationExecutionDetailResponseDto$inboundSchema:
     detail: z.string(),
     isRetry: z.boolean(),
     isTest: z.boolean(),
-    providerId: z.number(),
+    providerId: ProvidersIdEnum$inboundSchema,
     raw: z.string().optional(),
     source: Source$inboundSchema,
   }).transform((v) => {
@@ -153,7 +158,7 @@ export type ActivityNotificationExecutionDetailResponseDto$Outbound = {
   detail: string;
   isRetry: boolean;
   isTest: boolean;
-  providerId: number;
+  providerId: string;
   raw?: string | undefined;
   source: string;
 };
@@ -171,7 +176,7 @@ export const ActivityNotificationExecutionDetailResponseDto$outboundSchema:
     detail: z.string(),
     isRetry: z.boolean(),
     isTest: z.boolean(),
-    providerId: z.number(),
+    providerId: ProvidersIdEnum$outboundSchema,
     raw: z.string().optional(),
     source: Source$outboundSchema,
   }).transform((v) => {
