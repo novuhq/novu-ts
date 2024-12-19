@@ -136,7 +136,7 @@ export async function subscribersCreateBulk(
     | ConnectionError
   >(
     M.json(
-      200,
+      201,
       operations
         .SubscribersControllerBulkCreateSubscribersResponse$inboundSchema,
       { hdrs: true, key: "Result" },

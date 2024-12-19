@@ -5518,8 +5518,8 @@
           }
         },
         "responses": {
-          "200": {
-            "description": "OK",
+          "201": {
+            "description": "Created",
             "headers": {
               "Content-Type": {
                 "$ref": "#/components/headers/Content-Type"
