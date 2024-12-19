@@ -19,7 +19,8 @@ export class NovuCustomHook
 
     async afterSuccess(_hookCtx: AfterSuccessContext, response: Response): Promise<Response> {
         const responseAsText = await response.clone().text();
-        if (!responseAsText || responseAsText =='') {
+        let contentType = response.headers.get('content-type') || '';
+        if (!responseAsText || responseAsText =='' || contentType.includes('text/html')) {
             return response;
         }
         const jsonResponse = await response.clone().json();
