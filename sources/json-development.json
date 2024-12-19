@@ -12382,6 +12382,10 @@
           },
           "409": {
             "description": "The topic you are trying to delete has subscribers assigned to it. Delete the subscribers before deleting the topic.",
+            "schema": {
+              "type": "string",
+              "example": "Request with key 3909d656-d4fe-4e80-ba86-90d3861afcd7 is currently being processed. Please retry after 1 second"
+            },
             "headers": {
               "Content-Type": {
                 "$ref": "#/components/headers/Content-Type"
@@ -12408,8 +12412,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string",
-                  "example": "Request with key 3909d656-d4fe-4e80-ba86-90d3861afcd7 is currently being processed. Please retry after 1 second"
+                  "$ref": "#/components/schemas/ErrorDto"
                 }
               }
             }
