@@ -158,9 +158,7 @@ export class Subscribers extends ClientSDK {
   async createBulk(
     request: components.BulkSubscriberCreateDto,
     options?: RequestOptions,
-  ): Promise<
-    operations.SubscribersControllerBulkCreateSubscribersResponse | undefined
-  > {
+  ): Promise<operations.SubscribersControllerBulkCreateSubscribersResponse> {
     return unwrapAsync(subscribersCreateBulk(
       this,
       request,

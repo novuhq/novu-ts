@@ -415,7 +415,10 @@ const novu = new Novu({
 async function run() {
   const result = await novu.subscribers.createBulk({
     subscribers: [
-      "<value>",
+      {
+        subscriberId: "<id>",
+        email: "example@example.com",
+      },
     ],
   });
 
@@ -443,7 +446,10 @@ const novu = new NovuCore({
 async function run() {
   const res = await subscribersCreateBulk(novu, {
     subscribers: [
-      "<value>",
+      {
+        subscriberId: "<id>",
+        email: "example@example.com",
+      },
     ],
   });
 

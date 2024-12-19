@@ -6,12 +6,18 @@ import * as z from "zod";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+import {
+  CreateSubscriberRequestDto,
+  CreateSubscriberRequestDto$inboundSchema,
+  CreateSubscriberRequestDto$Outbound,
+  CreateSubscriberRequestDto$outboundSchema,
+} from "./createsubscriberrequestdto.js";
 
 export type BulkSubscriberCreateDto = {
   /**
    * An array of subscribers to be created in bulk.
    */
-  subscribers: Array<string>;
+  subscribers: Array<CreateSubscriberRequestDto>;
 };
 
 /** @internal */
@@ -20,12 +26,12 @@ export const BulkSubscriberCreateDto$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  subscribers: z.array(z.string()),
+  subscribers: z.array(CreateSubscriberRequestDto$inboundSchema),
 });
 
 /** @internal */
 export type BulkSubscriberCreateDto$Outbound = {
-  subscribers: Array<string>;
+  subscribers: Array<CreateSubscriberRequestDto$Outbound>;
 };
 
 /** @internal */
@@ -34,7 +40,7 @@ export const BulkSubscriberCreateDto$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   BulkSubscriberCreateDto
 > = z.object({
-  subscribers: z.array(z.string()),
+  subscribers: z.array(CreateSubscriberRequestDto$outboundSchema),
 });
 
 /**

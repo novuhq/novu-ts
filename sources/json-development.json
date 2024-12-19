@@ -5518,8 +5518,38 @@
           }
         },
         "responses": {
-          "201": {
-            "description": ""
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BulkCreateSubscriberResponseDto"
+                }
+              }
+            }
           },
           "400": {
             "description": "Bad Request",
@@ -14907,14 +14937,88 @@
           "subscriberId"
         ]
       },
+      "UpdatedSubscriberDto": {
+        "type": "object",
+        "properties": {
+          "subscriberId": {
+            "type": "string",
+            "description": "The ID of the subscriber that was updated."
+          }
+        },
+        "required": [
+          "subscriberId"
+        ]
+      },
+      "CreatedSubscriberDto": {
+        "type": "object",
+        "properties": {
+          "subscriberId": {
+            "type": "string",
+            "description": "The ID of the subscriber that was created."
+          }
+        },
+        "required": [
+          "subscriberId"
+        ]
+      },
+      "FailedOperationDto": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "The error message associated with the failed operation."
+          },
+          "subscriberId": {
+            "type": "string",
+            "description": "The subscriber ID associated with the failed operation. This field is optional."
+          }
+        }
+      },
+      "BulkCreateSubscriberResponseDto": {
+        "type": "object",
+        "properties": {
+          "updated": {
+            "description": "An array of subscribers that were successfully updated.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UpdatedSubscriberDto"
+            }
+          },
+          "created": {
+            "description": "An array of subscribers that were successfully created.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CreatedSubscriberDto"
+            }
+          },
+          "failed": {
+            "description": "An array of failed operations with error messages and optional subscriber IDs.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FailedOperationDto"
+            }
+          }
+        },
+        "required": [
+          "updated",
+          "created",
+          "failed"
+        ]
+      },
       "BulkSubscriberCreateDto": {
         "type": "object",
         "properties": {
           "subscribers": {
             "description": "An array of subscribers to be created in bulk.",
+            "example": [
+              {
+                "email": "example@example.com",
+                "name": "John Doe"
+              }
+            ],
             "type": "array",
             "items": {
-              "type": "string"
+              "$ref": "#/components/schemas/CreateSubscriberRequestDto"
             }
           }
         },

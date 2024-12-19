@@ -37,7 +37,7 @@ export async function subscribersCreateBulk(
   options?: RequestOptions,
 ): Promise<
   Result<
-    operations.SubscribersControllerBulkCreateSubscribersResponse | undefined,
+    operations.SubscribersControllerBulkCreateSubscribersResponse,
     | errors.ErrorDto
     | errors.ValidationErrorDto
     | SDKError
@@ -124,7 +124,7 @@ export async function subscribersCreateBulk(
   };
 
   const [result] = await M.match<
-    operations.SubscribersControllerBulkCreateSubscribersResponse | undefined,
+    operations.SubscribersControllerBulkCreateSubscribersResponse,
     | errors.ErrorDto
     | errors.ValidationErrorDto
     | SDKError
@@ -135,11 +135,11 @@ export async function subscribersCreateBulk(
     | RequestTimeoutError
     | ConnectionError
   >(
-    M.nil(
-      201,
+    M.json(
+      200,
       operations
-        .SubscribersControllerBulkCreateSubscribersResponse$inboundSchema
-        .optional(),
+        .SubscribersControllerBulkCreateSubscribersResponse$inboundSchema,
+      { hdrs: true, key: "Result" },
     ),
     M.jsonErr([400, 404, 409], errors.ErrorDto$inboundSchema, { hdrs: true }),
     M.jsonErr(422, errors.ValidationErrorDto$inboundSchema, { hdrs: true }),

@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 6bff3a53-3f0b-40b4-942f-ff70dc583ae5
 management:
-  docChecksum: 638752126a119d018ef8df6f0469c2d5
+  docChecksum: 16dd020f6df7a2248312d6e6929c5bd8
   docVersion: "1.0"
-  speakeasyVersion: 1.456.0
+  speakeasyVersion: 1.456.1
   generationVersion: 2.481.0
-  releaseVersion: 0.0.1-alpha.126
-  configChecksum: 321610cbe190b4daaf2a167aaf872e83
+  releaseVersion: 0.0.1-alpha.128
+  configChecksum: 81be7c124849006891a1ec2be722fec7
   published: true
 features:
   typescript:
@@ -56,6 +56,7 @@ generatedFiles:
   - docs/models/components/addsubscribersrequestdto.md
   - docs/models/components/assignsubscribertotopicdto.md
   - docs/models/components/backoffunit.md
+  - docs/models/components/bulkcreatesubscriberresponsedto.md
   - docs/models/components/bulksubscribercreatedto.md
   - docs/models/components/bulktriggereventdto.md
   - docs/models/components/channel.md
@@ -68,6 +69,7 @@ generatedFiles:
   - docs/models/components/channelsettingsproviderid.md
   - docs/models/components/channeltypeenum.md
   - docs/models/components/content.md
+  - docs/models/components/createdsubscriberdto.md
   - docs/models/components/createintegrationrequestdto.md
   - docs/models/components/createintegrationrequestdtochannel.md
   - docs/models/components/createsubscriberrequestdto.md
@@ -96,6 +98,7 @@ generatedFiles:
   - docs/models/components/emailblockstyles.md
   - docs/models/components/emailblocktype.md
   - docs/models/components/failedassignmentsdto.md
+  - docs/models/components/failedoperationdto.md
   - docs/models/components/feedid.md
   - docs/models/components/feedidentifier.md
   - docs/models/components/feedresponsedto.md
@@ -182,6 +185,7 @@ generatedFiles:
   - docs/models/components/type.md
   - docs/models/components/unit.md
   - docs/models/components/unseencountresponse.md
+  - docs/models/components/updatedsubscriberdto.md
   - docs/models/components/updateintegrationrequestdto.md
   - docs/models/components/updatesubscriberchannelrequestdto.md
   - docs/models/components/updatesubscriberchannelrequestdtoproviderid.md
@@ -385,6 +389,7 @@ generatedFiles:
   - src/models/components/actortypeenum.ts
   - src/models/components/addsubscribersrequestdto.ts
   - src/models/components/assignsubscribertotopicdto.ts
+  - src/models/components/bulkcreatesubscriberresponsedto.ts
   - src/models/components/bulksubscribercreatedto.ts
   - src/models/components/bulktriggereventdto.ts
   - src/models/components/channelcredentials.ts
@@ -392,6 +397,7 @@ generatedFiles:
   - src/models/components/channelpreference.ts
   - src/models/components/channelsettings.ts
   - src/models/components/channeltypeenum.ts
+  - src/models/components/createdsubscriberdto.ts
   - src/models/components/createintegrationrequestdto.ts
   - src/models/components/createsubscriberrequestdto.ts
   - src/models/components/createtopicrequestdto.ts
@@ -407,6 +413,7 @@ generatedFiles:
   - src/models/components/emailblock.ts
   - src/models/components/emailblockstyles.ts
   - src/models/components/failedassignmentsdto.ts
+  - src/models/components/failedoperationdto.ts
   - src/models/components/feedresponsedto.ts
   - src/models/components/filtertopicsresponsedto.ts
   - src/models/components/getsubscriberpreferencesresponsedto.ts
@@ -453,6 +460,7 @@ generatedFiles:
   - src/models/components/triggereventtoallrequestdto.ts
   - src/models/components/triggerrecipientstypeenum.ts
   - src/models/components/unseencountresponse.ts
+  - src/models/components/updatedsubscriberdto.ts
   - src/models/components/updateintegrationrequestdto.ts
   - src/models/components/updatesubscriberchannelrequestdto.ts
   - src/models/components/updatesubscriberglobalpreferencesrequestdto.ts
@@ -876,14 +884,14 @@ examples:
   SubscribersController_bulkCreateSubscribers:
     speakeasy-default-subscribers-controller-bulk-create-subscribers:
       requestBody:
-        application/json: {"subscribers": ["<value>"]}
+        application/json: {"subscribers": [{"subscriberId": "<id>", "email": "example@example.com"}]}
       responses:
         "400":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found."}
         "404":
           application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
         "200":
-          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123", "errors": {"fieldName1": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName2": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName3": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName4": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}}}
+          application/json: {"updated": [{"subscriberId": "<id>"}], "created": [{"subscriberId": "<id>"}, {"subscriberId": "<id>"}, {"subscriberId": "<id>"}]}
         "422":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123", "errors": {"fieldName1": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName2": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName3": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName4": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}}}
   SubscribersController_updateSubscriberChannel:
