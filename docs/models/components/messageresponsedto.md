@@ -15,13 +15,13 @@ let value: MessageResponseDto = {
   createdAt: "<value>",
   content: "<value>",
   transactionId: "<id>",
-  channel: "sms",
+  channel: "chat",
   read: false,
   seen: false,
   cta: {
     data: {},
   },
-  status: "warning",
+  status: "error",
 };
 ```
 

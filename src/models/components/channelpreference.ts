@@ -4,30 +4,19 @@
 
 import * as z from "zod";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-
-/**
- * The type of channel that is enabled or not
- */
-export const ChannelPreferenceType = {
-  InApp: "in_app",
-  Email: "email",
-  Sms: "sms",
-  Chat: "chat",
-  Push: "push",
-} as const;
-/**
- * The type of channel that is enabled or not
- */
-export type ChannelPreferenceType = ClosedEnum<typeof ChannelPreferenceType>;
+import {
+  ChannelTypeEnum,
+  ChannelTypeEnum$inboundSchema,
+  ChannelTypeEnum$outboundSchema,
+} from "./channeltypeenum.js";
 
 export type ChannelPreference = {
   /**
-   * The type of channel that is enabled or not
+   * Channel type through which the message is sent
    */
-  type: ChannelPreferenceType;
+  type: ChannelTypeEnum;
   /**
    * If channel is enabled or not
    */
@@ -35,33 +24,12 @@ export type ChannelPreference = {
 };
 
 /** @internal */
-export const ChannelPreferenceType$inboundSchema: z.ZodNativeEnum<
-  typeof ChannelPreferenceType
-> = z.nativeEnum(ChannelPreferenceType);
-
-/** @internal */
-export const ChannelPreferenceType$outboundSchema: z.ZodNativeEnum<
-  typeof ChannelPreferenceType
-> = ChannelPreferenceType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ChannelPreferenceType$ {
-  /** @deprecated use `ChannelPreferenceType$inboundSchema` instead. */
-  export const inboundSchema = ChannelPreferenceType$inboundSchema;
-  /** @deprecated use `ChannelPreferenceType$outboundSchema` instead. */
-  export const outboundSchema = ChannelPreferenceType$outboundSchema;
-}
-
-/** @internal */
 export const ChannelPreference$inboundSchema: z.ZodType<
   ChannelPreference,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  type: ChannelPreferenceType$inboundSchema,
+  type: ChannelTypeEnum$inboundSchema,
   enabled: z.boolean(),
 });
 
@@ -77,7 +45,7 @@ export const ChannelPreference$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ChannelPreference
 > = z.object({
-  type: ChannelPreferenceType$outboundSchema,
+  type: ChannelTypeEnum$outboundSchema,
   enabled: z.boolean(),
 });
 

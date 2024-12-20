@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 6bff3a53-3f0b-40b4-942f-ff70dc583ae5
 management:
-  docChecksum: cba710e135508061c084776b3a4a1ccf
+  docChecksum: 7b3dfe3f8873dc99e60a2f159cc989b8
   docVersion: "1.0"
   speakeasyVersion: 1.456.1
   generationVersion: 2.481.0
-  releaseVersion: 0.0.1-alpha.145
-  configChecksum: 8eded2f4a278abe6b04a5ff8a5ec72a3
+  releaseVersion: 0.0.1-alpha.146
+  configChecksum: c62cc9d17cb743c0a9d12cac4c7fae1b
   published: true
 features:
   typescript:
@@ -65,7 +65,6 @@ generatedFiles:
   - docs/models/components/channelcredentialsdto.md
   - docs/models/components/channelctatypeenum.md
   - docs/models/components/channelpreference.md
-  - docs/models/components/channelpreferencetype.md
   - docs/models/components/channels.md
   - docs/models/components/channelsettings.md
   - docs/models/components/channelsettingsproviderid.md

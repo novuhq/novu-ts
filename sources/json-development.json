@@ -15345,15 +15345,7 @@
         "type": "object",
         "properties": {
           "type": {
-            "type": "string",
-            "enum": [
-              "in_app",
-              "email",
-              "sms",
-              "chat",
-              "push"
-            ],
-            "description": "The type of channel that is enabled or not"
+            "$ref": "#/components/schemas/ChannelTypeEnum"
           },
           "enabled": {
             "type": "boolean",

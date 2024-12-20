@@ -7,7 +7,7 @@ Status of the message action
 ```typescript
 import { MessageActionStatusEnum } from "@novu/api/models/components";
 
-let value: MessageActionStatusEnum = "pending";
+let value: MessageActionStatusEnum = "done";
 ```
 
 ## Values
