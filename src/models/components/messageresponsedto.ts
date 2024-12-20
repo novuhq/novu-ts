@@ -5,9 +5,13 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+import {
+  ChannelTypeEnum,
+  ChannelTypeEnum$inboundSchema,
+  ChannelTypeEnum$outboundSchema,
+} from "./channeltypeenum.js";
 import {
   EmailBlock,
   EmailBlock$inboundSchema,
@@ -21,6 +25,11 @@ import {
   MessageCTA$outboundSchema,
 } from "./messagecta.js";
 import {
+  MessageStatusEnum,
+  MessageStatusEnum$inboundSchema,
+  MessageStatusEnum$outboundSchema,
+} from "./messagestatusenum.js";
+import {
   SubscriberResponseDto,
   SubscriberResponseDto$inboundSchema,
   SubscriberResponseDto$Outbound,
@@ -33,29 +42,10 @@ import {
   WorkflowResponse$outboundSchema,
 } from "./workflowresponse.js";
 
+/**
+ * Content of the message, can be an email block or a string
+ */
 export type Content = EmailBlock | string;
-
-export const MessageResponseDtoChannel = {
-  InApp: "in_app",
-  Email: "email",
-  Sms: "sms",
-  Chat: "chat",
-  Push: "push",
-} as const;
-export type MessageResponseDtoChannel = ClosedEnum<
-  typeof MessageResponseDtoChannel
->;
-
-export type FeedId = {};
-
-export const MessageResponseDtoStatus = {
-  Sent: "sent",
-  Error: "error",
-  Warning: "warning",
-} as const;
-export type MessageResponseDtoStatus = ClosedEnum<
-  typeof MessageResponseDtoStatus
->;
 
 /**
  * The payload that was used to send the notification trigger
@@ -68,44 +58,134 @@ export type MessageResponseDtoPayload = {};
 export type MessageResponseDtoOverrides = {};
 
 export type MessageResponseDto = {
+  /**
+   * Unique identifier for the message
+   */
   id?: string | undefined;
+  /**
+   * Template ID associated with the message
+   */
   templateId: string;
+  /**
+   * Environment ID where the message is sent
+   */
   environmentId: string;
+  /**
+   * Message template ID
+   */
   messageTemplateId: string;
+  /**
+   * Organization ID associated with the message
+   */
   organizationId: string;
+  /**
+   * Notification ID associated with the message
+   */
   notificationId: string;
+  /**
+   * Subscriber ID associated with the message
+   */
   subscriberId: string;
+  /**
+   * Subscriber details, if available
+   */
   subscriber?: SubscriberResponseDto | undefined;
+  /**
+   * Workflow template associated with the message
+   */
   template?: WorkflowResponse | undefined;
+  /**
+   * Identifier for the message template
+   */
   templateIdentifier?: string | undefined;
+  /**
+   * Creation date of the message
+   */
   createdAt: string;
+  /**
+   * Last seen date of the message, if available
+   */
   lastSeenDate?: string | undefined;
+  /**
+   * Last read date of the message, if available
+   */
   lastReadDate?: string | undefined;
+  /**
+   * Content of the message, can be an email block or a string
+   */
   content: EmailBlock | string;
+  /**
+   * Transaction ID associated with the message
+   */
   transactionId: string;
+  /**
+   * Subject of the message, if applicable
+   */
   subject?: string | undefined;
-  channel: MessageResponseDtoChannel;
+  /**
+   * Channel type through which the message is sent
+   */
+  channel: ChannelTypeEnum;
+  /**
+   * Indicates if the message has been read
+   */
   read: boolean;
+  /**
+   * Indicates if the message has been seen
+   */
   seen: boolean;
+  /**
+   * Email address associated with the message, if applicable
+   */
   email?: string | undefined;
+  /**
+   * Phone number associated with the message, if applicable
+   */
   phone?: string | undefined;
+  /**
+   * Direct webhook URL for the message, if applicable
+   */
   directWebhookUrl?: string | undefined;
+  /**
+   * Provider ID associated with the message, if applicable
+   */
   providerId?: string | undefined;
+  /**
+   * Device tokens associated with the message, if applicable
+   */
   deviceTokens?: Array<string> | undefined;
+  /**
+   * Title of the message, if applicable
+   */
   title?: string | undefined;
+  /**
+   * Call to action associated with the message
+   */
   cta: MessageCTA;
-  feedId?: FeedId | null | undefined;
-  status: MessageResponseDtoStatus;
-  errorId: string;
-  errorText: string;
+  /**
+   * Feed ID associated with the message, if applicable
+   */
+  feedId?: string | null | undefined;
+  /**
+   * Status of the message
+   */
+  status: MessageStatusEnum;
+  /**
+   * Error ID if the message has an error
+   */
+  errorId?: string | undefined;
+  /**
+   * Error text if the message has an error
+   */
+  errorText?: string | undefined;
   /**
    * The payload that was used to send the notification trigger
    */
-  payload: MessageResponseDtoPayload;
+  payload?: MessageResponseDtoPayload | undefined;
   /**
    * Provider specific overrides used when triggering the notification
    */
-  overrides: MessageResponseDtoOverrides;
+  overrides?: MessageResponseDtoOverrides | undefined;
 };
 
 /** @internal */
@@ -147,89 +227,6 @@ export function contentFromJSON(
     (x) => Content$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'Content' from JSON`,
   );
-}
-
-/** @internal */
-export const MessageResponseDtoChannel$inboundSchema: z.ZodNativeEnum<
-  typeof MessageResponseDtoChannel
-> = z.nativeEnum(MessageResponseDtoChannel);
-
-/** @internal */
-export const MessageResponseDtoChannel$outboundSchema: z.ZodNativeEnum<
-  typeof MessageResponseDtoChannel
-> = MessageResponseDtoChannel$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MessageResponseDtoChannel$ {
-  /** @deprecated use `MessageResponseDtoChannel$inboundSchema` instead. */
-  export const inboundSchema = MessageResponseDtoChannel$inboundSchema;
-  /** @deprecated use `MessageResponseDtoChannel$outboundSchema` instead. */
-  export const outboundSchema = MessageResponseDtoChannel$outboundSchema;
-}
-
-/** @internal */
-export const FeedId$inboundSchema: z.ZodType<FeedId, z.ZodTypeDef, unknown> = z
-  .object({});
-
-/** @internal */
-export type FeedId$Outbound = {};
-
-/** @internal */
-export const FeedId$outboundSchema: z.ZodType<
-  FeedId$Outbound,
-  z.ZodTypeDef,
-  FeedId
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FeedId$ {
-  /** @deprecated use `FeedId$inboundSchema` instead. */
-  export const inboundSchema = FeedId$inboundSchema;
-  /** @deprecated use `FeedId$outboundSchema` instead. */
-  export const outboundSchema = FeedId$outboundSchema;
-  /** @deprecated use `FeedId$Outbound` instead. */
-  export type Outbound = FeedId$Outbound;
-}
-
-export function feedIdToJSON(feedId: FeedId): string {
-  return JSON.stringify(FeedId$outboundSchema.parse(feedId));
-}
-
-export function feedIdFromJSON(
-  jsonString: string,
-): SafeParseResult<FeedId, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => FeedId$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'FeedId' from JSON`,
-  );
-}
-
-/** @internal */
-export const MessageResponseDtoStatus$inboundSchema: z.ZodNativeEnum<
-  typeof MessageResponseDtoStatus
-> = z.nativeEnum(MessageResponseDtoStatus);
-
-/** @internal */
-export const MessageResponseDtoStatus$outboundSchema: z.ZodNativeEnum<
-  typeof MessageResponseDtoStatus
-> = MessageResponseDtoStatus$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MessageResponseDtoStatus$ {
-  /** @deprecated use `MessageResponseDtoStatus$inboundSchema` instead. */
-  export const inboundSchema = MessageResponseDtoStatus$inboundSchema;
-  /** @deprecated use `MessageResponseDtoStatus$outboundSchema` instead. */
-  export const outboundSchema = MessageResponseDtoStatus$outboundSchema;
 }
 
 /** @internal */
@@ -352,7 +349,7 @@ export const MessageResponseDto$inboundSchema: z.ZodType<
   content: z.union([EmailBlock$inboundSchema, z.string()]),
   transactionId: z.string(),
   subject: z.string().optional(),
-  channel: MessageResponseDtoChannel$inboundSchema,
+  channel: ChannelTypeEnum$inboundSchema,
   read: z.boolean(),
   seen: z.boolean(),
   email: z.string().optional(),
@@ -362,12 +359,12 @@ export const MessageResponseDto$inboundSchema: z.ZodType<
   deviceTokens: z.array(z.string()).optional(),
   title: z.string().optional(),
   cta: MessageCTA$inboundSchema,
-  _feedId: z.nullable(z.lazy(() => FeedId$inboundSchema)).optional(),
-  status: MessageResponseDtoStatus$inboundSchema,
-  errorId: z.string(),
-  errorText: z.string(),
-  payload: z.lazy(() => MessageResponseDtoPayload$inboundSchema),
-  overrides: z.lazy(() => MessageResponseDtoOverrides$inboundSchema),
+  _feedId: z.nullable(z.string()).optional(),
+  status: MessageStatusEnum$inboundSchema,
+  errorId: z.string().optional(),
+  errorText: z.string().optional(),
+  payload: z.lazy(() => MessageResponseDtoPayload$inboundSchema).optional(),
+  overrides: z.lazy(() => MessageResponseDtoOverrides$inboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
     "_id": "id",
@@ -409,12 +406,12 @@ export type MessageResponseDto$Outbound = {
   deviceTokens?: Array<string> | undefined;
   title?: string | undefined;
   cta: MessageCTA$Outbound;
-  _feedId?: FeedId$Outbound | null | undefined;
+  _feedId?: string | null | undefined;
   status: string;
-  errorId: string;
-  errorText: string;
-  payload: MessageResponseDtoPayload$Outbound;
-  overrides: MessageResponseDtoOverrides$Outbound;
+  errorId?: string | undefined;
+  errorText?: string | undefined;
+  payload?: MessageResponseDtoPayload$Outbound | undefined;
+  overrides?: MessageResponseDtoOverrides$Outbound | undefined;
 };
 
 /** @internal */
@@ -439,7 +436,7 @@ export const MessageResponseDto$outboundSchema: z.ZodType<
   content: z.union([EmailBlock$outboundSchema, z.string()]),
   transactionId: z.string(),
   subject: z.string().optional(),
-  channel: MessageResponseDtoChannel$outboundSchema,
+  channel: ChannelTypeEnum$outboundSchema,
   read: z.boolean(),
   seen: z.boolean(),
   email: z.string().optional(),
@@ -449,12 +446,13 @@ export const MessageResponseDto$outboundSchema: z.ZodType<
   deviceTokens: z.array(z.string()).optional(),
   title: z.string().optional(),
   cta: MessageCTA$outboundSchema,
-  feedId: z.nullable(z.lazy(() => FeedId$outboundSchema)).optional(),
-  status: MessageResponseDtoStatus$outboundSchema,
-  errorId: z.string(),
-  errorText: z.string(),
-  payload: z.lazy(() => MessageResponseDtoPayload$outboundSchema),
-  overrides: z.lazy(() => MessageResponseDtoOverrides$outboundSchema),
+  feedId: z.nullable(z.string()).optional(),
+  status: MessageStatusEnum$outboundSchema,
+  errorId: z.string().optional(),
+  errorText: z.string().optional(),
+  payload: z.lazy(() => MessageResponseDtoPayload$outboundSchema).optional(),
+  overrides: z.lazy(() => MessageResponseDtoOverrides$outboundSchema)
+    .optional(),
 }).transform((v) => {
   return remap$(v, {
     id: "_id",

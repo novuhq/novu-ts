@@ -4,7 +4,6 @@
 
 import * as z from "zod";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -14,44 +13,31 @@ import {
   MessageActionResult$outboundSchema,
 } from "./messageactionresult.js";
 import {
+  MessageActionStatusEnum,
+  MessageActionStatusEnum$inboundSchema,
+  MessageActionStatusEnum$outboundSchema,
+} from "./messageactionstatusenum.js";
+import {
   MessageButton,
   MessageButton$inboundSchema,
   MessageButton$Outbound,
   MessageButton$outboundSchema,
 } from "./messagebutton.js";
 
-export const MessageActionStatus = {
-  Pending: "pending",
-  Done: "done",
-} as const;
-export type MessageActionStatus = ClosedEnum<typeof MessageActionStatus>;
-
 export type MessageAction = {
-  status?: MessageActionStatus | undefined;
+  /**
+   * Status of the message action
+   */
+  status?: MessageActionStatusEnum | undefined;
+  /**
+   * List of buttons associated with the message action
+   */
   buttons?: Array<MessageButton> | undefined;
+  /**
+   * Result of the message action
+   */
   result?: MessageActionResult | undefined;
 };
-
-/** @internal */
-export const MessageActionStatus$inboundSchema: z.ZodNativeEnum<
-  typeof MessageActionStatus
-> = z.nativeEnum(MessageActionStatus);
-
-/** @internal */
-export const MessageActionStatus$outboundSchema: z.ZodNativeEnum<
-  typeof MessageActionStatus
-> = MessageActionStatus$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MessageActionStatus$ {
-  /** @deprecated use `MessageActionStatus$inboundSchema` instead. */
-  export const inboundSchema = MessageActionStatus$inboundSchema;
-  /** @deprecated use `MessageActionStatus$outboundSchema` instead. */
-  export const outboundSchema = MessageActionStatus$outboundSchema;
-}
 
 /** @internal */
 export const MessageAction$inboundSchema: z.ZodType<
@@ -59,7 +45,7 @@ export const MessageAction$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  status: MessageActionStatus$inboundSchema.optional(),
+  status: MessageActionStatusEnum$inboundSchema.optional(),
   buttons: z.array(MessageButton$inboundSchema).optional(),
   result: MessageActionResult$inboundSchema.optional(),
 });
@@ -77,7 +63,7 @@ export const MessageAction$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   MessageAction
 > = z.object({
-  status: MessageActionStatus$outboundSchema.optional(),
+  status: MessageActionStatusEnum$outboundSchema.optional(),
   buttons: z.array(MessageButton$outboundSchema).optional(),
   result: MessageActionResult$outboundSchema.optional(),
 });

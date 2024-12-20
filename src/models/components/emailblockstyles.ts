@@ -4,39 +4,20 @@
 
 import * as z from "zod";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-
-export const TextAlign = {
-  Center: "center",
-  Left: "left",
-  Right: "right",
-} as const;
-export type TextAlign = ClosedEnum<typeof TextAlign>;
+import {
+  TextAlignEnum,
+  TextAlignEnum$inboundSchema,
+  TextAlignEnum$outboundSchema,
+} from "./textalignenum.js";
 
 export type EmailBlockStyles = {
-  textAlign: TextAlign;
+  /**
+   * Text alignment for the email block
+   */
+  textAlign: TextAlignEnum;
 };
-
-/** @internal */
-export const TextAlign$inboundSchema: z.ZodNativeEnum<typeof TextAlign> = z
-  .nativeEnum(TextAlign);
-
-/** @internal */
-export const TextAlign$outboundSchema: z.ZodNativeEnum<typeof TextAlign> =
-  TextAlign$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TextAlign$ {
-  /** @deprecated use `TextAlign$inboundSchema` instead. */
-  export const inboundSchema = TextAlign$inboundSchema;
-  /** @deprecated use `TextAlign$outboundSchema` instead. */
-  export const outboundSchema = TextAlign$outboundSchema;
-}
 
 /** @internal */
 export const EmailBlockStyles$inboundSchema: z.ZodType<
@@ -44,7 +25,7 @@ export const EmailBlockStyles$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  textAlign: TextAlign$inboundSchema,
+  textAlign: TextAlignEnum$inboundSchema,
 });
 
 /** @internal */
@@ -58,7 +39,7 @@ export const EmailBlockStyles$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   EmailBlockStyles
 > = z.object({
-  textAlign: TextAlign$outboundSchema,
+  textAlign: TextAlignEnum$outboundSchema,
 });
 
 /**

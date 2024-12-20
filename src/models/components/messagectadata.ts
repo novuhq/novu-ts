@@ -8,6 +8,9 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type MessageCTAData = {
+  /**
+   * URL for the call to action
+   */
   url?: string | undefined;
 };
 

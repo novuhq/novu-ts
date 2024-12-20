@@ -4,7 +4,6 @@
 
 import * as z from "zod";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -13,40 +12,30 @@ import {
   EmailBlockStyles$Outbound,
   EmailBlockStyles$outboundSchema,
 } from "./emailblockstyles.js";
-
-export const EmailBlockType = {
-  Button: "button",
-  Text: "text",
-} as const;
-export type EmailBlockType = ClosedEnum<typeof EmailBlockType>;
+import {
+  EmailBlockTypeEnum,
+  EmailBlockTypeEnum$inboundSchema,
+  EmailBlockTypeEnum$outboundSchema,
+} from "./emailblocktypeenum.js";
 
 export type EmailBlock = {
-  type: EmailBlockType;
+  /**
+   * Type of the email block
+   */
+  type: EmailBlockTypeEnum;
+  /**
+   * Content of the email block
+   */
   content: string;
+  /**
+   * URL associated with the email block, if any
+   */
   url?: string | undefined;
+  /**
+   * Styles applied to the email block
+   */
   styles?: EmailBlockStyles | undefined;
 };
-
-/** @internal */
-export const EmailBlockType$inboundSchema: z.ZodNativeEnum<
-  typeof EmailBlockType
-> = z.nativeEnum(EmailBlockType);
-
-/** @internal */
-export const EmailBlockType$outboundSchema: z.ZodNativeEnum<
-  typeof EmailBlockType
-> = EmailBlockType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EmailBlockType$ {
-  /** @deprecated use `EmailBlockType$inboundSchema` instead. */
-  export const inboundSchema = EmailBlockType$inboundSchema;
-  /** @deprecated use `EmailBlockType$outboundSchema` instead. */
-  export const outboundSchema = EmailBlockType$outboundSchema;
-}
 
 /** @internal */
 export const EmailBlock$inboundSchema: z.ZodType<
@@ -54,7 +43,7 @@ export const EmailBlock$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  type: EmailBlockType$inboundSchema,
+  type: EmailBlockTypeEnum$inboundSchema,
   content: z.string(),
   url: z.string().optional(),
   styles: EmailBlockStyles$inboundSchema.optional(),
@@ -74,7 +63,7 @@ export const EmailBlock$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   EmailBlock
 > = z.object({
-  type: EmailBlockType$outboundSchema,
+  type: EmailBlockTypeEnum$outboundSchema,
   content: z.string(),
   url: z.string().optional(),
   styles: EmailBlockStyles$outboundSchema.optional(),

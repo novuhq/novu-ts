@@ -4,23 +4,28 @@
 
 import * as z from "zod";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+import {
+  ButtonTypeEnum,
+  ButtonTypeEnum$inboundSchema,
+  ButtonTypeEnum$outboundSchema,
+} from "./buttontypeenum.js";
 
+/**
+ * Payload of the action result
+ */
 export type MessageActionResultPayload = {};
 
-export const MessageActionResultType = {
-  Primary: "primary",
-  Secondary: "secondary",
-} as const;
-export type MessageActionResultType = ClosedEnum<
-  typeof MessageActionResultType
->;
-
 export type MessageActionResult = {
+  /**
+   * Payload of the action result
+   */
   payload?: MessageActionResultPayload | undefined;
-  type?: MessageActionResultType | undefined;
+  /**
+   * Type of button for the action result
+   */
+  type?: ButtonTypeEnum | undefined;
 };
 
 /** @internal */
@@ -72,34 +77,13 @@ export function messageActionResultPayloadFromJSON(
 }
 
 /** @internal */
-export const MessageActionResultType$inboundSchema: z.ZodNativeEnum<
-  typeof MessageActionResultType
-> = z.nativeEnum(MessageActionResultType);
-
-/** @internal */
-export const MessageActionResultType$outboundSchema: z.ZodNativeEnum<
-  typeof MessageActionResultType
-> = MessageActionResultType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MessageActionResultType$ {
-  /** @deprecated use `MessageActionResultType$inboundSchema` instead. */
-  export const inboundSchema = MessageActionResultType$inboundSchema;
-  /** @deprecated use `MessageActionResultType$outboundSchema` instead. */
-  export const outboundSchema = MessageActionResultType$outboundSchema;
-}
-
-/** @internal */
 export const MessageActionResult$inboundSchema: z.ZodType<
   MessageActionResult,
   z.ZodTypeDef,
   unknown
 > = z.object({
   payload: z.lazy(() => MessageActionResultPayload$inboundSchema).optional(),
-  type: MessageActionResultType$inboundSchema.optional(),
+  type: ButtonTypeEnum$inboundSchema.optional(),
 });
 
 /** @internal */
@@ -115,7 +99,7 @@ export const MessageActionResult$outboundSchema: z.ZodType<
   MessageActionResult
 > = z.object({
   payload: z.lazy(() => MessageActionResultPayload$outboundSchema).optional(),
-  type: MessageActionResultType$outboundSchema.optional(),
+  type: ButtonTypeEnum$outboundSchema.optional(),
 });
 
 /**

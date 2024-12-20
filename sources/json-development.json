@@ -13845,7 +13845,7 @@
       },
       "ChannelTypeEnum": {
         "type": "string",
-        "description": "The channel through which the notification is sent.",
+        "description": "Channel type through which the message is sent",
         "enum": [
           "in_app",
           "email",
@@ -15414,16 +15414,28 @@
           }
         }
       },
+      "EmailBlockTypeEnum": {
+        "type": "string",
+        "description": "Type of the email block",
+        "enum": [
+          "button",
+          "text"
+        ]
+      },
+      "TextAlignEnum": {
+        "type": "string",
+        "description": "Text alignment for the email block",
+        "enum": [
+          "center",
+          "left",
+          "right"
+        ]
+      },
       "EmailBlockStyles": {
         "type": "object",
         "properties": {
           "textAlign": {
-            "type": "string",
-            "enum": [
-              "center",
-              "left",
-              "right"
-            ]
+            "$ref": "#/components/schemas/TextAlignEnum"
           }
         },
         "required": [
@@ -15434,20 +15446,23 @@
         "type": "object",
         "properties": {
           "type": {
-            "enum": [
-              "button",
-              "text"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/EmailBlockTypeEnum"
           },
           "content": {
-            "type": "string"
+            "type": "string",
+            "description": "Content of the email block"
           },
           "url": {
-            "type": "string"
+            "type": "string",
+            "description": "URL associated with the email block, if any"
           },
           "styles": {
-            "$ref": "#/components/schemas/EmailBlockStyles"
+            "description": "Styles applied to the email block",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EmailBlockStyles"
+              }
+            ]
           }
         },
         "required": [
@@ -15455,29 +15470,51 @@
           "content"
         ]
       },
+      "ChannelCTATypeEnum": {
+        "type": "string",
+        "description": "Type of call to action",
+        "enum": [
+          "redirect"
+        ]
+      },
       "MessageCTAData": {
         "type": "object",
         "properties": {
           "url": {
-            "type": "string"
+            "type": "string",
+            "description": "URL for the call to action"
           }
         }
+      },
+      "MessageActionStatusEnum": {
+        "type": "string",
+        "description": "Status of the message action",
+        "enum": [
+          "pending",
+          "done"
+        ]
+      },
+      "ButtonTypeEnum": {
+        "type": "string",
+        "description": "Type of button for the action result",
+        "enum": [
+          "primary",
+          "secondary"
+        ]
       },
       "MessageButton": {
         "type": "object",
         "properties": {
           "type": {
-            "type": "string",
-            "enum": [
-              "primary",
-              "secondary"
-            ]
+            "$ref": "#/components/schemas/ButtonTypeEnum"
           },
           "content": {
-            "type": "string"
+            "type": "string",
+            "description": "Content of the button"
           },
           "resultContent": {
-            "type": "string"
+            "type": "string",
+            "description": "Content of the result when the button is clicked"
           }
         },
         "required": [
@@ -15489,14 +15526,11 @@
         "type": "object",
         "properties": {
           "payload": {
-            "type": "object"
+            "type": "object",
+            "description": "Payload of the action result"
           },
           "type": {
-            "type": "string",
-            "enum": [
-              "primary",
-              "secondary"
-            ]
+            "$ref": "#/components/schemas/ButtonTypeEnum"
           }
         }
       },
@@ -15504,20 +15538,22 @@
         "type": "object",
         "properties": {
           "status": {
-            "type": "string",
-            "enum": [
-              "pending",
-              "done"
-            ]
+            "$ref": "#/components/schemas/MessageActionStatusEnum"
           },
           "buttons": {
+            "description": "List of buttons associated with the message action",
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/MessageButton"
             }
           },
           "result": {
-            "$ref": "#/components/schemas/MessageActionResult"
+            "description": "Result of the message action",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MessageActionResult"
+              }
+            ]
           }
         }
       },
@@ -15525,16 +15561,23 @@
         "type": "object",
         "properties": {
           "type": {
-            "type": "string",
-            "enum": [
-              "redirect"
-            ]
+            "$ref": "#/components/schemas/ChannelCTATypeEnum"
           },
           "data": {
-            "$ref": "#/components/schemas/MessageCTAData"
+            "description": "Data associated with the call to action",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MessageCTAData"
+              }
+            ]
           },
           "action": {
-            "$ref": "#/components/schemas/MessageAction"
+            "description": "Action associated with the call to action",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MessageAction"
+              }
+            ]
           }
         },
         "required": [
@@ -16266,47 +16309,77 @@
           "deletedBy"
         ]
       },
+      "MessageStatusEnum": {
+        "type": "string",
+        "description": "Status of the message",
+        "enum": [
+          "sent",
+          "error",
+          "warning"
+        ]
+      },
       "MessageResponseDto": {
         "type": "object",
         "properties": {
           "_id": {
-            "type": "string"
+            "type": "string",
+            "description": "Unique identifier for the message"
           },
           "_templateId": {
-            "type": "string"
+            "type": "string",
+            "description": "Template ID associated with the message"
           },
           "_environmentId": {
-            "type": "string"
+            "type": "string",
+            "description": "Environment ID where the message is sent"
           },
           "_messageTemplateId": {
-            "type": "string"
+            "type": "string",
+            "description": "Message template ID"
           },
           "_organizationId": {
-            "type": "string"
+            "type": "string",
+            "description": "Organization ID associated with the message"
           },
           "_notificationId": {
-            "type": "string"
+            "type": "string",
+            "description": "Notification ID associated with the message"
           },
           "_subscriberId": {
-            "type": "string"
+            "type": "string",
+            "description": "Subscriber ID associated with the message"
           },
           "subscriber": {
-            "$ref": "#/components/schemas/SubscriberResponseDto"
+            "description": "Subscriber details, if available",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SubscriberResponseDto"
+              }
+            ]
           },
           "template": {
-            "$ref": "#/components/schemas/WorkflowResponse"
+            "description": "Workflow template associated with the message",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/WorkflowResponse"
+              }
+            ]
           },
           "templateIdentifier": {
-            "type": "string"
+            "type": "string",
+            "description": "Identifier for the message template"
           },
           "createdAt": {
-            "type": "string"
+            "type": "string",
+            "description": "Creation date of the message"
           },
           "lastSeenDate": {
-            "type": "string"
+            "type": "string",
+            "description": "Last seen date of the message, if available"
           },
           "lastReadDate": {
-            "type": "string"
+            "type": "string",
+            "description": "Last read date of the message, if available"
           },
           "content": {
             "oneOf": [
@@ -16314,73 +16387,81 @@
                 "$ref": "#/components/schemas/EmailBlock"
               },
               {
-                "type": "string"
+                "type": "string",
+                "description": "String representation of the content"
               }
-            ]
+            ],
+            "description": "Content of the message, can be an email block or a string"
           },
           "transactionId": {
-            "type": "string"
+            "type": "string",
+            "description": "Transaction ID associated with the message"
           },
           "subject": {
-            "type": "string"
+            "type": "string",
+            "description": "Subject of the message, if applicable"
           },
           "channel": {
-            "enum": [
-              "in_app",
-              "email",
-              "sms",
-              "chat",
-              "push"
-            ],
-            "type": "string"
+            "$ref": "#/components/schemas/ChannelTypeEnum"
           },
           "read": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "Indicates if the message has been read"
           },
           "seen": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "Indicates if the message has been seen"
           },
           "email": {
-            "type": "string"
+            "type": "string",
+            "description": "Email address associated with the message, if applicable"
           },
           "phone": {
-            "type": "string"
+            "type": "string",
+            "description": "Phone number associated with the message, if applicable"
           },
           "directWebhookUrl": {
-            "type": "string"
+            "type": "string",
+            "description": "Direct webhook URL for the message, if applicable"
           },
           "providerId": {
-            "type": "string"
+            "type": "string",
+            "description": "Provider ID associated with the message, if applicable"
           },
           "deviceTokens": {
+            "description": "Device tokens associated with the message, if applicable",
             "type": "array",
             "items": {
               "type": "string"
             }
           },
           "title": {
-            "type": "string"
+            "type": "string",
+            "description": "Title of the message, if applicable"
           },
           "cta": {
-            "$ref": "#/components/schemas/MessageCTA"
-          },
-          "_feedId": {
-            "type": "object",
-            "nullable": true
-          },
-          "status": {
-            "type": "string",
-            "enum": [
-              "sent",
-              "error",
-              "warning"
+            "description": "Call to action associated with the message",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MessageCTA"
+              }
             ]
           },
+          "_feedId": {
+            "type": "string",
+            "nullable": true,
+            "description": "Feed ID associated with the message, if applicable"
+          },
+          "status": {
+            "$ref": "#/components/schemas/MessageStatusEnum"
+          },
           "errorId": {
-            "type": "string"
+            "type": "string",
+            "description": "Error ID if the message has an error"
           },
           "errorText": {
-            "type": "string"
+            "type": "string",
+            "description": "Error text if the message has an error"
           },
           "payload": {
             "type": "object",
@@ -16405,11 +16486,7 @@
           "read",
           "seen",
           "cta",
-          "status",
-          "errorId",
-          "errorText",
-          "payload",
-          "overrides"
+          "status"
         ]
       },
       "MessageMarkAsRequestDto": {

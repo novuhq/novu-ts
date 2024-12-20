@@ -29,10 +29,6 @@ let value: SubscribersControllerMarkMessagesAsResponse = {
         data: {},
       },
       status: "warning",
-      errorId: "<id>",
-      errorText: "<value>",
-      payload: {},
-      overrides: {},
     },
   ],
 };

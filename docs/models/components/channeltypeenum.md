@@ -1,6 +1,6 @@
 # ChannelTypeEnum
 
-The channel through which the notification is sent.
+Channel type through which the message is sent
 
 ## Example Usage
 

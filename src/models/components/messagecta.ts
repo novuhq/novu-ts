@@ -4,9 +4,13 @@
 
 import * as z from "zod";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+import {
+  ChannelCTATypeEnum,
+  ChannelCTATypeEnum$inboundSchema,
+  ChannelCTATypeEnum$outboundSchema,
+} from "./channelctatypeenum.js";
 import {
   MessageAction,
   MessageAction$inboundSchema,
@@ -20,37 +24,20 @@ import {
   MessageCTAData$outboundSchema,
 } from "./messagectadata.js";
 
-export const MessageCTAType = {
-  Redirect: "redirect",
-} as const;
-export type MessageCTAType = ClosedEnum<typeof MessageCTAType>;
-
 export type MessageCTA = {
-  type?: MessageCTAType | undefined;
+  /**
+   * Type of call to action
+   */
+  type?: ChannelCTATypeEnum | undefined;
+  /**
+   * Data associated with the call to action
+   */
   data: MessageCTAData;
+  /**
+   * Action associated with the call to action
+   */
   action?: MessageAction | undefined;
 };
-
-/** @internal */
-export const MessageCTAType$inboundSchema: z.ZodNativeEnum<
-  typeof MessageCTAType
-> = z.nativeEnum(MessageCTAType);
-
-/** @internal */
-export const MessageCTAType$outboundSchema: z.ZodNativeEnum<
-  typeof MessageCTAType
-> = MessageCTAType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MessageCTAType$ {
-  /** @deprecated use `MessageCTAType$inboundSchema` instead. */
-  export const inboundSchema = MessageCTAType$inboundSchema;
-  /** @deprecated use `MessageCTAType$outboundSchema` instead. */
-  export const outboundSchema = MessageCTAType$outboundSchema;
-}
 
 /** @internal */
 export const MessageCTA$inboundSchema: z.ZodType<
@@ -58,7 +45,7 @@ export const MessageCTA$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  type: MessageCTAType$inboundSchema.optional(),
+  type: ChannelCTATypeEnum$inboundSchema.optional(),
   data: MessageCTAData$inboundSchema,
   action: MessageAction$inboundSchema.optional(),
 });
@@ -76,7 +63,7 @@ export const MessageCTA$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   MessageCTA
 > = z.object({
-  type: MessageCTAType$outboundSchema.optional(),
+  type: ChannelCTATypeEnum$outboundSchema.optional(),
   data: MessageCTAData$outboundSchema,
   action: MessageAction$outboundSchema.optional(),
 });

@@ -4,42 +4,28 @@
 
 import * as z from "zod";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-
-export const MessageButtonType = {
-  Primary: "primary",
-  Secondary: "secondary",
-} as const;
-export type MessageButtonType = ClosedEnum<typeof MessageButtonType>;
+import {
+  ButtonTypeEnum,
+  ButtonTypeEnum$inboundSchema,
+  ButtonTypeEnum$outboundSchema,
+} from "./buttontypeenum.js";
 
 export type MessageButton = {
-  type: MessageButtonType;
+  /**
+   * Type of button for the action result
+   */
+  type: ButtonTypeEnum;
+  /**
+   * Content of the button
+   */
   content: string;
+  /**
+   * Content of the result when the button is clicked
+   */
   resultContent?: string | undefined;
 };
-
-/** @internal */
-export const MessageButtonType$inboundSchema: z.ZodNativeEnum<
-  typeof MessageButtonType
-> = z.nativeEnum(MessageButtonType);
-
-/** @internal */
-export const MessageButtonType$outboundSchema: z.ZodNativeEnum<
-  typeof MessageButtonType
-> = MessageButtonType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MessageButtonType$ {
-  /** @deprecated use `MessageButtonType$inboundSchema` instead. */
-  export const inboundSchema = MessageButtonType$inboundSchema;
-  /** @deprecated use `MessageButtonType$outboundSchema` instead. */
-  export const outboundSchema = MessageButtonType$outboundSchema;
-}
 
 /** @internal */
 export const MessageButton$inboundSchema: z.ZodType<
@@ -47,7 +33,7 @@ export const MessageButton$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  type: MessageButtonType$inboundSchema,
+  type: ButtonTypeEnum$inboundSchema,
   content: z.string(),
   resultContent: z.string().optional(),
 });
@@ -65,7 +51,7 @@ export const MessageButton$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   MessageButton
 > = z.object({
-  type: MessageButtonType$outboundSchema,
+  type: ButtonTypeEnum$outboundSchema,
   content: z.string(),
   resultContent: z.string().optional(),
 });

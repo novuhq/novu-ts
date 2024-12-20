@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 6bff3a53-3f0b-40b4-942f-ff70dc583ae5
 management:
-  docChecksum: 81ddd8b7fd43f246d1713a14a3302b37
+  docChecksum: cba710e135508061c084776b3a4a1ccf
   docVersion: "1.0"
   speakeasyVersion: 1.456.1
   generationVersion: 2.481.0
-  releaseVersion: 0.0.1-alpha.144
-  configChecksum: fea77918fed907cf0fb2e1dfae3181d9
+  releaseVersion: 0.0.1-alpha.145
+  configChecksum: 8eded2f4a278abe6b04a5ff8a5ec72a3
   published: true
 features:
   typescript:
@@ -59,9 +59,11 @@ generatedFiles:
   - docs/models/components/bulkcreatesubscriberresponsedto.md
   - docs/models/components/bulksubscribercreatedto.md
   - docs/models/components/bulktriggereventdto.md
+  - docs/models/components/buttontypeenum.md
   - docs/models/components/channel.md
   - docs/models/components/channelcredentials.md
   - docs/models/components/channelcredentialsdto.md
+  - docs/models/components/channelctatypeenum.md
   - docs/models/components/channelpreference.md
   - docs/models/components/channelpreferencetype.md
   - docs/models/components/channels.md
@@ -96,10 +98,9 @@ generatedFiles:
   - docs/models/components/digesttimedmetadataunit.md
   - docs/models/components/emailblock.md
   - docs/models/components/emailblockstyles.md
-  - docs/models/components/emailblocktype.md
+  - docs/models/components/emailblocktypeenum.md
   - docs/models/components/failedassignmentsdto.md
   - docs/models/components/failedoperationdto.md
-  - docs/models/components/feedid.md
   - docs/models/components/feedidentifier.md
   - docs/models/components/feedresponsedto.md
   - docs/models/components/filtertopicsresponsedto.md
@@ -115,20 +116,16 @@ generatedFiles:
   - docs/models/components/messageaction.md
   - docs/models/components/messageactionresult.md
   - docs/models/components/messageactionresultpayload.md
-  - docs/models/components/messageactionresulttype.md
-  - docs/models/components/messageactionstatus.md
+  - docs/models/components/messageactionstatusenum.md
   - docs/models/components/messagebutton.md
-  - docs/models/components/messagebuttontype.md
   - docs/models/components/messagecta.md
   - docs/models/components/messagectadata.md
-  - docs/models/components/messagectatype.md
   - docs/models/components/messageid.md
   - docs/models/components/messagemarkasrequestdto.md
   - docs/models/components/messageresponsedto.md
-  - docs/models/components/messageresponsedtochannel.md
   - docs/models/components/messageresponsedtooverrides.md
   - docs/models/components/messageresponsedtopayload.md
-  - docs/models/components/messageresponsedtostatus.md
+  - docs/models/components/messagestatusenum.md
   - docs/models/components/messagetemplate.md
   - docs/models/components/messagetemplatedto.md
   - docs/models/components/metadata.md
@@ -173,7 +170,7 @@ generatedFiles:
   - docs/models/components/tenant.md
   - docs/models/components/tenantpayloaddto.md
   - docs/models/components/tenantpayloaddtodata.md
-  - docs/models/components/textalign.md
+  - docs/models/components/textalignenum.md
   - docs/models/components/timedconfig.md
   - docs/models/components/tlsoptions.md
   - docs/models/components/to.md
@@ -401,8 +398,10 @@ generatedFiles:
   - src/models/components/bulkcreatesubscriberresponsedto.ts
   - src/models/components/bulksubscribercreatedto.ts
   - src/models/components/bulktriggereventdto.ts
+  - src/models/components/buttontypeenum.ts
   - src/models/components/channelcredentials.ts
   - src/models/components/channelcredentialsdto.ts
+  - src/models/components/channelctatypeenum.ts
   - src/models/components/channelpreference.ts
   - src/models/components/channelsettings.ts
   - src/models/components/channeltypeenum.ts
@@ -421,6 +420,7 @@ generatedFiles:
   - src/models/components/digesttimedmetadata.ts
   - src/models/components/emailblock.ts
   - src/models/components/emailblockstyles.ts
+  - src/models/components/emailblocktypeenum.ts
   - src/models/components/failedassignmentsdto.ts
   - src/models/components/failedoperationdto.ts
   - src/models/components/feedresponsedto.ts
@@ -433,11 +433,13 @@ generatedFiles:
   - src/models/components/markmessageactionasseendto.ts
   - src/models/components/messageaction.ts
   - src/models/components/messageactionresult.ts
+  - src/models/components/messageactionstatusenum.ts
   - src/models/components/messagebutton.ts
   - src/models/components/messagecta.ts
   - src/models/components/messagectadata.ts
   - src/models/components/messagemarkasrequestdto.ts
   - src/models/components/messageresponsedto.ts
+  - src/models/components/messagestatusenum.ts
   - src/models/components/messagetemplate.ts
   - src/models/components/messagetemplatedto.ts
   - src/models/components/notificationfeeditemdto.ts
@@ -463,6 +465,7 @@ generatedFiles:
   - src/models/components/subscriberresponsedto.ts
   - src/models/components/templateresponse.ts
   - src/models/components/tenantpayloaddto.ts
+  - src/models/components/textalignenum.ts
   - src/models/components/timedconfig.ts
   - src/models/components/topicdto.ts
   - src/models/components/topicpayloaddto.ts

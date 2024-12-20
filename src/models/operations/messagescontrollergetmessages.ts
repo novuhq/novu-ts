@@ -11,7 +11,7 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type MessagesControllerGetMessagesRequest = {
   /**
-   * The channel through which the notification is sent.
+   * Channel type through which the message is sent
    */
   channel?: components.ChannelTypeEnum | undefined;
   subscriberId?: string | undefined;

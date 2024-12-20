@@ -28,10 +28,6 @@ let value: SubscribersControllerMarkActionAsSeenResponse = {
       data: {},
     },
     status: "warning",
-    errorId: "<id>",
-    errorText: "<value>",
-    payload: {},
-    overrides: {},
   },
 };
 ```

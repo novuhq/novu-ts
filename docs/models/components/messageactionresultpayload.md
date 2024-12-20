@@ -1,5 +1,7 @@
 # MessageActionResultPayload
 
+Payload of the action result
+
 ## Example Usage
 
 ```typescript
