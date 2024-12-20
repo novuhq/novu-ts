@@ -7199,7 +7199,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/UpdateSubscriberPreferenceResponseDto"
+                  "$ref": "#/components/schemas/UpdateSubscriberPreferenceGlobalResponseDto"
                 }
               }
             }
@@ -15381,6 +15381,22 @@
             "description": "Sets if the workflow is fully enabled for all channels or not for the subscriber."
           }
         }
+      },
+      "UpdateSubscriberPreferenceGlobalResponseDto": {
+        "type": "object",
+        "properties": {
+          "preference": {
+            "description": "The preferences of the subscriber regarding the related workflow",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Preference"
+              }
+            ]
+          }
+        },
+        "required": [
+          "preference"
+        ]
       },
       "UpdateSubscriberGlobalPreferencesRequestDto": {
         "type": "object",

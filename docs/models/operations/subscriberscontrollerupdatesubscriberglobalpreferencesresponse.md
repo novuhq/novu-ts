@@ -12,22 +12,6 @@ let value: SubscribersControllerUpdateSubscriberGlobalPreferencesResponse = {
     ],
   },
   result: {
-    template: {
-      id: "<id>",
-      name: "<value>",
-      critical: false,
-      triggers: [
-        {
-          type: "event",
-          identifier: "<value>",
-          variables: [
-            {
-              name: "<value>",
-            },
-          ],
-        },
-      ],
-    },
     preference: {
       enabled: false,
       channels: {},
@@ -38,7 +22,7 @@ let value: SubscribersControllerUpdateSubscriberGlobalPreferencesResponse = {
 
 ## Fields
 
-| Field                                                                                                                | Type                                                                                                                 | Required                                                                                                             | Description                                                                                                          |
-| -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| `headers`                                                                                                            | Record<string, *string*[]>                                                                                           | :heavy_check_mark:                                                                                                   | N/A                                                                                                                  |
-| `result`                                                                                                             | [components.UpdateSubscriberPreferenceResponseDto](../../models/components/updatesubscriberpreferenceresponsedto.md) | :heavy_check_mark:                                                                                                   | N/A                                                                                                                  |
+| Field                                                                                                                            | Type                                                                                                                             | Required                                                                                                                         | Description                                                                                                                      |
+| -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| `headers`                                                                                                                        | Record<string, *string*[]>                                                                                                       | :heavy_check_mark:                                                                                                               | N/A                                                                                                                              |
+| `result`                                                                                                                         | [components.UpdateSubscriberPreferenceGlobalResponseDto](../../models/components/updatesubscriberpreferenceglobalresponsedto.md) | :heavy_check_mark:                                                                                                               | N/A                                                                                                                              |

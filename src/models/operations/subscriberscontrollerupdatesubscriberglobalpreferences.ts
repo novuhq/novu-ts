@@ -17,7 +17,7 @@ export type SubscribersControllerUpdateSubscriberGlobalPreferencesRequest = {
 
 export type SubscribersControllerUpdateSubscriberGlobalPreferencesResponse = {
   headers: { [k: string]: Array<string> };
-  result: components.UpdateSubscriberPreferenceResponseDto;
+  result: components.UpdateSubscriberPreferenceGlobalResponseDto;
 };
 
 /** @internal */
@@ -111,7 +111,8 @@ export const SubscribersControllerUpdateSubscriberGlobalPreferencesResponse$inbo
     unknown
   > = z.object({
     Headers: z.record(z.array(z.string())),
-    Result: components.UpdateSubscriberPreferenceResponseDto$inboundSchema,
+    Result:
+      components.UpdateSubscriberPreferenceGlobalResponseDto$inboundSchema,
   }).transform((v) => {
     return remap$(v, {
       "Headers": "headers",
@@ -123,7 +124,7 @@ export const SubscribersControllerUpdateSubscriberGlobalPreferencesResponse$inbo
 export type SubscribersControllerUpdateSubscriberGlobalPreferencesResponse$Outbound =
   {
     Headers: { [k: string]: Array<string> };
-    Result: components.UpdateSubscriberPreferenceResponseDto$Outbound;
+    Result: components.UpdateSubscriberPreferenceGlobalResponseDto$Outbound;
   };
 
 /** @internal */
@@ -134,7 +135,8 @@ export const SubscribersControllerUpdateSubscriberGlobalPreferencesResponse$outb
     SubscribersControllerUpdateSubscriberGlobalPreferencesResponse
   > = z.object({
     headers: z.record(z.array(z.string())),
-    result: components.UpdateSubscriberPreferenceResponseDto$outboundSchema,
+    result:
+      components.UpdateSubscriberPreferenceGlobalResponseDto$outboundSchema,
   }).transform((v) => {
     return remap$(v, {
       headers: "Headers",

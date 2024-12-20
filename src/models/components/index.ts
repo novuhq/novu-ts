@@ -95,6 +95,7 @@ export * from "./updateintegrationrequestdto.js";
 export * from "./updatesubscriberchannelrequestdto.js";
 export * from "./updatesubscriberglobalpreferencesrequestdto.js";
 export * from "./updatesubscriberonlineflagrequestdto.js";
+export * from "./updatesubscriberpreferenceglobalresponsedto.js";
 export * from "./updatesubscriberpreferencerequestdto.js";
 export * from "./updatesubscriberpreferenceresponsedto.js";
 export * from "./updatesubscriberrequestdto.js";
