@@ -261,7 +261,24 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.subscribers.update({}, "<id>");
+  const result = await novu.subscribers.update({
+    email: "john.doe@example.com",
+    firstName: "John",
+    lastName: "Doe",
+    phone: "+1234567890",
+    avatar: "https://example.com/avatar.jpg",
+    locale: "en-US",
+    data: {
+      "preferences": {
+        "notifications": true,
+        "theme": "dark",
+      },
+      "tags": [
+        "premium",
+        "newsletter",
+      ],
+    },
+  }, "<id>");
 
   // Handle the result
   console.log(result);
@@ -285,7 +302,24 @@ const novu = new NovuCore({
 });
 
 async function run() {
-  const res = await subscribersUpdate(novu, {}, "<id>");
+  const res = await subscribersUpdate(novu, {
+    email: "john.doe@example.com",
+    firstName: "John",
+    lastName: "Doe",
+    phone: "+1234567890",
+    avatar: "https://example.com/avatar.jpg",
+    locale: "en-US",
+    data: {
+      "preferences": {
+        "notifications": true,
+        "theme": "dark",
+      },
+      "tags": [
+        "premium",
+        "newsletter",
+      ],
+    },
+  }, "<id>");
 
   if (!res.ok) {
     throw res.error;

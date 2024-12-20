@@ -6,69 +6,47 @@ import * as z from "zod";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-
-export type UpdateSubscriberRequestDtoData = {};
+import {
+  SubscriberChannelDto,
+  SubscriberChannelDto$inboundSchema,
+  SubscriberChannelDto$Outbound,
+  SubscriberChannelDto$outboundSchema,
+} from "./subscriberchanneldto.js";
 
 export type UpdateSubscriberRequestDto = {
+  /**
+   * The email address of the subscriber.
+   */
   email?: string | undefined;
+  /**
+   * The first name of the subscriber.
+   */
   firstName?: string | undefined;
+  /**
+   * The last name of the subscriber.
+   */
   lastName?: string | undefined;
+  /**
+   * The phone number of the subscriber.
+   */
   phone?: string | undefined;
+  /**
+   * The avatar URL of the subscriber.
+   */
   avatar?: string | undefined;
+  /**
+   * The locale of the subscriber, for example "en-US".
+   */
   locale?: string | undefined;
-  data?: UpdateSubscriberRequestDtoData | undefined;
-  channels?: Array<string> | undefined;
+  /**
+   * Custom data associated with the subscriber. Can contain any additional properties.
+   */
+  data?: { [k: string]: any } | undefined;
+  /**
+   * An array of communication channels for the subscriber.
+   */
+  channels?: Array<SubscriberChannelDto> | undefined;
 };
-
-/** @internal */
-export const UpdateSubscriberRequestDtoData$inboundSchema: z.ZodType<
-  UpdateSubscriberRequestDtoData,
-  z.ZodTypeDef,
-  unknown
-> = z.object({});
-
-/** @internal */
-export type UpdateSubscriberRequestDtoData$Outbound = {};
-
-/** @internal */
-export const UpdateSubscriberRequestDtoData$outboundSchema: z.ZodType<
-  UpdateSubscriberRequestDtoData$Outbound,
-  z.ZodTypeDef,
-  UpdateSubscriberRequestDtoData
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateSubscriberRequestDtoData$ {
-  /** @deprecated use `UpdateSubscriberRequestDtoData$inboundSchema` instead. */
-  export const inboundSchema = UpdateSubscriberRequestDtoData$inboundSchema;
-  /** @deprecated use `UpdateSubscriberRequestDtoData$outboundSchema` instead. */
-  export const outboundSchema = UpdateSubscriberRequestDtoData$outboundSchema;
-  /** @deprecated use `UpdateSubscriberRequestDtoData$Outbound` instead. */
-  export type Outbound = UpdateSubscriberRequestDtoData$Outbound;
-}
-
-export function updateSubscriberRequestDtoDataToJSON(
-  updateSubscriberRequestDtoData: UpdateSubscriberRequestDtoData,
-): string {
-  return JSON.stringify(
-    UpdateSubscriberRequestDtoData$outboundSchema.parse(
-      updateSubscriberRequestDtoData,
-    ),
-  );
-}
-
-export function updateSubscriberRequestDtoDataFromJSON(
-  jsonString: string,
-): SafeParseResult<UpdateSubscriberRequestDtoData, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => UpdateSubscriberRequestDtoData$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'UpdateSubscriberRequestDtoData' from JSON`,
-  );
-}
 
 /** @internal */
 export const UpdateSubscriberRequestDto$inboundSchema: z.ZodType<
@@ -82,8 +60,8 @@ export const UpdateSubscriberRequestDto$inboundSchema: z.ZodType<
   phone: z.string().optional(),
   avatar: z.string().optional(),
   locale: z.string().optional(),
-  data: z.lazy(() => UpdateSubscriberRequestDtoData$inboundSchema).optional(),
-  channels: z.array(z.string()).optional(),
+  data: z.record(z.any()).optional(),
+  channels: z.array(SubscriberChannelDto$inboundSchema).optional(),
 });
 
 /** @internal */
@@ -94,8 +72,8 @@ export type UpdateSubscriberRequestDto$Outbound = {
   phone?: string | undefined;
   avatar?: string | undefined;
   locale?: string | undefined;
-  data?: UpdateSubscriberRequestDtoData$Outbound | undefined;
-  channels?: Array<string> | undefined;
+  data?: { [k: string]: any } | undefined;
+  channels?: Array<SubscriberChannelDto$Outbound> | undefined;
 };
 
 /** @internal */
@@ -110,8 +88,8 @@ export const UpdateSubscriberRequestDto$outboundSchema: z.ZodType<
   phone: z.string().optional(),
   avatar: z.string().optional(),
   locale: z.string().optional(),
-  data: z.lazy(() => UpdateSubscriberRequestDtoData$outboundSchema).optional(),
-  channels: z.array(z.string()).optional(),
+  data: z.record(z.any()).optional(),
+  channels: z.array(SubscriberChannelDto$outboundSchema).optional(),
 });
 
 /**

@@ -15,11 +15,11 @@ import {
 
 export type UpdateSubscriberPreferenceRequestDto = {
   /**
-   * The subscriber preferences for every ChannelTypeEnum for the workflow assigned.
+   * Optional preferences for each channel type in the assigned workflow.
    */
   channel?: ChannelPreference | undefined;
   /**
-   * Sets if the workflow is fully enabled for all channels or not for the subscriber.
+   * Indicates whether the workflow is fully enabled for all channels for the subscriber.
    */
   enabled?: boolean | undefined;
 };

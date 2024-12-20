@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 6bff3a53-3f0b-40b4-942f-ff70dc583ae5
 management:
-  docChecksum: cb61acfded49d9d7d567537f3d5abae8
+  docChecksum: 0c0d994d5efbbad0b7a6185db3ca9ce6
   docVersion: "1.0"
   speakeasyVersion: 1.456.1
   generationVersion: 2.481.0
-  releaseVersion: 0.0.1-alpha.147
-  configChecksum: df5450f4a859f7206c408ca9947c0e3d
+  releaseVersion: 0.0.1-alpha.148
+  configChecksum: b1cc6f67eb6c8d5aef999729b64ef50d
   published: true
 features:
   typescript:
@@ -198,7 +198,6 @@ generatedFiles:
   - docs/models/components/updatesubscriberpreferencerequestdto.md
   - docs/models/components/updatesubscriberpreferenceresponsedto.md
   - docs/models/components/updatesubscriberrequestdto.md
-  - docs/models/components/updatesubscriberrequestdtodata.md
   - docs/models/components/value.md
   - docs/models/components/weekdays.md
   - docs/models/components/workflowintegrationstatus.md
@@ -875,6 +874,8 @@ examples:
       parameters:
         path:
           subscriberId: "<id>"
+      requestBody:
+        application/json: {"email": "john.doe@example.com", "firstName": "John", "lastName": "Doe", "phone": "+1234567890", "avatar": "https://example.com/avatar.jpg", "locale": "en-US", "data": {"preferences": {"notifications": true, "theme": "dark"}, "tags": ["premium", "newsletter"]}}
       responses:
         "200":
           application/json: {"subscriberId": "<id>", "_organizationId": "<id>", "_environmentId": "<id>", "deleted": false, "createdAt": "<value>", "updatedAt": "<value>"}

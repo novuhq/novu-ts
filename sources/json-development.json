@@ -15033,30 +15033,55 @@
         "type": "object",
         "properties": {
           "email": {
-            "type": "string"
+            "type": "string",
+            "description": "The email address of the subscriber.",
+            "example": "john.doe@example.com"
           },
           "firstName": {
-            "type": "string"
+            "type": "string",
+            "description": "The first name of the subscriber.",
+            "example": "John"
           },
           "lastName": {
-            "type": "string"
+            "type": "string",
+            "description": "The last name of the subscriber.",
+            "example": "Doe"
           },
           "phone": {
-            "type": "string"
+            "type": "string",
+            "description": "The phone number of the subscriber.",
+            "example": "+1234567890"
           },
           "avatar": {
-            "type": "string"
+            "type": "string",
+            "description": "The avatar URL of the subscriber.",
+            "example": "https://example.com/avatar.jpg"
           },
           "locale": {
-            "type": "string"
+            "type": "string",
+            "description": "The locale of the subscriber, for example \"en-US\".",
+            "example": "en-US"
           },
           "data": {
-            "type": "object"
+            "type": "object",
+            "description": "Custom data associated with the subscriber. Can contain any additional properties.",
+            "additionalProperties": true,
+            "example": {
+              "preferences": {
+                "notifications": true,
+                "theme": "dark"
+              },
+              "tags": [
+                "premium",
+                "newsletter"
+              ]
+            }
           },
           "channels": {
+            "description": "An array of communication channels for the subscriber.",
             "type": "array",
             "items": {
-              "type": "string"
+              "$ref": "#/components/schemas/SubscriberChannelDto"
             }
           }
         }
@@ -15370,7 +15395,7 @@
         "type": "object",
         "properties": {
           "channel": {
-            "description": "The subscriber preferences for every ChannelTypeEnum for the workflow assigned.",
+            "description": "Optional preferences for each channel type in the assigned workflow.",
             "allOf": [
               {
                 "$ref": "#/components/schemas/ChannelPreference"
@@ -15379,7 +15404,7 @@
           },
           "enabled": {
             "type": "boolean",
-            "description": "Sets if the workflow is fully enabled for all channels or not for the subscriber."
+            "description": "Indicates whether the workflow is fully enabled for all channels for the subscriber."
           }
         }
       },
