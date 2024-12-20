@@ -7,7 +7,7 @@ The channel of the message to be deleted
 ```typescript
 import { Channel } from "@novu/api/models/operations";
 
-let value: Channel = "email";
+let value: Channel = "sms";
 ```
 
 ## Values

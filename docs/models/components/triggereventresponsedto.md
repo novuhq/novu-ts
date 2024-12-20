@@ -7,7 +7,7 @@ import { TriggerEventResponseDto } from "@novu/api/models/components";
 
 let value: TriggerEventResponseDto = {
   acknowledged: false,
-  status: "no_workflow_steps_defined",
+  status: "no_tenant_found",
 };
 ```
 

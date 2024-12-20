@@ -12,12 +12,32 @@ let value: SubscribersControllerListSubscribersResponse = {
     ],
   },
   result: {
-    page: 8326.20,
+    page: 7781.57,
     hasMore: false,
-    pageSize: 7781.57,
+    pageSize: 8700.12,
     data: [
       {
         subscriberId: "<id>",
+        channels: [
+          {
+            providerId: "pusher-beams",
+            credentials: {
+              webhookUrl: "https://example.com/webhook",
+              channel: "general",
+              deviceTokens: [
+                "token1",
+                "token2",
+                "token3",
+              ],
+              alertUid: "12345-abcde",
+              title: "Critical Alert",
+              imageUrl: "https://example.com/image.png",
+              state: "resolved",
+              externalUrl: "https://example.com/details",
+            },
+            integrationId: "<id>",
+          },
+        ],
         organizationId: "<id>",
         environmentId: "<id>",
         deleted: false,

@@ -18,16 +18,44 @@ let value: SubscribersControllerMarkActionAsSeenResponse = {
     organizationId: "<id>",
     notificationId: "<id>",
     subscriberId: "<id>",
+    subscriber: {
+      subscriberId: "<id>",
+      channels: [
+        {
+          providerId: "discord",
+          credentials: {
+            webhookUrl: "https://example.com/webhook",
+            channel: "general",
+            deviceTokens: [
+              "token1",
+              "token2",
+              "token3",
+            ],
+            alertUid: "12345-abcde",
+            title: "Critical Alert",
+            imageUrl: "https://example.com/image.png",
+            state: "resolved",
+            externalUrl: "https://example.com/details",
+          },
+          integrationId: "<id>",
+        },
+      ],
+      organizationId: "<id>",
+      environmentId: "<id>",
+      deleted: false,
+      createdAt: "<value>",
+      updatedAt: "<value>",
+    },
     createdAt: "<value>",
     content: "<value>",
     transactionId: "<id>",
-    channel: "in_app",
+    channel: "chat",
     read: false,
     seen: false,
     cta: {
       data: {},
     },
-    status: "warning",
+    status: "sent",
   },
 };
 ```

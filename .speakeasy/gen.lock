@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 6bff3a53-3f0b-40b4-942f-ff70dc583ae5
 management:
-  docChecksum: 7b3dfe3f8873dc99e60a2f159cc989b8
+  docChecksum: cb61acfded49d9d7d567537f3d5abae8
   docVersion: "1.0"
   speakeasyVersion: 1.456.1
   generationVersion: 2.481.0
-  releaseVersion: 0.0.1-alpha.146
-  configChecksum: c62cc9d17cb743c0a9d12cac4c7fae1b
+  releaseVersion: 0.0.1-alpha.147
+  configChecksum: df5450f4a859f7206c408ca9947c0e3d
   published: true
 features:
   typescript:
@@ -919,7 +919,7 @@ examples:
         path:
           subscriberId: "<id>"
       requestBody:
-        application/json: {"providerId": "pushpad", "credentials": {"webhookUrl": "https://grown-worth.name"}}
+        application/json: {"providerId": "pushpad", "credentials": {"webhookUrl": "https://example.com/webhook"}}
       responses:
         "200":
           application/json: {"subscriberId": "<id>", "_organizationId": "<id>", "_environmentId": "<id>", "deleted": true, "createdAt": "<value>", "updatedAt": "<value>"}
@@ -935,7 +935,7 @@ examples:
         path:
           subscriberId: "<id>"
       requestBody:
-        application/json: {"providerId": "zulip", "credentials": {"webhookUrl": "https://talkative-pop.org"}}
+        application/json: {"providerId": "zulip", "credentials": {"webhookUrl": "https://example.com/webhook"}}
       responses:
         "200":
           application/json: {"subscriberId": "<id>", "_organizationId": "<id>", "_environmentId": "<id>", "deleted": false, "createdAt": "<value>", "updatedAt": "<value>"}

@@ -13,6 +13,26 @@ let value: SubscribersControllerCreateSubscriberResponse = {
   },
   result: {
     subscriberId: "<id>",
+    channels: [
+      {
+        providerId: "one-signal",
+        credentials: {
+          webhookUrl: "https://example.com/webhook",
+          channel: "general",
+          deviceTokens: [
+            "token1",
+            "token2",
+            "token3",
+          ],
+          alertUid: "12345-abcde",
+          title: "Critical Alert",
+          imageUrl: "https://example.com/image.png",
+          state: "resolved",
+          externalUrl: "https://example.com/details",
+        },
+        integrationId: "<id>",
+      },
+    ],
     organizationId: "<id>",
     environmentId: "<id>",
     deleted: false,

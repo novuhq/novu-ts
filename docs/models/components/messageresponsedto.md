@@ -12,16 +12,47 @@ let value: MessageResponseDto = {
   organizationId: "<id>",
   notificationId: "<id>",
   subscriberId: "<id>",
+  subscriber: {
+    subscriberId: "<id>",
+    channels: [
+      {
+        providerId: "whatsapp-business",
+        credentials: {
+          webhookUrl: "https://example.com/webhook",
+          channel: "general",
+          deviceTokens: [
+            "token1",
+            "token2",
+            "token3",
+          ],
+          alertUid: "12345-abcde",
+          title: "Critical Alert",
+          imageUrl: "https://example.com/image.png",
+          state: "resolved",
+          externalUrl: "https://example.com/details",
+        },
+        integrationId: "<id>",
+      },
+    ],
+    organizationId: "<id>",
+    environmentId: "<id>",
+    deleted: false,
+    createdAt: "<value>",
+    updatedAt: "<value>",
+  },
   createdAt: "<value>",
-  content: "<value>",
+  content: {
+    type: "text",
+    content: "<value>",
+  },
   transactionId: "<id>",
-  channel: "chat",
+  channel: "sms",
   read: false,
   seen: false,
   cta: {
     data: {},
   },
-  status: "error",
+  status: "warning",
 };
 ```
 

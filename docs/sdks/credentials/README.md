@@ -26,7 +26,7 @@ async function run() {
   const result = await novu.subscribers.credentials.update({
     providerId: "pushpad",
     credentials: {
-      webhookUrl: "https://grown-worth.name",
+      webhookUrl: "https://example.com/webhook",
     },
   }, "<id>");
 
@@ -55,7 +55,7 @@ async function run() {
   const res = await subscribersCredentialsUpdate(novu, {
     providerId: "pushpad",
     credentials: {
-      webhookUrl: "https://grown-worth.name",
+      webhookUrl: "https://example.com/webhook",
     },
   }, "<id>");
 
@@ -113,7 +113,7 @@ async function run() {
   const result = await novu.subscribers.credentials.append({
     providerId: "zulip",
     credentials: {
-      webhookUrl: "https://talkative-pop.org",
+      webhookUrl: "https://example.com/webhook",
     },
   }, "<id>");
 
@@ -142,7 +142,7 @@ async function run() {
   const res = await subscribersCredentialsAppend(novu, {
     providerId: "zulip",
     credentials: {
-      webhookUrl: "https://talkative-pop.org",
+      webhookUrl: "https://example.com/webhook",
     },
   }, "<id>");
 

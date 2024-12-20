@@ -8,7 +8,7 @@ import { SubscribersControllerMarkAllUnreadAsReadRequest } from "@novu/api/model
 let value: SubscribersControllerMarkAllUnreadAsReadRequest = {
   subscriberId: "<id>",
   markAllMessageAsRequestDto: {
-    markAs: "unread",
+    markAs: "seen",
   },
 };
 ```

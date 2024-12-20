@@ -152,13 +152,13 @@ actions:
       "x-codeSamples":
         - "lang": "typescript"
           "label": "TypeScript"
-          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n});\n\nasync function run() {\n  const result = await novu.subscribers.credentials.append({\n    providerId: \"zulip\",\n    credentials: {\n      webhookUrl: \"https://talkative-pop.org\",\n    },\n  }, \"<id>\");\n\n  // Handle the result\n  console.log(result);\n}\n\nrun();"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n});\n\nasync function run() {\n  const result = await novu.subscribers.credentials.append({\n    providerId: \"zulip\",\n    credentials: {\n      webhookUrl: \"https://example.com/webhook\",\n      channel: \"general\",\n      deviceTokens: [\n        \"token1\",\n        \"token2\",\n        \"token3\",\n      ],\n      alertUid: \"12345-abcde\",\n      title: \"Critical Alert\",\n      imageUrl: \"https://example.com/image.png\",\n      state: \"resolved\",\n      externalUrl: \"https://example.com/details\",\n    },\n  }, \"<id>\");\n\n  // Handle the result\n  console.log(result);\n}\n\nrun();"
   - target: $["paths"]["/v1/subscribers/{subscriberId}/credentials"]["put"]
     update:
       "x-codeSamples":
         - "lang": "typescript"
           "label": "TypeScript"
-          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n});\n\nasync function run() {\n  const result = await novu.subscribers.credentials.update({\n    providerId: \"pushpad\",\n    credentials: {\n      webhookUrl: \"https://grown-worth.name\",\n    },\n  }, \"<id>\");\n\n  // Handle the result\n  console.log(result);\n}\n\nrun();"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n});\n\nasync function run() {\n  const result = await novu.subscribers.credentials.update({\n    providerId: \"pushpad\",\n    credentials: {\n      webhookUrl: \"https://example.com/webhook\",\n      channel: \"general\",\n      deviceTokens: [\n        \"token1\",\n        \"token2\",\n        \"token3\",\n      ],\n      alertUid: \"12345-abcde\",\n      title: \"Critical Alert\",\n      imageUrl: \"https://example.com/image.png\",\n      state: \"resolved\",\n      externalUrl: \"https://example.com/details\",\n    },\n  }, \"<id>\");\n\n  // Handle the result\n  console.log(result);\n}\n\nrun();"
   - target: $["paths"]["/v1/subscribers/{subscriberId}/credentials/{providerId}"]["delete"]
     update:
       "x-codeSamples":

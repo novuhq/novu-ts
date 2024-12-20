@@ -9,35 +9,35 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ChannelCredentials = {
   /**
-   * Webhook url used by chat app integrations. The webhook should be obtained from the chat app provider.
+   * Webhook URL used by chat app integrations. The webhook should be obtained from the chat app provider.
    */
-  webhookUrl: string;
+  webhookUrl?: string | undefined;
   /**
-   * Channel specification for Mattermost chat notifications
+   * Channel specification for Mattermost chat notifications.
    */
   channel?: string | undefined;
   /**
-   * Contains an array of the subscriber device tokens for a given provider. Used on Push integrations
+   * Contains an array of the subscriber device tokens for a given provider. Used on Push integrations.
    */
   deviceTokens?: Array<string> | undefined;
   /**
-   * alert_uid for grafana on-call webhook payload
+   * Alert UID for Grafana on-call webhook payload.
    */
   alertUid?: string | undefined;
   /**
-   * title to be used with grafana on call webhook
+   * Title to be used with Grafana on-call webhook.
    */
   title?: string | undefined;
   /**
-   * image_url property fo grafana on call webhook
+   * Image URL property for Grafana on-call webhook.
    */
   imageUrl?: string | undefined;
   /**
-   * state property fo grafana on call webhook
+   * State property for Grafana on-call webhook.
    */
   state?: string | undefined;
   /**
-   * link_to_upstream_details property fo grafana on call webhook
+   * Link to upstream details property for Grafana on-call webhook.
    */
   externalUrl?: string | undefined;
 };
@@ -48,7 +48,7 @@ export const ChannelCredentials$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  webhookUrl: z.string(),
+  webhookUrl: z.string().optional(),
   channel: z.string().optional(),
   deviceTokens: z.array(z.string()).optional(),
   alertUid: z.string().optional(),
@@ -60,7 +60,7 @@ export const ChannelCredentials$inboundSchema: z.ZodType<
 
 /** @internal */
 export type ChannelCredentials$Outbound = {
-  webhookUrl: string;
+  webhookUrl?: string | undefined;
   channel?: string | undefined;
   deviceTokens?: Array<string> | undefined;
   alertUid?: string | undefined;
@@ -76,7 +76,7 @@ export const ChannelCredentials$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ChannelCredentials
 > = z.object({
-  webhookUrl: z.string(),
+  webhookUrl: z.string().optional(),
   channel: z.string().optional(),
   deviceTokens: z.array(z.string()).optional(),
   alertUid: z.string().optional(),
