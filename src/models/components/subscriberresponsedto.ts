@@ -30,7 +30,7 @@ export type SubscriberResponseDto = {
   /**
    * The email address of the subscriber.
    */
-  email?: string | undefined;
+  email?: string | null | undefined;
   /**
    * The phone number of the subscriber.
    */
@@ -98,7 +98,7 @@ export const SubscriberResponseDto$inboundSchema: z.ZodType<
   _id: z.string().optional(),
   firstName: z.string().optional(),
   lastName: z.string().optional(),
-  email: z.string().optional(),
+  email: z.nullable(z.string()).optional(),
   phone: z.string().optional(),
   avatar: z.string().optional(),
   locale: z.string().optional(),
@@ -127,7 +127,7 @@ export type SubscriberResponseDto$Outbound = {
   _id?: string | undefined;
   firstName?: string | undefined;
   lastName?: string | undefined;
-  email?: string | undefined;
+  email?: string | null | undefined;
   phone?: string | undefined;
   avatar?: string | undefined;
   locale?: string | undefined;
@@ -153,7 +153,7 @@ export const SubscriberResponseDto$outboundSchema: z.ZodType<
   id: z.string().optional(),
   firstName: z.string().optional(),
   lastName: z.string().optional(),
-  email: z.string().optional(),
+  email: z.nullable(z.string()).optional(),
   phone: z.string().optional(),
   avatar: z.string().optional(),
   locale: z.string().optional(),

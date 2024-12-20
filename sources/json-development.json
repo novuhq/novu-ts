@@ -14800,6 +14800,7 @@
           },
           "email": {
             "type": "string",
+            "nullable": true,
             "description": "The email address of the subscriber."
           },
           "phone": {
