@@ -152,7 +152,7 @@ export async function subscribersMessagesMarkAllAs(
     M.json(
       201,
       operations.SubscribersControllerMarkMessagesAsResponse$inboundSchema,
-      { key: "Result" },
+      { hdrs: true, key: "Result" },
     ),
     M.jsonErr([400, 404, 409], errors.ErrorDto$inboundSchema, { hdrs: true }),
     M.jsonErr(422, errors.ValidationErrorDto$inboundSchema, { hdrs: true }),

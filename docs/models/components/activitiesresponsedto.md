@@ -14,8 +14,8 @@ let value: ActivitiesResponseDto = {
       transactionId: "<id>",
     },
   ],
-  pageSize: 1103.75,
-  page: 6563.30,
+  pageSize: 1965.82,
+  page: 3687.25,
 };
 ```
 

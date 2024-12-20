@@ -8623,13 +8623,36 @@
         },
         "responses": {
           "201": {
-            "description": "",
+            "description": "Created",
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/MessageEntity"
+                    "$ref": "#/components/schemas/MessageResponseDto"
                   }
                 }
               }
@@ -15798,73 +15821,6 @@
           "count"
         ]
       },
-      "MessageMarkAsRequestDto": {
-        "type": "object",
-        "properties": {
-          "messageId": {
-            "oneOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              }
-            ]
-          },
-          "markAs": {
-            "enum": [
-              "read",
-              "seen",
-              "unread",
-              "unseen"
-            ],
-            "type": "string"
-          }
-        },
-        "required": [
-          "messageId",
-          "markAs"
-        ]
-      },
-      "MessageEntity": {
-        "type": "object",
-        "properties": {}
-      },
-      "MarkAllMessageAsRequestDto": {
-        "type": "object",
-        "properties": {
-          "feedIdentifier": {
-            "oneOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              }
-            ],
-            "description": "Optional feed identifier or array of feed identifiers"
-          },
-          "markAs": {
-            "enum": [
-              "read",
-              "seen",
-              "unread",
-              "unseen"
-            ],
-            "type": "string",
-            "description": "Mark all subscriber messages as read, unread, seen or unseen"
-          }
-        },
-        "required": [
-          "markAs"
-        ]
-      },
       "NotificationGroup": {
         "type": "object",
         "properties": {
@@ -16438,6 +16394,69 @@
           "errorText",
           "payload",
           "overrides"
+        ]
+      },
+      "MessageMarkAsRequestDto": {
+        "type": "object",
+        "properties": {
+          "messageId": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "markAs": {
+            "enum": [
+              "read",
+              "seen",
+              "unread",
+              "unseen"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "messageId",
+          "markAs"
+        ]
+      },
+      "MarkAllMessageAsRequestDto": {
+        "type": "object",
+        "properties": {
+          "feedIdentifier": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ],
+            "description": "Optional feed identifier or array of feed identifiers"
+          },
+          "markAs": {
+            "enum": [
+              "read",
+              "seen",
+              "unread",
+              "unseen"
+            ],
+            "type": "string",
+            "description": "Mark all subscriber messages as read, unread, seen or unseen"
+          }
+        },
+        "required": [
+          "markAs"
         ]
       },
       "MarkMessageActionAsSeenDto": {

@@ -16,7 +16,7 @@ export type SubscribersControllerMarkMessagesAsRequest = {
 
 export type SubscribersControllerMarkMessagesAsResponse = {
   headers: { [k: string]: Array<string> };
-  result: Array<components.MessageEntity>;
+  result: Array<components.MessageResponseDto>;
 };
 
 /** @internal */
@@ -102,7 +102,7 @@ export const SubscribersControllerMarkMessagesAsResponse$inboundSchema:
     unknown
   > = z.object({
     Headers: z.record(z.array(z.string())),
-    Result: z.array(components.MessageEntity$inboundSchema),
+    Result: z.array(components.MessageResponseDto$inboundSchema),
   }).transform((v) => {
     return remap$(v, {
       "Headers": "headers",
@@ -113,7 +113,7 @@ export const SubscribersControllerMarkMessagesAsResponse$inboundSchema:
 /** @internal */
 export type SubscribersControllerMarkMessagesAsResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
-  Result: Array<components.MessageEntity$Outbound>;
+  Result: Array<components.MessageResponseDto$Outbound>;
 };
 
 /** @internal */
@@ -124,7 +124,7 @@ export const SubscribersControllerMarkMessagesAsResponse$outboundSchema:
     SubscribersControllerMarkMessagesAsResponse
   > = z.object({
     headers: z.record(z.array(z.string())),
-    result: z.array(components.MessageEntity$outboundSchema),
+    result: z.array(components.MessageResponseDto$outboundSchema),
   }).transform((v) => {
     return remap$(v, {
       headers: "Headers",

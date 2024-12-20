@@ -6,9 +6,9 @@
 import { ChannelSettings } from "@novu/api/models/components";
 
 let value: ChannelSettings = {
-  providerId: "ryver",
+  providerId: "whatsapp-business",
   credentials: {
-    webhookUrl: "https://bulky-minister.org",
+    webhookUrl: "https://glass-pigpen.com",
   },
   integrationId: "<id>",
 };

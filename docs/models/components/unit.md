@@ -5,7 +5,7 @@
 ```typescript
 import { Unit } from "@novu/api/models/components";
 
-let value: Unit = "months";
+let value: Unit = "days";
 ```
 
 ## Values

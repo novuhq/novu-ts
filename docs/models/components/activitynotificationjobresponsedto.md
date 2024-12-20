@@ -12,12 +12,12 @@ let value: ActivityNotificationJobResponseDto = {
     {
       id: "<id>",
       jobId: "<id>",
-      status: "Success",
+      status: "Queued",
       detail: "<value>",
       isRetry: false,
       isTest: false,
-      providerId: "mailersend",
-      source: "Internal",
+      providerId: "sendgrid",
+      source: "Webhook",
     },
   ],
   step: {
@@ -27,7 +27,7 @@ let value: ActivityNotificationJobResponseDto = {
       {},
     ],
   },
-  providerId: "push-webhook",
+  providerId: "sendgrid",
   status: "<value>",
 };
 ```

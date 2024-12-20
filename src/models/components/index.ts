@@ -52,7 +52,6 @@ export * from "./messageactionresult.js";
 export * from "./messagebutton.js";
 export * from "./messagecta.js";
 export * from "./messagectadata.js";
-export * from "./messageentity.js";
 export * from "./messagemarkasrequestdto.js";
 export * from "./messageresponsedto.js";
 export * from "./messagetemplate.js";
