@@ -28,6 +28,7 @@ import { Result } from "../types/fp.js";
 export async function integrationsDelete(
   client: NovuCore,
   integrationId: string,
+  idempotencyKey?: string | undefined,
   options?: RequestOptions,
 ): Promise<
   Result<
@@ -45,6 +46,7 @@ export async function integrationsDelete(
 > {
   const input: operations.IntegrationsControllerRemoveIntegrationRequest = {
     integrationId: integrationId,
+    idempotencyKey: idempotencyKey,
   };
 
   const parsed = safeParse(
@@ -71,6 +73,11 @@ export async function integrationsDelete(
 
   const headers = new Headers({
     Accept: "application/json",
+    "Idempotency-Key": encodeSimple(
+      "Idempotency-Key",
+      payload["Idempotency-Key"],
+      { explode: false, charEncoding: "none" },
+    ),
   });
 
   const secConfig = await extractSecurity(client._options.apiKey);
@@ -89,7 +96,7 @@ export async function integrationsDelete(
       || {
         strategy: "backoff",
         backoff: {
-          initialInterval: 500,
+          initialInterval: 1000,
           maxInterval: 30000,
           exponent: 1.5,
           maxElapsedTime: 3600000,
@@ -97,7 +104,7 @@ export async function integrationsDelete(
         retryConnectionErrors: true,
       }
       || { strategy: "none" },
-    retryCodes: options?.retryCodes || ["408", "409", "429", "5XX"],
+    retryCodes: options?.retryCodes || ["408", "422", "429", "5XX"],
   };
 
   const requestRes = client._createRequest(context, {

@@ -10,6 +10,10 @@ import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type IntegrationsControllerSetIntegrationAsPrimaryRequest = {
+  /**
+   * A header for idempotency purposes
+   */
+  idempotencyKey?: string | undefined;
   integrationId: string;
 };
 
@@ -25,11 +29,17 @@ export const IntegrationsControllerSetIntegrationAsPrimaryRequest$inboundSchema:
     z.ZodTypeDef,
     unknown
   > = z.object({
+    "Idempotency-Key": z.string().optional(),
     integrationId: z.string(),
+  }).transform((v) => {
+    return remap$(v, {
+      "Idempotency-Key": "idempotencyKey",
+    });
   });
 
 /** @internal */
 export type IntegrationsControllerSetIntegrationAsPrimaryRequest$Outbound = {
+  "Idempotency-Key"?: string | undefined;
   integrationId: string;
 };
 
@@ -40,7 +50,12 @@ export const IntegrationsControllerSetIntegrationAsPrimaryRequest$outboundSchema
     z.ZodTypeDef,
     IntegrationsControllerSetIntegrationAsPrimaryRequest
   > = z.object({
+    idempotencyKey: z.string().optional(),
     integrationId: z.string(),
+  }).transform((v) => {
+    return remap$(v, {
+      idempotencyKey: "Idempotency-Key",
+    });
   });
 
 /**

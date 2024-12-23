@@ -11,6 +11,10 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type TopicsControllerListTopicsRequest = {
   /**
+   * A header for idempotency purposes
+   */
+  idempotencyKey?: string | undefined;
+  /**
    * The page number to retrieve (starts from 0)
    */
   page?: number | undefined;
@@ -35,13 +39,19 @@ export const TopicsControllerListTopicsRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
+  "Idempotency-Key": z.string().optional(),
   page: z.number().int().default(0),
   pageSize: z.number().int().default(10),
   key: z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "Idempotency-Key": "idempotencyKey",
+  });
 });
 
 /** @internal */
 export type TopicsControllerListTopicsRequest$Outbound = {
+  "Idempotency-Key"?: string | undefined;
   page: number;
   pageSize: number;
   key?: string | undefined;
@@ -53,9 +63,14 @@ export const TopicsControllerListTopicsRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   TopicsControllerListTopicsRequest
 > = z.object({
+  idempotencyKey: z.string().optional(),
   page: z.number().int().default(0),
   pageSize: z.number().int().default(10),
   key: z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    idempotencyKey: "Idempotency-Key",
+  });
 });
 
 /**

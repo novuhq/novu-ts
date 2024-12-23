@@ -10,6 +10,10 @@ import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type SubscribersControllerMarkActionAsSeenRequest = {
+  /**
+   * A header for idempotency purposes
+   */
+  idempotencyKey?: string | undefined;
   messageId: string;
   type?: any | undefined;
   subscriberId: string;
@@ -28,6 +32,7 @@ export const SubscribersControllerMarkActionAsSeenRequest$inboundSchema:
     z.ZodTypeDef,
     unknown
   > = z.object({
+    "Idempotency-Key": z.string().optional(),
     messageId: z.string(),
     type: z.any().optional(),
     subscriberId: z.string(),
@@ -35,12 +40,14 @@ export const SubscribersControllerMarkActionAsSeenRequest$inboundSchema:
       components.MarkMessageActionAsSeenDto$inboundSchema,
   }).transform((v) => {
     return remap$(v, {
+      "Idempotency-Key": "idempotencyKey",
       "MarkMessageActionAsSeenDto": "markMessageActionAsSeenDto",
     });
   });
 
 /** @internal */
 export type SubscribersControllerMarkActionAsSeenRequest$Outbound = {
+  "Idempotency-Key"?: string | undefined;
   messageId: string;
   type?: any | undefined;
   subscriberId: string;
@@ -54,6 +61,7 @@ export const SubscribersControllerMarkActionAsSeenRequest$outboundSchema:
     z.ZodTypeDef,
     SubscribersControllerMarkActionAsSeenRequest
   > = z.object({
+    idempotencyKey: z.string().optional(),
     messageId: z.string(),
     type: z.any().optional(),
     subscriberId: z.string(),
@@ -61,6 +69,7 @@ export const SubscribersControllerMarkActionAsSeenRequest$outboundSchema:
       components.MarkMessageActionAsSeenDto$outboundSchema,
   }).transform((v) => {
     return remap$(v, {
+      idempotencyKey: "Idempotency-Key",
       markMessageActionAsSeenDto: "MarkMessageActionAsSeenDto",
     });
   });

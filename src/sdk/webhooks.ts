@@ -16,11 +16,13 @@ export class Webhooks extends ClientSDK {
    */
   async retrieve(
     providerOrIntegrationId: string,
+    idempotencyKey?: string | undefined,
     options?: RequestOptions,
   ): Promise<operations.IntegrationsControllerGetWebhookSupportStatusResponse> {
     return unwrapAsync(integrationsWebhooksRetrieve(
       this,
       providerOrIntegrationId,
+      idempotencyKey,
       options,
     ));
   }

@@ -9,10 +9,89 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export type TopicsControllerCreateTopicRequest = {
+  /**
+   * A header for idempotency purposes
+   */
+  idempotencyKey?: string | undefined;
+  createTopicRequestDto: components.CreateTopicRequestDto;
+};
+
 export type TopicsControllerCreateTopicResponse = {
   headers: { [k: string]: Array<string> };
   result: components.CreateTopicResponseDto;
 };
+
+/** @internal */
+export const TopicsControllerCreateTopicRequest$inboundSchema: z.ZodType<
+  TopicsControllerCreateTopicRequest,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  "Idempotency-Key": z.string().optional(),
+  CreateTopicRequestDto: components.CreateTopicRequestDto$inboundSchema,
+}).transform((v) => {
+  return remap$(v, {
+    "Idempotency-Key": "idempotencyKey",
+    "CreateTopicRequestDto": "createTopicRequestDto",
+  });
+});
+
+/** @internal */
+export type TopicsControllerCreateTopicRequest$Outbound = {
+  "Idempotency-Key"?: string | undefined;
+  CreateTopicRequestDto: components.CreateTopicRequestDto$Outbound;
+};
+
+/** @internal */
+export const TopicsControllerCreateTopicRequest$outboundSchema: z.ZodType<
+  TopicsControllerCreateTopicRequest$Outbound,
+  z.ZodTypeDef,
+  TopicsControllerCreateTopicRequest
+> = z.object({
+  idempotencyKey: z.string().optional(),
+  createTopicRequestDto: components.CreateTopicRequestDto$outboundSchema,
+}).transform((v) => {
+  return remap$(v, {
+    idempotencyKey: "Idempotency-Key",
+    createTopicRequestDto: "CreateTopicRequestDto",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace TopicsControllerCreateTopicRequest$ {
+  /** @deprecated use `TopicsControllerCreateTopicRequest$inboundSchema` instead. */
+  export const inboundSchema = TopicsControllerCreateTopicRequest$inboundSchema;
+  /** @deprecated use `TopicsControllerCreateTopicRequest$outboundSchema` instead. */
+  export const outboundSchema =
+    TopicsControllerCreateTopicRequest$outboundSchema;
+  /** @deprecated use `TopicsControllerCreateTopicRequest$Outbound` instead. */
+  export type Outbound = TopicsControllerCreateTopicRequest$Outbound;
+}
+
+export function topicsControllerCreateTopicRequestToJSON(
+  topicsControllerCreateTopicRequest: TopicsControllerCreateTopicRequest,
+): string {
+  return JSON.stringify(
+    TopicsControllerCreateTopicRequest$outboundSchema.parse(
+      topicsControllerCreateTopicRequest,
+    ),
+  );
+}
+
+export function topicsControllerCreateTopicRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<TopicsControllerCreateTopicRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      TopicsControllerCreateTopicRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TopicsControllerCreateTopicRequest' from JSON`,
+  );
+}
 
 /** @internal */
 export const TopicsControllerCreateTopicResponse$inboundSchema: z.ZodType<

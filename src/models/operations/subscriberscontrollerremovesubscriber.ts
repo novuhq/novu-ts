@@ -10,6 +10,10 @@ import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type SubscribersControllerRemoveSubscriberRequest = {
+  /**
+   * A header for idempotency purposes
+   */
+  idempotencyKey?: string | undefined;
   subscriberId: string;
 };
 
@@ -25,11 +29,17 @@ export const SubscribersControllerRemoveSubscriberRequest$inboundSchema:
     z.ZodTypeDef,
     unknown
   > = z.object({
+    "Idempotency-Key": z.string().optional(),
     subscriberId: z.string(),
+  }).transform((v) => {
+    return remap$(v, {
+      "Idempotency-Key": "idempotencyKey",
+    });
   });
 
 /** @internal */
 export type SubscribersControllerRemoveSubscriberRequest$Outbound = {
+  "Idempotency-Key"?: string | undefined;
   subscriberId: string;
 };
 
@@ -40,7 +50,12 @@ export const SubscribersControllerRemoveSubscriberRequest$outboundSchema:
     z.ZodTypeDef,
     SubscribersControllerRemoveSubscriberRequest
   > = z.object({
+    idempotencyKey: z.string().optional(),
     subscriberId: z.string(),
+  }).transform((v) => {
+    return remap$(v, {
+      idempotencyKey: "Idempotency-Key",
+    });
   });
 
 /**

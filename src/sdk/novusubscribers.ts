@@ -6,7 +6,6 @@ import { topicsSubscribersAssign } from "../funcs/topicsSubscribersAssign.js";
 import { topicsSubscribersRemove } from "../funcs/topicsSubscribersRemove.js";
 import { topicsSubscribersRetrieve } from "../funcs/topicsSubscribersRetrieve.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as components from "../models/components/index.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
 
@@ -18,14 +17,12 @@ export class NovuSubscribers extends ClientSDK {
    * Add subscribers to a topic by key
    */
   async assign(
-    addSubscribersRequestDto: components.AddSubscribersRequestDto,
-    topicKey: string,
+    request: operations.TopicsControllerAssignRequest,
     options?: RequestOptions,
   ): Promise<operations.TopicsControllerAssignResponse> {
     return unwrapAsync(topicsSubscribersAssign(
       this,
-      addSubscribersRequestDto,
-      topicKey,
+      request,
       options,
     ));
   }
@@ -37,14 +34,12 @@ export class NovuSubscribers extends ClientSDK {
    * Check if a subscriber belongs to a certain topic
    */
   async retrieve(
-    externalSubscriberId: string,
-    topicKey: string,
+    request: operations.TopicsControllerGetTopicSubscriberRequest,
     options?: RequestOptions,
   ): Promise<operations.TopicsControllerGetTopicSubscriberResponse> {
     return unwrapAsync(topicsSubscribersRetrieve(
       this,
-      externalSubscriberId,
-      topicKey,
+      request,
       options,
     ));
   }
@@ -56,14 +51,12 @@ export class NovuSubscribers extends ClientSDK {
    * Remove subscribers from a topic
    */
   async remove(
-    removeSubscribersRequestDto: components.RemoveSubscribersRequestDto,
-    topicKey: string,
+    request: operations.TopicsControllerRemoveSubscribersRequest,
     options?: RequestOptions,
   ): Promise<operations.TopicsControllerRemoveSubscribersResponse | undefined> {
     return unwrapAsync(topicsSubscribersRemove(
       this,
-      removeSubscribersRequestDto,
-      topicKey,
+      request,
       options,
     ));
   }

@@ -12,15 +12,15 @@ let value: SubscribersControllerListSubscribersResponse = {
     ],
   },
   result: {
-    page: 9786.18,
+    page: 7805.29,
     hasMore: false,
-    pageSize: 7991.59,
+    pageSize: 1182.74,
     data: [
       {
         subscriberId: "<id>",
         channels: [
           {
-            providerId: "getstream",
+            providerId: "fcm",
             credentials: {
               webhookUrl: "https://example.com/webhook",
               channel: "general",
@@ -41,8 +41,8 @@ let value: SubscribersControllerListSubscribersResponse = {
         organizationId: "<id>",
         environmentId: "<id>",
         deleted: false,
-        createdAt: "1728022678444",
-        updatedAt: "1734867729913",
+        createdAt: "1707934511221",
+        updatedAt: "1734944940544",
       },
     ],
   },

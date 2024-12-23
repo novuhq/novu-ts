@@ -23,7 +23,7 @@ let value: SubscribersControllerMarkMessagesAsResponse = {
         subscriberId: "<id>",
         channels: [
           {
-            providerId: "pusher-beams",
+            providerId: "msteams",
             credentials: {
               webhookUrl: "https://example.com/webhook",
               channel: "general",
@@ -44,13 +44,16 @@ let value: SubscribersControllerMarkMessagesAsResponse = {
         organizationId: "<id>",
         environmentId: "<id>",
         deleted: false,
-        createdAt: "1706625996261",
-        updatedAt: "1734875557955",
+        createdAt: "1724010145708",
+        updatedAt: "1734885206350",
       },
-      createdAt: "1708494968006",
-      content: "<value>",
+      createdAt: "1718119298276",
+      content: {
+        type: "button",
+        content: "<value>",
+      },
       transactionId: "<id>",
-      channel: "email",
+      channel: "in_app",
       read: false,
       seen: false,
       cta: {

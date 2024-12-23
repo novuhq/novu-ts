@@ -10,6 +10,10 @@ import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type NotificationsControllerGetActivityGraphStatsRequest = {
+  /**
+   * A header for idempotency purposes
+   */
+  idempotencyKey?: string | undefined;
   days?: number | undefined;
 };
 
@@ -25,11 +29,17 @@ export const NotificationsControllerGetActivityGraphStatsRequest$inboundSchema:
     z.ZodTypeDef,
     unknown
   > = z.object({
+    "Idempotency-Key": z.string().optional(),
     days: z.number().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "Idempotency-Key": "idempotencyKey",
+    });
   });
 
 /** @internal */
 export type NotificationsControllerGetActivityGraphStatsRequest$Outbound = {
+  "Idempotency-Key"?: string | undefined;
   days?: number | undefined;
 };
 
@@ -40,7 +50,12 @@ export const NotificationsControllerGetActivityGraphStatsRequest$outboundSchema:
     z.ZodTypeDef,
     NotificationsControllerGetActivityGraphStatsRequest
   > = z.object({
+    idempotencyKey: z.string().optional(),
     days: z.number().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      idempotencyKey: "Idempotency-Key",
+    });
   });
 
 /**

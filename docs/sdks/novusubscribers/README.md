@@ -24,12 +24,15 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.topics.subscribers.assign({
-    subscribers: [
-      "<value>",
-      "<value>",
-      "<value>",
-    ],
-  }, "<value>");
+    topicKey: "<value>",
+    addSubscribersRequestDto: {
+      subscribers: [
+        "<value>",
+        "<value>",
+        "<value>",
+      ],
+    },
+  });
 
   // Handle the result
   console.log(result);
@@ -54,12 +57,15 @@ const novu = new NovuCore({
 
 async function run() {
   const res = await topicsSubscribersAssign(novu, {
-    subscribers: [
-      "<value>",
-      "<value>",
-      "<value>",
-    ],
-  }, "<value>");
+    topicKey: "<value>",
+    addSubscribersRequestDto: {
+      subscribers: [
+        "<value>",
+        "<value>",
+        "<value>",
+      ],
+    },
+  });
 
   if (!res.ok) {
     throw res.error;
@@ -78,8 +84,7 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `topicKey`                                                                                                                                                                     | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | The topic key                                                                                                                                                                  |
-| `addSubscribersRequestDto`                                                                                                                                                     | [components.AddSubscribersRequestDto](../../models/components/addsubscribersrequestdto.md)                                                                                     | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
+| `request`                                                                                                                                                                      | [operations.TopicsControllerAssignRequest](../../models/operations/topicscontrollerassignrequest.md)                                                                           | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
@@ -110,7 +115,10 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.topics.subscribers.retrieve("<id>", "<value>");
+  const result = await novu.topics.subscribers.retrieve({
+    externalSubscriberId: "<id>",
+    topicKey: "<value>",
+  });
 
   // Handle the result
   console.log(result);
@@ -134,7 +142,10 @@ const novu = new NovuCore({
 });
 
 async function run() {
-  const res = await topicsSubscribersRetrieve(novu, "<id>", "<value>");
+  const res = await topicsSubscribersRetrieve(novu, {
+    externalSubscriberId: "<id>",
+    topicKey: "<value>",
+  });
 
   if (!res.ok) {
     throw res.error;
@@ -153,8 +164,7 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `externalSubscriberId`                                                                                                                                                         | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | The external subscriber id                                                                                                                                                     |
-| `topicKey`                                                                                                                                                                     | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | The topic key                                                                                                                                                                  |
+| `request`                                                                                                                                                                      | [operations.TopicsControllerGetTopicSubscriberRequest](../../models/operations/topicscontrollergettopicsubscriberrequest.md)                                                   | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
@@ -186,11 +196,14 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.topics.subscribers.remove({
-    subscribers: [
-      "<value>",
-      "<value>",
-    ],
-  }, "<value>");
+    topicKey: "<value>",
+    removeSubscribersRequestDto: {
+      subscribers: [
+        "<value>",
+        "<value>",
+      ],
+    },
+  });
 
   // Handle the result
   console.log(result);
@@ -215,11 +228,14 @@ const novu = new NovuCore({
 
 async function run() {
   const res = await topicsSubscribersRemove(novu, {
-    subscribers: [
-      "<value>",
-      "<value>",
-    ],
-  }, "<value>");
+    topicKey: "<value>",
+    removeSubscribersRequestDto: {
+      subscribers: [
+        "<value>",
+        "<value>",
+      ],
+    },
+  });
 
   if (!res.ok) {
     throw res.error;
@@ -238,8 +254,7 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `topicKey`                                                                                                                                                                     | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | The topic key                                                                                                                                                                  |
-| `removeSubscribersRequestDto`                                                                                                                                                  | [components.RemoveSubscribersRequestDto](../../models/components/removesubscribersrequestdto.md)                                                                               | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
+| `request`                                                                                                                                                                      | [operations.TopicsControllerRemoveSubscribersRequest](../../models/operations/topicscontrollerremovesubscribersrequest.md)                                                     | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |

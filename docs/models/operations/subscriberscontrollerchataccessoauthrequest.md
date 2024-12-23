@@ -17,6 +17,7 @@ let value: SubscribersControllerChatAccessOauthRequest = {
 
 | Field                                                 | Type                                                  | Required                                              | Description                                           |
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `idempotencyKey`                                      | *string*                                              | :heavy_minus_sign:                                    | A header for idempotency purposes                     |
 | `subscriberId`                                        | *string*                                              | :heavy_check_mark:                                    | N/A                                                   |
 | `providerId`                                          | *any*                                                 | :heavy_check_mark:                                    | N/A                                                   |
 | `hmacHash`                                            | *string*                                              | :heavy_check_mark:                                    | HMAC hash for the request                             |

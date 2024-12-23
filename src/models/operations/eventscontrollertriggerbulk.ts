@@ -9,10 +9,89 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export type EventsControllerTriggerBulkRequest = {
+  /**
+   * A header for idempotency purposes
+   */
+  idempotencyKey?: string | undefined;
+  bulkTriggerEventDto: components.BulkTriggerEventDto;
+};
+
 export type EventsControllerTriggerBulkResponse = {
   headers: { [k: string]: Array<string> };
   result: Array<components.TriggerEventResponseDto>;
 };
+
+/** @internal */
+export const EventsControllerTriggerBulkRequest$inboundSchema: z.ZodType<
+  EventsControllerTriggerBulkRequest,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  "Idempotency-Key": z.string().optional(),
+  BulkTriggerEventDto: components.BulkTriggerEventDto$inboundSchema,
+}).transform((v) => {
+  return remap$(v, {
+    "Idempotency-Key": "idempotencyKey",
+    "BulkTriggerEventDto": "bulkTriggerEventDto",
+  });
+});
+
+/** @internal */
+export type EventsControllerTriggerBulkRequest$Outbound = {
+  "Idempotency-Key"?: string | undefined;
+  BulkTriggerEventDto: components.BulkTriggerEventDto$Outbound;
+};
+
+/** @internal */
+export const EventsControllerTriggerBulkRequest$outboundSchema: z.ZodType<
+  EventsControllerTriggerBulkRequest$Outbound,
+  z.ZodTypeDef,
+  EventsControllerTriggerBulkRequest
+> = z.object({
+  idempotencyKey: z.string().optional(),
+  bulkTriggerEventDto: components.BulkTriggerEventDto$outboundSchema,
+}).transform((v) => {
+  return remap$(v, {
+    idempotencyKey: "Idempotency-Key",
+    bulkTriggerEventDto: "BulkTriggerEventDto",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace EventsControllerTriggerBulkRequest$ {
+  /** @deprecated use `EventsControllerTriggerBulkRequest$inboundSchema` instead. */
+  export const inboundSchema = EventsControllerTriggerBulkRequest$inboundSchema;
+  /** @deprecated use `EventsControllerTriggerBulkRequest$outboundSchema` instead. */
+  export const outboundSchema =
+    EventsControllerTriggerBulkRequest$outboundSchema;
+  /** @deprecated use `EventsControllerTriggerBulkRequest$Outbound` instead. */
+  export type Outbound = EventsControllerTriggerBulkRequest$Outbound;
+}
+
+export function eventsControllerTriggerBulkRequestToJSON(
+  eventsControllerTriggerBulkRequest: EventsControllerTriggerBulkRequest,
+): string {
+  return JSON.stringify(
+    EventsControllerTriggerBulkRequest$outboundSchema.parse(
+      eventsControllerTriggerBulkRequest,
+    ),
+  );
+}
+
+export function eventsControllerTriggerBulkRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<EventsControllerTriggerBulkRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      EventsControllerTriggerBulkRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'EventsControllerTriggerBulkRequest' from JSON`,
+  );
+}
 
 /** @internal */
 export const EventsControllerTriggerBulkResponse$inboundSchema: z.ZodType<

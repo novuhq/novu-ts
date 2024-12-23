@@ -4,7 +4,7 @@
 
 import { NovuCore } from "../core.js";
 import { dlv } from "../lib/dlv.js";
-import { encodeFormQuery } from "../lib/encodings.js";
+import { encodeFormQuery, encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
@@ -37,8 +37,7 @@ import {
  */
 export async function subscribersList(
   client: NovuCore,
-  page?: number | undefined,
-  limit?: number | undefined,
+  request: operations.SubscribersControllerListSubscribersRequest,
   options?: RequestOptions,
 ): Promise<
   PageIterator<
@@ -57,13 +56,8 @@ export async function subscribersList(
     { page: number }
   >
 > {
-  const input: operations.SubscribersControllerListSubscribersRequest = {
-    page: page,
-    limit: limit,
-  };
-
   const parsed = safeParse(
-    input,
+    request,
     (value) =>
       operations.SubscribersControllerListSubscribersRequest$outboundSchema
         .parse(value),
@@ -84,6 +78,11 @@ export async function subscribersList(
 
   const headers = new Headers({
     Accept: "application/json",
+    "Idempotency-Key": encodeSimple(
+      "Idempotency-Key",
+      payload["Idempotency-Key"],
+      { explode: false, charEncoding: "none" },
+    ),
   });
 
   const secConfig = await extractSecurity(client._options.apiKey);
@@ -102,7 +101,7 @@ export async function subscribersList(
       || {
         strategy: "backoff",
         backoff: {
-          initialInterval: 500,
+          initialInterval: 1000,
           maxInterval: 30000,
           exponent: 1.5,
           maxElapsedTime: 3600000,
@@ -110,7 +109,7 @@ export async function subscribersList(
         retryConnectionErrors: true,
       }
       || { strategy: "none" },
-    retryCodes: options?.retryCodes || ["408", "409", "429", "5XX"],
+    retryCodes: options?.retryCodes || ["408", "422", "429", "5XX"],
   };
 
   const requestRes = client._createRequest(context, {
@@ -188,7 +187,7 @@ export async function subscribersList(
     >;
     "~next"?: { page: number };
   } => {
-    const page = input?.page ?? 1;
+    const page = request?.page ?? 1;
     const nextPage = page + 1;
 
     if (!responseData) {
@@ -198,7 +197,7 @@ export async function subscribersList(
     if (!Array.isArray(results) || !results.length) {
       return { next: () => null };
     }
-    const limit = input?.limit ?? 10;
+    const limit = request?.limit ?? 10;
     if (results.length < limit) {
       return { next: () => null };
     }
@@ -206,14 +205,16 @@ export async function subscribersList(
     const nextVal = () =>
       subscribersList(
         client,
-        nextPage,
-        limit,
+        {
+          ...request,
+          page: nextPage,
+        },
         options,
       );
 
     return { next: nextVal, "~next": { page: nextPage } };
   };
 
-  const page$ = { ...result, ...nextFunc(raw) };
-  return { ...page$, ...createPageIterator(page$, (v) => !v.ok) };
+  const page = { ...result, ...nextFunc(raw) };
+  return { ...page, ...createPageIterator(page, (v) => !v.ok) };
 }

@@ -9,10 +9,92 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export type IntegrationsControllerListIntegrationsRequest = {
+  /**
+   * A header for idempotency purposes
+   */
+  idempotencyKey?: string | undefined;
+};
+
 export type IntegrationsControllerListIntegrationsResponse = {
   headers: { [k: string]: Array<string> };
   result: Array<components.IntegrationResponseDto>;
 };
+
+/** @internal */
+export const IntegrationsControllerListIntegrationsRequest$inboundSchema:
+  z.ZodType<
+    IntegrationsControllerListIntegrationsRequest,
+    z.ZodTypeDef,
+    unknown
+  > = z.object({
+    "Idempotency-Key": z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "Idempotency-Key": "idempotencyKey",
+    });
+  });
+
+/** @internal */
+export type IntegrationsControllerListIntegrationsRequest$Outbound = {
+  "Idempotency-Key"?: string | undefined;
+};
+
+/** @internal */
+export const IntegrationsControllerListIntegrationsRequest$outboundSchema:
+  z.ZodType<
+    IntegrationsControllerListIntegrationsRequest$Outbound,
+    z.ZodTypeDef,
+    IntegrationsControllerListIntegrationsRequest
+  > = z.object({
+    idempotencyKey: z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      idempotencyKey: "Idempotency-Key",
+    });
+  });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace IntegrationsControllerListIntegrationsRequest$ {
+  /** @deprecated use `IntegrationsControllerListIntegrationsRequest$inboundSchema` instead. */
+  export const inboundSchema =
+    IntegrationsControllerListIntegrationsRequest$inboundSchema;
+  /** @deprecated use `IntegrationsControllerListIntegrationsRequest$outboundSchema` instead. */
+  export const outboundSchema =
+    IntegrationsControllerListIntegrationsRequest$outboundSchema;
+  /** @deprecated use `IntegrationsControllerListIntegrationsRequest$Outbound` instead. */
+  export type Outbound = IntegrationsControllerListIntegrationsRequest$Outbound;
+}
+
+export function integrationsControllerListIntegrationsRequestToJSON(
+  integrationsControllerListIntegrationsRequest:
+    IntegrationsControllerListIntegrationsRequest,
+): string {
+  return JSON.stringify(
+    IntegrationsControllerListIntegrationsRequest$outboundSchema.parse(
+      integrationsControllerListIntegrationsRequest,
+    ),
+  );
+}
+
+export function integrationsControllerListIntegrationsRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  IntegrationsControllerListIntegrationsRequest,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      IntegrationsControllerListIntegrationsRequest$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'IntegrationsControllerListIntegrationsRequest' from JSON`,
+  );
+}
 
 /** @internal */
 export const IntegrationsControllerListIntegrationsResponse$inboundSchema:

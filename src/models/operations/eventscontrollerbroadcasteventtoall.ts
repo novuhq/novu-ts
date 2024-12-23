@@ -9,10 +9,97 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export type EventsControllerBroadcastEventToAllRequest = {
+  /**
+   * A header for idempotency purposes
+   */
+  idempotencyKey?: string | undefined;
+  triggerEventToAllRequestDto: components.TriggerEventToAllRequestDto;
+};
+
 export type EventsControllerBroadcastEventToAllResponse = {
   headers: { [k: string]: Array<string> };
   result: components.TriggerEventResponseDto;
 };
+
+/** @internal */
+export const EventsControllerBroadcastEventToAllRequest$inboundSchema:
+  z.ZodType<EventsControllerBroadcastEventToAllRequest, z.ZodTypeDef, unknown> =
+    z.object({
+      "Idempotency-Key": z.string().optional(),
+      TriggerEventToAllRequestDto:
+        components.TriggerEventToAllRequestDto$inboundSchema,
+    }).transform((v) => {
+      return remap$(v, {
+        "Idempotency-Key": "idempotencyKey",
+        "TriggerEventToAllRequestDto": "triggerEventToAllRequestDto",
+      });
+    });
+
+/** @internal */
+export type EventsControllerBroadcastEventToAllRequest$Outbound = {
+  "Idempotency-Key"?: string | undefined;
+  TriggerEventToAllRequestDto: components.TriggerEventToAllRequestDto$Outbound;
+};
+
+/** @internal */
+export const EventsControllerBroadcastEventToAllRequest$outboundSchema:
+  z.ZodType<
+    EventsControllerBroadcastEventToAllRequest$Outbound,
+    z.ZodTypeDef,
+    EventsControllerBroadcastEventToAllRequest
+  > = z.object({
+    idempotencyKey: z.string().optional(),
+    triggerEventToAllRequestDto:
+      components.TriggerEventToAllRequestDto$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      idempotencyKey: "Idempotency-Key",
+      triggerEventToAllRequestDto: "TriggerEventToAllRequestDto",
+    });
+  });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace EventsControllerBroadcastEventToAllRequest$ {
+  /** @deprecated use `EventsControllerBroadcastEventToAllRequest$inboundSchema` instead. */
+  export const inboundSchema =
+    EventsControllerBroadcastEventToAllRequest$inboundSchema;
+  /** @deprecated use `EventsControllerBroadcastEventToAllRequest$outboundSchema` instead. */
+  export const outboundSchema =
+    EventsControllerBroadcastEventToAllRequest$outboundSchema;
+  /** @deprecated use `EventsControllerBroadcastEventToAllRequest$Outbound` instead. */
+  export type Outbound = EventsControllerBroadcastEventToAllRequest$Outbound;
+}
+
+export function eventsControllerBroadcastEventToAllRequestToJSON(
+  eventsControllerBroadcastEventToAllRequest:
+    EventsControllerBroadcastEventToAllRequest,
+): string {
+  return JSON.stringify(
+    EventsControllerBroadcastEventToAllRequest$outboundSchema.parse(
+      eventsControllerBroadcastEventToAllRequest,
+    ),
+  );
+}
+
+export function eventsControllerBroadcastEventToAllRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  EventsControllerBroadcastEventToAllRequest,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      EventsControllerBroadcastEventToAllRequest$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'EventsControllerBroadcastEventToAllRequest' from JSON`,
+  );
+}
 
 /** @internal */
 export const EventsControllerBroadcastEventToAllResponse$inboundSchema:

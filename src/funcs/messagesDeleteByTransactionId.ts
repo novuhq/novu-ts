@@ -30,8 +30,7 @@ import { Result } from "../types/fp.js";
  */
 export async function messagesDeleteByTransactionId(
   client: NovuCore,
-  transactionId: string,
-  channel?: operations.Channel | undefined,
+  request: operations.MessagesControllerDeleteMessagesByTransactionIdRequest,
   options?: RequestOptions,
 ): Promise<
   Result<
@@ -48,14 +47,8 @@ export async function messagesDeleteByTransactionId(
     | ConnectionError
   >
 > {
-  const input:
-    operations.MessagesControllerDeleteMessagesByTransactionIdRequest = {
-      transactionId: transactionId,
-      channel: channel,
-    };
-
   const parsed = safeParse(
-    input,
+    request,
     (value) =>
       operations
         .MessagesControllerDeleteMessagesByTransactionIdRequest$outboundSchema
@@ -85,6 +78,11 @@ export async function messagesDeleteByTransactionId(
 
   const headers = new Headers({
     Accept: "application/json",
+    "Idempotency-Key": encodeSimple(
+      "Idempotency-Key",
+      payload["Idempotency-Key"],
+      { explode: false, charEncoding: "none" },
+    ),
   });
 
   const secConfig = await extractSecurity(client._options.apiKey);
@@ -103,7 +101,7 @@ export async function messagesDeleteByTransactionId(
       || {
         strategy: "backoff",
         backoff: {
-          initialInterval: 500,
+          initialInterval: 1000,
           maxInterval: 30000,
           exponent: 1.5,
           maxElapsedTime: 3600000,
@@ -111,7 +109,7 @@ export async function messagesDeleteByTransactionId(
         retryConnectionErrors: true,
       }
       || { strategy: "none" },
-    retryCodes: options?.retryCodes || ["408", "409", "429", "5XX"],
+    retryCodes: options?.retryCodes || ["408", "422", "429", "5XX"],
   };
 
   const requestRes = client._createRequest(context, {

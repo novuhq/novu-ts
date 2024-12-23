@@ -30,8 +30,7 @@ import { Result } from "../types/fp.js";
  */
 export async function subscribersCredentialsDelete(
   client: NovuCore,
-  subscriberId: string,
-  providerId: string,
+  request: operations.SubscribersControllerDeleteSubscriberCredentialsRequest,
   options?: RequestOptions,
 ): Promise<
   Result<
@@ -48,14 +47,8 @@ export async function subscribersCredentialsDelete(
     | ConnectionError
   >
 > {
-  const input:
-    operations.SubscribersControllerDeleteSubscriberCredentialsRequest = {
-      subscriberId: subscriberId,
-      providerId: providerId,
-    };
-
   const parsed = safeParse(
-    input,
+    request,
     (value) =>
       operations
         .SubscribersControllerDeleteSubscriberCredentialsRequest$outboundSchema
@@ -85,6 +78,11 @@ export async function subscribersCredentialsDelete(
 
   const headers = new Headers({
     Accept: "application/json",
+    "Idempotency-Key": encodeSimple(
+      "Idempotency-Key",
+      payload["Idempotency-Key"],
+      { explode: false, charEncoding: "none" },
+    ),
   });
 
   const secConfig = await extractSecurity(client._options.apiKey);
@@ -103,7 +101,7 @@ export async function subscribersCredentialsDelete(
       || {
         strategy: "backoff",
         backoff: {
-          initialInterval: 500,
+          initialInterval: 1000,
           maxInterval: 30000,
           exponent: 1.5,
           maxElapsedTime: 3600000,
@@ -111,7 +109,7 @@ export async function subscribersCredentialsDelete(
         retryConnectionErrors: true,
       }
       || { strategy: "none" },
-    retryCodes: options?.retryCodes || ["408", "409", "429", "5XX"],
+    retryCodes: options?.retryCodes || ["408", "422", "429", "5XX"],
   };
 
   const requestRes = client._createRequest(context, {

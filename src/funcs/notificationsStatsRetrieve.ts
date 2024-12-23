@@ -3,7 +3,9 @@
  */
 
 import { NovuCore } from "../core.js";
+import { encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
+import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
@@ -25,6 +27,7 @@ import { Result } from "../types/fp.js";
  */
 export async function notificationsStatsRetrieve(
   client: NovuCore,
+  idempotencyKey?: string | undefined,
   options?: RequestOptions,
 ): Promise<
   Result<
@@ -40,10 +43,32 @@ export async function notificationsStatsRetrieve(
     | ConnectionError
   >
 > {
+  const input: operations.NotificationsControllerGetActivityStatsRequest = {
+    idempotencyKey: idempotencyKey,
+  };
+
+  const parsed = safeParse(
+    input,
+    (value) =>
+      operations.NotificationsControllerGetActivityStatsRequest$outboundSchema
+        .parse(value),
+    "Input validation failed",
+  );
+  if (!parsed.ok) {
+    return parsed;
+  }
+  const payload = parsed.value;
+  const body = null;
+
   const path = pathToFunc("/v1/notifications/stats")();
 
   const headers = new Headers({
     Accept: "application/json",
+    "Idempotency-Key": encodeSimple(
+      "Idempotency-Key",
+      payload["Idempotency-Key"],
+      { explode: false, charEncoding: "none" },
+    ),
   });
 
   const secConfig = await extractSecurity(client._options.apiKey);
@@ -62,7 +87,7 @@ export async function notificationsStatsRetrieve(
       || {
         strategy: "backoff",
         backoff: {
-          initialInterval: 500,
+          initialInterval: 1000,
           maxInterval: 30000,
           exponent: 1.5,
           maxElapsedTime: 3600000,
@@ -70,7 +95,7 @@ export async function notificationsStatsRetrieve(
         retryConnectionErrors: true,
       }
       || { strategy: "none" },
-    retryCodes: options?.retryCodes || ["408", "409", "429", "5XX"],
+    retryCodes: options?.retryCodes || ["408", "422", "429", "5XX"],
   };
 
   const requestRes = client._createRequest(context, {
@@ -79,6 +104,7 @@ export async function notificationsStatsRetrieve(
     baseURL: options?.serverURL,
     path: path,
     headers: headers,
+    body: body,
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {

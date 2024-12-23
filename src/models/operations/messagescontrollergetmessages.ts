@@ -11,6 +11,10 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type MessagesControllerGetMessagesRequest = {
   /**
+   * A header for idempotency purposes
+   */
+  idempotencyKey?: string | undefined;
+  /**
    * Channel type through which the message is sent
    */
   channel?: components.ChannelTypeEnum | undefined;
@@ -31,15 +35,21 @@ export const MessagesControllerGetMessagesRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
+  "Idempotency-Key": z.string().optional(),
   channel: components.ChannelTypeEnum$inboundSchema.optional(),
   subscriberId: z.string().optional(),
   transactionId: z.array(z.string()).optional(),
   page: z.number().default(0),
   limit: z.number().default(10),
+}).transform((v) => {
+  return remap$(v, {
+    "Idempotency-Key": "idempotencyKey",
+  });
 });
 
 /** @internal */
 export type MessagesControllerGetMessagesRequest$Outbound = {
+  "Idempotency-Key"?: string | undefined;
   channel?: string | undefined;
   subscriberId?: string | undefined;
   transactionId?: Array<string> | undefined;
@@ -53,11 +63,16 @@ export const MessagesControllerGetMessagesRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   MessagesControllerGetMessagesRequest
 > = z.object({
+  idempotencyKey: z.string().optional(),
   channel: components.ChannelTypeEnum$outboundSchema.optional(),
   subscriberId: z.string().optional(),
   transactionId: z.array(z.string()).optional(),
   page: z.number().default(0),
   limit: z.number().default(10),
+}).transform((v) => {
+  return remap$(v, {
+    idempotencyKey: "Idempotency-Key",
+  });
 });
 
 /**

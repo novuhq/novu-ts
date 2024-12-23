@@ -10,6 +10,10 @@ import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type SubscribersControllerGetNotificationsFeedRequest = {
+  /**
+   * A header for idempotency purposes
+   */
+  idempotencyKey?: string | undefined;
   subscriberId: string;
   page?: number | undefined;
   limit?: number | undefined;
@@ -33,16 +37,22 @@ export const SubscribersControllerGetNotificationsFeedRequest$inboundSchema:
     z.ZodTypeDef,
     unknown
   > = z.object({
+    "Idempotency-Key": z.string().optional(),
     subscriberId: z.string(),
     page: z.number().optional(),
     limit: z.number().default(10),
     read: z.boolean().optional(),
     seen: z.boolean().optional(),
     payload: z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "Idempotency-Key": "idempotencyKey",
+    });
   });
 
 /** @internal */
 export type SubscribersControllerGetNotificationsFeedRequest$Outbound = {
+  "Idempotency-Key"?: string | undefined;
   subscriberId: string;
   page?: number | undefined;
   limit: number;
@@ -58,12 +68,17 @@ export const SubscribersControllerGetNotificationsFeedRequest$outboundSchema:
     z.ZodTypeDef,
     SubscribersControllerGetNotificationsFeedRequest
   > = z.object({
+    idempotencyKey: z.string().optional(),
     subscriberId: z.string(),
     page: z.number().optional(),
     limit: z.number().default(10),
     read: z.boolean().optional(),
     seen: z.boolean().optional(),
     payload: z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      idempotencyKey: "Idempotency-Key",
+    });
   });
 
 /**

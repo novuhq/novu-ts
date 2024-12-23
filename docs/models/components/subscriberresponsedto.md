@@ -9,7 +9,7 @@ let value: SubscriberResponseDto = {
   subscriberId: "<id>",
   channels: [
     {
-      providerId: "rocket-chat",
+      providerId: "zulip",
       credentials: {
         webhookUrl: "https://example.com/webhook",
         channel: "general",
@@ -30,8 +30,8 @@ let value: SubscriberResponseDto = {
   organizationId: "<id>",
   environmentId: "<id>",
   deleted: false,
-  createdAt: "1733558963944",
-  updatedAt: "1734913151504",
+  createdAt: "1724232954523",
+  updatedAt: "1734888384920",
 };
 ```
 

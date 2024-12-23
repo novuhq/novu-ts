@@ -6,7 +6,6 @@ import { subscribersCredentialsAppend } from "../funcs/subscribersCredentialsApp
 import { subscribersCredentialsDelete } from "../funcs/subscribersCredentialsDelete.js";
 import { subscribersCredentialsUpdate } from "../funcs/subscribersCredentialsUpdate.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as components from "../models/components/index.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
 
@@ -18,15 +17,12 @@ export class Credentials extends ClientSDK {
    * Subscriber credentials associated to the delivery methods such as slack and push tokens.
    */
   async update(
-    updateSubscriberChannelRequestDto:
-      components.UpdateSubscriberChannelRequestDto,
-    subscriberId: string,
+    request: operations.SubscribersControllerUpdateSubscriberChannelRequest,
     options?: RequestOptions,
   ): Promise<operations.SubscribersControllerUpdateSubscriberChannelResponse> {
     return unwrapAsync(subscribersCredentialsUpdate(
       this,
-      updateSubscriberChannelRequestDto,
-      subscriberId,
+      request,
       options,
     ));
   }
@@ -40,15 +36,12 @@ export class Credentials extends ClientSDK {
    *     This endpoint appends provided credentials and deviceTokens to the existing ones.
    */
   async append(
-    updateSubscriberChannelRequestDto:
-      components.UpdateSubscriberChannelRequestDto,
-    subscriberId: string,
+    request: operations.SubscribersControllerModifySubscriberChannelRequest,
     options?: RequestOptions,
   ): Promise<operations.SubscribersControllerModifySubscriberChannelResponse> {
     return unwrapAsync(subscribersCredentialsAppend(
       this,
-      updateSubscriberChannelRequestDto,
-      subscriberId,
+      request,
       options,
     ));
   }
@@ -60,8 +53,7 @@ export class Credentials extends ClientSDK {
    * Delete subscriber credentials such as slack and expo tokens.
    */
   async delete(
-    subscriberId: string,
-    providerId: string,
+    request: operations.SubscribersControllerDeleteSubscriberCredentialsRequest,
     options?: RequestOptions,
   ): Promise<
     | operations.SubscribersControllerDeleteSubscriberCredentialsResponse
@@ -69,8 +61,7 @@ export class Credentials extends ClientSDK {
   > {
     return unwrapAsync(subscribersCredentialsDelete(
       this,
-      subscriberId,
-      providerId,
+      request,
       options,
     ));
   }

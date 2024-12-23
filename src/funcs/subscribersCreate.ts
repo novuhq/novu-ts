@@ -3,7 +3,7 @@
  */
 
 import { NovuCore } from "../core.js";
-import { encodeJSON } from "../lib/encodings.js";
+import { encodeJSON, encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
@@ -31,7 +31,8 @@ import { Result } from "../types/fp.js";
  */
 export async function subscribersCreate(
   client: NovuCore,
-  request: components.CreateSubscriberRequestDto,
+  createSubscriberRequestDto: components.CreateSubscriberRequestDto,
+  idempotencyKey?: string | undefined,
   options?: RequestOptions,
 ): Promise<
   Result<
@@ -47,23 +48,36 @@ export async function subscribersCreate(
     | ConnectionError
   >
 > {
+  const input: operations.SubscribersControllerCreateSubscriberRequest = {
+    createSubscriberRequestDto: createSubscriberRequestDto,
+    idempotencyKey: idempotencyKey,
+  };
+
   const parsed = safeParse(
-    request,
+    input,
     (value) =>
-      components.CreateSubscriberRequestDto$outboundSchema.parse(value),
+      operations.SubscribersControllerCreateSubscriberRequest$outboundSchema
+        .parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
     return parsed;
   }
   const payload = parsed.value;
-  const body = encodeJSON("body", payload, { explode: true });
+  const body = encodeJSON("body", payload.CreateSubscriberRequestDto, {
+    explode: true,
+  });
 
   const path = pathToFunc("/v1/subscribers")();
 
   const headers = new Headers({
     "Content-Type": "application/json",
     Accept: "application/json",
+    "Idempotency-Key": encodeSimple(
+      "Idempotency-Key",
+      payload["Idempotency-Key"],
+      { explode: false, charEncoding: "none" },
+    ),
   });
 
   const secConfig = await extractSecurity(client._options.apiKey);
@@ -82,7 +96,7 @@ export async function subscribersCreate(
       || {
         strategy: "backoff",
         backoff: {
-          initialInterval: 500,
+          initialInterval: 1000,
           maxInterval: 30000,
           exponent: 1.5,
           maxElapsedTime: 3600000,
@@ -90,7 +104,7 @@ export async function subscribersCreate(
         retryConnectionErrors: true,
       }
       || { strategy: "none" },
-    retryCodes: options?.retryCodes || ["408", "409", "429", "5XX"],
+    retryCodes: options?.retryCodes || ["408", "422", "429", "5XX"],
   };
 
   const requestRes = client._createRequest(context, {

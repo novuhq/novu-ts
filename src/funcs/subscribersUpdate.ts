@@ -9,7 +9,6 @@ import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
-import * as components from "../models/components/index.js";
 import {
   ConnectionError,
   InvalidRequestError,
@@ -31,8 +30,7 @@ import { Result } from "../types/fp.js";
  */
 export async function subscribersUpdate(
   client: NovuCore,
-  updateSubscriberRequestDto: components.UpdateSubscriberRequestDto,
-  subscriberId: string,
+  request: operations.SubscribersControllerUpdateSubscriberRequest,
   options?: RequestOptions,
 ): Promise<
   Result<
@@ -48,13 +46,8 @@ export async function subscribersUpdate(
     | ConnectionError
   >
 > {
-  const input: operations.SubscribersControllerUpdateSubscriberRequest = {
-    updateSubscriberRequestDto: updateSubscriberRequestDto,
-    subscriberId: subscriberId,
-  };
-
   const parsed = safeParse(
-    input,
+    request,
     (value) =>
       operations.SubscribersControllerUpdateSubscriberRequest$outboundSchema
         .parse(value),
@@ -80,6 +73,11 @@ export async function subscribersUpdate(
   const headers = new Headers({
     "Content-Type": "application/json",
     Accept: "application/json",
+    "Idempotency-Key": encodeSimple(
+      "Idempotency-Key",
+      payload["Idempotency-Key"],
+      { explode: false, charEncoding: "none" },
+    ),
   });
 
   const secConfig = await extractSecurity(client._options.apiKey);
@@ -98,7 +96,7 @@ export async function subscribersUpdate(
       || {
         strategy: "backoff",
         backoff: {
-          initialInterval: 500,
+          initialInterval: 1000,
           maxInterval: 30000,
           exponent: 1.5,
           maxElapsedTime: 3600000,
@@ -106,7 +104,7 @@ export async function subscribersUpdate(
         retryConnectionErrors: true,
       }
       || { strategy: "none" },
-    retryCodes: options?.retryCodes || ["408", "409", "429", "5XX"],
+    retryCodes: options?.retryCodes || ["408", "422", "429", "5XX"],
   };
 
   const requestRes = client._createRequest(context, {

@@ -17,7 +17,7 @@ let value: IntegrationsControllerUpdateIntegrationByIdResponse = {
     name: "<value>",
     identifier: "<value>",
     providerId: "<id>",
-    channel: "sms",
+    channel: "in_app",
     credentials: {},
     active: false,
     deleted: false,

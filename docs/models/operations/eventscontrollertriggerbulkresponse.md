@@ -14,7 +14,7 @@ let value: EventsControllerTriggerBulkResponse = {
   result: [
     {
       acknowledged: false,
-      status: "subscriber_id_missing",
+      status: "no_workflow_steps_defined",
     },
   ],
 };

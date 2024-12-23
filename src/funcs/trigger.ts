@@ -3,7 +3,7 @@
  */
 
 import { NovuCore } from "../core.js";
-import { encodeJSON } from "../lib/encodings.js";
+import { encodeJSON, encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
@@ -34,7 +34,8 @@ import { Result } from "../types/fp.js";
  */
 export async function trigger(
   client: NovuCore,
-  request: components.TriggerEventRequestDto,
+  triggerEventRequestDto: components.TriggerEventRequestDto,
+  idempotencyKey?: string | undefined,
   options?: RequestOptions,
 ): Promise<
   Result<
@@ -50,22 +51,35 @@ export async function trigger(
     | ConnectionError
   >
 > {
+  const input: operations.EventsControllerTriggerRequest = {
+    triggerEventRequestDto: triggerEventRequestDto,
+    idempotencyKey: idempotencyKey,
+  };
+
   const parsed = safeParse(
-    request,
-    (value) => components.TriggerEventRequestDto$outboundSchema.parse(value),
+    input,
+    (value) =>
+      operations.EventsControllerTriggerRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
     return parsed;
   }
   const payload = parsed.value;
-  const body = encodeJSON("body", payload, { explode: true });
+  const body = encodeJSON("body", payload.TriggerEventRequestDto, {
+    explode: true,
+  });
 
   const path = pathToFunc("/v1/events/trigger")();
 
   const headers = new Headers({
     "Content-Type": "application/json",
     Accept: "application/json",
+    "Idempotency-Key": encodeSimple(
+      "Idempotency-Key",
+      payload["Idempotency-Key"],
+      { explode: false, charEncoding: "none" },
+    ),
   });
 
   const secConfig = await extractSecurity(client._options.apiKey);
@@ -84,7 +98,7 @@ export async function trigger(
       || {
         strategy: "backoff",
         backoff: {
-          initialInterval: 500,
+          initialInterval: 1000,
           maxInterval: 30000,
           exponent: 1.5,
           maxElapsedTime: 3600000,
@@ -92,7 +106,7 @@ export async function trigger(
         retryConnectionErrors: true,
       }
       || { strategy: "none" },
-    retryCodes: options?.retryCodes || ["408", "409", "429", "5XX"],
+    retryCodes: options?.retryCodes || ["408", "422", "429", "5XX"],
   };
 
   const requestRes = client._createRequest(context, {

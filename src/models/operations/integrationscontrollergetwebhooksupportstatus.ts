@@ -9,6 +9,10 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type IntegrationsControllerGetWebhookSupportStatusRequest = {
+  /**
+   * A header for idempotency purposes
+   */
+  idempotencyKey?: string | undefined;
   providerOrIntegrationId: string;
 };
 
@@ -24,11 +28,17 @@ export const IntegrationsControllerGetWebhookSupportStatusRequest$inboundSchema:
     z.ZodTypeDef,
     unknown
   > = z.object({
+    "Idempotency-Key": z.string().optional(),
     providerOrIntegrationId: z.string(),
+  }).transform((v) => {
+    return remap$(v, {
+      "Idempotency-Key": "idempotencyKey",
+    });
   });
 
 /** @internal */
 export type IntegrationsControllerGetWebhookSupportStatusRequest$Outbound = {
+  "Idempotency-Key"?: string | undefined;
   providerOrIntegrationId: string;
 };
 
@@ -39,7 +49,12 @@ export const IntegrationsControllerGetWebhookSupportStatusRequest$outboundSchema
     z.ZodTypeDef,
     IntegrationsControllerGetWebhookSupportStatusRequest
   > = z.object({
+    idempotencyKey: z.string().optional(),
     providerOrIntegrationId: z.string(),
+  }).transform((v) => {
+    return remap$(v, {
+      idempotencyKey: "Idempotency-Key",
+    });
   });
 
 /**

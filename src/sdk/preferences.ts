@@ -7,7 +7,6 @@ import { subscribersPreferencesRetrieveByLevel } from "../funcs/subscribersPrefe
 import { subscribersPreferencesUpdate } from "../funcs/subscribersPreferencesUpdate.js";
 import { subscribersPreferencesUpdateGlobal } from "../funcs/subscribersPreferencesUpdateGlobal.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as components from "../models/components/index.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
 
@@ -16,16 +15,14 @@ export class Preferences extends ClientSDK {
    * Get subscriber preferences
    */
   async list(
-    subscriberId: string,
-    includeInactiveChannels?: boolean | undefined,
+    request: operations.SubscribersControllerListSubscriberPreferencesRequest,
     options?: RequestOptions,
   ): Promise<
     operations.SubscribersControllerListSubscriberPreferencesResponse
   > {
     return unwrapAsync(subscribersPreferencesList(
       this,
-      subscriberId,
-      includeInactiveChannels,
+      request,
       options,
     ));
   }
@@ -34,17 +31,15 @@ export class Preferences extends ClientSDK {
    * Update subscriber global preferences
    */
   async updateGlobal(
-    updateSubscriberGlobalPreferencesRequestDto:
-      components.UpdateSubscriberGlobalPreferencesRequestDto,
-    subscriberId: string,
+    request:
+      operations.SubscribersControllerUpdateSubscriberGlobalPreferencesRequest,
     options?: RequestOptions,
   ): Promise<
     operations.SubscribersControllerUpdateSubscriberGlobalPreferencesResponse
   > {
     return unwrapAsync(subscribersPreferencesUpdateGlobal(
       this,
-      updateSubscriberGlobalPreferencesRequestDto,
-      subscriberId,
+      request,
       options,
     ));
   }

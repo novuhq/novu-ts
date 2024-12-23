@@ -9,7 +9,6 @@ import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
-import * as components from "../models/components/index.js";
 import {
   ConnectionError,
   InvalidRequestError,
@@ -28,9 +27,8 @@ import { Result } from "../types/fp.js";
  */
 export async function subscribersPreferencesUpdateGlobal(
   client: NovuCore,
-  updateSubscriberGlobalPreferencesRequestDto:
-    components.UpdateSubscriberGlobalPreferencesRequestDto,
-  subscriberId: string,
+  request:
+    operations.SubscribersControllerUpdateSubscriberGlobalPreferencesRequest,
   options?: RequestOptions,
 ): Promise<
   Result<
@@ -46,15 +44,8 @@ export async function subscribersPreferencesUpdateGlobal(
     | ConnectionError
   >
 > {
-  const input:
-    operations.SubscribersControllerUpdateSubscriberGlobalPreferencesRequest = {
-      updateSubscriberGlobalPreferencesRequestDto:
-        updateSubscriberGlobalPreferencesRequestDto,
-      subscriberId: subscriberId,
-    };
-
   const parsed = safeParse(
-    input,
+    request,
     (value) =>
       operations
         .SubscribersControllerUpdateSubscriberGlobalPreferencesRequest$outboundSchema
@@ -85,6 +76,11 @@ export async function subscribersPreferencesUpdateGlobal(
   const headers = new Headers({
     "Content-Type": "application/json",
     Accept: "application/json",
+    "Idempotency-Key": encodeSimple(
+      "Idempotency-Key",
+      payload["Idempotency-Key"],
+      { explode: false, charEncoding: "none" },
+    ),
   });
 
   const secConfig = await extractSecurity(client._options.apiKey);
@@ -103,7 +99,7 @@ export async function subscribersPreferencesUpdateGlobal(
       || {
         strategy: "backoff",
         backoff: {
-          initialInterval: 500,
+          initialInterval: 1000,
           maxInterval: 30000,
           exponent: 1.5,
           maxElapsedTime: 3600000,
@@ -111,7 +107,7 @@ export async function subscribersPreferencesUpdateGlobal(
         retryConnectionErrors: true,
       }
       || { strategy: "none" },
-    retryCodes: options?.retryCodes || ["408", "409", "429", "5XX"],
+    retryCodes: options?.retryCodes || ["408", "422", "429", "5XX"],
   };
 
   const requestRes = client._createRequest(context, {

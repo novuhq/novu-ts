@@ -9,10 +9,100 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export type SubscribersControllerCreateSubscriberRequest = {
+  /**
+   * A header for idempotency purposes
+   */
+  idempotencyKey?: string | undefined;
+  createSubscriberRequestDto: components.CreateSubscriberRequestDto;
+};
+
 export type SubscribersControllerCreateSubscriberResponse = {
   headers: { [k: string]: Array<string> };
   result: components.SubscriberResponseDto;
 };
+
+/** @internal */
+export const SubscribersControllerCreateSubscriberRequest$inboundSchema:
+  z.ZodType<
+    SubscribersControllerCreateSubscriberRequest,
+    z.ZodTypeDef,
+    unknown
+  > = z.object({
+    "Idempotency-Key": z.string().optional(),
+    CreateSubscriberRequestDto:
+      components.CreateSubscriberRequestDto$inboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      "Idempotency-Key": "idempotencyKey",
+      "CreateSubscriberRequestDto": "createSubscriberRequestDto",
+    });
+  });
+
+/** @internal */
+export type SubscribersControllerCreateSubscriberRequest$Outbound = {
+  "Idempotency-Key"?: string | undefined;
+  CreateSubscriberRequestDto: components.CreateSubscriberRequestDto$Outbound;
+};
+
+/** @internal */
+export const SubscribersControllerCreateSubscriberRequest$outboundSchema:
+  z.ZodType<
+    SubscribersControllerCreateSubscriberRequest$Outbound,
+    z.ZodTypeDef,
+    SubscribersControllerCreateSubscriberRequest
+  > = z.object({
+    idempotencyKey: z.string().optional(),
+    createSubscriberRequestDto:
+      components.CreateSubscriberRequestDto$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      idempotencyKey: "Idempotency-Key",
+      createSubscriberRequestDto: "CreateSubscriberRequestDto",
+    });
+  });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace SubscribersControllerCreateSubscriberRequest$ {
+  /** @deprecated use `SubscribersControllerCreateSubscriberRequest$inboundSchema` instead. */
+  export const inboundSchema =
+    SubscribersControllerCreateSubscriberRequest$inboundSchema;
+  /** @deprecated use `SubscribersControllerCreateSubscriberRequest$outboundSchema` instead. */
+  export const outboundSchema =
+    SubscribersControllerCreateSubscriberRequest$outboundSchema;
+  /** @deprecated use `SubscribersControllerCreateSubscriberRequest$Outbound` instead. */
+  export type Outbound = SubscribersControllerCreateSubscriberRequest$Outbound;
+}
+
+export function subscribersControllerCreateSubscriberRequestToJSON(
+  subscribersControllerCreateSubscriberRequest:
+    SubscribersControllerCreateSubscriberRequest,
+): string {
+  return JSON.stringify(
+    SubscribersControllerCreateSubscriberRequest$outboundSchema.parse(
+      subscribersControllerCreateSubscriberRequest,
+    ),
+  );
+}
+
+export function subscribersControllerCreateSubscriberRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  SubscribersControllerCreateSubscriberRequest,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      SubscribersControllerCreateSubscriberRequest$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'SubscribersControllerCreateSubscriberRequest' from JSON`,
+  );
+}
 
 /** @internal */
 export const SubscribersControllerCreateSubscriberResponse$inboundSchema:

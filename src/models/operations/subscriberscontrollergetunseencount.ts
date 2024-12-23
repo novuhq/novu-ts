@@ -10,6 +10,10 @@ import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type SubscribersControllerGetUnseenCountRequest = {
+  /**
+   * A header for idempotency purposes
+   */
+  idempotencyKey?: string | undefined;
   subscriberId: string;
   /**
    * Indicates whether to count seen notifications.
@@ -30,13 +34,19 @@ export type SubscribersControllerGetUnseenCountResponse = {
 export const SubscribersControllerGetUnseenCountRequest$inboundSchema:
   z.ZodType<SubscribersControllerGetUnseenCountRequest, z.ZodTypeDef, unknown> =
     z.object({
+      "Idempotency-Key": z.string().optional(),
       subscriberId: z.string(),
       seen: z.boolean().default(false),
       limit: z.number().default(100),
+    }).transform((v) => {
+      return remap$(v, {
+        "Idempotency-Key": "idempotencyKey",
+      });
     });
 
 /** @internal */
 export type SubscribersControllerGetUnseenCountRequest$Outbound = {
+  "Idempotency-Key"?: string | undefined;
   subscriberId: string;
   seen: boolean;
   limit: number;
@@ -49,9 +59,14 @@ export const SubscribersControllerGetUnseenCountRequest$outboundSchema:
     z.ZodTypeDef,
     SubscribersControllerGetUnseenCountRequest
   > = z.object({
+    idempotencyKey: z.string().optional(),
     subscriberId: z.string(),
     seen: z.boolean().default(false),
     limit: z.number().default(100),
+  }).transform((v) => {
+    return remap$(v, {
+      idempotencyKey: "Idempotency-Key",
+    });
   });
 
 /**

@@ -7,14 +7,14 @@ import { StepFilterDto } from "@novu/api/models/components";
 
 let value: StepFilterDto = {
   isNegated: false,
-  type: "NUMBER",
+  type: "GROUP",
   value: "OR",
   children: [
     {
       field: "<value>",
       value: "<value>",
-      operator: "BETWEEN",
-      on: "subscriber",
+      operator: "NOT_LIKE",
+      on: "payload",
     },
   ],
 };

@@ -35,11 +35,13 @@ export class Messages extends ClientSDK {
    */
   async delete(
     messageId: string,
+    idempotencyKey?: string | undefined,
     options?: RequestOptions,
   ): Promise<operations.MessagesControllerDeleteMessageResponse> {
     return unwrapAsync(messagesDelete(
       this,
       messageId,
+      idempotencyKey,
       options,
     ));
   }
@@ -51,8 +53,7 @@ export class Messages extends ClientSDK {
    * Deletes messages entity from the Novu platform using TransactionId of message
    */
   async deleteByTransactionId(
-    transactionId: string,
-    channel?: operations.Channel | undefined,
+    request: operations.MessagesControllerDeleteMessagesByTransactionIdRequest,
     options?: RequestOptions,
   ): Promise<
     | operations.MessagesControllerDeleteMessagesByTransactionIdResponse
@@ -60,8 +61,7 @@ export class Messages extends ClientSDK {
   > {
     return unwrapAsync(messagesDeleteByTransactionId(
       this,
-      transactionId,
-      channel,
+      request,
       options,
     ));
   }

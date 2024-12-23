@@ -9,6 +9,10 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type SubscribersControllerChatOauthCallbackRequest = {
+  /**
+   * A header for idempotency purposes
+   */
+  idempotencyKey?: string | undefined;
   subscriberId: string;
   providerId?: any | undefined;
   /**
@@ -45,16 +49,22 @@ export const SubscribersControllerChatOauthCallbackRequest$inboundSchema:
     z.ZodTypeDef,
     unknown
   > = z.object({
+    "Idempotency-Key": z.string().optional(),
     subscriberId: z.string(),
     providerId: z.any().optional(),
     hmacHash: z.string(),
     environmentId: z.string(),
     integrationIdentifier: z.string().optional(),
     code: z.string(),
+  }).transform((v) => {
+    return remap$(v, {
+      "Idempotency-Key": "idempotencyKey",
+    });
   });
 
 /** @internal */
 export type SubscribersControllerChatOauthCallbackRequest$Outbound = {
+  "Idempotency-Key"?: string | undefined;
   subscriberId: string;
   providerId?: any | undefined;
   hmacHash: string;
@@ -70,12 +80,17 @@ export const SubscribersControllerChatOauthCallbackRequest$outboundSchema:
     z.ZodTypeDef,
     SubscribersControllerChatOauthCallbackRequest
   > = z.object({
+    idempotencyKey: z.string().optional(),
     subscriberId: z.string(),
     providerId: z.any().optional(),
     hmacHash: z.string(),
     environmentId: z.string(),
     integrationIdentifier: z.string().optional(),
     code: z.string(),
+  }).transform((v) => {
+    return remap$(v, {
+      idempotencyKey: "Idempotency-Key",
+    });
   });
 
 /**

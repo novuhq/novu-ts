@@ -34,11 +34,13 @@ export class Notifications extends ClientSDK {
    */
   async retrieve(
     notificationId: string,
+    idempotencyKey?: string | undefined,
     options?: RequestOptions,
   ): Promise<operations.NotificationsControllerGetNotificationResponse> {
     return unwrapAsync(notificationsRetrieve(
       this,
       notificationId,
+      idempotencyKey,
       options,
     ));
   }

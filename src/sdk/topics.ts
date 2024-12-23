@@ -26,12 +26,14 @@ export class Topics extends ClientSDK {
    * Create a topic
    */
   async create(
-    request: components.CreateTopicRequestDto,
+    createTopicRequestDto: components.CreateTopicRequestDto,
+    idempotencyKey?: string | undefined,
     options?: RequestOptions,
   ): Promise<operations.TopicsControllerCreateTopicResponse> {
     return unwrapAsync(topicsCreate(
       this,
-      request,
+      createTopicRequestDto,
+      idempotencyKey,
       options,
     ));
   }
@@ -61,11 +63,13 @@ export class Topics extends ClientSDK {
    */
   async delete(
     topicKey: string,
+    idempotencyKey?: string | undefined,
     options?: RequestOptions,
   ): Promise<operations.TopicsControllerDeleteTopicResponse | undefined> {
     return unwrapAsync(topicsDelete(
       this,
       topicKey,
+      idempotencyKey,
       options,
     ));
   }
@@ -78,11 +82,13 @@ export class Topics extends ClientSDK {
    */
   async retrieve(
     topicKey: string,
+    idempotencyKey?: string | undefined,
     options?: RequestOptions,
   ): Promise<operations.TopicsControllerGetTopicResponse> {
     return unwrapAsync(topicsRetrieve(
       this,
       topicKey,
+      idempotencyKey,
       options,
     ));
   }
@@ -94,14 +100,12 @@ export class Topics extends ClientSDK {
    * Rename a topic by providing a new name
    */
   async rename(
-    renameTopicRequestDto: components.RenameTopicRequestDto,
-    topicKey: string,
+    request: operations.TopicsControllerRenameTopicRequest,
     options?: RequestOptions,
   ): Promise<operations.TopicsControllerRenameTopicResponse> {
     return unwrapAsync(topicsRename(
       this,
-      renameTopicRequestDto,
-      topicKey,
+      request,
       options,
     ));
   }

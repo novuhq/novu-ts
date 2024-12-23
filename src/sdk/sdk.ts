@@ -52,12 +52,14 @@ export class Novu extends ClientSDK {
    *     Additional information can be passed according the body interface below.
    */
   async trigger(
-    request: components.TriggerEventRequestDto,
+    triggerEventRequestDto: components.TriggerEventRequestDto,
+    idempotencyKey?: string | undefined,
     options?: RequestOptions,
   ): Promise<operations.EventsControllerTriggerResponse> {
     return unwrapAsync(trigger(
       this,
-      request,
+      triggerEventRequestDto,
+      idempotencyKey,
       options,
     ));
   }
@@ -71,12 +73,14 @@ export class Novu extends ClientSDK {
    *       The bulk API is limited to 100 events per request.
    */
   async triggerBulk(
-    request: components.BulkTriggerEventDto,
+    bulkTriggerEventDto: components.BulkTriggerEventDto,
+    idempotencyKey?: string | undefined,
     options?: RequestOptions,
   ): Promise<operations.EventsControllerTriggerBulkResponse> {
     return unwrapAsync(triggerBulk(
       this,
-      request,
+      bulkTriggerEventDto,
+      idempotencyKey,
       options,
     ));
   }
@@ -90,12 +94,14 @@ export class Novu extends ClientSDK {
    *       In the future could be used to trigger events to a subset of subscribers based on defined filters.
    */
   async triggerBroadcast(
-    request: components.TriggerEventToAllRequestDto,
+    triggerEventToAllRequestDto: components.TriggerEventToAllRequestDto,
+    idempotencyKey?: string | undefined,
     options?: RequestOptions,
   ): Promise<operations.EventsControllerBroadcastEventToAllResponse> {
     return unwrapAsync(triggerBroadcast(
       this,
-      request,
+      triggerEventToAllRequestDto,
+      idempotencyKey,
       options,
     ));
   }
@@ -110,11 +116,13 @@ export class Novu extends ClientSDK {
    */
   async cancel(
     transactionId: string,
+    idempotencyKey?: string | undefined,
     options?: RequestOptions,
   ): Promise<operations.EventsControllerCancelResponse> {
     return unwrapAsync(cancel(
       this,
       transactionId,
+      idempotencyKey,
       options,
     ));
   }

@@ -8,10 +8,8 @@ import { SubscribersControllerMarkMessagesAsRequest } from "@novu/api/models/ope
 let value: SubscribersControllerMarkMessagesAsRequest = {
   subscriberId: "<id>",
   messageMarkAsRequestDto: {
-    messageId: [
-      "<id>",
-    ],
-    markAs: "seen",
+    messageId: "<id>",
+    markAs: "read",
   },
 };
 ```
@@ -20,5 +18,6 @@ let value: SubscribersControllerMarkMessagesAsRequest = {
 
 | Field                                                                                    | Type                                                                                     | Required                                                                                 | Description                                                                              |
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `idempotencyKey`                                                                         | *string*                                                                                 | :heavy_minus_sign:                                                                       | A header for idempotency purposes                                                        |
 | `subscriberId`                                                                           | *string*                                                                                 | :heavy_check_mark:                                                                       | N/A                                                                                      |
 | `messageMarkAsRequestDto`                                                                | [components.MessageMarkAsRequestDto](../../models/components/messagemarkasrequestdto.md) | :heavy_check_mark:                                                                       | N/A                                                                                      |

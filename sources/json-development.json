@@ -11,7 +11,17 @@
         "x-speakeasy-name-override": "trigger",
         "summary": "Trigger event",
         "description": "\n    Trigger event is the main (and only) way to send notifications to subscribers. \n    The trigger identifier is used to match the particular workflow associated with it. \n    Additional information can be passed according the body interface below.\n    ",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "description": "A header for idempotency purposes ",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -283,7 +293,17 @@
         "x-speakeasy-name-override": "triggerBulk",
         "summary": "Bulk trigger event",
         "description": "\n      Using this endpoint you can trigger multiple events at once, to avoid multiple calls to the API.\n      The bulk API is limited to 100 events per request.\n    ",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "description": "A header for idempotency purposes ",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -558,7 +578,17 @@
         "x-speakeasy-name-override": "triggerBroadcast",
         "summary": "Broadcast event to all",
         "description": "Trigger a broadcast event to all existing subscribers, could be used to send announcements, etc.\n\n      In the future could be used to trigger events to a subset of subscribers based on defined filters.",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "description": "A header for idempotency purposes ",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -865,6 +895,15 @@
         "description": "\n    Using a previously generated transactionId during the event trigger,\n     will cancel any active or pending workflows. This is useful to cancel active digests, delays etc...\n    ",
         "parameters": [
           {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "description": "A header for idempotency purposes ",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "transactionId",
             "required": true,
             "in": "path",
@@ -1129,6 +1168,15 @@
         "operationId": "NotificationsController_listNotifications",
         "summary": "Get notifications",
         "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "description": "A header for idempotency purposes ",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "channels",
             "required": false,
@@ -1481,7 +1529,17 @@
         "operationId": "NotificationsController_getActivityStats",
         "x-speakeasy-group": "Notifications.Stats",
         "summary": "Get notification statistics",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "description": "A header for idempotency purposes ",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -1740,6 +1798,15 @@
         "x-speakeasy-group": "Notifications.Stats",
         "summary": "Get notification graph statistics",
         "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "description": "A header for idempotency purposes ",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "days",
             "required": false,
@@ -2009,6 +2076,15 @@
         "summary": "Get notification",
         "parameters": [
           {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "description": "A header for idempotency purposes ",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "notificationId",
             "required": true,
             "in": "path",
@@ -2273,7 +2349,17 @@
         "operationId": "IntegrationsController_listIntegrations",
         "summary": "Get integrations",
         "description": "Return all the integrations the user has created for that organization. Review v.0.17.0 changelog for a breaking change",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "description": "A header for idempotency purposes ",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "The list of integrations belonging to the organization that are successfully returned.",
@@ -2531,7 +2617,17 @@
         "operationId": "IntegrationsController_createIntegration",
         "summary": "Create integration",
         "description": "Create an integration for the current environment the user is based on the API key provided",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "description": "A header for idempotency purposes ",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -2799,7 +2895,17 @@
         "x-speakeasy-name-override": "listActive",
         "summary": "Get active integrations",
         "description": "Return all the active integrations the user has created for that organization. Review v.0.17.0 changelog for a breaking change",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "description": "A header for idempotency purposes ",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "The list of active integrations belonging to the organization that are successfully returned.",
@@ -3061,6 +3167,15 @@
         "summary": "Get webhook support status for provider",
         "description": "Return the status of the webhook for this provider, if it is supported or if it is not based on a boolean value",
         "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "description": "A header for idempotency purposes ",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "providerOrIntegrationId",
             "required": true,
@@ -3327,6 +3442,15 @@
         "summary": "Update integration",
         "parameters": [
           {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "description": "A header for idempotency purposes ",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "integrationId",
             "required": true,
             "in": "path",
@@ -3592,6 +3716,15 @@
         "operationId": "IntegrationsController_removeIntegration",
         "summary": "Delete integration",
         "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "description": "A header for idempotency purposes ",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "integrationId",
             "required": true,
@@ -3861,6 +3994,15 @@
         "x-speakeasy-name-override": "setAsPrimary",
         "summary": "Set integration as primary",
         "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "description": "A header for idempotency purposes ",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "integrationId",
             "required": true,
@@ -4138,6 +4280,15 @@
         "summary": "Get subscribers",
         "description": "Returns a list of subscribers, could paginated using the `page` and `limit` query parameter",
         "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "description": "A header for idempotency purposes ",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "page",
             "required": false,
@@ -4425,7 +4576,17 @@
         "operationId": "SubscribersController_createSubscriber",
         "summary": "Create subscriber",
         "description": "Creates a subscriber entity, in the Novu platform. The subscriber will be later used to receive notifications, and access notification feeds. Communication credentials such as email, phone number, and 3 rd party credentials i.e slack tokens could be later associated to this entity.",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "description": "A header for idempotency purposes ",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -4693,6 +4854,15 @@
         "summary": "Get subscriber",
         "description": "Get subscriber by your internal id used to identify the subscriber",
         "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "description": "A header for idempotency purposes ",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "subscriberId",
             "required": true,
@@ -4966,6 +5136,15 @@
         "summary": "Update subscriber",
         "description": "Used to update the subscriber entity with new information",
         "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "description": "A header for idempotency purposes ",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "subscriberId",
             "required": true,
@@ -5241,6 +5420,15 @@
         "description": "Deletes a subscriber entity from the Novu platform",
         "parameters": [
           {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "description": "A header for idempotency purposes ",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "subscriberId",
             "required": true,
             "in": "path",
@@ -5506,7 +5694,17 @@
         "x-speakeasy-name-override": "createBulk",
         "summary": "Bulk create subscribers",
         "description": "\n      Using this endpoint you can create multiple subscribers at once, to avoid multiple calls to the API.\n      The bulk API is limited to 500 subscribers per request.\n    ",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "description": "A header for idempotency purposes ",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -5775,6 +5973,15 @@
         "summary": "Update subscriber credentials",
         "description": "Subscriber credentials associated to the delivery methods such as slack and push tokens.",
         "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "description": "A header for idempotency purposes ",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "subscriberId",
             "required": true,
@@ -6051,6 +6258,15 @@
         "summary": "Modify subscriber credentials",
         "description": "Subscriber credentials associated to the delivery methods such as slack and push tokens.\n\n    This endpoint appends provided credentials and deviceTokens to the existing ones.",
         "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "description": "A header for idempotency purposes ",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "subscriberId",
             "required": true,
@@ -6329,6 +6545,15 @@
         "description": "Delete subscriber credentials such as slack and expo tokens.",
         "parameters": [
           {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "description": "A header for idempotency purposes ",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "subscriberId",
             "required": true,
             "in": "path",
@@ -6597,6 +6822,15 @@
         "summary": "Update subscriber online status",
         "description": "Used to update the subscriber isOnline flag.",
         "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "description": "A header for idempotency purposes ",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "subscriberId",
             "required": true,
@@ -6875,6 +7109,15 @@
         "summary": "Get subscriber preferences",
         "parameters": [
           {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "description": "A header for idempotency purposes ",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "subscriberId",
             "required": true,
             "in": "path",
@@ -7152,6 +7395,15 @@
         "summary": "Update subscriber global preferences",
         "parameters": [
           {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "description": "A header for idempotency purposes ",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "subscriberId",
             "required": true,
             "in": "path",
@@ -7428,6 +7680,15 @@
         "x-speakeasy-group": "Subscribers.Preferences",
         "summary": "Get subscriber preferences by level",
         "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "description": "A header for idempotency purposes ",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "includeInactiveChannels",
             "required": false,
@@ -7719,6 +7980,15 @@
         "summary": "Update subscriber preference",
         "parameters": [
           {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "description": "A header for idempotency purposes ",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "subscriberId",
             "required": true,
             "in": "path",
@@ -8004,6 +8274,15 @@
         "x-speakeasy-group": "Subscribers.Notifications",
         "summary": "Get in-app notification feed for a particular subscriber",
         "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "description": "A header for idempotency purposes ",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "subscriberId",
             "required": true,
@@ -8316,6 +8595,15 @@
         "summary": "Get the unseen in-app notifications count for subscribers feed",
         "parameters": [
           {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "description": "A header for idempotency purposes ",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "subscriberId",
             "required": true,
             "in": "path",
@@ -8603,6 +8891,15 @@
         "summary": "Mark a subscriber messages as seen, read, unseen or unread",
         "parameters": [
           {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "description": "A header for idempotency purposes ",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "subscriberId",
             "required": true,
             "in": "path",
@@ -8883,6 +9180,15 @@
         "summary": "Marks all the subscriber messages as read, unread, seen or unseen. Optionally you can pass feed id (or array) to mark messages of a particular feed.",
         "parameters": [
           {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "description": "A header for idempotency purposes ",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "subscriberId",
             "required": true,
             "in": "path",
@@ -9159,6 +9465,15 @@
         "x-speakeasy-group": "Subscribers.Messages",
         "summary": "Mark message action as seen",
         "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "description": "A header for idempotency purposes ",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "messageId",
             "required": true,
@@ -9450,6 +9765,15 @@
         "x-speakeasy-group": "Subscribers.Authentication",
         "summary": "Handle providers oauth redirect",
         "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "description": "A header for idempotency purposes ",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "subscriberId",
             "required": true,
@@ -9800,6 +10124,15 @@
         "summary": "Handle chat oauth",
         "parameters": [
           {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "description": "A header for idempotency purposes ",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "subscriberId",
             "required": true,
             "in": "path",
@@ -10068,6 +10401,15 @@
         "summary": "Get messages",
         "description": "Returns a list of messages, could paginate using the `page` query parameter",
         "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "description": "A header for idempotency purposes ",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "channel",
             "required": false,
@@ -10372,6 +10714,15 @@
         "description": "Deletes a message entity from the Novu platform",
         "parameters": [
           {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "description": "A header for idempotency purposes ",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "messageId",
             "required": true,
             "in": "path",
@@ -10638,6 +10989,15 @@
         "summary": "Delete messages by transactionId",
         "description": "Deletes messages entity from the Novu platform using TransactionId of message",
         "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "description": "A header for idempotency purposes ",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "channel",
             "required": false,
@@ -10912,7 +11272,17 @@
         "operationId": "TopicsController_createTopic",
         "summary": "Topic creation",
         "description": "Create a topic",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "description": "A header for idempotency purposes ",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -11178,6 +11548,15 @@
         "summary": "Get topic list filtered ",
         "description": "Returns a list of topics that can be paginated using the `page` query parameter and filtered by the topic key with the `key` query parameter",
         "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "description": "A header for idempotency purposes ",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "page",
             "required": false,
@@ -11473,6 +11852,15 @@
         "description": "Add subscribers to a topic by key",
         "parameters": [
           {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "description": "A header for idempotency purposes ",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "topicKey",
             "required": true,
             "in": "path",
@@ -11750,6 +12138,15 @@
         "summary": "Check topic subscriber",
         "description": "Check if a subscriber belongs to a certain topic",
         "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "description": "A header for idempotency purposes ",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "externalSubscriberId",
             "required": true,
@@ -12029,6 +12426,15 @@
         "description": "Remove subscribers from a topic",
         "parameters": [
           {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "description": "A header for idempotency purposes ",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "topicKey",
             "required": true,
             "in": "path",
@@ -12299,6 +12705,15 @@
         "description": "Delete a topic by its topic key if it has no subscribers",
         "parameters": [
           {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "description": "A header for idempotency purposes ",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "topicKey",
             "required": true,
             "in": "path",
@@ -12556,6 +12971,15 @@
         "summary": "Get topic",
         "description": "Get a topic by its topic key",
         "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "description": "A header for idempotency purposes ",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "topicKey",
             "required": true,
@@ -12822,6 +13246,15 @@
         "summary": "Rename a topic",
         "description": "Rename a topic by providing a new name",
         "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "description": "A header for idempotency purposes ",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "topicKey",
             "required": true,
@@ -14035,7 +14468,6 @@
           "burst-sms",
           "bulk-sms",
           "isend-sms",
-          "clickatell",
           "forty-six-elks",
           "kannel",
           "maqsam",
@@ -17145,15 +17577,15 @@
   "x-speakeasy-retries": {
     "strategy": "backoff",
     "backoff": {
-      "initialInterval": 500,
+      "initialInterval": 1000,
       "maxInterval": 30000,
       "maxElapsedTime": 3600000,
       "exponent": 1.5
     },
     "statusCodes": [
-      "408",
-      "409",
-      "429",
+      408,
+      422,
+      429,
       "5XX"
     ],
     "retryConnectionErrors": true

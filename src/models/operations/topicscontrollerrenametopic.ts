@@ -11,6 +11,10 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type TopicsControllerRenameTopicRequest = {
   /**
+   * A header for idempotency purposes
+   */
+  idempotencyKey?: string | undefined;
+  /**
    * The topic key
    */
   topicKey: string;
@@ -28,16 +32,19 @@ export const TopicsControllerRenameTopicRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
+  "Idempotency-Key": z.string().optional(),
   topicKey: z.string(),
   RenameTopicRequestDto: components.RenameTopicRequestDto$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
+    "Idempotency-Key": "idempotencyKey",
     "RenameTopicRequestDto": "renameTopicRequestDto",
   });
 });
 
 /** @internal */
 export type TopicsControllerRenameTopicRequest$Outbound = {
+  "Idempotency-Key"?: string | undefined;
   topicKey: string;
   RenameTopicRequestDto: components.RenameTopicRequestDto$Outbound;
 };
@@ -48,10 +55,12 @@ export const TopicsControllerRenameTopicRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   TopicsControllerRenameTopicRequest
 > = z.object({
+  idempotencyKey: z.string().optional(),
   topicKey: z.string(),
   renameTopicRequestDto: components.RenameTopicRequestDto$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
+    idempotencyKey: "Idempotency-Key",
     renameTopicRequestDto: "RenameTopicRequestDto",
   });
 });

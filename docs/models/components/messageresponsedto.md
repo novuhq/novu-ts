@@ -16,7 +16,7 @@ let value: MessageResponseDto = {
     subscriberId: "<id>",
     channels: [
       {
-        providerId: "one-signal",
+        providerId: "msteams",
         credentials: {
           webhookUrl: "https://example.com/webhook",
           channel: "general",
@@ -37,11 +37,14 @@ let value: MessageResponseDto = {
     organizationId: "<id>",
     environmentId: "<id>",
     deleted: false,
-    createdAt: "1725605741245",
-    updatedAt: "1734866171080",
+    createdAt: "1730790945133",
+    updatedAt: "1734877361883",
   },
-  createdAt: "1732404714367",
-  content: "<value>",
+  createdAt: "1722826008461",
+  content: {
+    type: "text",
+    content: "<value>",
+  },
   transactionId: "<id>",
   channel: "push",
   read: false,
@@ -49,7 +52,7 @@ let value: MessageResponseDto = {
   cta: {
     data: {},
   },
-  status: "sent",
+  status: "error",
 };
 ```
 

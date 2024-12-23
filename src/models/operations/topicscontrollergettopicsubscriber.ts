@@ -11,6 +11,10 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type TopicsControllerGetTopicSubscriberRequest = {
   /**
+   * A header for idempotency purposes
+   */
+  idempotencyKey?: string | undefined;
+  /**
    * The external subscriber id
    */
   externalSubscriberId: string;
@@ -31,12 +35,18 @@ export const TopicsControllerGetTopicSubscriberRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
+  "Idempotency-Key": z.string().optional(),
   externalSubscriberId: z.string(),
   topicKey: z.string(),
+}).transform((v) => {
+  return remap$(v, {
+    "Idempotency-Key": "idempotencyKey",
+  });
 });
 
 /** @internal */
 export type TopicsControllerGetTopicSubscriberRequest$Outbound = {
+  "Idempotency-Key"?: string | undefined;
   externalSubscriberId: string;
   topicKey: string;
 };
@@ -48,8 +58,13 @@ export const TopicsControllerGetTopicSubscriberRequest$outboundSchema:
     z.ZodTypeDef,
     TopicsControllerGetTopicSubscriberRequest
   > = z.object({
+    idempotencyKey: z.string().optional(),
     externalSubscriberId: z.string(),
     topicKey: z.string(),
+  }).transform((v) => {
+    return remap$(v, {
+      idempotencyKey: "Idempotency-Key",
+    });
   });
 
 /**

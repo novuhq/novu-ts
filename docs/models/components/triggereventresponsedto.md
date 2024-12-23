@@ -7,7 +7,7 @@ import { TriggerEventResponseDto } from "@novu/api/models/components";
 
 let value: TriggerEventResponseDto = {
   acknowledged: false,
-  status: "subscriber_id_missing",
+  status: "no_workflow_active_steps_defined",
 };
 ```
 

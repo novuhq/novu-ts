@@ -30,8 +30,7 @@ import { Result } from "../types/fp.js";
  */
 export async function topicsSubscribersRetrieve(
   client: NovuCore,
-  externalSubscriberId: string,
-  topicKey: string,
+  request: operations.TopicsControllerGetTopicSubscriberRequest,
   options?: RequestOptions,
 ): Promise<
   Result<
@@ -47,13 +46,8 @@ export async function topicsSubscribersRetrieve(
     | ConnectionError
   >
 > {
-  const input: operations.TopicsControllerGetTopicSubscriberRequest = {
-    externalSubscriberId: externalSubscriberId,
-    topicKey: topicKey,
-  };
-
   const parsed = safeParse(
-    input,
+    request,
     (value) =>
       operations.TopicsControllerGetTopicSubscriberRequest$outboundSchema.parse(
         value,
@@ -84,6 +78,11 @@ export async function topicsSubscribersRetrieve(
 
   const headers = new Headers({
     Accept: "application/json",
+    "Idempotency-Key": encodeSimple(
+      "Idempotency-Key",
+      payload["Idempotency-Key"],
+      { explode: false, charEncoding: "none" },
+    ),
   });
 
   const secConfig = await extractSecurity(client._options.apiKey);
@@ -102,7 +101,7 @@ export async function topicsSubscribersRetrieve(
       || {
         strategy: "backoff",
         backoff: {
-          initialInterval: 500,
+          initialInterval: 1000,
           maxInterval: 30000,
           exponent: 1.5,
           maxElapsedTime: 3600000,
@@ -110,7 +109,7 @@ export async function topicsSubscribersRetrieve(
         retryConnectionErrors: true,
       }
       || { strategy: "none" },
-    retryCodes: options?.retryCodes || ["408", "409", "429", "5XX"],
+    retryCodes: options?.retryCodes || ["408", "422", "429", "5XX"],
   };
 
   const requestRes = client._createRequest(context, {

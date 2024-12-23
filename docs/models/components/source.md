@@ -7,7 +7,7 @@ Source of the execution detail
 ```typescript
 import { Source } from "@novu/api/models/components";
 
-let value: Source = "Credentials";
+let value: Source = "Internal";
 ```
 
 ## Values

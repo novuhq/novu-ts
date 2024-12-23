@@ -11,6 +11,10 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type NotificationsControllerListNotificationsRequest = {
   /**
+   * A header for idempotency purposes
+   */
+  idempotencyKey?: string | undefined;
+  /**
    * Array of channel types
    */
   channels?: Array<components.ChannelTypeEnum> | undefined;
@@ -62,6 +66,7 @@ export const NotificationsControllerListNotificationsRequest$inboundSchema:
     z.ZodTypeDef,
     unknown
   > = z.object({
+    "Idempotency-Key": z.string().optional(),
     channels: z.array(components.ChannelTypeEnum$inboundSchema).optional(),
     templates: z.array(z.string()).optional(),
     emails: z.array(z.string()).optional(),
@@ -71,10 +76,15 @@ export const NotificationsControllerListNotificationsRequest$inboundSchema:
     transactionId: z.string().optional(),
     after: z.string().optional(),
     before: z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "Idempotency-Key": "idempotencyKey",
+    });
   });
 
 /** @internal */
 export type NotificationsControllerListNotificationsRequest$Outbound = {
+  "Idempotency-Key"?: string | undefined;
   channels?: Array<string> | undefined;
   templates?: Array<string> | undefined;
   emails?: Array<string> | undefined;
@@ -93,6 +103,7 @@ export const NotificationsControllerListNotificationsRequest$outboundSchema:
     z.ZodTypeDef,
     NotificationsControllerListNotificationsRequest
   > = z.object({
+    idempotencyKey: z.string().optional(),
     channels: z.array(components.ChannelTypeEnum$outboundSchema).optional(),
     templates: z.array(z.string()).optional(),
     emails: z.array(z.string()).optional(),
@@ -102,6 +113,10 @@ export const NotificationsControllerListNotificationsRequest$outboundSchema:
     transactionId: z.string().optional(),
     after: z.string().optional(),
     before: z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      idempotencyKey: "Idempotency-Key",
+    });
   });
 
 /**

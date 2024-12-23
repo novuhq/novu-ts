@@ -9,10 +9,101 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export type IntegrationsControllerCreateIntegrationRequest = {
+  /**
+   * A header for idempotency purposes
+   */
+  idempotencyKey?: string | undefined;
+  createIntegrationRequestDto: components.CreateIntegrationRequestDto;
+};
+
 export type IntegrationsControllerCreateIntegrationResponse = {
   headers: { [k: string]: Array<string> };
   result: components.IntegrationResponseDto;
 };
+
+/** @internal */
+export const IntegrationsControllerCreateIntegrationRequest$inboundSchema:
+  z.ZodType<
+    IntegrationsControllerCreateIntegrationRequest,
+    z.ZodTypeDef,
+    unknown
+  > = z.object({
+    "Idempotency-Key": z.string().optional(),
+    CreateIntegrationRequestDto:
+      components.CreateIntegrationRequestDto$inboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      "Idempotency-Key": "idempotencyKey",
+      "CreateIntegrationRequestDto": "createIntegrationRequestDto",
+    });
+  });
+
+/** @internal */
+export type IntegrationsControllerCreateIntegrationRequest$Outbound = {
+  "Idempotency-Key"?: string | undefined;
+  CreateIntegrationRequestDto: components.CreateIntegrationRequestDto$Outbound;
+};
+
+/** @internal */
+export const IntegrationsControllerCreateIntegrationRequest$outboundSchema:
+  z.ZodType<
+    IntegrationsControllerCreateIntegrationRequest$Outbound,
+    z.ZodTypeDef,
+    IntegrationsControllerCreateIntegrationRequest
+  > = z.object({
+    idempotencyKey: z.string().optional(),
+    createIntegrationRequestDto:
+      components.CreateIntegrationRequestDto$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      idempotencyKey: "Idempotency-Key",
+      createIntegrationRequestDto: "CreateIntegrationRequestDto",
+    });
+  });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace IntegrationsControllerCreateIntegrationRequest$ {
+  /** @deprecated use `IntegrationsControllerCreateIntegrationRequest$inboundSchema` instead. */
+  export const inboundSchema =
+    IntegrationsControllerCreateIntegrationRequest$inboundSchema;
+  /** @deprecated use `IntegrationsControllerCreateIntegrationRequest$outboundSchema` instead. */
+  export const outboundSchema =
+    IntegrationsControllerCreateIntegrationRequest$outboundSchema;
+  /** @deprecated use `IntegrationsControllerCreateIntegrationRequest$Outbound` instead. */
+  export type Outbound =
+    IntegrationsControllerCreateIntegrationRequest$Outbound;
+}
+
+export function integrationsControllerCreateIntegrationRequestToJSON(
+  integrationsControllerCreateIntegrationRequest:
+    IntegrationsControllerCreateIntegrationRequest,
+): string {
+  return JSON.stringify(
+    IntegrationsControllerCreateIntegrationRequest$outboundSchema.parse(
+      integrationsControllerCreateIntegrationRequest,
+    ),
+  );
+}
+
+export function integrationsControllerCreateIntegrationRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  IntegrationsControllerCreateIntegrationRequest,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      IntegrationsControllerCreateIntegrationRequest$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'IntegrationsControllerCreateIntegrationRequest' from JSON`,
+  );
+}
 
 /** @internal */
 export const IntegrationsControllerCreateIntegrationResponse$inboundSchema:

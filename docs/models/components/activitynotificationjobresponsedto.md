@@ -7,16 +7,16 @@ import { ActivityNotificationJobResponseDto } from "@novu/api/models/components"
 
 let value: ActivityNotificationJobResponseDto = {
   id: "<id>",
-  type: "digest",
+  type: "sms",
   executionDetails: [
     {
       id: "<id>",
-      status: "ReadConfirmation",
+      status: "Warning",
       detail: "<value>",
       isRetry: false,
       isTest: false,
-      providerId: "nexmo",
-      source: "Payload",
+      providerId: "sendchamp",
+      source: "Credentials",
     },
   ],
   step: {
@@ -26,7 +26,7 @@ let value: ActivityNotificationJobResponseDto = {
       {},
     ],
   },
-  providerId: "netcore",
+  providerId: "pusher-beams",
   status: "<value>",
 };
 ```

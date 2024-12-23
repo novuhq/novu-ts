@@ -9,10 +9,87 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export type EventsControllerTriggerRequest = {
+  /**
+   * A header for idempotency purposes
+   */
+  idempotencyKey?: string | undefined;
+  triggerEventRequestDto: components.TriggerEventRequestDto;
+};
+
 export type EventsControllerTriggerResponse = {
   headers: { [k: string]: Array<string> };
   result: components.TriggerEventResponseDto;
 };
+
+/** @internal */
+export const EventsControllerTriggerRequest$inboundSchema: z.ZodType<
+  EventsControllerTriggerRequest,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  "Idempotency-Key": z.string().optional(),
+  TriggerEventRequestDto: components.TriggerEventRequestDto$inboundSchema,
+}).transform((v) => {
+  return remap$(v, {
+    "Idempotency-Key": "idempotencyKey",
+    "TriggerEventRequestDto": "triggerEventRequestDto",
+  });
+});
+
+/** @internal */
+export type EventsControllerTriggerRequest$Outbound = {
+  "Idempotency-Key"?: string | undefined;
+  TriggerEventRequestDto: components.TriggerEventRequestDto$Outbound;
+};
+
+/** @internal */
+export const EventsControllerTriggerRequest$outboundSchema: z.ZodType<
+  EventsControllerTriggerRequest$Outbound,
+  z.ZodTypeDef,
+  EventsControllerTriggerRequest
+> = z.object({
+  idempotencyKey: z.string().optional(),
+  triggerEventRequestDto: components.TriggerEventRequestDto$outboundSchema,
+}).transform((v) => {
+  return remap$(v, {
+    idempotencyKey: "Idempotency-Key",
+    triggerEventRequestDto: "TriggerEventRequestDto",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace EventsControllerTriggerRequest$ {
+  /** @deprecated use `EventsControllerTriggerRequest$inboundSchema` instead. */
+  export const inboundSchema = EventsControllerTriggerRequest$inboundSchema;
+  /** @deprecated use `EventsControllerTriggerRequest$outboundSchema` instead. */
+  export const outboundSchema = EventsControllerTriggerRequest$outboundSchema;
+  /** @deprecated use `EventsControllerTriggerRequest$Outbound` instead. */
+  export type Outbound = EventsControllerTriggerRequest$Outbound;
+}
+
+export function eventsControllerTriggerRequestToJSON(
+  eventsControllerTriggerRequest: EventsControllerTriggerRequest,
+): string {
+  return JSON.stringify(
+    EventsControllerTriggerRequest$outboundSchema.parse(
+      eventsControllerTriggerRequest,
+    ),
+  );
+}
+
+export function eventsControllerTriggerRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<EventsControllerTriggerRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => EventsControllerTriggerRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'EventsControllerTriggerRequest' from JSON`,
+  );
+}
 
 /** @internal */
 export const EventsControllerTriggerResponse$inboundSchema: z.ZodType<

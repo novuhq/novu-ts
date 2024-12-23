@@ -9,10 +9,93 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export type IntegrationsControllerGetActiveIntegrationsRequest = {
+  /**
+   * A header for idempotency purposes
+   */
+  idempotencyKey?: string | undefined;
+};
+
 export type IntegrationsControllerGetActiveIntegrationsResponse = {
   headers: { [k: string]: Array<string> };
   result: Array<components.IntegrationResponseDto>;
 };
+
+/** @internal */
+export const IntegrationsControllerGetActiveIntegrationsRequest$inboundSchema:
+  z.ZodType<
+    IntegrationsControllerGetActiveIntegrationsRequest,
+    z.ZodTypeDef,
+    unknown
+  > = z.object({
+    "Idempotency-Key": z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "Idempotency-Key": "idempotencyKey",
+    });
+  });
+
+/** @internal */
+export type IntegrationsControllerGetActiveIntegrationsRequest$Outbound = {
+  "Idempotency-Key"?: string | undefined;
+};
+
+/** @internal */
+export const IntegrationsControllerGetActiveIntegrationsRequest$outboundSchema:
+  z.ZodType<
+    IntegrationsControllerGetActiveIntegrationsRequest$Outbound,
+    z.ZodTypeDef,
+    IntegrationsControllerGetActiveIntegrationsRequest
+  > = z.object({
+    idempotencyKey: z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      idempotencyKey: "Idempotency-Key",
+    });
+  });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace IntegrationsControllerGetActiveIntegrationsRequest$ {
+  /** @deprecated use `IntegrationsControllerGetActiveIntegrationsRequest$inboundSchema` instead. */
+  export const inboundSchema =
+    IntegrationsControllerGetActiveIntegrationsRequest$inboundSchema;
+  /** @deprecated use `IntegrationsControllerGetActiveIntegrationsRequest$outboundSchema` instead. */
+  export const outboundSchema =
+    IntegrationsControllerGetActiveIntegrationsRequest$outboundSchema;
+  /** @deprecated use `IntegrationsControllerGetActiveIntegrationsRequest$Outbound` instead. */
+  export type Outbound =
+    IntegrationsControllerGetActiveIntegrationsRequest$Outbound;
+}
+
+export function integrationsControllerGetActiveIntegrationsRequestToJSON(
+  integrationsControllerGetActiveIntegrationsRequest:
+    IntegrationsControllerGetActiveIntegrationsRequest,
+): string {
+  return JSON.stringify(
+    IntegrationsControllerGetActiveIntegrationsRequest$outboundSchema.parse(
+      integrationsControllerGetActiveIntegrationsRequest,
+    ),
+  );
+}
+
+export function integrationsControllerGetActiveIntegrationsRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  IntegrationsControllerGetActiveIntegrationsRequest,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      IntegrationsControllerGetActiveIntegrationsRequest$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'IntegrationsControllerGetActiveIntegrationsRequest' from JSON`,
+  );
+}
 
 /** @internal */
 export const IntegrationsControllerGetActiveIntegrationsResponse$inboundSchema:

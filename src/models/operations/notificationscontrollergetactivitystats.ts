@@ -9,10 +9,93 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export type NotificationsControllerGetActivityStatsRequest = {
+  /**
+   * A header for idempotency purposes
+   */
+  idempotencyKey?: string | undefined;
+};
+
 export type NotificationsControllerGetActivityStatsResponse = {
   headers: { [k: string]: Array<string> };
   result: components.ActivityStatsResponseDto;
 };
+
+/** @internal */
+export const NotificationsControllerGetActivityStatsRequest$inboundSchema:
+  z.ZodType<
+    NotificationsControllerGetActivityStatsRequest,
+    z.ZodTypeDef,
+    unknown
+  > = z.object({
+    "Idempotency-Key": z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "Idempotency-Key": "idempotencyKey",
+    });
+  });
+
+/** @internal */
+export type NotificationsControllerGetActivityStatsRequest$Outbound = {
+  "Idempotency-Key"?: string | undefined;
+};
+
+/** @internal */
+export const NotificationsControllerGetActivityStatsRequest$outboundSchema:
+  z.ZodType<
+    NotificationsControllerGetActivityStatsRequest$Outbound,
+    z.ZodTypeDef,
+    NotificationsControllerGetActivityStatsRequest
+  > = z.object({
+    idempotencyKey: z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      idempotencyKey: "Idempotency-Key",
+    });
+  });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace NotificationsControllerGetActivityStatsRequest$ {
+  /** @deprecated use `NotificationsControllerGetActivityStatsRequest$inboundSchema` instead. */
+  export const inboundSchema =
+    NotificationsControllerGetActivityStatsRequest$inboundSchema;
+  /** @deprecated use `NotificationsControllerGetActivityStatsRequest$outboundSchema` instead. */
+  export const outboundSchema =
+    NotificationsControllerGetActivityStatsRequest$outboundSchema;
+  /** @deprecated use `NotificationsControllerGetActivityStatsRequest$Outbound` instead. */
+  export type Outbound =
+    NotificationsControllerGetActivityStatsRequest$Outbound;
+}
+
+export function notificationsControllerGetActivityStatsRequestToJSON(
+  notificationsControllerGetActivityStatsRequest:
+    NotificationsControllerGetActivityStatsRequest,
+): string {
+  return JSON.stringify(
+    NotificationsControllerGetActivityStatsRequest$outboundSchema.parse(
+      notificationsControllerGetActivityStatsRequest,
+    ),
+  );
+}
+
+export function notificationsControllerGetActivityStatsRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  NotificationsControllerGetActivityStatsRequest,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      NotificationsControllerGetActivityStatsRequest$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'NotificationsControllerGetActivityStatsRequest' from JSON`,
+  );
+}
 
 /** @internal */
 export const NotificationsControllerGetActivityStatsResponse$inboundSchema:

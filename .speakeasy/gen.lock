@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 6bff3a53-3f0b-40b4-942f-ff70dc583ae5
 management:
-  docChecksum: eee4feb64ec7145e20fb07372aabcfeb
+  docChecksum: c44753254591cbe61d3691d61752b559
   docVersion: "1.0"
   speakeasyVersion: 1.459.3
   generationVersion: 2.483.6
-  releaseVersion: 0.0.1-alpha.150
-  configChecksum: 9151a1dcf800ae9c27a703185b40987c
+  releaseVersion: 0.0.1-alpha.155
+  configChecksum: 140d1b867263378e7d099b09740ea09a
   published: true
 features:
   typescript:
@@ -217,15 +217,21 @@ generatedFiles:
   - docs/models/errors/validationerrordto.md
   - docs/models/errors/value.md
   - docs/models/operations/channel.md
+  - docs/models/operations/eventscontrollerbroadcasteventtoallrequest.md
   - docs/models/operations/eventscontrollerbroadcasteventtoallresponse.md
   - docs/models/operations/eventscontrollercancelrequest.md
   - docs/models/operations/eventscontrollercancelresponse.md
+  - docs/models/operations/eventscontrollertriggerbulkrequest.md
   - docs/models/operations/eventscontrollertriggerbulkresponse.md
+  - docs/models/operations/eventscontrollertriggerrequest.md
   - docs/models/operations/eventscontrollertriggerresponse.md
+  - docs/models/operations/integrationscontrollercreateintegrationrequest.md
   - docs/models/operations/integrationscontrollercreateintegrationresponse.md
+  - docs/models/operations/integrationscontrollergetactiveintegrationsrequest.md
   - docs/models/operations/integrationscontrollergetactiveintegrationsresponse.md
   - docs/models/operations/integrationscontrollergetwebhooksupportstatusrequest.md
   - docs/models/operations/integrationscontrollergetwebhooksupportstatusresponse.md
+  - docs/models/operations/integrationscontrollerlistintegrationsrequest.md
   - docs/models/operations/integrationscontrollerlistintegrationsresponse.md
   - docs/models/operations/integrationscontrollerremoveintegrationrequest.md
   - docs/models/operations/integrationscontrollerremoveintegrationresponse.md
@@ -241,18 +247,21 @@ generatedFiles:
   - docs/models/operations/messagescontrollergetmessagesresponse.md
   - docs/models/operations/notificationscontrollergetactivitygraphstatsrequest.md
   - docs/models/operations/notificationscontrollergetactivitygraphstatsresponse.md
+  - docs/models/operations/notificationscontrollergetactivitystatsrequest.md
   - docs/models/operations/notificationscontrollergetactivitystatsresponse.md
   - docs/models/operations/notificationscontrollergetnotificationrequest.md
   - docs/models/operations/notificationscontrollergetnotificationresponse.md
   - docs/models/operations/notificationscontrollerlistnotificationsrequest.md
   - docs/models/operations/notificationscontrollerlistnotificationsresponse.md
   - docs/models/operations/parameter.md
+  - docs/models/operations/subscriberscontrollerbulkcreatesubscribersrequest.md
   - docs/models/operations/subscriberscontrollerbulkcreatesubscribersresponse.md
   - docs/models/operations/subscriberscontrollerchataccessoauthrequest.md
   - docs/models/operations/subscriberscontrollerchataccessoauthresponse.md
   - docs/models/operations/subscriberscontrollerchatoauthcallbackrequest.md
   - docs/models/operations/subscriberscontrollerchatoauthcallbackresponse.md
   - docs/models/operations/subscriberscontrollerchatoauthcallbackresponseresult.md
+  - docs/models/operations/subscriberscontrollercreatesubscriberrequest.md
   - docs/models/operations/subscriberscontrollercreatesubscriberresponse.md
   - docs/models/operations/subscriberscontrollerdeletesubscribercredentialsrequest.md
   - docs/models/operations/subscriberscontrollerdeletesubscribercredentialsresponse.md
@@ -291,6 +300,7 @@ generatedFiles:
   - docs/models/operations/subscriberscontrollerupdatesubscriberresponse.md
   - docs/models/operations/topicscontrollerassignrequest.md
   - docs/models/operations/topicscontrollerassignresponse.md
+  - docs/models/operations/topicscontrollercreatetopicrequest.md
   - docs/models/operations/topicscontrollercreatetopicresponse.md
   - docs/models/operations/topicscontrollerdeletetopicrequest.md
   - docs/models/operations/topicscontrollerdeletetopicresponse.md
@@ -626,6 +636,7 @@ examples:
       parameters:
         path:
           transactionId: "<id>"
+        header: {}
       responses:
         "200":
           application/json: {"data": true}
@@ -668,6 +679,7 @@ examples:
           emails: []
           search: "<value>"
           subscriberIds: ["<value>", "<value>"]
+        header: {}
       responses:
         "200":
           application/json: {"hasMore": false, "data": [], "pageSize": "7183.03", "page": "861.40"}
@@ -682,6 +694,7 @@ examples:
       parameters:
         path:
           notificationId: "<id>"
+        header: {}
       responses:
         "200":
           application/json: {"_environmentId": "<id>", "_organizationId": "<id>", "transactionId": "<id>"}
@@ -793,6 +806,7 @@ examples:
       parameters:
         path:
           integrationId: "<id>"
+        header: {}
       responses:
         "200":
           application/json: {"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>", "identifier": "<value>", "providerId": "<id>", "channel": "push", "active": false, "deleted": true, "deletedAt": "<value>", "deletedBy": "<value>", "primary": false}
@@ -805,6 +819,7 @@ examples:
       parameters:
         path:
           integrationId: "<id>"
+        header: {}
       responses:
         "200":
           application/json: [{"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>", "identifier": "<value>", "providerId": "<id>", "channel": "chat", "active": true, "deleted": false, "deletedAt": "<value>", "deletedBy": "<value>", "primary": false}, {"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>", "identifier": "<value>", "providerId": "<id>", "channel": "chat", "active": true, "deleted": false, "deletedAt": "<value>", "deletedBy": "<value>", "primary": false}]
@@ -819,6 +834,7 @@ examples:
       parameters:
         path:
           integrationId: "<id>"
+        header: {}
       responses:
         "200":
           application/json: {"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>", "identifier": "<value>", "providerId": "<id>", "channel": "push", "active": true, "deleted": true, "deletedAt": "<value>", "deletedBy": "<value>", "primary": false}
@@ -831,6 +847,7 @@ examples:
       parameters:
         path:
           providerOrIntegrationId: "<id>"
+        header: {}
       responses:
         "200":
           application/json: true
@@ -872,6 +889,7 @@ examples:
         path:
           subscriberId: "<id>"
         query: {}
+        header: {}
       responses:
         "200":
           application/json: {"subscriberId": "<id>", "_organizationId": "<id>", "_environmentId": "<id>", "deleted": false, "createdAt": "<value>", "updatedAt": "<value>"}
@@ -886,6 +904,7 @@ examples:
       parameters:
         path:
           subscriberId: "<id>"
+        header: {}
       requestBody:
         application/json: {"email": "john.doe@example.com", "firstName": "John", "lastName": "Doe", "phone": "+1234567890", "avatar": "https://example.com/avatar.jpg", "locale": "en-US", "data": {"preferences": {"notifications": true, "theme": "dark"}, "tags": ["premium", "newsletter"]}}
       responses:
@@ -902,6 +921,7 @@ examples:
       parameters:
         path:
           subscriberId: "<id>"
+        header: {}
       responses:
         "200":
           application/json: {"acknowledged": false, "status": "deleted"}
@@ -931,6 +951,7 @@ examples:
       parameters:
         path:
           subscriberId: "<id>"
+        header: {}
       requestBody:
         application/json: {"providerId": "pushpad", "credentials": {"webhookUrl": "https://example.com/webhook"}}
       responses:
@@ -947,6 +968,7 @@ examples:
       parameters:
         path:
           subscriberId: "<id>"
+        header: {}
       requestBody:
         application/json: {"providerId": "zulip", "credentials": {"webhookUrl": "https://example.com/webhook"}}
       responses:
@@ -964,6 +986,7 @@ examples:
         path:
           subscriberId: "<id>"
           providerId: "<id>"
+        header: {}
       responses:
         "400":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found."}
@@ -978,6 +1001,7 @@ examples:
       parameters:
         path:
           subscriberId: "<id>"
+        header: {}
       requestBody:
         application/json: {"isOnline": true}
       responses:
@@ -995,6 +1019,7 @@ examples:
         path:
           subscriberId: "<id>"
         query: {}
+        header: {}
       responses:
         "200":
           application/json: [{"template": {"_id": "<id>", "name": "<value>", "critical": false, "triggers": [{"type": "event", "identifier": "<value>", "variables": [{"name": "<value>"}, {"name": "<value>"}, {"name": "<value>"}]}, {"type": "event", "identifier": "<value>", "variables": [{"name": "<value>"}, {"name": "<value>"}]}]}, "preference": {"enabled": false}}, {"template": {"_id": "<id>", "name": "<value>", "critical": false, "triggers": [{"type": "event", "identifier": "<value>", "variables": [{"name": "<value>"}, {"name": "<value>"}]}]}, "preference": {"enabled": true}}]
@@ -1011,6 +1036,7 @@ examples:
           parameter: "global"
           subscriberId: "<id>"
         query: {}
+        header: {}
       responses:
         "200":
           application/json: [{"preference": {"enabled": true}}, {"preference": {"enabled": true}}]
@@ -1026,6 +1052,7 @@ examples:
         path:
           subscriberId: "<id>"
           parameter: "exampleValue"
+        header: {}
       responses:
         "200":
           application/json: {"template": {"_id": "<id>", "name": "<value>", "critical": false, "triggers": [{"type": "event", "identifier": "<value>", "variables": [{"name": "<value>"}, {"name": "<value>"}, {"name": "<value>"}]}, {"type": "event", "identifier": "<value>", "variables": [{"name": "<value>"}, {"name": "<value>"}]}]}, "preference": {"enabled": true}}
@@ -1042,6 +1069,7 @@ examples:
           subscriberId: "<id>"
         query:
           payload: "btoa(JSON.stringify({ foo: 123 })) results in base64 encoded string like eyJmb28iOjEyM30="
+        header: {}
       responses:
         "200":
           application/json: {"hasMore": true, "data": [{"_id": "<id>", "_templateId": "<id>", "_environmentId": "<id>", "_messageTemplateId": "<id>", "_organizationId": "<id>", "_notificationId": "<id>", "_subscriberId": "<id>", "_feedId": "<id>", "_jobId": "<id>", "transactionId": "<id>", "content": "<value>", "channel": "push", "read": false, "seen": false, "deleted": false, "cta": {}, "status": "warning", "payload": {"key": "value"}}, {"_id": "<id>", "_templateId": "<id>", "_environmentId": "<id>", "_messageTemplateId": "<id>", "_organizationId": "<id>", "_notificationId": "<id>", "_subscriberId": "<id>", "_feedId": "<id>", "_jobId": "<id>", "transactionId": "<id>", "content": "<value>", "channel": "sms", "read": true, "seen": false, "deleted": true, "cta": {}, "status": "warning", "payload": {"key": "value"}}], "pageSize": "9643.05", "page": "1526.70"}
@@ -1056,6 +1084,7 @@ examples:
       parameters:
         path:
           subscriberId: "<id>"
+        header: {}
       requestBody:
         application/json: {"messageId": "<value>", "markAs": "read"}
       responses:
@@ -1079,6 +1108,7 @@ examples:
           code: "<value>"
           hmacHash: "<value>"
           environmentId: "<id>"
+        header: {}
       responses:
         "400":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found."}
@@ -1100,6 +1130,7 @@ examples:
         query:
           hmacHash: "<value>"
           environmentId: "<id>"
+        header: {}
       responses:
         "400":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found."}
@@ -1112,6 +1143,7 @@ examples:
       parameters:
         path:
           subscriberId: "<id>"
+        header: {}
       responses:
         "200":
           application/json: {"preference": {"enabled": true}}
@@ -1129,6 +1161,7 @@ examples:
         query:
           seen: false
           limit: "2979.49"
+        header: {}
       responses:
         "200":
           application/json: {"count": "5438.83"}
@@ -1143,6 +1176,7 @@ examples:
       parameters:
         path:
           subscriberId: "<id>"
+        header: {}
       requestBody:
         application/json: {"markAs": "seen"}
       responses:
@@ -1163,6 +1197,7 @@ examples:
           messageId: "<id>"
           type: "<value>"
           subscriberId: "<id>"
+        header: {}
       requestBody:
         application/json: {"status": "done"}
       responses:
@@ -1192,6 +1227,7 @@ examples:
       parameters:
         path:
           messageId: "<id>"
+        header: {}
       responses:
         "200":
           application/json: {"acknowledged": false, "status": "deleted"}
@@ -1207,6 +1243,7 @@ examples:
         path:
           transactionId: "<id>"
         query: {}
+        header: {}
       responses:
         "400":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found."}
@@ -1248,6 +1285,7 @@ examples:
           page: 0
           pageSize: 10
           key: "exampleKey"
+        header: {}
       responses:
         "200":
           application/json: {"data": [], "page": 1, "pageSize": 10, "totalCount": 10}
@@ -1260,6 +1298,7 @@ examples:
       parameters:
         path:
           topicKey: "<value>"
+        header: {}
       responses:
         "400":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found."}
@@ -1272,6 +1311,7 @@ examples:
       parameters:
         path:
           topicKey: "<value>"
+        header: {}
       responses:
         "200":
           application/json: {"_organizationId": "<id>", "_environmentId": "<id>", "key": "<key>", "name": "<value>", "subscribers": ["<value>", "<value>"]}
@@ -1286,6 +1326,7 @@ examples:
       parameters:
         path:
           topicKey: "<value>"
+        header: {}
       requestBody:
         application/json: {"name": "<value>"}
       responses:
@@ -1310,6 +1351,7 @@ examples:
         path:
           externalSubscriberId: "<id>"
           topicKey: "<value>"
+        header: {}
       responses:
         "200":
           application/json: {"_organizationId": "org_123456789", "_environmentId": "env_123456789", "_subscriberId": "sub_123456789", "_topicId": "topic_123456789", "topicKey": "my_topic_key", "externalSubscriberId": "external_subscriber_123"}
@@ -1324,6 +1366,7 @@ examples:
       parameters:
         path:
           topicKey: "<value>"
+        header: {}
       requestBody:
         application/json: {"subscribers": ["<value>", "<value>"]}
       responses:
@@ -1340,6 +1383,7 @@ examples:
       parameters:
         path:
           topicKey: "<value>"
+        header: {}
       requestBody:
         application/json: {"subscribers": ["<value>", "<value>", "<value>"]}
       responses:

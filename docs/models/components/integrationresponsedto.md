@@ -11,7 +11,7 @@ let value: IntegrationResponseDto = {
   name: "<value>",
   identifier: "<value>",
   providerId: "<id>",
-  channel: "email",
+  channel: "push",
   credentials: {},
   active: false,
   deleted: false,
