@@ -77,12 +77,16 @@ export class Integrations extends ClientSDK {
    * Update integration
    */
   async update(
-    request: operations.IntegrationsControllerUpdateIntegrationByIdRequest,
+    updateIntegrationRequestDto: components.UpdateIntegrationRequestDto,
+    integrationId: string,
+    idempotencyKey?: string | undefined,
     options?: RequestOptions,
   ): Promise<operations.IntegrationsControllerUpdateIntegrationByIdResponse> {
     return unwrapAsync(integrationsUpdate(
       this,
-      request,
+      updateIntegrationRequestDto,
+      integrationId,
+      idempotencyKey,
       options,
     ));
   }

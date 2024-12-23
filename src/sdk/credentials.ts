@@ -6,6 +6,7 @@ import { subscribersCredentialsAppend } from "../funcs/subscribersCredentialsApp
 import { subscribersCredentialsDelete } from "../funcs/subscribersCredentialsDelete.js";
 import { subscribersCredentialsUpdate } from "../funcs/subscribersCredentialsUpdate.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
+import * as components from "../models/components/index.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
 
@@ -17,12 +18,17 @@ export class Credentials extends ClientSDK {
    * Subscriber credentials associated to the delivery methods such as slack and push tokens.
    */
   async update(
-    request: operations.SubscribersControllerUpdateSubscriberChannelRequest,
+    updateSubscriberChannelRequestDto:
+      components.UpdateSubscriberChannelRequestDto,
+    subscriberId: string,
+    idempotencyKey?: string | undefined,
     options?: RequestOptions,
   ): Promise<operations.SubscribersControllerUpdateSubscriberChannelResponse> {
     return unwrapAsync(subscribersCredentialsUpdate(
       this,
-      request,
+      updateSubscriberChannelRequestDto,
+      subscriberId,
+      idempotencyKey,
       options,
     ));
   }
@@ -36,12 +42,17 @@ export class Credentials extends ClientSDK {
    *     This endpoint appends provided credentials and deviceTokens to the existing ones.
    */
   async append(
-    request: operations.SubscribersControllerModifySubscriberChannelRequest,
+    updateSubscriberChannelRequestDto:
+      components.UpdateSubscriberChannelRequestDto,
+    subscriberId: string,
+    idempotencyKey?: string | undefined,
     options?: RequestOptions,
   ): Promise<operations.SubscribersControllerModifySubscriberChannelResponse> {
     return unwrapAsync(subscribersCredentialsAppend(
       this,
-      request,
+      updateSubscriberChannelRequestDto,
+      subscriberId,
+      idempotencyKey,
       options,
     ));
   }
@@ -53,7 +64,9 @@ export class Credentials extends ClientSDK {
    * Delete subscriber credentials such as slack and expo tokens.
    */
   async delete(
-    request: operations.SubscribersControllerDeleteSubscriberCredentialsRequest,
+    subscriberId: string,
+    providerId: string,
+    idempotencyKey?: string | undefined,
     options?: RequestOptions,
   ): Promise<
     | operations.SubscribersControllerDeleteSubscriberCredentialsResponse
@@ -61,7 +74,9 @@ export class Credentials extends ClientSDK {
   > {
     return unwrapAsync(subscribersCredentialsDelete(
       this,
-      request,
+      subscriberId,
+      providerId,
+      idempotencyKey,
       options,
     ));
   }

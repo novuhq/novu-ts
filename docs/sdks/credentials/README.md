@@ -24,14 +24,11 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.subscribers.credentials.update({
-    subscriberId: "<id>",
-    updateSubscriberChannelRequestDto: {
-      providerId: "pushpad",
-      credentials: {
-        webhookUrl: "https://example.com/webhook",
-      },
+    providerId: "pushpad",
+    credentials: {
+      webhookUrl: "https://example.com/webhook",
     },
-  });
+  }, "<id>");
 
   // Handle the result
   console.log(result);
@@ -56,14 +53,11 @@ const novu = new NovuCore({
 
 async function run() {
   const res = await subscribersCredentialsUpdate(novu, {
-    subscriberId: "<id>",
-    updateSubscriberChannelRequestDto: {
-      providerId: "pushpad",
-      credentials: {
-        webhookUrl: "https://example.com/webhook",
-      },
+    providerId: "pushpad",
+    credentials: {
+      webhookUrl: "https://example.com/webhook",
     },
-  });
+  }, "<id>");
 
   if (!res.ok) {
     throw res.error;
@@ -82,7 +76,9 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.SubscribersControllerUpdateSubscriberChannelRequest](../../models/operations/subscriberscontrollerupdatesubscriberchannelrequest.md)                               | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `subscriberId`                                                                                                                                                                 | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
+| `updateSubscriberChannelRequestDto`                                                                                                                                            | [components.UpdateSubscriberChannelRequestDto](../../models/components/updatesubscriberchannelrequestdto.md)                                                                   | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
+| `idempotencyKey`                                                                                                                                                               | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | A header for idempotency purposes                                                                                                                                              |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
@@ -116,14 +112,11 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.subscribers.credentials.append({
-    subscriberId: "<id>",
-    updateSubscriberChannelRequestDto: {
-      providerId: "zulip",
-      credentials: {
-        webhookUrl: "https://example.com/webhook",
-      },
+    providerId: "zulip",
+    credentials: {
+      webhookUrl: "https://example.com/webhook",
     },
-  });
+  }, "<id>");
 
   // Handle the result
   console.log(result);
@@ -148,14 +141,11 @@ const novu = new NovuCore({
 
 async function run() {
   const res = await subscribersCredentialsAppend(novu, {
-    subscriberId: "<id>",
-    updateSubscriberChannelRequestDto: {
-      providerId: "zulip",
-      credentials: {
-        webhookUrl: "https://example.com/webhook",
-      },
+    providerId: "zulip",
+    credentials: {
+      webhookUrl: "https://example.com/webhook",
     },
-  });
+  }, "<id>");
 
   if (!res.ok) {
     throw res.error;
@@ -174,7 +164,9 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.SubscribersControllerModifySubscriberChannelRequest](../../models/operations/subscriberscontrollermodifysubscriberchannelrequest.md)                               | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `subscriberId`                                                                                                                                                                 | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
+| `updateSubscriberChannelRequestDto`                                                                                                                                            | [components.UpdateSubscriberChannelRequestDto](../../models/components/updatesubscriberchannelrequestdto.md)                                                                   | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
+| `idempotencyKey`                                                                                                                                                               | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | A header for idempotency purposes                                                                                                                                              |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
@@ -205,10 +197,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.subscribers.credentials.delete({
-    subscriberId: "<id>",
-    providerId: "<id>",
-  });
+  const result = await novu.subscribers.credentials.delete("<id>", "<id>");
 
   // Handle the result
   console.log(result);
@@ -232,10 +221,7 @@ const novu = new NovuCore({
 });
 
 async function run() {
-  const res = await subscribersCredentialsDelete(novu, {
-    subscriberId: "<id>",
-    providerId: "<id>",
-  });
+  const res = await subscribersCredentialsDelete(novu, "<id>", "<id>");
 
   if (!res.ok) {
     throw res.error;
@@ -254,7 +240,9 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.SubscribersControllerDeleteSubscriberCredentialsRequest](../../models/operations/subscriberscontrollerdeletesubscribercredentialsrequest.md)                       | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `subscriberId`                                                                                                                                                                 | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
+| `providerId`                                                                                                                                                                   | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
+| `idempotencyKey`                                                                                                                                                               | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | A header for idempotency purposes                                                                                                                                              |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |

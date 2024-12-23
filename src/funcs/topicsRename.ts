@@ -9,6 +9,7 @@ import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
+import * as components from "../models/components/index.js";
 import {
   ConnectionError,
   InvalidRequestError,
@@ -30,7 +31,9 @@ import { Result } from "../types/fp.js";
  */
 export async function topicsRename(
   client: NovuCore,
-  request: operations.TopicsControllerRenameTopicRequest,
+  renameTopicRequestDto: components.RenameTopicRequestDto,
+  topicKey: string,
+  idempotencyKey?: string | undefined,
   options?: RequestOptions,
 ): Promise<
   Result<
@@ -46,8 +49,14 @@ export async function topicsRename(
     | ConnectionError
   >
 > {
+  const input: operations.TopicsControllerRenameTopicRequest = {
+    renameTopicRequestDto: renameTopicRequestDto,
+    topicKey: topicKey,
+    idempotencyKey: idempotencyKey,
+  };
+
   const parsed = safeParse(
-    request,
+    input,
     (value) =>
       operations.TopicsControllerRenameTopicRequest$outboundSchema.parse(value),
     "Input validation failed",

@@ -30,7 +30,9 @@ import { Result } from "../types/fp.js";
  */
 export async function subscribersCredentialsDelete(
   client: NovuCore,
-  request: operations.SubscribersControllerDeleteSubscriberCredentialsRequest,
+  subscriberId: string,
+  providerId: string,
+  idempotencyKey?: string | undefined,
   options?: RequestOptions,
 ): Promise<
   Result<
@@ -47,8 +49,15 @@ export async function subscribersCredentialsDelete(
     | ConnectionError
   >
 > {
+  const input:
+    operations.SubscribersControllerDeleteSubscriberCredentialsRequest = {
+      subscriberId: subscriberId,
+      providerId: providerId,
+      idempotencyKey: idempotencyKey,
+    };
+
   const parsed = safeParse(
-    request,
+    input,
     (value) =>
       operations
         .SubscribersControllerDeleteSubscriberCredentialsRequest$outboundSchema

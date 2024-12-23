@@ -6,6 +6,7 @@ import { topicsSubscribersAssign } from "../funcs/topicsSubscribersAssign.js";
 import { topicsSubscribersRemove } from "../funcs/topicsSubscribersRemove.js";
 import { topicsSubscribersRetrieve } from "../funcs/topicsSubscribersRetrieve.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
+import * as components from "../models/components/index.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
 
@@ -17,12 +18,16 @@ export class NovuSubscribers extends ClientSDK {
    * Add subscribers to a topic by key
    */
   async assign(
-    request: operations.TopicsControllerAssignRequest,
+    addSubscribersRequestDto: components.AddSubscribersRequestDto,
+    topicKey: string,
+    idempotencyKey?: string | undefined,
     options?: RequestOptions,
   ): Promise<operations.TopicsControllerAssignResponse> {
     return unwrapAsync(topicsSubscribersAssign(
       this,
-      request,
+      addSubscribersRequestDto,
+      topicKey,
+      idempotencyKey,
       options,
     ));
   }
@@ -34,12 +39,16 @@ export class NovuSubscribers extends ClientSDK {
    * Check if a subscriber belongs to a certain topic
    */
   async retrieve(
-    request: operations.TopicsControllerGetTopicSubscriberRequest,
+    externalSubscriberId: string,
+    topicKey: string,
+    idempotencyKey?: string | undefined,
     options?: RequestOptions,
   ): Promise<operations.TopicsControllerGetTopicSubscriberResponse> {
     return unwrapAsync(topicsSubscribersRetrieve(
       this,
-      request,
+      externalSubscriberId,
+      topicKey,
+      idempotencyKey,
       options,
     ));
   }
@@ -51,12 +60,16 @@ export class NovuSubscribers extends ClientSDK {
    * Remove subscribers from a topic
    */
   async remove(
-    request: operations.TopicsControllerRemoveSubscribersRequest,
+    removeSubscribersRequestDto: components.RemoveSubscribersRequestDto,
+    topicKey: string,
+    idempotencyKey?: string | undefined,
     options?: RequestOptions,
   ): Promise<operations.TopicsControllerRemoveSubscribersResponse | undefined> {
     return unwrapAsync(topicsSubscribersRemove(
       this,
-      request,
+      removeSubscribersRequestDto,
+      topicKey,
+      idempotencyKey,
       options,
     ));
   }

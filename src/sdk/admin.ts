@@ -14,7 +14,7 @@ export class Admin extends ClientSDK {
     idempotencyBodyDto: components.IdempotencyBodyDto,
     idempotencyKey?: string | undefined,
     options?: RequestOptions,
-  ): Promise<operations.TestingControllerIdempotencyResponse | undefined> {
+  ): Promise<operations.TestingControllerIdempotencyResponse> {
     return unwrapAsync(adminTestingControllerIdempotency(
       this,
       idempotencyBodyDto,
@@ -26,7 +26,7 @@ export class Admin extends ClientSDK {
   async testingControllerIdempotencyGet(
     idempotencyKey?: string | undefined,
     options?: RequestOptions,
-  ): Promise<operations.TestingControllerIdempotencyGetResponse | undefined> {
+  ): Promise<operations.TestingControllerIdempotencyGetResponse> {
     return unwrapAsync(adminTestingControllerIdempotencyGet(
       this,
       idempotencyKey,

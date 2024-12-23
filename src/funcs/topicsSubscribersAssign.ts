@@ -9,6 +9,7 @@ import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
+import * as components from "../models/components/index.js";
 import {
   ConnectionError,
   InvalidRequestError,
@@ -30,7 +31,9 @@ import { Result } from "../types/fp.js";
  */
 export async function topicsSubscribersAssign(
   client: NovuCore,
-  request: operations.TopicsControllerAssignRequest,
+  addSubscribersRequestDto: components.AddSubscribersRequestDto,
+  topicKey: string,
+  idempotencyKey?: string | undefined,
   options?: RequestOptions,
 ): Promise<
   Result<
@@ -46,8 +49,14 @@ export async function topicsSubscribersAssign(
     | ConnectionError
   >
 > {
+  const input: operations.TopicsControllerAssignRequest = {
+    addSubscribersRequestDto: addSubscribersRequestDto,
+    topicKey: topicKey,
+    idempotencyKey: idempotencyKey,
+  };
+
   const parsed = safeParse(
-    request,
+    input,
     (value) =>
       operations.TopicsControllerAssignRequest$outboundSchema.parse(value),
     "Input validation failed",

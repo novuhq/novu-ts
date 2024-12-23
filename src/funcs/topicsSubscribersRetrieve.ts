@@ -30,7 +30,9 @@ import { Result } from "../types/fp.js";
  */
 export async function topicsSubscribersRetrieve(
   client: NovuCore,
-  request: operations.TopicsControllerGetTopicSubscriberRequest,
+  externalSubscriberId: string,
+  topicKey: string,
+  idempotencyKey?: string | undefined,
   options?: RequestOptions,
 ): Promise<
   Result<
@@ -46,8 +48,14 @@ export async function topicsSubscribersRetrieve(
     | ConnectionError
   >
 > {
+  const input: operations.TopicsControllerGetTopicSubscriberRequest = {
+    externalSubscriberId: externalSubscriberId,
+    topicKey: topicKey,
+    idempotencyKey: idempotencyKey,
+  };
+
   const parsed = safeParse(
-    request,
+    input,
     (value) =>
       operations.TopicsControllerGetTopicSubscriberRequest$outboundSchema.parse(
         value,

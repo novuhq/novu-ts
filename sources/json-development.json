@@ -13551,8 +13551,38 @@
           }
         },
         "responses": {
-          "201": {
-            "description": ""
+          "200": {
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              }
+            },
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IdempotencyResponse"
+                }
+              }
+            }
           },
           "400": {
             "description": "Bad Request",
@@ -13785,7 +13815,37 @@
         ],
         "responses": {
           "200": {
-            "description": ""
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              }
+            },
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IdempotencyResponse"
+                }
+              }
+            }
           },
           "400": {
             "description": "Bad Request",
@@ -18028,6 +18088,10 @@
         "required": [
           "data"
         ]
+      },
+      "IdempotencyResponse": {
+        "type": "object",
+        "properties": {}
       }
     },
     "headers": {

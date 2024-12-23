@@ -9,6 +9,7 @@ import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
+import * as components from "../models/components/index.js";
 import {
   ConnectionError,
   InvalidRequestError,
@@ -30,7 +31,10 @@ import { Result } from "../types/fp.js";
  */
 export async function subscribersPropertiesUpdateOnlineFlag(
   client: NovuCore,
-  request: operations.SubscribersControllerUpdateSubscriberOnlineFlagRequest,
+  updateSubscriberOnlineFlagRequestDto:
+    components.UpdateSubscriberOnlineFlagRequestDto,
+  subscriberId: string,
+  idempotencyKey?: string | undefined,
   options?: RequestOptions,
 ): Promise<
   Result<
@@ -46,8 +50,16 @@ export async function subscribersPropertiesUpdateOnlineFlag(
     | ConnectionError
   >
 > {
+  const input:
+    operations.SubscribersControllerUpdateSubscriberOnlineFlagRequest = {
+      updateSubscriberOnlineFlagRequestDto:
+        updateSubscriberOnlineFlagRequestDto,
+      subscriberId: subscriberId,
+      idempotencyKey: idempotencyKey,
+    };
+
   const parsed = safeParse(
-    request,
+    input,
     (value) =>
       operations
         .SubscribersControllerUpdateSubscriberOnlineFlagRequest$outboundSchema

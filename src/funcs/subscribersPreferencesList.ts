@@ -27,7 +27,9 @@ import { Result } from "../types/fp.js";
  */
 export async function subscribersPreferencesList(
   client: NovuCore,
-  request: operations.SubscribersControllerListSubscriberPreferencesRequest,
+  subscriberId: string,
+  idempotencyKey?: string | undefined,
+  includeInactiveChannels?: boolean | undefined,
   options?: RequestOptions,
 ): Promise<
   Result<
@@ -43,8 +45,15 @@ export async function subscribersPreferencesList(
     | ConnectionError
   >
 > {
+  const input:
+    operations.SubscribersControllerListSubscriberPreferencesRequest = {
+      subscriberId: subscriberId,
+      idempotencyKey: idempotencyKey,
+      includeInactiveChannels: includeInactiveChannels,
+    };
+
   const parsed = safeParse(
-    request,
+    input,
     (value) =>
       operations
         .SubscribersControllerListSubscriberPreferencesRequest$outboundSchema

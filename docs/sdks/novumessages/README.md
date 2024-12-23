@@ -24,12 +24,9 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.subscribers.messages.markAllAs({
-    subscriberId: "<id>",
-    messageMarkAsRequestDto: {
-      messageId: "<value>",
-      markAs: "read",
-    },
-  });
+    messageId: "<value>",
+    markAs: "read",
+  }, "<id>");
 
   // Handle the result
   console.log(result);
@@ -54,12 +51,9 @@ const novu = new NovuCore({
 
 async function run() {
   const res = await subscribersMessagesMarkAllAs(novu, {
-    subscriberId: "<id>",
-    messageMarkAsRequestDto: {
-      messageId: "<value>",
-      markAs: "read",
-    },
-  });
+    messageId: "<value>",
+    markAs: "read",
+  }, "<id>");
 
   if (!res.ok) {
     throw res.error;
@@ -78,7 +72,9 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.SubscribersControllerMarkMessagesAsRequest](../../models/operations/subscriberscontrollermarkmessagesasrequest.md)                                                 | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `subscriberId`                                                                                                                                                                 | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
+| `messageMarkAsRequestDto`                                                                                                                                                      | [components.MessageMarkAsRequestDto](../../models/components/messagemarkasrequestdto.md)                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
+| `idempotencyKey`                                                                                                                                                               | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | A header for idempotency purposes                                                                                                                                              |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
@@ -110,11 +106,8 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.subscribers.messages.markAll({
-    subscriberId: "<id>",
-    markAllMessageAsRequestDto: {
-      markAs: "seen",
-    },
-  });
+    markAs: "seen",
+  }, "<id>");
 
   // Handle the result
   console.log(result);
@@ -139,11 +132,8 @@ const novu = new NovuCore({
 
 async function run() {
   const res = await subscribersMessagesMarkAll(novu, {
-    subscriberId: "<id>",
-    markAllMessageAsRequestDto: {
-      markAs: "seen",
-    },
-  });
+    markAs: "seen",
+  }, "<id>");
 
   if (!res.ok) {
     throw res.error;
@@ -162,7 +152,9 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.SubscribersControllerMarkAllUnreadAsReadRequest](../../models/operations/subscriberscontrollermarkallunreadasreadrequest.md)                                       | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `subscriberId`                                                                                                                                                                 | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
+| `markAllMessageAsRequestDto`                                                                                                                                                   | [components.MarkAllMessageAsRequestDto](../../models/components/markallmessageasrequestdto.md)                                                                                 | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
+| `idempotencyKey`                                                                                                                                                               | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | A header for idempotency purposes                                                                                                                                              |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |

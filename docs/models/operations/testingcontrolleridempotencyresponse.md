@@ -11,11 +11,13 @@ let value: TestingControllerIdempotencyResponse = {
       "<value>",
     ],
   },
+  result: {},
 };
 ```
 
 ## Fields
 
-| Field                      | Type                       | Required                   | Description                |
-| -------------------------- | -------------------------- | -------------------------- | -------------------------- |
-| `headers`                  | Record<string, *string*[]> | :heavy_check_mark:         | N/A                        |
+| Field                                                                            | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `headers`                                                                        | Record<string, *string*[]>                                                       | :heavy_check_mark:                                                               | N/A                                                                              |
+| `result`                                                                         | [components.IdempotencyResponse](../../models/components/idempotencyresponse.md) | :heavy_check_mark:                                                               | N/A                                                                              |

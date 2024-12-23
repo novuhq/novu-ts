@@ -30,7 +30,7 @@ export async function adminTestingControllerIdempotency(
   options?: RequestOptions,
 ): Promise<
   Result<
-    operations.TestingControllerIdempotencyResponse | undefined,
+    operations.TestingControllerIdempotencyResponse,
     | errors.ErrorDto
     | errors.ValidationErrorDto
     | SDKError
@@ -132,7 +132,7 @@ export async function adminTestingControllerIdempotency(
   };
 
   const [result] = await M.match<
-    operations.TestingControllerIdempotencyResponse | undefined,
+    operations.TestingControllerIdempotencyResponse,
     | errors.ErrorDto
     | errors.ValidationErrorDto
     | SDKError
@@ -143,10 +143,10 @@ export async function adminTestingControllerIdempotency(
     | RequestTimeoutError
     | ConnectionError
   >(
-    M.nil(
-      201,
-      operations.TestingControllerIdempotencyResponse$inboundSchema.optional(),
-    ),
+    M.json(200, operations.TestingControllerIdempotencyResponse$inboundSchema, {
+      hdrs: true,
+      key: "Result",
+    }),
     M.jsonErr([400, 404, 409], errors.ErrorDto$inboundSchema, { hdrs: true }),
     M.jsonErr(422, errors.ValidationErrorDto$inboundSchema, { hdrs: true }),
     M.fail([429, 503]),

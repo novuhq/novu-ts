@@ -100,12 +100,16 @@ export class Topics extends ClientSDK {
    * Rename a topic by providing a new name
    */
   async rename(
-    request: operations.TopicsControllerRenameTopicRequest,
+    renameTopicRequestDto: components.RenameTopicRequestDto,
+    topicKey: string,
+    idempotencyKey?: string | undefined,
     options?: RequestOptions,
   ): Promise<operations.TopicsControllerRenameTopicResponse> {
     return unwrapAsync(topicsRename(
       this,
-      request,
+      renameTopicRequestDto,
+      topicKey,
+      idempotencyKey,
       options,
     ));
   }

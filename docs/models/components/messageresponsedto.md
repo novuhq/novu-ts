@@ -37,10 +37,10 @@ let value: MessageResponseDto = {
     organizationId: "<id>",
     environmentId: "<id>",
     deleted: false,
-    createdAt: "1730798212513",
-    updatedAt: "1734884629263",
+    createdAt: "1730804354894",
+    updatedAt: "1734890771644",
   },
-  createdAt: "1722833275840",
+  createdAt: "1722839418222",
   content: {
     type: "text",
     content: "<value>",

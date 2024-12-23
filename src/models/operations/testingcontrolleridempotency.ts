@@ -19,6 +19,7 @@ export type TestingControllerIdempotencyRequest = {
 
 export type TestingControllerIdempotencyResponse = {
   headers: { [k: string]: Array<string> };
+  result: components.IdempotencyResponse;
 };
 
 /** @internal */
@@ -100,15 +101,18 @@ export const TestingControllerIdempotencyResponse$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   Headers: z.record(z.array(z.string())),
+  Result: components.IdempotencyResponse$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "Headers": "headers",
+    "Result": "result",
   });
 });
 
 /** @internal */
 export type TestingControllerIdempotencyResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
+  Result: components.IdempotencyResponse$Outbound;
 };
 
 /** @internal */
@@ -118,9 +122,11 @@ export const TestingControllerIdempotencyResponse$outboundSchema: z.ZodType<
   TestingControllerIdempotencyResponse
 > = z.object({
   headers: z.record(z.array(z.string())),
+  result: components.IdempotencyResponse$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
     headers: "Headers",
+    result: "Result",
   });
 });
 

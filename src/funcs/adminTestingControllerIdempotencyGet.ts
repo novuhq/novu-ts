@@ -28,7 +28,7 @@ export async function adminTestingControllerIdempotencyGet(
   options?: RequestOptions,
 ): Promise<
   Result<
-    operations.TestingControllerIdempotencyGetResponse | undefined,
+    operations.TestingControllerIdempotencyGetResponse,
     | errors.ErrorDto
     | errors.ValidationErrorDto
     | SDKError
@@ -126,7 +126,7 @@ export async function adminTestingControllerIdempotencyGet(
   };
 
   const [result] = await M.match<
-    operations.TestingControllerIdempotencyGetResponse | undefined,
+    operations.TestingControllerIdempotencyGetResponse,
     | errors.ErrorDto
     | errors.ValidationErrorDto
     | SDKError
@@ -137,10 +137,10 @@ export async function adminTestingControllerIdempotencyGet(
     | RequestTimeoutError
     | ConnectionError
   >(
-    M.nil(
+    M.json(
       200,
-      operations.TestingControllerIdempotencyGetResponse$inboundSchema
-        .optional(),
+      operations.TestingControllerIdempotencyGetResponse$inboundSchema,
+      { hdrs: true, key: "Result" },
     ),
     M.jsonErr([400, 404, 409], errors.ErrorDto$inboundSchema, { hdrs: true }),
     M.jsonErr(422, errors.ValidationErrorDto$inboundSchema, { hdrs: true }),

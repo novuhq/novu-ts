@@ -9,6 +9,7 @@ import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
+import * as components from "../models/components/index.js";
 import {
   ConnectionError,
   InvalidRequestError,
@@ -27,7 +28,9 @@ import { Result } from "../types/fp.js";
  */
 export async function integrationsUpdate(
   client: NovuCore,
-  request: operations.IntegrationsControllerUpdateIntegrationByIdRequest,
+  updateIntegrationRequestDto: components.UpdateIntegrationRequestDto,
+  integrationId: string,
+  idempotencyKey?: string | undefined,
   options?: RequestOptions,
 ): Promise<
   Result<
@@ -43,8 +46,14 @@ export async function integrationsUpdate(
     | ConnectionError
   >
 > {
+  const input: operations.IntegrationsControllerUpdateIntegrationByIdRequest = {
+    updateIntegrationRequestDto: updateIntegrationRequestDto,
+    integrationId: integrationId,
+    idempotencyKey: idempotencyKey,
+  };
+
   const parsed = safeParse(
-    request,
+    input,
     (value) =>
       operations
         .IntegrationsControllerUpdateIntegrationByIdRequest$outboundSchema

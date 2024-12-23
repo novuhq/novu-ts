@@ -9,6 +9,7 @@ import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
+import * as components from "../models/components/index.js";
 import {
   ConnectionError,
   InvalidRequestError,
@@ -27,7 +28,9 @@ import { Result } from "../types/fp.js";
  */
 export async function subscribersMessagesMarkAll(
   client: NovuCore,
-  request: operations.SubscribersControllerMarkAllUnreadAsReadRequest,
+  markAllMessageAsRequestDto: components.MarkAllMessageAsRequestDto,
+  subscriberId: string,
+  idempotencyKey?: string | undefined,
   options?: RequestOptions,
 ): Promise<
   Result<
@@ -43,8 +46,14 @@ export async function subscribersMessagesMarkAll(
     | ConnectionError
   >
 > {
+  const input: operations.SubscribersControllerMarkAllUnreadAsReadRequest = {
+    markAllMessageAsRequestDto: markAllMessageAsRequestDto,
+    subscriberId: subscriberId,
+    idempotencyKey: idempotencyKey,
+  };
+
   const parsed = safeParse(
-    request,
+    input,
     (value) =>
       operations.SubscribersControllerMarkAllUnreadAsReadRequest$outboundSchema
         .parse(value),

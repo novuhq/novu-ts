@@ -412,7 +412,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.subscribers.list({});
+  const result = await novu.subscribers.list();
 
   for await (const page of result) {
     // Handle the page

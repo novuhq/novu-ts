@@ -342,11 +342,8 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.topics.rename({
-    topicKey: "<value>",
-    renameTopicRequestDto: {
-      name: "<value>",
-    },
-  });
+    name: "<value>",
+  }, "<value>");
 
   // Handle the result
   console.log(result);
@@ -371,11 +368,8 @@ const novu = new NovuCore({
 
 async function run() {
   const res = await topicsRename(novu, {
-    topicKey: "<value>",
-    renameTopicRequestDto: {
-      name: "<value>",
-    },
-  });
+    name: "<value>",
+  }, "<value>");
 
   if (!res.ok) {
     throw res.error;
@@ -394,7 +388,9 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.TopicsControllerRenameTopicRequest](../../models/operations/topicscontrollerrenametopicrequest.md)                                                                 | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `topicKey`                                                                                                                                                                     | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | The topic key                                                                                                                                                                  |
+| `renameTopicRequestDto`                                                                                                                                                        | [components.RenameTopicRequestDto](../../models/components/renametopicrequestdto.md)                                                                                           | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
+| `idempotencyKey`                                                                                                                                                               | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | A header for idempotency purposes                                                                                                                                              |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |

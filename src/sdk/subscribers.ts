@@ -58,7 +58,9 @@ export class Subscribers extends ClientSDK {
    * Returns a list of subscribers, could paginated using the `page` and `limit` query parameter
    */
   async list(
-    request: operations.SubscribersControllerListSubscribersRequest,
+    idempotencyKey?: string | undefined,
+    page?: number | undefined,
+    limit?: number | undefined,
     options?: RequestOptions,
   ): Promise<
     PageIterator<
@@ -68,7 +70,9 @@ export class Subscribers extends ClientSDK {
   > {
     return unwrapResultIterator(subscribersList(
       this,
-      request,
+      idempotencyKey,
+      page,
+      limit,
       options,
     ));
   }
@@ -99,12 +103,16 @@ export class Subscribers extends ClientSDK {
    * Get subscriber by your internal id used to identify the subscriber
    */
   async retrieve(
-    request: operations.SubscribersControllerGetSubscriberRequest,
+    subscriberId: string,
+    idempotencyKey?: string | undefined,
+    includeTopics?: boolean | undefined,
     options?: RequestOptions,
   ): Promise<operations.SubscribersControllerGetSubscriberResponse> {
     return unwrapAsync(subscribersRetrieve(
       this,
-      request,
+      subscriberId,
+      idempotencyKey,
+      includeTopics,
       options,
     ));
   }
@@ -116,12 +124,16 @@ export class Subscribers extends ClientSDK {
    * Used to update the subscriber entity with new information
    */
   async update(
-    request: operations.SubscribersControllerUpdateSubscriberRequest,
+    updateSubscriberRequestDto: components.UpdateSubscriberRequestDto,
+    subscriberId: string,
+    idempotencyKey?: string | undefined,
     options?: RequestOptions,
   ): Promise<operations.SubscribersControllerUpdateSubscriberResponse> {
     return unwrapAsync(subscribersUpdate(
       this,
-      request,
+      updateSubscriberRequestDto,
+      subscriberId,
+      idempotencyKey,
       options,
     ));
   }
