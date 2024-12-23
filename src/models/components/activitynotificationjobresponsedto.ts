@@ -5,6 +5,7 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
+import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -20,15 +21,37 @@ import {
   ActivityNotificationStepResponseDto$outboundSchema,
 } from "./activitynotificationstepresponsedto.js";
 import {
+  DigestWithEventsDto,
+  DigestWithEventsDto$inboundSchema,
+  DigestWithEventsDto$Outbound,
+  DigestWithEventsDto$outboundSchema,
+} from "./digestwitheventsdto.js";
+import {
   ProvidersIdEnum,
   ProvidersIdEnum$inboundSchema,
   ProvidersIdEnum$outboundSchema,
 } from "./providersidenum.js";
 
 /**
- * Optional digest for the job
+ * Type of the job
  */
-export type Digest = {};
+export const ActivityNotificationJobResponseDtoType = {
+  InApp: "in_app",
+  Email: "email",
+  Sms: "sms",
+  Chat: "chat",
+  Push: "push",
+  Digest: "digest",
+  Trigger: "trigger",
+  Delay: "delay",
+  Custom: "custom",
+} as const;
+/**
+ * Type of the job
+ */
+export type ActivityNotificationJobResponseDtoType = ClosedEnum<
+  typeof ActivityNotificationJobResponseDtoType
+>;
 
 /**
  * Optional payload for the job
@@ -43,11 +66,11 @@ export type ActivityNotificationJobResponseDto = {
   /**
    * Type of the job
    */
-  type: string;
+  type: ActivityNotificationJobResponseDtoType;
   /**
-   * Optional digest for the job
+   * Optional digest for the job, including metadata and events
    */
-  digest?: Digest | undefined;
+  digest?: DigestWithEventsDto | undefined;
   /**
    * Execution details of the job
    */
@@ -71,44 +94,27 @@ export type ActivityNotificationJobResponseDto = {
 };
 
 /** @internal */
-export const Digest$inboundSchema: z.ZodType<Digest, z.ZodTypeDef, unknown> = z
-  .object({});
+export const ActivityNotificationJobResponseDtoType$inboundSchema:
+  z.ZodNativeEnum<typeof ActivityNotificationJobResponseDtoType> = z.nativeEnum(
+    ActivityNotificationJobResponseDtoType,
+  );
 
 /** @internal */
-export type Digest$Outbound = {};
-
-/** @internal */
-export const Digest$outboundSchema: z.ZodType<
-  Digest$Outbound,
-  z.ZodTypeDef,
-  Digest
-> = z.object({});
+export const ActivityNotificationJobResponseDtoType$outboundSchema:
+  z.ZodNativeEnum<typeof ActivityNotificationJobResponseDtoType> =
+    ActivityNotificationJobResponseDtoType$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Digest$ {
-  /** @deprecated use `Digest$inboundSchema` instead. */
-  export const inboundSchema = Digest$inboundSchema;
-  /** @deprecated use `Digest$outboundSchema` instead. */
-  export const outboundSchema = Digest$outboundSchema;
-  /** @deprecated use `Digest$Outbound` instead. */
-  export type Outbound = Digest$Outbound;
-}
-
-export function digestToJSON(digest: Digest): string {
-  return JSON.stringify(Digest$outboundSchema.parse(digest));
-}
-
-export function digestFromJSON(
-  jsonString: string,
-): SafeParseResult<Digest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Digest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Digest' from JSON`,
-  );
+export namespace ActivityNotificationJobResponseDtoType$ {
+  /** @deprecated use `ActivityNotificationJobResponseDtoType$inboundSchema` instead. */
+  export const inboundSchema =
+    ActivityNotificationJobResponseDtoType$inboundSchema;
+  /** @deprecated use `ActivityNotificationJobResponseDtoType$outboundSchema` instead. */
+  export const outboundSchema =
+    ActivityNotificationJobResponseDtoType$outboundSchema;
 }
 
 /** @internal */
@@ -159,8 +165,8 @@ export const ActivityNotificationJobResponseDto$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   _id: z.string(),
-  type: z.string(),
-  digest: z.lazy(() => Digest$inboundSchema).optional(),
+  type: ActivityNotificationJobResponseDtoType$inboundSchema,
+  digest: DigestWithEventsDto$inboundSchema.optional(),
   executionDetails: z.array(
     ActivityNotificationExecutionDetailResponseDto$inboundSchema,
   ),
@@ -178,7 +184,7 @@ export const ActivityNotificationJobResponseDto$inboundSchema: z.ZodType<
 export type ActivityNotificationJobResponseDto$Outbound = {
   _id: string;
   type: string;
-  digest?: Digest$Outbound | undefined;
+  digest?: DigestWithEventsDto$Outbound | undefined;
   executionDetails: Array<
     ActivityNotificationExecutionDetailResponseDto$Outbound
   >;
@@ -195,8 +201,8 @@ export const ActivityNotificationJobResponseDto$outboundSchema: z.ZodType<
   ActivityNotificationJobResponseDto
 > = z.object({
   id: z.string(),
-  type: z.string(),
-  digest: z.lazy(() => Digest$outboundSchema).optional(),
+  type: ActivityNotificationJobResponseDtoType$outboundSchema,
+  digest: DigestWithEventsDto$outboundSchema.optional(),
   executionDetails: z.array(
     ActivityNotificationExecutionDetailResponseDto$outboundSchema,
   ),

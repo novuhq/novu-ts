@@ -7,13 +7,12 @@ import { ActivityNotificationExecutionDetailResponseDto } from "@novu/api/models
 
 let value: ActivityNotificationExecutionDetailResponseDto = {
   id: "<id>",
-  jobId: "<id>",
-  status: "ReadConfirmation",
+  status: "Pending",
   detail: "<value>",
   isRetry: false,
   isTest: false,
-  providerId: "generic-sms",
-  source: "Payload",
+  providerId: "mailgun",
+  source: "Webhook",
 };
 ```
 
@@ -22,7 +21,6 @@ let value: ActivityNotificationExecutionDetailResponseDto = {
 | Field                                                                                                                                              | Type                                                                                                                                               | Required                                                                                                                                           | Description                                                                                                                                        |
 | -------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `id`                                                                                                                                               | *string*                                                                                                                                           | :heavy_check_mark:                                                                                                                                 | Unique identifier of the execution detail                                                                                                          |
-| `jobId`                                                                                                                                            | *string*                                                                                                                                           | :heavy_check_mark:                                                                                                                                 | Unique identifier of the job                                                                                                                       |
 | `status`                                                                                                                                           | [components.ActivityNotificationExecutionDetailResponseDtoStatus](../../models/components/activitynotificationexecutiondetailresponsedtostatus.md) | :heavy_check_mark:                                                                                                                                 | Status of the execution detail                                                                                                                     |
 | `detail`                                                                                                                                           | *string*                                                                                                                                           | :heavy_check_mark:                                                                                                                                 | Detailed information about the execution                                                                                                           |
 | `isRetry`                                                                                                                                          | *boolean*                                                                                                                                          | :heavy_check_mark:                                                                                                                                 | Whether the execution is a retry or not                                                                                                            |

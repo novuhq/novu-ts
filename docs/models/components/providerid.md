@@ -7,7 +7,7 @@ The ID of the chat or push provider.
 ```typescript
 import { ProviderId } from "@novu/api/models/components";
 
-let value: ProviderId = "getstream";
+let value: ProviderId = "zulip";
 ```
 
 ## Values

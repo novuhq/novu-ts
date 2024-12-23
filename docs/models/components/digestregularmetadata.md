@@ -6,7 +6,7 @@
 import { DigestRegularMetadata } from "@novu/api/models/components";
 
 let value: DigestRegularMetadata = {
-  type: "regular",
+  type: "backoff",
 };
 ```
 
@@ -15,7 +15,7 @@ let value: DigestRegularMetadata = {
 | Field                                                                                        | Type                                                                                         | Required                                                                                     | Description                                                                                  |
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `amount`                                                                                     | *number*                                                                                     | :heavy_minus_sign:                                                                           | N/A                                                                                          |
-| `unit`                                                                                       | [components.Unit](../../models/components/unit.md)                                           | :heavy_minus_sign:                                                                           | N/A                                                                                          |
+| `unit`                                                                                       | [components.DigestRegularMetadataUnit](../../models/components/digestregularmetadataunit.md) | :heavy_minus_sign:                                                                           | N/A                                                                                          |
 | `digestKey`                                                                                  | *string*                                                                                     | :heavy_minus_sign:                                                                           | N/A                                                                                          |
 | `type`                                                                                       | [components.DigestRegularMetadataType](../../models/components/digestregularmetadatatype.md) | :heavy_check_mark:                                                                           | N/A                                                                                          |
 | `backoff`                                                                                    | *boolean*                                                                                    | :heavy_minus_sign:                                                                           | N/A                                                                                          |

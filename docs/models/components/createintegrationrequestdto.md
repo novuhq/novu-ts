@@ -7,7 +7,7 @@ import { CreateIntegrationRequestDto } from "@novu/api/models/components";
 
 let value: CreateIntegrationRequestDto = {
   providerId: "<id>",
-  channel: "email",
+  channel: "chat",
 };
 ```
 
@@ -23,4 +23,4 @@ let value: CreateIntegrationRequestDto = {
 | `credentials`                                                                                                  | [components.CredentialsDto](../../models/components/credentialsdto.md)                                         | :heavy_minus_sign:                                                                                             | The credentials for the integration                                                                            |
 | `active`                                                                                                       | *boolean*                                                                                                      | :heavy_minus_sign:                                                                                             | If the integration is active, the validation on the credentials field will run                                 |
 | `check`                                                                                                        | *boolean*                                                                                                      | :heavy_minus_sign:                                                                                             | Flag to check the integration status                                                                           |
-| `conditions`                                                                                                   | [components.StepFilter](../../models/components/stepfilter.md)[]                                               | :heavy_minus_sign:                                                                                             | Conditions for the integration                                                                                 |
+| `conditions`                                                                                                   | [components.StepFilterDto](../../models/components/stepfilterdto.md)[]                                         | :heavy_minus_sign:                                                                                             | Conditions for the integration                                                                                 |

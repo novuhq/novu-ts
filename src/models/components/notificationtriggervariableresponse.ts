@@ -11,7 +11,7 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 /**
  * The value of the variable
  */
-export type Value = {};
+export type NotificationTriggerVariableResponseValue = {};
 
 /**
  * The type of the variable
@@ -36,7 +36,7 @@ export type NotificationTriggerVariableResponse = {
   /**
    * The value of the variable
    */
-  value?: Value | undefined;
+  value?: NotificationTriggerVariableResponseValue | undefined;
   /**
    * The type of the variable
    */
@@ -44,43 +44,61 @@ export type NotificationTriggerVariableResponse = {
 };
 
 /** @internal */
-export const Value$inboundSchema: z.ZodType<Value, z.ZodTypeDef, unknown> = z
-  .object({});
-
-/** @internal */
-export type Value$Outbound = {};
-
-/** @internal */
-export const Value$outboundSchema: z.ZodType<
-  Value$Outbound,
+export const NotificationTriggerVariableResponseValue$inboundSchema: z.ZodType<
+  NotificationTriggerVariableResponseValue,
   z.ZodTypeDef,
-  Value
+  unknown
+> = z.object({});
+
+/** @internal */
+export type NotificationTriggerVariableResponseValue$Outbound = {};
+
+/** @internal */
+export const NotificationTriggerVariableResponseValue$outboundSchema: z.ZodType<
+  NotificationTriggerVariableResponseValue$Outbound,
+  z.ZodTypeDef,
+  NotificationTriggerVariableResponseValue
 > = z.object({});
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Value$ {
-  /** @deprecated use `Value$inboundSchema` instead. */
-  export const inboundSchema = Value$inboundSchema;
-  /** @deprecated use `Value$outboundSchema` instead. */
-  export const outboundSchema = Value$outboundSchema;
-  /** @deprecated use `Value$Outbound` instead. */
-  export type Outbound = Value$Outbound;
+export namespace NotificationTriggerVariableResponseValue$ {
+  /** @deprecated use `NotificationTriggerVariableResponseValue$inboundSchema` instead. */
+  export const inboundSchema =
+    NotificationTriggerVariableResponseValue$inboundSchema;
+  /** @deprecated use `NotificationTriggerVariableResponseValue$outboundSchema` instead. */
+  export const outboundSchema =
+    NotificationTriggerVariableResponseValue$outboundSchema;
+  /** @deprecated use `NotificationTriggerVariableResponseValue$Outbound` instead. */
+  export type Outbound = NotificationTriggerVariableResponseValue$Outbound;
 }
 
-export function valueToJSON(value: Value): string {
-  return JSON.stringify(Value$outboundSchema.parse(value));
+export function notificationTriggerVariableResponseValueToJSON(
+  notificationTriggerVariableResponseValue:
+    NotificationTriggerVariableResponseValue,
+): string {
+  return JSON.stringify(
+    NotificationTriggerVariableResponseValue$outboundSchema.parse(
+      notificationTriggerVariableResponseValue,
+    ),
+  );
 }
 
-export function valueFromJSON(
+export function notificationTriggerVariableResponseValueFromJSON(
   jsonString: string,
-): SafeParseResult<Value, SDKValidationError> {
+): SafeParseResult<
+  NotificationTriggerVariableResponseValue,
+  SDKValidationError
+> {
   return safeParse(
     jsonString,
-    (x) => Value$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Value' from JSON`,
+    (x) =>
+      NotificationTriggerVariableResponseValue$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'NotificationTriggerVariableResponseValue' from JSON`,
   );
 }
 
@@ -114,14 +132,15 @@ export const NotificationTriggerVariableResponse$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   name: z.string(),
-  value: z.lazy(() => Value$inboundSchema).optional(),
+  value: z.lazy(() => NotificationTriggerVariableResponseValue$inboundSchema)
+    .optional(),
   type: NotificationTriggerVariableResponseType$inboundSchema.optional(),
 });
 
 /** @internal */
 export type NotificationTriggerVariableResponse$Outbound = {
   name: string;
-  value?: Value$Outbound | undefined;
+  value?: NotificationTriggerVariableResponseValue$Outbound | undefined;
   type?: string | undefined;
 };
 
@@ -132,7 +151,8 @@ export const NotificationTriggerVariableResponse$outboundSchema: z.ZodType<
   NotificationTriggerVariableResponse
 > = z.object({
   name: z.string(),
-  value: z.lazy(() => Value$outboundSchema).optional(),
+  value: z.lazy(() => NotificationTriggerVariableResponseValue$outboundSchema)
+    .optional(),
   type: NotificationTriggerVariableResponseType$outboundSchema.optional(),
 });
 

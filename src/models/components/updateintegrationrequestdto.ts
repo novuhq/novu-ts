@@ -14,11 +14,11 @@ import {
   CredentialsDto$outboundSchema,
 } from "./credentialsdto.js";
 import {
-  StepFilter,
-  StepFilter$inboundSchema,
-  StepFilter$Outbound,
-  StepFilter$outboundSchema,
-} from "./stepfilter.js";
+  StepFilterDto,
+  StepFilterDto$inboundSchema,
+  StepFilterDto$Outbound,
+  StepFilterDto$outboundSchema,
+} from "./stepfilterdto.js";
 
 export type UpdateIntegrationRequestDto = {
   name?: string | undefined;
@@ -34,7 +34,7 @@ export type UpdateIntegrationRequestDto = {
    */
   removeNovuBranding?: boolean | undefined;
   check?: boolean | undefined;
-  conditions?: Array<StepFilter> | undefined;
+  conditions?: Array<StepFilterDto> | undefined;
 };
 
 /** @internal */
@@ -50,7 +50,7 @@ export const UpdateIntegrationRequestDto$inboundSchema: z.ZodType<
   credentials: CredentialsDto$inboundSchema.optional(),
   removeNovuBranding: z.boolean().optional(),
   check: z.boolean().optional(),
-  conditions: z.array(StepFilter$inboundSchema).optional(),
+  conditions: z.array(StepFilterDto$inboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
     "_environmentId": "environmentId",
@@ -66,7 +66,7 @@ export type UpdateIntegrationRequestDto$Outbound = {
   credentials?: CredentialsDto$Outbound | undefined;
   removeNovuBranding?: boolean | undefined;
   check?: boolean | undefined;
-  conditions?: Array<StepFilter$Outbound> | undefined;
+  conditions?: Array<StepFilterDto$Outbound> | undefined;
 };
 
 /** @internal */
@@ -82,7 +82,7 @@ export const UpdateIntegrationRequestDto$outboundSchema: z.ZodType<
   credentials: CredentialsDto$outboundSchema.optional(),
   removeNovuBranding: z.boolean().optional(),
   check: z.boolean().optional(),
-  conditions: z.array(StepFilter$outboundSchema).optional(),
+  conditions: z.array(StepFilterDto$outboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
     environmentId: "_environmentId",

@@ -188,7 +188,7 @@ export async function subscribersList(
     >;
     "~next"?: { page: number };
   } => {
-    const page = input?.page || 0;
+    const page = input?.page ?? 1;
     const nextPage = page + 1;
 
     if (!responseData) {
@@ -198,7 +198,7 @@ export async function subscribersList(
     if (!Array.isArray(results) || !results.length) {
       return { next: () => null };
     }
-    const limit = input?.limit || 0;
+    const limit = input?.limit ?? 10;
     if (results.length < limit) {
       return { next: () => null };
     }

@@ -15,7 +15,7 @@ let value: SubscribersControllerUpdateSubscriberOnlineFlagResponse = {
     subscriberId: "<id>",
     channels: [
       {
-        providerId: "rocket-chat",
+        providerId: "apns",
         credentials: {
           webhookUrl: "https://example.com/webhook",
           channel: "general",
@@ -36,8 +36,8 @@ let value: SubscribersControllerUpdateSubscriberOnlineFlagResponse = {
     organizationId: "<id>",
     environmentId: "<id>",
     deleted: false,
-    createdAt: "<value>",
-    updatedAt: "<value>",
+    createdAt: "1705307181573",
+    updatedAt: "1734915119138",
   },
 };
 ```

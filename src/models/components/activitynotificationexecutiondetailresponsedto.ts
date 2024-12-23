@@ -52,10 +52,6 @@ export type ActivityNotificationExecutionDetailResponseDto = {
    */
   id: string;
   /**
-   * Unique identifier of the job
-   */
-  jobId: string;
-  /**
    * Status of the execution detail
    */
   status: ActivityNotificationExecutionDetailResponseDtoStatus;
@@ -135,7 +131,6 @@ export const ActivityNotificationExecutionDetailResponseDto$inboundSchema:
     unknown
   > = z.object({
     _id: z.string(),
-    _jobId: z.string(),
     status: ActivityNotificationExecutionDetailResponseDtoStatus$inboundSchema,
     detail: z.string(),
     isRetry: z.boolean(),
@@ -146,14 +141,12 @@ export const ActivityNotificationExecutionDetailResponseDto$inboundSchema:
   }).transform((v) => {
     return remap$(v, {
       "_id": "id",
-      "_jobId": "jobId",
     });
   });
 
 /** @internal */
 export type ActivityNotificationExecutionDetailResponseDto$Outbound = {
   _id: string;
-  _jobId: string;
   status: string;
   detail: string;
   isRetry: boolean;
@@ -171,7 +164,6 @@ export const ActivityNotificationExecutionDetailResponseDto$outboundSchema:
     ActivityNotificationExecutionDetailResponseDto
   > = z.object({
     id: z.string(),
-    jobId: z.string(),
     status: ActivityNotificationExecutionDetailResponseDtoStatus$outboundSchema,
     detail: z.string(),
     isRetry: z.boolean(),
@@ -182,7 +174,6 @@ export const ActivityNotificationExecutionDetailResponseDto$outboundSchema:
   }).transform((v) => {
     return remap$(v, {
       id: "_id",
-      jobId: "_jobId",
     });
   });
 

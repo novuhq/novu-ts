@@ -7,7 +7,7 @@ Provider ID of the job
 ```typescript
 import { ProvidersIdEnum } from "@novu/api/models/components";
 
-let value: ProvidersIdEnum = "sendgrid";
+let value: ProvidersIdEnum = "eazy-sms";
 ```
 
 ## Values

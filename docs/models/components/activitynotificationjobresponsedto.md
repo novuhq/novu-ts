@@ -7,17 +7,16 @@ import { ActivityNotificationJobResponseDto } from "@novu/api/models/components"
 
 let value: ActivityNotificationJobResponseDto = {
   id: "<id>",
-  type: "<value>",
+  type: "digest",
   executionDetails: [
     {
       id: "<id>",
-      jobId: "<id>",
-      status: "Failed",
+      status: "ReadConfirmation",
       detail: "<value>",
       isRetry: false,
       isTest: false,
-      providerId: "push-webhook",
-      source: "Credentials",
+      providerId: "nexmo",
+      source: "Payload",
     },
   ],
   step: {
@@ -27,7 +26,7 @@ let value: ActivityNotificationJobResponseDto = {
       {},
     ],
   },
-  providerId: "pusher-beams",
+  providerId: "netcore",
   status: "<value>",
 };
 ```
@@ -37,8 +36,8 @@ let value: ActivityNotificationJobResponseDto = {
 | Field                                                                                                                                    | Type                                                                                                                                     | Required                                                                                                                                 | Description                                                                                                                              |
 | ---------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
 | `id`                                                                                                                                     | *string*                                                                                                                                 | :heavy_check_mark:                                                                                                                       | Unique identifier of the job                                                                                                             |
-| `type`                                                                                                                                   | *string*                                                                                                                                 | :heavy_check_mark:                                                                                                                       | Type of the job                                                                                                                          |
-| `digest`                                                                                                                                 | [components.Digest](../../models/components/digest.md)                                                                                   | :heavy_minus_sign:                                                                                                                       | Optional digest for the job                                                                                                              |
+| `type`                                                                                                                                   | [components.ActivityNotificationJobResponseDtoType](../../models/components/activitynotificationjobresponsedtotype.md)                   | :heavy_check_mark:                                                                                                                       | Type of the job                                                                                                                          |
+| `digest`                                                                                                                                 | [components.DigestWithEventsDto](../../models/components/digestwitheventsdto.md)                                                         | :heavy_minus_sign:                                                                                                                       | Optional digest for the job, including metadata and events                                                                               |
 | `executionDetails`                                                                                                                       | [components.ActivityNotificationExecutionDetailResponseDto](../../models/components/activitynotificationexecutiondetailresponsedto.md)[] | :heavy_check_mark:                                                                                                                       | Execution details of the job                                                                                                             |
 | `step`                                                                                                                                   | [components.ActivityNotificationStepResponseDto](../../models/components/activitynotificationstepresponsedto.md)                         | :heavy_check_mark:                                                                                                                       | Step details of the job                                                                                                                  |
 | `payload`                                                                                                                                | [components.Payload](../../models/components/payload.md)                                                                                 | :heavy_minus_sign:                                                                                                                       | Optional payload for the job                                                                                                             |

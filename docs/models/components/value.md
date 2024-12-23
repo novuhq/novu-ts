@@ -1,16 +1,15 @@
 # Value
 
-The value of the variable
-
 ## Example Usage
 
 ```typescript
 import { Value } from "@novu/api/models/components";
 
-let value: Value = {};
+let value: Value = "OR";
 ```
 
-## Fields
+## Values
 
-| Field       | Type        | Required    | Description |
-| ----------- | ----------- | ----------- | ----------- |
+```typescript
+"AND" | "OR"
+```

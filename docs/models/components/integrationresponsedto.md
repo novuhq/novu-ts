@@ -11,7 +11,7 @@ let value: IntegrationResponseDto = {
   name: "<value>",
   identifier: "<value>",
   providerId: "<id>",
-  channel: "chat",
+  channel: "email",
   credentials: {},
   active: false,
   deleted: false,
@@ -36,4 +36,4 @@ let value: IntegrationResponseDto = {
 | `deletedAt`                                                                                                                | *string*                                                                                                                   | :heavy_minus_sign:                                                                                                         | The timestamp indicating when the integration was deleted. This is set when the integration is soft deleted.               |
 | `deletedBy`                                                                                                                | *string*                                                                                                                   | :heavy_minus_sign:                                                                                                         | The identifier of the user who performed the deletion of this integration. Useful for audit trails.                        |
 | `primary`                                                                                                                  | *boolean*                                                                                                                  | :heavy_check_mark:                                                                                                         | Indicates whether this integration is marked as primary. A primary integration is often the default choice for processing. |
-| `conditions`                                                                                                               | [components.StepFilter](../../models/components/stepfilter.md)[]                                                           | :heavy_minus_sign:                                                                                                         | An array of conditions associated with the integration that may influence its behavior or processing logic.                |
+| `conditions`                                                                                                               | [components.StepFilterDto](../../models/components/stepfilterdto.md)[]                                                     | :heavy_minus_sign:                                                                                                         | An array of conditions associated with the integration that may influence its behavior or processing logic.                |

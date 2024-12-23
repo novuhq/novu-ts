@@ -15,11 +15,11 @@ import {
   CredentialsDto$outboundSchema,
 } from "./credentialsdto.js";
 import {
-  StepFilter,
-  StepFilter$inboundSchema,
-  StepFilter$Outbound,
-  StepFilter$outboundSchema,
-} from "./stepfilter.js";
+  StepFilterDto,
+  StepFilterDto$inboundSchema,
+  StepFilterDto$Outbound,
+  StepFilterDto$outboundSchema,
+} from "./stepfilterdto.js";
 
 /**
  * The channel type for the integration, which defines how the integration communicates (e.g., email, SMS).
@@ -92,7 +92,7 @@ export type IntegrationResponseDto = {
   /**
    * An array of conditions associated with the integration that may influence its behavior or processing logic.
    */
-  conditions?: Array<StepFilter> | undefined;
+  conditions?: Array<StepFilterDto> | undefined;
 };
 
 /** @internal */
@@ -133,7 +133,7 @@ export const IntegrationResponseDto$inboundSchema: z.ZodType<
   deletedAt: z.string().optional(),
   deletedBy: z.string().optional(),
   primary: z.boolean(),
-  conditions: z.array(StepFilter$inboundSchema).optional(),
+  conditions: z.array(StepFilterDto$inboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
     "_id": "id",
@@ -157,7 +157,7 @@ export type IntegrationResponseDto$Outbound = {
   deletedAt?: string | undefined;
   deletedBy?: string | undefined;
   primary: boolean;
-  conditions?: Array<StepFilter$Outbound> | undefined;
+  conditions?: Array<StepFilterDto$Outbound> | undefined;
 };
 
 /** @internal */
@@ -179,7 +179,7 @@ export const IntegrationResponseDto$outboundSchema: z.ZodType<
   deletedAt: z.string().optional(),
   deletedBy: z.string().optional(),
   primary: z.boolean(),
-  conditions: z.array(StepFilter$outboundSchema).optional(),
+  conditions: z.array(StepFilterDto$outboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
     id: "_id",

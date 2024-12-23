@@ -44,11 +44,11 @@ import {
   NotificationStepVariant$outboundSchema,
 } from "./notificationstepvariant.js";
 import {
-  StepFilter,
-  StepFilter$inboundSchema,
-  StepFilter$Outbound,
-  StepFilter$outboundSchema,
-} from "./stepfilter.js";
+  StepFilterDto,
+  StepFilterDto$inboundSchema,
+  StepFilterDto$Outbound,
+  StepFilterDto$outboundSchema,
+} from "./stepfilterdto.js";
 
 export type ParentId = {};
 
@@ -68,7 +68,7 @@ export type NotificationStep = {
   active?: boolean | undefined;
   shouldStopOnFail?: boolean | undefined;
   template?: MessageTemplate | undefined;
-  filters?: Array<StepFilter> | undefined;
+  filters?: Array<StepFilterDto> | undefined;
   parentId?: ParentId | undefined;
   metadata?:
     | DelayScheduledMetadata
@@ -239,7 +239,7 @@ export const NotificationStep$inboundSchema: z.ZodType<
   active: z.boolean().optional(),
   shouldStopOnFail: z.boolean().optional(),
   template: MessageTemplate$inboundSchema.optional(),
-  filters: z.array(StepFilter$inboundSchema).optional(),
+  filters: z.array(StepFilterDto$inboundSchema).optional(),
   _parentId: z.lazy(() => ParentId$inboundSchema).optional(),
   metadata: z.union([
     DelayScheduledMetadata$inboundSchema,
@@ -266,7 +266,7 @@ export type NotificationStep$Outbound = {
   active?: boolean | undefined;
   shouldStopOnFail?: boolean | undefined;
   template?: MessageTemplate$Outbound | undefined;
-  filters?: Array<StepFilter$Outbound> | undefined;
+  filters?: Array<StepFilterDto$Outbound> | undefined;
   _parentId?: ParentId$Outbound | undefined;
   metadata?:
     | DelayScheduledMetadata$Outbound
@@ -291,7 +291,7 @@ export const NotificationStep$outboundSchema: z.ZodType<
   active: z.boolean().optional(),
   shouldStopOnFail: z.boolean().optional(),
   template: MessageTemplate$outboundSchema.optional(),
-  filters: z.array(StepFilter$outboundSchema).optional(),
+  filters: z.array(StepFilterDto$outboundSchema).optional(),
   parentId: z.lazy(() => ParentId$outboundSchema).optional(),
   metadata: z.union([
     DelayScheduledMetadata$outboundSchema,

@@ -12402,11 +12402,7 @@
             }
           },
           "409": {
-            "description": "The topic you are trying to delete has subscribers assigned to it. Delete the subscribers before deleting the topic.",
-            "schema": {
-              "type": "string",
-              "example": "Request with key 3909d656-d4fe-4e80-ba86-90d3861afcd7 is currently being processed. Please retry after 1 second"
-            },
+            "description": "Conflict",
             "headers": {
               "Content-Type": {
                 "$ref": "#/components/headers/Content-Type"
@@ -13968,6 +13964,39 @@
           "triggers"
         ]
       },
+      "DigestWithEventsDto": {
+        "type": "object",
+        "properties": {
+          "digestKey": {
+            "type": "string",
+            "description": "Optional key for the digest"
+          },
+          "amount": {
+            "type": "number",
+            "description": "Amount for the digest"
+          },
+          "unit": {
+            "enum": [
+              "seconds",
+              "minutes",
+              "hours",
+              "days",
+              "weeks",
+              "months"
+            ],
+            "type": "string",
+            "description": "Unit of the digest"
+          },
+          "events": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": true
+            },
+            "description": "Optional array of events associated with the digest, represented as key-value pairs"
+          }
+        }
+      },
       "ProvidersIdEnum": {
         "type": "string",
         "description": "Provider ID of the job",
@@ -14051,10 +14080,6 @@
             "type": "string",
             "description": "Unique identifier of the execution detail"
           },
-          "_jobId": {
-            "type": "string",
-            "description": "Unique identifier of the job"
-          },
           "status": {
             "enum": [
               "Success",
@@ -14099,7 +14124,6 @@
         },
         "required": [
           "_id",
-          "_jobId",
           "status",
           "detail",
           "isRetry",
@@ -14157,12 +14181,27 @@
             "description": "Unique identifier of the job"
           },
           "type": {
+            "enum": [
+              "in_app",
+              "email",
+              "sms",
+              "chat",
+              "push",
+              "digest",
+              "trigger",
+              "delay",
+              "custom"
+            ],
             "type": "string",
             "description": "Type of the job"
           },
           "digest": {
-            "type": "object",
-            "description": "Optional digest for the job"
+            "description": "Optional digest for the job, including metadata and events",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/DigestWithEventsDto"
+              }
+            ]
           },
           "executionDetails": {
             "description": "Execution details of the job",
@@ -14471,6 +14510,92 @@
           }
         }
       },
+      "BuilderFieldType": {
+        "type": "string",
+        "enum": [
+          "BOOLEAN",
+          "TEXT",
+          "DATE",
+          "NUMBER",
+          "STATEMENT",
+          "LIST",
+          "MULTI_LIST",
+          "GROUP"
+        ]
+      },
+      "FieldFilterPartDto": {
+        "type": "object",
+        "properties": {
+          "field": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "operator": {
+            "type": "string",
+            "enum": [
+              "LARGER",
+              "SMALLER",
+              "LARGER_EQUAL",
+              "SMALLER_EQUAL",
+              "EQUAL",
+              "NOT_EQUAL",
+              "ALL_IN",
+              "ANY_IN",
+              "NOT_IN",
+              "BETWEEN",
+              "NOT_BETWEEN",
+              "LIKE",
+              "NOT_LIKE",
+              "IN"
+            ]
+          },
+          "on": {
+            "type": "string",
+            "enum": [
+              "subscriber",
+              "payload"
+            ]
+          }
+        },
+        "required": [
+          "field",
+          "value",
+          "operator",
+          "on"
+        ]
+      },
+      "StepFilterDto": {
+        "type": "object",
+        "properties": {
+          "isNegated": {
+            "type": "boolean"
+          },
+          "type": {
+            "$ref": "#/components/schemas/BuilderFieldType"
+          },
+          "value": {
+            "type": "string",
+            "enum": [
+              "AND",
+              "OR"
+            ]
+          },
+          "children": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FieldFilterPartDto"
+            }
+          }
+        },
+        "required": [
+          "isNegated",
+          "type",
+          "value",
+          "children"
+        ]
+      },
       "IntegrationResponseDto": {
         "type": "object",
         "properties": {
@@ -14541,7 +14666,7 @@
             "description": "An array of conditions associated with the integration that may influence its behavior or processing logic.",
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/StepFilter"
+              "$ref": "#/components/schemas/StepFilterDto"
             }
           }
         },
@@ -14609,7 +14734,7 @@
             "description": "Conditions for the integration",
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/StepFilter"
+              "$ref": "#/components/schemas/StepFilterDto"
             }
           }
         },
@@ -14647,7 +14772,7 @@
           "conditions": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/StepFilter"
+              "$ref": "#/components/schemas/StepFilterDto"
             }
           }
         }
@@ -15014,12 +15139,6 @@
         "properties": {
           "subscribers": {
             "description": "An array of subscribers to be created in bulk.",
-            "example": [
-              {
-                "email": "example@example.com",
-                "name": "John Doe"
-              }
-            ],
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/CreateSubscriberRequestDto"
@@ -16157,7 +16276,7 @@
           "filters": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/StepFilter"
+              "$ref": "#/components/schemas/StepFilterDto"
             }
           },
           "_parentId": {
@@ -16211,7 +16330,7 @@
           "filters": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/StepFilter"
+              "$ref": "#/components/schemas/StepFilterDto"
             }
           },
           "_parentId": {

@@ -16,7 +16,7 @@ let value: MessageResponseDto = {
     subscriberId: "<id>",
     channels: [
       {
-        providerId: "whatsapp-business",
+        providerId: "one-signal",
         credentials: {
           webhookUrl: "https://example.com/webhook",
           channel: "general",
@@ -37,22 +37,19 @@ let value: MessageResponseDto = {
     organizationId: "<id>",
     environmentId: "<id>",
     deleted: false,
-    createdAt: "<value>",
-    updatedAt: "<value>",
+    createdAt: "1725605741245",
+    updatedAt: "1734866171080",
   },
-  createdAt: "<value>",
-  content: {
-    type: "text",
-    content: "<value>",
-  },
+  createdAt: "1732404714367",
+  content: "<value>",
   transactionId: "<id>",
-  channel: "sms",
+  channel: "push",
   read: false,
   seen: false,
   cta: {
     data: {},
   },
-  status: "warning",
+  status: "sent",
 };
 ```
 

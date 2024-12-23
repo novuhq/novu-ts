@@ -15,11 +15,11 @@ import {
   CredentialsDto$outboundSchema,
 } from "./credentialsdto.js";
 import {
-  StepFilter,
-  StepFilter$inboundSchema,
-  StepFilter$Outbound,
-  StepFilter$outboundSchema,
-} from "./stepfilter.js";
+  StepFilterDto,
+  StepFilterDto$inboundSchema,
+  StepFilterDto$Outbound,
+  StepFilterDto$outboundSchema,
+} from "./stepfilterdto.js";
 
 /**
  * The channel type for the integration
@@ -74,7 +74,7 @@ export type CreateIntegrationRequestDto = {
   /**
    * Conditions for the integration
    */
-  conditions?: Array<StepFilter> | undefined;
+  conditions?: Array<StepFilterDto> | undefined;
 };
 
 /** @internal */
@@ -113,7 +113,7 @@ export const CreateIntegrationRequestDto$inboundSchema: z.ZodType<
   credentials: CredentialsDto$inboundSchema.optional(),
   active: z.boolean().optional(),
   check: z.boolean().optional(),
-  conditions: z.array(StepFilter$inboundSchema).optional(),
+  conditions: z.array(StepFilterDto$inboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
     "_environmentId": "environmentId",
@@ -130,7 +130,7 @@ export type CreateIntegrationRequestDto$Outbound = {
   credentials?: CredentialsDto$Outbound | undefined;
   active?: boolean | undefined;
   check?: boolean | undefined;
-  conditions?: Array<StepFilter$Outbound> | undefined;
+  conditions?: Array<StepFilterDto$Outbound> | undefined;
 };
 
 /** @internal */
@@ -147,7 +147,7 @@ export const CreateIntegrationRequestDto$outboundSchema: z.ZodType<
   credentials: CredentialsDto$outboundSchema.optional(),
   active: z.boolean().optional(),
   check: z.boolean().optional(),
-  conditions: z.array(StepFilter$outboundSchema).optional(),
+  conditions: z.array(StepFilterDto$outboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
     environmentId: "_environmentId",
