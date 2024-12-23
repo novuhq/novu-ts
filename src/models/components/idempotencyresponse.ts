@@ -7,24 +7,35 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
-export type IdempotencyResponse = {};
+export type IdempotencyResponse = {
+  /**
+   * A unique identifier for the idempotency response
+   */
+  number: number;
+};
 
 /** @internal */
 export const IdempotencyResponse$inboundSchema: z.ZodType<
   IdempotencyResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({});
+> = z.object({
+  number: z.number(),
+});
 
 /** @internal */
-export type IdempotencyResponse$Outbound = {};
+export type IdempotencyResponse$Outbound = {
+  number: number;
+};
 
 /** @internal */
 export const IdempotencyResponse$outboundSchema: z.ZodType<
   IdempotencyResponse$Outbound,
   z.ZodTypeDef,
   IdempotencyResponse
-> = z.object({});
+> = z.object({
+  number: z.number(),
+});
 
 /**
  * @internal

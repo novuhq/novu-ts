@@ -18091,7 +18091,15 @@
       },
       "IdempotencyResponse": {
         "type": "object",
-        "properties": {}
+        "properties": {
+          "number": {
+            "type": "number",
+            "description": "A unique identifier for the idempotency response"
+          }
+        },
+        "required": [
+          "number"
+        ]
       }
     },
     "headers": {

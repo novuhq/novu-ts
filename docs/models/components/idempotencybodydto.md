@@ -6,7 +6,7 @@
 import { IdempotencyBodyDto } from "@novu/api/models/components";
 
 let value: IdempotencyBodyDto = {
-  data: 5654.21,
+  data: 1832.80,
 };
 ```
 

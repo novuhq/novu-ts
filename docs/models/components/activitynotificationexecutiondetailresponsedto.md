@@ -7,12 +7,12 @@ import { ActivityNotificationExecutionDetailResponseDto } from "@novu/api/models
 
 let value: ActivityNotificationExecutionDetailResponseDto = {
   id: "<id>",
-  status: "Queued",
+  status: "ReadConfirmation",
   detail: "<value>",
   isRetry: false,
   isTest: false,
-  providerId: "getstream",
-  source: "Credentials",
+  providerId: "novu-email",
+  source: "Payload",
 };
 ```
 
