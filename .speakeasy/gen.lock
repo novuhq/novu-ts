@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 6bff3a53-3f0b-40b4-942f-ff70dc583ae5
 management:
-  docChecksum: c44753254591cbe61d3691d61752b559
+  docChecksum: 35963394102651185183cb39783f9f06
   docVersion: "1.0"
   speakeasyVersion: 1.459.3
   generationVersion: 2.483.6
-  releaseVersion: 0.0.1-alpha.155
-  configChecksum: 140d1b867263378e7d099b09740ea09a
+  releaseVersion: 0.0.1-alpha.160
+  configChecksum: d2739e1ef96f6a9278437faa96b090d2
   published: true
 features:
   typescript:
@@ -109,6 +109,7 @@ generatedFiles:
   - docs/models/components/filtertopicsresponsedto.md
   - docs/models/components/getsubscriberpreferencesresponsedto.md
   - docs/models/components/gettopicresponsedto.md
+  - docs/models/components/idempotencybodydto.md
   - docs/models/components/integrationresponsedto.md
   - docs/models/components/markallmessageasrequestdto.md
   - docs/models/components/markallmessageasrequestdtomarkas.md
@@ -298,6 +299,10 @@ generatedFiles:
   - docs/models/operations/subscriberscontrollerupdatesubscriberpreferenceresponse.md
   - docs/models/operations/subscriberscontrollerupdatesubscriberrequest.md
   - docs/models/operations/subscriberscontrollerupdatesubscriberresponse.md
+  - docs/models/operations/testingcontrolleridempotencygetrequest.md
+  - docs/models/operations/testingcontrolleridempotencygetresponse.md
+  - docs/models/operations/testingcontrolleridempotencyrequest.md
+  - docs/models/operations/testingcontrolleridempotencyresponse.md
   - docs/models/operations/topicscontrollerassignrequest.md
   - docs/models/operations/topicscontrollerassignresponse.md
   - docs/models/operations/topicscontrollercreatetopicrequest.md
@@ -314,6 +319,7 @@ generatedFiles:
   - docs/models/operations/topicscontrollerremovesubscribersresponse.md
   - docs/models/operations/topicscontrollerrenametopicrequest.md
   - docs/models/operations/topicscontrollerrenametopicresponse.md
+  - docs/sdks/admin/README.md
   - docs/sdks/authentication/README.md
   - docs/sdks/credentials/README.md
   - docs/sdks/integrations/README.md
@@ -332,6 +338,8 @@ generatedFiles:
   - jsr.json
   - package.json
   - src/core.ts
+  - src/funcs/adminTestingControllerIdempotency.ts
+  - src/funcs/adminTestingControllerIdempotencyGet.ts
   - src/funcs/cancel.ts
   - src/funcs/integrationsCreate.ts
   - src/funcs/integrationsDelete.ts
@@ -368,6 +376,9 @@ generatedFiles:
   - src/funcs/subscribersPropertiesUpdateOnlineFlag.ts
   - src/funcs/subscribersRetrieve.ts
   - src/funcs/subscribersUpdate.ts
+  - src/funcs/testApiRateLimitBulkControllerGlobalCategoryNoCostOverride.ts
+  - src/funcs/testApiRateLimitBulkControllerNoCategoryNoCostOverride.ts
+  - src/funcs/testApiRateLimitBulkControllerNoCategorySingleCostOverride.ts
   - src/funcs/topicsCreate.ts
   - src/funcs/topicsDelete.ts
   - src/funcs/topicsList.ts
@@ -446,6 +457,7 @@ generatedFiles:
   - src/models/components/filtertopicsresponsedto.ts
   - src/models/components/getsubscriberpreferencesresponsedto.ts
   - src/models/components/gettopicresponsedto.ts
+  - src/models/components/idempotencybodydto.ts
   - src/models/components/index.ts
   - src/models/components/integrationresponsedto.ts
   - src/models/components/markallmessageasrequestdto.ts
@@ -554,6 +566,8 @@ generatedFiles:
   - src/models/operations/subscriberscontrollerupdatesubscriberglobalpreferences.ts
   - src/models/operations/subscriberscontrollerupdatesubscriberonlineflag.ts
   - src/models/operations/subscriberscontrollerupdatesubscriberpreference.ts
+  - src/models/operations/testingcontrolleridempotency.ts
+  - src/models/operations/testingcontrolleridempotencyget.ts
   - src/models/operations/topicscontrollerassign.ts
   - src/models/operations/topicscontrollercreatetopic.ts
   - src/models/operations/topicscontrollerdeletetopic.ts
@@ -562,6 +576,7 @@ generatedFiles:
   - src/models/operations/topicscontrollerlisttopics.ts
   - src/models/operations/topicscontrollerremovesubscribers.ts
   - src/models/operations/topicscontrollerrenametopic.ts
+  - src/sdk/admin.ts
   - src/sdk/authentication.ts
   - src/sdk/credentials.ts
   - src/sdk/index.ts
@@ -1395,6 +1410,82 @@ examples:
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found."}
         "404":
           application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
+        "422":
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123", "errors": {"fieldName1": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName2": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName3": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName4": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}}}
+  TestApiRateLimitController_noCategoryNoCost:
+    speakeasy-default-test-api-rate-limit-controller-no-category-no-cost:
+      responses:
+        "200":
+          application/json: true
+  TestApiRateLimitController_noCategorySingleCost:
+    speakeasy-default-test-api-rate-limit-controller-no-category-single-cost:
+      responses:
+        "200":
+          application/json: false
+  TestApiRateLimitController_globalCategoryNoCost:
+    speakeasy-default-test-api-rate-limit-controller-global-category-no-cost:
+      responses:
+        "200":
+          application/json: false
+  TestApiRateLimitController_globalCategorySingleCost:
+    speakeasy-default-test-api-rate-limit-controller-global-category-single-cost:
+      responses:
+        "200":
+          application/json: false
+  TestApiRateLimitController_global:
+    speakeasy-default-test-api-rate-limit-controller-global:
+      responses:
+        "200":
+          application/json: true
+  TestApiRateLimitController_triggerCategoryNoCost:
+    speakeasy-default-test-api-rate-limit-controller-trigger-category-no-cost:
+      responses:
+        "200":
+          application/json: false
+  TestApiRateLimitController_triggerCategorySingleCost:
+    speakeasy-default-test-api-rate-limit-controller-trigger-category-single-cost:
+      responses:
+        "200":
+          application/json: true
+  TestApiRateLimitController_triggerCategoryBulkCost:
+    speakeasy-default-test-api-rate-limit-controller-trigger-category-bulk-cost:
+      responses:
+        "200":
+          application/json: false
+  TestApiRateLimitBulkController_noCategoryNoCostOverride:
+    speakeasy-default-test-api-rate-limit-bulk-controller-no-category-no-cost-override:
+      responses:
+        "200":
+          application/json: false
+  TestApiRateLimitBulkController_noCategorySingleCostOverride:
+    speakeasy-default-test-api-rate-limit-bulk-controller-no-category-single-cost-override:
+      responses:
+        "200":
+          application/json: false
+  TestApiRateLimitBulkController_globalCategoryNoCostOverride:
+    speakeasy-default-test-api-rate-limit-bulk-controller-global-category-no-cost-override:
+      responses:
+        "200":
+          application/json: false
+  TestApiAuthController_userRoute:
+    speakeasy-default-test-api-auth-controller-user-route:
+      responses:
+        "200":
+          application/json: true
+  TestingController_idempotency:
+    speakeasy-default-testing-controller-idempotency:
+      requestBody:
+        application/json: {"data": "6704.42"}
+      responses:
+        "400":
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
+        "422":
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123", "errors": {"fieldName1": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName2": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName3": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName4": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}}}
+  TestingController_idempotencyGet:
+    speakeasy-default-testing-controller-idempotency-get:
+      responses:
+        "400":
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
         "422":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123", "errors": {"fieldName1": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName2": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName3": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName4": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}}}
 generatedTests: {}

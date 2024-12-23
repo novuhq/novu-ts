@@ -218,6 +218,11 @@ run();
 <details open>
 <summary>Available methods</summary>
 
+### [admin](docs/sdks/admin/README.md)
+
+* [testingControllerIdempotency](docs/sdks/admin/README.md#testingcontrolleridempotency)
+* [testingControllerIdempotencyGet](docs/sdks/admin/README.md#testingcontrolleridempotencyget)
+
 ### [integrations](docs/sdks/integrations/README.md)
 
 * [list](docs/sdks/integrations/README.md#list) - Get integrations
@@ -253,6 +258,9 @@ run();
 * [triggerBulk](docs/sdks/novu/README.md#triggerbulk) - Bulk trigger event
 * [triggerBroadcast](docs/sdks/novu/README.md#triggerbroadcast) - Broadcast event to all
 * [cancel](docs/sdks/novu/README.md#cancel) - Cancel triggered event
+* [testApiRateLimitBulkControllerNoCategoryNoCostOverride](docs/sdks/novu/README.md#testapiratelimitbulkcontrollernocategorynocostoverride)
+* [testApiRateLimitBulkControllerNoCategorySingleCostOverride](docs/sdks/novu/README.md#testapiratelimitbulkcontrollernocategorysinglecostoverride)
+* [testApiRateLimitBulkControllerGlobalCategoryNoCostOverride](docs/sdks/novu/README.md#testapiratelimitbulkcontrollerglobalcategorynocostoverride)
 
 ### [subscribers](docs/sdks/subscribers/README.md)
 
@@ -328,6 +336,8 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 <summary>Available standalone functions</summary>
 
+- [`adminTestingControllerIdempotency`](docs/sdks/admin/README.md#testingcontrolleridempotency)
+- [`adminTestingControllerIdempotencyGet`](docs/sdks/admin/README.md#testingcontrolleridempotencyget)
 - [`cancel`](docs/sdks/novu/README.md#cancel) - Cancel triggered event
 - [`integrationsCreate`](docs/sdks/integrations/README.md#create) - Create integration
 - [`integrationsDelete`](docs/sdks/integrations/README.md#delete) - Delete integration
@@ -364,6 +374,9 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`subscribersPropertiesUpdateOnlineFlag`](docs/sdks/properties/README.md#updateonlineflag) - Update subscriber online status
 - [`subscribersRetrieve`](docs/sdks/subscribers/README.md#retrieve) - Get subscriber
 - [`subscribersUpdate`](docs/sdks/subscribers/README.md#update) - Update subscriber
+- [`testApiRateLimitBulkControllerGlobalCategoryNoCostOverride`](docs/sdks/novu/README.md#testapiratelimitbulkcontrollerglobalcategorynocostoverride)
+- [`testApiRateLimitBulkControllerNoCategoryNoCostOverride`](docs/sdks/novu/README.md#testapiratelimitbulkcontrollernocategorynocostoverride)
+- [`testApiRateLimitBulkControllerNoCategorySingleCostOverride`](docs/sdks/novu/README.md#testapiratelimitbulkcontrollernocategorysinglecostoverride)
 - [`topicsCreate`](docs/sdks/topics/README.md#create) - Topic creation
 - [`topicsDelete`](docs/sdks/topics/README.md#delete) - Delete topic
 - [`topicsList`](docs/sdks/topics/README.md#list) - Get topic list filtered 

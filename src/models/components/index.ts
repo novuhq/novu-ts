@@ -50,6 +50,7 @@ export * from "./fieldfilterpartdto.js";
 export * from "./filtertopicsresponsedto.js";
 export * from "./getsubscriberpreferencesresponsedto.js";
 export * from "./gettopicresponsedto.js";
+export * from "./idempotencybodydto.js";
 export * from "./integrationresponsedto.js";
 export * from "./markallmessageasrequestdto.js";
 export * from "./markmessageactionasseendto.js";

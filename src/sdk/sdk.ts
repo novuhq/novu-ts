@@ -3,6 +3,9 @@
  */
 
 import { cancel } from "../funcs/cancel.js";
+import { testApiRateLimitBulkControllerGlobalCategoryNoCostOverride } from "../funcs/testApiRateLimitBulkControllerGlobalCategoryNoCostOverride.js";
+import { testApiRateLimitBulkControllerNoCategoryNoCostOverride } from "../funcs/testApiRateLimitBulkControllerNoCategoryNoCostOverride.js";
+import { testApiRateLimitBulkControllerNoCategorySingleCostOverride } from "../funcs/testApiRateLimitBulkControllerNoCategorySingleCostOverride.js";
 import { trigger } from "../funcs/trigger.js";
 import { triggerBroadcast } from "../funcs/triggerBroadcast.js";
 import { triggerBulk } from "../funcs/triggerBulk.js";
@@ -10,6 +13,7 @@ import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as components from "../models/components/index.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
+import { Admin } from "./admin.js";
 import { Integrations } from "./integrations.js";
 import { Messages } from "./messages.js";
 import { Notifications } from "./notifications.js";
@@ -40,6 +44,11 @@ export class Novu extends ClientSDK {
   private _topics?: Topics;
   get topics(): Topics {
     return (this._topics ??= new Topics(this._options));
+  }
+
+  private _admin?: Admin;
+  get admin(): Admin {
+    return (this._admin ??= new Admin(this._options));
   }
 
   /**
@@ -125,5 +134,36 @@ export class Novu extends ClientSDK {
       idempotencyKey,
       options,
     ));
+  }
+
+  async testApiRateLimitBulkControllerNoCategoryNoCostOverride(
+    options?: RequestOptions,
+  ): Promise<boolean> {
+    return unwrapAsync(testApiRateLimitBulkControllerNoCategoryNoCostOverride(
+      this,
+      options,
+    ));
+  }
+
+  async testApiRateLimitBulkControllerNoCategorySingleCostOverride(
+    options?: RequestOptions,
+  ): Promise<boolean> {
+    return unwrapAsync(
+      testApiRateLimitBulkControllerNoCategorySingleCostOverride(
+        this,
+        options,
+      ),
+    );
+  }
+
+  async testApiRateLimitBulkControllerGlobalCategoryNoCostOverride(
+    options?: RequestOptions,
+  ): Promise<boolean> {
+    return unwrapAsync(
+      testApiRateLimitBulkControllerGlobalCategoryNoCostOverride(
+        this,
+        options,
+      ),
+    );
   }
 }
