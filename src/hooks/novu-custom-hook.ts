@@ -4,6 +4,23 @@ export class NovuCustomHook
     implements  BeforeRequestHook, AfterSuccessHook
 {
     beforeRequest(_hookCtx: BeforeRequestContext, request: Request): Request {
+        this.addAuthHeader(request);
+        this.addIdempotencyHeader(request)
+        return request;
+    }
+    private addIdempotencyHeader(request: Request) {
+        const idempotencyKey = 'Idempotency-Key';
+            const keyValue = request.headers.get(idempotencyKey);
+            if (!keyValue ||  keyValue==='' ) {
+                request.headers.set(idempotencyKey, this.generateIdempotencyKey())
+            }
+    }
+    private generateIdempotencyKey(): string {
+    const timestamp = Date.now();
+    const randomString = Math.random().toString(36).substr(2, 9); // Generates a random alphanumeric string
+        return `${timestamp}-${randomString}`;
+}
+    private addAuthHeader(request: Request) {
         const authKey = 'authorization';
         const hasAuthorization = request.headers.has(authKey);
         const apiKeyPrefix = 'ApiKey';
@@ -11,10 +28,9 @@ export class NovuCustomHook
             const key = request.headers.get(authKey);
 
             if (key && !key.includes(apiKeyPrefix)) {
-                request.headers.set(authKey,`${apiKeyPrefix} ${key}`)
+                request.headers.set(authKey, `${apiKeyPrefix} ${key}`)
             }
         }
-        return request;
     }
 
     async afterSuccess(_hookCtx: AfterSuccessContext, response: Response): Promise<Response> {
