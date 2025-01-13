@@ -39,7 +39,7 @@ export class NovuCustomHook
     private generateIdempotencyKey(): string {
         const timestamp = Date.now();
         const randomString = Math.random().toString(36).substr(2, 9); // Generates a random alphanumeric string
-        return `${timestamp}-${randomString}`;
+        return `${timestamp}${randomString}`.trim(); // Trim any potential whitespace
     }
 
     async afterSuccess(_hookCtx: AfterSuccessContext, response: Response): Promise<Response> {
