@@ -30,8 +30,8 @@ let value: SubscriberResponseDto = {
   organizationId: "<id>",
   environmentId: "<id>",
   deleted: false,
-  createdAt: "1714389975489",
-  updatedAt: "1736745084273",
+  createdAt: "1714390988000",
+  updatedAt: "1736746096784",
 };
 ```
 
