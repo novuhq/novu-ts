@@ -10,4 +10,5 @@ import {NovuCustomHook} from "./novu-custom-hook";
 export function initHooks(hooks: Hooks) {
     hooks.registerAfterSuccessHook(new NovuCustomHook())
     hooks.registerBeforeRequestHook(new NovuCustomHook())
+    hooks.registerBeforeCreateRequestHook(new NovuCustomHook())
 }
