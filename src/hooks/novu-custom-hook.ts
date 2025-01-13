@@ -1,30 +1,27 @@
-import {AfterSuccessContext, AfterSuccessHook, BeforeRequestContext, BeforeRequestHook} from "./types";
+import {RequestInput} from "../lib/http";
+import {
+    AfterSuccessContext,
+    AfterSuccessHook,
+    BeforeCreateRequestHook,
+    BeforeRequestContext,
+    BeforeRequestHook,
+    HookContext
+} from "./types";
 
 export class NovuCustomHook
-    implements  BeforeRequestHook, AfterSuccessHook
-{
-    beforeRequest(_hookCtx: BeforeRequestContext, request: Request): Request {
-        this.addAuthHeader(request);
-        this.addIdempotencyHeader(request)
-        return request;
-    }
-    private addIdempotencyHeader(request: Request) {
+    implements BeforeRequestHook, AfterSuccessHook, BeforeCreateRequestHook {
+    beforeCreateRequest(_hookCtx: HookContext, input: RequestInput): RequestInput {
         const idempotencyKey = 'Idempotency-Key';
-        const keyValue = request.headers.get(idempotencyKey);
-        request.headers.forEach((value, key) => {
-            console.log(`${key}: ${value}`);
-        });
-            if (!keyValue ||  keyValue==='' ) {
-                const newIdempotenceValue = this.generateIdempotencyKey();
-                request.headers.set(idempotencyKey, newIdempotenceValue)
-            }
+        const headers = input.options?.headers
+        if (!headers) {
+            return input
+        }
+        const updatedHeaders = this.updateHeaderValue(headers, idempotencyKey, this.generateIdempotencyKey)
+
+        return {...input, options: {headers: updatedHeaders}}
     }
-    private generateIdempotencyKey(): string {
-    const timestamp = Date.now();
-    const randomString = Math.random().toString(36).substr(2, 9); // Generates a random alphanumeric string
-        return `${timestamp}-${randomString}`;
-}
-    private addAuthHeader(request: Request) {
+
+    beforeRequest(_hookCtx: BeforeRequestContext, request: Request): Request {
         const authKey = 'authorization';
         const hasAuthorization = request.headers.has(authKey);
         const apiKeyPrefix = 'ApiKey';
@@ -35,12 +32,20 @@ export class NovuCustomHook
                 request.headers.set(authKey, `${apiKeyPrefix} ${key}`)
             }
         }
+
+        return request;
+    }
+
+    private generateIdempotencyKey(): string {
+        const timestamp = Date.now();
+        const randomString = Math.random().toString(36).substr(2, 9); // Generates a random alphanumeric string
+        return `${timestamp}-${randomString}`;
     }
 
     async afterSuccess(_hookCtx: AfterSuccessContext, response: Response): Promise<Response> {
         const responseAsText = await response.clone().text();
         const contentType = response.headers.get('content-type') || '';
-        if (!responseAsText || responseAsText =='' || contentType.includes('text/html')) {
+        if (!responseAsText || responseAsText == '' || contentType.includes('text/html')) {
             return response;
         }
         const jsonResponse = await response.clone().json();
@@ -54,5 +59,29 @@ export class NovuCustomHook
         }
 
         return response;
+    }
+
+    private updateHeaderValue(
+        headers: HeadersInit,
+        key: string,
+        defaultValueFunction: () => string
+    ): Record<string, string> {
+        const headersRecord = this.convertToRecord(headers);
+
+        if (!(key in headersRecord) || headersRecord[key] === '') {
+            headersRecord[key] = defaultValueFunction();
+        }
+
+        return headersRecord;
+    }
+
+    private convertToRecord(headers: HeadersInit): Record<string, string> {
+        if (Array.isArray(headers)) {
+            return Object.fromEntries(headers);
+        } else if (headers instanceof Headers) {
+            return Object.fromEntries(headers.entries());
+        } else {
+            return {...headers};
+        }
     }
 }
