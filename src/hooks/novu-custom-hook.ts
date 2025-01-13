@@ -10,9 +10,13 @@ export class NovuCustomHook
     }
     private addIdempotencyHeader(request: Request) {
         const idempotencyKey = 'Idempotency-Key';
-            const keyValue = request.headers.get(idempotencyKey);
+        const keyValue = request.headers.get(idempotencyKey);
+        request.headers.forEach((value, key) => {
+            console.log(`${key}: ${value}`);
+        });
             if (!keyValue ||  keyValue==='' ) {
-                request.headers.set(idempotencyKey, this.generateIdempotencyKey())
+                const newIdempotenceValue = this.generateIdempotencyKey();
+                request.headers.set(idempotencyKey, newIdempotenceValue)
             }
     }
     private generateIdempotencyKey(): string {

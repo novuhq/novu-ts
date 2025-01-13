@@ -14,7 +14,7 @@ export type ActivityNotificationSubscriberResponseDto = {
    */
   firstName?: string | undefined;
   /**
-   * Unique identifier of the subscriber
+   * External unique identifier of the subscriber
    */
   id: string;
   /**
@@ -22,7 +22,7 @@ export type ActivityNotificationSubscriberResponseDto = {
    */
   lastName?: string | undefined;
   /**
-   * Email of the subscriber
+   * Email address of the subscriber
    */
   email?: string | undefined;
   /**

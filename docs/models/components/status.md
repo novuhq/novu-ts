@@ -7,11 +7,11 @@ Status of the trigger
 ```typescript
 import { Status } from "@novu/api/models/components";
 
-let value: Status = "no_workflow_active_steps_defined";
+let value: Status = "trigger_not_active";
 ```
 
 ## Values
 
 ```typescript
-"error" | "trigger_not_active" | "no_workflow_active_steps_defined" | "no_workflow_steps_defined" | "processed" | "subscriber_id_missing" | "no_tenant_found"
+"error" | "trigger_not_active" | "no_workflow_active_steps_defined" | "no_workflow_steps_defined" | "processed" | "no_tenant_found"
 ```

@@ -269,7 +269,6 @@ run();
 ## triggerBroadcast
 
 Trigger a broadcast event to all existing subscribers, could be used to send announcements, etc.
-
       In the future could be used to trigger events to a subset of subscribers based on defined filters.
 
 ### Example Usage

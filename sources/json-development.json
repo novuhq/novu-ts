@@ -577,7 +577,7 @@
         },
         "x-speakeasy-name-override": "triggerBroadcast",
         "summary": "Broadcast event to all",
-        "description": "Trigger a broadcast event to all existing subscribers, could be used to send announcements, etc.\n\n      In the future could be used to trigger events to a subset of subscribers based on defined filters.",
+        "description": "Trigger a broadcast event to all existing subscribers, could be used to send announcements, etc.\n      In the future could be used to trigger events to a subset of subscribers based on defined filters.",
         "parameters": [
           {
             "name": "Idempotency-Key",
@@ -6256,7 +6256,7 @@
         "x-speakeasy-name-override": "append",
         "x-speakeasy-group": "Subscribers.Credentials",
         "summary": "Modify subscriber credentials",
-        "description": "Subscriber credentials associated to the delivery methods such as slack and push tokens.\n\n    This endpoint appends provided credentials and deviceTokens to the existing ones.",
+        "description": "Subscriber credentials associated to the delivery methods such as slack and push tokens.\n    This endpoint appends provided credentials and deviceTokens to the existing ones.",
         "parameters": [
           {
             "name": "Idempotency-Key",
@@ -14485,7 +14485,6 @@
               "no_workflow_active_steps_defined",
               "no_workflow_steps_defined",
               "processed",
-              "subscriber_id_missing",
               "no_tenant_found"
             ],
             "type": "string",
@@ -14761,7 +14760,7 @@
             "description": "A unique identifier for this transaction, we will generate a UUID if not provided."
           },
           "actor": {
-            "description": "It is used to display the Avatar of the provided actor's subscriber id or actor object.\n\n    If a new actor object is provided, we will create a new subscriber in our system",
+            "description": "It is used to display the Avatar of the provided actor's subscriber id or actor object.\n    If a new actor object is provided, we will create a new subscriber in our system",
             "oneOf": [
               {
                 "type": "string",
@@ -14921,7 +14920,7 @@
           },
           "_id": {
             "type": "string",
-            "description": "Unique identifier of the subscriber"
+            "description": "External unique identifier of the subscriber"
           },
           "lastName": {
             "type": "string",
@@ -14929,7 +14928,7 @@
           },
           "email": {
             "type": "string",
-            "description": "Email of the subscriber"
+            "description": "Email address of the subscriber"
           },
           "phone": {
             "type": "string",
@@ -15349,7 +15348,7 @@
         "properties": {
           "hasMore": {
             "type": "boolean",
-            "description": "Whether there are more activities"
+            "description": "Indicates if there are more activities in the result set"
           },
           "data": {
             "description": "Array of activity notifications",

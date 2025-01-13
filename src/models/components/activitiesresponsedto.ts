@@ -15,7 +15,7 @@ import {
 
 export type ActivitiesResponseDto = {
   /**
-   * Whether there are more activities
+   * Indicates if there are more activities in the result set
    */
   hasMore: boolean;
   /**

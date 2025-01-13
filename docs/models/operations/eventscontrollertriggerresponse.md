@@ -13,7 +13,7 @@ let value: EventsControllerTriggerResponse = {
   },
   result: {
     acknowledged: false,
-    status: "subscriber_id_missing",
+    status: "processed",
   },
 };
 ```

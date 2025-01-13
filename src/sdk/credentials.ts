@@ -38,7 +38,6 @@ export class Credentials extends ClientSDK {
    *
    * @remarks
    * Subscriber credentials associated to the delivery methods such as slack and push tokens.
-   *
    *     This endpoint appends provided credentials and deviceTokens to the existing ones.
    */
   async append(
