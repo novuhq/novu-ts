@@ -24,7 +24,7 @@ import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import * as operations from "../models/operations/index.js";
 import { Result } from "../types/fp.js";
 
-export async function adminTestIdempotency(
+export async function adminIdempotencyPost(
   client: NovuCore,
   idempotencyBodyDto: components.IdempotencyBodyDto,
   idempotencyKey?: string | undefined,
@@ -157,10 +157,6 @@ export async function adminTestIdempotency(
     | ConnectionError
   >(
     M.json(200, operations.TestingControllerIdempotencyResponse$inboundSchema, {
-      hdrs: true,
-      key: "Result",
-    }),
-    M.json(201, operations.TestingControllerIdempotencyResponse$inboundSchema, {
       hdrs: true,
       key: "Result",
     }),

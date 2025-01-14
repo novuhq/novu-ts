@@ -18611,7 +18611,7 @@
     "/v1/testing/idempotency": {
       "post": {
         "operationId": "TestingController_idempotency",
-        "x-speakeasy-name-override": "testIdempotency",
+        "x-speakeasy-name-override": "idempotencyPost",
         "parameters": [
           {
             "name": "Idempotency-Key",
@@ -18635,7 +18635,6 @@
         },
         "responses": {
           "200": {
-            "description": "OK",
             "headers": {
               "Content-Type": {
                 "$ref": "#/components/headers/Content-Type"
@@ -18659,39 +18658,7 @@
                 "$ref": "#/components/headers/Idempotency-Replay"
               }
             },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
-                }
-              }
-            }
-          },
-          "201": {
-            "description": "Created",
-            "headers": {
-              "Content-Type": {
-                "$ref": "#/components/headers/Content-Type"
-              },
-              "RateLimit-Limit": {
-                "$ref": "#/components/headers/RateLimit-Limit"
-              },
-              "RateLimit-Remaining": {
-                "$ref": "#/components/headers/RateLimit-Remaining"
-              },
-              "RateLimit-Reset": {
-                "$ref": "#/components/headers/RateLimit-Reset"
-              },
-              "RateLimit-Policy": {
-                "$ref": "#/components/headers/RateLimit-Policy"
-              },
-              "Idempotency-Key": {
-                "$ref": "#/components/headers/Idempotency-Key"
-              },
-              "Idempotency-Replay": {
-                "$ref": "#/components/headers/Idempotency-Replay"
-              }
-            },
+            "description": "",
             "content": {
               "application/json": {
                 "schema": {
@@ -19017,6 +18984,7 @@
       },
       "get": {
         "operationId": "TestingController_idempotencyGet",
+        "x-speakeasy-name-override": "idempotencyGet",
         "parameters": [
           {
             "name": "Idempotency-Key",
@@ -23399,6 +23367,17 @@
         "type": "object",
         "properties": {}
       },
+      "IdempotencyBodyDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
       "IdempotencyResponse": {
         "type": "object",
         "properties": {
@@ -23409,17 +23388,6 @@
         },
         "required": [
           "number"
-        ]
-      },
-      "IdempotencyBodyDto": {
-        "type": "object",
-        "properties": {
-          "data": {
-            "type": "number"
-          }
-        },
-        "required": [
-          "data"
         ]
       }
     },

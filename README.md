@@ -218,8 +218,8 @@ run();
 
 ### [admin](docs/sdks/admin/README.md)
 
-* [testIdempotency](docs/sdks/admin/README.md#testidempotency)
-* [testingControllerIdempotencyGet](docs/sdks/admin/README.md#testingcontrolleridempotencyget)
+* [idempotencyPost](docs/sdks/admin/README.md#idempotencypost)
+* [idempotencyGet](docs/sdks/admin/README.md#idempotencyget)
 
 ### [integrations](docs/sdks/integrations/README.md)
 
@@ -334,8 +334,8 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 <summary>Available standalone functions</summary>
 
-- [`adminTestIdempotency`](docs/sdks/admin/README.md#testidempotency)
-- [`adminTestingControllerIdempotencyGet`](docs/sdks/admin/README.md#testingcontrolleridempotencyget)
+- [`adminIdempotencyGet`](docs/sdks/admin/README.md#idempotencyget)
+- [`adminIdempotencyPost`](docs/sdks/admin/README.md#idempotencypost)
 - [`cancel`](docs/sdks/novu/README.md#cancel) - Cancel triggered event
 - [`integrationsCreate`](docs/sdks/integrations/README.md#create) - Create integration
 - [`integrationsDelete`](docs/sdks/integrations/README.md#delete) - Delete integration

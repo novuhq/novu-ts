@@ -12,14 +12,14 @@ let value: TestingControllerIdempotencyResponse = {
     ],
   },
   result: {
-    number: 9621.89,
+    number: 2700.08,
   },
 };
 ```
 
 ## Fields
 
-| Field                                                   | Type                                                    | Required                                                | Description                                             |
-| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| `headers`                                               | Record<string, *string*[]>                              | :heavy_check_mark:                                      | N/A                                                     |
-| `result`                                                | *operations.TestingControllerIdempotencyResponseResult* | :heavy_check_mark:                                      | N/A                                                     |
+| Field                                                                            | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `headers`                                                                        | Record<string, *string*[]>                                                       | :heavy_check_mark:                                                               | N/A                                                                              |
+| `result`                                                                         | [components.IdempotencyResponse](../../models/components/idempotencyresponse.md) | :heavy_check_mark:                                                               | N/A                                                                              |

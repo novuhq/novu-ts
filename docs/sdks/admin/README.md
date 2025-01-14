@@ -8,10 +8,10 @@ testing
 
 ### Available Operations
 
-* [testIdempotency](#testidempotency)
-* [testingControllerIdempotencyGet](#testingcontrolleridempotencyget)
+* [idempotencyPost](#idempotencypost)
+* [idempotencyGet](#idempotencyget)
 
-## testIdempotency
+## idempotencyPost
 
 ### Example Usage
 
@@ -23,7 +23,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.admin.testIdempotency({
+  const result = await novu.admin.idempotencyPost({
     data: 6704.42,
   });
 
@@ -40,7 +40,7 @@ The standalone function version of this method:
 
 ```typescript
 import { NovuCore } from "@novu/api/core.js";
-import { adminTestIdempotency } from "@novu/api/funcs/adminTestIdempotency.js";
+import { adminIdempotencyPost } from "@novu/api/funcs/adminIdempotencyPost.js";
 
 // Use `NovuCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -49,7 +49,7 @@ const novu = new NovuCore({
 });
 
 async function run() {
-  const res = await adminTestIdempotency(novu, {
+  const res = await adminIdempotencyPost(novu, {
     data: 6704.42,
   });
 
@@ -88,7 +88,7 @@ run();
 | errors.ValidationErrorDto    | 422                          | application/json             |
 | errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
 
-## testingControllerIdempotencyGet
+## idempotencyGet
 
 ### Example Usage
 
@@ -100,7 +100,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.admin.testingControllerIdempotencyGet();
+  const result = await novu.admin.idempotencyGet();
 
   // Handle the result
   console.log(result);
@@ -115,7 +115,7 @@ The standalone function version of this method:
 
 ```typescript
 import { NovuCore } from "@novu/api/core.js";
-import { adminTestingControllerIdempotencyGet } from "@novu/api/funcs/adminTestingControllerIdempotencyGet.js";
+import { adminIdempotencyGet } from "@novu/api/funcs/adminIdempotencyGet.js";
 
 // Use `NovuCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -124,7 +124,7 @@ const novu = new NovuCore({
 });
 
 async function run() {
-  const res = await adminTestingControllerIdempotencyGet(novu);
+  const res = await adminIdempotencyGet(novu);
 
   if (!res.ok) {
     throw res.error;

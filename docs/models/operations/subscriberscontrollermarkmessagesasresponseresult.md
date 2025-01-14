@@ -55,10 +55,10 @@ const value: components.MessageResponseDto[] = [
       organizationId: "<id>",
       environmentId: "<id>",
       deleted: false,
-      createdAt: "1731213227688",
-      updatedAt: "1736780375465",
+      createdAt: "1731215460823",
+      updatedAt: "1736782608600",
     },
-    createdAt: "1731747815778",
+    createdAt: "1731750048914",
     content: {
       type: "text",
       content: "<value>",

@@ -47,8 +47,8 @@ const value: components.SubscriberResponseDto = {
   organizationId: "<id>",
   environmentId: "<id>",
   deleted: false,
-  createdAt: "1705914941063",
-  updatedAt: "1736825349025",
+  createdAt: "1705917174184",
+  updatedAt: "1736827582146",
 };
 ```
 
