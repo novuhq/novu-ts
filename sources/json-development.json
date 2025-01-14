@@ -18635,6 +18635,7 @@
         },
         "responses": {
           "200": {
+            "description": "OK",
             "headers": {
               "Content-Type": {
                 "$ref": "#/components/headers/Content-Type"
@@ -18658,11 +18659,10 @@
                 "$ref": "#/components/headers/Idempotency-Replay"
               }
             },
-            "description": "",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/IdempotencyResponse"
+                  "$ref": "#/components/schemas/ErrorDto"
                 }
               }
             }
@@ -18695,10 +18695,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/IdempotencyResponse"
-                  }
+                  "$ref": "#/components/schemas/IdempotencyResponse"
                 }
               }
             }

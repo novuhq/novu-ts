@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 6bff3a53-3f0b-40b4-942f-ff70dc583ae5
 management:
-  docChecksum: 1ae9b19518b7d85c06043924af42a672
+  docChecksum: c0f0e713ad1165761bfae27a36588a76
   docVersion: "1.0"
   speakeasyVersion: 1.468.5
   generationVersion: 2.493.11
-  releaseVersion: 0.0.1-alpha.185
-  configChecksum: 54f10b6854cf90f078e2513fdb4403ef
+  releaseVersion: 0.0.1-alpha.187
+  configChecksum: 81438e5f1e68f5432ff71b84da90df14
   published: true
 features:
   typescript:
@@ -1504,7 +1504,7 @@ examples:
         "200":
           application/json: {}
         "201":
-          application/json: [{"number": 1306.7}]
+          application/json: {"number": 3977.26}
   TestingController_idempotencyGet:
     speakeasy-default-testing-controller-idempotency-get:
       responses:

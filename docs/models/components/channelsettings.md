@@ -6,7 +6,7 @@
 import { ChannelSettings } from "@novu/api/models/components";
 
 let value: ChannelSettings = {
-  providerId: "apns",
+  providerId: "grafana-on-call",
   credentials: {
     webhookUrl: "https://example.com/webhook",
     channel: "general",

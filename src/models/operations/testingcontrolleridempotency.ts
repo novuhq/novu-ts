@@ -19,13 +19,11 @@ export type TestingControllerIdempotencyRequest = {
 
 export type TestingControllerIdempotencyResponseResult =
   | components.IdempotencyResponse
-  | Array<components.IdempotencyResponse>;
+  | components.ErrorDto;
 
 export type TestingControllerIdempotencyResponse = {
   headers: { [k: string]: Array<string> };
-  result:
-    | components.IdempotencyResponse
-    | Array<components.IdempotencyResponse>;
+  result: components.IdempotencyResponse | components.ErrorDto;
 };
 
 /** @internal */
@@ -105,13 +103,13 @@ export const TestingControllerIdempotencyResponseResult$inboundSchema:
   z.ZodType<TestingControllerIdempotencyResponseResult, z.ZodTypeDef, unknown> =
     z.union([
       components.IdempotencyResponse$inboundSchema,
-      z.array(components.IdempotencyResponse$inboundSchema),
+      components.ErrorDto$inboundSchema,
     ]);
 
 /** @internal */
 export type TestingControllerIdempotencyResponseResult$Outbound =
   | components.IdempotencyResponse$Outbound
-  | Array<components.IdempotencyResponse$Outbound>;
+  | components.ErrorDto$Outbound;
 
 /** @internal */
 export const TestingControllerIdempotencyResponseResult$outboundSchema:
@@ -121,7 +119,7 @@ export const TestingControllerIdempotencyResponseResult$outboundSchema:
     TestingControllerIdempotencyResponseResult
   > = z.union([
     components.IdempotencyResponse$outboundSchema,
-    z.array(components.IdempotencyResponse$outboundSchema),
+    components.ErrorDto$outboundSchema,
   ]);
 
 /**
@@ -175,7 +173,7 @@ export const TestingControllerIdempotencyResponse$inboundSchema: z.ZodType<
   Headers: z.record(z.array(z.string())),
   Result: z.union([
     components.IdempotencyResponse$inboundSchema,
-    z.array(components.IdempotencyResponse$inboundSchema),
+    components.ErrorDto$inboundSchema,
   ]),
 }).transform((v) => {
   return remap$(v, {
@@ -189,7 +187,7 @@ export type TestingControllerIdempotencyResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
   Result:
     | components.IdempotencyResponse$Outbound
-    | Array<components.IdempotencyResponse$Outbound>;
+    | components.ErrorDto$Outbound;
 };
 
 /** @internal */
@@ -201,7 +199,7 @@ export const TestingControllerIdempotencyResponse$outboundSchema: z.ZodType<
   headers: z.record(z.array(z.string())),
   result: z.union([
     components.IdempotencyResponse$outboundSchema,
-    z.array(components.IdempotencyResponse$outboundSchema),
+    components.ErrorDto$outboundSchema,
   ]),
 }).transform((v) => {
   return remap$(v, {

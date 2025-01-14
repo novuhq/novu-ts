@@ -6,7 +6,7 @@
 import { UpdateSubscriberChannelRequestDto } from "@novu/api/models/components";
 
 let value: UpdateSubscriberChannelRequestDto = {
-  providerId: "pushpad",
+  providerId: "getstream",
   credentials: {
     webhookUrl: "https://example.com/webhook",
     channel: "general",

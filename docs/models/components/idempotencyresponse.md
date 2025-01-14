@@ -6,7 +6,7 @@
 import { IdempotencyResponse } from "@novu/api/models/components";
 
 let value: IdempotencyResponse = {
-  number: 8638.56,
+  number: 7168.6,
 };
 ```
 

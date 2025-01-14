@@ -11,11 +11,9 @@ let value: TestingControllerIdempotencyResponse = {
       "<value>",
     ],
   },
-  result: [
-    {
-      number: 2487.53,
-    },
-  ],
+  result: {
+    number: 9621.89,
+  },
 };
 ```
 

@@ -7,7 +7,7 @@ Message action status
 ```typescript
 import { MarkMessageActionAsSeenDtoStatus } from "@novu/api/models/components";
 
-let value: MarkMessageActionAsSeenDtoStatus = "pending";
+let value: MarkMessageActionAsSeenDtoStatus = "done";
 ```
 
 ## Values
