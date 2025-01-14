@@ -116,7 +116,7 @@ run();
 
 | Error Type                | Status Code               | Content Type              |
 | ------------------------- | ------------------------- | ------------------------- |
-| errors.ErrorDto           | 400, 404, 409, 500        | application/json          |
+| errors.ErrorDto           | 400, 401, 404, 409, 500   | application/json          |
 | errors.ValidationErrorDto | 422                       | application/json          |
 | errors.SDKError           | 4XX, 5XX                  | \*/\*                     |
 
@@ -262,7 +262,7 @@ run();
 
 | Error Type                | Status Code               | Content Type              |
 | ------------------------- | ------------------------- | ------------------------- |
-| errors.ErrorDto           | 400, 404, 409, 500        | application/json          |
+| errors.ErrorDto           | 400, 401, 404, 409, 500   | application/json          |
 | errors.ValidationErrorDto | 422                       | application/json          |
 | errors.SDKError           | 4XX, 5XX                  | \*/\*                     |
 
@@ -354,7 +354,7 @@ run();
 
 | Error Type                | Status Code               | Content Type              |
 | ------------------------- | ------------------------- | ------------------------- |
-| errors.ErrorDto           | 400, 404, 409, 500        | application/json          |
+| errors.ErrorDto           | 400, 401, 404, 409, 500   | application/json          |
 | errors.ValidationErrorDto | 422                       | application/json          |
 | errors.SDKError           | 4XX, 5XX                  | \*/\*                     |
 
@@ -432,7 +432,7 @@ run();
 
 | Error Type                | Status Code               | Content Type              |
 | ------------------------- | ------------------------- | ------------------------- |
-| errors.ErrorDto           | 400, 404, 409, 500        | application/json          |
+| errors.ErrorDto           | 400, 401, 404, 409, 500   | application/json          |
 | errors.ValidationErrorDto | 422                       | application/json          |
 | errors.SDKError           | 4XX, 5XX                  | \*/\*                     |
 
