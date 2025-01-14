@@ -138,7 +138,7 @@ export async function subscribersCredentialsUpdate(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["400", "404", "409", "422", "429", "4XX", "503", "5XX"],
+    errorCodes: ["400", "404", "409", "422", "429", "4XX", "500", "503", "5XX"],
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
@@ -169,7 +169,9 @@ export async function subscribersCredentialsUpdate(
         .SubscribersControllerUpdateSubscriberChannelResponse$inboundSchema,
       { hdrs: true, key: "Result" },
     ),
-    M.jsonErr([400, 404, 409], errors.ErrorDto$inboundSchema, { hdrs: true }),
+    M.jsonErr([400, 404, 409, 500], errors.ErrorDto$inboundSchema, {
+      hdrs: true,
+    }),
     M.jsonErr(422, errors.ValidationErrorDto$inboundSchema, { hdrs: true }),
     M.fail([429, 503]),
     M.fail(["4XX", "5XX"]),
