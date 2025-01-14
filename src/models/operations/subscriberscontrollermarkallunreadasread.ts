@@ -10,11 +10,11 @@ import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type SubscribersControllerMarkAllUnreadAsReadRequest = {
+  subscriberId: string;
   /**
    * A header for idempotency purposes
    */
   idempotencyKey?: string | undefined;
-  subscriberId: string;
   markAllMessageAsRequestDto: components.MarkAllMessageAsRequestDto;
 };
 
@@ -30,8 +30,8 @@ export const SubscribersControllerMarkAllUnreadAsReadRequest$inboundSchema:
     z.ZodTypeDef,
     unknown
   > = z.object({
-    "Idempotency-Key": z.string().optional(),
     subscriberId: z.string(),
+    "Idempotency-Key": z.string().optional(),
     MarkAllMessageAsRequestDto:
       components.MarkAllMessageAsRequestDto$inboundSchema,
   }).transform((v) => {
@@ -43,8 +43,8 @@ export const SubscribersControllerMarkAllUnreadAsReadRequest$inboundSchema:
 
 /** @internal */
 export type SubscribersControllerMarkAllUnreadAsReadRequest$Outbound = {
-  "Idempotency-Key"?: string | undefined;
   subscriberId: string;
+  "Idempotency-Key"?: string | undefined;
   MarkAllMessageAsRequestDto: components.MarkAllMessageAsRequestDto$Outbound;
 };
 
@@ -55,8 +55,8 @@ export const SubscribersControllerMarkAllUnreadAsReadRequest$outboundSchema:
     z.ZodTypeDef,
     SubscribersControllerMarkAllUnreadAsReadRequest
   > = z.object({
-    idempotencyKey: z.string().optional(),
     subscriberId: z.string(),
+    idempotencyKey: z.string().optional(),
     markAllMessageAsRequestDto:
       components.MarkAllMessageAsRequestDto$outboundSchema,
   }).transform((v) => {

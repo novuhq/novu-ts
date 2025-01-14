@@ -10,15 +10,15 @@ import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type SubscribersControllerListSubscriberPreferencesRequest = {
-  /**
-   * A header for idempotency purposes
-   */
-  idempotencyKey?: string | undefined;
   subscriberId: string;
   /**
    * A flag which specifies if the inactive workflow channels should be included in the retrieved preferences. Default is true
    */
   includeInactiveChannels?: boolean | undefined;
+  /**
+   * A header for idempotency purposes
+   */
+  idempotencyKey?: string | undefined;
 };
 
 export type SubscribersControllerListSubscriberPreferencesResponse = {
@@ -33,9 +33,9 @@ export const SubscribersControllerListSubscriberPreferencesRequest$inboundSchema
     z.ZodTypeDef,
     unknown
   > = z.object({
-    "Idempotency-Key": z.string().optional(),
     subscriberId: z.string(),
     includeInactiveChannels: z.boolean().optional(),
+    "Idempotency-Key": z.string().optional(),
   }).transform((v) => {
     return remap$(v, {
       "Idempotency-Key": "idempotencyKey",
@@ -44,9 +44,9 @@ export const SubscribersControllerListSubscriberPreferencesRequest$inboundSchema
 
 /** @internal */
 export type SubscribersControllerListSubscriberPreferencesRequest$Outbound = {
-  "Idempotency-Key"?: string | undefined;
   subscriberId: string;
   includeInactiveChannels?: boolean | undefined;
+  "Idempotency-Key"?: string | undefined;
 };
 
 /** @internal */
@@ -56,9 +56,9 @@ export const SubscribersControllerListSubscriberPreferencesRequest$outboundSchem
     z.ZodTypeDef,
     SubscribersControllerListSubscriberPreferencesRequest
   > = z.object({
-    idempotencyKey: z.string().optional(),
     subscriberId: z.string(),
     includeInactiveChannels: z.boolean().optional(),
+    idempotencyKey: z.string().optional(),
   }).transform((v) => {
     return remap$(v, {
       idempotencyKey: "Idempotency-Key",

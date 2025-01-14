@@ -38,9 +38,9 @@ import {
  */
 export async function subscribersList(
   client: NovuCore,
-  idempotencyKey?: string | undefined,
   page?: number | undefined,
   limit?: number | undefined,
+  idempotencyKey?: string | undefined,
   options?: RequestOptions,
 ): Promise<
   PageIterator<
@@ -61,9 +61,9 @@ export async function subscribersList(
   >
 > {
   const input: operations.SubscribersControllerListSubscribersRequest = {
-    idempotencyKey: idempotencyKey,
     page: page,
     limit: limit,
+    idempotencyKey: idempotencyKey,
   };
 
   const parsed = safeParse(
@@ -238,9 +238,9 @@ export async function subscribersList(
     const nextVal = () =>
       subscribersList(
         client,
-        idempotencyKey,
         nextPage,
         limit,
+        idempotencyKey,
         options,
       );
 

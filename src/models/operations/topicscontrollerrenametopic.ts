@@ -11,13 +11,13 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type TopicsControllerRenameTopicRequest = {
   /**
-   * A header for idempotency purposes
-   */
-  idempotencyKey?: string | undefined;
-  /**
    * The topic key
    */
   topicKey: string;
+  /**
+   * A header for idempotency purposes
+   */
+  idempotencyKey?: string | undefined;
   renameTopicRequestDto: components.RenameTopicRequestDto;
 };
 
@@ -32,8 +32,8 @@ export const TopicsControllerRenameTopicRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  "Idempotency-Key": z.string().optional(),
   topicKey: z.string(),
+  "Idempotency-Key": z.string().optional(),
   RenameTopicRequestDto: components.RenameTopicRequestDto$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
@@ -44,8 +44,8 @@ export const TopicsControllerRenameTopicRequest$inboundSchema: z.ZodType<
 
 /** @internal */
 export type TopicsControllerRenameTopicRequest$Outbound = {
-  "Idempotency-Key"?: string | undefined;
   topicKey: string;
+  "Idempotency-Key"?: string | undefined;
   RenameTopicRequestDto: components.RenameTopicRequestDto$Outbound;
 };
 
@@ -55,8 +55,8 @@ export const TopicsControllerRenameTopicRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   TopicsControllerRenameTopicRequest
 > = z.object({
-  idempotencyKey: z.string().optional(),
   topicKey: z.string(),
+  idempotencyKey: z.string().optional(),
   renameTopicRequestDto: components.RenameTopicRequestDto$outboundSchema,
 }).transform((v) => {
   return remap$(v, {

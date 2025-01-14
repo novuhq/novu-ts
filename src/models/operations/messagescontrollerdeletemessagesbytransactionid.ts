@@ -26,14 +26,14 @@ export type Channel = ClosedEnum<typeof Channel>;
 
 export type MessagesControllerDeleteMessagesByTransactionIdRequest = {
   /**
-   * A header for idempotency purposes
-   */
-  idempotencyKey?: string | undefined;
-  /**
    * The channel of the message to be deleted
    */
   channel?: Channel | undefined;
   transactionId: string;
+  /**
+   * A header for idempotency purposes
+   */
+  idempotencyKey?: string | undefined;
 };
 
 export type MessagesControllerDeleteMessagesByTransactionIdResponse = {
@@ -66,9 +66,9 @@ export const MessagesControllerDeleteMessagesByTransactionIdRequest$inboundSchem
     z.ZodTypeDef,
     unknown
   > = z.object({
-    "Idempotency-Key": z.string().optional(),
     channel: Channel$inboundSchema.optional(),
     transactionId: z.string(),
+    "Idempotency-Key": z.string().optional(),
   }).transform((v) => {
     return remap$(v, {
       "Idempotency-Key": "idempotencyKey",
@@ -77,9 +77,9 @@ export const MessagesControllerDeleteMessagesByTransactionIdRequest$inboundSchem
 
 /** @internal */
 export type MessagesControllerDeleteMessagesByTransactionIdRequest$Outbound = {
-  "Idempotency-Key"?: string | undefined;
   channel?: string | undefined;
   transactionId: string;
+  "Idempotency-Key"?: string | undefined;
 };
 
 /** @internal */
@@ -89,9 +89,9 @@ export const MessagesControllerDeleteMessagesByTransactionIdRequest$outboundSche
     z.ZodTypeDef,
     MessagesControllerDeleteMessagesByTransactionIdRequest
   > = z.object({
-    idempotencyKey: z.string().optional(),
     channel: Channel$outboundSchema.optional(),
     transactionId: z.string(),
+    idempotencyKey: z.string().optional(),
   }).transform((v) => {
     return remap$(v, {
       idempotencyKey: "Idempotency-Key",

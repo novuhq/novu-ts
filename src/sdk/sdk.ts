@@ -136,31 +136,37 @@ export class Novu extends ClientSDK {
   }
 
   async testApiRateLimitBulkControllerNoCategoryNoCostOverride(
+    idempotencyKey?: string | undefined,
     options?: RequestOptions,
   ): Promise<boolean> {
     return unwrapAsync(testApiRateLimitBulkControllerNoCategoryNoCostOverride(
       this,
+      idempotencyKey,
       options,
     ));
   }
 
   async testApiRateLimitBulkControllerNoCategorySingleCostOverride(
+    idempotencyKey?: string | undefined,
     options?: RequestOptions,
   ): Promise<boolean> {
     return unwrapAsync(
       testApiRateLimitBulkControllerNoCategorySingleCostOverride(
         this,
+        idempotencyKey,
         options,
       ),
     );
   }
 
   async testApiRateLimitBulkControllerGlobalCategoryNoCostOverride(
+    idempotencyKey?: string | undefined,
     options?: RequestOptions,
   ): Promise<boolean> {
     return unwrapAsync(
       testApiRateLimitBulkControllerGlobalCategoryNoCostOverride(
         this,
+        idempotencyKey,
         options,
       ),
     );

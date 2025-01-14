@@ -10,11 +10,11 @@ import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type SubscribersControllerUpdateSubscriberGlobalPreferencesRequest = {
+  subscriberId: string;
   /**
    * A header for idempotency purposes
    */
   idempotencyKey?: string | undefined;
-  subscriberId: string;
   updateSubscriberGlobalPreferencesRequestDto:
     components.UpdateSubscriberGlobalPreferencesRequestDto;
 };
@@ -31,8 +31,8 @@ export const SubscribersControllerUpdateSubscriberGlobalPreferencesRequest$inbou
     z.ZodTypeDef,
     unknown
   > = z.object({
-    "Idempotency-Key": z.string().optional(),
     subscriberId: z.string(),
+    "Idempotency-Key": z.string().optional(),
     UpdateSubscriberGlobalPreferencesRequestDto:
       components.UpdateSubscriberGlobalPreferencesRequestDto$inboundSchema,
   }).transform((v) => {
@@ -46,8 +46,8 @@ export const SubscribersControllerUpdateSubscriberGlobalPreferencesRequest$inbou
 /** @internal */
 export type SubscribersControllerUpdateSubscriberGlobalPreferencesRequest$Outbound =
   {
-    "Idempotency-Key"?: string | undefined;
     subscriberId: string;
+    "Idempotency-Key"?: string | undefined;
     UpdateSubscriberGlobalPreferencesRequestDto:
       components.UpdateSubscriberGlobalPreferencesRequestDto$Outbound;
   };
@@ -59,8 +59,8 @@ export const SubscribersControllerUpdateSubscriberGlobalPreferencesRequest$outbo
     z.ZodTypeDef,
     SubscribersControllerUpdateSubscriberGlobalPreferencesRequest
   > = z.object({
-    idempotencyKey: z.string().optional(),
     subscriberId: z.string(),
+    idempotencyKey: z.string().optional(),
     updateSubscriberGlobalPreferencesRequestDto:
       components.UpdateSubscriberGlobalPreferencesRequestDto$outboundSchema,
   }).transform((v) => {

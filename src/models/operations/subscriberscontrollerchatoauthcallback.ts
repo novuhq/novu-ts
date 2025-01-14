@@ -9,10 +9,6 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type SubscribersControllerChatOauthCallbackRequest = {
-  /**
-   * A header for idempotency purposes
-   */
-  idempotencyKey?: string | undefined;
   subscriberId: string;
   providerId?: any | undefined;
   /**
@@ -31,6 +27,10 @@ export type SubscribersControllerChatOauthCallbackRequest = {
    * Optional authorization code returned from the OAuth provider
    */
   code: string;
+  /**
+   * A header for idempotency purposes
+   */
+  idempotencyKey?: string | undefined;
 };
 
 export type SubscribersControllerChatOauthCallbackResponseResult =
@@ -49,13 +49,13 @@ export const SubscribersControllerChatOauthCallbackRequest$inboundSchema:
     z.ZodTypeDef,
     unknown
   > = z.object({
-    "Idempotency-Key": z.string().optional(),
     subscriberId: z.string(),
     providerId: z.any().optional(),
     hmacHash: z.string(),
     environmentId: z.string(),
     integrationIdentifier: z.string().optional(),
     code: z.string(),
+    "Idempotency-Key": z.string().optional(),
   }).transform((v) => {
     return remap$(v, {
       "Idempotency-Key": "idempotencyKey",
@@ -64,13 +64,13 @@ export const SubscribersControllerChatOauthCallbackRequest$inboundSchema:
 
 /** @internal */
 export type SubscribersControllerChatOauthCallbackRequest$Outbound = {
-  "Idempotency-Key"?: string | undefined;
   subscriberId: string;
   providerId?: any | undefined;
   hmacHash: string;
   environmentId: string;
   integrationIdentifier?: string | undefined;
   code: string;
+  "Idempotency-Key"?: string | undefined;
 };
 
 /** @internal */
@@ -80,13 +80,13 @@ export const SubscribersControllerChatOauthCallbackRequest$outboundSchema:
     z.ZodTypeDef,
     SubscribersControllerChatOauthCallbackRequest
   > = z.object({
-    idempotencyKey: z.string().optional(),
     subscriberId: z.string(),
     providerId: z.any().optional(),
     hmacHash: z.string(),
     environmentId: z.string(),
     integrationIdentifier: z.string().optional(),
     code: z.string(),
+    idempotencyKey: z.string().optional(),
   }).transform((v) => {
     return remap$(v, {
       idempotencyKey: "Idempotency-Key",

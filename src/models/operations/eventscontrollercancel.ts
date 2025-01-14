@@ -10,11 +10,11 @@ import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type EventsControllerCancelRequest = {
+  transactionId: string;
   /**
    * A header for idempotency purposes
    */
   idempotencyKey?: string | undefined;
-  transactionId: string;
 };
 
 export type EventsControllerCancelResponse = {
@@ -28,8 +28,8 @@ export const EventsControllerCancelRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  "Idempotency-Key": z.string().optional(),
   transactionId: z.string(),
+  "Idempotency-Key": z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     "Idempotency-Key": "idempotencyKey",
@@ -38,8 +38,8 @@ export const EventsControllerCancelRequest$inboundSchema: z.ZodType<
 
 /** @internal */
 export type EventsControllerCancelRequest$Outbound = {
-  "Idempotency-Key"?: string | undefined;
   transactionId: string;
+  "Idempotency-Key"?: string | undefined;
 };
 
 /** @internal */
@@ -48,8 +48,8 @@ export const EventsControllerCancelRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   EventsControllerCancelRequest
 > = z.object({
-  idempotencyKey: z.string().optional(),
   transactionId: z.string(),
+  idempotencyKey: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     idempotencyKey: "Idempotency-Key",

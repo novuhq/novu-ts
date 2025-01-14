@@ -9,11 +9,11 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type IntegrationsControllerGetWebhookSupportStatusRequest = {
+  providerOrIntegrationId: string;
   /**
    * A header for idempotency purposes
    */
   idempotencyKey?: string | undefined;
-  providerOrIntegrationId: string;
 };
 
 export type IntegrationsControllerGetWebhookSupportStatusResponse = {
@@ -28,8 +28,8 @@ export const IntegrationsControllerGetWebhookSupportStatusRequest$inboundSchema:
     z.ZodTypeDef,
     unknown
   > = z.object({
-    "Idempotency-Key": z.string().optional(),
     providerOrIntegrationId: z.string(),
+    "Idempotency-Key": z.string().optional(),
   }).transform((v) => {
     return remap$(v, {
       "Idempotency-Key": "idempotencyKey",
@@ -38,8 +38,8 @@ export const IntegrationsControllerGetWebhookSupportStatusRequest$inboundSchema:
 
 /** @internal */
 export type IntegrationsControllerGetWebhookSupportStatusRequest$Outbound = {
-  "Idempotency-Key"?: string | undefined;
   providerOrIntegrationId: string;
+  "Idempotency-Key"?: string | undefined;
 };
 
 /** @internal */
@@ -49,8 +49,8 @@ export const IntegrationsControllerGetWebhookSupportStatusRequest$outboundSchema
     z.ZodTypeDef,
     IntegrationsControllerGetWebhookSupportStatusRequest
   > = z.object({
-    idempotencyKey: z.string().optional(),
     providerOrIntegrationId: z.string(),
+    idempotencyKey: z.string().optional(),
   }).transform((v) => {
     return remap$(v, {
       idempotencyKey: "Idempotency-Key",

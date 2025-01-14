@@ -17,8 +17,8 @@ export class Preferences extends ClientSDK {
    */
   async list(
     subscriberId: string,
-    idempotencyKey?: string | undefined,
     includeInactiveChannels?: boolean | undefined,
+    idempotencyKey?: string | undefined,
     options?: RequestOptions,
   ): Promise<
     operations.SubscribersControllerListSubscriberPreferencesResponse
@@ -26,8 +26,8 @@ export class Preferences extends ClientSDK {
     return unwrapAsync(subscribersPreferencesList(
       this,
       subscriberId,
-      idempotencyKey,
       includeInactiveChannels,
+      idempotencyKey,
       options,
     ));
   }

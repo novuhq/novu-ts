@@ -58,9 +58,9 @@ export class Subscribers extends ClientSDK {
    * Returns a list of subscribers, could paginated using the `page` and `limit` query parameter
    */
   async list(
-    idempotencyKey?: string | undefined,
     page?: number | undefined,
     limit?: number | undefined,
+    idempotencyKey?: string | undefined,
     options?: RequestOptions,
   ): Promise<
     PageIterator<
@@ -70,9 +70,9 @@ export class Subscribers extends ClientSDK {
   > {
     return unwrapResultIterator(subscribersList(
       this,
-      idempotencyKey,
       page,
       limit,
+      idempotencyKey,
       options,
     ));
   }
@@ -104,15 +104,15 @@ export class Subscribers extends ClientSDK {
    */
   async retrieve(
     subscriberId: string,
-    idempotencyKey?: string | undefined,
     includeTopics?: boolean | undefined,
+    idempotencyKey?: string | undefined,
     options?: RequestOptions,
   ): Promise<operations.SubscribersControllerGetSubscriberResponse> {
     return unwrapAsync(subscribersRetrieve(
       this,
       subscriberId,
-      idempotencyKey,
       includeTopics,
+      idempotencyKey,
       options,
     ));
   }

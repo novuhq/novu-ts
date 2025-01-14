@@ -1,11 +1,12 @@
-# IntegrationsControllerListIntegrationsRequest
+# TestApiRateLimitBulkControllerGlobalCategoryNoCostOverrideRequest
 
 ## Example Usage
 
 ```typescript
-import { IntegrationsControllerListIntegrationsRequest } from "@novu/api/models/operations";
+import { TestApiRateLimitBulkControllerGlobalCategoryNoCostOverrideRequest } from "@novu/api/models/operations";
 
-let value: IntegrationsControllerListIntegrationsRequest = {};
+let value: TestApiRateLimitBulkControllerGlobalCategoryNoCostOverrideRequest =
+  {};
 ```
 
 ## Fields

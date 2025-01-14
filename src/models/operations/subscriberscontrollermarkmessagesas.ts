@@ -10,11 +10,11 @@ import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type SubscribersControllerMarkMessagesAsRequest = {
+  subscriberId: string;
   /**
    * A header for idempotency purposes
    */
   idempotencyKey?: string | undefined;
-  subscriberId: string;
   messageMarkAsRequestDto: components.MessageMarkAsRequestDto;
 };
 
@@ -27,8 +27,8 @@ export type SubscribersControllerMarkMessagesAsResponse = {
 export const SubscribersControllerMarkMessagesAsRequest$inboundSchema:
   z.ZodType<SubscribersControllerMarkMessagesAsRequest, z.ZodTypeDef, unknown> =
     z.object({
-      "Idempotency-Key": z.string().optional(),
       subscriberId: z.string(),
+      "Idempotency-Key": z.string().optional(),
       MessageMarkAsRequestDto: components.MessageMarkAsRequestDto$inboundSchema,
     }).transform((v) => {
       return remap$(v, {
@@ -39,8 +39,8 @@ export const SubscribersControllerMarkMessagesAsRequest$inboundSchema:
 
 /** @internal */
 export type SubscribersControllerMarkMessagesAsRequest$Outbound = {
-  "Idempotency-Key"?: string | undefined;
   subscriberId: string;
+  "Idempotency-Key"?: string | undefined;
   MessageMarkAsRequestDto: components.MessageMarkAsRequestDto$Outbound;
 };
 
@@ -51,8 +51,8 @@ export const SubscribersControllerMarkMessagesAsRequest$outboundSchema:
     z.ZodTypeDef,
     SubscribersControllerMarkMessagesAsRequest
   > = z.object({
-    idempotencyKey: z.string().optional(),
     subscriberId: z.string(),
+    idempotencyKey: z.string().optional(),
     messageMarkAsRequestDto: components.MessageMarkAsRequestDto$outboundSchema,
   }).transform((v) => {
     return remap$(v, {

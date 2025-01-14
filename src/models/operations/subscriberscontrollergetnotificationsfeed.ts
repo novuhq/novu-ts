@@ -10,10 +10,6 @@ import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type SubscribersControllerGetNotificationsFeedRequest = {
-  /**
-   * A header for idempotency purposes
-   */
-  idempotencyKey?: string | undefined;
   subscriberId: string;
   page?: number | undefined;
   limit?: number | undefined;
@@ -23,6 +19,10 @@ export type SubscribersControllerGetNotificationsFeedRequest = {
    * Base64 encoded string of the partial payload JSON object
    */
   payload?: string | undefined;
+  /**
+   * A header for idempotency purposes
+   */
+  idempotencyKey?: string | undefined;
 };
 
 export type SubscribersControllerGetNotificationsFeedResponse = {
@@ -37,13 +37,13 @@ export const SubscribersControllerGetNotificationsFeedRequest$inboundSchema:
     z.ZodTypeDef,
     unknown
   > = z.object({
-    "Idempotency-Key": z.string().optional(),
     subscriberId: z.string(),
     page: z.number().optional(),
     limit: z.number().default(10),
     read: z.boolean().optional(),
     seen: z.boolean().optional(),
     payload: z.string().optional(),
+    "Idempotency-Key": z.string().optional(),
   }).transform((v) => {
     return remap$(v, {
       "Idempotency-Key": "idempotencyKey",
@@ -52,13 +52,13 @@ export const SubscribersControllerGetNotificationsFeedRequest$inboundSchema:
 
 /** @internal */
 export type SubscribersControllerGetNotificationsFeedRequest$Outbound = {
-  "Idempotency-Key"?: string | undefined;
   subscriberId: string;
   page?: number | undefined;
   limit: number;
   read?: boolean | undefined;
   seen?: boolean | undefined;
   payload?: string | undefined;
+  "Idempotency-Key"?: string | undefined;
 };
 
 /** @internal */
@@ -68,13 +68,13 @@ export const SubscribersControllerGetNotificationsFeedRequest$outboundSchema:
     z.ZodTypeDef,
     SubscribersControllerGetNotificationsFeedRequest
   > = z.object({
-    idempotencyKey: z.string().optional(),
     subscriberId: z.string(),
     page: z.number().optional(),
     limit: z.number().default(10),
     read: z.boolean().optional(),
     seen: z.boolean().optional(),
     payload: z.string().optional(),
+    idempotencyKey: z.string().optional(),
   }).transform((v) => {
     return remap$(v, {
       idempotencyKey: "Idempotency-Key",

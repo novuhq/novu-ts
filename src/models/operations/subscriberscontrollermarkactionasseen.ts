@@ -10,13 +10,13 @@ import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type SubscribersControllerMarkActionAsSeenRequest = {
+  messageId: string;
+  type?: any | undefined;
+  subscriberId: string;
   /**
    * A header for idempotency purposes
    */
   idempotencyKey?: string | undefined;
-  messageId: string;
-  type?: any | undefined;
-  subscriberId: string;
   markMessageActionAsSeenDto: components.MarkMessageActionAsSeenDto;
 };
 
@@ -32,10 +32,10 @@ export const SubscribersControllerMarkActionAsSeenRequest$inboundSchema:
     z.ZodTypeDef,
     unknown
   > = z.object({
-    "Idempotency-Key": z.string().optional(),
     messageId: z.string(),
     type: z.any().optional(),
     subscriberId: z.string(),
+    "Idempotency-Key": z.string().optional(),
     MarkMessageActionAsSeenDto:
       components.MarkMessageActionAsSeenDto$inboundSchema,
   }).transform((v) => {
@@ -47,10 +47,10 @@ export const SubscribersControllerMarkActionAsSeenRequest$inboundSchema:
 
 /** @internal */
 export type SubscribersControllerMarkActionAsSeenRequest$Outbound = {
-  "Idempotency-Key"?: string | undefined;
   messageId: string;
   type?: any | undefined;
   subscriberId: string;
+  "Idempotency-Key"?: string | undefined;
   MarkMessageActionAsSeenDto: components.MarkMessageActionAsSeenDto$Outbound;
 };
 
@@ -61,10 +61,10 @@ export const SubscribersControllerMarkActionAsSeenRequest$outboundSchema:
     z.ZodTypeDef,
     SubscribersControllerMarkActionAsSeenRequest
   > = z.object({
-    idempotencyKey: z.string().optional(),
     messageId: z.string(),
     type: z.any().optional(),
     subscriberId: z.string(),
+    idempotencyKey: z.string().optional(),
     markMessageActionAsSeenDto:
       components.MarkMessageActionAsSeenDto$outboundSchema,
   }).transform((v) => {

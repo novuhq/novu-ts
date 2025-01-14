@@ -29,8 +29,8 @@ import { Result } from "../types/fp.js";
 export async function subscribersPreferencesList(
   client: NovuCore,
   subscriberId: string,
-  idempotencyKey?: string | undefined,
   includeInactiveChannels?: boolean | undefined,
+  idempotencyKey?: string | undefined,
   options?: RequestOptions,
 ): Promise<
   Result<
@@ -50,8 +50,8 @@ export async function subscribersPreferencesList(
   const input:
     operations.SubscribersControllerListSubscriberPreferencesRequest = {
       subscriberId: subscriberId,
-      idempotencyKey: idempotencyKey,
       includeInactiveChannels: includeInactiveChannels,
+      idempotencyKey: idempotencyKey,
     };
 
   const parsed = safeParse(

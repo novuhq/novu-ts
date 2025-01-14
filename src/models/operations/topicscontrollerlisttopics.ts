@@ -11,10 +11,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type TopicsControllerListTopicsRequest = {
   /**
-   * A header for idempotency purposes
-   */
-  idempotencyKey?: string | undefined;
-  /**
    * The page number to retrieve (starts from 0)
    */
   page?: number | undefined;
@@ -26,6 +22,10 @@ export type TopicsControllerListTopicsRequest = {
    * A filter key to apply to the results
    */
   key?: string | undefined;
+  /**
+   * A header for idempotency purposes
+   */
+  idempotencyKey?: string | undefined;
 };
 
 export type TopicsControllerListTopicsResponse = {
@@ -39,10 +39,10 @@ export const TopicsControllerListTopicsRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  "Idempotency-Key": z.string().optional(),
   page: z.number().int().default(0),
   pageSize: z.number().int().default(10),
   key: z.string().optional(),
+  "Idempotency-Key": z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     "Idempotency-Key": "idempotencyKey",
@@ -51,10 +51,10 @@ export const TopicsControllerListTopicsRequest$inboundSchema: z.ZodType<
 
 /** @internal */
 export type TopicsControllerListTopicsRequest$Outbound = {
-  "Idempotency-Key"?: string | undefined;
   page: number;
   pageSize: number;
   key?: string | undefined;
+  "Idempotency-Key"?: string | undefined;
 };
 
 /** @internal */
@@ -63,10 +63,10 @@ export const TopicsControllerListTopicsRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   TopicsControllerListTopicsRequest
 > = z.object({
-  idempotencyKey: z.string().optional(),
   page: z.number().int().default(0),
   pageSize: z.number().int().default(10),
   key: z.string().optional(),
+  idempotencyKey: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     idempotencyKey: "Idempotency-Key",

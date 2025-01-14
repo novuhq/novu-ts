@@ -11,10 +11,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type TopicsControllerGetTopicSubscriberRequest = {
   /**
-   * A header for idempotency purposes
-   */
-  idempotencyKey?: string | undefined;
-  /**
    * The external subscriber id
    */
   externalSubscriberId: string;
@@ -22,6 +18,10 @@ export type TopicsControllerGetTopicSubscriberRequest = {
    * The topic key
    */
   topicKey: string;
+  /**
+   * A header for idempotency purposes
+   */
+  idempotencyKey?: string | undefined;
 };
 
 export type TopicsControllerGetTopicSubscriberResponse = {
@@ -35,9 +35,9 @@ export const TopicsControllerGetTopicSubscriberRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  "Idempotency-Key": z.string().optional(),
   externalSubscriberId: z.string(),
   topicKey: z.string(),
+  "Idempotency-Key": z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     "Idempotency-Key": "idempotencyKey",
@@ -46,9 +46,9 @@ export const TopicsControllerGetTopicSubscriberRequest$inboundSchema: z.ZodType<
 
 /** @internal */
 export type TopicsControllerGetTopicSubscriberRequest$Outbound = {
-  "Idempotency-Key"?: string | undefined;
   externalSubscriberId: string;
   topicKey: string;
+  "Idempotency-Key"?: string | undefined;
 };
 
 /** @internal */
@@ -58,9 +58,9 @@ export const TopicsControllerGetTopicSubscriberRequest$outboundSchema:
     z.ZodTypeDef,
     TopicsControllerGetTopicSubscriberRequest
   > = z.object({
-    idempotencyKey: z.string().optional(),
     externalSubscriberId: z.string(),
     topicKey: z.string(),
+    idempotencyKey: z.string().optional(),
   }).transform((v) => {
     return remap$(v, {
       idempotencyKey: "Idempotency-Key",

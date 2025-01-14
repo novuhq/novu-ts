@@ -11,13 +11,13 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type TopicsControllerAssignRequest = {
   /**
-   * A header for idempotency purposes
-   */
-  idempotencyKey?: string | undefined;
-  /**
    * The topic key
    */
   topicKey: string;
+  /**
+   * A header for idempotency purposes
+   */
+  idempotencyKey?: string | undefined;
   addSubscribersRequestDto: components.AddSubscribersRequestDto;
 };
 
@@ -32,8 +32,8 @@ export const TopicsControllerAssignRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  "Idempotency-Key": z.string().optional(),
   topicKey: z.string(),
+  "Idempotency-Key": z.string().optional(),
   AddSubscribersRequestDto: components.AddSubscribersRequestDto$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
@@ -44,8 +44,8 @@ export const TopicsControllerAssignRequest$inboundSchema: z.ZodType<
 
 /** @internal */
 export type TopicsControllerAssignRequest$Outbound = {
-  "Idempotency-Key"?: string | undefined;
   topicKey: string;
+  "Idempotency-Key"?: string | undefined;
   AddSubscribersRequestDto: components.AddSubscribersRequestDto$Outbound;
 };
 
@@ -55,8 +55,8 @@ export const TopicsControllerAssignRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   TopicsControllerAssignRequest
 > = z.object({
-  idempotencyKey: z.string().optional(),
   topicKey: z.string(),
+  idempotencyKey: z.string().optional(),
   addSubscribersRequestDto: components.AddSubscribersRequestDto$outboundSchema,
 }).transform((v) => {
   return remap$(v, {

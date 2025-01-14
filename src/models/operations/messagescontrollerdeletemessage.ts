@@ -10,11 +10,11 @@ import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type MessagesControllerDeleteMessageRequest = {
+  messageId: string;
   /**
    * A header for idempotency purposes
    */
   idempotencyKey?: string | undefined;
-  messageId: string;
 };
 
 export type MessagesControllerDeleteMessageResponse = {
@@ -28,8 +28,8 @@ export const MessagesControllerDeleteMessageRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  "Idempotency-Key": z.string().optional(),
   messageId: z.string(),
+  "Idempotency-Key": z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     "Idempotency-Key": "idempotencyKey",
@@ -38,8 +38,8 @@ export const MessagesControllerDeleteMessageRequest$inboundSchema: z.ZodType<
 
 /** @internal */
 export type MessagesControllerDeleteMessageRequest$Outbound = {
-  "Idempotency-Key"?: string | undefined;
   messageId: string;
+  "Idempotency-Key"?: string | undefined;
 };
 
 /** @internal */
@@ -48,8 +48,8 @@ export const MessagesControllerDeleteMessageRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   MessagesControllerDeleteMessageRequest
 > = z.object({
-  idempotencyKey: z.string().optional(),
   messageId: z.string(),
+  idempotencyKey: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     idempotencyKey: "Idempotency-Key",

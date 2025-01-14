@@ -10,13 +10,13 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type TopicsControllerDeleteTopicRequest = {
   /**
-   * A header for idempotency purposes
-   */
-  idempotencyKey?: string | undefined;
-  /**
    * The topic key
    */
   topicKey: string;
+  /**
+   * A header for idempotency purposes
+   */
+  idempotencyKey?: string | undefined;
 };
 
 export type TopicsControllerDeleteTopicResponse = {
@@ -29,8 +29,8 @@ export const TopicsControllerDeleteTopicRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  "Idempotency-Key": z.string().optional(),
   topicKey: z.string(),
+  "Idempotency-Key": z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     "Idempotency-Key": "idempotencyKey",
@@ -39,8 +39,8 @@ export const TopicsControllerDeleteTopicRequest$inboundSchema: z.ZodType<
 
 /** @internal */
 export type TopicsControllerDeleteTopicRequest$Outbound = {
-  "Idempotency-Key"?: string | undefined;
   topicKey: string;
+  "Idempotency-Key"?: string | undefined;
 };
 
 /** @internal */
@@ -49,8 +49,8 @@ export const TopicsControllerDeleteTopicRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   TopicsControllerDeleteTopicRequest
 > = z.object({
-  idempotencyKey: z.string().optional(),
   topicKey: z.string(),
+  idempotencyKey: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     idempotencyKey: "Idempotency-Key",

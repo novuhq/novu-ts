@@ -24,10 +24,6 @@ export type Parameter = ClosedEnum<typeof Parameter>;
 
 export type SubscribersControllerGetSubscriberPreferenceByLevelRequest = {
   /**
-   * A header for idempotency purposes
-   */
-  idempotencyKey?: string | undefined;
-  /**
    * A flag which specifies if the inactive workflow channels should be included in the retrieved preferences. Default is true
    */
   includeInactiveChannels?: boolean | undefined;
@@ -36,6 +32,10 @@ export type SubscribersControllerGetSubscriberPreferenceByLevelRequest = {
    */
   preferenceLevel: Parameter;
   subscriberId: string;
+  /**
+   * A header for idempotency purposes
+   */
+  idempotencyKey?: string | undefined;
 };
 
 export type SubscribersControllerGetSubscriberPreferenceByLevelResponse = {
@@ -69,10 +69,10 @@ export const SubscribersControllerGetSubscriberPreferenceByLevelRequest$inboundS
     z.ZodTypeDef,
     unknown
   > = z.object({
-    "Idempotency-Key": z.string().optional(),
     includeInactiveChannels: z.boolean().optional(),
     preferenceLevel: Parameter$inboundSchema,
     subscriberId: z.string(),
+    "Idempotency-Key": z.string().optional(),
   }).transform((v) => {
     return remap$(v, {
       "Idempotency-Key": "idempotencyKey",
@@ -82,10 +82,10 @@ export const SubscribersControllerGetSubscriberPreferenceByLevelRequest$inboundS
 /** @internal */
 export type SubscribersControllerGetSubscriberPreferenceByLevelRequest$Outbound =
   {
-    "Idempotency-Key"?: string | undefined;
     includeInactiveChannels?: boolean | undefined;
     preferenceLevel: string;
     subscriberId: string;
+    "Idempotency-Key"?: string | undefined;
   };
 
 /** @internal */
@@ -95,10 +95,10 @@ export const SubscribersControllerGetSubscriberPreferenceByLevelRequest$outbound
     z.ZodTypeDef,
     SubscribersControllerGetSubscriberPreferenceByLevelRequest
   > = z.object({
-    idempotencyKey: z.string().optional(),
     includeInactiveChannels: z.boolean().optional(),
     preferenceLevel: Parameter$outboundSchema,
     subscriberId: z.string(),
+    idempotencyKey: z.string().optional(),
   }).transform((v) => {
     return remap$(v, {
       idempotencyKey: "Idempotency-Key",

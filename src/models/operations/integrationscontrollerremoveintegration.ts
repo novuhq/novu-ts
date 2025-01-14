@@ -10,11 +10,11 @@ import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type IntegrationsControllerRemoveIntegrationRequest = {
+  integrationId: string;
   /**
    * A header for idempotency purposes
    */
   idempotencyKey?: string | undefined;
-  integrationId: string;
 };
 
 export type IntegrationsControllerRemoveIntegrationResponse = {
@@ -29,8 +29,8 @@ export const IntegrationsControllerRemoveIntegrationRequest$inboundSchema:
     z.ZodTypeDef,
     unknown
   > = z.object({
-    "Idempotency-Key": z.string().optional(),
     integrationId: z.string(),
+    "Idempotency-Key": z.string().optional(),
   }).transform((v) => {
     return remap$(v, {
       "Idempotency-Key": "idempotencyKey",
@@ -39,8 +39,8 @@ export const IntegrationsControllerRemoveIntegrationRequest$inboundSchema:
 
 /** @internal */
 export type IntegrationsControllerRemoveIntegrationRequest$Outbound = {
-  "Idempotency-Key"?: string | undefined;
   integrationId: string;
+  "Idempotency-Key"?: string | undefined;
 };
 
 /** @internal */
@@ -50,8 +50,8 @@ export const IntegrationsControllerRemoveIntegrationRequest$outboundSchema:
     z.ZodTypeDef,
     IntegrationsControllerRemoveIntegrationRequest
   > = z.object({
-    idempotencyKey: z.string().optional(),
     integrationId: z.string(),
+    idempotencyKey: z.string().optional(),
   }).transform((v) => {
     return remap$(v, {
       idempotencyKey: "Idempotency-Key",

@@ -10,11 +10,11 @@ import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type SubscribersControllerModifySubscriberChannelRequest = {
+  subscriberId: string;
   /**
    * A header for idempotency purposes
    */
   idempotencyKey?: string | undefined;
-  subscriberId: string;
   updateSubscriberChannelRequestDto:
     components.UpdateSubscriberChannelRequestDto;
 };
@@ -31,8 +31,8 @@ export const SubscribersControllerModifySubscriberChannelRequest$inboundSchema:
     z.ZodTypeDef,
     unknown
   > = z.object({
-    "Idempotency-Key": z.string().optional(),
     subscriberId: z.string(),
+    "Idempotency-Key": z.string().optional(),
     UpdateSubscriberChannelRequestDto:
       components.UpdateSubscriberChannelRequestDto$inboundSchema,
   }).transform((v) => {
@@ -44,8 +44,8 @@ export const SubscribersControllerModifySubscriberChannelRequest$inboundSchema:
 
 /** @internal */
 export type SubscribersControllerModifySubscriberChannelRequest$Outbound = {
-  "Idempotency-Key"?: string | undefined;
   subscriberId: string;
+  "Idempotency-Key"?: string | undefined;
   UpdateSubscriberChannelRequestDto:
     components.UpdateSubscriberChannelRequestDto$Outbound;
 };
@@ -57,8 +57,8 @@ export const SubscribersControllerModifySubscriberChannelRequest$outboundSchema:
     z.ZodTypeDef,
     SubscribersControllerModifySubscriberChannelRequest
   > = z.object({
-    idempotencyKey: z.string().optional(),
     subscriberId: z.string(),
+    idempotencyKey: z.string().optional(),
     updateSubscriberChannelRequestDto:
       components.UpdateSubscriberChannelRequestDto$outboundSchema,
   }).transform((v) => {

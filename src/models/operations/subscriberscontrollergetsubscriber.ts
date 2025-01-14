@@ -10,15 +10,15 @@ import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type SubscribersControllerGetSubscriberRequest = {
-  /**
-   * A header for idempotency purposes
-   */
-  idempotencyKey?: string | undefined;
   subscriberId: string;
   /**
    * Includes the topics associated with the subscriber
    */
   includeTopics?: boolean | undefined;
+  /**
+   * A header for idempotency purposes
+   */
+  idempotencyKey?: string | undefined;
 };
 
 export type SubscribersControllerGetSubscriberResponse = {
@@ -32,9 +32,9 @@ export const SubscribersControllerGetSubscriberRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  "Idempotency-Key": z.string().optional(),
   subscriberId: z.string(),
   includeTopics: z.boolean().optional(),
+  "Idempotency-Key": z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     "Idempotency-Key": "idempotencyKey",
@@ -43,9 +43,9 @@ export const SubscribersControllerGetSubscriberRequest$inboundSchema: z.ZodType<
 
 /** @internal */
 export type SubscribersControllerGetSubscriberRequest$Outbound = {
-  "Idempotency-Key"?: string | undefined;
   subscriberId: string;
   includeTopics?: boolean | undefined;
+  "Idempotency-Key"?: string | undefined;
 };
 
 /** @internal */
@@ -55,9 +55,9 @@ export const SubscribersControllerGetSubscriberRequest$outboundSchema:
     z.ZodTypeDef,
     SubscribersControllerGetSubscriberRequest
   > = z.object({
-    idempotencyKey: z.string().optional(),
     subscriberId: z.string(),
     includeTopics: z.boolean().optional(),
+    idempotencyKey: z.string().optional(),
   }).transform((v) => {
     return remap$(v, {
       idempotencyKey: "Idempotency-Key",

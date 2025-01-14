@@ -10,11 +10,11 @@ import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type NotificationsControllerGetNotificationRequest = {
+  notificationId: string;
   /**
    * A header for idempotency purposes
    */
   idempotencyKey?: string | undefined;
-  notificationId: string;
 };
 
 export type NotificationsControllerGetNotificationResponse = {
@@ -29,8 +29,8 @@ export const NotificationsControllerGetNotificationRequest$inboundSchema:
     z.ZodTypeDef,
     unknown
   > = z.object({
-    "Idempotency-Key": z.string().optional(),
     notificationId: z.string(),
+    "Idempotency-Key": z.string().optional(),
   }).transform((v) => {
     return remap$(v, {
       "Idempotency-Key": "idempotencyKey",
@@ -39,8 +39,8 @@ export const NotificationsControllerGetNotificationRequest$inboundSchema:
 
 /** @internal */
 export type NotificationsControllerGetNotificationRequest$Outbound = {
-  "Idempotency-Key"?: string | undefined;
   notificationId: string;
+  "Idempotency-Key"?: string | undefined;
 };
 
 /** @internal */
@@ -50,8 +50,8 @@ export const NotificationsControllerGetNotificationRequest$outboundSchema:
     z.ZodTypeDef,
     NotificationsControllerGetNotificationRequest
   > = z.object({
-    idempotencyKey: z.string().optional(),
     notificationId: z.string(),
+    idempotencyKey: z.string().optional(),
   }).transform((v) => {
     return remap$(v, {
       idempotencyKey: "Idempotency-Key",

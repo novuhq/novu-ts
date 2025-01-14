@@ -9,12 +9,12 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type SubscribersControllerDeleteSubscriberCredentialsRequest = {
+  subscriberId: string;
+  providerId: string;
   /**
    * A header for idempotency purposes
    */
   idempotencyKey?: string | undefined;
-  subscriberId: string;
-  providerId: string;
 };
 
 export type SubscribersControllerDeleteSubscriberCredentialsResponse = {
@@ -28,9 +28,9 @@ export const SubscribersControllerDeleteSubscriberCredentialsRequest$inboundSche
     z.ZodTypeDef,
     unknown
   > = z.object({
-    "Idempotency-Key": z.string().optional(),
     subscriberId: z.string(),
     providerId: z.string(),
+    "Idempotency-Key": z.string().optional(),
   }).transform((v) => {
     return remap$(v, {
       "Idempotency-Key": "idempotencyKey",
@@ -39,9 +39,9 @@ export const SubscribersControllerDeleteSubscriberCredentialsRequest$inboundSche
 
 /** @internal */
 export type SubscribersControllerDeleteSubscriberCredentialsRequest$Outbound = {
-  "Idempotency-Key"?: string | undefined;
   subscriberId: string;
   providerId: string;
+  "Idempotency-Key"?: string | undefined;
 };
 
 /** @internal */
@@ -51,9 +51,9 @@ export const SubscribersControllerDeleteSubscriberCredentialsRequest$outboundSch
     z.ZodTypeDef,
     SubscribersControllerDeleteSubscriberCredentialsRequest
   > = z.object({
-    idempotencyKey: z.string().optional(),
     subscriberId: z.string(),
     providerId: z.string(),
+    idempotencyKey: z.string().optional(),
   }).transform((v) => {
     return remap$(v, {
       idempotencyKey: "Idempotency-Key",

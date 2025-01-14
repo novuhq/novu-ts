@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 6bff3a53-3f0b-40b4-942f-ff70dc583ae5
 management:
-  docChecksum: 75165c94e6d241c75e019bd499116797
+  docChecksum: 1c4821469e011cb398a8b0c7f58afd08
   docVersion: "1.0"
-  speakeasyVersion: 1.468.5
-  generationVersion: 2.493.11
-  releaseVersion: 0.0.1-alpha.191
-  configChecksum: 8ff98e19159b15db6f8c8ce62d47cb2c
+  speakeasyVersion: 1.468.6
+  generationVersion: 2.493.13
+  releaseVersion: 0.0.1-alpha.192
+  configChecksum: 156c0767c872bea766d73d9f26931da8
   published: true
 features:
   typescript:
@@ -300,6 +300,9 @@ generatedFiles:
   - docs/models/operations/subscriberscontrollerupdatesubscriberpreferenceresponse.md
   - docs/models/operations/subscriberscontrollerupdatesubscriberrequest.md
   - docs/models/operations/subscriberscontrollerupdatesubscriberresponse.md
+  - docs/models/operations/testapiratelimitbulkcontrollerglobalcategorynocostoverriderequest.md
+  - docs/models/operations/testapiratelimitbulkcontrollernocategorynocostoverriderequest.md
+  - docs/models/operations/testapiratelimitbulkcontrollernocategorysinglecostoverriderequest.md
   - docs/models/operations/testingcontrolleridempotencygetrequest.md
   - docs/models/operations/testingcontrolleridempotencygetresponse.md
   - docs/models/operations/testingcontrolleridempotencyrequest.md
@@ -568,6 +571,9 @@ generatedFiles:
   - src/models/operations/subscriberscontrollerupdatesubscriberglobalpreferences.ts
   - src/models/operations/subscriberscontrollerupdatesubscriberonlineflag.ts
   - src/models/operations/subscriberscontrollerupdatesubscriberpreference.ts
+  - src/models/operations/testapiratelimitbulkcontrollerglobalcategorynocostoverride.ts
+  - src/models/operations/testapiratelimitbulkcontrollernocategorynocostoverride.ts
+  - src/models/operations/testapiratelimitbulkcontrollernocategorysinglecostoverride.ts
   - src/models/operations/testingcontrolleridempotency.ts
   - src/models/operations/testingcontrolleridempotencyget.ts
   - src/models/operations/topicscontrollerassign.ts

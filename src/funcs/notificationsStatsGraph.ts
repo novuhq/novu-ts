@@ -28,8 +28,8 @@ import { Result } from "../types/fp.js";
  */
 export async function notificationsStatsGraph(
   client: NovuCore,
-  idempotencyKey?: string | undefined,
   days?: number | undefined,
+  idempotencyKey?: string | undefined,
   options?: RequestOptions,
 ): Promise<
   Result<
@@ -48,8 +48,8 @@ export async function notificationsStatsGraph(
 > {
   const input: operations.NotificationsControllerGetActivityGraphStatsRequest =
     {
-      idempotencyKey: idempotencyKey,
       days: days,
+      idempotencyKey: idempotencyKey,
     };
 
   const parsed = safeParse(
