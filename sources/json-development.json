@@ -15125,6 +15125,10 @@
             "type": "string",
             "description": "Unique identifier of the execution detail"
           },
+          "createdAt": {
+            "type": "string",
+            "description": "Creation time of the execution detail"
+          },
           "status": {
             "enum": [
               "Success",
@@ -15273,6 +15277,10 @@
           "status": {
             "type": "string",
             "description": "Status of the job"
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "Updated time of the notification"
           }
         },
         "required": [
