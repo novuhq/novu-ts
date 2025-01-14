@@ -17,9 +17,13 @@ export type EventsControllerTriggerRequest = {
   triggerEventRequestDto: components.TriggerEventRequestDto;
 };
 
+export type EventsControllerTriggerResponseResult =
+  | components.TriggerEventResponseDto
+  | components.ErrorDto;
+
 export type EventsControllerTriggerResponse = {
   headers: { [k: string]: Array<string> };
-  result: components.TriggerEventResponseDto;
+  result: components.TriggerEventResponseDto | components.ErrorDto;
 };
 
 /** @internal */
@@ -92,13 +96,77 @@ export function eventsControllerTriggerRequestFromJSON(
 }
 
 /** @internal */
+export const EventsControllerTriggerResponseResult$inboundSchema: z.ZodType<
+  EventsControllerTriggerResponseResult,
+  z.ZodTypeDef,
+  unknown
+> = z.union([
+  components.TriggerEventResponseDto$inboundSchema,
+  components.ErrorDto$inboundSchema,
+]);
+
+/** @internal */
+export type EventsControllerTriggerResponseResult$Outbound =
+  | components.TriggerEventResponseDto$Outbound
+  | components.ErrorDto$Outbound;
+
+/** @internal */
+export const EventsControllerTriggerResponseResult$outboundSchema: z.ZodType<
+  EventsControllerTriggerResponseResult$Outbound,
+  z.ZodTypeDef,
+  EventsControllerTriggerResponseResult
+> = z.union([
+  components.TriggerEventResponseDto$outboundSchema,
+  components.ErrorDto$outboundSchema,
+]);
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace EventsControllerTriggerResponseResult$ {
+  /** @deprecated use `EventsControllerTriggerResponseResult$inboundSchema` instead. */
+  export const inboundSchema =
+    EventsControllerTriggerResponseResult$inboundSchema;
+  /** @deprecated use `EventsControllerTriggerResponseResult$outboundSchema` instead. */
+  export const outboundSchema =
+    EventsControllerTriggerResponseResult$outboundSchema;
+  /** @deprecated use `EventsControllerTriggerResponseResult$Outbound` instead. */
+  export type Outbound = EventsControllerTriggerResponseResult$Outbound;
+}
+
+export function eventsControllerTriggerResponseResultToJSON(
+  eventsControllerTriggerResponseResult: EventsControllerTriggerResponseResult,
+): string {
+  return JSON.stringify(
+    EventsControllerTriggerResponseResult$outboundSchema.parse(
+      eventsControllerTriggerResponseResult,
+    ),
+  );
+}
+
+export function eventsControllerTriggerResponseResultFromJSON(
+  jsonString: string,
+): SafeParseResult<EventsControllerTriggerResponseResult, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      EventsControllerTriggerResponseResult$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'EventsControllerTriggerResponseResult' from JSON`,
+  );
+}
+
+/** @internal */
 export const EventsControllerTriggerResponse$inboundSchema: z.ZodType<
   EventsControllerTriggerResponse,
   z.ZodTypeDef,
   unknown
 > = z.object({
   Headers: z.record(z.array(z.string())),
-  Result: components.TriggerEventResponseDto$inboundSchema,
+  Result: z.union([
+    components.TriggerEventResponseDto$inboundSchema,
+    components.ErrorDto$inboundSchema,
+  ]),
 }).transform((v) => {
   return remap$(v, {
     "Headers": "headers",
@@ -109,7 +177,9 @@ export const EventsControllerTriggerResponse$inboundSchema: z.ZodType<
 /** @internal */
 export type EventsControllerTriggerResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
-  Result: components.TriggerEventResponseDto$Outbound;
+  Result:
+    | components.TriggerEventResponseDto$Outbound
+    | components.ErrorDto$Outbound;
 };
 
 /** @internal */
@@ -119,7 +189,10 @@ export const EventsControllerTriggerResponse$outboundSchema: z.ZodType<
   EventsControllerTriggerResponse
 > = z.object({
   headers: z.record(z.array(z.string())),
-  result: components.TriggerEventResponseDto$outboundSchema,
+  result: z.union([
+    components.TriggerEventResponseDto$outboundSchema,
+    components.ErrorDto$outboundSchema,
+  ]),
 }).transform((v) => {
   return remap$(v, {
     headers: "Headers",

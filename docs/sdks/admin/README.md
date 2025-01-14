@@ -8,10 +8,10 @@ testing
 
 ### Available Operations
 
-* [testingControllerIdempotency](#testingcontrolleridempotency)
+* [testIdempotency](#testidempotency)
 * [testingControllerIdempotencyGet](#testingcontrolleridempotencyget)
 
-## testingControllerIdempotency
+## testIdempotency
 
 ### Example Usage
 
@@ -23,7 +23,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.admin.testingControllerIdempotency({
+  const result = await novu.admin.testIdempotency({
     data: 6704.42,
   });
 
@@ -40,7 +40,7 @@ The standalone function version of this method:
 
 ```typescript
 import { NovuCore } from "@novu/api/core.js";
-import { adminTestingControllerIdempotency } from "@novu/api/funcs/adminTestingControllerIdempotency.js";
+import { adminTestIdempotency } from "@novu/api/funcs/adminTestIdempotency.js";
 
 // Use `NovuCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -49,7 +49,7 @@ const novu = new NovuCore({
 });
 
 async function run() {
-  const res = await adminTestingControllerIdempotency(novu, {
+  const res = await adminTestIdempotency(novu, {
     data: 6704.42,
   });
 
@@ -82,11 +82,11 @@ run();
 
 ### Errors
 
-| Error Type                | Status Code               | Content Type              |
-| ------------------------- | ------------------------- | ------------------------- |
-| errors.ErrorDto           | 400, 401, 404, 409, 500   | application/json          |
-| errors.ValidationErrorDto | 422                       | application/json          |
-| errors.SDKError           | 4XX, 5XX                  | \*/\*                     |
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.ErrorDto              | 400, 401, 403, 404, 409, 500 | application/json             |
+| errors.ValidationErrorDto    | 422                          | application/json             |
+| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
 
 ## testingControllerIdempotencyGet
 
@@ -154,8 +154,8 @@ run();
 
 ### Errors
 
-| Error Type                | Status Code               | Content Type              |
-| ------------------------- | ------------------------- | ------------------------- |
-| errors.ErrorDto           | 400, 401, 404, 409, 500   | application/json          |
-| errors.ValidationErrorDto | 422                       | application/json          |
-| errors.SDKError           | 4XX, 5XX                  | \*/\*                     |
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.ErrorDto              | 400, 401, 403, 404, 409, 500 | application/json             |
+| errors.ValidationErrorDto    | 422                          | application/json             |
+| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |

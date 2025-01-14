@@ -141,6 +141,7 @@ export async function subscribersCredentialsDelete(
     errorCodes: [
       "400",
       "401",
+      "403",
       "404",
       "409",
       "422",
@@ -175,6 +176,13 @@ export async function subscribersCredentialsDelete(
     | RequestTimeoutError
     | ConnectionError
   >(
+    M.json(
+      200,
+      operations
+        .SubscribersControllerDeleteSubscriberCredentialsResponse$inboundSchema
+        .optional(),
+      { hdrs: true, key: "Result" },
+    ),
     M.nil(
       204,
       operations
@@ -182,7 +190,7 @@ export async function subscribersCredentialsDelete(
         .optional(),
       { hdrs: true },
     ),
-    M.jsonErr([400, 401, 404, 409, 500], errors.ErrorDto$inboundSchema, {
+    M.jsonErr([400, 401, 403, 404, 409, 500], errors.ErrorDto$inboundSchema, {
       hdrs: true,
     }),
     M.jsonErr(422, errors.ValidationErrorDto$inboundSchema, { hdrs: true }),

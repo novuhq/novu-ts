@@ -23,7 +23,7 @@ let value: SubscribersControllerMarkMessagesAsResponse = {
         subscriberId: "<id>",
         channels: [
           {
-            providerId: "msteams",
+            providerId: "expo",
             credentials: {
               webhookUrl: "https://example.com/webhook",
               channel: "general",
@@ -44,16 +44,16 @@ let value: SubscribersControllerMarkMessagesAsResponse = {
         organizationId: "<id>",
         environmentId: "<id>",
         deleted: false,
-        createdAt: "1725903722649",
-        updatedAt: "1736778783291",
+        createdAt: "1706557415773",
+        updatedAt: "1736795623835",
       },
-      createdAt: "1720012875217",
+      createdAt: "1709112108230",
       content: {
         type: "button",
         content: "<value>",
       },
       transactionId: "<id>",
-      channel: "in_app",
+      channel: "email",
       read: false,
       seen: false,
       cta: {
@@ -67,7 +67,7 @@ let value: SubscribersControllerMarkMessagesAsResponse = {
 
 ## Fields
 
-| Field                                                                            | Type                                                                             | Required                                                                         | Description                                                                      |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `headers`                                                                        | Record<string, *string*[]>                                                       | :heavy_check_mark:                                                               | N/A                                                                              |
-| `result`                                                                         | [components.MessageResponseDto](../../models/components/messageresponsedto.md)[] | :heavy_check_mark:                                                               | N/A                                                                              |
+| Field                                                          | Type                                                           | Required                                                       | Description                                                    |
+| -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- |
+| `headers`                                                      | Record<string, *string*[]>                                     | :heavy_check_mark:                                             | N/A                                                            |
+| `result`                                                       | *operations.SubscribersControllerMarkMessagesAsResponseResult* | :heavy_check_mark:                                             | N/A                                                            |

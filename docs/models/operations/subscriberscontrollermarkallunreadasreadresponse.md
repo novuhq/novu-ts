@@ -11,13 +11,13 @@ let value: SubscribersControllerMarkAllUnreadAsReadResponse = {
       "<value>",
     ],
   },
-  result: 1965.82,
+  result: 2653.89,
 };
 ```
 
 ## Fields
 
-| Field                      | Type                       | Required                   | Description                |
-| -------------------------- | -------------------------- | -------------------------- | -------------------------- |
-| `headers`                  | Record<string, *string*[]> | :heavy_check_mark:         | N/A                        |
-| `result`                   | *number*                   | :heavy_check_mark:         | N/A                        |
+| Field                                                               | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `headers`                                                           | Record<string, *string*[]>                                          | :heavy_check_mark:                                                  | N/A                                                                 |
+| `result`                                                            | *operations.SubscribersControllerMarkAllUnreadAsReadResponseResult* | :heavy_check_mark:                                                  | N/A                                                                 |

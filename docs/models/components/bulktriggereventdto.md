@@ -24,7 +24,8 @@ let value: BulkTriggerEventDto = {
         },
       },
       to: {
-        subscriberId: "<id>",
+        topicKey: "<value>",
+        type: "Topic",
       },
     },
   ],

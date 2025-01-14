@@ -128,6 +128,7 @@ export async function triggerBulk(
     errorCodes: [
       "400",
       "401",
+      "403",
       "404",
       "409",
       "422",
@@ -161,11 +162,15 @@ export async function triggerBulk(
     | RequestTimeoutError
     | ConnectionError
   >(
+    M.json(200, operations.EventsControllerTriggerBulkResponse$inboundSchema, {
+      hdrs: true,
+      key: "Result",
+    }),
     M.json(201, operations.EventsControllerTriggerBulkResponse$inboundSchema, {
       hdrs: true,
       key: "Result",
     }),
-    M.jsonErr([400, 401, 404, 409, 500], errors.ErrorDto$inboundSchema, {
+    M.jsonErr([400, 401, 403, 404, 409, 500], errors.ErrorDto$inboundSchema, {
       hdrs: true,
     }),
     M.jsonErr(422, errors.ValidationErrorDto$inboundSchema, { hdrs: true }),

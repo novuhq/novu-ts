@@ -10,7 +10,7 @@ let value: SubscribersControllerMarkActionAsSeenRequest = {
   type: "<value>",
   subscriberId: "<id>",
   markMessageActionAsSeenDto: {
-    status: "pending",
+    status: "done",
   },
 };
 ```

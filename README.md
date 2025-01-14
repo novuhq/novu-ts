@@ -218,7 +218,7 @@ run();
 
 ### [admin](docs/sdks/admin/README.md)
 
-* [testingControllerIdempotency](docs/sdks/admin/README.md#testingcontrolleridempotency)
+* [testIdempotency](docs/sdks/admin/README.md#testidempotency)
 * [testingControllerIdempotencyGet](docs/sdks/admin/README.md#testingcontrolleridempotencyget)
 
 ### [integrations](docs/sdks/integrations/README.md)
@@ -334,7 +334,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 <summary>Available standalone functions</summary>
 
-- [`adminTestingControllerIdempotency`](docs/sdks/admin/README.md#testingcontrolleridempotency)
+- [`adminTestIdempotency`](docs/sdks/admin/README.md#testidempotency)
 - [`adminTestingControllerIdempotencyGet`](docs/sdks/admin/README.md#testingcontrolleridempotencyget)
 - [`cancel`](docs/sdks/novu/README.md#cancel) - Cancel triggered event
 - [`integrationsCreate`](docs/sdks/integrations/README.md#create) - Create integration
@@ -428,11 +428,11 @@ run();
 
 Some methods specify known errors which can be thrown. All the known errors are enumerated in the `models/errors/errors.ts` module. The known errors for a method are documented under the *Errors* tables in SDK docs. For example, the `trigger` method may throw the following errors:
 
-| Error Type                | Status Code             | Content Type     |
-| ------------------------- | ----------------------- | ---------------- |
-| errors.ErrorDto           | 400, 401, 404, 409, 500 | application/json |
-| errors.ValidationErrorDto | 422                     | application/json |
-| errors.SDKError           | 4XX, 5XX                | \*/\*            |
+| Error Type                | Status Code                  | Content Type     |
+| ------------------------- | ---------------------------- | ---------------- |
+| errors.ErrorDto           | 400, 401, 403, 404, 409, 500 | application/json |
+| errors.ValidationErrorDto | 422                          | application/json |
+| errors.SDKError           | 4XX, 5XX                     | \*/\*            |
 
 If the method throws an error and it is not captured by the known errors, it will default to throwing a `SDKError`.
 

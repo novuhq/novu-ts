@@ -43,6 +43,7 @@ export * from "./digestwitheventsdto.js";
 export * from "./emailblock.js";
 export * from "./emailblockstyles.js";
 export * from "./emailblocktypeenum.js";
+export * from "./errordto.js";
 export * from "./failedassignmentsdto.js";
 export * from "./failedoperationdto.js";
 export * from "./feedresponsedto.js";

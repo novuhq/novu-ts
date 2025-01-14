@@ -131,6 +131,7 @@ export async function integrationsSetAsPrimary(
     errorCodes: [
       "400",
       "401",
+      "403",
       "404",
       "409",
       "422",
@@ -170,7 +171,7 @@ export async function integrationsSetAsPrimary(
         .IntegrationsControllerSetIntegrationAsPrimaryResponse$inboundSchema,
       { hdrs: true, key: "Result" },
     ),
-    M.jsonErr([400, 401, 409, 500], errors.ErrorDto$inboundSchema, {
+    M.jsonErr([400, 401, 403, 409, 500], errors.ErrorDto$inboundSchema, {
       hdrs: true,
     }),
     M.fail([404, 429, 503]),

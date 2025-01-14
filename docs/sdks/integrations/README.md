@@ -83,11 +83,11 @@ run();
 
 ### Errors
 
-| Error Type                | Status Code               | Content Type              |
-| ------------------------- | ------------------------- | ------------------------- |
-| errors.ErrorDto           | 400, 401, 404, 409, 500   | application/json          |
-| errors.ValidationErrorDto | 422                       | application/json          |
-| errors.SDKError           | 4XX, 5XX                  | \*/\*                     |
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.ErrorDto              | 400, 401, 403, 404, 409, 500 | application/json             |
+| errors.ValidationErrorDto    | 422                          | application/json             |
+| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
 
 ## create
 
@@ -164,11 +164,11 @@ run();
 
 ### Errors
 
-| Error Type                | Status Code               | Content Type              |
-| ------------------------- | ------------------------- | ------------------------- |
-| errors.ErrorDto           | 400, 401, 404, 409, 500   | application/json          |
-| errors.ValidationErrorDto | 422                       | application/json          |
-| errors.SDKError           | 4XX, 5XX                  | \*/\*                     |
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.ErrorDto              | 400, 401, 403, 404, 409, 500 | application/json             |
+| errors.ValidationErrorDto    | 422                          | application/json             |
+| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
 
 ## listActive
 
@@ -238,11 +238,11 @@ run();
 
 ### Errors
 
-| Error Type                | Status Code               | Content Type              |
-| ------------------------- | ------------------------- | ------------------------- |
-| errors.ErrorDto           | 400, 401, 404, 409, 500   | application/json          |
-| errors.ValidationErrorDto | 422                       | application/json          |
-| errors.SDKError           | 4XX, 5XX                  | \*/\*                     |
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.ErrorDto              | 400, 401, 403, 404, 409, 500 | application/json             |
+| errors.ValidationErrorDto    | 422                          | application/json             |
+| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
 
 ## update
 
@@ -316,7 +316,7 @@ run();
 
 | Error Type                | Status Code               | Content Type              |
 | ------------------------- | ------------------------- | ------------------------- |
-| errors.ErrorDto           | 400, 401, 409, 500        | application/json          |
+| errors.ErrorDto           | 400, 401, 403, 409, 500   | application/json          |
 | errors.ValidationErrorDto | 422                       | application/json          |
 | errors.SDKError           | 4XX, 5XX                  | \*/\*                     |
 
@@ -389,11 +389,11 @@ run();
 
 ### Errors
 
-| Error Type                | Status Code               | Content Type              |
-| ------------------------- | ------------------------- | ------------------------- |
-| errors.ErrorDto           | 400, 401, 404, 409, 500   | application/json          |
-| errors.ValidationErrorDto | 422                       | application/json          |
-| errors.SDKError           | 4XX, 5XX                  | \*/\*                     |
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.ErrorDto              | 400, 401, 403, 404, 409, 500 | application/json             |
+| errors.ValidationErrorDto    | 422                          | application/json             |
+| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
 
 ## setAsPrimary
 
@@ -466,6 +466,6 @@ run();
 
 | Error Type                | Status Code               | Content Type              |
 | ------------------------- | ------------------------- | ------------------------- |
-| errors.ErrorDto           | 400, 401, 409, 500        | application/json          |
+| errors.ErrorDto           | 400, 401, 403, 409, 500   | application/json          |
 | errors.ValidationErrorDto | 422                       | application/json          |
 | errors.SDKError           | 4XX, 5XX                  | \*/\*                     |

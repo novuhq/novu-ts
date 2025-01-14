@@ -118,6 +118,7 @@ export async function notificationsStatsRetrieve(
     errorCodes: [
       "400",
       "401",
+      "403",
       "404",
       "409",
       "422",
@@ -156,7 +157,7 @@ export async function notificationsStatsRetrieve(
       operations.NotificationsControllerGetActivityStatsResponse$inboundSchema,
       { hdrs: true, key: "Result" },
     ),
-    M.jsonErr([400, 401, 404, 409, 500], errors.ErrorDto$inboundSchema, {
+    M.jsonErr([400, 401, 403, 404, 409, 500], errors.ErrorDto$inboundSchema, {
       hdrs: true,
     }),
     M.jsonErr(422, errors.ValidationErrorDto$inboundSchema, { hdrs: true }),

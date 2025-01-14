@@ -12,8 +12,8 @@ let value: NotificationsControllerGetActivityStatsResponse = {
     ],
   },
   result: {
-    weeklySent: 8917.73,
-    monthlySent: 9636.63,
+    weeklySent: 7917.25,
+    monthlySent: 5288.95,
   },
 };
 ```

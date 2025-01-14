@@ -17,9 +17,15 @@ export type TestingControllerIdempotencyRequest = {
   idempotencyBodyDto: components.IdempotencyBodyDto;
 };
 
+export type TestingControllerIdempotencyResponseResult =
+  | components.IdempotencyResponse
+  | Array<components.IdempotencyResponse>;
+
 export type TestingControllerIdempotencyResponse = {
   headers: { [k: string]: Array<string> };
-  result: components.IdempotencyResponse;
+  result:
+    | components.IdempotencyResponse
+    | Array<components.IdempotencyResponse>;
 };
 
 /** @internal */
@@ -95,13 +101,82 @@ export function testingControllerIdempotencyRequestFromJSON(
 }
 
 /** @internal */
+export const TestingControllerIdempotencyResponseResult$inboundSchema:
+  z.ZodType<TestingControllerIdempotencyResponseResult, z.ZodTypeDef, unknown> =
+    z.union([
+      components.IdempotencyResponse$inboundSchema,
+      z.array(components.IdempotencyResponse$inboundSchema),
+    ]);
+
+/** @internal */
+export type TestingControllerIdempotencyResponseResult$Outbound =
+  | components.IdempotencyResponse$Outbound
+  | Array<components.IdempotencyResponse$Outbound>;
+
+/** @internal */
+export const TestingControllerIdempotencyResponseResult$outboundSchema:
+  z.ZodType<
+    TestingControllerIdempotencyResponseResult$Outbound,
+    z.ZodTypeDef,
+    TestingControllerIdempotencyResponseResult
+  > = z.union([
+    components.IdempotencyResponse$outboundSchema,
+    z.array(components.IdempotencyResponse$outboundSchema),
+  ]);
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace TestingControllerIdempotencyResponseResult$ {
+  /** @deprecated use `TestingControllerIdempotencyResponseResult$inboundSchema` instead. */
+  export const inboundSchema =
+    TestingControllerIdempotencyResponseResult$inboundSchema;
+  /** @deprecated use `TestingControllerIdempotencyResponseResult$outboundSchema` instead. */
+  export const outboundSchema =
+    TestingControllerIdempotencyResponseResult$outboundSchema;
+  /** @deprecated use `TestingControllerIdempotencyResponseResult$Outbound` instead. */
+  export type Outbound = TestingControllerIdempotencyResponseResult$Outbound;
+}
+
+export function testingControllerIdempotencyResponseResultToJSON(
+  testingControllerIdempotencyResponseResult:
+    TestingControllerIdempotencyResponseResult,
+): string {
+  return JSON.stringify(
+    TestingControllerIdempotencyResponseResult$outboundSchema.parse(
+      testingControllerIdempotencyResponseResult,
+    ),
+  );
+}
+
+export function testingControllerIdempotencyResponseResultFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  TestingControllerIdempotencyResponseResult,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      TestingControllerIdempotencyResponseResult$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'TestingControllerIdempotencyResponseResult' from JSON`,
+  );
+}
+
+/** @internal */
 export const TestingControllerIdempotencyResponse$inboundSchema: z.ZodType<
   TestingControllerIdempotencyResponse,
   z.ZodTypeDef,
   unknown
 > = z.object({
   Headers: z.record(z.array(z.string())),
-  Result: components.IdempotencyResponse$inboundSchema,
+  Result: z.union([
+    components.IdempotencyResponse$inboundSchema,
+    z.array(components.IdempotencyResponse$inboundSchema),
+  ]),
 }).transform((v) => {
   return remap$(v, {
     "Headers": "headers",
@@ -112,7 +187,9 @@ export const TestingControllerIdempotencyResponse$inboundSchema: z.ZodType<
 /** @internal */
 export type TestingControllerIdempotencyResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
-  Result: components.IdempotencyResponse$Outbound;
+  Result:
+    | components.IdempotencyResponse$Outbound
+    | Array<components.IdempotencyResponse$Outbound>;
 };
 
 /** @internal */
@@ -122,7 +199,10 @@ export const TestingControllerIdempotencyResponse$outboundSchema: z.ZodType<
   TestingControllerIdempotencyResponse
 > = z.object({
   headers: z.record(z.array(z.string())),
-  result: components.IdempotencyResponse$outboundSchema,
+  result: z.union([
+    components.IdempotencyResponse$outboundSchema,
+    z.array(components.IdempotencyResponse$outboundSchema),
+  ]),
 }).transform((v) => {
   return remap$(v, {
     headers: "Headers",

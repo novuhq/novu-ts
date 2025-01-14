@@ -17,9 +17,13 @@ export type EventsControllerTriggerBulkRequest = {
   bulkTriggerEventDto: components.BulkTriggerEventDto;
 };
 
+export type EventsControllerTriggerBulkResponseResult =
+  | components.ErrorDto
+  | Array<components.TriggerEventResponseDto>;
+
 export type EventsControllerTriggerBulkResponse = {
   headers: { [k: string]: Array<string> };
-  result: Array<components.TriggerEventResponseDto>;
+  result: components.ErrorDto | Array<components.TriggerEventResponseDto>;
 };
 
 /** @internal */
@@ -94,13 +98,84 @@ export function eventsControllerTriggerBulkRequestFromJSON(
 }
 
 /** @internal */
+export const EventsControllerTriggerBulkResponseResult$inboundSchema: z.ZodType<
+  EventsControllerTriggerBulkResponseResult,
+  z.ZodTypeDef,
+  unknown
+> = z.union([
+  components.ErrorDto$inboundSchema,
+  z.array(components.TriggerEventResponseDto$inboundSchema),
+]);
+
+/** @internal */
+export type EventsControllerTriggerBulkResponseResult$Outbound =
+  | components.ErrorDto$Outbound
+  | Array<components.TriggerEventResponseDto$Outbound>;
+
+/** @internal */
+export const EventsControllerTriggerBulkResponseResult$outboundSchema:
+  z.ZodType<
+    EventsControllerTriggerBulkResponseResult$Outbound,
+    z.ZodTypeDef,
+    EventsControllerTriggerBulkResponseResult
+  > = z.union([
+    components.ErrorDto$outboundSchema,
+    z.array(components.TriggerEventResponseDto$outboundSchema),
+  ]);
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace EventsControllerTriggerBulkResponseResult$ {
+  /** @deprecated use `EventsControllerTriggerBulkResponseResult$inboundSchema` instead. */
+  export const inboundSchema =
+    EventsControllerTriggerBulkResponseResult$inboundSchema;
+  /** @deprecated use `EventsControllerTriggerBulkResponseResult$outboundSchema` instead. */
+  export const outboundSchema =
+    EventsControllerTriggerBulkResponseResult$outboundSchema;
+  /** @deprecated use `EventsControllerTriggerBulkResponseResult$Outbound` instead. */
+  export type Outbound = EventsControllerTriggerBulkResponseResult$Outbound;
+}
+
+export function eventsControllerTriggerBulkResponseResultToJSON(
+  eventsControllerTriggerBulkResponseResult:
+    EventsControllerTriggerBulkResponseResult,
+): string {
+  return JSON.stringify(
+    EventsControllerTriggerBulkResponseResult$outboundSchema.parse(
+      eventsControllerTriggerBulkResponseResult,
+    ),
+  );
+}
+
+export function eventsControllerTriggerBulkResponseResultFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  EventsControllerTriggerBulkResponseResult,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      EventsControllerTriggerBulkResponseResult$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'EventsControllerTriggerBulkResponseResult' from JSON`,
+  );
+}
+
+/** @internal */
 export const EventsControllerTriggerBulkResponse$inboundSchema: z.ZodType<
   EventsControllerTriggerBulkResponse,
   z.ZodTypeDef,
   unknown
 > = z.object({
   Headers: z.record(z.array(z.string())),
-  Result: z.array(components.TriggerEventResponseDto$inboundSchema),
+  Result: z.union([
+    components.ErrorDto$inboundSchema,
+    z.array(components.TriggerEventResponseDto$inboundSchema),
+  ]),
 }).transform((v) => {
   return remap$(v, {
     "Headers": "headers",
@@ -111,7 +186,9 @@ export const EventsControllerTriggerBulkResponse$inboundSchema: z.ZodType<
 /** @internal */
 export type EventsControllerTriggerBulkResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
-  Result: Array<components.TriggerEventResponseDto$Outbound>;
+  Result:
+    | components.ErrorDto$Outbound
+    | Array<components.TriggerEventResponseDto$Outbound>;
 };
 
 /** @internal */
@@ -121,7 +198,10 @@ export const EventsControllerTriggerBulkResponse$outboundSchema: z.ZodType<
   EventsControllerTriggerBulkResponse
 > = z.object({
   headers: z.record(z.array(z.string())),
-  result: z.array(components.TriggerEventResponseDto$outboundSchema),
+  result: z.union([
+    components.ErrorDto$outboundSchema,
+    z.array(components.TriggerEventResponseDto$outboundSchema),
+  ]),
 }).transform((v) => {
   return remap$(v, {
     headers: "Headers",
