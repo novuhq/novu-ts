@@ -14,7 +14,7 @@ let value: NotificationsControllerGetActivityGraphStatsResponse = {
   result: [
     {
       id: "<id>",
-      count: 3834.42,
+      count: 3834.41,
       templates: [
         "<value>",
       ],

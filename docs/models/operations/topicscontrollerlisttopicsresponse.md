@@ -12,17 +12,7 @@ let value: TopicsControllerListTopicsResponse = {
     ],
   },
   result: {
-    data: [
-      {
-        organizationId: "<id>",
-        environmentId: "<id>",
-        key: "<key>",
-        name: "<value>",
-        subscribers: [
-          "<value>",
-        ],
-      },
-    ],
+    data: [],
     page: 1,
     pageSize: 10,
     totalCount: 10,

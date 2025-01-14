@@ -154,7 +154,7 @@ async function run() {
       {
         name: "workflow_identifier",
         to: [
-          "SUBSCRIBER_ID",
+
         ],
       },
       {
@@ -212,7 +212,7 @@ async function run() {
       {
         name: "workflow_identifier",
         to: [
-          "SUBSCRIBER_ID",
+  
         ],
       },
       {

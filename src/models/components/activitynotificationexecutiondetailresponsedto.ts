@@ -52,6 +52,10 @@ export type ActivityNotificationExecutionDetailResponseDto = {
    */
   id: string;
   /**
+   * Creation time of the execution detail
+   */
+  createdAt?: string | undefined;
+  /**
    * Status of the execution detail
    */
   status: ActivityNotificationExecutionDetailResponseDtoStatus;
@@ -131,6 +135,7 @@ export const ActivityNotificationExecutionDetailResponseDto$inboundSchema:
     unknown
   > = z.object({
     _id: z.string(),
+    createdAt: z.string().optional(),
     status: ActivityNotificationExecutionDetailResponseDtoStatus$inboundSchema,
     detail: z.string(),
     isRetry: z.boolean(),
@@ -147,6 +152,7 @@ export const ActivityNotificationExecutionDetailResponseDto$inboundSchema:
 /** @internal */
 export type ActivityNotificationExecutionDetailResponseDto$Outbound = {
   _id: string;
+  createdAt?: string | undefined;
   status: string;
   detail: string;
   isRetry: boolean;
@@ -164,6 +170,7 @@ export const ActivityNotificationExecutionDetailResponseDto$outboundSchema:
     ActivityNotificationExecutionDetailResponseDto
   > = z.object({
     id: z.string(),
+    createdAt: z.string().optional(),
     status: ActivityNotificationExecutionDetailResponseDtoStatus$outboundSchema,
     detail: z.string(),
     isRetry: z.boolean(),

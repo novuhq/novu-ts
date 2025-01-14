@@ -5,6 +5,7 @@
 import * as z from "zod";
 import { NovuCore } from "../core.js";
 import * as M from "../lib/matchers.js";
+import { compactMap } from "../lib/primitives.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
@@ -38,9 +39,9 @@ export async function testApiRateLimitBulkControllerNoCategorySingleCostOverride
     "/v1/rate-limiting-trigger-bulk/no-category-single-cost-override",
   )();
 
-  const headers = new Headers({
+  const headers = new Headers(compactMap({
     Accept: "application/json",
-  });
+  }));
 
   const secConfig = await extractSecurity(client._options.apiKey);
   const securityInput = secConfig == null ? {} : { apiKey: secConfig };

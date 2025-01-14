@@ -7,7 +7,7 @@ import { TestingControllerIdempotencyRequest } from "@novu/api/models/operations
 
 let value: TestingControllerIdempotencyRequest = {
   idempotencyBodyDto: {
-    data: 1201.97,
+    data: 1201.96,
   },
 };
 ```

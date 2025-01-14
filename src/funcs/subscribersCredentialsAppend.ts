@@ -5,6 +5,7 @@
 import { NovuCore } from "../core.js";
 import { encodeJSON, encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
+import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
@@ -85,7 +86,7 @@ export async function subscribersCredentialsAppend(
     pathParams,
   );
 
-  const headers = new Headers({
+  const headers = new Headers(compactMap({
     "Content-Type": "application/json",
     Accept: "application/json",
     "Idempotency-Key": encodeSimple(
@@ -93,7 +94,7 @@ export async function subscribersCredentialsAppend(
       payload["Idempotency-Key"],
       { explode: false, charEncoding: "none" },
     ),
-  });
+  }));
 
   const secConfig = await extractSecurity(client._options.apiKey);
   const securityInput = secConfig == null ? {} : { apiKey: secConfig };

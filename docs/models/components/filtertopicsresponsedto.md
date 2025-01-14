@@ -6,17 +6,7 @@
 import { FilterTopicsResponseDto } from "@novu/api/models/components";
 
 let value: FilterTopicsResponseDto = {
-  data: [
-    {
-      organizationId: "<id>",
-      environmentId: "<id>",
-      key: "<key>",
-      name: "<value>",
-      subscribers: [
-        "<value>",
-      ],
-    },
-  ],
+  data: [],
   page: 1,
   pageSize: 10,
   totalCount: 10,

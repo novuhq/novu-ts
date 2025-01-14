@@ -91,6 +91,10 @@ export type ActivityNotificationJobResponseDto = {
    * Status of the job
    */
   status: string;
+  /**
+   * Updated time of the notification
+   */
+  updatedAt?: string | undefined;
 };
 
 /** @internal */
@@ -174,6 +178,7 @@ export const ActivityNotificationJobResponseDto$inboundSchema: z.ZodType<
   payload: z.lazy(() => Payload$inboundSchema).optional(),
   providerId: ProvidersIdEnum$inboundSchema,
   status: z.string(),
+  updatedAt: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     "_id": "id",
@@ -192,6 +197,7 @@ export type ActivityNotificationJobResponseDto$Outbound = {
   payload?: Payload$Outbound | undefined;
   providerId: string;
   status: string;
+  updatedAt?: string | undefined;
 };
 
 /** @internal */
@@ -210,6 +216,7 @@ export const ActivityNotificationJobResponseDto$outboundSchema: z.ZodType<
   payload: z.lazy(() => Payload$outboundSchema).optional(),
   providerId: ProvidersIdEnum$outboundSchema,
   status: z.string(),
+  updatedAt: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     id: "_id",

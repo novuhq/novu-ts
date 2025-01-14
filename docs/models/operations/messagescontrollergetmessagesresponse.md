@@ -21,7 +21,7 @@ let value: MessagesControllerGetMessagesResponse = {
       },
     ],
     pageSize: 7392.64,
-    page: 391.88,
+    page: 391.87,
   },
 };
 ```

@@ -29,10 +29,10 @@ async function run() {
       "in_app",
     ],
     templates: [
-      "<value>",
+
     ],
     emails: [
-      "<value>",
+
     ],
     search: "<value>",
     subscriberIds: [
@@ -70,10 +70,10 @@ async function run() {
       "in_app",
     ],
     templates: [
-      "<value>",
+  
     ],
     emails: [
-      "<value>",
+  
     ],
     search: "<value>",
     subscriberIds: [

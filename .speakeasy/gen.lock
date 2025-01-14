@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 6bff3a53-3f0b-40b4-942f-ff70dc583ae5
 management:
-  docChecksum: d15b81d16f4004346ed04881ac881ba5
+  docChecksum: 7824d50be51b148defbbc5cea62910ed
   docVersion: "1.0"
-  speakeasyVersion: 1.468.2
-  generationVersion: 2.493.4
-  releaseVersion: 0.0.1-alpha.179
-  configChecksum: 6194db36d2c259867714e83aee98a68a
+  speakeasyVersion: 1.468.5
+  generationVersion: 2.493.11
+  releaseVersion: 0.0.1-alpha.181
+  configChecksum: e702ec03314641c926cbe82c4eeef39a
   published: true
 features:
   typescript:
     acceptHeaders: 2.81.2
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.11
-    core: 3.18.12
+    core: 3.18.14
     defaultEnabledRetries: 0.1.0
     deprecations: 2.81.1
     enumUnions: 0.1.0
@@ -785,7 +785,7 @@ examples:
     speakeasy-default-integrations-controller-list-integrations:
       responses:
         "200":
-          application/json: [{"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>", "identifier": "<value>", "providerId": "<id>", "channel": "sms", "active": false, "deleted": true, "deletedAt": "<value>", "deletedBy": "<value>", "primary": true}, {"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>", "identifier": "<value>", "providerId": "<id>", "channel": "in_app", "active": false, "deleted": false, "deletedAt": "<value>", "deletedBy": "<value>", "primary": true}, {"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>", "identifier": "<value>", "providerId": "<id>", "channel": "chat", "active": true, "deleted": true, "deletedAt": "<value>", "deletedBy": "<value>", "primary": false}]
+          application/json: [{"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>", "identifier": "<value>", "providerId": "<id>", "channel": "sms", "credentials": {}, "active": false, "deleted": true, "deletedAt": "<value>", "deletedBy": "<value>", "primary": true}, {"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>", "identifier": "<value>", "providerId": "<id>", "channel": "in_app", "credentials": {}, "active": false, "deleted": false, "deletedAt": "<value>", "deletedBy": "<value>", "primary": true}, {"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>", "identifier": "<value>", "providerId": "<id>", "channel": "chat", "credentials": {}, "active": true, "deleted": true, "deletedAt": "<value>", "deletedBy": "<value>", "primary": false}]
         "400":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found."}
         "404":
@@ -798,7 +798,7 @@ examples:
         application/json: {"providerId": "<id>", "channel": "sms"}
       responses:
         "201":
-          application/json: {"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>", "identifier": "<value>", "providerId": "<id>", "channel": "chat", "active": true, "deleted": true, "deletedAt": "<value>", "deletedBy": "<value>", "primary": true}
+          application/json: {"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>", "identifier": "<value>", "providerId": "<id>", "channel": "chat", "credentials": {}, "active": true, "deleted": true, "deletedAt": "<value>", "deletedBy": "<value>", "primary": true}
         "400":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found."}
         "404":
@@ -811,7 +811,7 @@ examples:
     speakeasy-default-integrations-controller-get-active-integrations:
       responses:
         "200":
-          application/json: [{"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>", "identifier": "<value>", "providerId": "<id>", "channel": "email", "active": true, "deleted": true, "deletedAt": "<value>", "deletedBy": "<value>", "primary": true}, {"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>", "identifier": "<value>", "providerId": "<id>", "channel": "chat", "active": false, "deleted": true, "deletedAt": "<value>", "deletedBy": "<value>", "primary": true}, {"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>", "identifier": "<value>", "providerId": "<id>", "channel": "chat", "active": false, "deleted": true, "deletedAt": "<value>", "deletedBy": "<value>", "primary": true}]
+          application/json: [{"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>", "identifier": "<value>", "providerId": "<id>", "channel": "email", "credentials": {}, "active": true, "deleted": true, "deletedAt": "<value>", "deletedBy": "<value>", "primary": true}, {"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>", "identifier": "<value>", "providerId": "<id>", "channel": "chat", "credentials": {}, "active": false, "deleted": true, "deletedAt": "<value>", "deletedBy": "<value>", "primary": true}, {"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>", "identifier": "<value>", "providerId": "<id>", "channel": "chat", "credentials": {}, "active": false, "deleted": true, "deletedAt": "<value>", "deletedBy": "<value>", "primary": true}]
         "400":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found."}
         "404":
@@ -824,9 +824,11 @@ examples:
         path:
           integrationId: "<id>"
         header: {}
+      requestBody:
+        application/json: {}
       responses:
         "200":
-          application/json: {"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>", "identifier": "<value>", "providerId": "<id>", "channel": "push", "active": false, "deleted": true, "deletedAt": "<value>", "deletedBy": "<value>", "primary": false}
+          application/json: {"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>", "identifier": "<value>", "providerId": "<id>", "channel": "push", "credentials": {}, "active": false, "deleted": true, "deletedAt": "<value>", "deletedBy": "<value>", "primary": false}
         "400":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found."}
         "422":
@@ -839,7 +841,7 @@ examples:
         header: {}
       responses:
         "200":
-          application/json: [{"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>", "identifier": "<value>", "providerId": "<id>", "channel": "chat", "active": true, "deleted": false, "deletedAt": "<value>", "deletedBy": "<value>", "primary": false}, {"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>", "identifier": "<value>", "providerId": "<id>", "channel": "chat", "active": true, "deleted": false, "deletedAt": "<value>", "deletedBy": "<value>", "primary": false}]
+          application/json: [{"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>", "identifier": "<value>", "providerId": "<id>", "channel": "chat", "credentials": {}, "active": true, "deleted": false, "deletedAt": "<value>", "deletedBy": "<value>", "primary": false}, {"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>", "identifier": "<value>", "providerId": "<id>", "channel": "chat", "credentials": {}, "active": true, "deleted": false, "deletedAt": "<value>", "deletedBy": "<value>", "primary": false}]
         "400":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found."}
         "404":
@@ -854,7 +856,7 @@ examples:
         header: {}
       responses:
         "200":
-          application/json: {"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>", "identifier": "<value>", "providerId": "<id>", "channel": "push", "active": true, "deleted": true, "deletedAt": "<value>", "deletedBy": "<value>", "primary": false}
+          application/json: {"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>", "identifier": "<value>", "providerId": "<id>", "channel": "push", "credentials": {}, "active": true, "deleted": true, "deletedAt": "<value>", "deletedBy": "<value>", "primary": false}
         "400":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found."}
         "422":
@@ -962,7 +964,7 @@ examples:
         "422":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123", "errors": {"fieldName1": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName2": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName3": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName4": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}}}
         "201":
-          application/json: {"updated": [{"subscriberId": "<id>"}], "created": [{"subscriberId": "<id>"}, {"subscriberId": "<id>"}, {"subscriberId": "<id>"}]}
+          application/json: {"updated": [{"subscriberId": "<id>"}], "created": [{"subscriberId": "<id>"}, {"subscriberId": "<id>"}, {"subscriberId": "<id>"}], "failed": [{}]}
   SubscribersController_updateSubscriberChannel:
     speakeasy-default-subscribers-controller-update-subscriber-channel:
       parameters:
@@ -1039,7 +1041,7 @@ examples:
         header: {}
       responses:
         "200":
-          application/json: [{"template": {"_id": "<id>", "name": "<value>", "critical": false, "triggers": [{"type": "event", "identifier": "<value>", "variables": [{"name": "<value>"}, {"name": "<value>"}, {"name": "<value>"}]}, {"type": "event", "identifier": "<value>", "variables": [{"name": "<value>"}, {"name": "<value>"}]}]}, "preference": {"enabled": false}}, {"template": {"_id": "<id>", "name": "<value>", "critical": false, "triggers": [{"type": "event", "identifier": "<value>", "variables": [{"name": "<value>"}, {"name": "<value>"}]}]}, "preference": {"enabled": true}}]
+          application/json: [{"template": {"_id": "<id>", "name": "<value>", "critical": false, "triggers": [{"type": "event", "identifier": "<value>", "variables": [{"name": "<value>"}, {"name": "<value>"}, {"name": "<value>"}]}, {"type": "event", "identifier": "<value>", "variables": [{"name": "<value>"}, {"name": "<value>"}]}]}, "preference": {"enabled": false, "channels": {}}}, {"template": {"_id": "<id>", "name": "<value>", "critical": false, "triggers": [{"type": "event", "identifier": "<value>", "variables": [{"name": "<value>"}, {"name": "<value>"}]}]}, "preference": {"enabled": true, "channels": {}}}]
         "400":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found."}
         "404":
@@ -1056,7 +1058,7 @@ examples:
         header: {}
       responses:
         "200":
-          application/json: [{"preference": {"enabled": true}}, {"preference": {"enabled": true}}]
+          application/json: [{"preference": {"enabled": true, "channels": {}}}, {"preference": {"enabled": true, "channels": {}}}]
         "400":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found."}
         "404":
@@ -1070,9 +1072,11 @@ examples:
           subscriberId: "<id>"
           parameter: "exampleValue"
         header: {}
+      requestBody:
+        application/json: {}
       responses:
         "200":
-          application/json: {"template": {"_id": "<id>", "name": "<value>", "critical": false, "triggers": [{"type": "event", "identifier": "<value>", "variables": [{"name": "<value>"}, {"name": "<value>"}, {"name": "<value>"}]}, {"type": "event", "identifier": "<value>", "variables": [{"name": "<value>"}, {"name": "<value>"}]}]}, "preference": {"enabled": true}}
+          application/json: {"template": {"_id": "<id>", "name": "<value>", "critical": false, "triggers": [{"type": "event", "identifier": "<value>", "variables": [{"name": "<value>"}, {"name": "<value>"}, {"name": "<value>"}]}, {"type": "event", "identifier": "<value>", "variables": [{"name": "<value>"}, {"name": "<value>"}]}]}, "preference": {"enabled": true, "channels": {}}}
         "400":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found."}
         "404":
@@ -1095,7 +1099,7 @@ examples:
         "404":
           application/json: {"data": {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}}
         "422":
-          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123", "errors": {"fieldName1": {"messages": ["Field is required", "Must be a valid email address"], "value": "invalidEmail"}, "fieldName2": {"messages": ["Must be at least 18 years old"], "value": 17}, "fieldName3": {"messages": ["Must be a boolean value"], "value": true}, "fieldName4": {"messages": ["Must be a valid object"], "value": [{"key": "<value>", "key1": "<value>", "key2": "<value>"}, {"key": "<value>", "key1": "<value>"}]}}}
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123", "errors": {"fieldName1": {"messages": ["Field is required", "Must be a valid email address"], "value": "invalidEmail"}, "fieldName2": {"messages": ["Must be at least 18 years old"], "value": 17}, "fieldName3": {"messages": ["Must be a boolean value"], "value": true}, "fieldName4": {"messages": ["Must be a valid object"], "value": {"0": {"key": "<value>", "key1": "<value>", "key2": "<value>"}, "1": {"key": "<value>", "key1": "<value>"}}}}}
   SubscribersController_markMessagesAs:
     speakeasy-default-subscribers-controller-mark-messages-as:
       parameters:
@@ -1161,9 +1165,11 @@ examples:
         path:
           subscriberId: "<id>"
         header: {}
+      requestBody:
+        application/json: {}
       responses:
         "200":
-          application/json: {"preference": {"enabled": true}}
+          application/json: {"preference": {"enabled": true, "channels": {}}}
         "400":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found."}
         "404":

@@ -18,7 +18,7 @@ export class NovuCustomHook
         }
         const updatedHeaders = this.updateHeaderValue(headers, idempotencyKey, this.generateIdempotencyKey)
 
-        return {...input, options: {headers: updatedHeaders}}
+        return {...input, options: {...input.options, headers: updatedHeaders}}
     }
 
     beforeRequest(_hookCtx: BeforeRequestContext, request: Request): Request {
