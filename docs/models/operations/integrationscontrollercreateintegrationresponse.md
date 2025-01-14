@@ -17,7 +17,7 @@ let value: IntegrationsControllerCreateIntegrationResponse = {
     name: "<value>",
     identifier: "<value>",
     providerId: "<id>",
-    channel: "chat",
+    channel: "push",
     credentials: {},
     active: false,
     deleted: false,
@@ -28,7 +28,7 @@ let value: IntegrationsControllerCreateIntegrationResponse = {
 
 ## Fields
 
-| Field                                                              | Type                                                               | Required                                                           | Description                                                        |
-| ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
-| `headers`                                                          | Record<string, *string*[]>                                         | :heavy_check_mark:                                                 | N/A                                                                |
-| `result`                                                           | *operations.IntegrationsControllerCreateIntegrationResponseResult* | :heavy_check_mark:                                                 | N/A                                                                |
+| Field                                                                                  | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `headers`                                                                              | Record<string, *string*[]>                                                             | :heavy_check_mark:                                                                     | N/A                                                                                    |
+| `result`                                                                               | [components.IntegrationResponseDto](../../models/components/integrationresponsedto.md) | :heavy_check_mark:                                                                     | N/A                                                                                    |

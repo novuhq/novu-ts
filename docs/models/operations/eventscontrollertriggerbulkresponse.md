@@ -11,23 +11,18 @@ let value: EventsControllerTriggerBulkResponse = {
       "<value>",
     ],
   },
-  result: {
-    statusCode: 404,
-    timestamp: "2024-12-12T13:00:00Z",
-    path: "/api/v1/resource",
-    message: "Resource not found.",
-    ctx: {
-      "workflowId": "some_wf_id",
-      "stepId": "some_wf_id",
+  result: [
+    {
+      acknowledged: false,
+      status: "no_workflow_steps_defined",
     },
-    errorId: "abc123",
-  },
+  ],
 };
 ```
 
 ## Fields
 
-| Field                                                  | Type                                                   | Required                                               | Description                                            |
-| ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ |
-| `headers`                                              | Record<string, *string*[]>                             | :heavy_check_mark:                                     | N/A                                                    |
-| `result`                                               | *operations.EventsControllerTriggerBulkResponseResult* | :heavy_check_mark:                                     | N/A                                                    |
+| Field                                                                                      | Type                                                                                       | Required                                                                                   | Description                                                                                |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| `headers`                                                                                  | Record<string, *string*[]>                                                                 | :heavy_check_mark:                                                                         | N/A                                                                                        |
+| `result`                                                                                   | [components.TriggerEventResponseDto](../../models/components/triggereventresponsedto.md)[] | :heavy_check_mark:                                                                         | N/A                                                                                        |

@@ -24,7 +24,9 @@ let value: EventsControllerTriggerBulkRequest = {
             },
           },
         },
-        to: "SUBSCRIBER_ID",
+        to: {
+          subscriberId: "<id>",
+        },
       },
     ],
   },

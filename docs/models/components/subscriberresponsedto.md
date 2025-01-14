@@ -9,7 +9,7 @@ let value: SubscriberResponseDto = {
   subscriberId: "<id>",
   channels: [
     {
-      providerId: "msteams",
+      providerId: "apns",
       credentials: {
         webhookUrl: "https://example.com/webhook",
         channel: "general",
@@ -30,8 +30,8 @@ let value: SubscriberResponseDto = {
   organizationId: "<id>",
   environmentId: "<id>",
   deleted: false,
-  createdAt: "1732067406038",
-  updatedAt: "1736843970917",
+  createdAt: "1714475628410",
+  updatedAt: "1736830737194",
 };
 ```
 

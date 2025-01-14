@@ -7,7 +7,7 @@ Status of the trigger
 ```typescript
 import { Status } from "@novu/api/models/components";
 
-let value: Status = "no_tenant_found";
+let value: Status = "trigger_not_active";
 ```
 
 ## Values

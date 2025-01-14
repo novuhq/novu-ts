@@ -7,7 +7,6 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
-import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
@@ -39,7 +38,6 @@ export type MessagesControllerDeleteMessagesByTransactionIdRequest = {
 
 export type MessagesControllerDeleteMessagesByTransactionIdResponse = {
   headers: { [k: string]: Array<string> };
-  result: components.ErrorDto;
 };
 
 /** @internal */
@@ -150,18 +148,15 @@ export const MessagesControllerDeleteMessagesByTransactionIdResponse$inboundSche
     unknown
   > = z.object({
     Headers: z.record(z.array(z.string())),
-    Result: components.ErrorDto$inboundSchema,
   }).transform((v) => {
     return remap$(v, {
       "Headers": "headers",
-      "Result": "result",
     });
   });
 
 /** @internal */
 export type MessagesControllerDeleteMessagesByTransactionIdResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
-  Result: components.ErrorDto$Outbound;
 };
 
 /** @internal */
@@ -172,11 +167,9 @@ export const MessagesControllerDeleteMessagesByTransactionIdResponse$outboundSch
     MessagesControllerDeleteMessagesByTransactionIdResponse
   > = z.object({
     headers: z.record(z.array(z.string())),
-    result: components.ErrorDto$outboundSchema,
   }).transform((v) => {
     return remap$(v, {
       headers: "Headers",
-      result: "Result",
     });
   });
 

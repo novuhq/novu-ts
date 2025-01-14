@@ -76,8 +76,9 @@ run();
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| errors.ErrorDto              | 400, 401, 403, 404, 409, 500 | application/json             |
-| errors.ValidationErrorDto    | 422                          | application/json             |
-| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
+| Error Type                                  | Status Code                                 | Content Type                                |
+| ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
+| errors.ErrorDto                             | 400, 401, 403, 404, 405, 409, 413, 415, 500 | application/json                            |
+| errors.ErrorDto                             | 414                                         | application/json                            |
+| errors.ValidationErrorDto                   | 422                                         | application/json                            |
+| errors.SDKError                             | 4XX, 5XX                                    | \*/\*                                       |

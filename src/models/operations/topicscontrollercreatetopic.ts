@@ -17,13 +17,9 @@ export type TopicsControllerCreateTopicRequest = {
   createTopicRequestDto: components.CreateTopicRequestDto;
 };
 
-export type TopicsControllerCreateTopicResponseResult =
-  | components.CreateTopicResponseDto
-  | components.ErrorDto;
-
 export type TopicsControllerCreateTopicResponse = {
   headers: { [k: string]: Array<string> };
-  result: components.CreateTopicResponseDto | components.ErrorDto;
+  result: components.CreateTopicResponseDto;
 };
 
 /** @internal */
@@ -98,84 +94,13 @@ export function topicsControllerCreateTopicRequestFromJSON(
 }
 
 /** @internal */
-export const TopicsControllerCreateTopicResponseResult$inboundSchema: z.ZodType<
-  TopicsControllerCreateTopicResponseResult,
-  z.ZodTypeDef,
-  unknown
-> = z.union([
-  components.CreateTopicResponseDto$inboundSchema,
-  components.ErrorDto$inboundSchema,
-]);
-
-/** @internal */
-export type TopicsControllerCreateTopicResponseResult$Outbound =
-  | components.CreateTopicResponseDto$Outbound
-  | components.ErrorDto$Outbound;
-
-/** @internal */
-export const TopicsControllerCreateTopicResponseResult$outboundSchema:
-  z.ZodType<
-    TopicsControllerCreateTopicResponseResult$Outbound,
-    z.ZodTypeDef,
-    TopicsControllerCreateTopicResponseResult
-  > = z.union([
-    components.CreateTopicResponseDto$outboundSchema,
-    components.ErrorDto$outboundSchema,
-  ]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TopicsControllerCreateTopicResponseResult$ {
-  /** @deprecated use `TopicsControllerCreateTopicResponseResult$inboundSchema` instead. */
-  export const inboundSchema =
-    TopicsControllerCreateTopicResponseResult$inboundSchema;
-  /** @deprecated use `TopicsControllerCreateTopicResponseResult$outboundSchema` instead. */
-  export const outboundSchema =
-    TopicsControllerCreateTopicResponseResult$outboundSchema;
-  /** @deprecated use `TopicsControllerCreateTopicResponseResult$Outbound` instead. */
-  export type Outbound = TopicsControllerCreateTopicResponseResult$Outbound;
-}
-
-export function topicsControllerCreateTopicResponseResultToJSON(
-  topicsControllerCreateTopicResponseResult:
-    TopicsControllerCreateTopicResponseResult,
-): string {
-  return JSON.stringify(
-    TopicsControllerCreateTopicResponseResult$outboundSchema.parse(
-      topicsControllerCreateTopicResponseResult,
-    ),
-  );
-}
-
-export function topicsControllerCreateTopicResponseResultFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  TopicsControllerCreateTopicResponseResult,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      TopicsControllerCreateTopicResponseResult$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'TopicsControllerCreateTopicResponseResult' from JSON`,
-  );
-}
-
-/** @internal */
 export const TopicsControllerCreateTopicResponse$inboundSchema: z.ZodType<
   TopicsControllerCreateTopicResponse,
   z.ZodTypeDef,
   unknown
 > = z.object({
   Headers: z.record(z.array(z.string())),
-  Result: z.union([
-    components.CreateTopicResponseDto$inboundSchema,
-    components.ErrorDto$inboundSchema,
-  ]),
+  Result: components.CreateTopicResponseDto$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "Headers": "headers",
@@ -186,9 +111,7 @@ export const TopicsControllerCreateTopicResponse$inboundSchema: z.ZodType<
 /** @internal */
 export type TopicsControllerCreateTopicResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
-  Result:
-    | components.CreateTopicResponseDto$Outbound
-    | components.ErrorDto$Outbound;
+  Result: components.CreateTopicResponseDto$Outbound;
 };
 
 /** @internal */
@@ -198,10 +121,7 @@ export const TopicsControllerCreateTopicResponse$outboundSchema: z.ZodType<
   TopicsControllerCreateTopicResponse
 > = z.object({
   headers: z.record(z.array(z.string())),
-  result: z.union([
-    components.CreateTopicResponseDto$outboundSchema,
-    components.ErrorDto$outboundSchema,
-  ]),
+  result: components.CreateTopicResponseDto$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
     headers: "Headers",

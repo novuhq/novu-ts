@@ -35,6 +35,7 @@ export async function integrationsSetAsPrimary(
   Result<
     operations.IntegrationsControllerSetIntegrationAsPrimaryResponse,
     | errors.ErrorDto
+    | errors.ErrorDto
     | errors.ValidationErrorDto
     | SDKError
     | SDKValidationError
@@ -133,7 +134,11 @@ export async function integrationsSetAsPrimary(
       "401",
       "403",
       "404",
+      "405",
       "409",
+      "413",
+      "414",
+      "415",
       "422",
       "429",
       "4XX",
@@ -156,6 +161,7 @@ export async function integrationsSetAsPrimary(
   const [result] = await M.match<
     operations.IntegrationsControllerSetIntegrationAsPrimaryResponse,
     | errors.ErrorDto
+    | errors.ErrorDto
     | errors.ValidationErrorDto
     | SDKError
     | SDKValidationError
@@ -171,10 +177,13 @@ export async function integrationsSetAsPrimary(
         .IntegrationsControllerSetIntegrationAsPrimaryResponse$inboundSchema,
       { hdrs: true, key: "Result" },
     ),
-    M.jsonErr([400, 401, 403, 409, 500], errors.ErrorDto$inboundSchema, {
-      hdrs: true,
-    }),
+    M.jsonErr(
+      [400, 401, 403, 405, 409, 413, 415, 500],
+      errors.ErrorDto$inboundSchema,
+      { hdrs: true },
+    ),
     M.fail([404, 429, 503]),
+    M.jsonErr(414, errors.ErrorDto$inboundSchema),
     M.jsonErr(422, errors.ValidationErrorDto$inboundSchema, { hdrs: true }),
     M.fail(["4XX", "5XX"]),
   )(response, { extraFields: responseFields });

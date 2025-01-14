@@ -17,13 +17,9 @@ export type SubscribersControllerBulkCreateSubscribersRequest = {
   bulkSubscriberCreateDto: components.BulkSubscriberCreateDto;
 };
 
-export type SubscribersControllerBulkCreateSubscribersResponseResult =
-  | components.BulkCreateSubscriberResponseDto
-  | components.ErrorDto;
-
 export type SubscribersControllerBulkCreateSubscribersResponse = {
   headers: { [k: string]: Array<string> };
-  result: components.BulkCreateSubscriberResponseDto | components.ErrorDto;
+  result: components.BulkCreateSubscriberResponseDto;
 };
 
 /** @internal */
@@ -108,74 +104,6 @@ export function subscribersControllerBulkCreateSubscribersRequestFromJSON(
 }
 
 /** @internal */
-export const SubscribersControllerBulkCreateSubscribersResponseResult$inboundSchema:
-  z.ZodType<
-    SubscribersControllerBulkCreateSubscribersResponseResult,
-    z.ZodTypeDef,
-    unknown
-  > = z.union([
-    components.BulkCreateSubscriberResponseDto$inboundSchema,
-    components.ErrorDto$inboundSchema,
-  ]);
-
-/** @internal */
-export type SubscribersControllerBulkCreateSubscribersResponseResult$Outbound =
-  | components.BulkCreateSubscriberResponseDto$Outbound
-  | components.ErrorDto$Outbound;
-
-/** @internal */
-export const SubscribersControllerBulkCreateSubscribersResponseResult$outboundSchema:
-  z.ZodType<
-    SubscribersControllerBulkCreateSubscribersResponseResult$Outbound,
-    z.ZodTypeDef,
-    SubscribersControllerBulkCreateSubscribersResponseResult
-  > = z.union([
-    components.BulkCreateSubscriberResponseDto$outboundSchema,
-    components.ErrorDto$outboundSchema,
-  ]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SubscribersControllerBulkCreateSubscribersResponseResult$ {
-  /** @deprecated use `SubscribersControllerBulkCreateSubscribersResponseResult$inboundSchema` instead. */
-  export const inboundSchema =
-    SubscribersControllerBulkCreateSubscribersResponseResult$inboundSchema;
-  /** @deprecated use `SubscribersControllerBulkCreateSubscribersResponseResult$outboundSchema` instead. */
-  export const outboundSchema =
-    SubscribersControllerBulkCreateSubscribersResponseResult$outboundSchema;
-  /** @deprecated use `SubscribersControllerBulkCreateSubscribersResponseResult$Outbound` instead. */
-  export type Outbound =
-    SubscribersControllerBulkCreateSubscribersResponseResult$Outbound;
-}
-
-export function subscribersControllerBulkCreateSubscribersResponseResultToJSON(
-  subscribersControllerBulkCreateSubscribersResponseResult:
-    SubscribersControllerBulkCreateSubscribersResponseResult,
-): string {
-  return JSON.stringify(
-    SubscribersControllerBulkCreateSubscribersResponseResult$outboundSchema
-      .parse(subscribersControllerBulkCreateSubscribersResponseResult),
-  );
-}
-
-export function subscribersControllerBulkCreateSubscribersResponseResultFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  SubscribersControllerBulkCreateSubscribersResponseResult,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      SubscribersControllerBulkCreateSubscribersResponseResult$inboundSchema
-        .parse(JSON.parse(x)),
-    `Failed to parse 'SubscribersControllerBulkCreateSubscribersResponseResult' from JSON`,
-  );
-}
-
-/** @internal */
 export const SubscribersControllerBulkCreateSubscribersResponse$inboundSchema:
   z.ZodType<
     SubscribersControllerBulkCreateSubscribersResponse,
@@ -183,10 +111,7 @@ export const SubscribersControllerBulkCreateSubscribersResponse$inboundSchema:
     unknown
   > = z.object({
     Headers: z.record(z.array(z.string())),
-    Result: z.union([
-      components.BulkCreateSubscriberResponseDto$inboundSchema,
-      components.ErrorDto$inboundSchema,
-    ]),
+    Result: components.BulkCreateSubscriberResponseDto$inboundSchema,
   }).transform((v) => {
     return remap$(v, {
       "Headers": "headers",
@@ -197,9 +122,7 @@ export const SubscribersControllerBulkCreateSubscribersResponse$inboundSchema:
 /** @internal */
 export type SubscribersControllerBulkCreateSubscribersResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
-  Result:
-    | components.BulkCreateSubscriberResponseDto$Outbound
-    | components.ErrorDto$Outbound;
+  Result: components.BulkCreateSubscriberResponseDto$Outbound;
 };
 
 /** @internal */
@@ -210,10 +133,7 @@ export const SubscribersControllerBulkCreateSubscribersResponse$outboundSchema:
     SubscribersControllerBulkCreateSubscribersResponse
   > = z.object({
     headers: z.record(z.array(z.string())),
-    result: z.union([
-      components.BulkCreateSubscriberResponseDto$outboundSchema,
-      components.ErrorDto$outboundSchema,
-    ]),
+    result: components.BulkCreateSubscriberResponseDto$outboundSchema,
   }).transform((v) => {
     return remap$(v, {
       headers: "Headers",

@@ -17,7 +17,7 @@ let value: IntegrationsControllerSetIntegrationAsPrimaryResponse = {
     name: "<value>",
     identifier: "<value>",
     providerId: "<id>",
-    channel: "sms",
+    channel: "push",
     credentials: {},
     active: false,
     deleted: false,

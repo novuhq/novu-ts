@@ -12,22 +12,26 @@ let value: SubscribersControllerBulkCreateSubscribersResponse = {
     ],
   },
   result: {
-    statusCode: 404,
-    timestamp: "2024-12-12T13:00:00Z",
-    path: "/api/v1/resource",
-    message: "Resource not found.",
-    ctx: {
-      "workflowId": "some_wf_id",
-      "stepId": "some_wf_id",
-    },
-    errorId: "abc123",
+    updated: [
+      {
+        subscriberId: "<id>",
+      },
+    ],
+    created: [
+      {
+        subscriberId: "<id>",
+      },
+    ],
+    failed: [
+      {},
+    ],
   },
 };
 ```
 
 ## Fields
 
-| Field                                                                 | Type                                                                  | Required                                                              | Description                                                           |
-| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
-| `headers`                                                             | Record<string, *string*[]>                                            | :heavy_check_mark:                                                    | N/A                                                                   |
-| `result`                                                              | *operations.SubscribersControllerBulkCreateSubscribersResponseResult* | :heavy_check_mark:                                                    | N/A                                                                   |
+| Field                                                                                                    | Type                                                                                                     | Required                                                                                                 | Description                                                                                              |
+| -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| `headers`                                                                                                | Record<string, *string*[]>                                                                               | :heavy_check_mark:                                                                                       | N/A                                                                                                      |
+| `result`                                                                                                 | [components.BulkCreateSubscriberResponseDto](../../models/components/bulkcreatesubscriberresponsedto.md) | :heavy_check_mark:                                                                                       | N/A                                                                                                      |

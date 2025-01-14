@@ -15,7 +15,7 @@ let value: SubscribersControllerCreateSubscriberResponse = {
     subscriberId: "<id>",
     channels: [
       {
-        providerId: "fcm",
+        providerId: "rocket-chat",
         credentials: {
           webhookUrl: "https://example.com/webhook",
           channel: "general",
@@ -36,15 +36,15 @@ let value: SubscribersControllerCreateSubscriberResponse = {
     organizationId: "<id>",
     environmentId: "<id>",
     deleted: false,
-    createdAt: "1735086657521",
-    updatedAt: "1736833127652",
+    createdAt: "1718404519525",
+    updatedAt: "1736800198340",
   },
 };
 ```
 
 ## Fields
 
-| Field                                                            | Type                                                             | Required                                                         | Description                                                      |
-| ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
-| `headers`                                                        | Record<string, *string*[]>                                       | :heavy_check_mark:                                               | N/A                                                              |
-| `result`                                                         | *operations.SubscribersControllerCreateSubscriberResponseResult* | :heavy_check_mark:                                               | N/A                                                              |
+| Field                                                                                | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `headers`                                                                            | Record<string, *string*[]>                                                           | :heavy_check_mark:                                                                   | N/A                                                                                  |
+| `result`                                                                             | [components.SubscriberResponseDto](../../models/components/subscriberresponsedto.md) | :heavy_check_mark:                                                                   | N/A                                                                                  |

@@ -5,7 +5,7 @@
 ```typescript
 import { BuilderFieldType } from "@novu/api/models/components";
 
-let value: BuilderFieldType = "MULTI_LIST";
+let value: BuilderFieldType = "STATEMENT";
 ```
 
 ## Values

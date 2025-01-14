@@ -428,11 +428,12 @@ run();
 
 Some methods specify known errors which can be thrown. All the known errors are enumerated in the `models/errors/errors.ts` module. The known errors for a method are documented under the *Errors* tables in SDK docs. For example, the `trigger` method may throw the following errors:
 
-| Error Type                | Status Code                  | Content Type     |
-| ------------------------- | ---------------------------- | ---------------- |
-| errors.ErrorDto           | 400, 401, 403, 404, 409, 500 | application/json |
-| errors.ValidationErrorDto | 422                          | application/json |
-| errors.SDKError           | 4XX, 5XX                     | \*/\*            |
+| Error Type                | Status Code                                 | Content Type     |
+| ------------------------- | ------------------------------------------- | ---------------- |
+| errors.ErrorDto           | 400, 401, 403, 404, 405, 409, 413, 415, 500 | application/json |
+| errors.ErrorDto           | 414                                         | application/json |
+| errors.ValidationErrorDto | 422                                         | application/json |
+| errors.SDKError           | 4XX, 5XX                                    | \*/\*            |
 
 If the method throws an error and it is not captured by the known errors, it will default to throwing a `SDKError`.
 
@@ -475,6 +476,11 @@ async function run() {
         console.error(err.pretty());
         // Raw value may also be inspected
         console.error(err.rawValue);
+        return;
+      }
+      case (err instanceof ErrorDto): {
+        // Handle err.data$: ErrorDtoData
+        console.error(err);
         return;
       }
       case (err instanceof ErrorDto): {

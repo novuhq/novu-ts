@@ -40,6 +40,7 @@ export async function subscribersUpdate(
   Result<
     operations.SubscribersControllerUpdateSubscriberResponse,
     | errors.ErrorDto
+    | errors.ErrorDto
     | errors.ValidationErrorDto
     | SDKError
     | SDKValidationError
@@ -138,7 +139,11 @@ export async function subscribersUpdate(
       "401",
       "403",
       "404",
+      "405",
       "409",
+      "413",
+      "414",
+      "415",
       "422",
       "429",
       "4XX",
@@ -161,6 +166,7 @@ export async function subscribersUpdate(
   const [result] = await M.match<
     operations.SubscribersControllerUpdateSubscriberResponse,
     | errors.ErrorDto
+    | errors.ErrorDto
     | errors.ValidationErrorDto
     | SDKError
     | SDKValidationError
@@ -175,9 +181,12 @@ export async function subscribersUpdate(
       operations.SubscribersControllerUpdateSubscriberResponse$inboundSchema,
       { hdrs: true, key: "Result" },
     ),
-    M.jsonErr([400, 401, 403, 404, 409, 500], errors.ErrorDto$inboundSchema, {
-      hdrs: true,
-    }),
+    M.jsonErr(
+      [400, 401, 403, 404, 405, 409, 413, 415, 500],
+      errors.ErrorDto$inboundSchema,
+      { hdrs: true },
+    ),
+    M.jsonErr(414, errors.ErrorDto$inboundSchema),
     M.jsonErr(422, errors.ValidationErrorDto$inboundSchema, { hdrs: true }),
     M.fail([429, 503]),
     M.fail(["4XX", "5XX"]),

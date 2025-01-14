@@ -20,8 +20,8 @@ let value: NotificationsControllerListNotificationsResponse = {
         transactionId: "<id>",
       },
     ],
-    pageSize: 9636.63,
-    page: 3834.41,
+    pageSize: 6458.94,
+    page: 4375.87,
   },
 };
 ```
