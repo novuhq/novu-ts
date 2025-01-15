@@ -7,7 +7,7 @@ Type of button for the action result
 ```typescript
 import { ButtonTypeEnum } from "@novu/api/models/components";
 
-let value: ButtonTypeEnum = "secondary";
+let value: ButtonTypeEnum = "primary";
 ```
 
 ## Values

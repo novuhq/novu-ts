@@ -14,11 +14,11 @@ import {
   NotificationGroup$outboundSchema,
 } from "./notificationgroup.js";
 import {
-  NotificationStep,
-  NotificationStep$inboundSchema,
-  NotificationStep$Outbound,
-  NotificationStep$outboundSchema,
-} from "./notificationstep.js";
+  NotificationStepDto,
+  NotificationStepDto$inboundSchema,
+  NotificationStepDto$Outbound,
+  NotificationStepDto$outboundSchema,
+} from "./notificationstepdto.js";
 import {
   NotificationTrigger,
   NotificationTrigger$inboundSchema,
@@ -45,7 +45,7 @@ export type WorkflowResponse = {
   preferenceSettings: PreferenceChannels;
   critical: boolean;
   tags: Array<string>;
-  steps: Array<NotificationStep>;
+  steps: Array<NotificationStepDto>;
   organizationId: string;
   creatorId: string;
   environmentId: string;
@@ -170,7 +170,7 @@ export const WorkflowResponse$inboundSchema: z.ZodType<
   preferenceSettings: PreferenceChannels$inboundSchema,
   critical: z.boolean(),
   tags: z.array(z.string()),
-  steps: z.array(NotificationStep$inboundSchema),
+  steps: z.array(NotificationStepDto$inboundSchema),
   _organizationId: z.string(),
   _creatorId: z.string(),
   _environmentId: z.string(),
@@ -206,7 +206,7 @@ export type WorkflowResponse$Outbound = {
   preferenceSettings: PreferenceChannels$Outbound;
   critical: boolean;
   tags: Array<string>;
-  steps: Array<NotificationStep$Outbound>;
+  steps: Array<NotificationStepDto$Outbound>;
   _organizationId: string;
   _creatorId: string;
   _environmentId: string;
@@ -235,7 +235,7 @@ export const WorkflowResponse$outboundSchema: z.ZodType<
   preferenceSettings: PreferenceChannels$outboundSchema,
   critical: z.boolean(),
   tags: z.array(z.string()),
-  steps: z.array(NotificationStep$outboundSchema),
+  steps: z.array(NotificationStepDto$outboundSchema),
   organizationId: z.string(),
   creatorId: z.string(),
   environmentId: z.string(),

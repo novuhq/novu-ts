@@ -1,11 +1,13 @@
-# NotificationStepVariantParentId
+# ControlVariables
+
+Control variables
 
 ## Example Usage
 
 ```typescript
-import { NotificationStepVariantParentId } from "@novu/api/models/components";
+import { ControlVariables } from "@novu/api/models/components";
 
-let value: NotificationStepVariantParentId = {};
+let value: ControlVariables = {};
 ```
 
 ## Fields

@@ -14,6 +14,7 @@ let value: NotificationsControllerGetNotificationResponse = {
   result: {
     environmentId: "<id>",
     organizationId: "<id>",
+    subscriberId: "<id>",
     transactionId: "<id>",
   },
 };

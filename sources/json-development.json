@@ -25175,7 +25175,7 @@
           "name"
         ]
       },
-      "NotificationTrigger": {
+      "NotificationTriggerDto": {
         "type": "object",
         "properties": {
           "type": {
@@ -25225,7 +25225,7 @@
             "description": "Triggers of the template",
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/NotificationTrigger"
+              "$ref": "#/components/schemas/NotificationTriggerDto"
             }
           }
         },
@@ -25234,7 +25234,109 @@
           "triggers"
         ]
       },
-      "DigestWithEventsDto": {
+      "DigestTypeEnum": {
+        "type": "string",
+        "description": "The Digest Type",
+        "enum": [
+          "regular",
+          "backoff",
+          "timed"
+        ]
+      },
+      "DigestUnitEnum": {
+        "type": "string",
+        "description": "Regular digest: Unit for backoff",
+        "enum": [
+          "seconds",
+          "minutes",
+          "hours",
+          "days",
+          "weeks",
+          "months"
+        ]
+      },
+      "OrdinalEnum": {
+        "type": "string",
+        "description": "Ordinal position for the digest",
+        "enum": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "last"
+        ]
+      },
+      "OrdinalValueEnum": {
+        "type": "string",
+        "description": "Value of the ordinal",
+        "enum": [
+          "day",
+          "weekday",
+          "weekend",
+          "sunday",
+          "monday",
+          "tuesday",
+          "wednesday",
+          "thursday",
+          "friday",
+          "saturday"
+        ]
+      },
+      "MonthlyTypeEnum": {
+        "type": "string",
+        "description": "Type of monthly schedule",
+        "enum": [
+          "each",
+          "on"
+        ]
+      },
+      "DigestTimedConfigDto": {
+        "type": "object",
+        "properties": {
+          "atTime": {
+            "type": "string",
+            "description": "Time at which the digest is triggered"
+          },
+          "weekDays": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "monday",
+                "tuesday",
+                "wednesday",
+                "thursday",
+                "friday",
+                "saturday",
+                "sunday"
+              ]
+            },
+            "description": "Days of the week for the digest"
+          },
+          "monthDays": {
+            "description": "Specific days of the month for the digest",
+            "type": "array",
+            "items": {
+              "type": "number"
+            }
+          },
+          "ordinal": {
+            "$ref": "#/components/schemas/OrdinalEnum"
+          },
+          "ordinalValue": {
+            "$ref": "#/components/schemas/OrdinalValueEnum"
+          },
+          "monthlyType": {
+            "$ref": "#/components/schemas/MonthlyTypeEnum"
+          },
+          "cronExpression": {
+            "type": "string",
+            "description": "Cron expression for scheduling"
+          }
+        }
+      },
+      "DigestMetadataDto": {
         "type": "object",
         "properties": {
           "digestKey": {
@@ -25257,6 +25359,9 @@
             "type": "string",
             "description": "Unit of the digest"
           },
+          "type": {
+            "$ref": "#/components/schemas/DigestTypeEnum"
+          },
           "events": {
             "type": "array",
             "items": {
@@ -25264,8 +25369,46 @@
               "additionalProperties": true
             },
             "description": "Optional array of events associated with the digest, represented as key-value pairs"
+          },
+          "backoff": {
+            "type": "boolean",
+            "description": "Regular digest: Indicates if backoff is enabled for the regular digest"
+          },
+          "backoffAmount": {
+            "type": "number",
+            "description": "Regular digest: Amount for backoff"
+          },
+          "backoffUnit": {
+            "$ref": "#/components/schemas/DigestUnitEnum"
+          },
+          "updateMode": {
+            "type": "boolean",
+            "description": "Regular digest: Indicates if the digest should update"
+          },
+          "timed": {
+            "description": "Configuration for timed digest",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/DigestTimedConfigDto"
+              }
+            ]
           }
-        }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "ExecutionDetailsStatusEnum": {
+        "type": "string",
+        "description": "Status of the execution detail",
+        "enum": [
+          "Success",
+          "Warning",
+          "Failed",
+          "Pending",
+          "Queued",
+          "ReadConfirmation"
+        ]
       },
       "ProvidersIdEnum": {
         "type": "string",
@@ -25342,6 +25485,16 @@
           "whatsapp-business"
         ]
       },
+      "ExecutionDetailsSourceEnum": {
+        "type": "string",
+        "description": "Source of the execution detail",
+        "enum": [
+          "Credentials",
+          "Internal",
+          "Payload",
+          "Webhook"
+        ]
+      },
       "ActivityNotificationExecutionDetailResponseDto": {
         "type": "object",
         "properties": {
@@ -25354,16 +25507,7 @@
             "description": "Creation time of the execution detail"
           },
           "status": {
-            "enum": [
-              "Success",
-              "Warning",
-              "Failed",
-              "Pending",
-              "Queued",
-              "ReadConfirmation"
-            ],
-            "type": "string",
-            "description": "Status of the execution detail"
+            "$ref": "#/components/schemas/ExecutionDetailsStatusEnum"
           },
           "detail": {
             "type": "string",
@@ -25385,14 +25529,7 @@
             "description": "Raw data of the execution"
           },
           "source": {
-            "enum": [
-              "Credentials",
-              "Internal",
-              "Payload",
-              "Webhook"
-            ],
-            "type": "string",
-            "description": "Source of the execution detail"
+            "$ref": "#/components/schemas/ExecutionDetailsSourceEnum"
           }
         },
         "required": [
@@ -25405,9 +25542,91 @@
           "source"
         ]
       },
-      "StepFilter": {
+      "BuilderFieldTypeEnum": {
+        "type": "string",
+        "enum": [
+          "BOOLEAN",
+          "TEXT",
+          "DATE",
+          "NUMBER",
+          "STATEMENT",
+          "LIST",
+          "MULTI_LIST",
+          "GROUP"
+        ]
+      },
+      "FieldFilterPartDto": {
         "type": "object",
-        "properties": {}
+        "properties": {
+          "field": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "operator": {
+            "type": "string",
+            "enum": [
+              "LARGER",
+              "SMALLER",
+              "LARGER_EQUAL",
+              "SMALLER_EQUAL",
+              "EQUAL",
+              "NOT_EQUAL",
+              "ALL_IN",
+              "ANY_IN",
+              "NOT_IN",
+              "BETWEEN",
+              "NOT_BETWEEN",
+              "LIKE",
+              "NOT_LIKE",
+              "IN"
+            ]
+          },
+          "on": {
+            "type": "string",
+            "enum": [
+              "subscriber",
+              "payload"
+            ]
+          }
+        },
+        "required": [
+          "field",
+          "value",
+          "operator",
+          "on"
+        ]
+      },
+      "StepFilterDto": {
+        "type": "object",
+        "properties": {
+          "isNegated": {
+            "type": "boolean"
+          },
+          "type": {
+            "$ref": "#/components/schemas/BuilderFieldTypeEnum"
+          },
+          "value": {
+            "type": "string",
+            "enum": [
+              "AND",
+              "OR"
+            ]
+          },
+          "children": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FieldFilterPartDto"
+            }
+          }
+        },
+        "required": [
+          "isNegated",
+          "type",
+          "value",
+          "children"
+        ]
       },
       "MessageTemplateDto": {
         "type": "object",
@@ -25424,11 +25643,27 @@
             "type": "boolean",
             "description": "Whether the step is active or not"
           },
+          "replyCallback": {
+            "type": "object",
+            "description": "Reply callback settings"
+          },
+          "controlVariables": {
+            "type": "object",
+            "description": "Control variables"
+          },
+          "metadata": {
+            "type": "object",
+            "description": "Metadata for the workflow step"
+          },
+          "issues": {
+            "type": "object",
+            "description": "Step issues"
+          },
           "filters": {
             "description": "Filter criteria for the step",
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/StepFilter"
+              "$ref": "#/components/schemas/StepFilterDto"
             }
           },
           "template": {
@@ -25438,12 +25673,33 @@
                 "$ref": "#/components/schemas/MessageTemplateDto"
               }
             ]
+          },
+          "variants": {
+            "description": "Variants of the step",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ActivityNotificationStepResponseDto"
+            }
+          },
+          "_templateId": {
+            "type": "string",
+            "description": "The identifier for the template associated with this step"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the step"
+          },
+          "_parentId": {
+            "type": "string",
+            "nullable": true,
+            "description": "The unique identifier for the parent step"
           }
         },
         "required": [
           "_id",
           "active",
-          "filters"
+          "filters",
+          "_templateId"
         ]
       },
       "ActivityNotificationJobResponseDto": {
@@ -25472,7 +25728,7 @@
             "description": "Optional digest for the job, including metadata and events",
             "allOf": [
               {
-                "$ref": "#/components/schemas/DigestWithEventsDto"
+                "$ref": "#/components/schemas/DigestMetadataDto"
               }
             ]
           },
@@ -25531,13 +25787,29 @@
             "type": "string",
             "description": "Organization ID of the notification"
           },
+          "_subscriberId": {
+            "type": "string",
+            "description": "Subscriber ID of the notification"
+          },
           "transactionId": {
             "type": "string",
             "description": "Transaction ID of the notification"
           },
+          "_templateId": {
+            "type": "string",
+            "description": "Template ID of the notification"
+          },
+          "_digestedNotificationId": {
+            "type": "string",
+            "description": "Digested Notification ID"
+          },
           "createdAt": {
             "type": "string",
             "description": "Creation time of the notification"
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "Last updated time of the notification"
           },
           "channels": {
             "type": "array",
@@ -25567,11 +25839,31 @@
             "items": {
               "$ref": "#/components/schemas/ActivityNotificationJobResponseDto"
             }
+          },
+          "payload": {
+            "type": "object",
+            "description": "Payload of the notification"
+          },
+          "tags": {
+            "description": "Tags associated with the notification",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "controls": {
+            "type": "object",
+            "description": "Controls associated with the notification"
+          },
+          "to": {
+            "type": "object",
+            "description": "To field for subscriber definition"
           }
         },
         "required": [
           "_environmentId",
           "_organizationId",
+          "_subscriberId",
           "transactionId"
         ]
       },
@@ -25786,92 +26078,6 @@
             "type": "string"
           }
         }
-      },
-      "BuilderFieldType": {
-        "type": "string",
-        "enum": [
-          "BOOLEAN",
-          "TEXT",
-          "DATE",
-          "NUMBER",
-          "STATEMENT",
-          "LIST",
-          "MULTI_LIST",
-          "GROUP"
-        ]
-      },
-      "FieldFilterPartDto": {
-        "type": "object",
-        "properties": {
-          "field": {
-            "type": "string"
-          },
-          "value": {
-            "type": "string"
-          },
-          "operator": {
-            "type": "string",
-            "enum": [
-              "LARGER",
-              "SMALLER",
-              "LARGER_EQUAL",
-              "SMALLER_EQUAL",
-              "EQUAL",
-              "NOT_EQUAL",
-              "ALL_IN",
-              "ANY_IN",
-              "NOT_IN",
-              "BETWEEN",
-              "NOT_BETWEEN",
-              "LIKE",
-              "NOT_LIKE",
-              "IN"
-            ]
-          },
-          "on": {
-            "type": "string",
-            "enum": [
-              "subscriber",
-              "payload"
-            ]
-          }
-        },
-        "required": [
-          "field",
-          "value",
-          "operator",
-          "on"
-        ]
-      },
-      "StepFilterDto": {
-        "type": "object",
-        "properties": {
-          "isNegated": {
-            "type": "boolean"
-          },
-          "type": {
-            "$ref": "#/components/schemas/BuilderFieldType"
-          },
-          "value": {
-            "type": "string",
-            "enum": [
-              "AND",
-              "OR"
-            ]
-          },
-          "children": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/FieldFilterPartDto"
-            }
-          }
-        },
-        "required": [
-          "isNegated",
-          "type",
-          "value",
-          "children"
-        ]
       },
       "IntegrationResponseDto": {
         "type": "object",
@@ -27526,94 +27732,67 @@
         "type": "object",
         "properties": {}
       },
-      "NotificationStepVariant": {
+      "ReplyCallback": {
         "type": "object",
         "properties": {
-          "_id": {
-            "type": "string"
-          },
-          "uuid": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "_templateId": {
-            "type": "string"
-          },
           "active": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "Indicates whether the reply callback is active."
           },
-          "shouldStopOnFail": {
-            "type": "boolean"
-          },
-          "template": {
-            "$ref": "#/components/schemas/MessageTemplate"
-          },
-          "filters": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/StepFilterDto"
-            }
-          },
-          "_parentId": {
-            "type": "object"
-          },
-          "metadata": {
-            "oneOf": [
-              {
-                "$ref": "#/components/schemas/DigestRegularMetadata"
-              },
-              {
-                "$ref": "#/components/schemas/DigestTimedMetadata"
-              },
-              {
-                "$ref": "#/components/schemas/DelayRegularMetadata"
-              },
-              {
-                "$ref": "#/components/schemas/DelayScheduledMetadata"
-              }
-            ]
-          },
-          "replyCallback": {
-            "type": "object"
+          "url": {
+            "type": "string",
+            "description": "The URL to which replies should be sent."
           }
         }
       },
-      "NotificationStep": {
+      "NotificationStepData": {
         "type": "object",
         "properties": {
           "_id": {
-            "type": "string"
+            "type": "string",
+            "description": "Unique identifier for the notification step."
           },
           "uuid": {
-            "type": "string"
+            "type": "string",
+            "description": "Universally unique identifier for the notification step."
           },
           "name": {
-            "type": "string"
+            "type": "string",
+            "description": "Name of the notification step."
           },
           "_templateId": {
-            "type": "string"
+            "type": "string",
+            "description": "ID of the template associated with this notification step."
           },
           "active": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "Indicates whether the notification step is active."
           },
           "shouldStopOnFail": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "Determines if the process should stop on failure."
           },
           "template": {
-            "$ref": "#/components/schemas/MessageTemplate"
+            "description": "Message template used in this notification step.",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MessageTemplate"
+              }
+            ]
           },
           "filters": {
+            "description": "Filters applied to this notification step.",
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/StepFilterDto"
             }
           },
           "_parentId": {
-            "type": "object"
+            "type": "string",
+            "description": "ID of the parent notification step, if applicable."
           },
           "metadata": {
+            "description": "Metadata associated with the workflow step. Can vary based on the type of step.",
             "oneOf": [
               {
                 "$ref": "#/components/schemas/DigestRegularMetadata"
@@ -27630,12 +27809,124 @@
             ]
           },
           "replyCallback": {
-            "type": "object"
-          },
-          "variants": {
-            "$ref": "#/components/schemas/NotificationStepVariant"
+            "description": "Callback information for replies, including whether it is active and the callback URL.",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ReplyCallback"
+              }
+            ]
           }
         }
+      },
+      "NotificationStepDto": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "Unique identifier for the notification step."
+          },
+          "uuid": {
+            "type": "string",
+            "description": "Universally unique identifier for the notification step."
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the notification step."
+          },
+          "_templateId": {
+            "type": "string",
+            "description": "ID of the template associated with this notification step."
+          },
+          "active": {
+            "type": "boolean",
+            "description": "Indicates whether the notification step is active."
+          },
+          "shouldStopOnFail": {
+            "type": "boolean",
+            "description": "Determines if the process should stop on failure."
+          },
+          "template": {
+            "description": "Message template used in this notification step.",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MessageTemplate"
+              }
+            ]
+          },
+          "filters": {
+            "description": "Filters applied to this notification step.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StepFilterDto"
+            }
+          },
+          "_parentId": {
+            "type": "string",
+            "description": "ID of the parent notification step, if applicable."
+          },
+          "metadata": {
+            "description": "Metadata associated with the workflow step. Can vary based on the type of step.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/DigestRegularMetadata"
+              },
+              {
+                "$ref": "#/components/schemas/DigestTimedMetadata"
+              },
+              {
+                "$ref": "#/components/schemas/DelayRegularMetadata"
+              },
+              {
+                "$ref": "#/components/schemas/DelayScheduledMetadata"
+              }
+            ]
+          },
+          "replyCallback": {
+            "description": "Callback information for replies, including whether it is active and the callback URL.",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ReplyCallback"
+              }
+            ]
+          },
+          "variants": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NotificationStepData"
+            }
+          }
+        }
+      },
+      "NotificationTrigger": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "event"
+            ]
+          },
+          "identifier": {
+            "type": "string"
+          },
+          "variables": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NotificationTriggerVariable"
+            }
+          },
+          "subscriberVariables": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NotificationTriggerVariable"
+            }
+          }
+        },
+        "required": [
+          "type",
+          "identifier",
+          "variables"
+        ]
       },
       "WorkflowResponse": {
         "type": "object",
@@ -27670,7 +27961,7 @@
           "steps": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/NotificationStep"
+              "$ref": "#/components/schemas/NotificationStepDto"
             }
           },
           "_organizationId": {

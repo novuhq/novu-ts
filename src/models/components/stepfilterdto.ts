@@ -8,10 +8,10 @@ import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
-  BuilderFieldType,
-  BuilderFieldType$inboundSchema,
-  BuilderFieldType$outboundSchema,
-} from "./builderfieldtype.js";
+  BuilderFieldTypeEnum,
+  BuilderFieldTypeEnum$inboundSchema,
+  BuilderFieldTypeEnum$outboundSchema,
+} from "./builderfieldtypeenum.js";
 import {
   FieldFilterPartDto,
   FieldFilterPartDto$inboundSchema,
@@ -27,7 +27,7 @@ export type Value = ClosedEnum<typeof Value>;
 
 export type StepFilterDto = {
   isNegated: boolean;
-  type: BuilderFieldType;
+  type: BuilderFieldTypeEnum;
   value: Value;
   children: Array<FieldFilterPartDto>;
 };
@@ -59,7 +59,7 @@ export const StepFilterDto$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   isNegated: z.boolean(),
-  type: BuilderFieldType$inboundSchema,
+  type: BuilderFieldTypeEnum$inboundSchema,
   value: Value$inboundSchema,
   children: z.array(FieldFilterPartDto$inboundSchema),
 });
@@ -79,7 +79,7 @@ export const StepFilterDto$outboundSchema: z.ZodType<
   StepFilterDto
 > = z.object({
   isNegated: z.boolean(),
-  type: BuilderFieldType$outboundSchema,
+  type: BuilderFieldTypeEnum$outboundSchema,
   value: Value$outboundSchema,
   children: z.array(FieldFilterPartDto$outboundSchema),
 });

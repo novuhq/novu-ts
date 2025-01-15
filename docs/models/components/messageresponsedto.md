@@ -16,7 +16,7 @@ let value: MessageResponseDto = {
     subscriberId: "<id>",
     channels: [
       {
-        providerId: "pushpad",
+        providerId: "slack",
         credentials: {
           webhookUrl: "https://example.com/webhook",
           channel: "general",
@@ -37,19 +37,19 @@ let value: MessageResponseDto = {
     organizationId: "<id>",
     environmentId: "<id>",
     deleted: false,
-    createdAt: "1710485058067",
-    updatedAt: "1736863464773",
+    createdAt: "1716738166742",
+    updatedAt: "1736898569316",
   },
-  createdAt: "1709265467897",
+  createdAt: "1710798412192",
   content: "<value>",
   transactionId: "<id>",
-  channel: "push",
+  channel: "in_app",
   read: false,
   seen: false,
   cta: {
     data: {},
   },
-  status: "error",
+  status: "sent",
 };
 ```
 

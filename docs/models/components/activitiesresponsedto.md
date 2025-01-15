@@ -7,13 +7,7 @@ import { ActivitiesResponseDto } from "@novu/api/models/components";
 
 let value: ActivitiesResponseDto = {
   hasMore: false,
-  data: [
-    {
-      environmentId: "<id>",
-      organizationId: "<id>",
-      transactionId: "<id>",
-    },
-  ],
+  data: [],
   pageSize: 1317.97,
   page: 7163.27,
 };

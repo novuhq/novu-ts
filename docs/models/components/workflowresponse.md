@@ -7,7 +7,7 @@ import { WorkflowResponse } from "@novu/api/models/components";
 
 let value: WorkflowResponse = {
   name: "<value>",
-  description: "psst upon er evenly backburn bathhouse reluctantly till unless",
+  description: "obedience finally less over how prejudge cutover for",
   active: false,
   draft: false,
   preferenceSettings: {},
@@ -51,7 +51,7 @@ let value: WorkflowResponse = {
 | `preferenceSettings`                                                                         | [components.PreferenceChannels](../../models/components/preferencechannels.md)               | :heavy_check_mark:                                                                           | N/A                                                                                          |
 | `critical`                                                                                   | *boolean*                                                                                    | :heavy_check_mark:                                                                           | N/A                                                                                          |
 | `tags`                                                                                       | *string*[]                                                                                   | :heavy_check_mark:                                                                           | N/A                                                                                          |
-| `steps`                                                                                      | [components.NotificationStep](../../models/components/notificationstep.md)[]                 | :heavy_check_mark:                                                                           | N/A                                                                                          |
+| `steps`                                                                                      | [components.NotificationStepDto](../../models/components/notificationstepdto.md)[]           | :heavy_check_mark:                                                                           | N/A                                                                                          |
 | `organizationId`                                                                             | *string*                                                                                     | :heavy_check_mark:                                                                           | N/A                                                                                          |
 | `creatorId`                                                                                  | *string*                                                                                     | :heavy_check_mark:                                                                           | N/A                                                                                          |
 | `environmentId`                                                                              | *string*                                                                                     | :heavy_check_mark:                                                                           | N/A                                                                                          |

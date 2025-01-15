@@ -13,13 +13,7 @@ let value: MessagesControllerGetMessagesResponse = {
   },
   result: {
     hasMore: false,
-    data: [
-      {
-        environmentId: "<id>",
-        organizationId: "<id>",
-        transactionId: "<id>",
-      },
-    ],
+    data: [],
     pageSize: 7392.64,
     page: 391.87,
   },

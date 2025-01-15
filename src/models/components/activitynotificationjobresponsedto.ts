@@ -21,11 +21,11 @@ import {
   ActivityNotificationStepResponseDto$outboundSchema,
 } from "./activitynotificationstepresponsedto.js";
 import {
-  DigestWithEventsDto,
-  DigestWithEventsDto$inboundSchema,
-  DigestWithEventsDto$Outbound,
-  DigestWithEventsDto$outboundSchema,
-} from "./digestwitheventsdto.js";
+  DigestMetadataDto,
+  DigestMetadataDto$inboundSchema,
+  DigestMetadataDto$Outbound,
+  DigestMetadataDto$outboundSchema,
+} from "./digestmetadatadto.js";
 import {
   ProvidersIdEnum,
   ProvidersIdEnum$inboundSchema,
@@ -70,7 +70,7 @@ export type ActivityNotificationJobResponseDto = {
   /**
    * Optional digest for the job, including metadata and events
    */
-  digest?: DigestWithEventsDto | undefined;
+  digest?: DigestMetadataDto | undefined;
   /**
    * Execution details of the job
    */
@@ -170,7 +170,7 @@ export const ActivityNotificationJobResponseDto$inboundSchema: z.ZodType<
 > = z.object({
   _id: z.string(),
   type: ActivityNotificationJobResponseDtoType$inboundSchema,
-  digest: DigestWithEventsDto$inboundSchema.optional(),
+  digest: DigestMetadataDto$inboundSchema.optional(),
   executionDetails: z.array(
     ActivityNotificationExecutionDetailResponseDto$inboundSchema,
   ),
@@ -189,7 +189,7 @@ export const ActivityNotificationJobResponseDto$inboundSchema: z.ZodType<
 export type ActivityNotificationJobResponseDto$Outbound = {
   _id: string;
   type: string;
-  digest?: DigestWithEventsDto$Outbound | undefined;
+  digest?: DigestMetadataDto$Outbound | undefined;
   executionDetails: Array<
     ActivityNotificationExecutionDetailResponseDto$Outbound
   >;
@@ -208,7 +208,7 @@ export const ActivityNotificationJobResponseDto$outboundSchema: z.ZodType<
 > = z.object({
   id: z.string(),
   type: ActivityNotificationJobResponseDtoType$outboundSchema,
-  digest: DigestWithEventsDto$outboundSchema.optional(),
+  digest: DigestMetadataDto$outboundSchema.optional(),
   executionDetails: z.array(
     ActivityNotificationExecutionDetailResponseDto$outboundSchema,
   ),

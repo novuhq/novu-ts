@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 6bff3a53-3f0b-40b4-942f-ff70dc583ae5
 management:
-  docChecksum: 1c4821469e011cb398a8b0c7f58afd08
+  docChecksum: fb4910e1d49bd296f8e316f69fffe911
   docVersion: "1.0"
-  speakeasyVersion: 1.468.6
-  generationVersion: 2.493.13
-  releaseVersion: 0.0.1-alpha.192
-  configChecksum: 156c0767c872bea766d73d9f26931da8
+  speakeasyVersion: 1.468.7
+  generationVersion: 2.493.15
+  releaseVersion: 0.0.1-alpha.193
+  configChecksum: eeee4f7b0fb605eaeab130ba9a26c1d1
   published: true
 features:
   typescript:
@@ -43,11 +43,13 @@ generatedFiles:
   - docs/models/components/activitiesresponsedto.md
   - docs/models/components/activitygraphstatesresponse.md
   - docs/models/components/activitynotificationexecutiondetailresponsedto.md
-  - docs/models/components/activitynotificationexecutiondetailresponsedtostatus.md
   - docs/models/components/activitynotificationjobresponsedto.md
   - docs/models/components/activitynotificationjobresponsedtotype.md
   - docs/models/components/activitynotificationresponsedto.md
+  - docs/models/components/activitynotificationresponsedtopayload.md
+  - docs/models/components/activitynotificationresponsedtoto.md
   - docs/models/components/activitynotificationstepresponsedto.md
+  - docs/models/components/activitynotificationstepresponsedtoreplycallback.md
   - docs/models/components/activitynotificationsubscriberresponsedto.md
   - docs/models/components/activitynotificationtemplateresponsedto.md
   - docs/models/components/activitystatsresponsedto.md
@@ -57,7 +59,7 @@ generatedFiles:
   - docs/models/components/addsubscribersrequestdto.md
   - docs/models/components/assignsubscribertotopicdto.md
   - docs/models/components/backoffunit.md
-  - docs/models/components/builderfieldtype.md
+  - docs/models/components/builderfieldtypeenum.md
   - docs/models/components/bulkcreatesubscriberresponsedto.md
   - docs/models/components/bulksubscribercreatedto.md
   - docs/models/components/bulktriggereventdto.md
@@ -72,6 +74,8 @@ generatedFiles:
   - docs/models/components/channelsettingsproviderid.md
   - docs/models/components/channeltypeenum.md
   - docs/models/components/content.md
+  - docs/models/components/controls.md
+  - docs/models/components/controlvariables.md
   - docs/models/components/createdsubscriberdto.md
   - docs/models/components/createintegrationrequestdto.md
   - docs/models/components/createintegrationrequestdtochannel.md
@@ -91,16 +95,21 @@ generatedFiles:
   - docs/models/components/deletemessageresponsedtostatus.md
   - docs/models/components/deletesubscriberresponsedto.md
   - docs/models/components/deletesubscriberresponsedtostatus.md
+  - docs/models/components/digestmetadatadto.md
   - docs/models/components/digestregularmetadata.md
   - docs/models/components/digestregularmetadatatype.md
   - docs/models/components/digestregularmetadataunit.md
+  - docs/models/components/digesttimedconfigdto.md
   - docs/models/components/digesttimedmetadata.md
   - docs/models/components/digesttimedmetadatatype.md
   - docs/models/components/digesttimedmetadataunit.md
-  - docs/models/components/digestwitheventsdto.md
+  - docs/models/components/digesttypeenum.md
+  - docs/models/components/digestunitenum.md
   - docs/models/components/emailblock.md
   - docs/models/components/emailblockstyles.md
   - docs/models/components/emailblocktypeenum.md
+  - docs/models/components/executiondetailssourceenum.md
+  - docs/models/components/executiondetailsstatusenum.md
   - docs/models/components/failedassignmentsdto.md
   - docs/models/components/failedoperationdto.md
   - docs/models/components/feedidentifier.md
@@ -112,6 +121,7 @@ generatedFiles:
   - docs/models/components/idempotencybodydto.md
   - docs/models/components/idempotencyresponse.md
   - docs/models/components/integrationresponsedto.md
+  - docs/models/components/issues.md
   - docs/models/components/markallmessageasrequestdto.md
   - docs/models/components/markallmessageasrequestdtomarkas.md
   - docs/models/components/markas.md
@@ -135,16 +145,18 @@ generatedFiles:
   - docs/models/components/messagetemplatedto.md
   - docs/models/components/metadata.md
   - docs/models/components/monthlytype.md
+  - docs/models/components/monthlytypeenum.md
   - docs/models/components/notificationfeeditemdto.md
   - docs/models/components/notificationfeeditemdtostatus.md
   - docs/models/components/notificationgroup.md
-  - docs/models/components/notificationstep.md
-  - docs/models/components/notificationstepvariant.md
-  - docs/models/components/notificationstepvariantmetadata.md
-  - docs/models/components/notificationstepvariantparentid.md
-  - docs/models/components/notificationstepvariantreplycallback.md
+  - docs/models/components/notificationstepdata.md
+  - docs/models/components/notificationstepdatametadata.md
+  - docs/models/components/notificationstepdto.md
+  - docs/models/components/notificationstepdtometadata.md
   - docs/models/components/notificationtrigger.md
+  - docs/models/components/notificationtriggerdto.md
   - docs/models/components/notificationtriggerresponse.md
+  - docs/models/components/notificationtriggertype.md
   - docs/models/components/notificationtriggervariable.md
   - docs/models/components/notificationtriggervariableresponse.md
   - docs/models/components/notificationtriggervariableresponsetype.md
@@ -153,9 +165,10 @@ generatedFiles:
   - docs/models/components/one.md
   - docs/models/components/operator.md
   - docs/models/components/ordinal.md
+  - docs/models/components/ordinalenum.md
   - docs/models/components/ordinalvalue.md
+  - docs/models/components/ordinalvalueenum.md
   - docs/models/components/overrides.md
-  - docs/models/components/parentid.md
   - docs/models/components/payload.md
   - docs/models/components/preference.md
   - docs/models/components/preferencechannels.md
@@ -166,9 +179,7 @@ generatedFiles:
   - docs/models/components/renametopicresponsedto.md
   - docs/models/components/replycallback.md
   - docs/models/components/security.md
-  - docs/models/components/source.md
   - docs/models/components/status.md
-  - docs/models/components/stepfilter.md
   - docs/models/components/stepfilterdto.md
   - docs/models/components/steptypeenum.md
   - docs/models/components/subscriberchanneldto.md
@@ -181,6 +192,7 @@ generatedFiles:
   - docs/models/components/tenantpayloaddtodata.md
   - docs/models/components/textalignenum.md
   - docs/models/components/timedconfig.md
+  - docs/models/components/timedconfigweekdays.md
   - docs/models/components/tlsoptions.md
   - docs/models/components/to.md
   - docs/models/components/topicdto.md
@@ -426,7 +438,7 @@ generatedFiles:
   - src/models/components/actortypeenum.ts
   - src/models/components/addsubscribersrequestdto.ts
   - src/models/components/assignsubscribertotopicdto.ts
-  - src/models/components/builderfieldtype.ts
+  - src/models/components/builderfieldtypeenum.ts
   - src/models/components/bulkcreatesubscriberresponsedto.ts
   - src/models/components/bulksubscribercreatedto.ts
   - src/models/components/bulktriggereventdto.ts
@@ -448,12 +460,17 @@ generatedFiles:
   - src/models/components/delayscheduledmetadata.ts
   - src/models/components/deletemessageresponsedto.ts
   - src/models/components/deletesubscriberresponsedto.ts
+  - src/models/components/digestmetadatadto.ts
   - src/models/components/digestregularmetadata.ts
+  - src/models/components/digesttimedconfigdto.ts
   - src/models/components/digesttimedmetadata.ts
-  - src/models/components/digestwitheventsdto.ts
+  - src/models/components/digesttypeenum.ts
+  - src/models/components/digestunitenum.ts
   - src/models/components/emailblock.ts
   - src/models/components/emailblockstyles.ts
   - src/models/components/emailblocktypeenum.ts
+  - src/models/components/executiondetailssourceenum.ts
+  - src/models/components/executiondetailsstatusenum.ts
   - src/models/components/failedassignmentsdto.ts
   - src/models/components/failedoperationdto.ts
   - src/models/components/feedresponsedto.ts
@@ -478,22 +495,26 @@ generatedFiles:
   - src/models/components/messagestatusenum.ts
   - src/models/components/messagetemplate.ts
   - src/models/components/messagetemplatedto.ts
+  - src/models/components/monthlytypeenum.ts
   - src/models/components/notificationfeeditemdto.ts
   - src/models/components/notificationgroup.ts
-  - src/models/components/notificationstep.ts
-  - src/models/components/notificationstepvariant.ts
+  - src/models/components/notificationstepdata.ts
+  - src/models/components/notificationstepdto.ts
   - src/models/components/notificationtrigger.ts
+  - src/models/components/notificationtriggerdto.ts
   - src/models/components/notificationtriggerresponse.ts
   - src/models/components/notificationtriggervariable.ts
   - src/models/components/notificationtriggervariableresponse.ts
+  - src/models/components/ordinalenum.ts
+  - src/models/components/ordinalvalueenum.ts
   - src/models/components/preference.ts
   - src/models/components/preferencechannels.ts
   - src/models/components/providersidenum.ts
   - src/models/components/removesubscribersrequestdto.ts
   - src/models/components/renametopicrequestdto.ts
   - src/models/components/renametopicresponsedto.ts
+  - src/models/components/replycallback.ts
   - src/models/components/security.ts
-  - src/models/components/stepfilter.ts
   - src/models/components/stepfilterdto.ts
   - src/models/components/steptypeenum.ts
   - src/models/components/subscriberchanneldto.ts
@@ -730,7 +751,7 @@ examples:
         header: {}
       responses:
         "200":
-          application/json: {"_environmentId": "<id>", "_organizationId": "<id>", "transactionId": "<id>"}
+          application/json: {"_environmentId": "<id>", "_organizationId": "<id>", "_subscriberId": "<id>", "transactionId": "<id>"}
         "400":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found."}
         "404":
@@ -1316,7 +1337,7 @@ examples:
     speakeasy-default-messages-controller-get-messages:
       responses:
         "200":
-          application/json: {"hasMore": false, "data": [{"_environmentId": "<id>", "_organizationId": "<id>", "transactionId": "<id>"}, {"_environmentId": "<id>", "_organizationId": "<id>", "transactionId": "<id>"}], "pageSize": "5442.21", "page": "5212.35"}
+          application/json: {"hasMore": false, "data": [{"_environmentId": "<id>", "_organizationId": "<id>", "_subscriberId": "<id>", "transactionId": "<id>"}, {"_environmentId": "<id>", "_organizationId": "<id>", "_subscriberId": "<id>", "transactionId": "<id>"}], "pageSize": "5442.21", "page": "5212.35"}
         "400":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found."}
         "404":

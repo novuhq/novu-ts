@@ -1,11 +1,13 @@
-# ParentId
+# Controls
+
+Controls associated with the notification
 
 ## Example Usage
 
 ```typescript
-import { ParentId } from "@novu/api/models/components";
+import { Controls } from "@novu/api/models/components";
 
-let value: ParentId = {};
+let value: Controls = {};
 ```
 
 ## Fields

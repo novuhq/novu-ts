@@ -8,11 +8,11 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
-  NotificationTrigger,
-  NotificationTrigger$inboundSchema,
-  NotificationTrigger$Outbound,
-  NotificationTrigger$outboundSchema,
-} from "./notificationtrigger.js";
+  NotificationTriggerDto,
+  NotificationTriggerDto$inboundSchema,
+  NotificationTriggerDto$Outbound,
+  NotificationTriggerDto$outboundSchema,
+} from "./notificationtriggerdto.js";
 
 export type ActivityNotificationTemplateResponseDto = {
   /**
@@ -26,7 +26,7 @@ export type ActivityNotificationTemplateResponseDto = {
   /**
    * Triggers of the template
    */
-  triggers: Array<NotificationTrigger>;
+  triggers: Array<NotificationTriggerDto>;
 };
 
 /** @internal */
@@ -37,7 +37,7 @@ export const ActivityNotificationTemplateResponseDto$inboundSchema: z.ZodType<
 > = z.object({
   _id: z.string().optional(),
   name: z.string(),
-  triggers: z.array(NotificationTrigger$inboundSchema),
+  triggers: z.array(NotificationTriggerDto$inboundSchema),
 }).transform((v) => {
   return remap$(v, {
     "_id": "id",
@@ -48,7 +48,7 @@ export const ActivityNotificationTemplateResponseDto$inboundSchema: z.ZodType<
 export type ActivityNotificationTemplateResponseDto$Outbound = {
   _id?: string | undefined;
   name: string;
-  triggers: Array<NotificationTrigger$Outbound>;
+  triggers: Array<NotificationTriggerDto$Outbound>;
 };
 
 /** @internal */
@@ -59,7 +59,7 @@ export const ActivityNotificationTemplateResponseDto$outboundSchema: z.ZodType<
 > = z.object({
   id: z.string().optional(),
   name: z.string(),
-  triggers: z.array(NotificationTrigger$outboundSchema),
+  triggers: z.array(NotificationTriggerDto$outboundSchema),
 }).transform((v) => {
   return remap$(v, {
     id: "_id",

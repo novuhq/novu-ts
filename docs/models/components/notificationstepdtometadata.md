@@ -1,4 +1,6 @@
-# NotificationStepVariantMetadata
+# NotificationStepDtoMetadata
+
+Metadata associated with the workflow step. Can vary based on the type of step.
 
 
 ## Supported Types
@@ -7,7 +9,7 @@
 
 ```typescript
 const value: components.DigestRegularMetadata = {
-  type: "backoff",
+  type: "regular",
 };
 ```
 

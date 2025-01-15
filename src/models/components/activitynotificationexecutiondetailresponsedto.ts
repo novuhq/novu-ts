@@ -5,46 +5,23 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+import {
+  ExecutionDetailsSourceEnum,
+  ExecutionDetailsSourceEnum$inboundSchema,
+  ExecutionDetailsSourceEnum$outboundSchema,
+} from "./executiondetailssourceenum.js";
+import {
+  ExecutionDetailsStatusEnum,
+  ExecutionDetailsStatusEnum$inboundSchema,
+  ExecutionDetailsStatusEnum$outboundSchema,
+} from "./executiondetailsstatusenum.js";
 import {
   ProvidersIdEnum,
   ProvidersIdEnum$inboundSchema,
   ProvidersIdEnum$outboundSchema,
 } from "./providersidenum.js";
-
-/**
- * Status of the execution detail
- */
-export const ActivityNotificationExecutionDetailResponseDtoStatus = {
-  Success: "Success",
-  Warning: "Warning",
-  Failed: "Failed",
-  Pending: "Pending",
-  Queued: "Queued",
-  ReadConfirmation: "ReadConfirmation",
-} as const;
-/**
- * Status of the execution detail
- */
-export type ActivityNotificationExecutionDetailResponseDtoStatus = ClosedEnum<
-  typeof ActivityNotificationExecutionDetailResponseDtoStatus
->;
-
-/**
- * Source of the execution detail
- */
-export const Source = {
-  Credentials: "Credentials",
-  Internal: "Internal",
-  Payload: "Payload",
-  Webhook: "Webhook",
-} as const;
-/**
- * Source of the execution detail
- */
-export type Source = ClosedEnum<typeof Source>;
 
 export type ActivityNotificationExecutionDetailResponseDto = {
   /**
@@ -58,7 +35,7 @@ export type ActivityNotificationExecutionDetailResponseDto = {
   /**
    * Status of the execution detail
    */
-  status: ActivityNotificationExecutionDetailResponseDtoStatus;
+  status: ExecutionDetailsStatusEnum;
   /**
    * Detailed information about the execution
    */
@@ -82,50 +59,8 @@ export type ActivityNotificationExecutionDetailResponseDto = {
   /**
    * Source of the execution detail
    */
-  source: Source;
+  source: ExecutionDetailsSourceEnum;
 };
-
-/** @internal */
-export const ActivityNotificationExecutionDetailResponseDtoStatus$inboundSchema:
-  z.ZodNativeEnum<typeof ActivityNotificationExecutionDetailResponseDtoStatus> =
-    z.nativeEnum(ActivityNotificationExecutionDetailResponseDtoStatus);
-
-/** @internal */
-export const ActivityNotificationExecutionDetailResponseDtoStatus$outboundSchema:
-  z.ZodNativeEnum<typeof ActivityNotificationExecutionDetailResponseDtoStatus> =
-    ActivityNotificationExecutionDetailResponseDtoStatus$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ActivityNotificationExecutionDetailResponseDtoStatus$ {
-  /** @deprecated use `ActivityNotificationExecutionDetailResponseDtoStatus$inboundSchema` instead. */
-  export const inboundSchema =
-    ActivityNotificationExecutionDetailResponseDtoStatus$inboundSchema;
-  /** @deprecated use `ActivityNotificationExecutionDetailResponseDtoStatus$outboundSchema` instead. */
-  export const outboundSchema =
-    ActivityNotificationExecutionDetailResponseDtoStatus$outboundSchema;
-}
-
-/** @internal */
-export const Source$inboundSchema: z.ZodNativeEnum<typeof Source> = z
-  .nativeEnum(Source);
-
-/** @internal */
-export const Source$outboundSchema: z.ZodNativeEnum<typeof Source> =
-  Source$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Source$ {
-  /** @deprecated use `Source$inboundSchema` instead. */
-  export const inboundSchema = Source$inboundSchema;
-  /** @deprecated use `Source$outboundSchema` instead. */
-  export const outboundSchema = Source$outboundSchema;
-}
 
 /** @internal */
 export const ActivityNotificationExecutionDetailResponseDto$inboundSchema:
@@ -136,13 +71,13 @@ export const ActivityNotificationExecutionDetailResponseDto$inboundSchema:
   > = z.object({
     _id: z.string(),
     createdAt: z.string().optional(),
-    status: ActivityNotificationExecutionDetailResponseDtoStatus$inboundSchema,
+    status: ExecutionDetailsStatusEnum$inboundSchema,
     detail: z.string(),
     isRetry: z.boolean(),
     isTest: z.boolean(),
     providerId: ProvidersIdEnum$inboundSchema,
     raw: z.string().optional(),
-    source: Source$inboundSchema,
+    source: ExecutionDetailsSourceEnum$inboundSchema,
   }).transform((v) => {
     return remap$(v, {
       "_id": "id",
@@ -171,13 +106,13 @@ export const ActivityNotificationExecutionDetailResponseDto$outboundSchema:
   > = z.object({
     id: z.string(),
     createdAt: z.string().optional(),
-    status: ActivityNotificationExecutionDetailResponseDtoStatus$outboundSchema,
+    status: ExecutionDetailsStatusEnum$outboundSchema,
     detail: z.string(),
     isRetry: z.boolean(),
     isTest: z.boolean(),
     providerId: ProvidersIdEnum$outboundSchema,
     raw: z.string().optional(),
-    source: Source$outboundSchema,
+    source: ExecutionDetailsSourceEnum$outboundSchema,
   }).transform((v) => {
     return remap$(v, {
       id: "_id",

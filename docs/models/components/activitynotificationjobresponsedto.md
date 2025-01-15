@@ -23,10 +23,23 @@ let value: ActivityNotificationJobResponseDto = {
     id: "<id>",
     active: false,
     filters: [
-      {},
+      {
+        isNegated: false,
+        type: "BOOLEAN",
+        value: "OR",
+        children: [
+          {
+            field: "<value>",
+            value: "<value>",
+            operator: "SMALLER_EQUAL",
+            on: "payload",
+          },
+        ],
+      },
     ],
+    templateId: "<id>",
   },
-  providerId: "emailjs",
+  providerId: "getstream",
   status: "<value>",
 };
 ```
@@ -37,7 +50,7 @@ let value: ActivityNotificationJobResponseDto = {
 | ---------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
 | `id`                                                                                                                                     | *string*                                                                                                                                 | :heavy_check_mark:                                                                                                                       | Unique identifier of the job                                                                                                             |
 | `type`                                                                                                                                   | [components.ActivityNotificationJobResponseDtoType](../../models/components/activitynotificationjobresponsedtotype.md)                   | :heavy_check_mark:                                                                                                                       | Type of the job                                                                                                                          |
-| `digest`                                                                                                                                 | [components.DigestWithEventsDto](../../models/components/digestwitheventsdto.md)                                                         | :heavy_minus_sign:                                                                                                                       | Optional digest for the job, including metadata and events                                                                               |
+| `digest`                                                                                                                                 | [components.DigestMetadataDto](../../models/components/digestmetadatadto.md)                                                             | :heavy_minus_sign:                                                                                                                       | Optional digest for the job, including metadata and events                                                                               |
 | `executionDetails`                                                                                                                       | [components.ActivityNotificationExecutionDetailResponseDto](../../models/components/activitynotificationexecutiondetailresponsedto.md)[] | :heavy_check_mark:                                                                                                                       | Execution details of the job                                                                                                             |
 | `step`                                                                                                                                   | [components.ActivityNotificationStepResponseDto](../../models/components/activitynotificationstepresponsedto.md)                         | :heavy_check_mark:                                                                                                                       | Step details of the job                                                                                                                  |
 | `payload`                                                                                                                                | [components.Payload](../../models/components/payload.md)                                                                                 | :heavy_minus_sign:                                                                                                                       | Optional payload for the job                                                                                                             |

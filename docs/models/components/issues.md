@@ -1,11 +1,13 @@
-# StepFilter
+# Issues
+
+Step issues
 
 ## Example Usage
 
 ```typescript
-import { StepFilter } from "@novu/api/models/components";
+import { Issues } from "@novu/api/models/components";
 
-let value: StepFilter = {};
+let value: Issues = {};
 ```
 
 ## Fields

@@ -1,11 +1,11 @@
-# BuilderFieldType
+# BuilderFieldTypeEnum
 
 ## Example Usage
 
 ```typescript
-import { BuilderFieldType } from "@novu/api/models/components";
+import { BuilderFieldTypeEnum } from "@novu/api/models/components";
 
-let value: BuilderFieldType = "STATEMENT";
+let value: BuilderFieldTypeEnum = "GROUP";
 ```
 
 ## Values
