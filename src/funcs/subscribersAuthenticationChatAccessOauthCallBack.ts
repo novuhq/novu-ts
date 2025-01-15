@@ -90,9 +90,9 @@ export async function subscribersAuthenticationChatAccessOauthCallBack(
   const headers = new Headers(compactMap({
     Accept: options?.acceptHeaderOverride
       || "application/json;q=1, text/html;q=0",
-    "Idempotency-Key": encodeSimple(
-      "Idempotency-Key",
-      payload["Idempotency-Key"],
+    "idempotency-key": encodeSimple(
+      "idempotency-key",
+      payload["idempotency-key"],
       { explode: false, charEncoding: "none" },
     ),
   }));

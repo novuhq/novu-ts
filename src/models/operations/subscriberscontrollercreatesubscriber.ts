@@ -29,19 +29,19 @@ export const SubscribersControllerCreateSubscriberRequest$inboundSchema:
     z.ZodTypeDef,
     unknown
   > = z.object({
-    "Idempotency-Key": z.string().optional(),
+    "idempotency-key": z.string().optional(),
     CreateSubscriberRequestDto:
       components.CreateSubscriberRequestDto$inboundSchema,
   }).transform((v) => {
     return remap$(v, {
-      "Idempotency-Key": "idempotencyKey",
+      "idempotency-key": "idempotencyKey",
       "CreateSubscriberRequestDto": "createSubscriberRequestDto",
     });
   });
 
 /** @internal */
 export type SubscribersControllerCreateSubscriberRequest$Outbound = {
-  "Idempotency-Key"?: string | undefined;
+  "idempotency-key"?: string | undefined;
   CreateSubscriberRequestDto: components.CreateSubscriberRequestDto$Outbound;
 };
 
@@ -57,7 +57,7 @@ export const SubscribersControllerCreateSubscriberRequest$outboundSchema:
       components.CreateSubscriberRequestDto$outboundSchema,
   }).transform((v) => {
     return remap$(v, {
-      idempotencyKey: "Idempotency-Key",
+      idempotencyKey: "idempotency-key",
       createSubscriberRequestDto: "CreateSubscriberRequestDto",
     });
   });

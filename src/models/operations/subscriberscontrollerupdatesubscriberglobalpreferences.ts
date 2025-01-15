@@ -32,12 +32,12 @@ export const SubscribersControllerUpdateSubscriberGlobalPreferencesRequest$inbou
     unknown
   > = z.object({
     subscriberId: z.string(),
-    "Idempotency-Key": z.string().optional(),
+    "idempotency-key": z.string().optional(),
     UpdateSubscriberGlobalPreferencesRequestDto:
       components.UpdateSubscriberGlobalPreferencesRequestDto$inboundSchema,
   }).transform((v) => {
     return remap$(v, {
-      "Idempotency-Key": "idempotencyKey",
+      "idempotency-key": "idempotencyKey",
       "UpdateSubscriberGlobalPreferencesRequestDto":
         "updateSubscriberGlobalPreferencesRequestDto",
     });
@@ -47,7 +47,7 @@ export const SubscribersControllerUpdateSubscriberGlobalPreferencesRequest$inbou
 export type SubscribersControllerUpdateSubscriberGlobalPreferencesRequest$Outbound =
   {
     subscriberId: string;
-    "Idempotency-Key"?: string | undefined;
+    "idempotency-key"?: string | undefined;
     UpdateSubscriberGlobalPreferencesRequestDto:
       components.UpdateSubscriberGlobalPreferencesRequestDto$Outbound;
   };
@@ -65,7 +65,7 @@ export const SubscribersControllerUpdateSubscriberGlobalPreferencesRequest$outbo
       components.UpdateSubscriberGlobalPreferencesRequestDto$outboundSchema,
   }).transform((v) => {
     return remap$(v, {
-      idempotencyKey: "Idempotency-Key",
+      idempotencyKey: "idempotency-key",
       updateSubscriberGlobalPreferencesRequestDto:
         "UpdateSubscriberGlobalPreferencesRequestDto",
     });

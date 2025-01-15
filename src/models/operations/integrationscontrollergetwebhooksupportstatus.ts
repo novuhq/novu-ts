@@ -29,17 +29,17 @@ export const IntegrationsControllerGetWebhookSupportStatusRequest$inboundSchema:
     unknown
   > = z.object({
     providerOrIntegrationId: z.string(),
-    "Idempotency-Key": z.string().optional(),
+    "idempotency-key": z.string().optional(),
   }).transform((v) => {
     return remap$(v, {
-      "Idempotency-Key": "idempotencyKey",
+      "idempotency-key": "idempotencyKey",
     });
   });
 
 /** @internal */
 export type IntegrationsControllerGetWebhookSupportStatusRequest$Outbound = {
   providerOrIntegrationId: string;
-  "Idempotency-Key"?: string | undefined;
+  "idempotency-key"?: string | undefined;
 };
 
 /** @internal */
@@ -53,7 +53,7 @@ export const IntegrationsControllerGetWebhookSupportStatusRequest$outboundSchema
     idempotencyKey: z.string().optional(),
   }).transform((v) => {
     return remap$(v, {
-      idempotencyKey: "Idempotency-Key",
+      idempotencyKey: "idempotency-key",
     });
   });
 

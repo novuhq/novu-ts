@@ -30,17 +30,17 @@ export const NotificationsControllerGetActivityGraphStatsRequest$inboundSchema:
     unknown
   > = z.object({
     days: z.number().optional(),
-    "Idempotency-Key": z.string().optional(),
+    "idempotency-key": z.string().optional(),
   }).transform((v) => {
     return remap$(v, {
-      "Idempotency-Key": "idempotencyKey",
+      "idempotency-key": "idempotencyKey",
     });
   });
 
 /** @internal */
 export type NotificationsControllerGetActivityGraphStatsRequest$Outbound = {
   days?: number | undefined;
-  "Idempotency-Key"?: string | undefined;
+  "idempotency-key"?: string | undefined;
 };
 
 /** @internal */
@@ -54,7 +54,7 @@ export const NotificationsControllerGetActivityGraphStatsRequest$outboundSchema:
     idempotencyKey: z.string().optional(),
   }).transform((v) => {
     return remap$(v, {
-      idempotencyKey: "Idempotency-Key",
+      idempotencyKey: "idempotency-key",
     });
   });
 

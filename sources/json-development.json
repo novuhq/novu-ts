@@ -13,7 +13,7 @@
         "description": "\n    Trigger event is the main (and only) way to send notifications to subscribers. \n    The trigger identifier is used to match the particular workflow associated with it. \n    Additional information can be passed according the body interface below.\n    ",
         "parameters": [
           {
-            "name": "Idempotency-Key",
+            "name": "idempotency-key",
             "in": "header",
             "description": "A header for idempotency purposes",
             "required": false,
@@ -503,7 +503,7 @@
         "description": "\n      Using this endpoint you can trigger multiple events at once, to avoid multiple calls to the API.\n      The bulk API is limited to 100 events per request.\n    ",
         "parameters": [
           {
-            "name": "Idempotency-Key",
+            "name": "idempotency-key",
             "in": "header",
             "description": "A header for idempotency purposes",
             "required": false,
@@ -996,7 +996,7 @@
         "description": "Trigger a broadcast event to all existing subscribers, could be used to send announcements, etc.\n      In the future could be used to trigger events to a subset of subscribers based on defined filters.",
         "parameters": [
           {
-            "name": "Idempotency-Key",
+            "name": "idempotency-key",
             "in": "header",
             "description": "A header for idempotency purposes",
             "required": false,
@@ -1527,7 +1527,7 @@
             }
           },
           {
-            "name": "Idempotency-Key",
+            "name": "idempotency-key",
             "in": "header",
             "description": "A header for idempotency purposes",
             "required": false,
@@ -2096,7 +2096,7 @@
             }
           },
           {
-            "name": "Idempotency-Key",
+            "name": "idempotency-key",
             "in": "header",
             "description": "A header for idempotency purposes",
             "required": false,
@@ -2571,7 +2571,7 @@
         "summary": "Get notification statistics",
         "parameters": [
           {
-            "name": "Idempotency-Key",
+            "name": "idempotency-key",
             "in": "header",
             "description": "A header for idempotency purposes",
             "required": false,
@@ -3055,7 +3055,7 @@
             }
           },
           {
-            "name": "Idempotency-Key",
+            "name": "idempotency-key",
             "in": "header",
             "description": "A header for idempotency purposes",
             "required": false,
@@ -3540,7 +3540,7 @@
             }
           },
           {
-            "name": "Idempotency-Key",
+            "name": "idempotency-key",
             "in": "header",
             "description": "A header for idempotency purposes",
             "required": false,
@@ -4015,7 +4015,7 @@
         "description": "Return all the integrations the user has created for that organization. Review v.0.17.0 changelog for a breaking change",
         "parameters": [
           {
-            "name": "Idempotency-Key",
+            "name": "idempotency-key",
             "in": "header",
             "description": "A header for idempotency purposes",
             "required": false,
@@ -4491,7 +4491,7 @@
         "description": "Create an integration for the current environment the user is based on the API key provided",
         "parameters": [
           {
-            "name": "Idempotency-Key",
+            "name": "idempotency-key",
             "in": "header",
             "description": "A header for idempotency purposes",
             "required": false,
@@ -4977,7 +4977,7 @@
         "description": "Return all the active integrations the user has created for that organization. Review v.0.17.0 changelog for a breaking change",
         "parameters": [
           {
-            "name": "Idempotency-Key",
+            "name": "idempotency-key",
             "in": "header",
             "description": "A header for idempotency purposes",
             "required": false,
@@ -5464,7 +5464,7 @@
             }
           },
           {
-            "name": "Idempotency-Key",
+            "name": "idempotency-key",
             "in": "header",
             "description": "A header for idempotency purposes",
             "required": false,
@@ -5946,7 +5946,7 @@
             }
           },
           {
-            "name": "Idempotency-Key",
+            "name": "idempotency-key",
             "in": "header",
             "description": "A header for idempotency purposes",
             "required": false,
@@ -6429,7 +6429,7 @@
             }
           },
           {
-            "name": "Idempotency-Key",
+            "name": "idempotency-key",
             "in": "header",
             "description": "A header for idempotency purposes",
             "required": false,
@@ -6915,7 +6915,7 @@
             }
           },
           {
-            "name": "Idempotency-Key",
+            "name": "idempotency-key",
             "in": "header",
             "description": "A header for idempotency purposes",
             "required": false,
@@ -7419,7 +7419,7 @@
             }
           },
           {
-            "name": "Idempotency-Key",
+            "name": "idempotency-key",
             "in": "header",
             "description": "A header for idempotency purposes",
             "required": false,
@@ -7906,7 +7906,7 @@
         "description": "Creates a subscriber entity, in the Novu platform. The subscriber will be later used to receive notifications, and access notification feeds. Communication credentials such as email, phone number, and 3 rd party credentials i.e slack tokens could be later associated to this entity.",
         "parameters": [
           {
-            "name": "Idempotency-Key",
+            "name": "idempotency-key",
             "in": "header",
             "description": "A header for idempotency purposes",
             "required": false,
@@ -8408,7 +8408,7 @@
             }
           },
           {
-            "name": "Idempotency-Key",
+            "name": "idempotency-key",
             "in": "header",
             "description": "A header for idempotency purposes",
             "required": false,
@@ -8889,7 +8889,7 @@
             }
           },
           {
-            "name": "Idempotency-Key",
+            "name": "idempotency-key",
             "in": "header",
             "description": "A header for idempotency purposes",
             "required": false,
@@ -9380,7 +9380,7 @@
             }
           },
           {
-            "name": "Idempotency-Key",
+            "name": "idempotency-key",
             "in": "header",
             "description": "A header for idempotency purposes",
             "required": false,
@@ -9856,7 +9856,7 @@
         "description": "\n      Using this endpoint you can create multiple subscribers at once, to avoid multiple calls to the API.\n      The bulk API is limited to 500 subscribers per request.\n    ",
         "parameters": [
           {
-            "name": "Idempotency-Key",
+            "name": "idempotency-key",
             "in": "header",
             "description": "A header for idempotency purposes",
             "required": false,
@@ -10350,7 +10350,7 @@
             }
           },
           {
-            "name": "Idempotency-Key",
+            "name": "idempotency-key",
             "in": "header",
             "description": "A header for idempotency purposes",
             "required": false,
@@ -10843,7 +10843,7 @@
             }
           },
           {
-            "name": "Idempotency-Key",
+            "name": "idempotency-key",
             "in": "header",
             "description": "A header for idempotency purposes",
             "required": false,
@@ -11345,7 +11345,7 @@
             }
           },
           {
-            "name": "Idempotency-Key",
+            "name": "idempotency-key",
             "in": "header",
             "description": "A header for idempotency purposes",
             "required": false,
@@ -11823,7 +11823,7 @@
             }
           },
           {
-            "name": "Idempotency-Key",
+            "name": "idempotency-key",
             "in": "header",
             "description": "A header for idempotency purposes",
             "required": false,
@@ -12326,7 +12326,7 @@
             }
           },
           {
-            "name": "Idempotency-Key",
+            "name": "idempotency-key",
             "in": "header",
             "description": "A header for idempotency purposes",
             "required": false,
@@ -12811,7 +12811,7 @@
             }
           },
           {
-            "name": "Idempotency-Key",
+            "name": "idempotency-key",
             "in": "header",
             "description": "A header for idempotency purposes",
             "required": false,
@@ -13328,7 +13328,7 @@
             }
           },
           {
-            "name": "Idempotency-Key",
+            "name": "idempotency-key",
             "in": "header",
             "description": "A header for idempotency purposes",
             "required": false,
@@ -13821,7 +13821,7 @@
             }
           },
           {
-            "name": "Idempotency-Key",
+            "name": "idempotency-key",
             "in": "header",
             "description": "A header for idempotency purposes",
             "required": false,
@@ -14359,7 +14359,7 @@
             }
           },
           {
-            "name": "Idempotency-Key",
+            "name": "idempotency-key",
             "in": "header",
             "description": "A header for idempotency purposes",
             "required": false,
@@ -14863,7 +14863,7 @@
             }
           },
           {
-            "name": "Idempotency-Key",
+            "name": "idempotency-key",
             "in": "header",
             "description": "A header for idempotency purposes",
             "required": false,
@@ -15347,7 +15347,7 @@
             }
           },
           {
-            "name": "Idempotency-Key",
+            "name": "idempotency-key",
             "in": "header",
             "description": "A header for idempotency purposes",
             "required": false,
@@ -15844,7 +15844,7 @@
             }
           },
           {
-            "name": "Idempotency-Key",
+            "name": "idempotency-key",
             "in": "header",
             "description": "A header for idempotency purposes",
             "required": false,
@@ -16352,7 +16352,7 @@
             }
           },
           {
-            "name": "Idempotency-Key",
+            "name": "idempotency-key",
             "in": "header",
             "description": "A header for idempotency purposes",
             "required": false,
@@ -16888,7 +16888,7 @@
             }
           },
           {
-            "name": "Idempotency-Key",
+            "name": "idempotency-key",
             "in": "header",
             "description": "A header for idempotency purposes",
             "required": false,
@@ -17445,7 +17445,7 @@
             }
           },
           {
-            "name": "Idempotency-Key",
+            "name": "idempotency-key",
             "in": "header",
             "description": "A header for idempotency purposes",
             "required": false,
@@ -17935,7 +17935,7 @@
             }
           },
           {
-            "name": "Idempotency-Key",
+            "name": "idempotency-key",
             "in": "header",
             "description": "A header for idempotency purposes",
             "required": false,
@@ -18418,7 +18418,7 @@
             }
           },
           {
-            "name": "Idempotency-Key",
+            "name": "idempotency-key",
             "in": "header",
             "description": "A header for idempotency purposes",
             "required": false,
@@ -18918,7 +18918,7 @@
             }
           },
           {
-            "name": "Idempotency-Key",
+            "name": "idempotency-key",
             "in": "header",
             "description": "A header for idempotency purposes",
             "required": false,
@@ -19386,7 +19386,7 @@
         "description": "Create a topic",
         "parameters": [
           {
-            "name": "Idempotency-Key",
+            "name": "idempotency-key",
             "in": "header",
             "description": "A header for idempotency purposes",
             "required": false,
@@ -19903,7 +19903,7 @@
             }
           },
           {
-            "name": "Idempotency-Key",
+            "name": "idempotency-key",
             "in": "header",
             "description": "A header for idempotency purposes",
             "required": false,
@@ -20389,7 +20389,7 @@
             }
           },
           {
-            "name": "Idempotency-Key",
+            "name": "idempotency-key",
             "in": "header",
             "description": "A header for idempotency purposes",
             "required": false,
@@ -20893,7 +20893,7 @@
             }
           },
           {
-            "name": "Idempotency-Key",
+            "name": "idempotency-key",
             "in": "header",
             "description": "A header for idempotency purposes",
             "required": false,
@@ -21379,7 +21379,7 @@
             }
           },
           {
-            "name": "Idempotency-Key",
+            "name": "idempotency-key",
             "in": "header",
             "description": "A header for idempotency purposes",
             "required": false,
@@ -21866,7 +21866,7 @@
             }
           },
           {
-            "name": "Idempotency-Key",
+            "name": "idempotency-key",
             "in": "header",
             "description": "A header for idempotency purposes",
             "required": false,
@@ -22341,7 +22341,7 @@
             }
           },
           {
-            "name": "Idempotency-Key",
+            "name": "idempotency-key",
             "in": "header",
             "description": "A header for idempotency purposes",
             "required": false,
@@ -22824,7 +22824,7 @@
             }
           },
           {
-            "name": "Idempotency-Key",
+            "name": "idempotency-key",
             "in": "header",
             "description": "A header for idempotency purposes",
             "required": false,
@@ -23308,7 +23308,7 @@
         "x-speakeasy-name-override": "idempotencyPost",
         "parameters": [
           {
-            "name": "Idempotency-Key",
+            "name": "idempotency-key",
             "in": "header",
             "description": "A header for idempotency purposes",
             "required": false,
@@ -23790,7 +23790,7 @@
         "x-speakeasy-name-override": "idempotencyGet",
         "parameters": [
           {
-            "name": "Idempotency-Key",
+            "name": "idempotency-key",
             "in": "header",
             "description": "A header for idempotency purposes",
             "required": false,
@@ -24263,7 +24263,7 @@
         "operationId": "TestApiRateLimitBulkController_noCategoryNoCostOverride",
         "parameters": [
           {
-            "name": "Idempotency-Key",
+            "name": "idempotency-key",
             "in": "header",
             "description": "A header for idempotency purposes",
             "required": false,
@@ -24296,7 +24296,7 @@
         "operationId": "TestApiRateLimitBulkController_noCategorySingleCostOverride",
         "parameters": [
           {
-            "name": "Idempotency-Key",
+            "name": "idempotency-key",
             "in": "header",
             "description": "A header for idempotency purposes",
             "required": false,
@@ -24329,7 +24329,7 @@
         "operationId": "TestApiRateLimitBulkController_globalCategoryNoCostOverride",
         "parameters": [
           {
-            "name": "Idempotency-Key",
+            "name": "idempotency-key",
             "in": "header",
             "description": "A header for idempotency purposes",
             "required": false,

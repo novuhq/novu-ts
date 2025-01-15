@@ -68,10 +68,10 @@ export const MessagesControllerDeleteMessagesByTransactionIdRequest$inboundSchem
   > = z.object({
     channel: Channel$inboundSchema.optional(),
     transactionId: z.string(),
-    "Idempotency-Key": z.string().optional(),
+    "idempotency-key": z.string().optional(),
   }).transform((v) => {
     return remap$(v, {
-      "Idempotency-Key": "idempotencyKey",
+      "idempotency-key": "idempotencyKey",
     });
   });
 
@@ -79,7 +79,7 @@ export const MessagesControllerDeleteMessagesByTransactionIdRequest$inboundSchem
 export type MessagesControllerDeleteMessagesByTransactionIdRequest$Outbound = {
   channel?: string | undefined;
   transactionId: string;
-  "Idempotency-Key"?: string | undefined;
+  "idempotency-key"?: string | undefined;
 };
 
 /** @internal */
@@ -94,7 +94,7 @@ export const MessagesControllerDeleteMessagesByTransactionIdRequest$outboundSche
     idempotencyKey: z.string().optional(),
   }).transform((v) => {
     return remap$(v, {
-      idempotencyKey: "Idempotency-Key",
+      idempotencyKey: "idempotency-key",
     });
   });
 

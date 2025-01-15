@@ -42,10 +42,10 @@ export const TopicsControllerListTopicsRequest$inboundSchema: z.ZodType<
   page: z.number().int().default(0),
   pageSize: z.number().int().default(10),
   key: z.string().optional(),
-  "Idempotency-Key": z.string().optional(),
+  "idempotency-key": z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
-    "Idempotency-Key": "idempotencyKey",
+    "idempotency-key": "idempotencyKey",
   });
 });
 
@@ -54,7 +54,7 @@ export type TopicsControllerListTopicsRequest$Outbound = {
   page: number;
   pageSize: number;
   key?: string | undefined;
-  "Idempotency-Key"?: string | undefined;
+  "idempotency-key"?: string | undefined;
 };
 
 /** @internal */
@@ -69,7 +69,7 @@ export const TopicsControllerListTopicsRequest$outboundSchema: z.ZodType<
   idempotencyKey: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
-    idempotencyKey: "Idempotency-Key",
+    idempotencyKey: "idempotency-key",
   });
 });
 

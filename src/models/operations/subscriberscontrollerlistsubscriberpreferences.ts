@@ -35,10 +35,10 @@ export const SubscribersControllerListSubscriberPreferencesRequest$inboundSchema
   > = z.object({
     subscriberId: z.string(),
     includeInactiveChannels: z.boolean().optional(),
-    "Idempotency-Key": z.string().optional(),
+    "idempotency-key": z.string().optional(),
   }).transform((v) => {
     return remap$(v, {
-      "Idempotency-Key": "idempotencyKey",
+      "idempotency-key": "idempotencyKey",
     });
   });
 
@@ -46,7 +46,7 @@ export const SubscribersControllerListSubscriberPreferencesRequest$inboundSchema
 export type SubscribersControllerListSubscriberPreferencesRequest$Outbound = {
   subscriberId: string;
   includeInactiveChannels?: boolean | undefined;
-  "Idempotency-Key"?: string | undefined;
+  "idempotency-key"?: string | undefined;
 };
 
 /** @internal */
@@ -61,7 +61,7 @@ export const SubscribersControllerListSubscriberPreferencesRequest$outboundSchem
     idempotencyKey: z.string().optional(),
   }).transform((v) => {
     return remap$(v, {
-      idempotencyKey: "Idempotency-Key",
+      idempotencyKey: "idempotency-key",
     });
   });
 

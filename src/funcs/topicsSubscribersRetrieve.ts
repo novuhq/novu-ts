@@ -88,9 +88,9 @@ export async function topicsSubscribersRetrieve(
 
   const headers = new Headers(compactMap({
     Accept: "application/json",
-    "Idempotency-Key": encodeSimple(
-      "Idempotency-Key",
-      payload["Idempotency-Key"],
+    "idempotency-key": encodeSimple(
+      "idempotency-key",
+      payload["idempotency-key"],
       { explode: false, charEncoding: "none" },
     ),
   }));

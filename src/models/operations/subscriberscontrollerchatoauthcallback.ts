@@ -55,10 +55,10 @@ export const SubscribersControllerChatOauthCallbackRequest$inboundSchema:
     environmentId: z.string(),
     integrationIdentifier: z.string().optional(),
     code: z.string(),
-    "Idempotency-Key": z.string().optional(),
+    "idempotency-key": z.string().optional(),
   }).transform((v) => {
     return remap$(v, {
-      "Idempotency-Key": "idempotencyKey",
+      "idempotency-key": "idempotencyKey",
     });
   });
 
@@ -70,7 +70,7 @@ export type SubscribersControllerChatOauthCallbackRequest$Outbound = {
   environmentId: string;
   integrationIdentifier?: string | undefined;
   code: string;
-  "Idempotency-Key"?: string | undefined;
+  "idempotency-key"?: string | undefined;
 };
 
 /** @internal */
@@ -89,7 +89,7 @@ export const SubscribersControllerChatOauthCallbackRequest$outboundSchema:
     idempotencyKey: z.string().optional(),
   }).transform((v) => {
     return remap$(v, {
-      idempotencyKey: "Idempotency-Key",
+      idempotencyKey: "idempotency-key",
     });
   });
 

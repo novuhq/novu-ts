@@ -29,18 +29,18 @@ export const SubscribersControllerBulkCreateSubscribersRequest$inboundSchema:
     z.ZodTypeDef,
     unknown
   > = z.object({
-    "Idempotency-Key": z.string().optional(),
+    "idempotency-key": z.string().optional(),
     BulkSubscriberCreateDto: components.BulkSubscriberCreateDto$inboundSchema,
   }).transform((v) => {
     return remap$(v, {
-      "Idempotency-Key": "idempotencyKey",
+      "idempotency-key": "idempotencyKey",
       "BulkSubscriberCreateDto": "bulkSubscriberCreateDto",
     });
   });
 
 /** @internal */
 export type SubscribersControllerBulkCreateSubscribersRequest$Outbound = {
-  "Idempotency-Key"?: string | undefined;
+  "idempotency-key"?: string | undefined;
   BulkSubscriberCreateDto: components.BulkSubscriberCreateDto$Outbound;
 };
 
@@ -55,7 +55,7 @@ export const SubscribersControllerBulkCreateSubscribersRequest$outboundSchema:
     bulkSubscriberCreateDto: components.BulkSubscriberCreateDto$outboundSchema,
   }).transform((v) => {
     return remap$(v, {
-      idempotencyKey: "Idempotency-Key",
+      idempotencyKey: "idempotency-key",
       bulkSubscriberCreateDto: "BulkSubscriberCreateDto",
     });
   });

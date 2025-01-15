@@ -28,18 +28,18 @@ export const TopicsControllerCreateTopicRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  "Idempotency-Key": z.string().optional(),
+  "idempotency-key": z.string().optional(),
   CreateTopicRequestDto: components.CreateTopicRequestDto$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
-    "Idempotency-Key": "idempotencyKey",
+    "idempotency-key": "idempotencyKey",
     "CreateTopicRequestDto": "createTopicRequestDto",
   });
 });
 
 /** @internal */
 export type TopicsControllerCreateTopicRequest$Outbound = {
-  "Idempotency-Key"?: string | undefined;
+  "idempotency-key"?: string | undefined;
   CreateTopicRequestDto: components.CreateTopicRequestDto$Outbound;
 };
 
@@ -53,7 +53,7 @@ export const TopicsControllerCreateTopicRequest$outboundSchema: z.ZodType<
   createTopicRequestDto: components.CreateTopicRequestDto$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
-    idempotencyKey: "Idempotency-Key",
+    idempotencyKey: "idempotency-key",
     createTopicRequestDto: "CreateTopicRequestDto",
   });
 });

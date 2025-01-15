@@ -30,17 +30,17 @@ export const IntegrationsControllerRemoveIntegrationRequest$inboundSchema:
     unknown
   > = z.object({
     integrationId: z.string(),
-    "Idempotency-Key": z.string().optional(),
+    "idempotency-key": z.string().optional(),
   }).transform((v) => {
     return remap$(v, {
-      "Idempotency-Key": "idempotencyKey",
+      "idempotency-key": "idempotencyKey",
     });
   });
 
 /** @internal */
 export type IntegrationsControllerRemoveIntegrationRequest$Outbound = {
   integrationId: string;
-  "Idempotency-Key"?: string | undefined;
+  "idempotency-key"?: string | undefined;
 };
 
 /** @internal */
@@ -54,7 +54,7 @@ export const IntegrationsControllerRemoveIntegrationRequest$outboundSchema:
     idempotencyKey: z.string().optional(),
   }).transform((v) => {
     return remap$(v, {
-      idempotencyKey: "Idempotency-Key",
+      idempotencyKey: "idempotency-key",
     });
   });
 

@@ -28,18 +28,18 @@ export const TestingControllerIdempotencyRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  "Idempotency-Key": z.string().optional(),
+  "idempotency-key": z.string().optional(),
   IdempotencyBodyDto: components.IdempotencyBodyDto$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
-    "Idempotency-Key": "idempotencyKey",
+    "idempotency-key": "idempotencyKey",
     "IdempotencyBodyDto": "idempotencyBodyDto",
   });
 });
 
 /** @internal */
 export type TestingControllerIdempotencyRequest$Outbound = {
-  "Idempotency-Key"?: string | undefined;
+  "idempotency-key"?: string | undefined;
   IdempotencyBodyDto: components.IdempotencyBodyDto$Outbound;
 };
 
@@ -53,7 +53,7 @@ export const TestingControllerIdempotencyRequest$outboundSchema: z.ZodType<
   idempotencyBodyDto: components.IdempotencyBodyDto$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
-    idempotencyKey: "Idempotency-Key",
+    idempotencyKey: "idempotency-key",
     idempotencyBodyDto: "IdempotencyBodyDto",
   });
 });

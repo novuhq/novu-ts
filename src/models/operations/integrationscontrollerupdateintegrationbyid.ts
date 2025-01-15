@@ -31,12 +31,12 @@ export const IntegrationsControllerUpdateIntegrationByIdRequest$inboundSchema:
     unknown
   > = z.object({
     integrationId: z.string(),
-    "Idempotency-Key": z.string().optional(),
+    "idempotency-key": z.string().optional(),
     UpdateIntegrationRequestDto:
       components.UpdateIntegrationRequestDto$inboundSchema,
   }).transform((v) => {
     return remap$(v, {
-      "Idempotency-Key": "idempotencyKey",
+      "idempotency-key": "idempotencyKey",
       "UpdateIntegrationRequestDto": "updateIntegrationRequestDto",
     });
   });
@@ -44,7 +44,7 @@ export const IntegrationsControllerUpdateIntegrationByIdRequest$inboundSchema:
 /** @internal */
 export type IntegrationsControllerUpdateIntegrationByIdRequest$Outbound = {
   integrationId: string;
-  "Idempotency-Key"?: string | undefined;
+  "idempotency-key"?: string | undefined;
   UpdateIntegrationRequestDto: components.UpdateIntegrationRequestDto$Outbound;
 };
 
@@ -61,7 +61,7 @@ export const IntegrationsControllerUpdateIntegrationByIdRequest$outboundSchema:
       components.UpdateIntegrationRequestDto$outboundSchema,
   }).transform((v) => {
     return remap$(v, {
-      idempotencyKey: "Idempotency-Key",
+      idempotencyKey: "idempotency-key",
       updateIntegrationRequestDto: "UpdateIntegrationRequestDto",
     });
   });

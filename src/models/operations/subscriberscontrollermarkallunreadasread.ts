@@ -31,12 +31,12 @@ export const SubscribersControllerMarkAllUnreadAsReadRequest$inboundSchema:
     unknown
   > = z.object({
     subscriberId: z.string(),
-    "Idempotency-Key": z.string().optional(),
+    "idempotency-key": z.string().optional(),
     MarkAllMessageAsRequestDto:
       components.MarkAllMessageAsRequestDto$inboundSchema,
   }).transform((v) => {
     return remap$(v, {
-      "Idempotency-Key": "idempotencyKey",
+      "idempotency-key": "idempotencyKey",
       "MarkAllMessageAsRequestDto": "markAllMessageAsRequestDto",
     });
   });
@@ -44,7 +44,7 @@ export const SubscribersControllerMarkAllUnreadAsReadRequest$inboundSchema:
 /** @internal */
 export type SubscribersControllerMarkAllUnreadAsReadRequest$Outbound = {
   subscriberId: string;
-  "Idempotency-Key"?: string | undefined;
+  "idempotency-key"?: string | undefined;
   MarkAllMessageAsRequestDto: components.MarkAllMessageAsRequestDto$Outbound;
 };
 
@@ -61,7 +61,7 @@ export const SubscribersControllerMarkAllUnreadAsReadRequest$outboundSchema:
       components.MarkAllMessageAsRequestDto$outboundSchema,
   }).transform((v) => {
     return remap$(v, {
-      idempotencyKey: "Idempotency-Key",
+      idempotencyKey: "idempotency-key",
       markAllMessageAsRequestDto: "MarkAllMessageAsRequestDto",
     });
   });

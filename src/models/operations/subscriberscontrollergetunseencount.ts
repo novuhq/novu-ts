@@ -37,10 +37,10 @@ export const SubscribersControllerGetUnseenCountRequest$inboundSchema:
       subscriberId: z.string(),
       seen: z.boolean().default(false),
       limit: z.number().default(100),
-      "Idempotency-Key": z.string().optional(),
+      "idempotency-key": z.string().optional(),
     }).transform((v) => {
       return remap$(v, {
-        "Idempotency-Key": "idempotencyKey",
+        "idempotency-key": "idempotencyKey",
       });
     });
 
@@ -49,7 +49,7 @@ export type SubscribersControllerGetUnseenCountRequest$Outbound = {
   subscriberId: string;
   seen: boolean;
   limit: number;
-  "Idempotency-Key"?: string | undefined;
+  "idempotency-key"?: string | undefined;
 };
 
 /** @internal */
@@ -65,7 +65,7 @@ export const SubscribersControllerGetUnseenCountRequest$outboundSchema:
     idempotencyKey: z.string().optional(),
   }).transform((v) => {
     return remap$(v, {
-      idempotencyKey: "Idempotency-Key",
+      idempotencyKey: "idempotency-key",
     });
   });
 

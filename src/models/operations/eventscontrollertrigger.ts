@@ -28,18 +28,18 @@ export const EventsControllerTriggerRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  "Idempotency-Key": z.string().optional(),
+  "idempotency-key": z.string().optional(),
   TriggerEventRequestDto: components.TriggerEventRequestDto$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
-    "Idempotency-Key": "idempotencyKey",
+    "idempotency-key": "idempotencyKey",
     "TriggerEventRequestDto": "triggerEventRequestDto",
   });
 });
 
 /** @internal */
 export type EventsControllerTriggerRequest$Outbound = {
-  "Idempotency-Key"?: string | undefined;
+  "idempotency-key"?: string | undefined;
   TriggerEventRequestDto: components.TriggerEventRequestDto$Outbound;
 };
 
@@ -53,7 +53,7 @@ export const EventsControllerTriggerRequest$outboundSchema: z.ZodType<
   triggerEventRequestDto: components.TriggerEventRequestDto$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
-    idempotencyKey: "Idempotency-Key",
+    idempotencyKey: "idempotency-key",
     triggerEventRequestDto: "TriggerEventRequestDto",
   });
 });

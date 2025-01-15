@@ -75,10 +75,10 @@ export const NotificationsControllerListNotificationsRequest$inboundSchema:
     transactionId: z.string().optional(),
     after: z.string().optional(),
     before: z.string().optional(),
-    "Idempotency-Key": z.string().optional(),
+    "idempotency-key": z.string().optional(),
   }).transform((v) => {
     return remap$(v, {
-      "Idempotency-Key": "idempotencyKey",
+      "idempotency-key": "idempotencyKey",
     });
   });
 
@@ -93,7 +93,7 @@ export type NotificationsControllerListNotificationsRequest$Outbound = {
   transactionId?: string | undefined;
   after?: string | undefined;
   before?: string | undefined;
-  "Idempotency-Key"?: string | undefined;
+  "idempotency-key"?: string | undefined;
 };
 
 /** @internal */
@@ -115,7 +115,7 @@ export const NotificationsControllerListNotificationsRequest$outboundSchema:
     idempotencyKey: z.string().optional(),
   }).transform((v) => {
     return remap$(v, {
-      idempotencyKey: "Idempotency-Key",
+      idempotencyKey: "idempotency-key",
     });
   });
 

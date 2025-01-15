@@ -40,10 +40,10 @@ export const MessagesControllerGetMessagesRequest$inboundSchema: z.ZodType<
   transactionId: z.array(z.string()).optional(),
   page: z.number().default(0),
   limit: z.number().default(10),
-  "Idempotency-Key": z.string().optional(),
+  "idempotency-key": z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
-    "Idempotency-Key": "idempotencyKey",
+    "idempotency-key": "idempotencyKey",
   });
 });
 
@@ -54,7 +54,7 @@ export type MessagesControllerGetMessagesRequest$Outbound = {
   transactionId?: Array<string> | undefined;
   page: number;
   limit: number;
-  "Idempotency-Key"?: string | undefined;
+  "idempotency-key"?: string | undefined;
 };
 
 /** @internal */
@@ -71,7 +71,7 @@ export const MessagesControllerGetMessagesRequest$outboundSchema: z.ZodType<
   idempotencyKey: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
-    idempotencyKey: "Idempotency-Key",
+    idempotencyKey: "idempotency-key",
   });
 });
 

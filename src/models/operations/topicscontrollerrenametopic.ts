@@ -33,11 +33,11 @@ export const TopicsControllerRenameTopicRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   topicKey: z.string(),
-  "Idempotency-Key": z.string().optional(),
+  "idempotency-key": z.string().optional(),
   RenameTopicRequestDto: components.RenameTopicRequestDto$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
-    "Idempotency-Key": "idempotencyKey",
+    "idempotency-key": "idempotencyKey",
     "RenameTopicRequestDto": "renameTopicRequestDto",
   });
 });
@@ -45,7 +45,7 @@ export const TopicsControllerRenameTopicRequest$inboundSchema: z.ZodType<
 /** @internal */
 export type TopicsControllerRenameTopicRequest$Outbound = {
   topicKey: string;
-  "Idempotency-Key"?: string | undefined;
+  "idempotency-key"?: string | undefined;
   RenameTopicRequestDto: components.RenameTopicRequestDto$Outbound;
 };
 
@@ -60,7 +60,7 @@ export const TopicsControllerRenameTopicRequest$outboundSchema: z.ZodType<
   renameTopicRequestDto: components.RenameTopicRequestDto$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
-    idempotencyKey: "Idempotency-Key",
+    idempotencyKey: "idempotency-key",
     renameTopicRequestDto: "RenameTopicRequestDto",
   });
 });

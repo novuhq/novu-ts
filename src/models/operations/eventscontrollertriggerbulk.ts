@@ -28,18 +28,18 @@ export const EventsControllerTriggerBulkRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  "Idempotency-Key": z.string().optional(),
+  "idempotency-key": z.string().optional(),
   BulkTriggerEventDto: components.BulkTriggerEventDto$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
-    "Idempotency-Key": "idempotencyKey",
+    "idempotency-key": "idempotencyKey",
     "BulkTriggerEventDto": "bulkTriggerEventDto",
   });
 });
 
 /** @internal */
 export type EventsControllerTriggerBulkRequest$Outbound = {
-  "Idempotency-Key"?: string | undefined;
+  "idempotency-key"?: string | undefined;
   BulkTriggerEventDto: components.BulkTriggerEventDto$Outbound;
 };
 
@@ -53,7 +53,7 @@ export const EventsControllerTriggerBulkRequest$outboundSchema: z.ZodType<
   bulkTriggerEventDto: components.BulkTriggerEventDto$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
-    idempotencyKey: "Idempotency-Key",
+    idempotencyKey: "idempotency-key",
     bulkTriggerEventDto: "BulkTriggerEventDto",
   });
 });

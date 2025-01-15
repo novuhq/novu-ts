@@ -43,10 +43,10 @@ export const SubscribersControllerGetNotificationsFeedRequest$inboundSchema:
     read: z.boolean().optional(),
     seen: z.boolean().optional(),
     payload: z.string().optional(),
-    "Idempotency-Key": z.string().optional(),
+    "idempotency-key": z.string().optional(),
   }).transform((v) => {
     return remap$(v, {
-      "Idempotency-Key": "idempotencyKey",
+      "idempotency-key": "idempotencyKey",
     });
   });
 
@@ -58,7 +58,7 @@ export type SubscribersControllerGetNotificationsFeedRequest$Outbound = {
   read?: boolean | undefined;
   seen?: boolean | undefined;
   payload?: string | undefined;
-  "Idempotency-Key"?: string | undefined;
+  "idempotency-key"?: string | undefined;
 };
 
 /** @internal */
@@ -77,7 +77,7 @@ export const SubscribersControllerGetNotificationsFeedRequest$outboundSchema:
     idempotencyKey: z.string().optional(),
   }).transform((v) => {
     return remap$(v, {
-      idempotencyKey: "Idempotency-Key",
+      idempotencyKey: "idempotency-key",
     });
   });
 

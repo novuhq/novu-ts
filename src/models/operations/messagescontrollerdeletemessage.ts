@@ -29,17 +29,17 @@ export const MessagesControllerDeleteMessageRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   messageId: z.string(),
-  "Idempotency-Key": z.string().optional(),
+  "idempotency-key": z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
-    "Idempotency-Key": "idempotencyKey",
+    "idempotency-key": "idempotencyKey",
   });
 });
 
 /** @internal */
 export type MessagesControllerDeleteMessageRequest$Outbound = {
   messageId: string;
-  "Idempotency-Key"?: string | undefined;
+  "idempotency-key"?: string | undefined;
 };
 
 /** @internal */
@@ -52,7 +52,7 @@ export const MessagesControllerDeleteMessageRequest$outboundSchema: z.ZodType<
   idempotencyKey: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
-    idempotencyKey: "Idempotency-Key",
+    idempotencyKey: "idempotency-key",
   });
 });
 

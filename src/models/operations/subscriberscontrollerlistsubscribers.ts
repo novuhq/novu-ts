@@ -48,10 +48,10 @@ export const SubscribersControllerListSubscribersRequest$inboundSchema:
   > = z.object({
     page: z.number().optional(),
     limit: z.number().default(10),
-    "Idempotency-Key": z.string().optional(),
+    "idempotency-key": z.string().optional(),
   }).transform((v) => {
     return remap$(v, {
-      "Idempotency-Key": "idempotencyKey",
+      "idempotency-key": "idempotencyKey",
     });
   });
 
@@ -59,7 +59,7 @@ export const SubscribersControllerListSubscribersRequest$inboundSchema:
 export type SubscribersControllerListSubscribersRequest$Outbound = {
   page?: number | undefined;
   limit: number;
-  "Idempotency-Key"?: string | undefined;
+  "idempotency-key"?: string | undefined;
 };
 
 /** @internal */
@@ -74,7 +74,7 @@ export const SubscribersControllerListSubscribersRequest$outboundSchema:
     idempotencyKey: z.string().optional(),
   }).transform((v) => {
     return remap$(v, {
-      idempotencyKey: "Idempotency-Key",
+      idempotencyKey: "idempotency-key",
     });
   });
 

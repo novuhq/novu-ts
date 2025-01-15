@@ -28,11 +28,11 @@ export const SubscribersControllerMarkMessagesAsRequest$inboundSchema:
   z.ZodType<SubscribersControllerMarkMessagesAsRequest, z.ZodTypeDef, unknown> =
     z.object({
       subscriberId: z.string(),
-      "Idempotency-Key": z.string().optional(),
+      "idempotency-key": z.string().optional(),
       MessageMarkAsRequestDto: components.MessageMarkAsRequestDto$inboundSchema,
     }).transform((v) => {
       return remap$(v, {
-        "Idempotency-Key": "idempotencyKey",
+        "idempotency-key": "idempotencyKey",
         "MessageMarkAsRequestDto": "messageMarkAsRequestDto",
       });
     });
@@ -40,7 +40,7 @@ export const SubscribersControllerMarkMessagesAsRequest$inboundSchema:
 /** @internal */
 export type SubscribersControllerMarkMessagesAsRequest$Outbound = {
   subscriberId: string;
-  "Idempotency-Key"?: string | undefined;
+  "idempotency-key"?: string | undefined;
   MessageMarkAsRequestDto: components.MessageMarkAsRequestDto$Outbound;
 };
 
@@ -56,7 +56,7 @@ export const SubscribersControllerMarkMessagesAsRequest$outboundSchema:
     messageMarkAsRequestDto: components.MessageMarkAsRequestDto$outboundSchema,
   }).transform((v) => {
     return remap$(v, {
-      idempotencyKey: "Idempotency-Key",
+      idempotencyKey: "idempotency-key",
       messageMarkAsRequestDto: "MessageMarkAsRequestDto",
     });
   });

@@ -34,12 +34,12 @@ export const SubscribersControllerUpdateSubscriberPreferenceRequest$inboundSchem
   > = z.object({
     subscriberId: z.string(),
     workflowId: z.string(),
-    "Idempotency-Key": z.string().optional(),
+    "idempotency-key": z.string().optional(),
     UpdateSubscriberPreferenceRequestDto:
       components.UpdateSubscriberPreferenceRequestDto$inboundSchema,
   }).transform((v) => {
     return remap$(v, {
-      "Idempotency-Key": "idempotencyKey",
+      "idempotency-key": "idempotencyKey",
       "UpdateSubscriberPreferenceRequestDto":
         "updateSubscriberPreferenceRequestDto",
     });
@@ -49,7 +49,7 @@ export const SubscribersControllerUpdateSubscriberPreferenceRequest$inboundSchem
 export type SubscribersControllerUpdateSubscriberPreferenceRequest$Outbound = {
   subscriberId: string;
   workflowId: string;
-  "Idempotency-Key"?: string | undefined;
+  "idempotency-key"?: string | undefined;
   UpdateSubscriberPreferenceRequestDto:
     components.UpdateSubscriberPreferenceRequestDto$Outbound;
 };
@@ -68,7 +68,7 @@ export const SubscribersControllerUpdateSubscriberPreferenceRequest$outboundSche
       components.UpdateSubscriberPreferenceRequestDto$outboundSchema,
   }).transform((v) => {
     return remap$(v, {
-      idempotencyKey: "Idempotency-Key",
+      idempotencyKey: "idempotency-key",
       updateSubscriberPreferenceRequestDto:
         "UpdateSubscriberPreferenceRequestDto",
     });

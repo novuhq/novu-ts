@@ -11,7 +11,7 @@ import {
 export class NovuCustomHook
     implements BeforeRequestHook, AfterSuccessHook, BeforeCreateRequestHook {
     beforeCreateRequest(_hookCtx: HookContext, input: RequestInput): RequestInput {
-        const idempotencyKey = 'Idempotency-Key';
+        const idempotencyKey = 'idempotency-key';
         const headers = input.options?.headers
         if (!headers) {
             return input
@@ -68,7 +68,7 @@ export class NovuCustomHook
     ): Record<string, string> {
         const headersRecord = this.convertToRecord(headers);
 
-        if (!(key in headersRecord) || headersRecord[key] === '') {
+        if (!(key in headersRecord) || headersRecord[key] == '') {
             headersRecord[key] = defaultValueFunction();
         }
 

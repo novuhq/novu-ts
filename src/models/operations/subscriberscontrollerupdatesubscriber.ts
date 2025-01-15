@@ -31,12 +31,12 @@ export const SubscribersControllerUpdateSubscriberRequest$inboundSchema:
     unknown
   > = z.object({
     subscriberId: z.string(),
-    "Idempotency-Key": z.string().optional(),
+    "idempotency-key": z.string().optional(),
     UpdateSubscriberRequestDto:
       components.UpdateSubscriberRequestDto$inboundSchema,
   }).transform((v) => {
     return remap$(v, {
-      "Idempotency-Key": "idempotencyKey",
+      "idempotency-key": "idempotencyKey",
       "UpdateSubscriberRequestDto": "updateSubscriberRequestDto",
     });
   });
@@ -44,7 +44,7 @@ export const SubscribersControllerUpdateSubscriberRequest$inboundSchema:
 /** @internal */
 export type SubscribersControllerUpdateSubscriberRequest$Outbound = {
   subscriberId: string;
-  "Idempotency-Key"?: string | undefined;
+  "idempotency-key"?: string | undefined;
   UpdateSubscriberRequestDto: components.UpdateSubscriberRequestDto$Outbound;
 };
 
@@ -61,7 +61,7 @@ export const SubscribersControllerUpdateSubscriberRequest$outboundSchema:
       components.UpdateSubscriberRequestDto$outboundSchema,
   }).transform((v) => {
     return remap$(v, {
-      idempotencyKey: "Idempotency-Key",
+      idempotencyKey: "idempotency-key",
       updateSubscriberRequestDto: "UpdateSubscriberRequestDto",
     });
   });

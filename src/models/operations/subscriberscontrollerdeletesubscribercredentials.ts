@@ -30,10 +30,10 @@ export const SubscribersControllerDeleteSubscriberCredentialsRequest$inboundSche
   > = z.object({
     subscriberId: z.string(),
     providerId: z.string(),
-    "Idempotency-Key": z.string().optional(),
+    "idempotency-key": z.string().optional(),
   }).transform((v) => {
     return remap$(v, {
-      "Idempotency-Key": "idempotencyKey",
+      "idempotency-key": "idempotencyKey",
     });
   });
 
@@ -41,7 +41,7 @@ export const SubscribersControllerDeleteSubscriberCredentialsRequest$inboundSche
 export type SubscribersControllerDeleteSubscriberCredentialsRequest$Outbound = {
   subscriberId: string;
   providerId: string;
-  "Idempotency-Key"?: string | undefined;
+  "idempotency-key"?: string | undefined;
 };
 
 /** @internal */
@@ -56,7 +56,7 @@ export const SubscribersControllerDeleteSubscriberCredentialsRequest$outboundSch
     idempotencyKey: z.string().optional(),
   }).transform((v) => {
     return remap$(v, {
-      idempotencyKey: "Idempotency-Key",
+      idempotencyKey: "idempotency-key",
     });
   });
 

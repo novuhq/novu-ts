@@ -29,19 +29,19 @@ export const IntegrationsControllerCreateIntegrationRequest$inboundSchema:
     z.ZodTypeDef,
     unknown
   > = z.object({
-    "Idempotency-Key": z.string().optional(),
+    "idempotency-key": z.string().optional(),
     CreateIntegrationRequestDto:
       components.CreateIntegrationRequestDto$inboundSchema,
   }).transform((v) => {
     return remap$(v, {
-      "Idempotency-Key": "idempotencyKey",
+      "idempotency-key": "idempotencyKey",
       "CreateIntegrationRequestDto": "createIntegrationRequestDto",
     });
   });
 
 /** @internal */
 export type IntegrationsControllerCreateIntegrationRequest$Outbound = {
-  "Idempotency-Key"?: string | undefined;
+  "idempotency-key"?: string | undefined;
   CreateIntegrationRequestDto: components.CreateIntegrationRequestDto$Outbound;
 };
 
@@ -57,7 +57,7 @@ export const IntegrationsControllerCreateIntegrationRequest$outboundSchema:
       components.CreateIntegrationRequestDto$outboundSchema,
   }).transform((v) => {
     return remap$(v, {
-      idempotencyKey: "Idempotency-Key",
+      idempotencyKey: "idempotency-key",
       createIntegrationRequestDto: "CreateIntegrationRequestDto",
     });
   });

@@ -32,12 +32,12 @@ export const SubscribersControllerModifySubscriberChannelRequest$inboundSchema:
     unknown
   > = z.object({
     subscriberId: z.string(),
-    "Idempotency-Key": z.string().optional(),
+    "idempotency-key": z.string().optional(),
     UpdateSubscriberChannelRequestDto:
       components.UpdateSubscriberChannelRequestDto$inboundSchema,
   }).transform((v) => {
     return remap$(v, {
-      "Idempotency-Key": "idempotencyKey",
+      "idempotency-key": "idempotencyKey",
       "UpdateSubscriberChannelRequestDto": "updateSubscriberChannelRequestDto",
     });
   });
@@ -45,7 +45,7 @@ export const SubscribersControllerModifySubscriberChannelRequest$inboundSchema:
 /** @internal */
 export type SubscribersControllerModifySubscriberChannelRequest$Outbound = {
   subscriberId: string;
-  "Idempotency-Key"?: string | undefined;
+  "idempotency-key"?: string | undefined;
   UpdateSubscriberChannelRequestDto:
     components.UpdateSubscriberChannelRequestDto$Outbound;
 };
@@ -63,7 +63,7 @@ export const SubscribersControllerModifySubscriberChannelRequest$outboundSchema:
       components.UpdateSubscriberChannelRequestDto$outboundSchema,
   }).transform((v) => {
     return remap$(v, {
-      idempotencyKey: "Idempotency-Key",
+      idempotencyKey: "idempotency-key",
       updateSubscriberChannelRequestDto: "UpdateSubscriberChannelRequestDto",
     });
   });
