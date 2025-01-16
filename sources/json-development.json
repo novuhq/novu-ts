@@ -25142,9 +25142,13 @@
             "type": "string",
             "description": "First name of the subscriber"
           },
-          "_id": {
+          "subscriberId": {
             "type": "string",
             "description": "External unique identifier of the subscriber"
+          },
+          "_id": {
+            "type": "string",
+            "description": "Internal to Novu unique identifier of the subscriber"
           },
           "lastName": {
             "type": "string",
@@ -25160,6 +25164,7 @@
           }
         },
         "required": [
+          "subscriberId",
           "_id"
         ]
       },
@@ -25526,6 +25531,7 @@
           },
           "raw": {
             "type": "string",
+            "nullable": true,
             "description": "Raw data of the execution"
           },
           "source": {
@@ -28743,7 +28749,7 @@
     },
     "statusCodes": [
       408,
-      422,
+      409,
       429,
       "5XX"
     ],

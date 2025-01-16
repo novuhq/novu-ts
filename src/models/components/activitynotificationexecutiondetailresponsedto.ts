@@ -55,7 +55,7 @@ export type ActivityNotificationExecutionDetailResponseDto = {
   /**
    * Raw data of the execution
    */
-  raw?: string | undefined;
+  raw?: string | null | undefined;
   /**
    * Source of the execution detail
    */
@@ -76,7 +76,7 @@ export const ActivityNotificationExecutionDetailResponseDto$inboundSchema:
     isRetry: z.boolean(),
     isTest: z.boolean(),
     providerId: ProvidersIdEnum$inboundSchema,
-    raw: z.string().optional(),
+    raw: z.nullable(z.string()).optional(),
     source: ExecutionDetailsSourceEnum$inboundSchema,
   }).transform((v) => {
     return remap$(v, {
@@ -93,7 +93,7 @@ export type ActivityNotificationExecutionDetailResponseDto$Outbound = {
   isRetry: boolean;
   isTest: boolean;
   providerId: string;
-  raw?: string | undefined;
+  raw?: string | null | undefined;
   source: string;
 };
 
@@ -111,7 +111,7 @@ export const ActivityNotificationExecutionDetailResponseDto$outboundSchema:
     isRetry: z.boolean(),
     isTest: z.boolean(),
     providerId: ProvidersIdEnum$outboundSchema,
-    raw: z.string().optional(),
+    raw: z.nullable(z.string()).optional(),
     source: ExecutionDetailsSourceEnum$outboundSchema,
   }).transform((v) => {
     return remap$(v, {

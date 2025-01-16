@@ -16,6 +16,10 @@ export type ActivityNotificationSubscriberResponseDto = {
   /**
    * External unique identifier of the subscriber
    */
+  subscriberId: string;
+  /**
+   * Internal to Novu unique identifier of the subscriber
+   */
   id: string;
   /**
    * Last name of the subscriber
@@ -38,6 +42,7 @@ export const ActivityNotificationSubscriberResponseDto$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   firstName: z.string().optional(),
+  subscriberId: z.string(),
   _id: z.string(),
   lastName: z.string().optional(),
   email: z.string().optional(),
@@ -51,6 +56,7 @@ export const ActivityNotificationSubscriberResponseDto$inboundSchema: z.ZodType<
 /** @internal */
 export type ActivityNotificationSubscriberResponseDto$Outbound = {
   firstName?: string | undefined;
+  subscriberId: string;
   _id: string;
   lastName?: string | undefined;
   email?: string | undefined;
@@ -65,6 +71,7 @@ export const ActivityNotificationSubscriberResponseDto$outboundSchema:
     ActivityNotificationSubscriberResponseDto
   > = z.object({
     firstName: z.string().optional(),
+    subscriberId: z.string(),
     id: z.string(),
     lastName: z.string().optional(),
     email: z.string().optional(),

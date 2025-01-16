@@ -96,7 +96,7 @@ export async function testApiRateLimitBulkControllerNoCategorySingleCostOverride
         retryConnectionErrors: true,
       }
       || { strategy: "none" },
-    retryCodes: options?.retryCodes || ["408", "422", "429", "5XX"],
+    retryCodes: options?.retryCodes || ["408", "409", "429", "5XX"],
   };
 
   const requestRes = client._createRequest(context, {
@@ -135,7 +135,8 @@ export async function testApiRateLimitBulkControllerNoCategorySingleCostOverride
     | ConnectionError
   >(
     M.json(200, z.boolean()),
-    M.fail(["4XX", "5XX"]),
+    M.fail("4XX"),
+    M.fail("5XX"),
   )(response);
   if (!result.ok) {
     return result;

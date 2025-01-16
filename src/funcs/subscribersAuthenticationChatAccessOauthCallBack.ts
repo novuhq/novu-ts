@@ -43,6 +43,7 @@ export async function subscribersAuthenticationChatAccessOauthCallBack(
     | errors.ErrorDto
     | errors.ErrorDto
     | errors.ValidationErrorDto
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -121,7 +122,7 @@ export async function subscribersAuthenticationChatAccessOauthCallBack(
         retryConnectionErrors: true,
       }
       || { strategy: "none" },
-    retryCodes: options?.retryCodes || ["408", "422", "429", "5XX"],
+    retryCodes: options?.retryCodes || ["408", "409", "429", "5XX"],
   };
 
   const requestRes = client._createRequest(context, {
@@ -175,6 +176,7 @@ export async function subscribersAuthenticationChatAccessOauthCallBack(
     | errors.ErrorDto
     | errors.ErrorDto
     | errors.ValidationErrorDto
+    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -194,14 +196,17 @@ export async function subscribersAuthenticationChatAccessOauthCallBack(
       { hdrs: true, key: "Result" },
     ),
     M.jsonErr(
-      [400, 401, 403, 404, 405, 409, 413, 415, 500],
+      [400, 401, 403, 404, 405, 409, 413, 415],
       errors.ErrorDto$inboundSchema,
       { hdrs: true },
     ),
     M.jsonErr(414, errors.ErrorDto$inboundSchema),
     M.jsonErr(422, errors.ValidationErrorDto$inboundSchema, { hdrs: true }),
-    M.fail([429, 503]),
-    M.fail(["4XX", "5XX"]),
+    M.fail(429),
+    M.jsonErr(500, errors.ErrorDto$inboundSchema, { hdrs: true }),
+    M.fail(503),
+    M.fail("4XX"),
+    M.fail("5XX"),
   )(response, { extraFields: responseFields });
   if (!result.ok) {
     return result;
