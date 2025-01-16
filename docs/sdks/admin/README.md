@@ -3,9 +3,6 @@
 
 ## Overview
 
-testing
-<https://docs.novu.co/platform/organizations>
-
 ### Available Operations
 
 * [healthControllerHealthCheck](#healthcontrollerhealthcheck)
