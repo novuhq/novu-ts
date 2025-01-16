@@ -1,5 +1,5 @@
 import { Hooks } from "./types.js";
-import {NovuCustomHook} from "./novu-custom-hook";
+import {NovuCustomHook} from "./novu-custom-hook.js";
 
 /*
  * This file is only ever generated once on the first generation and then is free to be modified.

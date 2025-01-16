@@ -1,4 +1,4 @@
-import {RequestInput} from "../lib/http";
+import {RequestInput} from "../lib/http.js";
 import {
     AfterSuccessContext,
     AfterSuccessHook,
@@ -6,7 +6,7 @@ import {
     BeforeRequestContext,
     BeforeRequestHook,
     HookContext
-} from "./types";
+} from "./types.js";
 
 export class NovuCustomHook
     implements BeforeRequestHook, AfterSuccessHook, BeforeCreateRequestHook {
