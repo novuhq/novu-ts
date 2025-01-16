@@ -220,6 +220,7 @@ run();
 
 * [healthControllerHealthCheck](docs/sdks/admin/README.md#healthcontrollerhealthcheck)
 * [testIdempotency](docs/sdks/admin/README.md#testidempotency)
+* [generateRandomNumber](docs/sdks/admin/README.md#generaterandomnumber)
 
 ### [integrations](docs/sdks/integrations/README.md)
 
@@ -331,6 +332,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 <summary>Available standalone functions</summary>
 
+- [`adminGenerateRandomNumber`](docs/sdks/admin/README.md#generaterandomnumber)
 - [`adminHealthControllerHealthCheck`](docs/sdks/admin/README.md#healthcontrollerhealthcheck)
 - [`adminTestIdempotency`](docs/sdks/admin/README.md#testidempotency)
 - [`cancel`](docs/sdks/novu/README.md#cancel) - Cancel triggered event
