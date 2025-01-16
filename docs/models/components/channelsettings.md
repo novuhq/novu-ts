@@ -6,7 +6,7 @@
 import { ChannelSettings } from "@novu/api/models/components";
 
 let value: ChannelSettings = {
-  providerId: "push-webhook",
+  providerId: "expo",
   credentials: {
     webhookUrl: "https://example.com/webhook",
     channel: "general",

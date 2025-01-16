@@ -17,8 +17,8 @@ let value: ActivityNotificationStepResponseDto = {
         {
           field: "<value>",
           value: "<value>",
-          operator: "NOT_IN",
-          on: "subscriber",
+          operator: "SMALLER_EQUAL",
+          on: "payload",
         },
       ],
     },

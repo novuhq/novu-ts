@@ -7,16 +7,16 @@ import { ActivityNotificationJobResponseDto } from "@novu/api/models/components"
 
 let value: ActivityNotificationJobResponseDto = {
   id: "<id>",
-  type: "email",
+  type: "digest",
   executionDetails: [
     {
       id: "<id>",
-      status: "Pending",
+      status: "Success",
       detail: "<value>",
       isRetry: false,
       isTest: false,
-      providerId: "mailgun",
-      source: "Webhook",
+      providerId: "pusher-beams",
+      source: "Credentials",
     },
   ],
   step: {
@@ -25,13 +25,13 @@ let value: ActivityNotificationJobResponseDto = {
     filters: [
       {
         isNegated: false,
-        type: "BOOLEAN",
-        value: "OR",
+        type: "LIST",
+        value: "AND",
         children: [
           {
             field: "<value>",
             value: "<value>",
-            operator: "SMALLER_EQUAL",
+            operator: "NOT_BETWEEN",
             on: "payload",
           },
         ],
@@ -39,7 +39,7 @@ let value: ActivityNotificationJobResponseDto = {
     ],
     templateId: "<id>",
   },
-  providerId: "getstream",
+  providerId: "novu-email",
   status: "<value>",
 };
 ```

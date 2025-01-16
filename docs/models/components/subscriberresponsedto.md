@@ -9,7 +9,7 @@ let value: SubscriberResponseDto = {
   subscriberId: "<id>",
   channels: [
     {
-      providerId: "push-webhook",
+      providerId: "one-signal",
       credentials: {
         webhookUrl: "https://example.com/webhook",
         channel: "general",
@@ -30,8 +30,8 @@ let value: SubscriberResponseDto = {
   organizationId: "<id>",
   environmentId: "<id>",
   deleted: false,
-  createdAt: "1730898671049",
-  updatedAt: "1736984953486",
+  createdAt: "1727699281169",
+  updatedAt: "1736959711004",
 };
 ```
 

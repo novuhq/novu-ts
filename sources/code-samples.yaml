@@ -27,6 +27,18 @@ actions:
         - "lang": "typescript"
           "label": "TypeScript"
           "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n});\n\nasync function run() {\n  const result = await novu.cancel(\"<id>\");\n\n  // Handle the result\n  console.log(result);\n}\n\nrun();"
+  - target: $["paths"]["/v1/health-check"]["get"]
+    update:
+      "x-codeSamples":
+        - "lang": "typescript"
+          "label": "TypeScript"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n});\n\nasync function run() {\n  const result = await novu.admin.healthControllerHealthCheck();\n\n  // Handle the result\n  console.log(result);\n}\n\nrun();"
+  - target: $["paths"]["/v1/health-check/test-idempotency"]["post"]
+    update:
+      "x-codeSamples":
+        - "lang": "typescript"
+          "label": "TypeScript"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n});\n\nasync function run() {\n  const result = await novu.admin.testIdempotency({\n    expectedBehavior: \"IMMEDIATE_EXCEPTION\",\n  });\n\n  // Handle the result\n  console.log(result);\n}\n\nrun();"
   - target: $["paths"]["/v1/integrations"]["get"]
     update:
       "x-codeSamples":
@@ -111,24 +123,6 @@ actions:
         - "lang": "typescript"
           "label": "TypeScript"
           "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n});\n\nasync function run() {\n  const result = await novu.notifications.retrieve(\"<id>\");\n\n  // Handle the result\n  console.log(result);\n}\n\nrun();"
-  - target: $["paths"]["/v1/rate-limiting-trigger-bulk/global-category-no-cost-override"]["get"]
-    update:
-      "x-codeSamples":
-        - "lang": "typescript"
-          "label": "TypeScript"
-          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n});\n\nasync function run() {\n  const result = await novu.testApiRateLimitBulkControllerGlobalCategoryNoCostOverride();\n\n  // Handle the result\n  console.log(result);\n}\n\nrun();"
-  - target: $["paths"]["/v1/rate-limiting-trigger-bulk/no-category-no-cost-override"]["get"]
-    update:
-      "x-codeSamples":
-        - "lang": "typescript"
-          "label": "TypeScript"
-          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n});\n\nasync function run() {\n  const result = await novu.testApiRateLimitBulkControllerNoCategoryNoCostOverride();\n\n  // Handle the result\n  console.log(result);\n}\n\nrun();"
-  - target: $["paths"]["/v1/rate-limiting-trigger-bulk/no-category-single-cost-override"]["get"]
-    update:
-      "x-codeSamples":
-        - "lang": "typescript"
-          "label": "TypeScript"
-          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n});\n\nasync function run() {\n  const result = await novu.testApiRateLimitBulkControllerNoCategorySingleCostOverride();\n\n  // Handle the result\n  console.log(result);\n}\n\nrun();"
   - target: $["paths"]["/v1/subscribers"]["get"]
     update:
       "x-codeSamples":
@@ -255,18 +249,6 @@ actions:
         - "lang": "typescript"
           "label": "TypeScript"
           "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n});\n\nasync function run() {\n  const result = await novu.subscribers.preferences.update({\n    subscriberId: \"<id>\",\n    workflowId: \"<id>\",\n    updateSubscriberPreferenceRequestDto: {},\n  });\n\n  // Handle the result\n  console.log(result);\n}\n\nrun();"
-  - target: $["paths"]["/v1/testing/idempotency"]["get"]
-    update:
-      "x-codeSamples":
-        - "lang": "typescript"
-          "label": "TypeScript"
-          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n});\n\nasync function run() {\n  const result = await novu.admin.idempotencyGet();\n\n  // Handle the result\n  console.log(result);\n}\n\nrun();"
-  - target: $["paths"]["/v1/testing/idempotency"]["post"]
-    update:
-      "x-codeSamples":
-        - "lang": "typescript"
-          "label": "TypeScript"
-          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n});\n\nasync function run() {\n  const result = await novu.admin.idempotencyPost({\n    data: 3087.15,\n  });\n\n  // Handle the result\n  console.log(result);\n}\n\nrun();"
   - target: $["paths"]["/v1/topics"]["get"]
     update:
       "x-codeSamples":

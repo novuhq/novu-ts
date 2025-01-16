@@ -22,7 +22,7 @@ let value: SubscribersControllerMarkActionAsSeenResponse = {
       subscriberId: "<id>",
       channels: [
         {
-          providerId: "one-signal",
+          providerId: "discord",
           credentials: {
             webhookUrl: "https://example.com/webhook",
             channel: "general",
@@ -43,13 +43,16 @@ let value: SubscribersControllerMarkActionAsSeenResponse = {
       organizationId: "<id>",
       environmentId: "<id>",
       deleted: false,
-      createdAt: "1708536723761",
-      updatedAt: "1736996535627",
+      createdAt: "1731926880981",
+      updatedAt: "1736959354022",
     },
-    createdAt: "1708505097320",
-    content: "<value>",
+    createdAt: "1736295075931",
+    content: {
+      type: "text",
+      content: "<value>",
+    },
     transactionId: "<id>",
-    channel: "sms",
+    channel: "chat",
     read: false,
     seen: false,
     cta: {

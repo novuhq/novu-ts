@@ -8,7 +8,7 @@ import { SubscribersControllerUpdateSubscriberChannelRequest } from "@novu/api/m
 let value: SubscribersControllerUpdateSubscriberChannelRequest = {
   subscriberId: "<id>",
   updateSubscriberChannelRequestDto: {
-    providerId: "fcm",
+    providerId: "pusher-beams",
     credentials: {
       webhookUrl: "https://example.com/webhook",
       channel: "general",

@@ -16,7 +16,7 @@ let value: MessageResponseDto = {
     subscriberId: "<id>",
     channels: [
       {
-        providerId: "slack",
+        providerId: "grafana-on-call",
         credentials: {
           webhookUrl: "https://example.com/webhook",
           channel: "general",
@@ -37,11 +37,14 @@ let value: MessageResponseDto = {
     organizationId: "<id>",
     environmentId: "<id>",
     deleted: false,
-    createdAt: "1716826806204",
-    updatedAt: "1736987208779",
+    createdAt: "1728522433273",
+    updatedAt: "1736965880258",
   },
-  createdAt: "1710887051654",
-  content: "<value>",
+  createdAt: "1721932861518",
+  content: {
+    type: "button",
+    content: "<value>",
+  },
   transactionId: "<id>",
   channel: "in_app",
   read: false,
@@ -49,7 +52,7 @@ let value: MessageResponseDto = {
   cta: {
     data: {},
   },
-  status: "sent",
+  status: "warning",
 };
 ```
 

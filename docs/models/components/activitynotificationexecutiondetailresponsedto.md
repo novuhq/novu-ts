@@ -11,8 +11,8 @@ let value: ActivityNotificationExecutionDetailResponseDto = {
   detail: "<value>",
   isRetry: false,
   isTest: false,
-  providerId: "mobishastra",
-  source: "Payload",
+  providerId: "forty-six-elks",
+  source: "Webhook",
 };
 ```
 

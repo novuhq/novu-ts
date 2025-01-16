@@ -3,6 +3,7 @@
  */
 
 export * from "./errordto.js";
+export * from "./healthcontrollerhealthcheck.js";
 export * from "./httpclienterrors.js";
 export * from "./sdkerror.js";
 export * from "./sdkvalidationerror.js";

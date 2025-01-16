@@ -15,7 +15,7 @@ let value: SubscribersControllerGetSubscriberResponse = {
     subscriberId: "<id>",
     channels: [
       {
-        providerId: "one-signal",
+        providerId: "getstream",
         credentials: {
           webhookUrl: "https://example.com/webhook",
           channel: "general",
@@ -36,8 +36,8 @@ let value: SubscribersControllerGetSubscriberResponse = {
     organizationId: "<id>",
     environmentId: "<id>",
     deleted: false,
-    createdAt: "1719859694371",
-    updatedAt: "1736973250075",
+    createdAt: "1723427583436",
+    updatedAt: "1736952674412",
   },
 };
 ```

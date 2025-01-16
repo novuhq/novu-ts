@@ -1,12 +1,11 @@
-# TestApiRateLimitBulkControllerGlobalCategoryNoCostOverrideRequest
+# HealthControllerHealthCheckRequest
 
 ## Example Usage
 
 ```typescript
-import { TestApiRateLimitBulkControllerGlobalCategoryNoCostOverrideRequest } from "@novu/api/models/operations";
+import { HealthControllerHealthCheckRequest } from "@novu/api/models/operations";
 
-let value: TestApiRateLimitBulkControllerGlobalCategoryNoCostOverrideRequest =
-  {};
+let value: HealthControllerHealthCheckRequest = {};
 ```
 
 ## Fields

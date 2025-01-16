@@ -13,7 +13,7 @@ generation:
     oAuth2ClientCredentialsEnabled: false
     oAuth2PasswordEnabled: false
 typescript:
-  version: 0.0.1-alpha.198
+  version: 0.0.1-alpha.196
   additionalDependencies:
     dependencies: {}
     devDependencies: {}
@@ -38,7 +38,7 @@ typescript:
   inputModelSuffix: input
   maxMethodParams: 3
   methodArguments: require-security-and-request
-  moduleFormat: dual
+  moduleFormat: commonjs
   outputModelSuffix: output
   packageName: '@novu/api'
   responseFormat: flat

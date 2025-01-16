@@ -15,7 +15,7 @@ let value: SubscribersControllerModifySubscriberChannelResponse = {
     subscriberId: "<id>",
     channels: [
       {
-        providerId: "apns",
+        providerId: "discord",
         credentials: {
           webhookUrl: "https://example.com/webhook",
           channel: "general",
@@ -36,8 +36,8 @@ let value: SubscribersControllerModifySubscriberChannelResponse = {
     organizationId: "<id>",
     environmentId: "<id>",
     deleted: false,
-    createdAt: "1707373808385",
-    updatedAt: "1736981745950",
+    createdAt: "1726528605545",
+    updatedAt: "1737008993514",
   },
 };
 ```

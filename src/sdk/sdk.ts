@@ -3,9 +3,6 @@
  */
 
 import { cancel } from "../funcs/cancel.js";
-import { testApiRateLimitBulkControllerGlobalCategoryNoCostOverride } from "../funcs/testApiRateLimitBulkControllerGlobalCategoryNoCostOverride.js";
-import { testApiRateLimitBulkControllerNoCategoryNoCostOverride } from "../funcs/testApiRateLimitBulkControllerNoCategoryNoCostOverride.js";
-import { testApiRateLimitBulkControllerNoCategorySingleCostOverride } from "../funcs/testApiRateLimitBulkControllerNoCategorySingleCostOverride.js";
 import { trigger } from "../funcs/trigger.js";
 import { triggerBroadcast } from "../funcs/triggerBroadcast.js";
 import { triggerBulk } from "../funcs/triggerBulk.js";
@@ -21,6 +18,11 @@ import { Subscribers } from "./subscribers.js";
 import { Topics } from "./topics.js";
 
 export class Novu extends ClientSDK {
+  private _admin?: Admin;
+  get admin(): Admin {
+    return (this._admin ??= new Admin(this._options));
+  }
+
   private _notifications?: Notifications;
   get notifications(): Notifications {
     return (this._notifications ??= new Notifications(this._options));
@@ -44,11 +46,6 @@ export class Novu extends ClientSDK {
   private _topics?: Topics;
   get topics(): Topics {
     return (this._topics ??= new Topics(this._options));
-  }
-
-  private _admin?: Admin;
-  get admin(): Admin {
-    return (this._admin ??= new Admin(this._options));
   }
 
   /**
@@ -133,42 +130,5 @@ export class Novu extends ClientSDK {
       idempotencyKey,
       options,
     ));
-  }
-
-  async testApiRateLimitBulkControllerNoCategoryNoCostOverride(
-    idempotencyKey?: string | undefined,
-    options?: RequestOptions,
-  ): Promise<boolean> {
-    return unwrapAsync(testApiRateLimitBulkControllerNoCategoryNoCostOverride(
-      this,
-      idempotencyKey,
-      options,
-    ));
-  }
-
-  async testApiRateLimitBulkControllerNoCategorySingleCostOverride(
-    idempotencyKey?: string | undefined,
-    options?: RequestOptions,
-  ): Promise<boolean> {
-    return unwrapAsync(
-      testApiRateLimitBulkControllerNoCategorySingleCostOverride(
-        this,
-        idempotencyKey,
-        options,
-      ),
-    );
-  }
-
-  async testApiRateLimitBulkControllerGlobalCategoryNoCostOverride(
-    idempotencyKey?: string | undefined,
-    options?: RequestOptions,
-  ): Promise<boolean> {
-    return unwrapAsync(
-      testApiRateLimitBulkControllerGlobalCategoryNoCostOverride(
-        this,
-        idempotencyKey,
-        options,
-      ),
-    );
   }
 }

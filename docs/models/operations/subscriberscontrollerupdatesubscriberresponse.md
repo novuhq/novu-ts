@@ -15,7 +15,7 @@ let value: SubscribersControllerUpdateSubscriberResponse = {
     subscriberId: "<id>",
     channels: [
       {
-        providerId: "slack",
+        providerId: "fcm",
         credentials: {
           webhookUrl: "https://example.com/webhook",
           channel: "general",
@@ -36,8 +36,8 @@ let value: SubscribersControllerUpdateSubscriberResponse = {
     organizationId: "<id>",
     environmentId: "<id>",
     deleted: false,
-    createdAt: "1724952290373",
-    updatedAt: "1736977022413",
+    createdAt: "1724804501102",
+    updatedAt: "1737004353483",
   },
 };
 ```

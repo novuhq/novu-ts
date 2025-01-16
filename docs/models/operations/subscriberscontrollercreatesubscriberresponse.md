@@ -15,7 +15,7 @@ let value: SubscribersControllerCreateSubscriberResponse = {
     subscriberId: "<id>",
     channels: [
       {
-        providerId: "rocket-chat",
+        providerId: "getstream",
         credentials: {
           webhookUrl: "https://example.com/webhook",
           channel: "general",
@@ -36,8 +36,8 @@ let value: SubscribersControllerCreateSubscriberResponse = {
     organizationId: "<id>",
     environmentId: "<id>",
     deleted: false,
-    createdAt: "1718551316471",
-    updatedAt: "1736946995286",
+    createdAt: "1713844476503",
+    updatedAt: "1737017944001",
   },
 };
 ```

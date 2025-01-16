@@ -1,6 +1,635 @@
 {
   "openapi": "3.0.0",
   "paths": {
+    "/v1/health-check": {
+      "get": {
+        "operationId": "HealthController_healthCheck",
+        "parameters": [
+          {
+            "name": "idempotency-key",
+            "in": "header",
+            "description": "A header for idempotency purposes",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The Health Check is successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "ok"
+                    },
+                    "info": {
+                      "type": "object",
+                      "example": {
+                        "database": {
+                          "status": "up"
+                        }
+                      },
+                      "additionalProperties": {
+                        "type": "object",
+                        "required": [
+                          "status"
+                        ],
+                        "properties": {
+                          "status": {
+                            "type": "string"
+                          }
+                        },
+                        "additionalProperties": true
+                      },
+                      "nullable": true
+                    },
+                    "error": {
+                      "type": "object",
+                      "example": {},
+                      "additionalProperties": {
+                        "type": "object",
+                        "required": [
+                          "status"
+                        ],
+                        "properties": {
+                          "status": {
+                            "type": "string"
+                          }
+                        },
+                        "additionalProperties": true
+                      },
+                      "nullable": true
+                    },
+                    "details": {
+                      "type": "object",
+                      "example": {
+                        "database": {
+                          "status": "up"
+                        }
+                      },
+                      "additionalProperties": {
+                        "type": "object",
+                        "required": [
+                          "status"
+                        ],
+                        "properties": {
+                          "status": {
+                            "type": "string"
+                          }
+                        },
+                        "additionalProperties": true
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "The Health Check is not successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "error"
+                    },
+                    "info": {
+                      "type": "object",
+                      "example": {
+                        "database": {
+                          "status": "up"
+                        }
+                      },
+                      "additionalProperties": {
+                        "type": "object",
+                        "required": [
+                          "status"
+                        ],
+                        "properties": {
+                          "status": {
+                            "type": "string"
+                          }
+                        },
+                        "additionalProperties": true
+                      },
+                      "nullable": true
+                    },
+                    "error": {
+                      "type": "object",
+                      "example": {
+                        "redis": {
+                          "status": "down",
+                          "message": "Could not connect"
+                        }
+                      },
+                      "additionalProperties": {
+                        "type": "object",
+                        "required": [
+                          "status"
+                        ],
+                        "properties": {
+                          "status": {
+                            "type": "string"
+                          }
+                        },
+                        "additionalProperties": true
+                      },
+                      "nullable": true
+                    },
+                    "details": {
+                      "type": "object",
+                      "example": {
+                        "database": {
+                          "status": "up"
+                        },
+                        "redis": {
+                          "status": "down",
+                          "message": "Could not connect"
+                        }
+                      },
+                      "additionalProperties": {
+                        "type": "object",
+                        "required": [
+                          "status"
+                        ],
+                        "properties": {
+                          "status": {
+                            "type": "string"
+                          }
+                        },
+                        "additionalProperties": true
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Admin"
+        ]
+      }
+    },
+    "/v1/health-check/test-idempotency": {
+      "post": {
+        "operationId": "HealthController_testIdempotency",
+        "x-speakeasy-name-override": "testIdempotency",
+        "parameters": [
+          {
+            "name": "idempotency-key",
+            "in": "header",
+            "description": "A header for idempotency purposes",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IdempotencyTestingDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Bad Request",
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Method Not Allowed",
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Payload Too Large",
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "414": {
+            "description": "URI Too Long",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Unsupported Media Type",
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationErrorDto"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "The client has sent too many requests in a given amount of time. ",
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              },
+              "Retry-After": {
+                "$ref": "#/components/headers/Retry-After"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "example": "API rate limit exceeded"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "The server is currently unable to handle the request due to a temporary overload or scheduled maintenance, which will likely be alleviated after some delay.",
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              },
+              "Retry-After": {
+                "$ref": "#/components/headers/Retry-After"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "example": "Please wait some time, then try again."
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Admin"
+        ],
+        "security": [
+          {
+            "api-key": []
+          }
+        ]
+      }
+    },
     "/v1/events/trigger": {
       "post": {
         "operationId": "EventsController_trigger",
@@ -23301,1061 +23930,6 @@
           }
         ]
       }
-    },
-    "/v1/testing/idempotency": {
-      "post": {
-        "operationId": "TestingController_idempotency",
-        "x-speakeasy-name-override": "idempotencyPost",
-        "parameters": [
-          {
-            "name": "idempotency-key",
-            "in": "header",
-            "description": "A header for idempotency purposes",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/IdempotencyBodyDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "headers": {
-              "Content-Type": {
-                "$ref": "#/components/headers/Content-Type"
-              },
-              "RateLimit-Limit": {
-                "$ref": "#/components/headers/RateLimit-Limit"
-              },
-              "RateLimit-Remaining": {
-                "$ref": "#/components/headers/RateLimit-Remaining"
-              },
-              "RateLimit-Reset": {
-                "$ref": "#/components/headers/RateLimit-Reset"
-              },
-              "RateLimit-Policy": {
-                "$ref": "#/components/headers/RateLimit-Policy"
-              },
-              "Idempotency-Key": {
-                "$ref": "#/components/headers/Idempotency-Key"
-              },
-              "Idempotency-Replay": {
-                "$ref": "#/components/headers/Idempotency-Replay"
-              }
-            },
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/IdempotencyResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "headers": {
-              "Content-Type": {
-                "$ref": "#/components/headers/Content-Type"
-              },
-              "RateLimit-Limit": {
-                "$ref": "#/components/headers/RateLimit-Limit"
-              },
-              "RateLimit-Remaining": {
-                "$ref": "#/components/headers/RateLimit-Remaining"
-              },
-              "RateLimit-Reset": {
-                "$ref": "#/components/headers/RateLimit-Reset"
-              },
-              "RateLimit-Policy": {
-                "$ref": "#/components/headers/RateLimit-Policy"
-              },
-              "Idempotency-Key": {
-                "$ref": "#/components/headers/Idempotency-Key"
-              },
-              "Idempotency-Replay": {
-                "$ref": "#/components/headers/Idempotency-Replay"
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "headers": {
-              "Content-Type": {
-                "$ref": "#/components/headers/Content-Type"
-              },
-              "RateLimit-Limit": {
-                "$ref": "#/components/headers/RateLimit-Limit"
-              },
-              "RateLimit-Remaining": {
-                "$ref": "#/components/headers/RateLimit-Remaining"
-              },
-              "RateLimit-Reset": {
-                "$ref": "#/components/headers/RateLimit-Reset"
-              },
-              "RateLimit-Policy": {
-                "$ref": "#/components/headers/RateLimit-Policy"
-              },
-              "Idempotency-Key": {
-                "$ref": "#/components/headers/Idempotency-Key"
-              },
-              "Idempotency-Replay": {
-                "$ref": "#/components/headers/Idempotency-Replay"
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "headers": {
-              "Content-Type": {
-                "$ref": "#/components/headers/Content-Type"
-              },
-              "RateLimit-Limit": {
-                "$ref": "#/components/headers/RateLimit-Limit"
-              },
-              "RateLimit-Remaining": {
-                "$ref": "#/components/headers/RateLimit-Remaining"
-              },
-              "RateLimit-Reset": {
-                "$ref": "#/components/headers/RateLimit-Reset"
-              },
-              "RateLimit-Policy": {
-                "$ref": "#/components/headers/RateLimit-Policy"
-              },
-              "Idempotency-Key": {
-                "$ref": "#/components/headers/Idempotency-Key"
-              },
-              "Idempotency-Replay": {
-                "$ref": "#/components/headers/Idempotency-Replay"
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "headers": {
-              "Content-Type": {
-                "$ref": "#/components/headers/Content-Type"
-              },
-              "RateLimit-Limit": {
-                "$ref": "#/components/headers/RateLimit-Limit"
-              },
-              "RateLimit-Remaining": {
-                "$ref": "#/components/headers/RateLimit-Remaining"
-              },
-              "RateLimit-Reset": {
-                "$ref": "#/components/headers/RateLimit-Reset"
-              },
-              "RateLimit-Policy": {
-                "$ref": "#/components/headers/RateLimit-Policy"
-              },
-              "Idempotency-Key": {
-                "$ref": "#/components/headers/Idempotency-Key"
-              },
-              "Idempotency-Replay": {
-                "$ref": "#/components/headers/Idempotency-Replay"
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
-                }
-              }
-            }
-          },
-          "405": {
-            "description": "Method Not Allowed",
-            "headers": {
-              "Content-Type": {
-                "$ref": "#/components/headers/Content-Type"
-              },
-              "RateLimit-Limit": {
-                "$ref": "#/components/headers/RateLimit-Limit"
-              },
-              "RateLimit-Remaining": {
-                "$ref": "#/components/headers/RateLimit-Remaining"
-              },
-              "RateLimit-Reset": {
-                "$ref": "#/components/headers/RateLimit-Reset"
-              },
-              "RateLimit-Policy": {
-                "$ref": "#/components/headers/RateLimit-Policy"
-              },
-              "Idempotency-Key": {
-                "$ref": "#/components/headers/Idempotency-Key"
-              },
-              "Idempotency-Replay": {
-                "$ref": "#/components/headers/Idempotency-Replay"
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "Conflict",
-            "headers": {
-              "Content-Type": {
-                "$ref": "#/components/headers/Content-Type"
-              },
-              "RateLimit-Limit": {
-                "$ref": "#/components/headers/RateLimit-Limit"
-              },
-              "RateLimit-Remaining": {
-                "$ref": "#/components/headers/RateLimit-Remaining"
-              },
-              "RateLimit-Reset": {
-                "$ref": "#/components/headers/RateLimit-Reset"
-              },
-              "RateLimit-Policy": {
-                "$ref": "#/components/headers/RateLimit-Policy"
-              },
-              "Idempotency-Key": {
-                "$ref": "#/components/headers/Idempotency-Key"
-              },
-              "Idempotency-Replay": {
-                "$ref": "#/components/headers/Idempotency-Replay"
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
-                }
-              }
-            }
-          },
-          "413": {
-            "description": "Payload Too Large",
-            "headers": {
-              "Content-Type": {
-                "$ref": "#/components/headers/Content-Type"
-              },
-              "RateLimit-Limit": {
-                "$ref": "#/components/headers/RateLimit-Limit"
-              },
-              "RateLimit-Remaining": {
-                "$ref": "#/components/headers/RateLimit-Remaining"
-              },
-              "RateLimit-Reset": {
-                "$ref": "#/components/headers/RateLimit-Reset"
-              },
-              "RateLimit-Policy": {
-                "$ref": "#/components/headers/RateLimit-Policy"
-              },
-              "Idempotency-Key": {
-                "$ref": "#/components/headers/Idempotency-Key"
-              },
-              "Idempotency-Replay": {
-                "$ref": "#/components/headers/Idempotency-Replay"
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
-                }
-              }
-            }
-          },
-          "414": {
-            "description": "URI Too Long",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
-                }
-              }
-            }
-          },
-          "415": {
-            "description": "Unsupported Media Type",
-            "headers": {
-              "Content-Type": {
-                "$ref": "#/components/headers/Content-Type"
-              },
-              "RateLimit-Limit": {
-                "$ref": "#/components/headers/RateLimit-Limit"
-              },
-              "RateLimit-Remaining": {
-                "$ref": "#/components/headers/RateLimit-Remaining"
-              },
-              "RateLimit-Reset": {
-                "$ref": "#/components/headers/RateLimit-Reset"
-              },
-              "RateLimit-Policy": {
-                "$ref": "#/components/headers/RateLimit-Policy"
-              },
-              "Idempotency-Key": {
-                "$ref": "#/components/headers/Idempotency-Key"
-              },
-              "Idempotency-Replay": {
-                "$ref": "#/components/headers/Idempotency-Replay"
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Unprocessable Entity",
-            "headers": {
-              "Content-Type": {
-                "$ref": "#/components/headers/Content-Type"
-              },
-              "RateLimit-Limit": {
-                "$ref": "#/components/headers/RateLimit-Limit"
-              },
-              "RateLimit-Remaining": {
-                "$ref": "#/components/headers/RateLimit-Remaining"
-              },
-              "RateLimit-Reset": {
-                "$ref": "#/components/headers/RateLimit-Reset"
-              },
-              "RateLimit-Policy": {
-                "$ref": "#/components/headers/RateLimit-Policy"
-              },
-              "Idempotency-Key": {
-                "$ref": "#/components/headers/Idempotency-Key"
-              },
-              "Idempotency-Replay": {
-                "$ref": "#/components/headers/Idempotency-Replay"
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationErrorDto"
-                }
-              }
-            }
-          },
-          "429": {
-            "description": "The client has sent too many requests in a given amount of time. ",
-            "headers": {
-              "Content-Type": {
-                "$ref": "#/components/headers/Content-Type"
-              },
-              "RateLimit-Limit": {
-                "$ref": "#/components/headers/RateLimit-Limit"
-              },
-              "RateLimit-Remaining": {
-                "$ref": "#/components/headers/RateLimit-Remaining"
-              },
-              "RateLimit-Reset": {
-                "$ref": "#/components/headers/RateLimit-Reset"
-              },
-              "RateLimit-Policy": {
-                "$ref": "#/components/headers/RateLimit-Policy"
-              },
-              "Idempotency-Key": {
-                "$ref": "#/components/headers/Idempotency-Key"
-              },
-              "Idempotency-Replay": {
-                "$ref": "#/components/headers/Idempotency-Replay"
-              },
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "string",
-                  "example": "API rate limit exceeded"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "headers": {
-              "Content-Type": {
-                "$ref": "#/components/headers/Content-Type"
-              },
-              "RateLimit-Limit": {
-                "$ref": "#/components/headers/RateLimit-Limit"
-              },
-              "RateLimit-Remaining": {
-                "$ref": "#/components/headers/RateLimit-Remaining"
-              },
-              "RateLimit-Reset": {
-                "$ref": "#/components/headers/RateLimit-Reset"
-              },
-              "RateLimit-Policy": {
-                "$ref": "#/components/headers/RateLimit-Policy"
-              },
-              "Idempotency-Key": {
-                "$ref": "#/components/headers/Idempotency-Key"
-              },
-              "Idempotency-Replay": {
-                "$ref": "#/components/headers/Idempotency-Replay"
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
-                }
-              }
-            }
-          },
-          "503": {
-            "description": "The server is currently unable to handle the request due to a temporary overload or scheduled maintenance, which will likely be alleviated after some delay.",
-            "headers": {
-              "Content-Type": {
-                "$ref": "#/components/headers/Content-Type"
-              },
-              "RateLimit-Limit": {
-                "$ref": "#/components/headers/RateLimit-Limit"
-              },
-              "RateLimit-Remaining": {
-                "$ref": "#/components/headers/RateLimit-Remaining"
-              },
-              "RateLimit-Reset": {
-                "$ref": "#/components/headers/RateLimit-Reset"
-              },
-              "RateLimit-Policy": {
-                "$ref": "#/components/headers/RateLimit-Policy"
-              },
-              "Idempotency-Key": {
-                "$ref": "#/components/headers/Idempotency-Key"
-              },
-              "Idempotency-Replay": {
-                "$ref": "#/components/headers/Idempotency-Replay"
-              },
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "string",
-                  "example": "Please wait some time, then try again."
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "Admin"
-        ],
-        "security": [
-          {
-            "api-key": []
-          }
-        ]
-      },
-      "get": {
-        "operationId": "TestingController_idempotencyGet",
-        "x-speakeasy-name-override": "idempotencyGet",
-        "parameters": [
-          {
-            "name": "idempotency-key",
-            "in": "header",
-            "description": "A header for idempotency purposes",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "headers": {
-              "Content-Type": {
-                "$ref": "#/components/headers/Content-Type"
-              },
-              "RateLimit-Limit": {
-                "$ref": "#/components/headers/RateLimit-Limit"
-              },
-              "RateLimit-Remaining": {
-                "$ref": "#/components/headers/RateLimit-Remaining"
-              },
-              "RateLimit-Reset": {
-                "$ref": "#/components/headers/RateLimit-Reset"
-              },
-              "RateLimit-Policy": {
-                "$ref": "#/components/headers/RateLimit-Policy"
-              },
-              "Idempotency-Key": {
-                "$ref": "#/components/headers/Idempotency-Key"
-              },
-              "Idempotency-Replay": {
-                "$ref": "#/components/headers/Idempotency-Replay"
-              }
-            },
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/IdempotencyResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "headers": {
-              "Content-Type": {
-                "$ref": "#/components/headers/Content-Type"
-              },
-              "RateLimit-Limit": {
-                "$ref": "#/components/headers/RateLimit-Limit"
-              },
-              "RateLimit-Remaining": {
-                "$ref": "#/components/headers/RateLimit-Remaining"
-              },
-              "RateLimit-Reset": {
-                "$ref": "#/components/headers/RateLimit-Reset"
-              },
-              "RateLimit-Policy": {
-                "$ref": "#/components/headers/RateLimit-Policy"
-              },
-              "Idempotency-Key": {
-                "$ref": "#/components/headers/Idempotency-Key"
-              },
-              "Idempotency-Replay": {
-                "$ref": "#/components/headers/Idempotency-Replay"
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "headers": {
-              "Content-Type": {
-                "$ref": "#/components/headers/Content-Type"
-              },
-              "RateLimit-Limit": {
-                "$ref": "#/components/headers/RateLimit-Limit"
-              },
-              "RateLimit-Remaining": {
-                "$ref": "#/components/headers/RateLimit-Remaining"
-              },
-              "RateLimit-Reset": {
-                "$ref": "#/components/headers/RateLimit-Reset"
-              },
-              "RateLimit-Policy": {
-                "$ref": "#/components/headers/RateLimit-Policy"
-              },
-              "Idempotency-Key": {
-                "$ref": "#/components/headers/Idempotency-Key"
-              },
-              "Idempotency-Replay": {
-                "$ref": "#/components/headers/Idempotency-Replay"
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "headers": {
-              "Content-Type": {
-                "$ref": "#/components/headers/Content-Type"
-              },
-              "RateLimit-Limit": {
-                "$ref": "#/components/headers/RateLimit-Limit"
-              },
-              "RateLimit-Remaining": {
-                "$ref": "#/components/headers/RateLimit-Remaining"
-              },
-              "RateLimit-Reset": {
-                "$ref": "#/components/headers/RateLimit-Reset"
-              },
-              "RateLimit-Policy": {
-                "$ref": "#/components/headers/RateLimit-Policy"
-              },
-              "Idempotency-Key": {
-                "$ref": "#/components/headers/Idempotency-Key"
-              },
-              "Idempotency-Replay": {
-                "$ref": "#/components/headers/Idempotency-Replay"
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "headers": {
-              "Content-Type": {
-                "$ref": "#/components/headers/Content-Type"
-              },
-              "RateLimit-Limit": {
-                "$ref": "#/components/headers/RateLimit-Limit"
-              },
-              "RateLimit-Remaining": {
-                "$ref": "#/components/headers/RateLimit-Remaining"
-              },
-              "RateLimit-Reset": {
-                "$ref": "#/components/headers/RateLimit-Reset"
-              },
-              "RateLimit-Policy": {
-                "$ref": "#/components/headers/RateLimit-Policy"
-              },
-              "Idempotency-Key": {
-                "$ref": "#/components/headers/Idempotency-Key"
-              },
-              "Idempotency-Replay": {
-                "$ref": "#/components/headers/Idempotency-Replay"
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
-                }
-              }
-            }
-          },
-          "405": {
-            "description": "Method Not Allowed",
-            "headers": {
-              "Content-Type": {
-                "$ref": "#/components/headers/Content-Type"
-              },
-              "RateLimit-Limit": {
-                "$ref": "#/components/headers/RateLimit-Limit"
-              },
-              "RateLimit-Remaining": {
-                "$ref": "#/components/headers/RateLimit-Remaining"
-              },
-              "RateLimit-Reset": {
-                "$ref": "#/components/headers/RateLimit-Reset"
-              },
-              "RateLimit-Policy": {
-                "$ref": "#/components/headers/RateLimit-Policy"
-              },
-              "Idempotency-Key": {
-                "$ref": "#/components/headers/Idempotency-Key"
-              },
-              "Idempotency-Replay": {
-                "$ref": "#/components/headers/Idempotency-Replay"
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "Conflict",
-            "headers": {
-              "Content-Type": {
-                "$ref": "#/components/headers/Content-Type"
-              },
-              "RateLimit-Limit": {
-                "$ref": "#/components/headers/RateLimit-Limit"
-              },
-              "RateLimit-Remaining": {
-                "$ref": "#/components/headers/RateLimit-Remaining"
-              },
-              "RateLimit-Reset": {
-                "$ref": "#/components/headers/RateLimit-Reset"
-              },
-              "RateLimit-Policy": {
-                "$ref": "#/components/headers/RateLimit-Policy"
-              },
-              "Idempotency-Key": {
-                "$ref": "#/components/headers/Idempotency-Key"
-              },
-              "Idempotency-Replay": {
-                "$ref": "#/components/headers/Idempotency-Replay"
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
-                }
-              }
-            }
-          },
-          "413": {
-            "description": "Payload Too Large",
-            "headers": {
-              "Content-Type": {
-                "$ref": "#/components/headers/Content-Type"
-              },
-              "RateLimit-Limit": {
-                "$ref": "#/components/headers/RateLimit-Limit"
-              },
-              "RateLimit-Remaining": {
-                "$ref": "#/components/headers/RateLimit-Remaining"
-              },
-              "RateLimit-Reset": {
-                "$ref": "#/components/headers/RateLimit-Reset"
-              },
-              "RateLimit-Policy": {
-                "$ref": "#/components/headers/RateLimit-Policy"
-              },
-              "Idempotency-Key": {
-                "$ref": "#/components/headers/Idempotency-Key"
-              },
-              "Idempotency-Replay": {
-                "$ref": "#/components/headers/Idempotency-Replay"
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
-                }
-              }
-            }
-          },
-          "414": {
-            "description": "URI Too Long",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
-                }
-              }
-            }
-          },
-          "415": {
-            "description": "Unsupported Media Type",
-            "headers": {
-              "Content-Type": {
-                "$ref": "#/components/headers/Content-Type"
-              },
-              "RateLimit-Limit": {
-                "$ref": "#/components/headers/RateLimit-Limit"
-              },
-              "RateLimit-Remaining": {
-                "$ref": "#/components/headers/RateLimit-Remaining"
-              },
-              "RateLimit-Reset": {
-                "$ref": "#/components/headers/RateLimit-Reset"
-              },
-              "RateLimit-Policy": {
-                "$ref": "#/components/headers/RateLimit-Policy"
-              },
-              "Idempotency-Key": {
-                "$ref": "#/components/headers/Idempotency-Key"
-              },
-              "Idempotency-Replay": {
-                "$ref": "#/components/headers/Idempotency-Replay"
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Unprocessable Entity",
-            "headers": {
-              "Content-Type": {
-                "$ref": "#/components/headers/Content-Type"
-              },
-              "RateLimit-Limit": {
-                "$ref": "#/components/headers/RateLimit-Limit"
-              },
-              "RateLimit-Remaining": {
-                "$ref": "#/components/headers/RateLimit-Remaining"
-              },
-              "RateLimit-Reset": {
-                "$ref": "#/components/headers/RateLimit-Reset"
-              },
-              "RateLimit-Policy": {
-                "$ref": "#/components/headers/RateLimit-Policy"
-              },
-              "Idempotency-Key": {
-                "$ref": "#/components/headers/Idempotency-Key"
-              },
-              "Idempotency-Replay": {
-                "$ref": "#/components/headers/Idempotency-Replay"
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationErrorDto"
-                }
-              }
-            }
-          },
-          "429": {
-            "description": "The client has sent too many requests in a given amount of time. ",
-            "headers": {
-              "Content-Type": {
-                "$ref": "#/components/headers/Content-Type"
-              },
-              "RateLimit-Limit": {
-                "$ref": "#/components/headers/RateLimit-Limit"
-              },
-              "RateLimit-Remaining": {
-                "$ref": "#/components/headers/RateLimit-Remaining"
-              },
-              "RateLimit-Reset": {
-                "$ref": "#/components/headers/RateLimit-Reset"
-              },
-              "RateLimit-Policy": {
-                "$ref": "#/components/headers/RateLimit-Policy"
-              },
-              "Idempotency-Key": {
-                "$ref": "#/components/headers/Idempotency-Key"
-              },
-              "Idempotency-Replay": {
-                "$ref": "#/components/headers/Idempotency-Replay"
-              },
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "string",
-                  "example": "API rate limit exceeded"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "headers": {
-              "Content-Type": {
-                "$ref": "#/components/headers/Content-Type"
-              },
-              "RateLimit-Limit": {
-                "$ref": "#/components/headers/RateLimit-Limit"
-              },
-              "RateLimit-Remaining": {
-                "$ref": "#/components/headers/RateLimit-Remaining"
-              },
-              "RateLimit-Reset": {
-                "$ref": "#/components/headers/RateLimit-Reset"
-              },
-              "RateLimit-Policy": {
-                "$ref": "#/components/headers/RateLimit-Policy"
-              },
-              "Idempotency-Key": {
-                "$ref": "#/components/headers/Idempotency-Key"
-              },
-              "Idempotency-Replay": {
-                "$ref": "#/components/headers/Idempotency-Replay"
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
-                }
-              }
-            }
-          },
-          "503": {
-            "description": "The server is currently unable to handle the request due to a temporary overload or scheduled maintenance, which will likely be alleviated after some delay.",
-            "headers": {
-              "Content-Type": {
-                "$ref": "#/components/headers/Content-Type"
-              },
-              "RateLimit-Limit": {
-                "$ref": "#/components/headers/RateLimit-Limit"
-              },
-              "RateLimit-Remaining": {
-                "$ref": "#/components/headers/RateLimit-Remaining"
-              },
-              "RateLimit-Reset": {
-                "$ref": "#/components/headers/RateLimit-Reset"
-              },
-              "RateLimit-Policy": {
-                "$ref": "#/components/headers/RateLimit-Policy"
-              },
-              "Idempotency-Key": {
-                "$ref": "#/components/headers/Idempotency-Key"
-              },
-              "Idempotency-Replay": {
-                "$ref": "#/components/headers/Idempotency-Replay"
-              },
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "string",
-                  "example": "Please wait some time, then try again."
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "Admin"
-        ],
-        "security": [
-          {
-            "api-key": []
-          }
-        ]
-      }
-    },
-    "/v1/rate-limiting-trigger-bulk/no-category-no-cost-override": {
-      "get": {
-        "operationId": "TestApiRateLimitBulkController_noCategoryNoCostOverride",
-        "parameters": [
-          {
-            "name": "idempotency-key",
-            "in": "header",
-            "description": "A header for idempotency purposes",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "boolean"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "api-key": []
-          }
-        ]
-      }
-    },
-    "/v1/rate-limiting-trigger-bulk/no-category-single-cost-override": {
-      "get": {
-        "operationId": "TestApiRateLimitBulkController_noCategorySingleCostOverride",
-        "parameters": [
-          {
-            "name": "idempotency-key",
-            "in": "header",
-            "description": "A header for idempotency purposes",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "boolean"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "api-key": []
-          }
-        ]
-      }
-    },
-    "/v1/rate-limiting-trigger-bulk/global-category-no-cost-override": {
-      "get": {
-        "operationId": "TestApiRateLimitBulkController_globalCategoryNoCostOverride",
-        "parameters": [
-          {
-            "name": "idempotency-key",
-            "in": "header",
-            "description": "A header for idempotency purposes",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "boolean"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "api-key": []
-          }
-        ]
-      }
     }
   },
   "info": {
@@ -24693,6 +24267,26 @@
           "path",
           "message",
           "errors"
+        ]
+      },
+      "IdempotencyBehaviorEnum": {
+        "type": "string",
+        "description": "The expected behavior of the idempotency request",
+        "enum": [
+          "IMMEDIATE_RESPONSE",
+          "IMMEDIATE_EXCEPTION",
+          "DELAYED_RESPONSE"
+        ]
+      },
+      "IdempotencyTestingDto": {
+        "type": "object",
+        "properties": {
+          "expectedBehavior": {
+            "$ref": "#/components/schemas/IdempotencyBehaviorEnum"
+          }
+        },
+        "required": [
+          "expectedBehavior"
         ]
       },
       "TriggerEventResponseDto": {
@@ -28605,29 +28199,6 @@
       "GeneratePreviewResponseDto": {
         "type": "object",
         "properties": {}
-      },
-      "IdempotencyBodyDto": {
-        "type": "object",
-        "properties": {
-          "data": {
-            "type": "number"
-          }
-        },
-        "required": [
-          "data"
-        ]
-      },
-      "IdempotencyResponse": {
-        "type": "object",
-        "properties": {
-          "number": {
-            "type": "number",
-            "description": "A unique identifier for the idempotency response"
-          }
-        },
-        "required": [
-          "number"
-        ]
       }
     },
     "headers": {

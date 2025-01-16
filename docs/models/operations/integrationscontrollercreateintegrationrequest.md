@@ -8,7 +8,7 @@ import { IntegrationsControllerCreateIntegrationRequest } from "@novu/api/models
 let value: IntegrationsControllerCreateIntegrationRequest = {
   createIntegrationRequestDto: {
     providerId: "<id>",
-    channel: "sms",
+    channel: "push",
   },
 };
 ```
