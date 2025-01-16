@@ -55,6 +55,7 @@ export * from "./fieldfilterpartdto.js";
 export * from "./filtertopicsresponsedto.js";
 export * from "./getsubscriberpreferencesresponsedto.js";
 export * from "./gettopicresponsedto.js";
+export * from "./idempotencetestingresponse.js";
 export * from "./idempotencybehaviorenum.js";
 export * from "./idempotencytestingdto.js";
 export * from "./integrationresponsedto.js";

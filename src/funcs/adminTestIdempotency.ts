@@ -31,7 +31,7 @@ export async function adminTestIdempotency(
   options?: RequestOptions,
 ): Promise<
   Result<
-    operations.HealthControllerTestIdempotencyResponse | undefined,
+    operations.HealthControllerTestIdempotencyResponse,
     | errors.ErrorDto
     | errors.ErrorDto
     | errors.ValidationErrorDto
@@ -151,7 +151,7 @@ export async function adminTestIdempotency(
   };
 
   const [result] = await M.match<
-    operations.HealthControllerTestIdempotencyResponse | undefined,
+    operations.HealthControllerTestIdempotencyResponse,
     | errors.ErrorDto
     | errors.ErrorDto
     | errors.ValidationErrorDto
@@ -164,6 +164,11 @@ export async function adminTestIdempotency(
     | RequestTimeoutError
     | ConnectionError
   >(
+    M.json(
+      201,
+      operations.HealthControllerTestIdempotencyResponse$inboundSchema,
+      { hdrs: true, key: "Result" },
+    ),
     M.jsonErr(
       [400, 401, 403, 404, 405, 409, 413, 415],
       errors.ErrorDto$inboundSchema,
@@ -174,11 +179,6 @@ export async function adminTestIdempotency(
     M.fail(429),
     M.jsonErr(500, errors.ErrorDto$inboundSchema, { hdrs: true }),
     M.fail(503),
-    M.nil(
-      "2XX",
-      operations.HealthControllerTestIdempotencyResponse$inboundSchema
-        .optional(),
-    ),
     M.fail("4XX"),
     M.fail("5XX"),
   )(response, { extraFields: responseFields });

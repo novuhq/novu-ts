@@ -25,7 +25,7 @@ export class Admin extends ClientSDK {
     idempotencyTestingDto: components.IdempotencyTestingDto,
     idempotencyKey?: string | undefined,
     options?: RequestOptions,
-  ): Promise<operations.HealthControllerTestIdempotencyResponse | undefined> {
+  ): Promise<operations.HealthControllerTestIdempotencyResponse> {
     return unwrapAsync(adminTestIdempotency(
       this,
       idempotencyTestingDto,

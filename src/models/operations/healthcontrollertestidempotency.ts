@@ -19,6 +19,7 @@ export type HealthControllerTestIdempotencyRequest = {
 
 export type HealthControllerTestIdempotencyResponse = {
   headers: { [k: string]: Array<string> };
+  result: components.IdempotenceTestingResponse;
 };
 
 /** @internal */
@@ -101,15 +102,18 @@ export const HealthControllerTestIdempotencyResponse$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   Headers: z.record(z.array(z.string())),
+  Result: components.IdempotenceTestingResponse$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "Headers": "headers",
+    "Result": "result",
   });
 });
 
 /** @internal */
 export type HealthControllerTestIdempotencyResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
+  Result: components.IdempotenceTestingResponse$Outbound;
 };
 
 /** @internal */
@@ -119,9 +123,11 @@ export const HealthControllerTestIdempotencyResponse$outboundSchema: z.ZodType<
   HealthControllerTestIdempotencyResponse
 > = z.object({
   headers: z.record(z.array(z.string())),
+  result: components.IdempotenceTestingResponse$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
     headers: "Headers",
+    result: "Result",
   });
 });
 
