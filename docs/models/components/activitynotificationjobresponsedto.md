@@ -11,11 +11,11 @@ let value: ActivityNotificationJobResponseDto = {
   executionDetails: [
     {
       id: "<id>",
-      status: "Queued",
+      status: "Warning",
       detail: "<value>",
       isRetry: false,
       isTest: false,
-      providerId: "getstream",
+      providerId: "sendchamp",
       source: "Credentials",
     },
   ],
@@ -25,13 +25,13 @@ let value: ActivityNotificationJobResponseDto = {
     filters: [
       {
         isNegated: false,
-        type: "STATEMENT",
-        value: "OR",
+        type: "MULTI_LIST",
+        value: "AND",
         children: [
           {
             field: "<value>",
             value: "<value>",
-            operator: "NOT_IN",
+            operator: "BETWEEN",
             on: "subscriber",
           },
         ],
@@ -39,7 +39,7 @@ let value: ActivityNotificationJobResponseDto = {
     ],
     templateId: "<id>",
   },
-  providerId: "grafana-on-call",
+  providerId: "mobishastra",
   status: "<value>",
 };
 ```

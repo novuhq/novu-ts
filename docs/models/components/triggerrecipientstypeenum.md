@@ -5,7 +5,7 @@
 ```typescript
 import { TriggerRecipientsTypeEnum } from "@novu/api/models/components";
 
-let value: TriggerRecipientsTypeEnum = "Subscriber";
+let value: TriggerRecipientsTypeEnum = "Topic";
 ```
 
 ## Values

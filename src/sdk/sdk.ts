@@ -3,9 +3,6 @@
  */
 
 import { cancel } from "../funcs/cancel.js";
-import { generateRandomNumber } from "../funcs/generateRandomNumber.js";
-import { healthControllerHealthCheck } from "../funcs/healthControllerHealthCheck.js";
-import { testIdempotency } from "../funcs/testIdempotency.js";
 import { trigger } from "../funcs/trigger.js";
 import { triggerBroadcast } from "../funcs/triggerBroadcast.js";
 import { triggerBulk } from "../funcs/triggerBulk.js";
@@ -43,41 +40,6 @@ export class Novu extends ClientSDK {
   private _topics?: Topics;
   get topics(): Topics {
     return (this._topics ??= new Topics(this._options));
-  }
-
-  async healthControllerHealthCheck(
-    idempotencyKey?: string | undefined,
-    options?: RequestOptions,
-  ): Promise<operations.HealthControllerHealthCheckResponseBody> {
-    return unwrapAsync(healthControllerHealthCheck(
-      this,
-      idempotencyKey,
-      options,
-    ));
-  }
-
-  async testIdempotency(
-    idempotencyTestingDto: components.IdempotencyTestingDto,
-    idempotencyKey?: string | undefined,
-    options?: RequestOptions,
-  ): Promise<operations.HealthControllerTestIdempotencyResponse> {
-    return unwrapAsync(testIdempotency(
-      this,
-      idempotencyTestingDto,
-      idempotencyKey,
-      options,
-    ));
-  }
-
-  async generateRandomNumber(
-    idempotencyKey?: string | undefined,
-    options?: RequestOptions,
-  ): Promise<operations.HealthControllerGenerateRandomNumberResponse> {
-    return unwrapAsync(generateRandomNumber(
-      this,
-      idempotencyKey,
-      options,
-    ));
   }
 
   /**

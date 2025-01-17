@@ -7,7 +7,7 @@ import { TopicPayloadDto } from "@novu/api/models/components";
 
 let value: TopicPayloadDto = {
   topicKey: "<value>",
-  type: "Topic",
+  type: "Subscriber",
 };
 ```
 

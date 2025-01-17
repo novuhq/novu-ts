@@ -17,7 +17,7 @@ let value: IntegrationsControllerCreateIntegrationResponse = {
     name: "<value>",
     identifier: "<value>",
     providerId: "<id>",
-    channel: "in_app",
+    channel: "push",
     credentials: {},
     active: false,
     deleted: false,

@@ -23,7 +23,7 @@ let value: SubscribersControllerMarkMessagesAsResponse = {
         subscriberId: "<id>",
         channels: [
           {
-            providerId: "apns",
+            providerId: "msteams",
             credentials: {
               webhookUrl: "https://example.com/webhook",
               channel: "general",
@@ -44,22 +44,22 @@ let value: SubscribersControllerMarkMessagesAsResponse = {
         organizationId: "<id>",
         environmentId: "<id>",
         deleted: false,
-        createdAt: "1713547382628",
-        updatedAt: "1737049467688",
+        createdAt: "1726157190958",
+        updatedAt: "1737032251600",
       },
-      createdAt: "1713267784129",
+      createdAt: "1720266343526",
       content: {
         type: "button",
         content: "<value>",
       },
       transactionId: "<id>",
-      channel: "chat",
+      channel: "in_app",
       read: false,
       seen: false,
       cta: {
         data: {},
       },
-      status: "sent",
+      status: "error",
     },
   ],
 };

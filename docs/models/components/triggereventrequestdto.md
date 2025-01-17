@@ -22,10 +22,7 @@ let value: TriggerEventRequestDto = {
     },
   },
   to: [
-    {
-      topicKey: "<value>",
-      type: "Topic",
-    },
+    "SUBSCRIBER_ID",
   ],
 };
 ```

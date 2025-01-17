@@ -8,7 +8,7 @@ import { SubscribersControllerModifySubscriberChannelRequest } from "@novu/api/m
 let value: SubscribersControllerModifySubscriberChannelRequest = {
   subscriberId: "<id>",
   updateSubscriberChannelRequestDto: {
-    providerId: "apns",
+    providerId: "getstream",
     credentials: {
       webhookUrl: "https://example.com/webhook",
       channel: "general",

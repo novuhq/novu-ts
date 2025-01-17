@@ -15,7 +15,7 @@ let value: SubscribersControllerUpdateSubscriberOnlineFlagResponse = {
     subscriberId: "<id>",
     channels: [
       {
-        providerId: "mattermost",
+        providerId: "apns",
         credentials: {
           webhookUrl: "https://example.com/webhook",
           channel: "general",
@@ -36,8 +36,8 @@ let value: SubscribersControllerUpdateSubscriberOnlineFlagResponse = {
     organizationId: "<id>",
     environmentId: "<id>",
     deleted: false,
-    createdAt: "1709625398463",
-    updatedAt: "1737036431563",
+    createdAt: "1712195391616",
+    updatedAt: "1737021506484",
   },
 };
 ```

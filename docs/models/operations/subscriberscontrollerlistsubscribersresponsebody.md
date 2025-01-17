@@ -6,15 +6,15 @@
 import { SubscribersControllerListSubscribersResponseBody } from "@novu/api/models/operations";
 
 let value: SubscribersControllerListSubscribersResponseBody = {
-  page: 8700.13,
+  page: 7781.57,
   hasMore: false,
-  pageSize: 9786.19,
+  pageSize: 8700.13,
   data: [
     {
       subscriberId: "<id>",
       channels: [
         {
-          providerId: "one-signal",
+          providerId: "pusher-beams",
           credentials: {
             webhookUrl: "https://example.com/webhook",
             channel: "general",
@@ -35,8 +35,8 @@ let value: SubscribersControllerListSubscribersResponseBody = {
       organizationId: "<id>",
       environmentId: "<id>",
       deleted: false,
-      createdAt: "1720112791527",
-      updatedAt: "1737076615762",
+      createdAt: "1730763030989",
+      updatedAt: "1737050238662",
     },
   ],
 };

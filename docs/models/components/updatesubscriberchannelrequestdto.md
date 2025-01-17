@@ -6,7 +6,7 @@
 import { UpdateSubscriberChannelRequestDto } from "@novu/api/models/components";
 
 let value: UpdateSubscriberChannelRequestDto = {
-  providerId: "one-signal",
+  providerId: "pusher-beams",
   credentials: {
     webhookUrl: "https://example.com/webhook",
     channel: "general",

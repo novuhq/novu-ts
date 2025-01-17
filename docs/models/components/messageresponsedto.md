@@ -16,7 +16,7 @@ let value: MessageResponseDto = {
     subscriberId: "<id>",
     channels: [
       {
-        providerId: "mattermost",
+        providerId: "pushpad",
         credentials: {
           webhookUrl: "https://example.com/webhook",
           channel: "general",
@@ -37,16 +37,16 @@ let value: MessageResponseDto = {
     organizationId: "<id>",
     environmentId: "<id>",
     deleted: false,
-    createdAt: "1706143682582",
-    updatedAt: "1737077753979",
+    createdAt: "1705930183124",
+    updatedAt: "1737041469522",
   },
-  createdAt: "1712621268029",
+  createdAt: "1728581749425",
   content: {
     type: "text",
     content: "<value>",
   },
   transactionId: "<id>",
-  channel: "chat",
+  channel: "in_app",
   read: false,
   seen: false,
   cta: {

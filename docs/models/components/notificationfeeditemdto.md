@@ -26,7 +26,7 @@ let value: NotificationFeedItemDto = {
   providerId: "provider_xyz",
   content: "This is a test notification content.",
   subject: "Test Notification Subject",
-  channel: "push",
+  channel: "sms",
   read: false,
   seen: true,
   deleted: false,

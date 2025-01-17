@@ -12,7 +12,7 @@ let value: SubscribersControllerGetUnseenCountResponse = {
     ],
   },
   result: {
-    count: 1020.44,
+    count: 9883.74,
   },
 };
 ```

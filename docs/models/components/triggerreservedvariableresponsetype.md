@@ -7,7 +7,7 @@ The type of the reserved variable
 ```typescript
 import { TriggerReservedVariableResponseType } from "@novu/api/models/components";
 
-let value: TriggerReservedVariableResponseType = "actor";
+let value: TriggerReservedVariableResponseType = "tenant";
 ```
 
 ## Values
