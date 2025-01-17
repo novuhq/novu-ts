@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 6bff3a53-3f0b-40b4-942f-ff70dc583ae5
 management:
-  docChecksum: 324beb858f62bb6254817e0685404f32
+  docChecksum: 72ee652703e7c5bf6e49092765924b4d
   docVersion: "1.0"
   speakeasyVersion: 1.469.0
   generationVersion: 2.493.21
-  releaseVersion: 0.0.4
-  configChecksum: 92e966ddc8be88443adecbfb148a65d2
+  releaseVersion: 0.0.5
+  configChecksum: ff92708e8fbd60ee1e9fda95b454414a
   published: true
 features:
   typescript:
@@ -343,7 +343,6 @@ generatedFiles:
   - docs/models/operations/topicscontrollerremovesubscribersresponse.md
   - docs/models/operations/topicscontrollerrenametopicrequest.md
   - docs/models/operations/topicscontrollerrenametopicresponse.md
-  - docs/sdks/admin/README.md
   - docs/sdks/authentication/README.md
   - docs/sdks/credentials/README.md
   - docs/sdks/integrations/README.md
@@ -362,10 +361,9 @@ generatedFiles:
   - jsr.json
   - package.json
   - src/core.ts
-  - src/funcs/adminGenerateRandomNumber.ts
-  - src/funcs/adminHealthControllerHealthCheck.ts
-  - src/funcs/adminTestIdempotency.ts
   - src/funcs/cancel.ts
+  - src/funcs/generateRandomNumber.ts
+  - src/funcs/healthControllerHealthCheck.ts
   - src/funcs/integrationsCreate.ts
   - src/funcs/integrationsDelete.ts
   - src/funcs/integrationsList.ts
@@ -401,6 +399,7 @@ generatedFiles:
   - src/funcs/subscribersPropertiesUpdateOnlineFlag.ts
   - src/funcs/subscribersRetrieve.ts
   - src/funcs/subscribersUpdate.ts
+  - src/funcs/testIdempotency.ts
   - src/funcs/topicsCreate.ts
   - src/funcs/topicsDelete.ts
   - src/funcs/topicsList.ts
@@ -611,7 +610,6 @@ generatedFiles:
   - src/models/operations/topicscontrollerlisttopics.ts
   - src/models/operations/topicscontrollerremovesubscribers.ts
   - src/models/operations/topicscontrollerrenametopic.ts
-  - src/sdk/admin.ts
   - src/sdk/authentication.ts
   - src/sdk/credentials.ts
   - src/sdk/index.ts

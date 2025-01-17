@@ -6,7 +6,7 @@
 import { IdempotencyTestingDto } from "@novu/api/models/components";
 
 let value: IdempotencyTestingDto = {
-  expectedBehavior: "DELAYED_RESPONSE",
+  expectedBehavior: "IMMEDIATE_RESPONSE",
 };
 ```
 

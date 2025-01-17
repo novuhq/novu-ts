@@ -216,12 +216,6 @@ run();
 <details open>
 <summary>Available methods</summary>
 
-### [admin](docs/sdks/admin/README.md)
-
-* [healthControllerHealthCheck](docs/sdks/admin/README.md#healthcontrollerhealthcheck)
-* [testIdempotency](docs/sdks/admin/README.md#testidempotency)
-* [generateRandomNumber](docs/sdks/admin/README.md#generaterandomnumber)
-
 ### [integrations](docs/sdks/integrations/README.md)
 
 * [list](docs/sdks/integrations/README.md#list) - Get integrations
@@ -253,6 +247,9 @@ run();
 
 ### [Novu SDK](docs/sdks/novu/README.md)
 
+* [healthControllerHealthCheck](docs/sdks/novu/README.md#healthcontrollerhealthcheck)
+* [testIdempotency](docs/sdks/novu/README.md#testidempotency)
+* [generateRandomNumber](docs/sdks/novu/README.md#generaterandomnumber)
 * [trigger](docs/sdks/novu/README.md#trigger) - Trigger event
 * [triggerBulk](docs/sdks/novu/README.md#triggerbulk) - Bulk trigger event
 * [triggerBroadcast](docs/sdks/novu/README.md#triggerbroadcast) - Broadcast event to all
@@ -332,10 +329,9 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 <summary>Available standalone functions</summary>
 
-- [`adminGenerateRandomNumber`](docs/sdks/admin/README.md#generaterandomnumber)
-- [`adminHealthControllerHealthCheck`](docs/sdks/admin/README.md#healthcontrollerhealthcheck)
-- [`adminTestIdempotency`](docs/sdks/admin/README.md#testidempotency)
 - [`cancel`](docs/sdks/novu/README.md#cancel) - Cancel triggered event
+- [`generateRandomNumber`](docs/sdks/novu/README.md#generaterandomnumber)
+- [`healthControllerHealthCheck`](docs/sdks/novu/README.md#healthcontrollerhealthcheck)
 - [`integrationsCreate`](docs/sdks/integrations/README.md#create) - Create integration
 - [`integrationsDelete`](docs/sdks/integrations/README.md#delete) - Delete integration
 - [`integrationsList`](docs/sdks/integrations/README.md#list) - Get integrations
@@ -371,6 +367,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`subscribersPropertiesUpdateOnlineFlag`](docs/sdks/properties/README.md#updateonlineflag) - Update subscriber online status
 - [`subscribersRetrieve`](docs/sdks/subscribers/README.md#retrieve) - Get subscriber
 - [`subscribersUpdate`](docs/sdks/subscribers/README.md#update) - Update subscriber
+- [`testIdempotency`](docs/sdks/novu/README.md#testidempotency)
 - [`topicsCreate`](docs/sdks/topics/README.md#create) - Topic creation
 - [`topicsDelete`](docs/sdks/topics/README.md#delete) - Delete topic
 - [`topicsList`](docs/sdks/topics/README.md#list) - Get topic list filtered 
@@ -422,24 +419,20 @@ run();
 <!-- Start Error Handling [errors] -->
 ## Error Handling
 
-Some methods specify known errors which can be thrown. All the known errors are enumerated in the `models/errors/errors.ts` module. The known errors for a method are documented under the *Errors* tables in SDK docs. For example, the `trigger` method may throw the following errors:
+Some methods specify known errors which can be thrown. All the known errors are enumerated in the `models/errors/errors.ts` module. The known errors for a method are documented under the *Errors* tables in SDK docs. For example, the `healthControllerHealthCheck` method may throw the following errors:
 
-| Error Type                | Status Code                            | Content Type     |
-| ------------------------- | -------------------------------------- | ---------------- |
-| errors.ErrorDto           | 400, 401, 403, 404, 405, 409, 413, 415 | application/json |
-| errors.ErrorDto           | 414                                    | application/json |
-| errors.ValidationErrorDto | 422                                    | application/json |
-| errors.ErrorDto           | 500                                    | application/json |
-| errors.SDKError           | 4XX, 5XX                               | \*/\*            |
+| Error Type                                     | Status Code | Content Type     |
+| ---------------------------------------------- | ----------- | ---------------- |
+| errors.HealthControllerHealthCheckResponseBody | 503         | application/json |
+| errors.SDKError                                | 4XX, 5XX    | \*/\*            |
 
 If the method throws an error and it is not captured by the known errors, it will default to throwing a `SDKError`.
 
 ```typescript
 import { Novu } from "@novu/api";
 import {
-  ErrorDto,
+  HealthControllerHealthCheckResponseBody,
   SDKValidationError,
-  ValidationErrorDto,
 } from "@novu/api/models/errors";
 
 const novu = new Novu({
@@ -449,19 +442,7 @@ const novu = new Novu({
 async function run() {
   let result;
   try {
-    result = await novu.trigger({
-      name: "workflow_identifier",
-      to: [
-        {
-          topicKey: "<value>",
-          type: "Topic",
-        },
-        {
-          topicKey: "<value>",
-          type: "Topic",
-        },
-      ],
-    });
+    result = await novu.healthControllerHealthCheck();
 
     // Handle the result
     console.log(result);
@@ -475,23 +456,8 @@ async function run() {
         console.error(err.rawValue);
         return;
       }
-      case (err instanceof ErrorDto): {
-        // Handle err.data$: ErrorDtoData
-        console.error(err);
-        return;
-      }
-      case (err instanceof ErrorDto): {
-        // Handle err.data$: ErrorDtoData
-        console.error(err);
-        return;
-      }
-      case (err instanceof ValidationErrorDto): {
-        // Handle err.data$: ValidationErrorDtoData
-        console.error(err);
-        return;
-      }
-      case (err instanceof ErrorDto): {
-        // Handle err.data$: ErrorDtoData
+      case (err instanceof HealthControllerHealthCheckResponseBody): {
+        // Handle err.data$: HealthControllerHealthCheckResponseBodyData
         console.error(err);
         return;
       }
@@ -543,19 +509,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.trigger({
-    name: "workflow_identifier",
-    to: [
-      {
-        topicKey: "<value>",
-        type: "Topic",
-      },
-      {
-        topicKey: "<value>",
-        type: "Topic",
-      },
-    ],
-  });
+  const result = await novu.healthControllerHealthCheck();
 
   // Handle the result
   console.log(result);
@@ -577,19 +531,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.trigger({
-    name: "workflow_identifier",
-    to: [
-      {
-        topicKey: "<value>",
-        type: "Topic",
-      },
-      {
-        topicKey: "<value>",
-        type: "Topic",
-      },
-    ],
-  });
+  const result = await novu.healthControllerHealthCheck();
 
   // Handle the result
   console.log(result);
@@ -669,19 +611,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.trigger({
-    name: "workflow_identifier",
-    to: [
-      {
-        topicKey: "<value>",
-        type: "Topic",
-      },
-      {
-        topicKey: "<value>",
-        type: "Topic",
-      },
-    ],
-  });
+  const result = await novu.healthControllerHealthCheck();
 
   // Handle the result
   console.log(result);
@@ -706,19 +636,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.trigger({
-    name: "workflow_identifier",
-    to: [
-      {
-        topicKey: "<value>",
-        type: "Topic",
-      },
-      {
-        topicKey: "<value>",
-        type: "Topic",
-      },
-    ],
-  }, {
+  const result = await novu.healthControllerHealthCheck({
     retries: {
       strategy: "backoff",
       backoff: {
@@ -758,19 +676,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.trigger({
-    name: "workflow_identifier",
-    to: [
-      {
-        topicKey: "<value>",
-        type: "Topic",
-      },
-      {
-        topicKey: "<value>",
-        type: "Topic",
-      },
-    ],
-  });
+  const result = await novu.healthControllerHealthCheck();
 
   // Handle the result
   console.log(result);

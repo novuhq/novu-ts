@@ -7,7 +7,7 @@ The expected behavior of the idempotency request
 ```typescript
 import { IdempotencyBehaviorEnum } from "@novu/api/models/components";
 
-let value: IdempotencyBehaviorEnum = "IMMEDIATE_RESPONSE";
+let value: IdempotencyBehaviorEnum = "IMMEDIATE_EXCEPTION";
 ```
 
 ## Values

@@ -11,13 +11,13 @@ let value: ActivityNotificationStepResponseDto = {
   filters: [
     {
       isNegated: false,
-      type: "STATEMENT",
+      type: "MULTI_LIST",
       value: "OR",
       children: [
         {
           field: "<value>",
           value: "<value>",
-          operator: "SMALLER_EQUAL",
+          operator: "EQUAL",
           on: "payload",
         },
       ],

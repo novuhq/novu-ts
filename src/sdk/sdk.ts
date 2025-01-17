@@ -3,6 +3,9 @@
  */
 
 import { cancel } from "../funcs/cancel.js";
+import { generateRandomNumber } from "../funcs/generateRandomNumber.js";
+import { healthControllerHealthCheck } from "../funcs/healthControllerHealthCheck.js";
+import { testIdempotency } from "../funcs/testIdempotency.js";
 import { trigger } from "../funcs/trigger.js";
 import { triggerBroadcast } from "../funcs/triggerBroadcast.js";
 import { triggerBulk } from "../funcs/triggerBulk.js";
@@ -10,7 +13,6 @@ import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as components from "../models/components/index.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
-import { Admin } from "./admin.js";
 import { Integrations } from "./integrations.js";
 import { Messages } from "./messages.js";
 import { Notifications } from "./notifications.js";
@@ -18,11 +20,6 @@ import { Subscribers } from "./subscribers.js";
 import { Topics } from "./topics.js";
 
 export class Novu extends ClientSDK {
-  private _admin?: Admin;
-  get admin(): Admin {
-    return (this._admin ??= new Admin(this._options));
-  }
-
   private _notifications?: Notifications;
   get notifications(): Notifications {
     return (this._notifications ??= new Notifications(this._options));
@@ -46,6 +43,41 @@ export class Novu extends ClientSDK {
   private _topics?: Topics;
   get topics(): Topics {
     return (this._topics ??= new Topics(this._options));
+  }
+
+  async healthControllerHealthCheck(
+    idempotencyKey?: string | undefined,
+    options?: RequestOptions,
+  ): Promise<operations.HealthControllerHealthCheckResponseBody> {
+    return unwrapAsync(healthControllerHealthCheck(
+      this,
+      idempotencyKey,
+      options,
+    ));
+  }
+
+  async testIdempotency(
+    idempotencyTestingDto: components.IdempotencyTestingDto,
+    idempotencyKey?: string | undefined,
+    options?: RequestOptions,
+  ): Promise<operations.HealthControllerTestIdempotencyResponse> {
+    return unwrapAsync(testIdempotency(
+      this,
+      idempotencyTestingDto,
+      idempotencyKey,
+      options,
+    ));
+  }
+
+  async generateRandomNumber(
+    idempotencyKey?: string | undefined,
+    options?: RequestOptions,
+  ): Promise<operations.HealthControllerGenerateRandomNumberResponse> {
+    return unwrapAsync(generateRandomNumber(
+      this,
+      idempotencyKey,
+      options,
+    ));
   }
 
   /**

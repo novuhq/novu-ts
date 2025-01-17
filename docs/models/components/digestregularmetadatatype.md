@@ -5,7 +5,7 @@
 ```typescript
 import { DigestRegularMetadataType } from "@novu/api/models/components";
 
-let value: DigestRegularMetadataType = "backoff";
+let value: DigestRegularMetadataType = "regular";
 ```
 
 ## Values

@@ -174,10 +174,7 @@
               }
             }
           }
-        },
-        "tags": [
-          "Admin"
-        ]
+        }
       }
     },
     "/v1/health-check/test-idempotency": {
@@ -655,9 +652,6 @@
             }
           }
         },
-        "tags": [
-          "Admin"
-        ],
         "security": [
           {
             "api-key": []
@@ -1128,9 +1122,6 @@
             }
           }
         },
-        "tags": [
-          "Admin"
-        ],
         "security": [
           {
             "api-key": []

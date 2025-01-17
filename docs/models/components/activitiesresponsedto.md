@@ -8,8 +8,8 @@ import { ActivitiesResponseDto } from "@novu/api/models/components";
 let value: ActivitiesResponseDto = {
   hasMore: false,
   data: [],
-  pageSize: 7163.27,
-  page: 2894.06,
+  pageSize: 8289.4,
+  page: 46.95,
 };
 ```
 

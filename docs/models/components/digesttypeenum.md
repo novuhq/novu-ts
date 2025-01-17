@@ -7,7 +7,7 @@ The Digest Type
 ```typescript
 import { DigestTypeEnum } from "@novu/api/models/components";
 
-let value: DigestTypeEnum = "regular";
+let value: DigestTypeEnum = "backoff";
 ```
 
 ## Values

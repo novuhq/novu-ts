@@ -7,7 +7,7 @@ import { ActorFeedItemDto } from "@novu/api/models/components";
 
 let value: ActorFeedItemDto = {
   data: null,
-  type: "system_custom",
+  type: "system_icon",
 };
 ```
 

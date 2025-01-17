@@ -7,7 +7,7 @@ Channels of the notification
 ```typescript
 import { StepTypeEnum } from "@novu/api/models/components";
 
-let value: StepTypeEnum = "sms";
+let value: StepTypeEnum = "digest";
 ```
 
 ## Values

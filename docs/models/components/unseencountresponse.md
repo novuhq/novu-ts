@@ -6,7 +6,7 @@
 import { UnseenCountResponse } from "@novu/api/models/components";
 
 let value: UnseenCountResponse = {
-  count: 8558.04,
+  count: 5210.37,
 };
 ```
 
