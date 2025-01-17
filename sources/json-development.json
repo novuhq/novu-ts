@@ -4,6 +4,7 @@
     "/v1/health-check": {
       "get": {
         "operationId": "HealthController_healthCheck",
+        "x-ignore": true,
         "parameters": [
           {
             "name": "idempotency-key",
@@ -183,6 +184,7 @@
       "post": {
         "operationId": "HealthController_testIdempotency",
         "x-speakeasy-name-override": "testIdempotency",
+        "x-ignore": true,
         "parameters": [
           {
             "name": "idempotency-key",
@@ -665,6 +667,7 @@
       "get": {
         "operationId": "HealthController_generateRandomNumber",
         "x-speakeasy-name-override": "generateRandomNumber",
+        "x-ignore": true,
         "parameters": [
           {
             "name": "idempotency-key",

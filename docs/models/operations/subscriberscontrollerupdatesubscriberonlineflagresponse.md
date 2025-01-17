@@ -36,8 +36,8 @@ let value: SubscribersControllerUpdateSubscriberOnlineFlagResponse = {
     organizationId: "<id>",
     environmentId: "<id>",
     deleted: false,
-    createdAt: "1709572696656",
-    updatedAt: "1736983729756",
+    createdAt: "1709623796225",
+    updatedAt: "1737034829325",
   },
 };
 ```
