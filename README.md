@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://raw.githubusercontent.com/novuhq/novu-ts/HEAD/assets/hero.gif" width="500">
+  <img src="https://raw.githubusercontent.com/novuhq/novu-ts/HEAD/assets/banner.png" width="500">
   <p>Novu is an open-source notification infrastructure.</p>
   <a href="https://docs.novu.co/api-reference/overview"><img src="https://img.shields.io/static/v1?label=Docs&message=API Ref&color=000000&style=for-the-badge" /></a>
   <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge" /></a>
