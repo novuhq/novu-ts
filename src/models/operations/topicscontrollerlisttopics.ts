@@ -22,10 +22,6 @@ export type TopicsControllerListTopicsRequest = {
    * A filter key to apply to the results
    */
   key?: string | undefined;
-  /**
-   * A header for idempotency purposes
-   */
-  idempotencyKey?: string | undefined;
 };
 
 export type TopicsControllerListTopicsResponse = {
@@ -42,11 +38,6 @@ export const TopicsControllerListTopicsRequest$inboundSchema: z.ZodType<
   page: z.number().int().default(0),
   pageSize: z.number().int().default(10),
   key: z.string().optional(),
-  "idempotency-key": z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "idempotency-key": "idempotencyKey",
-  });
 });
 
 /** @internal */
@@ -54,7 +45,6 @@ export type TopicsControllerListTopicsRequest$Outbound = {
   page: number;
   pageSize: number;
   key?: string | undefined;
-  "idempotency-key"?: string | undefined;
 };
 
 /** @internal */
@@ -66,11 +56,6 @@ export const TopicsControllerListTopicsRequest$outboundSchema: z.ZodType<
   page: z.number().int().default(0),
   pageSize: z.number().int().default(10),
   key: z.string().optional(),
-  idempotencyKey: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    idempotencyKey: "idempotency-key",
-  });
 });
 
 /**

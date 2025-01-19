@@ -13,10 +13,6 @@ export type SubscribersControllerMarkActionAsSeenRequest = {
   messageId: string;
   type?: any | undefined;
   subscriberId: string;
-  /**
-   * A header for idempotency purposes
-   */
-  idempotencyKey?: string | undefined;
   markMessageActionAsSeenDto: components.MarkMessageActionAsSeenDto;
 };
 
@@ -35,12 +31,10 @@ export const SubscribersControllerMarkActionAsSeenRequest$inboundSchema:
     messageId: z.string(),
     type: z.any().optional(),
     subscriberId: z.string(),
-    "idempotency-key": z.string().optional(),
     MarkMessageActionAsSeenDto:
       components.MarkMessageActionAsSeenDto$inboundSchema,
   }).transform((v) => {
     return remap$(v, {
-      "idempotency-key": "idempotencyKey",
       "MarkMessageActionAsSeenDto": "markMessageActionAsSeenDto",
     });
   });
@@ -50,7 +44,6 @@ export type SubscribersControllerMarkActionAsSeenRequest$Outbound = {
   messageId: string;
   type?: any | undefined;
   subscriberId: string;
-  "idempotency-key"?: string | undefined;
   MarkMessageActionAsSeenDto: components.MarkMessageActionAsSeenDto$Outbound;
 };
 
@@ -64,12 +57,10 @@ export const SubscribersControllerMarkActionAsSeenRequest$outboundSchema:
     messageId: z.string(),
     type: z.any().optional(),
     subscriberId: z.string(),
-    idempotencyKey: z.string().optional(),
     markMessageActionAsSeenDto:
       components.MarkMessageActionAsSeenDto$outboundSchema,
   }).transform((v) => {
     return remap$(v, {
-      idempotencyKey: "idempotency-key",
       markMessageActionAsSeenDto: "MarkMessageActionAsSeenDto",
     });
   });

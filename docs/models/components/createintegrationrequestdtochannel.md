@@ -7,7 +7,7 @@ The channel type for the integration
 ```typescript
 import { CreateIntegrationRequestDtoChannel } from "@novu/api/models/components";
 
-let value: CreateIntegrationRequestDtoChannel = "push";
+let value: CreateIntegrationRequestDtoChannel = "sms";
 ```
 
 ## Values

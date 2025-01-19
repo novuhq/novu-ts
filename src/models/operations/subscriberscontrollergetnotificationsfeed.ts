@@ -19,10 +19,6 @@ export type SubscribersControllerGetNotificationsFeedRequest = {
    * Base64 encoded string of the partial payload JSON object
    */
   payload?: string | undefined;
-  /**
-   * A header for idempotency purposes
-   */
-  idempotencyKey?: string | undefined;
 };
 
 export type SubscribersControllerGetNotificationsFeedResponse = {
@@ -43,11 +39,6 @@ export const SubscribersControllerGetNotificationsFeedRequest$inboundSchema:
     read: z.boolean().optional(),
     seen: z.boolean().optional(),
     payload: z.string().optional(),
-    "idempotency-key": z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "idempotency-key": "idempotencyKey",
-    });
   });
 
 /** @internal */
@@ -58,7 +49,6 @@ export type SubscribersControllerGetNotificationsFeedRequest$Outbound = {
   read?: boolean | undefined;
   seen?: boolean | undefined;
   payload?: string | undefined;
-  "idempotency-key"?: string | undefined;
 };
 
 /** @internal */
@@ -74,11 +64,6 @@ export const SubscribersControllerGetNotificationsFeedRequest$outboundSchema:
     read: z.boolean().optional(),
     seen: z.boolean().optional(),
     payload: z.string().optional(),
-    idempotencyKey: z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      idempotencyKey: "idempotency-key",
-    });
   });
 
 /**

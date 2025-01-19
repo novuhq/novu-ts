@@ -20,14 +20,12 @@ export class NovuSubscribers extends ClientSDK {
   async assign(
     addSubscribersRequestDto: components.AddSubscribersRequestDto,
     topicKey: string,
-    idempotencyKey?: string | undefined,
     options?: RequestOptions,
   ): Promise<operations.TopicsControllerAssignResponse> {
     return unwrapAsync(topicsSubscribersAssign(
       this,
       addSubscribersRequestDto,
       topicKey,
-      idempotencyKey,
       options,
     ));
   }
@@ -41,14 +39,12 @@ export class NovuSubscribers extends ClientSDK {
   async retrieve(
     externalSubscriberId: string,
     topicKey: string,
-    idempotencyKey?: string | undefined,
     options?: RequestOptions,
   ): Promise<operations.TopicsControllerGetTopicSubscriberResponse> {
     return unwrapAsync(topicsSubscribersRetrieve(
       this,
       externalSubscriberId,
       topicKey,
-      idempotencyKey,
       options,
     ));
   }
@@ -62,14 +58,12 @@ export class NovuSubscribers extends ClientSDK {
   async remove(
     removeSubscribersRequestDto: components.RemoveSubscribersRequestDto,
     topicKey: string,
-    idempotencyKey?: string | undefined,
     options?: RequestOptions,
   ): Promise<operations.TopicsControllerRemoveSubscribersResponse | undefined> {
     return unwrapAsync(topicsSubscribersRemove(
       this,
       removeSubscribersRequestDto,
       topicKey,
-      idempotencyKey,
       options,
     ));
   }

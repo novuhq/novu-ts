@@ -7,16 +7,16 @@ import { ActivityNotificationJobResponseDto } from "@novu/api/models/components"
 
 let value: ActivityNotificationJobResponseDto = {
   id: "<id>",
-  type: "sms",
+  type: "digest",
   executionDetails: [
     {
       id: "<id>",
-      status: "Warning",
+      status: "ReadConfirmation",
       detail: "<value>",
       isRetry: false,
       isTest: false,
-      providerId: "sendchamp",
-      source: "Credentials",
+      providerId: "nexmo",
+      source: "Payload",
     },
   ],
   step: {
@@ -25,13 +25,13 @@ let value: ActivityNotificationJobResponseDto = {
     filters: [
       {
         isNegated: false,
-        type: "MULTI_LIST",
-        value: "AND",
+        type: "TEXT",
+        value: "OR",
         children: [
           {
             field: "<value>",
             value: "<value>",
-            operator: "BETWEEN",
+            operator: "EQUAL",
             on: "subscriber",
           },
         ],
@@ -39,7 +39,7 @@ let value: ActivityNotificationJobResponseDto = {
     ],
     templateId: "<id>",
   },
-  providerId: "mobishastra",
+  providerId: "sendchamp",
   status: "<value>",
 };
 ```

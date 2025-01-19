@@ -32,10 +32,6 @@ export type SubscribersControllerGetSubscriberPreferenceByLevelRequest = {
    */
   preferenceLevel: Parameter;
   subscriberId: string;
-  /**
-   * A header for idempotency purposes
-   */
-  idempotencyKey?: string | undefined;
 };
 
 export type SubscribersControllerGetSubscriberPreferenceByLevelResponse = {
@@ -72,11 +68,6 @@ export const SubscribersControllerGetSubscriberPreferenceByLevelRequest$inboundS
     includeInactiveChannels: z.boolean().optional(),
     preferenceLevel: Parameter$inboundSchema,
     subscriberId: z.string(),
-    "idempotency-key": z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "idempotency-key": "idempotencyKey",
-    });
   });
 
 /** @internal */
@@ -85,7 +76,6 @@ export type SubscribersControllerGetSubscriberPreferenceByLevelRequest$Outbound 
     includeInactiveChannels?: boolean | undefined;
     preferenceLevel: string;
     subscriberId: string;
-    "idempotency-key"?: string | undefined;
   };
 
 /** @internal */
@@ -98,11 +88,6 @@ export const SubscribersControllerGetSubscriberPreferenceByLevelRequest$outbound
     includeInactiveChannels: z.boolean().optional(),
     preferenceLevel: Parameter$outboundSchema,
     subscriberId: z.string(),
-    idempotencyKey: z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      idempotencyKey: "idempotency-key",
-    });
   });
 
 /**

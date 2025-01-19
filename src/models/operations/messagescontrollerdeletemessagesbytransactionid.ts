@@ -30,10 +30,6 @@ export type MessagesControllerDeleteMessagesByTransactionIdRequest = {
    */
   channel?: Channel | undefined;
   transactionId: string;
-  /**
-   * A header for idempotency purposes
-   */
-  idempotencyKey?: string | undefined;
 };
 
 export type MessagesControllerDeleteMessagesByTransactionIdResponse = {
@@ -68,18 +64,12 @@ export const MessagesControllerDeleteMessagesByTransactionIdRequest$inboundSchem
   > = z.object({
     channel: Channel$inboundSchema.optional(),
     transactionId: z.string(),
-    "idempotency-key": z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "idempotency-key": "idempotencyKey",
-    });
   });
 
 /** @internal */
 export type MessagesControllerDeleteMessagesByTransactionIdRequest$Outbound = {
   channel?: string | undefined;
   transactionId: string;
-  "idempotency-key"?: string | undefined;
 };
 
 /** @internal */
@@ -91,11 +81,6 @@ export const MessagesControllerDeleteMessagesByTransactionIdRequest$outboundSche
   > = z.object({
     channel: Channel$outboundSchema.optional(),
     transactionId: z.string(),
-    idempotencyKey: z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      idempotencyKey: "idempotency-key",
-    });
   });
 
 /**

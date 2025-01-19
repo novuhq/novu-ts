@@ -11,10 +11,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type IntegrationsControllerRemoveIntegrationRequest = {
   integrationId: string;
-  /**
-   * A header for idempotency purposes
-   */
-  idempotencyKey?: string | undefined;
 };
 
 export type IntegrationsControllerRemoveIntegrationResponse = {
@@ -30,17 +26,11 @@ export const IntegrationsControllerRemoveIntegrationRequest$inboundSchema:
     unknown
   > = z.object({
     integrationId: z.string(),
-    "idempotency-key": z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "idempotency-key": "idempotencyKey",
-    });
   });
 
 /** @internal */
 export type IntegrationsControllerRemoveIntegrationRequest$Outbound = {
   integrationId: string;
-  "idempotency-key"?: string | undefined;
 };
 
 /** @internal */
@@ -51,11 +41,6 @@ export const IntegrationsControllerRemoveIntegrationRequest$outboundSchema:
     IntegrationsControllerRemoveIntegrationRequest
   > = z.object({
     integrationId: z.string(),
-    idempotencyKey: z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      idempotencyKey: "idempotency-key",
-    });
   });
 
 /**

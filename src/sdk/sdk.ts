@@ -3,6 +3,8 @@
  */
 
 import { cancel } from "../funcs/cancel.js";
+import { create } from "../funcs/create.js";
+import { supportControllerFetchUserOrganizations } from "../funcs/supportControllerFetchUserOrganizations.js";
 import { trigger } from "../funcs/trigger.js";
 import { triggerBroadcast } from "../funcs/triggerBroadcast.js";
 import { triggerBulk } from "../funcs/triggerBulk.js";
@@ -52,14 +54,12 @@ export class Novu extends ClientSDK {
    *     Additional information can be passed according the body interface below.
    */
   async trigger(
-    triggerEventRequestDto: components.TriggerEventRequestDto,
-    idempotencyKey?: string | undefined,
+    request: components.TriggerEventRequestDto,
     options?: RequestOptions,
   ): Promise<operations.EventsControllerTriggerResponse> {
     return unwrapAsync(trigger(
       this,
-      triggerEventRequestDto,
-      idempotencyKey,
+      request,
       options,
     ));
   }
@@ -73,14 +73,12 @@ export class Novu extends ClientSDK {
    *       The bulk API is limited to 100 events per request.
    */
   async triggerBulk(
-    bulkTriggerEventDto: components.BulkTriggerEventDto,
-    idempotencyKey?: string | undefined,
+    request: components.BulkTriggerEventDto,
     options?: RequestOptions,
   ): Promise<operations.EventsControllerTriggerBulkResponse> {
     return unwrapAsync(triggerBulk(
       this,
-      bulkTriggerEventDto,
-      idempotencyKey,
+      request,
       options,
     ));
   }
@@ -93,14 +91,12 @@ export class Novu extends ClientSDK {
    *       In the future could be used to trigger events to a subset of subscribers based on defined filters.
    */
   async triggerBroadcast(
-    triggerEventToAllRequestDto: components.TriggerEventToAllRequestDto,
-    idempotencyKey?: string | undefined,
+    request: components.TriggerEventToAllRequestDto,
     options?: RequestOptions,
   ): Promise<operations.EventsControllerBroadcastEventToAllResponse> {
     return unwrapAsync(triggerBroadcast(
       this,
-      triggerEventToAllRequestDto,
-      idempotencyKey,
+      request,
       options,
     ));
   }
@@ -115,13 +111,39 @@ export class Novu extends ClientSDK {
    */
   async cancel(
     transactionId: string,
-    idempotencyKey?: string | undefined,
     options?: RequestOptions,
   ): Promise<operations.EventsControllerCancelResponse> {
     return unwrapAsync(cancel(
       this,
       transactionId,
-      idempotencyKey,
+      options,
+    ));
+  }
+
+  async supportControllerFetchUserOrganizations(
+    request: components.PlainCardRequestDto,
+    options?: RequestOptions,
+  ): Promise<operations.SupportControllerFetchUserOrganizationsResponseBody> {
+    return unwrapAsync(supportControllerFetchUserOrganizations(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Topic creation
+   *
+   * @remarks
+   * Create a topic
+   */
+  async create(
+    request: components.CreateSupportThreadDto,
+    options?: RequestOptions,
+  ): Promise<void> {
+    return unwrapAsync(create(
+      this,
+      request,
       options,
     ));
   }

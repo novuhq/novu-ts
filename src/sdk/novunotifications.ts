@@ -27,12 +27,16 @@ export class NovuNotifications extends ClientSDK {
    * Get the unseen in-app notifications count for subscribers feed
    */
   async unseenCount(
-    request: operations.SubscribersControllerGetUnseenCountRequest,
+    subscriberId: string,
+    seen?: boolean | undefined,
+    limit?: number | undefined,
     options?: RequestOptions,
   ): Promise<operations.SubscribersControllerGetUnseenCountResponse> {
     return unwrapAsync(subscribersNotificationsUnseenCount(
       this,
-      request,
+      subscriberId,
+      seen,
+      limit,
       options,
     ));
   }

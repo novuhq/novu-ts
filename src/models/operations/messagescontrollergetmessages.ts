@@ -18,10 +18,6 @@ export type MessagesControllerGetMessagesRequest = {
   transactionId?: Array<string> | undefined;
   page?: number | undefined;
   limit?: number | undefined;
-  /**
-   * A header for idempotency purposes
-   */
-  idempotencyKey?: string | undefined;
 };
 
 export type MessagesControllerGetMessagesResponse = {
@@ -40,11 +36,6 @@ export const MessagesControllerGetMessagesRequest$inboundSchema: z.ZodType<
   transactionId: z.array(z.string()).optional(),
   page: z.number().default(0),
   limit: z.number().default(10),
-  "idempotency-key": z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "idempotency-key": "idempotencyKey",
-  });
 });
 
 /** @internal */
@@ -54,7 +45,6 @@ export type MessagesControllerGetMessagesRequest$Outbound = {
   transactionId?: Array<string> | undefined;
   page: number;
   limit: number;
-  "idempotency-key"?: string | undefined;
 };
 
 /** @internal */
@@ -68,11 +58,6 @@ export const MessagesControllerGetMessagesRequest$outboundSchema: z.ZodType<
   transactionId: z.array(z.string()).optional(),
   page: z.number().default(0),
   limit: z.number().default(10),
-  idempotencyKey: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    idempotencyKey: "idempotency-key",
-  });
 });
 
 /**

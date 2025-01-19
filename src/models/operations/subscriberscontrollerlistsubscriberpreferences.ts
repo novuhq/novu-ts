@@ -15,10 +15,6 @@ export type SubscribersControllerListSubscriberPreferencesRequest = {
    * A flag which specifies if the inactive workflow channels should be included in the retrieved preferences. Default is true
    */
   includeInactiveChannels?: boolean | undefined;
-  /**
-   * A header for idempotency purposes
-   */
-  idempotencyKey?: string | undefined;
 };
 
 export type SubscribersControllerListSubscriberPreferencesResponse = {
@@ -35,18 +31,12 @@ export const SubscribersControllerListSubscriberPreferencesRequest$inboundSchema
   > = z.object({
     subscriberId: z.string(),
     includeInactiveChannels: z.boolean().optional(),
-    "idempotency-key": z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "idempotency-key": "idempotencyKey",
-    });
   });
 
 /** @internal */
 export type SubscribersControllerListSubscriberPreferencesRequest$Outbound = {
   subscriberId: string;
   includeInactiveChannels?: boolean | undefined;
-  "idempotency-key"?: string | undefined;
 };
 
 /** @internal */
@@ -58,11 +48,6 @@ export const SubscribersControllerListSubscriberPreferencesRequest$outboundSchem
   > = z.object({
     subscriberId: z.string(),
     includeInactiveChannels: z.boolean().optional(),
-    idempotencyKey: z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      idempotencyKey: "idempotency-key",
-    });
   });
 
 /**

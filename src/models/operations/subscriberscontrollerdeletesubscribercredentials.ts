@@ -11,10 +11,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 export type SubscribersControllerDeleteSubscriberCredentialsRequest = {
   subscriberId: string;
   providerId: string;
-  /**
-   * A header for idempotency purposes
-   */
-  idempotencyKey?: string | undefined;
 };
 
 export type SubscribersControllerDeleteSubscriberCredentialsResponse = {
@@ -30,18 +26,12 @@ export const SubscribersControllerDeleteSubscriberCredentialsRequest$inboundSche
   > = z.object({
     subscriberId: z.string(),
     providerId: z.string(),
-    "idempotency-key": z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "idempotency-key": "idempotencyKey",
-    });
   });
 
 /** @internal */
 export type SubscribersControllerDeleteSubscriberCredentialsRequest$Outbound = {
   subscriberId: string;
   providerId: string;
-  "idempotency-key"?: string | undefined;
 };
 
 /** @internal */
@@ -53,11 +43,6 @@ export const SubscribersControllerDeleteSubscriberCredentialsRequest$outboundSch
   > = z.object({
     subscriberId: z.string(),
     providerId: z.string(),
-    idempotencyKey: z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      idempotencyKey: "idempotency-key",
-    });
   });
 
 /**

@@ -23,10 +23,6 @@ export type SubscribersControllerChatAccessOauthRequest = {
    * Optional integration identifier
    */
   integrationIdentifier?: string | undefined;
-  /**
-   * A header for idempotency purposes
-   */
-  idempotencyKey?: string | undefined;
 };
 
 export type SubscribersControllerChatAccessOauthResponse = {
@@ -45,11 +41,6 @@ export const SubscribersControllerChatAccessOauthRequest$inboundSchema:
     hmacHash: z.string(),
     environmentId: z.string(),
     integrationIdentifier: z.string().optional(),
-    "idempotency-key": z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "idempotency-key": "idempotencyKey",
-    });
   });
 
 /** @internal */
@@ -59,7 +50,6 @@ export type SubscribersControllerChatAccessOauthRequest$Outbound = {
   hmacHash: string;
   environmentId: string;
   integrationIdentifier?: string | undefined;
-  "idempotency-key"?: string | undefined;
 };
 
 /** @internal */
@@ -74,11 +64,6 @@ export const SubscribersControllerChatAccessOauthRequest$outboundSchema:
     hmacHash: z.string(),
     environmentId: z.string(),
     integrationIdentifier: z.string().optional(),
-    idempotencyKey: z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      idempotencyKey: "idempotency-key",
-    });
   });
 
 /**

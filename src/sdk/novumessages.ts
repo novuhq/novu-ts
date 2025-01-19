@@ -17,14 +17,12 @@ export class NovuMessages extends ClientSDK {
   async markAllAs(
     messageMarkAsRequestDto: components.MessageMarkAsRequestDto,
     subscriberId: string,
-    idempotencyKey?: string | undefined,
     options?: RequestOptions,
   ): Promise<operations.SubscribersControllerMarkMessagesAsResponse> {
     return unwrapAsync(subscribersMessagesMarkAllAs(
       this,
       messageMarkAsRequestDto,
       subscriberId,
-      idempotencyKey,
       options,
     ));
   }
@@ -35,14 +33,12 @@ export class NovuMessages extends ClientSDK {
   async markAll(
     markAllMessageAsRequestDto: components.MarkAllMessageAsRequestDto,
     subscriberId: string,
-    idempotencyKey?: string | undefined,
     options?: RequestOptions,
   ): Promise<operations.SubscribersControllerMarkAllUnreadAsReadResponse> {
     return unwrapAsync(subscribersMessagesMarkAll(
       this,
       markAllMessageAsRequestDto,
       subscriberId,
-      idempotencyKey,
       options,
     ));
   }

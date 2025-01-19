@@ -13,10 +13,6 @@ export type TopicsControllerDeleteTopicRequest = {
    * The topic key
    */
   topicKey: string;
-  /**
-   * A header for idempotency purposes
-   */
-  idempotencyKey?: string | undefined;
 };
 
 export type TopicsControllerDeleteTopicResponse = {
@@ -30,17 +26,11 @@ export const TopicsControllerDeleteTopicRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   topicKey: z.string(),
-  "idempotency-key": z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "idempotency-key": "idempotencyKey",
-  });
 });
 
 /** @internal */
 export type TopicsControllerDeleteTopicRequest$Outbound = {
   topicKey: string;
-  "idempotency-key"?: string | undefined;
 };
 
 /** @internal */
@@ -50,11 +40,6 @@ export const TopicsControllerDeleteTopicRequest$outboundSchema: z.ZodType<
   TopicsControllerDeleteTopicRequest
 > = z.object({
   topicKey: z.string(),
-  idempotencyKey: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    idempotencyKey: "idempotency-key",
-  });
 });
 
 /**

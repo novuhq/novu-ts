@@ -4,7 +4,7 @@
 
 import { NovuCore } from "../core.js";
 import { dlv } from "../lib/dlv.js";
-import { encodeFormQuery, encodeSimple } from "../lib/encodings.js";
+import { encodeFormQuery } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -40,16 +40,13 @@ export async function subscribersList(
   client: NovuCore,
   page?: number | undefined,
   limit?: number | undefined,
-  idempotencyKey?: string | undefined,
   options?: RequestOptions,
 ): Promise<
   PageIterator<
     Result<
       operations.SubscribersControllerListSubscribersResponse,
       | errors.ErrorDto
-      | errors.ErrorDto
       | errors.ValidationErrorDto
-      | errors.ErrorDto
       | SDKError
       | SDKValidationError
       | UnexpectedClientError
@@ -64,7 +61,6 @@ export async function subscribersList(
   const input: operations.SubscribersControllerListSubscribersRequest = {
     page: page,
     limit: limit,
-    idempotencyKey: idempotencyKey,
   };
 
   const parsed = safeParse(
@@ -89,11 +85,6 @@ export async function subscribersList(
 
   const headers = new Headers(compactMap({
     Accept: "application/json",
-    "idempotency-key": encodeSimple(
-      "idempotency-key",
-      payload["idempotency-key"],
-      { explode: false, charEncoding: "none" },
-    ),
   }));
 
   const secConfig = await extractSecurity(client._options.apiKey);
@@ -112,7 +103,7 @@ export async function subscribersList(
       || {
         strategy: "backoff",
         backoff: {
-          initialInterval: 1000,
+          initialInterval: 500,
           maxInterval: 30000,
           exponent: 1.5,
           maxElapsedTime: 3600000,
@@ -140,23 +131,7 @@ export async function subscribersList(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: [
-      "400",
-      "401",
-      "403",
-      "404",
-      "405",
-      "409",
-      "413",
-      "414",
-      "415",
-      "422",
-      "429",
-      "4XX",
-      "500",
-      "503",
-      "5XX",
-    ],
+    errorCodes: ["400", "404", "409", "422", "429", "4XX", "503", "5XX"],
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
@@ -172,9 +147,7 @@ export async function subscribersList(
   const [result, raw] = await M.match<
     operations.SubscribersControllerListSubscribersResponse,
     | errors.ErrorDto
-    | errors.ErrorDto
     | errors.ValidationErrorDto
-    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -188,15 +161,9 @@ export async function subscribersList(
       operations.SubscribersControllerListSubscribersResponse$inboundSchema,
       { hdrs: true, key: "Result" },
     ),
-    M.jsonErr(
-      [400, 401, 403, 404, 405, 409, 413, 415],
-      errors.ErrorDto$inboundSchema,
-      { hdrs: true },
-    ),
-    M.jsonErr(414, errors.ErrorDto$inboundSchema),
+    M.jsonErr([400, 404, 409], errors.ErrorDto$inboundSchema, { hdrs: true }),
     M.jsonErr(422, errors.ValidationErrorDto$inboundSchema, { hdrs: true }),
     M.fail(429),
-    M.jsonErr(500, errors.ErrorDto$inboundSchema, { hdrs: true }),
     M.fail(503),
     M.fail("4XX"),
     M.fail("5XX"),
@@ -212,9 +179,7 @@ export async function subscribersList(
       Result<
         operations.SubscribersControllerListSubscribersResponse,
         | errors.ErrorDto
-        | errors.ErrorDto
         | errors.ValidationErrorDto
-        | errors.ErrorDto
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -246,7 +211,6 @@ export async function subscribersList(
         client,
         nextPage,
         limit,
-        idempotencyKey,
         options,
       );
 

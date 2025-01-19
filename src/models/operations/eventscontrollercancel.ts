@@ -11,10 +11,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type EventsControllerCancelRequest = {
   transactionId: string;
-  /**
-   * A header for idempotency purposes
-   */
-  idempotencyKey?: string | undefined;
 };
 
 export type EventsControllerCancelResponse = {
@@ -29,17 +25,11 @@ export const EventsControllerCancelRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   transactionId: z.string(),
-  "idempotency-key": z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "idempotency-key": "idempotencyKey",
-  });
 });
 
 /** @internal */
 export type EventsControllerCancelRequest$Outbound = {
   transactionId: string;
-  "idempotency-key"?: string | undefined;
 };
 
 /** @internal */
@@ -49,11 +39,6 @@ export const EventsControllerCancelRequest$outboundSchema: z.ZodType<
   EventsControllerCancelRequest
 > = z.object({
   transactionId: z.string(),
-  idempotencyKey: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    idempotencyKey: "idempotency-key",
-  });
 });
 
 /**

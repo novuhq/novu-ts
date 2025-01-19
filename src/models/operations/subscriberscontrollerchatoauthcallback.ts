@@ -27,10 +27,6 @@ export type SubscribersControllerChatOauthCallbackRequest = {
    * Optional authorization code returned from the OAuth provider
    */
   code: string;
-  /**
-   * A header for idempotency purposes
-   */
-  idempotencyKey?: string | undefined;
 };
 
 export type SubscribersControllerChatOauthCallbackResponseResult =
@@ -55,11 +51,6 @@ export const SubscribersControllerChatOauthCallbackRequest$inboundSchema:
     environmentId: z.string(),
     integrationIdentifier: z.string().optional(),
     code: z.string(),
-    "idempotency-key": z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "idempotency-key": "idempotencyKey",
-    });
   });
 
 /** @internal */
@@ -70,7 +61,6 @@ export type SubscribersControllerChatOauthCallbackRequest$Outbound = {
   environmentId: string;
   integrationIdentifier?: string | undefined;
   code: string;
-  "idempotency-key"?: string | undefined;
 };
 
 /** @internal */
@@ -86,11 +76,6 @@ export const SubscribersControllerChatOauthCallbackRequest$outboundSchema:
     environmentId: z.string(),
     integrationIdentifier: z.string().optional(),
     code: z.string(),
-    idempotencyKey: z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      idempotencyKey: "idempotency-key",
-    });
   });
 
 /**

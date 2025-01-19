@@ -15,7 +15,7 @@ let value: SubscribersControllerUpdateSubscriberChannelResponse = {
     subscriberId: "<id>",
     channels: [
       {
-        providerId: "pusher-beams",
+        providerId: "fcm",
         credentials: {
           webhookUrl: "https://example.com/webhook",
           channel: "general",
@@ -36,8 +36,8 @@ let value: SubscribersControllerUpdateSubscriberChannelResponse = {
     organizationId: "<id>",
     environmentId: "<id>",
     deleted: false,
-    createdAt: "1727062651612",
-    updatedAt: "1737041428465",
+    createdAt: "1725012988152",
+    updatedAt: "1737212840533",
   },
 };
 ```

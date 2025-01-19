@@ -13,12 +13,10 @@ export class Stats extends ClientSDK {
    * Get notification statistics
    */
   async retrieve(
-    idempotencyKey?: string | undefined,
     options?: RequestOptions,
   ): Promise<operations.NotificationsControllerGetActivityStatsResponse> {
     return unwrapAsync(notificationsStatsRetrieve(
       this,
-      idempotencyKey,
       options,
     ));
   }
@@ -28,13 +26,11 @@ export class Stats extends ClientSDK {
    */
   async graph(
     days?: number | undefined,
-    idempotencyKey?: string | undefined,
     options?: RequestOptions,
   ): Promise<operations.NotificationsControllerGetActivityGraphStatsResponse> {
     return unwrapAsync(notificationsStatsGraph(
       this,
       days,
-      idempotencyKey,
       options,
     ));
   }

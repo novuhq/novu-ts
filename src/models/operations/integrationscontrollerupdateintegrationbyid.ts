@@ -11,10 +11,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type IntegrationsControllerUpdateIntegrationByIdRequest = {
   integrationId: string;
-  /**
-   * A header for idempotency purposes
-   */
-  idempotencyKey?: string | undefined;
   updateIntegrationRequestDto: components.UpdateIntegrationRequestDto;
 };
 
@@ -31,12 +27,10 @@ export const IntegrationsControllerUpdateIntegrationByIdRequest$inboundSchema:
     unknown
   > = z.object({
     integrationId: z.string(),
-    "idempotency-key": z.string().optional(),
     UpdateIntegrationRequestDto:
       components.UpdateIntegrationRequestDto$inboundSchema,
   }).transform((v) => {
     return remap$(v, {
-      "idempotency-key": "idempotencyKey",
       "UpdateIntegrationRequestDto": "updateIntegrationRequestDto",
     });
   });
@@ -44,7 +38,6 @@ export const IntegrationsControllerUpdateIntegrationByIdRequest$inboundSchema:
 /** @internal */
 export type IntegrationsControllerUpdateIntegrationByIdRequest$Outbound = {
   integrationId: string;
-  "idempotency-key"?: string | undefined;
   UpdateIntegrationRequestDto: components.UpdateIntegrationRequestDto$Outbound;
 };
 
@@ -56,12 +49,10 @@ export const IntegrationsControllerUpdateIntegrationByIdRequest$outboundSchema:
     IntegrationsControllerUpdateIntegrationByIdRequest
   > = z.object({
     integrationId: z.string(),
-    idempotencyKey: z.string().optional(),
     updateIntegrationRequestDto:
       components.UpdateIntegrationRequestDto$outboundSchema,
   }).transform((v) => {
     return remap$(v, {
-      idempotencyKey: "idempotency-key",
       updateIntegrationRequestDto: "UpdateIntegrationRequestDto",
     });
   });

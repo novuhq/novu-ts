@@ -82,13 +82,11 @@ run();
 
 ### Errors
 
-| Error Type                             | Status Code                            | Content Type                           |
-| -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| errors.ErrorDto                        | 400, 401, 403, 404, 405, 409, 413, 415 | application/json                       |
-| errors.ErrorDto                        | 414                                    | application/json                       |
-| errors.ValidationErrorDto              | 422                                    | application/json                       |
-| errors.ErrorDto                        | 500                                    | application/json                       |
-| errors.SDKError                        | 4XX, 5XX                               | \*/\*                                  |
+| Error Type                | Status Code               | Content Type              |
+| ------------------------- | ------------------------- | ------------------------- |
+| errors.ErrorDto           | 400, 404, 409             | application/json          |
+| errors.ValidationErrorDto | 422                       | application/json          |
+| errors.SDKError           | 4XX, 5XX                  | \*/\*                     |
 
 ## unseenCount
 
@@ -104,11 +102,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.subscribers.notifications.unseenCount({
-    subscriberId: "<id>",
-    seen: false,
-    limit: 2979.49,
-  });
+  const result = await novu.subscribers.notifications.unseenCount("<id>", false, 2979.49);
 
   // Handle the result
   console.log(result);
@@ -132,11 +126,7 @@ const novu = new NovuCore({
 });
 
 async function run() {
-  const res = await subscribersNotificationsUnseenCount(novu, {
-    subscriberId: "<id>",
-    seen: false,
-    limit: 2979.49,
-  });
+  const res = await subscribersNotificationsUnseenCount(novu, "<id>", false, 2979.49);
 
   if (!res.ok) {
     throw res.error;
@@ -155,7 +145,9 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.SubscribersControllerGetUnseenCountRequest](../../models/operations/subscriberscontrollergetunseencountrequest.md)                                                 | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `subscriberId`                                                                                                                                                                 | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
+| `seen`                                                                                                                                                                         | *boolean*                                                                                                                                                                      | :heavy_minus_sign:                                                                                                                                                             | Indicates whether to count seen notifications.                                                                                                                                 |
+| `limit`                                                                                                                                                                        | *number*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | The maximum number of notifications to return.                                                                                                                                 |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
@@ -166,10 +158,8 @@ run();
 
 ### Errors
 
-| Error Type                             | Status Code                            | Content Type                           |
-| -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| errors.ErrorDto                        | 400, 401, 403, 404, 405, 409, 413, 415 | application/json                       |
-| errors.ErrorDto                        | 414                                    | application/json                       |
-| errors.ValidationErrorDto              | 422                                    | application/json                       |
-| errors.ErrorDto                        | 500                                    | application/json                       |
-| errors.SDKError                        | 4XX, 5XX                               | \*/\*                                  |
+| Error Type                | Status Code               | Content Type              |
+| ------------------------- | ------------------------- | ------------------------- |
+| errors.ErrorDto           | 400, 404, 409             | application/json          |
+| errors.ValidationErrorDto | 422                       | application/json          |
+| errors.SDKError           | 4XX, 5XX                  | \*/\*                     |

@@ -19,7 +19,6 @@ export class Properties extends ClientSDK {
     updateSubscriberOnlineFlagRequestDto:
       components.UpdateSubscriberOnlineFlagRequestDto,
     subscriberId: string,
-    idempotencyKey?: string | undefined,
     options?: RequestOptions,
   ): Promise<
     operations.SubscribersControllerUpdateSubscriberOnlineFlagResponse
@@ -28,7 +27,6 @@ export class Properties extends ClientSDK {
       this,
       updateSubscriberOnlineFlagRequestDto,
       subscriberId,
-      idempotencyKey,
       options,
     ));
   }

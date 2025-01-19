@@ -13,7 +13,7 @@ let value: StepFilterDto = {
     {
       field: "<value>",
       value: "<value>",
-      operator: "LIKE",
+      operator: "NOT_IN",
       on: "payload",
     },
   ],

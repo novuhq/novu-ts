@@ -14,10 +14,6 @@ export type TopicsControllerGetTopicRequest = {
    * The topic key
    */
   topicKey: string;
-  /**
-   * A header for idempotency purposes
-   */
-  idempotencyKey?: string | undefined;
 };
 
 export type TopicsControllerGetTopicResponse = {
@@ -32,17 +28,11 @@ export const TopicsControllerGetTopicRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   topicKey: z.string(),
-  "idempotency-key": z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "idempotency-key": "idempotencyKey",
-  });
 });
 
 /** @internal */
 export type TopicsControllerGetTopicRequest$Outbound = {
   topicKey: string;
-  "idempotency-key"?: string | undefined;
 };
 
 /** @internal */
@@ -52,11 +42,6 @@ export const TopicsControllerGetTopicRequest$outboundSchema: z.ZodType<
   TopicsControllerGetTopicRequest
 > = z.object({
   topicKey: z.string(),
-  idempotencyKey: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    idempotencyKey: "idempotency-key",
-  });
 });
 
 /**

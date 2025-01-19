@@ -22,7 +22,7 @@ let value: SubscribersControllerMarkActionAsSeenResponse = {
       subscriberId: "<id>",
       channels: [
         {
-          providerId: "one-signal",
+          providerId: "apns",
           credentials: {
             webhookUrl: "https://example.com/webhook",
             channel: "general",
@@ -43,13 +43,13 @@ let value: SubscribersControllerMarkActionAsSeenResponse = {
       organizationId: "<id>",
       environmentId: "<id>",
       deleted: false,
-      createdAt: "1708622953211",
-      updatedAt: "1737082765077",
+      createdAt: "1710067675591",
+      updatedAt: "1737176522695",
     },
-    createdAt: "1708591326770",
+    createdAt: "1717338054790",
     content: "<value>",
     transactionId: "<id>",
-    channel: "sms",
+    channel: "in_app",
     read: false,
     seen: false,
     cta: {

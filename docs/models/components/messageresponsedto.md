@@ -16,7 +16,7 @@ let value: MessageResponseDto = {
     subscriberId: "<id>",
     channels: [
       {
-        providerId: "pushpad",
+        providerId: "discord",
         credentials: {
           webhookUrl: "https://example.com/webhook",
           channel: "general",
@@ -37,22 +37,19 @@ let value: MessageResponseDto = {
     organizationId: "<id>",
     environmentId: "<id>",
     deleted: false,
-    createdAt: "1705930183124",
-    updatedAt: "1737041469522",
+    createdAt: "1727704051870",
+    updatedAt: "1737198724411",
   },
-  createdAt: "1728581749425",
-  content: {
-    type: "text",
-    content: "<value>",
-  },
+  createdAt: "1728480683441",
+  content: "<value>",
   transactionId: "<id>",
-  channel: "in_app",
+  channel: "push",
   read: false,
   seen: false,
   cta: {
     data: {},
   },
-  status: "sent",
+  status: "warning",
 };
 ```
 

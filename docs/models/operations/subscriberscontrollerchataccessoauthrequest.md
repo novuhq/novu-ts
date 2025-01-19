@@ -22,4 +22,3 @@ let value: SubscribersControllerChatAccessOauthRequest = {
 | `hmacHash`                                            | *string*                                              | :heavy_check_mark:                                    | HMAC hash for the request                             |
 | `environmentId`                                       | *string*                                              | :heavy_check_mark:                                    | The ID of the environment, must be a valid MongoDB ID |
 | `integrationIdentifier`                               | *string*                                              | :heavy_minus_sign:                                    | Optional integration identifier                       |
-| `idempotencyKey`                                      | *string*                                              | :heavy_minus_sign:                                    | A header for idempotency purposes                     |

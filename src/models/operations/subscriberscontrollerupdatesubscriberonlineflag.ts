@@ -11,10 +11,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type SubscribersControllerUpdateSubscriberOnlineFlagRequest = {
   subscriberId: string;
-  /**
-   * A header for idempotency purposes
-   */
-  idempotencyKey?: string | undefined;
   updateSubscriberOnlineFlagRequestDto:
     components.UpdateSubscriberOnlineFlagRequestDto;
 };
@@ -32,12 +28,10 @@ export const SubscribersControllerUpdateSubscriberOnlineFlagRequest$inboundSchem
     unknown
   > = z.object({
     subscriberId: z.string(),
-    "idempotency-key": z.string().optional(),
     UpdateSubscriberOnlineFlagRequestDto:
       components.UpdateSubscriberOnlineFlagRequestDto$inboundSchema,
   }).transform((v) => {
     return remap$(v, {
-      "idempotency-key": "idempotencyKey",
       "UpdateSubscriberOnlineFlagRequestDto":
         "updateSubscriberOnlineFlagRequestDto",
     });
@@ -46,7 +40,6 @@ export const SubscribersControllerUpdateSubscriberOnlineFlagRequest$inboundSchem
 /** @internal */
 export type SubscribersControllerUpdateSubscriberOnlineFlagRequest$Outbound = {
   subscriberId: string;
-  "idempotency-key"?: string | undefined;
   UpdateSubscriberOnlineFlagRequestDto:
     components.UpdateSubscriberOnlineFlagRequestDto$Outbound;
 };
@@ -59,12 +52,10 @@ export const SubscribersControllerUpdateSubscriberOnlineFlagRequest$outboundSche
     SubscribersControllerUpdateSubscriberOnlineFlagRequest
   > = z.object({
     subscriberId: z.string(),
-    idempotencyKey: z.string().optional(),
     updateSubscriberOnlineFlagRequestDto:
       components.UpdateSubscriberOnlineFlagRequestDto$outboundSchema,
   }).transform((v) => {
     return remap$(v, {
-      idempotencyKey: "idempotency-key",
       updateSubscriberOnlineFlagRequestDto:
         "UpdateSubscriberOnlineFlagRequestDto",
     });
