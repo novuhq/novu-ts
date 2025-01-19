@@ -11,10 +11,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type SubscribersControllerMarkMessagesAsRequest = {
   subscriberId: string;
-  /**
-   * A header for idempotency purposes
-   */
-  idempotencyKey?: string | undefined;
   messageMarkAsRequestDto: components.MessageMarkAsRequestDto;
 };
 
@@ -28,11 +24,9 @@ export const SubscribersControllerMarkMessagesAsRequest$inboundSchema:
   z.ZodType<SubscribersControllerMarkMessagesAsRequest, z.ZodTypeDef, unknown> =
     z.object({
       subscriberId: z.string(),
-      "idempotency-key": z.string().optional(),
       MessageMarkAsRequestDto: components.MessageMarkAsRequestDto$inboundSchema,
     }).transform((v) => {
       return remap$(v, {
-        "idempotency-key": "idempotencyKey",
         "MessageMarkAsRequestDto": "messageMarkAsRequestDto",
       });
     });
@@ -40,7 +34,6 @@ export const SubscribersControllerMarkMessagesAsRequest$inboundSchema:
 /** @internal */
 export type SubscribersControllerMarkMessagesAsRequest$Outbound = {
   subscriberId: string;
-  "idempotency-key"?: string | undefined;
   MessageMarkAsRequestDto: components.MessageMarkAsRequestDto$Outbound;
 };
 
@@ -52,11 +45,9 @@ export const SubscribersControllerMarkMessagesAsRequest$outboundSchema:
     SubscribersControllerMarkMessagesAsRequest
   > = z.object({
     subscriberId: z.string(),
-    idempotencyKey: z.string().optional(),
     messageMarkAsRequestDto: components.MessageMarkAsRequestDto$outboundSchema,
   }).transform((v) => {
     return remap$(v, {
-      idempotencyKey: "idempotency-key",
       messageMarkAsRequestDto: "MessageMarkAsRequestDto",
     });
   });

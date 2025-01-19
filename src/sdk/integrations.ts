@@ -27,12 +27,10 @@ export class Integrations extends ClientSDK {
    * Return all the integrations the user has created for that organization. Review v.0.17.0 changelog for a breaking change
    */
   async list(
-    idempotencyKey?: string | undefined,
     options?: RequestOptions,
   ): Promise<operations.IntegrationsControllerListIntegrationsResponse> {
     return unwrapAsync(integrationsList(
       this,
-      idempotencyKey,
       options,
     ));
   }
@@ -44,14 +42,12 @@ export class Integrations extends ClientSDK {
    * Create an integration for the current environment the user is based on the API key provided
    */
   async create(
-    createIntegrationRequestDto: components.CreateIntegrationRequestDto,
-    idempotencyKey?: string | undefined,
+    request: components.CreateIntegrationRequestDto,
     options?: RequestOptions,
   ): Promise<operations.IntegrationsControllerCreateIntegrationResponse> {
     return unwrapAsync(integrationsCreate(
       this,
-      createIntegrationRequestDto,
-      idempotencyKey,
+      request,
       options,
     ));
   }
@@ -63,12 +59,10 @@ export class Integrations extends ClientSDK {
    * Return all the active integrations the user has created for that organization. Review v.0.17.0 changelog for a breaking change
    */
   async listActive(
-    idempotencyKey?: string | undefined,
     options?: RequestOptions,
   ): Promise<operations.IntegrationsControllerGetActiveIntegrationsResponse> {
     return unwrapAsync(integrationsListActive(
       this,
-      idempotencyKey,
       options,
     ));
   }
@@ -79,14 +73,12 @@ export class Integrations extends ClientSDK {
   async update(
     updateIntegrationRequestDto: components.UpdateIntegrationRequestDto,
     integrationId: string,
-    idempotencyKey?: string | undefined,
     options?: RequestOptions,
   ): Promise<operations.IntegrationsControllerUpdateIntegrationByIdResponse> {
     return unwrapAsync(integrationsUpdate(
       this,
       updateIntegrationRequestDto,
       integrationId,
-      idempotencyKey,
       options,
     ));
   }
@@ -96,13 +88,11 @@ export class Integrations extends ClientSDK {
    */
   async delete(
     integrationId: string,
-    idempotencyKey?: string | undefined,
     options?: RequestOptions,
   ): Promise<operations.IntegrationsControllerRemoveIntegrationResponse> {
     return unwrapAsync(integrationsDelete(
       this,
       integrationId,
-      idempotencyKey,
       options,
     ));
   }
@@ -112,13 +102,11 @@ export class Integrations extends ClientSDK {
    */
   async setAsPrimary(
     integrationId: string,
-    idempotencyKey?: string | undefined,
     options?: RequestOptions,
   ): Promise<operations.IntegrationsControllerSetIntegrationAsPrimaryResponse> {
     return unwrapAsync(integrationsSetAsPrimary(
       this,
       integrationId,
-      idempotencyKey,
       options,
     ));
   }

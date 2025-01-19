@@ -14,8 +14,8 @@ let value: MessagesControllerGetMessagesResponse = {
   result: {
     hasMore: false,
     data: [],
-    pageSize: 7392.64,
-    page: 391.87,
+    pageSize: 9764.6,
+    page: 4686.51,
   },
 };
 ```

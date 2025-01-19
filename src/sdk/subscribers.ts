@@ -60,7 +60,6 @@ export class Subscribers extends ClientSDK {
   async list(
     page?: number | undefined,
     limit?: number | undefined,
-    idempotencyKey?: string | undefined,
     options?: RequestOptions,
   ): Promise<
     PageIterator<
@@ -72,7 +71,6 @@ export class Subscribers extends ClientSDK {
       this,
       page,
       limit,
-      idempotencyKey,
       options,
     ));
   }
@@ -84,14 +82,12 @@ export class Subscribers extends ClientSDK {
    * Creates a subscriber entity, in the Novu platform. The subscriber will be later used to receive notifications, and access notification feeds. Communication credentials such as email, phone number, and 3 rd party credentials i.e slack tokens could be later associated to this entity.
    */
   async create(
-    createSubscriberRequestDto: components.CreateSubscriberRequestDto,
-    idempotencyKey?: string | undefined,
+    request: components.CreateSubscriberRequestDto,
     options?: RequestOptions,
   ): Promise<operations.SubscribersControllerCreateSubscriberResponse> {
     return unwrapAsync(subscribersCreate(
       this,
-      createSubscriberRequestDto,
-      idempotencyKey,
+      request,
       options,
     ));
   }
@@ -105,14 +101,12 @@ export class Subscribers extends ClientSDK {
   async retrieve(
     subscriberId: string,
     includeTopics?: boolean | undefined,
-    idempotencyKey?: string | undefined,
     options?: RequestOptions,
   ): Promise<operations.SubscribersControllerGetSubscriberResponse> {
     return unwrapAsync(subscribersRetrieve(
       this,
       subscriberId,
       includeTopics,
-      idempotencyKey,
       options,
     ));
   }
@@ -126,14 +120,12 @@ export class Subscribers extends ClientSDK {
   async update(
     updateSubscriberRequestDto: components.UpdateSubscriberRequestDto,
     subscriberId: string,
-    idempotencyKey?: string | undefined,
     options?: RequestOptions,
   ): Promise<operations.SubscribersControllerUpdateSubscriberResponse> {
     return unwrapAsync(subscribersUpdate(
       this,
       updateSubscriberRequestDto,
       subscriberId,
-      idempotencyKey,
       options,
     ));
   }
@@ -146,13 +138,11 @@ export class Subscribers extends ClientSDK {
    */
   async delete(
     subscriberId: string,
-    idempotencyKey?: string | undefined,
     options?: RequestOptions,
   ): Promise<operations.SubscribersControllerRemoveSubscriberResponse> {
     return unwrapAsync(subscribersDelete(
       this,
       subscriberId,
-      idempotencyKey,
       options,
     ));
   }
@@ -166,14 +156,12 @@ export class Subscribers extends ClientSDK {
    *       The bulk API is limited to 500 subscribers per request.
    */
   async createBulk(
-    bulkSubscriberCreateDto: components.BulkSubscriberCreateDto,
-    idempotencyKey?: string | undefined,
+    request: components.BulkSubscriberCreateDto,
     options?: RequestOptions,
   ): Promise<operations.SubscribersControllerBulkCreateSubscribersResponse> {
     return unwrapAsync(subscribersCreateBulk(
       this,
-      bulkSubscriberCreateDto,
-      idempotencyKey,
+      request,
       options,
     ));
   }

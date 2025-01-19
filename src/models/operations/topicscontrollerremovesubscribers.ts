@@ -14,10 +14,6 @@ export type TopicsControllerRemoveSubscribersRequest = {
    * The topic key
    */
   topicKey: string;
-  /**
-   * A header for idempotency purposes
-   */
-  idempotencyKey?: string | undefined;
   removeSubscribersRequestDto: components.RemoveSubscribersRequestDto;
 };
 
@@ -32,12 +28,10 @@ export const TopicsControllerRemoveSubscribersRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   topicKey: z.string(),
-  "idempotency-key": z.string().optional(),
   RemoveSubscribersRequestDto:
     components.RemoveSubscribersRequestDto$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
-    "idempotency-key": "idempotencyKey",
     "RemoveSubscribersRequestDto": "removeSubscribersRequestDto",
   });
 });
@@ -45,7 +39,6 @@ export const TopicsControllerRemoveSubscribersRequest$inboundSchema: z.ZodType<
 /** @internal */
 export type TopicsControllerRemoveSubscribersRequest$Outbound = {
   topicKey: string;
-  "idempotency-key"?: string | undefined;
   RemoveSubscribersRequestDto: components.RemoveSubscribersRequestDto$Outbound;
 };
 
@@ -56,12 +49,10 @@ export const TopicsControllerRemoveSubscribersRequest$outboundSchema: z.ZodType<
   TopicsControllerRemoveSubscribersRequest
 > = z.object({
   topicKey: z.string(),
-  idempotencyKey: z.string().optional(),
   removeSubscribersRequestDto:
     components.RemoveSubscribersRequestDto$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
-    idempotencyKey: "idempotency-key",
     removeSubscribersRequestDto: "RemoveSubscribersRequestDto",
   });
 });

@@ -251,6 +251,8 @@ run();
 * [triggerBulk](docs/sdks/novu/README.md#triggerbulk) - Bulk trigger event
 * [triggerBroadcast](docs/sdks/novu/README.md#triggerbroadcast) - Broadcast event to all
 * [cancel](docs/sdks/novu/README.md#cancel) - Cancel triggered event
+* [supportControllerFetchUserOrganizations](docs/sdks/novu/README.md#supportcontrollerfetchuserorganizations)
+* [create](docs/sdks/novu/README.md#create)
 
 ### [subscribers](docs/sdks/subscribers/README.md)
 
@@ -327,6 +329,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 <summary>Available standalone functions</summary>
 
 - [`cancel`](docs/sdks/novu/README.md#cancel) - Cancel triggered event
+- [`create`](docs/sdks/novu/README.md#create)
 - [`integrationsCreate`](docs/sdks/integrations/README.md#create) - Create integration
 - [`integrationsDelete`](docs/sdks/integrations/README.md#delete) - Delete integration
 - [`integrationsList`](docs/sdks/integrations/README.md#list) - Get integrations
@@ -362,6 +365,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`subscribersPropertiesUpdateOnlineFlag`](docs/sdks/properties/README.md#updateonlineflag) - Update subscriber online status
 - [`subscribersRetrieve`](docs/sdks/subscribers/README.md#retrieve) - Get subscriber
 - [`subscribersUpdate`](docs/sdks/subscribers/README.md#update) - Update subscriber
+- [`supportControllerFetchUserOrganizations`](docs/sdks/novu/README.md#supportcontrollerfetchuserorganizations)
 - [`topicsCreate`](docs/sdks/topics/README.md#create) - Topic creation
 - [`topicsDelete`](docs/sdks/topics/README.md#delete) - Delete topic
 - [`topicsList`](docs/sdks/topics/README.md#list) - Get topic list filtered 
@@ -415,13 +419,11 @@ run();
 
 Some methods specify known errors which can be thrown. All the known errors are enumerated in the `models/errors/errors.ts` module. The known errors for a method are documented under the *Errors* tables in SDK docs. For example, the `trigger` method may throw the following errors:
 
-| Error Type                | Status Code                            | Content Type     |
-| ------------------------- | -------------------------------------- | ---------------- |
-| errors.ErrorDto           | 400, 401, 403, 404, 405, 409, 413, 415 | application/json |
-| errors.ErrorDto           | 414                                    | application/json |
-| errors.ValidationErrorDto | 422                                    | application/json |
-| errors.ErrorDto           | 500                                    | application/json |
-| errors.SDKError           | 4XX, 5XX                               | \*/\*            |
+| Error Type                | Status Code   | Content Type     |
+| ------------------------- | ------------- | ---------------- |
+| errors.ErrorDto           | 400, 404, 409 | application/json |
+| errors.ValidationErrorDto | 422           | application/json |
+| errors.SDKError           | 4XX, 5XX      | \*/\*            |
 
 If the method throws an error and it is not captured by the known errors, it will default to throwing a `SDKError`.
 
@@ -471,18 +473,8 @@ async function run() {
         console.error(err);
         return;
       }
-      case (err instanceof ErrorDto): {
-        // Handle err.data$: ErrorDtoData
-        console.error(err);
-        return;
-      }
       case (err instanceof ValidationErrorDto): {
         // Handle err.data$: ValidationErrorDtoData
-        console.error(err);
-        return;
-      }
-      case (err instanceof ErrorDto): {
-        // Handle err.data$: ErrorDtoData
         console.error(err);
         return;
       }

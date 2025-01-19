@@ -15,10 +15,6 @@ export type SubscribersControllerGetSubscriberRequest = {
    * Includes the topics associated with the subscriber
    */
   includeTopics?: boolean | undefined;
-  /**
-   * A header for idempotency purposes
-   */
-  idempotencyKey?: string | undefined;
 };
 
 export type SubscribersControllerGetSubscriberResponse = {
@@ -34,18 +30,12 @@ export const SubscribersControllerGetSubscriberRequest$inboundSchema: z.ZodType<
 > = z.object({
   subscriberId: z.string(),
   includeTopics: z.boolean().optional(),
-  "idempotency-key": z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "idempotency-key": "idempotencyKey",
-  });
 });
 
 /** @internal */
 export type SubscribersControllerGetSubscriberRequest$Outbound = {
   subscriberId: string;
   includeTopics?: boolean | undefined;
-  "idempotency-key"?: string | undefined;
 };
 
 /** @internal */
@@ -57,11 +47,6 @@ export const SubscribersControllerGetSubscriberRequest$outboundSchema:
   > = z.object({
     subscriberId: z.string(),
     includeTopics: z.boolean().optional(),
-    idempotencyKey: z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      idempotencyKey: "idempotency-key",
-    });
   });
 
 /**

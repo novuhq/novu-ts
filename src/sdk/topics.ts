@@ -26,14 +26,12 @@ export class Topics extends ClientSDK {
    * Create a topic
    */
   async create(
-    createTopicRequestDto: components.CreateTopicRequestDto,
-    idempotencyKey?: string | undefined,
+    request: components.CreateTopicRequestDto,
     options?: RequestOptions,
   ): Promise<operations.TopicsControllerCreateTopicResponse> {
     return unwrapAsync(topicsCreate(
       this,
-      createTopicRequestDto,
-      idempotencyKey,
+      request,
       options,
     ));
   }
@@ -45,12 +43,16 @@ export class Topics extends ClientSDK {
    * Returns a list of topics that can be paginated using the `page` query parameter and filtered by the topic key with the `key` query parameter
    */
   async list(
-    request: operations.TopicsControllerListTopicsRequest,
+    page?: number | undefined,
+    pageSize?: number | undefined,
+    key?: string | undefined,
     options?: RequestOptions,
   ): Promise<operations.TopicsControllerListTopicsResponse> {
     return unwrapAsync(topicsList(
       this,
-      request,
+      page,
+      pageSize,
+      key,
       options,
     ));
   }
@@ -63,13 +65,11 @@ export class Topics extends ClientSDK {
    */
   async delete(
     topicKey: string,
-    idempotencyKey?: string | undefined,
     options?: RequestOptions,
   ): Promise<operations.TopicsControllerDeleteTopicResponse | undefined> {
     return unwrapAsync(topicsDelete(
       this,
       topicKey,
-      idempotencyKey,
       options,
     ));
   }
@@ -82,13 +82,11 @@ export class Topics extends ClientSDK {
    */
   async retrieve(
     topicKey: string,
-    idempotencyKey?: string | undefined,
     options?: RequestOptions,
   ): Promise<operations.TopicsControllerGetTopicResponse> {
     return unwrapAsync(topicsRetrieve(
       this,
       topicKey,
-      idempotencyKey,
       options,
     ));
   }
@@ -102,14 +100,12 @@ export class Topics extends ClientSDK {
   async rename(
     renameTopicRequestDto: components.RenameTopicRequestDto,
     topicKey: string,
-    idempotencyKey?: string | undefined,
     options?: RequestOptions,
   ): Promise<operations.TopicsControllerRenameTopicResponse> {
     return unwrapAsync(topicsRename(
       this,
       renameTopicRequestDto,
       topicKey,
-      idempotencyKey,
       options,
     ));
   }

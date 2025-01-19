@@ -10,10 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type IntegrationsControllerGetWebhookSupportStatusRequest = {
   providerOrIntegrationId: string;
-  /**
-   * A header for idempotency purposes
-   */
-  idempotencyKey?: string | undefined;
 };
 
 export type IntegrationsControllerGetWebhookSupportStatusResponse = {
@@ -29,17 +25,11 @@ export const IntegrationsControllerGetWebhookSupportStatusRequest$inboundSchema:
     unknown
   > = z.object({
     providerOrIntegrationId: z.string(),
-    "idempotency-key": z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "idempotency-key": "idempotencyKey",
-    });
   });
 
 /** @internal */
 export type IntegrationsControllerGetWebhookSupportStatusRequest$Outbound = {
   providerOrIntegrationId: string;
-  "idempotency-key"?: string | undefined;
 };
 
 /** @internal */
@@ -50,11 +40,6 @@ export const IntegrationsControllerGetWebhookSupportStatusRequest$outboundSchema
     IntegrationsControllerGetWebhookSupportStatusRequest
   > = z.object({
     providerOrIntegrationId: z.string(),
-    idempotencyKey: z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      idempotencyKey: "idempotency-key",
-    });
   });
 
 /**

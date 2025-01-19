@@ -11,10 +11,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type MessagesControllerDeleteMessageRequest = {
   messageId: string;
-  /**
-   * A header for idempotency purposes
-   */
-  idempotencyKey?: string | undefined;
 };
 
 export type MessagesControllerDeleteMessageResponse = {
@@ -29,17 +25,11 @@ export const MessagesControllerDeleteMessageRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   messageId: z.string(),
-  "idempotency-key": z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "idempotency-key": "idempotencyKey",
-  });
 });
 
 /** @internal */
 export type MessagesControllerDeleteMessageRequest$Outbound = {
   messageId: string;
-  "idempotency-key"?: string | undefined;
 };
 
 /** @internal */
@@ -49,11 +39,6 @@ export const MessagesControllerDeleteMessageRequest$outboundSchema: z.ZodType<
   MessagesControllerDeleteMessageRequest
 > = z.object({
   messageId: z.string(),
-  idempotencyKey: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    idempotencyKey: "idempotency-key",
-  });
 });
 
 /**

@@ -9,7 +9,7 @@ let value: SubscriberResponseDto = {
   subscriberId: "<id>",
   channels: [
     {
-      providerId: "getstream",
+      providerId: "whatsapp-business",
       credentials: {
         webhookUrl: "https://example.com/webhook",
         channel: "general",
@@ -30,8 +30,8 @@ let value: SubscriberResponseDto = {
   organizationId: "<id>",
   environmentId: "<id>",
   deleted: false,
-  createdAt: "1733688461712",
-  updatedAt: "1737080022035",
+  createdAt: "1726309278970",
+  updatedAt: "1737215879639",
 };
 ```
 

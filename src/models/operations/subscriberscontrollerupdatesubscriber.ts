@@ -11,10 +11,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type SubscribersControllerUpdateSubscriberRequest = {
   subscriberId: string;
-  /**
-   * A header for idempotency purposes
-   */
-  idempotencyKey?: string | undefined;
   updateSubscriberRequestDto: components.UpdateSubscriberRequestDto;
 };
 
@@ -31,12 +27,10 @@ export const SubscribersControllerUpdateSubscriberRequest$inboundSchema:
     unknown
   > = z.object({
     subscriberId: z.string(),
-    "idempotency-key": z.string().optional(),
     UpdateSubscriberRequestDto:
       components.UpdateSubscriberRequestDto$inboundSchema,
   }).transform((v) => {
     return remap$(v, {
-      "idempotency-key": "idempotencyKey",
       "UpdateSubscriberRequestDto": "updateSubscriberRequestDto",
     });
   });
@@ -44,7 +38,6 @@ export const SubscribersControllerUpdateSubscriberRequest$inboundSchema:
 /** @internal */
 export type SubscribersControllerUpdateSubscriberRequest$Outbound = {
   subscriberId: string;
-  "idempotency-key"?: string | undefined;
   UpdateSubscriberRequestDto: components.UpdateSubscriberRequestDto$Outbound;
 };
 
@@ -56,12 +49,10 @@ export const SubscribersControllerUpdateSubscriberRequest$outboundSchema:
     SubscribersControllerUpdateSubscriberRequest
   > = z.object({
     subscriberId: z.string(),
-    idempotencyKey: z.string().optional(),
     updateSubscriberRequestDto:
       components.UpdateSubscriberRequestDto$outboundSchema,
   }).transform((v) => {
     return remap$(v, {
-      idempotencyKey: "idempotency-key",
       updateSubscriberRequestDto: "UpdateSubscriberRequestDto",
     });
   });

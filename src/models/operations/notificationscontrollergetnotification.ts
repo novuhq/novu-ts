@@ -11,10 +11,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type NotificationsControllerGetNotificationRequest = {
   notificationId: string;
-  /**
-   * A header for idempotency purposes
-   */
-  idempotencyKey?: string | undefined;
 };
 
 export type NotificationsControllerGetNotificationResponse = {
@@ -30,17 +26,11 @@ export const NotificationsControllerGetNotificationRequest$inboundSchema:
     unknown
   > = z.object({
     notificationId: z.string(),
-    "idempotency-key": z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "idempotency-key": "idempotencyKey",
-    });
   });
 
 /** @internal */
 export type NotificationsControllerGetNotificationRequest$Outbound = {
   notificationId: string;
-  "idempotency-key"?: string | undefined;
 };
 
 /** @internal */
@@ -51,11 +41,6 @@ export const NotificationsControllerGetNotificationRequest$outboundSchema:
     NotificationsControllerGetNotificationRequest
   > = z.object({
     notificationId: z.string(),
-    idempotencyKey: z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      idempotencyKey: "idempotency-key",
-    });
   });
 
 /**

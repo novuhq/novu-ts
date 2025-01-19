@@ -33,16 +33,13 @@ export async function messagesDeleteByTransactionId(
   client: NovuCore,
   transactionId: string,
   channel?: operations.Channel | undefined,
-  idempotencyKey?: string | undefined,
   options?: RequestOptions,
 ): Promise<
   Result<
     | operations.MessagesControllerDeleteMessagesByTransactionIdResponse
     | undefined,
     | errors.ErrorDto
-    | errors.ErrorDto
     | errors.ValidationErrorDto
-    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -56,7 +53,6 @@ export async function messagesDeleteByTransactionId(
     operations.MessagesControllerDeleteMessagesByTransactionIdRequest = {
       transactionId: transactionId,
       channel: channel,
-      idempotencyKey: idempotencyKey,
     };
 
   const parsed = safeParse(
@@ -90,11 +86,6 @@ export async function messagesDeleteByTransactionId(
 
   const headers = new Headers(compactMap({
     Accept: "application/json",
-    "idempotency-key": encodeSimple(
-      "idempotency-key",
-      payload["idempotency-key"],
-      { explode: false, charEncoding: "none" },
-    ),
   }));
 
   const secConfig = await extractSecurity(client._options.apiKey);
@@ -113,7 +104,7 @@ export async function messagesDeleteByTransactionId(
       || {
         strategy: "backoff",
         backoff: {
-          initialInterval: 1000,
+          initialInterval: 500,
           maxInterval: 30000,
           exponent: 1.5,
           maxElapsedTime: 3600000,
@@ -141,23 +132,7 @@ export async function messagesDeleteByTransactionId(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: [
-      "400",
-      "401",
-      "403",
-      "404",
-      "405",
-      "409",
-      "413",
-      "414",
-      "415",
-      "422",
-      "429",
-      "4XX",
-      "500",
-      "503",
-      "5XX",
-    ],
+    errorCodes: ["400", "404", "409", "422", "429", "4XX", "503", "5XX"],
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
@@ -174,9 +149,7 @@ export async function messagesDeleteByTransactionId(
     | operations.MessagesControllerDeleteMessagesByTransactionIdResponse
     | undefined,
     | errors.ErrorDto
-    | errors.ErrorDto
     | errors.ValidationErrorDto
-    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -192,15 +165,9 @@ export async function messagesDeleteByTransactionId(
         .optional(),
       { hdrs: true },
     ),
-    M.jsonErr(
-      [400, 401, 403, 404, 405, 409, 413, 415],
-      errors.ErrorDto$inboundSchema,
-      { hdrs: true },
-    ),
-    M.jsonErr(414, errors.ErrorDto$inboundSchema),
+    M.jsonErr([400, 404, 409], errors.ErrorDto$inboundSchema, { hdrs: true }),
     M.jsonErr(422, errors.ValidationErrorDto$inboundSchema, { hdrs: true }),
     M.fail(429),
-    M.jsonErr(500, errors.ErrorDto$inboundSchema, { hdrs: true }),
     M.fail(503),
     M.fail("4XX"),
     M.fail("5XX"),

@@ -19,10 +19,6 @@ export type SubscribersControllerGetUnseenCountRequest = {
    * The maximum number of notifications to return.
    */
   limit?: number | undefined;
-  /**
-   * A header for idempotency purposes
-   */
-  idempotencyKey?: string | undefined;
 };
 
 export type SubscribersControllerGetUnseenCountResponse = {
@@ -37,11 +33,6 @@ export const SubscribersControllerGetUnseenCountRequest$inboundSchema:
       subscriberId: z.string(),
       seen: z.boolean().default(false),
       limit: z.number().default(100),
-      "idempotency-key": z.string().optional(),
-    }).transform((v) => {
-      return remap$(v, {
-        "idempotency-key": "idempotencyKey",
-      });
     });
 
 /** @internal */
@@ -49,7 +40,6 @@ export type SubscribersControllerGetUnseenCountRequest$Outbound = {
   subscriberId: string;
   seen: boolean;
   limit: number;
-  "idempotency-key"?: string | undefined;
 };
 
 /** @internal */
@@ -62,11 +52,6 @@ export const SubscribersControllerGetUnseenCountRequest$outboundSchema:
     subscriberId: z.string(),
     seen: z.boolean().default(false),
     limit: z.number().default(100),
-    idempotencyKey: z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      idempotencyKey: "idempotency-key",
-    });
   });
 
 /**

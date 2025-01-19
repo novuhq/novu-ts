@@ -48,10 +48,6 @@ export type NotificationsControllerListNotificationsRequest = {
    * Date filter for records before this timestamp
    */
   before?: string | undefined;
-  /**
-   * A header for idempotency purposes
-   */
-  idempotencyKey?: string | undefined;
 };
 
 export type NotificationsControllerListNotificationsResponse = {
@@ -75,11 +71,6 @@ export const NotificationsControllerListNotificationsRequest$inboundSchema:
     transactionId: z.string().optional(),
     after: z.string().optional(),
     before: z.string().optional(),
-    "idempotency-key": z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "idempotency-key": "idempotencyKey",
-    });
   });
 
 /** @internal */
@@ -93,7 +84,6 @@ export type NotificationsControllerListNotificationsRequest$Outbound = {
   transactionId?: string | undefined;
   after?: string | undefined;
   before?: string | undefined;
-  "idempotency-key"?: string | undefined;
 };
 
 /** @internal */
@@ -112,11 +102,6 @@ export const NotificationsControllerListNotificationsRequest$outboundSchema:
     transactionId: z.string().optional(),
     after: z.string().optional(),
     before: z.string().optional(),
-    idempotencyKey: z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      idempotencyKey: "idempotency-key",
-    });
   });
 
 /**

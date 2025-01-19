@@ -12,10 +12,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 export type SubscribersControllerUpdateSubscriberPreferenceRequest = {
   subscriberId: string;
   workflowId: string;
-  /**
-   * A header for idempotency purposes
-   */
-  idempotencyKey?: string | undefined;
   updateSubscriberPreferenceRequestDto:
     components.UpdateSubscriberPreferenceRequestDto;
 };
@@ -34,12 +30,10 @@ export const SubscribersControllerUpdateSubscriberPreferenceRequest$inboundSchem
   > = z.object({
     subscriberId: z.string(),
     workflowId: z.string(),
-    "idempotency-key": z.string().optional(),
     UpdateSubscriberPreferenceRequestDto:
       components.UpdateSubscriberPreferenceRequestDto$inboundSchema,
   }).transform((v) => {
     return remap$(v, {
-      "idempotency-key": "idempotencyKey",
       "UpdateSubscriberPreferenceRequestDto":
         "updateSubscriberPreferenceRequestDto",
     });
@@ -49,7 +43,6 @@ export const SubscribersControllerUpdateSubscriberPreferenceRequest$inboundSchem
 export type SubscribersControllerUpdateSubscriberPreferenceRequest$Outbound = {
   subscriberId: string;
   workflowId: string;
-  "idempotency-key"?: string | undefined;
   UpdateSubscriberPreferenceRequestDto:
     components.UpdateSubscriberPreferenceRequestDto$Outbound;
 };
@@ -63,12 +56,10 @@ export const SubscribersControllerUpdateSubscriberPreferenceRequest$outboundSche
   > = z.object({
     subscriberId: z.string(),
     workflowId: z.string(),
-    idempotencyKey: z.string().optional(),
     updateSubscriberPreferenceRequestDto:
       components.UpdateSubscriberPreferenceRequestDto$outboundSchema,
   }).transform((v) => {
     return remap$(v, {
-      idempotencyKey: "idempotency-key",
       updateSubscriberPreferenceRequestDto:
         "UpdateSubscriberPreferenceRequestDto",
     });

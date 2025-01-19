@@ -18,7 +18,6 @@ export class Preferences extends ClientSDK {
   async list(
     subscriberId: string,
     includeInactiveChannels?: boolean | undefined,
-    idempotencyKey?: string | undefined,
     options?: RequestOptions,
   ): Promise<
     operations.SubscribersControllerListSubscriberPreferencesResponse
@@ -27,7 +26,6 @@ export class Preferences extends ClientSDK {
       this,
       subscriberId,
       includeInactiveChannels,
-      idempotencyKey,
       options,
     ));
   }
@@ -39,7 +37,6 @@ export class Preferences extends ClientSDK {
     updateSubscriberGlobalPreferencesRequestDto:
       components.UpdateSubscriberGlobalPreferencesRequestDto,
     subscriberId: string,
-    idempotencyKey?: string | undefined,
     options?: RequestOptions,
   ): Promise<
     operations.SubscribersControllerUpdateSubscriberGlobalPreferencesResponse
@@ -48,7 +45,6 @@ export class Preferences extends ClientSDK {
       this,
       updateSubscriberGlobalPreferencesRequestDto,
       subscriberId,
-      idempotencyKey,
       options,
     ));
   }
@@ -57,15 +53,18 @@ export class Preferences extends ClientSDK {
    * Get subscriber preferences by level
    */
   async retrieveByLevel(
-    request:
-      operations.SubscribersControllerGetSubscriberPreferenceByLevelRequest,
+    preferenceLevel: operations.Parameter,
+    subscriberId: string,
+    includeInactiveChannels?: boolean | undefined,
     options?: RequestOptions,
   ): Promise<
     operations.SubscribersControllerGetSubscriberPreferenceByLevelResponse
   > {
     return unwrapAsync(subscribersPreferencesRetrieveByLevel(
       this,
-      request,
+      preferenceLevel,
+      subscriberId,
+      includeInactiveChannels,
       options,
     ));
   }
@@ -74,14 +73,19 @@ export class Preferences extends ClientSDK {
    * Update subscriber preference
    */
   async update(
-    request: operations.SubscribersControllerUpdateSubscriberPreferenceRequest,
+    updateSubscriberPreferenceRequestDto:
+      components.UpdateSubscriberPreferenceRequestDto,
+    subscriberId: string,
+    workflowId: string,
     options?: RequestOptions,
   ): Promise<
     operations.SubscribersControllerUpdateSubscriberPreferenceResponse
   > {
     return unwrapAsync(subscribersPreferencesUpdate(
       this,
-      request,
+      updateSubscriberPreferenceRequestDto,
+      subscriberId,
+      workflowId,
       options,
     ));
   }
