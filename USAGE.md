@@ -11,16 +11,23 @@ const novu = new Novu({
 async function run() {
   const result = await novu.trigger({
     name: "workflow_identifier",
-    to: [
-      {
-        topicKey: "<value>",
-        type: "Topic",
+    payload: {
+      "comment_id": "string",
+      "post": {
+        "text": "string",
       },
-      {
-        topicKey: "<value>",
-        type: "Topic",
+    },
+    bridgeUrl: "https://example.com/bridge",
+    overrides: {
+      "fcm": {
+        "data": {
+          "key": "value",
+        },
       },
-    ],
+    },
+    to: {
+      subscriberId: "<id>",
+    },
   });
 
   // Handle the result
@@ -45,31 +52,66 @@ async function run() {
     events: [
       {
         name: "workflow_identifier",
+        payload: {
+          "comment_id": "string",
+          "post": {
+            "text": "string",
+          },
+        },
+        bridgeUrl: "https://example.com/bridge",
+        overrides: {
+          "fcm": {
+            "data": {
+              "key": "value",
+            },
+          },
+        },
+        to: {
+          subscriberId: "<id>",
+        },
+      },
+      {
+        name: "workflow_identifier",
+        payload: {
+          "comment_id": "string",
+          "post": {
+            "text": "string",
+          },
+        },
+        bridgeUrl: "https://example.com/bridge",
+        overrides: {
+          "fcm": {
+            "data": {
+              "key": "value",
+            },
+          },
+        },
         to: [
           {
             topicKey: "<value>",
-            type: "Topic",
-          },
-          {
-            subscriberId: "<id>",
+            type: "Subscriber",
           },
         ],
       },
       {
         name: "workflow_identifier",
-        to: [],
-      },
-      {
-        name: "workflow_identifier",
+        payload: {
+          "comment_id": "string",
+          "post": {
+            "text": "string",
+          },
+        },
+        bridgeUrl: "https://example.com/bridge",
+        overrides: {
+          "fcm": {
+            "data": {
+              "key": "value",
+            },
+          },
+        },
         to: [
-          {
-            topicKey: "<value>",
-            type: "Topic",
-          },
-          {
-            topicKey: "<value>",
-            type: "Topic",
-          },
+          "SUBSCRIBER_ID",
+          "SUBSCRIBER_ID",
         ],
       },
     ],

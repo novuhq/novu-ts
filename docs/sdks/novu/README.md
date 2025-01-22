@@ -13,6 +13,8 @@ Novu Documentation
 * [triggerBulk](#triggerbulk) - Bulk trigger event
 * [triggerBroadcast](#triggerbroadcast) - Broadcast event to all
 * [cancel](#cancel) - Cancel triggered event
+* [supportControllerFetchUserOrganizations](#supportcontrollerfetchuserorganizations)
+* [create](#create)
 
 ## trigger
 
@@ -34,16 +36,23 @@ const novu = new Novu({
 async function run() {
   const result = await novu.trigger({
     name: "workflow_identifier",
-    to: [
-      {
-        topicKey: "<value>",
-        type: "Topic",
+    payload: {
+      "comment_id": "string",
+      "post": {
+        "text": "string",
       },
-      {
-        topicKey: "<value>",
-        type: "Topic",
+    },
+    bridgeUrl: "https://example.com/bridge",
+    overrides: {
+      "fcm": {
+        "data": {
+          "key": "value",
+        },
       },
-    ],
+    },
+    to: {
+      subscriberId: "<id>",
+    },
   });
 
   // Handle the result
@@ -70,16 +79,23 @@ const novu = new NovuCore({
 async function run() {
   const res = await trigger(novu, {
     name: "workflow_identifier",
-    to: [
-      {
-        topicKey: "<value>",
-        type: "Topic",
+    payload: {
+      "comment_id": "string",
+      "post": {
+        "text": "string",
       },
-      {
-        topicKey: "<value>",
-        type: "Topic",
+    },
+    bridgeUrl: "https://example.com/bridge",
+    overrides: {
+      "fcm": {
+        "data": {
+          "key": "value",
+        },
       },
-    ],
+    },
+    to: {
+      subscriberId: "<id>",
+    },
   });
 
   if (!res.ok) {
@@ -140,33 +156,66 @@ async function run() {
     events: [
       {
         name: "workflow_identifier",
+        payload: {
+          "comment_id": "string",
+          "post": {
+            "text": "string",
+          },
+        },
+        bridgeUrl: "https://example.com/bridge",
+        overrides: {
+          "fcm": {
+            "data": {
+              "key": "value",
+            },
+          },
+        },
+        to: {
+          subscriberId: "<id>",
+        },
+      },
+      {
+        name: "workflow_identifier",
+        payload: {
+          "comment_id": "string",
+          "post": {
+            "text": "string",
+          },
+        },
+        bridgeUrl: "https://example.com/bridge",
+        overrides: {
+          "fcm": {
+            "data": {
+              "key": "value",
+            },
+          },
+        },
         to: [
           {
             topicKey: "<value>",
-            type: "Topic",
-          },
-          {
-            subscriberId: "<id>",
+            type: "Subscriber",
           },
         ],
       },
       {
         name: "workflow_identifier",
-        to: [
-
-        ],
-      },
-      {
-        name: "workflow_identifier",
-        to: [
-          {
-            topicKey: "<value>",
-            type: "Topic",
+        payload: {
+          "comment_id": "string",
+          "post": {
+            "text": "string",
           },
-          {
-            topicKey: "<value>",
-            type: "Topic",
+        },
+        bridgeUrl: "https://example.com/bridge",
+        overrides: {
+          "fcm": {
+            "data": {
+              "key": "value",
+            },
           },
+        },
+        to: [
+          "SUBSCRIBER_ID",
+          "SUBSCRIBER_ID",
         ],
       },
     ],
@@ -198,33 +247,66 @@ async function run() {
     events: [
       {
         name: "workflow_identifier",
+        payload: {
+          "comment_id": "string",
+          "post": {
+            "text": "string",
+          },
+        },
+        bridgeUrl: "https://example.com/bridge",
+        overrides: {
+          "fcm": {
+            "data": {
+              "key": "value",
+            },
+          },
+        },
+        to: {
+          subscriberId: "<id>",
+        },
+      },
+      {
+        name: "workflow_identifier",
+        payload: {
+          "comment_id": "string",
+          "post": {
+            "text": "string",
+          },
+        },
+        bridgeUrl: "https://example.com/bridge",
+        overrides: {
+          "fcm": {
+            "data": {
+              "key": "value",
+            },
+          },
+        },
         to: [
           {
             topicKey: "<value>",
-            type: "Topic",
-          },
-          {
-            subscriberId: "<id>",
+            type: "Subscriber",
           },
         ],
       },
       {
         name: "workflow_identifier",
-        to: [
-  
-        ],
-      },
-      {
-        name: "workflow_identifier",
-        to: [
-          {
-            topicKey: "<value>",
-            type: "Topic",
+        payload: {
+          "comment_id": "string",
+          "post": {
+            "text": "string",
           },
-          {
-            topicKey: "<value>",
-            type: "Topic",
+        },
+        bridgeUrl: "https://example.com/bridge",
+        overrides: {
+          "fcm": {
+            "data": {
+              "key": "value",
+            },
           },
+        },
+        to: [
+          "SUBSCRIBER_ID",
+          "SUBSCRIBER_ID",
         ],
       },
     ],
@@ -440,3 +522,151 @@ run();
 | errors.ValidationErrorDto              | 422                                    | application/json                       |
 | errors.ErrorDto                        | 500                                    | application/json                       |
 | errors.SDKError                        | 4XX, 5XX                               | \*/\*                                  |
+
+## supportControllerFetchUserOrganizations
+
+### Example Usage
+
+```typescript
+import { Novu } from "@novu/api";
+
+const novu = new Novu({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await novu.supportControllerFetchUserOrganizations({
+    timestamp: "<value>",
+  });
+
+  // Handle the result
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { NovuCore } from "@novu/api/core.js";
+import { supportControllerFetchUserOrganizations } from "@novu/api/funcs/supportControllerFetchUserOrganizations.js";
+
+// Use `NovuCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const novu = new NovuCore({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await supportControllerFetchUserOrganizations(novu, {
+    timestamp: "<value>",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result);
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `plainCardRequestDto`                                                                                                                                                          | [components.PlainCardRequestDto](../../models/components/plaincardrequestdto.md)                                                                                               | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
+| `idempotencyKey`                                                                                                                                                               | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | A header for idempotency purposes                                                                                                                                              |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.SupportControllerFetchUserOrganizationsResponseBody](../../models/operations/supportcontrollerfetchuserorganizationsresponsebody.md)\>**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
+
+## create
+
+### Example Usage
+
+```typescript
+import { Novu } from "@novu/api";
+
+const novu = new Novu({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  await novu.create({
+    text: "<value>",
+  });
+
+
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { NovuCore } from "@novu/api/core.js";
+import { create } from "@novu/api/funcs/create.js";
+
+// Use `NovuCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const novu = new NovuCore({
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await create(novu, {
+    text: "<value>",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `createSupportThreadDto`                                                                                                                                                       | [components.CreateSupportThreadDto](../../models/components/createsupportthreaddto.md)                                                                                         | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
+| `idempotencyKey`                                                                                                                                                               | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | A header for idempotency purposes                                                                                                                                              |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<void\>**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
