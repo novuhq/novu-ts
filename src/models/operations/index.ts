@@ -41,6 +41,8 @@ export * from "./subscriberscontrollerupdatesubscriberchannel.js";
 export * from "./subscriberscontrollerupdatesubscriberglobalpreferences.js";
 export * from "./subscriberscontrollerupdatesubscriberonlineflag.js";
 export * from "./subscriberscontrollerupdatesubscriberpreference.js";
+export * from "./supportcontrollercreatethread.js";
+export * from "./supportcontrollerfetchuserorganizations.js";
 export * from "./topicscontrollerassign.js";
 export * from "./topicscontrollercreatetopic.js";
 export * from "./topicscontrollerdeletetopic.js";

@@ -26,7 +26,10 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.messages.retrieve({});
+  const result = await novu.messages.retrieve({
+    page: 0,
+    limit: 10,
+  });
 
   // Handle the result
   console.log(result);
@@ -50,7 +53,10 @@ const novu = new NovuCore({
 });
 
 async function run() {
-  const res = await messagesRetrieve(novu, {});
+  const res = await messagesRetrieve(novu, {
+    page: 0,
+    limit: 10,
+  });
 
   if (!res.ok) {
     throw res.error;

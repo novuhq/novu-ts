@@ -23301,6 +23301,75 @@
           }
         ]
       }
+    },
+    "/v1/support/user-organizations": {
+      "post": {
+        "operationId": "SupportController_fetchUserOrganizations",
+        "parameters": [
+          {
+            "name": "idempotency-key",
+            "in": "header",
+            "description": "A header for idempotency purposes",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlainCardRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/support/create-thread": {
+      "post": {
+        "operationId": "SupportController_createThread",
+        "parameters": [
+          {
+            "name": "idempotency-key",
+            "in": "header",
+            "description": "A header for idempotency purposes",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSupportThreadDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        }
+      }
     }
   },
   "info": {
@@ -23430,6 +23499,13 @@
       "description": "Execution details are used to track the execution of a workflow. They provided detailed information on the execution of a workflow, including the status of each step, the input and output of each step, and the overall status of the execution.",
       "externalDocs": {
         "url": "https://docs.novu.co/activity-feed"
+      }
+    },
+    {
+      "name": "Translations",
+      "description": "Translations are used to localize your messages for different languages and regions. Novu provides a way to create and manage translations for your messages. You can create translations for your messages in different languages and regions, and assign them to your subscribers based on their preferences.",
+      "externalDocs": {
+        "url": "https://docs.novu.co/content-creation-design/translations"
       }
     }
   ],
@@ -27543,6 +27619,46 @@
       "GeneratePreviewResponseDto": {
         "type": "object",
         "properties": {}
+      },
+      "PlainCardRequestDto": {
+        "type": "object",
+        "properties": {
+          "cardKeys": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "customer": {
+            "type": "object",
+            "nullable": true
+          },
+          "tenant": {
+            "type": "object",
+            "nullable": true
+          },
+          "thread": {
+            "type": "object",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "timestamp"
+        ]
+      },
+      "CreateSupportThreadDto": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "text"
+        ]
       }
     },
     "headers": {

@@ -3,6 +3,8 @@
  */
 
 import { cancel } from "../funcs/cancel.js";
+import { create } from "../funcs/create.js";
+import { supportControllerFetchUserOrganizations } from "../funcs/supportControllerFetchUserOrganizations.js";
 import { trigger } from "../funcs/trigger.js";
 import { triggerBroadcast } from "../funcs/triggerBroadcast.js";
 import { triggerBulk } from "../funcs/triggerBulk.js";
@@ -121,6 +123,38 @@ export class Novu extends ClientSDK {
     return unwrapAsync(cancel(
       this,
       transactionId,
+      idempotencyKey,
+      options,
+    ));
+  }
+
+  async supportControllerFetchUserOrganizations(
+    plainCardRequestDto: components.PlainCardRequestDto,
+    idempotencyKey?: string | undefined,
+    options?: RequestOptions,
+  ): Promise<operations.SupportControllerFetchUserOrganizationsResponseBody> {
+    return unwrapAsync(supportControllerFetchUserOrganizations(
+      this,
+      plainCardRequestDto,
+      idempotencyKey,
+      options,
+    ));
+  }
+
+  /**
+   * Topic creation
+   *
+   * @remarks
+   * Create a topic
+   */
+  async create(
+    createSupportThreadDto: components.CreateSupportThreadDto,
+    idempotencyKey?: string | undefined,
+    options?: RequestOptions,
+  ): Promise<void> {
+    return unwrapAsync(create(
+      this,
+      createSupportThreadDto,
       idempotencyKey,
       options,
     ));

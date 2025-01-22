@@ -27,6 +27,17 @@ async function run() {
     providerId: "pushpad",
     credentials: {
       webhookUrl: "https://example.com/webhook",
+      channel: "general",
+      deviceTokens: [
+        "token1",
+        "token2",
+        "token3",
+      ],
+      alertUid: "12345-abcde",
+      title: "Critical Alert",
+      imageUrl: "https://example.com/image.png",
+      state: "resolved",
+      externalUrl: "https://example.com/details",
     },
   }, "<id>");
 
@@ -56,6 +67,17 @@ async function run() {
     providerId: "pushpad",
     credentials: {
       webhookUrl: "https://example.com/webhook",
+      channel: "general",
+      deviceTokens: [
+        "token1",
+        "token2",
+        "token3",
+      ],
+      alertUid: "12345-abcde",
+      title: "Critical Alert",
+      imageUrl: "https://example.com/image.png",
+      state: "resolved",
+      externalUrl: "https://example.com/details",
     },
   }, "<id>");
 
@@ -116,6 +138,17 @@ async function run() {
     providerId: "zulip",
     credentials: {
       webhookUrl: "https://example.com/webhook",
+      channel: "general",
+      deviceTokens: [
+        "token1",
+        "token2",
+        "token3",
+      ],
+      alertUid: "12345-abcde",
+      title: "Critical Alert",
+      imageUrl: "https://example.com/image.png",
+      state: "resolved",
+      externalUrl: "https://example.com/details",
     },
   }, "<id>");
 
@@ -145,6 +178,17 @@ async function run() {
     providerId: "zulip",
     credentials: {
       webhookUrl: "https://example.com/webhook",
+      channel: "general",
+      deviceTokens: [
+        "token1",
+        "token2",
+        "token3",
+      ],
+      alertUid: "12345-abcde",
+      title: "Critical Alert",
+      imageUrl: "https://example.com/image.png",
+      state: "resolved",
+      externalUrl: "https://example.com/details",
     },
   }, "<id>");
 

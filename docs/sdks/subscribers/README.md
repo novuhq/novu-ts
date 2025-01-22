@@ -29,7 +29,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.subscribers.list();
+  const result = await novu.subscribers.list(10);
 
   for await (const page of result) {
     // Handle the page
@@ -55,7 +55,7 @@ const novu = new NovuCore({
 });
 
 async function run() {
-  const res = await subscribersList(novu);
+  const res = await subscribersList(novu, 10);
 
   if (!res.ok) {
     throw res.error;
@@ -466,7 +466,6 @@ async function run() {
     subscribers: [
       {
         subscriberId: "<id>",
-        email: "example@example.com",
       },
     ],
   });
@@ -497,7 +496,6 @@ async function run() {
     subscribers: [
       {
         subscriberId: "<id>",
-        email: "example@example.com",
       },
     ],
   });

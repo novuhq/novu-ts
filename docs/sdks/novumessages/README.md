@@ -24,8 +24,8 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.subscribers.messages.markAllAs({
-    messageId: "<value>",
-    markAs: "read",
+    messageId: "<id>",
+    markAs: "unread",
   }, "<id>");
 
   // Handle the result
@@ -51,8 +51,8 @@ const novu = new NovuCore({
 
 async function run() {
   const res = await subscribersMessagesMarkAllAs(novu, {
-    messageId: "<value>",
-    markAs: "read",
+    messageId: "<id>",
+    markAs: "unread",
   }, "<id>");
 
   if (!res.ok) {
