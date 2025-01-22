@@ -89,16 +89,23 @@ const novu = new Novu({
 async function run() {
   const result = await novu.trigger({
     name: "workflow_identifier",
-    to: [
-      {
-        topicKey: "<value>",
-        type: "Topic",
+    payload: {
+      "comment_id": "string",
+      "post": {
+        "text": "string",
       },
-      {
-        topicKey: "<value>",
-        type: "Topic",
+    },
+    bridgeUrl: "https://example.com/bridge",
+    overrides: {
+      "fcm": {
+        "data": {
+          "key": "value",
+        },
       },
-    ],
+    },
+    to: {
+      subscriberId: "<id>",
+    },
   });
 
   // Handle the result
@@ -123,31 +130,66 @@ async function run() {
     events: [
       {
         name: "workflow_identifier",
+        payload: {
+          "comment_id": "string",
+          "post": {
+            "text": "string",
+          },
+        },
+        bridgeUrl: "https://example.com/bridge",
+        overrides: {
+          "fcm": {
+            "data": {
+              "key": "value",
+            },
+          },
+        },
+        to: {
+          subscriberId: "<id>",
+        },
+      },
+      {
+        name: "workflow_identifier",
+        payload: {
+          "comment_id": "string",
+          "post": {
+            "text": "string",
+          },
+        },
+        bridgeUrl: "https://example.com/bridge",
+        overrides: {
+          "fcm": {
+            "data": {
+              "key": "value",
+            },
+          },
+        },
         to: [
           {
             topicKey: "<value>",
-            type: "Topic",
-          },
-          {
-            subscriberId: "<id>",
+            type: "Subscriber",
           },
         ],
       },
       {
         name: "workflow_identifier",
-        to: [],
-      },
-      {
-        name: "workflow_identifier",
+        payload: {
+          "comment_id": "string",
+          "post": {
+            "text": "string",
+          },
+        },
+        bridgeUrl: "https://example.com/bridge",
+        overrides: {
+          "fcm": {
+            "data": {
+              "key": "value",
+            },
+          },
+        },
         to: [
-          {
-            topicKey: "<value>",
-            type: "Topic",
-          },
-          {
-            topicKey: "<value>",
-            type: "Topic",
-          },
+          "SUBSCRIBER_ID",
+          "SUBSCRIBER_ID",
         ],
       },
     ],
@@ -251,6 +293,8 @@ run();
 * [triggerBulk](docs/sdks/novu/README.md#triggerbulk) - Bulk trigger event
 * [triggerBroadcast](docs/sdks/novu/README.md#triggerbroadcast) - Broadcast event to all
 * [cancel](docs/sdks/novu/README.md#cancel) - Cancel triggered event
+* [supportControllerFetchUserOrganizations](docs/sdks/novu/README.md#supportcontrollerfetchuserorganizations)
+* [create](docs/sdks/novu/README.md#create)
 
 ### [subscribers](docs/sdks/subscribers/README.md)
 
@@ -327,6 +371,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 <summary>Available standalone functions</summary>
 
 - [`cancel`](docs/sdks/novu/README.md#cancel) - Cancel triggered event
+- [`create`](docs/sdks/novu/README.md#create)
 - [`integrationsCreate`](docs/sdks/integrations/README.md#create) - Create integration
 - [`integrationsDelete`](docs/sdks/integrations/README.md#delete) - Delete integration
 - [`integrationsList`](docs/sdks/integrations/README.md#list) - Get integrations
@@ -362,6 +407,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`subscribersPropertiesUpdateOnlineFlag`](docs/sdks/properties/README.md#updateonlineflag) - Update subscriber online status
 - [`subscribersRetrieve`](docs/sdks/subscribers/README.md#retrieve) - Get subscriber
 - [`subscribersUpdate`](docs/sdks/subscribers/README.md#update) - Update subscriber
+- [`supportControllerFetchUserOrganizations`](docs/sdks/novu/README.md#supportcontrollerfetchuserorganizations)
 - [`topicsCreate`](docs/sdks/topics/README.md#create) - Topic creation
 - [`topicsDelete`](docs/sdks/topics/README.md#delete) - Delete topic
 - [`topicsList`](docs/sdks/topics/README.md#list) - Get topic list filtered 
@@ -397,7 +443,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.subscribers.list();
+  const result = await novu.subscribers.list(10);
 
   for await (const page of result) {
     // Handle the page
@@ -442,16 +488,23 @@ async function run() {
   try {
     result = await novu.trigger({
       name: "workflow_identifier",
-      to: [
-        {
-          topicKey: "<value>",
-          type: "Topic",
+      payload: {
+        "comment_id": "string",
+        "post": {
+          "text": "string",
         },
-        {
-          topicKey: "<value>",
-          type: "Topic",
+      },
+      bridgeUrl: "https://example.com/bridge",
+      overrides: {
+        "fcm": {
+          "data": {
+            "key": "value",
+          },
         },
-      ],
+      },
+      to: {
+        subscriberId: "<id>",
+      },
     });
 
     // Handle the result
@@ -536,16 +589,23 @@ const novu = new Novu({
 async function run() {
   const result = await novu.trigger({
     name: "workflow_identifier",
-    to: [
-      {
-        topicKey: "<value>",
-        type: "Topic",
+    payload: {
+      "comment_id": "string",
+      "post": {
+        "text": "string",
       },
-      {
-        topicKey: "<value>",
-        type: "Topic",
+    },
+    bridgeUrl: "https://example.com/bridge",
+    overrides: {
+      "fcm": {
+        "data": {
+          "key": "value",
+        },
       },
-    ],
+    },
+    to: {
+      subscriberId: "<id>",
+    },
   });
 
   // Handle the result
@@ -570,16 +630,23 @@ const novu = new Novu({
 async function run() {
   const result = await novu.trigger({
     name: "workflow_identifier",
-    to: [
-      {
-        topicKey: "<value>",
-        type: "Topic",
+    payload: {
+      "comment_id": "string",
+      "post": {
+        "text": "string",
       },
-      {
-        topicKey: "<value>",
-        type: "Topic",
+    },
+    bridgeUrl: "https://example.com/bridge",
+    overrides: {
+      "fcm": {
+        "data": {
+          "key": "value",
+        },
       },
-    ],
+    },
+    to: {
+      subscriberId: "<id>",
+    },
   });
 
   // Handle the result
@@ -662,16 +729,23 @@ const novu = new Novu({
 async function run() {
   const result = await novu.trigger({
     name: "workflow_identifier",
-    to: [
-      {
-        topicKey: "<value>",
-        type: "Topic",
+    payload: {
+      "comment_id": "string",
+      "post": {
+        "text": "string",
       },
-      {
-        topicKey: "<value>",
-        type: "Topic",
+    },
+    bridgeUrl: "https://example.com/bridge",
+    overrides: {
+      "fcm": {
+        "data": {
+          "key": "value",
+        },
       },
-    ],
+    },
+    to: {
+      subscriberId: "<id>",
+    },
   });
 
   // Handle the result
@@ -699,16 +773,23 @@ const novu = new Novu({
 async function run() {
   const result = await novu.trigger({
     name: "workflow_identifier",
-    to: [
-      {
-        topicKey: "<value>",
-        type: "Topic",
+    payload: {
+      "comment_id": "string",
+      "post": {
+        "text": "string",
       },
-      {
-        topicKey: "<value>",
-        type: "Topic",
+    },
+    bridgeUrl: "https://example.com/bridge",
+    overrides: {
+      "fcm": {
+        "data": {
+          "key": "value",
+        },
       },
-    ],
+    },
+    to: {
+      subscriberId: "<id>",
+    },
   }, {
     retries: {
       strategy: "backoff",
@@ -751,16 +832,23 @@ const novu = new Novu({
 async function run() {
   const result = await novu.trigger({
     name: "workflow_identifier",
-    to: [
-      {
-        topicKey: "<value>",
-        type: "Topic",
+    payload: {
+      "comment_id": "string",
+      "post": {
+        "text": "string",
       },
-      {
-        topicKey: "<value>",
-        type: "Topic",
+    },
+    bridgeUrl: "https://example.com/bridge",
+    overrides: {
+      "fcm": {
+        "data": {
+          "key": "value",
+        },
       },
-    ],
+    },
+    to: {
+      subscriberId: "<id>",
+    },
   });
 
   // Handle the result

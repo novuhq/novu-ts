@@ -22,7 +22,7 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.subscribers.properties.updateOnlineFlag({
-    isOnline: true,
+    isOnline: false,
   }, "<id>");
 
   // Handle the result
@@ -48,7 +48,7 @@ const novu = new NovuCore({
 
 async function run() {
   const res = await subscribersPropertiesUpdateOnlineFlag(novu, {
-    isOnline: true,
+    isOnline: false,
   }, "<id>");
 
   if (!res.ok) {

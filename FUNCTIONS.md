@@ -32,16 +32,23 @@ const novu = new NovuCore({
 async function run() {
   const res = await trigger(novu, {
     name: "workflow_identifier",
-    to: [
-      {
-        topicKey: "<value>",
-        type: "Topic",
+    payload: {
+      "comment_id": "string",
+      "post": {
+        "text": "string",
       },
-      {
-        topicKey: "<value>",
-        type: "Topic",
+    },
+    bridgeUrl: "https://example.com/bridge",
+    overrides: {
+      "fcm": {
+        "data": {
+          "key": "value",
+        },
       },
-    ],
+    },
+    to: {
+      subscriberId: "<id>",
+    },
   });
 
   switch (true) {

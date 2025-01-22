@@ -23,22 +23,7 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.notifications.list({
-    channels: [
-      "sms",
-      "chat",
-      "in_app",
-    ],
-    templates: [
-
-    ],
-    emails: [
-
-    ],
-    search: "<value>",
-    subscriberIds: [
-      "<value>",
-      "<value>",
-    ],
+    page: 0,
   });
 
   // Handle the result
@@ -64,22 +49,7 @@ const novu = new NovuCore({
 
 async function run() {
   const res = await notificationsList(novu, {
-    channels: [
-      "sms",
-      "chat",
-      "in_app",
-    ],
-    templates: [
-  
-    ],
-    emails: [
-  
-    ],
-    search: "<value>",
-    subscriberIds: [
-      "<value>",
-      "<value>",
-    ],
+    page: 0,
   });
 
   if (!res.ok) {

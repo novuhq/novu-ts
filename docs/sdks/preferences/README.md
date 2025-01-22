@@ -181,7 +181,7 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.subscribers.preferences.retrieveByLevel({
-    preferenceLevel: "global",
+    preferenceLevel: "template",
     subscriberId: "<id>",
   });
 
@@ -208,7 +208,7 @@ const novu = new NovuCore({
 
 async function run() {
   const res = await subscribersPreferencesRetrieveByLevel(novu, {
-    preferenceLevel: "global",
+    preferenceLevel: "template",
     subscriberId: "<id>",
   });
 
@@ -264,7 +264,7 @@ const novu = new Novu({
 async function run() {
   const result = await novu.subscribers.preferences.update({
     subscriberId: "<id>",
-    workflowId: "exampleValue",
+    workflowId: "<id>",
     updateSubscriberPreferenceRequestDto: {},
   });
 
@@ -292,7 +292,7 @@ const novu = new NovuCore({
 async function run() {
   const res = await subscribersPreferencesUpdate(novu, {
     subscriberId: "<id>",
-    workflowId: "exampleValue",
+    workflowId: "<id>",
     updateSubscriberPreferenceRequestDto: {},
   });
 
