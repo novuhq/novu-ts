@@ -23302,7 +23302,7 @@
         ]
       }
     },
-    "/v1/support/user-organizations": {
+    "/v1/support/customer-details": {
       "post": {
         "operationId": "SupportController_fetchUserOrganizations",
         "parameters": [
@@ -23328,14 +23328,7 @@
         },
         "responses": {
           "201": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                }
-              }
-            }
+            "description": ""
           }
         }
       }

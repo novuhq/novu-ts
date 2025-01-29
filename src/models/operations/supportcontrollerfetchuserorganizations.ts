@@ -17,8 +17,6 @@ export type SupportControllerFetchUserOrganizationsRequest = {
   plainCardRequestDto: components.PlainCardRequestDto;
 };
 
-export type SupportControllerFetchUserOrganizationsResponseBody = {};
-
 /** @internal */
 export const SupportControllerFetchUserOrganizationsRequest$inboundSchema:
   z.ZodType<
@@ -97,67 +95,5 @@ export function supportControllerFetchUserOrganizationsRequestFromJSON(
         JSON.parse(x),
       ),
     `Failed to parse 'SupportControllerFetchUserOrganizationsRequest' from JSON`,
-  );
-}
-
-/** @internal */
-export const SupportControllerFetchUserOrganizationsResponseBody$inboundSchema:
-  z.ZodType<
-    SupportControllerFetchUserOrganizationsResponseBody,
-    z.ZodTypeDef,
-    unknown
-  > = z.object({});
-
-/** @internal */
-export type SupportControllerFetchUserOrganizationsResponseBody$Outbound = {};
-
-/** @internal */
-export const SupportControllerFetchUserOrganizationsResponseBody$outboundSchema:
-  z.ZodType<
-    SupportControllerFetchUserOrganizationsResponseBody$Outbound,
-    z.ZodTypeDef,
-    SupportControllerFetchUserOrganizationsResponseBody
-  > = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SupportControllerFetchUserOrganizationsResponseBody$ {
-  /** @deprecated use `SupportControllerFetchUserOrganizationsResponseBody$inboundSchema` instead. */
-  export const inboundSchema =
-    SupportControllerFetchUserOrganizationsResponseBody$inboundSchema;
-  /** @deprecated use `SupportControllerFetchUserOrganizationsResponseBody$outboundSchema` instead. */
-  export const outboundSchema =
-    SupportControllerFetchUserOrganizationsResponseBody$outboundSchema;
-  /** @deprecated use `SupportControllerFetchUserOrganizationsResponseBody$Outbound` instead. */
-  export type Outbound =
-    SupportControllerFetchUserOrganizationsResponseBody$Outbound;
-}
-
-export function supportControllerFetchUserOrganizationsResponseBodyToJSON(
-  supportControllerFetchUserOrganizationsResponseBody:
-    SupportControllerFetchUserOrganizationsResponseBody,
-): string {
-  return JSON.stringify(
-    SupportControllerFetchUserOrganizationsResponseBody$outboundSchema.parse(
-      supportControllerFetchUserOrganizationsResponseBody,
-    ),
-  );
-}
-
-export function supportControllerFetchUserOrganizationsResponseBodyFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  SupportControllerFetchUserOrganizationsResponseBody,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      SupportControllerFetchUserOrganizationsResponseBody$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'SupportControllerFetchUserOrganizationsResponseBody' from JSON`,
   );
 }

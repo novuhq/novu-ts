@@ -243,12 +243,12 @@ actions:
         - "lang": "typescript"
           "label": "TypeScript"
           "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n});\n\nasync function run() {\n  await novu.create({\n    text: \"<value>\",\n  });\n\n\n}\n\nrun();"
-  - target: $["paths"]["/v1/support/user-organizations"]["post"]
+  - target: $["paths"]["/v1/support/customer-details"]["post"]
     update:
       "x-codeSamples":
         - "lang": "typescript"
           "label": "TypeScript"
-          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n});\n\nasync function run() {\n  const result = await novu.supportControllerFetchUserOrganizations({\n    timestamp: \"<value>\",\n  });\n\n  // Handle the result\n  console.log(result);\n}\n\nrun();"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n});\n\nasync function run() {\n  await novu.supportControllerFetchUserOrganizations({\n    timestamp: \"<value>\",\n  });\n\n\n}\n\nrun();"
   - target: $["paths"]["/v1/topics"]["get"]
     update:
       "x-codeSamples":

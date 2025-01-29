@@ -132,7 +132,7 @@ export class Novu extends ClientSDK {
     plainCardRequestDto: components.PlainCardRequestDto,
     idempotencyKey?: string | undefined,
     options?: RequestOptions,
-  ): Promise<operations.SupportControllerFetchUserOrganizationsResponseBody> {
+  ): Promise<void> {
     return unwrapAsync(supportControllerFetchUserOrganizations(
       this,
       plainCardRequestDto,

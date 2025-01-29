@@ -535,12 +535,11 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.supportControllerFetchUserOrganizations({
+  await novu.supportControllerFetchUserOrganizations({
     timestamp: "<value>",
   });
 
-  // Handle the result
-  console.log(result);
+
 }
 
 run();
@@ -571,8 +570,7 @@ async function run() {
 
   const { value: result } = res;
 
-  // Handle the result
-  console.log(result);
+  
 }
 
 run();
@@ -590,7 +588,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.SupportControllerFetchUserOrganizationsResponseBody](../../models/operations/supportcontrollerfetchuserorganizationsresponsebody.md)\>**
+**Promise\<void\>**
 
 ### Errors
 
