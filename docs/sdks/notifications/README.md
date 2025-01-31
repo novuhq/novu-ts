@@ -18,7 +18,7 @@ Get notifications
 import { Novu } from "@novu/api";
 
 const novu = new Novu({
-  apiKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -44,7 +44,7 @@ import { notificationsList } from "@novu/api/funcs/notificationsList.js";
 // Use `NovuCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const novu = new NovuCore({
-  apiKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -82,8 +82,8 @@ run();
 
 | Error Type                             | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| errors.ErrorDto                        | 400, 401, 403, 404, 405, 409, 413, 415 | application/json                       |
 | errors.ErrorDto                        | 414                                    | application/json                       |
+| errors.ErrorDto                        | 400, 401, 403, 404, 405, 409, 413, 415 | application/json                       |
 | errors.ValidationErrorDto              | 422                                    | application/json                       |
 | errors.ErrorDto                        | 500                                    | application/json                       |
 | errors.SDKError                        | 4XX, 5XX                               | \*/\*                                  |
@@ -98,7 +98,7 @@ Get notification
 import { Novu } from "@novu/api";
 
 const novu = new Novu({
-  apiKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -122,7 +122,7 @@ import { notificationsRetrieve } from "@novu/api/funcs/notificationsRetrieve.js"
 // Use `NovuCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const novu = new NovuCore({
-  apiKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -159,8 +159,8 @@ run();
 
 | Error Type                             | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| errors.ErrorDto                        | 400, 401, 403, 404, 405, 409, 413, 415 | application/json                       |
 | errors.ErrorDto                        | 414                                    | application/json                       |
+| errors.ErrorDto                        | 400, 401, 403, 404, 405, 409, 413, 415 | application/json                       |
 | errors.ValidationErrorDto              | 422                                    | application/json                       |
 | errors.ErrorDto                        | 500                                    | application/json                       |
 | errors.SDKError                        | 4XX, 5XX                               | \*/\*                                  |

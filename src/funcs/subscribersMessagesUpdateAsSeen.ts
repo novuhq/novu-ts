@@ -28,11 +28,11 @@ import { Result } from "../types/fp.js";
  */
 export async function subscribersMessagesUpdateAsSeen(
   client: NovuCore,
-  request: operations.SubscribersControllerMarkActionAsSeenRequest,
+  request: operations.SubscribersV1ControllerMarkActionAsSeenRequest,
   options?: RequestOptions,
 ): Promise<
   Result<
-    operations.SubscribersControllerMarkActionAsSeenResponse,
+    operations.SubscribersV1ControllerMarkActionAsSeenResponse,
     | errors.ErrorDto
     | errors.ErrorDto
     | errors.ValidationErrorDto
@@ -49,7 +49,7 @@ export async function subscribersMessagesUpdateAsSeen(
   const parsed = safeParse(
     request,
     (value) =>
-      operations.SubscribersControllerMarkActionAsSeenRequest$outboundSchema
+      operations.SubscribersV1ControllerMarkActionAsSeenRequest$outboundSchema
         .parse(value),
     "Input validation failed",
   );
@@ -90,17 +90,17 @@ export async function subscribersMessagesUpdateAsSeen(
     ),
   }));
 
-  const secConfig = await extractSecurity(client._options.apiKey);
-  const securityInput = secConfig == null ? {} : { apiKey: secConfig };
+  const secConfig = await extractSecurity(client._options.secretKey);
+  const securityInput = secConfig == null ? {} : { secretKey: secConfig };
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
-    operationID: "SubscribersController_markActionAsSeen",
+    operationID: "SubscribersV1Controller_markActionAsSeen",
     oAuth2Scopes: [],
 
     resolvedSecurity: requestSecurity,
 
-    securitySource: client._options.apiKey,
+    securitySource: client._options.secretKey,
     retryConfig: options?.retries
       || client._options.retryConfig
       || {
@@ -163,7 +163,7 @@ export async function subscribersMessagesUpdateAsSeen(
   };
 
   const [result] = await M.match<
-    operations.SubscribersControllerMarkActionAsSeenResponse,
+    operations.SubscribersV1ControllerMarkActionAsSeenResponse,
     | errors.ErrorDto
     | errors.ErrorDto
     | errors.ValidationErrorDto
@@ -178,15 +178,15 @@ export async function subscribersMessagesUpdateAsSeen(
   >(
     M.json(
       201,
-      operations.SubscribersControllerMarkActionAsSeenResponse$inboundSchema,
+      operations.SubscribersV1ControllerMarkActionAsSeenResponse$inboundSchema,
       { hdrs: true, key: "Result" },
     ),
+    M.jsonErr(414, errors.ErrorDto$inboundSchema),
     M.jsonErr(
       [400, 401, 403, 404, 405, 409, 413, 415],
       errors.ErrorDto$inboundSchema,
       { hdrs: true },
     ),
-    M.jsonErr(414, errors.ErrorDto$inboundSchema),
     M.jsonErr(422, errors.ValidationErrorDto$inboundSchema, { hdrs: true }),
     M.fail(429),
     M.jsonErr(500, errors.ErrorDto$inboundSchema, { hdrs: true }),

@@ -36,7 +36,7 @@ export async function subscribersPreferencesUpdateGlobal(
   options?: RequestOptions,
 ): Promise<
   Result<
-    operations.SubscribersControllerUpdateSubscriberGlobalPreferencesResponse,
+    operations.SubscribersV1ControllerUpdateSubscriberGlobalPreferencesResponse,
     | errors.ErrorDto
     | errors.ErrorDto
     | errors.ValidationErrorDto
@@ -51,18 +51,19 @@ export async function subscribersPreferencesUpdateGlobal(
   >
 > {
   const input:
-    operations.SubscribersControllerUpdateSubscriberGlobalPreferencesRequest = {
-      updateSubscriberGlobalPreferencesRequestDto:
-        updateSubscriberGlobalPreferencesRequestDto,
-      subscriberId: subscriberId,
-      idempotencyKey: idempotencyKey,
-    };
+    operations.SubscribersV1ControllerUpdateSubscriberGlobalPreferencesRequest =
+      {
+        updateSubscriberGlobalPreferencesRequestDto:
+          updateSubscriberGlobalPreferencesRequestDto,
+        subscriberId: subscriberId,
+        idempotencyKey: idempotencyKey,
+      };
 
   const parsed = safeParse(
     input,
     (value) =>
       operations
-        .SubscribersControllerUpdateSubscriberGlobalPreferencesRequest$outboundSchema
+        .SubscribersV1ControllerUpdateSubscriberGlobalPreferencesRequest$outboundSchema
         .parse(value),
     "Input validation failed",
   );
@@ -97,17 +98,17 @@ export async function subscribersPreferencesUpdateGlobal(
     ),
   }));
 
-  const secConfig = await extractSecurity(client._options.apiKey);
-  const securityInput = secConfig == null ? {} : { apiKey: secConfig };
+  const secConfig = await extractSecurity(client._options.secretKey);
+  const securityInput = secConfig == null ? {} : { secretKey: secConfig };
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
-    operationID: "SubscribersController_updateSubscriberGlobalPreferences",
+    operationID: "SubscribersV1Controller_updateSubscriberGlobalPreferences",
     oAuth2Scopes: [],
 
     resolvedSecurity: requestSecurity,
 
-    securitySource: client._options.apiKey,
+    securitySource: client._options.secretKey,
     retryConfig: options?.retries
       || client._options.retryConfig
       || {
@@ -170,7 +171,7 @@ export async function subscribersPreferencesUpdateGlobal(
   };
 
   const [result] = await M.match<
-    operations.SubscribersControllerUpdateSubscriberGlobalPreferencesResponse,
+    operations.SubscribersV1ControllerUpdateSubscriberGlobalPreferencesResponse,
     | errors.ErrorDto
     | errors.ErrorDto
     | errors.ValidationErrorDto
@@ -186,15 +187,15 @@ export async function subscribersPreferencesUpdateGlobal(
     M.json(
       200,
       operations
-        .SubscribersControllerUpdateSubscriberGlobalPreferencesResponse$inboundSchema,
+        .SubscribersV1ControllerUpdateSubscriberGlobalPreferencesResponse$inboundSchema,
       { hdrs: true, key: "Result" },
     ),
+    M.jsonErr(414, errors.ErrorDto$inboundSchema),
     M.jsonErr(
       [400, 401, 403, 404, 405, 409, 413, 415],
       errors.ErrorDto$inboundSchema,
       { hdrs: true },
     ),
-    M.jsonErr(414, errors.ErrorDto$inboundSchema),
     M.jsonErr(422, errors.ValidationErrorDto$inboundSchema, { hdrs: true }),
     M.fail(429),
     M.jsonErr(500, errors.ErrorDto$inboundSchema, { hdrs: true }),

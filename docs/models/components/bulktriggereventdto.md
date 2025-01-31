@@ -8,14 +8,13 @@ import { BulkTriggerEventDto } from "@novu/api/models/components";
 let value: BulkTriggerEventDto = {
   events: [
     {
-      name: "workflow_identifier",
+      workflowId: "workflow_identifier",
       payload: {
         "comment_id": "string",
         "post": {
           "text": "string",
         },
       },
-      bridgeUrl: "https://example.com/bridge",
       overrides: {
         "fcm": {
           "data": {
@@ -23,10 +22,9 @@ let value: BulkTriggerEventDto = {
           },
         },
       },
-      to: {
-        topicKey: "<value>",
-        type: "Subscriber",
-      },
+      to: [
+        "SUBSCRIBER_ID",
+      ],
     },
   ],
 };

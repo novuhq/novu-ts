@@ -34,7 +34,7 @@ export async function subscribersPreferencesList(
   options?: RequestOptions,
 ): Promise<
   Result<
-    operations.SubscribersControllerListSubscriberPreferencesResponse,
+    operations.SubscribersV1ControllerListSubscriberPreferencesResponse,
     | errors.ErrorDto
     | errors.ErrorDto
     | errors.ValidationErrorDto
@@ -49,7 +49,7 @@ export async function subscribersPreferencesList(
   >
 > {
   const input:
-    operations.SubscribersControllerListSubscriberPreferencesRequest = {
+    operations.SubscribersV1ControllerListSubscriberPreferencesRequest = {
       subscriberId: subscriberId,
       includeInactiveChannels: includeInactiveChannels,
       idempotencyKey: idempotencyKey,
@@ -59,7 +59,7 @@ export async function subscribersPreferencesList(
     input,
     (value) =>
       operations
-        .SubscribersControllerListSubscriberPreferencesRequest$outboundSchema
+        .SubscribersV1ControllerListSubscriberPreferencesRequest$outboundSchema
         .parse(value),
     "Input validation failed",
   );
@@ -93,17 +93,17 @@ export async function subscribersPreferencesList(
     ),
   }));
 
-  const secConfig = await extractSecurity(client._options.apiKey);
-  const securityInput = secConfig == null ? {} : { apiKey: secConfig };
+  const secConfig = await extractSecurity(client._options.secretKey);
+  const securityInput = secConfig == null ? {} : { secretKey: secConfig };
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
-    operationID: "SubscribersController_listSubscriberPreferences",
+    operationID: "SubscribersV1Controller_listSubscriberPreferences",
     oAuth2Scopes: [],
 
     resolvedSecurity: requestSecurity,
 
-    securitySource: client._options.apiKey,
+    securitySource: client._options.secretKey,
     retryConfig: options?.retries
       || client._options.retryConfig
       || {
@@ -167,7 +167,7 @@ export async function subscribersPreferencesList(
   };
 
   const [result] = await M.match<
-    operations.SubscribersControllerListSubscriberPreferencesResponse,
+    operations.SubscribersV1ControllerListSubscriberPreferencesResponse,
     | errors.ErrorDto
     | errors.ErrorDto
     | errors.ValidationErrorDto
@@ -183,15 +183,15 @@ export async function subscribersPreferencesList(
     M.json(
       200,
       operations
-        .SubscribersControllerListSubscriberPreferencesResponse$inboundSchema,
+        .SubscribersV1ControllerListSubscriberPreferencesResponse$inboundSchema,
       { hdrs: true, key: "Result" },
     ),
+    M.jsonErr(414, errors.ErrorDto$inboundSchema),
     M.jsonErr(
       [400, 401, 403, 404, 405, 409, 413, 415],
       errors.ErrorDto$inboundSchema,
       { hdrs: true },
     ),
-    M.jsonErr(414, errors.ErrorDto$inboundSchema),
     M.jsonErr(422, errors.ValidationErrorDto$inboundSchema, { hdrs: true }),
     M.fail(429),
     M.jsonErr(500, errors.ErrorDto$inboundSchema, { hdrs: true }),

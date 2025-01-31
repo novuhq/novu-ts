@@ -11,12 +11,12 @@ let value: ActivityNotificationJobResponseDto = {
   executionDetails: [
     {
       id: "<id>",
-      status: "Warning",
+      status: "Pending",
       detail: "<value>",
       isRetry: false,
       isTest: false,
       providerId: "sendchamp",
-      source: "Credentials",
+      source: "Payload",
     },
   ],
   step: {
@@ -25,21 +25,21 @@ let value: ActivityNotificationJobResponseDto = {
     filters: [
       {
         isNegated: false,
-        type: "MULTI_LIST",
-        value: "AND",
+        type: "TEXT",
+        value: "OR",
         children: [
           {
             field: "<value>",
             value: "<value>",
-            operator: "BETWEEN",
-            on: "subscriber",
+            operator: "ALL_IN",
+            on: "payload",
           },
         ],
       },
     ],
     templateId: "<id>",
   },
-  providerId: "mobishastra",
+  providerId: "brevo-sms",
   status: "<value>",
 };
 ```

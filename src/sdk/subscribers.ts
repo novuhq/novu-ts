@@ -5,8 +5,12 @@
 import { subscribersCreate } from "../funcs/subscribersCreate.js";
 import { subscribersCreateBulk } from "../funcs/subscribersCreateBulk.js";
 import { subscribersDelete } from "../funcs/subscribersDelete.js";
+import { subscribersDeleteLegacy } from "../funcs/subscribersDeleteLegacy.js";
 import { subscribersList } from "../funcs/subscribersList.js";
+import { subscribersPatch } from "../funcs/subscribersPatch.js";
 import { subscribersRetrieve } from "../funcs/subscribersRetrieve.js";
+import { subscribersRetrieveLegacy } from "../funcs/subscribersRetrieveLegacy.js";
+import { subscribersSearch } from "../funcs/subscribersSearch.js";
 import { subscribersUpdate } from "../funcs/subscribersUpdate.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as components from "../models/components/index.js";
@@ -64,7 +68,7 @@ export class Subscribers extends ClientSDK {
     options?: RequestOptions,
   ): Promise<
     PageIterator<
-      operations.SubscribersControllerListSubscribersResponse,
+      operations.SubscribersV1ControllerListSubscribersResponse,
       { page: number }
     >
   > {
@@ -87,7 +91,7 @@ export class Subscribers extends ClientSDK {
     createSubscriberRequestDto: components.CreateSubscriberRequestDto,
     idempotencyKey?: string | undefined,
     options?: RequestOptions,
-  ): Promise<operations.SubscribersControllerCreateSubscriberResponse> {
+  ): Promise<operations.SubscribersV1ControllerCreateSubscriberResponse> {
     return unwrapAsync(subscribersCreate(
       this,
       createSubscriberRequestDto,
@@ -102,13 +106,13 @@ export class Subscribers extends ClientSDK {
    * @remarks
    * Get subscriber by your internal id used to identify the subscriber
    */
-  async retrieve(
+  async retrieveLegacy(
     subscriberId: string,
     includeTopics?: boolean | undefined,
     idempotencyKey?: string | undefined,
     options?: RequestOptions,
-  ): Promise<operations.SubscribersControllerGetSubscriberResponse> {
-    return unwrapAsync(subscribersRetrieve(
+  ): Promise<operations.SubscribersV1ControllerGetSubscriberResponse> {
+    return unwrapAsync(subscribersRetrieveLegacy(
       this,
       subscriberId,
       includeTopics,
@@ -128,10 +132,106 @@ export class Subscribers extends ClientSDK {
     subscriberId: string,
     idempotencyKey?: string | undefined,
     options?: RequestOptions,
-  ): Promise<operations.SubscribersControllerUpdateSubscriberResponse> {
+  ): Promise<operations.SubscribersV1ControllerUpdateSubscriberResponse> {
     return unwrapAsync(subscribersUpdate(
       this,
       updateSubscriberRequestDto,
+      subscriberId,
+      idempotencyKey,
+      options,
+    ));
+  }
+
+  /**
+   * Delete subscriber
+   *
+   * @remarks
+   * Deletes a subscriber entity from the Novu platform
+   *
+   * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
+   */
+  async deleteLegacy(
+    subscriberId: string,
+    idempotencyKey?: string | undefined,
+    options?: RequestOptions,
+  ): Promise<operations.SubscribersV1ControllerRemoveSubscriberResponse> {
+    return unwrapAsync(subscribersDeleteLegacy(
+      this,
+      subscriberId,
+      idempotencyKey,
+      options,
+    ));
+  }
+
+  /**
+   * Bulk create subscribers
+   *
+   * @remarks
+   *
+   *       Using this endpoint you can create multiple subscribers at once, to avoid multiple calls to the API.
+   *       The bulk API is limited to 500 subscribers per request.
+   */
+  async createBulk(
+    bulkSubscriberCreateDto: components.BulkSubscriberCreateDto,
+    idempotencyKey?: string | undefined,
+    options?: RequestOptions,
+  ): Promise<operations.SubscribersV1ControllerBulkCreateSubscribersResponse> {
+    return unwrapAsync(subscribersCreateBulk(
+      this,
+      bulkSubscriberCreateDto,
+      idempotencyKey,
+      options,
+    ));
+  }
+
+  /**
+   * Search for subscribers
+   */
+  async search(
+    request: operations.SubscribersControllerSearchSubscribersRequest,
+    options?: RequestOptions,
+  ): Promise<operations.SubscribersControllerSearchSubscribersResponse> {
+    return unwrapAsync(subscribersSearch(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get subscriber
+   *
+   * @remarks
+   * Get subscriber by your internal id used to identify the subscriber
+   */
+  async retrieve(
+    subscriberId: string,
+    idempotencyKey?: string | undefined,
+    options?: RequestOptions,
+  ): Promise<operations.SubscribersControllerGetSubscriberResponse> {
+    return unwrapAsync(subscribersRetrieve(
+      this,
+      subscriberId,
+      idempotencyKey,
+      options,
+    ));
+  }
+
+  /**
+   * Patch subscriber
+   *
+   * @remarks
+   * Patch subscriber by your internal id used to identify the subscriber
+   */
+  async patch(
+    patchSubscriberRequestDto: components.PatchSubscriberRequestDto,
+    subscriberId: string,
+    idempotencyKey?: string | undefined,
+    options?: RequestOptions,
+  ): Promise<operations.SubscribersControllerPatchSubscriberResponse> {
+    return unwrapAsync(subscribersPatch(
+      this,
+      patchSubscriberRequestDto,
       subscriberId,
       idempotencyKey,
       options,
@@ -152,27 +252,6 @@ export class Subscribers extends ClientSDK {
     return unwrapAsync(subscribersDelete(
       this,
       subscriberId,
-      idempotencyKey,
-      options,
-    ));
-  }
-
-  /**
-   * Bulk create subscribers
-   *
-   * @remarks
-   *
-   *       Using this endpoint you can create multiple subscribers at once, to avoid multiple calls to the API.
-   *       The bulk API is limited to 500 subscribers per request.
-   */
-  async createBulk(
-    bulkSubscriberCreateDto: components.BulkSubscriberCreateDto,
-    idempotencyKey?: string | undefined,
-    options?: RequestOptions,
-  ): Promise<operations.SubscribersControllerBulkCreateSubscribersResponse> {
-    return unwrapAsync(subscribersCreateBulk(
-      this,
-      bulkSubscriberCreateDto,
       idempotencyKey,
       options,
     ));

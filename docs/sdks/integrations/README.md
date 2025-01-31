@@ -25,7 +25,7 @@ Return all the integrations the user has created for that organization. Review v
 import { Novu } from "@novu/api";
 
 const novu = new Novu({
-  apiKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -49,7 +49,7 @@ import { integrationsList } from "@novu/api/funcs/integrationsList.js";
 // Use `NovuCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const novu = new NovuCore({
-  apiKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -85,8 +85,8 @@ run();
 
 | Error Type                             | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| errors.ErrorDto                        | 400, 401, 403, 404, 405, 409, 413, 415 | application/json                       |
 | errors.ErrorDto                        | 414                                    | application/json                       |
+| errors.ErrorDto                        | 400, 401, 403, 404, 405, 409, 413, 415 | application/json                       |
 | errors.ValidationErrorDto              | 422                                    | application/json                       |
 | errors.ErrorDto                        | 500                                    | application/json                       |
 | errors.SDKError                        | 4XX, 5XX                               | \*/\*                                  |
@@ -101,7 +101,7 @@ Create an integration for the current environment the user is based on the API k
 import { Novu } from "@novu/api";
 
 const novu = new Novu({
-  apiKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -128,7 +128,7 @@ import { integrationsCreate } from "@novu/api/funcs/integrationsCreate.js";
 // Use `NovuCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const novu = new NovuCore({
-  apiKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -168,8 +168,8 @@ run();
 
 | Error Type                             | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| errors.ErrorDto                        | 400, 401, 403, 404, 405, 409, 413, 415 | application/json                       |
 | errors.ErrorDto                        | 414                                    | application/json                       |
+| errors.ErrorDto                        | 400, 401, 403, 404, 405, 409, 413, 415 | application/json                       |
 | errors.ValidationErrorDto              | 422                                    | application/json                       |
 | errors.ErrorDto                        | 500                                    | application/json                       |
 | errors.SDKError                        | 4XX, 5XX                               | \*/\*                                  |
@@ -184,7 +184,7 @@ Return all the active integrations the user has created for that organization. R
 import { Novu } from "@novu/api";
 
 const novu = new Novu({
-  apiKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -208,7 +208,7 @@ import { integrationsListActive } from "@novu/api/funcs/integrationsListActive.j
 // Use `NovuCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const novu = new NovuCore({
-  apiKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -244,8 +244,8 @@ run();
 
 | Error Type                             | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| errors.ErrorDto                        | 400, 401, 403, 404, 405, 409, 413, 415 | application/json                       |
 | errors.ErrorDto                        | 414                                    | application/json                       |
+| errors.ErrorDto                        | 400, 401, 403, 404, 405, 409, 413, 415 | application/json                       |
 | errors.ValidationErrorDto              | 422                                    | application/json                       |
 | errors.ErrorDto                        | 500                                    | application/json                       |
 | errors.SDKError                        | 4XX, 5XX                               | \*/\*                                  |
@@ -260,7 +260,7 @@ Update integration
 import { Novu } from "@novu/api";
 
 const novu = new Novu({
-  apiKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -284,7 +284,7 @@ import { integrationsUpdate } from "@novu/api/funcs/integrationsUpdate.js";
 // Use `NovuCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const novu = new NovuCore({
-  apiKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -322,8 +322,8 @@ run();
 
 | Error Type                        | Status Code                       | Content Type                      |
 | --------------------------------- | --------------------------------- | --------------------------------- |
-| errors.ErrorDto                   | 400, 401, 403, 405, 409, 413, 415 | application/json                  |
 | errors.ErrorDto                   | 414                               | application/json                  |
+| errors.ErrorDto                   | 400, 401, 403, 405, 409, 413, 415 | application/json                  |
 | errors.ValidationErrorDto         | 422                               | application/json                  |
 | errors.ErrorDto                   | 500                               | application/json                  |
 | errors.SDKError                   | 4XX, 5XX                          | \*/\*                             |
@@ -338,7 +338,7 @@ Delete integration
 import { Novu } from "@novu/api";
 
 const novu = new Novu({
-  apiKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -362,7 +362,7 @@ import { integrationsDelete } from "@novu/api/funcs/integrationsDelete.js";
 // Use `NovuCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const novu = new NovuCore({
-  apiKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -399,8 +399,8 @@ run();
 
 | Error Type                             | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| errors.ErrorDto                        | 400, 401, 403, 404, 405, 409, 413, 415 | application/json                       |
 | errors.ErrorDto                        | 414                                    | application/json                       |
+| errors.ErrorDto                        | 400, 401, 403, 404, 405, 409, 413, 415 | application/json                       |
 | errors.ValidationErrorDto              | 422                                    | application/json                       |
 | errors.ErrorDto                        | 500                                    | application/json                       |
 | errors.SDKError                        | 4XX, 5XX                               | \*/\*                                  |
@@ -415,7 +415,7 @@ Set integration as primary
 import { Novu } from "@novu/api";
 
 const novu = new Novu({
-  apiKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -439,7 +439,7 @@ import { integrationsSetAsPrimary } from "@novu/api/funcs/integrationsSetAsPrima
 // Use `NovuCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const novu = new NovuCore({
-  apiKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -476,8 +476,8 @@ run();
 
 | Error Type                        | Status Code                       | Content Type                      |
 | --------------------------------- | --------------------------------- | --------------------------------- |
-| errors.ErrorDto                   | 400, 401, 403, 405, 409, 413, 415 | application/json                  |
 | errors.ErrorDto                   | 414                               | application/json                  |
+| errors.ErrorDto                   | 400, 401, 403, 405, 409, 413, 415 | application/json                  |
 | errors.ValidationErrorDto         | 422                               | application/json                  |
 | errors.ErrorDto                   | 500                               | application/json                  |
 | errors.SDKError                   | 4XX, 5XX                          | \*/\*                             |

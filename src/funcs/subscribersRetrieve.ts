@@ -3,7 +3,7 @@
  */
 
 import { NovuCore } from "../core.js";
-import { encodeFormQuery, encodeSimple } from "../lib/encodings.js";
+import { encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -32,7 +32,6 @@ import { Result } from "../types/fp.js";
 export async function subscribersRetrieve(
   client: NovuCore,
   subscriberId: string,
-  includeTopics?: boolean | undefined,
   idempotencyKey?: string | undefined,
   options?: RequestOptions,
 ): Promise<
@@ -53,7 +52,6 @@ export async function subscribersRetrieve(
 > {
   const input: operations.SubscribersControllerGetSubscriberRequest = {
     subscriberId: subscriberId,
-    includeTopics: includeTopics,
     idempotencyKey: idempotencyKey,
   };
 
@@ -78,11 +76,7 @@ export async function subscribersRetrieve(
     }),
   };
 
-  const path = pathToFunc("/v1/subscribers/{subscriberId}")(pathParams);
-
-  const query = encodeFormQuery({
-    "includeTopics": payload.includeTopics,
-  });
+  const path = pathToFunc("/v2/subscribers/{subscriberId}")(pathParams);
 
   const headers = new Headers(compactMap({
     Accept: "application/json",
@@ -93,8 +87,8 @@ export async function subscribersRetrieve(
     ),
   }));
 
-  const secConfig = await extractSecurity(client._options.apiKey);
-  const securityInput = secConfig == null ? {} : { apiKey: secConfig };
+  const secConfig = await extractSecurity(client._options.secretKey);
+  const securityInput = secConfig == null ? {} : { secretKey: secConfig };
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
@@ -103,7 +97,7 @@ export async function subscribersRetrieve(
 
     resolvedSecurity: requestSecurity,
 
-    securitySource: client._options.apiKey,
+    securitySource: client._options.secretKey,
     retryConfig: options?.retries
       || client._options.retryConfig
       || {
@@ -126,7 +120,6 @@ export async function subscribersRetrieve(
     baseURL: options?.serverURL,
     path: path,
     headers: headers,
-    query: query,
     body: body,
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
@@ -185,12 +178,12 @@ export async function subscribersRetrieve(
       operations.SubscribersControllerGetSubscriberResponse$inboundSchema,
       { hdrs: true, key: "Result" },
     ),
+    M.jsonErr(414, errors.ErrorDto$inboundSchema),
     M.jsonErr(
       [400, 401, 403, 404, 405, 409, 413, 415],
       errors.ErrorDto$inboundSchema,
       { hdrs: true },
     ),
-    M.jsonErr(414, errors.ErrorDto$inboundSchema),
     M.jsonErr(422, errors.ValidationErrorDto$inboundSchema, { hdrs: true }),
     M.fail(429),
     M.jsonErr(500, errors.ErrorDto$inboundSchema, { hdrs: true }),

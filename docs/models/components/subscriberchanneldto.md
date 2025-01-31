@@ -6,7 +6,7 @@
 import { SubscriberChannelDto } from "@novu/api/models/components";
 
 let value: SubscriberChannelDto = {
-  providerId: "rocket-chat",
+  providerId: "whatsapp-business",
   credentials: {},
 };
 ```

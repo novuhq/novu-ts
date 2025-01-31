@@ -83,19 +83,18 @@ For supported JavaScript runtimes, please consult [RUNTIMES.md](RUNTIMES.md).
 import { Novu } from "@novu/api";
 
 const novu = new Novu({
-  apiKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const result = await novu.trigger({
-    name: "workflow_identifier",
+    workflowId: "workflow_identifier",
     payload: {
       "comment_id": "string",
       "post": {
         "text": "string",
       },
     },
-    bridgeUrl: "https://example.com/bridge",
     overrides: {
       "fcm": {
         "data": {
@@ -122,21 +121,20 @@ run();
 import { Novu } from "@novu/api";
 
 const novu = new Novu({
-  apiKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const result = await novu.triggerBulk({
     events: [
       {
-        name: "workflow_identifier",
+        workflowId: "workflow_identifier",
         payload: {
           "comment_id": "string",
           "post": {
             "text": "string",
           },
         },
-        bridgeUrl: "https://example.com/bridge",
         overrides: {
           "fcm": {
             "data": {
@@ -149,14 +147,13 @@ async function run() {
         },
       },
       {
-        name: "workflow_identifier",
+        workflowId: "workflow_identifier",
         payload: {
           "comment_id": "string",
           "post": {
             "text": "string",
           },
         },
-        bridgeUrl: "https://example.com/bridge",
         overrides: {
           "fcm": {
             "data": {
@@ -172,14 +169,13 @@ async function run() {
         ],
       },
       {
-        name: "workflow_identifier",
+        workflowId: "workflow_identifier",
         payload: {
           "comment_id": "string",
           "post": {
             "text": "string",
           },
         },
-        bridgeUrl: "https://example.com/bridge",
         overrides: {
           "fcm": {
             "data": {
@@ -209,7 +205,7 @@ run();
 import { Novu } from "@novu/api";
 
 const novu = new Novu({
-  apiKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -237,7 +233,7 @@ run();
 import { Novu } from "@novu/api";
 
 const novu = new Novu({
-  apiKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -293,17 +289,19 @@ run();
 * [triggerBulk](docs/sdks/novu/README.md#triggerbulk) - Bulk trigger event
 * [triggerBroadcast](docs/sdks/novu/README.md#triggerbroadcast) - Broadcast event to all
 * [cancel](docs/sdks/novu/README.md#cancel) - Cancel triggered event
-* [supportControllerFetchUserOrganizations](docs/sdks/novu/README.md#supportcontrollerfetchuserorganizations)
-* [create](docs/sdks/novu/README.md#create)
 
 ### [subscribers](docs/sdks/subscribers/README.md)
 
 * [list](docs/sdks/subscribers/README.md#list) - Get subscribers
 * [create](docs/sdks/subscribers/README.md#create) - Create subscriber
-* [retrieve](docs/sdks/subscribers/README.md#retrieve) - Get subscriber
+* [retrieveLegacy](docs/sdks/subscribers/README.md#retrievelegacy) - Get subscriber
 * [update](docs/sdks/subscribers/README.md#update) - Update subscriber
-* [delete](docs/sdks/subscribers/README.md#delete) - Delete subscriber
+* [~~deleteLegacy~~](docs/sdks/subscribers/README.md#deletelegacy) - Delete subscriber :warning: **Deprecated**
 * [createBulk](docs/sdks/subscribers/README.md#createbulk) - Bulk create subscribers
+* [search](docs/sdks/subscribers/README.md#search) - Search for subscribers
+* [retrieve](docs/sdks/subscribers/README.md#retrieve) - Get subscriber
+* [patch](docs/sdks/subscribers/README.md#patch) - Patch subscriber
+* [delete](docs/sdks/subscribers/README.md#delete) - Delete subscriber
 
 #### [subscribers.authentication](docs/sdks/authentication/README.md)
 
@@ -371,7 +369,6 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 <summary>Available standalone functions</summary>
 
 - [`cancel`](docs/sdks/novu/README.md#cancel) - Cancel triggered event
-- [`create`](docs/sdks/novu/README.md#create)
 - [`integrationsCreate`](docs/sdks/integrations/README.md#create) - Create integration
 - [`integrationsDelete`](docs/sdks/integrations/README.md#delete) - Delete integration
 - [`integrationsList`](docs/sdks/integrations/README.md#list) - Get integrations
@@ -400,14 +397,16 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`subscribersMessagesUpdateAsSeen`](docs/sdks/novumessages/README.md#updateasseen) - Mark message action as seen
 - [`subscribersNotificationsFeed`](docs/sdks/novunotifications/README.md#feed) - Get in-app notification feed for a particular subscriber
 - [`subscribersNotificationsUnseenCount`](docs/sdks/novunotifications/README.md#unseencount) - Get the unseen in-app notifications count for subscribers feed
+- [`subscribersPatch`](docs/sdks/subscribers/README.md#patch) - Patch subscriber
 - [`subscribersPreferencesList`](docs/sdks/preferences/README.md#list) - Get subscriber preferences
 - [`subscribersPreferencesRetrieveByLevel`](docs/sdks/preferences/README.md#retrievebylevel) - Get subscriber preferences by level
 - [`subscribersPreferencesUpdate`](docs/sdks/preferences/README.md#update) - Update subscriber preference
 - [`subscribersPreferencesUpdateGlobal`](docs/sdks/preferences/README.md#updateglobal) - Update subscriber global preferences
 - [`subscribersPropertiesUpdateOnlineFlag`](docs/sdks/properties/README.md#updateonlineflag) - Update subscriber online status
 - [`subscribersRetrieve`](docs/sdks/subscribers/README.md#retrieve) - Get subscriber
+- [`subscribersRetrieveLegacy`](docs/sdks/subscribers/README.md#retrievelegacy) - Get subscriber
+- [`subscribersSearch`](docs/sdks/subscribers/README.md#search) - Search for subscribers
 - [`subscribersUpdate`](docs/sdks/subscribers/README.md#update) - Update subscriber
-- [`supportControllerFetchUserOrganizations`](docs/sdks/novu/README.md#supportcontrollerfetchuserorganizations)
 - [`topicsCreate`](docs/sdks/topics/README.md#create) - Topic creation
 - [`topicsDelete`](docs/sdks/topics/README.md#delete) - Delete topic
 - [`topicsList`](docs/sdks/topics/README.md#list) - Get topic list filtered 
@@ -419,6 +418,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`trigger`](docs/sdks/novu/README.md#trigger) - Trigger event
 - [`triggerBroadcast`](docs/sdks/novu/README.md#triggerbroadcast) - Broadcast event to all
 - [`triggerBulk`](docs/sdks/novu/README.md#triggerbulk) - Bulk trigger event
+- ~~[`subscribersDeleteLegacy`](docs/sdks/subscribers/README.md#deletelegacy)~~ - Delete subscriber :warning: **Deprecated**
 
 </details>
 <!-- End Standalone functions [standalone-funcs] -->
@@ -439,7 +439,7 @@ Here's an example of one such pagination call:
 import { Novu } from "@novu/api";
 
 const novu = new Novu({
-  apiKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -463,8 +463,8 @@ Some methods specify known errors which can be thrown. All the known errors are 
 
 | Error Type                | Status Code                            | Content Type     |
 | ------------------------- | -------------------------------------- | ---------------- |
-| errors.ErrorDto           | 400, 401, 403, 404, 405, 409, 413, 415 | application/json |
 | errors.ErrorDto           | 414                                    | application/json |
+| errors.ErrorDto           | 400, 401, 403, 404, 405, 409, 413, 415 | application/json |
 | errors.ValidationErrorDto | 422                                    | application/json |
 | errors.ErrorDto           | 500                                    | application/json |
 | errors.SDKError           | 4XX, 5XX                               | \*/\*            |
@@ -480,21 +480,20 @@ import {
 } from "@novu/api/models/errors";
 
 const novu = new Novu({
-  apiKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   let result;
   try {
     result = await novu.trigger({
-      name: "workflow_identifier",
+      workflowId: "workflow_identifier",
       payload: {
         "comment_id": "string",
         "post": {
           "text": "string",
         },
       },
-      bridgeUrl: "https://example.com/bridge",
       overrides: {
         "fcm": {
           "data": {
@@ -583,19 +582,18 @@ import { Novu } from "@novu/api";
 
 const novu = new Novu({
   serverIdx: 1,
-  apiKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const result = await novu.trigger({
-    name: "workflow_identifier",
+    workflowId: "workflow_identifier",
     payload: {
       "comment_id": "string",
       "post": {
         "text": "string",
       },
     },
-    bridgeUrl: "https://example.com/bridge",
     overrides: {
       "fcm": {
         "data": {
@@ -624,19 +622,18 @@ import { Novu } from "@novu/api";
 
 const novu = new Novu({
   serverURL: "https://api.novu.co",
-  apiKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const result = await novu.trigger({
-    name: "workflow_identifier",
+    workflowId: "workflow_identifier",
     payload: {
       "comment_id": "string",
       "post": {
         "text": "string",
       },
     },
-    bridgeUrl: "https://example.com/bridge",
     overrides: {
       "fcm": {
         "data": {
@@ -714,28 +711,27 @@ const sdk = new Novu({ httpClient });
 
 This SDK supports the following security scheme globally:
 
-| Name     | Type   | Scheme  |
-| -------- | ------ | ------- |
-| `apiKey` | apiKey | API key |
+| Name        | Type   | Scheme  |
+| ----------- | ------ | ------- |
+| `secretKey` | apiKey | API key |
 
-To authenticate with the API the `apiKey` parameter must be set when initializing the SDK client instance. For example:
+To authenticate with the API the `secretKey` parameter must be set when initializing the SDK client instance. For example:
 ```typescript
 import { Novu } from "@novu/api";
 
 const novu = new Novu({
-  apiKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const result = await novu.trigger({
-    name: "workflow_identifier",
+    workflowId: "workflow_identifier",
     payload: {
       "comment_id": "string",
       "post": {
         "text": "string",
       },
     },
-    bridgeUrl: "https://example.com/bridge",
     overrides: {
       "fcm": {
         "data": {
@@ -767,19 +763,18 @@ To change the default retry strategy for a single API call, simply provide a ret
 import { Novu } from "@novu/api";
 
 const novu = new Novu({
-  apiKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const result = await novu.trigger({
-    name: "workflow_identifier",
+    workflowId: "workflow_identifier",
     payload: {
       "comment_id": "string",
       "post": {
         "text": "string",
       },
     },
-    bridgeUrl: "https://example.com/bridge",
     overrides: {
       "fcm": {
         "data": {
@@ -826,19 +821,18 @@ const novu = new Novu({
     },
     retryConnectionErrors: false,
   },
-  apiKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const result = await novu.trigger({
-    name: "workflow_identifier",
+    workflowId: "workflow_identifier",
     payload: {
       "comment_id": "string",
       "post": {
         "text": "string",
       },
     },
-    bridgeUrl: "https://example.com/bridge",
     overrides: {
       "fcm": {
         "data": {

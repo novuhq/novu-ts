@@ -19,7 +19,7 @@ Subscriber credentials associated to the delivery methods such as slack and push
 import { Novu } from "@novu/api";
 
 const novu = new Novu({
-  apiKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -59,7 +59,7 @@ import { subscribersCredentialsUpdate } from "@novu/api/funcs/subscribersCredent
 // Use `NovuCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const novu = new NovuCore({
-  apiKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -107,14 +107,14 @@ run();
 
 ### Response
 
-**Promise\<[operations.SubscribersControllerUpdateSubscriberChannelResponse](../../models/operations/subscriberscontrollerupdatesubscriberchannelresponse.md)\>**
+**Promise\<[operations.SubscribersV1ControllerUpdateSubscriberChannelResponse](../../models/operations/subscribersv1controllerupdatesubscriberchannelresponse.md)\>**
 
 ### Errors
 
 | Error Type                             | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| errors.ErrorDto                        | 400, 401, 403, 404, 405, 409, 413, 415 | application/json                       |
 | errors.ErrorDto                        | 414                                    | application/json                       |
+| errors.ErrorDto                        | 400, 401, 403, 404, 405, 409, 413, 415 | application/json                       |
 | errors.ValidationErrorDto              | 422                                    | application/json                       |
 | errors.ErrorDto                        | 500                                    | application/json                       |
 | errors.SDKError                        | 4XX, 5XX                               | \*/\*                                  |
@@ -130,7 +130,7 @@ Subscriber credentials associated to the delivery methods such as slack and push
 import { Novu } from "@novu/api";
 
 const novu = new Novu({
-  apiKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -170,7 +170,7 @@ import { subscribersCredentialsAppend } from "@novu/api/funcs/subscribersCredent
 // Use `NovuCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const novu = new NovuCore({
-  apiKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -218,14 +218,14 @@ run();
 
 ### Response
 
-**Promise\<[operations.SubscribersControllerModifySubscriberChannelResponse](../../models/operations/subscriberscontrollermodifysubscriberchannelresponse.md)\>**
+**Promise\<[operations.SubscribersV1ControllerModifySubscriberChannelResponse](../../models/operations/subscribersv1controllermodifysubscriberchannelresponse.md)\>**
 
 ### Errors
 
 | Error Type                             | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| errors.ErrorDto                        | 400, 401, 403, 404, 405, 409, 413, 415 | application/json                       |
 | errors.ErrorDto                        | 414                                    | application/json                       |
+| errors.ErrorDto                        | 400, 401, 403, 404, 405, 409, 413, 415 | application/json                       |
 | errors.ValidationErrorDto              | 422                                    | application/json                       |
 | errors.ErrorDto                        | 500                                    | application/json                       |
 | errors.SDKError                        | 4XX, 5XX                               | \*/\*                                  |
@@ -240,7 +240,7 @@ Delete subscriber credentials such as slack and expo tokens.
 import { Novu } from "@novu/api";
 
 const novu = new Novu({
-  apiKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -264,7 +264,7 @@ import { subscribersCredentialsDelete } from "@novu/api/funcs/subscribersCredent
 // Use `NovuCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const novu = new NovuCore({
-  apiKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -296,14 +296,14 @@ run();
 
 ### Response
 
-**Promise\<[operations.SubscribersControllerDeleteSubscriberCredentialsResponse](../../models/operations/subscriberscontrollerdeletesubscribercredentialsresponse.md)\>**
+**Promise\<[operations.SubscribersV1ControllerDeleteSubscriberCredentialsResponse](../../models/operations/subscribersv1controllerdeletesubscribercredentialsresponse.md)\>**
 
 ### Errors
 
 | Error Type                             | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| errors.ErrorDto                        | 400, 401, 403, 404, 405, 409, 413, 415 | application/json                       |
 | errors.ErrorDto                        | 414                                    | application/json                       |
+| errors.ErrorDto                        | 400, 401, 403, 404, 405, 409, 413, 415 | application/json                       |
 | errors.ValidationErrorDto              | 422                                    | application/json                       |
 | errors.ErrorDto                        | 500                                    | application/json                       |
 | errors.SDKError                        | 4XX, 5XX                               | \*/\*                                  |

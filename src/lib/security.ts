@@ -236,7 +236,7 @@ export function resolveGlobalSecurity(
       {
         fieldName: "Authorization",
         type: "apiKey:header",
-        value: security?.apiKey,
+        value: security?.secretKey,
       },
     ],
   );

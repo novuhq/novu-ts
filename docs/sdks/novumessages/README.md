@@ -19,7 +19,7 @@ Mark a subscriber messages as seen, read, unseen or unread
 import { Novu } from "@novu/api";
 
 const novu = new Novu({
-  apiKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -46,7 +46,7 @@ import { subscribersMessagesMarkAllAs } from "@novu/api/funcs/subscribersMessage
 // Use `NovuCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const novu = new NovuCore({
-  apiKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -81,14 +81,14 @@ run();
 
 ### Response
 
-**Promise\<[operations.SubscribersControllerMarkMessagesAsResponse](../../models/operations/subscriberscontrollermarkmessagesasresponse.md)\>**
+**Promise\<[operations.SubscribersV1ControllerMarkMessagesAsResponse](../../models/operations/subscribersv1controllermarkmessagesasresponse.md)\>**
 
 ### Errors
 
 | Error Type                             | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| errors.ErrorDto                        | 400, 401, 403, 404, 405, 409, 413, 415 | application/json                       |
 | errors.ErrorDto                        | 414                                    | application/json                       |
+| errors.ErrorDto                        | 400, 401, 403, 404, 405, 409, 413, 415 | application/json                       |
 | errors.ValidationErrorDto              | 422                                    | application/json                       |
 | errors.ErrorDto                        | 500                                    | application/json                       |
 | errors.SDKError                        | 4XX, 5XX                               | \*/\*                                  |
@@ -103,7 +103,7 @@ Marks all the subscriber messages as read, unread, seen or unseen. Optionally yo
 import { Novu } from "@novu/api";
 
 const novu = new Novu({
-  apiKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -129,7 +129,7 @@ import { subscribersMessagesMarkAll } from "@novu/api/funcs/subscribersMessagesM
 // Use `NovuCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const novu = new NovuCore({
-  apiKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -163,14 +163,14 @@ run();
 
 ### Response
 
-**Promise\<[operations.SubscribersControllerMarkAllUnreadAsReadResponse](../../models/operations/subscriberscontrollermarkallunreadasreadresponse.md)\>**
+**Promise\<[operations.SubscribersV1ControllerMarkAllUnreadAsReadResponse](../../models/operations/subscribersv1controllermarkallunreadasreadresponse.md)\>**
 
 ### Errors
 
 | Error Type                             | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| errors.ErrorDto                        | 400, 401, 403, 404, 405, 409, 413, 415 | application/json                       |
 | errors.ErrorDto                        | 414                                    | application/json                       |
+| errors.ErrorDto                        | 400, 401, 403, 404, 405, 409, 413, 415 | application/json                       |
 | errors.ValidationErrorDto              | 422                                    | application/json                       |
 | errors.ErrorDto                        | 500                                    | application/json                       |
 | errors.SDKError                        | 4XX, 5XX                               | \*/\*                                  |
@@ -185,7 +185,7 @@ Mark message action as seen
 import { Novu } from "@novu/api";
 
 const novu = new Novu({
-  apiKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -216,7 +216,7 @@ import { subscribersMessagesUpdateAsSeen } from "@novu/api/funcs/subscribersMess
 // Use `NovuCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const novu = new NovuCore({
-  apiKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -246,21 +246,21 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.SubscribersControllerMarkActionAsSeenRequest](../../models/operations/subscriberscontrollermarkactionasseenrequest.md)                                             | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [operations.SubscribersV1ControllerMarkActionAsSeenRequest](../../models/operations/subscribersv1controllermarkactionasseenrequest.md)                                         | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 ### Response
 
-**Promise\<[operations.SubscribersControllerMarkActionAsSeenResponse](../../models/operations/subscriberscontrollermarkactionasseenresponse.md)\>**
+**Promise\<[operations.SubscribersV1ControllerMarkActionAsSeenResponse](../../models/operations/subscribersv1controllermarkactionasseenresponse.md)\>**
 
 ### Errors
 
 | Error Type                             | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| errors.ErrorDto                        | 400, 401, 403, 404, 405, 409, 413, 415 | application/json                       |
 | errors.ErrorDto                        | 414                                    | application/json                       |
+| errors.ErrorDto                        | 400, 401, 403, 404, 405, 409, 413, 415 | application/json                       |
 | errors.ValidationErrorDto              | 422                                    | application/json                       |
 | errors.ErrorDto                        | 500                                    | application/json                       |
 | errors.SDKError                        | 4XX, 5XX                               | \*/\*                                  |

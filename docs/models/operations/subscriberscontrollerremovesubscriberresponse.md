@@ -12,8 +12,8 @@ let value: SubscribersControllerRemoveSubscriberResponse = {
     ],
   },
   result: {
-    acknowledged: false,
-    status: "deleted",
+    acknowledged: true,
+    status: "success",
   },
 };
 ```
@@ -23,4 +23,4 @@ let value: SubscribersControllerRemoveSubscriberResponse = {
 | Field                                                                                            | Type                                                                                             | Required                                                                                         | Description                                                                                      |
 | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
 | `headers`                                                                                        | Record<string, *string*[]>                                                                       | :heavy_check_mark:                                                                               | N/A                                                                                              |
-| `result`                                                                                         | [components.DeleteSubscriberResponseDto](../../models/components/deletesubscriberresponsedto.md) | :heavy_check_mark:                                                                               | N/A                                                                                              |
+| `result`                                                                                         | [components.RemoveSubscriberResponseDto](../../models/components/removesubscriberresponsedto.md) | :heavy_check_mark:                                                                               | N/A                                                                                              |

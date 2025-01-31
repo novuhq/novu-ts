@@ -37,7 +37,7 @@ export async function subscribersCreate(
   options?: RequestOptions,
 ): Promise<
   Result<
-    operations.SubscribersControllerCreateSubscriberResponse,
+    operations.SubscribersV1ControllerCreateSubscriberResponse,
     | errors.ErrorDto
     | errors.ErrorDto
     | errors.ValidationErrorDto
@@ -51,7 +51,7 @@ export async function subscribersCreate(
     | ConnectionError
   >
 > {
-  const input: operations.SubscribersControllerCreateSubscriberRequest = {
+  const input: operations.SubscribersV1ControllerCreateSubscriberRequest = {
     createSubscriberRequestDto: createSubscriberRequestDto,
     idempotencyKey: idempotencyKey,
   };
@@ -59,7 +59,7 @@ export async function subscribersCreate(
   const parsed = safeParse(
     input,
     (value) =>
-      operations.SubscribersControllerCreateSubscriberRequest$outboundSchema
+      operations.SubscribersV1ControllerCreateSubscriberRequest$outboundSchema
         .parse(value),
     "Input validation failed",
   );
@@ -83,17 +83,17 @@ export async function subscribersCreate(
     ),
   }));
 
-  const secConfig = await extractSecurity(client._options.apiKey);
-  const securityInput = secConfig == null ? {} : { apiKey: secConfig };
+  const secConfig = await extractSecurity(client._options.secretKey);
+  const securityInput = secConfig == null ? {} : { secretKey: secConfig };
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
-    operationID: "SubscribersController_createSubscriber",
+    operationID: "SubscribersV1Controller_createSubscriber",
     oAuth2Scopes: [],
 
     resolvedSecurity: requestSecurity,
 
-    securitySource: client._options.apiKey,
+    securitySource: client._options.secretKey,
     retryConfig: options?.retries
       || client._options.retryConfig
       || {
@@ -156,7 +156,7 @@ export async function subscribersCreate(
   };
 
   const [result] = await M.match<
-    operations.SubscribersControllerCreateSubscriberResponse,
+    operations.SubscribersV1ControllerCreateSubscriberResponse,
     | errors.ErrorDto
     | errors.ErrorDto
     | errors.ValidationErrorDto
@@ -171,15 +171,15 @@ export async function subscribersCreate(
   >(
     M.json(
       201,
-      operations.SubscribersControllerCreateSubscriberResponse$inboundSchema,
+      operations.SubscribersV1ControllerCreateSubscriberResponse$inboundSchema,
       { hdrs: true, key: "Result" },
     ),
+    M.jsonErr(414, errors.ErrorDto$inboundSchema),
     M.jsonErr(
       [400, 401, 403, 404, 405, 409, 413, 415],
       errors.ErrorDto$inboundSchema,
       { hdrs: true },
     ),
-    M.jsonErr(414, errors.ErrorDto$inboundSchema),
     M.jsonErr(422, errors.ValidationErrorDto$inboundSchema, { hdrs: true }),
     M.fail(429),
     M.jsonErr(500, errors.ErrorDto$inboundSchema, { hdrs: true }),

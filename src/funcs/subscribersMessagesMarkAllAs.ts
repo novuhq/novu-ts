@@ -35,7 +35,7 @@ export async function subscribersMessagesMarkAllAs(
   options?: RequestOptions,
 ): Promise<
   Result<
-    operations.SubscribersControllerMarkMessagesAsResponse,
+    operations.SubscribersV1ControllerMarkMessagesAsResponse,
     | errors.ErrorDto
     | errors.ErrorDto
     | errors.ValidationErrorDto
@@ -49,7 +49,7 @@ export async function subscribersMessagesMarkAllAs(
     | ConnectionError
   >
 > {
-  const input: operations.SubscribersControllerMarkMessagesAsRequest = {
+  const input: operations.SubscribersV1ControllerMarkMessagesAsRequest = {
     messageMarkAsRequestDto: messageMarkAsRequestDto,
     subscriberId: subscriberId,
     idempotencyKey: idempotencyKey,
@@ -58,7 +58,7 @@ export async function subscribersMessagesMarkAllAs(
   const parsed = safeParse(
     input,
     (value) =>
-      operations.SubscribersControllerMarkMessagesAsRequest$outboundSchema
+      operations.SubscribersV1ControllerMarkMessagesAsRequest$outboundSchema
         .parse(value),
     "Input validation failed",
   );
@@ -91,17 +91,17 @@ export async function subscribersMessagesMarkAllAs(
     ),
   }));
 
-  const secConfig = await extractSecurity(client._options.apiKey);
-  const securityInput = secConfig == null ? {} : { apiKey: secConfig };
+  const secConfig = await extractSecurity(client._options.secretKey);
+  const securityInput = secConfig == null ? {} : { secretKey: secConfig };
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
-    operationID: "SubscribersController_markMessagesAs",
+    operationID: "SubscribersV1Controller_markMessagesAs",
     oAuth2Scopes: [],
 
     resolvedSecurity: requestSecurity,
 
-    securitySource: client._options.apiKey,
+    securitySource: client._options.secretKey,
     retryConfig: options?.retries
       || client._options.retryConfig
       || {
@@ -164,7 +164,7 @@ export async function subscribersMessagesMarkAllAs(
   };
 
   const [result] = await M.match<
-    operations.SubscribersControllerMarkMessagesAsResponse,
+    operations.SubscribersV1ControllerMarkMessagesAsResponse,
     | errors.ErrorDto
     | errors.ErrorDto
     | errors.ValidationErrorDto
@@ -179,15 +179,15 @@ export async function subscribersMessagesMarkAllAs(
   >(
     M.json(
       201,
-      operations.SubscribersControllerMarkMessagesAsResponse$inboundSchema,
+      operations.SubscribersV1ControllerMarkMessagesAsResponse$inboundSchema,
       { hdrs: true, key: "Result" },
     ),
+    M.jsonErr(414, errors.ErrorDto$inboundSchema),
     M.jsonErr(
       [400, 401, 403, 404, 405, 409, 413, 415],
       errors.ErrorDto$inboundSchema,
       { hdrs: true },
     ),
-    M.jsonErr(414, errors.ErrorDto$inboundSchema),
     M.jsonErr(422, errors.ValidationErrorDto$inboundSchema, { hdrs: true }),
     M.fail(429),
     M.jsonErr(500, errors.ErrorDto$inboundSchema, { hdrs: true }),

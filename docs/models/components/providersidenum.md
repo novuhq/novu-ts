@@ -7,7 +7,7 @@ Provider ID of the job
 ```typescript
 import { ProvidersIdEnum } from "@novu/api/models/components";
 
-let value: ProvidersIdEnum = "getstream";
+let value: ProvidersIdEnum = "braze";
 ```
 
 ## Values

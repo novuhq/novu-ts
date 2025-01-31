@@ -19,7 +19,7 @@ export type SubscribersControllerRemoveSubscriberRequest = {
 
 export type SubscribersControllerRemoveSubscriberResponse = {
   headers: { [k: string]: Array<string> };
-  result: components.DeleteSubscriberResponseDto;
+  result: components.RemoveSubscriberResponseDto;
 };
 
 /** @internal */
@@ -108,7 +108,7 @@ export const SubscribersControllerRemoveSubscriberResponse$inboundSchema:
     unknown
   > = z.object({
     Headers: z.record(z.array(z.string())),
-    Result: components.DeleteSubscriberResponseDto$inboundSchema,
+    Result: components.RemoveSubscriberResponseDto$inboundSchema,
   }).transform((v) => {
     return remap$(v, {
       "Headers": "headers",
@@ -119,7 +119,7 @@ export const SubscribersControllerRemoveSubscriberResponse$inboundSchema:
 /** @internal */
 export type SubscribersControllerRemoveSubscriberResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
-  Result: components.DeleteSubscriberResponseDto$Outbound;
+  Result: components.RemoveSubscriberResponseDto$Outbound;
 };
 
 /** @internal */
@@ -130,7 +130,7 @@ export const SubscribersControllerRemoveSubscriberResponse$outboundSchema:
     SubscribersControllerRemoveSubscriberResponse
   > = z.object({
     headers: z.record(z.array(z.string())),
-    result: components.DeleteSubscriberResponseDto$outboundSchema,
+    result: components.RemoveSubscriberResponseDto$outboundSchema,
   }).transform((v) => {
     return remap$(v, {
       headers: "Headers",

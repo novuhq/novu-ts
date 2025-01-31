@@ -45,7 +45,7 @@ export async function subscribersList(
 ): Promise<
   PageIterator<
     Result<
-      operations.SubscribersControllerListSubscribersResponse,
+      operations.SubscribersV1ControllerListSubscribersResponse,
       | errors.ErrorDto
       | errors.ErrorDto
       | errors.ValidationErrorDto
@@ -61,7 +61,7 @@ export async function subscribersList(
     { page: number }
   >
 > {
-  const input: operations.SubscribersControllerListSubscribersRequest = {
+  const input: operations.SubscribersV1ControllerListSubscribersRequest = {
     page: page,
     limit: limit,
     idempotencyKey: idempotencyKey,
@@ -70,7 +70,7 @@ export async function subscribersList(
   const parsed = safeParse(
     input,
     (value) =>
-      operations.SubscribersControllerListSubscribersRequest$outboundSchema
+      operations.SubscribersV1ControllerListSubscribersRequest$outboundSchema
         .parse(value),
     "Input validation failed",
   );
@@ -96,17 +96,17 @@ export async function subscribersList(
     ),
   }));
 
-  const secConfig = await extractSecurity(client._options.apiKey);
-  const securityInput = secConfig == null ? {} : { apiKey: secConfig };
+  const secConfig = await extractSecurity(client._options.secretKey);
+  const securityInput = secConfig == null ? {} : { secretKey: secConfig };
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
-    operationID: "SubscribersController_listSubscribers",
+    operationID: "SubscribersV1Controller_listSubscribers",
     oAuth2Scopes: [],
 
     resolvedSecurity: requestSecurity,
 
-    securitySource: client._options.apiKey,
+    securitySource: client._options.secretKey,
     retryConfig: options?.retries
       || client._options.retryConfig
       || {
@@ -170,7 +170,7 @@ export async function subscribersList(
   };
 
   const [result, raw] = await M.match<
-    operations.SubscribersControllerListSubscribersResponse,
+    operations.SubscribersV1ControllerListSubscribersResponse,
     | errors.ErrorDto
     | errors.ErrorDto
     | errors.ValidationErrorDto
@@ -185,15 +185,15 @@ export async function subscribersList(
   >(
     M.json(
       200,
-      operations.SubscribersControllerListSubscribersResponse$inboundSchema,
+      operations.SubscribersV1ControllerListSubscribersResponse$inboundSchema,
       { hdrs: true, key: "Result" },
     ),
+    M.jsonErr(414, errors.ErrorDto$inboundSchema),
     M.jsonErr(
       [400, 401, 403, 404, 405, 409, 413, 415],
       errors.ErrorDto$inboundSchema,
       { hdrs: true },
     ),
-    M.jsonErr(414, errors.ErrorDto$inboundSchema),
     M.jsonErr(422, errors.ValidationErrorDto$inboundSchema, { hdrs: true }),
     M.fail(429),
     M.jsonErr(500, errors.ErrorDto$inboundSchema, { hdrs: true }),
@@ -210,7 +210,7 @@ export async function subscribersList(
   ): {
     next: Paginator<
       Result<
-        operations.SubscribersControllerListSubscribersResponse,
+        operations.SubscribersV1ControllerListSubscribersResponse,
         | errors.ErrorDto
         | errors.ErrorDto
         | errors.ValidationErrorDto

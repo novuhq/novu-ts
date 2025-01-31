@@ -33,13 +33,13 @@ export enum ChatAccessOauthCallBackAcceptEnum {
  */
 export async function subscribersAuthenticationChatAccessOauthCallBack(
   client: NovuCore,
-  request: operations.SubscribersControllerChatOauthCallbackRequest,
+  request: operations.SubscribersV1ControllerChatOauthCallbackRequest,
   options?: RequestOptions & {
     acceptHeaderOverride?: ChatAccessOauthCallBackAcceptEnum;
   },
 ): Promise<
   Result<
-    operations.SubscribersControllerChatOauthCallbackResponse,
+    operations.SubscribersV1ControllerChatOauthCallbackResponse,
     | errors.ErrorDto
     | errors.ErrorDto
     | errors.ValidationErrorDto
@@ -56,7 +56,7 @@ export async function subscribersAuthenticationChatAccessOauthCallBack(
   const parsed = safeParse(
     request,
     (value) =>
-      operations.SubscribersControllerChatOauthCallbackRequest$outboundSchema
+      operations.SubscribersV1ControllerChatOauthCallbackRequest$outboundSchema
         .parse(value),
     "Input validation failed",
   );
@@ -98,17 +98,17 @@ export async function subscribersAuthenticationChatAccessOauthCallBack(
     ),
   }));
 
-  const secConfig = await extractSecurity(client._options.apiKey);
-  const securityInput = secConfig == null ? {} : { apiKey: secConfig };
+  const secConfig = await extractSecurity(client._options.secretKey);
+  const securityInput = secConfig == null ? {} : { secretKey: secConfig };
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
-    operationID: "SubscribersController_chatOauthCallback",
+    operationID: "SubscribersV1Controller_chatOauthCallback",
     oAuth2Scopes: [],
 
     resolvedSecurity: requestSecurity,
 
-    securitySource: client._options.apiKey,
+    securitySource: client._options.secretKey,
     retryConfig: options?.retries
       || client._options.retryConfig
       || {
@@ -172,7 +172,7 @@ export async function subscribersAuthenticationChatAccessOauthCallBack(
   };
 
   const [result] = await M.match<
-    operations.SubscribersControllerChatOauthCallbackResponse,
+    operations.SubscribersV1ControllerChatOauthCallbackResponse,
     | errors.ErrorDto
     | errors.ErrorDto
     | errors.ValidationErrorDto
@@ -187,20 +187,20 @@ export async function subscribersAuthenticationChatAccessOauthCallBack(
   >(
     M.text(
       200,
-      operations.SubscribersControllerChatOauthCallbackResponse$inboundSchema,
+      operations.SubscribersV1ControllerChatOauthCallbackResponse$inboundSchema,
       { ctype: "text/html", hdrs: true, key: "Result" },
     ),
     M.json(
       302,
-      operations.SubscribersControllerChatOauthCallbackResponse$inboundSchema,
+      operations.SubscribersV1ControllerChatOauthCallbackResponse$inboundSchema,
       { hdrs: true, key: "Result" },
     ),
+    M.jsonErr(414, errors.ErrorDto$inboundSchema),
     M.jsonErr(
       [400, 401, 403, 404, 405, 409, 413, 415],
       errors.ErrorDto$inboundSchema,
       { hdrs: true },
     ),
-    M.jsonErr(414, errors.ErrorDto$inboundSchema),
     M.jsonErr(422, errors.ValidationErrorDto$inboundSchema, { hdrs: true }),
     M.fail(429),
     M.jsonErr(500, errors.ErrorDto$inboundSchema, { hdrs: true }),

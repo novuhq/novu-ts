@@ -28,11 +28,11 @@ import { Result } from "../types/fp.js";
  */
 export async function subscribersNotificationsFeed(
   client: NovuCore,
-  request: operations.SubscribersControllerGetNotificationsFeedRequest,
+  request: operations.SubscribersV1ControllerGetNotificationsFeedRequest,
   options?: RequestOptions,
 ): Promise<
   Result<
-    operations.SubscribersControllerGetNotificationsFeedResponse,
+    operations.SubscribersV1ControllerGetNotificationsFeedResponse,
     | errors.ErrorDto
     | errors.ErrorDto
     | errors.ValidationErrorDto
@@ -49,7 +49,8 @@ export async function subscribersNotificationsFeed(
   const parsed = safeParse(
     request,
     (value) =>
-      operations.SubscribersControllerGetNotificationsFeedRequest$outboundSchema
+      operations
+        .SubscribersV1ControllerGetNotificationsFeedRequest$outboundSchema
         .parse(value),
     "Input validation failed",
   );
@@ -87,17 +88,17 @@ export async function subscribersNotificationsFeed(
     ),
   }));
 
-  const secConfig = await extractSecurity(client._options.apiKey);
-  const securityInput = secConfig == null ? {} : { apiKey: secConfig };
+  const secConfig = await extractSecurity(client._options.secretKey);
+  const securityInput = secConfig == null ? {} : { secretKey: secConfig };
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
-    operationID: "SubscribersController_getNotificationsFeed",
+    operationID: "SubscribersV1Controller_getNotificationsFeed",
     oAuth2Scopes: [],
 
     resolvedSecurity: requestSecurity,
 
-    securitySource: client._options.apiKey,
+    securitySource: client._options.secretKey,
     retryConfig: options?.retries
       || client._options.retryConfig
       || {
@@ -161,7 +162,7 @@ export async function subscribersNotificationsFeed(
   };
 
   const [result] = await M.match<
-    operations.SubscribersControllerGetNotificationsFeedResponse,
+    operations.SubscribersV1ControllerGetNotificationsFeedResponse,
     | errors.ErrorDto
     | errors.ErrorDto
     | errors.ValidationErrorDto
@@ -177,15 +178,15 @@ export async function subscribersNotificationsFeed(
     M.json(
       200,
       operations
-        .SubscribersControllerGetNotificationsFeedResponse$inboundSchema,
+        .SubscribersV1ControllerGetNotificationsFeedResponse$inboundSchema,
       { hdrs: true, key: "Result" },
     ),
+    M.jsonErr(414, errors.ErrorDto$inboundSchema),
     M.jsonErr(
       [400, 401, 403, 404, 405, 409, 413, 415],
       errors.ErrorDto$inboundSchema,
       { hdrs: true },
     ),
-    M.jsonErr(414, errors.ErrorDto$inboundSchema),
     M.jsonErr(422, errors.ValidationErrorDto$inboundSchema, { hdrs: true }),
     M.fail(429),
     M.jsonErr(500, errors.ErrorDto$inboundSchema, { hdrs: true }),

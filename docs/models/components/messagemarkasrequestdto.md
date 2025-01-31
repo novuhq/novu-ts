@@ -6,8 +6,10 @@
 import { MessageMarkAsRequestDto } from "@novu/api/models/components";
 
 let value: MessageMarkAsRequestDto = {
-  messageId: "<id>",
-  markAs: "seen",
+  messageId: [
+    "<id>",
+  ],
+  markAs: "read",
 };
 ```
 

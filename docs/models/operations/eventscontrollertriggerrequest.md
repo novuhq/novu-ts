@@ -7,14 +7,13 @@ import { EventsControllerTriggerRequest } from "@novu/api/models/operations";
 
 let value: EventsControllerTriggerRequest = {
   triggerEventRequestDto: {
-    name: "workflow_identifier",
+    workflowId: "workflow_identifier",
     payload: {
       "comment_id": "string",
       "post": {
         "text": "string",
       },
     },
-    bridgeUrl: "https://example.com/bridge",
     overrides: {
       "fcm": {
         "data": {

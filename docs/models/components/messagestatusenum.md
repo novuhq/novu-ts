@@ -7,7 +7,7 @@ Status of the message
 ```typescript
 import { MessageStatusEnum } from "@novu/api/models/components";
 
-let value: MessageStatusEnum = "sent";
+let value: MessageStatusEnum = "error";
 ```
 
 ## Values

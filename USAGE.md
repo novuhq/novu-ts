@@ -5,19 +5,18 @@
 import { Novu } from "@novu/api";
 
 const novu = new Novu({
-  apiKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const result = await novu.trigger({
-    name: "workflow_identifier",
+    workflowId: "workflow_identifier",
     payload: {
       "comment_id": "string",
       "post": {
         "text": "string",
       },
     },
-    bridgeUrl: "https://example.com/bridge",
     overrides: {
       "fcm": {
         "data": {
@@ -44,21 +43,20 @@ run();
 import { Novu } from "@novu/api";
 
 const novu = new Novu({
-  apiKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const result = await novu.triggerBulk({
     events: [
       {
-        name: "workflow_identifier",
+        workflowId: "workflow_identifier",
         payload: {
           "comment_id": "string",
           "post": {
             "text": "string",
           },
         },
-        bridgeUrl: "https://example.com/bridge",
         overrides: {
           "fcm": {
             "data": {
@@ -71,14 +69,13 @@ async function run() {
         },
       },
       {
-        name: "workflow_identifier",
+        workflowId: "workflow_identifier",
         payload: {
           "comment_id": "string",
           "post": {
             "text": "string",
           },
         },
-        bridgeUrl: "https://example.com/bridge",
         overrides: {
           "fcm": {
             "data": {
@@ -94,14 +91,13 @@ async function run() {
         ],
       },
       {
-        name: "workflow_identifier",
+        workflowId: "workflow_identifier",
         payload: {
           "comment_id": "string",
           "post": {
             "text": "string",
           },
         },
-        bridgeUrl: "https://example.com/bridge",
         overrides: {
           "fcm": {
             "data": {
@@ -131,7 +127,7 @@ run();
 import { Novu } from "@novu/api";
 
 const novu = new Novu({
-  apiKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -159,7 +155,7 @@ run();
 import { Novu } from "@novu/api";
 
 const novu = new Novu({
-  apiKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {

@@ -28,11 +28,11 @@ import { Result } from "../types/fp.js";
  */
 export async function subscribersNotificationsUnseenCount(
   client: NovuCore,
-  request: operations.SubscribersControllerGetUnseenCountRequest,
+  request: operations.SubscribersV1ControllerGetUnseenCountRequest,
   options?: RequestOptions,
 ): Promise<
   Result<
-    operations.SubscribersControllerGetUnseenCountResponse,
+    operations.SubscribersV1ControllerGetUnseenCountResponse,
     | errors.ErrorDto
     | errors.ErrorDto
     | errors.ValidationErrorDto
@@ -49,7 +49,7 @@ export async function subscribersNotificationsUnseenCount(
   const parsed = safeParse(
     request,
     (value) =>
-      operations.SubscribersControllerGetUnseenCountRequest$outboundSchema
+      operations.SubscribersV1ControllerGetUnseenCountRequest$outboundSchema
         .parse(value),
     "Input validation failed",
   );
@@ -84,17 +84,17 @@ export async function subscribersNotificationsUnseenCount(
     ),
   }));
 
-  const secConfig = await extractSecurity(client._options.apiKey);
-  const securityInput = secConfig == null ? {} : { apiKey: secConfig };
+  const secConfig = await extractSecurity(client._options.secretKey);
+  const securityInput = secConfig == null ? {} : { secretKey: secConfig };
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
-    operationID: "SubscribersController_getUnseenCount",
+    operationID: "SubscribersV1Controller_getUnseenCount",
     oAuth2Scopes: [],
 
     resolvedSecurity: requestSecurity,
 
-    securitySource: client._options.apiKey,
+    securitySource: client._options.secretKey,
     retryConfig: options?.retries
       || client._options.retryConfig
       || {
@@ -158,7 +158,7 @@ export async function subscribersNotificationsUnseenCount(
   };
 
   const [result] = await M.match<
-    operations.SubscribersControllerGetUnseenCountResponse,
+    operations.SubscribersV1ControllerGetUnseenCountResponse,
     | errors.ErrorDto
     | errors.ErrorDto
     | errors.ValidationErrorDto
@@ -173,15 +173,15 @@ export async function subscribersNotificationsUnseenCount(
   >(
     M.json(
       200,
-      operations.SubscribersControllerGetUnseenCountResponse$inboundSchema,
+      operations.SubscribersV1ControllerGetUnseenCountResponse$inboundSchema,
       { hdrs: true, key: "Result" },
     ),
+    M.jsonErr(414, errors.ErrorDto$inboundSchema),
     M.jsonErr(
       [400, 401, 403, 404, 405, 409, 413, 415],
       errors.ErrorDto$inboundSchema,
       { hdrs: true },
     ),
-    M.jsonErr(414, errors.ErrorDto$inboundSchema),
     M.jsonErr(422, errors.ValidationErrorDto$inboundSchema, { hdrs: true }),
     M.fail(429),
     M.jsonErr(500, errors.ErrorDto$inboundSchema, { hdrs: true }),

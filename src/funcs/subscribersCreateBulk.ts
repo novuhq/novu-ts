@@ -39,7 +39,7 @@ export async function subscribersCreateBulk(
   options?: RequestOptions,
 ): Promise<
   Result<
-    operations.SubscribersControllerBulkCreateSubscribersResponse,
+    operations.SubscribersV1ControllerBulkCreateSubscribersResponse,
     | errors.ErrorDto
     | errors.ErrorDto
     | errors.ValidationErrorDto
@@ -53,18 +53,18 @@ export async function subscribersCreateBulk(
     | ConnectionError
   >
 > {
-  const input: operations.SubscribersControllerBulkCreateSubscribersRequest = {
-    bulkSubscriberCreateDto: bulkSubscriberCreateDto,
-    idempotencyKey: idempotencyKey,
-  };
+  const input: operations.SubscribersV1ControllerBulkCreateSubscribersRequest =
+    {
+      bulkSubscriberCreateDto: bulkSubscriberCreateDto,
+      idempotencyKey: idempotencyKey,
+    };
 
   const parsed = safeParse(
     input,
     (value) =>
       operations
-        .SubscribersControllerBulkCreateSubscribersRequest$outboundSchema.parse(
-          value,
-        ),
+        .SubscribersV1ControllerBulkCreateSubscribersRequest$outboundSchema
+        .parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
@@ -87,17 +87,17 @@ export async function subscribersCreateBulk(
     ),
   }));
 
-  const secConfig = await extractSecurity(client._options.apiKey);
-  const securityInput = secConfig == null ? {} : { apiKey: secConfig };
+  const secConfig = await extractSecurity(client._options.secretKey);
+  const securityInput = secConfig == null ? {} : { secretKey: secConfig };
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
-    operationID: "SubscribersController_bulkCreateSubscribers",
+    operationID: "SubscribersV1Controller_bulkCreateSubscribers",
     oAuth2Scopes: [],
 
     resolvedSecurity: requestSecurity,
 
-    securitySource: client._options.apiKey,
+    securitySource: client._options.secretKey,
     retryConfig: options?.retries
       || client._options.retryConfig
       || {
@@ -160,7 +160,7 @@ export async function subscribersCreateBulk(
   };
 
   const [result] = await M.match<
-    operations.SubscribersControllerBulkCreateSubscribersResponse,
+    operations.SubscribersV1ControllerBulkCreateSubscribersResponse,
     | errors.ErrorDto
     | errors.ErrorDto
     | errors.ValidationErrorDto
@@ -176,15 +176,15 @@ export async function subscribersCreateBulk(
     M.json(
       201,
       operations
-        .SubscribersControllerBulkCreateSubscribersResponse$inboundSchema,
+        .SubscribersV1ControllerBulkCreateSubscribersResponse$inboundSchema,
       { hdrs: true, key: "Result" },
     ),
+    M.jsonErr(414, errors.ErrorDto$inboundSchema),
     M.jsonErr(
       [400, 401, 403, 404, 405, 409, 413, 415],
       errors.ErrorDto$inboundSchema,
       { hdrs: true },
     ),
-    M.jsonErr(414, errors.ErrorDto$inboundSchema),
     M.jsonErr(422, errors.ValidationErrorDto$inboundSchema, { hdrs: true }),
     M.fail(429),
     M.jsonErr(500, errors.ErrorDto$inboundSchema, { hdrs: true }),

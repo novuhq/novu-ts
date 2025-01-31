@@ -75,7 +75,7 @@ export async function subscribersDelete(
     }),
   };
 
-  const path = pathToFunc("/v1/subscribers/{subscriberId}")(pathParams);
+  const path = pathToFunc("/v2/subscribers/{subscriberId}")(pathParams);
 
   const headers = new Headers(compactMap({
     Accept: "application/json",
@@ -86,8 +86,8 @@ export async function subscribersDelete(
     ),
   }));
 
-  const secConfig = await extractSecurity(client._options.apiKey);
-  const securityInput = secConfig == null ? {} : { apiKey: secConfig };
+  const secConfig = await extractSecurity(client._options.secretKey);
+  const securityInput = secConfig == null ? {} : { secretKey: secConfig };
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
@@ -96,7 +96,7 @@ export async function subscribersDelete(
 
     resolvedSecurity: requestSecurity,
 
-    securitySource: client._options.apiKey,
+    securitySource: client._options.secretKey,
     retryConfig: options?.retries
       || client._options.retryConfig
       || {
@@ -177,12 +177,12 @@ export async function subscribersDelete(
       operations.SubscribersControllerRemoveSubscriberResponse$inboundSchema,
       { hdrs: true, key: "Result" },
     ),
+    M.jsonErr(414, errors.ErrorDto$inboundSchema),
     M.jsonErr(
       [400, 401, 403, 404, 405, 409, 413, 415],
       errors.ErrorDto$inboundSchema,
       { hdrs: true },
     ),
-    M.jsonErr(414, errors.ErrorDto$inboundSchema),
     M.jsonErr(422, errors.ValidationErrorDto$inboundSchema, { hdrs: true }),
     M.fail(429),
     M.jsonErr(500, errors.ErrorDto$inboundSchema, { hdrs: true }),

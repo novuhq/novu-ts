@@ -9,14 +9,13 @@ let value: EventsControllerTriggerBulkRequest = {
   bulkTriggerEventDto: {
     events: [
       {
-        name: "workflow_identifier",
+        workflowId: "workflow_identifier",
         payload: {
           "comment_id": "string",
           "post": {
             "text": "string",
           },
         },
-        bridgeUrl: "https://example.com/bridge",
         overrides: {
           "fcm": {
             "data": {

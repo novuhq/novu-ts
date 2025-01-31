@@ -8,11 +8,11 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
-  ChannelSettings,
-  ChannelSettings$inboundSchema,
-  ChannelSettings$Outbound,
-  ChannelSettings$outboundSchema,
-} from "./channelsettings.js";
+  ChannelSettingsDto,
+  ChannelSettingsDto$inboundSchema,
+  ChannelSettingsDto$Outbound,
+  ChannelSettingsDto$outboundSchema,
+} from "./channelsettingsdto.js";
 
 export type SubscriberResponseDto = {
   /**
@@ -50,9 +50,11 @@ export type SubscriberResponseDto = {
   /**
    * An array of channel settings associated with the subscriber.
    */
-  channels?: Array<ChannelSettings> | undefined;
+  channels?: Array<ChannelSettingsDto> | undefined;
   /**
    * An array of topics that the subscriber is subscribed to.
+   *
+   * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
    */
   topics?: Array<string> | undefined;
   /**
@@ -87,6 +89,10 @@ export type SubscriberResponseDto = {
    * The version of the subscriber document.
    */
   v?: number | undefined;
+  /**
+   * Additional custom data for the subscriber
+   */
+  data?: { [k: string]: any } | null | undefined;
 };
 
 /** @internal */
@@ -103,7 +109,7 @@ export const SubscriberResponseDto$inboundSchema: z.ZodType<
   avatar: z.string().optional(),
   locale: z.string().optional(),
   subscriberId: z.string(),
-  channels: z.array(ChannelSettings$inboundSchema).optional(),
+  channels: z.array(ChannelSettingsDto$inboundSchema).optional(),
   topics: z.array(z.string()).optional(),
   isOnline: z.boolean().optional(),
   lastOnlineAt: z.string().optional(),
@@ -113,6 +119,7 @@ export const SubscriberResponseDto$inboundSchema: z.ZodType<
   createdAt: z.string(),
   updatedAt: z.string(),
   __v: z.number().optional(),
+  data: z.nullable(z.record(z.any())).optional(),
 }).transform((v) => {
   return remap$(v, {
     "_id": "id",
@@ -132,7 +139,7 @@ export type SubscriberResponseDto$Outbound = {
   avatar?: string | undefined;
   locale?: string | undefined;
   subscriberId: string;
-  channels?: Array<ChannelSettings$Outbound> | undefined;
+  channels?: Array<ChannelSettingsDto$Outbound> | undefined;
   topics?: Array<string> | undefined;
   isOnline?: boolean | undefined;
   lastOnlineAt?: string | undefined;
@@ -142,6 +149,7 @@ export type SubscriberResponseDto$Outbound = {
   createdAt: string;
   updatedAt: string;
   __v?: number | undefined;
+  data?: { [k: string]: any } | null | undefined;
 };
 
 /** @internal */
@@ -158,7 +166,7 @@ export const SubscriberResponseDto$outboundSchema: z.ZodType<
   avatar: z.string().optional(),
   locale: z.string().optional(),
   subscriberId: z.string(),
-  channels: z.array(ChannelSettings$outboundSchema).optional(),
+  channels: z.array(ChannelSettingsDto$outboundSchema).optional(),
   topics: z.array(z.string()).optional(),
   isOnline: z.boolean().optional(),
   lastOnlineAt: z.string().optional(),
@@ -168,6 +176,7 @@ export const SubscriberResponseDto$outboundSchema: z.ZodType<
   createdAt: z.string(),
   updatedAt: z.string(),
   v: z.number().optional(),
+  data: z.nullable(z.record(z.any())).optional(),
 }).transform((v) => {
   return remap$(v, {
     id: "_id",

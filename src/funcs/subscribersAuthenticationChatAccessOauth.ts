@@ -28,11 +28,11 @@ import { Result } from "../types/fp.js";
  */
 export async function subscribersAuthenticationChatAccessOauth(
   client: NovuCore,
-  request: operations.SubscribersControllerChatAccessOauthRequest,
+  request: operations.SubscribersV1ControllerChatAccessOauthRequest,
   options?: RequestOptions,
 ): Promise<
   Result<
-    operations.SubscribersControllerChatAccessOauthResponse | undefined,
+    operations.SubscribersV1ControllerChatAccessOauthResponse | undefined,
     | errors.ErrorDto
     | errors.ErrorDto
     | errors.ValidationErrorDto
@@ -49,7 +49,7 @@ export async function subscribersAuthenticationChatAccessOauth(
   const parsed = safeParse(
     request,
     (value) =>
-      operations.SubscribersControllerChatAccessOauthRequest$outboundSchema
+      operations.SubscribersV1ControllerChatAccessOauthRequest$outboundSchema
         .parse(value),
     "Input validation failed",
   );
@@ -89,17 +89,17 @@ export async function subscribersAuthenticationChatAccessOauth(
     ),
   }));
 
-  const secConfig = await extractSecurity(client._options.apiKey);
-  const securityInput = secConfig == null ? {} : { apiKey: secConfig };
+  const secConfig = await extractSecurity(client._options.secretKey);
+  const securityInput = secConfig == null ? {} : { secretKey: secConfig };
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
-    operationID: "SubscribersController_chatAccessOauth",
+    operationID: "SubscribersV1Controller_chatAccessOauth",
     oAuth2Scopes: [],
 
     resolvedSecurity: requestSecurity,
 
-    securitySource: client._options.apiKey,
+    securitySource: client._options.secretKey,
     retryConfig: options?.retries
       || client._options.retryConfig
       || {
@@ -163,7 +163,7 @@ export async function subscribersAuthenticationChatAccessOauth(
   };
 
   const [result] = await M.match<
-    operations.SubscribersControllerChatAccessOauthResponse | undefined,
+    operations.SubscribersV1ControllerChatAccessOauthResponse | undefined,
     | errors.ErrorDto
     | errors.ErrorDto
     | errors.ValidationErrorDto
@@ -178,15 +178,15 @@ export async function subscribersAuthenticationChatAccessOauth(
   >(
     M.nil(
       200,
-      operations.SubscribersControllerChatAccessOauthResponse$inboundSchema
+      operations.SubscribersV1ControllerChatAccessOauthResponse$inboundSchema
         .optional(),
     ),
+    M.jsonErr(414, errors.ErrorDto$inboundSchema),
     M.jsonErr(
       [400, 401, 403, 404, 405, 409, 413, 415],
       errors.ErrorDto$inboundSchema,
       { hdrs: true },
     ),
-    M.jsonErr(414, errors.ErrorDto$inboundSchema),
     M.jsonErr(422, errors.ValidationErrorDto$inboundSchema, { hdrs: true }),
     M.fail(429),
     M.jsonErr(500, errors.ErrorDto$inboundSchema, { hdrs: true }),

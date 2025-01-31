@@ -37,7 +37,7 @@ export async function subscribersCredentialsDelete(
   options?: RequestOptions,
 ): Promise<
   Result<
-    | operations.SubscribersControllerDeleteSubscriberCredentialsResponse
+    | operations.SubscribersV1ControllerDeleteSubscriberCredentialsResponse
     | undefined,
     | errors.ErrorDto
     | errors.ErrorDto
@@ -53,7 +53,7 @@ export async function subscribersCredentialsDelete(
   >
 > {
   const input:
-    operations.SubscribersControllerDeleteSubscriberCredentialsRequest = {
+    operations.SubscribersV1ControllerDeleteSubscriberCredentialsRequest = {
       subscriberId: subscriberId,
       providerId: providerId,
       idempotencyKey: idempotencyKey,
@@ -63,7 +63,7 @@ export async function subscribersCredentialsDelete(
     input,
     (value) =>
       operations
-        .SubscribersControllerDeleteSubscriberCredentialsRequest$outboundSchema
+        .SubscribersV1ControllerDeleteSubscriberCredentialsRequest$outboundSchema
         .parse(value),
     "Input validation failed",
   );
@@ -97,17 +97,17 @@ export async function subscribersCredentialsDelete(
     ),
   }));
 
-  const secConfig = await extractSecurity(client._options.apiKey);
-  const securityInput = secConfig == null ? {} : { apiKey: secConfig };
+  const secConfig = await extractSecurity(client._options.secretKey);
+  const securityInput = secConfig == null ? {} : { secretKey: secConfig };
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
-    operationID: "SubscribersController_deleteSubscriberCredentials",
+    operationID: "SubscribersV1Controller_deleteSubscriberCredentials",
     oAuth2Scopes: [],
 
     resolvedSecurity: requestSecurity,
 
-    securitySource: client._options.apiKey,
+    securitySource: client._options.secretKey,
     retryConfig: options?.retries
       || client._options.retryConfig
       || {
@@ -170,7 +170,7 @@ export async function subscribersCredentialsDelete(
   };
 
   const [result] = await M.match<
-    | operations.SubscribersControllerDeleteSubscriberCredentialsResponse
+    | operations.SubscribersV1ControllerDeleteSubscriberCredentialsResponse
     | undefined,
     | errors.ErrorDto
     | errors.ErrorDto
@@ -187,16 +187,16 @@ export async function subscribersCredentialsDelete(
     M.nil(
       204,
       operations
-        .SubscribersControllerDeleteSubscriberCredentialsResponse$inboundSchema
+        .SubscribersV1ControllerDeleteSubscriberCredentialsResponse$inboundSchema
         .optional(),
       { hdrs: true },
     ),
+    M.jsonErr(414, errors.ErrorDto$inboundSchema),
     M.jsonErr(
       [400, 401, 403, 404, 405, 409, 413, 415],
       errors.ErrorDto$inboundSchema,
       { hdrs: true },
     ),
-    M.jsonErr(414, errors.ErrorDto$inboundSchema),
     M.jsonErr(422, errors.ValidationErrorDto$inboundSchema, { hdrs: true }),
     M.fail(429),
     M.jsonErr(500, errors.ErrorDto$inboundSchema, { hdrs: true }),

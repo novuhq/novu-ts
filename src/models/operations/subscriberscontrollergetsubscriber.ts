@@ -12,10 +12,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 export type SubscribersControllerGetSubscriberRequest = {
   subscriberId: string;
   /**
-   * Includes the topics associated with the subscriber
-   */
-  includeTopics?: boolean | undefined;
-  /**
    * A header for idempotency purposes
    */
   idempotencyKey?: string | undefined;
@@ -33,7 +29,6 @@ export const SubscribersControllerGetSubscriberRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   subscriberId: z.string(),
-  includeTopics: z.boolean().optional(),
   "idempotency-key": z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -44,7 +39,6 @@ export const SubscribersControllerGetSubscriberRequest$inboundSchema: z.ZodType<
 /** @internal */
 export type SubscribersControllerGetSubscriberRequest$Outbound = {
   subscriberId: string;
-  includeTopics?: boolean | undefined;
   "idempotency-key"?: string | undefined;
 };
 
@@ -56,7 +50,6 @@ export const SubscribersControllerGetSubscriberRequest$outboundSchema:
     SubscribersControllerGetSubscriberRequest
   > = z.object({
     subscriberId: z.string(),
-    includeTopics: z.boolean().optional(),
     idempotencyKey: z.string().optional(),
   }).transform((v) => {
     return remap$(v, {

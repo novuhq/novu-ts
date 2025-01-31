@@ -39,7 +39,7 @@ export async function subscribersCredentialsUpdate(
   options?: RequestOptions,
 ): Promise<
   Result<
-    operations.SubscribersControllerUpdateSubscriberChannelResponse,
+    operations.SubscribersV1ControllerUpdateSubscriberChannelResponse,
     | errors.ErrorDto
     | errors.ErrorDto
     | errors.ValidationErrorDto
@@ -53,8 +53,8 @@ export async function subscribersCredentialsUpdate(
     | ConnectionError
   >
 > {
-  const input: operations.SubscribersControllerUpdateSubscriberChannelRequest =
-    {
+  const input:
+    operations.SubscribersV1ControllerUpdateSubscriberChannelRequest = {
       updateSubscriberChannelRequestDto: updateSubscriberChannelRequestDto,
       subscriberId: subscriberId,
       idempotencyKey: idempotencyKey,
@@ -64,7 +64,7 @@ export async function subscribersCredentialsUpdate(
     input,
     (value) =>
       operations
-        .SubscribersControllerUpdateSubscriberChannelRequest$outboundSchema
+        .SubscribersV1ControllerUpdateSubscriberChannelRequest$outboundSchema
         .parse(value),
     "Input validation failed",
   );
@@ -97,17 +97,17 @@ export async function subscribersCredentialsUpdate(
     ),
   }));
 
-  const secConfig = await extractSecurity(client._options.apiKey);
-  const securityInput = secConfig == null ? {} : { apiKey: secConfig };
+  const secConfig = await extractSecurity(client._options.secretKey);
+  const securityInput = secConfig == null ? {} : { secretKey: secConfig };
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
-    operationID: "SubscribersController_updateSubscriberChannel",
+    operationID: "SubscribersV1Controller_updateSubscriberChannel",
     oAuth2Scopes: [],
 
     resolvedSecurity: requestSecurity,
 
-    securitySource: client._options.apiKey,
+    securitySource: client._options.secretKey,
     retryConfig: options?.retries
       || client._options.retryConfig
       || {
@@ -170,7 +170,7 @@ export async function subscribersCredentialsUpdate(
   };
 
   const [result] = await M.match<
-    operations.SubscribersControllerUpdateSubscriberChannelResponse,
+    operations.SubscribersV1ControllerUpdateSubscriberChannelResponse,
     | errors.ErrorDto
     | errors.ErrorDto
     | errors.ValidationErrorDto
@@ -186,15 +186,15 @@ export async function subscribersCredentialsUpdate(
     M.json(
       200,
       operations
-        .SubscribersControllerUpdateSubscriberChannelResponse$inboundSchema,
+        .SubscribersV1ControllerUpdateSubscriberChannelResponse$inboundSchema,
       { hdrs: true, key: "Result" },
     ),
+    M.jsonErr(414, errors.ErrorDto$inboundSchema),
     M.jsonErr(
       [400, 401, 403, 404, 405, 409, 413, 415],
       errors.ErrorDto$inboundSchema,
       { hdrs: true },
     ),
-    M.jsonErr(414, errors.ErrorDto$inboundSchema),
     M.jsonErr(422, errors.ValidationErrorDto$inboundSchema, { hdrs: true }),
     M.fail(429),
     M.jsonErr(500, errors.ErrorDto$inboundSchema, { hdrs: true }),
