@@ -16,7 +16,7 @@ let value: MessageResponseDto = {
     subscriberId: "<id>",
     channels: [
       {
-        providerId: "apns",
+        providerId: "grafana-on-call",
         credentials: {
           webhookUrl: "https://example.com/webhook",
           channel: "general",
@@ -37,19 +37,19 @@ let value: MessageResponseDto = {
     organizationId: "<id>",
     environmentId: "<id>",
     deleted: false,
-    createdAt: "1707762197930",
-    updatedAt: "1738221954891",
+    createdAt: "1713820775722",
+    updatedAt: "1738668830353",
   },
-  createdAt: "1726357067729",
+  createdAt: "1736984870212",
   content: "<value>",
   transactionId: "<id>",
-  channel: "email",
+  channel: "sms",
   read: false,
   seen: false,
   cta: {
     data: {},
   },
-  status: "warning",
+  status: "sent",
 };
 ```
 

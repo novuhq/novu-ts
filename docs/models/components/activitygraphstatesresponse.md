@@ -7,7 +7,7 @@ import { ActivityGraphStatesResponse } from "@novu/api/models/components";
 
 let value: ActivityGraphStatesResponse = {
   id: "<id>",
-  count: 1002.26,
+  count: 1494.48,
   templates: [
     "<value>",
   ],

@@ -11,7 +11,7 @@ let value: ListSubscribersResponseDto = {
       subscriberId: "<id>",
       channels: [
         {
-          providerId: "grafana-on-call",
+          providerId: "expo",
           credentials: {
             webhookUrl: "https://example.com/webhook",
             channel: "general",
@@ -32,8 +32,8 @@ let value: ListSubscribersResponseDto = {
       organizationId: "<id>",
       environmentId: "<id>",
       deleted: false,
-      createdAt: "1708939375673",
-      updatedAt: "1738267982523",
+      createdAt: "1734525375521",
+      updatedAt: "1738737027440",
     },
   ],
   next: "<value>",

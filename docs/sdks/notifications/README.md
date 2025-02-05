@@ -22,9 +22,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.notifications.list({
-    page: 0,
-  });
+  const result = await novu.notifications.list({});
 
   // Handle the result
   console.log(result);
@@ -48,9 +46,7 @@ const novu = new NovuCore({
 });
 
 async function run() {
-  const res = await notificationsList(novu, {
-    page: 0,
-  });
+  const res = await notificationsList(novu, {});
 
   if (!res.ok) {
     throw res.error;

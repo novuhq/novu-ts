@@ -7,7 +7,7 @@ Source of the execution detail
 ```typescript
 import { ExecutionDetailsSourceEnum } from "@novu/api/models/components";
 
-let value: ExecutionDetailsSourceEnum = "Internal";
+let value: ExecutionDetailsSourceEnum = "Payload";
 ```
 
 ## Values

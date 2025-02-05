@@ -6,8 +6,6 @@
 import { TopicsControllerListTopicsRequest } from "@novu/api/models/operations";
 
 let value: TopicsControllerListTopicsRequest = {
-  page: 0,
-  pageSize: 10,
   key: "exampleKey",
 };
 ```

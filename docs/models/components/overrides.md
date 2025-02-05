@@ -1,16 +1,19 @@
 # Overrides
 
-This could be used to override provider specific configurations
-
 ## Example Usage
 
 ```typescript
 import { Overrides } from "@novu/api/models/components";
 
-let value: Overrides = {};
+let value: Overrides = {
+  channel: "push",
+  source: "workflowOverride",
+};
 ```
 
 ## Fields
 
-| Field       | Type        | Required    | Description |
-| ----------- | ----------- | ----------- | ----------- |
+| Field                                                                      | Type                                                                       | Required                                                                   | Description                                                                |
+| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| `channel`                                                                  | [components.OverridesChannel](../../models/components/overrideschannel.md) | :heavy_check_mark:                                                         | The channel type which is overridden                                       |
+| `source`                                                                   | [components.Source](../../models/components/source.md)                     | :heavy_check_mark:                                                         | The source of overrides                                                    |

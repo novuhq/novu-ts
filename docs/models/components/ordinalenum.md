@@ -7,7 +7,7 @@ Ordinal position for the digest
 ```typescript
 import { OrdinalEnum } from "@novu/api/models/components";
 
-let value: OrdinalEnum = "4";
+let value: OrdinalEnum = "3";
 ```
 
 ## Values

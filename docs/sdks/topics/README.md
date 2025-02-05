@@ -112,8 +112,6 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.topics.list({
-    page: 0,
-    pageSize: 10,
     key: "exampleKey",
   });
 
@@ -140,8 +138,6 @@ const novu = new NovuCore({
 
 async function run() {
   const res = await topicsList(novu, {
-    page: 0,
-    pageSize: 10,
     key: "exampleKey",
   });
 

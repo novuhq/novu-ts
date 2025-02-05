@@ -20,9 +20,12 @@ let value: TriggerEventRequestDto = {
       },
     },
   },
-  to: {
-    subscriberId: "<id>",
-  },
+  to: [
+    {
+      topicKey: "<value>",
+      type: "Subscriber",
+    },
+  ],
 };
 ```
 

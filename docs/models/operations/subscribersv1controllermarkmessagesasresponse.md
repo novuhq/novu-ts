@@ -23,7 +23,7 @@ let value: SubscribersV1ControllerMarkMessagesAsResponse = {
         subscriberId: "<id>",
         channels: [
           {
-            providerId: "grafana-on-call",
+            providerId: "discord",
             credentials: {
               webhookUrl: "https://example.com/webhook",
               channel: "general",
@@ -44,22 +44,19 @@ let value: SubscribersV1ControllerMarkMessagesAsResponse = {
         organizationId: "<id>",
         environmentId: "<id>",
         deleted: false,
-        createdAt: "1732648966834",
-        updatedAt: "1738216114611",
+        createdAt: "1737996767840",
+        updatedAt: "1738693234122",
       },
-      createdAt: "1733183554924",
-      content: {
-        type: "text",
-        content: "<value>",
-      },
+      createdAt: "1738006279828",
+      content: "<value>",
       transactionId: "<id>",
-      channel: "sms",
+      channel: "chat",
       read: false,
       seen: false,
       cta: {
         data: {},
       },
-      status: "warning",
+      status: "sent",
     },
   ],
 };

@@ -330,7 +330,9 @@ run();
 * [list](docs/sdks/preferences/README.md#list) - Get subscriber preferences
 * [updateGlobal](docs/sdks/preferences/README.md#updateglobal) - Update subscriber global preferences
 * [retrieveByLevel](docs/sdks/preferences/README.md#retrievebylevel) - Get subscriber preferences by level
-* [update](docs/sdks/preferences/README.md#update) - Update subscriber preference
+* [updateLegacy](docs/sdks/preferences/README.md#updatelegacy) - Update subscriber preference
+* [retrieve](docs/sdks/preferences/README.md#retrieve) - Get subscriber preferences
+* [update](docs/sdks/preferences/README.md#update) - Update subscriber global or workflow specific preferences
 
 #### [subscribers.properties](docs/sdks/properties/README.md)
 
@@ -399,9 +401,11 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`subscribersNotificationsUnseenCount`](docs/sdks/novunotifications/README.md#unseencount) - Get the unseen in-app notifications count for subscribers feed
 - [`subscribersPatch`](docs/sdks/subscribers/README.md#patch) - Patch subscriber
 - [`subscribersPreferencesList`](docs/sdks/preferences/README.md#list) - Get subscriber preferences
+- [`subscribersPreferencesRetrieve`](docs/sdks/preferences/README.md#retrieve) - Get subscriber preferences
 - [`subscribersPreferencesRetrieveByLevel`](docs/sdks/preferences/README.md#retrievebylevel) - Get subscriber preferences by level
-- [`subscribersPreferencesUpdate`](docs/sdks/preferences/README.md#update) - Update subscriber preference
+- [`subscribersPreferencesUpdate`](docs/sdks/preferences/README.md#update) - Update subscriber global or workflow specific preferences
 - [`subscribersPreferencesUpdateGlobal`](docs/sdks/preferences/README.md#updateglobal) - Update subscriber global preferences
+- [`subscribersPreferencesUpdateLegacy`](docs/sdks/preferences/README.md#updatelegacy) - Update subscriber preference
 - [`subscribersPropertiesUpdateOnlineFlag`](docs/sdks/properties/README.md#updateonlineflag) - Update subscriber online status
 - [`subscribersRetrieve`](docs/sdks/subscribers/README.md#retrieve) - Get subscriber
 - [`subscribersRetrieveLegacy`](docs/sdks/subscribers/README.md#retrievelegacy) - Get subscriber
@@ -443,7 +447,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.subscribers.list(10);
+  const result = await novu.subscribers.list();
 
   for await (const page of result) {
     // Handle the page

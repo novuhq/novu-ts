@@ -9,7 +9,7 @@ let value: SubscribersV1ControllerMarkMessagesAsRequest = {
   subscriberId: "<id>",
   messageMarkAsRequestDto: {
     messageId: "<id>",
-    markAs: "read",
+    markAs: "unseen",
   },
 };
 ```

@@ -11,12 +11,12 @@ let value: ActivityNotificationJobResponseDto = {
   executionDetails: [
     {
       id: "<id>",
-      status: "Pending",
+      status: "ReadConfirmation",
       detail: "<value>",
       isRetry: false,
       isTest: false,
-      providerId: "sendchamp",
-      source: "Payload",
+      providerId: "infobip-sms",
+      source: "Webhook",
     },
   ],
   step: {
@@ -25,21 +25,21 @@ let value: ActivityNotificationJobResponseDto = {
     filters: [
       {
         isNegated: false,
-        type: "TEXT",
-        value: "OR",
+        type: "LIST",
+        value: "AND",
         children: [
           {
             field: "<value>",
             value: "<value>",
-            operator: "ALL_IN",
-            on: "payload",
+            operator: "LIKE",
+            on: "subscriber",
           },
         ],
       },
     ],
     templateId: "<id>",
   },
-  providerId: "brevo-sms",
+  providerId: "discord",
   status: "<value>",
 };
 ```

@@ -22,7 +22,7 @@ let value: SubscribersV1ControllerMarkActionAsSeenResponse = {
       subscriberId: "<id>",
       channels: [
         {
-          providerId: "ryver",
+          providerId: "msteams",
           credentials: {
             webhookUrl: "https://example.com/webhook",
             channel: "general",
@@ -43,22 +43,19 @@ let value: SubscribersV1ControllerMarkActionAsSeenResponse = {
       organizationId: "<id>",
       environmentId: "<id>",
       deleted: false,
-      createdAt: "1710548643805",
-      updatedAt: "1738233311388",
+      createdAt: "1717231060366",
+      updatedAt: "1738688535047",
     },
-    createdAt: "1710502322397",
-    content: {
-      type: "button",
-      content: "<value>",
-    },
+    createdAt: "1709226098519",
+    content: "<value>",
     transactionId: "<id>",
-    channel: "in_app",
+    channel: "sms",
     read: false,
     seen: false,
     cta: {
       data: {},
     },
-    status: "warning",
+    status: "sent",
   },
 };
 ```
