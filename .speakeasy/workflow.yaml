@@ -21,4 +21,4 @@ targets:
             registry:
                 location: registry.speakeasyapi.dev/novu/novu/code-samples-typescript
             labelOverride:
-                fixedValue: TypeScript (SDK)
+                fixedValue: TypeScript
