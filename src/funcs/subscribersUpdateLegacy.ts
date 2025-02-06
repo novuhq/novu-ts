@@ -3,13 +3,14 @@
  */
 
 import { NovuCore } from "../core.js";
-import { encodeFormQuery, encodeSimple } from "../lib/encodings.js";
+import { encodeJSON, encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
+import * as components from "../models/components/index.js";
 import {
   ConnectionError,
   InvalidRequestError,
@@ -24,17 +25,20 @@ import * as operations from "../models/operations/index.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Get subscriber preferences
+ * Update subscriber
+ *
+ * @remarks
+ * Used to update the subscriber entity with new information
  */
-export async function subscribersPreferencesList(
+export async function subscribersUpdateLegacy(
   client: NovuCore,
+  updateSubscriberRequestDto: components.UpdateSubscriberRequestDto,
   subscriberId: string,
-  includeInactiveChannels?: boolean | undefined,
   idempotencyKey?: string | undefined,
   options?: RequestOptions,
 ): Promise<
   Result<
-    operations.SubscribersV1ControllerListSubscriberPreferencesResponse,
+    operations.SubscribersV1ControllerUpdateSubscriberResponse,
     | errors.ErrorDto
     | errors.ErrorDto
     | errors.ValidationErrorDto
@@ -48,18 +52,16 @@ export async function subscribersPreferencesList(
     | ConnectionError
   >
 > {
-  const input:
-    operations.SubscribersV1ControllerListSubscriberPreferencesRequest = {
-      subscriberId: subscriberId,
-      includeInactiveChannels: includeInactiveChannels,
-      idempotencyKey: idempotencyKey,
-    };
+  const input: operations.SubscribersV1ControllerUpdateSubscriberRequest = {
+    updateSubscriberRequestDto: updateSubscriberRequestDto,
+    subscriberId: subscriberId,
+    idempotencyKey: idempotencyKey,
+  };
 
   const parsed = safeParse(
     input,
     (value) =>
-      operations
-        .SubscribersV1ControllerListSubscriberPreferencesRequest$outboundSchema
+      operations.SubscribersV1ControllerUpdateSubscriberRequest$outboundSchema
         .parse(value),
     "Input validation failed",
   );
@@ -67,7 +69,9 @@ export async function subscribersPreferencesList(
     return parsed;
   }
   const payload = parsed.value;
-  const body = null;
+  const body = encodeJSON("body", payload.UpdateSubscriberRequestDto, {
+    explode: true,
+  });
 
   const pathParams = {
     subscriberId: encodeSimple("subscriberId", payload.subscriberId, {
@@ -76,15 +80,10 @@ export async function subscribersPreferencesList(
     }),
   };
 
-  const path = pathToFunc("/v1/subscribers/{subscriberId}/preferences")(
-    pathParams,
-  );
-
-  const query = encodeFormQuery({
-    "includeInactiveChannels": payload.includeInactiveChannels,
-  });
+  const path = pathToFunc("/v1/subscribers/{subscriberId}")(pathParams);
 
   const headers = new Headers(compactMap({
+    "Content-Type": "application/json",
     Accept: "application/json",
     "idempotency-key": encodeSimple(
       "idempotency-key",
@@ -98,7 +97,7 @@ export async function subscribersPreferencesList(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
-    operationID: "SubscribersV1Controller_listSubscriberPreferences",
+    operationID: "SubscribersV1Controller_updateSubscriber",
     oAuth2Scopes: [],
 
     resolvedSecurity: requestSecurity,
@@ -122,11 +121,10 @@ export async function subscribersPreferencesList(
 
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
-    method: "GET",
+    method: "PUT",
     baseURL: options?.serverURL,
     path: path,
     headers: headers,
-    query: query,
     body: body,
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
@@ -167,7 +165,7 @@ export async function subscribersPreferencesList(
   };
 
   const [result] = await M.match<
-    operations.SubscribersV1ControllerListSubscriberPreferencesResponse,
+    operations.SubscribersV1ControllerUpdateSubscriberResponse,
     | errors.ErrorDto
     | errors.ErrorDto
     | errors.ValidationErrorDto
@@ -182,8 +180,7 @@ export async function subscribersPreferencesList(
   >(
     M.json(
       200,
-      operations
-        .SubscribersV1ControllerListSubscriberPreferencesResponse$inboundSchema,
+      operations.SubscribersV1ControllerUpdateSubscriberResponse$inboundSchema,
       { hdrs: true, key: "Result" },
     ),
     M.jsonErr(414, errors.ErrorDto$inboundSchema),

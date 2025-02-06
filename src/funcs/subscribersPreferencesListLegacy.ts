@@ -24,16 +24,19 @@ import * as operations from "../models/operations/index.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Get subscriber preferences by level
+ * Get subscriber preferences
+ *
+ * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
  */
-export async function subscribersPreferencesRetrieveByLevel(
+export async function subscribersPreferencesListLegacy(
   client: NovuCore,
-  request:
-    operations.SubscribersV1ControllerGetSubscriberPreferenceByLevelRequest,
+  subscriberId: string,
+  includeInactiveChannels?: boolean | undefined,
+  idempotencyKey?: string | undefined,
   options?: RequestOptions,
 ): Promise<
   Result<
-    operations.SubscribersV1ControllerGetSubscriberPreferenceByLevelResponse,
+    operations.SubscribersV1ControllerListSubscriberPreferencesResponse,
     | errors.ErrorDto
     | errors.ErrorDto
     | errors.ValidationErrorDto
@@ -47,11 +50,18 @@ export async function subscribersPreferencesRetrieveByLevel(
     | ConnectionError
   >
 > {
+  const input:
+    operations.SubscribersV1ControllerListSubscriberPreferencesRequest = {
+      subscriberId: subscriberId,
+      includeInactiveChannels: includeInactiveChannels,
+      idempotencyKey: idempotencyKey,
+    };
+
   const parsed = safeParse(
-    request,
+    input,
     (value) =>
       operations
-        .SubscribersV1ControllerGetSubscriberPreferenceByLevelRequest$outboundSchema
+        .SubscribersV1ControllerListSubscriberPreferencesRequest$outboundSchema
         .parse(value),
     "Input validation failed",
   );
@@ -62,19 +72,15 @@ export async function subscribersPreferencesRetrieveByLevel(
   const body = null;
 
   const pathParams = {
-    parameter: encodeSimple("parameter", payload.preferenceLevel, {
-      explode: false,
-      charEncoding: "percent",
-    }),
     subscriberId: encodeSimple("subscriberId", payload.subscriberId, {
       explode: false,
       charEncoding: "percent",
     }),
   };
 
-  const path = pathToFunc(
-    "/v1/subscribers/{subscriberId}/preferences/{parameter}",
-  )(pathParams);
+  const path = pathToFunc("/v1/subscribers/{subscriberId}/preferences")(
+    pathParams,
+  );
 
   const query = encodeFormQuery({
     "includeInactiveChannels": payload.includeInactiveChannels,
@@ -94,7 +100,7 @@ export async function subscribersPreferencesRetrieveByLevel(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
-    operationID: "SubscribersV1Controller_getSubscriberPreferenceByLevel",
+    operationID: "SubscribersV1Controller_listSubscriberPreferences",
     oAuth2Scopes: [],
 
     resolvedSecurity: requestSecurity,
@@ -163,7 +169,7 @@ export async function subscribersPreferencesRetrieveByLevel(
   };
 
   const [result] = await M.match<
-    operations.SubscribersV1ControllerGetSubscriberPreferenceByLevelResponse,
+    operations.SubscribersV1ControllerListSubscriberPreferencesResponse,
     | errors.ErrorDto
     | errors.ErrorDto
     | errors.ValidationErrorDto
@@ -179,7 +185,7 @@ export async function subscribersPreferencesRetrieveByLevel(
     M.json(
       200,
       operations
-        .SubscribersV1ControllerGetSubscriberPreferenceByLevelResponse$inboundSchema,
+        .SubscribersV1ControllerListSubscriberPreferencesResponse$inboundSchema,
       { hdrs: true, key: "Result" },
     ),
     M.jsonErr(414, errors.ErrorDto$inboundSchema),

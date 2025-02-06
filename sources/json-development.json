@@ -8878,6 +8878,7 @@
       },
       "put": {
         "operationId": "SubscribersV1Controller_updateSubscriber",
+        "x-speakeasy-name-override": "updateLegacy",
         "summary": "Update subscriber",
         "description": "Used to update the subscriber entity with new information",
         "parameters": [
@@ -12307,9 +12308,10 @@
     "/v1/subscribers/{subscriberId}/preferences": {
       "get": {
         "operationId": "SubscribersV1Controller_listSubscriberPreferences",
-        "x-speakeasy-name-override": "list",
+        "x-speakeasy-name-override": "listLegacy",
         "x-speakeasy-group": "Subscribers.Preferences",
         "summary": "Get subscriber preferences",
+        "deprecated": true,
         "parameters": [
           {
             "name": "subscriberId",
@@ -12802,7 +12804,7 @@
       "patch": {
         "operationId": "SubscribersV1Controller_updateSubscriberGlobalPreferences",
         "x-speakeasy-name-override": "updateGlobal",
-        "x-speakeasy-group": "Subscribers.Preferences",
+        "x-speakeasy-group": "Subscribers.Preferences.legacy",
         "summary": "Update subscriber global preferences",
         "parameters": [
           {
@@ -13295,9 +13297,10 @@
     "/v1/subscribers/{subscriberId}/preferences/{parameter}": {
       "get": {
         "operationId": "SubscribersV1Controller_getSubscriberPreferenceByLevel",
-        "x-speakeasy-name-override": "retrieveByLevel",
+        "x-speakeasy-name-override": "retrieveByLevelLegacy",
         "x-speakeasy-group": "Subscribers.Preferences",
         "summary": "Get subscriber preferences by level",
+        "deprecated": true,
         "parameters": [
           {
             "name": "includeInactiveChannels",

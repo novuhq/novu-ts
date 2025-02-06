@@ -11,7 +11,7 @@ import { subscribersPatch } from "../funcs/subscribersPatch.js";
 import { subscribersRetrieve } from "../funcs/subscribersRetrieve.js";
 import { subscribersRetrieveLegacy } from "../funcs/subscribersRetrieveLegacy.js";
 import { subscribersSearch } from "../funcs/subscribersSearch.js";
-import { subscribersUpdate } from "../funcs/subscribersUpdate.js";
+import { subscribersUpdateLegacy } from "../funcs/subscribersUpdateLegacy.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as components from "../models/components/index.js";
 import * as operations from "../models/operations/index.js";
@@ -127,13 +127,13 @@ export class Subscribers extends ClientSDK {
    * @remarks
    * Used to update the subscriber entity with new information
    */
-  async update(
+  async updateLegacy(
     updateSubscriberRequestDto: components.UpdateSubscriberRequestDto,
     subscriberId: string,
     idempotencyKey?: string | undefined,
     options?: RequestOptions,
   ): Promise<operations.SubscribersV1ControllerUpdateSubscriberResponse> {
-    return unwrapAsync(subscribersUpdate(
+    return unwrapAsync(subscribersUpdateLegacy(
       this,
       updateSubscriberRequestDto,
       subscriberId,

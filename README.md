@@ -295,7 +295,7 @@ run();
 * [list](docs/sdks/subscribers/README.md#list) - Get subscribers
 * [create](docs/sdks/subscribers/README.md#create) - Create subscriber
 * [retrieveLegacy](docs/sdks/subscribers/README.md#retrievelegacy) - Get subscriber
-* [update](docs/sdks/subscribers/README.md#update) - Update subscriber
+* [updateLegacy](docs/sdks/subscribers/README.md#updatelegacy) - Update subscriber
 * [~~deleteLegacy~~](docs/sdks/subscribers/README.md#deletelegacy) - Delete subscriber :warning: **Deprecated**
 * [createBulk](docs/sdks/subscribers/README.md#createbulk) - Bulk create subscribers
 * [search](docs/sdks/subscribers/README.md#search) - Search for subscribers
@@ -327,12 +327,15 @@ run();
 
 #### [subscribers.preferences](docs/sdks/preferences/README.md)
 
-* [list](docs/sdks/preferences/README.md#list) - Get subscriber preferences
-* [updateGlobal](docs/sdks/preferences/README.md#updateglobal) - Update subscriber global preferences
-* [retrieveByLevel](docs/sdks/preferences/README.md#retrievebylevel) - Get subscriber preferences by level
+* [~~listLegacy~~](docs/sdks/preferences/README.md#listlegacy) - Get subscriber preferences :warning: **Deprecated**
+* [~~retrieveByLevelLegacy~~](docs/sdks/preferences/README.md#retrievebylevellegacy) - Get subscriber preferences by level :warning: **Deprecated**
 * [updateLegacy](docs/sdks/preferences/README.md#updatelegacy) - Update subscriber preference
 * [retrieve](docs/sdks/preferences/README.md#retrieve) - Get subscriber preferences
 * [update](docs/sdks/preferences/README.md#update) - Update subscriber global or workflow specific preferences
+
+#### [subscribers.preferences.legacy](docs/sdks/legacy/README.md)
+
+* [updateGlobal](docs/sdks/legacy/README.md#updateglobal) - Update subscriber global preferences
 
 #### [subscribers.properties](docs/sdks/properties/README.md)
 
@@ -400,17 +403,15 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`subscribersNotificationsFeed`](docs/sdks/novunotifications/README.md#feed) - Get in-app notification feed for a particular subscriber
 - [`subscribersNotificationsUnseenCount`](docs/sdks/novunotifications/README.md#unseencount) - Get the unseen in-app notifications count for subscribers feed
 - [`subscribersPatch`](docs/sdks/subscribers/README.md#patch) - Patch subscriber
-- [`subscribersPreferencesList`](docs/sdks/preferences/README.md#list) - Get subscriber preferences
+- [`subscribersPreferencesLegacyUpdateGlobal`](docs/sdks/legacy/README.md#updateglobal) - Update subscriber global preferences
 - [`subscribersPreferencesRetrieve`](docs/sdks/preferences/README.md#retrieve) - Get subscriber preferences
-- [`subscribersPreferencesRetrieveByLevel`](docs/sdks/preferences/README.md#retrievebylevel) - Get subscriber preferences by level
 - [`subscribersPreferencesUpdate`](docs/sdks/preferences/README.md#update) - Update subscriber global or workflow specific preferences
-- [`subscribersPreferencesUpdateGlobal`](docs/sdks/preferences/README.md#updateglobal) - Update subscriber global preferences
 - [`subscribersPreferencesUpdateLegacy`](docs/sdks/preferences/README.md#updatelegacy) - Update subscriber preference
 - [`subscribersPropertiesUpdateOnlineFlag`](docs/sdks/properties/README.md#updateonlineflag) - Update subscriber online status
 - [`subscribersRetrieve`](docs/sdks/subscribers/README.md#retrieve) - Get subscriber
 - [`subscribersRetrieveLegacy`](docs/sdks/subscribers/README.md#retrievelegacy) - Get subscriber
 - [`subscribersSearch`](docs/sdks/subscribers/README.md#search) - Search for subscribers
-- [`subscribersUpdate`](docs/sdks/subscribers/README.md#update) - Update subscriber
+- [`subscribersUpdateLegacy`](docs/sdks/subscribers/README.md#updatelegacy) - Update subscriber
 - [`topicsCreate`](docs/sdks/topics/README.md#create) - Topic creation
 - [`topicsDelete`](docs/sdks/topics/README.md#delete) - Delete topic
 - [`topicsList`](docs/sdks/topics/README.md#list) - Get topic list filtered 
@@ -423,6 +424,8 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`triggerBroadcast`](docs/sdks/novu/README.md#triggerbroadcast) - Broadcast event to all
 - [`triggerBulk`](docs/sdks/novu/README.md#triggerbulk) - Bulk trigger event
 - ~~[`subscribersDeleteLegacy`](docs/sdks/subscribers/README.md#deletelegacy)~~ - Delete subscriber :warning: **Deprecated**
+- ~~[`subscribersPreferencesListLegacy`](docs/sdks/preferences/README.md#listlegacy)~~ - Get subscriber preferences :warning: **Deprecated**
+- ~~[`subscribersPreferencesRetrieveByLevelLegacy`](docs/sdks/preferences/README.md#retrievebylevellegacy)~~ - Get subscriber preferences by level :warning: **Deprecated**
 
 </details>
 <!-- End Standalone functions [standalone-funcs] -->
