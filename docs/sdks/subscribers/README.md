@@ -11,7 +11,7 @@ A subscriber in Novu represents someone who should receive a message. A subscrib
 * [list](#list) - Get subscribers
 * [create](#create) - Create subscriber
 * [retrieveLegacy](#retrievelegacy) - Get subscriber
-* [update](#update) - Update subscriber
+* [updateLegacy](#updatelegacy) - Update subscriber
 * [~~deleteLegacy~~](#deletelegacy) - Delete subscriber :warning: **Deprecated**
 * [createBulk](#createbulk) - Bulk create subscribers
 * [search](#search) - Search for subscribers
@@ -260,7 +260,7 @@ run();
 | errors.ErrorDto                        | 500                                    | application/json                       |
 | errors.SDKError                        | 4XX, 5XX                               | \*/\*                                  |
 
-## update
+## updateLegacy
 
 Used to update the subscriber entity with new information
 
@@ -274,7 +274,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.subscribers.update({
+  const result = await novu.subscribers.updateLegacy({
     email: "john.doe@example.com",
     firstName: "John",
     lastName: "Doe",
@@ -306,7 +306,7 @@ The standalone function version of this method:
 
 ```typescript
 import { NovuCore } from "@novu/api/core.js";
-import { subscribersUpdate } from "@novu/api/funcs/subscribersUpdate.js";
+import { subscribersUpdateLegacy } from "@novu/api/funcs/subscribersUpdateLegacy.js";
 
 // Use `NovuCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -315,7 +315,7 @@ const novu = new NovuCore({
 });
 
 async function run() {
-  const res = await subscribersUpdate(novu, {
+  const res = await subscribersUpdateLegacy(novu, {
     email: "john.doe@example.com",
     firstName: "John",
     lastName: "Doe",

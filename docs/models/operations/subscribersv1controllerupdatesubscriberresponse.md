@@ -36,8 +36,8 @@ let value: SubscribersV1ControllerUpdateSubscriberResponse = {
     organizationId: "<id>",
     environmentId: "<id>",
     deleted: false,
-    createdAt: "1726680895455",
-    updatedAt: "1738705627495",
+    createdAt: "1726742842006",
+    updatedAt: "1738767574046",
   },
 };
 ```

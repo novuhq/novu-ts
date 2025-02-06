@@ -3,14 +3,13 @@
  */
 
 import { NovuCore } from "../core.js";
-import { encodeJSON, encodeSimple } from "../lib/encodings.js";
+import { encodeFormQuery, encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
-import * as components from "../models/components/index.js";
 import {
   ConnectionError,
   InvalidRequestError,
@@ -25,18 +24,18 @@ import * as operations from "../models/operations/index.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Update subscriber global preferences
+ * Get subscriber preferences by level
+ *
+ * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
  */
-export async function subscribersPreferencesUpdateGlobal(
+export async function subscribersPreferencesRetrieveByLevelLegacy(
   client: NovuCore,
-  updateSubscriberGlobalPreferencesRequestDto:
-    components.UpdateSubscriberGlobalPreferencesRequestDto,
-  subscriberId: string,
-  idempotencyKey?: string | undefined,
+  request:
+    operations.SubscribersV1ControllerGetSubscriberPreferenceByLevelRequest,
   options?: RequestOptions,
 ): Promise<
   Result<
-    operations.SubscribersV1ControllerUpdateSubscriberGlobalPreferencesResponse,
+    operations.SubscribersV1ControllerGetSubscriberPreferenceByLevelResponse,
     | errors.ErrorDto
     | errors.ErrorDto
     | errors.ValidationErrorDto
@@ -50,20 +49,11 @@ export async function subscribersPreferencesUpdateGlobal(
     | ConnectionError
   >
 > {
-  const input:
-    operations.SubscribersV1ControllerUpdateSubscriberGlobalPreferencesRequest =
-      {
-        updateSubscriberGlobalPreferencesRequestDto:
-          updateSubscriberGlobalPreferencesRequestDto,
-        subscriberId: subscriberId,
-        idempotencyKey: idempotencyKey,
-      };
-
   const parsed = safeParse(
-    input,
+    request,
     (value) =>
       operations
-        .SubscribersV1ControllerUpdateSubscriberGlobalPreferencesRequest$outboundSchema
+        .SubscribersV1ControllerGetSubscriberPreferenceByLevelRequest$outboundSchema
         .parse(value),
     "Input validation failed",
   );
@@ -71,25 +61,28 @@ export async function subscribersPreferencesUpdateGlobal(
     return parsed;
   }
   const payload = parsed.value;
-  const body = encodeJSON(
-    "body",
-    payload.UpdateSubscriberGlobalPreferencesRequestDto,
-    { explode: true },
-  );
+  const body = null;
 
   const pathParams = {
+    parameter: encodeSimple("parameter", payload.preferenceLevel, {
+      explode: false,
+      charEncoding: "percent",
+    }),
     subscriberId: encodeSimple("subscriberId", payload.subscriberId, {
       explode: false,
       charEncoding: "percent",
     }),
   };
 
-  const path = pathToFunc("/v1/subscribers/{subscriberId}/preferences")(
-    pathParams,
-  );
+  const path = pathToFunc(
+    "/v1/subscribers/{subscriberId}/preferences/{parameter}",
+  )(pathParams);
+
+  const query = encodeFormQuery({
+    "includeInactiveChannels": payload.includeInactiveChannels,
+  });
 
   const headers = new Headers(compactMap({
-    "Content-Type": "application/json",
     Accept: "application/json",
     "idempotency-key": encodeSimple(
       "idempotency-key",
@@ -103,7 +96,7 @@ export async function subscribersPreferencesUpdateGlobal(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
-    operationID: "SubscribersV1Controller_updateSubscriberGlobalPreferences",
+    operationID: "SubscribersV1Controller_getSubscriberPreferenceByLevel",
     oAuth2Scopes: [],
 
     resolvedSecurity: requestSecurity,
@@ -127,10 +120,11 @@ export async function subscribersPreferencesUpdateGlobal(
 
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
-    method: "PATCH",
+    method: "GET",
     baseURL: options?.serverURL,
     path: path,
     headers: headers,
+    query: query,
     body: body,
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
@@ -171,7 +165,7 @@ export async function subscribersPreferencesUpdateGlobal(
   };
 
   const [result] = await M.match<
-    operations.SubscribersV1ControllerUpdateSubscriberGlobalPreferencesResponse,
+    operations.SubscribersV1ControllerGetSubscriberPreferenceByLevelResponse,
     | errors.ErrorDto
     | errors.ErrorDto
     | errors.ValidationErrorDto
@@ -187,7 +181,7 @@ export async function subscribersPreferencesUpdateGlobal(
     M.json(
       200,
       operations
-        .SubscribersV1ControllerUpdateSubscriberGlobalPreferencesResponse$inboundSchema,
+        .SubscribersV1ControllerGetSubscriberPreferenceByLevelResponse$inboundSchema,
       { hdrs: true, key: "Result" },
     ),
     M.jsonErr(414, errors.ErrorDto$inboundSchema),

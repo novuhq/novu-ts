@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 6bff3a53-3f0b-40b4-942f-ff70dc583ae5
 management:
-  docChecksum: 62c3b3092c30ede0a9ffbe1a5d4004d4
+  docChecksum: f744dfda5af0cf1c59b2d717d6f050cc
   docVersion: "1.0"
   speakeasyVersion: 1.484.1
   generationVersion: 2.503.2
-  releaseVersion: 0.1.5
-  configChecksum: db8d0be04a472f743a604985b2cdb4a8
+  releaseVersion: 0.1.6
+  configChecksum: c23092708d5e87e29dc1689763650e55
   repoURL: https://github.com/novuhq/novu-ts.git
   installationURL: https://github.com/novuhq/novu-ts
   published: true
@@ -355,6 +355,7 @@ generatedFiles:
   - docs/sdks/authentication/README.md
   - docs/sdks/credentials/README.md
   - docs/sdks/integrations/README.md
+  - docs/sdks/legacy/README.md
   - docs/sdks/messages/README.md
   - docs/sdks/notifications/README.md
   - docs/sdks/novu/README.md
@@ -402,17 +403,17 @@ generatedFiles:
   - src/funcs/subscribersNotificationsFeed.ts
   - src/funcs/subscribersNotificationsUnseenCount.ts
   - src/funcs/subscribersPatch.ts
-  - src/funcs/subscribersPreferencesList.ts
+  - src/funcs/subscribersPreferencesLegacyUpdateGlobal.ts
+  - src/funcs/subscribersPreferencesListLegacy.ts
   - src/funcs/subscribersPreferencesRetrieve.ts
-  - src/funcs/subscribersPreferencesRetrieveByLevel.ts
+  - src/funcs/subscribersPreferencesRetrieveByLevelLegacy.ts
   - src/funcs/subscribersPreferencesUpdate.ts
-  - src/funcs/subscribersPreferencesUpdateGlobal.ts
   - src/funcs/subscribersPreferencesUpdateLegacy.ts
   - src/funcs/subscribersPropertiesUpdateOnlineFlag.ts
   - src/funcs/subscribersRetrieve.ts
   - src/funcs/subscribersRetrieveLegacy.ts
   - src/funcs/subscribersSearch.ts
-  - src/funcs/subscribersUpdate.ts
+  - src/funcs/subscribersUpdateLegacy.ts
   - src/funcs/topicsCreate.ts
   - src/funcs/topicsDelete.ts
   - src/funcs/topicsList.ts
@@ -635,6 +636,7 @@ generatedFiles:
   - src/sdk/credentials.ts
   - src/sdk/index.ts
   - src/sdk/integrations.ts
+  - src/sdk/legacy.ts
   - src/sdk/messages.ts
   - src/sdk/notifications.ts
   - src/sdk/novumessages.ts
