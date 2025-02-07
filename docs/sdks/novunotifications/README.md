@@ -18,7 +18,7 @@ Get in-app notification feed for a particular subscriber
 import { Novu } from "@novu/api";
 
 const novu = new Novu({
-  secretKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "YOUR_SECRET_KEY_HERE",
 });
 
 async function run() {
@@ -45,7 +45,7 @@ import { subscribersNotificationsFeed } from "@novu/api/funcs/subscribersNotific
 // Use `NovuCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const novu = new NovuCore({
-  secretKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "YOUR_SECRET_KEY_HERE",
 });
 
 async function run() {
@@ -100,7 +100,7 @@ Get the unseen in-app notifications count for subscribers feed
 import { Novu } from "@novu/api";
 
 const novu = new Novu({
-  secretKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "YOUR_SECRET_KEY_HERE",
 });
 
 async function run() {
@@ -126,7 +126,7 @@ import { subscribersNotificationsUnseenCount } from "@novu/api/funcs/subscribers
 // Use `NovuCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const novu = new NovuCore({
-  secretKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "YOUR_SECRET_KEY_HERE",
 });
 
 async function run() {

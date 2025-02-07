@@ -22,7 +22,7 @@ let value: SubscribersControllerGetSubscriberPreferencesResponse = {
         channels: {},
         overrides: [
           {
-            channel: "in_app",
+            channel: "email",
             source: "subscriber",
           },
         ],

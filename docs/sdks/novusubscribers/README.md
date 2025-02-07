@@ -19,7 +19,7 @@ Add subscribers to a topic by key
 import { Novu } from "@novu/api";
 
 const novu = new Novu({
-  secretKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "YOUR_SECRET_KEY_HERE",
 });
 
 async function run() {
@@ -49,7 +49,7 @@ import { topicsSubscribersAssign } from "@novu/api/funcs/topicsSubscribersAssign
 // Use `NovuCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const novu = new NovuCore({
-  secretKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "YOUR_SECRET_KEY_HERE",
 });
 
 async function run() {
@@ -109,7 +109,7 @@ Check if a subscriber belongs to a certain topic
 import { Novu } from "@novu/api";
 
 const novu = new Novu({
-  secretKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "YOUR_SECRET_KEY_HERE",
 });
 
 async function run() {
@@ -133,7 +133,7 @@ import { topicsSubscribersRetrieve } from "@novu/api/funcs/topicsSubscribersRetr
 // Use `NovuCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const novu = new NovuCore({
-  secretKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "YOUR_SECRET_KEY_HERE",
 });
 
 async function run() {
@@ -187,7 +187,7 @@ Remove subscribers from a topic
 import { Novu } from "@novu/api";
 
 const novu = new Novu({
-  secretKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "YOUR_SECRET_KEY_HERE",
 });
 
 async function run() {
@@ -216,7 +216,7 @@ import { topicsSubscribersRemove } from "@novu/api/funcs/topicsSubscribersRemove
 // Use `NovuCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const novu = new NovuCore({
-  secretKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "YOUR_SECRET_KEY_HERE",
 });
 
 async function run() {

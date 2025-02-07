@@ -83,7 +83,7 @@ For supported JavaScript runtimes, please consult [RUNTIMES.md](RUNTIMES.md).
 import { Novu } from "@novu/api";
 
 const novu = new Novu({
-  secretKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "YOUR_SECRET_KEY_HERE",
 });
 
 async function run() {
@@ -121,7 +121,7 @@ run();
 import { Novu } from "@novu/api";
 
 const novu = new Novu({
-  secretKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "YOUR_SECRET_KEY_HERE",
 });
 
 async function run() {
@@ -205,7 +205,7 @@ run();
 import { Novu } from "@novu/api";
 
 const novu = new Novu({
-  secretKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "YOUR_SECRET_KEY_HERE",
 });
 
 async function run() {
@@ -233,7 +233,7 @@ run();
 import { Novu } from "@novu/api";
 
 const novu = new Novu({
-  secretKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "YOUR_SECRET_KEY_HERE",
 });
 
 async function run() {
@@ -293,12 +293,9 @@ run();
 ### [subscribers](docs/sdks/subscribers/README.md)
 
 * [list](docs/sdks/subscribers/README.md#list) - Get subscribers
-* [create](docs/sdks/subscribers/README.md#create) - Create subscriber
-* [retrieveLegacy](docs/sdks/subscribers/README.md#retrievelegacy) - Get subscriber
-* [updateLegacy](docs/sdks/subscribers/README.md#updatelegacy) - Update subscriber
-* [~~deleteLegacy~~](docs/sdks/subscribers/README.md#deletelegacy) - Delete subscriber :warning: **Deprecated**
 * [createBulk](docs/sdks/subscribers/README.md#createbulk) - Bulk create subscribers
 * [search](docs/sdks/subscribers/README.md#search) - Search for subscribers
+* [create](docs/sdks/subscribers/README.md#create) - Create subscriber
 * [retrieve](docs/sdks/subscribers/README.md#retrieve) - Get subscriber
 * [patch](docs/sdks/subscribers/README.md#patch) - Patch subscriber
 * [delete](docs/sdks/subscribers/README.md#delete) - Delete subscriber
@@ -327,15 +324,8 @@ run();
 
 #### [subscribers.preferences](docs/sdks/preferences/README.md)
 
-* [~~listLegacy~~](docs/sdks/preferences/README.md#listlegacy) - Get subscriber preferences :warning: **Deprecated**
-* [~~retrieveByLevelLegacy~~](docs/sdks/preferences/README.md#retrievebylevellegacy) - Get subscriber preferences by level :warning: **Deprecated**
-* [updateLegacy](docs/sdks/preferences/README.md#updatelegacy) - Update subscriber preference
-* [retrieve](docs/sdks/preferences/README.md#retrieve) - Get subscriber preferences
+* [list](docs/sdks/preferences/README.md#list) - Get subscriber preferences
 * [update](docs/sdks/preferences/README.md#update) - Update subscriber global or workflow specific preferences
-
-#### [subscribers.preferences.legacy](docs/sdks/legacy/README.md)
-
-* [updateGlobal](docs/sdks/legacy/README.md#updateglobal) - Update subscriber global preferences
 
 #### [subscribers.properties](docs/sdks/properties/README.md)
 
@@ -403,15 +393,11 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`subscribersNotificationsFeed`](docs/sdks/novunotifications/README.md#feed) - Get in-app notification feed for a particular subscriber
 - [`subscribersNotificationsUnseenCount`](docs/sdks/novunotifications/README.md#unseencount) - Get the unseen in-app notifications count for subscribers feed
 - [`subscribersPatch`](docs/sdks/subscribers/README.md#patch) - Patch subscriber
-- [`subscribersPreferencesLegacyUpdateGlobal`](docs/sdks/legacy/README.md#updateglobal) - Update subscriber global preferences
-- [`subscribersPreferencesRetrieve`](docs/sdks/preferences/README.md#retrieve) - Get subscriber preferences
+- [`subscribersPreferencesList`](docs/sdks/preferences/README.md#list) - Get subscriber preferences
 - [`subscribersPreferencesUpdate`](docs/sdks/preferences/README.md#update) - Update subscriber global or workflow specific preferences
-- [`subscribersPreferencesUpdateLegacy`](docs/sdks/preferences/README.md#updatelegacy) - Update subscriber preference
 - [`subscribersPropertiesUpdateOnlineFlag`](docs/sdks/properties/README.md#updateonlineflag) - Update subscriber online status
 - [`subscribersRetrieve`](docs/sdks/subscribers/README.md#retrieve) - Get subscriber
-- [`subscribersRetrieveLegacy`](docs/sdks/subscribers/README.md#retrievelegacy) - Get subscriber
 - [`subscribersSearch`](docs/sdks/subscribers/README.md#search) - Search for subscribers
-- [`subscribersUpdateLegacy`](docs/sdks/subscribers/README.md#updatelegacy) - Update subscriber
 - [`topicsCreate`](docs/sdks/topics/README.md#create) - Topic creation
 - [`topicsDelete`](docs/sdks/topics/README.md#delete) - Delete topic
 - [`topicsList`](docs/sdks/topics/README.md#list) - Get topic list filtered 
@@ -423,9 +409,6 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`trigger`](docs/sdks/novu/README.md#trigger) - Trigger event
 - [`triggerBroadcast`](docs/sdks/novu/README.md#triggerbroadcast) - Broadcast event to all
 - [`triggerBulk`](docs/sdks/novu/README.md#triggerbulk) - Bulk trigger event
-- ~~[`subscribersDeleteLegacy`](docs/sdks/subscribers/README.md#deletelegacy)~~ - Delete subscriber :warning: **Deprecated**
-- ~~[`subscribersPreferencesListLegacy`](docs/sdks/preferences/README.md#listlegacy)~~ - Get subscriber preferences :warning: **Deprecated**
-- ~~[`subscribersPreferencesRetrieveByLevelLegacy`](docs/sdks/preferences/README.md#retrievebylevellegacy)~~ - Get subscriber preferences by level :warning: **Deprecated**
 
 </details>
 <!-- End Standalone functions [standalone-funcs] -->
@@ -446,7 +429,7 @@ Here's an example of one such pagination call:
 import { Novu } from "@novu/api";
 
 const novu = new Novu({
-  secretKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "YOUR_SECRET_KEY_HERE",
 });
 
 async function run() {
@@ -487,7 +470,7 @@ import {
 } from "@novu/api/models/errors";
 
 const novu = new Novu({
-  secretKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "YOUR_SECRET_KEY_HERE",
 });
 
 async function run() {
@@ -589,7 +572,7 @@ import { Novu } from "@novu/api";
 
 const novu = new Novu({
   serverIdx: 1,
-  secretKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "YOUR_SECRET_KEY_HERE",
 });
 
 async function run() {
@@ -629,7 +612,7 @@ import { Novu } from "@novu/api";
 
 const novu = new Novu({
   serverURL: "https://api.novu.co",
-  secretKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "YOUR_SECRET_KEY_HERE",
 });
 
 async function run() {
@@ -727,7 +710,7 @@ To authenticate with the API the `secretKey` parameter must be set when initiali
 import { Novu } from "@novu/api";
 
 const novu = new Novu({
-  secretKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "YOUR_SECRET_KEY_HERE",
 });
 
 async function run() {
@@ -770,7 +753,7 @@ To change the default retry strategy for a single API call, simply provide a ret
 import { Novu } from "@novu/api";
 
 const novu = new Novu({
-  secretKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "YOUR_SECRET_KEY_HERE",
 });
 
 async function run() {
@@ -828,7 +811,7 @@ const novu = new Novu({
     },
     retryConnectionErrors: false,
   },
-  secretKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "YOUR_SECRET_KEY_HERE",
 });
 
 async function run() {

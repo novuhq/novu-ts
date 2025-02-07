@@ -15,7 +15,7 @@ let value: SubscribersV1ControllerUpdateSubscriberOnlineFlagResponse = {
     subscriberId: "<id>",
     channels: [
       {
-        providerId: "msteams",
+        providerId: "grafana-on-call",
         credentials: {
           webhookUrl: "https://example.com/webhook",
           channel: "general",
@@ -36,8 +36,8 @@ let value: SubscribersV1ControllerUpdateSubscriberOnlineFlagResponse = {
     organizationId: "<id>",
     environmentId: "<id>",
     deleted: false,
-    createdAt: "1727861513180",
-    updatedAt: "1738736573823",
+    createdAt: "1725376000736",
+    updatedAt: "1738881770686",
   },
 };
 ```

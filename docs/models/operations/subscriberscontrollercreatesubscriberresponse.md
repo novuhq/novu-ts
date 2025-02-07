@@ -1,11 +1,11 @@
-# SubscribersV1ControllerGetSubscriberResponse
+# SubscribersControllerCreateSubscriberResponse
 
 ## Example Usage
 
 ```typescript
-import { SubscribersV1ControllerGetSubscriberResponse } from "@novu/api/models/operations";
+import { SubscribersControllerCreateSubscriberResponse } from "@novu/api/models/operations";
 
-let value: SubscribersV1ControllerGetSubscriberResponse = {
+let value: SubscribersControllerCreateSubscriberResponse = {
   headers: {
     "key": [
       "<value>",
@@ -15,7 +15,7 @@ let value: SubscribersV1ControllerGetSubscriberResponse = {
     subscriberId: "<id>",
     channels: [
       {
-        providerId: "one-signal",
+        providerId: "getstream",
         credentials: {
           webhookUrl: "https://example.com/webhook",
           channel: "general",
@@ -36,8 +36,8 @@ let value: SubscribersV1ControllerGetSubscriberResponse = {
     organizationId: "<id>",
     environmentId: "<id>",
     deleted: false,
-    createdAt: "1721650245997",
-    updatedAt: "1738763801701",
+    createdAt: "1725320408333",
+    updatedAt: "1738845499309",
   },
 };
 ```

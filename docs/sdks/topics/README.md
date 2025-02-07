@@ -24,7 +24,7 @@ Create a topic
 import { Novu } from "@novu/api";
 
 const novu = new Novu({
-  secretKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "YOUR_SECRET_KEY_HERE",
 });
 
 async function run() {
@@ -51,7 +51,7 @@ import { topicsCreate } from "@novu/api/funcs/topicsCreate.js";
 // Use `NovuCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const novu = new NovuCore({
-  secretKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "YOUR_SECRET_KEY_HERE",
 });
 
 async function run() {
@@ -107,7 +107,7 @@ Returns a list of topics that can be paginated using the `page` query parameter 
 import { Novu } from "@novu/api";
 
 const novu = new Novu({
-  secretKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "YOUR_SECRET_KEY_HERE",
 });
 
 async function run() {
@@ -133,7 +133,7 @@ import { topicsList } from "@novu/api/funcs/topicsList.js";
 // Use `NovuCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const novu = new NovuCore({
-  secretKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "YOUR_SECRET_KEY_HERE",
 });
 
 async function run() {
@@ -187,7 +187,7 @@ Delete a topic by its topic key if it has no subscribers
 import { Novu } from "@novu/api";
 
 const novu = new Novu({
-  secretKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "YOUR_SECRET_KEY_HERE",
 });
 
 async function run() {
@@ -211,7 +211,7 @@ import { topicsDelete } from "@novu/api/funcs/topicsDelete.js";
 // Use `NovuCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const novu = new NovuCore({
-  secretKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "YOUR_SECRET_KEY_HERE",
 });
 
 async function run() {
@@ -264,7 +264,7 @@ Get a topic by its topic key
 import { Novu } from "@novu/api";
 
 const novu = new Novu({
-  secretKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "YOUR_SECRET_KEY_HERE",
 });
 
 async function run() {
@@ -288,7 +288,7 @@ import { topicsRetrieve } from "@novu/api/funcs/topicsRetrieve.js";
 // Use `NovuCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const novu = new NovuCore({
-  secretKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "YOUR_SECRET_KEY_HERE",
 });
 
 async function run() {
@@ -341,7 +341,7 @@ Rename a topic by providing a new name
 import { Novu } from "@novu/api";
 
 const novu = new Novu({
-  secretKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "YOUR_SECRET_KEY_HERE",
 });
 
 async function run() {
@@ -367,7 +367,7 @@ import { topicsRename } from "@novu/api/funcs/topicsRename.js";
 // Use `NovuCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const novu = new NovuCore({
-  secretKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "YOUR_SECRET_KEY_HERE",
 });
 
 async function run() {

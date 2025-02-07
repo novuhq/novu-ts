@@ -6,7 +6,7 @@
 import { UpdateSubscriberChannelRequestDto } from "@novu/api/models/components";
 
 let value: UpdateSubscriberChannelRequestDto = {
-  providerId: "slack",
+  providerId: "grafana-on-call",
   credentials: {
     webhookUrl: "https://example.com/webhook",
     channel: "general",

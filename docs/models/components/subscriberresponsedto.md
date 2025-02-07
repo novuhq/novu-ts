@@ -9,7 +9,7 @@ let value: SubscriberResponseDto = {
   subscriberId: "<id>",
   channels: [
     {
-      providerId: "one-signal",
+      providerId: "expo",
       credentials: {
         webhookUrl: "https://example.com/webhook",
         channel: "general",
@@ -30,8 +30,8 @@ let value: SubscriberResponseDto = {
   organizationId: "<id>",
   environmentId: "<id>",
   deleted: false,
-  createdAt: "1725212250518",
-  updatedAt: "1738749870425",
+  createdAt: "1738893914675",
+  updatedAt: "1738856788658",
 };
 ```
 
@@ -58,3 +58,4 @@ let value: SubscriberResponseDto = {
 | `updatedAt`                                                                                                                                                                       | *string*                                                                                                                                                                          | :heavy_check_mark:                                                                                                                                                                | The timestamp indicating when the subscriber was last updated, in ISO 8601 format.                                                                                                |
 | `v`                                                                                                                                                                               | *number*                                                                                                                                                                          | :heavy_minus_sign:                                                                                                                                                                | The version of the subscriber document.                                                                                                                                           |
 | `data`                                                                                                                                                                            | Record<string, *any*>                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                                | Additional custom data for the subscriber                                                                                                                                         |
+| `timezone`                                                                                                                                                                        | *string*                                                                                                                                                                          | :heavy_minus_sign:                                                                                                                                                                | Timezone of the subscriber                                                                                                                                                        |

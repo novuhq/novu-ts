@@ -19,7 +19,7 @@ Subscriber credentials associated to the delivery methods such as slack and push
 import { Novu } from "@novu/api";
 
 const novu = new Novu({
-  secretKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "YOUR_SECRET_KEY_HERE",
 });
 
 async function run() {
@@ -59,7 +59,7 @@ import { subscribersCredentialsUpdate } from "@novu/api/funcs/subscribersCredent
 // Use `NovuCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const novu = new NovuCore({
-  secretKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "YOUR_SECRET_KEY_HERE",
 });
 
 async function run() {
@@ -130,7 +130,7 @@ Subscriber credentials associated to the delivery methods such as slack and push
 import { Novu } from "@novu/api";
 
 const novu = new Novu({
-  secretKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "YOUR_SECRET_KEY_HERE",
 });
 
 async function run() {
@@ -170,7 +170,7 @@ import { subscribersCredentialsAppend } from "@novu/api/funcs/subscribersCredent
 // Use `NovuCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const novu = new NovuCore({
-  secretKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "YOUR_SECRET_KEY_HERE",
 });
 
 async function run() {
@@ -240,7 +240,7 @@ Delete subscriber credentials such as slack and expo tokens.
 import { Novu } from "@novu/api";
 
 const novu = new Novu({
-  secretKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "YOUR_SECRET_KEY_HERE",
 });
 
 async function run() {
@@ -264,7 +264,7 @@ import { subscribersCredentialsDelete } from "@novu/api/funcs/subscribersCredent
 // Use `NovuCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const novu = new NovuCore({
-  secretKey: "<YOUR_API_KEY_HERE>",
+  secretKey: "YOUR_SECRET_KEY_HERE",
 });
 
 async function run() {

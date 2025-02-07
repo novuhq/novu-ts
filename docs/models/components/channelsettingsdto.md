@@ -6,7 +6,7 @@
 import { ChannelSettingsDto } from "@novu/api/models/components";
 
 let value: ChannelSettingsDto = {
-  providerId: "apns",
+  providerId: "msteams",
   credentials: {
     webhookUrl: "https://example.com/webhook",
     channel: "general",
