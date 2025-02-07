@@ -5,7 +5,7 @@
 ```typescript
 import { DigestTimedMetadataUnit } from "@novu/api/models/components";
 
-let value: DigestTimedMetadataUnit = "months";
+let value: DigestTimedMetadataUnit = "minutes";
 ```
 
 ## Values

@@ -17,7 +17,7 @@ let value: SubscribersControllerSearchSubscribersResponse = {
         subscriberId: "<id>",
         channels: [
           {
-            providerId: "pusher-beams",
+            providerId: "getstream",
             credentials: {
               webhookUrl: "https://example.com/webhook",
               channel: "general",
@@ -38,8 +38,8 @@ let value: SubscribersControllerSearchSubscribersResponse = {
         organizationId: "<id>",
         environmentId: "<id>",
         deleted: false,
-        createdAt: "1728766973887",
-        updatedAt: "1738745750739",
+        createdAt: "1715737301398",
+        updatedAt: "1738910768896",
       },
     ],
     next: "<value>",

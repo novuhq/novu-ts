@@ -1,11 +1,11 @@
-# SubscribersV1ControllerCreateSubscriberRequest
+# SubscribersControllerCreateSubscriberRequest
 
 ## Example Usage
 
 ```typescript
-import { SubscribersV1ControllerCreateSubscriberRequest } from "@novu/api/models/operations";
+import { SubscribersControllerCreateSubscriberRequest } from "@novu/api/models/operations";
 
-let value: SubscribersV1ControllerCreateSubscriberRequest = {
+let value: SubscribersControllerCreateSubscriberRequest = {
   createSubscriberRequestDto: {
     subscriberId: "<id>",
   },

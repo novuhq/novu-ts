@@ -10,7 +10,7 @@ let value: WorkflowPreferenceDto = {
   channels: {},
   overrides: [
     {
-      channel: "in_app",
+      channel: "chat",
       source: "workflowOverride",
     },
   ],

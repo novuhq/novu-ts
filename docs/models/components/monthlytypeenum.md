@@ -7,7 +7,7 @@ Type of monthly schedule
 ```typescript
 import { MonthlyTypeEnum } from "@novu/api/models/components";
 
-let value: MonthlyTypeEnum = "on";
+let value: MonthlyTypeEnum = "each";
 ```
 
 ## Values

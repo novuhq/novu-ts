@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 6bff3a53-3f0b-40b4-942f-ff70dc583ae5
 management:
-  docChecksum: f744dfda5af0cf1c59b2d717d6f050cc
+  docChecksum: a3b9e1f5c5fd6328866eea116d03a7a6
   docVersion: "1.0"
-  speakeasyVersion: 1.484.1
-  generationVersion: 2.503.2
-  releaseVersion: 0.1.6
-  configChecksum: c23092708d5e87e29dc1689763650e55
+  speakeasyVersion: 1.487.0
+  generationVersion: 2.506.0
+  releaseVersion: 0.2.0
+  configChecksum: 6ddc30a422027d9634b9922e300c681c
   repoURL: https://github.com/novuhq/novu-ts.git
   installationURL: https://github.com/novuhq/novu-ts
   published: true
@@ -15,7 +15,7 @@ features:
     acceptHeaders: 2.81.2
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.11
-    core: 3.18.22
+    core: 3.19.0
     defaultEnabledRetries: 0.1.0
     deprecations: 2.81.1
     enumUnions: 0.1.0
@@ -69,7 +69,6 @@ generatedFiles:
   - docs/models/components/channelcredentials.md
   - docs/models/components/channelcredentialsdto.md
   - docs/models/components/channelctatypeenum.md
-  - docs/models/components/channelpreference.md
   - docs/models/components/channels.md
   - docs/models/components/channelsettingsdto.md
   - docs/models/components/channelsettingsdtoproviderid.md
@@ -94,8 +93,6 @@ generatedFiles:
   - docs/models/components/delayscheduledmetadatatype.md
   - docs/models/components/deletemessageresponsedto.md
   - docs/models/components/deletemessageresponsedtostatus.md
-  - docs/models/components/deletesubscriberresponsedto.md
-  - docs/models/components/deletesubscriberresponsedtostatus.md
   - docs/models/components/digestmetadatadto.md
   - docs/models/components/digestregularmetadata.md
   - docs/models/components/digestregularmetadatatype.md
@@ -118,7 +115,6 @@ generatedFiles:
   - docs/models/components/fieldfilterpartdto.md
   - docs/models/components/filtertopicsresponsedto.md
   - docs/models/components/getsubscriberpreferencesdto.md
-  - docs/models/components/getsubscriberpreferencesresponsedto.md
   - docs/models/components/gettopicresponsedto.md
   - docs/models/components/globalpreferencedto.md
   - docs/models/components/integrationresponsedto.md
@@ -157,12 +153,8 @@ generatedFiles:
   - docs/models/components/notificationstepdtometadata.md
   - docs/models/components/notificationtrigger.md
   - docs/models/components/notificationtriggerdto.md
-  - docs/models/components/notificationtriggerresponse.md
   - docs/models/components/notificationtriggertype.md
   - docs/models/components/notificationtriggervariable.md
-  - docs/models/components/notificationtriggervariableresponse.md
-  - docs/models/components/notificationtriggervariableresponsetype.md
-  - docs/models/components/notificationtriggervariableresponsevalue.md
   - docs/models/components/on.md
   - docs/models/components/one.md
   - docs/models/components/operator.md
@@ -177,7 +169,6 @@ generatedFiles:
   - docs/models/components/patchsubscriberrequestdto.md
   - docs/models/components/patchsubscriberrequestdtodata.md
   - docs/models/components/payload.md
-  - docs/models/components/preference.md
   - docs/models/components/preferencechannels.md
   - docs/models/components/providerid.md
   - docs/models/components/providersidenum.md
@@ -195,7 +186,6 @@ generatedFiles:
   - docs/models/components/subscriberfeedresponsedto.md
   - docs/models/components/subscriberpayloaddto.md
   - docs/models/components/subscriberresponsedto.md
-  - docs/models/components/templateresponse.md
   - docs/models/components/tenant.md
   - docs/models/components/tenantpayloaddto.md
   - docs/models/components/tenantpayloaddtodata.md
@@ -214,9 +204,6 @@ generatedFiles:
   - docs/models/components/triggereventtoallrequestdtooverrides.md
   - docs/models/components/triggereventtoallrequestdtotenant.md
   - docs/models/components/triggerrecipientstypeenum.md
-  - docs/models/components/triggerreservedvariableresponse.md
-  - docs/models/components/triggerreservedvariableresponsetype.md
-  - docs/models/components/triggertypeenum.md
   - docs/models/components/type.md
   - docs/models/components/unit.md
   - docs/models/components/unseencountresponse.md
@@ -224,12 +211,7 @@ generatedFiles:
   - docs/models/components/updateintegrationrequestdto.md
   - docs/models/components/updatesubscriberchannelrequestdto.md
   - docs/models/components/updatesubscriberchannelrequestdtoproviderid.md
-  - docs/models/components/updatesubscriberglobalpreferencesrequestdto.md
   - docs/models/components/updatesubscriberonlineflagrequestdto.md
-  - docs/models/components/updatesubscriberpreferenceglobalresponsedto.md
-  - docs/models/components/updatesubscriberpreferencerequestdto.md
-  - docs/models/components/updatesubscriberpreferenceresponsedto.md
-  - docs/models/components/updatesubscriberrequestdto.md
   - docs/models/components/value.md
   - docs/models/components/weekdays.md
   - docs/models/components/workflowinfodto.md
@@ -279,7 +261,8 @@ generatedFiles:
   - docs/models/operations/notificationscontrollerlistnotificationsrequest.md
   - docs/models/operations/notificationscontrollerlistnotificationsresponse.md
   - docs/models/operations/orderdirection.md
-  - docs/models/operations/parameter.md
+  - docs/models/operations/subscriberscontrollercreatesubscriberrequest.md
+  - docs/models/operations/subscriberscontrollercreatesubscriberresponse.md
   - docs/models/operations/subscriberscontrollergetsubscriberpreferencesrequest.md
   - docs/models/operations/subscriberscontrollergetsubscriberpreferencesresponse.md
   - docs/models/operations/subscriberscontrollergetsubscriberrequest.md
@@ -299,20 +282,12 @@ generatedFiles:
   - docs/models/operations/subscribersv1controllerchatoauthcallbackrequest.md
   - docs/models/operations/subscribersv1controllerchatoauthcallbackresponse.md
   - docs/models/operations/subscribersv1controllerchatoauthcallbackresponseresult.md
-  - docs/models/operations/subscribersv1controllercreatesubscriberrequest.md
-  - docs/models/operations/subscribersv1controllercreatesubscriberresponse.md
   - docs/models/operations/subscribersv1controllerdeletesubscribercredentialsrequest.md
   - docs/models/operations/subscribersv1controllerdeletesubscribercredentialsresponse.md
   - docs/models/operations/subscribersv1controllergetnotificationsfeedrequest.md
   - docs/models/operations/subscribersv1controllergetnotificationsfeedresponse.md
-  - docs/models/operations/subscribersv1controllergetsubscriberpreferencebylevelrequest.md
-  - docs/models/operations/subscribersv1controllergetsubscriberpreferencebylevelresponse.md
-  - docs/models/operations/subscribersv1controllergetsubscriberrequest.md
-  - docs/models/operations/subscribersv1controllergetsubscriberresponse.md
   - docs/models/operations/subscribersv1controllergetunseencountrequest.md
   - docs/models/operations/subscribersv1controllergetunseencountresponse.md
-  - docs/models/operations/subscribersv1controllerlistsubscriberpreferencesrequest.md
-  - docs/models/operations/subscribersv1controllerlistsubscriberpreferencesresponse.md
   - docs/models/operations/subscribersv1controllerlistsubscribersrequest.md
   - docs/models/operations/subscribersv1controllerlistsubscribersresponse.md
   - docs/models/operations/subscribersv1controllerlistsubscribersresponsebody.md
@@ -324,18 +299,10 @@ generatedFiles:
   - docs/models/operations/subscribersv1controllermarkmessagesasresponse.md
   - docs/models/operations/subscribersv1controllermodifysubscriberchannelrequest.md
   - docs/models/operations/subscribersv1controllermodifysubscriberchannelresponse.md
-  - docs/models/operations/subscribersv1controllerremovesubscriberrequest.md
-  - docs/models/operations/subscribersv1controllerremovesubscriberresponse.md
   - docs/models/operations/subscribersv1controllerupdatesubscriberchannelrequest.md
   - docs/models/operations/subscribersv1controllerupdatesubscriberchannelresponse.md
-  - docs/models/operations/subscribersv1controllerupdatesubscriberglobalpreferencesrequest.md
-  - docs/models/operations/subscribersv1controllerupdatesubscriberglobalpreferencesresponse.md
   - docs/models/operations/subscribersv1controllerupdatesubscriberonlineflagrequest.md
   - docs/models/operations/subscribersv1controllerupdatesubscriberonlineflagresponse.md
-  - docs/models/operations/subscribersv1controllerupdatesubscriberpreferencerequest.md
-  - docs/models/operations/subscribersv1controllerupdatesubscriberpreferenceresponse.md
-  - docs/models/operations/subscribersv1controllerupdatesubscriberrequest.md
-  - docs/models/operations/subscribersv1controllerupdatesubscriberresponse.md
   - docs/models/operations/topicscontrollerassignrequest.md
   - docs/models/operations/topicscontrollerassignresponse.md
   - docs/models/operations/topicscontrollercreatetopicrequest.md
@@ -355,7 +322,6 @@ generatedFiles:
   - docs/sdks/authentication/README.md
   - docs/sdks/credentials/README.md
   - docs/sdks/integrations/README.md
-  - docs/sdks/legacy/README.md
   - docs/sdks/messages/README.md
   - docs/sdks/notifications/README.md
   - docs/sdks/novu/README.md
@@ -395,7 +361,6 @@ generatedFiles:
   - src/funcs/subscribersCredentialsDelete.ts
   - src/funcs/subscribersCredentialsUpdate.ts
   - src/funcs/subscribersDelete.ts
-  - src/funcs/subscribersDeleteLegacy.ts
   - src/funcs/subscribersList.ts
   - src/funcs/subscribersMessagesMarkAll.ts
   - src/funcs/subscribersMessagesMarkAllAs.ts
@@ -403,17 +368,11 @@ generatedFiles:
   - src/funcs/subscribersNotificationsFeed.ts
   - src/funcs/subscribersNotificationsUnseenCount.ts
   - src/funcs/subscribersPatch.ts
-  - src/funcs/subscribersPreferencesLegacyUpdateGlobal.ts
-  - src/funcs/subscribersPreferencesListLegacy.ts
-  - src/funcs/subscribersPreferencesRetrieve.ts
-  - src/funcs/subscribersPreferencesRetrieveByLevelLegacy.ts
+  - src/funcs/subscribersPreferencesList.ts
   - src/funcs/subscribersPreferencesUpdate.ts
-  - src/funcs/subscribersPreferencesUpdateLegacy.ts
   - src/funcs/subscribersPropertiesUpdateOnlineFlag.ts
   - src/funcs/subscribersRetrieve.ts
-  - src/funcs/subscribersRetrieveLegacy.ts
   - src/funcs/subscribersSearch.ts
-  - src/funcs/subscribersUpdateLegacy.ts
   - src/funcs/topicsCreate.ts
   - src/funcs/topicsDelete.ts
   - src/funcs/topicsList.ts
@@ -465,7 +424,6 @@ generatedFiles:
   - src/models/components/channelcredentials.ts
   - src/models/components/channelcredentialsdto.ts
   - src/models/components/channelctatypeenum.ts
-  - src/models/components/channelpreference.ts
   - src/models/components/channelsettingsdto.ts
   - src/models/components/channeltypeenum.ts
   - src/models/components/createdsubscriberdto.ts
@@ -478,7 +436,6 @@ generatedFiles:
   - src/models/components/delayregularmetadata.ts
   - src/models/components/delayscheduledmetadata.ts
   - src/models/components/deletemessageresponsedto.ts
-  - src/models/components/deletesubscriberresponsedto.ts
   - src/models/components/digestmetadatadto.ts
   - src/models/components/digestregularmetadata.ts
   - src/models/components/digesttimedconfigdto.ts
@@ -496,7 +453,6 @@ generatedFiles:
   - src/models/components/fieldfilterpartdto.ts
   - src/models/components/filtertopicsresponsedto.ts
   - src/models/components/getsubscriberpreferencesdto.ts
-  - src/models/components/getsubscriberpreferencesresponsedto.ts
   - src/models/components/gettopicresponsedto.ts
   - src/models/components/globalpreferencedto.ts
   - src/models/components/index.ts
@@ -522,16 +478,13 @@ generatedFiles:
   - src/models/components/notificationstepdto.ts
   - src/models/components/notificationtrigger.ts
   - src/models/components/notificationtriggerdto.ts
-  - src/models/components/notificationtriggerresponse.ts
   - src/models/components/notificationtriggervariable.ts
-  - src/models/components/notificationtriggervariableresponse.ts
   - src/models/components/ordinalenum.ts
   - src/models/components/ordinalvalueenum.ts
   - src/models/components/overrides.ts
   - src/models/components/patchpreferencechannelsdto.ts
   - src/models/components/patchsubscriberpreferencesdto.ts
   - src/models/components/patchsubscriberrequestdto.ts
-  - src/models/components/preference.ts
   - src/models/components/preferencechannels.ts
   - src/models/components/providersidenum.ts
   - src/models/components/removesubscriberresponsedto.ts
@@ -546,7 +499,6 @@ generatedFiles:
   - src/models/components/subscriberfeedresponsedto.ts
   - src/models/components/subscriberpayloaddto.ts
   - src/models/components/subscriberresponsedto.ts
-  - src/models/components/templateresponse.ts
   - src/models/components/tenantpayloaddto.ts
   - src/models/components/textalignenum.ts
   - src/models/components/timedconfig.ts
@@ -557,18 +509,11 @@ generatedFiles:
   - src/models/components/triggereventresponsedto.ts
   - src/models/components/triggereventtoallrequestdto.ts
   - src/models/components/triggerrecipientstypeenum.ts
-  - src/models/components/triggerreservedvariableresponse.ts
-  - src/models/components/triggertypeenum.ts
   - src/models/components/unseencountresponse.ts
   - src/models/components/updatedsubscriberdto.ts
   - src/models/components/updateintegrationrequestdto.ts
   - src/models/components/updatesubscriberchannelrequestdto.ts
-  - src/models/components/updatesubscriberglobalpreferencesrequestdto.ts
   - src/models/components/updatesubscriberonlineflagrequestdto.ts
-  - src/models/components/updatesubscriberpreferenceglobalresponsedto.ts
-  - src/models/components/updatesubscriberpreferencerequestdto.ts
-  - src/models/components/updatesubscriberpreferenceresponsedto.ts
-  - src/models/components/updatesubscriberrequestdto.ts
   - src/models/components/workflowinfodto.ts
   - src/models/components/workflowpreferencedto.ts
   - src/models/components/workflowresponse.ts
@@ -597,6 +542,7 @@ generatedFiles:
   - src/models/operations/notificationscontrollergetactivitystats.ts
   - src/models/operations/notificationscontrollergetnotification.ts
   - src/models/operations/notificationscontrollerlistnotifications.ts
+  - src/models/operations/subscriberscontrollercreatesubscriber.ts
   - src/models/operations/subscriberscontrollergetsubscriber.ts
   - src/models/operations/subscriberscontrollergetsubscriberpreferences.ts
   - src/models/operations/subscriberscontrollerpatchsubscriber.ts
@@ -606,24 +552,16 @@ generatedFiles:
   - src/models/operations/subscribersv1controllerbulkcreatesubscribers.ts
   - src/models/operations/subscribersv1controllerchataccessoauth.ts
   - src/models/operations/subscribersv1controllerchatoauthcallback.ts
-  - src/models/operations/subscribersv1controllercreatesubscriber.ts
   - src/models/operations/subscribersv1controllerdeletesubscribercredentials.ts
   - src/models/operations/subscribersv1controllergetnotificationsfeed.ts
-  - src/models/operations/subscribersv1controllergetsubscriber.ts
-  - src/models/operations/subscribersv1controllergetsubscriberpreferencebylevel.ts
   - src/models/operations/subscribersv1controllergetunseencount.ts
-  - src/models/operations/subscribersv1controllerlistsubscriberpreferences.ts
   - src/models/operations/subscribersv1controllerlistsubscribers.ts
   - src/models/operations/subscribersv1controllermarkactionasseen.ts
   - src/models/operations/subscribersv1controllermarkallunreadasread.ts
   - src/models/operations/subscribersv1controllermarkmessagesas.ts
   - src/models/operations/subscribersv1controllermodifysubscriberchannel.ts
-  - src/models/operations/subscribersv1controllerremovesubscriber.ts
-  - src/models/operations/subscribersv1controllerupdatesubscriber.ts
   - src/models/operations/subscribersv1controllerupdatesubscriberchannel.ts
-  - src/models/operations/subscribersv1controllerupdatesubscriberglobalpreferences.ts
   - src/models/operations/subscribersv1controllerupdatesubscriberonlineflag.ts
-  - src/models/operations/subscribersv1controllerupdatesubscriberpreference.ts
   - src/models/operations/topicscontrollerassign.ts
   - src/models/operations/topicscontrollercreatetopic.ts
   - src/models/operations/topicscontrollerdeletetopic.ts
@@ -636,7 +574,6 @@ generatedFiles:
   - src/sdk/credentials.ts
   - src/sdk/index.ts
   - src/sdk/integrations.ts
-  - src/sdk/legacy.ts
   - src/sdk/messages.ts
   - src/sdk/notifications.ts
   - src/sdk/novumessages.ts
@@ -935,6 +872,8 @@ examples:
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123", "errors": {"fieldName1": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName2": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName3": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName4": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}}}
         "500":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "Resource not found.", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
+        "200":
+          application/json: {"subscriberId": "<id>", "channels": [{"providerId": "fcm", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}, {"providerId": "getstream", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}], "_organizationId": "<id>", "_environmentId": "<id>", "deleted": true, "createdAt": "1709571070797", "updatedAt": "1738912686405"}
   SubscribersController_getSubscriber:
     speakeasy-default-subscribers-controller-get-subscriber:
       parameters:

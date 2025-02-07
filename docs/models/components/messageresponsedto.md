@@ -16,7 +16,7 @@ let value: MessageResponseDto = {
     subscriberId: "<id>",
     channels: [
       {
-        providerId: "grafana-on-call",
+        providerId: "rocket-chat",
         credentials: {
           webhookUrl: "https://example.com/webhook",
           channel: "general",
@@ -37,19 +37,19 @@ let value: MessageResponseDto = {
     organizationId: "<id>",
     environmentId: "<id>",
     deleted: false,
-    createdAt: "1713882722716",
-    updatedAt: "1738730777347",
+    createdAt: "1709107879358",
+    updatedAt: "1738861156112",
   },
-  createdAt: "1737046817208",
+  createdAt: "1707978379905",
   content: "<value>",
   transactionId: "<id>",
-  channel: "sms",
+  channel: "email",
   read: false,
   seen: false,
   cta: {
     data: {},
   },
-  status: "sent",
+  status: "error",
 };
 ```
 

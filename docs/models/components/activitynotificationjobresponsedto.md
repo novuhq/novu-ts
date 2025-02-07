@@ -7,15 +7,15 @@ import { ActivityNotificationJobResponseDto } from "@novu/api/models/components"
 
 let value: ActivityNotificationJobResponseDto = {
   id: "<id>",
-  type: "sms",
+  type: "trigger",
   executionDetails: [
     {
       id: "<id>",
-      status: "ReadConfirmation",
+      status: "Warning",
       detail: "<value>",
       isRetry: false,
       isTest: false,
-      providerId: "infobip-sms",
+      providerId: "mobishastra",
       source: "Webhook",
     },
   ],
@@ -25,21 +25,21 @@ let value: ActivityNotificationJobResponseDto = {
     filters: [
       {
         isNegated: false,
-        type: "LIST",
-        value: "AND",
+        type: "TEXT",
+        value: "OR",
         children: [
           {
             field: "<value>",
             value: "<value>",
-            operator: "LIKE",
-            on: "subscriber",
+            operator: "NOT_IN",
+            on: "payload",
           },
         ],
       },
     ],
     templateId: "<id>",
   },
-  providerId: "discord",
+  providerId: "clickatell",
   status: "<value>",
 };
 ```

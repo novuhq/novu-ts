@@ -15,7 +15,7 @@ let value: SubscribersControllerGetSubscriberResponse = {
     subscriberId: "<id>",
     channels: [
       {
-        providerId: "getstream",
+        providerId: "fcm",
         credentials: {
           webhookUrl: "https://example.com/webhook",
           channel: "general",
@@ -36,8 +36,8 @@ let value: SubscribersControllerGetSubscriberResponse = {
     organizationId: "<id>",
     environmentId: "<id>",
     deleted: false,
-    createdAt: "1729265586323",
-    updatedAt: "1738719893046",
+    createdAt: "1726697325999",
+    updatedAt: "1738897178380",
   },
 };
 ```
