@@ -89,6 +89,7 @@ export async function subscribersNotificationsUnseenCount(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "SubscribersV1Controller_getUnseenCount",
     oAuth2Scopes: [],
 

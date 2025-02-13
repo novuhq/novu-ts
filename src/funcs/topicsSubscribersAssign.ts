@@ -96,6 +96,7 @@ export async function topicsSubscribersAssign(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "TopicsController_assign",
     oAuth2Scopes: [],
 

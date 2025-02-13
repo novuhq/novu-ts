@@ -96,6 +96,7 @@ export async function topicsRename(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "TopicsController_renameTopic",
     oAuth2Scopes: [],
 
