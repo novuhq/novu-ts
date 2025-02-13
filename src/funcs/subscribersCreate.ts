@@ -88,6 +88,7 @@ export async function subscribersCreate(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "SubscribersController_createSubscriber",
     oAuth2Scopes: [],
 

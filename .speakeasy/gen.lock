@@ -3,10 +3,10 @@ id: 6bff3a53-3f0b-40b4-942f-ff70dc583ae5
 management:
   docChecksum: a3b9e1f5c5fd6328866eea116d03a7a6
   docVersion: "1.0"
-  speakeasyVersion: 1.487.0
-  generationVersion: 2.506.0
-  releaseVersion: 0.2.0
-  configChecksum: 6ddc30a422027d9634b9922e300c681c
+  speakeasyVersion: 1.490.0
+  generationVersion: 2.512.0
+  releaseVersion: 0.2.1
+  configChecksum: f58cb0b941edc8bdebac2443dea15081
   repoURL: https://github.com/novuhq/novu-ts.git
   installationURL: https://github.com/novuhq/novu-ts
   published: true
@@ -22,7 +22,7 @@ features:
     envVarSecurityUsage: 0.1.2
     examples: 2.81.5
     flattening: 2.82.1
-    globalSecurity: 2.82.12
+    globalSecurity: 2.82.13
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
     globalServerURLs: 2.82.4

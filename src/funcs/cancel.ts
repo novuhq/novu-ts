@@ -92,6 +92,7 @@ export async function cancel(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "EventsController_cancel",
     oAuth2Scopes: [],
 
