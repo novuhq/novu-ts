@@ -2064,7 +2064,20 @@
             "in": "query",
             "description": "Page number for pagination",
             "schema": {
+              "minimum": 0,
               "default": 0,
+              "type": "number"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "description": "Limit for pagination",
+            "schema": {
+              "minimum": 1,
+              "maximum": 50,
+              "default": 10,
               "type": "number"
             }
           },
@@ -14519,8 +14532,8 @@
           }
         },
         "responses": {
-          "200": {
-            "description": "OK",
+          "201": {
+            "description": "Created",
             "headers": {
               "Content-Type": {
                 "$ref": "#/components/headers/Content-Type"
@@ -23327,6 +23340,10 @@
             "items": {
               "$ref": "#/components/schemas/SubscriberChannelDto"
             }
+          },
+          "timezone": {
+            "type": "string",
+            "description": "The timezone of the subscriber."
           }
         },
         "required": [
@@ -23619,6 +23636,15 @@
           "_id"
         ]
       },
+      "WorkflowOriginEnum": {
+        "type": "string",
+        "description": "Origin of the workflow",
+        "enum": [
+          "novu-cloud",
+          "novu-cloud-v1",
+          "external"
+        ]
+      },
       "NotificationTriggerVariable": {
         "type": "object",
         "properties": {
@@ -23676,6 +23702,9 @@
           "name": {
             "type": "string",
             "description": "Name of the template"
+          },
+          "origin": {
+            "$ref": "#/components/schemas/WorkflowOriginEnum"
           },
           "triggers": {
             "description": "Triggers of the template",
@@ -25079,6 +25108,10 @@
             "items": {
               "$ref": "#/components/schemas/SubscriberChannelDto"
             }
+          },
+          "timezone": {
+            "type": "string",
+            "description": "The timezone of the subscriber."
           }
         },
         "required": [

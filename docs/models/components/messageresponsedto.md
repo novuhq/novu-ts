@@ -16,7 +16,7 @@ let value: MessageResponseDto = {
     subscriberId: "<id>",
     channels: [
       {
-        providerId: "rocket-chat",
+        providerId: "slack",
         credentials: {
           webhookUrl: "https://example.com/webhook",
           channel: "general",
@@ -37,19 +37,22 @@ let value: MessageResponseDto = {
     organizationId: "<id>",
     environmentId: "<id>",
     deleted: false,
-    createdAt: "1709617644175",
-    updatedAt: "1739370920929",
+    createdAt: "1714263363166",
+    updatedAt: "1739407473221",
   },
-  createdAt: "1708488144722",
-  content: "<value>",
+  createdAt: "1732986322938",
+  content: {
+    type: "button",
+    content: "<value>",
+  },
   transactionId: "<id>",
-  channel: "email",
+  channel: "push",
   read: false,
   seen: false,
   cta: {
     data: {},
   },
-  status: "error",
+  status: "warning",
 };
 ```
 

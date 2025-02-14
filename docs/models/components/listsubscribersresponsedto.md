@@ -11,7 +11,7 @@ let value: ListSubscribersResponseDto = {
       subscriberId: "<id>",
       channels: [
         {
-          providerId: "msteams",
+          providerId: "pushpad",
           credentials: {
             webhookUrl: "https://example.com/webhook",
             channel: "general",
@@ -32,8 +32,8 @@ let value: ListSubscribersResponseDto = {
       organizationId: "<id>",
       environmentId: "<id>",
       deleted: false,
-      createdAt: "1734646828003",
-      updatedAt: "1739423392882",
+      createdAt: "1733415882737",
+      updatedAt: "1739455042597",
     },
   ],
   next: "<value>",

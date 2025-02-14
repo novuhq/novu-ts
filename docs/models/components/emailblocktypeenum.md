@@ -7,7 +7,7 @@ Type of the email block
 ```typescript
 import { EmailBlockTypeEnum } from "@novu/api/models/components";
 
-let value: EmailBlockTypeEnum = "text";
+let value: EmailBlockTypeEnum = "button";
 ```
 
 ## Values
