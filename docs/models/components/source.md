@@ -7,7 +7,7 @@ The source of overrides
 ```typescript
 import { Source } from "@novu/api/models/components";
 
-let value: Source = "template";
+let value: Source = "workflowOverride";
 ```
 
 ## Values

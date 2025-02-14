@@ -16,7 +16,7 @@ let value: GetSubscriberPreferencesDto = {
       channels: {},
       overrides: [
         {
-          channel: "push",
+          channel: "email",
           source: "workflowOverride",
         },
       ],

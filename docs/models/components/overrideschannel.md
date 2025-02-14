@@ -7,7 +7,7 @@ The channel type which is overridden
 ```typescript
 import { OverridesChannel } from "@novu/api/models/components";
 
-let value: OverridesChannel = "in_app";
+let value: OverridesChannel = "chat";
 ```
 
 ## Values

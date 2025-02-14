@@ -9,7 +9,7 @@ Content of the message, can be an email block or a string
 
 ```typescript
 const value: components.EmailBlock = {
-  type: "button",
+  type: "text",
   content: "<value>",
 };
 ```
