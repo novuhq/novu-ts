@@ -13,5 +13,5 @@ let value: Status = "processed";
 ## Values
 
 ```typescript
-"error" | "trigger_not_active" | "no_workflow_active_steps_defined" | "no_workflow_steps_defined" | "processed" | "no_tenant_found"
+"error" | "trigger_not_active" | "no_workflow_active_steps_defined" | "no_workflow_steps_defined" | "processed" | "no_tenant_found" | "invalid_recipients"
 ```

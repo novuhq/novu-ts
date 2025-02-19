@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 6bff3a53-3f0b-40b4-942f-ff70dc583ae5
 management:
-  docChecksum: a3b9e1f5c5fd6328866eea116d03a7a6
+  docChecksum: e581b83557f00a8a1f177ccc3d920d23
   docVersion: "1.0"
-  speakeasyVersion: 1.490.0
-  generationVersion: 2.512.0
-  releaseVersion: 0.2.1
-  configChecksum: f58cb0b941edc8bdebac2443dea15081
+  speakeasyVersion: 1.494.0
+  generationVersion: 2.515.0
+  releaseVersion: 0.3.0
+  configChecksum: 35683929341d803bc9d28ca5eb899567
   repoURL: https://github.com/novuhq/novu-ts.git
   installationURL: https://github.com/novuhq/novu-ts
   published: true
@@ -15,7 +15,7 @@ features:
     acceptHeaders: 2.81.2
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.11
-    core: 3.19.0
+    core: 3.20.0
     defaultEnabledRetries: 0.1.0
     deprecations: 2.81.1
     enumUnions: 0.1.0
@@ -80,7 +80,6 @@ generatedFiles:
   - docs/models/components/createintegrationrequestdto.md
   - docs/models/components/createintegrationrequestdtochannel.md
   - docs/models/components/createsubscriberrequestdto.md
-  - docs/models/components/createsubscriberrequestdtodata.md
   - docs/models/components/createtopicrequestdto.md
   - docs/models/components/createtopicresponsedto.md
   - docs/models/components/credentialsdto.md
@@ -216,6 +215,7 @@ generatedFiles:
   - docs/models/components/weekdays.md
   - docs/models/components/workflowinfodto.md
   - docs/models/components/workflowintegrationstatus.md
+  - docs/models/components/workfloworiginenum.md
   - docs/models/components/workflowpreferencedto.md
   - docs/models/components/workflowresponse.md
   - docs/models/components/workflowresponsedata.md
@@ -515,6 +515,7 @@ generatedFiles:
   - src/models/components/updatesubscriberchannelrequestdto.ts
   - src/models/components/updatesubscriberonlineflagrequestdto.ts
   - src/models/components/workflowinfodto.ts
+  - src/models/components/workfloworiginenum.ts
   - src/models/components/workflowpreferencedto.ts
   - src/models/components/workflowresponse.ts
   - src/models/errors/errordto.ts
@@ -586,6 +587,7 @@ generatedFiles:
   - src/sdk/subscribers.ts
   - src/sdk/topics.ts
   - src/sdk/webhooks.ts
+  - src/types/async.ts
   - src/types/blobs.ts
   - src/types/constdatetime.ts
   - src/types/enums.ts
@@ -674,6 +676,7 @@ examples:
       parameters:
         query:
           page: 0
+          limit: 10
         header: {}
       responses:
         "200":
