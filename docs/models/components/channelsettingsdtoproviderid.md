@@ -7,7 +7,7 @@ The provider identifier for the credentials
 ```typescript
 import { ChannelSettingsDtoProviderId } from "@novu/api/models/components";
 
-let value: ChannelSettingsDtoProviderId = "pushpad";
+let value: ChannelSettingsDtoProviderId = "msteams";
 ```
 
 ## Values

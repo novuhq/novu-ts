@@ -2064,7 +2064,20 @@
             "in": "query",
             "description": "Page number for pagination",
             "schema": {
+              "minimum": 0,
               "default": 0,
+              "type": "number"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "description": "Limit for pagination",
+            "schema": {
+              "minimum": 1,
+              "maximum": 50,
+              "default": 10,
               "type": "number"
             }
           },
@@ -14519,8 +14532,8 @@
           }
         },
         "responses": {
-          "200": {
-            "description": "OK",
+          "201": {
+            "description": "Created",
             "headers": {
               "Content-Type": {
                 "$ref": "#/components/headers/Content-Type"
@@ -23185,7 +23198,8 @@
               "no_workflow_active_steps_defined",
               "no_workflow_steps_defined",
               "processed",
-              "no_tenant_found"
+              "no_tenant_found",
+              "invalid_recipients"
             ],
             "type": "string",
             "description": "Status of the trigger"
@@ -23327,6 +23341,10 @@
             "items": {
               "$ref": "#/components/schemas/SubscriberChannelDto"
             }
+          },
+          "timezone": {
+            "type": "string",
+            "description": "The timezone of the subscriber."
           }
         },
         "required": [
@@ -23619,6 +23637,15 @@
           "_id"
         ]
       },
+      "WorkflowOriginEnum": {
+        "type": "string",
+        "description": "Origin of the workflow",
+        "enum": [
+          "novu-cloud",
+          "novu-cloud-v1",
+          "external"
+        ]
+      },
       "NotificationTriggerVariable": {
         "type": "object",
         "properties": {
@@ -23676,6 +23703,9 @@
           "name": {
             "type": "string",
             "description": "Name of the template"
+          },
+          "origin": {
+            "$ref": "#/components/schemas/WorkflowOriginEnum"
           },
           "triggers": {
             "description": "Triggers of the template",
@@ -25024,61 +25054,48 @@
         "properties": {
           "subscriberId": {
             "type": "string",
-            "description": "The internal identifier you used to create this subscriber, usually correlates to the id the user in your systems"
-          },
-          "email": {
-            "type": "string",
-            "description": "The email address of the subscriber."
+            "description": "Unique identifier of the subscriber"
           },
           "firstName": {
             "type": "string",
-            "description": "The first name of the subscriber."
+            "nullable": true,
+            "description": "First name of the subscriber"
           },
           "lastName": {
             "type": "string",
-            "description": "The last name of the subscriber."
+            "nullable": true,
+            "description": "Last name of the subscriber"
+          },
+          "email": {
+            "type": "string",
+            "nullable": true,
+            "description": "Email address of the subscriber"
           },
           "phone": {
             "type": "string",
-            "description": "The phone number of the subscriber."
+            "nullable": true,
+            "description": "Phone number of the subscriber"
           },
           "avatar": {
             "type": "string",
-            "description": "An HTTP URL to the profile image of your subscriber."
+            "nullable": true,
+            "description": "Avatar URL or identifier"
+          },
+          "timezone": {
+            "type": "string",
+            "nullable": true,
+            "description": "Timezone of the subscriber"
           },
           "locale": {
             "type": "string",
-            "description": "The locale of the subscriber."
+            "nullable": true,
+            "description": "Locale of the subscriber"
           },
           "data": {
             "type": "object",
-            "description": "An optional payload object that can contain any properties.",
-            "additionalProperties": {
-              "oneOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                {
-                  "type": "boolean"
-                },
-                {
-                  "type": "number"
-                }
-              ]
-            }
-          },
-          "channels": {
-            "description": "An optional array of subscriber channels.",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/SubscriberChannelDto"
-            }
+            "nullable": true,
+            "description": "Additional custom data for the subscriber",
+            "additionalProperties": true
           }
         },
         "required": [
@@ -26452,11 +26469,6 @@
       "PatchSubscriberRequestDto": {
         "type": "object",
         "properties": {
-          "subscriberId": {
-            "type": "string",
-            "nullable": true,
-            "description": "Unique identifier of the subscriber"
-          },
           "firstName": {
             "type": "string",
             "nullable": true,
