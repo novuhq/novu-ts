@@ -560,10 +560,10 @@ In some rare cases, the SDK can fail to get a response from the server or even m
 
 You can override the default server globally by passing a server index to the `serverIdx: number` optional parameter when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
 
-| #   | Server                   |
-| --- | ------------------------ |
-| 0   | `https://api.novu.co`    |
-| 1   | `https://eu.api.novu.co` |
+| #   | Server                   | Description |
+| --- | ------------------------ | ----------- |
+| 0   | `https://api.novu.co`    |             |
+| 1   | `https://eu.api.novu.co` |             |
 
 #### Example
 

@@ -9,7 +9,7 @@ let value: SubscriberResponseDto = {
   subscriberId: "<id>",
   channels: [
     {
-      providerId: "expo",
+      providerId: "pusher-beams",
       credentials: {
         webhookUrl: "https://example.com/webhook",
         channel: "general",
@@ -30,8 +30,8 @@ let value: SubscriberResponseDto = {
   organizationId: "<id>",
   environmentId: "<id>",
   deleted: false,
-  createdAt: "1739403679477",
-  updatedAt: "1739366553461",
+  createdAt: "1713101277984",
+  updatedAt: "1739912881622",
 };
 ```
 
