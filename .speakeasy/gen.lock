@@ -3,10 +3,10 @@ id: 6bff3a53-3f0b-40b4-942f-ff70dc583ae5
 management:
   docChecksum: e581b83557f00a8a1f177ccc3d920d23
   docVersion: "1.0"
-  speakeasyVersion: 1.494.0
-  generationVersion: 2.515.0
-  releaseVersion: 0.3.0
-  configChecksum: 35683929341d803bc9d28ca5eb899567
+  speakeasyVersion: 1.502.0
+  generationVersion: 2.524.1
+  releaseVersion: 0.4.0
+  configChecksum: 0153040bd86a2834b9d6029c7673b59e
   repoURL: https://github.com/novuhq/novu-ts.git
   installationURL: https://github.com/novuhq/novu-ts
   published: true
@@ -15,7 +15,7 @@ features:
     acceptHeaders: 2.81.2
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.11
-    core: 3.20.0
+    core: 3.21.1
     defaultEnabledRetries: 0.1.0
     deprecations: 2.81.1
     enumUnions: 0.1.0
@@ -27,8 +27,9 @@ features:
     globalSecurityFlattening: 0.1.0
     globalServerURLs: 2.82.4
     groups: 2.81.2
+    mcpServer: 0.3.0
     nameOverrides: 2.81.2
-    nullables: 0.1.0
+    nullables: 0.1.1
     pagination: 2.82.8
     responseFormat: 0.2.3
     retries: 2.83.0
@@ -403,6 +404,63 @@ generatedFiles:
   - src/lib/sdks.ts
   - src/lib/security.ts
   - src/lib/url.ts
+  - src/mcp-server/build.mts
+  - src/mcp-server/cli.ts
+  - src/mcp-server/cli/start/command.ts
+  - src/mcp-server/cli/start/impl.ts
+  - src/mcp-server/console-logger.ts
+  - src/mcp-server/mcp-server.ts
+  - src/mcp-server/resources.ts
+  - src/mcp-server/scopes.ts
+  - src/mcp-server/server.ts
+  - src/mcp-server/shared.ts
+  - src/mcp-server/tools.ts
+  - src/mcp-server/tools/cancel.ts
+  - src/mcp-server/tools/integrationsCreate.ts
+  - src/mcp-server/tools/integrationsDelete.ts
+  - src/mcp-server/tools/integrationsList.ts
+  - src/mcp-server/tools/integrationsListActive.ts
+  - src/mcp-server/tools/integrationsSetAsPrimary.ts
+  - src/mcp-server/tools/integrationsUpdate.ts
+  - src/mcp-server/tools/integrationsWebhooksRetrieve.ts
+  - src/mcp-server/tools/messagesDelete.ts
+  - src/mcp-server/tools/messagesDeleteByTransactionId.ts
+  - src/mcp-server/tools/messagesRetrieve.ts
+  - src/mcp-server/tools/notificationsList.ts
+  - src/mcp-server/tools/notificationsRetrieve.ts
+  - src/mcp-server/tools/notificationsStatsGraph.ts
+  - src/mcp-server/tools/notificationsStatsRetrieve.ts
+  - src/mcp-server/tools/subscribersAuthenticationChatAccessOauth.ts
+  - src/mcp-server/tools/subscribersAuthenticationChatAccessOauthCallBack.ts
+  - src/mcp-server/tools/subscribersCreate.ts
+  - src/mcp-server/tools/subscribersCreateBulk.ts
+  - src/mcp-server/tools/subscribersCredentialsAppend.ts
+  - src/mcp-server/tools/subscribersCredentialsDelete.ts
+  - src/mcp-server/tools/subscribersCredentialsUpdate.ts
+  - src/mcp-server/tools/subscribersDelete.ts
+  - src/mcp-server/tools/subscribersList.ts
+  - src/mcp-server/tools/subscribersMessagesMarkAll.ts
+  - src/mcp-server/tools/subscribersMessagesMarkAllAs.ts
+  - src/mcp-server/tools/subscribersMessagesUpdateAsSeen.ts
+  - src/mcp-server/tools/subscribersNotificationsFeed.ts
+  - src/mcp-server/tools/subscribersNotificationsUnseenCount.ts
+  - src/mcp-server/tools/subscribersPatch.ts
+  - src/mcp-server/tools/subscribersPreferencesList.ts
+  - src/mcp-server/tools/subscribersPreferencesUpdate.ts
+  - src/mcp-server/tools/subscribersPropertiesUpdateOnlineFlag.ts
+  - src/mcp-server/tools/subscribersRetrieve.ts
+  - src/mcp-server/tools/subscribersSearch.ts
+  - src/mcp-server/tools/topicsCreate.ts
+  - src/mcp-server/tools/topicsDelete.ts
+  - src/mcp-server/tools/topicsList.ts
+  - src/mcp-server/tools/topicsRename.ts
+  - src/mcp-server/tools/topicsRetrieve.ts
+  - src/mcp-server/tools/topicsSubscribersAssign.ts
+  - src/mcp-server/tools/topicsSubscribersRemove.ts
+  - src/mcp-server/tools/topicsSubscribersRetrieve.ts
+  - src/mcp-server/tools/trigger.ts
+  - src/mcp-server/tools/triggerBroadcast.ts
+  - src/mcp-server/tools/triggerBulk.ts
   - src/models/components/activitiesresponsedto.ts
   - src/models/components/activitygraphstatesresponse.ts
   - src/models/components/activitynotificationexecutiondetailresponsedto.ts

@@ -44,10 +44,10 @@ let value: SubscribersV1ControllerMarkMessagesAsResponse = {
         organizationId: "<id>",
         environmentId: "<id>",
         deleted: false,
-        createdAt: "1723093852042",
-        updatedAt: "1739858994102",
+        createdAt: "1723643657382",
+        updatedAt: "1740408799443",
       },
-      createdAt: "1713401540608",
+      createdAt: "1713951345948",
       content: {
         type: "text",
         content: "<value>",

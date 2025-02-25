@@ -35,8 +35,8 @@ let value: SubscribersV1ControllerListSubscribersResponseBody = {
       organizationId: "<id>",
       environmentId: "<id>",
       deleted: false,
-      createdAt: "1733590539470",
-      updatedAt: "1739877747143",
+      createdAt: "1734140344845",
+      updatedAt: "1740427552518",
     },
   ],
 };
