@@ -20,7 +20,9 @@ typescript:
     dependencies: {}
     devDependencies: {}
     peerDependencies: {}
-  additionalPackageJSON: {}
+  additionalPackageJSON: {
+    description: "The open-source notification infrastructure for developers"
+  }
   author: Novu
   clientServerStatusCodesAsErrors: true
   defaultErrorName: SDKError
