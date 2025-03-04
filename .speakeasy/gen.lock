@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 6bff3a53-3f0b-40b4-942f-ff70dc583ae5
 management:
-  docChecksum: e581b83557f00a8a1f177ccc3d920d23
+  docChecksum: 19d1960f1d938ce3c16e3b3a886ec8e2
   docVersion: "1.0"
-  speakeasyVersion: 1.502.0
-  generationVersion: 2.524.1
-  releaseVersion: 0.4.0
-  configChecksum: 0153040bd86a2834b9d6029c7673b59e
+  speakeasyVersion: 1.509.0
+  generationVersion: 2.539.0
+  releaseVersion: 0.5.0
+  configChecksum: a16938d47d32544c6f4a5be321c5065f
   repoURL: https://github.com/novuhq/novu-ts.git
   installationURL: https://github.com/novuhq/novu-ts
   published: true
@@ -15,7 +15,7 @@ features:
     acceptHeaders: 2.81.2
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.11
-    core: 3.21.1
+    core: 3.21.3
     defaultEnabledRetries: 0.1.0
     deprecations: 2.81.1
     enumUnions: 0.1.0
@@ -27,10 +27,10 @@ features:
     globalSecurityFlattening: 0.1.0
     globalServerURLs: 2.82.4
     groups: 2.81.2
-    mcpServer: 0.3.0
+    mcpServer: 0.4.1
     nameOverrides: 2.81.2
     nullables: 0.1.1
-    pagination: 2.82.8
+    pagination: 2.83.0
     responseFormat: 0.2.3
     retries: 2.83.0
     sdkHooks: 0.2.0

@@ -57,6 +57,7 @@ import { tool$triggerBulk } from "./tools/triggerBulk.js";
 
 export function createMCPServer(deps: {
   logger: ConsoleLogger;
+  allowedTools?: string[] | undefined;
   scopes?: MCPScope[] | undefined;
   serverURL?: string | undefined;
   secretKey?: SDKOptions["secretKey"] | undefined;
@@ -64,7 +65,7 @@ export function createMCPServer(deps: {
 }) {
   const server = new McpServer({
     name: "Novu",
-    version: "0.4.0",
+    version: "0.5.0",
   });
 
   const client = new NovuCore({
@@ -73,7 +74,14 @@ export function createMCPServer(deps: {
     serverIdx: deps.serverIdx,
   });
   const scopes = new Set(deps.scopes ?? mcpScopes);
-  const tool = createRegisterTool(deps.logger, server, client, scopes);
+  const allowedTools = deps.allowedTools && new Set(deps.allowedTools);
+  const tool = createRegisterTool(
+    deps.logger,
+    server,
+    client,
+    scopes,
+    allowedTools,
+  );
 
   tool(tool$trigger);
   tool(tool$triggerBulk);

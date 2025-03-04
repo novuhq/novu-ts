@@ -23184,6 +23184,102 @@
           "errors"
         ]
       },
+      "ApiKeyDto": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "description": "API key",
+            "example": "sk_test_1234567890abcdef"
+          },
+          "_userId": {
+            "type": "string",
+            "description": "User ID associated with the API key",
+            "example": "60d5ecb8b3b3a30015f3e1a4"
+          },
+          "hash": {
+            "type": "string",
+            "description": "Hashed representation of the API key",
+            "example": "hash_value_here"
+          }
+        },
+        "required": [
+          "key",
+          "_userId"
+        ]
+      },
+      "EnvironmentResponseDto": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "Unique identifier of the environment",
+            "example": "60d5ecb8b3b3a30015f3e1a1"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the environment",
+            "example": "Production Environment"
+          },
+          "_organizationId": {
+            "type": "string",
+            "description": "Organization ID associated with the environment",
+            "example": "60d5ecb8b3b3a30015f3e1a2"
+          },
+          "identifier": {
+            "type": "string",
+            "description": "Unique identifier for the environment",
+            "example": "prod-env-01"
+          },
+          "apiKeys": {
+            "description": "List of API keys associated with the environment",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApiKeyDto"
+            }
+          },
+          "_parentId": {
+            "type": "string",
+            "description": "Parent environment ID",
+            "example": "60d5ecb8b3b3a30015f3e1a3"
+          },
+          "slug": {
+            "type": "string",
+            "description": "URL-friendly slug for the environment",
+            "example": "production"
+          }
+        },
+        "required": [
+          "_id",
+          "name",
+          "_organizationId",
+          "identifier"
+        ]
+      },
+      "CreateEnvironmentRequestDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the environment to be created",
+            "example": "Production Environment"
+          },
+          "parentId": {
+            "type": "string",
+            "description": "MongoDB ObjectId of the parent environment (optional)",
+            "example": "60d5ecb8b3b3a30015f3e1a1"
+          },
+          "color": {
+            "type": "string",
+            "description": "Hex color code for the environment",
+            "example": "#3498db"
+          }
+        },
+        "required": [
+          "name",
+          "color"
+        ]
+      },
       "TriggerEventResponseDto": {
         "type": "object",
         "properties": {
