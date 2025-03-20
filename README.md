@@ -1,3 +1,5 @@
+<!-- speakeasy-ignore-start -->
+
 <div align="center">
   <a href="https://novu.co?utm_source=github" target="_blank">
   <picture>
@@ -24,6 +26,8 @@
 <div align="center">
 The notification platform that turns complex multi-channel delivery into a single <Inbox /> component. Built for developers, designed for growth, powered by open source.
 </div>
+
+<!-- speakeasy-ignore-end -->
 
 <!-- Start Summary [summary] -->
 ## Summary
