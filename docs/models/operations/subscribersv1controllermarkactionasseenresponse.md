@@ -43,10 +43,10 @@ let value: SubscribersV1ControllerMarkActionAsSeenResponse = {
       organizationId: "<id>",
       environmentId: "<id>",
       deleted: false,
-      createdAt: "1712793186573",
-      updatedAt: "1742401124138",
+      createdAt: "1712826687833",
+      updatedAt: "1742434625398",
     },
-    createdAt: "1732043151349",
+    createdAt: "1732076652607",
     content: {
       type: "button",
       content: "<value>",

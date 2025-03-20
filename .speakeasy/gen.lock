@@ -5,8 +5,8 @@ management:
   docVersion: "1.0"
   speakeasyVersion: 1.521.0
   generationVersion: 2.558.2
-  releaseVersion: 0.6.0
-  configChecksum: f668d2b0acb015e62e3feffff0aa214a
+  releaseVersion: 0.6.1
+  configChecksum: 74ad65a3a7bbe117a266ade82264d941
   repoURL: https://github.com/novuhq/novu-ts.git
   installationURL: https://github.com/novuhq/novu-ts
   published: true
