@@ -14,7 +14,7 @@ const args = {
 };
 
 export const tool$subscribersCreate: ToolDefinition<typeof args> = {
-  name: "subscribers_create",
+  name: "subscribers-create",
   description: `Create subscriber
 
 Create subscriber with the given data`,

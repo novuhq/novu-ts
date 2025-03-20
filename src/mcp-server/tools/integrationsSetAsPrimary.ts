@@ -12,7 +12,7 @@ const args = {
 };
 
 export const tool$integrationsSetAsPrimary: ToolDefinition<typeof args> = {
-  name: "integrations_set-as-primary",
+  name: "integrations-set-as-primary",
   description: `Set integration as primary`,
   args,
   tool: async (client, args, ctx) => {

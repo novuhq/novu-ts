@@ -1,13 +1,13 @@
 # Channel
 
-The channel type for the integration, which defines how the integration communicates (e.g., email, SMS).
+The channel type which is overridden
 
 ## Example Usage
 
 ```typescript
 import { Channel } from "@novu/api/models/components";
 
-let value: Channel = "chat";
+let value: Channel = "push";
 ```
 
 ## Values

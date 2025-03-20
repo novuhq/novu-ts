@@ -14,7 +14,7 @@ const args = {
 };
 
 export const tool$topicsSubscribersAssign: ToolDefinition<typeof args> = {
-  name: "topics-subscribers_assign",
+  name: "topics-subscribers-assign",
   description: `Subscribers addition
 
 Add subscribers to a topic by key`,

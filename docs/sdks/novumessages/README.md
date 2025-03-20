@@ -5,13 +5,13 @@
 
 ### Available Operations
 
-* [markAllAs](#markallas) - Mark a subscriber messages as seen, read, unseen or unread
-* [markAll](#markall) - Marks all the subscriber messages as read, unread, seen or unseen. Optionally you can pass feed id (or array) to mark messages of a particular feed.
 * [updateAsSeen](#updateasseen) - Mark message action as seen
+* [markAll](#markall) - Marks all the subscriber messages as read, unread, seen or unseen. Optionally you can pass feed id (or array) to mark messages of a particular feed.
+* [markAllAs](#markallas) - Mark a subscriber messages as seen, read, unseen or unread
 
-## markAllAs
+## updateAsSeen
 
-Mark a subscriber messages as seen, read, unseen or unread
+Mark message action as seen
 
 ### Example Usage
 
@@ -23,10 +23,14 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.subscribers.messages.markAllAs({
+  const result = await novu.subscribers.messages.updateAsSeen({
     messageId: "<id>",
-    markAs: "unread",
-  }, "<id>");
+    type: "<value>",
+    subscriberId: "<id>",
+    markMessageActionAsSeenDto: {
+      status: "done",
+    },
+  });
 
   // Handle the result
   console.log(result);
@@ -41,7 +45,7 @@ The standalone function version of this method:
 
 ```typescript
 import { NovuCore } from "@novu/api/core.js";
-import { subscribersMessagesMarkAllAs } from "@novu/api/funcs/subscribersMessagesMarkAllAs.js";
+import { subscribersMessagesUpdateAsSeen } from "@novu/api/funcs/subscribersMessagesUpdateAsSeen.js";
 
 // Use `NovuCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -50,10 +54,14 @@ const novu = new NovuCore({
 });
 
 async function run() {
-  const res = await subscribersMessagesMarkAllAs(novu, {
+  const res = await subscribersMessagesUpdateAsSeen(novu, {
     messageId: "<id>",
-    markAs: "unread",
-  }, "<id>");
+    type: "<value>",
+    subscriberId: "<id>",
+    markMessageActionAsSeenDto: {
+      status: "done",
+    },
+  });
 
   if (!res.ok) {
     throw res.error;
@@ -72,16 +80,14 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `subscriberId`                                                                                                                                                                 | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
-| `messageMarkAsRequestDto`                                                                                                                                                      | [components.MessageMarkAsRequestDto](../../models/components/messagemarkasrequestdto.md)                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
-| `idempotencyKey`                                                                                                                                                               | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | A header for idempotency purposes                                                                                                                                              |
+| `request`                                                                                                                                                                      | [operations.SubscribersV1ControllerMarkActionAsSeenRequest](../../models/operations/subscribersv1controllermarkactionasseenrequest.md)                                         | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 ### Response
 
-**Promise\<[operations.SubscribersV1ControllerMarkMessagesAsResponse](../../models/operations/subscribersv1controllermarkmessagesasresponse.md)\>**
+**Promise\<[operations.SubscribersV1ControllerMarkActionAsSeenResponse](../../models/operations/subscribersv1controllermarkactionasseenresponse.md)\>**
 
 ### Errors
 
@@ -175,9 +181,9 @@ run();
 | errors.ErrorDto                        | 500                                    | application/json                       |
 | errors.SDKError                        | 4XX, 5XX                               | \*/\*                                  |
 
-## updateAsSeen
+## markAllAs
 
-Mark message action as seen
+Mark a subscriber messages as seen, read, unseen or unread
 
 ### Example Usage
 
@@ -189,14 +195,10 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.subscribers.messages.updateAsSeen({
+  const result = await novu.subscribers.messages.markAllAs({
     messageId: "<id>",
-    type: "<value>",
-    subscriberId: "<id>",
-    markMessageActionAsSeenDto: {
-      status: "done",
-    },
-  });
+    markAs: "unread",
+  }, "<id>");
 
   // Handle the result
   console.log(result);
@@ -211,7 +213,7 @@ The standalone function version of this method:
 
 ```typescript
 import { NovuCore } from "@novu/api/core.js";
-import { subscribersMessagesUpdateAsSeen } from "@novu/api/funcs/subscribersMessagesUpdateAsSeen.js";
+import { subscribersMessagesMarkAllAs } from "@novu/api/funcs/subscribersMessagesMarkAllAs.js";
 
 // Use `NovuCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -220,14 +222,10 @@ const novu = new NovuCore({
 });
 
 async function run() {
-  const res = await subscribersMessagesUpdateAsSeen(novu, {
+  const res = await subscribersMessagesMarkAllAs(novu, {
     messageId: "<id>",
-    type: "<value>",
-    subscriberId: "<id>",
-    markMessageActionAsSeenDto: {
-      status: "done",
-    },
-  });
+    markAs: "unread",
+  }, "<id>");
 
   if (!res.ok) {
     throw res.error;
@@ -246,14 +244,16 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.SubscribersV1ControllerMarkActionAsSeenRequest](../../models/operations/subscribersv1controllermarkactionasseenrequest.md)                                         | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `subscriberId`                                                                                                                                                                 | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
+| `messageMarkAsRequestDto`                                                                                                                                                      | [components.MessageMarkAsRequestDto](../../models/components/messagemarkasrequestdto.md)                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
+| `idempotencyKey`                                                                                                                                                               | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | A header for idempotency purposes                                                                                                                                              |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 ### Response
 
-**Promise\<[operations.SubscribersV1ControllerMarkActionAsSeenResponse](../../models/operations/subscribersv1controllermarkactionasseenresponse.md)\>**
+**Promise\<[operations.SubscribersV1ControllerMarkMessagesAsResponse](../../models/operations/subscribersv1controllermarkmessagesasresponse.md)\>**
 
 ### Errors
 

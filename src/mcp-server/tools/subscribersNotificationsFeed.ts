@@ -12,7 +12,7 @@ const args = {
 };
 
 export const tool$subscribersNotificationsFeed: ToolDefinition<typeof args> = {
-  name: "subscribers-notifications_feed",
+  name: "subscribers-notifications-feed",
   description: `Get in-app notification feed for a particular subscriber`,
   args,
   tool: async (client, args, ctx) => {

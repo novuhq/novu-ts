@@ -7,7 +7,7 @@ Text alignment for the email block
 ```typescript
 import { TextAlignEnum } from "@novu/api/models/components";
 
-let value: TextAlignEnum = "center";
+let value: TextAlignEnum = "left";
 ```
 
 ## Values

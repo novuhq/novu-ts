@@ -14,7 +14,7 @@ const args = {
 export const tool$subscribersNotificationsUnseenCount: ToolDefinition<
   typeof args
 > = {
-  name: "subscribers-notifications_unseen-count",
+  name: "subscribers-notifications-unseen-count",
   description: `Get the unseen in-app notifications count for subscribers feed`,
   args,
   tool: async (client, args, ctx) => {

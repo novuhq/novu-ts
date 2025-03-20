@@ -11,7 +11,7 @@ const args = {
 };
 
 export const tool$integrationsList: ToolDefinition<typeof args> = {
-  name: "integrations_list",
+  name: "integrations-list",
   description: `Get integrations
 
 Return all the integrations the user has created for that organization. Review v.0.17.0 changelog for a breaking change`,

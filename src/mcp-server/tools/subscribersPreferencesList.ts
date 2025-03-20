@@ -12,7 +12,7 @@ const args = {
 };
 
 export const tool$subscribersPreferencesList: ToolDefinition<typeof args> = {
-  name: "subscribers-preferences_list",
+  name: "subscribers-preferences-list",
   description: `Get subscriber preferences
 
 Get subscriber global and workflow specific preferences`,

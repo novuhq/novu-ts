@@ -11,7 +11,7 @@ const args = {
 };
 
 export const tool$messagesRetrieve: ToolDefinition<typeof args> = {
-  name: "messages_retrieve",
+  name: "messages-retrieve",
   description: `Get messages
 
 Returns a list of messages, could paginate using the \`page\` query parameter`,

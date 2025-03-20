@@ -15,7 +15,7 @@ let value: SubscribersControllerGetSubscriberResponse = {
     subscriberId: "<id>",
     channels: [
       {
-        providerId: "fcm",
+        providerId: "whatsapp-business",
         credentials: {
           webhookUrl: "https://example.com/webhook",
           channel: "general",
@@ -36,8 +36,8 @@ let value: SubscribersControllerGetSubscriberResponse = {
     organizationId: "<id>",
     environmentId: "<id>",
     deleted: false,
-    createdAt: "1728814563396",
-    updatedAt: "1741014415777",
+    createdAt: "1740083530686",
+    updatedAt: "1742349653470",
   },
 };
 ```

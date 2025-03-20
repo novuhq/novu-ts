@@ -13,7 +13,7 @@ const args = {
 };
 
 export const tool$subscribersCreateBulk: ToolDefinition<typeof args> = {
-  name: "subscribers_create-bulk",
+  name: "subscribers-create-bulk",
   description: `Bulk create subscribers
 
 

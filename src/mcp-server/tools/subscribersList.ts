@@ -13,7 +13,7 @@ const args = {
 };
 
 export const tool$subscribersList: ToolDefinition<typeof args> = {
-  name: "subscribers_list",
+  name: "subscribers-list",
   description: `Get subscribers
 
 Returns a list of subscribers, could paginated using the \`page\` and \`limit\` query parameter`,

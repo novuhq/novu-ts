@@ -14,7 +14,7 @@ const args = {
 export const tool$subscribersAuthenticationChatAccessOauth: ToolDefinition<
   typeof args
 > = {
-  name: "subscribers-authentication_chat-access-oauth",
+  name: "subscribers-authentication-chat-access-oauth",
   description: `Handle chat oauth`,
   args,
   tool: async (client, args, ctx) => {

@@ -12,7 +12,7 @@ const args = {
 };
 
 export const tool$integrationsDelete: ToolDefinition<typeof args> = {
-  name: "integrations_delete",
+  name: "integrations-delete",
   description: `Delete integration`,
   args,
   tool: async (client, args, ctx) => {

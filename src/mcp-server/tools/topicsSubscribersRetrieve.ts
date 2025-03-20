@@ -13,7 +13,7 @@ const args = {
 };
 
 export const tool$topicsSubscribersRetrieve: ToolDefinition<typeof args> = {
-  name: "topics-subscribers_retrieve",
+  name: "topics-subscribers-retrieve",
   description: `Check topic subscriber
 
 Check if a subscriber belongs to a certain topic`,

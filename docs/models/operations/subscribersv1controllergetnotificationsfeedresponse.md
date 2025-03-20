@@ -29,7 +29,7 @@ let value: SubscribersV1ControllerGetNotificationsFeedResponse = {
         updatedAt: new Date("2024-12-10T10:10:59.639Z"),
         actor: {
           data: null,
-          type: "system_custom",
+          type: "system_icon",
         },
         transactionId: "transaction_123456",
         templateIdentifier: "template_abcdef",

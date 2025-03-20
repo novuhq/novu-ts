@@ -7,7 +7,7 @@ Provider ID of the job
 ```typescript
 import { ProvidersIdEnum } from "@novu/api/models/components";
 
-let value: ProvidersIdEnum = "grafana-on-call";
+let value: ProvidersIdEnum = "sparkpost";
 ```
 
 ## Values
