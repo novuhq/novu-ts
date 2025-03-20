@@ -1,13 +1,13 @@
-# ChannelSettingsDtoProviderId
+# SubscriberChannelDtoProviderId
 
-The provider identifier for the credentials
+The ID of the chat or push provider.
 
 ## Example Usage
 
 ```typescript
-import { ChannelSettingsDtoProviderId } from "@novu/api/models/components";
+import { SubscriberChannelDtoProviderId } from "@novu/api/models/components";
 
-let value: ChannelSettingsDtoProviderId = "msteams";
+let value: SubscriberChannelDtoProviderId = "msteams";
 ```
 
 ## Values

@@ -11,7 +11,7 @@ const args = {
 };
 
 export const tool$integrationsListActive: ToolDefinition<typeof args> = {
-  name: "integrations_list-active",
+  name: "integrations-list-active",
   description: `Get active integrations
 
 Return all the active integrations the user has created for that organization. Review v.0.17.0 changelog for a breaking change`,

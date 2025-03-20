@@ -15,7 +15,7 @@ const args = {
 };
 
 export const tool$topicsSubscribersRemove: ToolDefinition<typeof args> = {
-  name: "topics-subscribers_remove",
+  name: "topics-subscribers-remove",
   description: `Subscribers removal
 
 Remove subscribers from a topic`,

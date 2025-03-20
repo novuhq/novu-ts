@@ -12,7 +12,7 @@ const args = {
 };
 
 export const tool$subscribersDelete: ToolDefinition<typeof args> = {
-  name: "subscribers_delete",
+  name: "subscribers-delete",
   description: `Delete subscriber
 
 Deletes a subscriber entity from the Novu platform`,

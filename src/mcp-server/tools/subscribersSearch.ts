@@ -12,7 +12,7 @@ const args = {
 };
 
 export const tool$subscribersSearch: ToolDefinition<typeof args> = {
-  name: "subscribers_search",
+  name: "subscribers-search",
   description: `Search for subscribers`,
   args,
   tool: async (client, args, ctx) => {

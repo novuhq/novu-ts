@@ -16,6 +16,7 @@ let value: NotificationsControllerGetNotificationResponse = {
     organizationId: "<id>",
     subscriberId: "<id>",
     transactionId: "<id>",
+    jobs: [],
   },
 };
 ```

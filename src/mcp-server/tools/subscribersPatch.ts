@@ -14,7 +14,7 @@ const args = {
 };
 
 export const tool$subscribersPatch: ToolDefinition<typeof args> = {
-  name: "subscribers_patch",
+  name: "subscribers-patch",
   description: `Patch subscriber
 
 Patch subscriber by your internal id used to identify the subscriber`,

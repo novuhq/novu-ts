@@ -6,6 +6,11 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { NovuCore } from "../core.js";
 import { SDKOptions } from "../lib/config.js";
 import type { ConsoleLogger } from "./console-logger.js";
+import { createRegisterPrompt } from "./prompts.js";
+import {
+  createRegisterResource,
+  createRegisterResourceTemplate,
+} from "./resources.js";
 import { MCPScope, mcpScopes } from "./scopes.js";
 import { createRegisterTool } from "./tools.js";
 import { tool$cancel } from "./tools/cancel.js";
@@ -65,7 +70,7 @@ export function createMCPServer(deps: {
 }) {
   const server = new McpServer({
     name: "Novu",
-    version: "0.5.0",
+    version: "0.6.0",
   });
 
   const client = new NovuCore({
@@ -73,7 +78,9 @@ export function createMCPServer(deps: {
     serverURL: deps.serverURL,
     serverIdx: deps.serverIdx,
   });
+
   const scopes = new Set(deps.scopes ?? mcpScopes);
+
   const allowedTools = deps.allowedTools && new Set(deps.allowedTools);
   const tool = createRegisterTool(
     deps.logger,
@@ -82,50 +89,60 @@ export function createMCPServer(deps: {
     scopes,
     allowedTools,
   );
+  const resource = createRegisterResource(deps.logger, server, client, scopes);
+  const resourceTemplate = createRegisterResourceTemplate(
+    deps.logger,
+    server,
+    client,
+    scopes,
+  );
+  const prompt = createRegisterPrompt(deps.logger, server, client, scopes);
+  const register = { tool, resource, resourceTemplate, prompt };
+  void register; // suppress unused warnings
 
   tool(tool$trigger);
-  tool(tool$triggerBulk);
-  tool(tool$triggerBroadcast);
   tool(tool$cancel);
-  tool(tool$notificationsList);
-  tool(tool$notificationsRetrieve);
-  tool(tool$integrationsList);
-  tool(tool$integrationsCreate);
-  tool(tool$integrationsListActive);
-  tool(tool$integrationsUpdate);
-  tool(tool$integrationsDelete);
-  tool(tool$integrationsSetAsPrimary);
-  tool(tool$subscribersList);
-  tool(tool$subscribersCreateBulk);
+  tool(tool$triggerBroadcast);
+  tool(tool$triggerBulk);
   tool(tool$subscribersSearch);
   tool(tool$subscribersCreate);
   tool(tool$subscribersRetrieve);
   tool(tool$subscribersPatch);
   tool(tool$subscribersDelete);
+  tool(tool$subscribersList);
+  tool(tool$subscribersCreateBulk);
+  tool(tool$integrationsList);
+  tool(tool$integrationsCreate);
+  tool(tool$integrationsUpdate);
+  tool(tool$integrationsDelete);
+  tool(tool$integrationsSetAsPrimary);
+  tool(tool$integrationsListActive);
   tool(tool$messagesRetrieve);
   tool(tool$messagesDelete);
   tool(tool$messagesDeleteByTransactionId);
+  tool(tool$notificationsList);
+  tool(tool$notificationsRetrieve);
   tool(tool$topicsCreate);
   tool(tool$topicsList);
   tool(tool$topicsDelete);
   tool(tool$topicsRetrieve);
   tool(tool$topicsRename);
-  tool(tool$notificationsStatsRetrieve);
-  tool(tool$notificationsStatsGraph);
-  tool(tool$integrationsWebhooksRetrieve);
+  tool(tool$subscribersPreferencesList);
+  tool(tool$subscribersPreferencesUpdate);
   tool(tool$subscribersCredentialsUpdate);
   tool(tool$subscribersCredentialsAppend);
   tool(tool$subscribersCredentialsDelete);
-  tool(tool$subscribersPropertiesUpdateOnlineFlag);
+  tool(tool$subscribersAuthenticationChatAccessOauth);
+  tool(tool$subscribersAuthenticationChatAccessOauthCallBack);
+  tool(tool$subscribersMessagesUpdateAsSeen);
+  tool(tool$subscribersMessagesMarkAll);
+  tool(tool$subscribersMessagesMarkAllAs);
   tool(tool$subscribersNotificationsFeed);
   tool(tool$subscribersNotificationsUnseenCount);
-  tool(tool$subscribersMessagesMarkAllAs);
-  tool(tool$subscribersMessagesMarkAll);
-  tool(tool$subscribersMessagesUpdateAsSeen);
-  tool(tool$subscribersAuthenticationChatAccessOauthCallBack);
-  tool(tool$subscribersAuthenticationChatAccessOauth);
-  tool(tool$subscribersPreferencesList);
-  tool(tool$subscribersPreferencesUpdate);
+  tool(tool$subscribersPropertiesUpdateOnlineFlag);
+  tool(tool$integrationsWebhooksRetrieve);
+  tool(tool$notificationsStatsGraph);
+  tool(tool$notificationsStatsRetrieve);
   tool(tool$topicsSubscribersAssign);
   tool(tool$topicsSubscribersRetrieve);
   tool(tool$topicsSubscribersRemove);

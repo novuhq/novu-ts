@@ -12,7 +12,7 @@ const args = {
 };
 
 export const tool$topicsRetrieve: ToolDefinition<typeof args> = {
-  name: "topics_retrieve",
+  name: "topics-retrieve",
   description: `Get topic
 
 Get a topic by its topic key`,

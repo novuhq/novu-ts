@@ -22,8 +22,8 @@ let value: SubscribersControllerGetSubscriberPreferencesResponse = {
         channels: {},
         overrides: [
           {
-            channel: "email",
-            source: "subscriber",
+            channel: "sms",
+            source: "template",
           },
         ],
         workflow: {

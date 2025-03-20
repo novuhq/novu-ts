@@ -14,7 +14,7 @@ const args = {
 };
 
 export const tool$messagesDeleteByTransactionId: ToolDefinition<typeof args> = {
-  name: "messages_delete-by-transaction-id",
+  name: "messages-delete-by-transaction-id",
   description: `Delete messages by transactionId
 
 Deletes messages entity from the Novu platform using TransactionId of message`,

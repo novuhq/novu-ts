@@ -12,7 +12,7 @@ const args = {
 };
 
 export const tool$topicsDelete: ToolDefinition<typeof args> = {
-  name: "topics_delete",
+  name: "topics-delete",
   description: `Delete topic
 
 Delete a topic by its topic key if it has no subscribers`,

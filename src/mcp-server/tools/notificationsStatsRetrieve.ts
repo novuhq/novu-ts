@@ -11,7 +11,7 @@ const args = {
 };
 
 export const tool$notificationsStatsRetrieve: ToolDefinition<typeof args> = {
-  name: "notifications-stats_retrieve",
+  name: "notifications-stats-retrieve",
   description: `Get notification statistics`,
   args,
   tool: async (client, args, ctx) => {

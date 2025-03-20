@@ -6,7 +6,7 @@
 import { DigestMetadataDto } from "@novu/api/models/components";
 
 let value: DigestMetadataDto = {
-  type: "backoff",
+  type: "regular",
 };
 ```
 

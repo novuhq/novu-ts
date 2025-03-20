@@ -12,7 +12,7 @@ const args = {
 };
 
 export const tool$messagesDelete: ToolDefinition<typeof args> = {
-  name: "messages_delete",
+  name: "messages-delete",
   description: `Delete message
 
 Deletes a message entity from the Novu platform`,

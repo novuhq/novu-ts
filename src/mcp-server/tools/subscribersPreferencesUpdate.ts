@@ -15,7 +15,7 @@ const args = {
 };
 
 export const tool$subscribersPreferencesUpdate: ToolDefinition<typeof args> = {
-  name: "subscribers-preferences_update",
+  name: "subscribers-preferences-update",
   description: `Update subscriber global or workflow specific preferences
 
 Update subscriber global or workflow specific preferences`,

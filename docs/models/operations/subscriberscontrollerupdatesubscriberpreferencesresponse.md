@@ -23,7 +23,7 @@ let value: SubscribersControllerUpdateSubscriberPreferencesResponse = {
         overrides: [
           {
             channel: "email",
-            source: "subscriber",
+            source: "workflowOverride",
           },
         ],
         workflow: {

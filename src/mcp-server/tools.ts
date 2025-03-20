@@ -34,6 +34,7 @@ export type ToolDefinition<Args extends undefined | ZodRawShape = undefined> =
       ) => CallToolResult | Promise<CallToolResult>;
     };
 
+// Optional function to assist with formatting tool results
 export async function formatResult(
   value: unknown,
   init: { response?: Response | undefined },
@@ -102,6 +103,10 @@ export function createRegisterTool(
     }
 
     const toolScopes = tool.scopes ?? [];
+    if (allowedScopes.size > 0 && toolScopes.length === 0) {
+      return;
+    }
+
     if (!toolScopes.every((s) => allowedScopes.has(s))) {
       return;
     }
