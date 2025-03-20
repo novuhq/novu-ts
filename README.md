@@ -1,10 +1,29 @@
 <div align="center">
-  <img src="https://raw.githubusercontent.com/novuhq/novu-ts/HEAD/assets/banner.png" width="500">
-  <p>Novu is an open-source notification infrastructure.</p>
-  <a href="https://docs.novu.co/api-reference/overview"><img src="https://img.shields.io/static/v1?label=Docs&message=API Ref&color=000000&style=for-the-badge" /></a>
-  <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge" /></a>
+  <a href="https://novu.co?utm_source=github" target="_blank">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://user-images.githubusercontent.com/2233092/213641039-220ac15f-f367-4d13-9eaf-56e79433b8c1.png">
+    <img alt="Novu Logo" src="https://user-images.githubusercontent.com/2233092/213641043-3bbb3f21-3c53-4e67-afe5-755aeb222159.png" width="280"/>
+  </picture>
+  </a>
 </div>
 
+<br/>
+
+<p align="center">
+   <a href="https://www.producthunt.com/products/novu">
+    <img src="https://img.shields.io/badge/Product%20Hunt-Golden%20Kitty%20Award%202023-yellow" alt="Product Hunt">
+  </a>
+  <a href="https://news.ycombinator.com/item?id=38419513"><img src="https://img.shields.io/badge/Hacker%20News-%231-%23FF6600" alt="Hacker News"></a>
+  <a href="https://www.npmjs.com/package/@novu/node">
+    <img src="https://img.shields.io/npm/dm/@novu/node" alt="npm downloads">
+  </a>
+</p>
+
+<h1 align="center">The &lt;Inbox /&gt; infrastructure for modern products</h1>
+
+<div align="center">
+The notification platform that turns complex multi-channel delivery into a single <Inbox /> component. Built for developers, designed for growth, powered by open source.
+</div>
 
 <!-- Start Summary [summary] -->
 ## Summary
