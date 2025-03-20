@@ -10,6 +10,7 @@ let value: ActivityNotificationResponseDto = {
   organizationId: "<id>",
   subscriberId: "<id>",
   transactionId: "<id>",
+  jobs: [],
 };
 ```
 

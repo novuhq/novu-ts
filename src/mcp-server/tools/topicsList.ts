@@ -11,7 +11,7 @@ const args = {
 };
 
 export const tool$topicsList: ToolDefinition<typeof args> = {
-  name: "topics_list",
+  name: "topics-list",
   description: `Get topic list filtered 
 
 Returns a list of topics that can be paginated using the \`page\` query parameter and filtered by the topic key with the \`key\` query parameter`,

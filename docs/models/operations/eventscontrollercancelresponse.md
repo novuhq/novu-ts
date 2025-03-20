@@ -11,15 +11,13 @@ let value: EventsControllerCancelResponse = {
       "<value>",
     ],
   },
-  result: {
-    data: false,
-  },
+  result: false,
 };
 ```
 
 ## Fields
 
-| Field                                                                  | Type                                                                   | Required                                                               | Description                                                            |
-| ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| `headers`                                                              | Record<string, *string*[]>                                             | :heavy_check_mark:                                                     | N/A                                                                    |
-| `result`                                                               | [components.DataBooleanDto](../../models/components/databooleandto.md) | :heavy_check_mark:                                                     | N/A                                                                    |
+| Field                      | Type                       | Required                   | Description                |
+| -------------------------- | -------------------------- | -------------------------- | -------------------------- |
+| `headers`                  | Record<string, *string*[]> | :heavy_check_mark:         | N/A                        |
+| `result`                   | *boolean*                  | :heavy_check_mark:         | N/A                        |

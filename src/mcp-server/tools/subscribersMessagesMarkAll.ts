@@ -15,7 +15,7 @@ const args = {
 };
 
 export const tool$subscribersMessagesMarkAll: ToolDefinition<typeof args> = {
-  name: "subscribers-messages_mark-all",
+  name: "subscribers-messages-mark-all",
   description:
     `Marks all the subscriber messages as read, unread, seen or unseen. Optionally you can pass feed id (or array) to mark messages of a particular feed.`,
   args,

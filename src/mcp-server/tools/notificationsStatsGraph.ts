@@ -12,7 +12,7 @@ const args = {
 };
 
 export const tool$notificationsStatsGraph: ToolDefinition<typeof args> = {
-  name: "notifications-stats_graph",
+  name: "notifications-stats-graph",
   description: `Get notification graph statistics`,
   args,
   tool: async (client, args, ctx) => {

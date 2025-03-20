@@ -74,7 +74,7 @@ yarn add @novu/api zod
 This SDK is also an installable MCP server where the various SDK methods are
 exposed as tools that can be invoked by AI applications.
 
-> Node.js v20 or greater is required to run the MCP server.
+> Node.js v20 or greater is required to run the MCP server from npm.
 
 <details>
 <summary>Claude installation steps</summary>
@@ -102,16 +102,49 @@ Add the following server definition to your `claude_desktop_config.json` file:
 <details>
 <summary>Cursor installation steps</summary>
 
-Go to `Cursor Settings > Features > MCP Servers > Add new MCP server` and use the following settings:
+Create a `.cursor/mcp.json` file in your project root with the following content:
 
-- Name: Novu
-- Type: `command`
-- Command:
-```sh
-npx -y --package @novu/api -- mcp start --secret-key ... 
+```json
+{
+  "mcpServers": {
+    "Novu": {
+      "command": "npx",
+      "args": [
+        "-y", "--package", "@novu/api",
+        "--",
+        "mcp", "start",
+        "--secret-key", "..."
+      ]
+    }
+  }
+}
 ```
 
 </details>
+
+You can also run MCP servers as a standalone binary with no additional dependencies. You must pull these binaries from available Github releases:
+
+```bash
+curl -L -o mcp-server \
+    https://github.com/{org}/{repo}/releases/download/{tag}/mcp-server-bun-darwin-arm64 && \
+chmod +x mcp-server
+```
+
+If the repo is a private repo you must add your Github PAT to download a release `-H "Authorization: Bearer {GITHUB_PAT}"`.
+
+
+```json
+{
+  "mcpServers": {
+    "Todos": {
+      "command": "./DOWNLOAD/PATH/mcp-server",
+      "args": [
+        "start"
+      ]
+    }
+  }
+}
+```
 
 For a full list of server arguments, run:
 
@@ -156,6 +189,54 @@ async function run() {
     },
     to: {
       subscriberId: "<id>",
+    },
+  });
+
+  // Handle the result
+  console.log(result);
+}
+
+run();
+
+```
+
+### Cancel Triggered Event
+
+```typescript
+import { Novu } from "@novu/api";
+
+const novu = new Novu({
+  secretKey: "YOUR_SECRET_KEY_HERE",
+});
+
+async function run() {
+  const result = await novu.cancel("<id>");
+
+  // Handle the result
+  console.log(result);
+}
+
+run();
+
+```
+
+### Broadcast Event to All
+
+```typescript
+import { Novu } from "@novu/api";
+
+const novu = new Novu({
+  secretKey: "YOUR_SECRET_KEY_HERE",
+});
+
+async function run() {
+  const result = await novu.triggerBroadcast({
+    name: "<value>",
+    payload: {
+      "comment_id": "string",
+      "post": {
+        "text": "string",
+      },
     },
   });
 
@@ -250,54 +331,6 @@ async function run() {
 run();
 
 ```
-
-### Broadcast Event to All
-
-```typescript
-import { Novu } from "@novu/api";
-
-const novu = new Novu({
-  secretKey: "YOUR_SECRET_KEY_HERE",
-});
-
-async function run() {
-  const result = await novu.triggerBroadcast({
-    name: "<value>",
-    payload: {
-      "comment_id": "string",
-      "post": {
-        "text": "string",
-      },
-    },
-  });
-
-  // Handle the result
-  console.log(result);
-}
-
-run();
-
-```
-
-### Cancel Triggered Event
-
-```typescript
-import { Novu } from "@novu/api";
-
-const novu = new Novu({
-  secretKey: "YOUR_SECRET_KEY_HERE",
-});
-
-async function run() {
-  const result = await novu.cancel("<id>");
-
-  // Handle the result
-  console.log(result);
-}
-
-run();
-
-```
 <!-- End SDK Example Usage [usage] -->
 
 <!-- Start Available Resources and Operations [operations] -->
@@ -310,10 +343,10 @@ run();
 
 * [list](docs/sdks/integrations/README.md#list) - Get integrations
 * [create](docs/sdks/integrations/README.md#create) - Create integration
-* [listActive](docs/sdks/integrations/README.md#listactive) - Get active integrations
 * [update](docs/sdks/integrations/README.md#update) - Update integration
 * [delete](docs/sdks/integrations/README.md#delete) - Delete integration
 * [setAsPrimary](docs/sdks/integrations/README.md#setasprimary) - Set integration as primary
+* [listActive](docs/sdks/integrations/README.md#listactive) - Get active integrations
 
 #### [integrations.webhooks](docs/sdks/webhooks/README.md)
 
@@ -332,30 +365,30 @@ run();
 
 #### [notifications.stats](docs/sdks/stats/README.md)
 
-* [retrieve](docs/sdks/stats/README.md#retrieve) - Get notification statistics
 * [graph](docs/sdks/stats/README.md#graph) - Get notification graph statistics
+* [retrieve](docs/sdks/stats/README.md#retrieve) - Get notification statistics
 
 ### [Novu SDK](docs/sdks/novu/README.md)
 
 * [trigger](docs/sdks/novu/README.md#trigger) - Trigger event
-* [triggerBulk](docs/sdks/novu/README.md#triggerbulk) - Bulk trigger event
-* [triggerBroadcast](docs/sdks/novu/README.md#triggerbroadcast) - Broadcast event to all
 * [cancel](docs/sdks/novu/README.md#cancel) - Cancel triggered event
+* [triggerBroadcast](docs/sdks/novu/README.md#triggerbroadcast) - Broadcast event to all
+* [triggerBulk](docs/sdks/novu/README.md#triggerbulk) - Bulk trigger event
 
 ### [subscribers](docs/sdks/subscribers/README.md)
 
-* [list](docs/sdks/subscribers/README.md#list) - Get subscribers
-* [createBulk](docs/sdks/subscribers/README.md#createbulk) - Bulk create subscribers
 * [search](docs/sdks/subscribers/README.md#search) - Search for subscribers
 * [create](docs/sdks/subscribers/README.md#create) - Create subscriber
 * [retrieve](docs/sdks/subscribers/README.md#retrieve) - Get subscriber
 * [patch](docs/sdks/subscribers/README.md#patch) - Patch subscriber
 * [delete](docs/sdks/subscribers/README.md#delete) - Delete subscriber
+* [list](docs/sdks/subscribers/README.md#list) - Get subscribers
+* [createBulk](docs/sdks/subscribers/README.md#createbulk) - Bulk create subscribers
 
 #### [subscribers.authentication](docs/sdks/authentication/README.md)
 
-* [chatAccessOauthCallBack](docs/sdks/authentication/README.md#chataccessoauthcallback) - Handle providers oauth redirect
 * [chatAccessOauth](docs/sdks/authentication/README.md#chataccessoauth) - Handle chat oauth
+* [chatAccessOauthCallBack](docs/sdks/authentication/README.md#chataccessoauthcallback) - Handle providers oauth redirect
 
 #### [subscribers.credentials](docs/sdks/credentials/README.md)
 
@@ -365,9 +398,9 @@ run();
 
 #### [subscribers.messages](docs/sdks/novumessages/README.md)
 
-* [markAllAs](docs/sdks/novumessages/README.md#markallas) - Mark a subscriber messages as seen, read, unseen or unread
-* [markAll](docs/sdks/novumessages/README.md#markall) - Marks all the subscriber messages as read, unread, seen or unseen. Optionally you can pass feed id (or array) to mark messages of a particular feed.
 * [updateAsSeen](docs/sdks/novumessages/README.md#updateasseen) - Mark message action as seen
+* [markAll](docs/sdks/novumessages/README.md#markall) - Marks all the subscriber messages as read, unread, seen or unseen. Optionally you can pass feed id (or array) to mark messages of a particular feed.
+* [markAllAs](docs/sdks/novumessages/README.md#markallas) - Mark a subscriber messages as seen, read, unseen or unread
 
 #### [subscribers.notifications](docs/sdks/novunotifications/README.md)
 

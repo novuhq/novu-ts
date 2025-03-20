@@ -13,7 +13,7 @@ const args = {
 
 export const tool$subscribersAuthenticationChatAccessOauthCallBack:
   ToolDefinition<typeof args> = {
-    name: "subscribers-authentication_chat-access-oauth-call-back",
+    name: "subscribers-authentication-chat-access-oauth-call-back",
     description: `Handle providers oauth redirect`,
     args,
     tool: async (client, args, ctx) => {

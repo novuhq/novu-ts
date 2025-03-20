@@ -12,7 +12,7 @@ const args = {
 };
 
 export const tool$subscribersRetrieve: ToolDefinition<typeof args> = {
-  name: "subscribers_retrieve",
+  name: "subscribers-retrieve",
   description: `Get subscriber
 
 Get subscriber by your internal id used to identify the subscriber`,

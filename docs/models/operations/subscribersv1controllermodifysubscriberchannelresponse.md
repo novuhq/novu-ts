@@ -15,7 +15,7 @@ let value: SubscribersV1ControllerModifySubscriberChannelResponse = {
     subscriberId: "<id>",
     channels: [
       {
-        providerId: "mattermost",
+        providerId: "fcm",
         credentials: {
           webhookUrl: "https://example.com/webhook",
           channel: "general",
@@ -36,8 +36,8 @@ let value: SubscribersV1ControllerModifySubscriberChannelResponse = {
     organizationId: "<id>",
     environmentId: "<id>",
     deleted: false,
-    createdAt: "1713577332932",
-    updatedAt: "1740988366032",
+    createdAt: "1740655954562",
+    updatedAt: "1742402424693",
   },
 };
 ```

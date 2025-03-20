@@ -13,7 +13,7 @@ const args = {
 };
 
 export const tool$topicsCreate: ToolDefinition<typeof args> = {
-  name: "topics_create",
+  name: "topics-create",
   description: `Topic creation
 
 Create a topic`,

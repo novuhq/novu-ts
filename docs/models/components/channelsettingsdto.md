@@ -6,7 +6,7 @@
 import { ChannelSettingsDto } from "@novu/api/models/components";
 
 let value: ChannelSettingsDto = {
-  providerId: "fcm",
+  providerId: "ryver",
   credentials: {
     webhookUrl: "https://example.com/webhook",
     channel: "general",
@@ -27,9 +27,9 @@ let value: ChannelSettingsDto = {
 
 ## Fields
 
-| Field                                                                                              | Type                                                                                               | Required                                                                                           | Description                                                                                        |
-| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| `providerId`                                                                                       | [components.ChannelSettingsDtoProviderId](../../models/components/channelsettingsdtoproviderid.md) | :heavy_check_mark:                                                                                 | The provider identifier for the credentials                                                        |
-| `integrationIdentifier`                                                                            | *string*                                                                                           | :heavy_minus_sign:                                                                                 | The integration identifier                                                                         |
-| `credentials`                                                                                      | [components.ChannelCredentials](../../models/components/channelcredentials.md)                     | :heavy_check_mark:                                                                                 | Credentials payload for the specified provider                                                     |
-| `integrationId`                                                                                    | *string*                                                                                           | :heavy_check_mark:                                                                                 | The unique identifier of the integration associated with this channel.                             |
+| Field                                                                          | Type                                                                           | Required                                                                       | Description                                                                    |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `providerId`                                                                   | [components.ProviderId](../../models/components/providerid.md)                 | :heavy_check_mark:                                                             | The provider identifier for the credentials                                    |
+| `integrationIdentifier`                                                        | *string*                                                                       | :heavy_minus_sign:                                                             | The integration identifier                                                     |
+| `credentials`                                                                  | [components.ChannelCredentials](../../models/components/channelcredentials.md) | :heavy_check_mark:                                                             | Credentials payload for the specified provider                                 |
+| `integrationId`                                                                | *string*                                                                       | :heavy_check_mark:                                                             | The unique identifier of the integration associated with this channel.         |

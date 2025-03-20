@@ -14,7 +14,7 @@ const args = {
 };
 
 export const tool$subscribersMessagesMarkAllAs: ToolDefinition<typeof args> = {
-  name: "subscribers-messages_mark-all-as",
+  name: "subscribers-messages-mark-all-as",
   description: `Mark a subscriber messages as seen, read, unseen or unread`,
   args,
   tool: async (client, args, ctx) => {

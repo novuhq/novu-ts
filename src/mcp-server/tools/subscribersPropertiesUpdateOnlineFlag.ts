@@ -17,7 +17,7 @@ const args = {
 export const tool$subscribersPropertiesUpdateOnlineFlag: ToolDefinition<
   typeof args
 > = {
-  name: "subscribers-properties_update-online-flag",
+  name: "subscribers-properties-update-online-flag",
   description: `Update subscriber online status
 
 Used to update the subscriber isOnline flag.`,

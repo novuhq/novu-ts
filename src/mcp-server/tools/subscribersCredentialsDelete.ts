@@ -13,7 +13,7 @@ const args = {
 };
 
 export const tool$subscribersCredentialsDelete: ToolDefinition<typeof args> = {
-  name: "subscribers-credentials_delete",
+  name: "subscribers-credentials-delete",
   description: `Delete subscriber credentials by providerId
 
 Delete subscriber credentials such as slack and expo tokens.`,

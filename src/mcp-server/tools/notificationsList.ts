@@ -12,7 +12,7 @@ const args = {
 };
 
 export const tool$notificationsList: ToolDefinition<typeof args> = {
-  name: "notifications_list",
+  name: "notifications-list",
   description: `Get notifications`,
   args,
   tool: async (client, args, ctx) => {

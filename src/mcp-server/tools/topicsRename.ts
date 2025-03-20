@@ -14,7 +14,7 @@ const args = {
 };
 
 export const tool$topicsRename: ToolDefinition<typeof args> = {
-  name: "topics_rename",
+  name: "topics-rename",
   description: `Rename a topic
 
 Rename a topic by providing a new name`,

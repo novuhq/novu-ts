@@ -14,7 +14,7 @@ const args = {
 };
 
 export const tool$integrationsCreate: ToolDefinition<typeof args> = {
-  name: "integrations_create",
+  name: "integrations-create",
   description: `Create integration
 
 Create an integration for the current environment the user is based on the API key provided`,

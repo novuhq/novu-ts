@@ -6,7 +6,7 @@
 import { MarkMessageActionAsSeenDto } from "@novu/api/models/components";
 
 let value: MarkMessageActionAsSeenDto = {
-  status: "pending",
+  status: "done",
 };
 ```
 

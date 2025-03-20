@@ -15,7 +15,7 @@ const args = {
 };
 
 export const tool$subscribersCredentialsAppend: ToolDefinition<typeof args> = {
-  name: "subscribers-credentials_append",
+  name: "subscribers-credentials-append",
   description: `Modify subscriber credentials
 
 Subscriber credentials associated to the delivery methods such as slack and push tokens.

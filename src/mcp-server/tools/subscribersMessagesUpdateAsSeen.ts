@@ -13,7 +13,7 @@ const args = {
 
 export const tool$subscribersMessagesUpdateAsSeen: ToolDefinition<typeof args> =
   {
-    name: "subscribers-messages_update-as-seen",
+    name: "subscribers-messages-update-as-seen",
     description: `Mark message action as seen`,
     args,
     tool: async (client, args, ctx) => {

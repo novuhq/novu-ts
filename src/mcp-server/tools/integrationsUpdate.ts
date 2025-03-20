@@ -15,7 +15,7 @@ const args = {
 };
 
 export const tool$integrationsUpdate: ToolDefinition<typeof args> = {
-  name: "integrations_update",
+  name: "integrations-update",
   description: `Update integration`,
   args,
   tool: async (client, args, ctx) => {
