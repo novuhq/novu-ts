@@ -1,5 +1,7 @@
 # OrderDirection
 
+Direction of sorting
+
 ## Example Usage
 
 ```typescript

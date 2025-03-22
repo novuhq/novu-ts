@@ -26,6 +26,46 @@
             }
           },
           {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "description": "Limit the number of items to return",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "orderDirection",
+            "required": false,
+            "in": "query",
+            "description": "Direction of sorting",
+            "schema": {
+              "enum": [
+                "ASC",
+                "DESC"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "orderBy",
+            "required": false,
+            "in": "query",
+            "description": "Field to order by",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "includeCursor",
+            "required": false,
+            "in": "query",
+            "description": "Include cursor item in response",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
             "name": "email",
             "required": false,
             "in": "query",
@@ -60,32 +100,6 @@
             "schema": {
               "type": "string"
             }
-          },
-          {
-            "name": "limit",
-            "required": false,
-            "in": "query",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "name": "orderDirection",
-            "required": false,
-            "in": "query",
-            "schema": {
-              "enum": [
-                "ASC",
-                "DESC"
-              ],
-              "type": "string"
-            }
-          },
-          {
-            "name": "orderBy",
-            "required": false,
-            "in": "query",
-            "schema": {}
           },
           {
             "name": "idempotency-key",
@@ -26688,6 +26702,10 @@
           "name": {
             "type": "string",
             "description": "Display name of the workflow"
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "last updated date"
           }
         },
         "required": [
