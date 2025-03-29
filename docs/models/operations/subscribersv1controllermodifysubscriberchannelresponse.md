@@ -36,8 +36,8 @@ let value: SubscribersV1ControllerModifySubscriberChannelResponse = {
     organizationId: "<id>",
     environmentId: "<id>",
     deleted: false,
-    createdAt: "1740689455844",
-    updatedAt: "1742435925975",
+    createdAt: "1741433559888",
+    updatedAt: "1743180030019",
   },
 };
 ```

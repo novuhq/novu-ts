@@ -70,7 +70,7 @@ export function createMCPServer(deps: {
 }) {
   const server = new McpServer({
     name: "Novu",
-    version: "0.6.1",
+    version: "0.6.2",
   });
 
   const client = new NovuCore({
