@@ -1,14 +1,29 @@
-# SubscribersV1ControllerMarkAllUnreadAsReadRequest
+# SubscribersV1ControllerUpdateSubscriberRequest
 
 ## Example Usage
 
 ```typescript
-import { SubscribersV1ControllerMarkAllUnreadAsReadRequest } from "@novu/api/models/operations";
+import { SubscribersV1ControllerUpdateSubscriberRequest } from "@novu/api/models/operations";
 
-let value: SubscribersV1ControllerMarkAllUnreadAsReadRequest = {
+let value: SubscribersV1ControllerUpdateSubscriberRequest = {
   subscriberId: "<id>",
-  markAllMessageAsRequestDto: {
-    markAs: "read",
+  updateSubscriberRequestDto: {
+    email: "john.doe@example.com",
+    firstName: "John",
+    lastName: "Doe",
+    phone: "+1234567890",
+    avatar: "https://example.com/avatar.jpg",
+    locale: "en-US",
+    data: {
+      "preferences": {
+        "notifications": true,
+        "theme": "dark",
+      },
+      "tags": [
+        "premium",
+        "newsletter",
+      ],
+    },
   },
 };
 ```
@@ -19,4 +34,4 @@ let value: SubscribersV1ControllerMarkAllUnreadAsReadRequest = {
 | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
 | `subscriberId`                                                                                 | *string*                                                                                       | :heavy_check_mark:                                                                             | N/A                                                                                            |
 | `idempotencyKey`                                                                               | *string*                                                                                       | :heavy_minus_sign:                                                                             | A header for idempotency purposes                                                              |
-| `markAllMessageAsRequestDto`                                                                   | [components.MarkAllMessageAsRequestDto](../../models/components/markallmessageasrequestdto.md) | :heavy_check_mark:                                                                             | N/A                                                                                            |
+| `updateSubscriberRequestDto`                                                                   | [components.UpdateSubscriberRequestDto](../../models/components/updatesubscriberrequestdto.md) | :heavy_check_mark:                                                                             | N/A                                                                                            |

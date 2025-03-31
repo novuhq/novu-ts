@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 6bff3a53-3f0b-40b4-942f-ff70dc583ae5
 management:
-  docChecksum: 016638f88d10a0a7747f0bb8d1f1881d
+  docChecksum: 01514c353e6680d2ea55fbd094e8f799
   docVersion: "1.0"
-  speakeasyVersion: 1.521.0
-  generationVersion: 2.558.2
-  releaseVersion: 0.6.1
-  configChecksum: 74ad65a3a7bbe117a266ade82264d941
+  speakeasyVersion: 1.526.6
+  generationVersion: 2.563.1
+  releaseVersion: 0.6.2
+  configChecksum: 5e859658ea8eafa5cb3bc7454e8f4008
   repoURL: https://github.com/novuhq/novu-ts.git
   installationURL: https://github.com/novuhq/novu-ts
   published: true
@@ -211,6 +211,7 @@ generatedFiles:
   - docs/models/components/updatesubscriberchannelrequestdto.md
   - docs/models/components/updatesubscriberchannelrequestdtoproviderid.md
   - docs/models/components/updatesubscriberonlineflagrequestdto.md
+  - docs/models/components/updatesubscriberrequestdto.md
   - docs/models/components/value.md
   - docs/models/components/weekdays.md
   - docs/models/components/workflowinfodto.md
@@ -303,6 +304,8 @@ generatedFiles:
   - docs/models/operations/subscribersv1controllerupdatesubscriberchannelresponse.md
   - docs/models/operations/subscribersv1controllerupdatesubscriberonlineflagrequest.md
   - docs/models/operations/subscribersv1controllerupdatesubscriberonlineflagresponse.md
+  - docs/models/operations/subscribersv1controllerupdatesubscriberrequest.md
+  - docs/models/operations/subscribersv1controllerupdatesubscriberresponse.md
   - docs/models/operations/topicscontrollerassignrequest.md
   - docs/models/operations/topicscontrollerassignresponse.md
   - docs/models/operations/topicscontrollercreatetopicrequest.md
@@ -373,6 +376,7 @@ generatedFiles:
   - src/funcs/subscribersPropertiesUpdateOnlineFlag.ts
   - src/funcs/subscribersRetrieve.ts
   - src/funcs/subscribersSearch.ts
+  - src/funcs/subscribersUpsert.ts
   - src/funcs/topicsCreate.ts
   - src/funcs/topicsDelete.ts
   - src/funcs/topicsList.ts
@@ -451,6 +455,7 @@ generatedFiles:
   - src/mcp-server/tools/subscribersPropertiesUpdateOnlineFlag.ts
   - src/mcp-server/tools/subscribersRetrieve.ts
   - src/mcp-server/tools/subscribersSearch.ts
+  - src/mcp-server/tools/subscribersUpsert.ts
   - src/mcp-server/tools/topicsCreate.ts
   - src/mcp-server/tools/topicsDelete.ts
   - src/mcp-server/tools/topicsList.ts
@@ -572,6 +577,7 @@ generatedFiles:
   - src/models/components/updateintegrationrequestdto.ts
   - src/models/components/updatesubscriberchannelrequestdto.ts
   - src/models/components/updatesubscriberonlineflagrequestdto.ts
+  - src/models/components/updatesubscriberrequestdto.ts
   - src/models/components/workflowinfodto.ts
   - src/models/components/workfloworiginenum.ts
   - src/models/components/workflowpreferencedto.ts
@@ -619,6 +625,7 @@ generatedFiles:
   - src/models/operations/subscribersv1controllermarkallunreadasread.ts
   - src/models/operations/subscribersv1controllermarkmessagesas.ts
   - src/models/operations/subscribersv1controllermodifysubscriberchannel.ts
+  - src/models/operations/subscribersv1controllerupdatesubscriber.ts
   - src/models/operations/subscribersv1controllerupdatesubscriberchannel.ts
   - src/models/operations/subscribersv1controllerupdatesubscriberonlineflag.ts
   - src/models/operations/topicscontrollerassign.ts

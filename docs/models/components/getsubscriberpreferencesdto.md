@@ -16,7 +16,7 @@ let value: GetSubscriberPreferencesDto = {
       channels: {},
       overrides: [
         {
-          channel: "sms",
+          channel: "push",
           source: "template",
         },
       ],

@@ -18,7 +18,7 @@ let value: IntegrationsControllerRemoveIntegrationResponse = {
       name: "<value>",
       identifier: "<value>",
       providerId: "<id>",
-      channel: "push",
+      channel: "in_app",
       credentials: {},
       active: false,
       deleted: false,

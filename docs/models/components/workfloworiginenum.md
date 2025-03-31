@@ -7,7 +7,7 @@ Origin of the workflow
 ```typescript
 import { WorkflowOriginEnum } from "@novu/api/models/components";
 
-let value: WorkflowOriginEnum = "novu-cloud";
+let value: WorkflowOriginEnum = "external";
 ```
 
 ## Values

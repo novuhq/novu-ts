@@ -14,6 +14,7 @@ A subscriber in Novu represents someone who should receive a message. A subscrib
 * [patch](#patch) - Patch subscriber
 * [delete](#delete) - Delete subscriber
 * [list](#list) - Get subscribers
+* [upsert](#upsert) - Upsert subscriber
 * [createBulk](#createbulk) - Bulk create subscribers
 
 ## search
@@ -476,6 +477,118 @@ run();
 ### Response
 
 **Promise\<[operations.SubscribersV1ControllerListSubscribersResponse](../../models/operations/subscribersv1controllerlistsubscribersresponse.md)\>**
+
+### Errors
+
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| errors.ErrorDto                        | 414                                    | application/json                       |
+| errors.ErrorDto                        | 400, 401, 403, 404, 405, 409, 413, 415 | application/json                       |
+| errors.ValidationErrorDto              | 422                                    | application/json                       |
+| errors.ErrorDto                        | 500                                    | application/json                       |
+| errors.SDKError                        | 4XX, 5XX                               | \*/\*                                  |
+
+## upsert
+
+Used to upsert the subscriber entity with new information
+
+### Example Usage
+
+```typescript
+import { Novu } from "@novu/api";
+
+const novu = new Novu({
+  secretKey: "YOUR_SECRET_KEY_HERE",
+});
+
+async function run() {
+  const result = await novu.subscribers.upsert({
+    email: "john.doe@example.com",
+    firstName: "John",
+    lastName: "Doe",
+    phone: "+1234567890",
+    avatar: "https://example.com/avatar.jpg",
+    locale: "en-US",
+    data: {
+      "preferences": {
+        "notifications": true,
+        "theme": "dark",
+      },
+      "tags": [
+        "premium",
+        "newsletter",
+      ],
+    },
+  }, "<id>");
+
+  // Handle the result
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { NovuCore } from "@novu/api/core.js";
+import { subscribersUpsert } from "@novu/api/funcs/subscribersUpsert.js";
+
+// Use `NovuCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const novu = new NovuCore({
+  secretKey: "YOUR_SECRET_KEY_HERE",
+});
+
+async function run() {
+  const res = await subscribersUpsert(novu, {
+    email: "john.doe@example.com",
+    firstName: "John",
+    lastName: "Doe",
+    phone: "+1234567890",
+    avatar: "https://example.com/avatar.jpg",
+    locale: "en-US",
+    data: {
+      "preferences": {
+        "notifications": true,
+        "theme": "dark",
+      },
+      "tags": [
+        "premium",
+        "newsletter",
+      ],
+    },
+  }, "<id>");
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result);
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `subscriberId`                                                                                                                                                                 | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
+| `updateSubscriberRequestDto`                                                                                                                                                   | [components.UpdateSubscriberRequestDto](../../models/components/updatesubscriberrequestdto.md)                                                                                 | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
+| `idempotencyKey`                                                                                                                                                               | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | A header for idempotency purposes                                                                                                                                              |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.SubscribersV1ControllerUpdateSubscriberResponse](../../models/operations/subscribersv1controllerupdatesubscriberresponse.md)\>**
 
 ### Errors
 

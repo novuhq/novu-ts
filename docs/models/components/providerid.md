@@ -7,7 +7,7 @@ The provider identifier for the credentials
 ```typescript
 import { ProviderId } from "@novu/api/models/components";
 
-let value: ProviderId = "pusher-beams";
+let value: ProviderId = "whatsapp-business";
 ```
 
 ## Values

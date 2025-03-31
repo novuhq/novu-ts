@@ -406,6 +406,7 @@ run();
 * [patch](docs/sdks/subscribers/README.md#patch) - Patch subscriber
 * [delete](docs/sdks/subscribers/README.md#delete) - Delete subscriber
 * [list](docs/sdks/subscribers/README.md#list) - Get subscribers
+* [upsert](docs/sdks/subscribers/README.md#upsert) - Upsert subscriber
 * [createBulk](docs/sdks/subscribers/README.md#createbulk) - Bulk create subscribers
 
 #### [subscribers.authentication](docs/sdks/authentication/README.md)
@@ -506,6 +507,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`subscribersPropertiesUpdateOnlineFlag`](docs/sdks/properties/README.md#updateonlineflag) - Update subscriber online status
 - [`subscribersRetrieve`](docs/sdks/subscribers/README.md#retrieve) - Get subscriber
 - [`subscribersSearch`](docs/sdks/subscribers/README.md#search) - Search for subscribers
+- [`subscribersUpsert`](docs/sdks/subscribers/README.md#upsert) - Upsert subscriber
 - [`topicsCreate`](docs/sdks/topics/README.md#create) - Topic creation
 - [`topicsDelete`](docs/sdks/topics/README.md#delete) - Delete topic
 - [`topicsList`](docs/sdks/topics/README.md#list) - Get topic list filtered 

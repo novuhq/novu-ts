@@ -7,7 +7,7 @@ Unit of the digest
 ```typescript
 import { Unit } from "@novu/api/models/components";
 
-let value: Unit = "weeks";
+let value: Unit = "days";
 ```
 
 ## Values
