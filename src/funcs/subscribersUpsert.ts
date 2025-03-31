@@ -3,13 +3,14 @@
  */
 
 import { NovuCore } from "../core.js";
-import { encodeFormQuery, encodeSimple } from "../lib/encodings.js";
+import { encodeJSON, encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
+import * as components from "../models/components/index.js";
 import {
   ConnectionError,
   InvalidRequestError,
@@ -25,15 +26,20 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Search for subscribers
+ * Upsert subscriber
+ *
+ * @remarks
+ * Used to upsert the subscriber entity with new information
  */
-export function subscribersSearch(
+export function subscribersUpsert(
   client: NovuCore,
-  request: operations.SubscribersControllerSearchSubscribersRequest,
+  updateSubscriberRequestDto: components.UpdateSubscriberRequestDto,
+  subscriberId: string,
+  idempotencyKey?: string | undefined,
   options?: RequestOptions,
 ): APIPromise<
   Result<
-    operations.SubscribersControllerSearchSubscribersResponse,
+    operations.SubscribersV1ControllerUpdateSubscriberResponse,
     | errors.ErrorDto
     | errors.ErrorDto
     | errors.ValidationErrorDto
@@ -49,19 +55,23 @@ export function subscribersSearch(
 > {
   return new APIPromise($do(
     client,
-    request,
+    updateSubscriberRequestDto,
+    subscriberId,
+    idempotencyKey,
     options,
   ));
 }
 
 async function $do(
   client: NovuCore,
-  request: operations.SubscribersControllerSearchSubscribersRequest,
+  updateSubscriberRequestDto: components.UpdateSubscriberRequestDto,
+  subscriberId: string,
+  idempotencyKey?: string | undefined,
   options?: RequestOptions,
 ): Promise<
   [
     Result<
-      operations.SubscribersControllerSearchSubscribersResponse,
+      operations.SubscribersV1ControllerUpdateSubscriberResponse,
       | errors.ErrorDto
       | errors.ErrorDto
       | errors.ValidationErrorDto
@@ -77,10 +87,16 @@ async function $do(
     APICall,
   ]
 > {
+  const input: operations.SubscribersV1ControllerUpdateSubscriberRequest = {
+    updateSubscriberRequestDto: updateSubscriberRequestDto,
+    subscriberId: subscriberId,
+    idempotencyKey: idempotencyKey,
+  };
+
   const parsed = safeParse(
-    request,
+    input,
     (value) =>
-      operations.SubscribersControllerSearchSubscribersRequest$outboundSchema
+      operations.SubscribersV1ControllerUpdateSubscriberRequest$outboundSchema
         .parse(value),
     "Input validation failed",
   );
@@ -88,24 +104,21 @@ async function $do(
     return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
-  const body = null;
-
-  const path = pathToFunc("/v2/subscribers")();
-
-  const query = encodeFormQuery({
-    "after": payload.after,
-    "before": payload.before,
-    "email": payload.email,
-    "includeCursor": payload.includeCursor,
-    "limit": payload.limit,
-    "name": payload.name,
-    "orderBy": payload.orderBy,
-    "orderDirection": payload.orderDirection,
-    "phone": payload.phone,
-    "subscriberId": payload.subscriberId,
+  const body = encodeJSON("body", payload.UpdateSubscriberRequestDto, {
+    explode: true,
   });
 
+  const pathParams = {
+    subscriberId: encodeSimple("subscriberId", payload.subscriberId, {
+      explode: false,
+      charEncoding: "percent",
+    }),
+  };
+
+  const path = pathToFunc("/v1/subscribers/{subscriberId}")(pathParams);
+
   const headers = new Headers(compactMap({
+    "Content-Type": "application/json",
     Accept: "application/json",
     "idempotency-key": encodeSimple(
       "idempotency-key",
@@ -120,7 +133,7 @@ async function $do(
 
   const context = {
     baseURL: options?.serverURL ?? client._baseURL ?? "",
-    operationID: "SubscribersController_searchSubscribers",
+    operationID: "SubscribersV1Controller_updateSubscriber",
     oAuth2Scopes: [],
 
     resolvedSecurity: requestSecurity,
@@ -144,11 +157,10 @@ async function $do(
 
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
-    method: "GET",
+    method: "PUT",
     baseURL: options?.serverURL,
     path: path,
     headers: headers,
-    query: query,
     body: body,
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
@@ -189,7 +201,7 @@ async function $do(
   };
 
   const [result] = await M.match<
-    operations.SubscribersControllerSearchSubscribersResponse,
+    operations.SubscribersV1ControllerUpdateSubscriberResponse,
     | errors.ErrorDto
     | errors.ErrorDto
     | errors.ValidationErrorDto
@@ -204,7 +216,7 @@ async function $do(
   >(
     M.json(
       200,
-      operations.SubscribersControllerSearchSubscribersResponse$inboundSchema,
+      operations.SubscribersV1ControllerUpdateSubscriberResponse$inboundSchema,
       { hdrs: true, key: "Result" },
     ),
     M.jsonErr(414, errors.ErrorDto$inboundSchema),

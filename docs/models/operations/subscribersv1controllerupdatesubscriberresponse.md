@@ -1,11 +1,11 @@
-# SubscribersV1ControllerUpdateSubscriberOnlineFlagResponse
+# SubscribersV1ControllerUpdateSubscriberResponse
 
 ## Example Usage
 
 ```typescript
-import { SubscribersV1ControllerUpdateSubscriberOnlineFlagResponse } from "@novu/api/models/operations";
+import { SubscribersV1ControllerUpdateSubscriberResponse } from "@novu/api/models/operations";
 
-let value: SubscribersV1ControllerUpdateSubscriberOnlineFlagResponse = {
+let value: SubscribersV1ControllerUpdateSubscriberResponse = {
   headers: {
     "key": [
       "<value>",
@@ -15,7 +15,7 @@ let value: SubscribersV1ControllerUpdateSubscriberOnlineFlagResponse = {
     subscriberId: "<id>",
     channels: [
       {
-        providerId: "pushpad",
+        providerId: "rocket-chat",
         credentials: {
           webhookUrl: "https://example.com/webhook",
           channel: "general",
@@ -36,8 +36,8 @@ let value: SubscribersV1ControllerUpdateSubscriberOnlineFlagResponse = {
     organizationId: "<id>",
     environmentId: "<id>",
     deleted: false,
-    createdAt: "1714933925405",
-    updatedAt: "1743437331232",
+    createdAt: "1724980144436",
+    updatedAt: "1743375823251",
   },
 };
 ```

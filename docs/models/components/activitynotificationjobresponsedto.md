@@ -7,16 +7,16 @@ import { ActivityNotificationJobResponseDto } from "@novu/api/models/components"
 
 let value: ActivityNotificationJobResponseDto = {
   id: "<id>",
-  type: "in_app",
+  type: "push",
   executionDetails: [
     {
       id: "<id>",
-      status: "Success",
+      status: "Warning",
       detail: "<value>",
       isRetry: false,
       isTest: false,
-      providerId: "azure-sms",
-      source: "Internal",
+      providerId: "sendchamp",
+      source: "Webhook",
     },
   ],
   step: {
@@ -25,14 +25,14 @@ let value: ActivityNotificationJobResponseDto = {
     filters: [
       {
         isNegated: false,
-        type: "STATEMENT",
+        type: "BOOLEAN",
         value: "OR",
         children: [
           {
             field: "<value>",
             value: "<value>",
-            operator: "IN",
-            on: "subscriber",
+            operator: "SMALLER",
+            on: "payload",
           },
         ],
       },
@@ -43,7 +43,7 @@ let value: ActivityNotificationJobResponseDto = {
     "workflowId": "some_wf_id",
     "stepId": "some_wf_id",
   },
-  providerId: "simpletexting",
+  providerId: "twilio",
   status: "<value>",
 };
 ```

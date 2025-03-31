@@ -11,7 +11,7 @@ let value: SubscribersV1ControllerMarkAllUnreadAsReadResponse = {
       "<value>",
     ],
   },
-  result: 4386.01,
+  result: 2088.76,
 };
 ```
 

@@ -123,6 +123,12 @@ actions:
         - "lang": "typescript"
           "label": "TypeScript"
           "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.subscribers.createBulk({\n    subscribers: [\n      {\n        subscriberId: \"<id>\",\n      },\n    ],\n  });\n\n  // Handle the result\n  console.log(result);\n}\n\nrun();"
+  - target: $["paths"]["/v1/subscribers/{subscriberId}"]["put"]
+    update:
+      "x-codeSamples":
+        - "lang": "typescript"
+          "label": "TypeScript"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.subscribers.upsert({\n    email: \"john.doe@example.com\",\n    firstName: \"John\",\n    lastName: \"Doe\",\n    phone: \"+1234567890\",\n    avatar: \"https://example.com/avatar.jpg\",\n    locale: \"en-US\",\n    data: {\n      \"preferences\": {\n        \"notifications\": true,\n        \"theme\": \"dark\",\n      },\n      \"tags\": [\n        \"premium\",\n        \"newsletter\",\n      ],\n    },\n  }, \"<id>\");\n\n  // Handle the result\n  console.log(result);\n}\n\nrun();"
   - target: $["paths"]["/v1/subscribers/{subscriberId}/credentials"]["patch"]
     update:
       "x-codeSamples":

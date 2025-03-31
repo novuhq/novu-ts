@@ -43,22 +43,22 @@ let value: SubscribersV1ControllerMarkActionAsSeenResponse = {
       organizationId: "<id>",
       environmentId: "<id>",
       deleted: false,
-      createdAt: "1712826687833",
-      updatedAt: "1742434625398",
+      createdAt: "1718537990265",
+      updatedAt: "1743364105133",
     },
-    createdAt: "1732076652607",
+    createdAt: "1721850714192",
     content: {
-      type: "button",
+      type: "text",
       content: "<value>",
     },
     transactionId: "<id>",
-    channel: "email",
+    channel: "sms",
     read: false,
     seen: false,
     cta: {
       data: {},
     },
-    status: "error",
+    status: "warning",
   },
 };
 ```

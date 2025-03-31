@@ -48,6 +48,7 @@ import { tool$subscribersPreferencesUpdate } from "./tools/subscribersPreference
 import { tool$subscribersPropertiesUpdateOnlineFlag } from "./tools/subscribersPropertiesUpdateOnlineFlag.js";
 import { tool$subscribersRetrieve } from "./tools/subscribersRetrieve.js";
 import { tool$subscribersSearch } from "./tools/subscribersSearch.js";
+import { tool$subscribersUpsert } from "./tools/subscribersUpsert.js";
 import { tool$topicsCreate } from "./tools/topicsCreate.js";
 import { tool$topicsDelete } from "./tools/topicsDelete.js";
 import { tool$topicsList } from "./tools/topicsList.js";
@@ -70,7 +71,7 @@ export function createMCPServer(deps: {
 }) {
   const server = new McpServer({
     name: "Novu",
-    version: "0.6.1",
+    version: "0.6.2",
   });
 
   const client = new NovuCore({
@@ -110,6 +111,7 @@ export function createMCPServer(deps: {
   tool(tool$subscribersPatch);
   tool(tool$subscribersDelete);
   tool(tool$subscribersList);
+  tool(tool$subscribersUpsert);
   tool(tool$subscribersCreateBulk);
   tool(tool$integrationsList);
   tool(tool$integrationsCreate);

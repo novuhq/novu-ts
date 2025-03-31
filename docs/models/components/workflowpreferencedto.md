@@ -10,8 +10,8 @@ let value: WorkflowPreferenceDto = {
   channels: {},
   overrides: [
     {
-      channel: "sms",
-      source: "subscriber",
+      channel: "push",
+      source: "workflowOverride",
     },
   ],
   workflow: {

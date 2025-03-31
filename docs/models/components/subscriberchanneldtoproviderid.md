@@ -7,7 +7,7 @@ The ID of the chat or push provider.
 ```typescript
 import { SubscriberChannelDtoProviderId } from "@novu/api/models/components";
 
-let value: SubscriberChannelDtoProviderId = "msteams";
+let value: SubscriberChannelDtoProviderId = "mattermost";
 ```
 
 ## Values

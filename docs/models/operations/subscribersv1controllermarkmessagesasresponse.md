@@ -23,7 +23,7 @@ let value: SubscribersV1ControllerMarkMessagesAsResponse = {
         subscriberId: "<id>",
         channels: [
           {
-            providerId: "mattermost",
+            providerId: "ryver",
             credentials: {
               webhookUrl: "https://example.com/webhook",
               channel: "general",
@@ -44,12 +44,12 @@ let value: SubscribersV1ControllerMarkMessagesAsResponse = {
         organizationId: "<id>",
         environmentId: "<id>",
         deleted: false,
-        createdAt: "1716014474238",
-        updatedAt: "1742433445350",
+        createdAt: "1726608942144",
+        updatedAt: "1743374084204",
       },
-      createdAt: "1718915221169",
+      createdAt: "1716916630710",
       content: {
-        type: "button",
+        type: "text",
         content: "<value>",
       },
       transactionId: "<id>",
