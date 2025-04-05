@@ -15,7 +15,7 @@ let value: SubscribersControllerPatchSubscriberResponse = {
     subscriberId: "<id>",
     channels: [
       {
-        providerId: "discord",
+        providerId: "ryver",
         credentials: {
           webhookUrl: "https://example.com/webhook",
           channel: "general",
@@ -36,8 +36,8 @@ let value: SubscribersControllerPatchSubscriberResponse = {
     organizationId: "<id>",
     environmentId: "<id>",
     deleted: false,
-    createdAt: "1712540973238",
-    updatedAt: "1743424903400",
+    createdAt: "1724059436331",
+    updatedAt: "1743791131393",
   },
 };
 ```

@@ -14,8 +14,8 @@ let value: NotificationsControllerListNotificationsResponse = {
   result: {
     hasMore: false,
     data: [],
-    pageSize: 4142.63,
-    page: 641.47,
+    pageSize: 5732.86,
+    page: 9413.16,
   },
 };
 ```

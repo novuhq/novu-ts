@@ -7,7 +7,7 @@ Direction of sorting
 ```typescript
 import { OrderDirection } from "@novu/api/models/operations";
 
-let value: OrderDirection = "DESC";
+let value: OrderDirection = "ASC";
 ```
 
 ## Values

@@ -7,7 +7,7 @@ Regular digest: Unit for backoff
 ```typescript
 import { DigestUnitEnum } from "@novu/api/models/components";
 
-let value: DigestUnitEnum = "seconds";
+let value: DigestUnitEnum = "days";
 ```
 
 ## Values

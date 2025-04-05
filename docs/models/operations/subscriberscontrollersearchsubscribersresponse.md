@@ -17,7 +17,7 @@ let value: SubscribersControllerSearchSubscribersResponse = {
         subscriberId: "<id>",
         channels: [
           {
-            providerId: "getstream",
+            providerId: "slack",
             credentials: {
               webhookUrl: "https://example.com/webhook",
               channel: "general",
@@ -38,8 +38,8 @@ let value: SubscribersControllerSearchSubscribersResponse = {
         organizationId: "<id>",
         environmentId: "<id>",
         deleted: false,
-        createdAt: "1740026318311",
-        updatedAt: "1743436225349",
+        createdAt: "1731491843666",
+        updatedAt: "1743748176234",
       },
     ],
     next: "<value>",
