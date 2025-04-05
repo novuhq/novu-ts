@@ -15,7 +15,7 @@ let value: SubscribersV1ControllerModifySubscriberChannelResponse = {
     subscriberId: "<id>",
     channels: [
       {
-        providerId: "grafana-on-call",
+        providerId: "msteams",
         credentials: {
           webhookUrl: "https://example.com/webhook",
           channel: "general",
@@ -36,8 +36,8 @@ let value: SubscribersV1ControllerModifySubscriberChannelResponse = {
     organizationId: "<id>",
     environmentId: "<id>",
     deleted: false,
-    createdAt: "1725685605214",
-    updatedAt: "1743413240594",
+    createdAt: "1733680047298",
+    updatedAt: "1743807540343",
   },
 };
 ```

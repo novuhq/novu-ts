@@ -22,8 +22,8 @@ let value: SubscribersControllerGetSubscriberPreferencesResponse = {
         channels: {},
         overrides: [
           {
-            channel: "chat",
-            source: "template",
+            channel: "in_app",
+            source: "workflowOverride",
           },
         ],
         workflow: {

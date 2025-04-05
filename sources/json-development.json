@@ -25656,7 +25656,6 @@
         "properties": {
           "subscriberId": {
             "type": "string",
-            "pattern": "VALID_ID_REGEX",
             "description": "Unique identifier of the subscriber"
           },
           "firstName": {
@@ -27366,7 +27365,7 @@
           },
           "workflowId": {
             "type": "string",
-            "description": "If provided, update workflow specific preferences, otherwise update global preferences"
+            "description": "Workflow internal _id, identifier or slug. If provided, update workflow specific preferences, otherwise update global preferences"
           }
         },
         "required": [

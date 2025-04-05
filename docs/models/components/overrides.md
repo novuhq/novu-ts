@@ -6,8 +6,8 @@
 import { Overrides } from "@novu/api/models/components";
 
 let value: Overrides = {
-  channel: "email",
-  source: "workflowOverride",
+  channel: "in_app",
+  source: "template",
 };
 ```
 
