@@ -39,9 +39,18 @@ async function run() {
       },
     },
     overrides: {
-      "fcm": {
-        "data": {
-          "key": "value",
+      steps: {
+        "email-step": {
+          providers: {
+            "sendgrid": {
+              "templateId": "1234567890",
+            },
+          },
+        },
+      },
+      providers: {
+        "sendgrid": {
+          "templateId": "1234567890",
         },
       },
     },

@@ -8,12 +8,12 @@ import { StepFilterDto } from "@novu/api/models/components";
 let value: StepFilterDto = {
   isNegated: false,
   type: "NUMBER",
-  value: "OR",
+  value: "AND",
   children: [
     {
       field: "<value>",
       value: "<value>",
-      operator: "NOT_LIKE",
+      operator: "NOT_BETWEEN",
       on: "payload",
     },
   ],
@@ -26,5 +26,5 @@ let value: StepFilterDto = {
 | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
 | `isNegated`                                                                        | *boolean*                                                                          | :heavy_check_mark:                                                                 | N/A                                                                                |
 | `type`                                                                             | [components.BuilderFieldTypeEnum](../../models/components/builderfieldtypeenum.md) | :heavy_check_mark:                                                                 | N/A                                                                                |
-| `value`                                                                            | [components.Value](../../models/components/value.md)                               | :heavy_check_mark:                                                                 | N/A                                                                                |
+| `value`                                                                            | [components.StepFilterDtoValue](../../models/components/stepfilterdtovalue.md)     | :heavy_check_mark:                                                                 | N/A                                                                                |
 | `children`                                                                         | [components.FieldFilterPartDto](../../models/components/fieldfilterpartdto.md)[]   | :heavy_check_mark:                                                                 | N/A                                                                                |

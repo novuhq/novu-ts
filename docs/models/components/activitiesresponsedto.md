@@ -7,9 +7,59 @@ import { ActivitiesResponseDto } from "@novu/api/models/components";
 
 let value: ActivitiesResponseDto = {
   hasMore: false,
-  data: [],
-  pageSize: 2074.7,
-  page: 4246.85,
+  data: [
+    {
+      environmentId: "<id>",
+      organizationId: "<id>",
+      subscriberId: "<id>",
+      transactionId: "<id>",
+      jobs: [
+        {
+          id: "<id>",
+          type: "chat",
+          executionDetails: [
+            {
+              id: "<id>",
+              status: "ReadConfirmation",
+              detail: "<value>",
+              isRetry: false,
+              isTest: false,
+              providerId: "africas-talking",
+              source: "Payload",
+            },
+          ],
+          step: {
+            id: "<id>",
+            active: false,
+            filters: [
+              {
+                isNegated: false,
+                type: "TEXT",
+                value: "AND",
+                children: [
+                  {
+                    field: "<value>",
+                    value: "<value>",
+                    operator: "SMALLER_EQUAL",
+                    on: "payload",
+                  },
+                ],
+              },
+            ],
+            templateId: "<id>",
+          },
+          overrides: {
+            "workflowId": "some_wf_id",
+            "stepId": "some_wf_id",
+          },
+          providerId: "africas-talking",
+          status: "<value>",
+        },
+      ],
+    },
+  ],
+  pageSize: 8294.52,
+  page: 7052.05,
 };
 ```
 

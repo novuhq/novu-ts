@@ -1,11 +1,11 @@
-# WorkflowInfoDto
+# SubscriberPreferencesWorkflowInfoDto
 
 ## Example Usage
 
 ```typescript
-import { WorkflowInfoDto } from "@novu/api/models/components";
+import { SubscriberPreferencesWorkflowInfoDto } from "@novu/api/models/components";
 
-let value: WorkflowInfoDto = {
+let value: SubscriberPreferencesWorkflowInfoDto = {
   slug: "<value>",
   identifier: "<value>",
   name: "<value>",

@@ -16,16 +16,13 @@ let value: EventsControllerTriggerBulkRequest = {
             "text": "string",
           },
         },
-        overrides: {
-          "fcm": {
-            "data": {
-              "key": "value",
-            },
+        overrides: {},
+        to: [
+          {
+            topicKey: "<value>",
+            type: "Subscriber",
           },
-        },
-        to: {
-          subscriberId: "<id>",
-        },
+        ],
       },
     ],
   },

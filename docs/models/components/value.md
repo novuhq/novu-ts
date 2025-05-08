@@ -1,15 +1,39 @@
 # Value
 
-## Example Usage
+Value that failed validation
+
+
+## Supported Types
+
+### `string`
 
 ```typescript
-import { Value } from "@novu/api/models/components";
-
-let value: Value = "OR";
+const value: string = "xx xx xx ";
 ```
 
-## Values
+### `number`
 
 ```typescript
-"AND" | "OR"
+const value: number = xx xx xx ;
 ```
+
+### `boolean`
+
+```typescript
+const value: boolean = true;
+```
+
+### `components.Four`
+
+```typescript
+const value: components.Four = {};
+```
+
+### `components.Five[]`
+
+```typescript
+const value: components.Five[] = [
+  "xx xx xx ",
+];
+```
+

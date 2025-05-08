@@ -1,13 +1,13 @@
-# UpdateSubscriberChannelRequestDtoProviderId
+# ChatOrPushProviderEnum
 
 The provider identifier for the credentials
 
 ## Example Usage
 
 ```typescript
-import { UpdateSubscriberChannelRequestDtoProviderId } from "@novu/api/models/components";
+import { ChatOrPushProviderEnum } from "@novu/api/models/components";
 
-let value: UpdateSubscriberChannelRequestDtoProviderId = "whatsapp-business";
+let value: ChatOrPushProviderEnum = "whatsapp-business";
 ```
 
 ## Values

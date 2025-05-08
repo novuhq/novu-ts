@@ -204,9 +204,18 @@ async function run() {
       },
     },
     overrides: {
-      "fcm": {
-        "data": {
-          "key": "value",
+      steps: {
+        "email-step": {
+          providers: {
+            "sendgrid": {
+              "templateId": "1234567890",
+            },
+          },
+        },
+      },
+      providers: {
+        "sendgrid": {
+          "templateId": "1234567890",
         },
       },
     },
@@ -261,6 +270,29 @@ async function run() {
         "text": "string",
       },
     },
+    overrides: {
+      steps: {
+        "email-step": {
+          providers: {
+            "sendgrid": {
+              "templateId": "1234567890",
+            },
+          },
+        },
+      },
+      providers: {
+        "sendgrid": {
+          "templateId": "1234567890",
+        },
+      },
+      additionalProperties: {
+        "fcm": {
+          "data": {
+            "key": "value",
+          },
+        },
+      },
+    },
   });
 
   // Handle the result
@@ -292,9 +324,18 @@ async function run() {
           },
         },
         overrides: {
-          "fcm": {
-            "data": {
-              "key": "value",
+          steps: {
+            "email-step": {
+              providers: {
+                "sendgrid": {
+                  "templateId": "1234567890",
+                },
+              },
+            },
+          },
+          providers: {
+            "sendgrid": {
+              "templateId": "1234567890",
             },
           },
         },
@@ -311,9 +352,18 @@ async function run() {
           },
         },
         overrides: {
-          "fcm": {
-            "data": {
-              "key": "value",
+          steps: {
+            "email-step": {
+              providers: {
+                "sendgrid": {
+                  "templateId": "1234567890",
+                },
+              },
+            },
+          },
+          providers: {
+            "sendgrid": {
+              "templateId": "1234567890",
             },
           },
         },
@@ -333,9 +383,18 @@ async function run() {
           },
         },
         overrides: {
-          "fcm": {
-            "data": {
-              "key": "value",
+          steps: {
+            "email-step": {
+              providers: {
+                "sendgrid": {
+                  "templateId": "1234567890",
+                },
+              },
+            },
+          },
+          providers: {
+            "sendgrid": {
+              "templateId": "1234567890",
             },
           },
         },
@@ -595,9 +654,18 @@ async function run() {
         },
       },
       overrides: {
-        "fcm": {
-          "data": {
-            "key": "value",
+        steps: {
+          "email-step": {
+            providers: {
+              "sendgrid": {
+                "templateId": "1234567890",
+              },
+            },
+          },
+        },
+        providers: {
+          "sendgrid": {
+            "templateId": "1234567890",
           },
         },
       },
@@ -695,9 +763,18 @@ async function run() {
       },
     },
     overrides: {
-      "fcm": {
-        "data": {
-          "key": "value",
+      steps: {
+        "email-step": {
+          providers: {
+            "sendgrid": {
+              "templateId": "1234567890",
+            },
+          },
+        },
+      },
+      providers: {
+        "sendgrid": {
+          "templateId": "1234567890",
         },
       },
     },
@@ -735,9 +812,18 @@ async function run() {
       },
     },
     overrides: {
-      "fcm": {
-        "data": {
-          "key": "value",
+      steps: {
+        "email-step": {
+          providers: {
+            "sendgrid": {
+              "templateId": "1234567890",
+            },
+          },
+        },
+      },
+      providers: {
+        "sendgrid": {
+          "templateId": "1234567890",
         },
       },
     },
@@ -833,9 +919,18 @@ async function run() {
       },
     },
     overrides: {
-      "fcm": {
-        "data": {
-          "key": "value",
+      steps: {
+        "email-step": {
+          providers: {
+            "sendgrid": {
+              "templateId": "1234567890",
+            },
+          },
+        },
+      },
+      providers: {
+        "sendgrid": {
+          "templateId": "1234567890",
         },
       },
     },
@@ -876,9 +971,18 @@ async function run() {
       },
     },
     overrides: {
-      "fcm": {
-        "data": {
-          "key": "value",
+      steps: {
+        "email-step": {
+          providers: {
+            "sendgrid": {
+              "templateId": "1234567890",
+            },
+          },
+        },
+      },
+      providers: {
+        "sendgrid": {
+          "templateId": "1234567890",
         },
       },
     },
@@ -934,9 +1038,18 @@ async function run() {
       },
     },
     overrides: {
-      "fcm": {
-        "data": {
-          "key": "value",
+      steps: {
+        "email-step": {
+          providers: {
+            "sendgrid": {
+              "templateId": "1234567890",
+            },
+          },
+        },
+      },
+      providers: {
+        "sendgrid": {
+          "templateId": "1234567890",
         },
       },
     },

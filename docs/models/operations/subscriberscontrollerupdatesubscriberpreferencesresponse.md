@@ -14,16 +14,28 @@ let value: SubscribersControllerUpdateSubscriberPreferencesResponse = {
   result: {
     global: {
       enabled: false,
-      channels: {},
+      channels: {
+        email: true,
+        sms: false,
+        inApp: true,
+        chat: false,
+        push: true,
+      },
     },
     workflows: [
       {
         enabled: false,
-        channels: {},
+        channels: {
+          email: true,
+          sms: false,
+          inApp: true,
+          chat: false,
+          push: true,
+        },
         overrides: [
           {
-            channel: "sms",
-            source: "subscriber",
+            channel: "push",
+            source: "workflowOverride",
           },
         ],
         workflow: {

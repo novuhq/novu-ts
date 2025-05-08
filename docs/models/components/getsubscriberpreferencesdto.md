@@ -8,15 +8,27 @@ import { GetSubscriberPreferencesDto } from "@novu/api/models/components";
 let value: GetSubscriberPreferencesDto = {
   global: {
     enabled: false,
-    channels: {},
+    channels: {
+      email: true,
+      sms: false,
+      inApp: true,
+      chat: false,
+      push: true,
+    },
   },
   workflows: [
     {
       enabled: false,
-      channels: {},
+      channels: {
+        email: true,
+        sms: false,
+        inApp: true,
+        chat: false,
+        push: true,
+      },
       overrides: [
         {
-          channel: "push",
+          channel: "in_app",
           source: "template",
         },
       ],
@@ -32,7 +44,7 @@ let value: GetSubscriberPreferencesDto = {
 
 ## Fields
 
-| Field                                                                                  | Type                                                                                   | Required                                                                               | Description                                                                            |
-| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `global`                                                                               | [components.GlobalPreferenceDto](../../models/components/globalpreferencedto.md)       | :heavy_check_mark:                                                                     | Global preference settings                                                             |
-| `workflows`                                                                            | [components.WorkflowPreferenceDto](../../models/components/workflowpreferencedto.md)[] | :heavy_check_mark:                                                                     | Workflow-specific preference settings                                                  |
+| Field                                                                                                      | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
+| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `global`                                                                                                   | [components.SubscriberGlobalPreferenceDto](../../models/components/subscriberglobalpreferencedto.md)       | :heavy_check_mark:                                                                                         | Global preference settings                                                                                 |
+| `workflows`                                                                                                | [components.SubscriberWorkflowPreferenceDto](../../models/components/subscriberworkflowpreferencedto.md)[] | :heavy_check_mark:                                                                                         | Workflow-specific preference settings                                                                      |

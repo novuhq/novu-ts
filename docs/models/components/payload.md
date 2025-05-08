@@ -1,6 +1,6 @@
 # Payload
 
-Optional payload for the job
+Payload of the action result
 
 ## Example Usage
 

@@ -14,7 +14,15 @@ let value: EventsControllerBroadcastEventToAllRequest = {
         "text": "string",
       },
     },
-    overrides: {},
+    overrides: {
+      additionalProperties: {
+        "fcm": {
+          "data": {
+            "key": "value",
+          },
+        },
+      },
+    },
   },
 };
 ```

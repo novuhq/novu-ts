@@ -39,14 +39,11 @@ let value: SubscribersV1ControllerGetNotificationsFeedResponse = {
         channel: "push",
         read: false,
         seen: true,
-        deleted: false,
         deviceTokens: [
           "token1",
           "token2",
         ],
-        cta: {
-          data: {},
-        },
+        cta: {},
         status: "sent",
         payload: {
           "key": "value",
