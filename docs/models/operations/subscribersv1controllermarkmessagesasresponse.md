@@ -20,10 +20,9 @@ let value: SubscribersV1ControllerMarkMessagesAsResponse = {
       notificationId: "<id>",
       subscriberId: "<id>",
       subscriber: {
-        subscriberId: "<id>",
         channels: [
           {
-            providerId: "ryver",
+            providerId: "pushpad",
             credentials: {
               webhookUrl: "https://example.com/webhook",
               channel: "general",
@@ -41,25 +40,59 @@ let value: SubscribersV1ControllerMarkMessagesAsResponse = {
             integrationId: "<id>",
           },
         ],
+        subscriberId: "<id>",
         organizationId: "<id>",
         environmentId: "<id>",
         deleted: false,
-        createdAt: "1726608942144",
-        updatedAt: "1743374084204",
+        createdAt: "1744597421503",
+        updatedAt: "1746632433272",
       },
-      createdAt: "1716916630710",
-      content: {
-        type: "text",
-        content: "<value>",
+      template: {
+        name: "<value>",
+        description: "weary goodwill until skean yahoo preclude",
+        active: false,
+        draft: false,
+        preferenceSettings: {
+          email: true,
+          sms: false,
+          inApp: true,
+          chat: false,
+          push: true,
+        },
+        critical: false,
+        tags: [
+          "<value>",
+        ],
+        steps: [
+          {},
+        ],
+        organizationId: "<id>",
+        creatorId: "<id>",
+        environmentId: "<id>",
+        triggers: [
+          {
+            type: "event",
+            identifier: "<value>",
+            variables: [
+              {
+                name: "<value>",
+              },
+            ],
+          },
+        ],
+        notificationGroupId: "<id>",
+        deleted: false,
+        deletedAt: "<value>",
+        deletedBy: "<value>",
       },
+      createdAt: "1736518327999",
+      content: "<value>",
       transactionId: "<id>",
       channel: "in_app",
       read: false,
       seen: false,
-      cta: {
-        data: {},
-      },
-      status: "sent",
+      cta: {},
+      status: "error",
     },
   ],
 };

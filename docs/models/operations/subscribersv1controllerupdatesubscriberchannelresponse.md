@@ -12,10 +12,9 @@ let value: SubscribersV1ControllerUpdateSubscriberChannelResponse = {
     ],
   },
   result: {
-    subscriberId: "<id>",
     channels: [
       {
-        providerId: "fcm",
+        providerId: "zulip",
         credentials: {
           webhookUrl: "https://example.com/webhook",
           channel: "general",
@@ -33,11 +32,12 @@ let value: SubscribersV1ControllerUpdateSubscriberChannelResponse = {
         integrationId: "<id>",
       },
     ],
+    subscriberId: "<id>",
     organizationId: "<id>",
     environmentId: "<id>",
     deleted: false,
-    createdAt: "1731358995854",
-    updatedAt: "1743434504836",
+    createdAt: "1719837931100",
+    updatedAt: "1746668071116",
   },
 };
 ```

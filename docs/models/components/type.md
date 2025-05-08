@@ -1,17 +1,15 @@
 # Type
 
-Type of the trigger
-
 ## Example Usage
 
 ```typescript
 import { Type } from "@novu/api/models/components";
 
-let value: Type = "event";
+let value: Type = "regular";
 ```
 
 ## Values
 
 ```typescript
-"event"
+"regular" | "backoff"
 ```

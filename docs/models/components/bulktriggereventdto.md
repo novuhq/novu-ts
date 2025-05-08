@@ -15,16 +15,10 @@ let value: BulkTriggerEventDto = {
           "text": "string",
         },
       },
-      overrides: {
-        "fcm": {
-          "data": {
-            "key": "value",
-          },
-        },
+      overrides: {},
+      to: {
+        subscriberId: "<id>",
       },
-      to: [
-        "SUBSCRIBER_ID",
-      ],
     },
   ],
 };

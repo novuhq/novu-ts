@@ -12,10 +12,9 @@ let value: SubscribersControllerPatchSubscriberResponse = {
     ],
   },
   result: {
-    subscriberId: "<id>",
     channels: [
       {
-        providerId: "discord",
+        providerId: "ryver",
         credentials: {
           webhookUrl: "https://example.com/webhook",
           channel: "general",
@@ -33,11 +32,12 @@ let value: SubscribersControllerPatchSubscriberResponse = {
         integrationId: "<id>",
       },
     ],
+    subscriberId: "<id>",
     organizationId: "<id>",
     environmentId: "<id>",
     deleted: false,
-    createdAt: "1712540973238",
-    updatedAt: "1743424903400",
+    createdAt: "1726947608684",
+    updatedAt: "1746679303746",
   },
 };
 ```

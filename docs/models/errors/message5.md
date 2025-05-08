@@ -1,4 +1,4 @@
-# Value
+# Message5
 
 
 ## Supported Types
@@ -12,7 +12,7 @@ const value: string = "<value>";
 ### `number`
 
 ```typescript
-const value: number = 8765.06;
+const value: number = 1284.03;
 ```
 
 ### `boolean`
@@ -27,15 +27,5 @@ const value: boolean = false;
 const value: { [k: string]: any } = {
   "key": "<value>",
 };
-```
-
-### `{ [k: string]: any }[]`
-
-```typescript
-const value: { [k: string]: any }[] = [
-  {
-    "key": "<value>",
-  },
-];
 ```
 

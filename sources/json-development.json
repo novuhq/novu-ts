@@ -8942,7 +8942,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ActivitiesResponseDto"
+                  "$ref": "#/components/schemas/MessagesResponseDto"
                 }
               }
             }
@@ -23357,7 +23357,7 @@
   "info": {
     "title": "Novu API",
     "description": "Novu REST API. Please see https://docs.novu.co/api-reference for more details.",
-    "version": "1.0",
+    "version": "2.1.13",
     "contact": {
       "name": "Novu Support",
       "url": "https://discord.gg/novu",
@@ -23392,13 +23392,6 @@
       }
     },
     {
-      "name": "Notification",
-      "description": "A notification conveys information from source to recipient, triggered by a workflow acting as a message blueprint. Notifications can be individual or bundled as digest for user-friendliness.",
-      "externalDocs": {
-        "url": "https://docs.novu.co/getting-started/introduction"
-      }
-    },
-    {
       "name": "Integrations",
       "description": "With the help of the Integration Store, you can easily integrate your favorite delivery provider. During the runtime of the API, the Integrations Store is responsible for storing the configurations of all the providers.",
       "externalDocs": {
@@ -23406,88 +23399,10 @@
       }
     },
     {
-      "name": "Layouts",
-      "description": "Novu allows the creation of layouts - a specific HTML design or structure to wrap content of email notifications. Layouts can be manipulated and assigned to new or existing workflows within the Novu platform, allowing users to create, manage, and assign these layouts to workflows, so they can be reused to structure the appearance of notifications sent through the platform.",
-      "externalDocs": {
-        "url": "https://docs.novu.co/content-creation-design/layouts"
-      }
-    },
-    {
-      "name": "Workflows",
-      "description": "All notifications are sent via a workflow. Each workflow acts as a container for the logic and blueprint that are associated with a type of notification in your system.",
-      "externalDocs": {
-        "url": "https://docs.novu.co/workflows"
-      }
-    },
-    {
-      "name": "Notification Templates",
-      "description": "Deprecated. Use Workflows (/workflows) instead, which provide the same functionality under a new name."
-    },
-    {
-      "name": "Workflow groups",
-      "description": "Workflow groups are used to organize workflows into logical groups."
-    },
-    {
-      "name": "Changes",
-      "description": "Changes represent a change in state of an environment. They are analagous to a pending pull request in git, enabling you to test changes before they are applied to your environment and atomically apply them when you are ready.",
-      "externalDocs": {
-        "url": "https://docs.novu.co/platform/environments#promoting-pending-changes-to-production"
-      }
-    },
-    {
-      "name": "Environments",
-      "description": "Novu uses the concept of environments to ensure logical separation of your data and configuration. This means that subscribers, and preferences created in one environment are never accessible to another.",
-      "externalDocs": {
-        "url": "https://docs.novu.co/platform/environments"
-      }
-    },
-    {
-      "name": "Inbound Parse",
-      "description": "Inbound Webhook is a feature that allows processing of incoming emails for a domain or subdomain. The feature parses the contents of the email and POSTs the information to a specified URL in a multipart/form-data format.",
-      "externalDocs": {
-        "url": "https://docs.novu.co/platform/inbound-parse-webhook"
-      }
-    },
-    {
-      "name": "Feeds",
-      "description": "Novu provides a notification activity feed that monitors every outgoing message associated with its relevant metadata. This can be used to monitor activity and discover potential issues with a specific provider or a channel type.",
-      "externalDocs": {
-        "url": "https://docs.novu.co/activity-feed"
-      }
-    },
-    {
-      "name": "Tenants",
-      "description": "A tenant represents a group of users. As a developer, when your apps have organizations, they are referred to as tenants. Tenants in Novu provides the ability to tailor specific notification experiences to users of different groups or organizations.",
-      "externalDocs": {
-        "url": "https://docs.novu.co/tenants"
-      }
-    },
-    {
       "name": "Messages",
       "description": "A message in Novu represents a notification delivered to a recipient on a particular channel. Messages contain information about the request that triggered its delivery, a view of the data sent to the recipient, and a timeline of its lifecycle events. Learn more about messages.",
       "externalDocs": {
         "url": "https://docs.novu.co/workflows/messages"
-      }
-    },
-    {
-      "name": "Organizations",
-      "description": "An organization serves as a separate entity within your Novu account. Each organization you create has its own separate integration store, workflows, subscribers, and API keys. This separation of resources allows you to manage multi-tenant environments and separate domains within a single account.",
-      "externalDocs": {
-        "url": "https://docs.novu.co/platform/organizations"
-      }
-    },
-    {
-      "name": "Execution Details",
-      "description": "Execution details are used to track the execution of a workflow. They provided detailed information on the execution of a workflow, including the status of each step, the input and output of each step, and the overall status of the execution.",
-      "externalDocs": {
-        "url": "https://docs.novu.co/activity-feed"
-      }
-    },
-    {
-      "name": "Translations",
-      "description": "Translations are used to localize your messages for different languages and regions. Novu provides a way to create and manage translations for your messages. You can create translations for your messages in different languages and regions, and assign them to your subscribers based on their preferences.",
-      "externalDocs": {
-        "url": "https://docs.novu.co/content-creation-design/translations"
       }
     }
   ],
@@ -23540,9 +23455,45 @@
             "example": "/api/v1/resource"
           },
           "message": {
-            "type": "string",
-            "description": "A detailed error message.",
-            "example": "Resource not found."
+            "description": "Value that failed validation",
+            "oneOf": [
+              {
+                "type": "string",
+                "nullable": true
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "object",
+                "nullable": true
+              },
+              {
+                "type": "array",
+                "items": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "boolean"
+                    },
+                    {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  ]
+                }
+              }
+            ],
+            "example": "xx xx xx "
           },
           "ctx": {
             "type": "object",
@@ -23562,8 +23513,66 @@
         "required": [
           "statusCode",
           "timestamp",
-          "path",
-          "message"
+          "path"
+        ]
+      },
+      "ConstraintValidation": {
+        "type": "object",
+        "properties": {
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of validation error messages",
+            "example": [
+              "Field is required",
+              "Invalid format"
+            ]
+          },
+          "value": {
+            "description": "Value that failed validation",
+            "oneOf": [
+              {
+                "type": "string",
+                "nullable": true
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "object"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "boolean"
+                    },
+                    {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  ]
+                }
+              }
+            ],
+            "example": "xx xx xx "
+          }
+        },
+        "required": [
+          "messages"
         ]
       },
       "ValidationErrorDto": {
@@ -23585,9 +23594,45 @@
             "example": "/api/v1/resource"
           },
           "message": {
-            "type": "string",
-            "description": "A detailed error message.",
-            "example": "Resource not found."
+            "description": "Value that failed validation",
+            "oneOf": [
+              {
+                "type": "string",
+                "nullable": true
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "object",
+                "nullable": true
+              },
+              {
+                "type": "array",
+                "items": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "boolean"
+                    },
+                    {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  ]
+                }
+              }
+            ],
+            "example": "xx xx xx "
           },
           "ctx": {
             "type": "object",
@@ -23607,51 +23652,7 @@
             "type": "object",
             "description": "A record of validation errors keyed by field name",
             "additionalProperties": {
-              "type": "object",
-              "properties": {
-                "messages": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "value": {
-                  "oneOf": [
-                    {
-                      "type": "string",
-                      "nullable": true
-                    },
-                    {
-                      "type": "number"
-                    },
-                    {
-                      "type": "boolean"
-                    },
-                    {
-                      "type": "object",
-                      "additionalProperties": true
-                    },
-                    {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "additionalProperties": true
-                      }
-                    }
-                  ]
-                }
-              },
-              "required": [
-                "messages",
-                "value"
-              ],
-              "example": {
-                "messages": [
-                  "Field is required",
-                  "Invalid format"
-                ],
-                "value": "xx xx xx "
-              }
+              "$ref": "#/components/schemas/ConstraintValidation"
             },
             "example": {
               "fieldName1": {
@@ -23680,6 +23681,17 @@
                 "value": {
                   "key": "value"
                 }
+              },
+              "fieldName5": {
+                "messages": [
+                  "Field is missing"
+                ],
+                "value": null
+              },
+              "fieldName6": {
+                "messages": [
+                  "Undefined value"
+                ]
               }
             }
           }
@@ -23688,7 +23700,6 @@
           "statusCode",
           "timestamp",
           "path",
-          "message",
           "errors"
         ]
       },
@@ -23991,6 +24002,90 @@
           "type"
         ]
       },
+      "StepsOverrides": {
+        "type": "object",
+        "properties": {
+          "providers": {
+            "type": "object",
+            "description": "Passing the provider id and the provider specific configurations",
+            "example": {
+              "sendgrid": {
+                "templateId": "1234567890"
+              }
+            },
+            "additionalProperties": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          }
+        },
+        "required": [
+          "providers"
+        ]
+      },
+      "TriggerOverrides": {
+        "type": "object",
+        "properties": {
+          "steps": {
+            "type": "object",
+            "description": "This could be used to override provider specific configurations",
+            "example": {
+              "email-step": {
+                "providers": {
+                  "sendgrid": {
+                    "templateId": "1234567890"
+                  }
+                }
+              }
+            },
+            "additionalProperties": {
+              "$ref": "#/components/schemas/StepsOverrides"
+            }
+          },
+          "providers": {
+            "type": "object",
+            "description": "Overrides the provider configuration for the entire workflow and all steps",
+            "example": {
+              "sendgrid": {
+                "templateId": "1234567890"
+              }
+            },
+            "additionalProperties": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          },
+          "email": {
+            "type": "object",
+            "description": "Override the email provider specific configurations for the entire workflow",
+            "deprecated": true,
+            "additionalProperties": true
+          },
+          "push": {
+            "type": "object",
+            "description": "Override the push provider specific configurations for the entire workflow",
+            "deprecated": true,
+            "additionalProperties": true
+          },
+          "sms": {
+            "type": "object",
+            "description": "Override the sms provider specific configurations for the entire workflow",
+            "deprecated": true,
+            "additionalProperties": true
+          },
+          "chat": {
+            "type": "object",
+            "description": "Override the chat provider specific configurations for the entire workflow",
+            "deprecated": true,
+            "additionalProperties": true
+          },
+          "layoutIdentifier": {
+            "type": "string",
+            "description": "Override the layout identifier for the entire workflow",
+            "deprecated": true
+          }
+        }
+      },
       "TriggerEventRequestDto": {
         "type": "object",
         "properties": {
@@ -24012,7 +24107,6 @@
             }
           },
           "overrides": {
-            "type": "object",
             "description": "This could be used to override provider specific configurations",
             "example": {
               "fcm": {
@@ -24021,10 +24115,11 @@
                 }
               }
             },
-            "additionalProperties": {
-              "type": "object",
-              "additionalProperties": true
-            }
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TriggerOverrides"
+              }
+            ]
           },
           "to": {
             "description": "The recipients list of people who will receive the notification.",
@@ -24127,7 +24222,6 @@
             "additionalProperties": true
           },
           "overrides": {
-            "type": "object",
             "description": "This could be used to override provider specific configurations",
             "example": {
               "fcm": {
@@ -24135,7 +24229,16 @@
                   "key": "value"
                 }
               }
-            }
+            },
+            "additionalProperties": {
+              "type": "object",
+              "additionalProperties": true
+            },
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TriggerOverrides"
+              }
+            ]
           },
           "transactionId": {
             "type": "string",
@@ -24184,7 +24287,7 @@
       },
       "StepTypeEnum": {
         "type": "string",
-        "description": "Channels of the notification",
+        "description": "Type of the step",
         "enum": [
           "in_app",
           "email",
@@ -24544,6 +24647,7 @@
           "brevo-sms",
           "eazy-sms",
           "mobishastra",
+          "afro-message",
           "fcm",
           "apns",
           "expo",
@@ -25379,6 +25483,29 @@
           "data"
         ]
       },
+      "ChatOrPushProviderEnum": {
+        "type": "string",
+        "description": "The provider identifier for the credentials",
+        "enum": [
+          "slack",
+          "discord",
+          "msteams",
+          "mattermost",
+          "ryver",
+          "zulip",
+          "grafana-on-call",
+          "getstream",
+          "rocket-chat",
+          "whatsapp-business",
+          "fcm",
+          "apns",
+          "expo",
+          "one-signal",
+          "pushpad",
+          "push-webhook",
+          "pusher-beams"
+        ]
+      },
       "ChannelCredentials": {
         "type": "object",
         "properties": {
@@ -25435,27 +25562,7 @@
         "type": "object",
         "properties": {
           "providerId": {
-            "type": "string",
-            "enum": [
-              "slack",
-              "discord",
-              "msteams",
-              "mattermost",
-              "ryver",
-              "zulip",
-              "grafana-on-call",
-              "getstream",
-              "rocket-chat",
-              "whatsapp-business",
-              "fcm",
-              "apns",
-              "expo",
-              "one-signal",
-              "pushpad",
-              "push-webhook",
-              "pusher-beams"
-            ],
-            "description": "The provider identifier for the credentials"
+            "$ref": "#/components/schemas/ChatOrPushProviderEnum"
           },
           "integrationIdentifier": {
             "type": "string",
@@ -25497,7 +25604,6 @@
           },
           "email": {
             "type": "string",
-            "nullable": true,
             "description": "The email address of the subscriber."
           },
           "phone": {
@@ -25511,10 +25617,6 @@
           "locale": {
             "type": "string",
             "description": "The locale setting of the subscriber, indicating their preferred language or region."
-          },
-          "subscriberId": {
-            "type": "string",
-            "description": "The identifier used to create this subscriber, which typically corresponds to the user ID in your system."
           },
           "channels": {
             "description": "An array of channel settings associated with the subscriber.",
@@ -25539,6 +25641,24 @@
             "type": "string",
             "description": "The timestamp indicating when the subscriber was last online, in ISO 8601 format."
           },
+          "__v": {
+            "type": "number",
+            "description": "The version of the subscriber document."
+          },
+          "data": {
+            "type": "object",
+            "description": "Additional custom data for the subscriber",
+            "additionalProperties": true,
+            "nullable": true
+          },
+          "timezone": {
+            "type": "string",
+            "description": "Timezone of the subscriber"
+          },
+          "subscriberId": {
+            "type": "string",
+            "description": "The identifier used to create this subscriber, which typically corresponds to the user ID in your system."
+          },
           "_organizationId": {
             "type": "string",
             "description": "The unique identifier of the organization to which the subscriber belongs."
@@ -25558,20 +25678,6 @@
           "updatedAt": {
             "type": "string",
             "description": "The timestamp indicating when the subscriber was last updated, in ISO 8601 format."
-          },
-          "__v": {
-            "type": "number",
-            "description": "The version of the subscriber document."
-          },
-          "data": {
-            "type": "object",
-            "description": "Additional custom data for the subscriber",
-            "additionalProperties": true,
-            "nullable": true
-          },
-          "timezone": {
-            "type": "string",
-            "description": "Timezone of the subscriber"
           }
         },
         "required": [
@@ -25656,7 +25762,6 @@
         "properties": {
           "subscriberId": {
             "type": "string",
-            "pattern": "VALID_ID_REGEX",
             "description": "Unique identifier of the subscriber"
           },
           "firstName": {
@@ -25781,27 +25886,7 @@
         "type": "object",
         "properties": {
           "providerId": {
-            "type": "string",
-            "enum": [
-              "slack",
-              "discord",
-              "msteams",
-              "mattermost",
-              "ryver",
-              "zulip",
-              "grafana-on-call",
-              "getstream",
-              "rocket-chat",
-              "whatsapp-business",
-              "fcm",
-              "apns",
-              "expo",
-              "one-signal",
-              "pushpad",
-              "push-webhook",
-              "pusher-beams"
-            ],
-            "description": "The provider identifier for the credentials"
+            "$ref": "#/components/schemas/ChatOrPushProviderEnum"
           },
           "integrationIdentifier": {
             "type": "string",
@@ -25997,10 +26082,7 @@
               }
             ]
           }
-        },
-        "required": [
-          "data"
-        ]
+        }
       },
       "ActorTypeEnum": {
         "type": "string",
@@ -26177,11 +26259,6 @@
             "description": "Indicates whether the notification has been seen by the subscriber.",
             "example": true
           },
-          "deleted": {
-            "type": "boolean",
-            "description": "Indicates whether the notification has been deleted.",
-            "example": false
-          },
           "deviceTokens": {
             "nullable": true,
             "description": "Device tokens for push notifications, if applicable.",
@@ -26244,7 +26321,6 @@
           "channel",
           "read",
           "seen",
-          "deleted",
           "cta",
           "status"
         ]
@@ -26323,23 +26399,33 @@
           "_organizationId"
         ]
       },
-      "PreferenceChannels": {
+      "SubscriberPreferenceChannels": {
         "type": "object",
         "properties": {
           "email": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "Email channel preference",
+            "example": true
           },
           "sms": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "SMS channel preference",
+            "example": false
           },
           "in_app": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "In-app channel preference",
+            "example": true
           },
           "chat": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "Chat channel preference",
+            "example": false
           },
           "push": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "Push notification channel preference",
+            "example": true
           }
         }
       },
@@ -26756,7 +26842,7 @@
             "type": "boolean"
           },
           "preferenceSettings": {
-            "$ref": "#/components/schemas/PreferenceChannels"
+            "$ref": "#/components/schemas/SubscriberPreferenceChannels"
           },
           "critical": {
             "type": "boolean"
@@ -26896,6 +26982,13 @@
             "type": "string",
             "description": "Creation date of the message"
           },
+          "deliveredAt": {
+            "description": "Array of delivery dates for the message, if the message has multiple delivery dates, for example after being snoozed",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
           "lastSeenDate": {
             "type": "string",
             "description": "Last seen date of the message, if available"
@@ -26907,7 +27000,10 @@
           "content": {
             "oneOf": [
               {
-                "$ref": "#/components/schemas/EmailBlock"
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/EmailBlock"
+                }
               },
               {
                 "type": "string",
@@ -26934,6 +27030,10 @@
           "seen": {
             "type": "boolean",
             "description": "Indicates if the message has been seen"
+          },
+          "snoozedUntil": {
+            "type": "string",
+            "description": "Date when the message will be unsnoozed"
           },
           "email": {
             "type": "string",
@@ -27190,7 +27290,7 @@
           "status"
         ]
       },
-      "GlobalPreferenceDto": {
+      "SubscriberGlobalPreferenceDto": {
         "type": "object",
         "properties": {
           "enabled": {
@@ -27201,7 +27301,7 @@
             "description": "Channel-specific preference settings",
             "allOf": [
               {
-                "$ref": "#/components/schemas/PreferenceChannels"
+                "$ref": "#/components/schemas/SubscriberPreferenceChannels"
               }
             ]
           }
@@ -27211,28 +27311,23 @@
           "channels"
         ]
       },
-      "Overrides": {
+      "PreferenceOverrideSourceEnum": {
+        "type": "string",
+        "description": "The source of overrides",
+        "enum": [
+          "subscriber",
+          "template",
+          "workflowOverride"
+        ]
+      },
+      "SubscriberPreferenceOverrideDto": {
         "type": "object",
         "properties": {
           "channel": {
-            "enum": [
-              "in_app",
-              "email",
-              "sms",
-              "chat",
-              "push"
-            ],
-            "type": "string",
-            "description": "The channel type which is overridden"
+            "$ref": "#/components/schemas/ChannelTypeEnum"
           },
           "source": {
-            "enum": [
-              "subscriber",
-              "template",
-              "workflowOverride"
-            ],
-            "type": "string",
-            "description": "The source of overrides"
+            "$ref": "#/components/schemas/PreferenceOverrideSourceEnum"
           }
         },
         "required": [
@@ -27240,7 +27335,7 @@
           "source"
         ]
       },
-      "WorkflowInfoDto": {
+      "SubscriberPreferencesWorkflowInfoDto": {
         "type": "object",
         "properties": {
           "slug": {
@@ -27266,7 +27361,7 @@
           "name"
         ]
       },
-      "WorkflowPreferenceDto": {
+      "SubscriberWorkflowPreferenceDto": {
         "type": "object",
         "properties": {
           "enabled": {
@@ -27277,7 +27372,7 @@
             "description": "Channel-specific preference settings for this workflow",
             "allOf": [
               {
-                "$ref": "#/components/schemas/PreferenceChannels"
+                "$ref": "#/components/schemas/SubscriberPreferenceChannels"
               }
             ]
           },
@@ -27285,14 +27380,14 @@
             "description": "List of preference overrides",
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Overrides"
+              "$ref": "#/components/schemas/SubscriberPreferenceOverrideDto"
             }
           },
           "workflow": {
             "description": "Workflow information",
             "allOf": [
               {
-                "$ref": "#/components/schemas/WorkflowInfoDto"
+                "$ref": "#/components/schemas/SubscriberPreferencesWorkflowInfoDto"
               }
             ]
           }
@@ -27311,7 +27406,7 @@
             "description": "Global preference settings",
             "allOf": [
               {
-                "$ref": "#/components/schemas/GlobalPreferenceDto"
+                "$ref": "#/components/schemas/SubscriberGlobalPreferenceDto"
               }
             ]
           },
@@ -27319,7 +27414,7 @@
             "description": "Workflow-specific preference settings",
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/WorkflowPreferenceDto"
+              "$ref": "#/components/schemas/SubscriberWorkflowPreferenceDto"
             }
           }
         },
@@ -27366,11 +27461,45 @@
           },
           "workflowId": {
             "type": "string",
-            "description": "If provided, update workflow specific preferences, otherwise update global preferences"
+            "description": "Workflow internal _id, identifier or slug. If provided, update workflow specific preferences, otherwise update global preferences"
           }
         },
         "required": [
           "channels"
+        ]
+      },
+      "MessagesResponseDto": {
+        "type": "object",
+        "properties": {
+          "totalCount": {
+            "type": "number",
+            "description": "Total number of messages available"
+          },
+          "hasMore": {
+            "type": "boolean",
+            "description": "Indicates if there are more messages available"
+          },
+          "data": {
+            "description": "List of messages",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MessageResponseDto"
+            }
+          },
+          "pageSize": {
+            "type": "number",
+            "description": "Number of messages per page"
+          },
+          "page": {
+            "type": "number",
+            "description": "Current page number"
+          }
+        },
+        "required": [
+          "hasMore",
+          "data",
+          "pageSize",
+          "page"
         ]
       },
       "DeleteMessageResponseDto": {
@@ -27679,9 +27808,1612 @@
           "name"
         ]
       },
+      "RuntimeIssueDto": {
+        "type": "object",
+        "properties": {
+          "issueType": {
+            "enum": [
+              "MISSING_VALUE",
+              "MAX_LENGTH_ACCESSED",
+              "WORKFLOW_ID_ALREADY_EXISTS",
+              "DUPLICATED_VALUE",
+              "LIMIT_REACHED"
+            ],
+            "type": "string"
+          },
+          "variableName": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "issueType",
+          "message"
+        ]
+      },
+      "JsonSchemaTypeEnum": {
+        "type": "string",
+        "description": "JSON Schema type",
+        "enum": [
+          "string",
+          "number",
+          "integer",
+          "boolean",
+          "array",
+          "object",
+          "null"
+        ]
+      },
+      "JsonSchemaFormatEnum": {
+        "type": "string",
+        "description": "Format validation for strings",
+        "enum": [
+          "date",
+          "time",
+          "date-time",
+          "duration",
+          "email",
+          "hostname",
+          "idn-hostname",
+          "ipv4",
+          "ipv6",
+          "json-pointer",
+          "relative-json-pointer",
+          "regex",
+          "uri",
+          "uri-reference",
+          "uri-template",
+          "url",
+          "uuid",
+          "guid",
+          "phone",
+          "password",
+          "color"
+        ]
+      },
+      "JSONSchemaDto": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/JsonSchemaTypeEnum"
+          },
+          "format": {
+            "$ref": "#/components/schemas/JsonSchemaFormatEnum"
+          },
+          "title": {
+            "type": "string",
+            "description": "Title of the schema"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the schema"
+          },
+          "default": {
+            "description": "Default value",
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              }
+            ]
+          },
+          "const": {
+            "type": "object",
+            "description": "Const value (exact match required)"
+          },
+          "minimum": {
+            "type": "number",
+            "description": "Minimum value for numbers"
+          },
+          "maximum": {
+            "type": "number",
+            "description": "Maximum value for numbers"
+          },
+          "exclusiveMinimum": {
+            "type": "boolean",
+            "description": "Exclusive minimum"
+          },
+          "exclusiveMaximum": {
+            "type": "boolean",
+            "description": "Exclusive maximum"
+          },
+          "minLength": {
+            "type": "number",
+            "description": "Minimum length for strings"
+          },
+          "maxLength": {
+            "type": "number",
+            "description": "Maximum length for strings"
+          },
+          "pattern": {
+            "type": "string",
+            "description": "Regular expression pattern"
+          },
+          "minItems": {
+            "type": "number",
+            "description": "Minimum number of items in array"
+          },
+          "maxItems": {
+            "type": "number",
+            "description": "Maximum number of items in array"
+          },
+          "uniqueItems": {
+            "type": "boolean",
+            "description": "Items must be unique"
+          },
+          "items": {
+            "description": "Schema for array items",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/JSONSchemaDto"
+              }
+            ]
+          },
+          "required": {
+            "type": "array",
+            "description": "Required properties for object",
+            "items": {
+              "type": "string"
+            }
+          },
+          "properties": {
+            "type": "object",
+            "description": "Object properties",
+            "additionalProperties": {
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/JSONSchemaDto"
+                }
+              ]
+            }
+          },
+          "additionalProperties": {
+            "description": "Additional properties schema",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/JSONSchemaDto"
+              },
+              {
+                "type": "boolean"
+              }
+            ]
+          },
+          "enum": {
+            "type": "array",
+            "description": "Enumeration of possible values",
+            "items": {
+              "type": "string"
+            }
+          },
+          "allOf": {
+            "type": "array",
+            "description": "Combination of schemas (allOf)",
+            "items": {
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/JSONSchemaDto"
+                }
+              ]
+            }
+          },
+          "anyOf": {
+            "type": "array",
+            "description": "At least one schema must match (anyOf)",
+            "items": {
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/JSONSchemaDto"
+                }
+              ]
+            }
+          },
+          "oneOf": {
+            "type": "array",
+            "description": "Only one schema must match (oneOf)",
+            "items": {
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/JSONSchemaDto"
+                }
+              ]
+            }
+          },
+          "not": {
+            "description": "Schema must not match (not)",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/JSONSchemaDto"
+              }
+            ]
+          },
+          "if": {
+            "description": "Conditional validation schema (if condition)",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/JSONSchemaDto"
+              }
+            ]
+          },
+          "then": {
+            "description": "Schema to apply if \"if\" condition is true",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/JSONSchemaDto"
+              }
+            ]
+          },
+          "else": {
+            "description": "Schema to apply if \"if\" condition is false",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/JSONSchemaDto"
+              }
+            ]
+          },
+          "contentEncoding": {
+            "type": "string",
+            "description": "Content encoding (e.g., base64)"
+          },
+          "contentMediaType": {
+            "type": "string",
+            "description": "Content media type"
+          },
+          "dependentRequired": {
+            "type": "object",
+            "description": "Dependent required properties",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "dependentSchemas": {
+            "type": "object",
+            "description": "Dependent schemas",
+            "additionalProperties": {
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/JSONSchemaDto"
+                }
+              ]
+            }
+          },
+          "$schema": {
+            "type": "string",
+            "description": "JSON Schema version"
+          },
+          "$id": {
+            "type": "string",
+            "description": "Unique identifier for the schema"
+          },
+          "contentSchema": {
+            "description": "Content schema for specific types",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/JSONSchemaDto"
+              }
+            ]
+          },
+          "examples": {
+            "type": "array",
+            "description": "Example values",
+            "items": {
+              "type": "object"
+            }
+          },
+          "multipleOf": {
+            "type": "number",
+            "description": "Minimum number of decimal places"
+          }
+        }
+      },
+      "UiComponentEnum": {
+        "type": "string",
+        "description": "Component type for the UI Schema Property",
+        "enum": [
+          "BLOCK_EDITOR",
+          "TEXT_FULL_LINE",
+          "TEXT_INLINE_LABEL",
+          "IN_APP_BODY",
+          "IN_APP_AVATAR",
+          "IN_APP_PRIMARY_SUBJECT",
+          "IN_APP_BUTTON_DROPDOWN",
+          "IN_APP_DISABLE_SANITIZATION_SWITCH",
+          "DISABLE_SANITIZATION_SWITCH",
+          "URL_TEXT_BOX",
+          "DIGEST_AMOUNT",
+          "DIGEST_UNIT",
+          "DIGEST_KEY",
+          "DIGEST_CRON",
+          "DELAY_TYPE",
+          "DELAY_AMOUNT",
+          "DELAY_UNIT",
+          "SMS_BODY",
+          "CHAT_BODY",
+          "PUSH_BODY",
+          "PUSH_SUBJECT",
+          "QUERY_EDITOR",
+          "DATA"
+        ]
+      },
+      "UiSchemaProperty": {
+        "type": "object",
+        "properties": {
+          "placeholder": {
+            "description": "Placeholder for the UI Schema Property",
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "object",
+                "additionalProperties": true
+              },
+              {
+                "type": "array",
+                "items": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "boolean"
+                    },
+                    {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  ]
+                }
+              }
+            ],
+            "nullable": true
+          },
+          "component": {
+            "$ref": "#/components/schemas/UiComponentEnum"
+          }
+        },
+        "required": [
+          "component"
+        ]
+      },
+      "UiSchemaGroupEnum": {
+        "type": "string",
+        "description": "Group of the UI Schema",
+        "enum": [
+          "IN_APP",
+          "EMAIL",
+          "DIGEST",
+          "DELAY",
+          "SMS",
+          "CHAT",
+          "PUSH",
+          "SKIP"
+        ]
+      },
+      "UiSchema": {
+        "type": "object",
+        "properties": {
+          "group": {
+            "$ref": "#/components/schemas/UiSchemaGroupEnum"
+          },
+          "properties": {
+            "type": "object",
+            "description": "Properties of the UI Schema",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/UiSchemaProperty"
+            }
+          }
+        }
+      },
+      "ControlsMetadataDto": {
+        "type": "object",
+        "properties": {
+          "dataSchema": {
+            "description": "JSON Schema for data",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/JSONSchemaDto"
+              }
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/JSONSchemaDto"
+              }
+            ]
+          },
+          "uiSchema": {
+            "description": "UI Schema for rendering",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/UiSchema"
+              }
+            ]
+          },
+          "values": {
+            "type": "object",
+            "description": "Control values",
+            "additionalProperties": true
+          }
+        },
+        "required": [
+          "values"
+        ]
+      },
+      "StepContentIssueEnum": {
+        "type": "string",
+        "description": "Type of step content issue",
+        "enum": [
+          "ILLEGAL_VARIABLE_IN_CONTROL_VALUE",
+          "INVALID_FILTER_ARG_IN_VARIABLE",
+          "MISSING_VALUE",
+          "TIER_LIMIT_EXCEEDED"
+        ]
+      },
+      "StepContentIssueDto": {
+        "type": "object",
+        "properties": {
+          "issueType": {
+            "$ref": "#/components/schemas/StepContentIssueEnum"
+          },
+          "variableName": {
+            "type": "string",
+            "description": "Name of the variable related to the issue"
+          },
+          "message": {
+            "type": "string",
+            "description": "Detailed message describing the issue"
+          }
+        },
+        "required": [
+          "issueType",
+          "message"
+        ]
+      },
+      "StepIntegrationIssueEnum": {
+        "type": "string",
+        "description": "Type of integration issue",
+        "enum": [
+          "MISSING_INTEGRATION"
+        ]
+      },
+      "StepIntegrationIssue": {
+        "type": "object",
+        "properties": {
+          "issueType": {
+            "$ref": "#/components/schemas/StepIntegrationIssueEnum"
+          },
+          "variableName": {
+            "type": "string",
+            "description": "Name of the variable related to the issue"
+          },
+          "message": {
+            "type": "string",
+            "description": "Detailed message describing the issue"
+          }
+        },
+        "required": [
+          "issueType",
+          "message"
+        ]
+      },
+      "StepIssuesDto": {
+        "type": "object",
+        "properties": {
+          "controls": {
+            "type": "object",
+            "description": "Controls-related issues",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/StepContentIssueDto"
+              }
+            }
+          },
+          "integration": {
+            "type": "object",
+            "description": "Integration-related issues",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/StepIntegrationIssue"
+              }
+            }
+          }
+        }
+      },
+      "StepResponseDto": {
+        "type": "object",
+        "properties": {
+          "controls": {
+            "description": "Controls metadata for the step",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ControlsMetadataDto"
+              }
+            ]
+          },
+          "variables": {
+            "description": "JSON Schema for variables",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/JSONSchemaDto"
+              }
+            ]
+          },
+          "stepId": {
+            "type": "string",
+            "description": "Unique identifier of the step"
+          },
+          "_id": {
+            "type": "string",
+            "description": "Database identifier of the step"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the step"
+          },
+          "slug": {
+            "type": "object",
+            "description": "Slug of the step"
+          },
+          "type": {
+            "$ref": "#/components/schemas/StepTypeEnum"
+          },
+          "origin": {
+            "$ref": "#/components/schemas/WorkflowOriginEnum"
+          },
+          "workflowId": {
+            "type": "string",
+            "description": "Workflow identifier"
+          },
+          "workflowDatabaseId": {
+            "type": "string",
+            "description": "Workflow database identifier"
+          },
+          "issues": {
+            "description": "Issues associated with the step",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StepIssuesDto"
+              }
+            ]
+          }
+        },
+        "required": [
+          "controls",
+          "variables",
+          "stepId",
+          "_id",
+          "name",
+          "slug",
+          "type",
+          "origin",
+          "workflowId",
+          "workflowDatabaseId"
+        ]
+      },
+      "WorkflowPreferenceDto": {
+        "type": "object",
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "default": true,
+            "description": "A flag specifying if notification delivery is enabled for the workflow. If true, notification delivery is enabled by default for all channels. This setting can be overridden by the channel preferences."
+          },
+          "readOnly": {
+            "type": "boolean",
+            "default": false,
+            "description": "A flag specifying if the preference is read-only. If true, the preference cannot be changed by the Subscriber."
+          }
+        },
+        "required": [
+          "enabled",
+          "readOnly"
+        ]
+      },
+      "ChannelPreferenceDto": {
+        "type": "object",
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "default": true,
+            "description": "A flag specifying if notification delivery is enabled for the channel. If true, notification delivery is enabled."
+          }
+        },
+        "required": [
+          "enabled"
+        ]
+      },
+      "WorkflowPreferencesDto": {
+        "type": "object",
+        "properties": {
+          "all": {
+            "description": "A preference for the workflow. The values specified here will be used if no preference is specified for a channel.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/WorkflowPreferenceDto"
+              }
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/WorkflowPreferenceDto"
+              }
+            ]
+          },
+          "channels": {
+            "type": "object",
+            "description": "Preferences for different communication channels",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/ChannelPreferenceDto"
+            },
+            "example": {
+              "email": {
+                "enabled": true
+              },
+              "sms": {
+                "enabled": false
+              }
+            }
+          }
+        },
+        "required": [
+          "all",
+          "channels"
+        ]
+      },
+      "WorkflowPreferencesResponseDto": {
+        "type": "object",
+        "properties": {
+          "user": {
+            "nullable": true,
+            "description": "User-specific workflow preferences",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/WorkflowPreferencesDto"
+              }
+            ]
+          },
+          "default": {
+            "description": "Default workflow preferences",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/WorkflowPreferencesDto"
+              }
+            ]
+          }
+        },
+        "required": [
+          "default"
+        ]
+      },
+      "WorkflowStatusEnum": {
+        "type": "string",
+        "description": "Status of the workflow",
+        "enum": [
+          "ACTIVE",
+          "INACTIVE",
+          "ERROR"
+        ]
+      },
+      "WorkflowResponseDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the workflow"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the workflow"
+          },
+          "tags": {
+            "description": "Tags associated with the workflow",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "active": {
+            "type": "boolean",
+            "description": "Whether the workflow is active",
+            "default": false
+          },
+          "_id": {
+            "type": "string",
+            "description": "Unique identifier of the workflow"
+          },
+          "workflowId": {
+            "type": "string",
+            "description": "Workflow identifier"
+          },
+          "slug": {
+            "type": "object",
+            "description": "Slug of the workflow"
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "Last updated timestamp"
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "Creation timestamp"
+          },
+          "steps": {
+            "description": "Steps of the workflow",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StepResponseDto"
+            }
+          },
+          "origin": {
+            "$ref": "#/components/schemas/WorkflowOriginEnum"
+          },
+          "preferences": {
+            "description": "Preferences for the workflow",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/WorkflowPreferencesResponseDto"
+              }
+            ]
+          },
+          "status": {
+            "$ref": "#/components/schemas/WorkflowStatusEnum"
+          },
+          "issues": {
+            "type": "object",
+            "description": "Runtime issues for workflow creation and update",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/RuntimeIssueDto"
+            }
+          },
+          "lastTriggeredAt": {
+            "type": "string",
+            "description": "Timestamp of the last workflow trigger",
+            "nullable": true
+          }
+        },
+        "required": [
+          "name",
+          "_id",
+          "workflowId",
+          "slug",
+          "updatedAt",
+          "createdAt",
+          "steps",
+          "origin",
+          "preferences",
+          "status"
+        ]
+      },
+      "StepUpsertDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the step"
+          },
+          "_id": {
+            "type": "string",
+            "description": "Unique identifier of the step"
+          },
+          "type": {
+            "$ref": "#/components/schemas/StepTypeEnum"
+          },
+          "controlValues": {
+            "type": "object",
+            "nullable": true,
+            "description": "Control values for the step",
+            "additionalProperties": true
+          }
+        },
+        "required": [
+          "name",
+          "type"
+        ]
+      },
+      "WorkflowCreationSourceEnum": {
+        "type": "string",
+        "description": "Source of workflow creation",
+        "enum": [
+          "template_store",
+          "editor",
+          "notification_directory",
+          "onboarding_digest_demo",
+          "onboarding_in_app",
+          "empty_state",
+          "dropdown",
+          "onboarding_get_started",
+          "bridge",
+          "dashboard"
+        ]
+      },
+      "PreferencesRequestDto": {
+        "type": "object",
+        "properties": {
+          "user": {
+            "nullable": true,
+            "description": "User workflow preferences",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/WorkflowPreferencesDto"
+              }
+            ]
+          },
+          "workflow": {
+            "nullable": true,
+            "description": "Workflow-specific preferences",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/WorkflowPreferencesDto"
+              }
+            ]
+          }
+        }
+      },
+      "CreateWorkflowDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the workflow"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the workflow"
+          },
+          "tags": {
+            "description": "Tags associated with the workflow",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "active": {
+            "type": "boolean",
+            "description": "Whether the workflow is active",
+            "default": false
+          },
+          "workflowId": {
+            "type": "string",
+            "description": "Unique identifier for the workflow"
+          },
+          "steps": {
+            "description": "Steps of the workflow",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StepUpsertDto"
+            }
+          },
+          "__source": {
+            "$ref": "#/components/schemas/WorkflowCreationSourceEnum"
+          },
+          "preferences": {
+            "description": "Workflow preferences",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PreferencesRequestDto"
+              }
+            ]
+          }
+        },
+        "required": [
+          "name",
+          "workflowId",
+          "steps",
+          "__source"
+        ]
+      },
+      "SyncWorkflowDto": {
+        "type": "object",
+        "properties": {
+          "targetEnvironmentId": {
+            "type": "string",
+            "description": "Target environment identifier to sync the workflow to"
+          }
+        },
+        "required": [
+          "targetEnvironmentId"
+        ]
+      },
+      "UpdateWorkflowDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the workflow"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the workflow"
+          },
+          "tags": {
+            "description": "Tags associated with the workflow",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "active": {
+            "type": "boolean",
+            "description": "Whether the workflow is active",
+            "default": false
+          },
+          "workflowId": {
+            "type": "string",
+            "description": "Workflow ID (allowed only for code-first workflows)"
+          },
+          "steps": {
+            "type": "array",
+            "description": "Steps of the workflow",
+            "items": {
+              "$ref": "#/components/schemas/StepUpsertDto"
+            }
+          },
+          "preferences": {
+            "description": "Workflow preferences",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PreferencesRequestDto"
+              }
+            ]
+          },
+          "origin": {
+            "$ref": "#/components/schemas/WorkflowOriginEnum"
+          }
+        },
+        "required": [
+          "name",
+          "steps",
+          "preferences",
+          "origin"
+        ]
+      },
+      "WorkflowListResponseDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the workflow"
+          },
+          "tags": {
+            "type": "array",
+            "description": "Tags associated with the workflow",
+            "items": {
+              "type": "string"
+            }
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "Last updated timestamp"
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "Creation timestamp"
+          },
+          "_id": {
+            "type": "string",
+            "description": "Unique database identifier"
+          },
+          "workflowId": {
+            "type": "string",
+            "description": "Workflow identifier"
+          },
+          "slug": {
+            "type": "string",
+            "description": "Workflow slug"
+          },
+          "status": {
+            "$ref": "#/components/schemas/WorkflowStatusEnum"
+          },
+          "origin": {
+            "$ref": "#/components/schemas/WorkflowOriginEnum"
+          },
+          "lastTriggeredAt": {
+            "type": "string",
+            "description": "Timestamp of the last workflow trigger",
+            "nullable": true
+          },
+          "stepTypeOverviews": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StepTypeEnum"
+            },
+            "description": "Overview of step types in the workflow"
+          }
+        },
+        "required": [
+          "name",
+          "updatedAt",
+          "createdAt",
+          "_id",
+          "workflowId",
+          "slug",
+          "status",
+          "origin",
+          "stepTypeOverviews"
+        ]
+      },
+      "ListWorkflowResponse": {
+        "type": "object",
+        "properties": {
+          "workflows": {
+            "description": "List of workflows",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WorkflowListResponseDto"
+            }
+          },
+          "totalCount": {
+            "type": "number",
+            "description": "Total number of workflows"
+          }
+        },
+        "required": [
+          "workflows",
+          "totalCount"
+        ]
+      },
+      "DirectionEnum": {
+        "type": "string",
+        "enum": [
+          "ASC",
+          "DESC"
+        ]
+      },
+      "WorkflowResponseDtoSortField": {
+        "type": "string",
+        "enum": [
+          "createdAt",
+          "updatedAt",
+          "name",
+          "lastTriggeredAt"
+        ]
+      },
+      "DuplicateWorkflowDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the workflow"
+          },
+          "tags": {
+            "description": "Tags associated with the workflow",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the workflow"
+          }
+        }
+      },
+      "EmailRenderOutput": {
+        "type": "object",
+        "properties": {
+          "subject": {
+            "type": "string",
+            "description": "Subject of the email"
+          },
+          "body": {
+            "type": "string",
+            "description": "Body of the email"
+          }
+        },
+        "required": [
+          "subject",
+          "body"
+        ]
+      },
+      "RedirectTargetEnum": {
+        "type": "string",
+        "description": "Target of the redirect",
+        "enum": [
+          "_self",
+          "_blank",
+          "_parent",
+          "_top",
+          "_unfencedTop"
+        ]
+      },
+      "RedirectDto": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "URL to redirect to"
+          },
+          "target": {
+            "$ref": "#/components/schemas/RedirectTargetEnum"
+          }
+        },
+        "required": [
+          "url"
+        ]
+      },
+      "ActionDto": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string",
+            "description": "Label for the action"
+          },
+          "redirect": {
+            "description": "Redirect details for the action",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/RedirectDto"
+              }
+            ]
+          }
+        },
+        "required": [
+          "label"
+        ]
+      },
+      "InAppRenderOutput": {
+        "type": "object",
+        "properties": {
+          "subject": {
+            "type": "string",
+            "description": "Subject of the in-app notification"
+          },
+          "body": {
+            "type": "string",
+            "description": "Body of the in-app notification"
+          },
+          "avatar": {
+            "type": "string",
+            "description": "Avatar for the in-app notification"
+          },
+          "primaryAction": {
+            "description": "Primary action details",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ActionDto"
+              }
+            ]
+          },
+          "secondaryAction": {
+            "description": "Secondary action details",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ActionDto"
+              }
+            ]
+          },
+          "data": {
+            "type": "object",
+            "description": "Additional data",
+            "additionalProperties": true
+          },
+          "redirect": {
+            "description": "Redirect details",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/RedirectDto"
+              }
+            ]
+          }
+        },
+        "required": [
+          "body"
+        ]
+      },
+      "SmsRenderOutput": {
+        "type": "object",
+        "properties": {
+          "body": {
+            "type": "string",
+            "description": "Body of the SMS message"
+          }
+        },
+        "required": [
+          "body"
+        ]
+      },
+      "PushRenderOutput": {
+        "type": "object",
+        "properties": {
+          "subject": {
+            "type": "string",
+            "description": "Subject of the push notification"
+          },
+          "body": {
+            "type": "string",
+            "description": "Body of the push notification"
+          }
+        },
+        "required": [
+          "subject",
+          "body"
+        ]
+      },
+      "ChatRenderOutput": {
+        "type": "object",
+        "properties": {
+          "body": {
+            "type": "string",
+            "description": "Body of the chat message"
+          }
+        },
+        "required": [
+          "body"
+        ]
+      },
+      "TimeUnitEnum": {
+        "type": "string",
+        "description": "Time unit",
+        "enum": [
+          "seconds",
+          "minutes",
+          "hours",
+          "days",
+          "weeks",
+          "months"
+        ]
+      },
+      "DigestRegularOutput": {
+        "type": "object",
+        "properties": {
+          "amount": {
+            "type": "number",
+            "description": "Amount of time units"
+          },
+          "unit": {
+            "$ref": "#/components/schemas/TimeUnitEnum"
+          },
+          "digestKey": {
+            "type": "string",
+            "description": "Optional digest key"
+          },
+          "lookBackWindow": {
+            "type": "object",
+            "description": "Look back window configuration"
+          }
+        },
+        "required": [
+          "amount",
+          "unit"
+        ]
+      },
+      "DigestTimedOutput": {
+        "type": "object",
+        "properties": {
+          "cron": {
+            "type": "string",
+            "description": "Cron expression"
+          },
+          "digestKey": {
+            "type": "string",
+            "description": "Optional digest key"
+          }
+        },
+        "required": [
+          "cron"
+        ]
+      },
+      "DelayRenderOutput": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Type of delay"
+          },
+          "amount": {
+            "type": "number",
+            "description": "Amount of time units"
+          },
+          "unit": {
+            "$ref": "#/components/schemas/TimeUnitEnum"
+          }
+        },
+        "required": [
+          "type",
+          "amount",
+          "unit"
+        ]
+      },
+      "SubscriberResponseDtoOptional": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "The internal ID generated by Novu for your subscriber. This ID does not match the `subscriberId` used in your queries. Refer to `subscriberId` for that identifier."
+          },
+          "firstName": {
+            "type": "string",
+            "description": "The first name of the subscriber."
+          },
+          "lastName": {
+            "type": "string",
+            "description": "The last name of the subscriber."
+          },
+          "email": {
+            "type": "string",
+            "description": "The email address of the subscriber."
+          },
+          "phone": {
+            "type": "string",
+            "description": "The phone number of the subscriber."
+          },
+          "avatar": {
+            "type": "string",
+            "description": "The URL of the subscriber's avatar image."
+          },
+          "locale": {
+            "type": "string",
+            "description": "The locale setting of the subscriber, indicating their preferred language or region."
+          },
+          "channels": {
+            "description": "An array of channel settings associated with the subscriber.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ChannelSettingsDto"
+            }
+          },
+          "topics": {
+            "description": "An array of topics that the subscriber is subscribed to.",
+            "deprecated": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "isOnline": {
+            "type": "boolean",
+            "description": "Indicates whether the subscriber is currently online."
+          },
+          "lastOnlineAt": {
+            "type": "string",
+            "description": "The timestamp indicating when the subscriber was last online, in ISO 8601 format."
+          },
+          "__v": {
+            "type": "number",
+            "description": "The version of the subscriber document."
+          },
+          "data": {
+            "type": "object",
+            "description": "Additional custom data for the subscriber",
+            "additionalProperties": true,
+            "nullable": true
+          },
+          "timezone": {
+            "type": "string",
+            "description": "Timezone of the subscriber"
+          }
+        }
+      },
+      "PreviewPayloadDto": {
+        "type": "object",
+        "properties": {
+          "subscriber": {
+            "description": "Partial subscriber information",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SubscriberResponseDtoOptional"
+              }
+            ]
+          },
+          "payload": {
+            "type": "object",
+            "description": "Payload data",
+            "additionalProperties": true
+          },
+          "steps": {
+            "type": "object",
+            "description": "Steps data",
+            "additionalProperties": true
+          }
+        }
+      },
       "GeneratePreviewResponseDto": {
         "type": "object",
-        "properties": {}
+        "properties": {
+          "previewPayloadExample": {
+            "description": "Preview payload example",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PreviewPayloadDto"
+              }
+            ]
+          },
+          "result": {
+            "description": "Preview result",
+            "oneOf": [
+              {
+                "type": "object",
+                "additionalProperties": true
+              },
+              {
+                "properties": {
+                  "type": {
+                    "enum": [
+                      "email"
+                    ]
+                  },
+                  "preview": {
+                    "$ref": "#/components/schemas/EmailRenderOutput"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "type": {
+                    "enum": [
+                      "email"
+                    ]
+                  },
+                  "preview": {
+                    "$ref": "#/components/schemas/EmailRenderOutput"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "type": {
+                    "enum": [
+                      "in_app"
+                    ]
+                  },
+                  "preview": {
+                    "$ref": "#/components/schemas/InAppRenderOutput"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "type": {
+                    "enum": [
+                      "sms"
+                    ]
+                  },
+                  "preview": {
+                    "$ref": "#/components/schemas/SmsRenderOutput"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "type": {
+                    "enum": [
+                      "push"
+                    ]
+                  },
+                  "preview": {
+                    "$ref": "#/components/schemas/PushRenderOutput"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "type": {
+                    "enum": [
+                      "chat"
+                    ]
+                  },
+                  "preview": {
+                    "$ref": "#/components/schemas/ChatRenderOutput"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "type": {
+                    "enum": [
+                      "delay"
+                    ]
+                  },
+                  "preview": {
+                    "$ref": "#/components/schemas/DigestRegularOutput"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "type": {
+                    "enum": [
+                      "digest"
+                    ]
+                  },
+                  "preview": {
+                    "$ref": "#/components/schemas/DigestRegularOutput"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "required": [
+          "previewPayloadExample",
+          "result"
+        ]
+      },
+      "GeneratePreviewRequestDto": {
+        "type": "object",
+        "properties": {
+          "controlValues": {
+            "type": "object",
+            "description": "Optional control values",
+            "additionalProperties": true
+          },
+          "previewPayload": {
+            "description": "Optional payload for preview generation",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PreviewPayloadDto"
+              }
+            ]
+          }
+        }
+      },
+      "PatchWorkflowDto": {
+        "type": "object",
+        "properties": {
+          "active": {
+            "type": "boolean",
+            "description": "Activate or deactivate the workflow"
+          },
+          "name": {
+            "type": "string",
+            "description": "New name for the workflow"
+          },
+          "description": {
+            "type": "string",
+            "description": "Updated description of the workflow"
+          },
+          "tags": {
+            "type": "array",
+            "description": "Tags associated with the workflow",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "WorkflowTestDataResponseDto": {
+        "type": "object",
+        "properties": {
+          "to": {
+            "description": "JSON Schema for recipient data",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/JSONSchemaDto"
+              }
+            ]
+          },
+          "payload": {
+            "description": "JSON Schema for payload data",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/JSONSchemaDto"
+              }
+            ]
+          }
+        },
+        "required": [
+          "to",
+          "payload"
+        ]
       }
     },
     "headers": {

@@ -12,15 +12,14 @@ let value: SubscribersV1ControllerListSubscribersResponse = {
     ],
   },
   result: {
-    page: 7805.29,
+    page: 7951.88,
     hasMore: false,
-    pageSize: 1182.74,
+    pageSize: 5096.25,
     data: [
       {
-        subscriberId: "<id>",
         channels: [
           {
-            providerId: "fcm",
+            providerId: "expo",
             credentials: {
               webhookUrl: "https://example.com/webhook",
               channel: "general",
@@ -38,11 +37,12 @@ let value: SubscribersV1ControllerListSubscribersResponse = {
             integrationId: "<id>",
           },
         ],
+        subscriberId: "<id>",
         organizationId: "<id>",
         environmentId: "<id>",
         deleted: false,
-        createdAt: "1716424155028",
-        updatedAt: "1743434584350",
+        createdAt: "1718226072633",
+        updatedAt: "1746674081534",
       },
     ],
   },

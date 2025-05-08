@@ -19,24 +19,21 @@ let value: NotificationFeedItemDto = {
   updatedAt: new Date("2024-12-10T10:10:59.639Z"),
   actor: {
     data: null,
-    type: "system_custom",
+    type: "none",
   },
   transactionId: "transaction_123456",
   templateIdentifier: "template_abcdef",
   providerId: "provider_xyz",
   content: "This is a test notification content.",
   subject: "Test Notification Subject",
-  channel: "chat",
+  channel: "email",
   read: false,
   seen: true,
-  deleted: false,
   deviceTokens: [
     "token1",
     "token2",
   ],
-  cta: {
-    data: {},
-  },
+  cta: {},
   status: "sent",
   payload: {
     "key": "value",
@@ -72,7 +69,6 @@ let value: NotificationFeedItemDto = {
 | `channel`                                                                                            | [components.ChannelTypeEnum](../../models/components/channeltypeenum.md)                             | :heavy_check_mark:                                                                                   | Channel type through which the message is sent                                                       |                                                                                                      |
 | `read`                                                                                               | *boolean*                                                                                            | :heavy_check_mark:                                                                                   | Indicates whether the notification has been read by the subscriber.                                  | false                                                                                                |
 | `seen`                                                                                               | *boolean*                                                                                            | :heavy_check_mark:                                                                                   | Indicates whether the notification has been seen by the subscriber.                                  | true                                                                                                 |
-| `deleted`                                                                                            | *boolean*                                                                                            | :heavy_check_mark:                                                                                   | Indicates whether the notification has been deleted.                                                 | false                                                                                                |
 | `deviceTokens`                                                                                       | *string*[]                                                                                           | :heavy_minus_sign:                                                                                   | Device tokens for push notifications, if applicable.                                                 | [<br/>"token1",<br/>"token2"<br/>]                                                                   |
 | `cta`                                                                                                | [components.MessageCTA](../../models/components/messagecta.md)                                       | :heavy_check_mark:                                                                                   | Call-to-action information associated with the notification.                                         |                                                                                                      |
 | `status`                                                                                             | [components.NotificationFeedItemDtoStatus](../../models/components/notificationfeeditemdtostatus.md) | :heavy_check_mark:                                                                                   | Current status of the notification.                                                                  | sent                                                                                                 |

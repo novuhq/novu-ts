@@ -5,7 +5,7 @@
 ```typescript
 import { BuilderFieldTypeEnum } from "@novu/api/models/components";
 
-let value: BuilderFieldTypeEnum = "MULTI_LIST";
+let value: BuilderFieldTypeEnum = "BOOLEAN";
 ```
 
 ## Values

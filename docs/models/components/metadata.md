@@ -1,16 +1,40 @@
 # Metadata
 
-Metadata for the workflow step
+Metadata associated with the workflow step. Can vary based on the type of step.
 
-## Example Usage
+
+## Supported Types
+
+### `components.DigestRegularMetadata`
 
 ```typescript
-import { Metadata } from "@novu/api/models/components";
-
-let value: Metadata = {};
+const value: components.DigestRegularMetadata = {
+  type: "regular",
+};
 ```
 
-## Fields
+### `components.DigestTimedMetadata`
 
-| Field       | Type        | Required    | Description |
-| ----------- | ----------- | ----------- | ----------- |
+```typescript
+const value: components.DigestTimedMetadata = {
+  type: "timed",
+};
+```
+
+### `components.DelayRegularMetadata`
+
+```typescript
+const value: components.DelayRegularMetadata = {
+  type: "regular",
+};
+```
+
+### `components.DelayScheduledMetadata`
+
+```typescript
+const value: components.DelayScheduledMetadata = {
+  type: "scheduled",
+  delayPath: "<value>",
+};
+```
+

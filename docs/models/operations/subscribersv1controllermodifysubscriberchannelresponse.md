@@ -12,10 +12,9 @@ let value: SubscribersV1ControllerModifySubscriberChannelResponse = {
     ],
   },
   result: {
-    subscriberId: "<id>",
     channels: [
       {
-        providerId: "grafana-on-call",
+        providerId: "msteams",
         credentials: {
           webhookUrl: "https://example.com/webhook",
           channel: "general",
@@ -33,11 +32,12 @@ let value: SubscribersV1ControllerModifySubscriberChannelResponse = {
         integrationId: "<id>",
       },
     ],
+    subscriberId: "<id>",
     organizationId: "<id>",
     environmentId: "<id>",
     deleted: false,
-    createdAt: "1725685605214",
-    updatedAt: "1743413240594",
+    createdAt: "1736568222473",
+    updatedAt: "1746695715518",
   },
 };
 ```
