@@ -13,7 +13,15 @@ let value: TriggerEventToAllRequestDto = {
       "text": "string",
     },
   },
-  overrides: {},
+  overrides: {
+    additionalProperties: {
+      "fcm": {
+        "data": {
+          "key": "value",
+        },
+      },
+    },
+  },
 };
 ```
 

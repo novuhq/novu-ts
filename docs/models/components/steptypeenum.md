@@ -1,13 +1,13 @@
 # StepTypeEnum
 
-Channels of the notification
+Type of the step
 
 ## Example Usage
 
 ```typescript
 import { StepTypeEnum } from "@novu/api/models/components";
 
-let value: StepTypeEnum = "delay";
+let value: StepTypeEnum = "custom";
 ```
 
 ## Values

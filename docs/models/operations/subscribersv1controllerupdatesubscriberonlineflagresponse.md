@@ -12,10 +12,9 @@ let value: SubscribersV1ControllerUpdateSubscriberOnlineFlagResponse = {
     ],
   },
   result: {
-    subscriberId: "<id>",
     channels: [
       {
-        providerId: "pushpad",
+        providerId: "expo",
         credentials: {
           webhookUrl: "https://example.com/webhook",
           channel: "general",
@@ -33,11 +32,12 @@ let value: SubscribersV1ControllerUpdateSubscriberOnlineFlagResponse = {
         integrationId: "<id>",
       },
     ],
+    subscriberId: "<id>",
     organizationId: "<id>",
     environmentId: "<id>",
     deleted: false,
-    createdAt: "1714933925405",
-    updatedAt: "1743437331232",
+    createdAt: "1734751955823",
+    updatedAt: "1746610474290",
   },
 };
 ```

@@ -13,7 +13,7 @@ let value: EventsControllerTriggerResponse = {
   },
   result: {
     acknowledged: false,
-    status: "no_tenant_found",
+    status: "trigger_not_active",
   },
 };
 ```

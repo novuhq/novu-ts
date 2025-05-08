@@ -10,7 +10,49 @@ let value: ActivityNotificationResponseDto = {
   organizationId: "<id>",
   subscriberId: "<id>",
   transactionId: "<id>",
-  jobs: [],
+  jobs: [
+    {
+      id: "<id>",
+      type: "sms",
+      executionDetails: [
+        {
+          id: "<id>",
+          status: "Queued",
+          detail: "<value>",
+          isRetry: false,
+          isTest: false,
+          providerId: "mailersend",
+          source: "Payload",
+        },
+      ],
+      step: {
+        id: "<id>",
+        active: false,
+        filters: [
+          {
+            isNegated: false,
+            type: "BOOLEAN",
+            value: "OR",
+            children: [
+              {
+                field: "<value>",
+                value: "<value>",
+                operator: "NOT_LIKE",
+                on: "subscriber",
+              },
+            ],
+          },
+        ],
+        templateId: "<id>",
+      },
+      overrides: {
+        "workflowId": "some_wf_id",
+        "stepId": "some_wf_id",
+      },
+      providerId: "pushpad",
+      status: "<value>",
+    },
+  ],
 };
 ```
 

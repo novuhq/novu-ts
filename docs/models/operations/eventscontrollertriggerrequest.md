@@ -14,13 +14,7 @@ let value: EventsControllerTriggerRequest = {
         "text": "string",
       },
     },
-    overrides: {
-      "fcm": {
-        "data": {
-          "key": "value",
-        },
-      },
-    },
+    overrides: {},
     to: {
       subscriberId: "<id>",
     },

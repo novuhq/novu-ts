@@ -11,13 +11,13 @@ let value: ActivityNotificationStepResponseDto = {
   filters: [
     {
       isNegated: false,
-      type: "TEXT",
-      value: "AND",
+      type: "BOOLEAN",
+      value: "OR",
       children: [
         {
           field: "<value>",
           value: "<value>",
-          operator: "ALL_IN",
+          operator: "EQUAL",
           on: "subscriber",
         },
       ],
@@ -35,7 +35,7 @@ let value: ActivityNotificationStepResponseDto = {
 | `active`                                                                                                                                   | *boolean*                                                                                                                                  | :heavy_check_mark:                                                                                                                         | Whether the step is active or not                                                                                                          |
 | `replyCallback`                                                                                                                            | [components.ActivityNotificationStepResponseDtoReplyCallback](../../models/components/activitynotificationstepresponsedtoreplycallback.md) | :heavy_minus_sign:                                                                                                                         | Reply callback settings                                                                                                                    |
 | `controlVariables`                                                                                                                         | [components.ControlVariables](../../models/components/controlvariables.md)                                                                 | :heavy_minus_sign:                                                                                                                         | Control variables                                                                                                                          |
-| `metadata`                                                                                                                                 | [components.Metadata](../../models/components/metadata.md)                                                                                 | :heavy_minus_sign:                                                                                                                         | Metadata for the workflow step                                                                                                             |
+| `metadata`                                                                                                                                 | [components.ActivityNotificationStepResponseDtoMetadata](../../models/components/activitynotificationstepresponsedtometadata.md)           | :heavy_minus_sign:                                                                                                                         | Metadata for the workflow step                                                                                                             |
 | `issues`                                                                                                                                   | [components.Issues](../../models/components/issues.md)                                                                                     | :heavy_minus_sign:                                                                                                                         | Step issues                                                                                                                                |
 | `filters`                                                                                                                                  | [components.StepFilterDto](../../models/components/stepfilterdto.md)[]                                                                     | :heavy_check_mark:                                                                                                                         | Filter criteria for the step                                                                                                               |
 | `template`                                                                                                                                 | [components.MessageTemplateDto](../../models/components/messagetemplatedto.md)                                                             | :heavy_minus_sign:                                                                                                                         | Optional template for the step                                                                                                             |

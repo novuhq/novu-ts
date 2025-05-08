@@ -1,6 +1,6 @@
 # Channel
 
-The channel type which is overridden
+The channel type for the integration, which defines how the integration communicates (e.g., email, SMS).
 
 ## Example Usage
 

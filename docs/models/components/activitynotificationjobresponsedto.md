@@ -7,16 +7,16 @@ import { ActivityNotificationJobResponseDto } from "@novu/api/models/components"
 
 let value: ActivityNotificationJobResponseDto = {
   id: "<id>",
-  type: "push",
+  type: "in_app",
   executionDetails: [
     {
       id: "<id>",
-      status: "Warning",
+      status: "Success",
       detail: "<value>",
       isRetry: false,
       isTest: false,
-      providerId: "sendchamp",
-      source: "Webhook",
+      providerId: "sparkpost",
+      source: "Credentials",
     },
   ],
   step: {
@@ -25,14 +25,14 @@ let value: ActivityNotificationJobResponseDto = {
     filters: [
       {
         isNegated: false,
-        type: "BOOLEAN",
-        value: "OR",
+        type: "LIST",
+        value: "AND",
         children: [
           {
             field: "<value>",
             value: "<value>",
-            operator: "SMALLER",
-            on: "payload",
+            operator: "NOT_IN",
+            on: "subscriber",
           },
         ],
       },
@@ -43,7 +43,7 @@ let value: ActivityNotificationJobResponseDto = {
     "workflowId": "some_wf_id",
     "stepId": "some_wf_id",
   },
-  providerId: "twilio",
+  providerId: "pusher-beams",
   status: "<value>",
 };
 ```
@@ -58,7 +58,7 @@ let value: ActivityNotificationJobResponseDto = {
 | `executionDetails`                                                                                                                       | [components.ActivityNotificationExecutionDetailResponseDto](../../models/components/activitynotificationexecutiondetailresponsedto.md)[] | :heavy_check_mark:                                                                                                                       | Execution details of the job                                                                                                             |                                                                                                                                          |
 | `step`                                                                                                                                   | [components.ActivityNotificationStepResponseDto](../../models/components/activitynotificationstepresponsedto.md)                         | :heavy_check_mark:                                                                                                                       | Step details of the job                                                                                                                  |                                                                                                                                          |
 | `overrides`                                                                                                                              | Record<string, *any*>                                                                                                                    | :heavy_minus_sign:                                                                                                                       | Optional context object for additional error details.                                                                                    | {<br/>"workflowId": "some_wf_id",<br/>"stepId": "some_wf_id"<br/>}                                                                       |
-| `payload`                                                                                                                                | [components.Payload](../../models/components/payload.md)                                                                                 | :heavy_minus_sign:                                                                                                                       | Optional payload for the job                                                                                                             |                                                                                                                                          |
+| `payload`                                                                                                                                | [components.ActivityNotificationJobResponseDtoPayload](../../models/components/activitynotificationjobresponsedtopayload.md)             | :heavy_minus_sign:                                                                                                                       | Optional payload for the job                                                                                                             |                                                                                                                                          |
 | `providerId`                                                                                                                             | [components.ProvidersIdEnum](../../models/components/providersidenum.md)                                                                 | :heavy_check_mark:                                                                                                                       | Provider ID of the job                                                                                                                   |                                                                                                                                          |
 | `status`                                                                                                                                 | *string*                                                                                                                                 | :heavy_check_mark:                                                                                                                       | Status of the job                                                                                                                        |                                                                                                                                          |
 | `updatedAt`                                                                                                                              | *string*                                                                                                                                 | :heavy_minus_sign:                                                                                                                       | Updated time of the notification                                                                                                         |                                                                                                                                          |

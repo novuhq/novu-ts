@@ -19,10 +19,9 @@ let value: SubscribersV1ControllerMarkActionAsSeenResponse = {
     notificationId: "<id>",
     subscriberId: "<id>",
     subscriber: {
-      subscriberId: "<id>",
       channels: [
         {
-          providerId: "apns",
+          providerId: "slack",
           credentials: {
             webhookUrl: "https://example.com/webhook",
             channel: "general",
@@ -40,24 +39,63 @@ let value: SubscribersV1ControllerMarkActionAsSeenResponse = {
           integrationId: "<id>",
         },
       ],
+      subscriberId: "<id>",
       organizationId: "<id>",
       environmentId: "<id>",
       deleted: false,
-      createdAt: "1718537990265",
-      updatedAt: "1743364105133",
+      createdAt: "1736175762345",
+      updatedAt: "1746579736668",
     },
-    createdAt: "1721850714192",
-    content: {
-      type: "text",
-      content: "<value>",
+    template: {
+      name: "<value>",
+      description: "whose steak scented ribbon only um",
+      active: false,
+      draft: false,
+      preferenceSettings: {
+        email: true,
+        sms: false,
+        inApp: true,
+        chat: false,
+        push: true,
+      },
+      critical: false,
+      tags: [
+        "<value>",
+      ],
+      steps: [
+        {},
+      ],
+      organizationId: "<id>",
+      creatorId: "<id>",
+      environmentId: "<id>",
+      triggers: [
+        {
+          type: "event",
+          identifier: "<value>",
+          variables: [
+            {
+              name: "<value>",
+            },
+          ],
+        },
+      ],
+      notificationGroupId: "<id>",
+      deleted: false,
+      deletedAt: "<value>",
+      deletedBy: "<value>",
     },
+    createdAt: "1732176644377",
+    content: [
+      {
+        type: "text",
+        content: "<value>",
+      },
+    ],
     transactionId: "<id>",
-    channel: "sms",
+    channel: "email",
     read: false,
     seen: false,
-    cta: {
-      data: {},
-    },
+    cta: {},
     status: "warning",
   },
 };

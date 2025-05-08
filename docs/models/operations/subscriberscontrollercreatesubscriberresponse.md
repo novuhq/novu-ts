@@ -12,10 +12,9 @@ let value: SubscribersControllerCreateSubscriberResponse = {
     ],
   },
   result: {
-    subscriberId: "<id>",
     channels: [
       {
-        providerId: "grafana-on-call",
+        providerId: "discord",
         credentials: {
           webhookUrl: "https://example.com/webhook",
           channel: "general",
@@ -33,11 +32,12 @@ let value: SubscribersControllerCreateSubscriberResponse = {
         integrationId: "<id>",
       },
     ],
+    subscriberId: "<id>",
     organizationId: "<id>",
     environmentId: "<id>",
     deleted: false,
-    createdAt: "1736871205870",
-    updatedAt: "1743398661852",
+    createdAt: "1744852600437",
+    updatedAt: "1746636911308",
   },
 };
 ```

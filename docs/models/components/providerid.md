@@ -1,13 +1,13 @@
 # ProviderId
 
-The provider identifier for the credentials
+The ID of the chat or push provider.
 
 ## Example Usage
 
 ```typescript
 import { ProviderId } from "@novu/api/models/components";
 
-let value: ProviderId = "whatsapp-business";
+let value: ProviderId = "ryver";
 ```
 
 ## Values

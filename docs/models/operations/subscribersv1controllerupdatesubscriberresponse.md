@@ -12,10 +12,9 @@ let value: SubscribersV1ControllerUpdateSubscriberResponse = {
     ],
   },
   result: {
-    subscriberId: "<id>",
     channels: [
       {
-        providerId: "rocket-chat",
+        providerId: "zulip",
         credentials: {
           webhookUrl: "https://example.com/webhook",
           channel: "general",
@@ -33,11 +32,12 @@ let value: SubscribersV1ControllerUpdateSubscriberResponse = {
         integrationId: "<id>",
       },
     ],
+    subscriberId: "<id>",
     organizationId: "<id>",
     environmentId: "<id>",
     deleted: false,
-    createdAt: "1724980144436",
-    updatedAt: "1743375823251",
+    createdAt: "1740958291172",
+    updatedAt: "1746635825262",
   },
 };
 ```

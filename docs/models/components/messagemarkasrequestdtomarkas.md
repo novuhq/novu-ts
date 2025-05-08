@@ -5,7 +5,7 @@
 ```typescript
 import { MessageMarkAsRequestDtoMarkAs } from "@novu/api/models/components";
 
-let value: MessageMarkAsRequestDtoMarkAs = "unread";
+let value: MessageMarkAsRequestDtoMarkAs = "unseen";
 ```
 
 ## Values
