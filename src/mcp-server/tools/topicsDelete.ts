@@ -13,9 +13,7 @@ const args = {
 
 export const tool$topicsDelete: ToolDefinition<typeof args> = {
   name: "topics-delete",
-  description: `Delete topic
-
-Delete a topic by its topic key if it has no subscribers`,
+  description: `Delete topic by key`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await topicsDelete(
@@ -32,6 +30,8 @@ Delete a topic by its topic key if it has no subscribers`,
       };
     }
 
-    return formatResult(void 0, apiCall);
+    const value = result.value.result;
+
+    return formatResult(value, apiCall);
   },
 };

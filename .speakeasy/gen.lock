@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 6bff3a53-3f0b-40b4-942f-ff70dc583ae5
 management:
-  docChecksum: c3277e0b37e7507490de47e74f5f7650
+  docChecksum: 91071d65dc0e58488699a3883d3481d9
   docVersion: 2.1.13
-  speakeasyVersion: 1.542.3
-  generationVersion: 2.597.9
-  releaseVersion: 0.7.0
-  configChecksum: 47a8899aa124ab205a891338697f0ff1
+  speakeasyVersion: 1.544.0
+  generationVersion: 2.599.0
+  releaseVersion: 1.0.0
+  configChecksum: 7189f847d99f859c94a8b7950844c845
   repoURL: https://github.com/novuhq/novu-ts.git
   installationURL: https://github.com/novuhq/novu-ts
   published: true
@@ -26,7 +26,7 @@ features:
     globalSecurity: 2.82.13
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
-    globalServerURLs: 2.82.4
+    globalServerURLs: 2.82.5
     groups: 2.81.2
     mcpServer: 0.9.2
     nameOverrides: 2.81.2
@@ -58,11 +58,10 @@ generatedFiles:
   - docs/models/components/activitynotificationsubscriberresponsedto.md
   - docs/models/components/activitynotificationtemplateresponsedto.md
   - docs/models/components/activitystatsresponsedto.md
+  - docs/models/components/activitytopicdto.md
   - docs/models/components/actor.md
   - docs/models/components/actorfeeditemdto.md
   - docs/models/components/actortypeenum.md
-  - docs/models/components/addsubscribersrequestdto.md
-  - docs/models/components/assignsubscribertotopicdto.md
   - docs/models/components/backoffunit.md
   - docs/models/components/builderfieldtypeenum.md
   - docs/models/components/bulkcreatesubscriberresponsedto.md
@@ -85,8 +84,9 @@ generatedFiles:
   - docs/models/components/createintegrationrequestdto.md
   - docs/models/components/createintegrationrequestdtochannel.md
   - docs/models/components/createsubscriberrequestdto.md
-  - docs/models/components/createtopicrequestdto.md
-  - docs/models/components/createtopicresponsedto.md
+  - docs/models/components/createtopicsubscriptionsrequestdto.md
+  - docs/models/components/createtopicsubscriptionsresponsedto.md
+  - docs/models/components/createupdatetopicrequestdto.md
   - docs/models/components/credentialsdto.md
   - docs/models/components/data.md
   - docs/models/components/delayregularmetadata.md
@@ -96,6 +96,9 @@ generatedFiles:
   - docs/models/components/delayscheduledmetadatatype.md
   - docs/models/components/deletemessageresponsedto.md
   - docs/models/components/deletemessageresponsedtostatus.md
+  - docs/models/components/deletetopicresponsedto.md
+  - docs/models/components/deletetopicsubscriptionsrequestdto.md
+  - docs/models/components/deletetopicsubscriptionsresponsedto.md
   - docs/models/components/digestmetadatadto.md
   - docs/models/components/digestmetadatadtounit.md
   - docs/models/components/digestregularmetadata.md
@@ -111,19 +114,18 @@ generatedFiles:
   - docs/models/components/emailblocktypeenum.md
   - docs/models/components/executiondetailssourceenum.md
   - docs/models/components/executiondetailsstatusenum.md
-  - docs/models/components/failedassignmentsdto.md
   - docs/models/components/failedoperationdto.md
   - docs/models/components/feedidentifier.md
   - docs/models/components/feedresponsedto.md
   - docs/models/components/fieldfilterpartdto.md
-  - docs/models/components/filtertopicsresponsedto.md
   - docs/models/components/five.md
   - docs/models/components/four.md
   - docs/models/components/getsubscriberpreferencesdto.md
-  - docs/models/components/gettopicresponsedto.md
   - docs/models/components/integrationresponsedto.md
   - docs/models/components/issues.md
   - docs/models/components/listsubscribersresponsedto.md
+  - docs/models/components/listtopicsresponsedto.md
+  - docs/models/components/listtopicsubscriptionsresponsedto.md
   - docs/models/components/markallmessageasrequestdto.md
   - docs/models/components/markas.md
   - docs/models/components/markmessageactionasseendto.md
@@ -146,6 +148,7 @@ generatedFiles:
   - docs/models/components/messagetemplate.md
   - docs/models/components/messagetemplatedto.md
   - docs/models/components/metadata.md
+  - docs/models/components/metadto.md
   - docs/models/components/monthlytype.md
   - docs/models/components/monthlytypeenum.md
   - docs/models/components/notificationfeeditemdto.md
@@ -175,9 +178,6 @@ generatedFiles:
   - docs/models/components/providerid.md
   - docs/models/components/providersidenum.md
   - docs/models/components/removesubscriberresponsedto.md
-  - docs/models/components/removesubscribersrequestdto.md
-  - docs/models/components/renametopicrequestdto.md
-  - docs/models/components/renametopicresponsedto.md
   - docs/models/components/replycallback.md
   - docs/models/components/security.md
   - docs/models/components/status.md
@@ -185,7 +185,9 @@ generatedFiles:
   - docs/models/components/stepfilterdtovalue.md
   - docs/models/components/stepsoverrides.md
   - docs/models/components/steptypeenum.md
+  - docs/models/components/subscriber.md
   - docs/models/components/subscriberchanneldto.md
+  - docs/models/components/subscriberdto.md
   - docs/models/components/subscriberfeedresponsedto.md
   - docs/models/components/subscriberglobalpreferencedto.md
   - docs/models/components/subscriberpayloaddto.md
@@ -195,6 +197,9 @@ generatedFiles:
   - docs/models/components/subscriberpreferencesworkflowinfodto.md
   - docs/models/components/subscriberresponsedto.md
   - docs/models/components/subscriberworkflowpreferencedto.md
+  - docs/models/components/subscriptiondto.md
+  - docs/models/components/subscriptionerrordto.md
+  - docs/models/components/subscriptionsdeleteerrordto.md
   - docs/models/components/tenant.md
   - docs/models/components/tenantpayloaddto.md
   - docs/models/components/tenantpayloaddtodata.md
@@ -204,7 +209,9 @@ generatedFiles:
   - docs/models/components/to.md
   - docs/models/components/topicdto.md
   - docs/models/components/topicpayloaddto.md
+  - docs/models/components/topicresponsedto.md
   - docs/models/components/topicsubscriberdto.md
+  - docs/models/components/topicsubscriptionresponsedto.md
   - docs/models/components/triggereventrequestdto.md
   - docs/models/components/triggereventresponsedto.md
   - docs/models/components/triggereventtoallrequestdto.md
@@ -220,6 +227,7 @@ generatedFiles:
   - docs/models/components/updatesubscriberchannelrequestdto.md
   - docs/models/components/updatesubscriberonlineflagrequestdto.md
   - docs/models/components/updatesubscriberrequestdto.md
+  - docs/models/components/updatetopicrequestdto.md
   - docs/models/components/value.md
   - docs/models/components/weekdays.md
   - docs/models/components/workflowintegrationstatus.md
@@ -272,12 +280,15 @@ generatedFiles:
   - docs/models/operations/notificationscontrollerlistnotificationsrequest.md
   - docs/models/operations/notificationscontrollerlistnotificationsresponse.md
   - docs/models/operations/orderdirection.md
+  - docs/models/operations/queryparamorderdirection.md
   - docs/models/operations/subscriberscontrollercreatesubscriberrequest.md
   - docs/models/operations/subscriberscontrollercreatesubscriberresponse.md
   - docs/models/operations/subscriberscontrollergetsubscriberpreferencesrequest.md
   - docs/models/operations/subscriberscontrollergetsubscriberpreferencesresponse.md
   - docs/models/operations/subscriberscontrollergetsubscriberrequest.md
   - docs/models/operations/subscriberscontrollergetsubscriberresponse.md
+  - docs/models/operations/subscriberscontrollerlistsubscribertopicsrequest.md
+  - docs/models/operations/subscriberscontrollerlistsubscribertopicsresponse.md
   - docs/models/operations/subscriberscontrollerpatchsubscriberrequest.md
   - docs/models/operations/subscriberscontrollerpatchsubscriberresponse.md
   - docs/models/operations/subscriberscontrollerremovesubscriberrequest.md
@@ -316,22 +327,26 @@ generatedFiles:
   - docs/models/operations/subscribersv1controllerupdatesubscriberonlineflagresponse.md
   - docs/models/operations/subscribersv1controllerupdatesubscriberrequest.md
   - docs/models/operations/subscribersv1controllerupdatesubscriberresponse.md
-  - docs/models/operations/topicscontrollerassignrequest.md
-  - docs/models/operations/topicscontrollerassignresponse.md
-  - docs/models/operations/topicscontrollercreatetopicrequest.md
-  - docs/models/operations/topicscontrollercreatetopicresponse.md
+  - docs/models/operations/topicscontrollercreatetopicsubscriptionsrequest.md
+  - docs/models/operations/topicscontrollercreatetopicsubscriptionsresponse.md
   - docs/models/operations/topicscontrollerdeletetopicrequest.md
   - docs/models/operations/topicscontrollerdeletetopicresponse.md
+  - docs/models/operations/topicscontrollerdeletetopicsubscriptionsrequest.md
+  - docs/models/operations/topicscontrollerdeletetopicsubscriptionsresponse.md
   - docs/models/operations/topicscontrollergettopicrequest.md
   - docs/models/operations/topicscontrollergettopicresponse.md
-  - docs/models/operations/topicscontrollergettopicsubscriberrequest.md
-  - docs/models/operations/topicscontrollergettopicsubscriberresponse.md
+  - docs/models/operations/topicscontrollerlisttopicsqueryparamorderdirection.md
   - docs/models/operations/topicscontrollerlisttopicsrequest.md
   - docs/models/operations/topicscontrollerlisttopicsresponse.md
-  - docs/models/operations/topicscontrollerremovesubscribersrequest.md
-  - docs/models/operations/topicscontrollerremovesubscribersresponse.md
-  - docs/models/operations/topicscontrollerrenametopicrequest.md
-  - docs/models/operations/topicscontrollerrenametopicresponse.md
+  - docs/models/operations/topicscontrollerlisttopicsubscriptionsqueryparamorderdirection.md
+  - docs/models/operations/topicscontrollerlisttopicsubscriptionsrequest.md
+  - docs/models/operations/topicscontrollerlisttopicsubscriptionsresponse.md
+  - docs/models/operations/topicscontrollerupdatetopicrequest.md
+  - docs/models/operations/topicscontrollerupdatetopicresponse.md
+  - docs/models/operations/topicscontrollerupserttopicrequest.md
+  - docs/models/operations/topicscontrollerupserttopicresponse.md
+  - docs/models/operations/topicsv1controllergettopicsubscriberrequest.md
+  - docs/models/operations/topicsv1controllergettopicsubscriberresponse.md
   - docs/sdks/authentication/README.md
   - docs/sdks/credentials/README.md
   - docs/sdks/integrations/README.md
@@ -341,10 +356,12 @@ generatedFiles:
   - docs/sdks/novumessages/README.md
   - docs/sdks/novunotifications/README.md
   - docs/sdks/novusubscribers/README.md
+  - docs/sdks/novutopics/README.md
   - docs/sdks/preferences/README.md
   - docs/sdks/properties/README.md
   - docs/sdks/stats/README.md
   - docs/sdks/subscribers/README.md
+  - docs/sdks/subscriptions/README.md
   - docs/sdks/topics/README.md
   - docs/sdks/webhooks/README.md
   - eslint.config.mjs
@@ -386,15 +403,17 @@ generatedFiles:
   - src/funcs/subscribersPropertiesUpdateOnlineFlag.ts
   - src/funcs/subscribersRetrieve.ts
   - src/funcs/subscribersSearch.ts
+  - src/funcs/subscribersTopicsList.ts
   - src/funcs/subscribersUpsert.ts
   - src/funcs/topicsCreate.ts
   - src/funcs/topicsDelete.ts
+  - src/funcs/topicsGet.ts
   - src/funcs/topicsList.ts
-  - src/funcs/topicsRename.ts
-  - src/funcs/topicsRetrieve.ts
-  - src/funcs/topicsSubscribersAssign.ts
-  - src/funcs/topicsSubscribersRemove.ts
   - src/funcs/topicsSubscribersRetrieve.ts
+  - src/funcs/topicsSubscriptionsCreate.ts
+  - src/funcs/topicsSubscriptionsDelete.ts
+  - src/funcs/topicsSubscriptionsList.ts
+  - src/funcs/topicsUpdate.ts
   - src/funcs/trigger.ts
   - src/funcs/triggerBroadcast.ts
   - src/funcs/triggerBulk.ts
@@ -465,15 +484,17 @@ generatedFiles:
   - src/mcp-server/tools/subscribersPropertiesUpdateOnlineFlag.ts
   - src/mcp-server/tools/subscribersRetrieve.ts
   - src/mcp-server/tools/subscribersSearch.ts
+  - src/mcp-server/tools/subscribersTopicsList.ts
   - src/mcp-server/tools/subscribersUpsert.ts
   - src/mcp-server/tools/topicsCreate.ts
   - src/mcp-server/tools/topicsDelete.ts
+  - src/mcp-server/tools/topicsGet.ts
   - src/mcp-server/tools/topicsList.ts
-  - src/mcp-server/tools/topicsRename.ts
-  - src/mcp-server/tools/topicsRetrieve.ts
-  - src/mcp-server/tools/topicsSubscribersAssign.ts
-  - src/mcp-server/tools/topicsSubscribersRemove.ts
   - src/mcp-server/tools/topicsSubscribersRetrieve.ts
+  - src/mcp-server/tools/topicsSubscriptionsCreate.ts
+  - src/mcp-server/tools/topicsSubscriptionsDelete.ts
+  - src/mcp-server/tools/topicsSubscriptionsList.ts
+  - src/mcp-server/tools/topicsUpdate.ts
   - src/mcp-server/tools/trigger.ts
   - src/mcp-server/tools/triggerBroadcast.ts
   - src/mcp-server/tools/triggerBulk.ts
@@ -486,10 +507,9 @@ generatedFiles:
   - src/models/components/activitynotificationsubscriberresponsedto.ts
   - src/models/components/activitynotificationtemplateresponsedto.ts
   - src/models/components/activitystatsresponsedto.ts
+  - src/models/components/activitytopicdto.ts
   - src/models/components/actorfeeditemdto.ts
   - src/models/components/actortypeenum.ts
-  - src/models/components/addsubscribersrequestdto.ts
-  - src/models/components/assignsubscribertotopicdto.ts
   - src/models/components/builderfieldtypeenum.ts
   - src/models/components/bulkcreatesubscriberresponsedto.ts
   - src/models/components/bulksubscribercreatedto.ts
@@ -505,12 +525,16 @@ generatedFiles:
   - src/models/components/createdsubscriberdto.ts
   - src/models/components/createintegrationrequestdto.ts
   - src/models/components/createsubscriberrequestdto.ts
-  - src/models/components/createtopicrequestdto.ts
-  - src/models/components/createtopicresponsedto.ts
+  - src/models/components/createtopicsubscriptionsrequestdto.ts
+  - src/models/components/createtopicsubscriptionsresponsedto.ts
+  - src/models/components/createupdatetopicrequestdto.ts
   - src/models/components/credentialsdto.ts
   - src/models/components/delayregularmetadata.ts
   - src/models/components/delayscheduledmetadata.ts
   - src/models/components/deletemessageresponsedto.ts
+  - src/models/components/deletetopicresponsedto.ts
+  - src/models/components/deletetopicsubscriptionsrequestdto.ts
+  - src/models/components/deletetopicsubscriptionsresponsedto.ts
   - src/models/components/digestmetadatadto.ts
   - src/models/components/digestregularmetadata.ts
   - src/models/components/digesttimedconfigdto.ts
@@ -522,16 +546,15 @@ generatedFiles:
   - src/models/components/emailblocktypeenum.ts
   - src/models/components/executiondetailssourceenum.ts
   - src/models/components/executiondetailsstatusenum.ts
-  - src/models/components/failedassignmentsdto.ts
   - src/models/components/failedoperationdto.ts
   - src/models/components/feedresponsedto.ts
   - src/models/components/fieldfilterpartdto.ts
-  - src/models/components/filtertopicsresponsedto.ts
   - src/models/components/getsubscriberpreferencesdto.ts
-  - src/models/components/gettopicresponsedto.ts
   - src/models/components/index.ts
   - src/models/components/integrationresponsedto.ts
   - src/models/components/listsubscribersresponsedto.ts
+  - src/models/components/listtopicsresponsedto.ts
+  - src/models/components/listtopicsubscriptionsresponsedto.ts
   - src/models/components/markallmessageasrequestdto.ts
   - src/models/components/markmessageactionasseendto.ts
   - src/models/components/messageaction.ts
@@ -546,6 +569,7 @@ generatedFiles:
   - src/models/components/messagestatusenum.ts
   - src/models/components/messagetemplate.ts
   - src/models/components/messagetemplatedto.ts
+  - src/models/components/metadto.ts
   - src/models/components/monthlytypeenum.ts
   - src/models/components/notificationfeeditemdto.ts
   - src/models/components/notificationgroup.ts
@@ -562,15 +586,13 @@ generatedFiles:
   - src/models/components/preferenceoverridesourceenum.ts
   - src/models/components/providersidenum.ts
   - src/models/components/removesubscriberresponsedto.ts
-  - src/models/components/removesubscribersrequestdto.ts
-  - src/models/components/renametopicrequestdto.ts
-  - src/models/components/renametopicresponsedto.ts
   - src/models/components/replycallback.ts
   - src/models/components/security.ts
   - src/models/components/stepfilterdto.ts
   - src/models/components/stepsoverrides.ts
   - src/models/components/steptypeenum.ts
   - src/models/components/subscriberchanneldto.ts
+  - src/models/components/subscriberdto.ts
   - src/models/components/subscriberfeedresponsedto.ts
   - src/models/components/subscriberglobalpreferencedto.ts
   - src/models/components/subscriberpayloaddto.ts
@@ -579,12 +601,17 @@ generatedFiles:
   - src/models/components/subscriberpreferencesworkflowinfodto.ts
   - src/models/components/subscriberresponsedto.ts
   - src/models/components/subscriberworkflowpreferencedto.ts
+  - src/models/components/subscriptiondto.ts
+  - src/models/components/subscriptionerrordto.ts
+  - src/models/components/subscriptionsdeleteerrordto.ts
   - src/models/components/tenantpayloaddto.ts
   - src/models/components/textalignenum.ts
   - src/models/components/timedconfig.ts
   - src/models/components/topicdto.ts
   - src/models/components/topicpayloaddto.ts
+  - src/models/components/topicresponsedto.ts
   - src/models/components/topicsubscriberdto.ts
+  - src/models/components/topicsubscriptionresponsedto.ts
   - src/models/components/triggereventrequestdto.ts
   - src/models/components/triggereventresponsedto.ts
   - src/models/components/triggereventtoallrequestdto.ts
@@ -595,6 +622,7 @@ generatedFiles:
   - src/models/components/updatesubscriberchannelrequestdto.ts
   - src/models/components/updatesubscriberonlineflagrequestdto.ts
   - src/models/components/updatesubscriberrequestdto.ts
+  - src/models/components/updatetopicrequestdto.ts
   - src/models/components/workfloworiginenum.ts
   - src/models/components/workflowresponse.ts
   - src/models/errors/errordto.ts
@@ -625,6 +653,7 @@ generatedFiles:
   - src/models/operations/subscriberscontrollercreatesubscriber.ts
   - src/models/operations/subscriberscontrollergetsubscriber.ts
   - src/models/operations/subscriberscontrollergetsubscriberpreferences.ts
+  - src/models/operations/subscriberscontrollerlistsubscribertopics.ts
   - src/models/operations/subscriberscontrollerpatchsubscriber.ts
   - src/models/operations/subscriberscontrollerremovesubscriber.ts
   - src/models/operations/subscriberscontrollersearchsubscribers.ts
@@ -643,14 +672,15 @@ generatedFiles:
   - src/models/operations/subscribersv1controllerupdatesubscriber.ts
   - src/models/operations/subscribersv1controllerupdatesubscriberchannel.ts
   - src/models/operations/subscribersv1controllerupdatesubscriberonlineflag.ts
-  - src/models/operations/topicscontrollerassign.ts
-  - src/models/operations/topicscontrollercreatetopic.ts
+  - src/models/operations/topicscontrollercreatetopicsubscriptions.ts
   - src/models/operations/topicscontrollerdeletetopic.ts
+  - src/models/operations/topicscontrollerdeletetopicsubscriptions.ts
   - src/models/operations/topicscontrollergettopic.ts
-  - src/models/operations/topicscontrollergettopicsubscriber.ts
   - src/models/operations/topicscontrollerlisttopics.ts
-  - src/models/operations/topicscontrollerremovesubscribers.ts
-  - src/models/operations/topicscontrollerrenametopic.ts
+  - src/models/operations/topicscontrollerlisttopicsubscriptions.ts
+  - src/models/operations/topicscontrollerupdatetopic.ts
+  - src/models/operations/topicscontrollerupserttopic.ts
+  - src/models/operations/topicsv1controllergettopicsubscriber.ts
   - src/sdk/authentication.ts
   - src/sdk/credentials.ts
   - src/sdk/index.ts
@@ -660,11 +690,13 @@ generatedFiles:
   - src/sdk/novumessages.ts
   - src/sdk/novunotifications.ts
   - src/sdk/novusubscribers.ts
+  - src/sdk/novutopics.ts
   - src/sdk/preferences.ts
   - src/sdk/properties.ts
   - src/sdk/sdk.ts
   - src/sdk/stats.ts
   - src/sdk/subscribers.ts
+  - src/sdk/subscriptions.ts
   - src/sdk/topics.ts
   - src/sdk/webhooks.ts
   - src/types/async.ts
@@ -728,7 +760,7 @@ examples:
   EventsController_triggerBulk:
     speakeasy-default-events-controller-trigger-bulk:
       requestBody:
-        application/json: {"events": [{"name": "workflow_identifier", "payload": {"comment_id": "string", "post": {"text": "string"}}, "overrides": {"steps": {"email-step": {"providers": {"sendgrid": {"templateId": "1234567890"}}}}, "providers": {"sendgrid": {"templateId": "1234567890"}}}, "to": {"subscriberId": "<id>"}}, {"name": "workflow_identifier", "payload": {"comment_id": "string", "post": {"text": "string"}}, "overrides": {"steps": {"email-step": {"providers": {"sendgrid": {"templateId": "1234567890"}}}}, "providers": {"sendgrid": {"templateId": "1234567890"}}}, "to": {"topicKey": "<value>", "type": "Subscriber"}}, {"name": "workflow_identifier", "payload": {"comment_id": "string", "post": {"text": "string"}}, "overrides": {"steps": {"email-step": {"providers": {"sendgrid": {"templateId": "1234567890"}}}}, "providers": {"sendgrid": {"templateId": "1234567890"}}}, "to": ["SUBSCRIBER_ID", "SUBSCRIBER_ID"]}]}
+        application/json: {"events": [{"name": "workflow_identifier", "payload": {"comment_id": "string", "post": {"text": "string"}}, "overrides": {"steps": {"email-step": {"providers": {"sendgrid": {"templateId": "1234567890"}}}}, "providers": {"sendgrid": {"templateId": "1234567890"}}}, "to": {"subscriberId": "<id>"}}, {"name": "workflow_identifier", "payload": {"comment_id": "string", "post": {"text": "string"}}, "overrides": {"steps": {"email-step": {"providers": {"sendgrid": {"templateId": "1234567890"}}}}, "providers": {"sendgrid": {"templateId": "1234567890"}}}, "to": [{"topicKey": "<value>", "type": "Subscriber"}]}, {"name": "workflow_identifier", "payload": {"comment_id": "string", "post": {"text": "string"}}, "overrides": {"steps": {"email-step": {"providers": {"sendgrid": {"templateId": "1234567890"}}}}, "providers": {"sendgrid": {"templateId": "1234567890"}}}, "to": ["SUBSCRIBER_ID", "SUBSCRIBER_ID"]}]}
       responses:
         "201":
           application/json: [{"acknowledged": true, "status": "error"}, {"acknowledged": true, "status": "no_workflow_active_steps_defined"}, {"acknowledged": true, "status": "trigger_not_active"}]
@@ -1380,6 +1412,18 @@ examples:
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123", "errors": {"fieldName1": {"messages": ["Field is required", "Must be a valid email address"], "value": "invalidEmail"}, "fieldName2": {"messages": ["Must be at least 18 years old"], "value": 17}, "fieldName3": {"messages": ["Must be a boolean value"], "value": true}, "fieldName4": {"messages": ["Must be a valid object"], "value": [{"key": "value"}]}, "fieldName5": {"messages": ["Field is missing"], "value": null}, "fieldName6": {"messages": ["Undefined value"]}}}
         "500":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
+    speakeasy-default-topics-controller-list-topics:
+      responses:
+        "200":
+          application/json: {"data": [{"_id": "64da692e9a94fb2e6449ad06", "key": "product-updates", "name": "Product Updates", "createdAt": "2023-08-15T00:00:00.000Z", "updatedAt": "2023-08-15T00:00:00.000Z"}, {"_id": "64da692e9a94fb2e6449ad06", "key": "product-updates", "name": "Product Updates", "createdAt": "2023-08-15T00:00:00.000Z", "updatedAt": "2023-08-15T00:00:00.000Z"}, {"_id": "64da692e9a94fb2e6449ad06", "key": "product-updates", "name": "Product Updates", "createdAt": "2023-08-15T00:00:00.000Z", "updatedAt": "2023-08-15T00:00:00.000Z"}], "next": "<value>", "previous": "<value>"}
+        "414":
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
+        "400":
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
+        "422":
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123", "errors": {"fieldName1": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName2": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName3": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName4": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName5": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName6": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}}}
+        "500":
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
   TopicsController_deleteTopic:
     speakeasy-default-topics-controller-delete-topic:
       parameters:
@@ -1395,6 +1439,8 @@ examples:
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123", "errors": {"fieldName1": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName2": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName3": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName4": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName5": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName6": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}}}
         "500":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
+        "200":
+          application/json: {"acknowledged": true}
   TopicsController_getTopic:
     speakeasy-default-topics-controller-get-topic:
       parameters:
@@ -1403,7 +1449,7 @@ examples:
         header: {}
       responses:
         "200":
-          application/json: {"_organizationId": "<id>", "_environmentId": "<id>", "key": "<key>", "name": "<value>", "subscribers": ["<value>"]}
+          application/json: {"_id": "64da692e9a94fb2e6449ad06", "key": "product-updates", "name": "Product Updates", "createdAt": "2023-08-15T00:00:00.000Z", "updatedAt": "2023-08-15T00:00:00.000Z"}
         "414":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
         "400":
@@ -1477,6 +1523,132 @@ examples:
       requestBody:
         application/json: {"subscribers": ["<value>", "<value>"]}
       responses:
+        "414":
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
+        "400":
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
+        "422":
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123", "errors": {"fieldName1": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName2": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName3": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName4": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName5": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName6": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}}}
+        "500":
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
+  SubscribersController_listSubscriberTopics:
+    speakeasy-default-subscribers-controller-list-subscriber-topics:
+      parameters:
+        path:
+          subscriberId: "<id>"
+        query: {}
+        header: {}
+      responses:
+        "200":
+          application/json: {"data": [{"_id": "64da692e9a94fb2e6449ad08", "createdAt": "2021-01-01T00:00:00.000Z", "topic": {"_id": "64da692e9a94fb2e6449ad06", "key": "product-updates", "name": "Product Updates", "createdAt": "2023-08-15T00:00:00.000Z", "updatedAt": "2023-08-15T00:00:00.000Z"}, "subscriber": {"_id": "64da692e9a94fb2e6449ad07", "subscriberId": "user-123", "avatar": "https://example.com/avatar.png", "firstName": "John", "lastName": "Doe", "email": "john@example.com"}}, {"_id": "64da692e9a94fb2e6449ad08", "createdAt": "2021-01-01T00:00:00.000Z", "topic": {"_id": "64da692e9a94fb2e6449ad06", "key": "product-updates", "name": "Product Updates", "createdAt": "2023-08-15T00:00:00.000Z", "updatedAt": "2023-08-15T00:00:00.000Z"}, "subscriber": {"_id": "64da692e9a94fb2e6449ad07", "subscriberId": "user-123", "avatar": "https://example.com/avatar.png", "firstName": "John", "lastName": "Doe", "email": "john@example.com"}}, {"_id": "64da692e9a94fb2e6449ad08", "createdAt": "2021-01-01T00:00:00.000Z", "topic": {"_id": "64da692e9a94fb2e6449ad06", "key": "product-updates", "name": "Product Updates", "createdAt": "2023-08-15T00:00:00.000Z", "updatedAt": "2023-08-15T00:00:00.000Z"}, "subscriber": {"_id": "64da692e9a94fb2e6449ad07", "subscriberId": "user-123", "avatar": "https://example.com/avatar.png", "firstName": "John", "lastName": "Doe", "email": "john@example.com"}}], "next": "<value>", "previous": "<value>"}
+        "414":
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
+        "400":
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
+        "422":
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123", "errors": {"fieldName1": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName2": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName3": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName4": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName5": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName6": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}}}
+        "500":
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
+  TopicsController_upsertTopic:
+    speakeasy-default-topics-controller-upsert-topic:
+      requestBody:
+        application/json: {"key": "task:12345", "name": "Task Title"}
+      responses:
+        "200":
+          application/json: {"_id": "64da692e9a94fb2e6449ad06", "key": "product-updates", "name": "Product Updates", "createdAt": "2023-08-15T00:00:00.000Z", "updatedAt": "2023-08-15T00:00:00.000Z"}
+        "414":
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
+        "400":
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
+        "422":
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123", "errors": {"fieldName1": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName2": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName3": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName4": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName5": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName6": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}}}
+        "500":
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
+  TopicsController_updateTopic:
+    speakeasy-default-topics-controller-update-topic:
+      parameters:
+        path:
+          topicKey: "<value>"
+        header: {}
+      requestBody:
+        application/json: {"name": "Updated Topic Name"}
+      responses:
+        "200":
+          application/json: {"_id": "64da692e9a94fb2e6449ad06", "key": "product-updates", "name": "Product Updates", "createdAt": "2023-08-15T00:00:00.000Z", "updatedAt": "2023-08-15T00:00:00.000Z"}
+        "414":
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
+        "400":
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
+        "422":
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123", "errors": {"fieldName1": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName2": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName3": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName4": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName5": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName6": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}}}
+        "500":
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
+  TopicsController_listTopicSubscriptions:
+    speakeasy-default-topics-controller-list-topic-subscriptions:
+      parameters:
+        path:
+          topicKey: "<value>"
+        query: {}
+        header: {}
+      responses:
+        "200":
+          application/json: {"data": [{"_id": "64da692e9a94fb2e6449ad08", "createdAt": "2021-01-01T00:00:00.000Z", "topic": {"_id": "64da692e9a94fb2e6449ad06", "key": "product-updates", "name": "Product Updates", "createdAt": "2023-08-15T00:00:00.000Z", "updatedAt": "2023-08-15T00:00:00.000Z"}, "subscriber": {"_id": "64da692e9a94fb2e6449ad07", "subscriberId": "user-123", "avatar": "https://example.com/avatar.png", "firstName": "John", "lastName": "Doe", "email": "john@example.com"}}, {"_id": "64da692e9a94fb2e6449ad08", "createdAt": "2021-01-01T00:00:00.000Z", "topic": {"_id": "64da692e9a94fb2e6449ad06", "key": "product-updates", "name": "Product Updates", "createdAt": "2023-08-15T00:00:00.000Z", "updatedAt": "2023-08-15T00:00:00.000Z"}, "subscriber": {"_id": "64da692e9a94fb2e6449ad07", "subscriberId": "user-123", "avatar": "https://example.com/avatar.png", "firstName": "John", "lastName": "Doe", "email": "john@example.com"}}, {"_id": "64da692e9a94fb2e6449ad08", "createdAt": "2021-01-01T00:00:00.000Z", "topic": {"_id": "64da692e9a94fb2e6449ad06", "key": "product-updates", "name": "Product Updates", "createdAt": "2023-08-15T00:00:00.000Z", "updatedAt": "2023-08-15T00:00:00.000Z"}, "subscriber": {"_id": "64da692e9a94fb2e6449ad07", "subscriberId": "user-123", "avatar": "https://example.com/avatar.png", "firstName": "John", "lastName": "Doe", "email": "john@example.com"}}], "next": "<value>", "previous": "<value>"}
+        "414":
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
+        "400":
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
+        "422":
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123", "errors": {"fieldName1": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName2": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName3": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName4": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName5": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName6": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}}}
+        "500":
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
+  TopicsController_createTopicSubscriptions:
+    speakeasy-default-topics-controller-create-topic-subscriptions:
+      parameters:
+        path:
+          topicKey: "<value>"
+        header: {}
+      requestBody:
+        application/json: {"subscriberIds": ["subscriberId1", "subscriberId2"]}
+      responses:
+        "201":
+          application/json: {"data": [{"_id": "64f5e95d3d7946d80d0cb679", "topic": {"_id": "64f5e95d3d7946d80d0cb677", "key": "product-updates", "name": "Product Updates"}, "subscriber": {"_id": "64da692e9a94fb2e6449ad07", "subscriberId": "user-123", "avatar": "https://example.com/avatar.png", "firstName": "John", "lastName": "Doe", "email": "john@example.com"}, "createdAt": "2025-04-24T05:40:21Z", "updatedAt": "2025-04-24T05:40:21Z"}], "meta": {"totalCount": 3, "successful": 2, "failed": 1}, "errors": [{"subscriberId": "invalid-subscriber-id", "code": "SUBSCRIBER_NOT_FOUND", "message": "Subscriber with ID invalid-subscriber-id could not be found"}, {"subscriberId": "invalid-subscriber-id", "code": "SUBSCRIBER_NOT_FOUND", "message": "Subscriber with ID invalid-subscriber-id could not be found"}]}
+        "414":
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
+        "400":
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
+        "422":
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123", "errors": {"fieldName1": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName2": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName3": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName4": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName5": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName6": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}}}
+        "500":
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
+  TopicsController_deleteTopicSubscriptions:
+    speakeasy-default-topics-controller-delete-topic-subscriptions:
+      parameters:
+        path:
+          topicKey: "<value>"
+        header: {}
+      requestBody:
+        application/json: {"subscriberIds": ["subscriberId1", "subscriberId2"]}
+      responses:
+        "200":
+          application/json: {"data": [{"_id": "64f5e95d3d7946d80d0cb679", "topic": {"_id": "64f5e95d3d7946d80d0cb677", "key": "product-updates", "name": "Product Updates"}, "subscriber": {"_id": "64da692e9a94fb2e6449ad07", "subscriberId": "user-123", "avatar": "https://example.com/avatar.png", "firstName": "John", "lastName": "Doe", "email": "john@example.com"}, "createdAt": "2025-04-24T05:40:21Z", "updatedAt": "2025-04-24T05:40:21Z"}, {"_id": "64f5e95d3d7946d80d0cb679", "topic": {"_id": "64f5e95d3d7946d80d0cb677", "key": "product-updates", "name": "Product Updates"}, "subscriber": {"_id": "64da692e9a94fb2e6449ad07", "subscriberId": "user-123", "avatar": "https://example.com/avatar.png", "firstName": "John", "lastName": "Doe", "email": "john@example.com"}, "createdAt": "2025-04-24T05:40:21Z", "updatedAt": "2025-04-24T05:40:21Z"}], "meta": {"totalCount": 3, "successful": 2, "failed": 1}, "errors": [{"subscriberId": "invalid-subscriber-id", "code": "SUBSCRIBER_NOT_FOUND", "message": "Subscriber with ID invalid-subscriber-id could not be found"}, {"subscriberId": "invalid-subscriber-id", "code": "SUBSCRIBER_NOT_FOUND", "message": "Subscriber with ID invalid-subscriber-id could not be found"}, {"subscriberId": "invalid-subscriber-id", "code": "SUBSCRIBER_NOT_FOUND", "message": "Subscriber with ID invalid-subscriber-id could not be found"}]}
+        "414":
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
+        "400":
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
+        "422":
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123", "errors": {"fieldName1": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName2": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName3": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName4": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName5": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}, "fieldName6": {"messages": ["Field is required", "Invalid format"], "value": "xx xx xx "}}}
+        "500":
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
+  TopicsV1Controller_getTopicSubscriber:
+    speakeasy-default-topics-v1-controller-get-topic-subscriber:
+      parameters:
+        path:
+          externalSubscriberId: "<id>"
+          topicKey: "<value>"
+        header: {}
+      responses:
+        "200":
+          application/json: {"_organizationId": "org_123456789", "_environmentId": "env_123456789", "_subscriberId": "sub_123456789", "_topicId": "topic_123456789", "topicKey": "my_topic_key", "externalSubscriberId": "external_subscriber_123"}
         "414":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
         "400":

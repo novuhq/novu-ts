@@ -37,8 +37,8 @@ let value: MessageResponseDto = {
     organizationId: "<id>",
     environmentId: "<id>",
     deleted: false,
-    createdAt: "1727168010530",
-    updatedAt: "1746632226087",
+    createdAt: "1727618574080",
+    updatedAt: "1747082789636",
   },
   template: {
     name: "<value>",
@@ -78,7 +78,7 @@ let value: MessageResponseDto = {
     deletedAt: "<value>",
     deletedBy: "<value>",
   },
-  createdAt: "1718178467663",
+  createdAt: "1718629031211",
   content: [
     {
       type: "text",

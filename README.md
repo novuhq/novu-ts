@@ -482,7 +482,7 @@ run();
 #### [subscribers.messages](docs/sdks/novumessages/README.md)
 
 * [updateAsSeen](docs/sdks/novumessages/README.md#updateasseen) - Mark message action as seen
-* [markAll](docs/sdks/novumessages/README.md#markall) - Marks all the subscriber messages as read, unread, seen or unseen. Optionally you can pass feed id (or array) to mark messages of a particular feed.
+* [markAll](docs/sdks/novumessages/README.md#markall) - Marks all the subscriber messages as read, unread, seen or unseen.
 * [markAllAs](docs/sdks/novumessages/README.md#markallas) - Mark a subscriber messages as seen, read, unseen or unread
 
 #### [subscribers.notifications](docs/sdks/novunotifications/README.md)
@@ -499,19 +499,27 @@ run();
 
 * [updateOnlineFlag](docs/sdks/properties/README.md#updateonlineflag) - Update subscriber online status
 
+#### [subscribers.topics](docs/sdks/novutopics/README.md)
+
+* [list](docs/sdks/novutopics/README.md#list) - List topics a subscriber is subscribed to
+
 ### [topics](docs/sdks/topics/README.md)
 
-* [create](docs/sdks/topics/README.md#create) - Topic creation
-* [list](docs/sdks/topics/README.md#list) - Get topic list filtered 
-* [delete](docs/sdks/topics/README.md#delete) - Delete topic
-* [retrieve](docs/sdks/topics/README.md#retrieve) - Get topic
-* [rename](docs/sdks/topics/README.md#rename) - Rename a topic
+* [list](docs/sdks/topics/README.md#list) - Get topics list
+* [create](docs/sdks/topics/README.md#create) - Create or update a topic
+* [get](docs/sdks/topics/README.md#get) - Get topic by key
+* [update](docs/sdks/topics/README.md#update) - Update topic by key
+* [delete](docs/sdks/topics/README.md#delete) - Delete topic by key
 
 #### [topics.subscribers](docs/sdks/novusubscribers/README.md)
 
-* [assign](docs/sdks/novusubscribers/README.md#assign) - Subscribers addition
 * [retrieve](docs/sdks/novusubscribers/README.md#retrieve) - Check topic subscriber
-* [remove](docs/sdks/novusubscribers/README.md#remove) - Subscribers removal
+
+#### [topics.subscriptions](docs/sdks/subscriptions/README.md)
+
+* [list](docs/sdks/subscriptions/README.md#list) - List topic subscriptions
+* [create](docs/sdks/subscriptions/README.md#create) - Create topic subscriptions, if the topic does not exist, it will be created.
+* [delete](docs/sdks/subscriptions/README.md#delete) - Delete topic subscriptions
 
 </details>
 <!-- End Available Resources and Operations [operations] -->
@@ -555,7 +563,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`subscribersCredentialsUpdate`](docs/sdks/credentials/README.md#update) - Update subscriber credentials
 - [`subscribersDelete`](docs/sdks/subscribers/README.md#delete) - Delete subscriber
 - [`subscribersList`](docs/sdks/subscribers/README.md#list) - Get subscribers
-- [`subscribersMessagesMarkAll`](docs/sdks/novumessages/README.md#markall) - Marks all the subscriber messages as read, unread, seen or unseen. Optionally you can pass feed id (or array) to mark messages of a particular feed.
+- [`subscribersMessagesMarkAll`](docs/sdks/novumessages/README.md#markall) - Marks all the subscriber messages as read, unread, seen or unseen.
 - [`subscribersMessagesMarkAllAs`](docs/sdks/novumessages/README.md#markallas) - Mark a subscriber messages as seen, read, unseen or unread
 - [`subscribersMessagesUpdateAsSeen`](docs/sdks/novumessages/README.md#updateasseen) - Mark message action as seen
 - [`subscribersNotificationsFeed`](docs/sdks/novunotifications/README.md#feed) - Get in-app notification feed for a particular subscriber
@@ -566,15 +574,17 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`subscribersPropertiesUpdateOnlineFlag`](docs/sdks/properties/README.md#updateonlineflag) - Update subscriber online status
 - [`subscribersRetrieve`](docs/sdks/subscribers/README.md#retrieve) - Get subscriber
 - [`subscribersSearch`](docs/sdks/subscribers/README.md#search) - Search for subscribers
+- [`subscribersTopicsList`](docs/sdks/novutopics/README.md#list) - List topics a subscriber is subscribed to
 - [`subscribersUpsert`](docs/sdks/subscribers/README.md#upsert) - Upsert subscriber
-- [`topicsCreate`](docs/sdks/topics/README.md#create) - Topic creation
-- [`topicsDelete`](docs/sdks/topics/README.md#delete) - Delete topic
-- [`topicsList`](docs/sdks/topics/README.md#list) - Get topic list filtered 
-- [`topicsRename`](docs/sdks/topics/README.md#rename) - Rename a topic
-- [`topicsRetrieve`](docs/sdks/topics/README.md#retrieve) - Get topic
-- [`topicsSubscribersAssign`](docs/sdks/novusubscribers/README.md#assign) - Subscribers addition
-- [`topicsSubscribersRemove`](docs/sdks/novusubscribers/README.md#remove) - Subscribers removal
+- [`topicsCreate`](docs/sdks/topics/README.md#create) - Create or update a topic
+- [`topicsDelete`](docs/sdks/topics/README.md#delete) - Delete topic by key
+- [`topicsGet`](docs/sdks/topics/README.md#get) - Get topic by key
+- [`topicsList`](docs/sdks/topics/README.md#list) - Get topics list
 - [`topicsSubscribersRetrieve`](docs/sdks/novusubscribers/README.md#retrieve) - Check topic subscriber
+- [`topicsSubscriptionsCreate`](docs/sdks/subscriptions/README.md#create) - Create topic subscriptions, if the topic does not exist, it will be created.
+- [`topicsSubscriptionsDelete`](docs/sdks/subscriptions/README.md#delete) - Delete topic subscriptions
+- [`topicsSubscriptionsList`](docs/sdks/subscriptions/README.md#list) - List topic subscriptions
+- [`topicsUpdate`](docs/sdks/topics/README.md#update) - Update topic by key
 - [`trigger`](docs/sdks/novu/README.md#trigger) - Trigger event
 - [`triggerBroadcast`](docs/sdks/novu/README.md#triggerbroadcast) - Broadcast event to all
 - [`triggerBulk`](docs/sdks/novu/README.md#triggerbulk) - Bulk trigger event
@@ -798,7 +808,7 @@ The default server can also be overridden globally by passing a URL to the `serv
 import { Novu } from "@novu/api";
 
 const novu = new Novu({
-  serverURL: "https://api.novu.co",
+  serverURL: "https://eu.api.novu.co",
   secretKey: "YOUR_SECRET_KEY_HERE",
 });
 

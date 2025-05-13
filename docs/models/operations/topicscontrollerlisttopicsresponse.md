@@ -12,17 +12,24 @@ let value: TopicsControllerListTopicsResponse = {
     ],
   },
   result: {
-    data: [],
-    page: 1,
-    pageSize: 10,
-    totalCount: 10,
+    data: [
+      {
+        id: "64da692e9a94fb2e6449ad06",
+        key: "product-updates",
+        name: "Product Updates",
+        createdAt: "2023-08-15T00:00:00.000Z",
+        updatedAt: "2023-08-15T00:00:00.000Z",
+      },
+    ],
+    next: "<value>",
+    previous: "<value>",
   },
 };
 ```
 
 ## Fields
 
-| Field                                                                                    | Type                                                                                     | Required                                                                                 | Description                                                                              |
-| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `headers`                                                                                | Record<string, *string*[]>                                                               | :heavy_check_mark:                                                                       | N/A                                                                                      |
-| `result`                                                                                 | [components.FilterTopicsResponseDto](../../models/components/filtertopicsresponsedto.md) | :heavy_check_mark:                                                                       | N/A                                                                                      |
+| Field                                                                                | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `headers`                                                                            | Record<string, *string*[]>                                                           | :heavy_check_mark:                                                                   | N/A                                                                                  |
+| `result`                                                                             | [components.ListTopicsResponseDto](../../models/components/listtopicsresponsedto.md) | :heavy_check_mark:                                                                   | N/A                                                                                  |

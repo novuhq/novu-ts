@@ -48,15 +48,17 @@ import { tool$subscribersPreferencesUpdate } from "./tools/subscribersPreference
 import { tool$subscribersPropertiesUpdateOnlineFlag } from "./tools/subscribersPropertiesUpdateOnlineFlag.js";
 import { tool$subscribersRetrieve } from "./tools/subscribersRetrieve.js";
 import { tool$subscribersSearch } from "./tools/subscribersSearch.js";
+import { tool$subscribersTopicsList } from "./tools/subscribersTopicsList.js";
 import { tool$subscribersUpsert } from "./tools/subscribersUpsert.js";
 import { tool$topicsCreate } from "./tools/topicsCreate.js";
 import { tool$topicsDelete } from "./tools/topicsDelete.js";
+import { tool$topicsGet } from "./tools/topicsGet.js";
 import { tool$topicsList } from "./tools/topicsList.js";
-import { tool$topicsRename } from "./tools/topicsRename.js";
-import { tool$topicsRetrieve } from "./tools/topicsRetrieve.js";
-import { tool$topicsSubscribersAssign } from "./tools/topicsSubscribersAssign.js";
-import { tool$topicsSubscribersRemove } from "./tools/topicsSubscribersRemove.js";
 import { tool$topicsSubscribersRetrieve } from "./tools/topicsSubscribersRetrieve.js";
+import { tool$topicsSubscriptionsCreate } from "./tools/topicsSubscriptionsCreate.js";
+import { tool$topicsSubscriptionsDelete } from "./tools/topicsSubscriptionsDelete.js";
+import { tool$topicsSubscriptionsList } from "./tools/topicsSubscriptionsList.js";
+import { tool$topicsUpdate } from "./tools/topicsUpdate.js";
 import { tool$trigger } from "./tools/trigger.js";
 import { tool$triggerBroadcast } from "./tools/triggerBroadcast.js";
 import { tool$triggerBulk } from "./tools/triggerBulk.js";
@@ -71,7 +73,7 @@ export function createMCPServer(deps: {
 }) {
   const server = new McpServer({
     name: "Novu",
-    version: "0.7.0",
+    version: "1.0.0",
   });
 
   const client = new NovuCore({
@@ -113,6 +115,11 @@ export function createMCPServer(deps: {
   tool(tool$subscribersList);
   tool(tool$subscribersUpsert);
   tool(tool$subscribersCreateBulk);
+  tool(tool$topicsList);
+  tool(tool$topicsCreate);
+  tool(tool$topicsGet);
+  tool(tool$topicsUpdate);
+  tool(tool$topicsDelete);
   tool(tool$integrationsList);
   tool(tool$integrationsCreate);
   tool(tool$integrationsUpdate);
@@ -124,13 +131,9 @@ export function createMCPServer(deps: {
   tool(tool$messagesDeleteByTransactionId);
   tool(tool$notificationsList);
   tool(tool$notificationsRetrieve);
-  tool(tool$topicsCreate);
-  tool(tool$topicsList);
-  tool(tool$topicsDelete);
-  tool(tool$topicsRetrieve);
-  tool(tool$topicsRename);
   tool(tool$subscribersPreferencesList);
   tool(tool$subscribersPreferencesUpdate);
+  tool(tool$subscribersTopicsList);
   tool(tool$subscribersCredentialsUpdate);
   tool(tool$subscribersCredentialsAppend);
   tool(tool$subscribersCredentialsDelete);
@@ -142,12 +145,13 @@ export function createMCPServer(deps: {
   tool(tool$subscribersNotificationsFeed);
   tool(tool$subscribersNotificationsUnseenCount);
   tool(tool$subscribersPropertiesUpdateOnlineFlag);
+  tool(tool$topicsSubscriptionsList);
+  tool(tool$topicsSubscriptionsCreate);
+  tool(tool$topicsSubscriptionsDelete);
+  tool(tool$topicsSubscribersRetrieve);
   tool(tool$integrationsWebhooksRetrieve);
   tool(tool$notificationsStatsGraph);
   tool(tool$notificationsStatsRetrieve);
-  tool(tool$topicsSubscribersAssign);
-  tool(tool$topicsSubscribersRetrieve);
-  tool(tool$topicsSubscribersRemove);
 
   return server;
 }
