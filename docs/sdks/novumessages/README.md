@@ -6,7 +6,7 @@
 ### Available Operations
 
 * [updateAsSeen](#updateasseen) - Mark message action as seen
-* [markAll](#markall) - Marks all the subscriber messages as read, unread, seen or unseen. Optionally you can pass feed id (or array) to mark messages of a particular feed.
+* [markAll](#markall) - Marks all the subscriber messages as read, unread, seen or unseen.
 * [markAllAs](#markallas) - Mark a subscriber messages as seen, read, unseen or unread
 
 ## updateAsSeen
@@ -101,7 +101,7 @@ run();
 
 ## markAll
 
-Marks all the subscriber messages as read, unread, seen or unseen. Optionally you can pass feed id (or array) to mark messages of a particular feed.
+Marks all the subscriber messages as read, unread, seen or unseen.
 
 ### Example Usage
 

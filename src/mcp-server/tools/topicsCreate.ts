@@ -8,20 +8,21 @@ import * as components from "../../models/components/index.js";
 import { formatResult, ToolDefinition } from "../tools.js";
 
 const args = {
-  createTopicRequestDto: components.CreateTopicRequestDto$inboundSchema,
+  createUpdateTopicRequestDto:
+    components.CreateUpdateTopicRequestDto$inboundSchema,
   idempotencyKey: z.string().optional(),
 };
 
 export const tool$topicsCreate: ToolDefinition<typeof args> = {
   name: "topics-create",
-  description: `Topic creation
+  description: `Create or update a topic
 
-Create a topic`,
+Creates a new topic if it does not exist, or updates an existing topic if it already exists`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await topicsCreate(
       client,
-      args.createTopicRequestDto,
+      args.createUpdateTopicRequestDto,
       args.idempotencyKey,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();
