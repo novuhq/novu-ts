@@ -16,7 +16,9 @@ const args = {
 
 export const tool$topicsSubscriptionsDelete: ToolDefinition<typeof args> = {
   name: "topics-subscriptions-delete",
-  description: `Delete topic subscriptions`,
+  description: `Delete topic subscriptions
+
+Delete subscriptions for subscriberIds for a topic.`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await topicsSubscriptionsDelete(

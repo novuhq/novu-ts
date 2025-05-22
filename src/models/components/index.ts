@@ -3,14 +3,12 @@
  */
 
 export * from "./activitiesresponsedto.js";
-export * from "./activitygraphstatesresponse.js";
 export * from "./activitynotificationexecutiondetailresponsedto.js";
 export * from "./activitynotificationjobresponsedto.js";
 export * from "./activitynotificationresponsedto.js";
 export * from "./activitynotificationstepresponsedto.js";
 export * from "./activitynotificationsubscriberresponsedto.js";
 export * from "./activitynotificationtemplateresponsedto.js";
-export * from "./activitystatsresponsedto.js";
 export * from "./activitytopicdto.js";
 export * from "./actorfeeditemdto.js";
 export * from "./actortypeenum.js";
@@ -124,7 +122,6 @@ export * from "./updatedsubscriberdto.js";
 export * from "./updateintegrationrequestdto.js";
 export * from "./updatesubscriberchannelrequestdto.js";
 export * from "./updatesubscriberonlineflagrequestdto.js";
-export * from "./updatesubscriberrequestdto.js";
 export * from "./updatetopicrequestdto.js";
 export * from "./workfloworiginenum.js";
 export * from "./workflowresponse.js";

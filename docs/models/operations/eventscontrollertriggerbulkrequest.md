@@ -17,12 +17,7 @@ let value: EventsControllerTriggerBulkRequest = {
           },
         },
         overrides: {},
-        to: [
-          {
-            topicKey: "<value>",
-            type: "Subscriber",
-          },
-        ],
+        to: "SUBSCRIBER_ID",
       },
     ],
   },

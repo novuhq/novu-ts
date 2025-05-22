@@ -13,9 +13,10 @@ const args = {
 
 export const tool$subscribersPreferencesList: ToolDefinition<typeof args> = {
   name: "subscribers-preferences-list",
-  description: `Get subscriber preferences
+  description: `Retrieve subscriber preferences
 
-Get subscriber global and workflow specific preferences`,
+Retrieve subscriber channel preferences by its unique key identifier **subscriberId**. 
+    This API returns all five channels preferences for all workflows and global preferences.`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await subscribersPreferencesList(

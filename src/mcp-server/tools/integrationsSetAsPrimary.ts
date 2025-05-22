@@ -13,7 +13,11 @@ const args = {
 
 export const tool$integrationsSetAsPrimary: ToolDefinition<typeof args> = {
   name: "integrations-set-as-primary",
-  description: `Set integration as primary`,
+  description: `Update integration as primary
+
+Update an integration as **primary** by its unique key identifier **integrationId**. 
+    This API will set the integration as primary for that channel in the current environment. 
+    Primary integration is used to deliver notification for sms and email channels in the workflow.`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await integrationsSetAsPrimary(

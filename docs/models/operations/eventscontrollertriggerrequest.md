@@ -15,9 +15,7 @@ let value: EventsControllerTriggerRequest = {
       },
     },
     overrides: {},
-    to: {
-      subscriberId: "<id>",
-    },
+    to: "SUBSCRIBER_ID",
   },
 };
 ```

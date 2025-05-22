@@ -13,7 +13,10 @@ const args = {
 
 export const tool$integrationsDelete: ToolDefinition<typeof args> = {
   name: "integrations-delete",
-  description: `Delete integration`,
+  description: `Delete an integration
+
+Delete an integration by its unique key identifier **integrationId**. 
+    This action is irreversible.`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await integrationsDelete(

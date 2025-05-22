@@ -15,7 +15,9 @@ const args = {
 
 export const tool$topicsUpdate: ToolDefinition<typeof args> = {
   name: "topics-update",
-  description: `Update topic by key`,
+  description: `Update a topic
+
+Update a topic name by its unique key identifier **topicKey**`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await topicsUpdate(

@@ -50,7 +50,7 @@ async function startStdio(flags: StartCommandFlags) {
     logger,
     allowedTools: flags.tool,
     scopes: flags.scope,
-    ...{ secretKey: flags["secret-key"] },
+    ...{ secretKey: flags["secret-key"] ?? "" },
     serverURL: flags["server-url"],
     serverIdx: flags["server-index"],
   });
@@ -71,7 +71,7 @@ async function startSSE(flags: StartCommandFlags) {
     logger,
     allowedTools: flags.tool,
     scopes: flags.scope,
-    ...{ secretKey: flags["secret-key"] },
+    ...{ secretKey: flags["secret-key"] ?? "" },
     serverURL: flags["server-url"],
     serverIdx: flags["server-index"],
   });

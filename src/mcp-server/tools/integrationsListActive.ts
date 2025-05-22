@@ -12,9 +12,9 @@ const args = {
 
 export const tool$integrationsListActive: ToolDefinition<typeof args> = {
   name: "integrations-list-active",
-  description: `Get active integrations
+  description: `List active integrations
 
-Return all the active integrations the user has created for that organization. Review v.0.17.0 changelog for a breaking change`,
+List all the active integrations created in the organization`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await integrationsListActive(

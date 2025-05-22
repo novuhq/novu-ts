@@ -15,9 +15,10 @@ const args = {
 
 export const tool$subscribersCreate: ToolDefinition<typeof args> = {
   name: "subscribers-create",
-  description: `Create subscriber
+  description: `Create a subscriber
 
-Create subscriber with the given data, if the subscriber already exists, it will be updated`,
+Create a subscriber with the subscriber attributes. 
+      **subscriberId** is a required field, rest other fields are optional, if the subscriber already exists, it will be updated`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await subscribersCreate(

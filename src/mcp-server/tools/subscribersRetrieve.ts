@@ -13,9 +13,10 @@ const args = {
 
 export const tool$subscribersRetrieve: ToolDefinition<typeof args> = {
   name: "subscribers-retrieve",
-  description: `Get subscriber
+  description: `Retrieve a subscriber
 
-Get subscriber by your internal id used to identify the subscriber`,
+Retrive a subscriber by its unique key identifier **subscriberId**. 
+    **subscriberId** field is required.`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await subscribersRetrieve(

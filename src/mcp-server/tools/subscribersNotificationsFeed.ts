@@ -13,7 +13,9 @@ const args = {
 
 export const tool$subscribersNotificationsFeed: ToolDefinition<typeof args> = {
   name: "subscribers-notifications-feed",
-  description: `Get in-app notification feed for a particular subscriber`,
+  description: `Retrieve subscriber notifications
+
+Retrieve subscriber in-app (inbox) notifications by its unique key identifier **subscriberId**.`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await subscribersNotificationsFeed(

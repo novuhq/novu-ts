@@ -45,7 +45,6 @@ For more information about the API: [Novu Documentation](https://docs.novu.co)
   * [SDK Example Usage](#sdk-example-usage)
   * [Available Resources and Operations](#available-resources-and-operations)
   * [Standalone functions](#standalone-functions)
-  * [Pagination](#pagination)
   * [Error Handling](#error-handling)
   * [Server Selection](#server-selection)
   * [Custom HTTP Client](#custom-http-client)
@@ -203,25 +202,8 @@ async function run() {
         "text": "string",
       },
     },
-    overrides: {
-      steps: {
-        "email-step": {
-          providers: {
-            "sendgrid": {
-              "templateId": "1234567890",
-            },
-          },
-        },
-      },
-      providers: {
-        "sendgrid": {
-          "templateId": "1234567890",
-        },
-      },
-    },
-    to: {
-      subscriberId: "<id>",
-    },
+    overrides: {},
+    to: "SUBSCRIBER_ID",
   });
 
   // Handle the result
@@ -271,20 +253,6 @@ async function run() {
       },
     },
     overrides: {
-      steps: {
-        "email-step": {
-          providers: {
-            "sendgrid": {
-              "templateId": "1234567890",
-            },
-          },
-        },
-      },
-      providers: {
-        "sendgrid": {
-          "templateId": "1234567890",
-        },
-      },
       additionalProperties: {
         "fcm": {
           "data": {
@@ -323,25 +291,8 @@ async function run() {
             "text": "string",
           },
         },
-        overrides: {
-          steps: {
-            "email-step": {
-              providers: {
-                "sendgrid": {
-                  "templateId": "1234567890",
-                },
-              },
-            },
-          },
-          providers: {
-            "sendgrid": {
-              "templateId": "1234567890",
-            },
-          },
-        },
-        to: {
-          subscriberId: "<id>",
-        },
+        overrides: {},
+        to: "SUBSCRIBER_ID",
       },
       {
         workflowId: "workflow_identifier",
@@ -351,28 +302,8 @@ async function run() {
             "text": "string",
           },
         },
-        overrides: {
-          steps: {
-            "email-step": {
-              providers: {
-                "sendgrid": {
-                  "templateId": "1234567890",
-                },
-              },
-            },
-          },
-          providers: {
-            "sendgrid": {
-              "templateId": "1234567890",
-            },
-          },
-        },
-        to: [
-          {
-            topicKey: "<value>",
-            type: "Subscriber",
-          },
-        ],
+        overrides: {},
+        to: "SUBSCRIBER_ID",
       },
       {
         workflowId: "workflow_identifier",
@@ -382,26 +313,8 @@ async function run() {
             "text": "string",
           },
         },
-        overrides: {
-          steps: {
-            "email-step": {
-              providers: {
-                "sendgrid": {
-                  "templateId": "1234567890",
-                },
-              },
-            },
-          },
-          providers: {
-            "sendgrid": {
-              "templateId": "1234567890",
-            },
-          },
-        },
-        to: [
-          "SUBSCRIBER_ID",
-          "SUBSCRIBER_ID",
-        ],
+        overrides: {},
+        to: "SUBSCRIBER_ID",
       },
     ],
   });
@@ -423,32 +336,23 @@ run();
 
 ### [integrations](docs/sdks/integrations/README.md)
 
-* [list](docs/sdks/integrations/README.md#list) - Get integrations
-* [create](docs/sdks/integrations/README.md#create) - Create integration
-* [update](docs/sdks/integrations/README.md#update) - Update integration
-* [delete](docs/sdks/integrations/README.md#delete) - Delete integration
-* [setAsPrimary](docs/sdks/integrations/README.md#setasprimary) - Set integration as primary
-* [listActive](docs/sdks/integrations/README.md#listactive) - Get active integrations
-
-#### [integrations.webhooks](docs/sdks/webhooks/README.md)
-
-* [retrieve](docs/sdks/webhooks/README.md#retrieve) - Get webhook support status for provider
+* [list](docs/sdks/integrations/README.md#list) - List all integrations
+* [create](docs/sdks/integrations/README.md#create) - Create an integration
+* [update](docs/sdks/integrations/README.md#update) - Update an integration
+* [delete](docs/sdks/integrations/README.md#delete) - Delete an integration
+* [setAsPrimary](docs/sdks/integrations/README.md#setasprimary) - Update integration as primary
+* [listActive](docs/sdks/integrations/README.md#listactive) - List active integrations
 
 ### [messages](docs/sdks/messages/README.md)
 
-* [retrieve](docs/sdks/messages/README.md#retrieve) - Get messages
-* [delete](docs/sdks/messages/README.md#delete) - Delete message
+* [retrieve](docs/sdks/messages/README.md#retrieve) - List all messages
+* [delete](docs/sdks/messages/README.md#delete) - Delete a message
 * [deleteByTransactionId](docs/sdks/messages/README.md#deletebytransactionid) - Delete messages by transactionId
 
 ### [notifications](docs/sdks/notifications/README.md)
 
-* [list](docs/sdks/notifications/README.md#list) - Get notifications
-* [retrieve](docs/sdks/notifications/README.md#retrieve) - Get notification
-
-#### [notifications.stats](docs/sdks/stats/README.md)
-
-* [graph](docs/sdks/stats/README.md#graph) - Get notification graph statistics
-* [retrieve](docs/sdks/stats/README.md#retrieve) - Get notification statistics
+* [list](docs/sdks/notifications/README.md#list) - List all events
+* [retrieve](docs/sdks/notifications/README.md#retrieve) - Retrieve an event
 
 ### [Novu SDK](docs/sdks/novu/README.md)
 
@@ -459,41 +363,34 @@ run();
 
 ### [subscribers](docs/sdks/subscribers/README.md)
 
-* [search](docs/sdks/subscribers/README.md#search) - Search for subscribers
-* [create](docs/sdks/subscribers/README.md#create) - Create subscriber
-* [retrieve](docs/sdks/subscribers/README.md#retrieve) - Get subscriber
-* [patch](docs/sdks/subscribers/README.md#patch) - Patch subscriber
+* [search](docs/sdks/subscribers/README.md#search) - Search subscribers
+* [create](docs/sdks/subscribers/README.md#create) - Create a subscriber
+* [retrieve](docs/sdks/subscribers/README.md#retrieve) - Retrieve a subscriber
+* [patch](docs/sdks/subscribers/README.md#patch) - Update a subscriber
 * [delete](docs/sdks/subscribers/README.md#delete) - Delete subscriber
-* [list](docs/sdks/subscribers/README.md#list) - Get subscribers
-* [upsert](docs/sdks/subscribers/README.md#upsert) - Upsert subscriber
 * [createBulk](docs/sdks/subscribers/README.md#createbulk) - Bulk create subscribers
-
-#### [subscribers.authentication](docs/sdks/authentication/README.md)
-
-* [chatAccessOauth](docs/sdks/authentication/README.md#chataccessoauth) - Handle chat oauth
-* [chatAccessOauthCallBack](docs/sdks/authentication/README.md#chataccessoauthcallback) - Handle providers oauth redirect
 
 #### [subscribers.credentials](docs/sdks/credentials/README.md)
 
-* [update](docs/sdks/credentials/README.md#update) - Update subscriber credentials
-* [append](docs/sdks/credentials/README.md#append) - Modify subscriber credentials
-* [delete](docs/sdks/credentials/README.md#delete) - Delete subscriber credentials by providerId
+* [update](docs/sdks/credentials/README.md#update) - Update provider credentials
+* [append](docs/sdks/credentials/README.md#append) - Upsert provider credentials
+* [delete](docs/sdks/credentials/README.md#delete) - Delete provider credentials
 
 #### [subscribers.messages](docs/sdks/novumessages/README.md)
 
-* [updateAsSeen](docs/sdks/novumessages/README.md#updateasseen) - Mark message action as seen
-* [markAll](docs/sdks/novumessages/README.md#markall) - Marks all the subscriber messages as read, unread, seen or unseen.
-* [markAllAs](docs/sdks/novumessages/README.md#markallas) - Mark a subscriber messages as seen, read, unseen or unread
+* [updateAsSeen](docs/sdks/novumessages/README.md#updateasseen) - Update notification action status
+* [markAll](docs/sdks/novumessages/README.md#markall) - Update all notifications state
+* [markAllAs](docs/sdks/novumessages/README.md#markallas) - Update notifications state
 
 #### [subscribers.notifications](docs/sdks/novunotifications/README.md)
 
-* [feed](docs/sdks/novunotifications/README.md#feed) - Get in-app notification feed for a particular subscriber
-* [unseenCount](docs/sdks/novunotifications/README.md#unseencount) - Get the unseen in-app notifications count for subscribers feed
+* [feed](docs/sdks/novunotifications/README.md#feed) - Retrieve subscriber notifications
+* [unseenCount](docs/sdks/novunotifications/README.md#unseencount) - Retrieve unseen notifications count
 
 #### [subscribers.preferences](docs/sdks/preferences/README.md)
 
-* [list](docs/sdks/preferences/README.md#list) - Get subscriber preferences
-* [update](docs/sdks/preferences/README.md#update) - Update subscriber global or workflow specific preferences
+* [list](docs/sdks/preferences/README.md#list) - Retrieve subscriber preferences
+* [update](docs/sdks/preferences/README.md#update) - Update subscriber preferences
 
 #### [subscribers.properties](docs/sdks/properties/README.md)
 
@@ -501,15 +398,15 @@ run();
 
 #### [subscribers.topics](docs/sdks/novutopics/README.md)
 
-* [list](docs/sdks/novutopics/README.md#list) - List topics a subscriber is subscribed to
+* [list](docs/sdks/novutopics/README.md#list) - Retrieve subscriber subscriptions
 
 ### [topics](docs/sdks/topics/README.md)
 
-* [list](docs/sdks/topics/README.md#list) - Get topics list
-* [create](docs/sdks/topics/README.md#create) - Create or update a topic
-* [get](docs/sdks/topics/README.md#get) - Get topic by key
-* [update](docs/sdks/topics/README.md#update) - Update topic by key
-* [delete](docs/sdks/topics/README.md#delete) - Delete topic by key
+* [list](docs/sdks/topics/README.md#list) - List all topics
+* [create](docs/sdks/topics/README.md#create) - Create a topic
+* [get](docs/sdks/topics/README.md#get) - Retrieve a topic
+* [update](docs/sdks/topics/README.md#update) - Update a topic
+* [delete](docs/sdks/topics/README.md#delete) - Delete a topic
 
 #### [topics.subscribers](docs/sdks/novusubscribers/README.md)
 
@@ -518,7 +415,7 @@ run();
 #### [topics.subscriptions](docs/sdks/subscriptions/README.md)
 
 * [list](docs/sdks/subscriptions/README.md#list) - List topic subscriptions
-* [create](docs/sdks/subscriptions/README.md#create) - Create topic subscriptions, if the topic does not exist, it will be created.
+* [create](docs/sdks/subscriptions/README.md#create) - Create topic subscriptions
 * [delete](docs/sdks/subscriptions/README.md#delete) - Delete topic subscriptions
 
 </details>
@@ -540,90 +437,50 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 <summary>Available standalone functions</summary>
 
 - [`cancel`](docs/sdks/novu/README.md#cancel) - Cancel triggered event
-- [`integrationsCreate`](docs/sdks/integrations/README.md#create) - Create integration
-- [`integrationsDelete`](docs/sdks/integrations/README.md#delete) - Delete integration
-- [`integrationsList`](docs/sdks/integrations/README.md#list) - Get integrations
-- [`integrationsListActive`](docs/sdks/integrations/README.md#listactive) - Get active integrations
-- [`integrationsSetAsPrimary`](docs/sdks/integrations/README.md#setasprimary) - Set integration as primary
-- [`integrationsUpdate`](docs/sdks/integrations/README.md#update) - Update integration
-- [`integrationsWebhooksRetrieve`](docs/sdks/webhooks/README.md#retrieve) - Get webhook support status for provider
-- [`messagesDelete`](docs/sdks/messages/README.md#delete) - Delete message
+- [`integrationsCreate`](docs/sdks/integrations/README.md#create) - Create an integration
+- [`integrationsDelete`](docs/sdks/integrations/README.md#delete) - Delete an integration
+- [`integrationsList`](docs/sdks/integrations/README.md#list) - List all integrations
+- [`integrationsListActive`](docs/sdks/integrations/README.md#listactive) - List active integrations
+- [`integrationsSetAsPrimary`](docs/sdks/integrations/README.md#setasprimary) - Update integration as primary
+- [`integrationsUpdate`](docs/sdks/integrations/README.md#update) - Update an integration
+- [`messagesDelete`](docs/sdks/messages/README.md#delete) - Delete a message
 - [`messagesDeleteByTransactionId`](docs/sdks/messages/README.md#deletebytransactionid) - Delete messages by transactionId
-- [`messagesRetrieve`](docs/sdks/messages/README.md#retrieve) - Get messages
-- [`notificationsList`](docs/sdks/notifications/README.md#list) - Get notifications
-- [`notificationsRetrieve`](docs/sdks/notifications/README.md#retrieve) - Get notification
-- [`notificationsStatsGraph`](docs/sdks/stats/README.md#graph) - Get notification graph statistics
-- [`notificationsStatsRetrieve`](docs/sdks/stats/README.md#retrieve) - Get notification statistics
-- [`subscribersAuthenticationChatAccessOauth`](docs/sdks/authentication/README.md#chataccessoauth) - Handle chat oauth
-- [`subscribersAuthenticationChatAccessOauthCallBack`](docs/sdks/authentication/README.md#chataccessoauthcallback) - Handle providers oauth redirect
-- [`subscribersCreate`](docs/sdks/subscribers/README.md#create) - Create subscriber
+- [`messagesRetrieve`](docs/sdks/messages/README.md#retrieve) - List all messages
+- [`notificationsList`](docs/sdks/notifications/README.md#list) - List all events
+- [`notificationsRetrieve`](docs/sdks/notifications/README.md#retrieve) - Retrieve an event
+- [`subscribersCreate`](docs/sdks/subscribers/README.md#create) - Create a subscriber
 - [`subscribersCreateBulk`](docs/sdks/subscribers/README.md#createbulk) - Bulk create subscribers
-- [`subscribersCredentialsAppend`](docs/sdks/credentials/README.md#append) - Modify subscriber credentials
-- [`subscribersCredentialsDelete`](docs/sdks/credentials/README.md#delete) - Delete subscriber credentials by providerId
-- [`subscribersCredentialsUpdate`](docs/sdks/credentials/README.md#update) - Update subscriber credentials
+- [`subscribersCredentialsAppend`](docs/sdks/credentials/README.md#append) - Upsert provider credentials
+- [`subscribersCredentialsDelete`](docs/sdks/credentials/README.md#delete) - Delete provider credentials
+- [`subscribersCredentialsUpdate`](docs/sdks/credentials/README.md#update) - Update provider credentials
 - [`subscribersDelete`](docs/sdks/subscribers/README.md#delete) - Delete subscriber
-- [`subscribersList`](docs/sdks/subscribers/README.md#list) - Get subscribers
-- [`subscribersMessagesMarkAll`](docs/sdks/novumessages/README.md#markall) - Marks all the subscriber messages as read, unread, seen or unseen.
-- [`subscribersMessagesMarkAllAs`](docs/sdks/novumessages/README.md#markallas) - Mark a subscriber messages as seen, read, unseen or unread
-- [`subscribersMessagesUpdateAsSeen`](docs/sdks/novumessages/README.md#updateasseen) - Mark message action as seen
-- [`subscribersNotificationsFeed`](docs/sdks/novunotifications/README.md#feed) - Get in-app notification feed for a particular subscriber
-- [`subscribersNotificationsUnseenCount`](docs/sdks/novunotifications/README.md#unseencount) - Get the unseen in-app notifications count for subscribers feed
-- [`subscribersPatch`](docs/sdks/subscribers/README.md#patch) - Patch subscriber
-- [`subscribersPreferencesList`](docs/sdks/preferences/README.md#list) - Get subscriber preferences
-- [`subscribersPreferencesUpdate`](docs/sdks/preferences/README.md#update) - Update subscriber global or workflow specific preferences
+- [`subscribersMessagesMarkAll`](docs/sdks/novumessages/README.md#markall) - Update all notifications state
+- [`subscribersMessagesMarkAllAs`](docs/sdks/novumessages/README.md#markallas) - Update notifications state
+- [`subscribersMessagesUpdateAsSeen`](docs/sdks/novumessages/README.md#updateasseen) - Update notification action status
+- [`subscribersNotificationsFeed`](docs/sdks/novunotifications/README.md#feed) - Retrieve subscriber notifications
+- [`subscribersNotificationsUnseenCount`](docs/sdks/novunotifications/README.md#unseencount) - Retrieve unseen notifications count
+- [`subscribersPatch`](docs/sdks/subscribers/README.md#patch) - Update a subscriber
+- [`subscribersPreferencesList`](docs/sdks/preferences/README.md#list) - Retrieve subscriber preferences
+- [`subscribersPreferencesUpdate`](docs/sdks/preferences/README.md#update) - Update subscriber preferences
 - [`subscribersPropertiesUpdateOnlineFlag`](docs/sdks/properties/README.md#updateonlineflag) - Update subscriber online status
-- [`subscribersRetrieve`](docs/sdks/subscribers/README.md#retrieve) - Get subscriber
-- [`subscribersSearch`](docs/sdks/subscribers/README.md#search) - Search for subscribers
-- [`subscribersTopicsList`](docs/sdks/novutopics/README.md#list) - List topics a subscriber is subscribed to
-- [`subscribersUpsert`](docs/sdks/subscribers/README.md#upsert) - Upsert subscriber
-- [`topicsCreate`](docs/sdks/topics/README.md#create) - Create or update a topic
-- [`topicsDelete`](docs/sdks/topics/README.md#delete) - Delete topic by key
-- [`topicsGet`](docs/sdks/topics/README.md#get) - Get topic by key
-- [`topicsList`](docs/sdks/topics/README.md#list) - Get topics list
+- [`subscribersRetrieve`](docs/sdks/subscribers/README.md#retrieve) - Retrieve a subscriber
+- [`subscribersSearch`](docs/sdks/subscribers/README.md#search) - Search subscribers
+- [`subscribersTopicsList`](docs/sdks/novutopics/README.md#list) - Retrieve subscriber subscriptions
+- [`topicsCreate`](docs/sdks/topics/README.md#create) - Create a topic
+- [`topicsDelete`](docs/sdks/topics/README.md#delete) - Delete a topic
+- [`topicsGet`](docs/sdks/topics/README.md#get) - Retrieve a topic
+- [`topicsList`](docs/sdks/topics/README.md#list) - List all topics
 - [`topicsSubscribersRetrieve`](docs/sdks/novusubscribers/README.md#retrieve) - Check topic subscriber
-- [`topicsSubscriptionsCreate`](docs/sdks/subscriptions/README.md#create) - Create topic subscriptions, if the topic does not exist, it will be created.
+- [`topicsSubscriptionsCreate`](docs/sdks/subscriptions/README.md#create) - Create topic subscriptions
 - [`topicsSubscriptionsDelete`](docs/sdks/subscriptions/README.md#delete) - Delete topic subscriptions
 - [`topicsSubscriptionsList`](docs/sdks/subscriptions/README.md#list) - List topic subscriptions
-- [`topicsUpdate`](docs/sdks/topics/README.md#update) - Update topic by key
+- [`topicsUpdate`](docs/sdks/topics/README.md#update) - Update a topic
 - [`trigger`](docs/sdks/novu/README.md#trigger) - Trigger event
 - [`triggerBroadcast`](docs/sdks/novu/README.md#triggerbroadcast) - Broadcast event to all
 - [`triggerBulk`](docs/sdks/novu/README.md#triggerbulk) - Bulk trigger event
 
 </details>
 <!-- End Standalone functions [standalone-funcs] -->
-
-<!-- Start Pagination [pagination] -->
-## Pagination
-
-Some of the endpoints in this SDK support pagination. To use pagination, you
-make your SDK calls as usual, but the returned response object will also be an
-async iterable that can be consumed using the [`for await...of`][for-await-of]
-syntax.
-
-[for-await-of]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for-await...of
-
-Here's an example of one such pagination call:
-
-```typescript
-import { Novu } from "@novu/api";
-
-const novu = new Novu({
-  secretKey: "YOUR_SECRET_KEY_HERE",
-});
-
-async function run() {
-  const result = await novu.subscribers.list();
-
-  for await (const page of result) {
-    // Handle the page
-    console.log(page);
-  }
-}
-
-run();
-
-```
-<!-- End Pagination [pagination] -->
 
 <!-- Start Error Handling [errors] -->
 ## Error Handling
@@ -663,25 +520,8 @@ async function run() {
           "text": "string",
         },
       },
-      overrides: {
-        steps: {
-          "email-step": {
-            providers: {
-              "sendgrid": {
-                "templateId": "1234567890",
-              },
-            },
-          },
-        },
-        providers: {
-          "sendgrid": {
-            "templateId": "1234567890",
-          },
-        },
-      },
-      to: {
-        subscriberId: "<id>",
-      },
+      overrides: {},
+      to: "SUBSCRIBER_ID",
     });
 
     // Handle the result
@@ -772,25 +612,8 @@ async function run() {
         "text": "string",
       },
     },
-    overrides: {
-      steps: {
-        "email-step": {
-          providers: {
-            "sendgrid": {
-              "templateId": "1234567890",
-            },
-          },
-        },
-      },
-      providers: {
-        "sendgrid": {
-          "templateId": "1234567890",
-        },
-      },
-    },
-    to: {
-      subscriberId: "<id>",
-    },
+    overrides: {},
+    to: "SUBSCRIBER_ID",
   });
 
   // Handle the result
@@ -821,25 +644,8 @@ async function run() {
         "text": "string",
       },
     },
-    overrides: {
-      steps: {
-        "email-step": {
-          providers: {
-            "sendgrid": {
-              "templateId": "1234567890",
-            },
-          },
-        },
-      },
-      providers: {
-        "sendgrid": {
-          "templateId": "1234567890",
-        },
-      },
-    },
-    to: {
-      subscriberId: "<id>",
-    },
+    overrides: {},
+    to: "SUBSCRIBER_ID",
   });
 
   // Handle the result
@@ -928,25 +734,8 @@ async function run() {
         "text": "string",
       },
     },
-    overrides: {
-      steps: {
-        "email-step": {
-          providers: {
-            "sendgrid": {
-              "templateId": "1234567890",
-            },
-          },
-        },
-      },
-      providers: {
-        "sendgrid": {
-          "templateId": "1234567890",
-        },
-      },
-    },
-    to: {
-      subscriberId: "<id>",
-    },
+    overrides: {},
+    to: "SUBSCRIBER_ID",
   });
 
   // Handle the result
@@ -980,25 +769,8 @@ async function run() {
         "text": "string",
       },
     },
-    overrides: {
-      steps: {
-        "email-step": {
-          providers: {
-            "sendgrid": {
-              "templateId": "1234567890",
-            },
-          },
-        },
-      },
-      providers: {
-        "sendgrid": {
-          "templateId": "1234567890",
-        },
-      },
-    },
-    to: {
-      subscriberId: "<id>",
-    },
+    overrides: {},
+    to: "SUBSCRIBER_ID",
   }, {
     retries: {
       strategy: "backoff",
@@ -1047,25 +819,8 @@ async function run() {
         "text": "string",
       },
     },
-    overrides: {
-      steps: {
-        "email-step": {
-          providers: {
-            "sendgrid": {
-              "templateId": "1234567890",
-            },
-          },
-        },
-      },
-      providers: {
-        "sendgrid": {
-          "templateId": "1234567890",
-        },
-      },
-    },
-    to: {
-      subscriberId: "<id>",
-    },
+    overrides: {},
+    to: "SUBSCRIBER_ID",
   });
 
   // Handle the result

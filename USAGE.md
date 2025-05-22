@@ -17,25 +17,8 @@ async function run() {
         "text": "string",
       },
     },
-    overrides: {
-      steps: {
-        "email-step": {
-          providers: {
-            "sendgrid": {
-              "templateId": "1234567890",
-            },
-          },
-        },
-      },
-      providers: {
-        "sendgrid": {
-          "templateId": "1234567890",
-        },
-      },
-    },
-    to: {
-      subscriberId: "<id>",
-    },
+    overrides: {},
+    to: "SUBSCRIBER_ID",
   });
 
   // Handle the result
@@ -85,20 +68,6 @@ async function run() {
       },
     },
     overrides: {
-      steps: {
-        "email-step": {
-          providers: {
-            "sendgrid": {
-              "templateId": "1234567890",
-            },
-          },
-        },
-      },
-      providers: {
-        "sendgrid": {
-          "templateId": "1234567890",
-        },
-      },
       additionalProperties: {
         "fcm": {
           "data": {
@@ -137,25 +106,8 @@ async function run() {
             "text": "string",
           },
         },
-        overrides: {
-          steps: {
-            "email-step": {
-              providers: {
-                "sendgrid": {
-                  "templateId": "1234567890",
-                },
-              },
-            },
-          },
-          providers: {
-            "sendgrid": {
-              "templateId": "1234567890",
-            },
-          },
-        },
-        to: {
-          subscriberId: "<id>",
-        },
+        overrides: {},
+        to: "SUBSCRIBER_ID",
       },
       {
         workflowId: "workflow_identifier",
@@ -165,28 +117,8 @@ async function run() {
             "text": "string",
           },
         },
-        overrides: {
-          steps: {
-            "email-step": {
-              providers: {
-                "sendgrid": {
-                  "templateId": "1234567890",
-                },
-              },
-            },
-          },
-          providers: {
-            "sendgrid": {
-              "templateId": "1234567890",
-            },
-          },
-        },
-        to: [
-          {
-            topicKey: "<value>",
-            type: "Subscriber",
-          },
-        ],
+        overrides: {},
+        to: "SUBSCRIBER_ID",
       },
       {
         workflowId: "workflow_identifier",
@@ -196,26 +128,8 @@ async function run() {
             "text": "string",
           },
         },
-        overrides: {
-          steps: {
-            "email-step": {
-              providers: {
-                "sendgrid": {
-                  "templateId": "1234567890",
-                },
-              },
-            },
-          },
-          providers: {
-            "sendgrid": {
-              "templateId": "1234567890",
-            },
-          },
-        },
-        to: [
-          "SUBSCRIBER_ID",
-          "SUBSCRIBER_ID",
-        ],
+        overrides: {},
+        to: "SUBSCRIBER_ID",
       },
     ],
   });

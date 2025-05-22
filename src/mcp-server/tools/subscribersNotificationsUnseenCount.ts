@@ -15,7 +15,9 @@ export const tool$subscribersNotificationsUnseenCount: ToolDefinition<
   typeof args
 > = {
   name: "subscribers-notifications-unseen-count",
-  description: `Get the unseen in-app notifications count for subscribers feed`,
+  description: `Retrieve unseen notifications count
+
+Retrieve unseen in-app (inbox) notifications count for a subscriber by its unique key identifier **subscriberId**.`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await subscribersNotificationsUnseenCount(

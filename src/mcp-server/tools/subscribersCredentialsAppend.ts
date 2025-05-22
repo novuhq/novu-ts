@@ -16,10 +16,10 @@ const args = {
 
 export const tool$subscribersCredentialsAppend: ToolDefinition<typeof args> = {
   name: "subscribers-credentials-append",
-  description: `Modify subscriber credentials
+  description: `Upsert provider credentials
 
-Subscriber credentials associated to the delivery methods such as slack and push tokens.
-    This endpoint appends provided credentials and deviceTokens to the existing ones.`,
+Update credentials for a provider such as **slack** and **FCM**. 
+      **providerId** is required field. This API replaces the existing deviceTokens with the provided ones.`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await subscribersCredentialsAppend(

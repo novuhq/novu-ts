@@ -13,9 +13,10 @@ const args = {
 
 export const tool$messagesDelete: ToolDefinition<typeof args> = {
   name: "messages-delete",
-  description: `Delete message
+  description: `Delete a message
 
-Deletes a message entity from the Novu platform`,
+Delete a message entity from the Novu platform by **messageId**. 
+    This action is irreversible. **messageId** is required and of mongodbId type.`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await messagesDelete(

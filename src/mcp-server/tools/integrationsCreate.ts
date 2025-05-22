@@ -15,9 +15,10 @@ const args = {
 
 export const tool$integrationsCreate: ToolDefinition<typeof args> = {
   name: "integrations-create",
-  description: `Create integration
+  description: `Create an integration
 
-Create an integration for the current environment the user is based on the API key provided`,
+Create an integration for the current environment the user is based on the API key provided. 
+    Each provider supports different credentials, check the provider documentation for more details.`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await integrationsCreate(

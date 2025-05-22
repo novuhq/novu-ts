@@ -16,8 +16,9 @@ const args = {
 
 export const tool$subscribersMessagesMarkAll: ToolDefinition<typeof args> = {
   name: "subscribers-messages-mark-all",
-  description:
-    `Marks all the subscriber messages as read, unread, seen or unseen.`,
+  description: `Update all notifications state
+
+Update all subscriber in-app (inbox) notifications state such as read, unread, seen or unseen by **subscriberId**.`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await subscribersMessagesMarkAll(

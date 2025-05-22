@@ -14,7 +14,10 @@ const args = {
 export const tool$subscribersMessagesUpdateAsSeen: ToolDefinition<typeof args> =
   {
     name: "subscribers-messages-update-as-seen",
-    description: `Mark message action as seen`,
+    description: `Update notification action status
+
+Update in-app (inbox) notification's action status by its unique key identifier **messageId** and type field **type**. 
+      **type** field can be **primary** or **secondary**`,
     args,
     tool: async (client, args, ctx) => {
       const [result, apiCall] = await subscribersMessagesUpdateAsSeen(

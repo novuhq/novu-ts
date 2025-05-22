@@ -43,8 +43,8 @@ let value: SubscribersV1ControllerMarkActionAsSeenResponse = {
       organizationId: "<id>",
       environmentId: "<id>",
       deleted: false,
-      createdAt: "1736663211078",
-      updatedAt: "1747067185401",
+      createdAt: "1725201746902",
+      updatedAt: "1735605721225",
     },
     template: {
       name: "<value>",
@@ -84,7 +84,7 @@ let value: SubscribersV1ControllerMarkActionAsSeenResponse = {
       deletedAt: "<value>",
       deletedBy: "<value>",
     },
-    createdAt: "1732664093105",
+    createdAt: "1721202628915",
     content: [
       {
         type: "text",
