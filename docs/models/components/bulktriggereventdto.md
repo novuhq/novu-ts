@@ -16,9 +16,7 @@ let value: BulkTriggerEventDto = {
         },
       },
       overrides: {},
-      to: {
-        subscriberId: "<id>",
-      },
+      to: "SUBSCRIBER_ID",
     },
   ],
 };

@@ -14,9 +14,10 @@ const args = {
 
 export const tool$subscribersCredentialsDelete: ToolDefinition<typeof args> = {
   name: "subscribers-credentials-delete",
-  description: `Delete subscriber credentials by providerId
+  description: `Delete provider credentials
 
-Delete subscriber credentials such as slack and expo tokens.`,
+Delete subscriber credentials for a provider such as **slack** and **FCM** by **providerId**. 
+    This action is irreversible and will remove the credentials for the provider for particular **subscriberId**.`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await subscribersCredentialsDelete(

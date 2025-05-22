@@ -13,7 +13,12 @@ const args = {
 
 export const tool$notificationsList: ToolDefinition<typeof args> = {
   name: "notifications-list",
-  description: `Get notifications`,
+  description: `List all events
+
+List all notification events (triggered events) for the current environment. 
+    This API supports filtering by **channels**, **templates**, **emails**, **subscriberIds**, **transactionId**, **topicKey**. 
+    Checkout all available filters in the query section.
+    This API returns event triggers, to list each channel notifications, check messages APIs.`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await notificationsList(

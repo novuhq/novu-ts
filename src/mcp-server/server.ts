@@ -20,23 +20,17 @@ import { tool$integrationsList } from "./tools/integrationsList.js";
 import { tool$integrationsListActive } from "./tools/integrationsListActive.js";
 import { tool$integrationsSetAsPrimary } from "./tools/integrationsSetAsPrimary.js";
 import { tool$integrationsUpdate } from "./tools/integrationsUpdate.js";
-import { tool$integrationsWebhooksRetrieve } from "./tools/integrationsWebhooksRetrieve.js";
 import { tool$messagesDelete } from "./tools/messagesDelete.js";
 import { tool$messagesDeleteByTransactionId } from "./tools/messagesDeleteByTransactionId.js";
 import { tool$messagesRetrieve } from "./tools/messagesRetrieve.js";
 import { tool$notificationsList } from "./tools/notificationsList.js";
 import { tool$notificationsRetrieve } from "./tools/notificationsRetrieve.js";
-import { tool$notificationsStatsGraph } from "./tools/notificationsStatsGraph.js";
-import { tool$notificationsStatsRetrieve } from "./tools/notificationsStatsRetrieve.js";
-import { tool$subscribersAuthenticationChatAccessOauth } from "./tools/subscribersAuthenticationChatAccessOauth.js";
-import { tool$subscribersAuthenticationChatAccessOauthCallBack } from "./tools/subscribersAuthenticationChatAccessOauthCallBack.js";
 import { tool$subscribersCreate } from "./tools/subscribersCreate.js";
 import { tool$subscribersCreateBulk } from "./tools/subscribersCreateBulk.js";
 import { tool$subscribersCredentialsAppend } from "./tools/subscribersCredentialsAppend.js";
 import { tool$subscribersCredentialsDelete } from "./tools/subscribersCredentialsDelete.js";
 import { tool$subscribersCredentialsUpdate } from "./tools/subscribersCredentialsUpdate.js";
 import { tool$subscribersDelete } from "./tools/subscribersDelete.js";
-import { tool$subscribersList } from "./tools/subscribersList.js";
 import { tool$subscribersMessagesMarkAll } from "./tools/subscribersMessagesMarkAll.js";
 import { tool$subscribersMessagesMarkAllAs } from "./tools/subscribersMessagesMarkAllAs.js";
 import { tool$subscribersMessagesUpdateAsSeen } from "./tools/subscribersMessagesUpdateAsSeen.js";
@@ -49,7 +43,6 @@ import { tool$subscribersPropertiesUpdateOnlineFlag } from "./tools/subscribersP
 import { tool$subscribersRetrieve } from "./tools/subscribersRetrieve.js";
 import { tool$subscribersSearch } from "./tools/subscribersSearch.js";
 import { tool$subscribersTopicsList } from "./tools/subscribersTopicsList.js";
-import { tool$subscribersUpsert } from "./tools/subscribersUpsert.js";
 import { tool$topicsCreate } from "./tools/topicsCreate.js";
 import { tool$topicsDelete } from "./tools/topicsDelete.js";
 import { tool$topicsGet } from "./tools/topicsGet.js";
@@ -73,7 +66,7 @@ export function createMCPServer(deps: {
 }) {
   const server = new McpServer({
     name: "Novu",
-    version: "1.0.0",
+    version: "1.1.0",
   });
 
   const client = new NovuCore({
@@ -112,8 +105,6 @@ export function createMCPServer(deps: {
   tool(tool$subscribersRetrieve);
   tool(tool$subscribersPatch);
   tool(tool$subscribersDelete);
-  tool(tool$subscribersList);
-  tool(tool$subscribersUpsert);
   tool(tool$subscribersCreateBulk);
   tool(tool$topicsList);
   tool(tool$topicsCreate);
@@ -137,8 +128,6 @@ export function createMCPServer(deps: {
   tool(tool$subscribersCredentialsUpdate);
   tool(tool$subscribersCredentialsAppend);
   tool(tool$subscribersCredentialsDelete);
-  tool(tool$subscribersAuthenticationChatAccessOauth);
-  tool(tool$subscribersAuthenticationChatAccessOauthCallBack);
   tool(tool$subscribersMessagesUpdateAsSeen);
   tool(tool$subscribersMessagesMarkAll);
   tool(tool$subscribersMessagesMarkAllAs);
@@ -149,9 +138,6 @@ export function createMCPServer(deps: {
   tool(tool$topicsSubscriptionsCreate);
   tool(tool$topicsSubscriptionsDelete);
   tool(tool$topicsSubscribersRetrieve);
-  tool(tool$integrationsWebhooksRetrieve);
-  tool(tool$notificationsStatsGraph);
-  tool(tool$notificationsStatsRetrieve);
 
   return server;
 }

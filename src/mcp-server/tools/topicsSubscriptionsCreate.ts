@@ -16,8 +16,10 @@ const args = {
 
 export const tool$topicsSubscriptionsCreate: ToolDefinition<typeof args> = {
   name: "topics-subscriptions-create",
-  description:
-    `Create topic subscriptions, if the topic does not exist, it will be created.`,
+  description: `Create topic subscriptions
+
+This api will create subscription for subscriberIds for a topic. 
+      Its like subscribing to a common interest group. if topic does not exist, it will be created.`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await topicsSubscriptionsCreate(

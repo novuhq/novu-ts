@@ -3,23 +3,22 @@
 
 ## Overview
 
-A subscriber in Novu represents someone who should receive a message. A subscriber’s profile information contains important attributes about the subscriber that will be used in messages (name, email). The subscriber object can contain other key-value pairs that can be used to further personalize your messages.
+A subscriber in Novu represents someone who should receive a message. A subscriber's profile information contains important attributes about the subscriber that will be used in messages (name, email). The subscriber object can contain other key-value pairs that can be used to further personalize your messages.
 <https://docs.novu.co/subscribers/subscribers>
 
 ### Available Operations
 
-* [search](#search) - Search for subscribers
-* [create](#create) - Create subscriber
-* [retrieve](#retrieve) - Get subscriber
-* [patch](#patch) - Patch subscriber
+* [search](#search) - Search subscribers
+* [create](#create) - Create a subscriber
+* [retrieve](#retrieve) - Retrieve a subscriber
+* [patch](#patch) - Update a subscriber
 * [delete](#delete) - Delete subscriber
-* [list](#list) - Get subscribers
-* [upsert](#upsert) - Upsert subscriber
 * [createBulk](#createbulk) - Bulk create subscribers
 
 ## search
 
-Search for subscribers
+Search subscribers by their **email**, **phone**, **subscriberId** and **name**. 
+    The search is case sensitive and supports pagination.Checkout all available filters in the query section.
 
 ### Example Usage
 
@@ -95,7 +94,8 @@ run();
 
 ## create
 
-Create subscriber with the given data, if the subscriber already exists, it will be updated
+Create a subscriber with the subscriber attributes. 
+      **subscriberId** is a required field, rest other fields are optional, if the subscriber already exists, it will be updated
 
 ### Example Usage
 
@@ -176,7 +176,8 @@ run();
 
 ## retrieve
 
-Get subscriber by your internal id used to identify the subscriber
+Retrive a subscriber by its unique key identifier **subscriberId**. 
+    **subscriberId** field is required.
 
 ### Example Usage
 
@@ -253,7 +254,8 @@ run();
 
 ## patch
 
-Patch subscriber by your internal id used to identify the subscriber
+Update a subscriber by its unique key identifier **subscriberId**. 
+    **subscriberId** is a required field, rest other fields are optional
 
 ### Example Usage
 
@@ -331,7 +333,7 @@ run();
 
 ## delete
 
-Deletes a subscriber entity from the Novu platform
+Deletes a subscriber entity from the Novu platform along with associated messages, preferences, and topic subscriptions
 
 ### Example Usage
 
@@ -406,205 +408,10 @@ run();
 | errors.ErrorDto                        | 500                                    | application/json                       |
 | errors.SDKError                        | 4XX, 5XX                               | \*/\*                                  |
 
-## list
-
-Returns a list of subscribers, could paginated using the `page` and `limit` query parameter
-
-### Example Usage
-
-```typescript
-import { Novu } from "@novu/api";
-
-const novu = new Novu({
-  secretKey: "YOUR_SECRET_KEY_HERE",
-});
-
-async function run() {
-  const result = await novu.subscribers.list();
-
-  for await (const page of result) {
-    // Handle the page
-    console.log(page);
-  }
-}
-
-run();
-```
-
-### Standalone function
-
-The standalone function version of this method:
-
-```typescript
-import { NovuCore } from "@novu/api/core.js";
-import { subscribersList } from "@novu/api/funcs/subscribersList.js";
-
-// Use `NovuCore` for best tree-shaking performance.
-// You can create one instance of it to use across an application.
-const novu = new NovuCore({
-  secretKey: "YOUR_SECRET_KEY_HERE",
-});
-
-async function run() {
-  const res = await subscribersList(novu);
-
-  if (!res.ok) {
-    throw res.error;
-  }
-
-  const { value: result } = res;
-
-  for await (const page of result) {
-    // Handle the page
-    console.log(page);
-  }
-}
-
-run();
-```
-
-### Parameters
-
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `page`                                                                                                                                                                         | *number*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | N/A                                                                                                                                                                            |
-| `limit`                                                                                                                                                                        | *number*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | N/A                                                                                                                                                                            |
-| `idempotencyKey`                                                                                                                                                               | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | A header for idempotency purposes                                                                                                                                              |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
-
-### Response
-
-**Promise\<[operations.SubscribersV1ControllerListSubscribersResponse](../../models/operations/subscribersv1controllerlistsubscribersresponse.md)\>**
-
-### Errors
-
-| Error Type                             | Status Code                            | Content Type                           |
-| -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| errors.ErrorDto                        | 414                                    | application/json                       |
-| errors.ErrorDto                        | 400, 401, 403, 404, 405, 409, 413, 415 | application/json                       |
-| errors.ValidationErrorDto              | 422                                    | application/json                       |
-| errors.ErrorDto                        | 500                                    | application/json                       |
-| errors.SDKError                        | 4XX, 5XX                               | \*/\*                                  |
-
-## upsert
-
-Used to upsert the subscriber entity with new information
-
-### Example Usage
-
-```typescript
-import { Novu } from "@novu/api";
-
-const novu = new Novu({
-  secretKey: "YOUR_SECRET_KEY_HERE",
-});
-
-async function run() {
-  const result = await novu.subscribers.upsert({
-    email: "john.doe@example.com",
-    firstName: "John",
-    lastName: "Doe",
-    phone: "+1234567890",
-    avatar: "https://example.com/avatar.jpg",
-    locale: "en-US",
-    data: {
-      "preferences": {
-        "notifications": true,
-        "theme": "dark",
-      },
-      "tags": [
-        "premium",
-        "newsletter",
-      ],
-    },
-  }, "<id>");
-
-  // Handle the result
-  console.log(result);
-}
-
-run();
-```
-
-### Standalone function
-
-The standalone function version of this method:
-
-```typescript
-import { NovuCore } from "@novu/api/core.js";
-import { subscribersUpsert } from "@novu/api/funcs/subscribersUpsert.js";
-
-// Use `NovuCore` for best tree-shaking performance.
-// You can create one instance of it to use across an application.
-const novu = new NovuCore({
-  secretKey: "YOUR_SECRET_KEY_HERE",
-});
-
-async function run() {
-  const res = await subscribersUpsert(novu, {
-    email: "john.doe@example.com",
-    firstName: "John",
-    lastName: "Doe",
-    phone: "+1234567890",
-    avatar: "https://example.com/avatar.jpg",
-    locale: "en-US",
-    data: {
-      "preferences": {
-        "notifications": true,
-        "theme": "dark",
-      },
-      "tags": [
-        "premium",
-        "newsletter",
-      ],
-    },
-  }, "<id>");
-
-  if (!res.ok) {
-    throw res.error;
-  }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
-}
-
-run();
-```
-
-### Parameters
-
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `subscriberId`                                                                                                                                                                 | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
-| `updateSubscriberRequestDto`                                                                                                                                                   | [components.UpdateSubscriberRequestDto](../../models/components/updatesubscriberrequestdto.md)                                                                                 | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
-| `idempotencyKey`                                                                                                                                                               | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | A header for idempotency purposes                                                                                                                                              |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
-
-### Response
-
-**Promise\<[operations.SubscribersV1ControllerUpdateSubscriberResponse](../../models/operations/subscribersv1controllerupdatesubscriberresponse.md)\>**
-
-### Errors
-
-| Error Type                             | Status Code                            | Content Type                           |
-| -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| errors.ErrorDto                        | 414                                    | application/json                       |
-| errors.ErrorDto                        | 400, 401, 403, 404, 405, 409, 413, 415 | application/json                       |
-| errors.ValidationErrorDto              | 422                                    | application/json                       |
-| errors.ErrorDto                        | 500                                    | application/json                       |
-| errors.SDKError                        | 4XX, 5XX                               | \*/\*                                  |
-
 ## createBulk
 
 
-      Using this endpoint you can create multiple subscribers at once, to avoid multiple calls to the API.
-      The bulk API is limited to 500 subscribers per request.
+      Using this endpoint multiple subscribers can be created at once. The bulk API is limited to 500 subscribers per request.
     
 
 ### Example Usage

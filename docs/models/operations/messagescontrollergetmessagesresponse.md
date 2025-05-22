@@ -46,8 +46,8 @@ let value: MessagesControllerGetMessagesResponse = {
           organizationId: "<id>",
           environmentId: "<id>",
           deleted: false,
-          createdAt: "1746775801653",
-          updatedAt: "1747143008283",
+          createdAt: "1735314341198",
+          updatedAt: "1735681547828",
         },
         template: {
           name: "<value>",
@@ -87,7 +87,7 @@ let value: MessagesControllerGetMessagesResponse = {
           deletedAt: "<value>",
           deletedBy: "<value>",
         },
-        createdAt: "1716796359602",
+        createdAt: "1705334899139",
         content: [
           {
             type: "button",

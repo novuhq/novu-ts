@@ -12,7 +12,11 @@ const args = {
 
 export const tool$topicsList: ToolDefinition<typeof args> = {
   name: "topics-list",
-  description: `Get topics list`,
+  description: `List all topics
+
+This api returns a paginated list of topics.
+    Topics can be filtered by **key**, **name**, or **includeCursor** to paginate through the list. 
+    Checkout all available filters in the query section.`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await topicsList(

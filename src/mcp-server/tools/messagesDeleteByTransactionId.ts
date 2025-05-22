@@ -17,7 +17,8 @@ export const tool$messagesDeleteByTransactionId: ToolDefinition<typeof args> = {
   name: "messages-delete-by-transaction-id",
   description: `Delete messages by transactionId
 
-Deletes messages entity from the Novu platform using TransactionId of message`,
+Delete multiple messages from the Novu platform using **transactionId** of triggered event. 
+    This API supports filtering by **channel** and delete all messages associated with the **transactionId**.`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await messagesDeleteByTransactionId(

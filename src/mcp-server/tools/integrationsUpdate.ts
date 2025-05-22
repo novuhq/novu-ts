@@ -16,7 +16,10 @@ const args = {
 
 export const tool$integrationsUpdate: ToolDefinition<typeof args> = {
   name: "integrations-update",
-  description: `Update integration`,
+  description: `Update an integration
+
+Update an integration by its unique key identifier **integrationId**. 
+    Each provider supports different credentials, check the provider documentation for more details.`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await integrationsUpdate(

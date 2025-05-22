@@ -5,13 +5,14 @@
 
 ### Available Operations
 
-* [updateAsSeen](#updateasseen) - Mark message action as seen
-* [markAll](#markall) - Marks all the subscriber messages as read, unread, seen or unseen.
-* [markAllAs](#markallas) - Mark a subscriber messages as seen, read, unseen or unread
+* [updateAsSeen](#updateasseen) - Update notification action status
+* [markAll](#markall) - Update all notifications state
+* [markAllAs](#markallas) - Update notifications state
 
 ## updateAsSeen
 
-Mark message action as seen
+Update in-app (inbox) notification's action status by its unique key identifier **messageId** and type field **type**. 
+      **type** field can be **primary** or **secondary**
 
 ### Example Usage
 
@@ -28,7 +29,7 @@ async function run() {
     type: "<value>",
     subscriberId: "<id>",
     markMessageActionAsSeenDto: {
-      status: "done",
+      status: "pending",
     },
   });
 
@@ -59,7 +60,7 @@ async function run() {
     type: "<value>",
     subscriberId: "<id>",
     markMessageActionAsSeenDto: {
-      status: "done",
+      status: "pending",
     },
   });
 
@@ -101,7 +102,7 @@ run();
 
 ## markAll
 
-Marks all the subscriber messages as read, unread, seen or unseen.
+Update all subscriber in-app (inbox) notifications state such as read, unread, seen or unseen by **subscriberId**.
 
 ### Example Usage
 
@@ -114,7 +115,7 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.subscribers.messages.markAll({
-    markAs: "seen",
+    markAs: "read",
   }, "<id>");
 
   // Handle the result
@@ -140,7 +141,7 @@ const novu = new NovuCore({
 
 async function run() {
   const res = await subscribersMessagesMarkAll(novu, {
-    markAs: "seen",
+    markAs: "read",
   }, "<id>");
 
   if (!res.ok) {
@@ -183,7 +184,8 @@ run();
 
 ## markAllAs
 
-Mark a subscriber messages as seen, read, unseen or unread
+Update subscriber's multiple in-app (inbox) notifications state such as seen, read, unseen or unread by **subscriberId**. 
+      **messageId** is of type mongodbId of notifications
 
 ### Example Usage
 
@@ -196,8 +198,8 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.subscribers.messages.markAllAs({
-    messageId: "<id>",
-    markAs: "unread",
+    messageId: [],
+    markAs: "seen",
   }, "<id>");
 
   // Handle the result
@@ -223,8 +225,8 @@ const novu = new NovuCore({
 
 async function run() {
   const res = await subscribersMessagesMarkAllAs(novu, {
-    messageId: "<id>",
-    markAs: "unread",
+    messageId: [],
+    markAs: "seen",
   }, "<id>");
 
   if (!res.ok) {

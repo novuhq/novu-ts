@@ -12,9 +12,11 @@ const args = {
 
 export const tool$messagesRetrieve: ToolDefinition<typeof args> = {
   name: "messages-retrieve",
-  description: `Get messages
+  description: `List all messages
 
-Returns a list of messages, could paginate using the \`page\` query parameter`,
+List all messages for the current environment. 
+    This API supports filtering by **channel**, **subscriberId**, and **transactionId**. 
+    This API returns a paginated list of messages.`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await messagesRetrieve(

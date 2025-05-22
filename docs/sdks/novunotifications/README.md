@@ -5,12 +5,12 @@
 
 ### Available Operations
 
-* [feed](#feed) - Get in-app notification feed for a particular subscriber
-* [unseenCount](#unseencount) - Get the unseen in-app notifications count for subscribers feed
+* [feed](#feed) - Retrieve subscriber notifications
+* [unseenCount](#unseencount) - Retrieve unseen notifications count
 
 ## feed
 
-Get in-app notification feed for a particular subscriber
+Retrieve subscriber in-app (inbox) notifications by its unique key identifier **subscriberId**.
 
 ### Example Usage
 
@@ -92,7 +92,7 @@ run();
 
 ## unseenCount
 
-Get the unseen in-app notifications count for subscribers feed
+Retrieve unseen in-app (inbox) notifications count for a subscriber by its unique key identifier **subscriberId**.
 
 ### Example Usage
 

@@ -15,9 +15,10 @@ const args = {
 
 export const tool$subscribersPatch: ToolDefinition<typeof args> = {
   name: "subscribers-patch",
-  description: `Patch subscriber
+  description: `Update a subscriber
 
-Patch subscriber by your internal id used to identify the subscriber`,
+Update a subscriber by its unique key identifier **subscriberId**. 
+    **subscriberId** is a required field, rest other fields are optional`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await subscribersPatch(

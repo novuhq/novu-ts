@@ -8,16 +8,16 @@ With the help of the Integration Store, you can easily integrate your favorite d
 
 ### Available Operations
 
-* [list](#list) - Get integrations
-* [create](#create) - Create integration
-* [update](#update) - Update integration
-* [delete](#delete) - Delete integration
-* [setAsPrimary](#setasprimary) - Set integration as primary
-* [listActive](#listactive) - Get active integrations
+* [list](#list) - List all integrations
+* [create](#create) - Create an integration
+* [update](#update) - Update an integration
+* [delete](#delete) - Delete an integration
+* [setAsPrimary](#setasprimary) - Update integration as primary
+* [listActive](#listactive) - List active integrations
 
 ## list
 
-Return all the integrations the user has created for that organization. Review v.0.17.0 changelog for a breaking change
+List all the channels integrations created in the organization
 
 ### Example Usage
 
@@ -93,7 +93,8 @@ run();
 
 ## create
 
-Create an integration for the current environment the user is based on the API key provided
+Create an integration for the current environment the user is based on the API key provided. 
+    Each provider supports different credentials, check the provider documentation for more details.
 
 ### Example Usage
 
@@ -107,7 +108,7 @@ const novu = new Novu({
 async function run() {
   const result = await novu.integrations.create({
     providerId: "<id>",
-    channel: "sms",
+    channel: "email",
   });
 
   // Handle the result
@@ -134,7 +135,7 @@ const novu = new NovuCore({
 async function run() {
   const res = await integrationsCreate(novu, {
     providerId: "<id>",
-    channel: "sms",
+    channel: "email",
   });
 
   if (!res.ok) {
@@ -176,7 +177,8 @@ run();
 
 ## update
 
-Update integration
+Update an integration by its unique key identifier **integrationId**. 
+    Each provider supports different credentials, check the provider documentation for more details.
 
 ### Example Usage
 
@@ -254,7 +256,8 @@ run();
 
 ## delete
 
-Delete integration
+Delete an integration by its unique key identifier **integrationId**. 
+    This action is irreversible.
 
 ### Example Usage
 
@@ -331,7 +334,9 @@ run();
 
 ## setAsPrimary
 
-Set integration as primary
+Update an integration as **primary** by its unique key identifier **integrationId**. 
+    This API will set the integration as primary for that channel in the current environment. 
+    Primary integration is used to deliver notification for sms and email channels in the workflow.
 
 ### Example Usage
 
@@ -408,7 +413,7 @@ run();
 
 ## listActive
 
-Return all the active integrations the user has created for that organization. Review v.0.17.0 changelog for a breaking change
+List all the active integrations created in the organization
 
 ### Example Usage
 

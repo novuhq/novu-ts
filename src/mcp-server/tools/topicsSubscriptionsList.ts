@@ -13,7 +13,10 @@ const args = {
 
 export const tool$topicsSubscriptionsList: ToolDefinition<typeof args> = {
   name: "topics-subscriptions-list",
-  description: `List topic subscriptions`,
+  description: `List topic subscriptions
+
+List all topics that a subscriber is subscribed to.
+    Checkout all available filters in the query section.`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await topicsSubscriptionsList(

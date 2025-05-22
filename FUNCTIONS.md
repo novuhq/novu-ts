@@ -38,25 +38,8 @@ async function run() {
         "text": "string",
       },
     },
-    overrides: {
-      steps: {
-        "email-step": {
-          providers: {
-            "sendgrid": {
-              "templateId": "1234567890",
-            },
-          },
-        },
-      },
-      providers: {
-        "sendgrid": {
-          "templateId": "1234567890",
-        },
-      },
-    },
-    to: {
-      subscriberId: "<id>",
-    },
+    overrides: {},
+    to: "SUBSCRIBER_ID",
   });
 
   switch (true) {

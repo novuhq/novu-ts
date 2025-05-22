@@ -5,13 +5,14 @@
 
 ### Available Operations
 
-* [update](#update) - Update subscriber credentials
-* [append](#append) - Modify subscriber credentials
-* [delete](#delete) - Delete subscriber credentials by providerId
+* [update](#update) - Update provider credentials
+* [append](#append) - Upsert provider credentials
+* [delete](#delete) - Delete provider credentials
 
 ## update
 
-Subscriber credentials associated to the delivery methods such as slack and push tokens.
+Update credentials for a provider such as slack and push tokens. 
+      **providerId** is required field. This API appends the **deviceTokens** to the existing ones.
 
 ### Example Usage
 
@@ -24,7 +25,7 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.subscribers.credentials.update({
-    providerId: "pushpad",
+    providerId: "slack",
     credentials: {
       webhookUrl: "https://example.com/webhook",
       channel: "general",
@@ -64,7 +65,7 @@ const novu = new NovuCore({
 
 async function run() {
   const res = await subscribersCredentialsUpdate(novu, {
-    providerId: "pushpad",
+    providerId: "slack",
     credentials: {
       webhookUrl: "https://example.com/webhook",
       channel: "general",
@@ -121,8 +122,8 @@ run();
 
 ## append
 
-Subscriber credentials associated to the delivery methods such as slack and push tokens.
-    This endpoint appends provided credentials and deviceTokens to the existing ones.
+Update credentials for a provider such as **slack** and **FCM**. 
+      **providerId** is required field. This API replaces the existing deviceTokens with the provided ones.
 
 ### Example Usage
 
@@ -135,7 +136,7 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.subscribers.credentials.append({
-    providerId: "zulip",
+    providerId: "one-signal",
     credentials: {
       webhookUrl: "https://example.com/webhook",
       channel: "general",
@@ -175,7 +176,7 @@ const novu = new NovuCore({
 
 async function run() {
   const res = await subscribersCredentialsAppend(novu, {
-    providerId: "zulip",
+    providerId: "one-signal",
     credentials: {
       webhookUrl: "https://example.com/webhook",
       channel: "general",
@@ -232,7 +233,8 @@ run();
 
 ## delete
 
-Delete subscriber credentials such as slack and expo tokens.
+Delete subscriber credentials for a provider such as **slack** and **FCM** by **providerId**. 
+    This action is irreversible and will remove the credentials for the provider for particular **subscriberId**.
 
 ### Example Usage
 

@@ -16,9 +16,11 @@ const args = {
 
 export const tool$subscribersPreferencesUpdate: ToolDefinition<typeof args> = {
   name: "subscribers-preferences-update",
-  description: `Update subscriber global or workflow specific preferences
+  description: `Update subscriber preferences
 
-Update subscriber global or workflow specific preferences`,
+Update subscriber preferences by its unique key identifier **subscriberId**. 
+    **workflowId** is optional field, if provided, this API will update that workflow preference, 
+    otherwise it will update global preferences`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await subscribersPreferencesUpdate(

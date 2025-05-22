@@ -15,7 +15,7 @@ const args = {
 
 export const tool$topicsCreate: ToolDefinition<typeof args> = {
   name: "topics-create",
-  description: `Create or update a topic
+  description: `Create a topic
 
 Creates a new topic if it does not exist, or updates an existing topic if it already exists`,
   args,

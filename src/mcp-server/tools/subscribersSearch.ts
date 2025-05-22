@@ -13,7 +13,10 @@ const args = {
 
 export const tool$subscribersSearch: ToolDefinition<typeof args> = {
   name: "subscribers-search",
-  description: `Search for subscribers`,
+  description: `Search subscribers
+
+Search subscribers by their **email**, **phone**, **subscriberId** and **name**. 
+    The search is case sensitive and supports pagination.Checkout all available filters in the query section.`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await subscribersSearch(

@@ -17,8 +17,7 @@ export const tool$subscribersCreateBulk: ToolDefinition<typeof args> = {
   description: `Bulk create subscribers
 
 
-      Using this endpoint you can create multiple subscribers at once, to avoid multiple calls to the API.
-      The bulk API is limited to 500 subscribers per request.
+      Using this endpoint multiple subscribers can be created at once. The bulk API is limited to 500 subscribers per request.
     `,
   args,
   tool: async (client, args, ctx) => {

@@ -13,7 +13,9 @@ const args = {
 
 export const tool$topicsGet: ToolDefinition<typeof args> = {
   name: "topics-get",
-  description: `Get topic by key`,
+  description: `Retrieve a topic
+
+Retrieve a topic by its unique key identifier **topicKey**`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await topicsGet(

@@ -20,7 +20,7 @@ export const tool$subscribersPropertiesUpdateOnlineFlag: ToolDefinition<
   name: "subscribers-properties-update-online-flag",
   description: `Update subscriber online status
 
-Used to update the subscriber isOnline flag.`,
+Update the subscriber online status by its unique key identifier **subscriberId**`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await subscribersPropertiesUpdateOnlineFlag(

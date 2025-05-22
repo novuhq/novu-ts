@@ -13,7 +13,10 @@ const args = {
 
 export const tool$topicsDelete: ToolDefinition<typeof args> = {
   name: "topics-delete",
-  description: `Delete topic by key`,
+  description: `Delete a topic
+
+Delete a topic by its unique key identifier **topicKey**. 
+    This action is irreversible and will remove all subscriptions to the topic.`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await topicsDelete(
