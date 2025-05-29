@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 6bff3a53-3f0b-40b4-942f-ff70dc583ae5
 management:
-  docChecksum: 8c6b6f3d2152211c260ef48294e8ec42
+  docChecksum: 0e9e41da21a589fdd78ae920c178c818
   docVersion: 2.2.0
-  speakeasyVersion: 1.548.4
-  generationVersion: 2.605.6
-  releaseVersion: 1.1.0
-  configChecksum: 53db28855f1e4eef44aeebb677f6c3ba
+  speakeasyVersion: 1.552.0
+  generationVersion: 2.610.0
+  releaseVersion: 1.2.0
+  configChecksum: c2dbf44ab9aac08c0a7d6e1ada37dfc7
   repoURL: https://github.com/novuhq/novu-ts.git
   installationURL: https://github.com/novuhq/novu-ts
   published: true
@@ -186,7 +186,6 @@ generatedFiles:
   - docs/models/components/subscriberfeedresponsedto.md
   - docs/models/components/subscriberglobalpreferencedto.md
   - docs/models/components/subscriberpayloaddto.md
-  - docs/models/components/subscriberpayloaddtodata.md
   - docs/models/components/subscriberpreferencechannels.md
   - docs/models/components/subscriberpreferenceoverridedto.md
   - docs/models/components/subscriberpreferencesworkflowinfodto.md
