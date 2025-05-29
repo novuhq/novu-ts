@@ -24849,7 +24849,8 @@
           "data": {
             "type": "object",
             "nullable": true,
-            "description": "Additional custom data for the subscriber"
+            "description": "Additional custom data for the subscriber",
+            "additionalProperties": true
           }
         }
       },
@@ -25744,7 +25745,8 @@
         "properties": {
           "dataSchema": {
             "type": "object",
-            "description": "JSON Schema for data"
+            "description": "JSON Schema for data",
+            "additionalProperties": true
           },
           "uiSchema": {
             "description": "UI Schema for rendering",
@@ -25859,7 +25861,8 @@
           },
           "variables": {
             "type": "object",
-            "description": "JSON Schema for variables, follows the JSON Schema standard"
+            "description": "JSON Schema for variables, follows the JSON Schema standard",
+            "additionalProperties": true
           },
           "stepId": {
             "type": "string",
