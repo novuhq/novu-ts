@@ -1,16 +1,31 @@
 # Data
 
-Additional custom data for the subscriber
 
-## Example Usage
+## Supported Types
+
+### `string`
 
 ```typescript
-import { Data } from "@novu/api/models/components";
-
-let value: Data = {};
+const value: string = "<value>";
 ```
 
-## Fields
+### `string[]`
 
-| Field       | Type        | Required    | Description |
-| ----------- | ----------- | ----------- | ----------- |
+```typescript
+const value: string[] = [
+  "<value>",
+];
+```
+
+### `boolean`
+
+```typescript
+const value: boolean = false;
+```
+
+### `number`
+
+```typescript
+const value: number = 1284.03;
+```
+
