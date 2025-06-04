@@ -8,11 +8,7 @@ import { NotificationTrigger } from "@novu/api/models/components";
 let value: NotificationTrigger = {
   type: "event",
   identifier: "<value>",
-  variables: [
-    {
-      name: "<value>",
-    },
-  ],
+  variables: [],
 };
 ```
 

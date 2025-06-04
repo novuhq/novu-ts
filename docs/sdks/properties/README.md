@@ -25,7 +25,6 @@ async function run() {
     isOnline: false,
   }, "<id>");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -50,15 +49,12 @@ async function run() {
   const res = await subscribersPropertiesUpdateOnlineFlag(novu, {
     isOnline: false,
   }, "<id>");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("subscribersPropertiesUpdateOnlineFlag failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

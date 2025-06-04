@@ -5,27 +5,7 @@
 ```typescript
 import { IntegrationsControllerGetActiveIntegrationsResponse } from "@novu/api/models/operations";
 
-let value: IntegrationsControllerGetActiveIntegrationsResponse = {
-  headers: {
-    "key": [
-      "<value>",
-    ],
-  },
-  result: [
-    {
-      environmentId: "<id>",
-      organizationId: "<id>",
-      name: "<value>",
-      identifier: "<value>",
-      providerId: "<id>",
-      channel: "in_app",
-      credentials: {},
-      active: false,
-      deleted: false,
-      primary: false,
-    },
-  ],
-};
+let value: IntegrationsControllerGetActiveIntegrationsResponse = {};
 ```
 
 ## Fields

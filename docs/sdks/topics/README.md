@@ -32,7 +32,6 @@ const novu = new Novu({
 async function run() {
   const result = await novu.topics.list({});
 
-  // Handle the result
   console.log(result);
 }
 
@@ -55,15 +54,12 @@ const novu = new NovuCore({
 
 async function run() {
   const res = await topicsList(novu, {});
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("topicsList failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -111,7 +107,6 @@ async function run() {
     name: "Task Title",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -137,15 +132,12 @@ async function run() {
     key: "task:12345",
     name: "Task Title",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("topicsCreate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -191,7 +183,6 @@ const novu = new Novu({
 async function run() {
   const result = await novu.topics.get("<value>");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -214,15 +205,12 @@ const novu = new NovuCore({
 
 async function run() {
   const res = await topicsGet(novu, "<value>");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("topicsGet failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -270,7 +258,6 @@ async function run() {
     name: "Updated Topic Name",
   }, "<value>");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -295,15 +282,12 @@ async function run() {
   const res = await topicsUpdate(novu, {
     name: "Updated Topic Name",
   }, "<value>");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("topicsUpdate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -351,7 +335,6 @@ const novu = new Novu({
 async function run() {
   const result = await novu.topics.delete("<value>");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -374,15 +357,12 @@ const novu = new NovuCore({
 
 async function run() {
   const res = await topicsDelete(novu, "<value>");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("topicsDelete failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

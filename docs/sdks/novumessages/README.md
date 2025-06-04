@@ -33,7 +33,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -63,15 +62,12 @@ async function run() {
       status: "pending",
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("subscribersMessagesUpdateAsSeen failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -118,7 +114,6 @@ async function run() {
     markAs: "read",
   }, "<id>");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -143,15 +138,12 @@ async function run() {
   const res = await subscribersMessagesMarkAll(novu, {
     markAs: "read",
   }, "<id>");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("subscribersMessagesMarkAll failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -202,7 +194,6 @@ async function run() {
     markAs: "seen",
   }, "<id>");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -228,15 +219,12 @@ async function run() {
     messageId: [],
     markAs: "seen",
   }, "<id>");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("subscribersMessagesMarkAllAs failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

@@ -5,20 +5,7 @@
 ```typescript
 import { TopicsControllerUpdateTopicResponse } from "@novu/api/models/operations";
 
-let value: TopicsControllerUpdateTopicResponse = {
-  headers: {
-    "key": [
-      "<value>",
-    ],
-  },
-  result: {
-    id: "64da692e9a94fb2e6449ad06",
-    key: "product-updates",
-    name: "Product Updates",
-    createdAt: "2023-08-15T00:00:00.000Z",
-    updatedAt: "2023-08-15T00:00:00.000Z",
-  },
-};
+let value: TopicsControllerUpdateTopicResponse = {};
 ```
 
 ## Fields

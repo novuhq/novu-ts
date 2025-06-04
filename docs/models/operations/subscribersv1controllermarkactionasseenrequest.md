@@ -9,9 +9,6 @@ let value: SubscribersV1ControllerMarkActionAsSeenRequest = {
   messageId: "<id>",
   type: "<value>",
   subscriberId: "<id>",
-  markMessageActionAsSeenDto: {
-    status: "done",
-  },
 };
 ```
 

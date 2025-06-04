@@ -5,14 +5,7 @@
 ```typescript
 import { EventsControllerCancelResponse } from "@novu/api/models/operations";
 
-let value: EventsControllerCancelResponse = {
-  headers: {
-    "key": [
-      "<value>",
-    ],
-  },
-  result: false,
-};
+let value: EventsControllerCancelResponse = {};
 ```
 
 ## Fields

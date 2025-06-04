@@ -5,48 +5,7 @@
 ```typescript
 import { SubscribersControllerGetSubscriberPreferencesResponse } from "@novu/api/models/operations";
 
-let value: SubscribersControllerGetSubscriberPreferencesResponse = {
-  headers: {
-    "key": [
-      "<value>",
-    ],
-  },
-  result: {
-    global: {
-      enabled: false,
-      channels: {
-        email: true,
-        sms: false,
-        inApp: true,
-        chat: false,
-        push: true,
-      },
-    },
-    workflows: [
-      {
-        enabled: false,
-        channels: {
-          email: true,
-          sms: false,
-          inApp: true,
-          chat: false,
-          push: true,
-        },
-        overrides: [
-          {
-            channel: "in_app",
-            source: "workflowOverride",
-          },
-        ],
-        workflow: {
-          slug: "<value>",
-          identifier: "<value>",
-          name: "<value>",
-        },
-      },
-    ],
-  },
-};
+let value: SubscribersControllerGetSubscriberPreferencesResponse = {};
 ```
 
 ## Fields

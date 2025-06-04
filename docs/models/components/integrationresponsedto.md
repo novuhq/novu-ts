@@ -13,9 +13,9 @@ let value: IntegrationResponseDto = {
   providerId: "<id>",
   channel: "sms",
   credentials: {},
-  active: false,
-  deleted: false,
-  primary: false,
+  active: true,
+  deleted: true,
+  primary: true,
 };
 ```
 

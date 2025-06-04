@@ -6,7 +6,7 @@
 import { SubscriberGlobalPreferenceDto } from "@novu/api/models/components";
 
 let value: SubscriberGlobalPreferenceDto = {
-  enabled: false,
+  enabled: true,
   channels: {
     email: true,
     sms: false,

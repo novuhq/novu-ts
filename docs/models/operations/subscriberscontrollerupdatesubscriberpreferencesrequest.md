@@ -7,9 +7,6 @@ import { SubscribersControllerUpdateSubscriberPreferencesRequest } from "@novu/a
 
 let value: SubscribersControllerUpdateSubscriberPreferencesRequest = {
   subscriberId: "<id>",
-  patchSubscriberPreferencesDto: {
-    channels: {},
-  },
 };
 ```
 

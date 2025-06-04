@@ -42,10 +42,9 @@ export function trigger(
 ): APIPromise<
   Result<
     operations.EventsControllerTriggerResponse,
-    | errors.ErrorDto
+    | errors.PayloadValidationExceptionDto
     | errors.ErrorDto
     | errors.ValidationErrorDto
-    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -72,10 +71,9 @@ async function $do(
   [
     Result<
       operations.EventsControllerTriggerResponse,
-      | errors.ErrorDto
+      | errors.PayloadValidationExceptionDto
       | errors.ErrorDto
       | errors.ValidationErrorDto
-      | errors.ErrorDto
       | SDKError
       | SDKValidationError
       | UnexpectedClientError
@@ -123,6 +121,7 @@ async function $do(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "EventsController_trigger",
     oAuth2Scopes: [],
@@ -153,6 +152,7 @@ async function $do(
     path: path,
     headers: headers,
     body: body,
+    userAgent: client._options.userAgent,
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
@@ -193,10 +193,9 @@ async function $do(
 
   const [result] = await M.match<
     operations.EventsControllerTriggerResponse,
-    | errors.ErrorDto
+    | errors.PayloadValidationExceptionDto
     | errors.ErrorDto
     | errors.ValidationErrorDto
-    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -209,9 +208,12 @@ async function $do(
       hdrs: true,
       key: "Result",
     }),
+    M.jsonErr(400, errors.PayloadValidationExceptionDto$inboundSchema, {
+      hdrs: true,
+    }),
     M.jsonErr(414, errors.ErrorDto$inboundSchema),
     M.jsonErr(
-      [400, 401, 403, 404, 405, 409, 413, 415],
+      [401, 403, 404, 405, 409, 413, 415],
       errors.ErrorDto$inboundSchema,
       { hdrs: true },
     ),

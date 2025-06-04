@@ -9,7 +9,7 @@ let value: WorkflowResponse = {
   name: "<value>",
   description: "wearily whether ski usually scarcely frivolous adaptation",
   active: false,
-  draft: false,
+  draft: true,
   preferenceSettings: {
     email: true,
     sms: false,
@@ -19,11 +19,10 @@ let value: WorkflowResponse = {
   },
   critical: false,
   tags: [
-    "<value>",
+    "<value 1>",
+    "<value 2>",
   ],
-  steps: [
-    {},
-  ],
+  steps: [],
   organizationId: "<id>",
   creatorId: "<id>",
   environmentId: "<id>",
@@ -39,7 +38,7 @@ let value: WorkflowResponse = {
     },
   ],
   notificationGroupId: "<id>",
-  deleted: false,
+  deleted: true,
   deletedAt: "<value>",
   deletedBy: "<value>",
 };

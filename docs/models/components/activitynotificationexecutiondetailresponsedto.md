@@ -9,10 +9,10 @@ let value: ActivityNotificationExecutionDetailResponseDto = {
   id: "<id>",
   status: "Pending",
   detail: "<value>",
-  isRetry: false,
-  isTest: false,
-  providerId: "emailjs",
-  source: "Credentials",
+  isRetry: true,
+  isTest: true,
+  providerId: "bulk-sms",
+  source: "Webhook",
 };
 ```
 

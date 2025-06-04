@@ -16,29 +16,7 @@ let value: GetSubscriberPreferencesDto = {
       push: true,
     },
   },
-  workflows: [
-    {
-      enabled: false,
-      channels: {
-        email: true,
-        sms: false,
-        inApp: true,
-        chat: false,
-        push: true,
-      },
-      overrides: [
-        {
-          channel: "in_app",
-          source: "template",
-        },
-      ],
-      workflow: {
-        slug: "<value>",
-        identifier: "<value>",
-        name: "<value>",
-      },
-    },
-  ],
+  workflows: [],
 };
 ```
 

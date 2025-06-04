@@ -5,26 +5,7 @@
 ```typescript
 import { EventsControllerBroadcastEventToAllRequest } from "@novu/api/models/operations";
 
-let value: EventsControllerBroadcastEventToAllRequest = {
-  triggerEventToAllRequestDto: {
-    name: "<value>",
-    payload: {
-      "comment_id": "string",
-      "post": {
-        "text": "string",
-      },
-    },
-    overrides: {
-      additionalProperties: {
-        "fcm": {
-          "data": {
-            "key": "value",
-          },
-        },
-      },
-    },
-  },
-};
+let value: EventsControllerBroadcastEventToAllRequest = {};
 ```
 
 ## Fields

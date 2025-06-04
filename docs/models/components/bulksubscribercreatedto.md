@@ -6,11 +6,7 @@
 import { BulkSubscriberCreateDto } from "@novu/api/models/components";
 
 let value: BulkSubscriberCreateDto = {
-  subscribers: [
-    {
-      subscriberId: "<id>",
-    },
-  ],
+  subscribers: [],
 };
 ```
 

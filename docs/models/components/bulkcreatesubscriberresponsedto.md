@@ -16,9 +16,7 @@ let value: BulkCreateSubscriberResponseDto = {
       subscriberId: "<id>",
     },
   ],
-  failed: [
-    {},
-  ],
+  failed: [],
 };
 ```
 

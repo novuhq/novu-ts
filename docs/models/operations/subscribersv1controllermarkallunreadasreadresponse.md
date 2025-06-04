@@ -5,14 +5,7 @@
 ```typescript
 import { SubscribersV1ControllerMarkAllUnreadAsReadResponse } from "@novu/api/models/operations";
 
-let value: SubscribersV1ControllerMarkAllUnreadAsReadResponse = {
-  headers: {
-    "key": [
-      "<value>",
-    ],
-  },
-  result: 4515.31,
-};
+let value: SubscribersV1ControllerMarkAllUnreadAsReadResponse = {};
 ```
 
 ## Fields

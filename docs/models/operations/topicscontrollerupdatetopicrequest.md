@@ -7,9 +7,6 @@ import { TopicsControllerUpdateTopicRequest } from "@novu/api/models/operations"
 
 let value: TopicsControllerUpdateTopicRequest = {
   topicKey: "<value>",
-  updateTopicRequestDto: {
-    name: "Updated Topic Name",
-  },
 };
 ```
 

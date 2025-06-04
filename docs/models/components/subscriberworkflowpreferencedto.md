@@ -6,7 +6,7 @@
 import { SubscriberWorkflowPreferenceDto } from "@novu/api/models/components";
 
 let value: SubscriberWorkflowPreferenceDto = {
-  enabled: false,
+  enabled: true,
   channels: {
     email: true,
     sms: false,
@@ -14,12 +14,7 @@ let value: SubscriberWorkflowPreferenceDto = {
     chat: false,
     push: true,
   },
-  overrides: [
-    {
-      channel: "in_app",
-      source: "template",
-    },
-  ],
+  overrides: [],
   workflow: {
     slug: "<value>",
     identifier: "<value>",

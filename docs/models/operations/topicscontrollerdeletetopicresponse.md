@@ -5,16 +5,7 @@
 ```typescript
 import { TopicsControllerDeleteTopicResponse } from "@novu/api/models/operations";
 
-let value: TopicsControllerDeleteTopicResponse = {
-  headers: {
-    "key": [
-      "<value>",
-    ],
-  },
-  result: {
-    acknowledged: true,
-  },
-};
+let value: TopicsControllerDeleteTopicResponse = {};
 ```
 
 ## Fields

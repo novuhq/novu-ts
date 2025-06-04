@@ -15,7 +15,7 @@ let value: MessageResponseDto = {
   subscriber: {
     channels: [
       {
-        providerId: "slack",
+        providerId: "ryver",
         credentials: {
           webhookUrl: "https://example.com/webhook",
           channel: "general",
@@ -37,13 +37,13 @@ let value: MessageResponseDto = {
     organizationId: "<id>",
     environmentId: "<id>",
     deleted: false,
-    createdAt: "1716157108336",
-    updatedAt: "1735621323892",
+    createdAt: "1705073857759",
+    updatedAt: "1735637622608",
   },
   template: {
     name: "<value>",
-    description: "sport afore meal classic coast allegation pantyhose",
-    active: false,
+    description: "fooey tasty aching although",
+    active: true,
     draft: false,
     preferenceSettings: {
       email: true,
@@ -52,13 +52,13 @@ let value: MessageResponseDto = {
       chat: false,
       push: true,
     },
-    critical: false,
+    critical: true,
     tags: [
-      "<value>",
+      "<value 1>",
+      "<value 2>",
+      "<value 3>",
     ],
-    steps: [
-      {},
-    ],
+    steps: [],
     organizationId: "<id>",
     creatorId: "<id>",
     environmentId: "<id>",
@@ -74,23 +74,18 @@ let value: MessageResponseDto = {
       },
     ],
     notificationGroupId: "<id>",
-    deleted: false,
+    deleted: true,
     deletedAt: "<value>",
     deletedBy: "<value>",
   },
-  createdAt: "1707167565459",
-  content: [
-    {
-      type: "text",
-      content: "<value>",
-    },
-  ],
+  createdAt: "1705841468546",
+  content: [],
   transactionId: "<id>",
-  channel: "push",
-  read: false,
-  seen: false,
+  channel: "sms",
+  read: true,
+  seen: true,
   cta: {},
-  status: "error",
+  status: "sent",
 };
 ```
 

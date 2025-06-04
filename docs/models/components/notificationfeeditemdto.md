@@ -19,14 +19,14 @@ let value: NotificationFeedItemDto = {
   updatedAt: new Date("2024-12-10T10:10:59.639Z"),
   actor: {
     data: null,
-    type: "none",
+    type: "system_icon",
   },
   transactionId: "transaction_123456",
   templateIdentifier: "template_abcdef",
   providerId: "provider_xyz",
   content: "This is a test notification content.",
   subject: "Test Notification Subject",
-  channel: "email",
+  channel: "in_app",
   read: false,
   seen: true,
   deviceTokens: [
@@ -51,7 +51,7 @@ let value: NotificationFeedItemDto = {
 | `id`                                                                                                 | *string*                                                                                             | :heavy_check_mark:                                                                                   | Unique identifier for the notification.                                                              | 615c1f2f9b0c5b001f8e4e3b                                                                             |
 | `templateId`                                                                                         | *string*                                                                                             | :heavy_check_mark:                                                                                   | Identifier for the template used to generate the notification.                                       | template_12345                                                                                       |
 | `environmentId`                                                                                      | *string*                                                                                             | :heavy_check_mark:                                                                                   | Identifier for the environment where the notification is sent.                                       | env_67890                                                                                            |
-| `messageTemplateId`                                                                                  | *string*                                                                                             | :heavy_check_mark:                                                                                   | Identifier for the message template used.                                                            | message_template_54321                                                                               |
+| `messageTemplateId`                                                                                  | *string*                                                                                             | :heavy_minus_sign:                                                                                   | Identifier for the message template used.                                                            | message_template_54321                                                                               |
 | `organizationId`                                                                                     | *string*                                                                                             | :heavy_check_mark:                                                                                   | Identifier for the organization sending the notification.                                            | org_98765                                                                                            |
 | `notificationId`                                                                                     | *string*                                                                                             | :heavy_check_mark:                                                                                   | Unique identifier for the notification instance.                                                     | notification_123456                                                                                  |
 | `subscriberId`                                                                                       | *string*                                                                                             | :heavy_check_mark:                                                                                   | Unique identifier for the subscriber receiving the notification.                                     | subscriber_112233                                                                                    |

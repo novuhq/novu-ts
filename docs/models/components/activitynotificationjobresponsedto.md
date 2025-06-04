@@ -8,42 +8,18 @@ import { ActivityNotificationJobResponseDto } from "@novu/api/models/components"
 let value: ActivityNotificationJobResponseDto = {
   id: "<id>",
   type: "in_app",
-  executionDetails: [
-    {
-      id: "<id>",
-      status: "Success",
-      detail: "<value>",
-      isRetry: false,
-      isTest: false,
-      providerId: "sparkpost",
-      source: "Credentials",
-    },
-  ],
+  executionDetails: [],
   step: {
     id: "<id>",
     active: false,
-    filters: [
-      {
-        isNegated: false,
-        type: "LIST",
-        value: "AND",
-        children: [
-          {
-            field: "<value>",
-            value: "<value>",
-            operator: "NOT_IN",
-            on: "subscriber",
-          },
-        ],
-      },
-    ],
+    filters: [],
     templateId: "<id>",
   },
   overrides: {
     "workflowId": "some_wf_id",
     "stepId": "some_wf_id",
   },
-  providerId: "pusher-beams",
+  providerId: "sparkpost",
   status: "<value>",
 };
 ```

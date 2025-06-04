@@ -30,7 +30,6 @@ const novu = new Novu({
 async function run() {
   const result = await novu.messages.retrieve({});
 
-  // Handle the result
   console.log(result);
 }
 
@@ -53,15 +52,12 @@ const novu = new NovuCore({
 
 async function run() {
   const res = await messagesRetrieve(novu, {});
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("messagesRetrieve failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -107,7 +103,6 @@ const novu = new Novu({
 async function run() {
   const result = await novu.messages.delete("507f1f77bcf86cd799439011");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -130,15 +125,12 @@ const novu = new NovuCore({
 
 async function run() {
   const res = await messagesDelete(novu, "507f1f77bcf86cd799439011");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("messagesDelete failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -185,7 +177,6 @@ const novu = new Novu({
 async function run() {
   const result = await novu.messages.deleteByTransactionId("507f1f77bcf86cd799439011");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -208,15 +199,12 @@ const novu = new NovuCore({
 
 async function run() {
   const res = await messagesDeleteByTransactionId(novu, "507f1f77bcf86cd799439011");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("messagesDeleteByTransactionId failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

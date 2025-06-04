@@ -11,7 +11,7 @@
 
 ## list
 
-List all topics that a subscriber is subscribed to.
+List all subscriptions of subscribers for a topic.
     Checkout all available filters in the query section.
 
 ### Example Usage
@@ -28,7 +28,6 @@ async function run() {
     topicKey: "<value>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -53,15 +52,12 @@ async function run() {
   const res = await topicsSubscriptionsList(novu, {
     topicKey: "<value>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("topicsSubscriptionsList failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -112,7 +108,6 @@ async function run() {
     ],
   }, "<value>");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -140,15 +135,12 @@ async function run() {
       "subscriberId2",
     ],
   }, "<value>");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("topicsSubscriptionsCreate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -200,7 +192,6 @@ async function run() {
     ],
   }, "<value>");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -228,15 +219,12 @@ async function run() {
       "subscriberId2",
     ],
   }, "<value>");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("topicsSubscriptionsDelete failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

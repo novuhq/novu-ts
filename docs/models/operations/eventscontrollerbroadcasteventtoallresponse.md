@@ -5,17 +5,7 @@
 ```typescript
 import { EventsControllerBroadcastEventToAllResponse } from "@novu/api/models/operations";
 
-let value: EventsControllerBroadcastEventToAllResponse = {
-  headers: {
-    "key": [
-      "<value>",
-    ],
-  },
-  result: {
-    acknowledged: false,
-    status: "processed",
-  },
-};
+let value: EventsControllerBroadcastEventToAllResponse = {};
 ```
 
 ## Fields

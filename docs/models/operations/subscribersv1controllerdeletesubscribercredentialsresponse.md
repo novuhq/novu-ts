@@ -5,13 +5,7 @@
 ```typescript
 import { SubscribersV1ControllerDeleteSubscriberCredentialsResponse } from "@novu/api/models/operations";
 
-let value: SubscribersV1ControllerDeleteSubscriberCredentialsResponse = {
-  headers: {
-    "key": [
-      "<value>",
-    ],
-  },
-};
+let value: SubscribersV1ControllerDeleteSubscriberCredentialsResponse = {};
 ```
 
 ## Fields

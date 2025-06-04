@@ -7,23 +7,6 @@ import { SubscribersV1ControllerModifySubscriberChannelRequest } from "@novu/api
 
 let value: SubscribersV1ControllerModifySubscriberChannelRequest = {
   subscriberId: "<id>",
-  updateSubscriberChannelRequestDto: {
-    providerId: "pushpad",
-    credentials: {
-      webhookUrl: "https://example.com/webhook",
-      channel: "general",
-      deviceTokens: [
-        "token1",
-        "token2",
-        "token3",
-      ],
-      alertUid: "12345-abcde",
-      title: "Critical Alert",
-      imageUrl: "https://example.com/image.png",
-      state: "resolved",
-      externalUrl: "https://example.com/details",
-    },
-  },
 };
 ```
 

@@ -5,25 +5,7 @@
 ```typescript
 import { IntegrationsControllerSetIntegrationAsPrimaryResponse } from "@novu/api/models/operations";
 
-let value: IntegrationsControllerSetIntegrationAsPrimaryResponse = {
-  headers: {
-    "key": [
-      "<value>",
-    ],
-  },
-  result: {
-    environmentId: "<id>",
-    organizationId: "<id>",
-    name: "<value>",
-    identifier: "<value>",
-    providerId: "<id>",
-    channel: "chat",
-    credentials: {},
-    active: false,
-    deleted: false,
-    primary: false,
-  },
-};
+let value: IntegrationsControllerSetIntegrationAsPrimaryResponse = {};
 ```
 
 ## Fields

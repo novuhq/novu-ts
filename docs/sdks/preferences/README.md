@@ -25,7 +25,6 @@ const novu = new Novu({
 async function run() {
   const result = await novu.subscribers.preferences.list("<id>");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -48,15 +47,12 @@ const novu = new NovuCore({
 
 async function run() {
   const res = await subscribersPreferencesList(novu, "<id>");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("subscribersPreferencesList failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -106,7 +102,6 @@ async function run() {
     channels: {},
   }, "<id>");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -131,15 +126,12 @@ async function run() {
   const res = await subscribersPreferencesUpdate(novu, {
     channels: {},
   }, "<id>");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("subscribersPreferencesUpdate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

@@ -1060,7 +1060,7 @@
         "operationId": "SubscribersController_getSubscriber",
         "x-speakeasy-name-override": "retrieve",
         "summary": "Retrieve a subscriber",
-        "description": "Retrive a subscriber by its unique key identifier **subscriberId**. \n    **subscriberId** field is required.",
+        "description": "Retrieve a subscriber by its unique key identifier **subscriberId**. \n    **subscriberId** field is required.",
         "parameters": [
           {
             "name": "subscriberId",
@@ -2033,8 +2033,8 @@
       "delete": {
         "operationId": "SubscribersController_removeSubscriber",
         "x-speakeasy-name-override": "delete",
-        "summary": "Delete subscriber",
-        "description": "Deletes a subscriber entity from the Novu platform along with associated messages, preferences, and topic subscriptions",
+        "summary": "Delete a subscriber",
+        "description": "Deletes a subscriber entity from the Novu platform along with associated messages, preferences, and topic subscriptions. \n      **subscriberId** is a required field.",
         "parameters": [
           {
             "name": "subscriberId",
@@ -6580,7 +6580,7 @@
         "operationId": "TopicsController_listTopicSubscriptions",
         "x-speakeasy-group": "Topics.Subscriptions",
         "summary": "List topic subscriptions",
-        "description": "List all topics that a subscriber is subscribed to.\n    Checkout all available filters in the query section.",
+        "description": "List all subscriptions of subscribers for a topic.\n    Checkout all available filters in the query section.",
         "parameters": [
           {
             "name": "topicKey",
@@ -8182,7 +8182,7 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "Payload validation failed - returned when payload does not match the workflow schema",
             "headers": {
               "Content-Type": {
                 "$ref": "#/components/headers/Content-Type"
@@ -8209,7 +8209,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
+                  "$ref": "#/components/schemas/PayloadValidationExceptionDto"
                 }
               }
             }
@@ -9193,7 +9193,7 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "Payload validation failed - returned when payload does not match the workflow schema",
             "headers": {
               "Content-Type": {
                 "$ref": "#/components/headers/Content-Type"
@@ -9220,7 +9220,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
+                  "$ref": "#/components/schemas/PayloadValidationExceptionDto"
                 }
               }
             }
@@ -9686,7 +9686,7 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "Payload validation failed - returned when any event payload does not match the workflow schema",
             "headers": {
               "Content-Type": {
                 "$ref": "#/components/headers/Content-Type"
@@ -9713,7 +9713,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
+                  "$ref": "#/components/schemas/PayloadValidationExceptionDto"
                 }
               }
             }
@@ -21499,6 +21499,195 @@
           "color"
         ]
       },
+      "PayloadValidationErrorDto": {
+        "type": "object",
+        "properties": {
+          "field": {
+            "type": "string",
+            "description": "Field path that failed validation",
+            "example": "user.name"
+          },
+          "message": {
+            "type": "string",
+            "description": "Validation error message",
+            "example": "must have required property 'name'"
+          },
+          "value": {
+            "description": "The actual value that failed validation",
+            "oneOf": [
+              {
+                "type": "string",
+                "nullable": true
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "object",
+                "nullable": true
+              },
+              {
+                "type": "array",
+                "items": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "boolean"
+                    },
+                    {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  ]
+                }
+              }
+            ],
+            "example": {
+              "age": 25
+            }
+          },
+          "schemaPath": {
+            "type": "string",
+            "description": "JSON Schema path where the validation failed",
+            "example": "#/required"
+          }
+        },
+        "required": [
+          "field",
+          "message"
+        ]
+      },
+      "PayloadValidationExceptionDto": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "number",
+            "description": "HTTP status code of the error response.",
+            "example": 404
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "Timestamp of when the error occurred.",
+            "example": "2024-12-12T13:00:00Z"
+          },
+          "path": {
+            "type": "string",
+            "description": "The path where the error occurred.",
+            "example": "/api/v1/resource"
+          },
+          "message": {
+            "description": "Value that failed validation",
+            "oneOf": [
+              {
+                "type": "string",
+                "nullable": true
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "object",
+                "nullable": true
+              },
+              {
+                "type": "array",
+                "items": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "boolean"
+                    },
+                    {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  ]
+                }
+              }
+            ],
+            "example": "xx xx xx "
+          },
+          "ctx": {
+            "type": "object",
+            "description": "Optional context object for additional error details.",
+            "additionalProperties": true,
+            "example": {
+              "workflowId": "some_wf_id",
+              "stepId": "some_wf_id"
+            }
+          },
+          "errorId": {
+            "type": "string",
+            "description": "Optional unique identifier for the error, useful for tracking using Sentry and \n      New Relic, only available for 500.",
+            "example": "abc123"
+          },
+          "type": {
+            "type": "string",
+            "description": "Type identifier for payload validation errors",
+            "example": "PAYLOAD_VALIDATION_ERROR"
+          },
+          "errors": {
+            "description": "Array of detailed validation errors",
+            "example": [
+              {
+                "field": "user.name",
+                "message": "must have required property 'name'",
+                "value": {
+                  "age": 25
+                },
+                "schemaPath": "#/required"
+              }
+            ],
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PayloadValidationErrorDto"
+            }
+          },
+          "schema": {
+            "type": "object",
+            "description": "The JSON schema that was used for validation",
+            "example": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "age": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "name"
+              ]
+            }
+          }
+        },
+        "required": [
+          "statusCode",
+          "timestamp",
+          "path",
+          "type",
+          "errors"
+        ]
+      },
       "TriggerEventResponseDto": {
         "type": "object",
         "properties": {
@@ -23111,10 +23300,6 @@
           "credentials": {
             "$ref": "#/components/schemas/CredentialsDto"
           },
-          "removeNovuBranding": {
-            "type": "boolean",
-            "description": "If true, the Novu branding will be removed from the Inbox component"
-          },
           "check": {
             "type": "boolean"
           },
@@ -23897,7 +24082,6 @@
           "_id",
           "_templateId",
           "_environmentId",
-          "_messageTemplateId",
           "_organizationId",
           "_notificationId",
           "_subscriberId",
@@ -26094,6 +26278,20 @@
             "type": "string",
             "description": "Timestamp of the last workflow trigger",
             "nullable": true
+          },
+          "payloadSchema": {
+            "type": "object",
+            "description": "The payload JSON Schema for the workflow",
+            "nullable": true
+          },
+          "payloadExample": {
+            "type": "object",
+            "description": "Generated payload example based on the payload schema",
+            "nullable": true
+          },
+          "validatePayload": {
+            "type": "boolean",
+            "description": "Whether payload schema validation is enabled"
           }
         },
         "required": [
@@ -26743,6 +26941,12 @@
               }
             ]
           },
+          "schema": {
+            "type": "object",
+            "nullable": true,
+            "description": "The payload schema that was used to generate the preview payload example",
+            "additionalProperties": true
+          },
           "result": {
             "description": "Preview result",
             "oneOf": [
@@ -26893,6 +27097,14 @@
             "items": {
               "type": "string"
             }
+          },
+          "payloadSchema": {
+            "type": "object",
+            "description": "The payload JSON Schema for the workflow"
+          },
+          "validatePayload": {
+            "type": "boolean",
+            "description": "Enable or disable payload schema validation"
           }
         }
       },
@@ -27201,37 +27413,6 @@
         "required": [
           "to",
           "payload"
-        ]
-      },
-      "GetWebhookPortalTokenResponseDto": {
-        "type": "object",
-        "properties": {
-          "url": {
-            "type": "string"
-          },
-          "token": {
-            "type": "string"
-          },
-          "appId": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "url",
-          "token",
-          "appId"
-        ]
-      },
-      "CreateWebhookPortalResponseDto": {
-        "type": "object",
-        "properties": {
-          "appId": {
-            "type": "string",
-            "description": "The webhook portal application ID"
-          }
-        },
-        "required": [
-          "appId"
         ]
       },
       "WebhookUpdatedWorkflowDto": {

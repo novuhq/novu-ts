@@ -15,7 +15,7 @@ export const tool$topicsSubscriptionsList: ToolDefinition<typeof args> = {
   name: "topics-subscriptions-list",
   description: `List topic subscriptions
 
-List all topics that a subscriber is subscribed to.
+List all subscriptions of subscribers for a topic.
     Checkout all available filters in the query section.`,
   args,
   tool: async (client, args, ctx) => {

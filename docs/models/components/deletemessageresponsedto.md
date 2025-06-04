@@ -6,7 +6,7 @@
 import { DeleteMessageResponseDto } from "@novu/api/models/components";
 
 let value: DeleteMessageResponseDto = {
-  acknowledged: false,
+  acknowledged: true,
   status: "deleted",
 };
 ```
