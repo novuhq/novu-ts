@@ -7,18 +7,18 @@ import { ActivityNotificationStepResponseDto } from "@novu/api/models/components
 
 let value: ActivityNotificationStepResponseDto = {
   id: "<id>",
-  active: false,
+  active: true,
   filters: [
     {
-      isNegated: false,
-      type: "BOOLEAN",
+      isNegated: true,
+      type: "DATE",
       value: "OR",
       children: [
         {
           field: "<value>",
           value: "<value>",
-          operator: "EQUAL",
-          on: "subscriber",
+          operator: "BETWEEN",
+          on: "payload",
         },
       ],
     },

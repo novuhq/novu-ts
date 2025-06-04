@@ -12,7 +12,7 @@ A subscriber in Novu represents someone who should receive a message. A subscrib
 * [create](#create) - Create a subscriber
 * [retrieve](#retrieve) - Retrieve a subscriber
 * [patch](#patch) - Update a subscriber
-* [delete](#delete) - Delete subscriber
+* [delete](#delete) - Delete a subscriber
 * [createBulk](#createbulk) - Bulk create subscribers
 
 ## search
@@ -32,7 +32,6 @@ const novu = new Novu({
 async function run() {
   const result = await novu.subscribers.search({});
 
-  // Handle the result
   console.log(result);
 }
 
@@ -55,15 +54,12 @@ const novu = new NovuCore({
 
 async function run() {
   const res = await subscribersSearch(novu, {});
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("subscribersSearch failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -111,7 +107,6 @@ async function run() {
     subscriberId: "<id>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -136,15 +131,12 @@ async function run() {
   const res = await subscribersCreate(novu, {
     subscriberId: "<id>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("subscribersCreate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -176,7 +168,7 @@ run();
 
 ## retrieve
 
-Retrive a subscriber by its unique key identifier **subscriberId**. 
+Retrieve a subscriber by its unique key identifier **subscriberId**. 
     **subscriberId** field is required.
 
 ### Example Usage
@@ -191,7 +183,6 @@ const novu = new Novu({
 async function run() {
   const result = await novu.subscribers.retrieve("<id>");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -214,15 +205,12 @@ const novu = new NovuCore({
 
 async function run() {
   const res = await subscribersRetrieve(novu, "<id>");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("subscribersRetrieve failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -269,7 +257,6 @@ const novu = new Novu({
 async function run() {
   const result = await novu.subscribers.patch({}, "<id>");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -292,15 +279,12 @@ const novu = new NovuCore({
 
 async function run() {
   const res = await subscribersPatch(novu, {}, "<id>");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("subscribersPatch failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -333,7 +317,8 @@ run();
 
 ## delete
 
-Deletes a subscriber entity from the Novu platform along with associated messages, preferences, and topic subscriptions
+Deletes a subscriber entity from the Novu platform along with associated messages, preferences, and topic subscriptions. 
+      **subscriberId** is a required field.
 
 ### Example Usage
 
@@ -347,7 +332,6 @@ const novu = new Novu({
 async function run() {
   const result = await novu.subscribers.delete("<id>");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -370,15 +354,12 @@ const novu = new NovuCore({
 
 async function run() {
   const res = await subscribersDelete(novu, "<id>");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("subscribersDelete failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -432,7 +413,6 @@ async function run() {
     ],
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -461,15 +441,12 @@ async function run() {
       },
     ],
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("subscribersCreateBulk failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

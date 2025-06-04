@@ -206,7 +206,6 @@ async function run() {
     to: "SUBSCRIBER_ID",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -226,7 +225,6 @@ const novu = new Novu({
 async function run() {
   const result = await novu.cancel("<id>");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -263,7 +261,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -319,7 +316,6 @@ async function run() {
     ],
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -367,7 +363,7 @@ run();
 * [create](docs/sdks/subscribers/README.md#create) - Create a subscriber
 * [retrieve](docs/sdks/subscribers/README.md#retrieve) - Retrieve a subscriber
 * [patch](docs/sdks/subscribers/README.md#patch) - Update a subscriber
-* [delete](docs/sdks/subscribers/README.md#delete) - Delete subscriber
+* [delete](docs/sdks/subscribers/README.md#delete) - Delete a subscriber
 * [createBulk](docs/sdks/subscribers/README.md#createbulk) - Bulk create subscribers
 
 #### [subscribers.credentials](docs/sdks/credentials/README.md)
@@ -453,7 +449,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`subscribersCredentialsAppend`](docs/sdks/credentials/README.md#append) - Upsert provider credentials
 - [`subscribersCredentialsDelete`](docs/sdks/credentials/README.md#delete) - Delete provider credentials
 - [`subscribersCredentialsUpdate`](docs/sdks/credentials/README.md#update) - Update provider credentials
-- [`subscribersDelete`](docs/sdks/subscribers/README.md#delete) - Delete subscriber
+- [`subscribersDelete`](docs/sdks/subscribers/README.md#delete) - Delete a subscriber
 - [`subscribersMessagesMarkAll`](docs/sdks/novumessages/README.md#markall) - Update all notifications state
 - [`subscribersMessagesMarkAllAs`](docs/sdks/novumessages/README.md#markallas) - Update notifications state
 - [`subscribersMessagesUpdateAsSeen`](docs/sdks/novumessages/README.md#updateasseen) - Update notification action status
@@ -485,34 +481,30 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 <!-- Start Error Handling [errors] -->
 ## Error Handling
 
-Some methods specify known errors which can be thrown. All the known errors are enumerated in the `models/errors/errors.ts` module. The known errors for a method are documented under the *Errors* tables in SDK docs. For example, the `trigger` method may throw the following errors:
+This table shows properties which are common on error classes. For full details see [error classes](#error-classes).
 
-| Error Type                | Status Code                            | Content Type     |
-| ------------------------- | -------------------------------------- | ---------------- |
-| errors.ErrorDto           | 414                                    | application/json |
-| errors.ErrorDto           | 400, 401, 403, 404, 405, 409, 413, 415 | application/json |
-| errors.ValidationErrorDto | 422                                    | application/json |
-| errors.ErrorDto           | 500                                    | application/json |
-| errors.SDKError           | 4XX, 5XX                               | \*/\*            |
+| Property            | Type       | Description                                                                             |
+| ------------------- | ---------- | --------------------------------------------------------------------------------------- |
+| `error.name`        | `string`   | Error class name eg `SDKError`                                                          |
+| `error.message`     | `string`   | Error message                                                                           |
+| `error.statusCode`  | `number`   | HTTP status code eg `404`                                                               |
+| `error.contentType` | `string`   | HTTP content type eg `application/json`                                                 |
+| `error.body`        | `string`   | HTTP body. Can be empty string if no body is returned.                                  |
+| `error.rawResponse` | `Response` | Raw HTTP response. Access to headers and more.                                          |
+| `error.data$`       |            | Optional. Some errors may contain structured data. [See Error Classes](#error-classes). |
 
-If the method throws an error and it is not captured by the known errors, it will default to throwing a `SDKError`.
-
+### Example
 ```typescript
 import { Novu } from "@novu/api";
-import {
-  ErrorDto,
-  SDKValidationError,
-  ValidationErrorDto,
-} from "@novu/api/models/errors";
+import * as errors from "@novu/api/models/errors";
 
 const novu = new Novu({
   secretKey: "YOUR_SECRET_KEY_HERE",
 });
 
 async function run() {
-  let result;
   try {
-    result = await novu.trigger({
+    const result = await novu.trigger({
       workflowId: "workflow_identifier",
       payload: {
         "comment_id": "string",
@@ -524,42 +516,24 @@ async function run() {
       to: "SUBSCRIBER_ID",
     });
 
-    // Handle the result
     console.log(result);
-  } catch (err) {
-    switch (true) {
-      // The server response does not match the expected SDK schema
-      case (err instanceof SDKValidationError): {
-        // Pretty-print will provide a human-readable multi-line error message
-        console.error(err.pretty());
-        // Raw value may also be inspected
-        console.error(err.rawValue);
-        return;
-      }
-      case (err instanceof ErrorDto): {
-        // Handle err.data$: ErrorDtoData
-        console.error(err);
-        return;
-      }
-      case (err instanceof ErrorDto): {
-        // Handle err.data$: ErrorDtoData
-        console.error(err);
-        return;
-      }
-      case (err instanceof ValidationErrorDto): {
-        // Handle err.data$: ValidationErrorDtoData
-        console.error(err);
-        return;
-      }
-      case (err instanceof ErrorDto): {
-        // Handle err.data$: ErrorDtoData
-        console.error(err);
-        return;
-      }
-      default: {
-        // Other errors such as network errors, see HTTPClientErrors for more details
-        throw err;
-      }
+  } catch (error) {
+    // Depending on the method different errors may be thrown
+    if (error instanceof errors.PayloadValidationExceptionDto) {
+      console.log(error.message);
+      console.log(error.data$.statusCode); // number
+      console.log(error.data$.timestamp); // string
+      console.log(error.data$.path); // string
+      console.log(error.data$.message); // errors.PayloadValidationExceptionDtoMessage
+      console.log(error.data$.ctx); // { [k: string]: any }
+    }
+
+    // Fallback error class, if no other more specific error class is matched
+    if (error instanceof errors.SDKError) {
+      console.log(error.message);
+      console.log(error.statusCode);
+      console.log(error.body);
+      console.log(error.rawResponse.headers);
     }
   }
 }
@@ -568,17 +542,22 @@ run();
 
 ```
 
-Validation errors can also occur when either method arguments or data returned from the server do not match the expected format. The `SDKValidationError` that is thrown as a result will capture the raw value that failed validation in an attribute called `rawValue`. Additionally, a `pretty()` method is available on this error that can be used to log a nicely formatted multi-line string since validation errors can list many issues and the plain error string may be difficult read when debugging.
+### Error Classes
+* [`ErrorDto`](docs/models/errors/errordto.md): Generic error.
+* [`ValidationErrorDto`](docs/models/errors/validationerrordto.md): Unprocessable Entity. Status code `422`.
+* `SDKError`: The fallback error class, if no other more specific error class is matched.
+* `SDKValidationError`: Type mismatch between the data returned from the server and the structure expected by the SDK. This can also be thrown for invalid method arguments. See `error.rawValue` for the raw value and `error.pretty()` for a nicely formatted multi-line string.
+* Network errors:
+    * `ConnectionError`: HTTP client was unable to make a request to a server.
+    * `RequestTimeoutError`: HTTP request timed out due to an AbortSignal signal.
+    * `RequestAbortedError`: HTTP request was aborted by the client.
+    * `InvalidRequestError`: Any input used to create a request is invalid.
+    * `UnexpectedClientError`: Unrecognised or unexpected error.
+* Less common errors, applicable to a subset of methods:
+    * [`PayloadValidationExceptionDto`](docs/models/errors/payloadvalidationexceptiondto.md): Status code `400`. Applicable to 3 of 42 methods.*
 
-In some rare cases, the SDK can fail to get a response from the server or even make the request due to unexpected circumstances such as network conditions. These types of errors are captured in the `models/errors/httpclienterrors.ts` module:
 
-| HTTP Client Error                                    | Description                                          |
-| ---------------------------------------------------- | ---------------------------------------------------- |
-| RequestAbortedError                                  | HTTP request was aborted by the client               |
-| RequestTimeoutError                                  | HTTP request timed out due to an AbortSignal signal  |
-| ConnectionError                                      | HTTP client was unable to make a request to a server |
-| InvalidRequestError                                  | Any input used to create a request is invalid        |
-| UnexpectedClientError                                | Unrecognised or unexpected error                     |
+\* Check [the method documentation](#available-resources-and-operations) to see if the error is applicable.
 <!-- End Error Handling [errors] -->
 
 <!-- Start Server Selection [server] -->
@@ -616,7 +595,6 @@ async function run() {
     to: "SUBSCRIBER_ID",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -648,7 +626,6 @@ async function run() {
     to: "SUBSCRIBER_ID",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -738,7 +715,6 @@ async function run() {
     to: "SUBSCRIBER_ID",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -784,7 +760,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -823,7 +798,6 @@ async function run() {
     to: "SUBSCRIBER_ID",
   });
 
-  // Handle the result
   console.log(result);
 }
 

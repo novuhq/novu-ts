@@ -27,7 +27,6 @@ async function run() {
     payload: "btoa(JSON.stringify({ foo: 123 })) results in base64 encoded string like eyJmb28iOjEyM30=",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -53,15 +52,12 @@ async function run() {
     subscriberId: "<id>",
     payload: "btoa(JSON.stringify({ foo: 123 })) results in base64 encoded string like eyJmb28iOjEyM30=",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("subscribersNotificationsFeed failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -108,7 +104,6 @@ async function run() {
     subscriberId: "<id>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -133,15 +128,12 @@ async function run() {
   const res = await subscribersNotificationsUnseenCount(novu, {
     subscriberId: "<id>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("subscribersNotificationsUnseenCount failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

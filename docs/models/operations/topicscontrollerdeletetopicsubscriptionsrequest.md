@@ -7,12 +7,6 @@ import { TopicsControllerDeleteTopicSubscriptionsRequest } from "@novu/api/model
 
 let value: TopicsControllerDeleteTopicSubscriptionsRequest = {
   topicKey: "<value>",
-  deleteTopicSubscriptionsRequestDto: {
-    subscriberIds: [
-      "subscriberId1",
-      "subscriberId2",
-    ],
-  },
 };
 ```
 

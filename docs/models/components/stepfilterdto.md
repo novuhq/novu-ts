@@ -6,14 +6,14 @@
 import { StepFilterDto } from "@novu/api/models/components";
 
 let value: StepFilterDto = {
-  isNegated: false,
-  type: "NUMBER",
-  value: "AND",
+  isNegated: true,
+  type: "TEXT",
+  value: "OR",
   children: [
     {
       field: "<value>",
       value: "<value>",
-      operator: "NOT_BETWEEN",
+      operator: "BETWEEN",
       on: "payload",
     },
   ],

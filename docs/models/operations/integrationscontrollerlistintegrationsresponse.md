@@ -5,27 +5,7 @@
 ```typescript
 import { IntegrationsControllerListIntegrationsResponse } from "@novu/api/models/operations";
 
-let value: IntegrationsControllerListIntegrationsResponse = {
-  headers: {
-    "key": [
-      "<value>",
-    ],
-  },
-  result: [
-    {
-      environmentId: "<id>",
-      organizationId: "<id>",
-      name: "<value>",
-      identifier: "<value>",
-      providerId: "<id>",
-      channel: "push",
-      credentials: {},
-      active: false,
-      deleted: false,
-      primary: false,
-    },
-  ],
-};
+let value: IntegrationsControllerListIntegrationsResponse = {};
 ```
 
 ## Fields

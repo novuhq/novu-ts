@@ -44,7 +44,6 @@ async function run() {
     to: "SUBSCRIBER_ID",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -77,15 +76,12 @@ async function run() {
     overrides: {},
     to: "SUBSCRIBER_ID",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("trigger failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -107,13 +103,14 @@ run();
 
 ### Errors
 
-| Error Type                             | Status Code                            | Content Type                           |
-| -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| errors.ErrorDto                        | 414                                    | application/json                       |
-| errors.ErrorDto                        | 400, 401, 403, 404, 405, 409, 413, 415 | application/json                       |
-| errors.ValidationErrorDto              | 422                                    | application/json                       |
-| errors.ErrorDto                        | 500                                    | application/json                       |
-| errors.SDKError                        | 4XX, 5XX                               | \*/\*                                  |
+| Error Type                           | Status Code                          | Content Type                         |
+| ------------------------------------ | ------------------------------------ | ------------------------------------ |
+| errors.PayloadValidationExceptionDto | 400                                  | application/json                     |
+| errors.ErrorDto                      | 414                                  | application/json                     |
+| errors.ErrorDto                      | 401, 403, 404, 405, 409, 413, 415    | application/json                     |
+| errors.ValidationErrorDto            | 422                                  | application/json                     |
+| errors.ErrorDto                      | 500                                  | application/json                     |
+| errors.SDKError                      | 4XX, 5XX                             | \*/\*                                |
 
 ## cancel
 
@@ -134,7 +131,6 @@ const novu = new Novu({
 async function run() {
   const result = await novu.cancel("<id>");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -157,15 +153,12 @@ const novu = new NovuCore({
 
 async function run() {
   const res = await cancel(novu, "<id>");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("cancel failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -229,7 +222,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -269,15 +261,12 @@ async function run() {
       },
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("triggerBroadcast failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -299,13 +288,14 @@ run();
 
 ### Errors
 
-| Error Type                             | Status Code                            | Content Type                           |
-| -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| errors.ErrorDto                        | 414                                    | application/json                       |
-| errors.ErrorDto                        | 400, 401, 403, 404, 405, 409, 413, 415 | application/json                       |
-| errors.ValidationErrorDto              | 422                                    | application/json                       |
-| errors.ErrorDto                        | 500                                    | application/json                       |
-| errors.SDKError                        | 4XX, 5XX                               | \*/\*                                  |
+| Error Type                           | Status Code                          | Content Type                         |
+| ------------------------------------ | ------------------------------------ | ------------------------------------ |
+| errors.PayloadValidationExceptionDto | 400                                  | application/json                     |
+| errors.ErrorDto                      | 414                                  | application/json                     |
+| errors.ErrorDto                      | 401, 403, 404, 405, 409, 413, 415    | application/json                     |
+| errors.ValidationErrorDto            | 422                                  | application/json                     |
+| errors.ErrorDto                      | 500                                  | application/json                     |
+| errors.SDKError                      | 4XX, 5XX                             | \*/\*                                |
 
 ## triggerBulk
 
@@ -362,7 +352,6 @@ async function run() {
     ],
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -421,15 +410,12 @@ async function run() {
       },
     ],
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("triggerBulk failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -451,10 +437,11 @@ run();
 
 ### Errors
 
-| Error Type                             | Status Code                            | Content Type                           |
-| -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| errors.ErrorDto                        | 414                                    | application/json                       |
-| errors.ErrorDto                        | 400, 401, 403, 404, 405, 409, 413, 415 | application/json                       |
-| errors.ValidationErrorDto              | 422                                    | application/json                       |
-| errors.ErrorDto                        | 500                                    | application/json                       |
-| errors.SDKError                        | 4XX, 5XX                               | \*/\*                                  |
+| Error Type                           | Status Code                          | Content Type                         |
+| ------------------------------------ | ------------------------------------ | ------------------------------------ |
+| errors.PayloadValidationExceptionDto | 400                                  | application/json                     |
+| errors.ErrorDto                      | 414                                  | application/json                     |
+| errors.ErrorDto                      | 401, 403, 404, 405, 409, 413, 415    | application/json                     |
+| errors.ValidationErrorDto            | 422                                  | application/json                     |
+| errors.ErrorDto                      | 500                                  | application/json                     |
+| errors.SDKError                      | 4XX, 5XX                             | \*/\*                                |

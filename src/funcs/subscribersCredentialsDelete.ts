@@ -42,9 +42,7 @@ export function subscribersCredentialsDelete(
     | operations.SubscribersV1ControllerDeleteSubscriberCredentialsResponse
     | undefined,
     | errors.ErrorDto
-    | errors.ErrorDto
     | errors.ValidationErrorDto
-    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -75,9 +73,7 @@ async function $do(
       | operations.SubscribersV1ControllerDeleteSubscriberCredentialsResponse
       | undefined,
       | errors.ErrorDto
-      | errors.ErrorDto
       | errors.ValidationErrorDto
-      | errors.ErrorDto
       | SDKError
       | SDKValidationError
       | UnexpectedClientError
@@ -139,6 +135,7 @@ async function $do(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "SubscribersV1Controller_deleteSubscriberCredentials",
     oAuth2Scopes: [],
@@ -169,6 +166,7 @@ async function $do(
     path: path,
     headers: headers,
     body: body,
+    userAgent: client._options.userAgent,
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
@@ -211,9 +209,7 @@ async function $do(
     | operations.SubscribersV1ControllerDeleteSubscriberCredentialsResponse
     | undefined,
     | errors.ErrorDto
-    | errors.ErrorDto
     | errors.ValidationErrorDto
-    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError

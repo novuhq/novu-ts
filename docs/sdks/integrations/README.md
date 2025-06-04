@@ -31,7 +31,6 @@ const novu = new Novu({
 async function run() {
   const result = await novu.integrations.list();
 
-  // Handle the result
   console.log(result);
 }
 
@@ -54,15 +53,12 @@ const novu = new NovuCore({
 
 async function run() {
   const res = await integrationsList(novu);
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("integrationsList failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -111,7 +107,6 @@ async function run() {
     channel: "email",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -137,15 +132,12 @@ async function run() {
     providerId: "<id>",
     channel: "email",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("integrationsCreate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -192,7 +184,6 @@ const novu = new Novu({
 async function run() {
   const result = await novu.integrations.update({}, "<id>");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -215,15 +206,12 @@ const novu = new NovuCore({
 
 async function run() {
   const res = await integrationsUpdate(novu, {}, "<id>");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("integrationsUpdate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -271,7 +259,6 @@ const novu = new Novu({
 async function run() {
   const result = await novu.integrations.delete("<id>");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -294,15 +281,12 @@ const novu = new NovuCore({
 
 async function run() {
   const res = await integrationsDelete(novu, "<id>");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("integrationsDelete failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -350,7 +334,6 @@ const novu = new Novu({
 async function run() {
   const result = await novu.integrations.setAsPrimary("<id>");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -373,15 +356,12 @@ const novu = new NovuCore({
 
 async function run() {
   const res = await integrationsSetAsPrimary(novu, "<id>");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("integrationsSetAsPrimary failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -427,7 +407,6 @@ const novu = new Novu({
 async function run() {
   const result = await novu.integrations.listActive();
 
-  // Handle the result
   console.log(result);
 }
 
@@ -450,15 +429,12 @@ const novu = new NovuCore({
 
 async function run() {
   const res = await integrationsListActive(novu);
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("integrationsListActive failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

@@ -21,7 +21,6 @@ async function run() {
     to: "SUBSCRIBER_ID",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -41,7 +40,6 @@ const novu = new Novu({
 async function run() {
   const result = await novu.cancel("<id>");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -78,7 +76,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -134,7 +131,6 @@ async function run() {
     ],
   });
 
-  // Handle the result
   console.log(result);
 }
 

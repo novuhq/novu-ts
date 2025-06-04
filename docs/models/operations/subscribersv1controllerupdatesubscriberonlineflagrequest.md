@@ -7,9 +7,6 @@ import { SubscribersV1ControllerUpdateSubscriberOnlineFlagRequest } from "@novu/
 
 let value: SubscribersV1ControllerUpdateSubscriberOnlineFlagRequest = {
   subscriberId: "<id>",
-  updateSubscriberOnlineFlagRequestDto: {
-    isOnline: false,
-  },
 };
 ```
 

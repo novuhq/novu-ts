@@ -28,7 +28,7 @@ import { Result } from "../types/fp.js";
  * List topic subscriptions
  *
  * @remarks
- * List all topics that a subscriber is subscribed to.
+ * List all subscriptions of subscribers for a topic.
  *     Checkout all available filters in the query section.
  */
 export function topicsSubscriptionsList(
@@ -39,9 +39,7 @@ export function topicsSubscriptionsList(
   Result<
     operations.TopicsControllerListTopicSubscriptionsResponse,
     | errors.ErrorDto
-    | errors.ErrorDto
     | errors.ValidationErrorDto
-    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -67,9 +65,7 @@ async function $do(
     Result<
       operations.TopicsControllerListTopicSubscriptionsResponse,
       | errors.ErrorDto
-      | errors.ErrorDto
       | errors.ValidationErrorDto
-      | errors.ErrorDto
       | SDKError
       | SDKValidationError
       | UnexpectedClientError
@@ -127,6 +123,7 @@ async function $do(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "TopicsController_listTopicSubscriptions",
     oAuth2Scopes: [],
@@ -158,6 +155,7 @@ async function $do(
     headers: headers,
     query: query,
     body: body,
+    userAgent: client._options.userAgent,
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
@@ -199,9 +197,7 @@ async function $do(
   const [result] = await M.match<
     operations.TopicsControllerListTopicSubscriptionsResponse,
     | errors.ErrorDto
-    | errors.ErrorDto
     | errors.ValidationErrorDto
-    | errors.ErrorDto
     | SDKError
     | SDKValidationError
     | UnexpectedClientError

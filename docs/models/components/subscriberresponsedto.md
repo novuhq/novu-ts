@@ -8,7 +8,7 @@ import { SubscriberResponseDto } from "@novu/api/models/components";
 let value: SubscriberResponseDto = {
   channels: [
     {
-      providerId: "slack",
+      providerId: "ryver",
       credentials: {
         webhookUrl: "https://example.com/webhook",
         channel: "general",
@@ -29,7 +29,7 @@ let value: SubscriberResponseDto = {
   subscriberId: "<id>",
   organizationId: "<id>",
   environmentId: "<id>",
-  deleted: false,
+  deleted: true,
   createdAt: "1710609500914",
   updatedAt: "1735681020576",
 };

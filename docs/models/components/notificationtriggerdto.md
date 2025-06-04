@@ -8,11 +8,7 @@ import { NotificationTriggerDto } from "@novu/api/models/components";
 let value: NotificationTriggerDto = {
   type: "event",
   identifier: "<value>",
-  variables: [
-    {
-      name: "<value>",
-    },
-  ],
+  variables: [],
 };
 ```
 

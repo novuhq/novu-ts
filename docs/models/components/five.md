@@ -18,7 +18,7 @@ const value: number = 1284.03;
 ### `boolean`
 
 ```typescript
-const value: boolean = false;
+const value: boolean = true;
 ```
 
 ### `{ [k: string]: any }`
@@ -26,6 +26,8 @@ const value: boolean = false;
 ```typescript
 const value: { [k: string]: any } = {
   "key": "<value>",
+  "key1": "<value>",
+  "key2": "<value>",
 };
 ```
 

@@ -42,7 +42,6 @@ async function run() {
     },
   }, "<id>");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -81,15 +80,12 @@ async function run() {
       externalUrl: "https://example.com/details",
     },
   }, "<id>");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("subscribersCredentialsUpdate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -153,7 +149,6 @@ async function run() {
     },
   }, "<id>");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -192,15 +187,12 @@ async function run() {
       externalUrl: "https://example.com/details",
     },
   }, "<id>");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("subscribersCredentialsAppend failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -248,7 +240,6 @@ const novu = new Novu({
 async function run() {
   const result = await novu.subscribers.credentials.delete("<id>", "<id>");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -271,15 +262,12 @@ const novu = new NovuCore({
 
 async function run() {
   const res = await subscribersCredentialsDelete(novu, "<id>", "<id>");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("subscribersCredentialsDelete failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

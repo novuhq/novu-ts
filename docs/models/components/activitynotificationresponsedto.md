@@ -13,43 +13,29 @@ let value: ActivityNotificationResponseDto = {
   jobs: [
     {
       id: "<id>",
-      type: "sms",
+      type: "in_app",
       executionDetails: [
         {
           id: "<id>",
-          status: "Queued",
+          status: "Success",
           detail: "<value>",
           isRetry: false,
-          isTest: false,
-          providerId: "mailersend",
-          source: "Payload",
+          isTest: true,
+          providerId: "emailjs",
+          source: "Webhook",
         },
       ],
       step: {
         id: "<id>",
         active: false,
-        filters: [
-          {
-            isNegated: false,
-            type: "BOOLEAN",
-            value: "OR",
-            children: [
-              {
-                field: "<value>",
-                value: "<value>",
-                operator: "NOT_LIKE",
-                on: "subscriber",
-              },
-            ],
-          },
-        ],
+        filters: [],
         templateId: "<id>",
       },
       overrides: {
         "workflowId": "some_wf_id",
         "stepId": "some_wf_id",
       },
-      providerId: "pushpad",
+      providerId: "mobishastra",
       status: "<value>",
     },
   ],

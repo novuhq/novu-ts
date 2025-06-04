@@ -11,11 +11,7 @@ let value: ActivityNotificationTemplateResponseDto = {
     {
       type: "event",
       identifier: "<value>",
-      variables: [
-        {
-          name: "<value>",
-        },
-      ],
+      variables: [],
     },
   ],
 };

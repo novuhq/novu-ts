@@ -5,23 +5,7 @@
 ```typescript
 import { EventsControllerTriggerBulkRequest } from "@novu/api/models/operations";
 
-let value: EventsControllerTriggerBulkRequest = {
-  bulkTriggerEventDto: {
-    events: [
-      {
-        workflowId: "workflow_identifier",
-        payload: {
-          "comment_id": "string",
-          "post": {
-            "text": "string",
-          },
-        },
-        overrides: {},
-        to: "SUBSCRIBER_ID",
-      },
-    ],
-  },
-};
+let value: EventsControllerTriggerBulkRequest = {};
 ```
 
 ## Fields

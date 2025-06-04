@@ -5,27 +5,7 @@
 ```typescript
 import { IntegrationsControllerRemoveIntegrationResponse } from "@novu/api/models/operations";
 
-let value: IntegrationsControllerRemoveIntegrationResponse = {
-  headers: {
-    "key": [
-      "<value>",
-    ],
-  },
-  result: [
-    {
-      environmentId: "<id>",
-      organizationId: "<id>",
-      name: "<value>",
-      identifier: "<value>",
-      providerId: "<id>",
-      channel: "sms",
-      credentials: {},
-      active: false,
-      deleted: false,
-      primary: false,
-    },
-  ],
-};
+let value: IntegrationsControllerRemoveIntegrationResponse = {};
 ```
 
 ## Fields

@@ -13,9 +13,10 @@ const args = {
 
 export const tool$subscribersDelete: ToolDefinition<typeof args> = {
   name: "subscribers-delete",
-  description: `Delete subscriber
+  description: `Delete a subscriber
 
-Deletes a subscriber entity from the Novu platform along with associated messages, preferences, and topic subscriptions`,
+Deletes a subscriber entity from the Novu platform along with associated messages, preferences, and topic subscriptions. 
+      **subscriberId** is a required field.`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await subscribersDelete(

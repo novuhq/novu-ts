@@ -5,17 +5,7 @@
 ```typescript
 import { EventsControllerTriggerResponse } from "@novu/api/models/operations";
 
-let value: EventsControllerTriggerResponse = {
-  headers: {
-    "key": [
-      "<value>",
-    ],
-  },
-  result: {
-    acknowledged: false,
-    status: "trigger_not_active",
-  },
-};
+let value: EventsControllerTriggerResponse = {};
 ```
 
 ## Fields

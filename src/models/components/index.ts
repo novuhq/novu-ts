@@ -84,6 +84,7 @@ export * from "./ordinalvalueenum.js";
 export * from "./patchpreferencechannelsdto.js";
 export * from "./patchsubscriberpreferencesdto.js";
 export * from "./patchsubscriberrequestdto.js";
+export * from "./payloadvalidationerrordto.js";
 export * from "./preferenceoverridesourceenum.js";
 export * from "./providersidenum.js";
 export * from "./removesubscriberresponsedto.js";
