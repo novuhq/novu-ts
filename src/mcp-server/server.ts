@@ -14,6 +14,10 @@ import {
 import { MCPScope } from "./scopes.js";
 import { createRegisterTool } from "./tools.js";
 import { tool$cancel } from "./tools/cancel.js";
+import { tool$environmentsCreate } from "./tools/environmentsCreate.js";
+import { tool$environmentsDelete } from "./tools/environmentsDelete.js";
+import { tool$environmentsList } from "./tools/environmentsList.js";
+import { tool$environmentsUpdate } from "./tools/environmentsUpdate.js";
 import { tool$integrationsCreate } from "./tools/integrationsCreate.js";
 import { tool$integrationsDelete } from "./tools/integrationsDelete.js";
 import { tool$integrationsList } from "./tools/integrationsList.js";
@@ -66,7 +70,7 @@ export function createMCPServer(deps: {
 }) {
   const server = new McpServer({
     name: "Novu",
-    version: "1.3.0",
+    version: "1.3.1",
   });
 
   const client = new NovuCore({
@@ -111,6 +115,10 @@ export function createMCPServer(deps: {
   tool(tool$topicsGet);
   tool(tool$topicsUpdate);
   tool(tool$topicsDelete);
+  tool(tool$environmentsCreate);
+  tool(tool$environmentsList);
+  tool(tool$environmentsUpdate);
+  tool(tool$environmentsDelete);
   tool(tool$integrationsList);
   tool(tool$integrationsCreate);
   tool(tool$integrationsUpdate);
