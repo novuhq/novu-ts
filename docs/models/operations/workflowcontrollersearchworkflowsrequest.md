@@ -1,0 +1,22 @@
+# WorkflowControllerSearchWorkflowsRequest
+
+## Example Usage
+
+```typescript
+import { WorkflowControllerSearchWorkflowsRequest } from "@novu/api/models/operations";
+
+let value: WorkflowControllerSearchWorkflowsRequest = {};
+```
+
+## Fields
+
+| Field                                                                                              | Type                                                                                               | Required                                                                                           | Description                                                                                        |
+| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `limit`                                                                                            | *number*                                                                                           | :heavy_minus_sign:                                                                                 | Number of items to return per page                                                                 |
+| `offset`                                                                                           | *number*                                                                                           | :heavy_minus_sign:                                                                                 | Number of items to skip before starting to return results                                          |
+| `orderDirection`                                                                                   | [components.DirectionEnum](../../models/components/directionenum.md)                               | :heavy_minus_sign:                                                                                 | Direction of sorting                                                                               |
+| `orderBy`                                                                                          | [components.WorkflowResponseDtoSortField](../../models/components/workflowresponsedtosortfield.md) | :heavy_minus_sign:                                                                                 | Field to sort the results by                                                                       |
+| `query`                                                                                            | *string*                                                                                           | :heavy_minus_sign:                                                                                 | Search query to filter workflows                                                                   |
+| `tags`                                                                                             | *string*[]                                                                                         | :heavy_minus_sign:                                                                                 | Filter workflows by tags                                                                           |
+| `status`                                                                                           | [components.WorkflowStatusEnum](../../models/components/workflowstatusenum.md)[]                   | :heavy_minus_sign:                                                                                 | Filter workflows by status                                                                         |
+| `idempotencyKey`                                                                                   | *string*                                                                                           | :heavy_minus_sign:                                                                                 | A header for idempotency purposes                                                                  |

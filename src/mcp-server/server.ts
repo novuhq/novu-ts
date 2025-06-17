@@ -14,6 +14,10 @@ import {
 import { MCPScope } from "./scopes.js";
 import { createRegisterTool } from "./tools.js";
 import { tool$cancel } from "./tools/cancel.js";
+import { tool$environmentsCreate } from "./tools/environmentsCreate.js";
+import { tool$environmentsDelete } from "./tools/environmentsDelete.js";
+import { tool$environmentsList } from "./tools/environmentsList.js";
+import { tool$environmentsUpdate } from "./tools/environmentsUpdate.js";
 import { tool$integrationsCreate } from "./tools/integrationsCreate.js";
 import { tool$integrationsDelete } from "./tools/integrationsDelete.js";
 import { tool$integrationsList } from "./tools/integrationsList.js";
@@ -55,6 +59,14 @@ import { tool$topicsUpdate } from "./tools/topicsUpdate.js";
 import { tool$trigger } from "./tools/trigger.js";
 import { tool$triggerBroadcast } from "./tools/triggerBroadcast.js";
 import { tool$triggerBulk } from "./tools/triggerBulk.js";
+import { tool$workflowsCreate } from "./tools/workflowsCreate.js";
+import { tool$workflowsDelete } from "./tools/workflowsDelete.js";
+import { tool$workflowsGet } from "./tools/workflowsGet.js";
+import { tool$workflowsList } from "./tools/workflowsList.js";
+import { tool$workflowsPatch } from "./tools/workflowsPatch.js";
+import { tool$workflowsStepsRetrieve } from "./tools/workflowsStepsRetrieve.js";
+import { tool$workflowsSync } from "./tools/workflowsSync.js";
+import { tool$workflowsUpdate } from "./tools/workflowsUpdate.js";
 
 export function createMCPServer(deps: {
   logger: ConsoleLogger;
@@ -66,7 +78,7 @@ export function createMCPServer(deps: {
 }) {
   const server = new McpServer({
     name: "Novu",
-    version: "1.3.0",
+    version: "1.4.0",
   });
 
   const client = new NovuCore({
@@ -111,6 +123,17 @@ export function createMCPServer(deps: {
   tool(tool$topicsGet);
   tool(tool$topicsUpdate);
   tool(tool$topicsDelete);
+  tool(tool$workflowsCreate);
+  tool(tool$workflowsList);
+  tool(tool$workflowsUpdate);
+  tool(tool$workflowsGet);
+  tool(tool$workflowsDelete);
+  tool(tool$workflowsPatch);
+  tool(tool$workflowsSync);
+  tool(tool$environmentsCreate);
+  tool(tool$environmentsList);
+  tool(tool$environmentsUpdate);
+  tool(tool$environmentsDelete);
   tool(tool$integrationsList);
   tool(tool$integrationsCreate);
   tool(tool$integrationsUpdate);
@@ -138,6 +161,7 @@ export function createMCPServer(deps: {
   tool(tool$topicsSubscriptionsCreate);
   tool(tool$topicsSubscriptionsDelete);
   tool(tool$topicsSubscribersRetrieve);
+  tool(tool$workflowsStepsRetrieve);
 
   return server;
 }

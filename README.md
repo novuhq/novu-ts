@@ -330,6 +330,13 @@ run();
 <details open>
 <summary>Available methods</summary>
 
+### [environments](docs/sdks/environments/README.md)
+
+* [create](docs/sdks/environments/README.md#create) - Create an environment
+* [list](docs/sdks/environments/README.md#list) - List all environments
+* [update](docs/sdks/environments/README.md#update) - Update an environment
+* [delete](docs/sdks/environments/README.md#delete) - Delete an environment
+
 ### [integrations](docs/sdks/integrations/README.md)
 
 * [list](docs/sdks/integrations/README.md#list) - List all integrations
@@ -414,6 +421,20 @@ run();
 * [create](docs/sdks/subscriptions/README.md#create) - Create topic subscriptions
 * [delete](docs/sdks/subscriptions/README.md#delete) - Delete topic subscriptions
 
+### [workflows](docs/sdks/workflows/README.md)
+
+* [create](docs/sdks/workflows/README.md#create) - Create a workflow
+* [list](docs/sdks/workflows/README.md#list) - List all workflows
+* [update](docs/sdks/workflows/README.md#update) - Update a workflow
+* [get](docs/sdks/workflows/README.md#get) - Retrieve a workflow
+* [delete](docs/sdks/workflows/README.md#delete) - Delete a workflow
+* [patch](docs/sdks/workflows/README.md#patch) - Update a workflow
+* [sync](docs/sdks/workflows/README.md#sync) - Sync a workflow
+
+#### [workflows.steps](docs/sdks/steps/README.md)
+
+* [retrieve](docs/sdks/steps/README.md#retrieve) - Retrieve workflow step
+
 </details>
 <!-- End Available Resources and Operations [operations] -->
 
@@ -433,6 +454,10 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 <summary>Available standalone functions</summary>
 
 - [`cancel`](docs/sdks/novu/README.md#cancel) - Cancel triggered event
+- [`environmentsCreate`](docs/sdks/environments/README.md#create) - Create an environment
+- [`environmentsDelete`](docs/sdks/environments/README.md#delete) - Delete an environment
+- [`environmentsList`](docs/sdks/environments/README.md#list) - List all environments
+- [`environmentsUpdate`](docs/sdks/environments/README.md#update) - Update an environment
 - [`integrationsCreate`](docs/sdks/integrations/README.md#create) - Create an integration
 - [`integrationsDelete`](docs/sdks/integrations/README.md#delete) - Delete an integration
 - [`integrationsList`](docs/sdks/integrations/README.md#list) - List all integrations
@@ -474,6 +499,14 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`trigger`](docs/sdks/novu/README.md#trigger) - Trigger event
 - [`triggerBroadcast`](docs/sdks/novu/README.md#triggerbroadcast) - Broadcast event to all
 - [`triggerBulk`](docs/sdks/novu/README.md#triggerbulk) - Bulk trigger event
+- [`workflowsCreate`](docs/sdks/workflows/README.md#create) - Create a workflow
+- [`workflowsDelete`](docs/sdks/workflows/README.md#delete) - Delete a workflow
+- [`workflowsGet`](docs/sdks/workflows/README.md#get) - Retrieve a workflow
+- [`workflowsList`](docs/sdks/workflows/README.md#list) - List all workflows
+- [`workflowsPatch`](docs/sdks/workflows/README.md#patch) - Update a workflow
+- [`workflowsStepsRetrieve`](docs/sdks/steps/README.md#retrieve) - Retrieve workflow step
+- [`workflowsSync`](docs/sdks/workflows/README.md#sync) - Sync a workflow
+- [`workflowsUpdate`](docs/sdks/workflows/README.md#update) - Update a workflow
 
 </details>
 <!-- End Standalone functions [standalone-funcs] -->
@@ -481,16 +514,15 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 <!-- Start Error Handling [errors] -->
 ## Error Handling
 
-This table shows properties which are common on error classes. For full details see [error classes](#error-classes).
+[`NovuError`](./src/models/errors/novuerror.ts) is the base class for all HTTP error responses. It has the following properties:
 
 | Property            | Type       | Description                                                                             |
 | ------------------- | ---------- | --------------------------------------------------------------------------------------- |
-| `error.name`        | `string`   | Error class name eg `SDKError`                                                          |
 | `error.message`     | `string`   | Error message                                                                           |
-| `error.statusCode`  | `number`   | HTTP status code eg `404`                                                               |
-| `error.contentType` | `string`   | HTTP content type eg `application/json`                                                 |
+| `error.statusCode`  | `number`   | HTTP response status code eg `404`                                                      |
+| `error.headers`     | `Headers`  | HTTP response headers                                                                   |
 | `error.body`        | `string`   | HTTP body. Can be empty string if no body is returned.                                  |
-| `error.rawResponse` | `Response` | Raw HTTP response. Access to headers and more.                                          |
+| `error.rawResponse` | `Response` | Raw HTTP response                                                                       |
 | `error.data$`       |            | Optional. Some errors may contain structured data. [See Error Classes](#error-classes). |
 
 ### Example
@@ -518,22 +550,21 @@ async function run() {
 
     console.log(result);
   } catch (error) {
-    // Depending on the method different errors may be thrown
-    if (error instanceof errors.PayloadValidationExceptionDto) {
-      console.log(error.message);
-      console.log(error.data$.statusCode); // number
-      console.log(error.data$.timestamp); // string
-      console.log(error.data$.path); // string
-      console.log(error.data$.message); // errors.PayloadValidationExceptionDtoMessage
-      console.log(error.data$.ctx); // { [k: string]: any }
-    }
-
-    // Fallback error class, if no other more specific error class is matched
-    if (error instanceof errors.SDKError) {
+    // The base class for HTTP error responses
+    if (error instanceof errors.NovuError) {
       console.log(error.message);
       console.log(error.statusCode);
       console.log(error.body);
-      console.log(error.rawResponse.headers);
+      console.log(error.headers);
+
+      // Depending on the method different errors may be thrown
+      if (error instanceof errors.PayloadValidationExceptionDto) {
+        console.log(error.data$.statusCode); // number
+        console.log(error.data$.timestamp); // string
+        console.log(error.data$.path); // string
+        console.log(error.data$.message); // errors.PayloadValidationExceptionDtoMessage
+        console.log(error.data$.ctx); // { [k: string]: any }
+      }
     }
   }
 }
@@ -543,19 +574,28 @@ run();
 ```
 
 ### Error Classes
-* [`ErrorDto`](docs/models/errors/errordto.md): Generic error.
-* [`ValidationErrorDto`](docs/models/errors/validationerrordto.md): Unprocessable Entity. Status code `422`.
-* `SDKError`: The fallback error class, if no other more specific error class is matched.
-* `SDKValidationError`: Type mismatch between the data returned from the server and the structure expected by the SDK. This can also be thrown for invalid method arguments. See `error.rawValue` for the raw value and `error.pretty()` for a nicely formatted multi-line string.
-* Network errors:
-    * `ConnectionError`: HTTP client was unable to make a request to a server.
-    * `RequestTimeoutError`: HTTP request timed out due to an AbortSignal signal.
-    * `RequestAbortedError`: HTTP request was aborted by the client.
-    * `InvalidRequestError`: Any input used to create a request is invalid.
-    * `UnexpectedClientError`: Unrecognised or unexpected error.
-* Less common errors, applicable to a subset of methods:
-    * [`PayloadValidationExceptionDto`](docs/models/errors/payloadvalidationexceptiondto.md): Status code `400`. Applicable to 3 of 42 methods.*
+**Primary errors:**
+* [`NovuError`](./src/models/errors/novuerror.ts): The base class for HTTP error responses.
+  * [`ErrorDto`](docs/models/errors/errordto.md): Generic error.
+  * [`ValidationErrorDto`](docs/models/errors/validationerrordto.md): Unprocessable Entity. Status code `422`.
 
+<details><summary>Less common errors (7)</summary>
+
+<br />
+
+**Network errors:**
+* [`ConnectionError`](./src/models/errors/httpclienterrors.ts): HTTP client was unable to make a request to a server.
+* [`RequestTimeoutError`](./src/models/errors/httpclienterrors.ts): HTTP request timed out due to an AbortSignal signal.
+* [`RequestAbortedError`](./src/models/errors/httpclienterrors.ts): HTTP request was aborted by the client.
+* [`InvalidRequestError`](./src/models/errors/httpclienterrors.ts): Any input used to create a request is invalid.
+* [`UnexpectedClientError`](./src/models/errors/httpclienterrors.ts): Unrecognised or unexpected error.
+
+
+**Inherit from [`NovuError`](./src/models/errors/novuerror.ts)**:
+* [`PayloadValidationExceptionDto`](docs/models/errors/payloadvalidationexceptiondto.md): Status code `400`. Applicable to 3 of 54 methods.*
+* [`ResponseValidationError`](./src/models/errors/responsevalidationerror.ts): Type mismatch between the data returned from the server and the structure expected by the SDK. See `error.rawValue` for the raw value and `error.pretty()` for a nicely formatted multi-line string.
+
+</details>
 
 \* Check [the method documentation](#available-resources-and-operations) to see if the error is applicable.
 <!-- End Error Handling [errors] -->
