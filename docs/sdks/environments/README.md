@@ -1,0 +1,319 @@
+# Environments
+(*environments*)
+
+## Overview
+
+Environments allow you to manage different stages of your application development lifecycle. Each environment has its own set of API keys and configurations, enabling you to separate development, staging, and production workflows.
+<https://docs.novu.co/platform/environments>
+
+### Available Operations
+
+* [create](#create) - Create an environment
+* [list](#list) - List all environments
+* [update](#update) - Update an environment
+* [delete](#delete) - Delete an environment
+
+## create
+
+Creates a new environment within the current organization. 
+    Environments allow you to manage different stages of your application development lifecycle.
+    Each environment has its own set of API keys and configurations.
+
+### Example Usage
+
+```typescript
+import { Novu } from "@novu/api";
+
+const novu = new Novu({
+  secretKey: "YOUR_SECRET_KEY_HERE",
+});
+
+async function run() {
+  const result = await novu.environments.create({
+    name: "Production Environment",
+    parentId: "60d5ecb8b3b3a30015f3e1a1",
+    color: "#3498db",
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { NovuCore } from "@novu/api/core.js";
+import { environmentsCreate } from "@novu/api/funcs/environmentsCreate.js";
+
+// Use `NovuCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const novu = new NovuCore({
+  secretKey: "YOUR_SECRET_KEY_HERE",
+});
+
+async function run() {
+  const res = await environmentsCreate(novu, {
+    name: "Production Environment",
+    parentId: "60d5ecb8b3b3a30015f3e1a1",
+    color: "#3498db",
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("environmentsCreate failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `createEnvironmentRequestDto`                                                                                                                                                  | [components.CreateEnvironmentRequestDto](../../models/components/createenvironmentrequestdto.md)                                                                               | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
+| `idempotencyKey`                                                                                                                                                               | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | A header for idempotency purposes                                                                                                                                              |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.EnvironmentsControllerV1CreateEnvironmentResponse](../../models/operations/environmentscontrollerv1createenvironmentresponse.md)\>**
+
+### Errors
+
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| errors.ErrorDto                        | 402, 414                               | application/json                       |
+| errors.ErrorDto                        | 400, 401, 403, 404, 405, 409, 413, 415 | application/json                       |
+| errors.ValidationErrorDto              | 422                                    | application/json                       |
+| errors.ErrorDto                        | 500                                    | application/json                       |
+| errors.SDKError                        | 4XX, 5XX                               | \*/\*                                  |
+
+## list
+
+This API returns a list of environments for the current organization. 
+    Each environment contains its configuration, API keys (if user has access), and metadata.
+
+### Example Usage
+
+```typescript
+import { Novu } from "@novu/api";
+
+const novu = new Novu({
+  secretKey: "YOUR_SECRET_KEY_HERE",
+});
+
+async function run() {
+  const result = await novu.environments.list();
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { NovuCore } from "@novu/api/core.js";
+import { environmentsList } from "@novu/api/funcs/environmentsList.js";
+
+// Use `NovuCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const novu = new NovuCore({
+  secretKey: "YOUR_SECRET_KEY_HERE",
+});
+
+async function run() {
+  const res = await environmentsList(novu);
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("environmentsList failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `idempotencyKey`                                                                                                                                                               | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | A header for idempotency purposes                                                                                                                                              |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.EnvironmentsControllerV1ListMyEnvironmentsResponse](../../models/operations/environmentscontrollerv1listmyenvironmentsresponse.md)\>**
+
+### Errors
+
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| errors.ErrorDto                        | 414                                    | application/json                       |
+| errors.ErrorDto                        | 400, 401, 403, 404, 405, 409, 413, 415 | application/json                       |
+| errors.ValidationErrorDto              | 422                                    | application/json                       |
+| errors.ErrorDto                        | 500                                    | application/json                       |
+| errors.SDKError                        | 4XX, 5XX                               | \*/\*                                  |
+
+## update
+
+Update an environment by its unique identifier **environmentId**. 
+    You can modify the environment name, identifier, color, and other configuration settings.
+
+### Example Usage
+
+```typescript
+import { Novu } from "@novu/api";
+
+const novu = new Novu({
+  secretKey: "YOUR_SECRET_KEY_HERE",
+});
+
+async function run() {
+  const result = await novu.environments.update({}, "<id>");
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { NovuCore } from "@novu/api/core.js";
+import { environmentsUpdate } from "@novu/api/funcs/environmentsUpdate.js";
+
+// Use `NovuCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const novu = new NovuCore({
+  secretKey: "YOUR_SECRET_KEY_HERE",
+});
+
+async function run() {
+  const res = await environmentsUpdate(novu, {}, "<id>");
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("environmentsUpdate failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `environmentId`                                                                                                                                                                | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | The unique identifier of the environment                                                                                                                                       |
+| `updateEnvironmentRequestDto`                                                                                                                                                  | [components.UpdateEnvironmentRequestDto](../../models/components/updateenvironmentrequestdto.md)                                                                               | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
+| `idempotencyKey`                                                                                                                                                               | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | A header for idempotency purposes                                                                                                                                              |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.EnvironmentsControllerV1UpdateMyEnvironmentResponse](../../models/operations/environmentscontrollerv1updatemyenvironmentresponse.md)\>**
+
+### Errors
+
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| errors.ErrorDto                        | 414                                    | application/json                       |
+| errors.ErrorDto                        | 400, 401, 403, 404, 405, 409, 413, 415 | application/json                       |
+| errors.ValidationErrorDto              | 422                                    | application/json                       |
+| errors.ErrorDto                        | 500                                    | application/json                       |
+| errors.SDKError                        | 4XX, 5XX                               | \*/\*                                  |
+
+## delete
+
+Delete an environment by its unique identifier **environmentId**. 
+    This action is irreversible and will remove the environment and all its associated data.
+
+### Example Usage
+
+```typescript
+import { Novu } from "@novu/api";
+
+const novu = new Novu({
+  secretKey: "YOUR_SECRET_KEY_HERE",
+});
+
+async function run() {
+  const result = await novu.environments.delete("<id>");
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { NovuCore } from "@novu/api/core.js";
+import { environmentsDelete } from "@novu/api/funcs/environmentsDelete.js";
+
+// Use `NovuCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const novu = new NovuCore({
+  secretKey: "YOUR_SECRET_KEY_HERE",
+});
+
+async function run() {
+  const res = await environmentsDelete(novu, "<id>");
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("environmentsDelete failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `environmentId`                                                                                                                                                                | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | The unique identifier of the environment                                                                                                                                       |
+| `idempotencyKey`                                                                                                                                                               | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | A header for idempotency purposes                                                                                                                                              |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.EnvironmentsControllerV1DeleteEnvironmentResponse](../../models/operations/environmentscontrollerv1deleteenvironmentresponse.md)\>**
+
+### Errors
+
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| errors.ErrorDto                        | 414                                    | application/json                       |
+| errors.ErrorDto                        | 400, 401, 403, 404, 405, 409, 413, 415 | application/json                       |
+| errors.ValidationErrorDto              | 422                                    | application/json                       |
+| errors.ErrorDto                        | 500                                    | application/json                       |
+| errors.SDKError                        | 4XX, 5XX                               | \*/\*                                  |

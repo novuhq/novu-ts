@@ -10,11 +10,13 @@ import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as components from "../models/components/index.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
+import { Environments } from "./environments.js";
 import { Integrations } from "./integrations.js";
 import { Messages } from "./messages.js";
 import { Notifications } from "./notifications.js";
 import { Subscribers } from "./subscribers.js";
 import { Topics } from "./topics.js";
+import { Workflows } from "./workflows.js";
 
 export class Novu extends ClientSDK {
   private _subscribers?: Subscribers;
@@ -25,6 +27,16 @@ export class Novu extends ClientSDK {
   private _topics?: Topics;
   get topics(): Topics {
     return (this._topics ??= new Topics(this._options));
+  }
+
+  private _workflows?: Workflows;
+  get workflows(): Workflows {
+    return (this._workflows ??= new Workflows(this._options));
+  }
+
+  private _environments?: Environments;
+  get environments(): Environments {
+    return (this._environments ??= new Environments(this._options));
   }
 
   private _integrations?: Integrations;

@@ -3,6 +3,30 @@ info:
   title: CodeSamples overlay for typescript target
   version: 0.0.0
 actions:
+  - target: $["paths"]["/v1/environments"]["get"]
+    update:
+      "x-codeSamples":
+        - "lang": "typescript"
+          "label": "TypeScript"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.environments.list();\n\n  console.log(result);\n}\n\nrun();"
+  - target: $["paths"]["/v1/environments"]["post"]
+    update:
+      "x-codeSamples":
+        - "lang": "typescript"
+          "label": "TypeScript"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.environments.create({\n    name: \"Production Environment\",\n    parentId: \"60d5ecb8b3b3a30015f3e1a1\",\n    color: \"#3498db\",\n  });\n\n  console.log(result);\n}\n\nrun();"
+  - target: $["paths"]["/v1/environments/{environmentId}"]["delete"]
+    update:
+      "x-codeSamples":
+        - "lang": "typescript"
+          "label": "TypeScript"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.environments.delete(\"<id>\");\n\n  console.log(result);\n}\n\nrun();"
+  - target: $["paths"]["/v1/environments/{environmentId}"]["put"]
+    update:
+      "x-codeSamples":
+        - "lang": "typescript"
+          "label": "TypeScript"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.environments.update({}, \"<id>\");\n\n  console.log(result);\n}\n\nrun();"
   - target: $["paths"]["/v1/events/trigger"]["post"]
     update:
       "x-codeSamples":
@@ -255,3 +279,51 @@ actions:
         - "lang": "typescript"
           "label": "TypeScript"
           "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.topics.subscriptions.create({\n    subscriberIds: [\n      \"subscriberId1\",\n      \"subscriberId2\",\n    ],\n  }, \"<value>\");\n\n  console.log(result);\n}\n\nrun();"
+  - target: $["paths"]["/v2/workflows"]["get"]
+    update:
+      "x-codeSamples":
+        - "lang": "typescript"
+          "label": "TypeScript"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.workflows.list({});\n\n  console.log(result);\n}\n\nrun();"
+  - target: $["paths"]["/v2/workflows"]["post"]
+    update:
+      "x-codeSamples":
+        - "lang": "typescript"
+          "label": "TypeScript"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.workflows.create({\n    name: \"<value>\",\n    workflowId: \"<id>\",\n    steps: [],\n    preferences: {\n      user: {\n        all: {\n          enabled: true,\n          readOnly: false,\n        },\n        channels: {\n          \"email\": {\n            enabled: true,\n          },\n          \"sms\": {\n            enabled: false,\n          },\n        },\n      },\n      workflow: {\n        all: {\n          enabled: true,\n          readOnly: false,\n        },\n        channels: {\n          \"email\": {},\n          \"sms\": {\n            enabled: false,\n          },\n        },\n      },\n    },\n  });\n\n  console.log(result);\n}\n\nrun();"
+  - target: $["paths"]["/v2/workflows/{workflowId}"]["delete"]
+    update:
+      "x-codeSamples":
+        - "lang": "typescript"
+          "label": "TypeScript"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.workflows.delete(\"<id>\");\n\n  console.log(result);\n}\n\nrun();"
+  - target: $["paths"]["/v2/workflows/{workflowId}"]["get"]
+    update:
+      "x-codeSamples":
+        - "lang": "typescript"
+          "label": "TypeScript"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.workflows.get(\"<id>\");\n\n  console.log(result);\n}\n\nrun();"
+  - target: $["paths"]["/v2/workflows/{workflowId}"]["patch"]
+    update:
+      "x-codeSamples":
+        - "lang": "typescript"
+          "label": "TypeScript"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.workflows.patch({}, \"<id>\");\n\n  console.log(result);\n}\n\nrun();"
+  - target: $["paths"]["/v2/workflows/{workflowId}"]["put"]
+    update:
+      "x-codeSamples":
+        - "lang": "typescript"
+          "label": "TypeScript"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.workflows.update({\n    name: \"<value>\",\n    steps: [],\n    preferences: {\n      user: {\n        all: {\n          enabled: true,\n          readOnly: false,\n        },\n        channels: {\n          \"email\": {\n            enabled: true,\n          },\n          \"sms\": {\n            enabled: false,\n          },\n        },\n      },\n      workflow: {\n        all: {\n          enabled: true,\n          readOnly: false,\n        },\n        channels: {\n          \"email\": {},\n          \"sms\": {\n            enabled: false,\n          },\n        },\n      },\n    },\n    origin: \"external\",\n  }, \"<id>\");\n\n  console.log(result);\n}\n\nrun();"
+  - target: $["paths"]["/v2/workflows/{workflowId}/steps/{stepId}"]["get"]
+    update:
+      "x-codeSamples":
+        - "lang": "typescript"
+          "label": "TypeScript"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.workflows.steps.retrieve(\"<id>\", \"<id>\");\n\n  console.log(result);\n}\n\nrun();"
+  - target: $["paths"]["/v2/workflows/{workflowId}/sync"]["put"]
+    update:
+      "x-codeSamples":
+        - "lang": "typescript"
+          "label": "TypeScript"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.workflows.sync({\n    targetEnvironmentId: \"<id>\",\n  }, \"<id>\");\n\n  console.log(result);\n}\n\nrun();"

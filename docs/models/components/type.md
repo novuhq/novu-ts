@@ -1,5 +1,7 @@
 # Type
 
+Type of the delay. Currently only 'regular' is supported by the schema.
+
 ## Example Usage
 
 ```typescript
@@ -11,5 +13,5 @@ let value: Type = "regular";
 ## Values
 
 ```typescript
-"regular" | "backoff"
+"regular"
 ```
