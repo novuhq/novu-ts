@@ -1,3 +1,5 @@
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/novuhq-novu-ts-badge.png)](https://mseep.ai/app/novuhq-novu-ts)
+
 <!-- speakeasy-ignore-start -->
 
 <div align="center">
