@@ -7,6 +7,7 @@ import { WorkflowControllerPatchWorkflowRequest } from "@novu/api/models/operati
 
 let value: WorkflowControllerPatchWorkflowRequest = {
   workflowId: "<id>",
+  patchWorkflowDto: {},
 };
 ```
 

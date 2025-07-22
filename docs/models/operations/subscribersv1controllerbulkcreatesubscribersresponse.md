@@ -5,7 +5,29 @@
 ```typescript
 import { SubscribersV1ControllerBulkCreateSubscribersResponse } from "@novu/api/models/operations";
 
-let value: SubscribersV1ControllerBulkCreateSubscribersResponse = {};
+let value: SubscribersV1ControllerBulkCreateSubscribersResponse = {
+  headers: {
+    "key": [
+      "<value 1>",
+      "<value 2>",
+      "<value 3>",
+    ],
+    "key1": [
+      "<value 1>",
+    ],
+  },
+  result: {
+    updated: [],
+    created: [
+      {
+        subscriberId: "<id>",
+      },
+    ],
+    failed: [
+      {},
+    ],
+  },
+};
 ```
 
 ## Fields

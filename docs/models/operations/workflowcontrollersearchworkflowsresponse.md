@@ -5,7 +5,23 @@
 ```typescript
 import { WorkflowControllerSearchWorkflowsResponse } from "@novu/api/models/operations";
 
-let value: WorkflowControllerSearchWorkflowsResponse = {};
+let value: WorkflowControllerSearchWorkflowsResponse = {
+  headers: {
+    "key": [
+      "<value 1>",
+      "<value 2>",
+      "<value 3>",
+    ],
+    "key1": [
+      "<value 1>",
+      "<value 2>",
+    ],
+  },
+  result: {
+    workflows: [],
+    totalCount: 784.04,
+  },
+};
 ```
 
 ## Fields

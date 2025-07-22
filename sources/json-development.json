@@ -1,6 +1,495 @@
 {
   "openapi": "3.0.0",
   "paths": {
+    "/v2/environments/{environmentId}/tags": {
+      "get": {
+        "operationId": "EnvironmentsController_getEnvironmentTags",
+        "x-speakeasy-name-override": "getTags",
+        "summary": "Get environment tags",
+        "description": "Retrieve all unique tags used in workflows within the specified environment. These tags can be used for filtering workflows.",
+        "parameters": [
+          {
+            "name": "environmentId",
+            "required": true,
+            "in": "path",
+            "description": "Environment internal ID (MongoDB ObjectId) or identifier",
+            "example": "6615943e7ace93b0540ae377",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "idempotency-key",
+            "in": "header",
+            "description": "A header for idempotency purposes",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetEnvironmentTagsDto"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Method Not Allowed",
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Payload Too Large",
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "414": {
+            "description": "URI Too Long",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Unsupported Media Type",
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationErrorDto"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "The client has sent too many requests in a given amount of time. ",
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              },
+              "Retry-After": {
+                "$ref": "#/components/headers/Retry-After"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "example": "API rate limit exceeded"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "The server is currently unable to handle the request due to a temporary overload or scheduled maintenance, which will likely be alleviated after some delay.",
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              },
+              "Retry-After": {
+                "$ref": "#/components/headers/Retry-After"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "example": "Please wait some time, then try again."
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Environments"
+        ],
+        "security": [
+          {
+            "secretKey": []
+          }
+        ]
+      }
+    },
     "/v2/subscribers": {
       "get": {
         "operationId": "SubscribersController_searchSubscribers",
@@ -18868,6 +19357,109 @@
         ]
       }
     },
+    "/v1/logs/requests": {
+      "get": {
+        "operationId": "LogsController_getLogs",
+        "parameters": [
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "minimum": 0,
+              "maximum": 100,
+              "type": "number"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "minimum": 1,
+              "maximum": 100,
+              "type": "number"
+            }
+          },
+          {
+            "name": "statusCode",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              }
+            }
+          },
+          {
+            "name": "url",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "maxLength": 500,
+              "pattern": "/^[a-zA-Z0-9\\-._~:/?#[\\]@!$\u0026'()*+,;=%]*$/",
+              "type": "string"
+            }
+          },
+          {
+            "name": "url_pattern",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "maxLength": 500,
+              "pattern": "/^[a-zA-Z0-9\\-._~:/?#[\\]@!$\u0026'()*+,;=%]*$/",
+              "type": "string"
+            }
+          },
+          {
+            "name": "transactionId",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "maxLength": 100,
+              "type": "string"
+            }
+          },
+          {
+            "name": "created",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "minimum": 1,
+              "maximum": 2160,
+              "type": "number"
+            }
+          },
+          {
+            "name": "idempotency-key",
+            "in": "header",
+            "description": "A header for idempotency purposes",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "secretKey": []
+          }
+        ]
+      }
+    },
     "/v1/messages": {
       "get": {
         "operationId": "MessagesController_getMessages",
@@ -20457,7 +21049,7 @@
             "name": "transactionId",
             "required": false,
             "in": "query",
-            "description": "Transaction ID for filtering",
+            "description": "The transaction ID to filter by",
             "schema": {
               "type": "string"
             }
@@ -21445,8 +22037,8 @@
       "put": {
         "operationId": "SubscribersV1Controller_updateSubscriberChannel",
         "x-speakeasy-group": "Subscribers.Credentials",
-        "summary": "Update provider credentials",
-        "description": "Update credentials for a provider such as slack and push tokens. \n      **providerId** is required field. This API appends the **deviceTokens** to the existing ones.",
+        "summary": "Upsert provider credentials",
+        "description": "Upsert credentials for a provider such as slack and push tokens. \n      **providerId** is required field. This API creates **deviceTokens** or appends to the existing ones.",
         "parameters": [
           {
             "name": "subscriberId",
@@ -21938,8 +22530,8 @@
         "operationId": "SubscribersV1Controller_modifySubscriberChannel",
         "x-speakeasy-name-override": "append",
         "x-speakeasy-group": "Subscribers.Credentials",
-        "summary": "Upsert provider credentials",
-        "description": "Update credentials for a provider such as **slack** and **FCM**. \n      **providerId** is required field. This API replaces the existing deviceTokens with the provided ones.",
+        "summary": "Create or Partially Update provider credentials",
+        "description": "Create or Partially credentials for a provider such as **slack** and **FCM**. \n      **providerId** is required field. This API creates the **deviceTokens** or replaces the existing ones.",
         "parameters": [
           {
             "name": "subscriberId",
@@ -26928,7 +27520,7 @@
   "info": {
     "title": "Novu API",
     "description": "Novu REST API. Please see https://docs.novu.co/api-reference for more details.",
-    "version": "2.2.0",
+    "version": "2.3.0",
     "contact": {
       "name": "Novu Support",
       "url": "https://discord.gg/novu",
@@ -26966,7 +27558,7 @@
       "name": "Integrations",
       "description": "With the help of the Integration Store, you can easily integrate your favorite delivery provider. During the runtime of the API, the Integrations Store is responsible for storing the configurations of all the providers.",
       "externalDocs": {
-        "url": "https://docs.novu.co/channels-and-providers/integration-store"
+        "url": "https://docs.novu.co/platform/integrations/overview"
       }
     },
     {
@@ -27335,6 +27927,16 @@
             "description": "Unique identifier for the environment",
             "example": "prod-env-01"
           },
+          "type": {
+            "enum": [
+              "dev",
+              "prod"
+            ],
+            "type": "string",
+            "description": "Type of the environment",
+            "example": "prod",
+            "nullable": true
+          },
           "apiKeys": {
             "description": "List of API keys associated with the environment",
             "type": "array",
@@ -27682,6 +28284,7 @@
               "getstream",
               "rocket-chat",
               "whatsapp-business",
+              "chat-webhook",
               "fcm",
               "apns",
               "expo",
@@ -28146,7 +28749,7 @@
           "_id"
         ]
       },
-      "WorkflowOriginEnum": {
+      "ResourceOriginEnum": {
         "type": "string",
         "description": "Origin of the workflow",
         "enum": [
@@ -28214,7 +28817,7 @@
             "description": "Name of the template"
           },
           "origin": {
-            "$ref": "#/components/schemas/WorkflowOriginEnum"
+            "$ref": "#/components/schemas/ResourceOriginEnum"
           },
           "triggers": {
             "description": "Triggers of the template",
@@ -28478,7 +29081,8 @@
           "grafana-on-call",
           "getstream",
           "rocket-chat",
-          "whatsapp-business"
+          "whatsapp-business",
+          "chat-webhook"
         ]
       },
       "ExecutionDetailsSourceEnum": {
@@ -29385,6 +29989,7 @@
           "getstream",
           "rocket-chat",
           "whatsapp-business",
+          "chat-webhook",
           "fcm",
           "apns",
           "expo",
@@ -30002,12 +30607,33 @@
               "key": "value"
             }
           },
+          "data": {
+            "type": "object",
+            "nullable": true,
+            "description": "The data sent with the notification.",
+            "example": {
+              "key": "value"
+            },
+            "additionalProperties": true
+          },
           "overrides": {
             "type": "object",
             "description": "Provider-specific overrides used when triggering the notification.",
             "additionalProperties": true,
             "example": {
               "overrideKey": "overrideValue"
+            }
+          },
+          "tags": {
+            "nullable": true,
+            "description": "Tags associated with the workflow that triggered the notification.",
+            "example": [
+              "tag1",
+              "tag2"
+            ],
+            "type": "array",
+            "items": {
+              "type": "string"
             }
           }
         },
@@ -30639,6 +31265,7 @@
           },
           "_templateId": {
             "type": "string",
+            "nullable": true,
             "description": "Template ID associated with the message"
           },
           "_environmentId": {
@@ -30647,6 +31274,7 @@
           },
           "_messageTemplateId": {
             "type": "string",
+            "nullable": true,
             "description": "Message template ID"
           },
           "_organizationId": {
@@ -30701,6 +31329,7 @@
             "description": "Last read date of the message, if available"
           },
           "content": {
+            "nullable": true,
             "oneOf": [
               {
                 "type": "array",
@@ -30799,14 +31428,11 @@
           }
         },
         "required": [
-          "_templateId",
           "_environmentId",
-          "_messageTemplateId",
           "_organizationId",
           "_notificationId",
           "_subscriberId",
           "createdAt",
-          "content",
           "transactionId",
           "channel",
           "read",
@@ -31754,6 +32380,7 @@
         "description": "Component type for the UI Schema Property",
         "enum": [
           "EMAIL_EDITOR_SELECT",
+          "LAYOUT_SELECT",
           "BLOCK_EDITOR",
           "EMAIL_BODY",
           "TEXT_FULL_LINE",
@@ -31777,7 +32404,8 @@
           "PUSH_BODY",
           "PUSH_SUBJECT",
           "QUERY_EDITOR",
-          "DATA"
+          "DATA",
+          "LAYOUT_EMAIL"
         ]
       },
       "UiSchemaProperty": {
@@ -31824,6 +32452,13 @@
           },
           "component": {
             "$ref": "#/components/schemas/UiComponentEnum"
+          },
+          "properties": {
+            "type": "object",
+            "description": "Properties of the UI Schema",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/UiSchemaProperty"
+            }
           }
         },
         "required": [
@@ -31841,7 +32476,8 @@
           "SMS",
           "CHAT",
           "PUSH",
-          "SKIP"
+          "SKIP",
+          "LAYOUT"
         ]
       },
       "UiSchema": {
@@ -31877,7 +32513,7 @@
           }
         }
       },
-      "StepContentIssueEnum": {
+      "ContentIssueEnum": {
         "type": "string",
         "description": "Type of step content issue",
         "enum": [
@@ -31891,7 +32527,7 @@
         "type": "object",
         "properties": {
           "issueType": {
-            "$ref": "#/components/schemas/StepContentIssueEnum"
+            "$ref": "#/components/schemas/ContentIssueEnum"
           },
           "variableName": {
             "type": "string",
@@ -31907,7 +32543,7 @@
           "message"
         ]
       },
-      "StepIntegrationIssueEnum": {
+      "IntegrationIssueEnum": {
         "type": "string",
         "description": "Type of integration issue",
         "enum": [
@@ -31918,7 +32554,7 @@
         "type": "object",
         "properties": {
           "issueType": {
-            "$ref": "#/components/schemas/StepIntegrationIssueEnum"
+            "$ref": "#/components/schemas/IntegrationIssueEnum"
           },
           "variableName": {
             "type": "string",
@@ -32000,7 +32636,7 @@
             "$ref": "#/components/schemas/StepTypeEnum"
           },
           "origin": {
-            "$ref": "#/components/schemas/WorkflowOriginEnum"
+            "$ref": "#/components/schemas/ResourceOriginEnum"
           },
           "workflowId": {
             "type": "string",
@@ -32091,6 +32727,12 @@
             "type": "boolean",
             "default": false,
             "description": "Disable sanitization of the output."
+          },
+          "layoutId": {
+            "type": "string",
+            "nullable": true,
+            "minLength": 1,
+            "description": "Layout ID to use for the email. Null means no layout, undefined means default layout."
           }
         },
         "required": [
@@ -32172,7 +32814,7 @@
             "$ref": "#/components/schemas/StepTypeEnum"
           },
           "origin": {
-            "$ref": "#/components/schemas/WorkflowOriginEnum"
+            "$ref": "#/components/schemas/ResourceOriginEnum"
           },
           "workflowId": {
             "type": "string",
@@ -32320,7 +32962,7 @@
             "$ref": "#/components/schemas/StepTypeEnum"
           },
           "origin": {
-            "$ref": "#/components/schemas/WorkflowOriginEnum"
+            "$ref": "#/components/schemas/ResourceOriginEnum"
           },
           "workflowId": {
             "type": "string",
@@ -32472,7 +33114,7 @@
             "$ref": "#/components/schemas/StepTypeEnum"
           },
           "origin": {
-            "$ref": "#/components/schemas/WorkflowOriginEnum"
+            "$ref": "#/components/schemas/ResourceOriginEnum"
           },
           "workflowId": {
             "type": "string",
@@ -32620,7 +33262,7 @@
             "$ref": "#/components/schemas/StepTypeEnum"
           },
           "origin": {
-            "$ref": "#/components/schemas/WorkflowOriginEnum"
+            "$ref": "#/components/schemas/ResourceOriginEnum"
           },
           "workflowId": {
             "type": "string",
@@ -32794,7 +33436,7 @@
             "$ref": "#/components/schemas/StepTypeEnum"
           },
           "origin": {
-            "$ref": "#/components/schemas/WorkflowOriginEnum"
+            "$ref": "#/components/schemas/ResourceOriginEnum"
           },
           "workflowId": {
             "type": "string",
@@ -33006,7 +33648,7 @@
             "$ref": "#/components/schemas/StepTypeEnum"
           },
           "origin": {
-            "$ref": "#/components/schemas/WorkflowOriginEnum"
+            "$ref": "#/components/schemas/ResourceOriginEnum"
           },
           "workflowId": {
             "type": "string",
@@ -33122,7 +33764,7 @@
             "$ref": "#/components/schemas/StepTypeEnum"
           },
           "origin": {
-            "$ref": "#/components/schemas/WorkflowOriginEnum"
+            "$ref": "#/components/schemas/ResourceOriginEnum"
           },
           "workflowId": {
             "type": "string",
@@ -33352,7 +33994,7 @@
             "$ref": "#/components/schemas/StepTypeEnum"
           },
           "origin": {
-            "$ref": "#/components/schemas/WorkflowOriginEnum"
+            "$ref": "#/components/schemas/ResourceOriginEnum"
           },
           "workflowId": {
             "type": "string",
@@ -33382,6 +34024,33 @@
           "origin",
           "workflowId",
           "workflowDatabaseId"
+        ]
+      },
+      "UserResponseDto": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "User ID"
+          },
+          "firstName": {
+            "type": "string",
+            "description": "User first name",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "object",
+            "nullable": true,
+            "description": "User last name"
+          },
+          "externalId": {
+            "type": "string",
+            "description": "User external ID",
+            "nullable": true
+          }
+        },
+        "required": [
+          "_id"
         ]
       },
       "WorkflowPreferenceDto": {
@@ -33510,6 +34179,21 @@
             "description": "Whether the workflow is active",
             "default": false
           },
+          "validatePayload": {
+            "type": "boolean",
+            "description": "Enable or disable payload schema validation"
+          },
+          "payloadSchema": {
+            "type": "object",
+            "nullable": true,
+            "description": "The payload JSON Schema for the workflow",
+            "additionalProperties": true
+          },
+          "isTranslationEnabled": {
+            "type": "boolean",
+            "description": "Enable or disable translations for this workflow",
+            "default": false
+          },
           "_id": {
             "type": "string",
             "description": "Unique identifier of the workflow"
@@ -33529,6 +34213,15 @@
           "createdAt": {
             "type": "string",
             "description": "Creation timestamp"
+          },
+          "updatedBy": {
+            "description": "User who last updated the workflow",
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/UserResponseDto"
+              }
+            ]
           },
           "steps": {
             "type": "array",
@@ -33576,7 +34269,7 @@
             }
           },
           "origin": {
-            "$ref": "#/components/schemas/WorkflowOriginEnum"
+            "$ref": "#/components/schemas/ResourceOriginEnum"
           },
           "preferences": {
             "description": "Preferences for the workflow",
@@ -33601,21 +34294,11 @@
             "description": "Timestamp of the last workflow trigger",
             "nullable": true
           },
-          "payloadSchema": {
-            "type": "object",
-            "description": "The payload JSON Schema for the workflow",
-            "nullable": true,
-            "additionalProperties": true
-          },
           "payloadExample": {
             "type": "object",
-            "description": "Generated payload example based on the payload schema",
             "nullable": true,
+            "description": "Generated payload example based on the payload schema",
             "additionalProperties": true
-          },
-          "validatePayload": {
-            "type": "boolean",
-            "description": "Whether payload schema validation is enabled"
           }
         },
         "required": [
@@ -33646,11 +34329,14 @@
             "$ref": "#/components/schemas/StepTypeEnum"
           },
           "controlValues": {
-            "nullable": true,
-            "description": "Control values for the In-App step",
-            "allOf": [
+            "description": "Control values for the In-App step.",
+            "oneOf": [
               {
                 "$ref": "#/components/schemas/InAppControlDto"
+              },
+              {
+                "type": "object",
+                "additionalProperties": true
               }
             ]
           }
@@ -33675,11 +34361,14 @@
             "$ref": "#/components/schemas/StepTypeEnum"
           },
           "controlValues": {
-            "nullable": true,
-            "description": "Control values for the Email step",
-            "allOf": [
+            "description": "Control values for the Email step.",
+            "oneOf": [
               {
                 "$ref": "#/components/schemas/EmailControlDto"
+              },
+              {
+                "type": "object",
+                "additionalProperties": true
               }
             ]
           }
@@ -33704,11 +34393,14 @@
             "$ref": "#/components/schemas/StepTypeEnum"
           },
           "controlValues": {
-            "nullable": true,
-            "description": "Control values for the SMS step",
-            "allOf": [
+            "description": "Control values for the SMS step.",
+            "oneOf": [
               {
                 "$ref": "#/components/schemas/SmsControlDto"
+              },
+              {
+                "type": "object",
+                "additionalProperties": true
               }
             ]
           }
@@ -33733,11 +34425,14 @@
             "$ref": "#/components/schemas/StepTypeEnum"
           },
           "controlValues": {
-            "nullable": true,
-            "description": "Control values for the Push step",
-            "allOf": [
+            "description": "Control values for the Push step.",
+            "oneOf": [
               {
                 "$ref": "#/components/schemas/PushControlDto"
+              },
+              {
+                "type": "object",
+                "additionalProperties": true
               }
             ]
           }
@@ -33762,11 +34457,14 @@
             "$ref": "#/components/schemas/StepTypeEnum"
           },
           "controlValues": {
-            "nullable": true,
-            "description": "Control values for the Chat step",
-            "allOf": [
+            "description": "Control values for the Chat step.",
+            "oneOf": [
               {
                 "$ref": "#/components/schemas/ChatControlDto"
+              },
+              {
+                "type": "object",
+                "additionalProperties": true
               }
             ]
           }
@@ -33791,11 +34489,14 @@
             "$ref": "#/components/schemas/StepTypeEnum"
           },
           "controlValues": {
-            "nullable": true,
-            "description": "Control values for the Delay step",
-            "allOf": [
+            "description": "Control values for the Delay step.",
+            "oneOf": [
               {
                 "$ref": "#/components/schemas/DelayControlDto"
+              },
+              {
+                "type": "object",
+                "additionalProperties": true
               }
             ]
           }
@@ -33820,11 +34521,14 @@
             "$ref": "#/components/schemas/StepTypeEnum"
           },
           "controlValues": {
-            "nullable": true,
-            "description": "Control values for the Digest step",
-            "allOf": [
+            "description": "Control values for the Digest step.",
+            "oneOf": [
               {
                 "$ref": "#/components/schemas/DigestControlDto"
+              },
+              {
+                "type": "object",
+                "additionalProperties": true
               }
             ]
           }
@@ -33849,11 +34553,14 @@
             "$ref": "#/components/schemas/StepTypeEnum"
           },
           "controlValues": {
-            "nullable": true,
-            "description": "Control values for the Custom step",
-            "allOf": [
+            "description": "Control values for the Custom step.",
+            "oneOf": [
               {
                 "$ref": "#/components/schemas/CustomControlDto"
+              },
+              {
+                "type": "object",
+                "additionalProperties": true
               }
             ]
           }
@@ -33926,6 +34633,21 @@
             "description": "Whether the workflow is active",
             "default": false
           },
+          "validatePayload": {
+            "type": "boolean",
+            "description": "Enable or disable payload schema validation"
+          },
+          "payloadSchema": {
+            "type": "object",
+            "nullable": true,
+            "description": "The payload JSON Schema for the workflow",
+            "additionalProperties": true
+          },
+          "isTranslationEnabled": {
+            "type": "boolean",
+            "description": "Enable or disable translations for this workflow",
+            "default": false
+          },
           "workflowId": {
             "type": "string",
             "description": "Unique identifier for the workflow"
@@ -33985,15 +34707,6 @@
                 "$ref": "#/components/schemas/PreferencesRequestDto"
               }
             ]
-          },
-          "payloadSchema": {
-            "type": "object",
-            "description": "The payload JSON Schema for the workflow",
-            "additionalProperties": true
-          },
-          "validatePayload": {
-            "type": "boolean",
-            "description": "Enable or disable payload schema validation"
           }
         },
         "required": [
@@ -34035,6 +34748,21 @@
           "active": {
             "type": "boolean",
             "description": "Whether the workflow is active",
+            "default": false
+          },
+          "validatePayload": {
+            "type": "boolean",
+            "description": "Enable or disable payload schema validation"
+          },
+          "payloadSchema": {
+            "type": "object",
+            "nullable": true,
+            "description": "The payload JSON Schema for the workflow",
+            "additionalProperties": true
+          },
+          "isTranslationEnabled": {
+            "type": "boolean",
+            "description": "Enable or disable translations for this workflow",
             "default": false
           },
           "workflowId": {
@@ -34095,16 +34823,7 @@
             ]
           },
           "origin": {
-            "$ref": "#/components/schemas/WorkflowOriginEnum"
-          },
-          "payloadSchema": {
-            "type": "object",
-            "description": "The payload JSON Schema for the workflow",
-            "additionalProperties": true
-          },
-          "validatePayload": {
-            "type": "boolean",
-            "description": "Enable or disable payload schema validation"
+            "$ref": "#/components/schemas/ResourceOriginEnum"
           }
         },
         "required": [
@@ -34136,6 +34855,15 @@
             "type": "string",
             "description": "Creation timestamp"
           },
+          "updatedBy": {
+            "description": "User who last updated the workflow",
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/UserResponseDto"
+              }
+            ]
+          },
           "_id": {
             "type": "string",
             "description": "Unique database identifier"
@@ -34152,7 +34880,7 @@
             "$ref": "#/components/schemas/WorkflowStatusEnum"
           },
           "origin": {
-            "$ref": "#/components/schemas/WorkflowOriginEnum"
+            "$ref": "#/components/schemas/ResourceOriginEnum"
           },
           "lastTriggeredAt": {
             "type": "string",
@@ -34165,6 +34893,10 @@
               "$ref": "#/components/schemas/StepTypeEnum"
             },
             "description": "Overview of step types in the workflow"
+          },
+          "isTranslationEnabled": {
+            "type": "boolean",
+            "description": "Is translation enabled for the workflow"
           }
         },
         "required": [
@@ -34176,7 +34908,8 @@
           "slug",
           "status",
           "origin",
-          "stepTypeOverviews"
+          "stepTypeOverviews",
+          "isTranslationEnabled"
         ]
       },
       "ListWorkflowResponse": {
@@ -34232,6 +34965,11 @@
           "description": {
             "type": "string",
             "description": "Description of the workflow"
+          },
+          "isTranslationEnabled": {
+            "type": "boolean",
+            "description": "Enable or disable translations for this workflow",
+            "default": false
           }
         }
       },
@@ -34688,13 +35426,29 @@
           "payloadSchema": {
             "type": "object",
             "description": "The payload JSON Schema for the workflow",
-            "additionalProperties": true
+            "additionalProperties": true,
+            "nullable": true
           },
           "validatePayload": {
             "type": "boolean",
             "description": "Enable or disable payload schema validation"
+          },
+          "isTranslationEnabled": {
+            "type": "boolean",
+            "description": "Enable or disable translations for this workflow"
           }
         }
+      },
+      "GetEnvironmentTagsDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ]
       },
       "WebhookUpdatedWorkflowDto": {
         "type": "object",

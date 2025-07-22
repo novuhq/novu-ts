@@ -5,7 +5,12 @@
 ```typescript
 import { SubscribersV1ControllerGetUnseenCountResponse } from "@novu/api/models/operations";
 
-let value: SubscribersV1ControllerGetUnseenCountResponse = {};
+let value: SubscribersV1ControllerGetUnseenCountResponse = {
+  headers: {},
+  result: {
+    count: 1178.78,
+  },
+};
 ```
 
 ## Fields

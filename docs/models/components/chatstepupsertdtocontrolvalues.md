@@ -1,13 +1,14 @@
 # ChatStepUpsertDtoControlValues
 
-Control values for the Chat step
+Control values for the Chat step.
 
-## Example Usage
+
+## Supported Types
+
+### `components.ChatControlDto`
 
 ```typescript
-import { ChatStepUpsertDtoControlValues } from "@novu/api/models/components";
-
-let value: ChatStepUpsertDtoControlValues = {
+const value: components.ChatControlDto = {
   skip: {
     "and": [
       {
@@ -39,9 +40,13 @@ let value: ChatStepUpsertDtoControlValues = {
 };
 ```
 
-## Fields
+### `{ [k: string]: any }`
 
-| Field                                                                                                                                                                                                        | Type                                                                                                                                                                                                         | Required                                                                                                                                                                                                     | Description                                                                                                                                                                                                  | Example                                                                                                                                                                                                      |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `skip`                                                                                                                                                                                                       | Record<string, *any*>                                                                                                                                                                                        | :heavy_minus_sign:                                                                                                                                                                                           | JSONLogic filter conditions for conditionally skipping the step execution. Supports complex logical operations with AND, OR, and comparison operators. See https://jsonlogic.com/ for full typing reference. | {<br/>"and": [<br/>{<br/>"==": [<br/>{<br/>"var": "payload.tier"<br/>},<br/>"pro"<br/>]<br/>},<br/>{<br/>"==": [<br/>{<br/>"var": "subscriber.data.role"<br/>},<br/>"admin"<br/>]<br/>},<br/>{<br/>"\u003e": [<br/>{<br/>"var": "payload.amount"<br/>},<br/>"4"<br/>]<br/>}<br/>]<br/>} |
-| `body`                                                                                                                                                                                                       | *string*                                                                                                                                                                                                     | :heavy_minus_sign:                                                                                                                                                                                           | Content of the chat message.                                                                                                                                                                                 |                                                                                                                                                                                                              |
+```typescript
+const value: { [k: string]: any } = {
+  "key": "<value>",
+  "key1": "<value>",
+  "key2": "<value>",
+};
+```
+

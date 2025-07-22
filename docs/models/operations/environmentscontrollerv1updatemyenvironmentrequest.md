@@ -7,6 +7,7 @@ import { EnvironmentsControllerV1UpdateMyEnvironmentRequest } from "@novu/api/mo
 
 let value: EnvironmentsControllerV1UpdateMyEnvironmentRequest = {
   environmentId: "<id>",
+  updateEnvironmentRequestDto: {},
 };
 ```
 

@@ -5,7 +5,28 @@
 ```typescript
 import { WorkflowControllerGetWorkflowStepDataResponse } from "@novu/api/models/operations";
 
-let value: WorkflowControllerGetWorkflowStepDataResponse = {};
+let value: WorkflowControllerGetWorkflowStepDataResponse = {
+  headers: {
+    "key": [
+      "<value 1>",
+    ],
+    "key1": [],
+  },
+  result: {
+    controls: {},
+    variables: {
+      "key": "<value>",
+    },
+    stepId: "<id>",
+    id: "<id>",
+    name: "<value>",
+    slug: {},
+    type: "custom",
+    origin: "novu-cloud",
+    workflowId: "<id>",
+    workflowDatabaseId: "<id>",
+  },
+};
 ```
 
 ## Fields

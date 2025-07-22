@@ -38,9 +38,16 @@ let value: NotificationFeedItemDto = {
   payload: {
     "key": "value",
   },
+  data: {
+    "key": "value",
+  },
   overrides: {
     "overrideKey": "overrideValue",
   },
+  tags: [
+    "tag1",
+    "tag2",
+  ],
 };
 ```
 
@@ -73,4 +80,6 @@ let value: NotificationFeedItemDto = {
 | `cta`                                                                                                | [components.MessageCTA](../../models/components/messagecta.md)                                       | :heavy_check_mark:                                                                                   | Call-to-action information associated with the notification.                                         |                                                                                                      |
 | `status`                                                                                             | [components.NotificationFeedItemDtoStatus](../../models/components/notificationfeeditemdtostatus.md) | :heavy_check_mark:                                                                                   | Current status of the notification.                                                                  | sent                                                                                                 |
 | `payload`                                                                                            | Record<string, *any*>                                                                                | :heavy_minus_sign:                                                                                   | The payload that was used to send the notification trigger.                                          | {<br/>"key": "value"<br/>}                                                                           |
+| `data`                                                                                               | Record<string, *any*>                                                                                | :heavy_minus_sign:                                                                                   | The data sent with the notification.                                                                 | {<br/>"key": "value"<br/>}                                                                           |
 | `overrides`                                                                                          | Record<string, *any*>                                                                                | :heavy_minus_sign:                                                                                   | Provider-specific overrides used when triggering the notification.                                   | {<br/>"overrideKey": "overrideValue"<br/>}                                                           |
+| `tags`                                                                                               | *string*[]                                                                                           | :heavy_minus_sign:                                                                                   | Tags associated with the workflow that triggered the notification.                                   | [<br/>"tag1",<br/>"tag2"<br/>]                                                                       |

@@ -5,7 +5,11 @@
 ```typescript
 import { EventsControllerTriggerBulkRequest } from "@novu/api/models/operations";
 
-let value: EventsControllerTriggerBulkRequest = {};
+let value: EventsControllerTriggerBulkRequest = {
+  bulkTriggerEventDto: {
+    events: [],
+  },
+};
 ```
 
 ## Fields

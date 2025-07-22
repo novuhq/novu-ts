@@ -5,7 +5,12 @@
 ```typescript
 import { TopicsControllerUpsertTopicRequest } from "@novu/api/models/operations";
 
-let value: TopicsControllerUpsertTopicRequest = {};
+let value: TopicsControllerUpsertTopicRequest = {
+  createUpdateTopicRequestDto: {
+    key: "task:12345",
+    name: "Task Title",
+  },
+};
 ```
 
 ## Fields

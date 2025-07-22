@@ -5,7 +5,23 @@
 ```typescript
 import { EventsControllerTriggerResponse } from "@novu/api/models/operations";
 
-let value: EventsControllerTriggerResponse = {};
+let value: EventsControllerTriggerResponse = {
+  headers: {
+    "key": [
+      "<value 1>",
+    ],
+    "key1": [
+      "<value 1>",
+    ],
+    "key2": [
+      "<value 1>",
+    ],
+  },
+  result: {
+    acknowledged: true,
+    status: "no_workflow_steps_defined",
+  },
+};
 ```
 
 ## Fields

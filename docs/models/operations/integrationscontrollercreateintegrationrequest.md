@@ -5,7 +5,12 @@
 ```typescript
 import { IntegrationsControllerCreateIntegrationRequest } from "@novu/api/models/operations";
 
-let value: IntegrationsControllerCreateIntegrationRequest = {};
+let value: IntegrationsControllerCreateIntegrationRequest = {
+  createIntegrationRequestDto: {
+    providerId: "<id>",
+    channel: "push",
+  },
+};
 ```
 
 ## Fields

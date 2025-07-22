@@ -1,6 +1,6 @@
 # Unit
 
-Unit of time for the look-back window.
+Unit of time for the delay amount.
 
 ## Example Usage
 

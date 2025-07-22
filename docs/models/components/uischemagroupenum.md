@@ -7,11 +7,11 @@ Group of the UI Schema
 ```typescript
 import { UiSchemaGroupEnum } from "@novu/api/models/components";
 
-let value: UiSchemaGroupEnum = "PUSH";
+let value: UiSchemaGroupEnum = "SKIP";
 ```
 
 ## Values
 
 ```typescript
-"IN_APP" | "EMAIL" | "DIGEST" | "DELAY" | "SMS" | "CHAT" | "PUSH" | "SKIP"
+"IN_APP" | "EMAIL" | "DIGEST" | "DELAY" | "SMS" | "CHAT" | "PUSH" | "SKIP" | "LAYOUT"
 ```

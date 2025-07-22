@@ -5,7 +5,19 @@
 ```typescript
 import { WorkflowControllerRemoveWorkflowResponse } from "@novu/api/models/operations";
 
-let value: WorkflowControllerRemoveWorkflowResponse = {};
+let value: WorkflowControllerRemoveWorkflowResponse = {
+  headers: {
+    "key": [
+      "<value 1>",
+    ],
+    "key1": [
+      "<value 1>",
+    ],
+    "key2": [
+      "<value 1>",
+    ],
+  },
+};
 ```
 
 ## Fields

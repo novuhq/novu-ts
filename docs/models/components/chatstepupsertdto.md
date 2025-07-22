@@ -9,7 +9,7 @@ let value: ChatStepUpsertDto = {
   name: "<value>",
   type: "custom",
   controlValues: {
-    skip: {
+    "skip": {
       "and": [
         {
           "==": [
@@ -43,9 +43,9 @@ let value: ChatStepUpsertDto = {
 
 ## Fields
 
-| Field                                                                                                  | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
-| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
-| `id`                                                                                                   | *string*                                                                                               | :heavy_minus_sign:                                                                                     | Unique identifier of the step                                                                          |
-| `name`                                                                                                 | *string*                                                                                               | :heavy_check_mark:                                                                                     | Name of the step                                                                                       |
-| `type`                                                                                                 | [components.StepTypeEnum](../../models/components/steptypeenum.md)                                     | :heavy_check_mark:                                                                                     | Type of the step                                                                                       |
-| `controlValues`                                                                                        | [components.ChatStepUpsertDtoControlValues](../../models/components/chatstepupsertdtocontrolvalues.md) | :heavy_minus_sign:                                                                                     | Control values for the Chat step                                                                       |
+| Field                                                              | Type                                                               | Required                                                           | Description                                                        |
+| ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
+| `id`                                                               | *string*                                                           | :heavy_minus_sign:                                                 | Unique identifier of the step                                      |
+| `name`                                                             | *string*                                                           | :heavy_check_mark:                                                 | Name of the step                                                   |
+| `type`                                                             | [components.StepTypeEnum](../../models/components/steptypeenum.md) | :heavy_check_mark:                                                 | Type of the step                                                   |
+| `controlValues`                                                    | *components.ChatStepUpsertDtoControlValues*                        | :heavy_minus_sign:                                                 | Control values for the Chat step.                                  |

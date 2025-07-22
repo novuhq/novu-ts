@@ -9,36 +9,7 @@
 const value: components.InAppStepUpsertDto = {
   name: "<value>",
   type: "push",
-  controlValues: {
-    skip: {
-      "and": [
-        {
-          "==": [
-            {
-              "var": "payload.tier",
-            },
-            "pro",
-          ],
-        },
-        {
-          "==": [
-            {
-              "var": "subscriber.data.role",
-            },
-            "admin",
-          ],
-        },
-        {
-          ">": [
-            {
-              "var": "payload.amount",
-            },
-            "4",
-          ],
-        },
-      ],
-    },
-  },
+  controlValues: {},
 };
 ```
 
@@ -49,35 +20,7 @@ const value: components.EmailStepUpsertDto = {
   name: "<value>",
   type: "trigger",
   controlValues: {
-    skip: {
-      "and": [
-        {
-          "==": [
-            {
-              "var": "payload.tier",
-            },
-            "pro",
-          ],
-        },
-        {
-          "==": [
-            {
-              "var": "subscriber.data.role",
-            },
-            "admin",
-          ],
-        },
-        {
-          ">": [
-            {
-              "var": "payload.amount",
-            },
-            "4",
-          ],
-        },
-      ],
-    },
-    subject: "<value>",
+    "key": "<value>",
   },
 };
 ```
@@ -89,34 +32,9 @@ const value: components.SmsStepUpsertDto = {
   name: "<value>",
   type: "chat",
   controlValues: {
-    skip: {
-      "and": [
-        {
-          "==": [
-            {
-              "var": "payload.tier",
-            },
-            "pro",
-          ],
-        },
-        {
-          "==": [
-            {
-              "var": "subscriber.data.role",
-            },
-            "admin",
-          ],
-        },
-        {
-          ">": [
-            {
-              "var": "payload.amount",
-            },
-            "4",
-          ],
-        },
-      ],
-    },
+    "key": "<value>",
+    "key1": "<value>",
+    "key2": "<value>",
   },
 };
 ```
@@ -128,7 +46,7 @@ const value: components.PushStepUpsertDto = {
   name: "<value>",
   type: "digest",
   controlValues: {
-    skip: {
+    "skip": {
       "and": [
         {
           "==": [
@@ -167,7 +85,7 @@ const value: components.ChatStepUpsertDto = {
   name: "<value>",
   type: "custom",
   controlValues: {
-    skip: {
+    "skip": {
       "and": [
         {
           "==": [
@@ -205,38 +123,7 @@ const value: components.ChatStepUpsertDto = {
 const value: components.DelayStepUpsertDto = {
   name: "<value>",
   type: "email",
-  controlValues: {
-    skip: {
-      "and": [
-        {
-          "==": [
-            {
-              "var": "payload.tier",
-            },
-            "pro",
-          ],
-        },
-        {
-          "==": [
-            {
-              "var": "subscriber.data.role",
-            },
-            "admin",
-          ],
-        },
-        {
-          ">": [
-            {
-              "var": "payload.amount",
-            },
-            "4",
-          ],
-        },
-      ],
-    },
-    amount: 1159.8,
-    unit: "seconds",
-  },
+  controlValues: {},
 };
 ```
 
@@ -247,7 +134,7 @@ const value: components.DigestStepUpsertDto = {
   name: "<value>",
   type: "digest",
   controlValues: {
-    skip: {
+    "skip": {
       "and": [
         {
           "==": [

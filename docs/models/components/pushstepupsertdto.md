@@ -9,7 +9,7 @@ let value: PushStepUpsertDto = {
   name: "<value>",
   type: "digest",
   controlValues: {
-    skip: {
+    "skip": {
       "and": [
         {
           "==": [
@@ -43,9 +43,9 @@ let value: PushStepUpsertDto = {
 
 ## Fields
 
-| Field                                                                                                  | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
-| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
-| `id`                                                                                                   | *string*                                                                                               | :heavy_minus_sign:                                                                                     | Unique identifier of the step                                                                          |
-| `name`                                                                                                 | *string*                                                                                               | :heavy_check_mark:                                                                                     | Name of the step                                                                                       |
-| `type`                                                                                                 | [components.StepTypeEnum](../../models/components/steptypeenum.md)                                     | :heavy_check_mark:                                                                                     | Type of the step                                                                                       |
-| `controlValues`                                                                                        | [components.PushStepUpsertDtoControlValues](../../models/components/pushstepupsertdtocontrolvalues.md) | :heavy_minus_sign:                                                                                     | Control values for the Push step                                                                       |
+| Field                                                              | Type                                                               | Required                                                           | Description                                                        |
+| ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
+| `id`                                                               | *string*                                                           | :heavy_minus_sign:                                                 | Unique identifier of the step                                      |
+| `name`                                                             | *string*                                                           | :heavy_check_mark:                                                 | Name of the step                                                   |
+| `type`                                                             | [components.StepTypeEnum](../../models/components/steptypeenum.md) | :heavy_check_mark:                                                 | Type of the step                                                   |
+| `controlValues`                                                    | *components.PushStepUpsertDtoControlValues*                        | :heavy_minus_sign:                                                 | Control values for the Push step.                                  |

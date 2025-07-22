@@ -1,13 +1,13 @@
-# StepContentIssueEnum
+# ContentIssueEnum
 
 Type of step content issue
 
 ## Example Usage
 
 ```typescript
-import { StepContentIssueEnum } from "@novu/api/models/components";
+import { ContentIssueEnum } from "@novu/api/models/components";
 
-let value: StepContentIssueEnum = "MISSING_VALUE";
+let value: ContentIssueEnum = "TIER_LIMIT_EXCEEDED";
 ```
 
 ## Values

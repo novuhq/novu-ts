@@ -5,7 +5,9 @@
 ```typescript
 import { MessagesControllerDeleteMessagesByTransactionIdResponse } from "@novu/api/models/operations";
 
-let value: MessagesControllerDeleteMessagesByTransactionIdResponse = {};
+let value: MessagesControllerDeleteMessagesByTransactionIdResponse = {
+  headers: {},
+};
 ```
 
 ## Fields

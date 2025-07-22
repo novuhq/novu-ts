@@ -5,7 +5,13 @@
 ```typescript
 import { MessagesControllerDeleteMessageResponse } from "@novu/api/models/operations";
 
-let value: MessagesControllerDeleteMessageResponse = {};
+let value: MessagesControllerDeleteMessageResponse = {
+  headers: {},
+  result: {
+    acknowledged: false,
+    status: "deleted",
+  },
+};
 ```
 
 ## Fields

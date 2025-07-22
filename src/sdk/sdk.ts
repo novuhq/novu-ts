@@ -3,6 +3,7 @@
  */
 
 import { cancel } from "../funcs/cancel.js";
+import { retrieve } from "../funcs/retrieve.js";
 import { trigger } from "../funcs/trigger.js";
 import { triggerBroadcast } from "../funcs/triggerBroadcast.js";
 import { triggerBulk } from "../funcs/triggerBulk.js";
@@ -19,6 +20,11 @@ import { Topics } from "./topics.js";
 import { Workflows } from "./workflows.js";
 
 export class Novu extends ClientSDK {
+  private _environments?: Environments;
+  get environments(): Environments {
+    return (this._environments ??= new Environments(this._options));
+  }
+
   private _subscribers?: Subscribers;
   get subscribers(): Subscribers {
     return (this._subscribers ??= new Subscribers(this._options));
@@ -32,11 +38,6 @@ export class Novu extends ClientSDK {
   private _workflows?: Workflows;
   get workflows(): Workflows {
     return (this._workflows ??= new Workflows(this._options));
-  }
-
-  private _environments?: Environments;
-  get environments(): Environments {
-    return (this._environments ??= new Environments(this._options));
   }
 
   private _integrations?: Integrations;
@@ -134,6 +135,17 @@ export class Novu extends ClientSDK {
       this,
       bulkTriggerEventDto,
       idempotencyKey,
+      options,
+    ));
+  }
+
+  async retrieve(
+    request: operations.LogsControllerGetLogsRequest,
+    options?: RequestOptions,
+  ): Promise<operations.LogsControllerGetLogsResponseBody> {
+    return unwrapAsync(retrieve(
+      this,
+      request,
       options,
     ));
   }

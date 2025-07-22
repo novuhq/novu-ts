@@ -11,6 +11,11 @@ import {
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
+  ResourceOriginEnum,
+  ResourceOriginEnum$inboundSchema,
+  ResourceOriginEnum$outboundSchema,
+} from "./resourceoriginenum.js";
+import {
   SmsControlsMetadataResponseDto,
   SmsControlsMetadataResponseDto$inboundSchema,
   SmsControlsMetadataResponseDto$Outbound,
@@ -27,11 +32,6 @@ import {
   StepTypeEnum$inboundSchema,
   StepTypeEnum$outboundSchema,
 } from "./steptypeenum.js";
-import {
-  WorkflowOriginEnum,
-  WorkflowOriginEnum$inboundSchema,
-  WorkflowOriginEnum$outboundSchema,
-} from "./workfloworiginenum.js";
 
 /**
  * Control values for the SMS step
@@ -89,7 +89,7 @@ export type SmsStepResponseDto = {
   /**
    * Origin of the workflow
    */
-  origin: WorkflowOriginEnum;
+  origin: ResourceOriginEnum;
   /**
    * Workflow identifier
    */
@@ -239,7 +239,7 @@ export const SmsStepResponseDto$inboundSchema: z.ZodType<
   name: z.string(),
   slug: z.lazy(() => SmsStepResponseDtoSlug$inboundSchema),
   type: StepTypeEnum$inboundSchema,
-  origin: WorkflowOriginEnum$inboundSchema,
+  origin: ResourceOriginEnum$inboundSchema,
   workflowId: z.string(),
   workflowDatabaseId: z.string(),
   issues: StepIssuesDto$inboundSchema.optional(),
@@ -280,7 +280,7 @@ export const SmsStepResponseDto$outboundSchema: z.ZodType<
   name: z.string(),
   slug: z.lazy(() => SmsStepResponseDtoSlug$outboundSchema),
   type: StepTypeEnum$outboundSchema,
-  origin: WorkflowOriginEnum$outboundSchema,
+  origin: ResourceOriginEnum$outboundSchema,
   workflowId: z.string(),
   workflowDatabaseId: z.string(),
   issues: StepIssuesDto$outboundSchema.optional(),

@@ -9,7 +9,7 @@ let value: DigestStepUpsertDto = {
   name: "<value>",
   type: "digest",
   controlValues: {
-    skip: {
+    "skip": {
       "and": [
         {
           "==": [
@@ -43,9 +43,9 @@ let value: DigestStepUpsertDto = {
 
 ## Fields
 
-| Field                                                                                                      | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
-| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| `id`                                                                                                       | *string*                                                                                                   | :heavy_minus_sign:                                                                                         | Unique identifier of the step                                                                              |
-| `name`                                                                                                     | *string*                                                                                                   | :heavy_check_mark:                                                                                         | Name of the step                                                                                           |
-| `type`                                                                                                     | [components.StepTypeEnum](../../models/components/steptypeenum.md)                                         | :heavy_check_mark:                                                                                         | Type of the step                                                                                           |
-| `controlValues`                                                                                            | [components.DigestStepUpsertDtoControlValues](../../models/components/digeststepupsertdtocontrolvalues.md) | :heavy_minus_sign:                                                                                         | Control values for the Digest step                                                                         |
+| Field                                                              | Type                                                               | Required                                                           | Description                                                        |
+| ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
+| `id`                                                               | *string*                                                           | :heavy_minus_sign:                                                 | Unique identifier of the step                                      |
+| `name`                                                             | *string*                                                           | :heavy_check_mark:                                                 | Name of the step                                                   |
+| `type`                                                             | [components.StepTypeEnum](../../models/components/steptypeenum.md) | :heavy_check_mark:                                                 | Type of the step                                                   |
+| `controlValues`                                                    | *components.DigestStepUpsertDtoControlValues*                      | :heavy_minus_sign:                                                 | Control values for the Digest step.                                |

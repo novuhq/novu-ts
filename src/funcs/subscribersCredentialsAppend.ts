@@ -27,11 +27,11 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Upsert provider credentials
+ * Create or Partially Update provider credentials
  *
  * @remarks
- * Update credentials for a provider such as **slack** and **FCM**.
- *       **providerId** is required field. This API replaces the existing deviceTokens with the provided ones.
+ * Create or Partially credentials for a provider such as **slack** and **FCM**.
+ *       **providerId** is required field. This API creates the **deviceTokens** or replaces the existing ones.
  */
 export function subscribersCredentialsAppend(
   client: NovuCore,

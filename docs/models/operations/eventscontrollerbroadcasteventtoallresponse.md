@@ -5,7 +5,13 @@
 ```typescript
 import { EventsControllerBroadcastEventToAllResponse } from "@novu/api/models/operations";
 
-let value: EventsControllerBroadcastEventToAllResponse = {};
+let value: EventsControllerBroadcastEventToAllResponse = {
+  headers: {},
+  result: {
+    acknowledged: true,
+    status: "no_workflow_steps_defined",
+  },
+};
 ```
 
 ## Fields

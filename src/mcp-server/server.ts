@@ -16,6 +16,7 @@ import { createRegisterTool } from "./tools.js";
 import { tool$cancel } from "./tools/cancel.js";
 import { tool$environmentsCreate } from "./tools/environmentsCreate.js";
 import { tool$environmentsDelete } from "./tools/environmentsDelete.js";
+import { tool$environmentsGetTags } from "./tools/environmentsGetTags.js";
 import { tool$environmentsList } from "./tools/environmentsList.js";
 import { tool$environmentsUpdate } from "./tools/environmentsUpdate.js";
 import { tool$integrationsCreate } from "./tools/integrationsCreate.js";
@@ -29,6 +30,7 @@ import { tool$messagesDeleteByTransactionId } from "./tools/messagesDeleteByTran
 import { tool$messagesRetrieve } from "./tools/messagesRetrieve.js";
 import { tool$notificationsList } from "./tools/notificationsList.js";
 import { tool$notificationsRetrieve } from "./tools/notificationsRetrieve.js";
+import { tool$retrieve } from "./tools/retrieve.js";
 import { tool$subscribersCreate } from "./tools/subscribersCreate.js";
 import { tool$subscribersCreateBulk } from "./tools/subscribersCreateBulk.js";
 import { tool$subscribersCredentialsAppend } from "./tools/subscribersCredentialsAppend.js";
@@ -78,7 +80,7 @@ export function createMCPServer(deps: {
 }) {
   const server = new McpServer({
     name: "Novu",
-    version: "1.4.0",
+    version: "1.5.0",
   });
 
   const client = new NovuCore({
@@ -112,6 +114,12 @@ export function createMCPServer(deps: {
   tool(tool$cancel);
   tool(tool$triggerBroadcast);
   tool(tool$triggerBulk);
+  tool(tool$retrieve);
+  tool(tool$environmentsGetTags);
+  tool(tool$environmentsCreate);
+  tool(tool$environmentsList);
+  tool(tool$environmentsUpdate);
+  tool(tool$environmentsDelete);
   tool(tool$subscribersSearch);
   tool(tool$subscribersCreate);
   tool(tool$subscribersRetrieve);
@@ -130,10 +138,6 @@ export function createMCPServer(deps: {
   tool(tool$workflowsDelete);
   tool(tool$workflowsPatch);
   tool(tool$workflowsSync);
-  tool(tool$environmentsCreate);
-  tool(tool$environmentsList);
-  tool(tool$environmentsUpdate);
-  tool(tool$environmentsDelete);
   tool(tool$integrationsList);
   tool(tool$integrationsCreate);
   tool(tool$integrationsUpdate);
