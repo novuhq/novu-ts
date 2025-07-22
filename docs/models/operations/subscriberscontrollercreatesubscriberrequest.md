@@ -5,7 +5,11 @@
 ```typescript
 import { SubscribersControllerCreateSubscriberRequest } from "@novu/api/models/operations";
 
-let value: SubscribersControllerCreateSubscriberRequest = {};
+let value: SubscribersControllerCreateSubscriberRequest = {
+  createSubscriberRequestDto: {
+    subscriberId: "<id>",
+  },
+};
 ```
 
 ## Fields

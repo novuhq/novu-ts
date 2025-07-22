@@ -5,7 +5,46 @@
 ```typescript
 import { WorkflowControllerCreateRequest } from "@novu/api/models/operations";
 
-let value: WorkflowControllerCreateRequest = {};
+let value: WorkflowControllerCreateRequest = {
+  createWorkflowDto: {
+    name: "<value>",
+    workflowId: "<id>",
+    steps: [
+      {
+        name: "<value>",
+        type: "custom",
+      },
+    ],
+    preferences: {
+      user: {
+        all: {
+          enabled: true,
+          readOnly: false,
+        },
+        channels: {
+          "email": {
+            enabled: true,
+          },
+          "sms": {
+            enabled: false,
+          },
+        },
+      },
+      workflow: {
+        all: {
+          enabled: true,
+          readOnly: false,
+        },
+        channels: {
+          "email": {},
+          "sms": {
+            enabled: false,
+          },
+        },
+      },
+    },
+  },
+};
 ```
 
 ## Fields

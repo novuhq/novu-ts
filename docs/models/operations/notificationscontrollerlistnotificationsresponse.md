@@ -5,7 +5,17 @@
 ```typescript
 import { NotificationsControllerListNotificationsResponse } from "@novu/api/models/operations";
 
-let value: NotificationsControllerListNotificationsResponse = {};
+let value: NotificationsControllerListNotificationsResponse = {
+  headers: {
+    "key": [],
+  },
+  result: {
+    hasMore: true,
+    data: [],
+    pageSize: 8675.43,
+    page: 1712.96,
+  },
+};
 ```
 
 ## Fields

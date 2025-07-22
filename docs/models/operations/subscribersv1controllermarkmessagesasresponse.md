@@ -5,7 +5,19 @@
 ```typescript
 import { SubscribersV1ControllerMarkMessagesAsResponse } from "@novu/api/models/operations";
 
-let value: SubscribersV1ControllerMarkMessagesAsResponse = {};
+let value: SubscribersV1ControllerMarkMessagesAsResponse = {
+  headers: {
+    "key": [
+      "<value 1>",
+    ],
+    "key1": [],
+    "key2": [
+      "<value 1>",
+      "<value 2>",
+    ],
+  },
+  result: [],
+};
 ```
 
 ## Fields

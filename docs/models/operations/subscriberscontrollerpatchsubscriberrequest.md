@@ -7,6 +7,7 @@ import { SubscribersControllerPatchSubscriberRequest } from "@novu/api/models/op
 
 let value: SubscribersControllerPatchSubscriberRequest = {
   subscriberId: "<id>",
+  patchSubscriberRequestDto: {},
 };
 ```
 

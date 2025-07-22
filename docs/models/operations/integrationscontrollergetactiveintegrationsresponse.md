@@ -5,7 +5,10 @@
 ```typescript
 import { IntegrationsControllerGetActiveIntegrationsResponse } from "@novu/api/models/operations";
 
-let value: IntegrationsControllerGetActiveIntegrationsResponse = {};
+let value: IntegrationsControllerGetActiveIntegrationsResponse = {
+  headers: {},
+  result: [],
+};
 ```
 
 ## Fields

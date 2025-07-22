@@ -332,6 +332,7 @@ run();
 
 ### [environments](docs/sdks/environments/README.md)
 
+* [getTags](docs/sdks/environments/README.md#gettags) - Get environment tags
 * [create](docs/sdks/environments/README.md#create) - Create an environment
 * [list](docs/sdks/environments/README.md#list) - List all environments
 * [update](docs/sdks/environments/README.md#update) - Update an environment
@@ -363,6 +364,7 @@ run();
 * [cancel](docs/sdks/novu/README.md#cancel) - Cancel triggered event
 * [triggerBroadcast](docs/sdks/novu/README.md#triggerbroadcast) - Broadcast event to all
 * [triggerBulk](docs/sdks/novu/README.md#triggerbulk) - Bulk trigger event
+* [retrieve](docs/sdks/novu/README.md#retrieve)
 
 ### [subscribers](docs/sdks/subscribers/README.md)
 
@@ -375,8 +377,8 @@ run();
 
 #### [subscribers.credentials](docs/sdks/credentials/README.md)
 
-* [update](docs/sdks/credentials/README.md#update) - Update provider credentials
-* [append](docs/sdks/credentials/README.md#append) - Upsert provider credentials
+* [update](docs/sdks/credentials/README.md#update) - Upsert provider credentials
+* [append](docs/sdks/credentials/README.md#append) - Create or Partially Update provider credentials
 * [delete](docs/sdks/credentials/README.md#delete) - Delete provider credentials
 
 #### [subscribers.messages](docs/sdks/novumessages/README.md)
@@ -456,6 +458,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`cancel`](docs/sdks/novu/README.md#cancel) - Cancel triggered event
 - [`environmentsCreate`](docs/sdks/environments/README.md#create) - Create an environment
 - [`environmentsDelete`](docs/sdks/environments/README.md#delete) - Delete an environment
+- [`environmentsGetTags`](docs/sdks/environments/README.md#gettags) - Get environment tags
 - [`environmentsList`](docs/sdks/environments/README.md#list) - List all environments
 - [`environmentsUpdate`](docs/sdks/environments/README.md#update) - Update an environment
 - [`integrationsCreate`](docs/sdks/integrations/README.md#create) - Create an integration
@@ -469,11 +472,12 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`messagesRetrieve`](docs/sdks/messages/README.md#retrieve) - List all messages
 - [`notificationsList`](docs/sdks/notifications/README.md#list) - List all events
 - [`notificationsRetrieve`](docs/sdks/notifications/README.md#retrieve) - Retrieve an event
+- [`retrieve`](docs/sdks/novu/README.md#retrieve)
 - [`subscribersCreate`](docs/sdks/subscribers/README.md#create) - Create a subscriber
 - [`subscribersCreateBulk`](docs/sdks/subscribers/README.md#createbulk) - Bulk create subscribers
-- [`subscribersCredentialsAppend`](docs/sdks/credentials/README.md#append) - Upsert provider credentials
+- [`subscribersCredentialsAppend`](docs/sdks/credentials/README.md#append) - Create or Partially Update provider credentials
 - [`subscribersCredentialsDelete`](docs/sdks/credentials/README.md#delete) - Delete provider credentials
-- [`subscribersCredentialsUpdate`](docs/sdks/credentials/README.md#update) - Update provider credentials
+- [`subscribersCredentialsUpdate`](docs/sdks/credentials/README.md#update) - Upsert provider credentials
 - [`subscribersDelete`](docs/sdks/subscribers/README.md#delete) - Delete a subscriber
 - [`subscribersMessagesMarkAll`](docs/sdks/novumessages/README.md#markall) - Update all notifications state
 - [`subscribersMessagesMarkAllAs`](docs/sdks/novumessages/README.md#markallas) - Update notifications state
@@ -576,8 +580,8 @@ run();
 ### Error Classes
 **Primary errors:**
 * [`NovuError`](./src/models/errors/novuerror.ts): The base class for HTTP error responses.
-  * [`ErrorDto`](docs/models/errors/errordto.md): Generic error.
-  * [`ValidationErrorDto`](docs/models/errors/validationerrordto.md): Unprocessable Entity. Status code `422`.
+  * [`ErrorDto`](./src/models/errors/errordto.ts): *
+  * [`ValidationErrorDto`](./src/models/errors/validationerrordto.ts): Unprocessable Entity. Status code `422`. *
 
 <details><summary>Less common errors (7)</summary>
 
@@ -592,7 +596,7 @@ run();
 
 
 **Inherit from [`NovuError`](./src/models/errors/novuerror.ts)**:
-* [`PayloadValidationExceptionDto`](docs/models/errors/payloadvalidationexceptiondto.md): Status code `400`. Applicable to 3 of 54 methods.*
+* [`PayloadValidationExceptionDto`](./src/models/errors/payloadvalidationexceptiondto.ts): Status code `400`. Applicable to 3 of 56 methods.*
 * [`ResponseValidationError`](./src/models/errors/responsevalidationerror.ts): Type mismatch between the data returned from the server and the structure expected by the SDK. See `error.rawValue` for the raw value and `error.pretty()` for a nicely formatted multi-line string.
 
 </details>

@@ -7,6 +7,12 @@ import { TopicsControllerCreateTopicSubscriptionsRequest } from "@novu/api/model
 
 let value: TopicsControllerCreateTopicSubscriptionsRequest = {
   topicKey: "<value>",
+  createTopicSubscriptionsRequestDto: {
+    subscriberIds: [
+      "subscriberId1",
+      "subscriberId2",
+    ],
+  },
 };
 ```
 

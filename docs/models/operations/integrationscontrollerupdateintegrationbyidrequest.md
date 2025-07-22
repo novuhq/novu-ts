@@ -7,6 +7,7 @@ import { IntegrationsControllerUpdateIntegrationByIdRequest } from "@novu/api/mo
 
 let value: IntegrationsControllerUpdateIntegrationByIdRequest = {
   integrationId: "<id>",
+  updateIntegrationRequestDto: {},
 };
 ```
 

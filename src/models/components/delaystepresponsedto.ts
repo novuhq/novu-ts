@@ -18,6 +18,11 @@ import {
   DelayControlsMetadataResponseDto$outboundSchema,
 } from "./delaycontrolsmetadataresponsedto.js";
 import {
+  ResourceOriginEnum,
+  ResourceOriginEnum$inboundSchema,
+  ResourceOriginEnum$outboundSchema,
+} from "./resourceoriginenum.js";
+import {
   StepIssuesDto,
   StepIssuesDto$inboundSchema,
   StepIssuesDto$Outbound,
@@ -28,11 +33,6 @@ import {
   StepTypeEnum$inboundSchema,
   StepTypeEnum$outboundSchema,
 } from "./steptypeenum.js";
-import {
-  WorkflowOriginEnum,
-  WorkflowOriginEnum$inboundSchema,
-  WorkflowOriginEnum$outboundSchema,
-} from "./workfloworiginenum.js";
 
 /**
  * Type of the delay. Currently only 'regular' is supported by the schema.
@@ -129,7 +129,7 @@ export type DelayStepResponseDto = {
   /**
    * Origin of the workflow
    */
-  origin: WorkflowOriginEnum;
+  origin: ResourceOriginEnum;
   /**
    * Workflow identifier
    */
@@ -328,7 +328,7 @@ export const DelayStepResponseDto$inboundSchema: z.ZodType<
   name: z.string(),
   slug: z.lazy(() => DelayStepResponseDtoSlug$inboundSchema),
   type: StepTypeEnum$inboundSchema,
-  origin: WorkflowOriginEnum$inboundSchema,
+  origin: ResourceOriginEnum$inboundSchema,
   workflowId: z.string(),
   workflowDatabaseId: z.string(),
   issues: StepIssuesDto$inboundSchema.optional(),
@@ -369,7 +369,7 @@ export const DelayStepResponseDto$outboundSchema: z.ZodType<
   name: z.string(),
   slug: z.lazy(() => DelayStepResponseDtoSlug$outboundSchema),
   type: StepTypeEnum$outboundSchema,
-  origin: WorkflowOriginEnum$outboundSchema,
+  origin: ResourceOriginEnum$outboundSchema,
   workflowId: z.string(),
   workflowDatabaseId: z.string(),
   issues: StepIssuesDto$outboundSchema.optional(),

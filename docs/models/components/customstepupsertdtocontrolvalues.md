@@ -1,17 +1,23 @@
 # CustomStepUpsertDtoControlValues
 
-Control values for the Custom step
+Control values for the Custom step.
 
-## Example Usage
+
+## Supported Types
+
+### `components.CustomControlDto`
 
 ```typescript
-import { CustomStepUpsertDtoControlValues } from "@novu/api/models/components";
-
-let value: CustomStepUpsertDtoControlValues = {};
+const value: components.CustomControlDto = {};
 ```
 
-## Fields
+### `{ [k: string]: any }`
 
-| Field                               | Type                                | Required                            | Description                         |
-| ----------------------------------- | ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| `custom`                            | Record<string, *any*>               | :heavy_minus_sign:                  | Custom control values for the step. |
+```typescript
+const value: { [k: string]: any } = {
+  "key": "<value>",
+  "key1": "<value>",
+  "key2": "<value>",
+};
+```
+

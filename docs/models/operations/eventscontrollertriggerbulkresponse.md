@@ -5,7 +5,23 @@
 ```typescript
 import { EventsControllerTriggerBulkResponse } from "@novu/api/models/operations";
 
-let value: EventsControllerTriggerBulkResponse = {};
+let value: EventsControllerTriggerBulkResponse = {
+  headers: {
+    "key": [
+      "<value 1>",
+    ],
+    "key1": [
+      "<value 1>",
+      "<value 2>",
+    ],
+    "key2": [
+      "<value 1>",
+      "<value 2>",
+      "<value 3>",
+    ],
+  },
+  result: [],
+};
 ```
 
 ## Fields

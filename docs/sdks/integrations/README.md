@@ -4,7 +4,7 @@
 ## Overview
 
 With the help of the Integration Store, you can easily integrate your favorite delivery provider. During the runtime of the API, the Integrations Store is responsible for storing the configurations of all the providers.
-<https://docs.novu.co/channels-and-providers/integration-store>
+<https://docs.novu.co/platform/integrations/overview>
 
 ### Available Operations
 

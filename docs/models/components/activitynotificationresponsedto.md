@@ -35,7 +35,7 @@ let value: ActivityNotificationResponseDto = {
         "workflowId": "some_wf_id",
         "stepId": "some_wf_id",
       },
-      providerId: "mobishastra",
+      providerId: "afro-message",
       status: "<value>",
     },
   ],

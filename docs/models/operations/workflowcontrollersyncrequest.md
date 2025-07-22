@@ -7,6 +7,9 @@ import { WorkflowControllerSyncRequest } from "@novu/api/models/operations";
 
 let value: WorkflowControllerSyncRequest = {
   workflowId: "<id>",
+  syncWorkflowDto: {
+    targetEnvironmentId: "<id>",
+  },
 };
 ```
 

@@ -5,7 +5,11 @@
 ```typescript
 import { SubscribersV1ControllerBulkCreateSubscribersRequest } from "@novu/api/models/operations";
 
-let value: SubscribersV1ControllerBulkCreateSubscribersRequest = {};
+let value: SubscribersV1ControllerBulkCreateSubscribersRequest = {
+  bulkSubscriberCreateDto: {
+    subscribers: [],
+  },
+};
 ```
 
 ## Fields

@@ -41,6 +41,10 @@ export type EmailControlDto = {
    * Disable sanitization of the output.
    */
   disableOutputSanitization?: boolean | undefined;
+  /**
+   * Layout ID to use for the email. Null means no layout, undefined means default layout.
+   */
+  layoutId?: string | null | undefined;
 };
 
 /** @internal */
@@ -73,6 +77,7 @@ export const EmailControlDto$inboundSchema: z.ZodType<
   body: z.string().default(""),
   editorType: EditorType$inboundSchema.default("block"),
   disableOutputSanitization: z.boolean().default(false),
+  layoutId: z.nullable(z.string()).optional(),
 });
 
 /** @internal */
@@ -82,6 +87,7 @@ export type EmailControlDto$Outbound = {
   body: string;
   editorType: string;
   disableOutputSanitization: boolean;
+  layoutId?: string | null | undefined;
 };
 
 /** @internal */
@@ -95,6 +101,7 @@ export const EmailControlDto$outboundSchema: z.ZodType<
   body: z.string().default(""),
   editorType: EditorType$outboundSchema.default("block"),
   disableOutputSanitization: z.boolean().default(false),
+  layoutId: z.nullable(z.string()).optional(),
 });
 
 /**

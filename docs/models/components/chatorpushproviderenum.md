@@ -7,11 +7,11 @@ The provider identifier for the credentials
 ```typescript
 import { ChatOrPushProviderEnum } from "@novu/api/models/components";
 
-let value: ChatOrPushProviderEnum = "whatsapp-business";
+let value: ChatOrPushProviderEnum = "chat-webhook";
 ```
 
 ## Values
 
 ```typescript
-"slack" | "discord" | "msteams" | "mattermost" | "ryver" | "zulip" | "grafana-on-call" | "getstream" | "rocket-chat" | "whatsapp-business" | "fcm" | "apns" | "expo" | "one-signal" | "pushpad" | "push-webhook" | "pusher-beams"
+"slack" | "discord" | "msteams" | "mattermost" | "ryver" | "zulip" | "grafana-on-call" | "getstream" | "rocket-chat" | "whatsapp-business" | "chat-webhook" | "fcm" | "apns" | "expo" | "one-signal" | "pushpad" | "push-webhook" | "pusher-beams"
 ```

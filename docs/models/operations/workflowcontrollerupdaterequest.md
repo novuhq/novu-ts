@@ -7,6 +7,44 @@ import { WorkflowControllerUpdateRequest } from "@novu/api/models/operations";
 
 let value: WorkflowControllerUpdateRequest = {
   workflowId: "<id>",
+  updateWorkflowDto: {
+    name: "<value>",
+    steps: [
+      {
+        name: "<value>",
+        type: "delay",
+      },
+    ],
+    preferences: {
+      user: {
+        all: {
+          enabled: true,
+          readOnly: false,
+        },
+        channels: {
+          "email": {
+            enabled: true,
+          },
+          "sms": {
+            enabled: false,
+          },
+        },
+      },
+      workflow: {
+        all: {
+          enabled: true,
+          readOnly: false,
+        },
+        channels: {
+          "email": {},
+          "sms": {
+            enabled: false,
+          },
+        },
+      },
+    },
+    origin: "novu-cloud",
+  },
 };
 ```
 

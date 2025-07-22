@@ -5,7 +5,103 @@
 ```typescript
 import { WorkflowControllerCreateResponse } from "@novu/api/models/operations";
 
-let value: WorkflowControllerCreateResponse = {};
+let value: WorkflowControllerCreateResponse = {
+  headers: {
+    "key": [
+      "<value 1>",
+      "<value 2>",
+      "<value 3>",
+    ],
+    "key1": [
+      "<value 1>",
+    ],
+  },
+  result: {
+    name: "<value>",
+    id: "<id>",
+    workflowId: "<id>",
+    slug: {},
+    updatedAt: "1735616917056",
+    createdAt: "1725449855142",
+    steps: [
+      {
+        controls: {
+          values: {
+            skip: {
+              "and": [
+                {
+                  "==": [
+                    {
+                      "var": "payload.tier",
+                    },
+                    "pro",
+                  ],
+                },
+                {
+                  "==": [
+                    {
+                      "var": "subscriber.data.role",
+                    },
+                    "admin",
+                  ],
+                },
+                {
+                  ">": [
+                    {
+                      "var": "payload.amount",
+                    },
+                    "4",
+                  ],
+                },
+              ],
+            },
+          },
+        },
+        variables: {
+          "key": "<value>",
+          "key1": "<value>",
+          "key2": "<value>",
+        },
+        stepId: "<id>",
+        id: "<id>",
+        name: "<value>",
+        slug: {},
+        type: "digest",
+        origin: "novu-cloud-v1",
+        workflowId: "<id>",
+        workflowDatabaseId: "<id>",
+      },
+    ],
+    origin: "novu-cloud",
+    preferences: {
+      user: {
+        all: {
+          enabled: true,
+          readOnly: false,
+        },
+        channels: {
+          "email": {},
+          "sms": {
+            enabled: false,
+          },
+        },
+      },
+      default: {
+        all: {
+          enabled: true,
+          readOnly: false,
+        },
+        channels: {
+          "email": {},
+          "sms": {
+            enabled: false,
+          },
+        },
+      },
+    },
+    status: "ACTIVE",
+  },
+};
 ```
 
 ## Fields

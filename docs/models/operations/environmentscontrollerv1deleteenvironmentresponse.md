@@ -5,7 +5,20 @@
 ```typescript
 import { EnvironmentsControllerV1DeleteEnvironmentResponse } from "@novu/api/models/operations";
 
-let value: EnvironmentsControllerV1DeleteEnvironmentResponse = {};
+let value: EnvironmentsControllerV1DeleteEnvironmentResponse = {
+  headers: {
+    "key": [
+      "<value 1>",
+      "<value 2>",
+    ],
+    "key1": [
+      "<value 1>",
+      "<value 2>",
+      "<value 3>",
+    ],
+    "key2": [],
+  },
+};
 ```
 
 ## Fields

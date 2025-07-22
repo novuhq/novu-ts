@@ -5,7 +5,13 @@
 ```typescript
 import { EnvironmentsControllerV1CreateEnvironmentRequest } from "@novu/api/models/operations";
 
-let value: EnvironmentsControllerV1CreateEnvironmentRequest = {};
+let value: EnvironmentsControllerV1CreateEnvironmentRequest = {
+  createEnvironmentRequestDto: {
+    name: "Production Environment",
+    parentId: "60d5ecb8b3b3a30015f3e1a1",
+    color: "#3498db",
+  },
+};
 ```
 
 ## Fields

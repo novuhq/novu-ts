@@ -5,7 +5,25 @@
 ```typescript
 import { IntegrationsControllerUpdateIntegrationByIdResponse } from "@novu/api/models/operations";
 
-let value: IntegrationsControllerUpdateIntegrationByIdResponse = {};
+let value: IntegrationsControllerUpdateIntegrationByIdResponse = {
+  headers: {
+    "key": [
+      "<value 1>",
+    ],
+  },
+  result: {
+    environmentId: "<id>",
+    organizationId: "<id>",
+    name: "<value>",
+    identifier: "<value>",
+    providerId: "<id>",
+    channel: "sms",
+    credentials: {},
+    active: false,
+    deleted: true,
+    primary: true,
+  },
+};
 ```
 
 ## Fields

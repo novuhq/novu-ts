@@ -13,7 +13,7 @@ let value: LookBackWindowDto = {
 
 ## Fields
 
-| Field                                              | Type                                               | Required                                           | Description                                        |
-| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
-| `amount`                                           | *number*                                           | :heavy_check_mark:                                 | Amount of time for the look-back window.           |
-| `unit`                                             | [components.Unit](../../models/components/unit.md) | :heavy_check_mark:                                 | Unit of time for the look-back window.             |
+| Field                                                                                | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `amount`                                                                             | *number*                                                                             | :heavy_check_mark:                                                                   | Amount of time for the look-back window.                                             |
+| `unit`                                                                               | [components.LookBackWindowDtoUnit](../../models/components/lookbackwindowdtounit.md) | :heavy_check_mark:                                                                   | Unit of time for the look-back window.                                               |

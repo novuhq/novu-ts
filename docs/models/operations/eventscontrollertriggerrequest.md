@@ -5,7 +5,19 @@
 ```typescript
 import { EventsControllerTriggerRequest } from "@novu/api/models/operations";
 
-let value: EventsControllerTriggerRequest = {};
+let value: EventsControllerTriggerRequest = {
+  triggerEventRequestDto: {
+    workflowId: "workflow_identifier",
+    payload: {
+      "comment_id": "string",
+      "post": {
+        "text": "string",
+      },
+    },
+    overrides: {},
+    to: "SUBSCRIBER_ID",
+  },
+};
 ```
 
 ## Fields
