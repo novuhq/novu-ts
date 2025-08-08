@@ -7,14 +7,22 @@ import { SubscribersControllerSearchSubscribersResponse } from "@novu/api/models
 
 let value: SubscribersControllerSearchSubscribersResponse = {
   headers: {
-    "key": [],
+    "key": [
+      "<value 1>",
+    ],
+    "key1": [],
+    "key2": [
+      "<value 1>",
+      "<value 2>",
+      "<value 3>",
+    ],
   },
   result: {
     data: [
       {
         channels: [
           {
-            providerId: "ryver",
+            providerId: "expo",
             credentials: {
               webhookUrl: "https://example.com/webhook",
               channel: "general",
@@ -36,12 +44,12 @@ let value: SubscribersControllerSearchSubscribersResponse = {
         organizationId: "<id>",
         environmentId: "<id>",
         deleted: true,
-        createdAt: "1734005872002",
-        updatedAt: "1735631366439",
+        createdAt: "1715438226471",
+        updatedAt: "1735619433110",
       },
     ],
     next: "<value>",
-    previous: "<value>",
+    previous: null,
   },
 };
 ```

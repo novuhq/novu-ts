@@ -1066,6 +1066,14 @@
         "description": "Create a subscriber with the subscriber attributes. \n      **subscriberId** is a required field, rest other fields are optional, if the subscriber already exists, it will be updated",
         "parameters": [
           {
+            "name": "failIfExists",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
             "name": "idempotency-key",
             "in": "header",
             "description": "A header for idempotency purposes",
@@ -1285,7 +1293,7 @@
             }
           },
           "409": {
-            "description": "Conflict",
+            "description": "Subscriber already exists (when query param failIfExists=true)",
             "headers": {
               "Content-Type": {
                 "$ref": "#/components/headers/Content-Type"
@@ -1312,7 +1320,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
+                  "$ref": "#/components/schemas/SubscriberResponseDto"
                 }
               }
             }
@@ -5090,8 +5098,16 @@
         "operationId": "TopicsController_upsertTopic",
         "x-speakeasy-name-override": "create",
         "summary": "Create a topic",
-        "description": "Creates a new topic if it does not exist, or updates an existing topic if it already exists",
+        "description": "Creates a new topic if it does not exist, or updates an existing topic if it already exists. Use ?failIfExists=true to prevent updates.",
         "parameters": [
+          {
+            "name": "failIfExists",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
           {
             "name": "idempotency-key",
             "in": "header",
@@ -5345,7 +5361,7 @@
             }
           },
           "409": {
-            "description": "Conflict",
+            "description": "Topic already exists (when query param failIfExists=true)",
             "headers": {
               "Content-Type": {
                 "$ref": "#/components/headers/Content-Type"
@@ -5372,7 +5388,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
+                  "$ref": "#/components/schemas/TopicResponseDto"
                 }
               }
             }
@@ -12551,6 +12567,123 @@
         ]
       }
     },
+    "/v1/activity/requests": {
+      "get": {
+        "operationId": "ActivityController_getLogs",
+        "parameters": [
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "Page number for pagination",
+            "schema": {
+              "minimum": 0,
+              "maximum": 100,
+              "type": "number"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "description": "Number of items per page",
+            "schema": {
+              "minimum": 1,
+              "maximum": 100,
+              "type": "number"
+            }
+          },
+          {
+            "name": "statusCodes",
+            "required": false,
+            "in": "query",
+            "description": "Filter by HTTP status codes",
+            "example": [
+              200,
+              404,
+              500
+            ],
+            "schema": {
+              "minimum": 100,
+              "maximum": 599,
+              "type": "array",
+              "items": {
+                "type": "number"
+              }
+            }
+          },
+          {
+            "name": "url",
+            "required": false,
+            "in": "query",
+            "description": "Filter by request URL",
+            "schema": {
+              "maxLength": 500,
+              "pattern": "/^[a-zA-Z0-9\\-._~:/?#[\\]@!$\u0026\"()*+,;=%]*$/",
+              "type": "string"
+            }
+          },
+          {
+            "name": "url_pattern",
+            "required": false,
+            "in": "query",
+            "description": "Filter by URL pattern",
+            "schema": {
+              "maxLength": 500,
+              "pattern": "/^[a-zA-Z0-9\\-._~:/?#[\\]@!$\u0026\"()*+,;=%]*$/",
+              "type": "string"
+            }
+          },
+          {
+            "name": "transactionId",
+            "required": false,
+            "in": "query",
+            "description": "Filter by transaction identifier",
+            "schema": {
+              "maxLength": 100,
+              "type": "string"
+            }
+          },
+          {
+            "name": "createdGte",
+            "required": false,
+            "in": "query",
+            "description": "Filter requests created after this timestamp (Unix timestamp)",
+            "example": 1640995200,
+            "schema": {
+              "minimum": 0,
+              "type": "number"
+            }
+          },
+          {
+            "name": "idempotency-key",
+            "in": "header",
+            "description": "A header for idempotency purposes",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetRequestsResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "secretKey": []
+          }
+        ]
+      }
+    },
     "/v1/environments": {
       "post": {
         "operationId": "EnvironmentsControllerV1_createEnvironment",
@@ -14485,7 +14618,7 @@
         },
         "x-speakeasy-name-override": "trigger",
         "summary": "Trigger event",
-        "description": "\n    Trigger event is the main (and only) way to send notifications to subscribers. \n    The trigger identifier is used to match the particular workflow associated with it. \n    Additional information can be passed according the body interface below.\n    ",
+        "description": "\n    Trigger event is the main (and only) way to send notifications to subscribers. The trigger identifier is used to match the particular workflow associated with it. Additional information can be passed according the body interface below.\n    To prevent duplicate triggers, you can optionally pass a **transactionId** in the request body. If the same **transactionId** is used again, the trigger will be ignored. The retention period depends on your billing tier.",
         "parameters": [
           {
             "name": "idempotency-key",
@@ -19357,109 +19490,6 @@
         ]
       }
     },
-    "/v1/logs/requests": {
-      "get": {
-        "operationId": "LogsController_getLogs",
-        "parameters": [
-          {
-            "name": "page",
-            "required": false,
-            "in": "query",
-            "schema": {
-              "minimum": 0,
-              "maximum": 100,
-              "type": "number"
-            }
-          },
-          {
-            "name": "limit",
-            "required": false,
-            "in": "query",
-            "schema": {
-              "minimum": 1,
-              "maximum": 100,
-              "type": "number"
-            }
-          },
-          {
-            "name": "statusCode",
-            "required": false,
-            "in": "query",
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "number"
-              }
-            }
-          },
-          {
-            "name": "url",
-            "required": false,
-            "in": "query",
-            "schema": {
-              "maxLength": 500,
-              "pattern": "/^[a-zA-Z0-9\\-._~:/?#[\\]@!$\u0026'()*+,;=%]*$/",
-              "type": "string"
-            }
-          },
-          {
-            "name": "url_pattern",
-            "required": false,
-            "in": "query",
-            "schema": {
-              "maxLength": 500,
-              "pattern": "/^[a-zA-Z0-9\\-._~:/?#[\\]@!$\u0026'()*+,;=%]*$/",
-              "type": "string"
-            }
-          },
-          {
-            "name": "transactionId",
-            "required": false,
-            "in": "query",
-            "schema": {
-              "maxLength": 100,
-              "type": "string"
-            }
-          },
-          {
-            "name": "created",
-            "required": false,
-            "in": "query",
-            "schema": {
-              "minimum": 1,
-              "maximum": 2160,
-              "type": "number"
-            }
-          },
-          {
-            "name": "idempotency-key",
-            "in": "header",
-            "description": "A header for idempotency purposes",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "secretKey": []
-          }
-        ]
-      }
-    },
     "/v1/messages": {
       "get": {
         "operationId": "MessagesController_getMessages",
@@ -22530,8 +22560,8 @@
         "operationId": "SubscribersV1Controller_modifySubscriberChannel",
         "x-speakeasy-name-override": "append",
         "x-speakeasy-group": "Subscribers.Credentials",
-        "summary": "Create or Partially Update provider credentials",
-        "description": "Create or Partially credentials for a provider such as **slack** and **FCM**. \n      **providerId** is required field. This API creates the **deviceTokens** or replaces the existing ones.",
+        "summary": "Update provider credentials",
+        "description": "Update credentials for a provider such as **slack** and **FCM**. \n      **providerId** is required field. This API creates the **deviceTokens** or replaces the existing ones.",
         "parameters": [
           {
             "name": "subscriberId",
@@ -28433,30 +28463,71 @@
               "type": "object",
               "additionalProperties": true
             }
+          },
+          "layoutId": {
+            "type": "string",
+            "nullable": true,
+            "description": "Override the or remove the layout for this specific step",
+            "example": "welcome-email-layout"
           }
-        },
-        "required": [
-          "providers"
-        ]
+        }
+      },
+      "EmailChannelOverrides": {
+        "type": "object",
+        "properties": {
+          "layoutId": {
+            "type": "string",
+            "nullable": true,
+            "description": "Override or remove the layout for all email steps in the workflow",
+            "example": "promotional-layout-2024"
+          }
+        }
+      },
+      "ChannelOverrides": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "description": "Email channel specific overrides",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EmailChannelOverrides"
+              }
+            ]
+          }
+        }
       },
       "TriggerOverrides": {
         "type": "object",
         "properties": {
           "steps": {
             "type": "object",
-            "description": "This could be used to override provider specific configurations",
+            "description": "This could be used to override provider specific configurations or layout at the step level",
             "example": {
               "email-step": {
                 "providers": {
                   "sendgrid": {
                     "templateId": "1234567890"
                   }
-                }
+                },
+                "layoutId": "step-specific-layout"
               }
             },
             "additionalProperties": {
               "$ref": "#/components/schemas/StepsOverrides"
             }
+          },
+          "channels": {
+            "description": "Channel-specific overrides that apply to all steps of a particular channel type. Step-level overrides take precedence over channel-level overrides.",
+            "example": {
+              "email": {
+                "layoutId": "promotional-layout-2024"
+              }
+            },
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ChannelOverrides"
+              }
+            ]
           },
           "providers": {
             "type": "object",
@@ -28573,7 +28644,7 @@
           },
           "transactionId": {
             "type": "string",
-            "description": "A unique identifier for this transaction, we will generate a UUID if not provided."
+            "description": "A unique identifier for deduplication. If the same **transactionId** is sent again, \n      the trigger is ignored. Useful to prevent duplicate notifications. The retention period depends on your billing tier."
           },
           "actor": {
             "description": "It is used to display the Avatar of the provided actor's subscriber id or actor object.\n    If a new actor object is provided, we will create a new subscriber in our system",
@@ -29064,6 +29135,8 @@
           "eazy-sms",
           "mobishastra",
           "afro-message",
+          "smsmode",
+          "imedia",
           "fcm",
           "apns",
           "expo",
@@ -29529,6 +29602,425 @@
           "data",
           "pageSize",
           "page"
+        ]
+      },
+      "RequestLogResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Request log identifier"
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "Creation timestamp"
+          },
+          "url": {
+            "type": "string",
+            "description": "Request URL"
+          },
+          "urlPattern": {
+            "type": "string",
+            "description": "URL pattern"
+          },
+          "method": {
+            "type": "string",
+            "description": "HTTP method"
+          },
+          "statusCode": {
+            "type": "number",
+            "description": "HTTP status code"
+          },
+          "path": {
+            "type": "string",
+            "description": "Request path"
+          },
+          "hostname": {
+            "type": "string",
+            "description": "Request hostname"
+          },
+          "transactionId": {
+            "type": "object",
+            "nullable": true,
+            "description": "Transaction identifier"
+          },
+          "ip": {
+            "type": "string",
+            "description": "Client IP address"
+          },
+          "userAgent": {
+            "type": "string",
+            "description": "User agent string"
+          },
+          "requestBody": {
+            "type": "string",
+            "description": "Request body"
+          },
+          "responseBody": {
+            "type": "string",
+            "description": "Response body"
+          },
+          "userId": {
+            "type": "string",
+            "description": "User identifier"
+          },
+          "organizationId": {
+            "type": "string",
+            "description": "Organization identifier"
+          },
+          "environmentId": {
+            "type": "string",
+            "description": "Environment identifier"
+          },
+          "authType": {
+            "type": "string",
+            "description": "Authentication type"
+          },
+          "durationMs": {
+            "type": "number",
+            "description": "Request duration in milliseconds"
+          }
+        },
+        "required": [
+          "id",
+          "createdAt",
+          "url",
+          "urlPattern",
+          "method",
+          "statusCode",
+          "path",
+          "hostname",
+          "ip",
+          "userAgent",
+          "requestBody",
+          "responseBody",
+          "userId",
+          "organizationId",
+          "environmentId",
+          "authType",
+          "durationMs"
+        ]
+      },
+      "GetRequestsResponseDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "description": "Request log data",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RequestLogResponseDto"
+            }
+          },
+          "total": {
+            "type": "number",
+            "description": "Total number of requests"
+          },
+          "pageSize": {
+            "type": "number",
+            "description": "Page size"
+          },
+          "page": {
+            "type": "number",
+            "description": "Current page number"
+          }
+        },
+        "required": [
+          "data",
+          "total"
+        ]
+      },
+      "WorkflowRunStepsDetailsDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Step run identifier"
+          },
+          "stepRunId": {
+            "type": "string",
+            "description": "Step identifier"
+          },
+          "stepType": {
+            "type": "string",
+            "description": "Step type"
+          },
+          "status": {
+            "type": "string",
+            "description": "Step status",
+            "enum": [
+              "pending",
+              "queued",
+              "running",
+              "completed",
+              "failed",
+              "delayed",
+              "canceled",
+              "merged",
+              "skipped"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "stepRunId",
+          "stepType",
+          "status"
+        ]
+      },
+      "GetWorkflowRunsDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Workflow run id"
+          },
+          "workflowId": {
+            "type": "string",
+            "description": "Workflow identifier"
+          },
+          "workflowName": {
+            "type": "string",
+            "description": "Workflow name"
+          },
+          "organizationId": {
+            "type": "string",
+            "description": "Organization identifier"
+          },
+          "environmentId": {
+            "type": "string",
+            "description": "Environment identifier"
+          },
+          "internalSubscriberId": {
+            "type": "string",
+            "description": "Internal subscriber identifier"
+          },
+          "subscriberId": {
+            "type": "string",
+            "description": "External subscriber identifier"
+          },
+          "status": {
+            "enum": [
+              "success",
+              "error",
+              "pending",
+              "skipped",
+              "canceled",
+              "merged"
+            ],
+            "type": "string",
+            "description": "Workflow run status"
+          },
+          "triggerIdentifier": {
+            "type": "string",
+            "description": "Trigger identifier"
+          },
+          "transactionId": {
+            "type": "string",
+            "description": "Transaction identifier"
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "Creation timestamp"
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "Update timestamp"
+          },
+          "steps": {
+            "description": "Workflow run steps",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WorkflowRunStepsDetailsDto"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "workflowId",
+          "workflowName",
+          "organizationId",
+          "environmentId",
+          "internalSubscriberId",
+          "status",
+          "triggerIdentifier",
+          "transactionId",
+          "createdAt",
+          "updatedAt",
+          "steps"
+        ]
+      },
+      "GetWorkflowRunsResponseDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "description": "Workflow runs data",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetWorkflowRunsDto"
+            }
+          },
+          "next": {
+            "type": "object",
+            "nullable": true,
+            "description": "Next cursor for pagination"
+          },
+          "previous": {
+            "type": "object",
+            "nullable": true,
+            "description": "Previous cursor for pagination"
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "StepRunDto": {
+        "type": "object",
+        "properties": {
+          "stepRunId": {
+            "type": "string",
+            "description": "Step run identifier"
+          },
+          "stepId": {
+            "type": "string",
+            "description": "Step identifier"
+          },
+          "stepType": {
+            "type": "string",
+            "description": "Step type"
+          },
+          "providerId": {
+            "type": "string",
+            "description": "Provider identifier"
+          },
+          "status": {
+            "type": "string",
+            "description": "Step status",
+            "enum": [
+              "pending",
+              "queued",
+              "running",
+              "completed",
+              "failed",
+              "delayed",
+              "canceled",
+              "merged",
+              "skipped"
+            ]
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string",
+            "description": "Creation timestamp"
+          },
+          "updatedAt": {
+            "format": "date-time",
+            "type": "string",
+            "description": "Update timestamp"
+          },
+          "executionDetails": {
+            "description": "Execution details",
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          }
+        },
+        "required": [
+          "stepRunId",
+          "stepId",
+          "stepType",
+          "status",
+          "createdAt",
+          "updatedAt",
+          "executionDetails"
+        ]
+      },
+      "GetWorkflowRunResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Workflow run id"
+          },
+          "workflowId": {
+            "type": "string",
+            "description": "Workflow identifier"
+          },
+          "workflowName": {
+            "type": "string",
+            "description": "Workflow name"
+          },
+          "organizationId": {
+            "type": "string",
+            "description": "Organization identifier"
+          },
+          "environmentId": {
+            "type": "string",
+            "description": "Environment identifier"
+          },
+          "internalSubscriberId": {
+            "type": "string",
+            "description": "Internal subscriber identifier"
+          },
+          "subscriberId": {
+            "type": "string",
+            "description": "External subscriber identifier"
+          },
+          "status": {
+            "enum": [
+              "success",
+              "error",
+              "pending",
+              "skipped",
+              "canceled",
+              "merged"
+            ],
+            "type": "string",
+            "description": "Workflow run status"
+          },
+          "triggerIdentifier": {
+            "type": "string",
+            "description": "Trigger identifier"
+          },
+          "transactionId": {
+            "type": "string",
+            "description": "Transaction identifier"
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "Creation timestamp"
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "Update timestamp"
+          },
+          "steps": {
+            "description": "Step runs",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StepRunDto"
+            }
+          },
+          "payload": {
+            "type": "object",
+            "description": "Trigger payload"
+          }
+        },
+        "required": [
+          "id",
+          "workflowId",
+          "workflowName",
+          "organizationId",
+          "environmentId",
+          "internalSubscriberId",
+          "status",
+          "triggerIdentifier",
+          "transactionId",
+          "createdAt",
+          "updatedAt",
+          "steps",
+          "payload"
         ]
       },
       "CredentialsDto": {
@@ -34223,6 +34715,20 @@
               }
             ]
           },
+          "lastPublishedAt": {
+            "type": "string",
+            "nullable": true,
+            "description": "Timestamp of the last workflow publication"
+          },
+          "lastPublishedBy": {
+            "nullable": true,
+            "description": "User who last published the workflow",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/UserResponseDto"
+              }
+            ]
+          },
           "steps": {
             "type": "array",
             "description": "Steps of the workflow",
@@ -34864,6 +35370,20 @@
               }
             ]
           },
+          "lastPublishedAt": {
+            "type": "string",
+            "description": "Timestamp of the last workflow publication",
+            "nullable": true
+          },
+          "lastPublishedBy": {
+            "description": "User who last published the workflow",
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/UserResponseDto"
+              }
+            ]
+          },
           "_id": {
             "type": "string",
             "description": "Unique database identifier"
@@ -34908,8 +35428,7 @@
           "slug",
           "status",
           "origin",
-          "stepTypeOverviews",
-          "isTranslationEnabled"
+          "stepTypeOverviews"
         ]
       },
       "ListWorkflowResponse": {

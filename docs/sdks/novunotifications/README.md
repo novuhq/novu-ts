@@ -14,6 +14,7 @@ Retrieve subscriber in-app (inbox) notifications by its unique key identifier **
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="SubscribersV1Controller_getNotificationsFeed" method="get" path="/v1/subscribers/{subscriberId}/notifications/feed" -->
 ```typescript
 import { Novu } from "@novu/api";
 
@@ -92,6 +93,7 @@ Retrieve unseen in-app (inbox) notifications count for a subscriber by its uniqu
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="SubscribersV1Controller_getUnseenCount" method="get" path="/v1/subscribers/{subscriberId}/notifications/unseen" -->
 ```typescript
 import { Novu } from "@novu/api";
 

@@ -21,6 +21,7 @@ List all the channels integrations created in the organization
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="IntegrationsController_listIntegrations" method="get" path="/v1/integrations" -->
 ```typescript
 import { Novu } from "@novu/api";
 
@@ -94,6 +95,7 @@ Create an integration for the current environment the user is based on the API k
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="IntegrationsController_createIntegration" method="post" path="/v1/integrations" -->
 ```typescript
 import { Novu } from "@novu/api";
 
@@ -174,6 +176,7 @@ Update an integration by its unique key identifier **integrationId**.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="IntegrationsController_updateIntegrationById" method="put" path="/v1/integrations/{integrationId}" -->
 ```typescript
 import { Novu } from "@novu/api";
 
@@ -249,6 +252,7 @@ Delete an integration by its unique key identifier **integrationId**.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="IntegrationsController_removeIntegration" method="delete" path="/v1/integrations/{integrationId}" -->
 ```typescript
 import { Novu } from "@novu/api";
 
@@ -324,6 +328,7 @@ Update an integration as **primary** by its unique key identifier **integrationI
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="IntegrationsController_setIntegrationAsPrimary" method="post" path="/v1/integrations/{integrationId}/set-primary" -->
 ```typescript
 import { Novu } from "@novu/api";
 
@@ -397,6 +402,7 @@ List all the active integrations created in the organization
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="IntegrationsController_getActiveIntegrations" method="get" path="/v1/integrations/active" -->
 ```typescript
 import { Novu } from "@novu/api";
 

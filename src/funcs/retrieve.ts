@@ -10,6 +10,7 @@ import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
+import * as components from "../models/components/index.js";
 import {
   ConnectionError,
   InvalidRequestError,
@@ -26,11 +27,11 @@ import { Result } from "../types/fp.js";
 
 export function retrieve(
   client: NovuCore,
-  request: operations.LogsControllerGetLogsRequest,
+  request: operations.ActivityControllerGetLogsRequest,
   options?: RequestOptions,
 ): APIPromise<
   Result<
-    operations.LogsControllerGetLogsResponseBody,
+    components.GetRequestsResponseDto,
     | NovuError
     | ResponseValidationError
     | ConnectionError
@@ -50,12 +51,12 @@ export function retrieve(
 
 async function $do(
   client: NovuCore,
-  request: operations.LogsControllerGetLogsRequest,
+  request: operations.ActivityControllerGetLogsRequest,
   options?: RequestOptions,
 ): Promise<
   [
     Result<
-      operations.LogsControllerGetLogsResponseBody,
+      components.GetRequestsResponseDto,
       | NovuError
       | ResponseValidationError
       | ConnectionError
@@ -71,7 +72,7 @@ async function $do(
   const parsed = safeParse(
     request,
     (value) =>
-      operations.LogsControllerGetLogsRequest$outboundSchema.parse(value),
+      operations.ActivityControllerGetLogsRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
@@ -80,13 +81,13 @@ async function $do(
   const payload = parsed.value;
   const body = null;
 
-  const path = pathToFunc("/v1/logs/requests")();
+  const path = pathToFunc("/v1/activity/requests")();
 
   const query = encodeFormQuery({
-    "created": payload.created,
+    "createdGte": payload.createdGte,
     "limit": payload.limit,
     "page": payload.page,
-    "statusCode": payload.statusCode,
+    "statusCodes": payload.statusCodes,
     "transactionId": payload.transactionId,
     "url": payload.url,
     "url_pattern": payload.url_pattern,
@@ -108,7 +109,7 @@ async function $do(
   const context = {
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
-    operationID: "LogsController_getLogs",
+    operationID: "ActivityController_getLogs",
     oAuth2Scopes: [],
 
     resolvedSecurity: requestSecurity,
@@ -158,7 +159,7 @@ async function $do(
   const response = doResult.value;
 
   const [result] = await M.match<
-    operations.LogsControllerGetLogsResponseBody,
+    components.GetRequestsResponseDto,
     | NovuError
     | ResponseValidationError
     | ConnectionError
@@ -168,7 +169,7 @@ async function $do(
     | UnexpectedClientError
     | SDKValidationError
   >(
-    M.json(200, operations.LogsControllerGetLogsResponseBody$inboundSchema),
+    M.json(200, components.GetRequestsResponseDto$inboundSchema),
     M.fail("4XX"),
     M.fail("5XX"),
   )(response, req);

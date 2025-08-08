@@ -11,7 +11,7 @@ let value: ActivityNotificationExecutionDetailResponseDto = {
   detail: "<value>",
   isRetry: true,
   isTest: true,
-  providerId: "bulk-sms",
+  providerId: "isend-sms",
   source: "Webhook",
 };
 ```

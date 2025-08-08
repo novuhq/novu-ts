@@ -7,11 +7,13 @@ import { SubscribersV1ControllerMarkActionAsSeenResponse } from "@novu/api/model
 
 let value: SubscribersV1ControllerMarkActionAsSeenResponse = {
   headers: {
-    "key": [],
-    "key1": [
+    "key": [
+      "<value 1>",
+    ],
+    "key1": [],
+    "key2": [
       "<value 1>",
       "<value 2>",
-      "<value 3>",
     ],
   },
   result: {
@@ -22,7 +24,7 @@ let value: SubscribersV1ControllerMarkActionAsSeenResponse = {
     subscriber: {
       channels: [
         {
-          providerId: "ryver",
+          providerId: "expo",
           credentials: {
             webhookUrl: "https://example.com/webhook",
             channel: "general",
@@ -43,15 +45,15 @@ let value: SubscribersV1ControllerMarkActionAsSeenResponse = {
       subscriberId: "<id>",
       organizationId: "<id>",
       environmentId: "<id>",
-      deleted: false,
-      createdAt: "1705073857759",
-      updatedAt: "1735637622608",
+      deleted: true,
+      createdAt: "1716157108336",
+      updatedAt: "1735621323892",
     },
     template: {
       name: "<value>",
-      description: "fooey tasty aching although",
+      description: "sport afore meal classic coast allegation pantyhose",
       active: true,
-      draft: false,
+      draft: true,
       preferenceSettings: {
         email: true,
         sms: false,
@@ -59,7 +61,7 @@ let value: SubscribersV1ControllerMarkActionAsSeenResponse = {
         chat: false,
         push: true,
       },
-      critical: true,
+      critical: false,
       tags: [
         "<value 1>",
         "<value 2>",
@@ -69,29 +71,19 @@ let value: SubscribersV1ControllerMarkActionAsSeenResponse = {
       organizationId: "<id>",
       creatorId: "<id>",
       environmentId: "<id>",
-      triggers: [
-        {
-          type: "event",
-          identifier: "<value>",
-          variables: [
-            {
-              name: "<value>",
-            },
-          ],
-        },
-      ],
+      triggers: [],
       notificationGroupId: "<id>",
-      deleted: true,
+      deleted: false,
       deletedAt: "<value>",
       deletedBy: "<value>",
     },
-    createdAt: "1720844674049",
+    createdAt: "1725201746902",
     transactionId: "<id>",
-    channel: "email",
-    read: false,
+    channel: "in_app",
+    read: true,
     seen: true,
     cta: {},
-    status: "warning",
+    status: "error",
   },
 };
 ```

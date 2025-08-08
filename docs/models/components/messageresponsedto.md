@@ -13,7 +13,7 @@ let value: MessageResponseDto = {
   subscriber: {
     channels: [
       {
-        providerId: "ryver",
+        providerId: "expo",
         credentials: {
           webhookUrl: "https://example.com/webhook",
           channel: "general",
@@ -34,15 +34,15 @@ let value: MessageResponseDto = {
     subscriberId: "<id>",
     organizationId: "<id>",
     environmentId: "<id>",
-    deleted: false,
-    createdAt: "1705073857759",
-    updatedAt: "1735637622608",
+    deleted: true,
+    createdAt: "1716157108336",
+    updatedAt: "1735621323892",
   },
   template: {
     name: "<value>",
-    description: "fooey tasty aching although",
+    description: "sport afore meal classic coast allegation pantyhose",
     active: true,
-    draft: false,
+    draft: true,
     preferenceSettings: {
       email: true,
       sms: false,
@@ -50,7 +50,7 @@ let value: MessageResponseDto = {
       chat: false,
       push: true,
     },
-    critical: true,
+    critical: false,
     tags: [
       "<value 1>",
       "<value 2>",
@@ -60,29 +60,19 @@ let value: MessageResponseDto = {
     organizationId: "<id>",
     creatorId: "<id>",
     environmentId: "<id>",
-    triggers: [
-      {
-        type: "event",
-        identifier: "<value>",
-        variables: [
-          {
-            name: "<value>",
-          },
-        ],
-      },
-    ],
+    triggers: [],
     notificationGroupId: "<id>",
-    deleted: true,
+    deleted: false,
     deletedAt: "<value>",
     deletedBy: "<value>",
   },
-  createdAt: "1705841468546",
+  createdAt: "1710687244427",
   transactionId: "<id>",
   channel: "email",
   read: true,
-  seen: false,
+  seen: true,
   cta: {},
-  status: "error",
+  status: "sent",
 };
 ```
 

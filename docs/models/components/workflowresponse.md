@@ -30,15 +30,11 @@ let value: WorkflowResponse = {
     {
       type: "event",
       identifier: "<value>",
-      variables: [
-        {
-          name: "<value>",
-        },
-      ],
+      variables: [],
     },
   ],
   notificationGroupId: "<id>",
-  deleted: true,
+  deleted: false,
   deletedAt: "<value>",
   deletedBy: "<value>",
 };

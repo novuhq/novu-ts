@@ -10,10 +10,6 @@ let value: WorkflowControllerCreateResponse = {
     "key": [
       "<value 1>",
       "<value 2>",
-      "<value 3>",
-    ],
-    "key1": [
-      "<value 1>",
     ],
   },
   result: {

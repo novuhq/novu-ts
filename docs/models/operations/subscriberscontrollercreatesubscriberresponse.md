@@ -17,7 +17,7 @@ let value: SubscribersControllerCreateSubscriberResponse = {
   result: {
     channels: [
       {
-        providerId: "ryver",
+        providerId: "expo",
         credentials: {
           webhookUrl: "https://example.com/webhook",
           channel: "general",

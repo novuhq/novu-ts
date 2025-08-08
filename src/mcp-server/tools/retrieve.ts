@@ -7,7 +7,7 @@ import * as operations from "../../models/operations/index.js";
 import { formatResult, ToolDefinition } from "../tools.js";
 
 const args = {
-  request: operations.LogsControllerGetLogsRequest$inboundSchema,
+  request: operations.ActivityControllerGetLogsRequest$inboundSchema,
 };
 
 export const tool$retrieve: ToolDefinition<typeof args> = {

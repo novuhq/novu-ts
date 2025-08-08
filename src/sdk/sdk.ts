@@ -56,13 +56,29 @@ export class Novu extends ClientSDK {
   }
 
   /**
+   * Retrieve workflow step
+   *
+   * @remarks
+   * Retrieves data for a specific step in a workflow
+   */
+  async retrieve(
+    request: operations.ActivityControllerGetLogsRequest,
+    options?: RequestOptions,
+  ): Promise<components.GetRequestsResponseDto> {
+    return unwrapAsync(retrieve(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
    * Trigger event
    *
    * @remarks
    *
-   *     Trigger event is the main (and only) way to send notifications to subscribers.
-   *     The trigger identifier is used to match the particular workflow associated with it.
-   *     Additional information can be passed according the body interface below.
+   *     Trigger event is the main (and only) way to send notifications to subscribers. The trigger identifier is used to match the particular workflow associated with it. Additional information can be passed according the body interface below.
+   *     To prevent duplicate triggers, you can optionally pass a **transactionId** in the request body. If the same **transactionId** is used again, the trigger will be ignored. The retention period depends on your billing tier.
    */
   async trigger(
     triggerEventRequestDto: components.TriggerEventRequestDto,
@@ -135,17 +151,6 @@ export class Novu extends ClientSDK {
       this,
       bulkTriggerEventDto,
       idempotencyKey,
-      options,
-    ));
-  }
-
-  async retrieve(
-    request: operations.LogsControllerGetLogsRequest,
-    options?: RequestOptions,
-  ): Promise<operations.LogsControllerGetLogsResponseBody> {
-    return unwrapAsync(retrieve(
-      this,
-      request,
       options,
     ));
   }

@@ -7,7 +7,7 @@ import { GetSubscriberPreferencesDto } from "@novu/api/models/components";
 
 let value: GetSubscriberPreferencesDto = {
   global: {
-    enabled: false,
+    enabled: true,
     channels: {
       email: true,
       sms: false,

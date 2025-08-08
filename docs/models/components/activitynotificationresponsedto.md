@@ -13,29 +13,36 @@ let value: ActivityNotificationResponseDto = {
   jobs: [
     {
       id: "<id>",
-      type: "in_app",
+      type: "push",
       executionDetails: [
         {
           id: "<id>",
-          status: "Success",
+          status: "Warning",
           detail: "<value>",
-          isRetry: false,
+          isRetry: true,
           isTest: true,
-          providerId: "emailjs",
-          source: "Webhook",
+          providerId: "one-signal",
+          source: "Payload",
         },
       ],
       step: {
         id: "<id>",
         active: false,
-        filters: [],
+        filters: [
+          {
+            isNegated: true,
+            type: "NUMBER",
+            value: "OR",
+            children: [],
+          },
+        ],
         templateId: "<id>",
       },
       overrides: {
         "workflowId": "some_wf_id",
         "stepId": "some_wf_id",
       },
-      providerId: "afro-message",
+      providerId: "grafana-on-call",
       status: "<value>",
     },
   ],

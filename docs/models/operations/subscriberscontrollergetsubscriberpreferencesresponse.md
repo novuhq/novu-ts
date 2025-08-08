@@ -8,10 +8,14 @@ import { SubscribersControllerGetSubscriberPreferencesResponse } from "@novu/api
 let value: SubscribersControllerGetSubscriberPreferencesResponse = {
   headers: {
     "key": [],
+    "key1": [
+      "<value 1>",
+      "<value 2>",
+    ],
   },
   result: {
     global: {
-      enabled: false,
+      enabled: true,
       channels: {
         email: true,
         sms: false,
@@ -22,7 +26,7 @@ let value: SubscribersControllerGetSubscriberPreferencesResponse = {
     },
     workflows: [
       {
-        enabled: true,
+        enabled: false,
         channels: {
           email: true,
           sms: false,
@@ -30,12 +34,7 @@ let value: SubscribersControllerGetSubscriberPreferencesResponse = {
           chat: false,
           push: true,
         },
-        overrides: [
-          {
-            channel: "email",
-            source: "template",
-          },
-        ],
+        overrides: [],
         workflow: {
           slug: "<value>",
           identifier: "<value>",

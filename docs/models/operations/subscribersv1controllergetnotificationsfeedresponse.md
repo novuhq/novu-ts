@@ -34,14 +34,14 @@ let value: SubscribersV1ControllerGetNotificationsFeedResponse = {
         updatedAt: new Date("2024-12-10T10:10:59.639Z"),
         actor: {
           data: null,
-          type: "system_icon",
+          type: "none",
         },
         transactionId: "transaction_123456",
         templateIdentifier: "template_abcdef",
         providerId: "provider_xyz",
         content: "This is a test notification content.",
         subject: "Test Notification Subject",
-        channel: "chat",
+        channel: "sms",
         read: false,
         seen: true,
         deviceTokens: [

@@ -14,6 +14,7 @@ Retrieve subscriber's topic subscriptions by its unique key identifier **subscri
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="SubscribersController_listSubscriberTopics" method="get" path="/v2/subscribers/{subscriberId}/subscriptions" -->
 ```typescript
 import { Novu } from "@novu/api";
 

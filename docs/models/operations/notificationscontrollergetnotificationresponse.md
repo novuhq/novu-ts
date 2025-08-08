@@ -6,18 +6,7 @@
 import { NotificationsControllerGetNotificationResponse } from "@novu/api/models/operations";
 
 let value: NotificationsControllerGetNotificationResponse = {
-  headers: {
-    "key": [
-      "<value 1>",
-      "<value 2>",
-      "<value 3>",
-    ],
-    "key1": [
-      "<value 1>",
-      "<value 2>",
-      "<value 3>",
-    ],
-  },
+  headers: {},
   result: {
     environmentId: "<id>",
     organizationId: "<id>",
@@ -26,29 +15,36 @@ let value: NotificationsControllerGetNotificationResponse = {
     jobs: [
       {
         id: "<id>",
-        type: "in_app",
+        type: "push",
         executionDetails: [
           {
             id: "<id>",
-            status: "Success",
+            status: "Warning",
             detail: "<value>",
-            isRetry: false,
+            isRetry: true,
             isTest: true,
-            providerId: "emailjs",
-            source: "Webhook",
+            providerId: "one-signal",
+            source: "Payload",
           },
         ],
         step: {
           id: "<id>",
           active: false,
-          filters: [],
+          filters: [
+            {
+              isNegated: true,
+              type: "NUMBER",
+              value: "OR",
+              children: [],
+            },
+          ],
           templateId: "<id>",
         },
         overrides: {
           "workflowId": "some_wf_id",
           "stepId": "some_wf_id",
         },
-        providerId: "afro-message",
+        providerId: "grafana-on-call",
         status: "<value>",
       },
     ],

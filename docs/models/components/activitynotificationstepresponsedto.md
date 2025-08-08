@@ -11,16 +11,9 @@ let value: ActivityNotificationStepResponseDto = {
   filters: [
     {
       isNegated: true,
-      type: "DATE",
+      type: "NUMBER",
       value: "OR",
-      children: [
-        {
-          field: "<value>",
-          value: "<value>",
-          operator: "BETWEEN",
-          on: "payload",
-        },
-      ],
+      children: [],
     },
   ],
   templateId: "<id>",

@@ -80,7 +80,7 @@ export function createMCPServer(deps: {
 }) {
   const server = new McpServer({
     name: "Novu",
-    version: "1.5.0",
+    version: "1.5.1",
   });
 
   const client = new NovuCore({
@@ -110,11 +110,11 @@ export function createMCPServer(deps: {
   const register = { tool, resource, resourceTemplate, prompt };
   void register; // suppress unused warnings
 
+  tool(tool$retrieve);
   tool(tool$trigger);
   tool(tool$cancel);
   tool(tool$triggerBroadcast);
   tool(tool$triggerBulk);
-  tool(tool$retrieve);
   tool(tool$environmentsGetTags);
   tool(tool$environmentsCreate);
   tool(tool$environmentsList);

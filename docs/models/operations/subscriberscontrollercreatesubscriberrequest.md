@@ -6,6 +6,7 @@
 import { SubscribersControllerCreateSubscriberRequest } from "@novu/api/models/operations";
 
 let value: SubscribersControllerCreateSubscriberRequest = {
+  failIfExists: true,
   createSubscriberRequestDto: {
     subscriberId: "<id>",
   },
@@ -16,5 +17,6 @@ let value: SubscribersControllerCreateSubscriberRequest = {
 
 | Field                                                                                          | Type                                                                                           | Required                                                                                       | Description                                                                                    |
 | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| `failIfExists`                                                                                 | *boolean*                                                                                      | :heavy_check_mark:                                                                             | N/A                                                                                            |
 | `idempotencyKey`                                                                               | *string*                                                                                       | :heavy_minus_sign:                                                                             | A header for idempotency purposes                                                              |
 | `createSubscriberRequestDto`                                                                   | [components.CreateSubscriberRequestDto](../../models/components/createsubscriberrequestdto.md) | :heavy_check_mark:                                                                             | N/A                                                                                            |
