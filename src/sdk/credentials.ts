@@ -37,10 +37,10 @@ export class Credentials extends ClientSDK {
   }
 
   /**
-   * Create or Partially Update provider credentials
+   * Update provider credentials
    *
    * @remarks
-   * Create or Partially credentials for a provider such as **slack** and **FCM**.
+   * Update credentials for a provider such as **slack** and **FCM**.
    *       **providerId** is required field. This API creates the **deviceTokens** or replaces the existing ones.
    */
   async append(

@@ -22,6 +22,7 @@ Search subscribers by their **email**, **phone**, **subscriberId** and **name**.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="SubscribersController_searchSubscribers" method="get" path="/v2/subscribers" -->
 ```typescript
 import { Novu } from "@novu/api";
 
@@ -95,6 +96,7 @@ Create a subscriber with the subscriber attributes.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="SubscribersController_createSubscriber" method="post" path="/v2/subscribers" -->
 ```typescript
 import { Novu } from "@novu/api";
 
@@ -147,6 +149,7 @@ run();
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `createSubscriberRequestDto`                                                                                                                                                   | [components.CreateSubscriberRequestDto](../../models/components/createsubscriberrequestdto.md)                                                                                 | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
+| `failIfExists`                                                                                                                                                                 | *boolean*                                                                                                                                                                      | :heavy_minus_sign:                                                                                                                                                             | If true, the request will fail if a subscriber with the same subscriberId already exists                                                                                       |
 | `idempotencyKey`                                                                                                                                                               | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | A header for idempotency purposes                                                                                                                                              |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
@@ -158,13 +161,14 @@ run();
 
 ### Errors
 
-| Error Type                             | Status Code                            | Content Type                           |
-| -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| errors.ErrorDto                        | 414                                    | application/json                       |
-| errors.ErrorDto                        | 400, 401, 403, 404, 405, 409, 413, 415 | application/json                       |
-| errors.ValidationErrorDto              | 422                                    | application/json                       |
-| errors.ErrorDto                        | 500                                    | application/json                       |
-| errors.SDKError                        | 4XX, 5XX                               | \*/\*                                  |
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| errors.SubscriberResponseDto      | 409                               | application/json                  |
+| errors.ErrorDto                   | 414                               | application/json                  |
+| errors.ErrorDto                   | 400, 401, 403, 404, 405, 413, 415 | application/json                  |
+| errors.ValidationErrorDto         | 422                               | application/json                  |
+| errors.ErrorDto                   | 500                               | application/json                  |
+| errors.SDKError                   | 4XX, 5XX                          | \*/\*                             |
 
 ## retrieve
 
@@ -173,6 +177,7 @@ Retrieve a subscriber by its unique key identifier **subscriberId**.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="SubscribersController_getSubscriber" method="get" path="/v2/subscribers/{subscriberId}" -->
 ```typescript
 import { Novu } from "@novu/api";
 
@@ -247,6 +252,7 @@ Update a subscriber by its unique key identifier **subscriberId**.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="SubscribersController_patchSubscriber" method="patch" path="/v2/subscribers/{subscriberId}" -->
 ```typescript
 import { Novu } from "@novu/api";
 
@@ -322,6 +328,7 @@ Deletes a subscriber entity from the Novu platform along with associated message
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="SubscribersController_removeSubscriber" method="delete" path="/v2/subscribers/{subscriberId}" -->
 ```typescript
 import { Novu } from "@novu/api";
 
@@ -397,6 +404,7 @@ run();
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="SubscribersV1Controller_bulkCreateSubscribers" method="post" path="/v1/subscribers/bulk" -->
 ```typescript
 import { Novu } from "@novu/api";
 

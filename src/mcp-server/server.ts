@@ -30,7 +30,6 @@ import { tool$messagesDeleteByTransactionId } from "./tools/messagesDeleteByTran
 import { tool$messagesRetrieve } from "./tools/messagesRetrieve.js";
 import { tool$notificationsList } from "./tools/notificationsList.js";
 import { tool$notificationsRetrieve } from "./tools/notificationsRetrieve.js";
-import { tool$retrieve } from "./tools/retrieve.js";
 import { tool$subscribersCreate } from "./tools/subscribersCreate.js";
 import { tool$subscribersCreateBulk } from "./tools/subscribersCreateBulk.js";
 import { tool$subscribersCredentialsAppend } from "./tools/subscribersCredentialsAppend.js";
@@ -43,6 +42,7 @@ import { tool$subscribersMessagesUpdateAsSeen } from "./tools/subscribersMessage
 import { tool$subscribersNotificationsFeed } from "./tools/subscribersNotificationsFeed.js";
 import { tool$subscribersNotificationsUnseenCount } from "./tools/subscribersNotificationsUnseenCount.js";
 import { tool$subscribersPatch } from "./tools/subscribersPatch.js";
+import { tool$subscribersPreferencesBulkUpdate } from "./tools/subscribersPreferencesBulkUpdate.js";
 import { tool$subscribersPreferencesList } from "./tools/subscribersPreferencesList.js";
 import { tool$subscribersPreferencesUpdate } from "./tools/subscribersPreferencesUpdate.js";
 import { tool$subscribersPropertiesUpdateOnlineFlag } from "./tools/subscribersPropertiesUpdateOnlineFlag.js";
@@ -80,7 +80,7 @@ export function createMCPServer(deps: {
 }) {
   const server = new McpServer({
     name: "Novu",
-    version: "1.5.0",
+    version: "1.6.0",
   });
 
   const client = new NovuCore({
@@ -114,7 +114,6 @@ export function createMCPServer(deps: {
   tool(tool$cancel);
   tool(tool$triggerBroadcast);
   tool(tool$triggerBulk);
-  tool(tool$retrieve);
   tool(tool$environmentsGetTags);
   tool(tool$environmentsCreate);
   tool(tool$environmentsList);
@@ -151,6 +150,7 @@ export function createMCPServer(deps: {
   tool(tool$notificationsRetrieve);
   tool(tool$subscribersPreferencesList);
   tool(tool$subscribersPreferencesUpdate);
+  tool(tool$subscribersPreferencesBulkUpdate);
   tool(tool$subscribersTopicsList);
   tool(tool$subscribersCredentialsUpdate);
   tool(tool$subscribersCredentialsAppend);

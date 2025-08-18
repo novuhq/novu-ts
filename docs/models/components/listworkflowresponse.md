@@ -19,10 +19,9 @@ let value: ListWorkflowResponse = {
       stepTypeOverviews: [
         "trigger",
       ],
-      isTranslationEnabled: true,
     },
   ],
-  totalCount: 6530.67,
+  totalCount: 1941.66,
 };
 ```
 

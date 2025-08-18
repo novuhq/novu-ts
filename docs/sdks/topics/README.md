@@ -22,6 +22,7 @@ This api returns a paginated list of topics.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="TopicsController_listTopics" method="get" path="/v2/topics" -->
 ```typescript
 import { Novu } from "@novu/api";
 
@@ -90,10 +91,11 @@ run();
 
 ## create
 
-Creates a new topic if it does not exist, or updates an existing topic if it already exists
+Creates a new topic if it does not exist, or updates an existing topic if it already exists. Use ?failIfExists=true to prevent updates.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="TopicsController_upsertTopic" method="post" path="/v2/topics" -->
 ```typescript
 import { Novu } from "@novu/api";
 
@@ -148,6 +150,7 @@ run();
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `createUpdateTopicRequestDto`                                                                                                                                                  | [components.CreateUpdateTopicRequestDto](../../models/components/createupdatetopicrequestdto.md)                                                                               | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
+| `failIfExists`                                                                                                                                                                 | *boolean*                                                                                                                                                                      | :heavy_minus_sign:                                                                                                                                                             | If true, the request will fail if a topic with the same key already exists                                                                                                     |
 | `idempotencyKey`                                                                                                                                                               | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | A header for idempotency purposes                                                                                                                                              |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
@@ -159,13 +162,14 @@ run();
 
 ### Errors
 
-| Error Type                             | Status Code                            | Content Type                           |
-| -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| errors.ErrorDto                        | 414                                    | application/json                       |
-| errors.ErrorDto                        | 400, 401, 403, 404, 405, 409, 413, 415 | application/json                       |
-| errors.ValidationErrorDto              | 422                                    | application/json                       |
-| errors.ErrorDto                        | 500                                    | application/json                       |
-| errors.SDKError                        | 4XX, 5XX                               | \*/\*                                  |
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| errors.TopicResponseDto           | 409                               | application/json                  |
+| errors.ErrorDto                   | 414                               | application/json                  |
+| errors.ErrorDto                   | 400, 401, 403, 404, 405, 413, 415 | application/json                  |
+| errors.ValidationErrorDto         | 422                               | application/json                  |
+| errors.ErrorDto                   | 500                               | application/json                  |
+| errors.SDKError                   | 4XX, 5XX                          | \*/\*                             |
 
 ## get
 
@@ -173,6 +177,7 @@ Retrieve a topic by its unique key identifier **topicKey**
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="TopicsController_getTopic" method="get" path="/v2/topics/{topicKey}" -->
 ```typescript
 import { Novu } from "@novu/api";
 
@@ -246,6 +251,7 @@ Update a topic name by its unique key identifier **topicKey**
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="TopicsController_updateTopic" method="patch" path="/v2/topics/{topicKey}" -->
 ```typescript
 import { Novu } from "@novu/api";
 
@@ -325,6 +331,7 @@ Delete a topic by its unique key identifier **topicKey**.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="TopicsController_deleteTopic" method="delete" path="/v2/topics/{topicKey}" -->
 ```typescript
 import { Novu } from "@novu/api";
 

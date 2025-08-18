@@ -38,7 +38,7 @@ let value: ActivitiesResponseDto = {
             "workflowId": "some_wf_id",
             "stepId": "some_wf_id",
           },
-          providerId: "afro-message",
+          providerId: "imedia",
           status: "<value>",
         },
       ],

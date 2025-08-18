@@ -16,6 +16,7 @@ Update in-app (inbox) notification's action status by its unique key identifier 
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="SubscribersV1Controller_markActionAsSeen" method="post" path="/v1/subscribers/{subscriberId}/messages/{messageId}/actions/{type}" -->
 ```typescript
 import { Novu } from "@novu/api";
 
@@ -102,6 +103,7 @@ Update all subscriber in-app (inbox) notifications state such as read, unread, s
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="SubscribersV1Controller_markAllUnreadAsRead" method="post" path="/v1/subscribers/{subscriberId}/messages/mark-all" -->
 ```typescript
 import { Novu } from "@novu/api";
 
@@ -181,6 +183,7 @@ Update subscriber's multiple in-app (inbox) notifications state such as seen, re
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="SubscribersV1Controller_markMessagesAs" method="post" path="/v1/subscribers/{subscriberId}/messages/mark-as" -->
 ```typescript
 import { Novu } from "@novu/api";
 
