@@ -1066,6 +1066,15 @@
         "description": "Create a subscriber with the subscriber attributes. \n      **subscriberId** is a required field, rest other fields are optional, if the subscriber already exists, it will be updated",
         "parameters": [
           {
+            "name": "failIfExists",
+            "required": false,
+            "in": "query",
+            "description": "If true, the request will fail if a subscriber with the same subscriberId already exists",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
             "name": "idempotency-key",
             "in": "header",
             "description": "A header for idempotency purposes",
@@ -1285,7 +1294,7 @@
             }
           },
           "409": {
-            "description": "Conflict",
+            "description": "Subscriber already exists (when query param failIfExists=true)",
             "headers": {
               "Content-Type": {
                 "$ref": "#/components/headers/Content-Type"
@@ -1312,7 +1321,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
+                  "$ref": "#/components/schemas/SubscriberResponseDto"
                 }
               }
             }
@@ -3980,6 +3989,504 @@
         ]
       }
     },
+    "/v2/subscribers/{subscriberId}/preferences/bulk": {
+      "patch": {
+        "operationId": "SubscribersController_bulkUpdateSubscriberPreferences",
+        "x-speakeasy-name-override": "bulkUpdate",
+        "x-speakeasy-group": "Subscribers.Preferences",
+        "summary": "Bulk update subscriber preferences",
+        "description": "Bulk update subscriber preferences by its unique key identifier **subscriberId**. \n    This API allows updating multiple workflow preferences in a single request.",
+        "parameters": [
+          {
+            "name": "subscriberId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "idempotency-key",
+            "in": "header",
+            "description": "A header for idempotency purposes",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BulkUpdateSubscriberPreferencesDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetPreferencesResponseDto"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Method Not Allowed",
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Payload Too Large",
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "414": {
+            "description": "URI Too Long",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Unsupported Media Type",
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationErrorDto"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "The client has sent too many requests in a given amount of time. ",
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              },
+              "Retry-After": {
+                "$ref": "#/components/headers/Retry-After"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "example": "API rate limit exceeded"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "The server is currently unable to handle the request due to a temporary overload or scheduled maintenance, which will likely be alleviated after some delay.",
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              },
+              "Retry-After": {
+                "$ref": "#/components/headers/Retry-After"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "example": "Please wait some time, then try again."
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Subscribers"
+        ],
+        "security": [
+          {
+            "secretKey": []
+          }
+        ]
+      }
+    },
     "/v2/subscribers/{subscriberId}/subscriptions": {
       "get": {
         "operationId": "SubscribersController_listSubscriberTopics",
@@ -5090,8 +5597,17 @@
         "operationId": "TopicsController_upsertTopic",
         "x-speakeasy-name-override": "create",
         "summary": "Create a topic",
-        "description": "Creates a new topic if it does not exist, or updates an existing topic if it already exists",
+        "description": "Creates a new topic if it does not exist, or updates an existing topic if it already exists. Use ?failIfExists=true to prevent updates.",
         "parameters": [
+          {
+            "name": "failIfExists",
+            "required": false,
+            "in": "query",
+            "description": "If true, the request will fail if a topic with the same key already exists",
+            "schema": {
+              "type": "boolean"
+            }
+          },
           {
             "name": "idempotency-key",
             "in": "header",
@@ -5345,7 +5861,7 @@
             }
           },
           "409": {
-            "description": "Conflict",
+            "description": "Topic already exists (when query param failIfExists=true)",
             "headers": {
               "Content-Type": {
                 "$ref": "#/components/headers/Content-Type"
@@ -5372,7 +5888,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
+                  "$ref": "#/components/schemas/TopicResponseDto"
                 }
               }
             }
@@ -14485,7 +15001,7 @@
         },
         "x-speakeasy-name-override": "trigger",
         "summary": "Trigger event",
-        "description": "\n    Trigger event is the main (and only) way to send notifications to subscribers. \n    The trigger identifier is used to match the particular workflow associated with it. \n    Additional information can be passed according the body interface below.\n    ",
+        "description": "\n    Trigger event is the main (and only) way to send notifications to subscribers. The trigger identifier is used to match the particular workflow associated with it. Additional information can be passed according the body interface below.\n    To prevent duplicate triggers, you can optionally pass a **transactionId** in the request body. If the same **transactionId** is used again, the trigger will be ignored. The retention period depends on your billing tier.",
         "parameters": [
           {
             "name": "idempotency-key",
@@ -19357,109 +19873,6 @@
         ]
       }
     },
-    "/v1/logs/requests": {
-      "get": {
-        "operationId": "LogsController_getLogs",
-        "parameters": [
-          {
-            "name": "page",
-            "required": false,
-            "in": "query",
-            "schema": {
-              "minimum": 0,
-              "maximum": 100,
-              "type": "number"
-            }
-          },
-          {
-            "name": "limit",
-            "required": false,
-            "in": "query",
-            "schema": {
-              "minimum": 1,
-              "maximum": 100,
-              "type": "number"
-            }
-          },
-          {
-            "name": "statusCode",
-            "required": false,
-            "in": "query",
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "number"
-              }
-            }
-          },
-          {
-            "name": "url",
-            "required": false,
-            "in": "query",
-            "schema": {
-              "maxLength": 500,
-              "pattern": "/^[a-zA-Z0-9\\-._~:/?#[\\]@!$\u0026'()*+,;=%]*$/",
-              "type": "string"
-            }
-          },
-          {
-            "name": "url_pattern",
-            "required": false,
-            "in": "query",
-            "schema": {
-              "maxLength": 500,
-              "pattern": "/^[a-zA-Z0-9\\-._~:/?#[\\]@!$\u0026'()*+,;=%]*$/",
-              "type": "string"
-            }
-          },
-          {
-            "name": "transactionId",
-            "required": false,
-            "in": "query",
-            "schema": {
-              "maxLength": 100,
-              "type": "string"
-            }
-          },
-          {
-            "name": "created",
-            "required": false,
-            "in": "query",
-            "schema": {
-              "minimum": 1,
-              "maximum": 2160,
-              "type": "number"
-            }
-          },
-          {
-            "name": "idempotency-key",
-            "in": "header",
-            "description": "A header for idempotency purposes",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "secretKey": []
-          }
-        ]
-      }
-    },
     "/v1/messages": {
       "get": {
         "operationId": "MessagesController_getMessages",
@@ -22530,8 +22943,8 @@
         "operationId": "SubscribersV1Controller_modifySubscriberChannel",
         "x-speakeasy-name-override": "append",
         "x-speakeasy-group": "Subscribers.Credentials",
-        "summary": "Create or Partially Update provider credentials",
-        "description": "Create or Partially credentials for a provider such as **slack** and **FCM**. \n      **providerId** is required field. This API creates the **deviceTokens** or replaces the existing ones.",
+        "summary": "Update provider credentials",
+        "description": "Update credentials for a provider such as **slack** and **FCM**. \n      **providerId** is required field. This API creates the **deviceTokens** or replaces the existing ones.",
         "parameters": [
           {
             "name": "subscriberId",
@@ -28433,30 +28846,71 @@
               "type": "object",
               "additionalProperties": true
             }
+          },
+          "layoutId": {
+            "type": "string",
+            "nullable": true,
+            "description": "Override the or remove the layout for this specific step",
+            "example": "welcome-email-layout"
           }
-        },
-        "required": [
-          "providers"
-        ]
+        }
+      },
+      "EmailChannelOverrides": {
+        "type": "object",
+        "properties": {
+          "layoutId": {
+            "type": "string",
+            "nullable": true,
+            "description": "Override or remove the layout for all email steps in the workflow",
+            "example": "promotional-layout-2024"
+          }
+        }
+      },
+      "ChannelOverrides": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "description": "Email channel specific overrides",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EmailChannelOverrides"
+              }
+            ]
+          }
+        }
       },
       "TriggerOverrides": {
         "type": "object",
         "properties": {
           "steps": {
             "type": "object",
-            "description": "This could be used to override provider specific configurations",
+            "description": "This could be used to override provider specific configurations or layout at the step level",
             "example": {
               "email-step": {
                 "providers": {
                   "sendgrid": {
                     "templateId": "1234567890"
                   }
-                }
+                },
+                "layoutId": "step-specific-layout"
               }
             },
             "additionalProperties": {
               "$ref": "#/components/schemas/StepsOverrides"
             }
+          },
+          "channels": {
+            "description": "Channel-specific overrides that apply to all steps of a particular channel type. Step-level overrides take precedence over channel-level overrides.",
+            "example": {
+              "email": {
+                "layoutId": "promotional-layout-2024"
+              }
+            },
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ChannelOverrides"
+              }
+            ]
           },
           "providers": {
             "type": "object",
@@ -28573,7 +29027,7 @@
           },
           "transactionId": {
             "type": "string",
-            "description": "A unique identifier for this transaction, we will generate a UUID if not provided."
+            "description": "A unique identifier for deduplication. If the same **transactionId** is sent again, \n      the trigger is ignored. Useful to prevent duplicate notifications. The retention period depends on your billing tier."
           },
           "actor": {
             "description": "It is used to display the Avatar of the provided actor's subscriber id or actor object.\n    If a new actor object is provided, we will create a new subscriber in our system",
@@ -29064,6 +29518,8 @@
           "eazy-sms",
           "mobishastra",
           "afro-message",
+          "smsmode",
+          "imedia",
           "fcm",
           "apns",
           "expo",
@@ -29529,6 +29985,546 @@
           "data",
           "pageSize",
           "page"
+        ]
+      },
+      "RequestLogResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Request log identifier"
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "Creation timestamp"
+          },
+          "url": {
+            "type": "string",
+            "description": "Request URL"
+          },
+          "urlPattern": {
+            "type": "string",
+            "description": "URL pattern"
+          },
+          "method": {
+            "type": "string",
+            "description": "HTTP method"
+          },
+          "statusCode": {
+            "type": "number",
+            "description": "HTTP status code"
+          },
+          "path": {
+            "type": "string",
+            "description": "Request path"
+          },
+          "hostname": {
+            "type": "string",
+            "description": "Request hostname"
+          },
+          "transactionId": {
+            "type": "object",
+            "nullable": true,
+            "description": "Transaction identifier"
+          },
+          "ip": {
+            "type": "string",
+            "description": "Client IP address"
+          },
+          "userAgent": {
+            "type": "string",
+            "description": "User agent string"
+          },
+          "requestBody": {
+            "type": "string",
+            "description": "Request body"
+          },
+          "responseBody": {
+            "type": "string",
+            "description": "Response body"
+          },
+          "userId": {
+            "type": "string",
+            "description": "User identifier"
+          },
+          "organizationId": {
+            "type": "string",
+            "description": "Organization identifier"
+          },
+          "environmentId": {
+            "type": "string",
+            "description": "Environment identifier"
+          },
+          "authType": {
+            "type": "string",
+            "description": "Authentication type"
+          },
+          "durationMs": {
+            "type": "number",
+            "description": "Request duration in milliseconds"
+          }
+        },
+        "required": [
+          "id",
+          "createdAt",
+          "url",
+          "urlPattern",
+          "method",
+          "statusCode",
+          "path",
+          "hostname",
+          "ip",
+          "userAgent",
+          "requestBody",
+          "responseBody",
+          "userId",
+          "organizationId",
+          "environmentId",
+          "authType",
+          "durationMs"
+        ]
+      },
+      "GetRequestsResponseDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "description": "Request log data",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RequestLogResponseDto"
+            }
+          },
+          "total": {
+            "type": "number",
+            "description": "Total number of requests"
+          },
+          "pageSize": {
+            "type": "number",
+            "description": "Page size"
+          },
+          "page": {
+            "type": "number",
+            "description": "Current page number"
+          }
+        },
+        "required": [
+          "data",
+          "total"
+        ]
+      },
+      "TraceResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Trace identifier"
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "Creation timestamp"
+          },
+          "eventType": {
+            "type": "string",
+            "description": "Event type (e.g., request_received, workflow_execution_started)"
+          },
+          "title": {
+            "type": "string",
+            "description": "Human readable title/message"
+          },
+          "message": {
+            "type": "object",
+            "nullable": true,
+            "description": "Detailed message"
+          },
+          "rawData": {
+            "type": "object",
+            "nullable": true,
+            "description": "Raw data associated with trace"
+          },
+          "status": {
+            "type": "string",
+            "description": "Trace status (success, error, warning, pending)"
+          },
+          "entityType": {
+            "type": "string",
+            "description": "Entity type (request, workflow_run, step_run)"
+          },
+          "entityId": {
+            "type": "string",
+            "description": "Entity identifier"
+          },
+          "organizationId": {
+            "type": "string",
+            "description": "Organization identifier"
+          },
+          "environmentId": {
+            "type": "string",
+            "description": "Environment identifier"
+          },
+          "userId": {
+            "type": "object",
+            "nullable": true,
+            "description": "User identifier"
+          },
+          "externalSubscriberId": {
+            "type": "object",
+            "nullable": true,
+            "description": "External subscriber identifier"
+          },
+          "subscriberId": {
+            "type": "object",
+            "nullable": true,
+            "description": "Subscriber identifier"
+          }
+        },
+        "required": [
+          "id",
+          "createdAt",
+          "eventType",
+          "title",
+          "status",
+          "entityType",
+          "entityId",
+          "organizationId",
+          "environmentId"
+        ]
+      },
+      "GetRequestResponseDto": {
+        "type": "object",
+        "properties": {
+          "request": {
+            "description": "Request details",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/RequestLogResponseDto"
+              }
+            ]
+          },
+          "traces": {
+            "description": "Associated traces",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TraceResponseDto"
+            }
+          }
+        },
+        "required": [
+          "request",
+          "traces"
+        ]
+      },
+      "WorkflowRunStepsDetailsDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Step run identifier"
+          },
+          "stepRunId": {
+            "type": "string",
+            "description": "Step identifier"
+          },
+          "stepType": {
+            "type": "string",
+            "description": "Step type"
+          },
+          "status": {
+            "type": "string",
+            "description": "Step status",
+            "enum": [
+              "pending",
+              "queued",
+              "running",
+              "completed",
+              "failed",
+              "delayed",
+              "canceled",
+              "merged",
+              "skipped"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "stepRunId",
+          "stepType",
+          "status"
+        ]
+      },
+      "GetWorkflowRunsDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Workflow run id"
+          },
+          "workflowId": {
+            "type": "string",
+            "description": "Workflow identifier"
+          },
+          "workflowName": {
+            "type": "string",
+            "description": "Workflow name"
+          },
+          "organizationId": {
+            "type": "string",
+            "description": "Organization identifier"
+          },
+          "environmentId": {
+            "type": "string",
+            "description": "Environment identifier"
+          },
+          "internalSubscriberId": {
+            "type": "string",
+            "description": "Internal subscriber identifier"
+          },
+          "subscriberId": {
+            "type": "string",
+            "description": "External subscriber identifier"
+          },
+          "status": {
+            "enum": [
+              "success",
+              "error",
+              "pending",
+              "skipped",
+              "canceled",
+              "merged"
+            ],
+            "type": "string",
+            "description": "Workflow run status"
+          },
+          "triggerIdentifier": {
+            "type": "string",
+            "description": "Trigger identifier"
+          },
+          "transactionId": {
+            "type": "string",
+            "description": "Transaction identifier"
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "Creation timestamp"
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "Update timestamp"
+          },
+          "steps": {
+            "description": "Workflow run steps",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WorkflowRunStepsDetailsDto"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "workflowId",
+          "workflowName",
+          "organizationId",
+          "environmentId",
+          "internalSubscriberId",
+          "status",
+          "triggerIdentifier",
+          "transactionId",
+          "createdAt",
+          "updatedAt",
+          "steps"
+        ]
+      },
+      "GetWorkflowRunsResponseDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "description": "Workflow runs data",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetWorkflowRunsDto"
+            }
+          },
+          "next": {
+            "type": "object",
+            "nullable": true,
+            "description": "Next cursor for pagination"
+          },
+          "previous": {
+            "type": "object",
+            "nullable": true,
+            "description": "Previous cursor for pagination"
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "StepRunDto": {
+        "type": "object",
+        "properties": {
+          "stepRunId": {
+            "type": "string",
+            "description": "Step run identifier"
+          },
+          "stepId": {
+            "type": "string",
+            "description": "Step identifier"
+          },
+          "stepType": {
+            "type": "string",
+            "description": "Step type"
+          },
+          "providerId": {
+            "type": "string",
+            "description": "Provider identifier"
+          },
+          "status": {
+            "type": "string",
+            "description": "Step status",
+            "enum": [
+              "pending",
+              "queued",
+              "running",
+              "completed",
+              "failed",
+              "delayed",
+              "canceled",
+              "merged",
+              "skipped"
+            ]
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string",
+            "description": "Creation timestamp"
+          },
+          "updatedAt": {
+            "format": "date-time",
+            "type": "string",
+            "description": "Update timestamp"
+          },
+          "executionDetails": {
+            "description": "Execution details",
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "digest": {
+            "description": "Optional digest for the job, including metadata and events",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/DigestMetadataDto"
+              }
+            ]
+          }
+        },
+        "required": [
+          "stepRunId",
+          "stepId",
+          "stepType",
+          "status",
+          "createdAt",
+          "updatedAt",
+          "executionDetails"
+        ]
+      },
+      "GetWorkflowRunResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Workflow run id"
+          },
+          "workflowId": {
+            "type": "string",
+            "description": "Workflow identifier"
+          },
+          "workflowName": {
+            "type": "string",
+            "description": "Workflow name"
+          },
+          "organizationId": {
+            "type": "string",
+            "description": "Organization identifier"
+          },
+          "environmentId": {
+            "type": "string",
+            "description": "Environment identifier"
+          },
+          "internalSubscriberId": {
+            "type": "string",
+            "description": "Internal subscriber identifier"
+          },
+          "subscriberId": {
+            "type": "string",
+            "description": "External subscriber identifier"
+          },
+          "status": {
+            "enum": [
+              "success",
+              "error",
+              "pending",
+              "skipped",
+              "canceled",
+              "merged"
+            ],
+            "type": "string",
+            "description": "Workflow run status"
+          },
+          "triggerIdentifier": {
+            "type": "string",
+            "description": "Trigger identifier"
+          },
+          "transactionId": {
+            "type": "string",
+            "description": "Transaction identifier"
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "Creation timestamp"
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "Update timestamp"
+          },
+          "steps": {
+            "description": "Step runs",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StepRunDto"
+            }
+          },
+          "payload": {
+            "type": "object",
+            "description": "Trigger payload"
+          }
+        },
+        "required": [
+          "id",
+          "workflowId",
+          "workflowName",
+          "organizationId",
+          "environmentId",
+          "internalSubscriberId",
+          "status",
+          "triggerIdentifier",
+          "transactionId",
+          "createdAt",
+          "updatedAt",
+          "steps",
+          "payload"
+        ]
+      },
+      "GetChartsResponseDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "description": "Chart sections"
+          }
+        },
+        "required": [
+          "data"
         ]
       },
       "CredentialsDto": {
@@ -31749,6 +32745,113 @@
           "workflows"
         ]
       },
+      "PreferenceLevelEnum": {
+        "type": "string",
+        "description": "The level of the preference (global or template)",
+        "enum": [
+          "global",
+          "template"
+        ]
+      },
+      "SeverityLevelEnum": {
+        "type": "string",
+        "description": "Severity level of the workflow",
+        "enum": [
+          "high",
+          "medium",
+          "low",
+          "none"
+        ]
+      },
+      "WorkflowDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier of the workflow",
+            "example": "64a1b2c3d4e5f6g7h8i9j0k1"
+          },
+          "identifier": {
+            "type": "string",
+            "description": "Workflow identifier used for triggering",
+            "example": "welcome-email"
+          },
+          "name": {
+            "type": "string",
+            "description": "Human-readable name of the workflow",
+            "example": "Welcome Email Workflow"
+          },
+          "critical": {
+            "type": "boolean",
+            "description": "Whether this workflow is marked as critical",
+            "example": false
+          },
+          "tags": {
+            "description": "Tags associated with the workflow",
+            "example": [
+              "user-onboarding",
+              "email"
+            ],
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "data": {
+            "type": "object",
+            "description": "Custom data associated with the workflow",
+            "example": {
+              "category": "onboarding",
+              "priority": "high"
+            }
+          },
+          "severity": {
+            "$ref": "#/components/schemas/SeverityLevelEnum"
+          }
+        },
+        "required": [
+          "id",
+          "identifier",
+          "name",
+          "critical",
+          "severity"
+        ]
+      },
+      "GetPreferencesResponseDto": {
+        "type": "object",
+        "properties": {
+          "level": {
+            "$ref": "#/components/schemas/PreferenceLevelEnum"
+          },
+          "workflow": {
+            "description": "Workflow information if this is a template-level preference",
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/WorkflowDto"
+              }
+            ]
+          },
+          "enabled": {
+            "type": "boolean",
+            "description": "Whether the preference is enabled",
+            "example": true
+          },
+          "channels": {
+            "description": "Channel-specific preference settings",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SubscriberPreferenceChannels"
+              }
+            ]
+          }
+        },
+        "required": [
+          "level",
+          "enabled",
+          "channels"
+        ]
+      },
       "PatchPreferenceChannelsDto": {
         "type": "object",
         "properties": {
@@ -31773,6 +32876,43 @@
             "description": "Chat channel preference"
           }
         }
+      },
+      "BulkUpdateSubscriberPreferenceItemDto": {
+        "type": "object",
+        "properties": {
+          "channels": {
+            "description": "Channel-specific preference settings",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PatchPreferenceChannelsDto"
+              }
+            ]
+          },
+          "workflowId": {
+            "type": "string",
+            "description": "Workflow internal _id, identifier or slug"
+          }
+        },
+        "required": [
+          "channels",
+          "workflowId"
+        ]
+      },
+      "BulkUpdateSubscriberPreferencesDto": {
+        "type": "object",
+        "properties": {
+          "preferences": {
+            "description": "Array of workflow preferences to update (maximum 100 items)",
+            "maxItems": 100,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BulkUpdateSubscriberPreferenceItemDto"
+            }
+          }
+        },
+        "required": [
+          "preferences"
+        ]
       },
       "PatchSubscriberPreferencesDto": {
         "type": "object",
@@ -34223,6 +35363,20 @@
               }
             ]
           },
+          "lastPublishedAt": {
+            "type": "string",
+            "nullable": true,
+            "description": "Timestamp of the last workflow publication"
+          },
+          "lastPublishedBy": {
+            "nullable": true,
+            "description": "User who last published the workflow",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/UserResponseDto"
+              }
+            ]
+          },
           "steps": {
             "type": "array",
             "description": "Steps of the workflow",
@@ -34864,6 +36018,20 @@
               }
             ]
           },
+          "lastPublishedAt": {
+            "type": "string",
+            "description": "Timestamp of the last workflow publication",
+            "nullable": true
+          },
+          "lastPublishedBy": {
+            "description": "User who last published the workflow",
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/UserResponseDto"
+              }
+            ]
+          },
           "_id": {
             "type": "string",
             "description": "Unique database identifier"
@@ -34908,8 +36076,7 @@
           "slug",
           "status",
           "origin",
-          "stepTypeOverviews",
-          "isTranslationEnabled"
+          "stepTypeOverviews"
         ]
       },
       "ListWorkflowResponse": {
@@ -35450,6 +36617,51 @@
           "name"
         ]
       },
+      "WebhookMessageDto": {
+        "type": "object",
+        "properties": {
+          "object": {
+            "type": "object",
+            "description": "Current message state"
+          }
+        },
+        "required": [
+          "object"
+        ]
+      },
+      "WebhookMessageFailedDto": {
+        "type": "object",
+        "properties": {
+          "object": {
+            "type": "object",
+            "description": "Current message state"
+          },
+          "error": {
+            "type": "object",
+            "description": "Error message"
+          }
+        },
+        "required": [
+          "object",
+          "error"
+        ]
+      },
+      "WebhookCreatedWorkflowDto": {
+        "type": "object",
+        "properties": {
+          "object": {
+            "description": "Current workflow state",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/WorkflowResponseDto"
+              }
+            ]
+          }
+        },
+        "required": [
+          "object"
+        ]
+      },
       "WebhookUpdatedWorkflowDto": {
         "type": "object",
         "properties": {
@@ -35475,22 +36687,6 @@
           "previousObject"
         ]
       },
-      "WebhookCreatedWorkflowDto": {
-        "type": "object",
-        "properties": {
-          "object": {
-            "description": "Current workflow state",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/WorkflowResponseDto"
-              }
-            ]
-          }
-        },
-        "required": [
-          "object"
-        ]
-      },
       "WebhookDeletedWorkflowDto": {
         "type": "object",
         "properties": {
@@ -35507,7 +36703,19 @@
           "object"
         ]
       },
-      "WebhookUpdatedWorkflowDtoWebhookPayloadWrapper": {
+      "WebhookPreferenceDto": {
+        "type": "object",
+        "properties": {
+          "object": {
+            "type": "object",
+            "description": "Current preference state"
+          }
+        },
+        "required": [
+          "object"
+        ]
+      },
+      "WebhookMessageDtoWebhookPayloadWrapper": {
         "type": "object",
         "properties": {
           "id": {
@@ -35517,7 +36725,7 @@
           "type": {
             "type": "string",
             "enum": [
-              "workflow.updated"
+              "message.sent"
             ],
             "description": "The type of the webhook event."
           },
@@ -35525,7 +36733,7 @@
             "description": "The actual event data payload.",
             "allOf": [
               {
-                "$ref": "#/components/schemas/WebhookUpdatedWorkflowDto"
+                "$ref": "#/components/schemas/WebhookMessageDto"
               }
             ]
           },
@@ -35541,7 +36749,54 @@
           "object": {
             "type": "string",
             "enum": [
-              "workflow"
+              "message"
+            ],
+            "description": "The type of object the event relates to."
+          }
+        },
+        "required": [
+          "type",
+          "data",
+          "timestamp",
+          "environmentId",
+          "object"
+        ]
+      },
+      "WebhookMessageFailedDtoWebhookPayloadWrapper": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier of the webhook event (evt_✱)."
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "message.failed"
+            ],
+            "description": "The type of the webhook event."
+          },
+          "data": {
+            "description": "The actual event data payload.",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/WebhookMessageFailedDto"
+              }
+            ]
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "ISO timestamp of when the event occurred."
+          },
+          "environmentId": {
+            "type": "string",
+            "description": "The ID of the environment associated with the event."
+          },
+          "object": {
+            "type": "string",
+            "enum": [
+              "message"
             ],
             "description": "The type of object the event relates to."
           }
@@ -35573,6 +36828,53 @@
             "allOf": [
               {
                 "$ref": "#/components/schemas/WebhookCreatedWorkflowDto"
+              }
+            ]
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "ISO timestamp of when the event occurred."
+          },
+          "environmentId": {
+            "type": "string",
+            "description": "The ID of the environment associated with the event."
+          },
+          "object": {
+            "type": "string",
+            "enum": [
+              "workflow"
+            ],
+            "description": "The type of object the event relates to."
+          }
+        },
+        "required": [
+          "type",
+          "data",
+          "timestamp",
+          "environmentId",
+          "object"
+        ]
+      },
+      "WebhookUpdatedWorkflowDtoWebhookPayloadWrapper": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier of the webhook event (evt_✱)."
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "workflow.updated"
+            ],
+            "description": "The type of the webhook event."
+          },
+          "data": {
+            "description": "The actual event data payload.",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/WebhookUpdatedWorkflowDto"
               }
             ]
           },
@@ -35636,6 +36938,53 @@
             "type": "string",
             "enum": [
               "workflow"
+            ],
+            "description": "The type of object the event relates to."
+          }
+        },
+        "required": [
+          "type",
+          "data",
+          "timestamp",
+          "environmentId",
+          "object"
+        ]
+      },
+      "WebhookPreferenceDtoWebhookPayloadWrapper": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier of the webhook event (evt_✱)."
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "preference.updated"
+            ],
+            "description": "The type of the webhook event."
+          },
+          "data": {
+            "description": "The actual event data payload.",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/WebhookPreferenceDto"
+              }
+            ]
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "ISO timestamp of when the event occurred."
+          },
+          "environmentId": {
+            "type": "string",
+            "description": "The ID of the environment associated with the event."
+          },
+          "object": {
+            "type": "string",
+            "enum": [
+              "preference"
             ],
             "description": "The type of object the event relates to."
           }
@@ -35734,17 +37083,242 @@
     }
   ],
   "x-webhooks": {
-    "workflow.updated": {
+    "message.sent": {
       "post": {
-        "summary": "Event: workflow.updated",
-        "description": "This webhook is triggered when a `workflow` event (`workflow.updated`) occurs. The payload contains the details of the event. Configure your webhook endpoint URL in the Novu dashboard.",
+        "summary": "Event: message.sent",
+        "description": "This webhook is triggered when a `message` event (`message.sent`) occurs. The payload contains the details of the event. Configure your webhook endpoint URL in the Novu dashboard.",
         "requestBody": {
-          "description": "Webhook payload for the `workflow.updated` event.",
+          "description": "Webhook payload for the `message.sent` event.",
           "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/WebhookUpdatedWorkflowDtoWebhookPayloadWrapper"
+                "$ref": "#/components/schemas/WebhookMessageDtoWebhookPayloadWrapper"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Acknowledges successful receipt of the webhook. No response body is expected."
+          }
+        },
+        "tags": [
+          "Webhooks"
+        ]
+      }
+    },
+    "message.failed": {
+      "post": {
+        "summary": "Event: message.failed",
+        "description": "This webhook is triggered when a `message` event (`message.failed`) occurs. The payload contains the details of the event. Configure your webhook endpoint URL in the Novu dashboard.",
+        "requestBody": {
+          "description": "Webhook payload for the `message.failed` event.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebhookMessageFailedDtoWebhookPayloadWrapper"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Acknowledges successful receipt of the webhook. No response body is expected."
+          }
+        },
+        "tags": [
+          "Webhooks"
+        ]
+      }
+    },
+    "message.delivered": {
+      "post": {
+        "summary": "Event: message.delivered",
+        "description": "This webhook is triggered when a `message` event (`message.delivered`) occurs. The payload contains the details of the event. Configure your webhook endpoint URL in the Novu dashboard.",
+        "requestBody": {
+          "description": "Webhook payload for the `message.delivered` event.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebhookMessageDtoWebhookPayloadWrapper"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Acknowledges successful receipt of the webhook. No response body is expected."
+          }
+        },
+        "tags": [
+          "Webhooks"
+        ]
+      }
+    },
+    "message.seen": {
+      "post": {
+        "summary": "Event: message.seen",
+        "description": "This webhook is triggered when a `message` event (`message.seen`) occurs. The payload contains the details of the event. Configure your webhook endpoint URL in the Novu dashboard.",
+        "requestBody": {
+          "description": "Webhook payload for the `message.seen` event.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebhookMessageDtoWebhookPayloadWrapper"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Acknowledges successful receipt of the webhook. No response body is expected."
+          }
+        },
+        "tags": [
+          "Webhooks"
+        ]
+      }
+    },
+    "message.read": {
+      "post": {
+        "summary": "Event: message.read",
+        "description": "This webhook is triggered when a `message` event (`message.read`) occurs. The payload contains the details of the event. Configure your webhook endpoint URL in the Novu dashboard.",
+        "requestBody": {
+          "description": "Webhook payload for the `message.read` event.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebhookMessageDtoWebhookPayloadWrapper"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Acknowledges successful receipt of the webhook. No response body is expected."
+          }
+        },
+        "tags": [
+          "Webhooks"
+        ]
+      }
+    },
+    "message.unread": {
+      "post": {
+        "summary": "Event: message.unread",
+        "description": "This webhook is triggered when a `message` event (`message.unread`) occurs. The payload contains the details of the event. Configure your webhook endpoint URL in the Novu dashboard.",
+        "requestBody": {
+          "description": "Webhook payload for the `message.unread` event.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebhookMessageDtoWebhookPayloadWrapper"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Acknowledges successful receipt of the webhook. No response body is expected."
+          }
+        },
+        "tags": [
+          "Webhooks"
+        ]
+      }
+    },
+    "message.archived": {
+      "post": {
+        "summary": "Event: message.archived",
+        "description": "This webhook is triggered when a `message` event (`message.archived`) occurs. The payload contains the details of the event. Configure your webhook endpoint URL in the Novu dashboard.",
+        "requestBody": {
+          "description": "Webhook payload for the `message.archived` event.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebhookMessageDtoWebhookPayloadWrapper"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Acknowledges successful receipt of the webhook. No response body is expected."
+          }
+        },
+        "tags": [
+          "Webhooks"
+        ]
+      }
+    },
+    "message.unarchived": {
+      "post": {
+        "summary": "Event: message.unarchived",
+        "description": "This webhook is triggered when a `message` event (`message.unarchived`) occurs. The payload contains the details of the event. Configure your webhook endpoint URL in the Novu dashboard.",
+        "requestBody": {
+          "description": "Webhook payload for the `message.unarchived` event.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebhookMessageDtoWebhookPayloadWrapper"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Acknowledges successful receipt of the webhook. No response body is expected."
+          }
+        },
+        "tags": [
+          "Webhooks"
+        ]
+      }
+    },
+    "message.snoozed": {
+      "post": {
+        "summary": "Event: message.snoozed",
+        "description": "This webhook is triggered when a `message` event (`message.snoozed`) occurs. The payload contains the details of the event. Configure your webhook endpoint URL in the Novu dashboard.",
+        "requestBody": {
+          "description": "Webhook payload for the `message.snoozed` event.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebhookMessageDtoWebhookPayloadWrapper"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Acknowledges successful receipt of the webhook. No response body is expected."
+          }
+        },
+        "tags": [
+          "Webhooks"
+        ]
+      }
+    },
+    "message.unsnoozed": {
+      "post": {
+        "summary": "Event: message.unsnoozed",
+        "description": "This webhook is triggered when a `message` event (`message.unsnoozed`) occurs. The payload contains the details of the event. Configure your webhook endpoint URL in the Novu dashboard.",
+        "requestBody": {
+          "description": "Webhook payload for the `message.unsnoozed` event.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebhookMessageDtoWebhookPayloadWrapper"
               }
             }
           }
@@ -35784,6 +37358,31 @@
         ]
       }
     },
+    "workflow.updated": {
+      "post": {
+        "summary": "Event: workflow.updated",
+        "description": "This webhook is triggered when a `workflow` event (`workflow.updated`) occurs. The payload contains the details of the event. Configure your webhook endpoint URL in the Novu dashboard.",
+        "requestBody": {
+          "description": "Webhook payload for the `workflow.updated` event.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebhookUpdatedWorkflowDtoWebhookPayloadWrapper"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Acknowledges successful receipt of the webhook. No response body is expected."
+          }
+        },
+        "tags": [
+          "Webhooks"
+        ]
+      }
+    },
     "workflow.deleted": {
       "post": {
         "summary": "Event: workflow.deleted",
@@ -35795,6 +37394,56 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/WebhookDeletedWorkflowDtoWebhookPayloadWrapper"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Acknowledges successful receipt of the webhook. No response body is expected."
+          }
+        },
+        "tags": [
+          "Webhooks"
+        ]
+      }
+    },
+    "workflow.published": {
+      "post": {
+        "summary": "Event: workflow.published",
+        "description": "This webhook is triggered when a `workflow` event (`workflow.published`) occurs. The payload contains the details of the event. Configure your webhook endpoint URL in the Novu dashboard.",
+        "requestBody": {
+          "description": "Webhook payload for the `workflow.published` event.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebhookUpdatedWorkflowDtoWebhookPayloadWrapper"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Acknowledges successful receipt of the webhook. No response body is expected."
+          }
+        },
+        "tags": [
+          "Webhooks"
+        ]
+      }
+    },
+    "preference.updated": {
+      "post": {
+        "summary": "Event: preference.updated",
+        "description": "This webhook is triggered when a `preference` event (`preference.updated`) occurs. The payload contains the details of the event. Configure your webhook endpoint URL in the Novu dashboard.",
+        "requestBody": {
+          "description": "Webhook payload for the `preference.updated` event.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebhookPreferenceDtoWebhookPayloadWrapper"
               }
             }
           }

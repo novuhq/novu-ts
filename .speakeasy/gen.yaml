@@ -21,7 +21,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 typescript:
-  version: 1.5.0
+  version: 1.6.0
   additionalDependencies:
     dependencies: {}
     devDependencies: {}
@@ -57,4 +57,5 @@ typescript:
   packageName: '@novu/api'
   responseFormat: flat
   templateVersion: v2
+  usageSDKInitImports: []
   useIndexModules: true

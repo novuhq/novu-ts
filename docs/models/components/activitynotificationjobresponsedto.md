@@ -19,7 +19,7 @@ let value: ActivityNotificationJobResponseDto = {
     "workflowId": "some_wf_id",
     "stepId": "some_wf_id",
   },
-  providerId: "sparkpost",
+  providerId: "email-webhook",
   status: "<value>",
 };
 ```

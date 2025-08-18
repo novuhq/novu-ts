@@ -20,6 +20,7 @@ Retrieve all unique tags used in workflows within the specified environment. The
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="EnvironmentsController_getEnvironmentTags" method="get" path="/v2/environments/{environmentId}/tags" -->
 ```typescript
 import { Novu } from "@novu/api";
 
@@ -95,6 +96,7 @@ Creates a new environment within the current organization.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="EnvironmentsControllerV1_createEnvironment" method="post" path="/v1/environments" -->
 ```typescript
 import { Novu } from "@novu/api";
 
@@ -177,6 +179,7 @@ This API returns a list of environments for the current organization.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="EnvironmentsControllerV1_listMyEnvironments" method="get" path="/v1/environments" -->
 ```typescript
 import { Novu } from "@novu/api";
 
@@ -250,6 +253,7 @@ Update an environment by its unique identifier **environmentId**.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="EnvironmentsControllerV1_updateMyEnvironment" method="put" path="/v1/environments/{environmentId}" -->
 ```typescript
 import { Novu } from "@novu/api";
 
@@ -325,6 +329,7 @@ Delete an environment by its unique identifier **environmentId**.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="EnvironmentsControllerV1_deleteEnvironment" method="delete" path="/v1/environments/{environmentId}" -->
 ```typescript
 import { Novu } from "@novu/api";
 

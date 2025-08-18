@@ -13,6 +13,7 @@ Update the subscriber online status by its unique key identifier **subscriberId*
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="SubscribersV1Controller_updateSubscriberOnlineFlag" method="patch" path="/v1/subscribers/{subscriberId}/online-status" -->
 ```typescript
 import { Novu } from "@novu/api";
 

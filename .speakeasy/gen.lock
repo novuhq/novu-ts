@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 6bff3a53-3f0b-40b4-942f-ff70dc583ae5
 management:
-  docChecksum: 13920b9007b2efdb17047856dc99cb00
+  docChecksum: 02a9700bae235ab4642da19e31c9b15b
   docVersion: 2.3.0
-  speakeasyVersion: 1.586.0
-  generationVersion: 2.661.4
-  releaseVersion: 1.5.0
-  configChecksum: 7cb06542703d859ffa28a5b87776c506
+  speakeasyVersion: 1.605.1
+  generationVersion: 2.684.0
+  releaseVersion: 1.6.0
+  configChecksum: 6d0cc0346ec4be16503448d2b336bc78
   repoURL: https://github.com/novuhq/novu-ts.git
   installationURL: https://github.com/novuhq/novu-ts
   published: true
@@ -15,12 +15,12 @@ features:
     additionalDependencies: 0.1.0
     additionalProperties: 0.1.1
     constsAndDefaults: 0.1.12
-    core: 3.21.14
+    core: 3.21.20
     defaultEnabledRetries: 0.1.0
     deprecations: 2.81.1
     enumUnions: 0.1.0
     envVarSecurityUsage: 0.1.2
-    examples: 2.82.1
+    examples: 2.82.3
     flattening: 2.82.1
     globalSecurity: 2.82.13
     globalSecurityCallbacks: 0.1.0
@@ -67,12 +67,15 @@ generatedFiles:
   - docs/models/components/bulkcreatesubscriberresponsedto.md
   - docs/models/components/bulksubscribercreatedto.md
   - docs/models/components/bulktriggereventdto.md
+  - docs/models/components/bulkupdatesubscriberpreferenceitemdto.md
+  - docs/models/components/bulkupdatesubscriberpreferencesdto.md
   - docs/models/components/buttontypeenum.md
   - docs/models/components/channel.md
   - docs/models/components/channelcredentials.md
   - docs/models/components/channelcredentialsdto.md
   - docs/models/components/channelctatypeenum.md
   - docs/models/components/channelpreferencedto.md
+  - docs/models/components/channels.md
   - docs/models/components/channelsettingsdto.md
   - docs/models/components/channeltypeenum.md
   - docs/models/components/chatcontroldto.md
@@ -155,6 +158,7 @@ generatedFiles:
   - docs/models/components/emailblock.md
   - docs/models/components/emailblockstyles.md
   - docs/models/components/emailblocktypeenum.md
+  - docs/models/components/emailchanneloverrides.md
   - docs/models/components/emailcontroldto.md
   - docs/models/components/emailcontrolsmetadataresponsedto.md
   - docs/models/components/emailstepresponsedto.md
@@ -174,6 +178,8 @@ generatedFiles:
   - docs/models/components/five.md
   - docs/models/components/four.md
   - docs/models/components/getenvironmenttagsdto.md
+  - docs/models/components/getpreferencesresponsedto.md
+  - docs/models/components/getpreferencesresponsedtodata.md
   - docs/models/components/getsubscriberpreferencesdto.md
   - docs/models/components/inappcontroldto.md
   - docs/models/components/inappcontrolsmetadataresponsedto.md
@@ -187,6 +193,7 @@ generatedFiles:
   - docs/models/components/issues.md
   - docs/models/components/issuetype.md
   - docs/models/components/lastname.md
+  - docs/models/components/lastpublishedby.md
   - docs/models/components/listsubscribersresponsedto.md
   - docs/models/components/listtopicsresponsedto.md
   - docs/models/components/listtopicsubscriptionsresponsedto.md
@@ -246,9 +253,11 @@ generatedFiles:
   - docs/models/components/payloadvalidationerrordtovalue.md
   - docs/models/components/placeholder.md
   - docs/models/components/placeholder5.md
+  - docs/models/components/preferencelevelenum.md
   - docs/models/components/preferenceoverridesourceenum.md
   - docs/models/components/preferencesrequestdto.md
   - docs/models/components/preferencesrequestdtoall.md
+  - docs/models/components/preferencesrequestdtoworkflow.md
   - docs/models/components/providerid.md
   - docs/models/components/providersidenum.md
   - docs/models/components/pushcontroldto.md
@@ -264,6 +273,7 @@ generatedFiles:
   - docs/models/components/resourceoriginenum.md
   - docs/models/components/runtimeissuedto.md
   - docs/models/components/security.md
+  - docs/models/components/severitylevelenum.md
   - docs/models/components/slug.md
   - docs/models/components/smscontroldto.md
   - docs/models/components/smscontrolsmetadataresponsedto.md
@@ -315,6 +325,7 @@ generatedFiles:
   - docs/models/components/triggereventresponsedto.md
   - docs/models/components/triggereventtoallrequestdto.md
   - docs/models/components/triggereventtoallrequestdtoactor.md
+  - docs/models/components/triggereventtoallrequestdtochannels.md
   - docs/models/components/triggereventtoallrequestdtooverrides.md
   - docs/models/components/triggereventtoallrequestdtotenant.md
   - docs/models/components/triggerrecipientstypeenum.md
@@ -346,6 +357,8 @@ generatedFiles:
   - docs/models/components/workflowintegrationstatus.md
   - docs/models/components/workflowlistresponsedto.md
   - docs/models/components/workflowlistresponsedtolastname.md
+  - docs/models/components/workflowlistresponsedtolastpublishedby.md
+  - docs/models/components/workflowlistresponsedtolastpublishedbylastname.md
   - docs/models/components/workflowlistresponsedtoupdatedby.md
   - docs/models/components/workflowpreferencedto.md
   - docs/models/components/workflowpreferencesdto.md
@@ -355,6 +368,7 @@ generatedFiles:
   - docs/models/components/workflowresponse.md
   - docs/models/components/workflowresponsedata.md
   - docs/models/components/workflowresponsedto.md
+  - docs/models/components/workflowresponsedtolastname.md
   - docs/models/components/workflowresponsedtosortfield.md
   - docs/models/components/workflowresponsedtosteps.md
   - docs/models/components/workflowstatusenum.md
@@ -369,6 +383,8 @@ generatedFiles:
   - docs/models/errors/payloadvalidationexceptiondto.md
   - docs/models/errors/payloadvalidationexceptiondtomessage.md
   - docs/models/errors/schema.md
+  - docs/models/errors/subscriberresponsedto.md
+  - docs/models/errors/topicresponsedto.md
   - docs/models/errors/validationerrordto.md
   - docs/models/errors/validationerrordtomessage.md
   - docs/models/operations/channel.md
@@ -402,8 +418,6 @@ generatedFiles:
   - docs/models/operations/integrationscontrollersetintegrationasprimaryresponse.md
   - docs/models/operations/integrationscontrollerupdateintegrationbyidrequest.md
   - docs/models/operations/integrationscontrollerupdateintegrationbyidresponse.md
-  - docs/models/operations/logscontrollergetlogsrequest.md
-  - docs/models/operations/logscontrollergetlogsresponsebody.md
   - docs/models/operations/messagescontrollerdeletemessagerequest.md
   - docs/models/operations/messagescontrollerdeletemessageresponse.md
   - docs/models/operations/messagescontrollerdeletemessagesbytransactionidrequest.md
@@ -416,6 +430,8 @@ generatedFiles:
   - docs/models/operations/notificationscontrollerlistnotificationsresponse.md
   - docs/models/operations/orderdirection.md
   - docs/models/operations/queryparamorderdirection.md
+  - docs/models/operations/subscriberscontrollerbulkupdatesubscriberpreferencesrequest.md
+  - docs/models/operations/subscriberscontrollerbulkupdatesubscriberpreferencesresponse.md
   - docs/models/operations/subscriberscontrollercreatesubscriberrequest.md
   - docs/models/operations/subscriberscontrollercreatesubscriberresponse.md
   - docs/models/operations/subscriberscontrollergetsubscriberpreferencesrequest.md
@@ -530,7 +546,6 @@ generatedFiles:
   - src/funcs/messagesRetrieve.ts
   - src/funcs/notificationsList.ts
   - src/funcs/notificationsRetrieve.ts
-  - src/funcs/retrieve.ts
   - src/funcs/subscribersCreate.ts
   - src/funcs/subscribersCreateBulk.ts
   - src/funcs/subscribersCredentialsAppend.ts
@@ -543,6 +558,7 @@ generatedFiles:
   - src/funcs/subscribersNotificationsFeed.ts
   - src/funcs/subscribersNotificationsUnseenCount.ts
   - src/funcs/subscribersPatch.ts
+  - src/funcs/subscribersPreferencesBulkUpdate.ts
   - src/funcs/subscribersPreferencesList.ts
   - src/funcs/subscribersPreferencesUpdate.ts
   - src/funcs/subscribersPropertiesUpdateOnlineFlag.ts
@@ -618,7 +634,6 @@ generatedFiles:
   - src/mcp-server/tools/messagesRetrieve.ts
   - src/mcp-server/tools/notificationsList.ts
   - src/mcp-server/tools/notificationsRetrieve.ts
-  - src/mcp-server/tools/retrieve.ts
   - src/mcp-server/tools/subscribersCreate.ts
   - src/mcp-server/tools/subscribersCreateBulk.ts
   - src/mcp-server/tools/subscribersCredentialsAppend.ts
@@ -631,6 +646,7 @@ generatedFiles:
   - src/mcp-server/tools/subscribersNotificationsFeed.ts
   - src/mcp-server/tools/subscribersNotificationsUnseenCount.ts
   - src/mcp-server/tools/subscribersPatch.ts
+  - src/mcp-server/tools/subscribersPreferencesBulkUpdate.ts
   - src/mcp-server/tools/subscribersPreferencesList.ts
   - src/mcp-server/tools/subscribersPreferencesUpdate.ts
   - src/mcp-server/tools/subscribersPropertiesUpdateOnlineFlag.ts
@@ -674,6 +690,8 @@ generatedFiles:
   - src/models/components/bulkcreatesubscriberresponsedto.ts
   - src/models/components/bulksubscribercreatedto.ts
   - src/models/components/bulktriggereventdto.ts
+  - src/models/components/bulkupdatesubscriberpreferenceitemdto.ts
+  - src/models/components/bulkupdatesubscriberpreferencesdto.ts
   - src/models/components/buttontypeenum.ts
   - src/models/components/channelcredentials.ts
   - src/models/components/channelcredentialsdto.ts
@@ -726,6 +744,7 @@ generatedFiles:
   - src/models/components/emailblock.ts
   - src/models/components/emailblockstyles.ts
   - src/models/components/emailblocktypeenum.ts
+  - src/models/components/emailchanneloverrides.ts
   - src/models/components/emailcontroldto.ts
   - src/models/components/emailcontrolsmetadataresponsedto.ts
   - src/models/components/emailstepresponsedto.ts
@@ -737,6 +756,7 @@ generatedFiles:
   - src/models/components/feedresponsedto.ts
   - src/models/components/fieldfilterpartdto.ts
   - src/models/components/getenvironmenttagsdto.ts
+  - src/models/components/getpreferencesresponsedto.ts
   - src/models/components/getsubscriberpreferencesdto.ts
   - src/models/components/inappcontroldto.ts
   - src/models/components/inappcontrolsmetadataresponsedto.ts
@@ -781,6 +801,7 @@ generatedFiles:
   - src/models/components/patchsubscriberrequestdto.ts
   - src/models/components/patchworkflowdto.ts
   - src/models/components/payloadvalidationerrordto.ts
+  - src/models/components/preferencelevelenum.ts
   - src/models/components/preferenceoverridesourceenum.ts
   - src/models/components/preferencesrequestdto.ts
   - src/models/components/providersidenum.ts
@@ -794,6 +815,7 @@ generatedFiles:
   - src/models/components/resourceoriginenum.ts
   - src/models/components/runtimeissuedto.ts
   - src/models/components/security.ts
+  - src/models/components/severitylevelenum.ts
   - src/models/components/smscontroldto.ts
   - src/models/components/smscontrolsmetadataresponsedto.ts
   - src/models/components/smsstepresponsedto.ts
@@ -860,6 +882,8 @@ generatedFiles:
   - src/models/errors/responsevalidationerror.ts
   - src/models/errors/sdkerror.ts
   - src/models/errors/sdkvalidationerror.ts
+  - src/models/errors/subscriberresponsedto.ts
+  - src/models/errors/topicresponsedto.ts
   - src/models/errors/validationerrordto.ts
   - src/models/operations/environmentscontrollergetenvironmenttags.ts
   - src/models/operations/environmentscontrollerv1createenvironment.ts
@@ -877,12 +901,12 @@ generatedFiles:
   - src/models/operations/integrationscontrollerremoveintegration.ts
   - src/models/operations/integrationscontrollersetintegrationasprimary.ts
   - src/models/operations/integrationscontrollerupdateintegrationbyid.ts
-  - src/models/operations/logscontrollergetlogs.ts
   - src/models/operations/messagescontrollerdeletemessage.ts
   - src/models/operations/messagescontrollerdeletemessagesbytransactionid.ts
   - src/models/operations/messagescontrollergetmessages.ts
   - src/models/operations/notificationscontrollergetnotification.ts
   - src/models/operations/notificationscontrollerlistnotifications.ts
+  - src/models/operations/subscriberscontrollerbulkupdatesubscriberpreferences.ts
   - src/models/operations/subscriberscontrollercreatesubscriber.ts
   - src/models/operations/subscriberscontrollergetsubscriber.ts
   - src/models/operations/subscriberscontrollergetsubscriberpreferences.ts
@@ -945,6 +969,7 @@ generatedFiles:
   - src/types/operations.ts
   - src/types/rfcdate.ts
   - src/types/streams.ts
+  - temp/example.ts
   - tsconfig.json
 examples:
   EventsController_trigger:
@@ -1042,6 +1067,8 @@ examples:
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123", "errors": {"fieldName1": {"messages": ["Field is required", "Must be a valid email address"], "value": "invalidEmail"}, "fieldName2": {"messages": ["Must be at least 18 years old"], "value": 17}, "fieldName3": {"messages": ["Must be a boolean value"], "value": true}, "fieldName4": {"messages": ["Must be a valid object"], "value": true}, "fieldName5": {"messages": ["Field is missing"], "value": null}, "fieldName6": {"messages": ["Undefined value"]}}}
         "500":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
+        "409":
+          application/json: {"channels": [{"providerId": "whatsapp-business", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}], "subscriberId": "<id>", "_organizationId": "<id>", "_environmentId": "<id>", "deleted": true, "createdAt": "1714911393177", "updatedAt": "1735631466004"}
   SubscribersController_getSubscriber:
     speakeasy-default-subscribers-controller-get-subscriber:
       parameters:
@@ -1366,6 +1393,8 @@ examples:
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123", "errors": {"fieldName1": {"messages": ["Field is required", "Must be a valid email address"], "value": "invalidEmail"}, "fieldName2": {"messages": ["Must be at least 18 years old"], "value": 17}, "fieldName3": {"messages": ["Must be a boolean value"], "value": true}, "fieldName4": {"messages": ["Must be a valid object"], "value": null}, "fieldName5": {"messages": ["Field is missing"], "value": null}, "fieldName6": {"messages": ["Undefined value"]}}}
         "500":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
+        "409":
+          application/json: {"_id": "64da692e9a94fb2e6449ad06", "key": "product-updates", "name": "Product Updates", "createdAt": "2023-08-15T00:00:00.000Z", "updatedAt": "2023-08-15T00:00:00.000Z"}
   TopicsController_getTopic:
     speakeasy-default-topics-controller-get-topic:
       parameters:
@@ -1894,6 +1923,24 @@ examples:
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123", "errors": {"fieldName1": {"messages": ["Field is required", "Must be a valid email address"], "value": "invalidEmail"}, "fieldName2": {"messages": ["Must be at least 18 years old"], "value": 17}, "fieldName3": {"messages": ["Must be a boolean value"], "value": true}, "fieldName4": {"messages": ["Must be a valid object"], "value": null}, "fieldName5": {"messages": ["Field is missing"], "value": null}, "fieldName6": {"messages": ["Undefined value"]}}}
         "500":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
+  SubscribersController_bulkUpdateSubscriberPreferences:
+    speakeasy-default-subscribers-controller-bulk-update-subscriber-preferences:
+      parameters:
+        path:
+          subscriberId: "<id>"
+      requestBody:
+        application/json: {"preferences": []}
+      responses:
+        "200":
+          application/json: [{"level": "global", "workflow": {"id": "64a1b2c3d4e5f6g7h8i9j0k1", "identifier": "welcome-email", "name": "Welcome Email Workflow", "critical": false, "tags": ["user-onboarding", "email"], "data": {}, "severity": "none"}, "enabled": true, "channels": {"email": true, "sms": false, "in_app": true, "chat": false, "push": true}}]
+        "414":
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
+        "400":
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
+        "422":
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123", "errors": {"fieldName1": {"messages": ["Field is required", "Must be a valid email address"], "value": "invalidEmail"}, "fieldName2": {"messages": ["Must be at least 18 years old"], "value": 17}, "fieldName3": {"messages": ["Must be a boolean value"], "value": true}, "fieldName4": {"messages": ["Must be a valid object"], "value": {}}, "fieldName5": {"messages": ["Field is missing"], "value": null}, "fieldName6": {"messages": ["Undefined value"]}}}
+        "500":
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
 examplesVersion: 1.0.2
 generatedTests:
   EventsController_trigger: "2024-12-24T08:36:06+01:00"
@@ -1948,3 +1995,4 @@ generatedTests:
   TopicsController_removeSubscribers: "2024-12-24T08:36:06+01:00"
   TestingController_idempotency: "2024-12-24T08:36:06+01:00"
   TestingController_idempotencyGet: "2024-12-24T08:36:06+01:00"
+releaseNotes: "## SDK Changes Detected:\n* `novu.subscribers.create()`: \n  *  `request.failifexists` **Added**\n  *  `error` **Changed** **Breaking** :warning:\n* `novu.topics.create()`: \n  *  `request.failifexists` **Added**\n  *  `error` **Changed** **Breaking** :warning:\n* `novu.triggerBroadcast()`: \n  *  `request.triggereventtoallrequestdto.overrides` **Changed**\n* `novu.subscribers.preferences.bulkUpdate()`: **Added**\n* `novu.triggerBulk()`: \n  *  `request.bulktriggereventdto.events.[].overrides` **Changed**\n* `novu.trigger()`: \n  *  `request.triggereventrequestdto.overrides` **Changed**\n* `novu.retrieve()`: **Deleted** **Breaking** :warning:\n* `novu.workflows.list()`:  `response.workflows.[]` **Changed**\n* `novu.workflows.create()`:  `response` **Changed**\n* `novu.workflows.get()`:  `response` **Changed**\n* `novu.workflows.update()`:  `response` **Changed**\n* `novu.workflows.patch()`:  `response` **Changed**\n* `novu.workflows.sync()`:  `response` **Changed**\n"

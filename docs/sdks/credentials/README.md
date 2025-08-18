@@ -6,7 +6,7 @@
 ### Available Operations
 
 * [update](#update) - Upsert provider credentials
-* [append](#append) - Create or Partially Update provider credentials
+* [append](#append) - Update provider credentials
 * [delete](#delete) - Delete provider credentials
 
 ## update
@@ -16,6 +16,7 @@ Upsert credentials for a provider such as slack and push tokens.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="SubscribersV1Controller_updateSubscriberChannel" method="put" path="/v1/subscribers/{subscriberId}/credentials" -->
 ```typescript
 import { Novu } from "@novu/api";
 
@@ -118,11 +119,12 @@ run();
 
 ## append
 
-Create or Partially credentials for a provider such as **slack** and **FCM**. 
+Update credentials for a provider such as **slack** and **FCM**. 
       **providerId** is required field. This API creates the **deviceTokens** or replaces the existing ones.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="SubscribersV1Controller_modifySubscriberChannel" method="patch" path="/v1/subscribers/{subscriberId}/credentials" -->
 ```typescript
 import { Novu } from "@novu/api";
 
@@ -230,6 +232,7 @@ Delete subscriber credentials for a provider such as **slack** and **FCM** by **
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="SubscribersV1Controller_deleteSubscriberCredentials" method="delete" path="/v1/subscribers/{subscriberId}/credentials/{providerId}" -->
 ```typescript
 import { Novu } from "@novu/api";
 

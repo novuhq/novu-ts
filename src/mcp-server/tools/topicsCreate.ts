@@ -10,6 +10,7 @@ import { formatResult, ToolDefinition } from "../tools.js";
 const args = {
   createUpdateTopicRequestDto:
     components.CreateUpdateTopicRequestDto$inboundSchema,
+  failIfExists: z.boolean().optional(),
   idempotencyKey: z.string().optional(),
 };
 
@@ -17,12 +18,13 @@ export const tool$topicsCreate: ToolDefinition<typeof args> = {
   name: "topics-create",
   description: `Create a topic
 
-Creates a new topic if it does not exist, or updates an existing topic if it already exists`,
+Creates a new topic if it does not exist, or updates an existing topic if it already exists. Use ?failIfExists=true to prevent updates.`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await topicsCreate(
       client,
       args.createUpdateTopicRequestDto,
+      args.failIfExists,
       args.idempotencyKey,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();

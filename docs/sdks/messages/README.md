@@ -20,6 +20,7 @@ List all messages for the current environment.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="MessagesController_getMessages" method="get" path="/v1/messages" -->
 ```typescript
 import { Novu } from "@novu/api";
 
@@ -93,6 +94,7 @@ Delete a message entity from the Novu platform by **messageId**.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="MessagesController_deleteMessage" method="delete" path="/v1/messages/{messageId}" -->
 ```typescript
 import { Novu } from "@novu/api";
 
@@ -167,6 +169,7 @@ Delete multiple messages from the Novu platform using **transactionId** of trigg
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="MessagesController_deleteMessagesByTransactionId" method="delete" path="/v1/messages/transaction/{transactionId}" -->
 ```typescript
 import { Novu } from "@novu/api";
 

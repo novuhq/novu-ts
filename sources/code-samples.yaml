@@ -87,12 +87,6 @@ actions:
         - "lang": "typescript"
           "label": "TypeScript"
           "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.integrations.setAsPrimary(\"<id>\");\n\n  console.log(result);\n}\n\nrun();"
-  - target: $["paths"]["/v1/logs/requests"]["get"]
-    update:
-      "x-codeSamples":
-        - "lang": "typescript"
-          "label": "TypeScript"
-          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.retrieve({});\n\n  console.log(result);\n}\n\nrun();"
   - target: $["paths"]["/v1/messages"]["get"]
     update:
       "x-codeSamples":
@@ -237,6 +231,12 @@ actions:
         - "lang": "typescript"
           "label": "TypeScript"
           "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.subscribers.preferences.update({\n    channels: {},\n  }, \"<id>\");\n\n  console.log(result);\n}\n\nrun();"
+  - target: $["paths"]["/v2/subscribers/{subscriberId}/preferences/bulk"]["patch"]
+    update:
+      "x-codeSamples":
+        - "lang": "typescript"
+          "label": "TypeScript"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.subscribers.preferences.bulkUpdate({\n    preferences: [],\n  }, \"<id>\");\n\n  console.log(result);\n}\n\nrun();"
   - target: $["paths"]["/v2/subscribers/{subscriberId}/subscriptions"]["get"]
     update:
       "x-codeSamples":

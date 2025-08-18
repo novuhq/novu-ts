@@ -13,6 +13,7 @@ Retrieves data for a specific step in a workflow
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="WorkflowController_getWorkflowStepData" method="get" path="/v2/workflows/{workflowId}/steps/{stepId}" -->
 ```typescript
 import { Novu } from "@novu/api";
 

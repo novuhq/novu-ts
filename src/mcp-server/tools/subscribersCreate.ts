@@ -10,6 +10,7 @@ import { formatResult, ToolDefinition } from "../tools.js";
 const args = {
   createSubscriberRequestDto:
     components.CreateSubscriberRequestDto$inboundSchema,
+  failIfExists: z.boolean().optional(),
   idempotencyKey: z.string().optional(),
 };
 
@@ -24,6 +25,7 @@ Create a subscriber with the subscriber attributes.
     const [result, apiCall] = await subscribersCreate(
       client,
       args.createSubscriberRequestDto,
+      args.failIfExists,
       args.idempotencyKey,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();
