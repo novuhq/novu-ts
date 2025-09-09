@@ -19,8 +19,10 @@ import { tool$environmentsDelete } from "./tools/environmentsDelete.js";
 import { tool$environmentsGetTags } from "./tools/environmentsGetTags.js";
 import { tool$environmentsList } from "./tools/environmentsList.js";
 import { tool$environmentsUpdate } from "./tools/environmentsUpdate.js";
+import { tool$inboundWebhooksControllerHandleWebhook } from "./tools/inboundWebhooksControllerHandleWebhook.js";
 import { tool$integrationsCreate } from "./tools/integrationsCreate.js";
 import { tool$integrationsDelete } from "./tools/integrationsDelete.js";
+import { tool$integrationsIntegrationsControllerAutoConfigureIntegration } from "./tools/integrationsIntegrationsControllerAutoConfigureIntegration.js";
 import { tool$integrationsList } from "./tools/integrationsList.js";
 import { tool$integrationsListActive } from "./tools/integrationsListActive.js";
 import { tool$integrationsSetAsPrimary } from "./tools/integrationsSetAsPrimary.js";
@@ -80,7 +82,7 @@ export function createMCPServer(deps: {
 }) {
   const server = new McpServer({
     name: "Novu",
-    version: "1.6.0",
+    version: "1.6.1",
   });
 
   const client = new NovuCore({
@@ -110,6 +112,7 @@ export function createMCPServer(deps: {
   const register = { tool, resource, resourceTemplate, prompt };
   void register; // suppress unused warnings
 
+  tool(tool$inboundWebhooksControllerHandleWebhook);
   tool(tool$trigger);
   tool(tool$cancel);
   tool(tool$triggerBroadcast);
@@ -141,6 +144,7 @@ export function createMCPServer(deps: {
   tool(tool$integrationsCreate);
   tool(tool$integrationsUpdate);
   tool(tool$integrationsDelete);
+  tool(tool$integrationsIntegrationsControllerAutoConfigureIntegration);
   tool(tool$integrationsSetAsPrimary);
   tool(tool$integrationsListActive);
   tool(tool$messagesRetrieve);

@@ -41,6 +41,7 @@ let value: WorkflowResponseDto = {
     },
   },
   status: "ERROR",
+  severity: "medium",
 };
 ```
 
@@ -70,3 +71,4 @@ let value: WorkflowResponseDto = {
 | `issues`                                                                                               | Record<string, [components.RuntimeIssueDto](../../models/components/runtimeissuedto.md)>               | :heavy_minus_sign:                                                                                     | Runtime issues for workflow creation and update                                                        |
 | `lastTriggeredAt`                                                                                      | *string*                                                                                               | :heavy_minus_sign:                                                                                     | Timestamp of the last workflow trigger                                                                 |
 | `payloadExample`                                                                                       | Record<string, *any*>                                                                                  | :heavy_minus_sign:                                                                                     | Generated payload example based on the payload schema                                                  |
+| `severity`                                                                                             | [components.SeverityLevelEnum](../../models/components/severitylevelenum.md)                           | :heavy_check_mark:                                                                                     | Severity of the workflow                                                                               |

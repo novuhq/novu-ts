@@ -4,10 +4,12 @@
 
 import * as z from "zod";
 import { subscribersPreferencesList } from "../../funcs/subscribersPreferencesList.js";
+import * as operations from "../../models/operations/index.js";
 import { formatResult, ToolDefinition } from "../tools.js";
 
 const args = {
   subscriberId: z.string(),
+  criticality: operations.Criticality$inboundSchema,
   idempotencyKey: z.string().optional(),
 };
 
@@ -22,6 +24,7 @@ Retrieve subscriber channel preferences by its unique key identifier **subscribe
     const [result, apiCall] = await subscribersPreferencesList(
       client,
       args.subscriberId,
+      args.criticality,
       args.idempotencyKey,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();

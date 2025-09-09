@@ -17,6 +17,12 @@ let value: WorkflowListResponseDto = {
   stepTypeOverviews: [
     "in_app",
   ],
+  steps: [
+    {
+      slug: {},
+      type: "digest",
+    },
+  ],
 };
 ```
 
@@ -39,3 +45,4 @@ let value: WorkflowListResponseDto = {
 | `lastTriggeredAt`                                                                                                      | *string*                                                                                                               | :heavy_minus_sign:                                                                                                     | Timestamp of the last workflow trigger                                                                                 |
 | `stepTypeOverviews`                                                                                                    | [components.StepTypeEnum](../../models/components/steptypeenum.md)[]                                                   | :heavy_check_mark:                                                                                                     | Overview of step types in the workflow                                                                                 |
 | `isTranslationEnabled`                                                                                                 | *boolean*                                                                                                              | :heavy_minus_sign:                                                                                                     | Is translation enabled for the workflow                                                                                |
+| `steps`                                                                                                                | [components.StepListResponseDto](../../models/components/steplistresponsedto.md)[]                                     | :heavy_check_mark:                                                                                                     | Steps of the workflow                                                                                                  |

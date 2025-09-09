@@ -490,6 +490,43 @@
         ]
       }
     },
+    "/v2/inbound-webhooks/delivery-providers/{environmentId}/{integrationId}": {
+      "post": {
+        "operationId": "InboundWebhooksController_handleWebhook",
+        "parameters": [
+          {
+            "name": "environmentId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "integrationId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "idempotency-key",
+            "in": "header",
+            "description": "A header for idempotency purposes",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        }
+      }
+    },
     "/v2/subscribers": {
       "get": {
         "operationId": "SubscribersController_searchSubscribers",
@@ -3024,6 +3061,19 @@
             "required": true,
             "in": "path",
             "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "criticality",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "enum": [
+                "critical",
+                "nonCritical",
+                "all"
+              ],
               "type": "string"
             }
           },
@@ -18917,6 +18967,482 @@
         ]
       }
     },
+    "/v1/integrations/{integrationId}/auto-configure": {
+      "post": {
+        "operationId": "IntegrationsController_autoConfigureIntegration",
+        "summary": "Auto-configure an integration for inbound webhooks",
+        "description": "Auto-configure an integration by its unique key identifier **integrationId** for inbound webhook support. \n    This will automatically generate required webhook signing keys and configure webhook endpoints.",
+        "parameters": [
+          {
+            "name": "integrationId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "idempotency-key",
+            "in": "header",
+            "description": "A header for idempotency purposes",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AutoConfigureIntegrationResponseDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The integration with the integrationId provided does not exist in the database.",
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              }
+            }
+          },
+          "405": {
+            "description": "Method Not Allowed",
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Payload Too Large",
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "414": {
+            "description": "URI Too Long",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Unsupported Media Type",
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationErrorDto"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "The client has sent too many requests in a given amount of time. ",
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              },
+              "Retry-After": {
+                "$ref": "#/components/headers/Retry-After"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "example": "API rate limit exceeded"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "The server is currently unable to handle the request due to a temporary overload or scheduled maintenance, which will likely be alleviated after some delay.",
+            "headers": {
+              "Content-Type": {
+                "$ref": "#/components/headers/Content-Type"
+              },
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimit-Limit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimit-Remaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimit-Reset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimit-Policy"
+              },
+              "Idempotency-Key": {
+                "$ref": "#/components/headers/Idempotency-Key"
+              },
+              "Idempotency-Replay": {
+                "$ref": "#/components/headers/Idempotency-Replay"
+              },
+              "Retry-After": {
+                "$ref": "#/components/headers/Retry-After"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "example": "Please wait some time, then try again."
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Integrations"
+        ],
+        "security": [
+          {
+            "secretKey": []
+          }
+        ]
+      }
+    },
     "/v1/integrations/{integrationId}/set-primary": {
       "post": {
         "operationId": "IntegrationsController_setIntegrationAsPrimary",
@@ -21428,6 +21954,18 @@
             "required": false,
             "in": "query",
             "description": "Array of subscriber IDs or a single subscriber ID",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "severity",
+            "required": false,
+            "in": "query",
+            "description": "Array of severity levels or a single severity level",
             "schema": {
               "type": "array",
               "items": {
@@ -28698,6 +29236,7 @@
               "rocket-chat",
               "whatsapp-business",
               "chat-webhook",
+              "novu-slack",
               "fcm",
               "apns",
               "expo",
@@ -28879,6 +29418,16 @@
           }
         }
       },
+      "SeverityLevelEnum": {
+        "type": "string",
+        "description": "Severity of the workflow",
+        "enum": [
+          "high",
+          "medium",
+          "low",
+          "none"
+        ]
+      },
       "TriggerOverrides": {
         "type": "object",
         "properties": {
@@ -28953,6 +29502,9 @@
             "type": "string",
             "description": "Override the layout identifier for the entire workflow",
             "deprecated": true
+          },
+          "severity": {
+            "$ref": "#/components/schemas/SeverityLevelEnum"
           }
         }
       },
@@ -29518,6 +30070,7 @@
           "eazy-sms",
           "mobishastra",
           "afro-message",
+          "unifonic",
           "smsmode",
           "imedia",
           "fcm",
@@ -29538,7 +30091,8 @@
           "getstream",
           "rocket-chat",
           "whatsapp-business",
-          "chat-webhook"
+          "chat-webhook",
+          "novu-slack"
         ]
       },
       "ExecutionDetailsSourceEnum": {
@@ -29595,7 +30149,6 @@
           "detail",
           "isRetry",
           "isTest",
-          "providerId",
           "source"
         ]
       },
@@ -29948,6 +30501,13 @@
             "items": {
               "$ref": "#/components/schemas/ActivityTopicDto"
             }
+          },
+          "severity": {
+            "$ref": "#/components/schemas/SeverityLevelEnum"
+          },
+          "critical": {
+            "type": "boolean",
+            "description": "Criticality of the notification"
           }
         },
         "required": [
@@ -30284,15 +30844,26 @@
           },
           "status": {
             "enum": [
-              "success",
-              "error",
-              "pending",
-              "skipped",
-              "canceled",
-              "merged"
+              "processing",
+              "completed",
+              "error"
             ],
             "type": "string",
             "description": "Workflow run status"
+          },
+          "deliveryLifecycleStatus": {
+            "enum": [
+              "pending",
+              "sent",
+              "errored",
+              "skipped",
+              "canceled",
+              "merged",
+              "delivered",
+              "interacted"
+            ],
+            "type": "string",
+            "description": "Workflow run delivery lifecycle status"
           },
           "triggerIdentifier": {
             "type": "string",
@@ -30310,6 +30881,20 @@
             "type": "string",
             "description": "Update timestamp"
           },
+          "severity": {
+            "enum": [
+              "high",
+              "medium",
+              "low",
+              "none"
+            ],
+            "type": "string",
+            "description": "Severity"
+          },
+          "critical": {
+            "type": "boolean",
+            "description": "Critical flag"
+          },
           "steps": {
             "description": "Workflow run steps",
             "type": "array",
@@ -30326,10 +30911,13 @@
           "environmentId",
           "internalSubscriberId",
           "status",
+          "deliveryLifecycleStatus",
           "triggerIdentifier",
           "transactionId",
           "createdAt",
           "updatedAt",
+          "severity",
+          "critical",
           "steps"
         ]
       },
@@ -30356,6 +30944,40 @@
         },
         "required": [
           "data"
+        ]
+      },
+      "StepExecutionDetailDto": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "Unique identifier of the execution detail"
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "Creation time of the execution detail"
+          },
+          "status": {
+            "$ref": "#/components/schemas/ExecutionDetailsStatusEnum"
+          },
+          "detail": {
+            "type": "string",
+            "description": "Detailed information about the execution"
+          },
+          "providerId": {
+            "type": "string",
+            "description": "Provider identifier"
+          },
+          "raw": {
+            "type": "object",
+            "nullable": true,
+            "description": "Raw data of the execution"
+          }
+        },
+        "required": [
+          "_id",
+          "status",
+          "detail"
         ]
       },
       "StepRunDto": {
@@ -30406,7 +31028,7 @@
             "description": "Execution details",
             "type": "array",
             "items": {
-              "type": "object"
+              "$ref": "#/components/schemas/StepExecutionDetailDto"
             }
           },
           "digest": {
@@ -30461,15 +31083,26 @@
           },
           "status": {
             "enum": [
-              "success",
-              "error",
-              "pending",
-              "skipped",
-              "canceled",
-              "merged"
+              "processing",
+              "completed",
+              "error"
             ],
             "type": "string",
             "description": "Workflow run status"
+          },
+          "deliveryLifecycleStatus": {
+            "enum": [
+              "pending",
+              "sent",
+              "errored",
+              "skipped",
+              "canceled",
+              "merged",
+              "delivered",
+              "interacted"
+            ],
+            "type": "string",
+            "description": "Workflow run delivery lifecycle status"
           },
           "triggerIdentifier": {
             "type": "string",
@@ -30486,6 +31119,20 @@
           "updatedAt": {
             "type": "string",
             "description": "Update timestamp"
+          },
+          "severity": {
+            "enum": [
+              "high",
+              "medium",
+              "low",
+              "none"
+            ],
+            "type": "string",
+            "description": "Severity"
+          },
+          "critical": {
+            "type": "boolean",
+            "description": "Critical flag"
           },
           "steps": {
             "description": "Step runs",
@@ -30507,10 +31154,13 @@
           "environmentId",
           "internalSubscriberId",
           "status",
+          "deliveryLifecycleStatus",
           "triggerIdentifier",
           "transactionId",
           "createdAt",
           "updatedAt",
+          "severity",
+          "critical",
           "steps",
           "payload"
         ]
@@ -30655,6 +31305,23 @@
           },
           "accessKey": {
             "type": "string"
+          },
+          "appSid": {
+            "type": "string"
+          },
+          "senderId": {
+            "type": "string"
+          }
+        }
+      },
+      "ConfigurationsDto": {
+        "type": "object",
+        "properties": {
+          "inboundWebhookEnabled": {
+            "type": "boolean"
+          },
+          "inboundWebhookSigningKey": {
+            "type": "string"
           }
         }
       },
@@ -30701,6 +31368,14 @@
             "allOf": [
               {
                 "$ref": "#/components/schemas/CredentialsDto"
+              }
+            ]
+          },
+          "configurations": {
+            "description": "The configurations required for enabling the additional configurations of the integration.",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ConfigurationsDto"
               }
             ]
           },
@@ -30798,6 +31473,10 @@
             "items": {
               "$ref": "#/components/schemas/StepFilterDto"
             }
+          },
+          "configurations": {
+            "type": "object",
+            "description": "Configurations for the integration"
           }
         },
         "required": [
@@ -30832,8 +31511,32 @@
             "items": {
               "$ref": "#/components/schemas/StepFilterDto"
             }
+          },
+          "configurations": {
+            "type": "object",
+            "description": "Configurations for the integration"
           }
         }
+      },
+      "AutoConfigureIntegrationResponseDto": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "Indicates whether the auto-configuration was successful"
+          },
+          "message": {
+            "type": "string",
+            "description": "Optional message describing the result or any errors that occurred"
+          },
+          "integration": {
+            "type": "object",
+            "description": "The updated configurations after auto-configuration"
+          }
+        },
+        "required": [
+          "success"
+        ]
       },
       "UpdatedSubscriberDto": {
         "type": "object",
@@ -30986,6 +31689,7 @@
           "rocket-chat",
           "whatsapp-business",
           "chat-webhook",
+          "novu-slack",
           "fcm",
           "apns",
           "expo",
@@ -32753,16 +33457,6 @@
           "template"
         ]
       },
-      "SeverityLevelEnum": {
-        "type": "string",
-        "description": "Severity level of the workflow",
-        "enum": [
-          "high",
-          "medium",
-          "low",
-          "none"
-        ]
-      },
       "WorkflowDto": {
         "type": "object",
         "properties": {
@@ -33687,7 +34381,8 @@
         "type": "string",
         "description": "Type of integration issue",
         "enum": [
-          "MISSING_INTEGRATION"
+          "MISSING_INTEGRATION",
+          "INBOX_NOT_CONNECTED"
         ]
       },
       "StepIntegrationIssue": {
@@ -35453,6 +36148,9 @@
             "nullable": true,
             "description": "Generated payload example based on the payload schema",
             "additionalProperties": true
+          },
+          "severity": {
+            "$ref": "#/components/schemas/SeverityLevelEnum"
           }
         },
         "required": [
@@ -35465,7 +36163,8 @@
           "steps",
           "origin",
           "preferences",
-          "status"
+          "status",
+          "severity"
         ]
       },
       "InAppStepUpsertDto": {
@@ -35804,6 +36503,7 @@
           },
           "workflowId": {
             "type": "string",
+            "pattern": "/^[a-z0-9]+(?:-[a-z0-9]+)*$/",
             "description": "Unique identifier for the workflow"
           },
           "steps": {
@@ -35861,6 +36561,9 @@
                 "$ref": "#/components/schemas/PreferencesRequestDto"
               }
             ]
+          },
+          "severity": {
+            "$ref": "#/components/schemas/SeverityLevelEnum"
           }
         },
         "required": [
@@ -35978,6 +36681,9 @@
           },
           "origin": {
             "$ref": "#/components/schemas/ResourceOriginEnum"
+          },
+          "severity": {
+            "$ref": "#/components/schemas/SeverityLevelEnum"
           }
         },
         "required": [
@@ -35985,6 +36691,30 @@
           "steps",
           "preferences",
           "origin"
+        ]
+      },
+      "StepListResponseDto": {
+        "type": "object",
+        "properties": {
+          "slug": {
+            "type": "object",
+            "description": "Slug of the step"
+          },
+          "type": {
+            "$ref": "#/components/schemas/StepTypeEnum"
+          },
+          "issues": {
+            "description": "Issues associated with the step",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StepIssuesDto"
+              }
+            ]
+          }
+        },
+        "required": [
+          "slug",
+          "type"
         ]
       },
       "WorkflowListResponseDto": {
@@ -36065,6 +36795,13 @@
           "isTranslationEnabled": {
             "type": "boolean",
             "description": "Is translation enabled for the workflow"
+          },
+          "steps": {
+            "description": "Steps of the workflow",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StepListResponseDto"
+            }
           }
         },
         "required": [
@@ -36076,7 +36813,8 @@
           "slug",
           "status",
           "origin",
-          "stepTypeOverviews"
+          "stepTypeOverviews",
+          "steps"
         ]
       },
       "ListWorkflowResponse": {

@@ -61,6 +61,11 @@ import {
   RuntimeIssueDto$outboundSchema,
 } from "./runtimeissuedto.js";
 import {
+  SeverityLevelEnum,
+  SeverityLevelEnum$inboundSchema,
+  SeverityLevelEnum$outboundSchema,
+} from "./severitylevelenum.js";
+import {
   SmsStepResponseDto,
   SmsStepResponseDto$inboundSchema,
   SmsStepResponseDto$Outbound,
@@ -245,6 +250,10 @@ export type WorkflowResponseDto = {
    * Generated payload example based on the payload schema
    */
   payloadExample?: { [k: string]: any } | null | undefined;
+  /**
+   * Severity of the workflow
+   */
+  severity: SeverityLevelEnum;
 };
 
 /** @internal */
@@ -707,6 +716,7 @@ export const WorkflowResponseDto$inboundSchema: z.ZodType<
   issues: z.record(RuntimeIssueDto$inboundSchema).optional(),
   lastTriggeredAt: z.nullable(z.string()).optional(),
   payloadExample: z.nullable(z.record(z.any())).optional(),
+  severity: SeverityLevelEnum$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "_id": "id",
@@ -746,6 +756,7 @@ export type WorkflowResponseDto$Outbound = {
   issues?: { [k: string]: RuntimeIssueDto$Outbound } | undefined;
   lastTriggeredAt?: string | null | undefined;
   payloadExample?: { [k: string]: any } | null | undefined;
+  severity: string;
 };
 
 /** @internal */
@@ -820,6 +831,7 @@ export const WorkflowResponseDto$outboundSchema: z.ZodType<
   issues: z.record(RuntimeIssueDto$outboundSchema).optional(),
   lastTriggeredAt: z.nullable(z.string()).optional(),
   payloadExample: z.nullable(z.record(z.any())).optional(),
+  severity: SeverityLevelEnum$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
     id: "_id",
