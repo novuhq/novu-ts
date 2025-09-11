@@ -16,7 +16,7 @@ let value: SubscribersControllerPatchSubscriberResponse = {
   result: {
     channels: [
       {
-        providerId: "ryver",
+        providerId: "apns",
         credentials: {
           webhookUrl: "https://example.com/webhook",
           channel: "general",

@@ -98,6 +98,7 @@ let value: WorkflowControllerUpdateResponse = {
       },
     },
     status: "ACTIVE",
+    severity: "low",
   },
 };
 ```

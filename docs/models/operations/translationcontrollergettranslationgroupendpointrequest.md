@@ -1,0 +1,20 @@
+# TranslationControllerGetTranslationGroupEndpointRequest
+
+## Example Usage
+
+```typescript
+import { TranslationControllerGetTranslationGroupEndpointRequest } from "@novu/api/models/operations";
+
+let value: TranslationControllerGetTranslationGroupEndpointRequest = {
+  resourceType: "workflow",
+  resourceId: "<id>",
+};
+```
+
+## Fields
+
+| Field                                                                                                                                                                                | Type                                                                                                                                                                                 | Required                                                                                                                                                                             | Description                                                                                                                                                                          |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `resourceType`                                                                                                                                                                       | [operations.TranslationControllerGetTranslationGroupEndpointPathParamResourceType](../../models/operations/translationcontrollergettranslationgroupendpointpathparamresourcetype.md) | :heavy_check_mark:                                                                                                                                                                   | Resource type                                                                                                                                                                        |
+| `resourceId`                                                                                                                                                                         | *string*                                                                                                                                                                             | :heavy_check_mark:                                                                                                                                                                   | Resource ID                                                                                                                                                                          |
+| `idempotencyKey`                                                                                                                                                                     | *string*                                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                                   | A header for idempotency purposes                                                                                                                                                    |

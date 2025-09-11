@@ -5,12 +5,10 @@ The recipients list of people who will receive the notification.
 
 ## Supported Types
 
-### `components.One[]`
+### `components.To1[]`
 
 ```typescript
-const value: components.One[] = [
-  "SUBSCRIBER_ID",
-];
+const value: components.To1[] = [];
 ```
 
 ### `string`
