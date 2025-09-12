@@ -19,12 +19,22 @@ import { tool$environmentsDelete } from "./tools/environmentsDelete.js";
 import { tool$environmentsGetTags } from "./tools/environmentsGetTags.js";
 import { tool$environmentsList } from "./tools/environmentsList.js";
 import { tool$environmentsUpdate } from "./tools/environmentsUpdate.js";
+import { tool$inboundWebhooksControllerHandleWebhook } from "./tools/inboundWebhooksControllerHandleWebhook.js";
 import { tool$integrationsCreate } from "./tools/integrationsCreate.js";
 import { tool$integrationsDelete } from "./tools/integrationsDelete.js";
+import { tool$integrationsIntegrationsControllerAutoConfigureIntegration } from "./tools/integrationsIntegrationsControllerAutoConfigureIntegration.js";
 import { tool$integrationsList } from "./tools/integrationsList.js";
 import { tool$integrationsListActive } from "./tools/integrationsListActive.js";
 import { tool$integrationsSetAsPrimary } from "./tools/integrationsSetAsPrimary.js";
 import { tool$integrationsUpdate } from "./tools/integrationsUpdate.js";
+import { tool$layoutsCreate } from "./tools/layoutsCreate.js";
+import { tool$layoutsDelete } from "./tools/layoutsDelete.js";
+import { tool$layoutsDuplicate } from "./tools/layoutsDuplicate.js";
+import { tool$layoutsGeneratePreview } from "./tools/layoutsGeneratePreview.js";
+import { tool$layoutsList } from "./tools/layoutsList.js";
+import { tool$layoutsRetrieve } from "./tools/layoutsRetrieve.js";
+import { tool$layoutsUpdate } from "./tools/layoutsUpdate.js";
+import { tool$layoutsUsage } from "./tools/layoutsUsage.js";
 import { tool$messagesDelete } from "./tools/messagesDelete.js";
 import { tool$messagesDeleteByTransactionId } from "./tools/messagesDeleteByTransactionId.js";
 import { tool$messagesRetrieve } from "./tools/messagesRetrieve.js";
@@ -58,6 +68,15 @@ import { tool$topicsSubscriptionsCreate } from "./tools/topicsSubscriptionsCreat
 import { tool$topicsSubscriptionsDelete } from "./tools/topicsSubscriptionsDelete.js";
 import { tool$topicsSubscriptionsList } from "./tools/topicsSubscriptionsList.js";
 import { tool$topicsUpdate } from "./tools/topicsUpdate.js";
+import { tool$translationsCreate } from "./tools/translationsCreate.js";
+import { tool$translationsDelete } from "./tools/translationsDelete.js";
+import { tool$translationsGroupsDelete } from "./tools/translationsGroupsDelete.js";
+import { tool$translationsGroupsRetrieve } from "./tools/translationsGroupsRetrieve.js";
+import { tool$translationsMasterImport } from "./tools/translationsMasterImport.js";
+import { tool$translationsMasterRetrieve } from "./tools/translationsMasterRetrieve.js";
+import { tool$translationsMasterUpload } from "./tools/translationsMasterUpload.js";
+import { tool$translationsRetrieve } from "./tools/translationsRetrieve.js";
+import { tool$translationsUpload } from "./tools/translationsUpload.js";
 import { tool$trigger } from "./tools/trigger.js";
 import { tool$triggerBroadcast } from "./tools/triggerBroadcast.js";
 import { tool$triggerBulk } from "./tools/triggerBulk.js";
@@ -80,7 +99,7 @@ export function createMCPServer(deps: {
 }) {
   const server = new McpServer({
     name: "Novu",
-    version: "1.6.0",
+    version: "2.0.0",
   });
 
   const client = new NovuCore({
@@ -110,6 +129,7 @@ export function createMCPServer(deps: {
   const register = { tool, resource, resourceTemplate, prompt };
   void register; // suppress unused warnings
 
+  tool(tool$inboundWebhooksControllerHandleWebhook);
   tool(tool$trigger);
   tool(tool$cancel);
   tool(tool$triggerBroadcast);
@@ -119,6 +139,14 @@ export function createMCPServer(deps: {
   tool(tool$environmentsList);
   tool(tool$environmentsUpdate);
   tool(tool$environmentsDelete);
+  tool(tool$layoutsCreate);
+  tool(tool$layoutsList);
+  tool(tool$layoutsUpdate);
+  tool(tool$layoutsRetrieve);
+  tool(tool$layoutsDelete);
+  tool(tool$layoutsDuplicate);
+  tool(tool$layoutsGeneratePreview);
+  tool(tool$layoutsUsage);
   tool(tool$subscribersSearch);
   tool(tool$subscribersCreate);
   tool(tool$subscribersRetrieve);
@@ -130,6 +158,10 @@ export function createMCPServer(deps: {
   tool(tool$topicsGet);
   tool(tool$topicsUpdate);
   tool(tool$topicsDelete);
+  tool(tool$translationsCreate);
+  tool(tool$translationsRetrieve);
+  tool(tool$translationsDelete);
+  tool(tool$translationsUpload);
   tool(tool$workflowsCreate);
   tool(tool$workflowsList);
   tool(tool$workflowsUpdate);
@@ -141,6 +173,7 @@ export function createMCPServer(deps: {
   tool(tool$integrationsCreate);
   tool(tool$integrationsUpdate);
   tool(tool$integrationsDelete);
+  tool(tool$integrationsIntegrationsControllerAutoConfigureIntegration);
   tool(tool$integrationsSetAsPrimary);
   tool(tool$integrationsListActive);
   tool(tool$messagesRetrieve);
@@ -165,6 +198,11 @@ export function createMCPServer(deps: {
   tool(tool$topicsSubscriptionsCreate);
   tool(tool$topicsSubscriptionsDelete);
   tool(tool$topicsSubscribersRetrieve);
+  tool(tool$translationsGroupsDelete);
+  tool(tool$translationsGroupsRetrieve);
+  tool(tool$translationsMasterRetrieve);
+  tool(tool$translationsMasterImport);
+  tool(tool$translationsMasterUpload);
   tool(tool$workflowsStepsRetrieve);
 
   return server;

@@ -7,11 +7,11 @@ Type of integration issue
 ```typescript
 import { IntegrationIssueEnum } from "@novu/api/models/components";
 
-let value: IntegrationIssueEnum = "MISSING_INTEGRATION";
+let value: IntegrationIssueEnum = "INBOX_NOT_CONNECTED";
 ```
 
 ## Values
 
 ```typescript
-"MISSING_INTEGRATION"
+"MISSING_INTEGRATION" | "INBOX_NOT_CONNECTED"
 ```

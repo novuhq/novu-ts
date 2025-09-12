@@ -104,6 +104,7 @@ let value: WorkflowControllerGetWorkflowResponse = {
       },
     },
     status: "ACTIVE",
+    severity: "low",
   },
 };
 ```

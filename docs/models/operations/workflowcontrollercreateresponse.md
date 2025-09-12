@@ -9,10 +9,9 @@ let value: WorkflowControllerCreateResponse = {
   headers: {
     "key": [
       "<value 1>",
-      "<value 2>",
-      "<value 3>",
     ],
-    "key1": [
+    "key1": [],
+    "key2": [
       "<value 1>",
     ],
   },
@@ -100,6 +99,7 @@ let value: WorkflowControllerCreateResponse = {
       },
     },
     status: "ACTIVE",
+    severity: "low",
   },
 };
 ```

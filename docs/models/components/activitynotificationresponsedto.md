@@ -21,21 +21,34 @@ let value: ActivityNotificationResponseDto = {
           detail: "<value>",
           isRetry: false,
           isTest: true,
-          providerId: "emailjs",
-          source: "Webhook",
+          source: "Credentials",
         },
       ],
       step: {
         id: "<id>",
         active: false,
-        filters: [],
+        filters: [
+          {
+            isNegated: true,
+            type: "LIST",
+            value: "OR",
+            children: [
+              {
+                field: "<value>",
+                value: "<value>",
+                operator: "IN",
+                on: "payload",
+              },
+            ],
+          },
+        ],
         templateId: "<id>",
       },
       overrides: {
         "workflowId": "some_wf_id",
         "stepId": "some_wf_id",
       },
-      providerId: "imedia",
+      providerId: "ryver",
       status: "<value>",
     },
   ],
@@ -64,3 +77,5 @@ let value: ActivityNotificationResponseDto = {
 | `controls`                                                                                                                   | [components.Controls](../../models/components/controls.md)                                                                   | :heavy_minus_sign:                                                                                                           | Controls associated with the notification                                                                                    |
 | `to`                                                                                                                         | [components.ActivityNotificationResponseDtoTo](../../models/components/activitynotificationresponsedtoto.md)                 | :heavy_minus_sign:                                                                                                           | To field for subscriber definition                                                                                           |
 | `topics`                                                                                                                     | [components.ActivityTopicDto](../../models/components/activitytopicdto.md)[]                                                 | :heavy_minus_sign:                                                                                                           | Topics of the notification                                                                                                   |
+| `severity`                                                                                                                   | [components.SeverityLevelEnum](../../models/components/severitylevelenum.md)                                                 | :heavy_minus_sign:                                                                                                           | Severity of the workflow                                                                                                     |
+| `critical`                                                                                                                   | *boolean*                                                                                                                    | :heavy_minus_sign:                                                                                                           | Criticality of the notification                                                                                              |

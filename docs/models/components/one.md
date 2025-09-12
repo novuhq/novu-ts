@@ -1,28 +1,16 @@
 # One
 
-
-## Supported Types
-
-### `components.SubscriberPayloadDto`
+## Example Usage
 
 ```typescript
-const value: components.SubscriberPayloadDto = {
-  subscriberId: "<id>",
-};
+import { One } from "@novu/api/models/components";
+
+let value: One = {};
 ```
 
-### `components.TopicPayloadDto`
+## Fields
 
-```typescript
-const value: components.TopicPayloadDto = {
-  topicKey: "<value>",
-  type: "Topic",
-};
-```
-
-### `string`
-
-```typescript
-const value: string = "SUBSCRIBER_ID";
-```
-
+| Field                                                                                    | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `type`                                                                                   | [components.ResultType](../../models/components/resulttype.md)                           | :heavy_minus_sign:                                                                       | N/A                                                                                      |
+| `preview`                                                                                | [components.EmailLayoutRenderOutput](../../models/components/emaillayoutrenderoutput.md) | :heavy_minus_sign:                                                                       | N/A                                                                                      |

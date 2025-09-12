@@ -13,7 +13,7 @@ let value: StepFilterDto = {
     {
       field: "<value>",
       value: "<value>",
-      operator: "BETWEEN",
+      operator: "IN",
       on: "payload",
     },
   ],

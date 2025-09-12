@@ -96,6 +96,7 @@ let value: WorkflowControllerPatchWorkflowResponse = {
       },
     },
     status: "ACTIVE",
+    severity: "low",
   },
 };
 ```
