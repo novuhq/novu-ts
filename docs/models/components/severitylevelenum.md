@@ -1,6 +1,6 @@
 # SeverityLevelEnum
 
-Severity level of the workflow
+Severity of the workflow
 
 ## Example Usage
 

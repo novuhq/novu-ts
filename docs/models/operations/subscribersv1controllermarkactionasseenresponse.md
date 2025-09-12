@@ -22,7 +22,7 @@ let value: SubscribersV1ControllerMarkActionAsSeenResponse = {
     subscriber: {
       channels: [
         {
-          providerId: "ryver",
+          providerId: "apns",
           credentials: {
             webhookUrl: "https://example.com/webhook",
             channel: "general",

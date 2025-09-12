@@ -8,7 +8,7 @@ import { SubscriberResponseDto } from "@novu/api/models/components";
 let value: SubscriberResponseDto = {
   channels: [
     {
-      providerId: "ryver",
+      providerId: "apns",
       credentials: {
         webhookUrl: "https://example.com/webhook",
         channel: "general",

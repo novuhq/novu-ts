@@ -11,13 +11,13 @@ let value: ActivityNotificationStepResponseDto = {
   filters: [
     {
       isNegated: true,
-      type: "DATE",
+      type: "LIST",
       value: "OR",
       children: [
         {
           field: "<value>",
           value: "<value>",
-          operator: "BETWEEN",
+          operator: "IN",
           on: "payload",
         },
       ],

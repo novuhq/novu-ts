@@ -1,17 +1,17 @@
 # EditorType
 
-Type of editor to use for the body.
+Editor type of the layout.
 
 ## Example Usage
 
 ```typescript
 import { EditorType } from "@novu/api/models/components";
 
-let value: EditorType = "html";
+let value: EditorType = "block";
 ```
 
 ## Values
 
 ```typescript
-"block" | "html"
+"html" | "block"
 ```

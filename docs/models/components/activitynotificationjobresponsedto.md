@@ -12,14 +12,28 @@ let value: ActivityNotificationJobResponseDto = {
   step: {
     id: "<id>",
     active: false,
-    filters: [],
+    filters: [
+      {
+        isNegated: true,
+        type: "LIST",
+        value: "OR",
+        children: [
+          {
+            field: "<value>",
+            value: "<value>",
+            operator: "IN",
+            on: "payload",
+          },
+        ],
+      },
+    ],
     templateId: "<id>",
   },
   overrides: {
     "workflowId": "some_wf_id",
     "stepId": "some_wf_id",
   },
-  providerId: "email-webhook",
+  providerId: "braze",
   status: "<value>",
 };
 ```

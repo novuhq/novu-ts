@@ -344,8 +344,20 @@ run();
 * [create](docs/sdks/integrations/README.md#create) - Create an integration
 * [update](docs/sdks/integrations/README.md#update) - Update an integration
 * [delete](docs/sdks/integrations/README.md#delete) - Delete an integration
+* [integrationsControllerAutoConfigureIntegration](docs/sdks/integrations/README.md#integrationscontrollerautoconfigureintegration) - Auto-configure an integration for inbound webhooks
 * [setAsPrimary](docs/sdks/integrations/README.md#setasprimary) - Update integration as primary
 * [listActive](docs/sdks/integrations/README.md#listactive) - List active integrations
+
+### [layouts](docs/sdks/layouts/README.md)
+
+* [create](docs/sdks/layouts/README.md#create) - Create a layout
+* [list](docs/sdks/layouts/README.md#list) - List all layouts
+* [update](docs/sdks/layouts/README.md#update) - Update a layout
+* [retrieve](docs/sdks/layouts/README.md#retrieve) - Retrieve a layout
+* [delete](docs/sdks/layouts/README.md#delete) - Delete a layout
+* [duplicate](docs/sdks/layouts/README.md#duplicate) - Duplicate a layout
+* [generatePreview](docs/sdks/layouts/README.md#generatepreview) - Generate layout preview
+* [usage](docs/sdks/layouts/README.md#usage) - Get layout usage
 
 ### [messages](docs/sdks/messages/README.md)
 
@@ -360,6 +372,7 @@ run();
 
 ### [Novu SDK](docs/sdks/novu/README.md)
 
+* [inboundWebhooksControllerHandleWebhook](docs/sdks/novu/README.md#inboundwebhookscontrollerhandlewebhook)
 * [trigger](docs/sdks/novu/README.md#trigger) - Trigger event
 * [cancel](docs/sdks/novu/README.md#cancel) - Cancel triggered event
 * [triggerBroadcast](docs/sdks/novu/README.md#triggerbroadcast) - Broadcast event to all
@@ -423,6 +436,24 @@ run();
 * [create](docs/sdks/subscriptions/README.md#create) - Create topic subscriptions
 * [delete](docs/sdks/subscriptions/README.md#delete) - Delete topic subscriptions
 
+### [translations](docs/sdks/translations/README.md)
+
+* [create](docs/sdks/translations/README.md#create) - Create or update translation
+* [retrieve](docs/sdks/translations/README.md#retrieve) - Get single translation
+* [delete](docs/sdks/translations/README.md#delete) - Delete translation
+* [upload](docs/sdks/translations/README.md#upload) - Upload translation files
+
+#### [translations.groups](docs/sdks/groups/README.md)
+
+* [delete](docs/sdks/groups/README.md#delete) - Delete translation group
+* [retrieve](docs/sdks/groups/README.md#retrieve) - Get translation group
+
+#### [translations.master](docs/sdks/master/README.md)
+
+* [retrieve](docs/sdks/master/README.md#retrieve) - Get master translations JSON
+* [import](docs/sdks/master/README.md#import) - Import master translations JSON
+* [upload](docs/sdks/master/README.md#upload) - Upload master translations JSON file
+
 ### [workflows](docs/sdks/workflows/README.md)
 
 * [create](docs/sdks/workflows/README.md#create) - Create a workflow
@@ -461,12 +492,22 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`environmentsGetTags`](docs/sdks/environments/README.md#gettags) - Get environment tags
 - [`environmentsList`](docs/sdks/environments/README.md#list) - List all environments
 - [`environmentsUpdate`](docs/sdks/environments/README.md#update) - Update an environment
+- [`inboundWebhooksControllerHandleWebhook`](docs/sdks/novu/README.md#inboundwebhookscontrollerhandlewebhook)
 - [`integrationsCreate`](docs/sdks/integrations/README.md#create) - Create an integration
 - [`integrationsDelete`](docs/sdks/integrations/README.md#delete) - Delete an integration
+- [`integrationsIntegrationsControllerAutoConfigureIntegration`](docs/sdks/integrations/README.md#integrationscontrollerautoconfigureintegration) - Auto-configure an integration for inbound webhooks
 - [`integrationsList`](docs/sdks/integrations/README.md#list) - List all integrations
 - [`integrationsListActive`](docs/sdks/integrations/README.md#listactive) - List active integrations
 - [`integrationsSetAsPrimary`](docs/sdks/integrations/README.md#setasprimary) - Update integration as primary
 - [`integrationsUpdate`](docs/sdks/integrations/README.md#update) - Update an integration
+- [`layoutsCreate`](docs/sdks/layouts/README.md#create) - Create a layout
+- [`layoutsDelete`](docs/sdks/layouts/README.md#delete) - Delete a layout
+- [`layoutsDuplicate`](docs/sdks/layouts/README.md#duplicate) - Duplicate a layout
+- [`layoutsGeneratePreview`](docs/sdks/layouts/README.md#generatepreview) - Generate layout preview
+- [`layoutsList`](docs/sdks/layouts/README.md#list) - List all layouts
+- [`layoutsRetrieve`](docs/sdks/layouts/README.md#retrieve) - Retrieve a layout
+- [`layoutsUpdate`](docs/sdks/layouts/README.md#update) - Update a layout
+- [`layoutsUsage`](docs/sdks/layouts/README.md#usage) - Get layout usage
 - [`messagesDelete`](docs/sdks/messages/README.md#delete) - Delete a message
 - [`messagesDeleteByTransactionId`](docs/sdks/messages/README.md#deletebytransactionid) - Delete messages by transactionId
 - [`messagesRetrieve`](docs/sdks/messages/README.md#retrieve) - List all messages
@@ -500,6 +541,15 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`topicsSubscriptionsDelete`](docs/sdks/subscriptions/README.md#delete) - Delete topic subscriptions
 - [`topicsSubscriptionsList`](docs/sdks/subscriptions/README.md#list) - List topic subscriptions
 - [`topicsUpdate`](docs/sdks/topics/README.md#update) - Update a topic
+- [`translationsCreate`](docs/sdks/translations/README.md#create) - Create or update translation
+- [`translationsDelete`](docs/sdks/translations/README.md#delete) - Delete translation
+- [`translationsGroupsDelete`](docs/sdks/groups/README.md#delete) - Delete translation group
+- [`translationsGroupsRetrieve`](docs/sdks/groups/README.md#retrieve) - Get translation group
+- [`translationsMasterImport`](docs/sdks/master/README.md#import) - Import master translations JSON
+- [`translationsMasterRetrieve`](docs/sdks/master/README.md#retrieve) - Get master translations JSON
+- [`translationsMasterUpload`](docs/sdks/master/README.md#upload) - Upload master translations JSON file
+- [`translationsRetrieve`](docs/sdks/translations/README.md#retrieve) - Get single translation
+- [`translationsUpload`](docs/sdks/translations/README.md#upload) - Upload translation files
 - [`trigger`](docs/sdks/novu/README.md#trigger) - Trigger event
 - [`triggerBroadcast`](docs/sdks/novu/README.md#triggerbroadcast) - Broadcast event to all
 - [`triggerBulk`](docs/sdks/novu/README.md#triggerbulk) - Bulk trigger event
@@ -580,8 +630,8 @@ run();
 ### Error Classes
 **Primary errors:**
 * [`NovuError`](./src/models/errors/novuerror.ts): The base class for HTTP error responses.
-  * [`ErrorDto`](./src/models/errors/errordto.ts): Generic error.
-  * [`ValidationErrorDto`](./src/models/errors/validationerrordto.ts): Unprocessable Entity. Status code `422`.
+  * [`ErrorDto`](./src/models/errors/errordto.ts): *
+  * [`ValidationErrorDto`](./src/models/errors/validationerrordto.ts): Unprocessable Entity. Status code `422`. *
 
 <details><summary>Less common errors (9)</summary>
 
@@ -596,9 +646,9 @@ run();
 
 
 **Inherit from [`NovuError`](./src/models/errors/novuerror.ts)**:
-* [`PayloadValidationExceptionDto`](./src/models/errors/payloadvalidationexceptiondto.ts): Status code `400`. Applicable to 3 of 56 methods.*
-* [`SubscriberResponseDto`](./src/models/errors/subscriberresponsedto.ts): Created. Status code `409`. Applicable to 1 of 56 methods.*
-* [`TopicResponseDto`](./src/models/errors/topicresponsedto.ts): OK. Status code `409`. Applicable to 1 of 56 methods.*
+* [`PayloadValidationExceptionDto`](./src/models/errors/payloadvalidationexceptiondto.ts): Status code `400`. Applicable to 3 of 75 methods.*
+* [`SubscriberResponseDto`](./src/models/errors/subscriberresponsedto.ts): Created. Status code `409`. Applicable to 1 of 75 methods.*
+* [`TopicResponseDto`](./src/models/errors/topicresponsedto.ts): OK. Status code `409`. Applicable to 1 of 75 methods.*
 * [`ResponseValidationError`](./src/models/errors/responsevalidationerror.ts): Type mismatch between the data returned from the server and the structure expected by the SDK. See `error.rawValue` for the raw value and `error.pretty()` for a nicely formatted multi-line string.
 
 </details>
@@ -629,19 +679,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.trigger({
-    workflowId: "workflow_identifier",
-    payload: {
-      "comment_id": "string",
-      "post": {
-        "text": "string",
-      },
-    },
-    overrides: {},
-    to: "SUBSCRIBER_ID",
-  });
-
-  console.log(result);
+  await novu.inboundWebhooksControllerHandleWebhook("<id>", "<id>");
 }
 
 run();
@@ -660,19 +698,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.trigger({
-    workflowId: "workflow_identifier",
-    payload: {
-      "comment_id": "string",
-      "post": {
-        "text": "string",
-      },
-    },
-    overrides: {},
-    to: "SUBSCRIBER_ID",
-  });
-
-  console.log(result);
+  await novu.inboundWebhooksControllerHandleWebhook("<id>", "<id>");
 }
 
 run();
@@ -749,19 +775,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.trigger({
-    workflowId: "workflow_identifier",
-    payload: {
-      "comment_id": "string",
-      "post": {
-        "text": "string",
-      },
-    },
-    overrides: {},
-    to: "SUBSCRIBER_ID",
-  });
-
-  console.log(result);
+  await novu.inboundWebhooksControllerHandleWebhook("<id>", "<id>");
 }
 
 run();
@@ -783,17 +797,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.trigger({
-    workflowId: "workflow_identifier",
-    payload: {
-      "comment_id": "string",
-      "post": {
-        "text": "string",
-      },
-    },
-    overrides: {},
-    to: "SUBSCRIBER_ID",
-  }, {
+  await novu.inboundWebhooksControllerHandleWebhook("<id>", "<id>", {
     retries: {
       strategy: "backoff",
       backoff: {
@@ -805,8 +809,6 @@ async function run() {
       retryConnectionErrors: false,
     },
   });
-
-  console.log(result);
 }
 
 run();
@@ -832,19 +834,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.trigger({
-    workflowId: "workflow_identifier",
-    payload: {
-      "comment_id": "string",
-      "post": {
-        "text": "string",
-      },
-    },
-    overrides: {},
-    to: "SUBSCRIBER_ID",
-  });
-
-  console.log(result);
+  await novu.inboundWebhooksControllerHandleWebhook("<id>", "<id>");
 }
 
 run();

@@ -1,6 +1,6 @@
 # ResourceOriginEnum
 
-Origin of the workflow
+Origin of the layout
 
 ## Example Usage
 

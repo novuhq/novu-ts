@@ -10,12 +10,6 @@ let value: NotificationsControllerGetNotificationResponse = {
     "key": [
       "<value 1>",
       "<value 2>",
-      "<value 3>",
-    ],
-    "key1": [
-      "<value 1>",
-      "<value 2>",
-      "<value 3>",
     ],
   },
   result: {
@@ -34,21 +28,34 @@ let value: NotificationsControllerGetNotificationResponse = {
             detail: "<value>",
             isRetry: false,
             isTest: true,
-            providerId: "emailjs",
-            source: "Webhook",
+            source: "Credentials",
           },
         ],
         step: {
           id: "<id>",
           active: false,
-          filters: [],
+          filters: [
+            {
+              isNegated: true,
+              type: "LIST",
+              value: "OR",
+              children: [
+                {
+                  field: "<value>",
+                  value: "<value>",
+                  operator: "IN",
+                  on: "payload",
+                },
+              ],
+            },
+          ],
           templateId: "<id>",
         },
         overrides: {
           "workflowId": "some_wf_id",
           "stepId": "some_wf_id",
         },
-        providerId: "imedia",
+        providerId: "ryver",
         status: "<value>",
       },
     ],
