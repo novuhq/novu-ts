@@ -11,8 +11,7 @@ let value: ActivityNotificationExecutionDetailResponseDto = {
   detail: "<value>",
   isRetry: true,
   isTest: true,
-  providerId: "isend-sms",
-  source: "Webhook",
+  source: "Internal",
 };
 ```
 
@@ -26,6 +25,6 @@ let value: ActivityNotificationExecutionDetailResponseDto = {
 | `detail`                                                                                       | *string*                                                                                       | :heavy_check_mark:                                                                             | Detailed information about the execution                                                       |
 | `isRetry`                                                                                      | *boolean*                                                                                      | :heavy_check_mark:                                                                             | Whether the execution is a retry or not                                                        |
 | `isTest`                                                                                       | *boolean*                                                                                      | :heavy_check_mark:                                                                             | Whether the execution is a test or not                                                         |
-| `providerId`                                                                                   | [components.ProvidersIdEnum](../../models/components/providersidenum.md)                       | :heavy_check_mark:                                                                             | Provider ID of the job                                                                         |
+| `providerId`                                                                                   | [components.ProvidersIdEnum](../../models/components/providersidenum.md)                       | :heavy_minus_sign:                                                                             | Provider ID of the job                                                                         |
 | `raw`                                                                                          | *string*                                                                                       | :heavy_minus_sign:                                                                             | Raw data of the execution                                                                      |
 | `source`                                                                                       | [components.ExecutionDetailsSourceEnum](../../models/components/executiondetailssourceenum.md) | :heavy_check_mark:                                                                             | Source of the execution detail                                                                 |

@@ -81,6 +81,12 @@ actions:
         - "lang": "typescript"
           "label": "TypeScript"
           "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.integrations.update({}, \"<id>\");\n\n  console.log(result);\n}\n\nrun();"
+  - target: $["paths"]["/v1/integrations/{integrationId}/auto-configure"]["post"]
+    update:
+      "x-codeSamples":
+        - "lang": "typescript"
+          "label": "TypeScript"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.integrations.integrationsControllerAutoConfigureIntegration(\"<id>\");\n\n  console.log(result);\n}\n\nrun();"
   - target: $["paths"]["/v1/integrations/{integrationId}/set-primary"]["post"]
     update:
       "x-codeSamples":
@@ -189,6 +195,60 @@ actions:
         - "lang": "typescript"
           "label": "TypeScript"
           "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.environments.getTags(\"6615943e7ace93b0540ae377\");\n\n  console.log(result);\n}\n\nrun();"
+  - target: $["paths"]["/v2/inbound-webhooks/delivery-providers/{environmentId}/{integrationId}"]["post"]
+    update:
+      "x-codeSamples":
+        - "lang": "typescript"
+          "label": "TypeScript"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  await novu.inboundWebhooksControllerHandleWebhook(\"<id>\", \"<id>\");\n\n\n}\n\nrun();"
+  - target: $["paths"]["/v2/layouts"]["get"]
+    update:
+      "x-codeSamples":
+        - "lang": "typescript"
+          "label": "TypeScript"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.layouts.list({});\n\n  console.log(result);\n}\n\nrun();"
+  - target: $["paths"]["/v2/layouts"]["post"]
+    update:
+      "x-codeSamples":
+        - "lang": "typescript"
+          "label": "TypeScript"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.layouts.create({\n    layoutId: \"<id>\",\n    name: \"<value>\",\n  });\n\n  console.log(result);\n}\n\nrun();"
+  - target: $["paths"]["/v2/layouts/{layoutId}"]["delete"]
+    update:
+      "x-codeSamples":
+        - "lang": "typescript"
+          "label": "TypeScript"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.layouts.delete(\"<id>\");\n\n  console.log(result);\n}\n\nrun();"
+  - target: $["paths"]["/v2/layouts/{layoutId}"]["get"]
+    update:
+      "x-codeSamples":
+        - "lang": "typescript"
+          "label": "TypeScript"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.layouts.retrieve(\"<id>\");\n\n  console.log(result);\n}\n\nrun();"
+  - target: $["paths"]["/v2/layouts/{layoutId}"]["put"]
+    update:
+      "x-codeSamples":
+        - "lang": "typescript"
+          "label": "TypeScript"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.layouts.update({\n    name: \"<value>\",\n  }, \"<id>\");\n\n  console.log(result);\n}\n\nrun();"
+  - target: $["paths"]["/v2/layouts/{layoutId}/duplicate"]["post"]
+    update:
+      "x-codeSamples":
+        - "lang": "typescript"
+          "label": "TypeScript"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.layouts.duplicate({\n    name: \"<value>\",\n  }, \"<id>\");\n\n  console.log(result);\n}\n\nrun();"
+  - target: $["paths"]["/v2/layouts/{layoutId}/preview"]["post"]
+    update:
+      "x-codeSamples":
+        - "lang": "typescript"
+          "label": "TypeScript"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.layouts.generatePreview({\n    previewPayload: {\n      subscriber: {\n        channels: [\n          {\n            providerId: \"mattermost\",\n            credentials: {\n              webhookUrl: \"https://example.com/webhook\",\n              channel: \"general\",\n              deviceTokens: [\n                \"token1\",\n                \"token2\",\n                \"token3\",\n              ],\n              alertUid: \"12345-abcde\",\n              title: \"Critical Alert\",\n              imageUrl: \"https://example.com/image.png\",\n              state: \"resolved\",\n              externalUrl: \"https://example.com/details\",\n            },\n            integrationId: \"<id>\",\n          },\n        ],\n      },\n    },\n  }, \"<id>\");\n\n  console.log(result);\n}\n\nrun();"
+  - target: $["paths"]["/v2/layouts/{layoutId}/usage"]["get"]
+    update:
+      "x-codeSamples":
+        - "lang": "typescript"
+          "label": "TypeScript"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.layouts.usage(\"<id>\");\n\n  console.log(result);\n}\n\nrun();"
   - target: $["paths"]["/v2/subscribers"]["get"]
     update:
       "x-codeSamples":
@@ -291,6 +351,60 @@ actions:
         - "lang": "typescript"
           "label": "TypeScript"
           "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.topics.subscriptions.create({\n    subscriberIds: [\n      \"subscriberId1\",\n      \"subscriberId2\",\n    ],\n  }, \"<value>\");\n\n  console.log(result);\n}\n\nrun();"
+  - target: $["paths"]["/v2/translations"]["post"]
+    update:
+      "x-codeSamples":
+        - "lang": "typescript"
+          "label": "TypeScript"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.translations.create({\n    resourceId: \"welcome-email\",\n    resourceType: \"workflow\",\n    locale: \"en_US\",\n    content: {},\n  });\n\n  console.log(result);\n}\n\nrun();"
+  - target: $["paths"]["/v2/translations/group/{resourceType}/{resourceId}"]["get"]
+    update:
+      "x-codeSamples":
+        - "lang": "typescript"
+          "label": "TypeScript"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.translations.groups.retrieve(\"workflow\", \"<id>\");\n\n  console.log(result);\n}\n\nrun();"
+  - target: $["paths"]["/v2/translations/master-json"]["get"]
+    update:
+      "x-codeSamples":
+        - "lang": "typescript"
+          "label": "TypeScript"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.translations.master.retrieve(\"en_US\");\n\n  console.log(result);\n}\n\nrun();"
+  - target: $["paths"]["/v2/translations/master-json"]["post"]
+    update:
+      "x-codeSamples":
+        - "lang": "typescript"
+          "label": "TypeScript"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.translations.master.import({\n    locale: \"en_US\",\n    masterJson: {},\n  });\n\n  console.log(result);\n}\n\nrun();"
+  - target: $["paths"]["/v2/translations/master-json/upload"]["post"]
+    update:
+      "x-codeSamples":
+        - "lang": "typescript"
+          "label": "TypeScript"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.translations.master.upload();\n\n  console.log(result);\n}\n\nrun();"
+  - target: $["paths"]["/v2/translations/upload"]["post"]
+    update:
+      "x-codeSamples":
+        - "lang": "typescript"
+          "label": "TypeScript"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.translations.upload({\n    resourceId: \"welcome-email\",\n    resourceType: \"workflow\",\n  });\n\n  console.log(result);\n}\n\nrun();"
+  - target: $["paths"]["/v2/translations/{resourceType}/{resourceId}"]["delete"]
+    update:
+      "x-codeSamples":
+        - "lang": "typescript"
+          "label": "TypeScript"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  await novu.translations.groups.delete(\"workflow\", \"<id>\");\n\n\n}\n\nrun();"
+  - target: $["paths"]["/v2/translations/{resourceType}/{resourceId}/{locale}"]["delete"]
+    update:
+      "x-codeSamples":
+        - "lang": "typescript"
+          "label": "TypeScript"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  await novu.translations.delete({\n    resourceType: \"workflow\",\n    resourceId: \"<id>\",\n    locale: \"el\",\n  });\n\n\n}\n\nrun();"
+  - target: $["paths"]["/v2/translations/{resourceType}/{resourceId}/{locale}"]["get"]
+    update:
+      "x-codeSamples":
+        - "lang": "typescript"
+          "label": "TypeScript"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.translations.retrieve({\n    resourceType: \"workflow\",\n    resourceId: \"<id>\",\n    locale: \"fi\",\n  });\n\n  console.log(result);\n}\n\nrun();"
   - target: $["paths"]["/v2/workflows"]["get"]
     update:
       "x-codeSamples":

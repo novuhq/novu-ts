@@ -1,6 +1,6 @@
 # Slug
 
-Slug of the workflow
+Slug of the layout
 
 ## Example Usage
 

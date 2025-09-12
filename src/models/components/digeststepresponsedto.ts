@@ -146,7 +146,7 @@ export type DigestStepResponseDto = {
    */
   type: StepTypeEnum;
   /**
-   * Origin of the workflow
+   * Origin of the layout
    */
   origin: ResourceOriginEnum;
   /**

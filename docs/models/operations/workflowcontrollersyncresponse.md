@@ -91,6 +91,7 @@ let value: WorkflowControllerSyncResponse = {
       },
     },
     status: "ACTIVE",
+    severity: "low",
   },
 };
 ```

@@ -1,6 +1,6 @@
 # UpdatedBy
 
-User who last updated the workflow
+User who last updated the layout
 
 ## Example Usage
 

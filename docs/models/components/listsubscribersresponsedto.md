@@ -10,7 +10,7 @@ let value: ListSubscribersResponseDto = {
     {
       channels: [
         {
-          providerId: "ryver",
+          providerId: "apns",
           credentials: {
             webhookUrl: "https://example.com/webhook",
             channel: "general",
@@ -32,8 +32,8 @@ let value: ListSubscribersResponseDto = {
       organizationId: "<id>",
       environmentId: "<id>",
       deleted: true,
-      createdAt: "1734005872002",
-      updatedAt: "1735631366439",
+      createdAt: "1707186272785",
+      updatedAt: "1735684986103",
     },
   ],
   next: "<value>",
