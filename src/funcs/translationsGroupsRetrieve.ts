@@ -26,10 +26,10 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Get translation group
+ * Retrieve a translation group
  *
  * @remarks
- * Retrieves a single translation group by resourceId and resourceType
+ * Retrieves a single translation group by resource type (workflow) and resource ID (workflowId)
  */
 export function translationsGroupsRetrieve(
   client: NovuCore,
@@ -165,7 +165,7 @@ async function $do(
     headers: headers,
     body: body,
     userAgent: client._options.userAgent,
-    timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
+    timeoutMs: options?.timeoutMs || client._options.timeoutMs || 5000,
   }, options);
   if (!requestRes.ok) {
     return [requestRes, { status: "invalid" }];

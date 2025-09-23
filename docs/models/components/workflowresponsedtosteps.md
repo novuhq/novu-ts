@@ -77,7 +77,7 @@ const value: components.InAppStepResponseDto = {
   stepId: "<id>",
   id: "<id>",
   name: "<value>",
-  slug: {},
+  slug: "<value>",
   type: "email",
   origin: "external",
   workflowId: "<id>",
@@ -159,8 +159,8 @@ const value: components.EmailStepResponseDto = {
   stepId: "<id>",
   id: "<id>",
   name: "<value>",
-  slug: {},
-  type: "email",
+  slug: "<value>",
+  type: "sms",
   origin: "novu-cloud-v1",
   workflowId: "<id>",
   workflowDatabaseId: "<id>",
@@ -239,7 +239,7 @@ const value: components.SmsStepResponseDto = {
   stepId: "<id>",
   id: "<id>",
   name: "<value>",
-  slug: {},
+  slug: "<value>",
   type: "push",
   origin: "novu-cloud-v1",
   workflowId: "<id>",
@@ -320,7 +320,7 @@ const value: components.PushStepResponseDto = {
   stepId: "<id>",
   id: "<id>",
   name: "<value>",
-  slug: {},
+  slug: "<value>",
   type: "sms",
   origin: "novu-cloud",
   workflowId: "<id>",
@@ -402,7 +402,7 @@ const value: components.ChatStepResponseDto = {
   stepId: "<id>",
   id: "<id>",
   name: "<value>",
-  slug: {},
+  slug: "<value>",
   type: "in_app",
   origin: "novu-cloud",
   workflowId: "<id>",
@@ -488,8 +488,8 @@ const value: components.DelayStepResponseDto = {
   stepId: "<id>",
   id: "<id>",
   name: "<value>",
-  slug: {},
-  type: "sms",
+  slug: "<value>",
+  type: "chat",
   origin: "novu-cloud",
   workflowId: "<id>",
   workflowDatabaseId: "<id>",
@@ -566,7 +566,7 @@ const value: components.DigestStepResponseDto = {
   stepId: "<id>",
   id: "<id>",
   name: "<value>",
-  slug: {},
+  slug: "<value>",
   type: "custom",
   origin: "novu-cloud-v1",
   workflowId: "<id>",
@@ -585,8 +585,92 @@ const value: components.CustomStepResponseDto = {
   stepId: "<id>",
   id: "<id>",
   name: "<value>",
-  slug: {},
+  slug: "<value>",
   type: "in_app",
+  origin: "external",
+  workflowId: "<id>",
+  workflowDatabaseId: "<id>",
+};
+```
+
+### `components.ThrottleStepResponseDto`
+
+```typescript
+const value: components.ThrottleStepResponseDto = {
+  controls: {
+    values: {
+      skip: {
+        "and": [
+          {
+            "==": [
+              {
+                "var": "payload.tier",
+              },
+              "pro",
+            ],
+          },
+          {
+            "==": [
+              {
+                "var": "subscriber.data.role",
+              },
+              "admin",
+            ],
+          },
+          {
+            ">": [
+              {
+                "var": "payload.amount",
+              },
+              "4",
+            ],
+          },
+        ],
+      },
+      dynamicKey: "payload.timestamp",
+    },
+  },
+  controlValues: {
+    skip: {
+      "and": [
+        {
+          "==": [
+            {
+              "var": "payload.tier",
+            },
+            "pro",
+          ],
+        },
+        {
+          "==": [
+            {
+              "var": "subscriber.data.role",
+            },
+            "admin",
+          ],
+        },
+        {
+          ">": [
+            {
+              "var": "payload.amount",
+            },
+            "4",
+          ],
+        },
+      ],
+    },
+    dynamicKey: "payload.timestamp",
+  },
+  variables: {
+    "key": "<value>",
+    "key1": "<value>",
+    "key2": "<value>",
+  },
+  stepId: "<id>",
+  id: "<id>",
+  name: "<value>",
+  slug: "<value>",
+  type: "custom",
   origin: "external",
   workflowId: "<id>",
   workflowDatabaseId: "<id>",

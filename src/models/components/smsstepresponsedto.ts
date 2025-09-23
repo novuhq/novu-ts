@@ -48,11 +48,6 @@ export type SmsStepResponseDtoControlValues = {
   additionalProperties?: { [k: string]: any };
 };
 
-/**
- * Slug of the step
- */
-export type SmsStepResponseDtoSlug = {};
-
 export type SmsStepResponseDto = {
   /**
    * Controls metadata for the SMS step
@@ -81,7 +76,7 @@ export type SmsStepResponseDto = {
   /**
    * Slug of the step
    */
-  slug: SmsStepResponseDtoSlug;
+  slug: string;
   /**
    * Type of the step
    */
@@ -177,54 +172,6 @@ export function smsStepResponseDtoControlValuesFromJSON(
 }
 
 /** @internal */
-export const SmsStepResponseDtoSlug$inboundSchema: z.ZodType<
-  SmsStepResponseDtoSlug,
-  z.ZodTypeDef,
-  unknown
-> = z.object({});
-
-/** @internal */
-export type SmsStepResponseDtoSlug$Outbound = {};
-
-/** @internal */
-export const SmsStepResponseDtoSlug$outboundSchema: z.ZodType<
-  SmsStepResponseDtoSlug$Outbound,
-  z.ZodTypeDef,
-  SmsStepResponseDtoSlug
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SmsStepResponseDtoSlug$ {
-  /** @deprecated use `SmsStepResponseDtoSlug$inboundSchema` instead. */
-  export const inboundSchema = SmsStepResponseDtoSlug$inboundSchema;
-  /** @deprecated use `SmsStepResponseDtoSlug$outboundSchema` instead. */
-  export const outboundSchema = SmsStepResponseDtoSlug$outboundSchema;
-  /** @deprecated use `SmsStepResponseDtoSlug$Outbound` instead. */
-  export type Outbound = SmsStepResponseDtoSlug$Outbound;
-}
-
-export function smsStepResponseDtoSlugToJSON(
-  smsStepResponseDtoSlug: SmsStepResponseDtoSlug,
-): string {
-  return JSON.stringify(
-    SmsStepResponseDtoSlug$outboundSchema.parse(smsStepResponseDtoSlug),
-  );
-}
-
-export function smsStepResponseDtoSlugFromJSON(
-  jsonString: string,
-): SafeParseResult<SmsStepResponseDtoSlug, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => SmsStepResponseDtoSlug$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'SmsStepResponseDtoSlug' from JSON`,
-  );
-}
-
-/** @internal */
 export const SmsStepResponseDto$inboundSchema: z.ZodType<
   SmsStepResponseDto,
   z.ZodTypeDef,
@@ -237,7 +184,7 @@ export const SmsStepResponseDto$inboundSchema: z.ZodType<
   stepId: z.string(),
   _id: z.string(),
   name: z.string(),
-  slug: z.lazy(() => SmsStepResponseDtoSlug$inboundSchema),
+  slug: z.string(),
   type: StepTypeEnum$inboundSchema,
   origin: ResourceOriginEnum$inboundSchema,
   workflowId: z.string(),
@@ -257,7 +204,7 @@ export type SmsStepResponseDto$Outbound = {
   stepId: string;
   _id: string;
   name: string;
-  slug: SmsStepResponseDtoSlug$Outbound;
+  slug: string;
   type: string;
   origin: string;
   workflowId: string;
@@ -278,7 +225,7 @@ export const SmsStepResponseDto$outboundSchema: z.ZodType<
   stepId: z.string(),
   id: z.string(),
   name: z.string(),
-  slug: z.lazy(() => SmsStepResponseDtoSlug$outboundSchema),
+  slug: z.string(),
   type: StepTypeEnum$outboundSchema,
   origin: ResourceOriginEnum$outboundSchema,
   workflowId: z.string(),

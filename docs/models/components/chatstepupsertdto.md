@@ -7,7 +7,7 @@ import { ChatStepUpsertDto } from "@novu/api/models/components";
 
 let value: ChatStepUpsertDto = {
   name: "<value>",
-  type: "custom",
+  type: "throttle",
   controlValues: {
     "skip": {
       "and": [

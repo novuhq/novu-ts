@@ -18,7 +18,7 @@ const value: components.InAppStepUpsertDto = {
 ```typescript
 const value: components.EmailStepUpsertDto = {
   name: "<value>",
-  type: "trigger",
+  type: "delay",
   controlValues: {
     "key": "<value>",
   },
@@ -30,7 +30,7 @@ const value: components.EmailStepUpsertDto = {
 ```typescript
 const value: components.SmsStepUpsertDto = {
   name: "<value>",
-  type: "chat",
+  type: "push",
   controlValues: {
     "key": "<value>",
     "key1": "<value>",
@@ -44,7 +44,7 @@ const value: components.SmsStepUpsertDto = {
 ```typescript
 const value: components.PushStepUpsertDto = {
   name: "<value>",
-  type: "digest",
+  type: "trigger",
   controlValues: {
     "skip": {
       "and": [
@@ -83,7 +83,7 @@ const value: components.PushStepUpsertDto = {
 ```typescript
 const value: components.ChatStepUpsertDto = {
   name: "<value>",
-  type: "custom",
+  type: "throttle",
   controlValues: {
     "skip": {
       "and": [

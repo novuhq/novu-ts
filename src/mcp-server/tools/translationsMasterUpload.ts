@@ -14,7 +14,7 @@ export const tool$translationsMasterUpload: ToolDefinition<typeof args> = {
   name: "translations-master-upload",
   description: `Upload master translations JSON file
 
-Upload a master JSON file containing translations. Locale is automatically detected from filename (e.g., en_US.json)`,
+Upload a master JSON file containing translations for multiple workflows. Locale is automatically detected from filename (e.g., en_US.json)`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await translationsMasterUpload(

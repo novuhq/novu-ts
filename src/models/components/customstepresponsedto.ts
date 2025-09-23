@@ -44,11 +44,6 @@ export type CustomStepResponseDtoControlValues = {
   additionalProperties?: { [k: string]: any };
 };
 
-/**
- * Slug of the step
- */
-export type CustomStepResponseDtoSlug = {};
-
 export type CustomStepResponseDto = {
   /**
    * Controls metadata for the custom step
@@ -77,7 +72,7 @@ export type CustomStepResponseDto = {
   /**
    * Slug of the step
    */
-  slug: CustomStepResponseDtoSlug;
+  slug: string;
   /**
    * Type of the step
    */
@@ -172,54 +167,6 @@ export function customStepResponseDtoControlValuesFromJSON(
 }
 
 /** @internal */
-export const CustomStepResponseDtoSlug$inboundSchema: z.ZodType<
-  CustomStepResponseDtoSlug,
-  z.ZodTypeDef,
-  unknown
-> = z.object({});
-
-/** @internal */
-export type CustomStepResponseDtoSlug$Outbound = {};
-
-/** @internal */
-export const CustomStepResponseDtoSlug$outboundSchema: z.ZodType<
-  CustomStepResponseDtoSlug$Outbound,
-  z.ZodTypeDef,
-  CustomStepResponseDtoSlug
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CustomStepResponseDtoSlug$ {
-  /** @deprecated use `CustomStepResponseDtoSlug$inboundSchema` instead. */
-  export const inboundSchema = CustomStepResponseDtoSlug$inboundSchema;
-  /** @deprecated use `CustomStepResponseDtoSlug$outboundSchema` instead. */
-  export const outboundSchema = CustomStepResponseDtoSlug$outboundSchema;
-  /** @deprecated use `CustomStepResponseDtoSlug$Outbound` instead. */
-  export type Outbound = CustomStepResponseDtoSlug$Outbound;
-}
-
-export function customStepResponseDtoSlugToJSON(
-  customStepResponseDtoSlug: CustomStepResponseDtoSlug,
-): string {
-  return JSON.stringify(
-    CustomStepResponseDtoSlug$outboundSchema.parse(customStepResponseDtoSlug),
-  );
-}
-
-export function customStepResponseDtoSlugFromJSON(
-  jsonString: string,
-): SafeParseResult<CustomStepResponseDtoSlug, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CustomStepResponseDtoSlug$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CustomStepResponseDtoSlug' from JSON`,
-  );
-}
-
-/** @internal */
 export const CustomStepResponseDto$inboundSchema: z.ZodType<
   CustomStepResponseDto,
   z.ZodTypeDef,
@@ -232,7 +179,7 @@ export const CustomStepResponseDto$inboundSchema: z.ZodType<
   stepId: z.string(),
   _id: z.string(),
   name: z.string(),
-  slug: z.lazy(() => CustomStepResponseDtoSlug$inboundSchema),
+  slug: z.string(),
   type: StepTypeEnum$inboundSchema,
   origin: ResourceOriginEnum$inboundSchema,
   workflowId: z.string(),
@@ -252,7 +199,7 @@ export type CustomStepResponseDto$Outbound = {
   stepId: string;
   _id: string;
   name: string;
-  slug: CustomStepResponseDtoSlug$Outbound;
+  slug: string;
   type: string;
   origin: string;
   workflowId: string;
@@ -273,7 +220,7 @@ export const CustomStepResponseDto$outboundSchema: z.ZodType<
   stepId: z.string(),
   id: z.string(),
   name: z.string(),
-  slug: z.lazy(() => CustomStepResponseDtoSlug$outboundSchema),
+  slug: z.string(),
   type: StepTypeEnum$outboundSchema,
   origin: ResourceOriginEnum$outboundSchema,
   workflowId: z.string(),

@@ -6,7 +6,7 @@
 import { UiSchemaProperty } from "@novu/api/models/components";
 
 let value: UiSchemaProperty = {
-  component: "PUSH_BODY",
+  component: "SMS_BODY",
 };
 ```
 

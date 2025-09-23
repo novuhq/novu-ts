@@ -15,9 +15,9 @@ const args = {
 
 export const tool$translationsCreate: ToolDefinition<typeof args> = {
   name: "translations-create",
-  description: `Create or update translation
+  description: `Create a translation
 
-Create or update a translation for a specific workflow and locale`,
+Create a translation for a specific workflow and locale, if the translation already exists, it will be updated`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await translationsCreate(

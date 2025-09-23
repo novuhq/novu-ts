@@ -26,10 +26,10 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Get single translation
+ * Retrieve a translation
  *
  * @remarks
- * Get a specific translation by resource type, resource ID and locale
+ * Retrieve a specific translation by resource type, resource ID and locale
  */
 export function translationsRetrieve(
   client: NovuCore,
@@ -153,7 +153,7 @@ async function $do(
     headers: headers,
     body: body,
     userAgent: client._options.userAgent,
-    timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
+    timeoutMs: options?.timeoutMs || client._options.timeoutMs || 5000,
   }, options);
   if (!requestRes.ok) {
     return [requestRes, { status: "invalid" }];

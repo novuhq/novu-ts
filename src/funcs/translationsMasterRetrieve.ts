@@ -26,10 +26,10 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Get master translations JSON
+ * Retrieve master translations JSON
  *
  * @remarks
- * Get all translations for a locale in master JSON format organized by namespace and resource
+ * Retrieve all translations for a locale in master JSON format organized by resourceId (workflowId)
  */
 export function translationsMasterRetrieve(
   client: NovuCore,
@@ -151,7 +151,7 @@ async function $do(
     query: query,
     body: body,
     userAgent: client._options.userAgent,
-    timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
+    timeoutMs: options?.timeoutMs || client._options.timeoutMs || 5000,
   }, options);
   if (!requestRes.ok) {
     return [requestRes, { status: "invalid" }];

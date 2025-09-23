@@ -18,16 +18,11 @@ import {
   StepTypeEnum$outboundSchema,
 } from "./steptypeenum.js";
 
-/**
- * Slug of the step
- */
-export type StepListResponseDtoSlug = {};
-
 export type StepListResponseDto = {
   /**
    * Slug of the step
    */
-  slug: StepListResponseDtoSlug;
+  slug: string;
   /**
    * Type of the step
    */
@@ -39,67 +34,19 @@ export type StepListResponseDto = {
 };
 
 /** @internal */
-export const StepListResponseDtoSlug$inboundSchema: z.ZodType<
-  StepListResponseDtoSlug,
-  z.ZodTypeDef,
-  unknown
-> = z.object({});
-
-/** @internal */
-export type StepListResponseDtoSlug$Outbound = {};
-
-/** @internal */
-export const StepListResponseDtoSlug$outboundSchema: z.ZodType<
-  StepListResponseDtoSlug$Outbound,
-  z.ZodTypeDef,
-  StepListResponseDtoSlug
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace StepListResponseDtoSlug$ {
-  /** @deprecated use `StepListResponseDtoSlug$inboundSchema` instead. */
-  export const inboundSchema = StepListResponseDtoSlug$inboundSchema;
-  /** @deprecated use `StepListResponseDtoSlug$outboundSchema` instead. */
-  export const outboundSchema = StepListResponseDtoSlug$outboundSchema;
-  /** @deprecated use `StepListResponseDtoSlug$Outbound` instead. */
-  export type Outbound = StepListResponseDtoSlug$Outbound;
-}
-
-export function stepListResponseDtoSlugToJSON(
-  stepListResponseDtoSlug: StepListResponseDtoSlug,
-): string {
-  return JSON.stringify(
-    StepListResponseDtoSlug$outboundSchema.parse(stepListResponseDtoSlug),
-  );
-}
-
-export function stepListResponseDtoSlugFromJSON(
-  jsonString: string,
-): SafeParseResult<StepListResponseDtoSlug, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => StepListResponseDtoSlug$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'StepListResponseDtoSlug' from JSON`,
-  );
-}
-
-/** @internal */
 export const StepListResponseDto$inboundSchema: z.ZodType<
   StepListResponseDto,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  slug: z.lazy(() => StepListResponseDtoSlug$inboundSchema),
+  slug: z.string(),
   type: StepTypeEnum$inboundSchema,
   issues: StepIssuesDto$inboundSchema.optional(),
 });
 
 /** @internal */
 export type StepListResponseDto$Outbound = {
-  slug: StepListResponseDtoSlug$Outbound;
+  slug: string;
   type: string;
   issues?: StepIssuesDto$Outbound | undefined;
 };
@@ -110,7 +57,7 @@ export const StepListResponseDto$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   StepListResponseDto
 > = z.object({
-  slug: z.lazy(() => StepListResponseDtoSlug$outboundSchema),
+  slug: z.string(),
   type: StepTypeEnum$outboundSchema,
   issues: StepIssuesDto$outboundSchema.optional(),
 });

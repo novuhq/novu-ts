@@ -7,7 +7,7 @@ import { PushStepUpsertDto } from "@novu/api/models/components";
 
 let value: PushStepUpsertDto = {
   name: "<value>",
-  type: "digest",
+  type: "trigger",
   controlValues: {
     "skip": {
       "and": [

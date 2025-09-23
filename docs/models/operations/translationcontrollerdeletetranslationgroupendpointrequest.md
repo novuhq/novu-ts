@@ -7,14 +7,14 @@ import { TranslationControllerDeleteTranslationGroupEndpointRequest } from "@nov
 
 let value: TranslationControllerDeleteTranslationGroupEndpointRequest = {
   resourceType: "workflow",
-  resourceId: "<id>",
+  resourceId: "welcome-email",
 };
 ```
 
 ## Fields
 
-| Field                                                              | Type                                                               | Required                                                           | Description                                                        |
-| ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
-| `resourceType`                                                     | [operations.ResourceType](../../models/operations/resourcetype.md) | :heavy_check_mark:                                                 | Resource type                                                      |
-| `resourceId`                                                       | *string*                                                           | :heavy_check_mark:                                                 | Resource ID                                                        |
-| `idempotencyKey`                                                   | *string*                                                           | :heavy_minus_sign:                                                 | A header for idempotency purposes                                  |
+| Field                                                              | Type                                                               | Required                                                           | Description                                                        | Example                                                            |
+| ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
+| `resourceType`                                                     | [operations.ResourceType](../../models/operations/resourcetype.md) | :heavy_check_mark:                                                 | Resource type                                                      | workflow                                                           |
+| `resourceId`                                                       | *string*                                                           | :heavy_check_mark:                                                 | Resource ID                                                        | welcome-email                                                      |
+| `idempotencyKey`                                                   | *string*                                                           | :heavy_minus_sign:                                                 | A header for idempotency purposes                                  |                                                                    |

@@ -76,8 +76,8 @@ let value: EmailStepResponseDto = {
   stepId: "<id>",
   id: "<id>",
   name: "<value>",
-  slug: {},
-  type: "email",
+  slug: "<value>",
+  type: "sms",
   origin: "novu-cloud-v1",
   workflowId: "<id>",
   workflowDatabaseId: "<id>",
@@ -94,7 +94,7 @@ let value: EmailStepResponseDto = {
 | `stepId`                                                                                                     | *string*                                                                                                     | :heavy_check_mark:                                                                                           | Unique identifier of the step                                                                                |
 | `id`                                                                                                         | *string*                                                                                                     | :heavy_check_mark:                                                                                           | Database identifier of the step                                                                              |
 | `name`                                                                                                       | *string*                                                                                                     | :heavy_check_mark:                                                                                           | Name of the step                                                                                             |
-| `slug`                                                                                                       | [components.EmailStepResponseDtoSlug](../../models/components/emailstepresponsedtoslug.md)                   | :heavy_check_mark:                                                                                           | Slug of the step                                                                                             |
+| `slug`                                                                                                       | *string*                                                                                                     | :heavy_check_mark:                                                                                           | Slug of the step                                                                                             |
 | `type`                                                                                                       | [components.StepTypeEnum](../../models/components/steptypeenum.md)                                           | :heavy_check_mark:                                                                                           | Type of the step                                                                                             |
 | `origin`                                                                                                     | [components.ResourceOriginEnum](../../models/components/resourceoriginenum.md)                               | :heavy_check_mark:                                                                                           | Origin of the layout                                                                                         |
 | `workflowId`                                                                                                 | *string*                                                                                                     | :heavy_check_mark:                                                                                           | Workflow identifier                                                                                          |

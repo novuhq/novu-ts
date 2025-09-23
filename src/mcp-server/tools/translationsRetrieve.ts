@@ -13,9 +13,9 @@ const args = {
 
 export const tool$translationsRetrieve: ToolDefinition<typeof args> = {
   name: "translations-retrieve",
-  description: `Get single translation
+  description: `Retrieve a translation
 
-Get a specific translation by resource type, resource ID and locale`,
+Retrieve a specific translation by resource type, resource ID and locale`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await translationsRetrieve(

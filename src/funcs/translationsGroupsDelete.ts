@@ -26,7 +26,7 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Delete translation group
+ * Delete a translation group
  *
  * @remarks
  * Delete an entire translation group and all its translations
@@ -163,7 +163,7 @@ async function $do(
     headers: headers,
     body: body,
     userAgent: client._options.userAgent,
-    timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
+    timeoutMs: options?.timeoutMs || client._options.timeoutMs || 5000,
   }, options);
   if (!requestRes.ok) {
     return [requestRes, { status: "invalid" }];

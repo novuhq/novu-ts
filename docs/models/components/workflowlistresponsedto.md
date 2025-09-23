@@ -19,8 +19,8 @@ let value: WorkflowListResponseDto = {
   ],
   steps: [
     {
-      slug: {},
-      type: "digest",
+      slug: "<value>",
+      type: "trigger",
     },
   ],
 };

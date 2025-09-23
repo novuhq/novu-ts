@@ -107,11 +107,6 @@ export type DigestStepResponseDtoControlValues = {
   additionalProperties?: { [k: string]: any };
 };
 
-/**
- * Slug of the step
- */
-export type DigestStepResponseDtoSlug = {};
-
 export type DigestStepResponseDto = {
   /**
    * Controls metadata for the digest step
@@ -140,7 +135,7 @@ export type DigestStepResponseDto = {
   /**
    * Slug of the step
    */
-  slug: DigestStepResponseDtoSlug;
+  slug: string;
   /**
    * Type of the step
    */
@@ -295,54 +290,6 @@ export function digestStepResponseDtoControlValuesFromJSON(
 }
 
 /** @internal */
-export const DigestStepResponseDtoSlug$inboundSchema: z.ZodType<
-  DigestStepResponseDtoSlug,
-  z.ZodTypeDef,
-  unknown
-> = z.object({});
-
-/** @internal */
-export type DigestStepResponseDtoSlug$Outbound = {};
-
-/** @internal */
-export const DigestStepResponseDtoSlug$outboundSchema: z.ZodType<
-  DigestStepResponseDtoSlug$Outbound,
-  z.ZodTypeDef,
-  DigestStepResponseDtoSlug
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DigestStepResponseDtoSlug$ {
-  /** @deprecated use `DigestStepResponseDtoSlug$inboundSchema` instead. */
-  export const inboundSchema = DigestStepResponseDtoSlug$inboundSchema;
-  /** @deprecated use `DigestStepResponseDtoSlug$outboundSchema` instead. */
-  export const outboundSchema = DigestStepResponseDtoSlug$outboundSchema;
-  /** @deprecated use `DigestStepResponseDtoSlug$Outbound` instead. */
-  export type Outbound = DigestStepResponseDtoSlug$Outbound;
-}
-
-export function digestStepResponseDtoSlugToJSON(
-  digestStepResponseDtoSlug: DigestStepResponseDtoSlug,
-): string {
-  return JSON.stringify(
-    DigestStepResponseDtoSlug$outboundSchema.parse(digestStepResponseDtoSlug),
-  );
-}
-
-export function digestStepResponseDtoSlugFromJSON(
-  jsonString: string,
-): SafeParseResult<DigestStepResponseDtoSlug, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => DigestStepResponseDtoSlug$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'DigestStepResponseDtoSlug' from JSON`,
-  );
-}
-
-/** @internal */
 export const DigestStepResponseDto$inboundSchema: z.ZodType<
   DigestStepResponseDto,
   z.ZodTypeDef,
@@ -355,7 +302,7 @@ export const DigestStepResponseDto$inboundSchema: z.ZodType<
   stepId: z.string(),
   _id: z.string(),
   name: z.string(),
-  slug: z.lazy(() => DigestStepResponseDtoSlug$inboundSchema),
+  slug: z.string(),
   type: StepTypeEnum$inboundSchema,
   origin: ResourceOriginEnum$inboundSchema,
   workflowId: z.string(),
@@ -375,7 +322,7 @@ export type DigestStepResponseDto$Outbound = {
   stepId: string;
   _id: string;
   name: string;
-  slug: DigestStepResponseDtoSlug$Outbound;
+  slug: string;
   type: string;
   origin: string;
   workflowId: string;
@@ -396,7 +343,7 @@ export const DigestStepResponseDto$outboundSchema: z.ZodType<
   stepId: z.string(),
   id: z.string(),
   name: z.string(),
-  slug: z.lazy(() => DigestStepResponseDtoSlug$outboundSchema),
+  slug: z.string(),
   type: StepTypeEnum$outboundSchema,
   origin: ResourceOriginEnum$outboundSchema,
   workflowId: z.string(),

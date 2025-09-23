@@ -79,11 +79,6 @@ export type EmailStepResponseDtoControlValues = {
   additionalProperties?: { [k: string]: any };
 };
 
-/**
- * Slug of the step
- */
-export type EmailStepResponseDtoSlug = {};
-
 export type EmailStepResponseDto = {
   /**
    * Controls metadata for the email step
@@ -112,7 +107,7 @@ export type EmailStepResponseDto = {
   /**
    * Slug of the step
    */
-  slug: EmailStepResponseDtoSlug;
+  slug: string;
   /**
    * Type of the step
    */
@@ -242,54 +237,6 @@ export function emailStepResponseDtoControlValuesFromJSON(
 }
 
 /** @internal */
-export const EmailStepResponseDtoSlug$inboundSchema: z.ZodType<
-  EmailStepResponseDtoSlug,
-  z.ZodTypeDef,
-  unknown
-> = z.object({});
-
-/** @internal */
-export type EmailStepResponseDtoSlug$Outbound = {};
-
-/** @internal */
-export const EmailStepResponseDtoSlug$outboundSchema: z.ZodType<
-  EmailStepResponseDtoSlug$Outbound,
-  z.ZodTypeDef,
-  EmailStepResponseDtoSlug
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EmailStepResponseDtoSlug$ {
-  /** @deprecated use `EmailStepResponseDtoSlug$inboundSchema` instead. */
-  export const inboundSchema = EmailStepResponseDtoSlug$inboundSchema;
-  /** @deprecated use `EmailStepResponseDtoSlug$outboundSchema` instead. */
-  export const outboundSchema = EmailStepResponseDtoSlug$outboundSchema;
-  /** @deprecated use `EmailStepResponseDtoSlug$Outbound` instead. */
-  export type Outbound = EmailStepResponseDtoSlug$Outbound;
-}
-
-export function emailStepResponseDtoSlugToJSON(
-  emailStepResponseDtoSlug: EmailStepResponseDtoSlug,
-): string {
-  return JSON.stringify(
-    EmailStepResponseDtoSlug$outboundSchema.parse(emailStepResponseDtoSlug),
-  );
-}
-
-export function emailStepResponseDtoSlugFromJSON(
-  jsonString: string,
-): SafeParseResult<EmailStepResponseDtoSlug, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => EmailStepResponseDtoSlug$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'EmailStepResponseDtoSlug' from JSON`,
-  );
-}
-
-/** @internal */
 export const EmailStepResponseDto$inboundSchema: z.ZodType<
   EmailStepResponseDto,
   z.ZodTypeDef,
@@ -302,7 +249,7 @@ export const EmailStepResponseDto$inboundSchema: z.ZodType<
   stepId: z.string(),
   _id: z.string(),
   name: z.string(),
-  slug: z.lazy(() => EmailStepResponseDtoSlug$inboundSchema),
+  slug: z.string(),
   type: StepTypeEnum$inboundSchema,
   origin: ResourceOriginEnum$inboundSchema,
   workflowId: z.string(),
@@ -322,7 +269,7 @@ export type EmailStepResponseDto$Outbound = {
   stepId: string;
   _id: string;
   name: string;
-  slug: EmailStepResponseDtoSlug$Outbound;
+  slug: string;
   type: string;
   origin: string;
   workflowId: string;
@@ -343,7 +290,7 @@ export const EmailStepResponseDto$outboundSchema: z.ZodType<
   stepId: z.string(),
   id: z.string(),
   name: z.string(),
-  slug: z.lazy(() => EmailStepResponseDtoSlug$outboundSchema),
+  slug: z.string(),
   type: StepTypeEnum$outboundSchema,
   origin: ResourceOriginEnum$outboundSchema,
   workflowId: z.string(),

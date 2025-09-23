@@ -7,7 +7,7 @@ import { SmsStepUpsertDto } from "@novu/api/models/components";
 
 let value: SmsStepUpsertDto = {
   name: "<value>",
-  type: "chat",
+  type: "push",
   controlValues: {
     "key": "<value>",
     "key1": "<value>",

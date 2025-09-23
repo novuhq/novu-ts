@@ -7,11 +7,11 @@ Type of the job
 ```typescript
 import { ActivityNotificationJobResponseDtoType } from "@novu/api/models/components";
 
-let value: ActivityNotificationJobResponseDtoType = "in_app";
+let value: ActivityNotificationJobResponseDtoType = "email";
 ```
 
 ## Values
 
 ```typescript
-"in_app" | "email" | "sms" | "chat" | "push" | "digest" | "trigger" | "delay" | "custom"
+"in_app" | "email" | "sms" | "chat" | "push" | "digest" | "trigger" | "delay" | "throttle" | "custom"
 ```

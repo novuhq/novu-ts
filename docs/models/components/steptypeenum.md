@@ -13,5 +13,5 @@ let value: StepTypeEnum = "custom";
 ## Values
 
 ```typescript
-"in_app" | "email" | "sms" | "chat" | "push" | "digest" | "trigger" | "delay" | "custom"
+"in_app" | "email" | "sms" | "chat" | "push" | "digest" | "trigger" | "delay" | "throttle" | "custom"
 ```

@@ -8,14 +8,14 @@ Used to localize your notifications to different languages.
 
 ### Available Operations
 
-* [create](#create) - Create or update translation
-* [retrieve](#retrieve) - Get single translation
-* [delete](#delete) - Delete translation
+* [create](#create) - Create a translation
+* [retrieve](#retrieve) - Retrieve a translation
+* [delete](#delete) - Delete a translation
 * [upload](#upload) - Upload translation files
 
 ## create
 
-Create or update a translation for a specific workflow and locale
+Create a translation for a specific workflow and locale, if the translation already exists, it will be updated
 
 ### Example Usage
 
@@ -95,7 +95,7 @@ run();
 
 ## retrieve
 
-Get a specific translation by resource type, resource ID and locale
+Retrieve a specific translation by resource type, resource ID and locale
 
 ### Example Usage
 
@@ -110,8 +110,8 @@ const novu = new Novu({
 async function run() {
   const result = await novu.translations.retrieve({
     resourceType: "workflow",
-    resourceId: "<id>",
-    locale: "fi",
+    resourceId: "welcome-email",
+    locale: "en_US",
   });
 
   console.log(result);
@@ -137,8 +137,8 @@ const novu = new NovuCore({
 async function run() {
   const res = await translationsRetrieve(novu, {
     resourceType: "workflow",
-    resourceId: "<id>",
-    locale: "fi",
+    resourceId: "welcome-email",
+    locale: "en_US",
   });
   if (res.ok) {
     const { value: result } = res;
@@ -249,7 +249,7 @@ run();
 
 ## upload
 
-Upload one or more JSON translation files for a specific workflow. The file name must be the locale, e.g. en_US.json
+Upload one or more JSON translation files for a specific workflow. Files name must match the locale, e.g. en_US.json
 
 ### Example Usage
 
@@ -307,7 +307,7 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `uploadTranslationsRequestDto`                                                                                                                                                 | [components.UploadTranslationsRequestDto](../../models/components/uploadtranslationsrequestdto.md)                                                                             | :heavy_check_mark:                                                                                                                                                             | Translation upload details                                                                                                                                                     |
+| `uploadTranslationsRequestDto`                                                                                                                                                 | [components.UploadTranslationsRequestDto](../../models/components/uploadtranslationsrequestdto.md)                                                                             | :heavy_check_mark:                                                                                                                                                             | Translation files upload body details                                                                                                                                          |
 | `idempotencyKey`                                                                                                                                                               | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | A header for idempotency purposes                                                                                                                                              |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
