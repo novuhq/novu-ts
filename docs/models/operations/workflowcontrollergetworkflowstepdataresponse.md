@@ -20,7 +20,7 @@ let value: WorkflowControllerGetWorkflowStepDataResponse = {
     stepId: "<id>",
     id: "<id>",
     name: "<value>",
-    slug: {},
+    slug: "<value>",
     type: "custom",
     origin: "novu-cloud",
     workflowId: "<id>",

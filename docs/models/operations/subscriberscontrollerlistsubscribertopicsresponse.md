@@ -6,7 +6,23 @@
 import { SubscribersControllerListSubscriberTopicsResponse } from "@novu/api/models/operations";
 
 let value: SubscribersControllerListSubscriberTopicsResponse = {
-  headers: {},
+  headers: {
+    "key": [
+      "<value 1>",
+      "<value 2>",
+      "<value 3>",
+    ],
+    "key1": [
+      "<value 1>",
+      "<value 2>",
+      "<value 3>",
+    ],
+    "key2": [
+      "<value 1>",
+      "<value 2>",
+      "<value 3>",
+    ],
+  },
   result: {
     data: [
       {
@@ -31,6 +47,8 @@ let value: SubscribersControllerListSubscriberTopicsResponse = {
     ],
     next: "<value>",
     previous: "<value>",
+    totalCount: 474.27,
+    totalCountCapped: true,
   },
 };
 ```

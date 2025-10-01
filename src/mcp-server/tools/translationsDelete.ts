@@ -14,7 +14,7 @@ const args = {
 
 export const tool$translationsDelete: ToolDefinition<typeof args> = {
   name: "translations-delete",
-  description: `Delete translation
+  description: `Delete a translation
 
 Delete a specific translation by resource type, resource ID and locale`,
   args,

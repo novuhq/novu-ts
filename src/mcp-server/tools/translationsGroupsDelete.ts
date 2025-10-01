@@ -15,7 +15,7 @@ const args = {
 
 export const tool$translationsGroupsDelete: ToolDefinition<typeof args> = {
   name: "translations-groups-delete",
-  description: `Delete translation group
+  description: `Delete a translation group
 
 Delete an entire translation group and all its translations`,
   args,

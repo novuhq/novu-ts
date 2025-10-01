@@ -17,7 +17,7 @@ export const tool$translationsMasterImport: ToolDefinition<typeof args> = {
   name: "translations-master-import",
   description: `Import master translations JSON
 
-Import translations from master JSON format for a specific locale`,
+Import translations for multiple workflows from master JSON format for a specific locale`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await translationsMasterImport(

@@ -31,6 +31,8 @@ let value: TopicsControllerListTopicSubscriptionsResponse = {
     ],
     next: "<value>",
     previous: "<value>",
+    totalCount: 474.27,
+    totalCountCapped: true,
   },
 };
 ```

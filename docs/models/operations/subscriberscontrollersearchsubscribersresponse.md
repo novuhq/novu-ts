@@ -6,15 +6,7 @@
 import { SubscribersControllerSearchSubscribersResponse } from "@novu/api/models/operations";
 
 let value: SubscribersControllerSearchSubscribersResponse = {
-  headers: {
-    "key": [
-      "<value 1>",
-    ],
-    "key1": [],
-    "key2": [
-      "<value 1>",
-    ],
-  },
+  headers: {},
   result: {
     data: [
       {
@@ -48,6 +40,8 @@ let value: SubscribersControllerSearchSubscribersResponse = {
     ],
     next: "<value>",
     previous: "<value>",
+    totalCount: 9492.65,
+    totalCountCapped: true,
   },
 };
 ```

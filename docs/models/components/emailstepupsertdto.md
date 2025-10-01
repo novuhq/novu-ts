@@ -7,7 +7,7 @@ import { EmailStepUpsertDto } from "@novu/api/models/components";
 
 let value: EmailStepUpsertDto = {
   name: "<value>",
-  type: "trigger",
+  type: "delay",
   controlValues: {
     "key": "<value>",
   },

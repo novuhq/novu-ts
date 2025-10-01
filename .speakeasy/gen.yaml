@@ -22,7 +22,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 typescript:
-  version: 1.6.1-rc.0
+  version: 1.7.0
   additionalDependencies:
     dependencies: {}
     devDependencies: {}
@@ -53,6 +53,7 @@ typescript:
   jsonpath: legacy
   maxMethodParams: 3
   methodArguments: require-security-and-request
+  modelPropertyCasing: camel
   moduleFormat: commonjs
   outputModelSuffix: output
   packageName: '@novu/api'

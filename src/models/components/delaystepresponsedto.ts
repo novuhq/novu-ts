@@ -88,11 +88,6 @@ export type DelayStepResponseDtoControlValues = {
   additionalProperties?: { [k: string]: any };
 };
 
-/**
- * Slug of the step
- */
-export type DelayStepResponseDtoSlug = {};
-
 export type DelayStepResponseDto = {
   /**
    * Controls metadata for the delay step
@@ -121,7 +116,7 @@ export type DelayStepResponseDto = {
   /**
    * Slug of the step
    */
-  slug: DelayStepResponseDtoSlug;
+  slug: string;
   /**
    * Type of the step
    */
@@ -266,54 +261,6 @@ export function delayStepResponseDtoControlValuesFromJSON(
 }
 
 /** @internal */
-export const DelayStepResponseDtoSlug$inboundSchema: z.ZodType<
-  DelayStepResponseDtoSlug,
-  z.ZodTypeDef,
-  unknown
-> = z.object({});
-
-/** @internal */
-export type DelayStepResponseDtoSlug$Outbound = {};
-
-/** @internal */
-export const DelayStepResponseDtoSlug$outboundSchema: z.ZodType<
-  DelayStepResponseDtoSlug$Outbound,
-  z.ZodTypeDef,
-  DelayStepResponseDtoSlug
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DelayStepResponseDtoSlug$ {
-  /** @deprecated use `DelayStepResponseDtoSlug$inboundSchema` instead. */
-  export const inboundSchema = DelayStepResponseDtoSlug$inboundSchema;
-  /** @deprecated use `DelayStepResponseDtoSlug$outboundSchema` instead. */
-  export const outboundSchema = DelayStepResponseDtoSlug$outboundSchema;
-  /** @deprecated use `DelayStepResponseDtoSlug$Outbound` instead. */
-  export type Outbound = DelayStepResponseDtoSlug$Outbound;
-}
-
-export function delayStepResponseDtoSlugToJSON(
-  delayStepResponseDtoSlug: DelayStepResponseDtoSlug,
-): string {
-  return JSON.stringify(
-    DelayStepResponseDtoSlug$outboundSchema.parse(delayStepResponseDtoSlug),
-  );
-}
-
-export function delayStepResponseDtoSlugFromJSON(
-  jsonString: string,
-): SafeParseResult<DelayStepResponseDtoSlug, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => DelayStepResponseDtoSlug$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'DelayStepResponseDtoSlug' from JSON`,
-  );
-}
-
-/** @internal */
 export const DelayStepResponseDto$inboundSchema: z.ZodType<
   DelayStepResponseDto,
   z.ZodTypeDef,
@@ -326,7 +273,7 @@ export const DelayStepResponseDto$inboundSchema: z.ZodType<
   stepId: z.string(),
   _id: z.string(),
   name: z.string(),
-  slug: z.lazy(() => DelayStepResponseDtoSlug$inboundSchema),
+  slug: z.string(),
   type: StepTypeEnum$inboundSchema,
   origin: ResourceOriginEnum$inboundSchema,
   workflowId: z.string(),
@@ -346,7 +293,7 @@ export type DelayStepResponseDto$Outbound = {
   stepId: string;
   _id: string;
   name: string;
-  slug: DelayStepResponseDtoSlug$Outbound;
+  slug: string;
   type: string;
   origin: string;
   workflowId: string;
@@ -367,7 +314,7 @@ export const DelayStepResponseDto$outboundSchema: z.ZodType<
   stepId: z.string(),
   id: z.string(),
   name: z.string(),
-  slug: z.lazy(() => DelayStepResponseDtoSlug$outboundSchema),
+  slug: z.string(),
   type: StepTypeEnum$outboundSchema,
   origin: ResourceOriginEnum$outboundSchema,
   workflowId: z.string(),

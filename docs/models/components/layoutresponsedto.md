@@ -8,7 +8,7 @@ import { LayoutResponseDto } from "@novu/api/models/components";
 let value: LayoutResponseDto = {
   id: "<id>",
   layoutId: "<id>",
-  slug: {},
+  slug: "<value>",
   name: "<value>",
   isDefault: true,
   updatedAt: "1735669594678",
@@ -27,7 +27,7 @@ let value: LayoutResponseDto = {
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
 | `id`                                                                           | *string*                                                                       | :heavy_check_mark:                                                             | Unique internal identifier of the layout                                       |
 | `layoutId`                                                                     | *string*                                                                       | :heavy_check_mark:                                                             | Unique identifier for the layout                                               |
-| `slug`                                                                         | [components.Slug](../../models/components/slug.md)                             | :heavy_check_mark:                                                             | Slug of the layout                                                             |
+| `slug`                                                                         | *string*                                                                       | :heavy_check_mark:                                                             | Slug of the layout                                                             |
 | `name`                                                                         | *string*                                                                       | :heavy_check_mark:                                                             | Name of the layout                                                             |
 | `isDefault`                                                                    | *boolean*                                                                      | :heavy_check_mark:                                                             | Whether the layout is the default layout                                       |
 | `updatedAt`                                                                    | *string*                                                                       | :heavy_check_mark:                                                             | Last updated timestamp                                                         |
