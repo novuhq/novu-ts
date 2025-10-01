@@ -5,13 +5,13 @@
 
 ### Available Operations
 
-* [retrieve](#retrieve) - Get master translations JSON
+* [retrieve](#retrieve) - Retrieve master translations JSON
 * [import](#import) - Import master translations JSON
 * [upload](#upload) - Upload master translations JSON file
 
 ## retrieve
 
-Get all translations for a locale in master JSON format organized by namespace and resource
+Retrieve all translations for a locale in master JSON format organized by resourceId (workflowId)
 
 ### Example Usage
 
@@ -81,7 +81,7 @@ run();
 
 ## import
 
-Import translations from master JSON format for a specific locale
+Import translations for multiple workflows from master JSON format for a specific locale
 
 ### Example Usage
 
@@ -157,7 +157,7 @@ run();
 
 ## upload
 
-Upload a master JSON file containing translations. Locale is automatically detected from filename (e.g., en_US.json)
+Upload a master JSON file containing translations for multiple workflows. Locale is automatically detected from filename (e.g., en_US.json)
 
 ### Example Usage
 

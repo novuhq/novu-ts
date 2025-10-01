@@ -25,16 +25,6 @@ import {
 } from "./resourcetypeenum.js";
 
 /**
- * Slug of the layout
- */
-export type Slug = {};
-
-/**
- * User last name
- */
-export type LastName = {};
-
-/**
  * User who last updated the layout
  */
 export type UpdatedBy = {
@@ -49,7 +39,7 @@ export type UpdatedBy = {
   /**
    * User last name
    */
-  lastName?: LastName | null | undefined;
+  lastName?: string | null | undefined;
   /**
    * User external ID
    */
@@ -68,7 +58,7 @@ export type LayoutResponseDto = {
   /**
    * Slug of the layout
    */
-  slug: Slug;
+  slug: string;
   /**
    * Name of the layout
    */
@@ -108,88 +98,6 @@ export type LayoutResponseDto = {
 };
 
 /** @internal */
-export const Slug$inboundSchema: z.ZodType<Slug, z.ZodTypeDef, unknown> = z
-  .object({});
-
-/** @internal */
-export type Slug$Outbound = {};
-
-/** @internal */
-export const Slug$outboundSchema: z.ZodType<Slug$Outbound, z.ZodTypeDef, Slug> =
-  z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Slug$ {
-  /** @deprecated use `Slug$inboundSchema` instead. */
-  export const inboundSchema = Slug$inboundSchema;
-  /** @deprecated use `Slug$outboundSchema` instead. */
-  export const outboundSchema = Slug$outboundSchema;
-  /** @deprecated use `Slug$Outbound` instead. */
-  export type Outbound = Slug$Outbound;
-}
-
-export function slugToJSON(slug: Slug): string {
-  return JSON.stringify(Slug$outboundSchema.parse(slug));
-}
-
-export function slugFromJSON(
-  jsonString: string,
-): SafeParseResult<Slug, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Slug$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Slug' from JSON`,
-  );
-}
-
-/** @internal */
-export const LastName$inboundSchema: z.ZodType<
-  LastName,
-  z.ZodTypeDef,
-  unknown
-> = z.object({});
-
-/** @internal */
-export type LastName$Outbound = {};
-
-/** @internal */
-export const LastName$outboundSchema: z.ZodType<
-  LastName$Outbound,
-  z.ZodTypeDef,
-  LastName
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace LastName$ {
-  /** @deprecated use `LastName$inboundSchema` instead. */
-  export const inboundSchema = LastName$inboundSchema;
-  /** @deprecated use `LastName$outboundSchema` instead. */
-  export const outboundSchema = LastName$outboundSchema;
-  /** @deprecated use `LastName$Outbound` instead. */
-  export type Outbound = LastName$Outbound;
-}
-
-export function lastNameToJSON(lastName: LastName): string {
-  return JSON.stringify(LastName$outboundSchema.parse(lastName));
-}
-
-export function lastNameFromJSON(
-  jsonString: string,
-): SafeParseResult<LastName, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => LastName$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'LastName' from JSON`,
-  );
-}
-
-/** @internal */
 export const UpdatedBy$inboundSchema: z.ZodType<
   UpdatedBy,
   z.ZodTypeDef,
@@ -197,7 +105,7 @@ export const UpdatedBy$inboundSchema: z.ZodType<
 > = z.object({
   _id: z.string(),
   firstName: z.nullable(z.string()).optional(),
-  lastName: z.nullable(z.lazy(() => LastName$inboundSchema)).optional(),
+  lastName: z.nullable(z.string()).optional(),
   externalId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -209,7 +117,7 @@ export const UpdatedBy$inboundSchema: z.ZodType<
 export type UpdatedBy$Outbound = {
   _id: string;
   firstName?: string | null | undefined;
-  lastName?: LastName$Outbound | null | undefined;
+  lastName?: string | null | undefined;
   externalId?: string | null | undefined;
 };
 
@@ -221,7 +129,7 @@ export const UpdatedBy$outboundSchema: z.ZodType<
 > = z.object({
   id: z.string(),
   firstName: z.nullable(z.string()).optional(),
-  lastName: z.nullable(z.lazy(() => LastName$outboundSchema)).optional(),
+  lastName: z.nullable(z.string()).optional(),
   externalId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -264,7 +172,7 @@ export const LayoutResponseDto$inboundSchema: z.ZodType<
 > = z.object({
   _id: z.string(),
   layoutId: z.string(),
-  slug: z.lazy(() => Slug$inboundSchema),
+  slug: z.string(),
   name: z.string(),
   isDefault: z.boolean(),
   updatedAt: z.string(),
@@ -284,7 +192,7 @@ export const LayoutResponseDto$inboundSchema: z.ZodType<
 export type LayoutResponseDto$Outbound = {
   _id: string;
   layoutId: string;
-  slug: Slug$Outbound;
+  slug: string;
   name: string;
   isDefault: boolean;
   updatedAt: string;
@@ -304,7 +212,7 @@ export const LayoutResponseDto$outboundSchema: z.ZodType<
 > = z.object({
   id: z.string(),
   layoutId: z.string(),
-  slug: z.lazy(() => Slug$outboundSchema),
+  slug: z.string(),
   name: z.string(),
   isDefault: z.boolean(),
   updatedAt: z.string(),

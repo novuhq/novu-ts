@@ -24,7 +24,7 @@ let value: WorkflowControllerGetWorkflowResponse = {
     name: "<value>",
     id: "<id>",
     workflowId: "<id>",
-    slug: {},
+    slug: "<value>",
     updatedAt: "1735616917056",
     createdAt: "1725449855142",
     steps: [
@@ -69,7 +69,7 @@ let value: WorkflowControllerGetWorkflowResponse = {
         stepId: "<id>",
         id: "<id>",
         name: "<value>",
-        slug: {},
+        slug: "<value>",
         type: "digest",
         origin: "novu-cloud-v1",
         workflowId: "<id>",

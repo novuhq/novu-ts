@@ -52,11 +52,6 @@ export type PushStepResponseDtoControlValues = {
   additionalProperties?: { [k: string]: any };
 };
 
-/**
- * Slug of the step
- */
-export type PushStepResponseDtoSlug = {};
-
 export type PushStepResponseDto = {
   /**
    * Controls metadata for the push step
@@ -85,7 +80,7 @@ export type PushStepResponseDto = {
   /**
    * Slug of the step
    */
-  slug: PushStepResponseDtoSlug;
+  slug: string;
   /**
    * Type of the step
    */
@@ -184,54 +179,6 @@ export function pushStepResponseDtoControlValuesFromJSON(
 }
 
 /** @internal */
-export const PushStepResponseDtoSlug$inboundSchema: z.ZodType<
-  PushStepResponseDtoSlug,
-  z.ZodTypeDef,
-  unknown
-> = z.object({});
-
-/** @internal */
-export type PushStepResponseDtoSlug$Outbound = {};
-
-/** @internal */
-export const PushStepResponseDtoSlug$outboundSchema: z.ZodType<
-  PushStepResponseDtoSlug$Outbound,
-  z.ZodTypeDef,
-  PushStepResponseDtoSlug
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PushStepResponseDtoSlug$ {
-  /** @deprecated use `PushStepResponseDtoSlug$inboundSchema` instead. */
-  export const inboundSchema = PushStepResponseDtoSlug$inboundSchema;
-  /** @deprecated use `PushStepResponseDtoSlug$outboundSchema` instead. */
-  export const outboundSchema = PushStepResponseDtoSlug$outboundSchema;
-  /** @deprecated use `PushStepResponseDtoSlug$Outbound` instead. */
-  export type Outbound = PushStepResponseDtoSlug$Outbound;
-}
-
-export function pushStepResponseDtoSlugToJSON(
-  pushStepResponseDtoSlug: PushStepResponseDtoSlug,
-): string {
-  return JSON.stringify(
-    PushStepResponseDtoSlug$outboundSchema.parse(pushStepResponseDtoSlug),
-  );
-}
-
-export function pushStepResponseDtoSlugFromJSON(
-  jsonString: string,
-): SafeParseResult<PushStepResponseDtoSlug, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => PushStepResponseDtoSlug$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'PushStepResponseDtoSlug' from JSON`,
-  );
-}
-
-/** @internal */
 export const PushStepResponseDto$inboundSchema: z.ZodType<
   PushStepResponseDto,
   z.ZodTypeDef,
@@ -244,7 +191,7 @@ export const PushStepResponseDto$inboundSchema: z.ZodType<
   stepId: z.string(),
   _id: z.string(),
   name: z.string(),
-  slug: z.lazy(() => PushStepResponseDtoSlug$inboundSchema),
+  slug: z.string(),
   type: StepTypeEnum$inboundSchema,
   origin: ResourceOriginEnum$inboundSchema,
   workflowId: z.string(),
@@ -264,7 +211,7 @@ export type PushStepResponseDto$Outbound = {
   stepId: string;
   _id: string;
   name: string;
-  slug: PushStepResponseDtoSlug$Outbound;
+  slug: string;
   type: string;
   origin: string;
   workflowId: string;
@@ -285,7 +232,7 @@ export const PushStepResponseDto$outboundSchema: z.ZodType<
   stepId: z.string(),
   id: z.string(),
   name: z.string(),
-  slug: z.lazy(() => PushStepResponseDtoSlug$outboundSchema),
+  slug: z.string(),
   type: StepTypeEnum$outboundSchema,
   origin: ResourceOriginEnum$outboundSchema,
   workflowId: z.string(),

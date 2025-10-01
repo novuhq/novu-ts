@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 6bff3a53-3f0b-40b4-942f-ff70dc583ae5
 management:
-  docChecksum: 38e985e398e53045a106b51e9477b919
+  docChecksum: 69647246cb021031645cd0abb1f72c9a
   docVersion: 3.9.0
-  speakeasyVersion: 1.615.2
-  generationVersion: 2.698.4
-  releaseVersion: 1.6.1-rc.0
-  configChecksum: b34f1acaff01ed2af77e72c268288cd3
+  speakeasyVersion: 1.631.5
+  generationVersion: 2.716.16
+  releaseVersion: 1.7.0
+  configChecksum: 58b5b32d13a553ae45af049a83e93b76
   repoURL: https://github.com/novuhq/novu-ts.git
   installationURL: https://github.com/novuhq/novu-ts
   published: true
@@ -15,7 +15,7 @@ features:
     additionalDependencies: 0.1.0
     additionalProperties: 0.1.1
     constsAndDefaults: 0.1.12
-    core: 3.21.22
+    core: 3.21.25
     defaultEnabledRetries: 0.1.0
     deprecations: 2.81.1
     enumUnions: 0.1.0
@@ -33,7 +33,7 @@ features:
     responseFormat: 0.2.3
     retries: 2.83.0
     sdkHooks: 0.3.0
-    unions: 2.85.11
+    unions: 2.85.12
 generatedFiles:
   - .gitattributes
   - .npmignore
@@ -48,8 +48,6 @@ generatedFiles:
   - docs/models/components/activitynotificationjobresponsedtopayload.md
   - docs/models/components/activitynotificationjobresponsedtotype.md
   - docs/models/components/activitynotificationresponsedto.md
-  - docs/models/components/activitynotificationresponsedtopayload.md
-  - docs/models/components/activitynotificationresponsedtoto.md
   - docs/models/components/activitynotificationstepresponsedto.md
   - docs/models/components/activitynotificationstepresponsedtometadata.md
   - docs/models/components/activitynotificationstepresponsedtoreplycallback.md
@@ -84,7 +82,6 @@ generatedFiles:
   - docs/models/components/chatorpushproviderenum.md
   - docs/models/components/chatstepresponsedto.md
   - docs/models/components/chatstepresponsedtocontrolvalues.md
-  - docs/models/components/chatstepresponsedtoslug.md
   - docs/models/components/chatstepupsertdto.md
   - docs/models/components/chatstepupsertdtocontrolvalues.md
   - docs/models/components/configurations.md
@@ -92,7 +89,6 @@ generatedFiles:
   - docs/models/components/constraintvalidation.md
   - docs/models/components/content.md
   - docs/models/components/contentissueenum.md
-  - docs/models/components/controls.md
   - docs/models/components/controlsmetadatadto.md
   - docs/models/components/controlvalues.md
   - docs/models/components/controlvariables.md
@@ -112,7 +108,6 @@ generatedFiles:
   - docs/models/components/customcontrolsmetadataresponsedto.md
   - docs/models/components/customstepresponsedto.md
   - docs/models/components/customstepresponsedtocontrolvalues.md
-  - docs/models/components/customstepresponsedtoslug.md
   - docs/models/components/customstepupsertdto.md
   - docs/models/components/customstepupsertdtocontrolvalues.md
   - docs/models/components/data.md
@@ -125,7 +120,6 @@ generatedFiles:
   - docs/models/components/delayscheduledmetadatatype.md
   - docs/models/components/delaystepresponsedto.md
   - docs/models/components/delaystepresponsedtocontrolvalues.md
-  - docs/models/components/delaystepresponsedtoslug.md
   - docs/models/components/delaystepresponsedtotype.md
   - docs/models/components/delaystepresponsedtounit.md
   - docs/models/components/delaystepupsertdto.md
@@ -146,7 +140,6 @@ generatedFiles:
   - docs/models/components/digestregularmetadataunit.md
   - docs/models/components/digeststepresponsedto.md
   - docs/models/components/digeststepresponsedtocontrolvalues.md
-  - docs/models/components/digeststepresponsedtoslug.md
   - docs/models/components/digeststepresponsedtotype.md
   - docs/models/components/digeststepresponsedtounit.md
   - docs/models/components/digeststepupsertdto.md
@@ -173,7 +166,6 @@ generatedFiles:
   - docs/models/components/emailstepresponsedto.md
   - docs/models/components/emailstepresponsedtocontrolvalues.md
   - docs/models/components/emailstepresponsedtoeditortype.md
-  - docs/models/components/emailstepresponsedtoslug.md
   - docs/models/components/emailstepupsertdto.md
   - docs/models/components/emailstepupsertdtocontrolvalues.md
   - docs/models/components/environmentresponsedto.md
@@ -200,7 +192,6 @@ generatedFiles:
   - docs/models/components/inappcontrolsmetadataresponsedto.md
   - docs/models/components/inappstepresponsedto.md
   - docs/models/components/inappstepresponsedtocontrolvalues.md
-  - docs/models/components/inappstepresponsedtoslug.md
   - docs/models/components/inappstepupsertdto.md
   - docs/models/components/inappstepupsertdtocontrolvalues.md
   - docs/models/components/inboundparsedomaindto.md
@@ -209,7 +200,6 @@ generatedFiles:
   - docs/models/components/integrationresponsedto.md
   - docs/models/components/issues.md
   - docs/models/components/issuetype.md
-  - docs/models/components/lastname.md
   - docs/models/components/lastpublishedby.md
   - docs/models/components/layoutcontrolsdto.md
   - docs/models/components/layoutcontrolvaluesdto.md
@@ -292,7 +282,6 @@ generatedFiles:
   - docs/models/components/pushcontrolsmetadataresponsedto.md
   - docs/models/components/pushstepresponsedto.md
   - docs/models/components/pushstepresponsedtocontrolvalues.md
-  - docs/models/components/pushstepresponsedtoslug.md
   - docs/models/components/pushstepupsertdto.md
   - docs/models/components/pushstepupsertdtocontrolvalues.md
   - docs/models/components/redirectdto.md
@@ -308,12 +297,10 @@ generatedFiles:
   - docs/models/components/scheduledto.md
   - docs/models/components/security.md
   - docs/models/components/severitylevelenum.md
-  - docs/models/components/slug.md
   - docs/models/components/smscontroldto.md
   - docs/models/components/smscontrolsmetadataresponsedto.md
   - docs/models/components/smsstepresponsedto.md
   - docs/models/components/smsstepresponsedtocontrolvalues.md
-  - docs/models/components/smsstepresponsedtoslug.md
   - docs/models/components/smsstepupsertdto.md
   - docs/models/components/smsstepupsertdtocontrolvalues.md
   - docs/models/components/status.md
@@ -323,9 +310,7 @@ generatedFiles:
   - docs/models/components/stepintegrationissue.md
   - docs/models/components/stepissuesdto.md
   - docs/models/components/steplistresponsedto.md
-  - docs/models/components/steplistresponsedtoslug.md
   - docs/models/components/stepresponsedto.md
-  - docs/models/components/stepresponsedtoslug.md
   - docs/models/components/steps.md
   - docs/models/components/stepsoverrides.md
   - docs/models/components/steptypeenum.md
@@ -351,6 +336,16 @@ generatedFiles:
   - docs/models/components/tenantpayloaddto.md
   - docs/models/components/tenantpayloaddtodata.md
   - docs/models/components/textalignenum.md
+  - docs/models/components/throttlecontroldto.md
+  - docs/models/components/throttlecontroldtotype.md
+  - docs/models/components/throttlecontroldtounit.md
+  - docs/models/components/throttlecontrolsmetadataresponsedto.md
+  - docs/models/components/throttlestepresponsedto.md
+  - docs/models/components/throttlestepresponsedtocontrolvalues.md
+  - docs/models/components/throttlestepresponsedtotype.md
+  - docs/models/components/throttlestepresponsedtounit.md
+  - docs/models/components/throttlestepupsertdto.md
+  - docs/models/components/throttlestepupsertdtocontrolvalues.md
   - docs/models/components/thursday.md
   - docs/models/components/timedconfig.md
   - docs/models/components/timerangedto.md
@@ -411,9 +406,7 @@ generatedFiles:
   - docs/models/components/workflowinfodto.md
   - docs/models/components/workflowintegrationstatus.md
   - docs/models/components/workflowlistresponsedto.md
-  - docs/models/components/workflowlistresponsedtolastname.md
   - docs/models/components/workflowlistresponsedtolastpublishedby.md
-  - docs/models/components/workflowlistresponsedtolastpublishedbylastname.md
   - docs/models/components/workflowlistresponsedtoupdatedby.md
   - docs/models/components/workflowpreferencedto.md
   - docs/models/components/workflowpreferencesdto.md
@@ -423,9 +416,6 @@ generatedFiles:
   - docs/models/components/workflowresponse.md
   - docs/models/components/workflowresponsedata.md
   - docs/models/components/workflowresponsedto.md
-  - docs/models/components/workflowresponsedtolastname.md
-  - docs/models/components/workflowresponsedtolastpublishedbylastname.md
-  - docs/models/components/workflowresponsedtoslug.md
   - docs/models/components/workflowresponsedtosortfield.md
   - docs/models/components/workflowresponsedtosteps.md
   - docs/models/components/workflowresponsedtoupdatedby.md
@@ -1001,6 +991,10 @@ generatedFiles:
   - src/models/components/syncworkflowdto.ts
   - src/models/components/tenantpayloaddto.ts
   - src/models/components/textalignenum.ts
+  - src/models/components/throttlecontroldto.ts
+  - src/models/components/throttlecontrolsmetadataresponsedto.ts
+  - src/models/components/throttlestepresponsedto.ts
+  - src/models/components/throttlestepupsertdto.ts
   - src/models/components/timedconfig.ts
   - src/models/components/timerangedto.ts
   - src/models/components/topicdto.ts
@@ -1231,7 +1225,7 @@ examples:
     speakeasy-default-subscribers-controller-search-subscribers:
       responses:
         "200":
-          application/json: {"data": [{"channels": [{"providerId": "pusher-beams", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}, {"providerId": "pusher-beams", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}], "subscriberId": "<id>", "_organizationId": "<id>", "_environmentId": "<id>", "deleted": false, "createdAt": "1723832108589", "updatedAt": "1735636837621"}, {"channels": [{"providerId": "pusher-beams", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}, {"providerId": "pusher-beams", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}], "subscriberId": "<id>", "_organizationId": "<id>", "_environmentId": "<id>", "deleted": false, "createdAt": "1723832108589", "updatedAt": "1735636837621"}, {"channels": [{"providerId": "pusher-beams", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}, {"providerId": "pusher-beams", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}], "subscriberId": "<id>", "_organizationId": "<id>", "_environmentId": "<id>", "deleted": false, "createdAt": "1723832108589", "updatedAt": "1735636837621"}], "next": "<value>", "previous": null}
+          application/json: {"data": [{"channels": [{"providerId": "pusher-beams", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}, {"providerId": "pusher-beams", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}], "subscriberId": "<id>", "_organizationId": "<id>", "_environmentId": "<id>", "deleted": false, "createdAt": "1723832108589", "updatedAt": "1735636837621"}, {"channels": [{"providerId": "pusher-beams", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}, {"providerId": "pusher-beams", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}], "subscriberId": "<id>", "_organizationId": "<id>", "_environmentId": "<id>", "deleted": false, "createdAt": "1723832108589", "updatedAt": "1735636837621"}, {"channels": [{"providerId": "pusher-beams", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}, {"providerId": "pusher-beams", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}], "subscriberId": "<id>", "_organizationId": "<id>", "_environmentId": "<id>", "deleted": false, "createdAt": "1723832108589", "updatedAt": "1735636837621"}], "next": "<value>", "previous": null, "totalCount": 9050.11, "totalCountCapped": false}
         "414":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
         "400":
@@ -1346,7 +1340,7 @@ examples:
         path:
           subscriberId: "<id>"
       requestBody:
-        application/json: {"channels": {}}
+        application/json: {"schedule": {"isEnabled": true, "weeklySchedule": {"monday": {"isEnabled": true, "hours": [{"start": "09:00 AM", "end": "05:00 PM"}]}, "tuesday": {"isEnabled": true, "hours": [{"start": "09:00 AM", "end": "05:00 PM"}]}, "wednesday": {"isEnabled": true, "hours": [{"start": "09:00 AM", "end": "05:00 PM"}]}, "thursday": {"isEnabled": true, "hours": [{"start": "09:00 AM", "end": "05:00 PM"}]}, "friday": {"isEnabled": true, "hours": [{"start": "09:00 AM", "end": "05:00 PM"}]}, "saturday": {"isEnabled": true, "hours": [{"start": "09:00 AM", "end": "05:00 PM"}]}, "sunday": {"isEnabled": true, "hours": [{"start": "09:00 AM", "end": "05:00 PM"}]}}}}
       responses:
         "200":
           application/json: {"global": {"enabled": false, "channels": {"email": true, "sms": false, "in_app": true, "chat": false, "push": true}, "schedule": {"isEnabled": true, "weeklySchedule": {"monday": {"isEnabled": true, "hours": [{"start": "09:00 AM", "end": "05:00 PM"}]}, "tuesday": {"isEnabled": true, "hours": [{"start": "09:00 AM", "end": "05:00 PM"}]}, "wednesday": {"isEnabled": true, "hours": [{"start": "09:00 AM", "end": "05:00 PM"}]}, "thursday": {"isEnabled": true, "hours": [{"start": "09:00 AM", "end": "05:00 PM"}]}, "friday": {"isEnabled": true, "hours": [{"start": "09:00 AM", "end": "05:00 PM"}]}, "saturday": {"isEnabled": true, "hours": [{"start": "09:00 AM", "end": "05:00 PM"}]}, "sunday": {"isEnabled": true, "hours": [{"start": "09:00 AM", "end": "05:00 PM"}]}}}}, "workflows": []}
@@ -1365,7 +1359,7 @@ examples:
           subscriberId: "<id>"
       responses:
         "200":
-          application/json: {"data": [{"_id": "64da692e9a94fb2e6449ad08", "createdAt": "2021-01-01T00:00:00.000Z", "topic": {"_id": "64da692e9a94fb2e6449ad06", "key": "product-updates", "name": "Product Updates", "createdAt": "2023-08-15T00:00:00.000Z", "updatedAt": "2023-08-15T00:00:00.000Z"}, "subscriber": {"_id": "64da692e9a94fb2e6449ad07", "subscriberId": "user-123", "avatar": "https://example.com/avatar.png", "firstName": "John", "lastName": "Doe", "email": "john@example.com"}}, {"_id": "64da692e9a94fb2e6449ad08", "createdAt": "2021-01-01T00:00:00.000Z", "topic": {"_id": "64da692e9a94fb2e6449ad06", "key": "product-updates", "name": "Product Updates", "createdAt": "2023-08-15T00:00:00.000Z", "updatedAt": "2023-08-15T00:00:00.000Z"}, "subscriber": {"_id": "64da692e9a94fb2e6449ad07", "subscriberId": "user-123", "avatar": "https://example.com/avatar.png", "firstName": "John", "lastName": "Doe", "email": "john@example.com"}}], "next": "<value>", "previous": "<value>"}
+          application/json: {"data": [{"_id": "64da692e9a94fb2e6449ad08", "createdAt": "2021-01-01T00:00:00.000Z", "topic": {"_id": "64da692e9a94fb2e6449ad06", "key": "product-updates", "name": "Product Updates", "createdAt": "2023-08-15T00:00:00.000Z", "updatedAt": "2023-08-15T00:00:00.000Z"}, "subscriber": {"_id": "64da692e9a94fb2e6449ad07", "subscriberId": "user-123", "avatar": "https://example.com/avatar.png", "firstName": "John", "lastName": "Doe", "email": "john@example.com"}}, {"_id": "64da692e9a94fb2e6449ad08", "createdAt": "2021-01-01T00:00:00.000Z", "topic": {"_id": "64da692e9a94fb2e6449ad06", "key": "product-updates", "name": "Product Updates", "createdAt": "2023-08-15T00:00:00.000Z", "updatedAt": "2023-08-15T00:00:00.000Z"}, "subscriber": {"_id": "64da692e9a94fb2e6449ad07", "subscriberId": "user-123", "avatar": "https://example.com/avatar.png", "firstName": "John", "lastName": "Doe", "email": "john@example.com"}}], "next": "<value>", "previous": "<value>", "totalCount": 5901.35, "totalCountCapped": true}
         "414":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
         "400":
@@ -1559,7 +1553,7 @@ examples:
     speakeasy-default-topics-controller-list-topics:
       responses:
         "200":
-          application/json: {"data": [{"_id": "64da692e9a94fb2e6449ad06", "key": "product-updates", "name": "Product Updates", "createdAt": "2023-08-15T00:00:00.000Z", "updatedAt": "2023-08-15T00:00:00.000Z"}, {"_id": "64da692e9a94fb2e6449ad06", "key": "product-updates", "name": "Product Updates", "createdAt": "2023-08-15T00:00:00.000Z", "updatedAt": "2023-08-15T00:00:00.000Z"}], "next": "<value>", "previous": "<value>"}
+          application/json: {"data": [{"_id": "64da692e9a94fb2e6449ad06", "key": "product-updates", "name": "Product Updates", "createdAt": "2023-08-15T00:00:00.000Z", "updatedAt": "2023-08-15T00:00:00.000Z"}, {"_id": "64da692e9a94fb2e6449ad06", "key": "product-updates", "name": "Product Updates", "createdAt": "2023-08-15T00:00:00.000Z", "updatedAt": "2023-08-15T00:00:00.000Z"}], "next": "<value>", "previous": "<value>", "totalCount": 5540.07, "totalCountCapped": true}
         "414":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
         "400":
@@ -1642,7 +1636,7 @@ examples:
           topicKey: "<value>"
       responses:
         "200":
-          application/json: {"data": [], "next": "<value>", "previous": "<value>"}
+          application/json: {"data": [], "next": "<value>", "previous": "<value>", "totalCount": 417.74, "totalCountCapped": true}
         "414":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
         "400":
@@ -1909,7 +1903,7 @@ examples:
         application/json: {"name": "<value>", "active": false, "isTranslationEnabled": false, "workflowId": "<id>", "steps": [], "__source": "editor", "preferences": {"user": {"all": {"enabled": true, "readOnly": false}, "channels": {"email": {"enabled": true}, "sms": {"enabled": false}}}, "workflow": {"all": {"enabled": true, "readOnly": false}, "channels": {"email": {"enabled": true}, "sms": {"enabled": false}}}}}
       responses:
         "201":
-          application/json: {"name": "<value>", "active": false, "isTranslationEnabled": false, "_id": "<id>", "workflowId": "<id>", "slug": {}, "updatedAt": "1735646488156", "createdAt": "1725670964910", "steps": [], "origin": "external", "preferences": {"user": {"all": {"enabled": true, "readOnly": false}, "channels": {"email": {"enabled": true}, "sms": {"enabled": false}}}, "default": {"all": {"enabled": true, "readOnly": false}, "channels": {"email": {"enabled": true}, "sms": {"enabled": false}}}}, "status": "ERROR", "severity": "high"}
+          application/json: {"name": "<value>", "active": false, "isTranslationEnabled": false, "_id": "<id>", "workflowId": "<id>", "slug": "{}", "updatedAt": "1735646488156", "createdAt": "1725670964910", "steps": [], "origin": "external", "preferences": {"user": {"all": {"enabled": true, "readOnly": false}, "channels": {"email": {"enabled": true}, "sms": {"enabled": false}}}, "default": {"all": {"enabled": true, "readOnly": false}, "channels": {"email": {"enabled": true}, "sms": {"enabled": false}}}}, "status": "ERROR", "severity": "high"}
         "414":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
         "400":
@@ -1922,7 +1916,7 @@ examples:
     speakeasy-default-workflow-controller-search-workflows:
       responses:
         "200":
-          application/json: {"workflows": [{"name": "<value>", "updatedAt": "1735636970594", "createdAt": "1705782861487", "_id": "<id>", "workflowId": "<id>", "slug": "<value>", "status": "ACTIVE", "origin": "external", "stepTypeOverviews": [], "isTranslationEnabled": false, "steps": [{"slug": {}, "type": "chat"}]}], "totalCount": 2953.9}
+          application/json: {"workflows": [{"name": "<value>", "updatedAt": "1735636970594", "createdAt": "1705782861487", "_id": "<id>", "workflowId": "<id>", "slug": "<value>", "status": "ACTIVE", "origin": "external", "stepTypeOverviews": [], "isTranslationEnabled": false, "steps": [{"slug": "{}", "type": "chat"}]}], "totalCount": 2953.9}
         "414":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
         "400":
@@ -1940,7 +1934,7 @@ examples:
         application/json: {"name": "<value>", "active": false, "isTranslationEnabled": false, "steps": [], "preferences": {"user": {"all": {"enabled": true, "readOnly": false}, "channels": {"email": {"enabled": true}, "sms": {"enabled": false}}}, "workflow": {"all": {"enabled": true, "readOnly": false}, "channels": {"email": {"enabled": true}, "sms": {"enabled": false}}}}, "origin": "external"}
       responses:
         "200":
-          application/json: {"name": "<value>", "active": false, "isTranslationEnabled": false, "_id": "<id>", "workflowId": "<id>", "slug": {}, "updatedAt": "1735625998632", "createdAt": "1709428435642", "steps": [{"controls": {"values": {"skip": {"and": [{"==": [{"var": "payload.tier"}, "pro"]}, {"==": [{"var": "subscriber.data.role"}, "admin"]}, {">": [{"var": "payload.amount"}, "4"]}]}, "subject": "<value>", "body": "", "editorType": "block", "disableOutputSanitization": false}}, "variables": {}, "stepId": "<id>", "_id": "<id>", "name": "<value>", "slug": {}, "type": "email", "origin": "novu-cloud", "workflowId": "<id>", "workflowDatabaseId": "<id>"}], "origin": "novu-cloud-v1", "preferences": {"user": {"all": {"enabled": true, "readOnly": false}, "channels": {"email": {"enabled": true}, "sms": {"enabled": false}}}, "default": {"all": {"enabled": true, "readOnly": false}, "channels": {"email": {"enabled": true}, "sms": {"enabled": false}}}}, "status": "ACTIVE", "severity": "high"}
+          application/json: {"name": "<value>", "active": false, "isTranslationEnabled": false, "_id": "<id>", "workflowId": "<id>", "slug": "{}", "updatedAt": "1735625998632", "createdAt": "1709428435642", "steps": [{"controls": {"values": {"skip": {"and": [{"==": [{"var": "payload.tier"}, "pro"]}, {"==": [{"var": "subscriber.data.role"}, "admin"]}, {">": [{"var": "payload.amount"}, "4"]}]}, "subject": "<value>", "body": "", "editorType": "block", "disableOutputSanitization": false}}, "variables": {}, "stepId": "<id>", "_id": "<id>", "name": "<value>", "slug": "{}", "type": "email", "origin": "novu-cloud", "workflowId": "<id>", "workflowDatabaseId": "<id>"}], "origin": "novu-cloud-v1", "preferences": {"user": {"all": {"enabled": true, "readOnly": false}, "channels": {"email": {"enabled": true}, "sms": {"enabled": false}}}, "default": {"all": {"enabled": true, "readOnly": false}, "channels": {"email": {"enabled": true}, "sms": {"enabled": false}}}}, "status": "ACTIVE", "severity": "high"}
         "414":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
         "400":
@@ -1956,7 +1950,7 @@ examples:
           workflowId: "<id>"
       responses:
         "200":
-          application/json: {"name": "<value>", "active": false, "isTranslationEnabled": false, "_id": "<id>", "workflowId": "<id>", "slug": {}, "updatedAt": "1735639255382", "createdAt": "1721141645591", "steps": [{"controls": {"values": {"skip": {"and": [{"==": [{"var": "payload.tier"}, "pro"]}, {"==": [{"var": "subscriber.data.role"}, "admin"]}, {">": [{"var": "payload.amount"}, "4"]}]}, "subject": "<value>", "body": "", "editorType": "block", "disableOutputSanitization": false}}, "variables": {"key": "<value>", "key1": "<value>"}, "stepId": "<id>", "_id": "<id>", "name": "<value>", "slug": {}, "type": "email", "origin": "novu-cloud", "workflowId": "<id>", "workflowDatabaseId": "<id>"}], "origin": "external", "preferences": {"user": null, "default": {"all": {"enabled": true, "readOnly": false}, "channels": {"email": {"enabled": true}, "sms": {"enabled": false}}}}, "status": "ACTIVE", "severity": "medium"}
+          application/json: {"name": "<value>", "active": false, "isTranslationEnabled": false, "_id": "<id>", "workflowId": "<id>", "slug": "{}", "updatedAt": "1735639255382", "createdAt": "1721141645591", "steps": [{"controls": {"values": {"skip": {"and": [{"==": [{"var": "payload.tier"}, "pro"]}, {"==": [{"var": "subscriber.data.role"}, "admin"]}, {">": [{"var": "payload.amount"}, "4"]}]}, "subject": "<value>", "body": "", "editorType": "block", "disableOutputSanitization": false}}, "variables": {"key": "<value>", "key1": "<value>"}, "stepId": "<id>", "_id": "<id>", "name": "<value>", "slug": "{}", "type": "email", "origin": "novu-cloud", "workflowId": "<id>", "workflowDatabaseId": "<id>"}], "origin": "external", "preferences": {"user": null, "default": {"all": {"enabled": true, "readOnly": false}, "channels": {"email": {"enabled": true}, "sms": {"enabled": false}}}}, "status": "ACTIVE", "severity": "medium"}
         "414":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
         "400":
@@ -1988,7 +1982,7 @@ examples:
         application/json: {}
       responses:
         "200":
-          application/json: {"name": "<value>", "active": false, "isTranslationEnabled": false, "_id": "<id>", "workflowId": "<id>", "slug": {}, "updatedAt": "1735677167739", "createdAt": "1712483758485", "steps": [{"controls": {"values": {"skip": {"and": [{"==": [{"var": "payload.tier"}, "pro"]}, {"==": [{"var": "subscriber.data.role"}, "admin"]}, {">": [{"var": "payload.amount"}, "4"]}]}}}, "variables": {"key": "<value>"}, "stepId": "<id>", "_id": "<id>", "name": "<value>", "slug": {}, "type": "digest", "origin": "novu-cloud-v1", "workflowId": "<id>", "workflowDatabaseId": "<id>"}], "origin": "novu-cloud", "preferences": {"user": {"all": {"enabled": true, "readOnly": false}, "channels": {"email": {"enabled": true}, "sms": {"enabled": false}}}, "default": {"all": {"enabled": true, "readOnly": false}, "channels": {"email": {"enabled": true}, "sms": {"enabled": false}}}}, "status": "ACTIVE", "severity": "none"}
+          application/json: {"name": "<value>", "active": false, "isTranslationEnabled": false, "_id": "<id>", "workflowId": "<id>", "slug": "{}", "updatedAt": "1735677167739", "createdAt": "1712483758485", "steps": [{"controls": {"values": {"skip": {"and": [{"==": [{"var": "payload.tier"}, "pro"]}, {"==": [{"var": "subscriber.data.role"}, "admin"]}, {">": [{"var": "payload.amount"}, "4"]}]}}}, "variables": {"key": "<value>"}, "stepId": "<id>", "_id": "<id>", "name": "<value>", "slug": "{}", "type": "digest", "origin": "novu-cloud-v1", "workflowId": "<id>", "workflowDatabaseId": "<id>"}], "origin": "novu-cloud", "preferences": {"user": {"all": {"enabled": true, "readOnly": false}, "channels": {"email": {"enabled": true}, "sms": {"enabled": false}}}, "default": {"all": {"enabled": true, "readOnly": false}, "channels": {"email": {"enabled": true}, "sms": {"enabled": false}}}}, "status": "ACTIVE", "severity": "none"}
         "414":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
         "400":
@@ -2006,7 +2000,7 @@ examples:
         application/json: {"targetEnvironmentId": "<id>"}
       responses:
         "200":
-          application/json: {"name": "<value>", "active": false, "isTranslationEnabled": false, "_id": "<id>", "workflowId": "<id>", "slug": {}, "updatedAt": "1735661360231", "createdAt": "1731115425881", "steps": [{"controls": {"values": {}}, "variables": {"key": "<value>", "key1": "<value>", "key2": "<value>"}, "stepId": "<id>", "_id": "<id>", "name": "<value>", "slug": {}, "type": "custom", "origin": "external", "workflowId": "<id>", "workflowDatabaseId": "<id>"}], "origin": "external", "preferences": {"user": {"all": {"enabled": true, "readOnly": false}, "channels": {"email": {"enabled": true}, "sms": {"enabled": false}}}, "default": {"all": {"enabled": true, "readOnly": false}, "channels": {"email": {"enabled": true}, "sms": {"enabled": false}}}}, "status": "ACTIVE", "severity": "low"}
+          application/json: {"name": "<value>", "active": false, "isTranslationEnabled": false, "_id": "<id>", "workflowId": "<id>", "slug": "{}", "updatedAt": "1735661360231", "createdAt": "1731115425881", "steps": [{"controls": {"values": {}}, "variables": {"key": "<value>", "key1": "<value>", "key2": "<value>"}, "stepId": "<id>", "_id": "<id>", "name": "<value>", "slug": "{}", "type": "custom", "origin": "external", "workflowId": "<id>", "workflowDatabaseId": "<id>"}], "origin": "external", "preferences": {"user": {"all": {"enabled": true, "readOnly": false}, "channels": {"email": {"enabled": true}, "sms": {"enabled": false}}}, "default": {"all": {"enabled": true, "readOnly": false}, "channels": {"email": {"enabled": true}, "sms": {"enabled": false}}}}, "status": "ACTIVE", "severity": "low"}
         "414":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
         "400":
@@ -2023,7 +2017,7 @@ examples:
           stepId: "<id>"
       responses:
         "200":
-          application/json: {"controls": {}, "variables": {"key": "<value>", "key1": "<value>"}, "stepId": "<id>", "_id": "<id>", "name": "<value>", "slug": {}, "type": "email", "origin": "external", "workflowId": "<id>", "workflowDatabaseId": "<id>"}
+          application/json: {"controls": {}, "variables": {"key": "<value>", "key1": "<value>"}, "stepId": "<id>", "_id": "<id>", "name": "<value>", "slug": "{}", "type": "email", "origin": "external", "workflowId": "<id>", "workflowDatabaseId": "<id>"}
         "414":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
         "400":
@@ -2143,7 +2137,7 @@ examples:
         application/json: {"layoutId": "<id>", "name": "<value>", "__source": "dashboard"}
       responses:
         "201":
-          application/json: {"_id": "<id>", "layoutId": "<id>", "slug": {}, "name": "<value>", "isDefault": true, "updatedAt": "1735665022530", "createdAt": "1730096151643", "origin": "novu-cloud-v1", "type": "BRIDGE", "controls": {"values": {}}}
+          application/json: {"_id": "<id>", "layoutId": "<id>", "slug": "{}", "name": "<value>", "isDefault": true, "updatedAt": "1735665022530", "createdAt": "1730096151643", "origin": "novu-cloud-v1", "type": "BRIDGE", "controls": {"values": {}}}
         "414":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
         "400":
@@ -2156,7 +2150,7 @@ examples:
     speakeasy-default-layouts-controller-list:
       responses:
         "200":
-          application/json: {"layouts": [{"_id": "<id>", "layoutId": "<id>", "slug": {}, "name": "<value>", "isDefault": false, "updatedAt": "1735604623075", "createdAt": "1732563359623", "origin": "external", "type": "ECHO", "controls": {"values": {}}}], "totalCount": 8515.1}
+          application/json: {"layouts": [{"_id": "<id>", "layoutId": "<id>", "slug": "{}", "name": "<value>", "isDefault": false, "updatedAt": "1735604623075", "createdAt": "1732563359623", "origin": "external", "type": "ECHO", "controls": {"values": {}}}], "totalCount": 8515.1}
         "414":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
         "400":
@@ -2174,7 +2168,7 @@ examples:
         application/json: {"name": "<value>"}
       responses:
         "200":
-          application/json: {"_id": "<id>", "layoutId": "<id>", "slug": {}, "name": "<value>", "isDefault": true, "updatedAt": "1735617825142", "createdAt": "1712735891318", "origin": "novu-cloud-v1", "type": "BRIDGE", "controls": {"values": {}}}
+          application/json: {"_id": "<id>", "layoutId": "<id>", "slug": "{}", "name": "<value>", "isDefault": true, "updatedAt": "1735617825142", "createdAt": "1712735891318", "origin": "novu-cloud-v1", "type": "BRIDGE", "controls": {"values": {}}}
         "414":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
         "400":
@@ -2190,7 +2184,7 @@ examples:
           layoutId: "<id>"
       responses:
         "200":
-          application/json: {"_id": "<id>", "layoutId": "<id>", "slug": {}, "name": "<value>", "isDefault": false, "updatedAt": "1735664130299", "createdAt": "1727615996858", "origin": "external", "type": "ECHO", "controls": {"values": {}}}
+          application/json: {"_id": "<id>", "layoutId": "<id>", "slug": "{}", "name": "<value>", "isDefault": false, "updatedAt": "1735664130299", "createdAt": "1727615996858", "origin": "external", "type": "ECHO", "controls": {"values": {}}}
         "414":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
         "400":
@@ -2222,7 +2216,7 @@ examples:
         application/json: {"name": "<value>"}
       responses:
         "201":
-          application/json: {"_id": "<id>", "layoutId": "<id>", "slug": {}, "name": "<value>", "isDefault": true, "updatedAt": "1735641806286", "createdAt": "1705127183206", "origin": "novu-cloud", "type": "BRIDGE", "controls": {"values": {}}}
+          application/json: {"_id": "<id>", "layoutId": "<id>", "slug": "{}", "name": "<value>", "isDefault": true, "updatedAt": "1735641806286", "createdAt": "1705127183206", "origin": "novu-cloud", "type": "BRIDGE", "controls": {"values": {}}}
         "414":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
         "400":
@@ -2277,8 +2271,8 @@ examples:
       parameters:
         path:
           resourceType: "workflow"
-          resourceId: "<id>"
-          locale: "fi"
+          resourceId: "welcome-email"
+          locale: "en_US"
       responses:
         "200":
           application/json: {"resourceId": "welcome-email", "resourceType": "workflow", "locale": "en_US", "content": {}, "createdAt": "2024-01-01T00:00:00.000Z", "updatedAt": "2024-01-01T00:00:00.000Z"}
@@ -2301,13 +2295,13 @@ examples:
       parameters:
         path:
           resourceType: "workflow"
-          resourceId: "<id>"
+          resourceId: "welcome-email"
   TranslationController_getTranslationGroupEndpoint:
     speakeasy-default-translation-controller-get-translation-group-endpoint:
       parameters:
         path:
           resourceType: "workflow"
-          resourceId: "<id>"
+          resourceId: "welcome-email"
       responses:
         "200":
           application/json: {"resourceId": "welcome-email", "resourceType": "workflow", "resourceName": "Welcome Email Workflow", "locales": ["en_US", "es_ES", "fr_FR"], "outdatedLocales": ["es_ES", "fr_FR"], "createdAt": "2024-01-01T00:00:00.000Z", "updatedAt": "2024-01-01T00:00:00.000Z"}
@@ -2401,4 +2395,4 @@ generatedTests:
   TopicsController_removeSubscribers: "2024-12-24T08:36:06+01:00"
   TestingController_idempotency: "2024-12-24T08:36:06+01:00"
   TestingController_idempotencyGet: "2024-12-24T08:36:06+01:00"
-releaseNotes: "## Typescript SDK Changes Detected:\n* `novu.inboundWebhooksControllerHandleWebhook()`: **Added**\n* `novu.layouts.create()`: **Added**\n* `novu.layouts.list()`: **Added**\n* `novu.layouts.update()`: **Added**\n* `novu.layouts.retrieve()`: **Added**\n* `novu.layouts.delete()`: **Added**\n* `novu.layouts.duplicate()`: **Added**\n* `novu.layouts.generatePreview()`: **Added**\n* `novu.layouts.usage()`: **Added**\n* `novu.translations.create()`: **Added**\n* `novu.translations.retrieve()`: **Added**\n* `novu.translations.delete()`: **Added**\n* `novu.translations.upload()`: **Added**\n* `novu.translations.groups.delete()`: **Added**\n* `novu.translations.groups.retrieve()`: **Added**\n* `novu.translations.master.retrieve()`: **Added**\n* `novu.translations.master.import()`: **Added**\n* `novu.translations.master.upload()`: **Added**\n* `novu.integrations.integrationsControllerAutoConfigureIntegration()`: **Added**\n* `novu.trigger()`: \n  *  `request.triggereventrequestdto.overrides.severity` **Added**\n* `novu.triggerBroadcast()`: \n  *  `request.triggereventtoallrequestdto.overrides.severity` **Added**\n* `novu.triggerBulk()`: \n  *  `request.bulktriggereventdto.events.[].overrides.severity` **Added**\n* `novu.subscribers.preferences.list()`: \n  *  `request.criticality` **Added**\n  *  `response.global.schedule` **Added**\n* `novu.subscribers.preferences.update()`:  `response.global.schedule` **Added**\n* `novu.workflows.list()`:  `response.workflows.[].steps` **Added**\n* `novu.workflows.create()`: \n  *  `request.createworkflowdto.severity` **Added**\n  *  `response.severity` **Added**\n* `novu.workflows.get()`:  `response.severity` **Added**\n* `novu.workflows.update()`: \n  *  `request.updateworkflowdto.severity` **Added**\n  *  `response.severity` **Added**\n* `novu.workflows.patch()`:  `response.severity` **Added**\n* `novu.workflows.sync()`:  `response.severity` **Added**\n* `novu.integrations.list()`:  `response.[]` **Changed**\n* `novu.integrations.create()`: \n  *  `request.createintegrationrequestdto` **Changed**\n  *  `response` **Changed**\n* `novu.integrations.update()`: \n  *  `request.updateintegrationrequestdto` **Changed**\n  *  `response` **Changed**\n* `novu.integrations.delete()`:  `response.[]` **Changed**\n* `novu.integrations.setAsPrimary()`:  `response` **Changed**\n* `novu.integrations.listActive()`:  `response.[]` **Changed**\n* `novu.notifications.list()`: \n  *  `request.severity` **Added**\n  *  `response.data.[]` **Changed**\n* `novu.notifications.retrieve()`:  `response` **Changed**\n"
+releaseNotes: "## Typescript SDK Changes Detected:\n* `novu.workflows.get()`:  `response` **Changed** **Breaking** :warning:\n* `novu.workflows.update()`:  `response` **Changed** **Breaking** :warning:\n* `novu.layouts.retrieve()`:  `response` **Changed** **Breaking** :warning:\n* `novu.notifications.retrieve()`:  `response` **Changed** **Breaking** :warning:\n* `novu.layouts.duplicate()`:  `response` **Changed** **Breaking** :warning:\n* `novu.notifications.list()`:  `response.data.[]` **Changed** **Breaking** :warning:\n* `novu.workflows.steps.retrieve()`:  `response.slug` **Changed** **Breaking** :warning:\n* `novu.workflows.sync()`:  `response` **Changed** **Breaking** :warning:\n* `novu.layouts.create()`:  `response` **Changed** **Breaking** :warning:\n* `novu.workflows.list()`:  `response.workflows.[]` **Changed** **Breaking** :warning:\n* `novu.layouts.update()`:  `response` **Changed** **Breaking** :warning:\n* `novu.workflows.create()`: \n  *  `request.createworkflowdto.steps.[].[throttle]` **Added**\n  *  `response` **Changed** **Breaking** :warning:\n* `novu.layouts.list()`:  `response.layouts.[]` **Changed** **Breaking** :warning:\n* `novu.workflows.patch()`:  `response` **Changed** **Breaking** :warning:\n* `novu.topics.list()`:  `response` **Changed**\n* `novu.subscribers.topics.list()`:  `response` **Changed**\n* `novu.subscribers.preferences.update()`:  `request.patchsubscriberpreferencesdto` **Changed**\n* `novu.subscribers.search()`:  `response` **Changed**\n* `novu.topics.subscriptions.list()`:  `response` **Changed**\n"

@@ -7,13 +7,14 @@ import { TopicsControllerListTopicsResponse } from "@novu/api/models/operations"
 
 let value: TopicsControllerListTopicsResponse = {
   headers: {
-    "key": [
-      "<value 1>",
-    ],
+    "key": [],
     "key1": [
       "<value 1>",
       "<value 2>",
       "<value 3>",
+    ],
+    "key2": [
+      "<value 1>",
     ],
   },
   result: {
@@ -28,6 +29,8 @@ let value: TopicsControllerListTopicsResponse = {
     ],
     next: "<value>",
     previous: "<value>",
+    totalCount: 5374.07,
+    totalCountCapped: true,
   },
 };
 ```

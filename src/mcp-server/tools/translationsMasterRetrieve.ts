@@ -13,9 +13,9 @@ const args = {
 
 export const tool$translationsMasterRetrieve: ToolDefinition<typeof args> = {
   name: "translations-master-retrieve",
-  description: `Get master translations JSON
+  description: `Retrieve master translations JSON
 
-Get all translations for a locale in master JSON format organized by namespace and resource`,
+Retrieve all translations for a locale in master JSON format organized by resourceId (workflowId)`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await translationsMasterRetrieve(

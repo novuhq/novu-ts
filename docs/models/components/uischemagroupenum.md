@@ -13,5 +13,5 @@ let value: UiSchemaGroupEnum = "SKIP";
 ## Values
 
 ```typescript
-"IN_APP" | "EMAIL" | "DIGEST" | "DELAY" | "SMS" | "CHAT" | "PUSH" | "SKIP" | "LAYOUT"
+"IN_APP" | "EMAIL" | "DIGEST" | "DELAY" | "THROTTLE" | "SMS" | "CHAT" | "PUSH" | "SKIP" | "LAYOUT"
 ```

@@ -83,10 +83,7 @@ bun add @novu/api
 ### Yarn
 
 ```bash
-yarn add @novu/api zod
-
-# Note that Yarn does not install peer dependencies automatically. You will need
-# to install zod as shown above.
+yarn add @novu/api
 ```
 
 
@@ -438,19 +435,19 @@ run();
 
 ### [translations](docs/sdks/translations/README.md)
 
-* [create](docs/sdks/translations/README.md#create) - Create or update translation
-* [retrieve](docs/sdks/translations/README.md#retrieve) - Get single translation
-* [delete](docs/sdks/translations/README.md#delete) - Delete translation
+* [create](docs/sdks/translations/README.md#create) - Create a translation
+* [retrieve](docs/sdks/translations/README.md#retrieve) - Retrieve a translation
+* [delete](docs/sdks/translations/README.md#delete) - Delete a translation
 * [upload](docs/sdks/translations/README.md#upload) - Upload translation files
 
 #### [translations.groups](docs/sdks/groups/README.md)
 
-* [delete](docs/sdks/groups/README.md#delete) - Delete translation group
-* [retrieve](docs/sdks/groups/README.md#retrieve) - Get translation group
+* [delete](docs/sdks/groups/README.md#delete) - Delete a translation group
+* [retrieve](docs/sdks/groups/README.md#retrieve) - Retrieve a translation group
 
 #### [translations.master](docs/sdks/master/README.md)
 
-* [retrieve](docs/sdks/master/README.md#retrieve) - Get master translations JSON
+* [retrieve](docs/sdks/master/README.md#retrieve) - Retrieve master translations JSON
 * [import](docs/sdks/master/README.md#import) - Import master translations JSON
 * [upload](docs/sdks/master/README.md#upload) - Upload master translations JSON file
 
@@ -541,14 +538,14 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`topicsSubscriptionsDelete`](docs/sdks/subscriptions/README.md#delete) - Delete topic subscriptions
 - [`topicsSubscriptionsList`](docs/sdks/subscriptions/README.md#list) - List topic subscriptions
 - [`topicsUpdate`](docs/sdks/topics/README.md#update) - Update a topic
-- [`translationsCreate`](docs/sdks/translations/README.md#create) - Create or update translation
-- [`translationsDelete`](docs/sdks/translations/README.md#delete) - Delete translation
-- [`translationsGroupsDelete`](docs/sdks/groups/README.md#delete) - Delete translation group
-- [`translationsGroupsRetrieve`](docs/sdks/groups/README.md#retrieve) - Get translation group
+- [`translationsCreate`](docs/sdks/translations/README.md#create) - Create a translation
+- [`translationsDelete`](docs/sdks/translations/README.md#delete) - Delete a translation
+- [`translationsGroupsDelete`](docs/sdks/groups/README.md#delete) - Delete a translation group
+- [`translationsGroupsRetrieve`](docs/sdks/groups/README.md#retrieve) - Retrieve a translation group
 - [`translationsMasterImport`](docs/sdks/master/README.md#import) - Import master translations JSON
-- [`translationsMasterRetrieve`](docs/sdks/master/README.md#retrieve) - Get master translations JSON
+- [`translationsMasterRetrieve`](docs/sdks/master/README.md#retrieve) - Retrieve master translations JSON
 - [`translationsMasterUpload`](docs/sdks/master/README.md#upload) - Upload master translations JSON file
-- [`translationsRetrieve`](docs/sdks/translations/README.md#retrieve) - Get single translation
+- [`translationsRetrieve`](docs/sdks/translations/README.md#retrieve) - Retrieve a translation
 - [`translationsUpload`](docs/sdks/translations/README.md#upload) - Upload translation files
 - [`trigger`](docs/sdks/novu/README.md#trigger) - Trigger event
 - [`triggerBroadcast`](docs/sdks/novu/README.md#triggerbroadcast) - Broadcast event to all
@@ -751,7 +748,7 @@ httpClient.addHook("requestError", (error, request) => {
   console.groupEnd();
 });
 
-const sdk = new Novu({ httpClient });
+const sdk = new Novu({ httpClient: httpClient });
 ```
 <!-- End Custom HTTP Client [http-client] -->
 

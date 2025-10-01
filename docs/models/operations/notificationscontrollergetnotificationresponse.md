@@ -20,7 +20,7 @@ let value: NotificationsControllerGetNotificationResponse = {
     jobs: [
       {
         id: "<id>",
-        type: "in_app",
+        type: "email",
         executionDetails: [
           {
             id: "<id>",

@@ -14,7 +14,7 @@ let value: LayoutsControllerCreateResponse = {
   result: {
     id: "<id>",
     layoutId: "<id>",
-    slug: {},
+    slug: "<value>",
     name: "<value>",
     isDefault: true,
     updatedAt: "1735614598968",

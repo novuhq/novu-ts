@@ -48,11 +48,6 @@ export type ChatStepResponseDtoControlValues = {
   additionalProperties?: { [k: string]: any };
 };
 
-/**
- * Slug of the step
- */
-export type ChatStepResponseDtoSlug = {};
-
 export type ChatStepResponseDto = {
   /**
    * Controls metadata for the chat step
@@ -81,7 +76,7 @@ export type ChatStepResponseDto = {
   /**
    * Slug of the step
    */
-  slug: ChatStepResponseDtoSlug;
+  slug: string;
   /**
    * Type of the step
    */
@@ -177,54 +172,6 @@ export function chatStepResponseDtoControlValuesFromJSON(
 }
 
 /** @internal */
-export const ChatStepResponseDtoSlug$inboundSchema: z.ZodType<
-  ChatStepResponseDtoSlug,
-  z.ZodTypeDef,
-  unknown
-> = z.object({});
-
-/** @internal */
-export type ChatStepResponseDtoSlug$Outbound = {};
-
-/** @internal */
-export const ChatStepResponseDtoSlug$outboundSchema: z.ZodType<
-  ChatStepResponseDtoSlug$Outbound,
-  z.ZodTypeDef,
-  ChatStepResponseDtoSlug
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ChatStepResponseDtoSlug$ {
-  /** @deprecated use `ChatStepResponseDtoSlug$inboundSchema` instead. */
-  export const inboundSchema = ChatStepResponseDtoSlug$inboundSchema;
-  /** @deprecated use `ChatStepResponseDtoSlug$outboundSchema` instead. */
-  export const outboundSchema = ChatStepResponseDtoSlug$outboundSchema;
-  /** @deprecated use `ChatStepResponseDtoSlug$Outbound` instead. */
-  export type Outbound = ChatStepResponseDtoSlug$Outbound;
-}
-
-export function chatStepResponseDtoSlugToJSON(
-  chatStepResponseDtoSlug: ChatStepResponseDtoSlug,
-): string {
-  return JSON.stringify(
-    ChatStepResponseDtoSlug$outboundSchema.parse(chatStepResponseDtoSlug),
-  );
-}
-
-export function chatStepResponseDtoSlugFromJSON(
-  jsonString: string,
-): SafeParseResult<ChatStepResponseDtoSlug, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ChatStepResponseDtoSlug$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ChatStepResponseDtoSlug' from JSON`,
-  );
-}
-
-/** @internal */
 export const ChatStepResponseDto$inboundSchema: z.ZodType<
   ChatStepResponseDto,
   z.ZodTypeDef,
@@ -237,7 +184,7 @@ export const ChatStepResponseDto$inboundSchema: z.ZodType<
   stepId: z.string(),
   _id: z.string(),
   name: z.string(),
-  slug: z.lazy(() => ChatStepResponseDtoSlug$inboundSchema),
+  slug: z.string(),
   type: StepTypeEnum$inboundSchema,
   origin: ResourceOriginEnum$inboundSchema,
   workflowId: z.string(),
@@ -257,7 +204,7 @@ export type ChatStepResponseDto$Outbound = {
   stepId: string;
   _id: string;
   name: string;
-  slug: ChatStepResponseDtoSlug$Outbound;
+  slug: string;
   type: string;
   origin: string;
   workflowId: string;
@@ -278,7 +225,7 @@ export const ChatStepResponseDto$outboundSchema: z.ZodType<
   stepId: z.string(),
   id: z.string(),
   name: z.string(),
-  slug: z.lazy(() => ChatStepResponseDtoSlug$outboundSchema),
+  slug: z.string(),
   type: StepTypeEnum$outboundSchema,
   origin: ResourceOriginEnum$outboundSchema,
   workflowId: z.string(),

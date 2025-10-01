@@ -13080,8 +13080,8 @@
       "post": {
         "operationId": "TranslationController_createTranslationEndpoint",
         "x-speakeasy-name-override": "create",
-        "summary": "Create or update translation",
-        "description": "Create or update a translation for a specific workflow and locale",
+        "summary": "Create a translation",
+        "description": "Create a translation for a specific workflow and locale, if the translation already exists, it will be updated",
         "parameters": [
           {
             "name": "idempotency-key",
@@ -13133,7 +13133,7 @@
         "operationId": "TranslationController_deleteTranslationGroupEndpoint",
         "x-speakeasy-name-override": "delete",
         "x-speakeasy-group": "Translations.Groups",
-        "summary": "Delete translation group",
+        "summary": "Delete a translation group",
         "description": "Delete an entire translation group and all its translations",
         "parameters": [
           {
@@ -13141,6 +13141,7 @@
             "required": true,
             "in": "path",
             "description": "Resource type",
+            "example": "workflow",
             "schema": {
               "enum": [
                 "workflow"
@@ -13153,6 +13154,7 @@
             "required": true,
             "in": "path",
             "description": "Resource ID",
+            "example": "welcome-email",
             "schema": {
               "type": "string"
             }
@@ -13192,8 +13194,8 @@
       "get": {
         "operationId": "TranslationController_getSingleTranslation",
         "x-speakeasy-name-override": "retrieve",
-        "summary": "Get single translation",
-        "description": "Get a specific translation by resource type, resource ID and locale",
+        "summary": "Retrieve a translation",
+        "description": "Retrieve a specific translation by resource type, resource ID and locale",
         "parameters": [
           {
             "name": "resourceType",
@@ -13212,6 +13214,7 @@
             "required": true,
             "in": "path",
             "description": "Resource ID",
+            "example": "welcome-email",
             "schema": {
               "type": "string"
             }
@@ -13221,6 +13224,7 @@
             "required": true,
             "in": "path",
             "description": "Locale code",
+            "example": "en_US",
             "schema": {
               "type": "string"
             }
@@ -13265,7 +13269,7 @@
       "delete": {
         "operationId": "TranslationController_deleteTranslationEndpoint",
         "x-speakeasy-name-override": "delete",
-        "summary": "Delete translation",
+        "summary": "Delete a translation",
         "description": "Delete a specific translation by resource type, resource ID and locale",
         "parameters": [
           {
@@ -13334,14 +13338,15 @@
         "operationId": "TranslationController_getTranslationGroupEndpoint",
         "x-speakeasy-name-override": "retrieve",
         "x-speakeasy-group": "Translations.Groups",
-        "summary": "Get translation group",
-        "description": "Retrieves a single translation group by resourceId and resourceType",
+        "summary": "Retrieve a translation group",
+        "description": "Retrieves a single translation group by resource type (workflow) and resource ID (workflowId)",
         "parameters": [
           {
             "name": "resourceType",
             "required": true,
             "in": "path",
             "description": "Resource type",
+            "example": "workflow",
             "schema": {
               "enum": [
                 "workflow"
@@ -13354,6 +13359,7 @@
             "required": true,
             "in": "path",
             "description": "Resource ID",
+            "example": "welcome-email",
             "schema": {
               "type": "string"
             }
@@ -13401,8 +13407,8 @@
         "operationId": "TranslationController_getMasterJsonEndpoint",
         "x-speakeasy-name-override": "retrieve",
         "x-speakeasy-group": "Translations.master",
-        "summary": "Get master translations JSON",
-        "description": "Get all translations for a locale in master JSON format organized by namespace and resource",
+        "summary": "Retrieve master translations JSON",
+        "description": "Retrieve all translations for a locale in master JSON format organized by resourceId (workflowId)",
         "parameters": [
           {
             "name": "locale",
@@ -13453,7 +13459,7 @@
         "x-speakeasy-name-override": "import",
         "x-speakeasy-group": "Translations.Master",
         "summary": "Import master translations JSON",
-        "description": "Import translations from master JSON format for a specific locale",
+        "description": "Import translations for multiple workflows from master JSON format for a specific locale",
         "parameters": [
           {
             "name": "idempotency-key",
@@ -13506,7 +13512,7 @@
         "x-speakeasy-name-override": "upload",
         "x-speakeasy-group": "Translations.Master",
         "summary": "Upload master translations JSON file",
-        "description": "Upload a master JSON file containing translations. Locale is automatically detected from filename (e.g., en_US.json)",
+        "description": "Upload a master JSON file containing translations for multiple workflows. Locale is automatically detected from filename (e.g., en_US.json)",
         "parameters": [
           {
             "name": "idempotency-key",
@@ -13548,7 +13554,7 @@
         "operationId": "TranslationController_uploadTranslationFiles",
         "x-speakeasy-name-override": "upload",
         "summary": "Upload translation files",
-        "description": "Upload one or more JSON translation files for a specific workflow. The file name must be the locale, e.g. en_US.json",
+        "description": "Upload one or more JSON translation files for a specific workflow. Files name must match the locale, e.g. en_US.json",
         "parameters": [
           {
             "name": "idempotency-key",
@@ -13562,7 +13568,7 @@
         ],
         "requestBody": {
           "required": true,
-          "description": "Translation upload details",
+          "description": "Translation files upload body details",
           "content": {
             "multipart/form-data": {
               "schema": {
@@ -34158,6 +34164,7 @@
           "digest",
           "trigger",
           "delay",
+          "throttle",
           "custom"
         ]
       },
@@ -34768,6 +34775,7 @@
               "digest",
               "trigger",
               "delay",
+              "throttle",
               "custom"
             ],
             "type": "string",
@@ -34819,6 +34827,10 @@
           "updatedAt": {
             "type": "string",
             "description": "Updated time of the notification"
+          },
+          "scheduleExtensionsCount": {
+            "type": "number",
+            "description": "The number of times the digest/delay job has been extended to align with the subscribers schedule"
           }
         },
         "required": [
@@ -34917,7 +34929,8 @@
           },
           "payload": {
             "type": "object",
-            "description": "Payload of the notification"
+            "description": "Payload of the notification",
+            "additionalProperties": true
           },
           "tags": {
             "description": "Tags associated with the notification",
@@ -34928,11 +34941,13 @@
           },
           "controls": {
             "type": "object",
-            "description": "Controls associated with the notification"
+            "description": "Controls associated with the notification",
+            "additionalProperties": true
           },
           "to": {
             "type": "object",
-            "description": "To field for subscriber definition"
+            "description": "To field for subscriber definition",
+            "additionalProperties": true
           },
           "topics": {
             "description": "Topics of the notification",
@@ -34947,6 +34962,13 @@
           "critical": {
             "type": "boolean",
             "description": "Criticality of the notification"
+          },
+          "contextKeys": {
+            "description": "Contexts (keys) in which the notification was sent",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         },
         "required": [
@@ -35477,6 +35499,10 @@
                 "$ref": "#/components/schemas/DigestMetadataDto"
               }
             ]
+          },
+          "scheduleExtensionsCount": {
+            "type": "number",
+            "description": "The number of times the digest/delay job has been extended to align with the subscribers schedule"
           }
         },
         "required": [
@@ -37682,12 +37708,22 @@
             "type": "string",
             "description": "The cursor for the previous page of results, or null if this is the first page.",
             "nullable": true
+          },
+          "totalCount": {
+            "type": "number",
+            "description": "The total count of items (up to 50,000)"
+          },
+          "totalCountCapped": {
+            "type": "boolean",
+            "description": "Whether there are more than 50,000 results available"
           }
         },
         "required": [
           "data",
           "next",
-          "previous"
+          "previous",
+          "totalCount",
+          "totalCountCapped"
         ]
       },
       "PatchSubscriberRequestDto": {
@@ -38324,11 +38360,16 @@
           "workflowId": {
             "type": "string",
             "description": "Workflow internal _id, identifier or slug. If provided, update workflow specific preferences, otherwise update global preferences"
+          },
+          "schedule": {
+            "description": "Subscriber schedule",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ScheduleDto"
+              }
+            ]
           }
-        },
-        "required": [
-          "channels"
-        ]
+        }
       },
       "TopicResponseDto": {
         "type": "object",
@@ -38463,12 +38504,22 @@
             "type": "string",
             "description": "The cursor for the previous page of results, or null if this is the first page.",
             "nullable": true
+          },
+          "totalCount": {
+            "type": "number",
+            "description": "The total count of items (up to 50,000)"
+          },
+          "totalCountCapped": {
+            "type": "boolean",
+            "description": "Whether there are more than 50,000 results available"
           }
         },
         "required": [
           "data",
           "next",
-          "previous"
+          "previous",
+          "totalCount",
+          "totalCountCapped"
         ]
       },
       "UserResponseDto": {
@@ -38484,7 +38535,7 @@
             "nullable": true
           },
           "lastName": {
-            "type": "object",
+            "type": "string",
             "nullable": true,
             "description": "User last name"
           },
@@ -38531,6 +38582,13 @@
           "DELAY_TYPE",
           "DELAY_AMOUNT",
           "DELAY_UNIT",
+          "THROTTLE_TYPE",
+          "THROTTLE_WINDOW",
+          "THROTTLE_UNIT",
+          "THROTTLE_DYNAMIC_KEY",
+          "THROTTLE_THRESHOLD",
+          "THROTTLE_KEY",
+          "EXTEND_TO_SCHEDULE",
           "SMS_BODY",
           "CHAT_BODY",
           "PUSH_BODY",
@@ -38605,6 +38663,7 @@
           "EMAIL",
           "DIGEST",
           "DELAY",
+          "THROTTLE",
           "SMS",
           "CHAT",
           "PUSH",
@@ -38702,7 +38761,7 @@
             "description": "Unique identifier for the layout"
           },
           "slug": {
-            "type": "object",
+            "type": "string",
             "description": "Slug of the layout"
           },
           "name": {
@@ -39172,12 +39231,22 @@
             "type": "string",
             "description": "The cursor for the previous page of results, or null if this is the first page.",
             "nullable": true
+          },
+          "totalCount": {
+            "type": "number",
+            "description": "The total count of items (up to 50,000)"
+          },
+          "totalCountCapped": {
+            "type": "boolean",
+            "description": "Whether there are more than 50,000 results available"
           }
         },
         "required": [
           "data",
           "next",
-          "previous"
+          "previous",
+          "totalCount",
+          "totalCountCapped"
         ]
       },
       "CreateUpdateTopicRequestDto": {
@@ -39631,7 +39700,7 @@
             "description": "Name of the step"
           },
           "slug": {
-            "type": "object",
+            "type": "string",
             "description": "Slug of the step"
           },
           "type": {
@@ -39809,7 +39878,7 @@
             "description": "Name of the step"
           },
           "slug": {
-            "type": "object",
+            "type": "string",
             "description": "Slug of the step"
           },
           "type": {
@@ -39957,7 +40026,7 @@
             "description": "Name of the step"
           },
           "slug": {
-            "type": "object",
+            "type": "string",
             "description": "Slug of the step"
           },
           "type": {
@@ -40109,7 +40178,7 @@
             "description": "Name of the step"
           },
           "slug": {
-            "type": "object",
+            "type": "string",
             "description": "Slug of the step"
           },
           "type": {
@@ -40257,7 +40326,7 @@
             "description": "Name of the step"
           },
           "slug": {
-            "type": "object",
+            "type": "string",
             "description": "Slug of the step"
           },
           "type": {
@@ -40431,7 +40500,7 @@
             "description": "Name of the step"
           },
           "slug": {
-            "type": "object",
+            "type": "string",
             "description": "Slug of the step"
           },
           "type": {
@@ -40643,7 +40712,191 @@
             "description": "Name of the step"
           },
           "slug": {
+            "type": "string",
+            "description": "Slug of the step"
+          },
+          "type": {
+            "$ref": "#/components/schemas/StepTypeEnum"
+          },
+          "origin": {
+            "$ref": "#/components/schemas/ResourceOriginEnum"
+          },
+          "workflowId": {
+            "type": "string",
+            "description": "Workflow identifier"
+          },
+          "workflowDatabaseId": {
+            "type": "string",
+            "description": "Workflow database identifier"
+          },
+          "issues": {
+            "description": "Issues associated with the step",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StepIssuesDto"
+              }
+            ]
+          }
+        },
+        "required": [
+          "controls",
+          "variables",
+          "stepId",
+          "_id",
+          "name",
+          "slug",
+          "type",
+          "origin",
+          "workflowId",
+          "workflowDatabaseId"
+        ]
+      },
+      "ThrottleControlDto": {
+        "type": "object",
+        "properties": {
+          "skip": {
             "type": "object",
+            "description": "JSONLogic filter conditions for conditionally skipping the step execution. Supports complex logical operations with AND, OR, and comparison operators. See https://jsonlogic.com/ for full typing reference.",
+            "example": {
+              "and": [
+                {
+                  "==": [
+                    {
+                      "var": "payload.tier"
+                    },
+                    "pro"
+                  ]
+                },
+                {
+                  "==": [
+                    {
+                      "var": "subscriber.data.role"
+                    },
+                    "admin"
+                  ]
+                },
+                {
+                  "\u003e": [
+                    {
+                      "var": "payload.amount"
+                    },
+                    "4"
+                  ]
+                }
+              ]
+            },
+            "additionalProperties": true
+          },
+          "type": {
+            "type": "string",
+            "description": "The type of throttle window.",
+            "enum": [
+              "fixed",
+              "dynamic"
+            ],
+            "default": "fixed"
+          },
+          "amount": {
+            "type": "number",
+            "minimum": 1,
+            "description": "The amount of time for the throttle window (required for fixed type)."
+          },
+          "unit": {
+            "type": "string",
+            "enum": [
+              "minutes",
+              "hours",
+              "days"
+            ],
+            "description": "The unit of time for the throttle window (required for fixed type)."
+          },
+          "dynamicKey": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Key path to retrieve dynamic window value (required for dynamic type).",
+            "example": "payload.timestamp"
+          },
+          "threshold": {
+            "type": "number",
+            "minimum": 1,
+            "maximum": 100,
+            "description": "The maximum number of executions allowed within the window. Defaults to 1.",
+            "default": 1
+          },
+          "throttleKey": {
+            "type": "string",
+            "description": "Optional key for grouping throttle rules. If not provided, defaults to workflow and subscriber combination."
+          }
+        }
+      },
+      "ThrottleControlsMetadataResponseDto": {
+        "type": "object",
+        "properties": {
+          "dataSchema": {
+            "type": "object",
+            "description": "JSON Schema for data",
+            "additionalProperties": true
+          },
+          "uiSchema": {
+            "description": "UI Schema for rendering",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/UiSchema"
+              }
+            ]
+          },
+          "values": {
+            "description": "Control values specific to Throttle",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ThrottleControlDto"
+              }
+            ]
+          }
+        },
+        "required": [
+          "values"
+        ]
+      },
+      "ThrottleStepResponseDto": {
+        "type": "object",
+        "properties": {
+          "controls": {
+            "description": "Controls metadata for the throttle step",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ThrottleControlsMetadataResponseDto"
+              }
+            ]
+          },
+          "controlValues": {
+            "description": "Control values for the throttle step",
+            "additionalProperties": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ThrottleControlDto"
+              }
+            ]
+          },
+          "variables": {
+            "type": "object",
+            "description": "JSON Schema for variables, follows the JSON Schema standard",
+            "additionalProperties": true
+          },
+          "stepId": {
+            "type": "string",
+            "description": "Unique identifier of the step"
+          },
+          "_id": {
+            "type": "string",
+            "description": "Database identifier of the step"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the step"
+          },
+          "slug": {
+            "type": "string",
             "description": "Slug of the step"
           },
           "type": {
@@ -40759,7 +41012,7 @@
             "description": "Name of the step"
           },
           "slug": {
-            "type": "object",
+            "type": "string",
             "description": "Slug of the step"
           },
           "type": {
@@ -40989,7 +41242,7 @@
             "description": "Name of the step"
           },
           "slug": {
-            "type": "object",
+            "type": "string",
             "description": "Slug of the step"
           },
           "type": {
@@ -41178,7 +41431,7 @@
             "description": "Workflow identifier"
           },
           "slug": {
-            "type": "object",
+            "type": "string",
             "description": "Slug of the workflow"
           },
           "updatedAt": {
@@ -41240,6 +41493,9 @@
                 },
                 {
                   "$ref": "#/components/schemas/CustomStepResponseDto"
+                },
+                {
+                  "$ref": "#/components/schemas/ThrottleStepResponseDto"
                 }
               ],
               "discriminator": {
@@ -41252,7 +41508,8 @@
                   "chat": "#/components/schemas/ChatStepResponseDto",
                   "delay": "#/components/schemas/DelayStepResponseDto",
                   "digest": "#/components/schemas/DigestStepResponseDto",
-                  "custom": "#/components/schemas/CustomStepResponseDto"
+                  "custom": "#/components/schemas/CustomStepResponseDto",
+                  "throttle": "#/components/schemas/ThrottleStepResponseDto"
                 }
               }
             }
@@ -41531,6 +41788,38 @@
           "type"
         ]
       },
+      "ThrottleStepUpsertDto": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "Unique identifier of the step"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the step"
+          },
+          "type": {
+            "$ref": "#/components/schemas/StepTypeEnum"
+          },
+          "controlValues": {
+            "description": "Control values for the Throttle step.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/ThrottleControlDto"
+              },
+              {
+                "type": "object",
+                "additionalProperties": true
+              }
+            ]
+          }
+        },
+        "required": [
+          "name",
+          "type"
+        ]
+      },
       "CustomStepUpsertDto": {
         "type": "object",
         "properties": {
@@ -41673,6 +41962,9 @@
                   "$ref": "#/components/schemas/DigestStepUpsertDto"
                 },
                 {
+                  "$ref": "#/components/schemas/ThrottleStepUpsertDto"
+                },
+                {
                   "$ref": "#/components/schemas/CustomStepUpsertDto"
                 }
               ],
@@ -41686,6 +41978,7 @@
                   "chat": "#/components/schemas/ChatStepUpsertDto",
                   "delay": "#/components/schemas/DelayStepUpsertDto",
                   "digest": "#/components/schemas/DigestStepUpsertDto",
+                  "throttle": "#/components/schemas/ThrottleStepUpsertDto",
                   "custom": "#/components/schemas/CustomStepUpsertDto"
                 }
               }
@@ -41837,7 +42130,7 @@
         "type": "object",
         "properties": {
           "slug": {
-            "type": "object",
+            "type": "string",
             "description": "Slug of the step"
           },
           "type": {
@@ -42210,6 +42503,11 @@
           "steps": {
             "type": "object",
             "description": "Steps data",
+            "additionalProperties": true
+          },
+          "context": {
+            "type": "object",
+            "description": "Context data for the preview",
             "additionalProperties": true
           }
         }

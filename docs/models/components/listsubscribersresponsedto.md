@@ -38,6 +38,8 @@ let value: ListSubscribersResponseDto = {
   ],
   next: "<value>",
   previous: "<value>",
+  totalCount: 3578.33,
+  totalCountCapped: true,
 };
 ```
 
@@ -48,3 +50,5 @@ let value: ListSubscribersResponseDto = {
 | `data`                                                                                 | [components.SubscriberResponseDto](../../models/components/subscriberresponsedto.md)[] | :heavy_check_mark:                                                                     | List of returned Subscribers                                                           |
 | `next`                                                                                 | *string*                                                                               | :heavy_check_mark:                                                                     | The cursor for the next page of results, or null if there are no more pages.           |
 | `previous`                                                                             | *string*                                                                               | :heavy_check_mark:                                                                     | The cursor for the previous page of results, or null if this is the first page.        |
+| `totalCount`                                                                           | *number*                                                                               | :heavy_check_mark:                                                                     | The total count of items (up to 50,000)                                                |
+| `totalCountCapped`                                                                     | *boolean*                                                                              | :heavy_check_mark:                                                                     | Whether there are more than 50,000 results available                                   |

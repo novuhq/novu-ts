@@ -17,7 +17,7 @@ let value: ListWorkflowResponse = {
       status: "ERROR",
       origin: "novu-cloud",
       stepTypeOverviews: [
-        "trigger",
+        "delay",
       ],
       steps: [],
     },
