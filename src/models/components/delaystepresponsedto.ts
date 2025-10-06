@@ -39,6 +39,7 @@ import {
  */
 export const DelayStepResponseDtoType = {
   Regular: "regular",
+  Timed: "timed",
 } as const;
 /**
  * Type of the delay. Currently only 'regular' is supported by the schema.
@@ -80,11 +81,15 @@ export type DelayStepResponseDtoControlValues = {
   /**
    * Amount of time to delay.
    */
-  amount: number;
+  amount?: number | undefined;
   /**
    * Unit of time for the delay amount.
    */
-  unit: DelayStepResponseDtoUnit;
+  unit?: DelayStepResponseDtoUnit | undefined;
+  /**
+   * Cron expression for the delay. Min length 1.
+   */
+  cron?: string | undefined;
   additionalProperties?: { [k: string]: any };
 };
 
@@ -190,8 +195,9 @@ export const DelayStepResponseDtoControlValues$inboundSchema: z.ZodType<
   z.object({
     skip: z.record(z.any()).optional(),
     type: DelayStepResponseDtoType$inboundSchema.default("regular"),
-    amount: z.number(),
-    unit: DelayStepResponseDtoUnit$inboundSchema,
+    amount: z.number().optional(),
+    unit: DelayStepResponseDtoUnit$inboundSchema.optional(),
+    cron: z.string().optional(),
   }).catchall(z.any()),
   "additionalProperties",
   true,
@@ -201,8 +207,9 @@ export const DelayStepResponseDtoControlValues$inboundSchema: z.ZodType<
 export type DelayStepResponseDtoControlValues$Outbound = {
   skip?: { [k: string]: any } | undefined;
   type: string;
-  amount: number;
-  unit: string;
+  amount?: number | undefined;
+  unit?: string | undefined;
+  cron?: string | undefined;
   [additionalProperties: string]: unknown;
 };
 
@@ -214,8 +221,9 @@ export const DelayStepResponseDtoControlValues$outboundSchema: z.ZodType<
 > = z.object({
   skip: z.record(z.any()).optional(),
   type: DelayStepResponseDtoType$outboundSchema.default("regular"),
-  amount: z.number(),
-  unit: DelayStepResponseDtoUnit$outboundSchema,
+  amount: z.number().optional(),
+  unit: DelayStepResponseDtoUnit$outboundSchema.optional(),
+  cron: z.string().optional(),
   additionalProperties: z.record(z.any()),
 }).transform((v) => {
   return {

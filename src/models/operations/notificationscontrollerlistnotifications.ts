@@ -53,6 +53,10 @@ export type NotificationsControllerListNotificationsRequest = {
    */
   topicKey?: string | undefined;
   /**
+   * Context search - can search by type, ID, or exact format "type:id"
+   */
+  contextSearch?: string | undefined;
+  /**
    * Date filter for records after this timestamp. Defaults to earliest date allowed by subscription plan
    */
   after?: string | undefined;
@@ -88,6 +92,7 @@ export const NotificationsControllerListNotificationsRequest$inboundSchema:
     limit: z.number().default(10),
     transactionId: z.string().optional(),
     topicKey: z.string().optional(),
+    contextSearch: z.string().optional(),
     after: z.string().optional(),
     before: z.string().optional(),
     "idempotency-key": z.string().optional(),
@@ -109,6 +114,7 @@ export type NotificationsControllerListNotificationsRequest$Outbound = {
   limit: number;
   transactionId?: string | undefined;
   topicKey?: string | undefined;
+  contextSearch?: string | undefined;
   after?: string | undefined;
   before?: string | undefined;
   "idempotency-key"?: string | undefined;
@@ -131,6 +137,7 @@ export const NotificationsControllerListNotificationsRequest$outboundSchema:
     limit: z.number().default(10),
     transactionId: z.string().optional(),
     topicKey: z.string().optional(),
+    contextSearch: z.string().optional(),
     after: z.string().optional(),
     before: z.string().optional(),
     idempotencyKey: z.string().optional(),

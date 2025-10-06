@@ -12,6 +12,10 @@ export type DuplicateLayoutDto = {
    * Name of the layout
    */
   name: string;
+  /**
+   * Enable or disable translations for this layout
+   */
+  isTranslationEnabled?: boolean | undefined;
 };
 
 /** @internal */
@@ -21,11 +25,13 @@ export const DuplicateLayoutDto$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   name: z.string(),
+  isTranslationEnabled: z.boolean().default(false),
 });
 
 /** @internal */
 export type DuplicateLayoutDto$Outbound = {
   name: string;
+  isTranslationEnabled: boolean;
 };
 
 /** @internal */
@@ -35,6 +41,7 @@ export const DuplicateLayoutDto$outboundSchema: z.ZodType<
   DuplicateLayoutDto
 > = z.object({
   name: z.string(),
+  isTranslationEnabled: z.boolean().default(false),
 });
 
 /**

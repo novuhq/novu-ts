@@ -68,6 +68,10 @@ export type LayoutResponseDto = {
    */
   isDefault: boolean;
   /**
+   * Whether the layout translations are enabled
+   */
+  isTranslationEnabled: boolean;
+  /**
    * Last updated timestamp
    */
   updatedAt: string;
@@ -175,6 +179,7 @@ export const LayoutResponseDto$inboundSchema: z.ZodType<
   slug: z.string(),
   name: z.string(),
   isDefault: z.boolean(),
+  isTranslationEnabled: z.boolean(),
   updatedAt: z.string(),
   updatedBy: z.nullable(z.lazy(() => UpdatedBy$inboundSchema)).optional(),
   createdAt: z.string(),
@@ -195,6 +200,7 @@ export type LayoutResponseDto$Outbound = {
   slug: string;
   name: string;
   isDefault: boolean;
+  isTranslationEnabled: boolean;
   updatedAt: string;
   updatedBy?: UpdatedBy$Outbound | null | undefined;
   createdAt: string;
@@ -215,6 +221,7 @@ export const LayoutResponseDto$outboundSchema: z.ZodType<
   slug: z.string(),
   name: z.string(),
   isDefault: z.boolean(),
+  isTranslationEnabled: z.boolean(),
   updatedAt: z.string(),
   updatedBy: z.nullable(z.lazy(() => UpdatedBy$outboundSchema)).optional(),
   createdAt: z.string(),

@@ -15,6 +15,7 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 export const TranslationControllerGetTranslationGroupEndpointPathParamResourceType =
   {
     Workflow: "workflow",
+    Layout: "layout",
   } as const;
 /**
  * Resource type

@@ -37,8 +37,6 @@ const value: components.DelayControlDto = {
       },
     ],
   },
-  amount: 2285.34,
-  unit: "days",
 };
 ```
 

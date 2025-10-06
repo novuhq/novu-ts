@@ -101,6 +101,7 @@ async function $do(
     "after": payload.after,
     "before": payload.before,
     "channels": payload.channels,
+    "contextSearch": payload.contextSearch,
     "emails": payload.emails,
     "limit": payload.limit,
     "page": payload.page,

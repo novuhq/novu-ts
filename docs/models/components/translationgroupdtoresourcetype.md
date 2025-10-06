@@ -13,5 +13,5 @@ let value: TranslationGroupDtoResourceType = "workflow";
 ## Values
 
 ```typescript
-"workflow"
+"workflow" | "layout"
 ```

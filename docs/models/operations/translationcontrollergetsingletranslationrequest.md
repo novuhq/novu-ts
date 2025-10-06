@@ -6,7 +6,7 @@
 import { TranslationControllerGetSingleTranslationRequest } from "@novu/api/models/operations";
 
 let value: TranslationControllerGetSingleTranslationRequest = {
-  resourceType: "workflow",
+  resourceType: "layout",
   resourceId: "welcome-email",
   locale: "en_US",
 };

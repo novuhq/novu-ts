@@ -28,9 +28,13 @@ export type PushStepUpsertDtoControlValues = PushControlDto | {
 
 export type PushStepUpsertDto = {
   /**
-   * Unique identifier of the step
+   * Database identifier of the step. Used for updating the step.
    */
   id?: string | undefined;
+  /**
+   * Unique identifier for the step
+   */
+  stepId?: string | undefined;
   /**
    * Name of the step
    */
@@ -104,6 +108,7 @@ export const PushStepUpsertDto$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   _id: z.string().optional(),
+  stepId: z.string().optional(),
   name: z.string(),
   type: StepTypeEnum$inboundSchema,
   controlValues: z.union([PushControlDto$inboundSchema, z.record(z.any())])
@@ -117,6 +122,7 @@ export const PushStepUpsertDto$inboundSchema: z.ZodType<
 /** @internal */
 export type PushStepUpsertDto$Outbound = {
   _id?: string | undefined;
+  stepId?: string | undefined;
   name: string;
   type: string;
   controlValues?: PushControlDto$Outbound | { [k: string]: any } | undefined;
@@ -129,6 +135,7 @@ export const PushStepUpsertDto$outboundSchema: z.ZodType<
   PushStepUpsertDto
 > = z.object({
   id: z.string().optional(),
+  stepId: z.string().optional(),
   name: z.string(),
   type: StepTypeEnum$outboundSchema,
   controlValues: z.union([PushControlDto$outboundSchema, z.record(z.any())])

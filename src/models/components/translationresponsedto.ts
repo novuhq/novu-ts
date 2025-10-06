@@ -13,6 +13,7 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
  */
 export const TranslationResponseDtoResourceType = {
   Workflow: "workflow",
+  Layout: "layout",
 } as const;
 /**
  * Resource type

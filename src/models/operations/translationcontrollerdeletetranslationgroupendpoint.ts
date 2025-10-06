@@ -14,6 +14,7 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
  */
 export const ResourceType = {
   Workflow: "workflow",
+  Layout: "layout",
 } as const;
 /**
  * Resource type

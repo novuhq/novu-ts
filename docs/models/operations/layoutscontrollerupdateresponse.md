@@ -26,9 +26,10 @@ let value: LayoutsControllerUpdateResponse = {
     slug: "<value>",
     name: "<value>",
     isDefault: true,
-    updatedAt: "1735614598968",
-    createdAt: "1729976975815",
-    origin: "novu-cloud-v1",
+    isTranslationEnabled: true,
+    updatedAt: "1735673948159",
+    createdAt: "1716695410716",
+    origin: "novu-cloud",
     type: "REGULAR",
     controls: {
       values: {},

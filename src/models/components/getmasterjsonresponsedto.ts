@@ -12,11 +12,20 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
  */
 export type Workflows = {};
 
+/**
+ * All translations for given locale organized by layout identifier
+ */
+export type Layouts = {};
+
 export type GetMasterJsonResponseDto = {
   /**
    * All translations for given locale organized by workflow identifier
    */
   workflows: Workflows;
+  /**
+   * All translations for given locale organized by layout identifier
+   */
+  layouts: Layouts;
 };
 
 /** @internal */
@@ -64,17 +73,60 @@ export function workflowsFromJSON(
 }
 
 /** @internal */
+export const Layouts$inboundSchema: z.ZodType<Layouts, z.ZodTypeDef, unknown> =
+  z.object({});
+
+/** @internal */
+export type Layouts$Outbound = {};
+
+/** @internal */
+export const Layouts$outboundSchema: z.ZodType<
+  Layouts$Outbound,
+  z.ZodTypeDef,
+  Layouts
+> = z.object({});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Layouts$ {
+  /** @deprecated use `Layouts$inboundSchema` instead. */
+  export const inboundSchema = Layouts$inboundSchema;
+  /** @deprecated use `Layouts$outboundSchema` instead. */
+  export const outboundSchema = Layouts$outboundSchema;
+  /** @deprecated use `Layouts$Outbound` instead. */
+  export type Outbound = Layouts$Outbound;
+}
+
+export function layoutsToJSON(layouts: Layouts): string {
+  return JSON.stringify(Layouts$outboundSchema.parse(layouts));
+}
+
+export function layoutsFromJSON(
+  jsonString: string,
+): SafeParseResult<Layouts, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Layouts$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Layouts' from JSON`,
+  );
+}
+
+/** @internal */
 export const GetMasterJsonResponseDto$inboundSchema: z.ZodType<
   GetMasterJsonResponseDto,
   z.ZodTypeDef,
   unknown
 > = z.object({
   workflows: z.lazy(() => Workflows$inboundSchema),
+  layouts: z.lazy(() => Layouts$inboundSchema),
 });
 
 /** @internal */
 export type GetMasterJsonResponseDto$Outbound = {
   workflows: Workflows$Outbound;
+  layouts: Layouts$Outbound;
 };
 
 /** @internal */
@@ -84,6 +136,7 @@ export const GetMasterJsonResponseDto$outboundSchema: z.ZodType<
   GetMasterJsonResponseDto
 > = z.object({
   workflows: z.lazy(() => Workflows$outboundSchema),
+  layouts: z.lazy(() => Layouts$outboundSchema),
 });
 
 /**

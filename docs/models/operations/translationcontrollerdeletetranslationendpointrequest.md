@@ -8,7 +8,7 @@ import { TranslationControllerDeleteTranslationEndpointRequest } from "@novu/api
 let value: TranslationControllerDeleteTranslationEndpointRequest = {
   resourceType: "workflow",
   resourceId: "<id>",
-  locale: "de",
+  locale: "ar",
 };
 ```
 

@@ -28,9 +28,13 @@ export type DelayStepUpsertDtoControlValues = DelayControlDto | {
 
 export type DelayStepUpsertDto = {
   /**
-   * Unique identifier of the step
+   * Database identifier of the step. Used for updating the step.
    */
   id?: string | undefined;
+  /**
+   * Unique identifier for the step
+   */
+  stepId?: string | undefined;
   /**
    * Name of the step
    */
@@ -104,6 +108,7 @@ export const DelayStepUpsertDto$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   _id: z.string().optional(),
+  stepId: z.string().optional(),
   name: z.string(),
   type: StepTypeEnum$inboundSchema,
   controlValues: z.union([DelayControlDto$inboundSchema, z.record(z.any())])
@@ -117,6 +122,7 @@ export const DelayStepUpsertDto$inboundSchema: z.ZodType<
 /** @internal */
 export type DelayStepUpsertDto$Outbound = {
   _id?: string | undefined;
+  stepId?: string | undefined;
   name: string;
   type: string;
   controlValues?: DelayControlDto$Outbound | { [k: string]: any } | undefined;
@@ -129,6 +135,7 @@ export const DelayStepUpsertDto$outboundSchema: z.ZodType<
   DelayStepUpsertDto
 > = z.object({
   id: z.string().optional(),
+  stepId: z.string().optional(),
   name: z.string(),
   type: StepTypeEnum$outboundSchema,
   controlValues: z.union([DelayControlDto$outboundSchema, z.record(z.any())])

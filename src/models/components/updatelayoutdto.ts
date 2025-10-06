@@ -29,6 +29,10 @@ export type UpdateLayoutDto = {
    */
   name: string;
   /**
+   * Enable or disable translations for this layout
+   */
+  isTranslationEnabled?: boolean | undefined;
+  /**
    * Control values for the layout
    */
   controlValues?: ControlValues | null | undefined;
@@ -91,6 +95,7 @@ export const UpdateLayoutDto$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   name: z.string(),
+  isTranslationEnabled: z.boolean().default(false),
   controlValues: z.nullable(z.lazy(() => ControlValues$inboundSchema))
     .optional(),
 });
@@ -98,6 +103,7 @@ export const UpdateLayoutDto$inboundSchema: z.ZodType<
 /** @internal */
 export type UpdateLayoutDto$Outbound = {
   name: string;
+  isTranslationEnabled: boolean;
   controlValues?: ControlValues$Outbound | null | undefined;
 };
 
@@ -108,6 +114,7 @@ export const UpdateLayoutDto$outboundSchema: z.ZodType<
   UpdateLayoutDto
 > = z.object({
   name: z.string(),
+  isTranslationEnabled: z.boolean().default(false),
   controlValues: z.nullable(z.lazy(() => ControlValues$outboundSchema))
     .optional(),
 });

@@ -13144,7 +13144,8 @@
             "example": "workflow",
             "schema": {
               "enum": [
-                "workflow"
+                "workflow",
+                "layout"
               ],
               "type": "string"
             }
@@ -13204,7 +13205,8 @@
             "description": "Resource type",
             "schema": {
               "enum": [
-                "workflow"
+                "workflow",
+                "layout"
               ],
               "type": "string"
             }
@@ -13279,7 +13281,8 @@
             "description": "Resource type",
             "schema": {
               "enum": [
-                "workflow"
+                "workflow",
+                "layout"
               ],
               "type": "string"
             }
@@ -13339,7 +13342,7 @@
         "x-speakeasy-name-override": "retrieve",
         "x-speakeasy-group": "Translations.Groups",
         "summary": "Retrieve a translation group",
-        "description": "Retrieves a single translation group by resource type (workflow) and resource ID (workflowId)",
+        "description": "Retrieves a single translation group by resource type (workflow, layout) and resource ID (workflowId, layoutId)",
         "parameters": [
           {
             "name": "resourceType",
@@ -13349,7 +13352,8 @@
             "example": "workflow",
             "schema": {
               "enum": [
-                "workflow"
+                "workflow",
+                "layout"
               ],
               "type": "string"
             }
@@ -26446,6 +26450,15 @@
             }
           },
           {
+            "name": "contextSearch",
+            "required": false,
+            "in": "query",
+            "description": "Context search - can search by type, ID, or exact format \"type:id\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "after",
             "required": false,
             "in": "query",
@@ -33808,6 +33821,13 @@
           },
           "type": {
             "$ref": "#/components/schemas/TriggerRecipientsTypeEnum"
+          },
+          "exclude": {
+            "description": "Optional array of subscriber IDs to exclude from the topic trigger",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         },
         "required": [
@@ -34383,6 +34403,10 @@
           "cronExpression": {
             "type": "string",
             "description": "Cron expression for scheduling"
+          },
+          "untilDate": {
+            "type": "string",
+            "description": "Until date for scheduling"
           }
         }
       },
@@ -35356,6 +35380,13 @@
             "type": "boolean",
             "description": "Critical flag"
           },
+          "contextKeys": {
+            "description": "Contexts (keys) in which the workflow run was executed",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
           "steps": {
             "description": "Workflow run steps",
             "type": "array",
@@ -35598,6 +35629,13 @@
           "critical": {
             "type": "boolean",
             "description": "Critical flag"
+          },
+          "contextKeys": {
+            "description": "Contexts (keys) in which the workflow run was executed",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           },
           "steps": {
             "description": "Step runs",
@@ -38577,11 +38615,13 @@
           "URL_TEXT_BOX",
           "DIGEST_AMOUNT",
           "DIGEST_UNIT",
+          "DIGEST_TYPE",
           "DIGEST_KEY",
           "DIGEST_CRON",
-          "DELAY_TYPE",
           "DELAY_AMOUNT",
           "DELAY_UNIT",
+          "DELAY_TYPE",
+          "DELAY_CRON",
           "THROTTLE_TYPE",
           "THROTTLE_WINDOW",
           "THROTTLE_UNIT",
@@ -38772,6 +38812,10 @@
             "type": "boolean",
             "description": "Whether the layout is the default layout"
           },
+          "isTranslationEnabled": {
+            "type": "boolean",
+            "description": "Whether the layout translations are enabled"
+          },
           "updatedAt": {
             "type": "string",
             "description": "Last updated timestamp"
@@ -38816,6 +38860,7 @@
           "slug",
           "name",
           "isDefault",
+          "isTranslationEnabled",
           "updatedAt",
           "createdAt",
           "origin",
@@ -38842,6 +38887,11 @@
             "type": "string",
             "description": "Name of the layout"
           },
+          "isTranslationEnabled": {
+            "type": "boolean",
+            "description": "Enable or disable translations for this layout",
+            "default": false
+          },
           "__source": {
             "$ref": "#/components/schemas/LayoutCreationSourceEnum"
           }
@@ -38857,6 +38907,11 @@
           "name": {
             "type": "string",
             "description": "Name of the layout"
+          },
+          "isTranslationEnabled": {
+            "type": "boolean",
+            "description": "Enable or disable translations for this layout",
+            "default": false
           },
           "controlValues": {
             "nullable": true,
@@ -38878,6 +38933,11 @@
           "name": {
             "type": "string",
             "description": "Name of the layout"
+          },
+          "isTranslationEnabled": {
+            "type": "boolean",
+            "description": "Enable or disable translations for this layout",
+            "default": false
           }
         },
         "required": [
@@ -40404,7 +40464,8 @@
           "type": {
             "type": "string",
             "enum": [
-              "regular"
+              "regular",
+              "timed"
             ],
             "description": "Type of the delay. Currently only 'regular' is supported by the schema.",
             "default": "regular"
@@ -40425,13 +40486,13 @@
             ],
             "type": "string",
             "description": "Unit of time for the delay amount."
+          },
+          "cron": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Cron expression for the delay. Min length 1."
           }
-        },
-        "required": [
-          "type",
-          "amount",
-          "unit"
-        ]
+        }
       },
       "DelayControlsMetadataResponseDto": {
         "type": "object",
@@ -41424,7 +41485,7 @@
           },
           "_id": {
             "type": "string",
-            "description": "Unique identifier of the workflow"
+            "description": "Database identifier of the workflow"
           },
           "workflowId": {
             "type": "string",
@@ -41569,7 +41630,12 @@
         "properties": {
           "_id": {
             "type": "string",
-            "description": "Unique identifier of the step"
+            "description": "Database identifier of the step. Used for updating the step."
+          },
+          "stepId": {
+            "type": "string",
+            "pattern": "/^[a-z0-9]+(?:-[a-z0-9]+)*$/",
+            "description": "Unique identifier for the step"
           },
           "name": {
             "type": "string",
@@ -41601,7 +41667,12 @@
         "properties": {
           "_id": {
             "type": "string",
-            "description": "Unique identifier of the step"
+            "description": "Database identifier of the step. Used for updating the step."
+          },
+          "stepId": {
+            "type": "string",
+            "pattern": "/^[a-z0-9]+(?:-[a-z0-9]+)*$/",
+            "description": "Unique identifier for the step"
           },
           "name": {
             "type": "string",
@@ -41633,7 +41704,12 @@
         "properties": {
           "_id": {
             "type": "string",
-            "description": "Unique identifier of the step"
+            "description": "Database identifier of the step. Used for updating the step."
+          },
+          "stepId": {
+            "type": "string",
+            "pattern": "/^[a-z0-9]+(?:-[a-z0-9]+)*$/",
+            "description": "Unique identifier for the step"
           },
           "name": {
             "type": "string",
@@ -41665,7 +41741,12 @@
         "properties": {
           "_id": {
             "type": "string",
-            "description": "Unique identifier of the step"
+            "description": "Database identifier of the step. Used for updating the step."
+          },
+          "stepId": {
+            "type": "string",
+            "pattern": "/^[a-z0-9]+(?:-[a-z0-9]+)*$/",
+            "description": "Unique identifier for the step"
           },
           "name": {
             "type": "string",
@@ -41697,7 +41778,12 @@
         "properties": {
           "_id": {
             "type": "string",
-            "description": "Unique identifier of the step"
+            "description": "Database identifier of the step. Used for updating the step."
+          },
+          "stepId": {
+            "type": "string",
+            "pattern": "/^[a-z0-9]+(?:-[a-z0-9]+)*$/",
+            "description": "Unique identifier for the step"
           },
           "name": {
             "type": "string",
@@ -41729,7 +41815,12 @@
         "properties": {
           "_id": {
             "type": "string",
-            "description": "Unique identifier of the step"
+            "description": "Database identifier of the step. Used for updating the step."
+          },
+          "stepId": {
+            "type": "string",
+            "pattern": "/^[a-z0-9]+(?:-[a-z0-9]+)*$/",
+            "description": "Unique identifier for the step"
           },
           "name": {
             "type": "string",
@@ -41761,7 +41852,12 @@
         "properties": {
           "_id": {
             "type": "string",
-            "description": "Unique identifier of the step"
+            "description": "Database identifier of the step. Used for updating the step."
+          },
+          "stepId": {
+            "type": "string",
+            "pattern": "/^[a-z0-9]+(?:-[a-z0-9]+)*$/",
+            "description": "Unique identifier for the step"
           },
           "name": {
             "type": "string",
@@ -41793,7 +41889,12 @@
         "properties": {
           "_id": {
             "type": "string",
-            "description": "Unique identifier of the step"
+            "description": "Database identifier of the step. Used for updating the step."
+          },
+          "stepId": {
+            "type": "string",
+            "pattern": "/^[a-z0-9]+(?:-[a-z0-9]+)*$/",
+            "description": "Unique identifier for the step"
           },
           "name": {
             "type": "string",
@@ -41825,7 +41926,12 @@
         "properties": {
           "_id": {
             "type": "string",
-            "description": "Unique identifier of the step"
+            "description": "Database identifier of the step. Used for updating the step."
+          },
+          "stepId": {
+            "type": "string",
+            "pattern": "/^[a-z0-9]+(?:-[a-z0-9]+)*$/",
+            "description": "Unique identifier for the step"
           },
           "name": {
             "type": "string",
@@ -42719,7 +42825,8 @@
             "type": "string",
             "description": "The resource type to associate localizations with",
             "enum": [
-              "workflow"
+              "workflow",
+              "layout"
             ]
           }
         },
@@ -42776,7 +42883,8 @@
             "type": "string",
             "description": "The resource type to associate translation with",
             "enum": [
-              "workflow"
+              "workflow",
+              "layout"
             ]
           },
           "locale": {
@@ -42813,7 +42921,8 @@
             "description": "Resource type",
             "example": "workflow",
             "enum": [
-              "workflow"
+              "workflow",
+              "layout"
             ]
           },
           "locale": {
@@ -42865,10 +42974,21 @@
                 "reset.message": "Click the link to reset"
               }
             }
+          },
+          "layouts": {
+            "type": "object",
+            "description": "All translations for given locale organized by layout identifier",
+            "example": {
+              "default-layout": {
+                "layout.title": "Default layout",
+                "layout.message": "Hello there!"
+              }
+            }
           }
         },
         "required": [
-          "workflows"
+          "workflows",
+          "layouts"
         ]
       },
       "ImportMasterJsonRequestDto": {
@@ -42954,7 +43074,8 @@
             "description": "Resource type",
             "example": "workflow",
             "enum": [
-              "workflow"
+              "workflow",
+              "layout"
             ]
           },
           "resourceName": {
