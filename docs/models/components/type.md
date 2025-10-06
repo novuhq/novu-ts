@@ -13,5 +13,5 @@ let value: Type = "regular";
 ## Values
 
 ```typescript
-"regular"
+"regular" | "timed"
 ```

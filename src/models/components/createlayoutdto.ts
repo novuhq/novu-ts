@@ -23,6 +23,10 @@ export type CreateLayoutDto = {
    */
   name: string;
   /**
+   * Enable or disable translations for this layout
+   */
+  isTranslationEnabled?: boolean | undefined;
+  /**
    * Source of layout creation
    */
   source?: LayoutCreationSourceEnum | undefined;
@@ -36,6 +40,7 @@ export const CreateLayoutDto$inboundSchema: z.ZodType<
 > = z.object({
   layoutId: z.string(),
   name: z.string(),
+  isTranslationEnabled: z.boolean().default(false),
   __source: LayoutCreationSourceEnum$inboundSchema.default("dashboard"),
 }).transform((v) => {
   return remap$(v, {
@@ -47,6 +52,7 @@ export const CreateLayoutDto$inboundSchema: z.ZodType<
 export type CreateLayoutDto$Outbound = {
   layoutId: string;
   name: string;
+  isTranslationEnabled: boolean;
   __source: string;
 };
 
@@ -58,6 +64,7 @@ export const CreateLayoutDto$outboundSchema: z.ZodType<
 > = z.object({
   layoutId: z.string(),
   name: z.string(),
+  isTranslationEnabled: z.boolean().default(false),
   source: LayoutCreationSourceEnum$outboundSchema.default("dashboard"),
 }).transform((v) => {
   return remap$(v, {

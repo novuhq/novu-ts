@@ -65,6 +65,10 @@ export type DigestTimedConfigDto = {
    * Cron expression for scheduling
    */
   cronExpression?: string | undefined;
+  /**
+   * Until date for scheduling
+   */
+  untilDate?: string | undefined;
 };
 
 /** @internal */
@@ -101,6 +105,7 @@ export const DigestTimedConfigDto$inboundSchema: z.ZodType<
   ordinalValue: OrdinalValueEnum$inboundSchema.optional(),
   monthlyType: MonthlyTypeEnum$inboundSchema.optional(),
   cronExpression: z.string().optional(),
+  untilDate: z.string().optional(),
 });
 
 /** @internal */
@@ -112,6 +117,7 @@ export type DigestTimedConfigDto$Outbound = {
   ordinalValue?: string | undefined;
   monthlyType?: string | undefined;
   cronExpression?: string | undefined;
+  untilDate?: string | undefined;
 };
 
 /** @internal */
@@ -127,6 +133,7 @@ export const DigestTimedConfigDto$outboundSchema: z.ZodType<
   ordinalValue: OrdinalValueEnum$outboundSchema.optional(),
   monthlyType: MonthlyTypeEnum$outboundSchema.optional(),
   cronExpression: z.string().optional(),
+  untilDate: z.string().optional(),
 });
 
 /**

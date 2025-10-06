@@ -35,8 +35,6 @@ let value: DelayControlsMetadataResponseDto = {
         },
       ],
     },
-    amount: 2922.75,
-    unit: "months",
   },
 };
 ```

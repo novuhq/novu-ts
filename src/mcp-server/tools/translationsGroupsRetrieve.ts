@@ -19,7 +19,7 @@ export const tool$translationsGroupsRetrieve: ToolDefinition<typeof args> = {
   name: "translations-groups-retrieve",
   description: `Retrieve a translation group
 
-Retrieves a single translation group by resource type (workflow) and resource ID (workflowId)`,
+Retrieves a single translation group by resource type (workflow, layout) and resource ID (workflowId, layoutId)`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await translationsGroupsRetrieve(

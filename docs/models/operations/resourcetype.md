@@ -13,5 +13,5 @@ let value: ResourceType = "workflow";
 ## Values
 
 ```typescript
-"workflow"
+"workflow" | "layout"
 ```

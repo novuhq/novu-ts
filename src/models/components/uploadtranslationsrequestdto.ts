@@ -13,6 +13,7 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
  */
 export const UploadTranslationsRequestDtoResourceType = {
   Workflow: "workflow",
+  Layout: "layout",
 } as const;
 /**
  * The resource type to associate localizations with

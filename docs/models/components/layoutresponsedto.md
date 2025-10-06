@@ -11,10 +11,11 @@ let value: LayoutResponseDto = {
   slug: "<value>",
   name: "<value>",
   isDefault: true,
-  updatedAt: "1735669594678",
-  createdAt: "1708991400189",
+  isTranslationEnabled: false,
+  updatedAt: "1735616454094",
+  createdAt: "1711314093106",
   origin: "novu-cloud",
-  type: "REGULAR",
+  type: "ECHO",
   controls: {
     values: {},
   },
@@ -30,6 +31,7 @@ let value: LayoutResponseDto = {
 | `slug`                                                                         | *string*                                                                       | :heavy_check_mark:                                                             | Slug of the layout                                                             |
 | `name`                                                                         | *string*                                                                       | :heavy_check_mark:                                                             | Name of the layout                                                             |
 | `isDefault`                                                                    | *boolean*                                                                      | :heavy_check_mark:                                                             | Whether the layout is the default layout                                       |
+| `isTranslationEnabled`                                                         | *boolean*                                                                      | :heavy_check_mark:                                                             | Whether the layout translations are enabled                                    |
 | `updatedAt`                                                                    | *string*                                                                       | :heavy_check_mark:                                                             | Last updated timestamp                                                         |
 | `updatedBy`                                                                    | [components.UpdatedBy](../../models/components/updatedby.md)                   | :heavy_minus_sign:                                                             | User who last updated the layout                                               |
 | `createdAt`                                                                    | *string*                                                                       | :heavy_check_mark:                                                             | Creation timestamp                                                             |

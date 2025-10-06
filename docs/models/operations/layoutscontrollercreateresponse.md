@@ -7,9 +7,7 @@ import { LayoutsControllerCreateResponse } from "@novu/api/models/operations";
 
 let value: LayoutsControllerCreateResponse = {
   headers: {
-    "key": [
-      "<value 1>",
-    ],
+    "key": [],
   },
   result: {
     id: "<id>",
@@ -17,9 +15,10 @@ let value: LayoutsControllerCreateResponse = {
     slug: "<value>",
     name: "<value>",
     isDefault: true,
-    updatedAt: "1735614598968",
-    createdAt: "1729976975815",
-    origin: "novu-cloud-v1",
+    isTranslationEnabled: true,
+    updatedAt: "1735673948159",
+    createdAt: "1716695410716",
+    origin: "novu-cloud",
     type: "REGULAR",
     controls: {
       values: {},

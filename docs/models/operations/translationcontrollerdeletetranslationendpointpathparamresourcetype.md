@@ -14,5 +14,5 @@ let value: TranslationControllerDeleteTranslationEndpointPathParamResourceType =
 ## Values
 
 ```typescript
-"workflow"
+"workflow" | "layout"
 ```

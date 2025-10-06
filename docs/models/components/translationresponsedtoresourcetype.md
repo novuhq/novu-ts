@@ -13,5 +13,5 @@ let value: TranslationResponseDtoResourceType = "workflow";
 ## Values
 
 ```typescript
-"workflow"
+"workflow" | "layout"
 ```

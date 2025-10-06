@@ -7,11 +7,11 @@ Resource type
 ```typescript
 import { PathParamResourceType } from "@novu/api/models/operations";
 
-let value: PathParamResourceType = "workflow";
+let value: PathParamResourceType = "layout";
 ```
 
 ## Values
 
 ```typescript
-"workflow"
+"workflow" | "layout"
 ```

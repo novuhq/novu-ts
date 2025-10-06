@@ -8,7 +8,7 @@ import { TranslationControllerCreateTranslationEndpointRequest } from "@novu/api
 let value: TranslationControllerCreateTranslationEndpointRequest = {
   createTranslationRequestDto: {
     resourceId: "welcome-email",
-    resourceType: "workflow",
+    resourceType: "layout",
     locale: "en_US",
     content: {},
   },

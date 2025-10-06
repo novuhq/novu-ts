@@ -13,5 +13,5 @@ let value: DelayStepResponseDtoType = "regular";
 ## Values
 
 ```typescript
-"regular"
+"regular" | "timed"
 ```

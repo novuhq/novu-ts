@@ -7,11 +7,11 @@ The resource type to associate localizations with
 ```typescript
 import { UploadTranslationsRequestDtoResourceType } from "@novu/api/models/components";
 
-let value: UploadTranslationsRequestDtoResourceType = "workflow";
+let value: UploadTranslationsRequestDtoResourceType = "layout";
 ```
 
 ## Values
 
 ```typescript
-"workflow"
+"workflow" | "layout"
 ```

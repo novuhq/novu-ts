@@ -13,6 +13,7 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
  */
 export const Type = {
   Regular: "regular",
+  Timed: "timed",
 } as const;
 /**
  * Type of the delay. Currently only 'regular' is supported by the schema.
@@ -47,11 +48,15 @@ export type DelayControlDto = {
   /**
    * Amount of time to delay.
    */
-  amount: number;
+  amount?: number | undefined;
   /**
    * Unit of time for the delay amount.
    */
-  unit: Unit;
+  unit?: Unit | undefined;
+  /**
+   * Cron expression for the delay. Min length 1.
+   */
+  cron?: string | undefined;
 };
 
 /** @internal */
@@ -102,16 +107,18 @@ export const DelayControlDto$inboundSchema: z.ZodType<
 > = z.object({
   skip: z.record(z.any()).optional(),
   type: Type$inboundSchema.default("regular"),
-  amount: z.number(),
-  unit: Unit$inboundSchema,
+  amount: z.number().optional(),
+  unit: Unit$inboundSchema.optional(),
+  cron: z.string().optional(),
 });
 
 /** @internal */
 export type DelayControlDto$Outbound = {
   skip?: { [k: string]: any } | undefined;
   type: string;
-  amount: number;
-  unit: string;
+  amount?: number | undefined;
+  unit?: string | undefined;
+  cron?: string | undefined;
 };
 
 /** @internal */
@@ -122,8 +129,9 @@ export const DelayControlDto$outboundSchema: z.ZodType<
 > = z.object({
   skip: z.record(z.any()).optional(),
   type: Type$outboundSchema.default("regular"),
-  amount: z.number(),
-  unit: Unit$outboundSchema,
+  amount: z.number().optional(),
+  unit: Unit$outboundSchema.optional(),
+  cron: z.string().optional(),
 });
 
 /**
