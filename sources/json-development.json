@@ -26450,15 +26450,6 @@
             }
           },
           {
-            "name": "contextSearch",
-            "required": false,
-            "in": "query",
-            "description": "Context search - can search by type, ID, or exact format \"type:id\"",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "after",
             "required": false,
             "in": "query",
