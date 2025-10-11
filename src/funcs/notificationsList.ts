@@ -101,7 +101,6 @@ async function $do(
     "after": payload.after,
     "before": payload.before,
     "channels": payload.channels,
-    "contextSearch": payload.contextSearch,
     "emails": payload.emails,
     "limit": payload.limit,
     "page": payload.page,
@@ -130,7 +129,7 @@ async function $do(
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "NotificationsController_listNotifications",
-    oAuth2Scopes: [],
+    oAuth2Scopes: null,
 
     resolvedSecurity: requestSecurity,
 
