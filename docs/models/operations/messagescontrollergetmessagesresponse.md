@@ -31,7 +31,7 @@ let value: MessagesControllerGetMessagesResponse = {
         subscriber: {
           channels: [
             {
-              providerId: "apns",
+              providerId: "expo",
               credentials: {
                 webhookUrl: "https://example.com/webhook",
                 channel: "general",
@@ -101,6 +101,10 @@ let value: MessagesControllerGetMessagesResponse = {
         seen: false,
         cta: {},
         status: "error",
+        contextKeys: [
+          "tenant:org-123",
+          "region:us-east-1",
+        ],
       },
     ],
     pageSize: 4273.6,

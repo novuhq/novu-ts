@@ -22,7 +22,7 @@ let value: SubscribersV1ControllerMarkActionAsSeenResponse = {
     subscriber: {
       channels: [
         {
-          providerId: "apns",
+          providerId: "expo",
           credentials: {
             webhookUrl: "https://example.com/webhook",
             channel: "general",
@@ -92,6 +92,10 @@ let value: SubscribersV1ControllerMarkActionAsSeenResponse = {
     seen: true,
     cta: {},
     status: "warning",
+    contextKeys: [
+      "tenant:org-123",
+      "region:us-east-1",
+    ],
   },
 };
 ```

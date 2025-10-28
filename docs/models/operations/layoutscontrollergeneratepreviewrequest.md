@@ -12,7 +12,7 @@ let value: LayoutsControllerGeneratePreviewRequest = {
       subscriber: {
         channels: [
           {
-            providerId: "apns",
+            providerId: "expo",
             credentials: {
               webhookUrl: "https://example.com/webhook",
               channel: "general",

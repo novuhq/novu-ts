@@ -32,7 +32,7 @@ actions:
       "x-codeSamples":
         - "lang": "typescript"
           "label": "TypeScript"
-          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.trigger({\n    workflowId: \"workflow_identifier\",\n    payload: {\n      \"comment_id\": \"string\",\n      \"post\": {\n        \"text\": \"string\",\n      },\n    },\n    overrides: {},\n    to: \"SUBSCRIBER_ID\",\n  });\n\n  console.log(result);\n}\n\nrun();"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.trigger({\n    workflowId: \"workflow_identifier\",\n    payload: {\n      \"comment_id\": \"string\",\n      \"post\": {\n        \"text\": \"string\",\n      },\n    },\n    overrides: {},\n    to: \"SUBSCRIBER_ID\",\n    context: {\n      \"key\": \"org-acme\",\n    },\n  });\n\n  console.log(result);\n}\n\nrun();"
   - target: $["paths"]["/v1/events/trigger/broadcast"]["post"]
     update:
       "x-codeSamples":
@@ -44,7 +44,7 @@ actions:
       "x-codeSamples":
         - "lang": "typescript"
           "label": "TypeScript"
-          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.triggerBulk({\n    events: [\n      {\n        workflowId: \"workflow_identifier\",\n        payload: {\n          \"comment_id\": \"string\",\n          \"post\": {\n            \"text\": \"string\",\n          },\n        },\n        overrides: {},\n        to: \"SUBSCRIBER_ID\",\n      },\n    ],\n  });\n\n  console.log(result);\n}\n\nrun();"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.triggerBulk({\n    events: [\n      {\n        workflowId: \"workflow_identifier\",\n        payload: {\n          \"comment_id\": \"string\",\n          \"post\": {\n            \"text\": \"string\",\n          },\n        },\n        overrides: {},\n        to: \"SUBSCRIBER_ID\",\n        context: {\n          \"key\": \"org-acme\",\n        },\n      },\n    ],\n  });\n\n  console.log(result);\n}\n\nrun();"
   - target: $["paths"]["/v1/events/trigger/{transactionId}"]["delete"]
     update:
       "x-codeSamples":
@@ -98,7 +98,7 @@ actions:
       "x-codeSamples":
         - "lang": "typescript"
           "label": "TypeScript"
-          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.messages.retrieve({});\n\n  console.log(result);\n}\n\nrun();"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.messages.retrieve({\n    contextKeys: [\n      \"tenant:org-123\",\n      \"region:us-east-1\",\n    ],\n  });\n\n  console.log(result);\n}\n\nrun();"
   - target: $["paths"]["/v1/messages/transaction/{transactionId}"]["delete"]
     update:
       "x-codeSamples":
@@ -134,7 +134,7 @@ actions:
       "x-codeSamples":
         - "lang": "typescript"
           "label": "TypeScript"
-          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.subscribers.credentials.append({\n    providerId: \"expo\",\n    credentials: {\n      webhookUrl: \"https://example.com/webhook\",\n      channel: \"general\",\n      deviceTokens: [\n        \"token1\",\n        \"token2\",\n        \"token3\",\n      ],\n      alertUid: \"12345-abcde\",\n      title: \"Critical Alert\",\n      imageUrl: \"https://example.com/image.png\",\n      state: \"resolved\",\n      externalUrl: \"https://example.com/details\",\n    },\n  }, \"<id>\");\n\n  console.log(result);\n}\n\nrun();"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.subscribers.credentials.append({\n    providerId: \"one-signal\",\n    credentials: {\n      webhookUrl: \"https://example.com/webhook\",\n      channel: \"general\",\n      deviceTokens: [\n        \"token1\",\n        \"token2\",\n        \"token3\",\n      ],\n      alertUid: \"12345-abcde\",\n      title: \"Critical Alert\",\n      imageUrl: \"https://example.com/image.png\",\n      state: \"resolved\",\n      externalUrl: \"https://example.com/details\",\n    },\n  }, \"<id>\");\n\n  console.log(result);\n}\n\nrun();"
   - target: $["paths"]["/v1/subscribers/{subscriberId}/credentials"]["put"]
     update:
       "x-codeSamples":
@@ -189,6 +189,36 @@ actions:
         - "lang": "typescript"
           "label": "TypeScript"
           "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.topics.subscribers.retrieve(\"<id>\", \"<value>\");\n\n  console.log(result);\n}\n\nrun();"
+  - target: $["paths"]["/v2/contexts"]["get"]
+    update:
+      "x-codeSamples":
+        - "lang": "typescript"
+          "label": "TypeScript"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.contexts.list({\n    id: \"tenant-prod-123\",\n    search: \"tenant\",\n  });\n\n  console.log(result);\n}\n\nrun();"
+  - target: $["paths"]["/v2/contexts"]["post"]
+    update:
+      "x-codeSamples":
+        - "lang": "typescript"
+          "label": "TypeScript"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.contexts.create({\n    type: \"tenant\",\n    id: \"org-acme\",\n    data: {},\n  });\n\n  console.log(result);\n}\n\nrun();"
+  - target: $["paths"]["/v2/contexts/{type}/{id}"]["delete"]
+    update:
+      "x-codeSamples":
+        - "lang": "typescript"
+          "label": "TypeScript"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.contexts.delete(\"<id>\", \"<value>\");\n\n  console.log(result);\n}\n\nrun();"
+  - target: $["paths"]["/v2/contexts/{type}/{id}"]["get"]
+    update:
+      "x-codeSamples":
+        - "lang": "typescript"
+          "label": "TypeScript"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.contexts.retrieve(\"<id>\", \"<value>\");\n\n  console.log(result);\n}\n\nrun();"
+  - target: $["paths"]["/v2/contexts/{type}/{id}"]["patch"]
+    update:
+      "x-codeSamples":
+        - "lang": "typescript"
+          "label": "TypeScript"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.contexts.update({\n    id: \"<id>\",\n    type: \"<value>\",\n    updateContextRequestDto: {\n      data: {},\n    },\n  });\n\n  console.log(result);\n}\n\nrun();"
   - target: $["paths"]["/v2/environments/{environmentId}/tags"]["get"]
     update:
       "x-codeSamples":
@@ -200,7 +230,7 @@ actions:
       "x-codeSamples":
         - "lang": "typescript"
           "label": "TypeScript"
-          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  await novu.inboundWebhooksControllerHandleWebhook(\"<id>\", \"<id>\");\n\n\n}\n\nrun();"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.activity.track({\n    environmentId: \"<id>\",\n    integrationId: \"<id>\",\n    requestBody: \"<value>\",\n  });\n\n  console.log(result);\n}\n\nrun();"
   - target: $["paths"]["/v2/layouts"]["get"]
     update:
       "x-codeSamples":

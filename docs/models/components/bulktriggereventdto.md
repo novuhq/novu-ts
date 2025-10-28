@@ -17,6 +17,9 @@ let value: BulkTriggerEventDto = {
       },
       overrides: {},
       to: "SUBSCRIBER_ID",
+      context: {
+        "key": "org-acme",
+      },
     },
   ],
 };

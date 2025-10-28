@@ -10,7 +10,7 @@ let value: SubscribersV1ControllerUpdateSubscriberOnlineFlagResponse = {
   result: {
     channels: [
       {
-        providerId: "apns",
+        providerId: "expo",
         credentials: {
           webhookUrl: "https://example.com/webhook",
           channel: "general",
