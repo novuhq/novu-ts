@@ -29,7 +29,12 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.messages.retrieve({});
+  const result = await novu.messages.retrieve({
+    contextKeys: [
+      "tenant:org-123",
+      "region:us-east-1",
+    ],
+  });
 
   console.log(result);
 }
@@ -52,7 +57,12 @@ const novu = new NovuCore({
 });
 
 async function run() {
-  const res = await messagesRetrieve(novu, {});
+  const res = await messagesRetrieve(novu, {
+    contextKeys: [
+      "tenant:org-123",
+      "region:us-east-1",
+    ],
+  });
   if (res.ok) {
     const { value: result } = res;
     console.log(result);

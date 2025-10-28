@@ -201,6 +201,9 @@ async function run() {
     },
     overrides: {},
     to: "SUBSCRIBER_ID",
+    context: {
+      "key": "org-acme",
+    },
   });
 
   console.log(result);
@@ -327,6 +330,18 @@ run();
 <details open>
 <summary>Available methods</summary>
 
+### [activity](docs/sdks/activity/README.md)
+
+* [track](docs/sdks/activity/README.md#track) - Track activity and engagement events
+
+### [contexts](docs/sdks/contexts/README.md)
+
+* [create](docs/sdks/contexts/README.md#create) - Create a context
+* [list](docs/sdks/contexts/README.md#list) - List all contexts
+* [update](docs/sdks/contexts/README.md#update) - Update a context
+* [retrieve](docs/sdks/contexts/README.md#retrieve) - Retrieve a context
+* [delete](docs/sdks/contexts/README.md#delete) - Delete a context
+
 ### [environments](docs/sdks/environments/README.md)
 
 * [getTags](docs/sdks/environments/README.md#gettags) - Get environment tags
@@ -369,7 +384,6 @@ run();
 
 ### [Novu SDK](docs/sdks/novu/README.md)
 
-* [inboundWebhooksControllerHandleWebhook](docs/sdks/novu/README.md#inboundwebhookscontrollerhandlewebhook)
 * [trigger](docs/sdks/novu/README.md#trigger) - Trigger event
 * [cancel](docs/sdks/novu/README.md#cancel) - Cancel triggered event
 * [triggerBroadcast](docs/sdks/novu/README.md#triggerbroadcast) - Broadcast event to all
@@ -386,8 +400,8 @@ run();
 
 #### [subscribers.credentials](docs/sdks/credentials/README.md)
 
-* [update](docs/sdks/credentials/README.md#update) - Upsert provider credentials
-* [append](docs/sdks/credentials/README.md#append) - Update provider credentials
+* [update](docs/sdks/credentials/README.md#update) - Update provider credentials
+* [append](docs/sdks/credentials/README.md#append) - Upsert provider credentials
 * [delete](docs/sdks/credentials/README.md#delete) - Delete provider credentials
 
 #### [subscribers.messages](docs/sdks/novumessages/README.md)
@@ -483,13 +497,18 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 <summary>Available standalone functions</summary>
 
+- [`activityTrack`](docs/sdks/activity/README.md#track) - Track activity and engagement events
 - [`cancel`](docs/sdks/novu/README.md#cancel) - Cancel triggered event
+- [`contextsCreate`](docs/sdks/contexts/README.md#create) - Create a context
+- [`contextsDelete`](docs/sdks/contexts/README.md#delete) - Delete a context
+- [`contextsList`](docs/sdks/contexts/README.md#list) - List all contexts
+- [`contextsRetrieve`](docs/sdks/contexts/README.md#retrieve) - Retrieve a context
+- [`contextsUpdate`](docs/sdks/contexts/README.md#update) - Update a context
 - [`environmentsCreate`](docs/sdks/environments/README.md#create) - Create an environment
 - [`environmentsDelete`](docs/sdks/environments/README.md#delete) - Delete an environment
 - [`environmentsGetTags`](docs/sdks/environments/README.md#gettags) - Get environment tags
 - [`environmentsList`](docs/sdks/environments/README.md#list) - List all environments
 - [`environmentsUpdate`](docs/sdks/environments/README.md#update) - Update an environment
-- [`inboundWebhooksControllerHandleWebhook`](docs/sdks/novu/README.md#inboundwebhookscontrollerhandlewebhook)
 - [`integrationsCreate`](docs/sdks/integrations/README.md#create) - Create an integration
 - [`integrationsDelete`](docs/sdks/integrations/README.md#delete) - Delete an integration
 - [`integrationsIntegrationsControllerAutoConfigureIntegration`](docs/sdks/integrations/README.md#integrationscontrollerautoconfigureintegration) - Auto-configure an integration for inbound webhooks
@@ -512,9 +531,9 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`notificationsRetrieve`](docs/sdks/notifications/README.md#retrieve) - Retrieve an event
 - [`subscribersCreate`](docs/sdks/subscribers/README.md#create) - Create a subscriber
 - [`subscribersCreateBulk`](docs/sdks/subscribers/README.md#createbulk) - Bulk create subscribers
-- [`subscribersCredentialsAppend`](docs/sdks/credentials/README.md#append) - Update provider credentials
+- [`subscribersCredentialsAppend`](docs/sdks/credentials/README.md#append) - Upsert provider credentials
 - [`subscribersCredentialsDelete`](docs/sdks/credentials/README.md#delete) - Delete provider credentials
-- [`subscribersCredentialsUpdate`](docs/sdks/credentials/README.md#update) - Upsert provider credentials
+- [`subscribersCredentialsUpdate`](docs/sdks/credentials/README.md#update) - Update provider credentials
 - [`subscribersDelete`](docs/sdks/subscribers/README.md#delete) - Delete a subscriber
 - [`subscribersMessagesMarkAll`](docs/sdks/novumessages/README.md#markall) - Update all notifications state
 - [`subscribersMessagesMarkAllAs`](docs/sdks/novumessages/README.md#markallas) - Update notifications state
@@ -597,6 +616,9 @@ async function run() {
       },
       overrides: {},
       to: "SUBSCRIBER_ID",
+      context: {
+        "key": "org-acme",
+      },
     });
 
     console.log(result);
@@ -643,9 +665,9 @@ run();
 
 
 **Inherit from [`NovuError`](./src/models/errors/novuerror.ts)**:
-* [`PayloadValidationExceptionDto`](./src/models/errors/payloadvalidationexceptiondto.ts): Status code `400`. Applicable to 3 of 75 methods.*
-* [`SubscriberResponseDto`](./src/models/errors/subscriberresponsedto.ts): Created. Status code `409`. Applicable to 1 of 75 methods.*
-* [`TopicResponseDto`](./src/models/errors/topicresponsedto.ts): OK. Status code `409`. Applicable to 1 of 75 methods.*
+* [`PayloadValidationExceptionDto`](./src/models/errors/payloadvalidationexceptiondto.ts): Status code `400`. Applicable to 3 of 80 methods.*
+* [`SubscriberResponseDto`](./src/models/errors/subscriberresponsedto.ts): Created. Status code `409`. Applicable to 1 of 80 methods.*
+* [`TopicResponseDto`](./src/models/errors/topicresponsedto.ts): OK. Status code `409`. Applicable to 1 of 80 methods.*
 * [`ResponseValidationError`](./src/models/errors/responsevalidationerror.ts): Type mismatch between the data returned from the server and the structure expected by the SDK. See `error.rawValue` for the raw value and `error.pretty()` for a nicely formatted multi-line string.
 
 </details>
@@ -676,7 +698,22 @@ const novu = new Novu({
 });
 
 async function run() {
-  await novu.inboundWebhooksControllerHandleWebhook("<id>", "<id>");
+  const result = await novu.trigger({
+    workflowId: "workflow_identifier",
+    payload: {
+      "comment_id": "string",
+      "post": {
+        "text": "string",
+      },
+    },
+    overrides: {},
+    to: "SUBSCRIBER_ID",
+    context: {
+      "key": "org-acme",
+    },
+  });
+
+  console.log(result);
 }
 
 run();
@@ -695,7 +732,22 @@ const novu = new Novu({
 });
 
 async function run() {
-  await novu.inboundWebhooksControllerHandleWebhook("<id>", "<id>");
+  const result = await novu.trigger({
+    workflowId: "workflow_identifier",
+    payload: {
+      "comment_id": "string",
+      "post": {
+        "text": "string",
+      },
+    },
+    overrides: {},
+    to: "SUBSCRIBER_ID",
+    context: {
+      "key": "org-acme",
+    },
+  });
+
+  console.log(result);
 }
 
 run();
@@ -772,7 +824,22 @@ const novu = new Novu({
 });
 
 async function run() {
-  await novu.inboundWebhooksControllerHandleWebhook("<id>", "<id>");
+  const result = await novu.trigger({
+    workflowId: "workflow_identifier",
+    payload: {
+      "comment_id": "string",
+      "post": {
+        "text": "string",
+      },
+    },
+    overrides: {},
+    to: "SUBSCRIBER_ID",
+    context: {
+      "key": "org-acme",
+    },
+  });
+
+  console.log(result);
 }
 
 run();
@@ -794,7 +861,20 @@ const novu = new Novu({
 });
 
 async function run() {
-  await novu.inboundWebhooksControllerHandleWebhook("<id>", "<id>", {
+  const result = await novu.trigger({
+    workflowId: "workflow_identifier",
+    payload: {
+      "comment_id": "string",
+      "post": {
+        "text": "string",
+      },
+    },
+    overrides: {},
+    to: "SUBSCRIBER_ID",
+    context: {
+      "key": "org-acme",
+    },
+  }, {
     retries: {
       strategy: "backoff",
       backoff: {
@@ -806,6 +886,8 @@ async function run() {
       retryConnectionErrors: false,
     },
   });
+
+  console.log(result);
 }
 
 run();
@@ -831,7 +913,22 @@ const novu = new Novu({
 });
 
 async function run() {
-  await novu.inboundWebhooksControllerHandleWebhook("<id>", "<id>");
+  const result = await novu.trigger({
+    workflowId: "workflow_identifier",
+    payload: {
+      "comment_id": "string",
+      "post": {
+        "text": "string",
+      },
+    },
+    overrides: {},
+    to: "SUBSCRIBER_ID",
+    context: {
+      "key": "org-acme",
+    },
+  });
+
+  console.log(result);
 }
 
 run();

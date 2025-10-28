@@ -3,7 +3,6 @@
  */
 
 import { cancel } from "../funcs/cancel.js";
-import { inboundWebhooksControllerHandleWebhook } from "../funcs/inboundWebhooksControllerHandleWebhook.js";
 import { trigger } from "../funcs/trigger.js";
 import { triggerBroadcast } from "../funcs/triggerBroadcast.js";
 import { triggerBulk } from "../funcs/triggerBulk.js";
@@ -11,6 +10,8 @@ import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as components from "../models/components/index.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
+import { Activity } from "./activity.js";
+import { Contexts } from "./contexts.js";
 import { Environments } from "./environments.js";
 import { Integrations } from "./integrations.js";
 import { Layouts } from "./layouts.js";
@@ -22,9 +23,19 @@ import { Translations } from "./translations.js";
 import { Workflows } from "./workflows.js";
 
 export class Novu extends ClientSDK {
+  private _contexts?: Contexts;
+  get contexts(): Contexts {
+    return (this._contexts ??= new Contexts(this._options));
+  }
+
   private _environments?: Environments;
   get environments(): Environments {
     return (this._environments ??= new Environments(this._options));
+  }
+
+  private _activity?: Activity;
+  get activity(): Activity {
+    return (this._activity ??= new Activity(this._options));
   }
 
   private _layouts?: Layouts;
@@ -65,21 +76,6 @@ export class Novu extends ClientSDK {
   private _notifications?: Notifications;
   get notifications(): Notifications {
     return (this._notifications ??= new Notifications(this._options));
-  }
-
-  async inboundWebhooksControllerHandleWebhook(
-    environmentId: string,
-    integrationId: string,
-    idempotencyKey?: string | undefined,
-    options?: RequestOptions,
-  ): Promise<void> {
-    return unwrapAsync(inboundWebhooksControllerHandleWebhook(
-      this,
-      environmentId,
-      integrationId,
-      idempotencyKey,
-      options,
-    ));
   }
 
   /**

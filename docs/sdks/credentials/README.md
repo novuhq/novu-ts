@@ -5,14 +5,14 @@
 
 ### Available Operations
 
-* [update](#update) - Upsert provider credentials
-* [append](#append) - Update provider credentials
+* [update](#update) - Update provider credentials
+* [append](#append) - Upsert provider credentials
 * [delete](#delete) - Delete provider credentials
 
 ## update
 
-Upsert credentials for a provider such as slack and push tokens. 
-      **providerId** is required field. This API creates **deviceTokens** or appends to the existing ones.
+Update credentials for a provider such as **slack** and **FCM**. 
+      **providerId** is required field. This API creates the **deviceTokens** or replaces the existing ones.
 
 ### Example Usage
 
@@ -119,8 +119,8 @@ run();
 
 ## append
 
-Update credentials for a provider such as **slack** and **FCM**. 
-      **providerId** is required field. This API creates the **deviceTokens** or replaces the existing ones.
+Upsert credentials for a provider such as **slack** and **FCM**. 
+      **providerId** is required field. This API creates **deviceTokens** or appends to the existing ones.
 
 ### Example Usage
 

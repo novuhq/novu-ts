@@ -13,13 +13,18 @@ import {
 } from "./resources.js";
 import { MCPScope } from "./scopes.js";
 import { createRegisterTool } from "./tools.js";
+import { tool$activityTrack } from "./tools/activityTrack.js";
 import { tool$cancel } from "./tools/cancel.js";
+import { tool$contextsCreate } from "./tools/contextsCreate.js";
+import { tool$contextsDelete } from "./tools/contextsDelete.js";
+import { tool$contextsList } from "./tools/contextsList.js";
+import { tool$contextsRetrieve } from "./tools/contextsRetrieve.js";
+import { tool$contextsUpdate } from "./tools/contextsUpdate.js";
 import { tool$environmentsCreate } from "./tools/environmentsCreate.js";
 import { tool$environmentsDelete } from "./tools/environmentsDelete.js";
 import { tool$environmentsGetTags } from "./tools/environmentsGetTags.js";
 import { tool$environmentsList } from "./tools/environmentsList.js";
 import { tool$environmentsUpdate } from "./tools/environmentsUpdate.js";
-import { tool$inboundWebhooksControllerHandleWebhook } from "./tools/inboundWebhooksControllerHandleWebhook.js";
 import { tool$integrationsCreate } from "./tools/integrationsCreate.js";
 import { tool$integrationsDelete } from "./tools/integrationsDelete.js";
 import { tool$integrationsIntegrationsControllerAutoConfigureIntegration } from "./tools/integrationsIntegrationsControllerAutoConfigureIntegration.js";
@@ -99,7 +104,7 @@ export function createMCPServer(deps: {
 }) {
   const server = new McpServer({
     name: "Novu",
-    version: "1.7.1",
+    version: "1.8.0",
   });
 
   const client = new NovuCore({
@@ -129,16 +134,21 @@ export function createMCPServer(deps: {
   const register = { tool, resource, resourceTemplate, prompt };
   void register; // suppress unused warnings
 
-  tool(tool$inboundWebhooksControllerHandleWebhook);
   tool(tool$trigger);
   tool(tool$cancel);
   tool(tool$triggerBroadcast);
   tool(tool$triggerBulk);
+  tool(tool$contextsCreate);
+  tool(tool$contextsList);
+  tool(tool$contextsUpdate);
+  tool(tool$contextsRetrieve);
+  tool(tool$contextsDelete);
   tool(tool$environmentsGetTags);
   tool(tool$environmentsCreate);
   tool(tool$environmentsList);
   tool(tool$environmentsUpdate);
   tool(tool$environmentsDelete);
+  tool(tool$activityTrack);
   tool(tool$layoutsCreate);
   tool(tool$layoutsList);
   tool(tool$layoutsUpdate);

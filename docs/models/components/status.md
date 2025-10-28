@@ -1,17 +1,17 @@
 # Status
 
-Status of the trigger
+Status of the event
 
 ## Example Usage
 
 ```typescript
 import { Status } from "@novu/api/models/components";
 
-let value: Status = "processed";
+let value: Status = "complaint";
 ```
 
 ## Values
 
 ```typescript
-"error" | "trigger_not_active" | "no_workflow_active_steps_defined" | "no_workflow_steps_defined" | "processed" | "no_tenant_found" | "invalid_recipients"
+"opened" | "rejected" | "sent" | "deferred" | "delivered" | "bounced" | "dropped" | "clicked" | "blocked" | "spam" | "unsubscribed" | "delayed" | "complaint" | "created" | "accepted" | "queued" | "sending" | "failed" | "undelivered" | "dismissed"
 ```

@@ -9,80 +9,10 @@ Novu Documentation
 
 ### Available Operations
 
-* [inboundWebhooksControllerHandleWebhook](#inboundwebhookscontrollerhandlewebhook)
 * [trigger](#trigger) - Trigger event
 * [cancel](#cancel) - Cancel triggered event
 * [triggerBroadcast](#triggerbroadcast) - Broadcast event to all
 * [triggerBulk](#triggerbulk) - Bulk trigger event
-
-## inboundWebhooksControllerHandleWebhook
-
-### Example Usage
-
-<!-- UsageSnippet language="typescript" operationID="InboundWebhooksController_handleWebhook" method="post" path="/v2/inbound-webhooks/delivery-providers/{environmentId}/{integrationId}" -->
-```typescript
-import { Novu } from "@novu/api";
-
-const novu = new Novu({
-  secretKey: "YOUR_SECRET_KEY_HERE",
-});
-
-async function run() {
-  await novu.inboundWebhooksControllerHandleWebhook("<id>", "<id>");
-
-
-}
-
-run();
-```
-
-### Standalone function
-
-The standalone function version of this method:
-
-```typescript
-import { NovuCore } from "@novu/api/core.js";
-import { inboundWebhooksControllerHandleWebhook } from "@novu/api/funcs/inboundWebhooksControllerHandleWebhook.js";
-
-// Use `NovuCore` for best tree-shaking performance.
-// You can create one instance of it to use across an application.
-const novu = new NovuCore({
-  secretKey: "YOUR_SECRET_KEY_HERE",
-});
-
-async function run() {
-  const res = await inboundWebhooksControllerHandleWebhook(novu, "<id>", "<id>");
-  if (res.ok) {
-    const { value: result } = res;
-    
-  } else {
-    console.log("inboundWebhooksControllerHandleWebhook failed:", res.error);
-  }
-}
-
-run();
-```
-
-### Parameters
-
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `environmentId`                                                                                                                                                                | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
-| `integrationId`                                                                                                                                                                | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
-| `idempotencyKey`                                                                                                                                                               | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | A header for idempotency purposes                                                                                                                                              |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
-
-### Response
-
-**Promise\<void\>**
-
-### Errors
-
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## trigger
 
@@ -111,6 +41,9 @@ async function run() {
     },
     overrides: {},
     to: "SUBSCRIBER_ID",
+    context: {
+      "key": "org-acme",
+    },
   });
 
   console.log(result);
@@ -144,6 +77,9 @@ async function run() {
     },
     overrides: {},
     to: "SUBSCRIBER_ID",
+    context: {
+      "key": "org-acme",
+    },
   });
   if (res.ok) {
     const { value: result } = res;

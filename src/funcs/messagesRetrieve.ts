@@ -99,6 +99,7 @@ async function $do(
 
   const query = encodeFormQuery({
     "channel": payload.channel,
+    "contextKeys": payload.contextKeys,
     "limit": payload.limit,
     "page": payload.page,
     "subscriberId": payload.subscriberId,
@@ -122,7 +123,7 @@ async function $do(
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "MessagesController_getMessages",
-    oAuth2Scopes: [],
+    oAuth2Scopes: null,
 
     resolvedSecurity: requestSecurity,
 

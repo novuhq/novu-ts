@@ -19,7 +19,7 @@ let value: SubscribersV1ControllerUpdateSubscriberChannelResponse = {
   result: {
     channels: [
       {
-        providerId: "apns",
+        providerId: "expo",
         credentials: {
           webhookUrl: "https://example.com/webhook",
           channel: "general",

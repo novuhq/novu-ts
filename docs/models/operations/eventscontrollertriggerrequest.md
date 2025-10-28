@@ -16,6 +16,9 @@ let value: EventsControllerTriggerRequest = {
     },
     overrides: {},
     to: "SUBSCRIBER_ID",
+    context: {
+      "key": "org-acme",
+    },
   },
 };
 ```

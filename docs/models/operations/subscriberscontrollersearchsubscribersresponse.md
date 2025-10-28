@@ -12,7 +12,7 @@ let value: SubscribersControllerSearchSubscribersResponse = {
       {
         channels: [
           {
-            providerId: "apns",
+            providerId: "expo",
             credentials: {
               webhookUrl: "https://example.com/webhook",
               channel: "general",

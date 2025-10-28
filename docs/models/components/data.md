@@ -1,32 +1,16 @@
 # Data
 
+Optional custom data to associate with this context.
 
-## Supported Types
-
-### `string`
-
-```typescript
-const value: string = "<value>";
-```
-
-### `string[]`
+## Example Usage
 
 ```typescript
-const value: string[] = [
-  "<value 1>",
-  "<value 2>",
-];
+import { Data } from "@novu/api/models/components";
+
+let value: Data = {};
 ```
 
-### `boolean`
+## Fields
 
-```typescript
-const value: boolean = true;
-```
-
-### `number`
-
-```typescript
-const value: number = 1284.03;
-```
-
+| Field       | Type        | Required    | Description |
+| ----------- | ----------- | ----------- | ----------- |

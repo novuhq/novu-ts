@@ -39,6 +39,9 @@ async function run() {
     },
     overrides: {},
     to: "SUBSCRIBER_ID",
+    context: {
+      "key": "org-acme",
+    },
   });
   if (res.ok) {
     const { value: result } = res;
