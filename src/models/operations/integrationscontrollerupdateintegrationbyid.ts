@@ -40,7 +40,6 @@ export const IntegrationsControllerUpdateIntegrationByIdRequest$inboundSchema:
       "UpdateIntegrationRequestDto": "updateIntegrationRequestDto",
     });
   });
-
 /** @internal */
 export type IntegrationsControllerUpdateIntegrationByIdRequest$Outbound = {
   integrationId: string;
@@ -66,22 +65,6 @@ export const IntegrationsControllerUpdateIntegrationByIdRequest$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace IntegrationsControllerUpdateIntegrationByIdRequest$ {
-  /** @deprecated use `IntegrationsControllerUpdateIntegrationByIdRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    IntegrationsControllerUpdateIntegrationByIdRequest$inboundSchema;
-  /** @deprecated use `IntegrationsControllerUpdateIntegrationByIdRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    IntegrationsControllerUpdateIntegrationByIdRequest$outboundSchema;
-  /** @deprecated use `IntegrationsControllerUpdateIntegrationByIdRequest$Outbound` instead. */
-  export type Outbound =
-    IntegrationsControllerUpdateIntegrationByIdRequest$Outbound;
-}
-
 export function integrationsControllerUpdateIntegrationByIdRequestToJSON(
   integrationsControllerUpdateIntegrationByIdRequest:
     IntegrationsControllerUpdateIntegrationByIdRequest,
@@ -92,7 +75,6 @@ export function integrationsControllerUpdateIntegrationByIdRequestToJSON(
     ),
   );
 }
-
 export function integrationsControllerUpdateIntegrationByIdRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -124,7 +106,6 @@ export const IntegrationsControllerUpdateIntegrationByIdResponse$inboundSchema:
       "Result": "result",
     });
   });
-
 /** @internal */
 export type IntegrationsControllerUpdateIntegrationByIdResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
@@ -147,22 +128,6 @@ export const IntegrationsControllerUpdateIntegrationByIdResponse$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace IntegrationsControllerUpdateIntegrationByIdResponse$ {
-  /** @deprecated use `IntegrationsControllerUpdateIntegrationByIdResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    IntegrationsControllerUpdateIntegrationByIdResponse$inboundSchema;
-  /** @deprecated use `IntegrationsControllerUpdateIntegrationByIdResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    IntegrationsControllerUpdateIntegrationByIdResponse$outboundSchema;
-  /** @deprecated use `IntegrationsControllerUpdateIntegrationByIdResponse$Outbound` instead. */
-  export type Outbound =
-    IntegrationsControllerUpdateIntegrationByIdResponse$Outbound;
-}
-
 export function integrationsControllerUpdateIntegrationByIdResponseToJSON(
   integrationsControllerUpdateIntegrationByIdResponse:
     IntegrationsControllerUpdateIntegrationByIdResponse,
@@ -173,7 +138,6 @@ export function integrationsControllerUpdateIntegrationByIdResponseToJSON(
     ),
   );
 }
-
 export function integrationsControllerUpdateIntegrationByIdResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<

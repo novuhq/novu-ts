@@ -36,7 +36,6 @@ export const IntegrationsControllerAutoConfigureIntegrationRequest$inboundSchema
       "idempotency-key": "idempotencyKey",
     });
   });
-
 /** @internal */
 export type IntegrationsControllerAutoConfigureIntegrationRequest$Outbound = {
   integrationId: string;
@@ -58,22 +57,6 @@ export const IntegrationsControllerAutoConfigureIntegrationRequest$outboundSchem
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace IntegrationsControllerAutoConfigureIntegrationRequest$ {
-  /** @deprecated use `IntegrationsControllerAutoConfigureIntegrationRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    IntegrationsControllerAutoConfigureIntegrationRequest$inboundSchema;
-  /** @deprecated use `IntegrationsControllerAutoConfigureIntegrationRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    IntegrationsControllerAutoConfigureIntegrationRequest$outboundSchema;
-  /** @deprecated use `IntegrationsControllerAutoConfigureIntegrationRequest$Outbound` instead. */
-  export type Outbound =
-    IntegrationsControllerAutoConfigureIntegrationRequest$Outbound;
-}
-
 export function integrationsControllerAutoConfigureIntegrationRequestToJSON(
   integrationsControllerAutoConfigureIntegrationRequest:
     IntegrationsControllerAutoConfigureIntegrationRequest,
@@ -84,7 +67,6 @@ export function integrationsControllerAutoConfigureIntegrationRequestToJSON(
     ),
   );
 }
-
 export function integrationsControllerAutoConfigureIntegrationRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -116,7 +98,6 @@ export const IntegrationsControllerAutoConfigureIntegrationResponse$inboundSchem
       "Result": "result",
     });
   });
-
 /** @internal */
 export type IntegrationsControllerAutoConfigureIntegrationResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
@@ -139,22 +120,6 @@ export const IntegrationsControllerAutoConfigureIntegrationResponse$outboundSche
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace IntegrationsControllerAutoConfigureIntegrationResponse$ {
-  /** @deprecated use `IntegrationsControllerAutoConfigureIntegrationResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    IntegrationsControllerAutoConfigureIntegrationResponse$inboundSchema;
-  /** @deprecated use `IntegrationsControllerAutoConfigureIntegrationResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    IntegrationsControllerAutoConfigureIntegrationResponse$outboundSchema;
-  /** @deprecated use `IntegrationsControllerAutoConfigureIntegrationResponse$Outbound` instead. */
-  export type Outbound =
-    IntegrationsControllerAutoConfigureIntegrationResponse$Outbound;
-}
-
 export function integrationsControllerAutoConfigureIntegrationResponseToJSON(
   integrationsControllerAutoConfigureIntegrationResponse:
     IntegrationsControllerAutoConfigureIntegrationResponse,
@@ -165,7 +130,6 @@ export function integrationsControllerAutoConfigureIntegrationResponseToJSON(
     ),
   );
 }
-
 export function integrationsControllerAutoConfigureIntegrationResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<

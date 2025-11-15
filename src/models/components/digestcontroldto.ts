@@ -77,43 +77,19 @@ export type DigestControlDto = {
 export const DigestControlDtoType$inboundSchema: z.ZodNativeEnum<
   typeof DigestControlDtoType
 > = z.nativeEnum(DigestControlDtoType);
-
 /** @internal */
 export const DigestControlDtoType$outboundSchema: z.ZodNativeEnum<
   typeof DigestControlDtoType
 > = DigestControlDtoType$inboundSchema;
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DigestControlDtoType$ {
-  /** @deprecated use `DigestControlDtoType$inboundSchema` instead. */
-  export const inboundSchema = DigestControlDtoType$inboundSchema;
-  /** @deprecated use `DigestControlDtoType$outboundSchema` instead. */
-  export const outboundSchema = DigestControlDtoType$outboundSchema;
-}
-
 /** @internal */
 export const DigestControlDtoUnit$inboundSchema: z.ZodNativeEnum<
   typeof DigestControlDtoUnit
 > = z.nativeEnum(DigestControlDtoUnit);
-
 /** @internal */
 export const DigestControlDtoUnit$outboundSchema: z.ZodNativeEnum<
   typeof DigestControlDtoUnit
 > = DigestControlDtoUnit$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DigestControlDtoUnit$ {
-  /** @deprecated use `DigestControlDtoUnit$inboundSchema` instead. */
-  export const inboundSchema = DigestControlDtoUnit$inboundSchema;
-  /** @deprecated use `DigestControlDtoUnit$outboundSchema` instead. */
-  export const outboundSchema = DigestControlDtoUnit$outboundSchema;
-}
 
 /** @internal */
 export const DigestControlDto$inboundSchema: z.ZodType<
@@ -129,7 +105,6 @@ export const DigestControlDto$inboundSchema: z.ZodType<
   cron: z.string().optional(),
   digestKey: z.string().optional(),
 });
-
 /** @internal */
 export type DigestControlDto$Outbound = {
   skip?: { [k: string]: any } | undefined;
@@ -156,19 +131,6 @@ export const DigestControlDto$outboundSchema: z.ZodType<
   digestKey: z.string().optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DigestControlDto$ {
-  /** @deprecated use `DigestControlDto$inboundSchema` instead. */
-  export const inboundSchema = DigestControlDto$inboundSchema;
-  /** @deprecated use `DigestControlDto$outboundSchema` instead. */
-  export const outboundSchema = DigestControlDto$outboundSchema;
-  /** @deprecated use `DigestControlDto$Outbound` instead. */
-  export type Outbound = DigestControlDto$Outbound;
-}
-
 export function digestControlDtoToJSON(
   digestControlDto: DigestControlDto,
 ): string {
@@ -176,7 +138,6 @@ export function digestControlDtoToJSON(
     DigestControlDto$outboundSchema.parse(digestControlDto),
   );
 }
-
 export function digestControlDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<DigestControlDto, SDKValidationError> {

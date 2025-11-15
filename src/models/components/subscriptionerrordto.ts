@@ -32,7 +32,6 @@ export const SubscriptionErrorDto$inboundSchema: z.ZodType<
   code: z.string(),
   message: z.string(),
 });
-
 /** @internal */
 export type SubscriptionErrorDto$Outbound = {
   subscriberId: string;
@@ -51,19 +50,6 @@ export const SubscriptionErrorDto$outboundSchema: z.ZodType<
   message: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SubscriptionErrorDto$ {
-  /** @deprecated use `SubscriptionErrorDto$inboundSchema` instead. */
-  export const inboundSchema = SubscriptionErrorDto$inboundSchema;
-  /** @deprecated use `SubscriptionErrorDto$outboundSchema` instead. */
-  export const outboundSchema = SubscriptionErrorDto$outboundSchema;
-  /** @deprecated use `SubscriptionErrorDto$Outbound` instead. */
-  export type Outbound = SubscriptionErrorDto$Outbound;
-}
-
 export function subscriptionErrorDtoToJSON(
   subscriptionErrorDto: SubscriptionErrorDto,
 ): string {
@@ -71,7 +57,6 @@ export function subscriptionErrorDtoToJSON(
     SubscriptionErrorDto$outboundSchema.parse(subscriptionErrorDto),
   );
 }
-
 export function subscriptionErrorDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<SubscriptionErrorDto, SDKValidationError> {

@@ -22,7 +22,6 @@ export const UpdateTopicRequestDto$inboundSchema: z.ZodType<
 > = z.object({
   name: z.string(),
 });
-
 /** @internal */
 export type UpdateTopicRequestDto$Outbound = {
   name: string;
@@ -37,19 +36,6 @@ export const UpdateTopicRequestDto$outboundSchema: z.ZodType<
   name: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateTopicRequestDto$ {
-  /** @deprecated use `UpdateTopicRequestDto$inboundSchema` instead. */
-  export const inboundSchema = UpdateTopicRequestDto$inboundSchema;
-  /** @deprecated use `UpdateTopicRequestDto$outboundSchema` instead. */
-  export const outboundSchema = UpdateTopicRequestDto$outboundSchema;
-  /** @deprecated use `UpdateTopicRequestDto$Outbound` instead. */
-  export type Outbound = UpdateTopicRequestDto$Outbound;
-}
-
 export function updateTopicRequestDtoToJSON(
   updateTopicRequestDto: UpdateTopicRequestDto,
 ): string {
@@ -57,7 +43,6 @@ export function updateTopicRequestDtoToJSON(
     UpdateTopicRequestDto$outboundSchema.parse(updateTopicRequestDto),
   );
 }
-
 export function updateTopicRequestDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<UpdateTopicRequestDto, SDKValidationError> {

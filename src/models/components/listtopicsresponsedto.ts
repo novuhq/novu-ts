@@ -48,7 +48,6 @@ export const ListTopicsResponseDto$inboundSchema: z.ZodType<
   totalCount: z.number(),
   totalCountCapped: z.boolean(),
 });
-
 /** @internal */
 export type ListTopicsResponseDto$Outbound = {
   data: Array<TopicResponseDto$Outbound>;
@@ -71,19 +70,6 @@ export const ListTopicsResponseDto$outboundSchema: z.ZodType<
   totalCountCapped: z.boolean(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListTopicsResponseDto$ {
-  /** @deprecated use `ListTopicsResponseDto$inboundSchema` instead. */
-  export const inboundSchema = ListTopicsResponseDto$inboundSchema;
-  /** @deprecated use `ListTopicsResponseDto$outboundSchema` instead. */
-  export const outboundSchema = ListTopicsResponseDto$outboundSchema;
-  /** @deprecated use `ListTopicsResponseDto$Outbound` instead. */
-  export type Outbound = ListTopicsResponseDto$Outbound;
-}
-
 export function listTopicsResponseDtoToJSON(
   listTopicsResponseDto: ListTopicsResponseDto,
 ): string {
@@ -91,7 +77,6 @@ export function listTopicsResponseDtoToJSON(
     ListTopicsResponseDto$outboundSchema.parse(listTopicsResponseDto),
   );
 }
-
 export function listTopicsResponseDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<ListTopicsResponseDto, SDKValidationError> {

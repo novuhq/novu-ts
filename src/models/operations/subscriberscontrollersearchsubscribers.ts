@@ -80,22 +80,10 @@ export type SubscribersControllerSearchSubscribersResponse = {
 export const QueryParamOrderDirection$inboundSchema: z.ZodNativeEnum<
   typeof QueryParamOrderDirection
 > = z.nativeEnum(QueryParamOrderDirection);
-
 /** @internal */
 export const QueryParamOrderDirection$outboundSchema: z.ZodNativeEnum<
   typeof QueryParamOrderDirection
 > = QueryParamOrderDirection$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace QueryParamOrderDirection$ {
-  /** @deprecated use `QueryParamOrderDirection$inboundSchema` instead. */
-  export const inboundSchema = QueryParamOrderDirection$inboundSchema;
-  /** @deprecated use `QueryParamOrderDirection$outboundSchema` instead. */
-  export const outboundSchema = QueryParamOrderDirection$outboundSchema;
-}
 
 /** @internal */
 export const SubscribersControllerSearchSubscribersRequest$inboundSchema:
@@ -120,7 +108,6 @@ export const SubscribersControllerSearchSubscribersRequest$inboundSchema:
       "idempotency-key": "idempotencyKey",
     });
   });
-
 /** @internal */
 export type SubscribersControllerSearchSubscribersRequest$Outbound = {
   after?: string | undefined;
@@ -160,21 +147,6 @@ export const SubscribersControllerSearchSubscribersRequest$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SubscribersControllerSearchSubscribersRequest$ {
-  /** @deprecated use `SubscribersControllerSearchSubscribersRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    SubscribersControllerSearchSubscribersRequest$inboundSchema;
-  /** @deprecated use `SubscribersControllerSearchSubscribersRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    SubscribersControllerSearchSubscribersRequest$outboundSchema;
-  /** @deprecated use `SubscribersControllerSearchSubscribersRequest$Outbound` instead. */
-  export type Outbound = SubscribersControllerSearchSubscribersRequest$Outbound;
-}
-
 export function subscribersControllerSearchSubscribersRequestToJSON(
   subscribersControllerSearchSubscribersRequest:
     SubscribersControllerSearchSubscribersRequest,
@@ -185,7 +157,6 @@ export function subscribersControllerSearchSubscribersRequestToJSON(
     ),
   );
 }
-
 export function subscribersControllerSearchSubscribersRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -217,7 +188,6 @@ export const SubscribersControllerSearchSubscribersResponse$inboundSchema:
       "Result": "result",
     });
   });
-
 /** @internal */
 export type SubscribersControllerSearchSubscribersResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
@@ -240,22 +210,6 @@ export const SubscribersControllerSearchSubscribersResponse$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SubscribersControllerSearchSubscribersResponse$ {
-  /** @deprecated use `SubscribersControllerSearchSubscribersResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    SubscribersControllerSearchSubscribersResponse$inboundSchema;
-  /** @deprecated use `SubscribersControllerSearchSubscribersResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    SubscribersControllerSearchSubscribersResponse$outboundSchema;
-  /** @deprecated use `SubscribersControllerSearchSubscribersResponse$Outbound` instead. */
-  export type Outbound =
-    SubscribersControllerSearchSubscribersResponse$Outbound;
-}
-
 export function subscribersControllerSearchSubscribersResponseToJSON(
   subscribersControllerSearchSubscribersResponse:
     SubscribersControllerSearchSubscribersResponse,
@@ -266,7 +220,6 @@ export function subscribersControllerSearchSubscribersResponseToJSON(
     ),
   );
 }
-
 export function subscribersControllerSearchSubscribersResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<

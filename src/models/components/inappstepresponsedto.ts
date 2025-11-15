@@ -159,7 +159,6 @@ export const InAppStepResponseDtoControlValues$inboundSchema: z.ZodType<
   "additionalProperties",
   true,
 );
-
 /** @internal */
 export type InAppStepResponseDtoControlValues$Outbound = {
   skip?: { [k: string]: any } | undefined;
@@ -199,20 +198,6 @@ export const InAppStepResponseDtoControlValues$outboundSchema: z.ZodType<
   };
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InAppStepResponseDtoControlValues$ {
-  /** @deprecated use `InAppStepResponseDtoControlValues$inboundSchema` instead. */
-  export const inboundSchema = InAppStepResponseDtoControlValues$inboundSchema;
-  /** @deprecated use `InAppStepResponseDtoControlValues$outboundSchema` instead. */
-  export const outboundSchema =
-    InAppStepResponseDtoControlValues$outboundSchema;
-  /** @deprecated use `InAppStepResponseDtoControlValues$Outbound` instead. */
-  export type Outbound = InAppStepResponseDtoControlValues$Outbound;
-}
-
 export function inAppStepResponseDtoControlValuesToJSON(
   inAppStepResponseDtoControlValues: InAppStepResponseDtoControlValues,
 ): string {
@@ -222,7 +207,6 @@ export function inAppStepResponseDtoControlValuesToJSON(
     ),
   );
 }
-
 export function inAppStepResponseDtoControlValuesFromJSON(
   jsonString: string,
 ): SafeParseResult<InAppStepResponseDtoControlValues, SDKValidationError> {
@@ -257,7 +241,6 @@ export const InAppStepResponseDto$inboundSchema: z.ZodType<
     "_id": "id",
   });
 });
-
 /** @internal */
 export type InAppStepResponseDto$Outbound = {
   controls: InAppControlsMetadataResponseDto$Outbound;
@@ -299,19 +282,6 @@ export const InAppStepResponseDto$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InAppStepResponseDto$ {
-  /** @deprecated use `InAppStepResponseDto$inboundSchema` instead. */
-  export const inboundSchema = InAppStepResponseDto$inboundSchema;
-  /** @deprecated use `InAppStepResponseDto$outboundSchema` instead. */
-  export const outboundSchema = InAppStepResponseDto$outboundSchema;
-  /** @deprecated use `InAppStepResponseDto$Outbound` instead. */
-  export type Outbound = InAppStepResponseDto$Outbound;
-}
-
 export function inAppStepResponseDtoToJSON(
   inAppStepResponseDto: InAppStepResponseDto,
 ): string {
@@ -319,7 +289,6 @@ export function inAppStepResponseDtoToJSON(
     InAppStepResponseDto$outboundSchema.parse(inAppStepResponseDto),
   );
 }
-
 export function inAppStepResponseDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<InAppStepResponseDto, SDKValidationError> {

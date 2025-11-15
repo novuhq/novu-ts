@@ -22,7 +22,6 @@ export const DeleteTopicSubscriptionsRequestDto$inboundSchema: z.ZodType<
 > = z.object({
   subscriberIds: z.array(z.string()),
 });
-
 /** @internal */
 export type DeleteTopicSubscriptionsRequestDto$Outbound = {
   subscriberIds: Array<string>;
@@ -37,20 +36,6 @@ export const DeleteTopicSubscriptionsRequestDto$outboundSchema: z.ZodType<
   subscriberIds: z.array(z.string()),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DeleteTopicSubscriptionsRequestDto$ {
-  /** @deprecated use `DeleteTopicSubscriptionsRequestDto$inboundSchema` instead. */
-  export const inboundSchema = DeleteTopicSubscriptionsRequestDto$inboundSchema;
-  /** @deprecated use `DeleteTopicSubscriptionsRequestDto$outboundSchema` instead. */
-  export const outboundSchema =
-    DeleteTopicSubscriptionsRequestDto$outboundSchema;
-  /** @deprecated use `DeleteTopicSubscriptionsRequestDto$Outbound` instead. */
-  export type Outbound = DeleteTopicSubscriptionsRequestDto$Outbound;
-}
-
 export function deleteTopicSubscriptionsRequestDtoToJSON(
   deleteTopicSubscriptionsRequestDto: DeleteTopicSubscriptionsRequestDto,
 ): string {
@@ -60,7 +45,6 @@ export function deleteTopicSubscriptionsRequestDtoToJSON(
     ),
   );
 }
-
 export function deleteTopicSubscriptionsRequestDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<DeleteTopicSubscriptionsRequestDto, SDKValidationError> {

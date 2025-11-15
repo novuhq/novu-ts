@@ -55,7 +55,6 @@ export const CustomStepUpsertDtoControlValues$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([CustomControlDto$inboundSchema, z.record(z.any())]);
-
 /** @internal */
 export type CustomStepUpsertDtoControlValues$Outbound =
   | CustomControlDto$Outbound
@@ -68,19 +67,6 @@ export const CustomStepUpsertDtoControlValues$outboundSchema: z.ZodType<
   CustomStepUpsertDtoControlValues
 > = z.union([CustomControlDto$outboundSchema, z.record(z.any())]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CustomStepUpsertDtoControlValues$ {
-  /** @deprecated use `CustomStepUpsertDtoControlValues$inboundSchema` instead. */
-  export const inboundSchema = CustomStepUpsertDtoControlValues$inboundSchema;
-  /** @deprecated use `CustomStepUpsertDtoControlValues$outboundSchema` instead. */
-  export const outboundSchema = CustomStepUpsertDtoControlValues$outboundSchema;
-  /** @deprecated use `CustomStepUpsertDtoControlValues$Outbound` instead. */
-  export type Outbound = CustomStepUpsertDtoControlValues$Outbound;
-}
-
 export function customStepUpsertDtoControlValuesToJSON(
   customStepUpsertDtoControlValues: CustomStepUpsertDtoControlValues,
 ): string {
@@ -90,7 +76,6 @@ export function customStepUpsertDtoControlValuesToJSON(
     ),
   );
 }
-
 export function customStepUpsertDtoControlValuesFromJSON(
   jsonString: string,
 ): SafeParseResult<CustomStepUpsertDtoControlValues, SDKValidationError> {
@@ -118,7 +103,6 @@ export const CustomStepUpsertDto$inboundSchema: z.ZodType<
     "_id": "id",
   });
 });
-
 /** @internal */
 export type CustomStepUpsertDto$Outbound = {
   _id?: string | undefined;
@@ -146,19 +130,6 @@ export const CustomStepUpsertDto$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CustomStepUpsertDto$ {
-  /** @deprecated use `CustomStepUpsertDto$inboundSchema` instead. */
-  export const inboundSchema = CustomStepUpsertDto$inboundSchema;
-  /** @deprecated use `CustomStepUpsertDto$outboundSchema` instead. */
-  export const outboundSchema = CustomStepUpsertDto$outboundSchema;
-  /** @deprecated use `CustomStepUpsertDto$Outbound` instead. */
-  export type Outbound = CustomStepUpsertDto$Outbound;
-}
-
 export function customStepUpsertDtoToJSON(
   customStepUpsertDto: CustomStepUpsertDto,
 ): string {
@@ -166,7 +137,6 @@ export function customStepUpsertDtoToJSON(
     CustomStepUpsertDto$outboundSchema.parse(customStepUpsertDto),
   );
 }
-
 export function customStepUpsertDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<CustomStepUpsertDto, SDKValidationError> {

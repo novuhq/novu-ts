@@ -37,7 +37,6 @@ export const StepIntegrationIssue$inboundSchema: z.ZodType<
   variableName: z.string().optional(),
   message: z.string(),
 });
-
 /** @internal */
 export type StepIntegrationIssue$Outbound = {
   issueType: string;
@@ -56,19 +55,6 @@ export const StepIntegrationIssue$outboundSchema: z.ZodType<
   message: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace StepIntegrationIssue$ {
-  /** @deprecated use `StepIntegrationIssue$inboundSchema` instead. */
-  export const inboundSchema = StepIntegrationIssue$inboundSchema;
-  /** @deprecated use `StepIntegrationIssue$outboundSchema` instead. */
-  export const outboundSchema = StepIntegrationIssue$outboundSchema;
-  /** @deprecated use `StepIntegrationIssue$Outbound` instead. */
-  export type Outbound = StepIntegrationIssue$Outbound;
-}
-
 export function stepIntegrationIssueToJSON(
   stepIntegrationIssue: StepIntegrationIssue,
 ): string {
@@ -76,7 +62,6 @@ export function stepIntegrationIssueToJSON(
     StepIntegrationIssue$outboundSchema.parse(stepIntegrationIssue),
   );
 }
-
 export function stepIntegrationIssueFromJSON(
   jsonString: string,
 ): SafeParseResult<StepIntegrationIssue, SDKValidationError> {

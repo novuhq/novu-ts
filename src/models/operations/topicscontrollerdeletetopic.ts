@@ -38,7 +38,6 @@ export const TopicsControllerDeleteTopicRequest$inboundSchema: z.ZodType<
     "idempotency-key": "idempotencyKey",
   });
 });
-
 /** @internal */
 export type TopicsControllerDeleteTopicRequest$Outbound = {
   topicKey: string;
@@ -59,20 +58,6 @@ export const TopicsControllerDeleteTopicRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TopicsControllerDeleteTopicRequest$ {
-  /** @deprecated use `TopicsControllerDeleteTopicRequest$inboundSchema` instead. */
-  export const inboundSchema = TopicsControllerDeleteTopicRequest$inboundSchema;
-  /** @deprecated use `TopicsControllerDeleteTopicRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    TopicsControllerDeleteTopicRequest$outboundSchema;
-  /** @deprecated use `TopicsControllerDeleteTopicRequest$Outbound` instead. */
-  export type Outbound = TopicsControllerDeleteTopicRequest$Outbound;
-}
-
 export function topicsControllerDeleteTopicRequestToJSON(
   topicsControllerDeleteTopicRequest: TopicsControllerDeleteTopicRequest,
 ): string {
@@ -82,7 +67,6 @@ export function topicsControllerDeleteTopicRequestToJSON(
     ),
   );
 }
-
 export function topicsControllerDeleteTopicRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<TopicsControllerDeleteTopicRequest, SDKValidationError> {
@@ -108,7 +92,6 @@ export const TopicsControllerDeleteTopicResponse$inboundSchema: z.ZodType<
     "Result": "result",
   });
 });
-
 /** @internal */
 export type TopicsControllerDeleteTopicResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
@@ -130,21 +113,6 @@ export const TopicsControllerDeleteTopicResponse$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TopicsControllerDeleteTopicResponse$ {
-  /** @deprecated use `TopicsControllerDeleteTopicResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    TopicsControllerDeleteTopicResponse$inboundSchema;
-  /** @deprecated use `TopicsControllerDeleteTopicResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    TopicsControllerDeleteTopicResponse$outboundSchema;
-  /** @deprecated use `TopicsControllerDeleteTopicResponse$Outbound` instead. */
-  export type Outbound = TopicsControllerDeleteTopicResponse$Outbound;
-}
-
 export function topicsControllerDeleteTopicResponseToJSON(
   topicsControllerDeleteTopicResponse: TopicsControllerDeleteTopicResponse,
 ): string {
@@ -154,7 +122,6 @@ export function topicsControllerDeleteTopicResponseToJSON(
     ),
   );
 }
-
 export function topicsControllerDeleteTopicResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<TopicsControllerDeleteTopicResponse, SDKValidationError> {

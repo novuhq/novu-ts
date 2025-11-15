@@ -35,7 +35,6 @@ export const LayoutsControllerGetUsageRequest$inboundSchema: z.ZodType<
     "idempotency-key": "idempotencyKey",
   });
 });
-
 /** @internal */
 export type LayoutsControllerGetUsageRequest$Outbound = {
   layoutId: string;
@@ -56,19 +55,6 @@ export const LayoutsControllerGetUsageRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace LayoutsControllerGetUsageRequest$ {
-  /** @deprecated use `LayoutsControllerGetUsageRequest$inboundSchema` instead. */
-  export const inboundSchema = LayoutsControllerGetUsageRequest$inboundSchema;
-  /** @deprecated use `LayoutsControllerGetUsageRequest$outboundSchema` instead. */
-  export const outboundSchema = LayoutsControllerGetUsageRequest$outboundSchema;
-  /** @deprecated use `LayoutsControllerGetUsageRequest$Outbound` instead. */
-  export type Outbound = LayoutsControllerGetUsageRequest$Outbound;
-}
-
 export function layoutsControllerGetUsageRequestToJSON(
   layoutsControllerGetUsageRequest: LayoutsControllerGetUsageRequest,
 ): string {
@@ -78,7 +64,6 @@ export function layoutsControllerGetUsageRequestToJSON(
     ),
   );
 }
-
 export function layoutsControllerGetUsageRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<LayoutsControllerGetUsageRequest, SDKValidationError> {
@@ -103,7 +88,6 @@ export const LayoutsControllerGetUsageResponse$inboundSchema: z.ZodType<
     "Result": "result",
   });
 });
-
 /** @internal */
 export type LayoutsControllerGetUsageResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
@@ -125,20 +109,6 @@ export const LayoutsControllerGetUsageResponse$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace LayoutsControllerGetUsageResponse$ {
-  /** @deprecated use `LayoutsControllerGetUsageResponse$inboundSchema` instead. */
-  export const inboundSchema = LayoutsControllerGetUsageResponse$inboundSchema;
-  /** @deprecated use `LayoutsControllerGetUsageResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    LayoutsControllerGetUsageResponse$outboundSchema;
-  /** @deprecated use `LayoutsControllerGetUsageResponse$Outbound` instead. */
-  export type Outbound = LayoutsControllerGetUsageResponse$Outbound;
-}
-
 export function layoutsControllerGetUsageResponseToJSON(
   layoutsControllerGetUsageResponse: LayoutsControllerGetUsageResponse,
 ): string {
@@ -148,7 +118,6 @@ export function layoutsControllerGetUsageResponseToJSON(
     ),
   );
 }
-
 export function layoutsControllerGetUsageResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<LayoutsControllerGetUsageResponse, SDKValidationError> {

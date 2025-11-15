@@ -45,7 +45,6 @@ export const TopicsControllerDeleteTopicSubscriptionsRequest$inboundSchema:
         "deleteTopicSubscriptionsRequestDto",
     });
   });
-
 /** @internal */
 export type TopicsControllerDeleteTopicSubscriptionsRequest$Outbound = {
   topicKey: string;
@@ -72,22 +71,6 @@ export const TopicsControllerDeleteTopicSubscriptionsRequest$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TopicsControllerDeleteTopicSubscriptionsRequest$ {
-  /** @deprecated use `TopicsControllerDeleteTopicSubscriptionsRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    TopicsControllerDeleteTopicSubscriptionsRequest$inboundSchema;
-  /** @deprecated use `TopicsControllerDeleteTopicSubscriptionsRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    TopicsControllerDeleteTopicSubscriptionsRequest$outboundSchema;
-  /** @deprecated use `TopicsControllerDeleteTopicSubscriptionsRequest$Outbound` instead. */
-  export type Outbound =
-    TopicsControllerDeleteTopicSubscriptionsRequest$Outbound;
-}
-
 export function topicsControllerDeleteTopicSubscriptionsRequestToJSON(
   topicsControllerDeleteTopicSubscriptionsRequest:
     TopicsControllerDeleteTopicSubscriptionsRequest,
@@ -98,7 +81,6 @@ export function topicsControllerDeleteTopicSubscriptionsRequestToJSON(
     ),
   );
 }
-
 export function topicsControllerDeleteTopicSubscriptionsRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -130,7 +112,6 @@ export const TopicsControllerDeleteTopicSubscriptionsResponse$inboundSchema:
       "Result": "result",
     });
   });
-
 /** @internal */
 export type TopicsControllerDeleteTopicSubscriptionsResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
@@ -153,22 +134,6 @@ export const TopicsControllerDeleteTopicSubscriptionsResponse$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TopicsControllerDeleteTopicSubscriptionsResponse$ {
-  /** @deprecated use `TopicsControllerDeleteTopicSubscriptionsResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    TopicsControllerDeleteTopicSubscriptionsResponse$inboundSchema;
-  /** @deprecated use `TopicsControllerDeleteTopicSubscriptionsResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    TopicsControllerDeleteTopicSubscriptionsResponse$outboundSchema;
-  /** @deprecated use `TopicsControllerDeleteTopicSubscriptionsResponse$Outbound` instead. */
-  export type Outbound =
-    TopicsControllerDeleteTopicSubscriptionsResponse$Outbound;
-}
-
 export function topicsControllerDeleteTopicSubscriptionsResponseToJSON(
   topicsControllerDeleteTopicSubscriptionsResponse:
     TopicsControllerDeleteTopicSubscriptionsResponse,
@@ -179,7 +144,6 @@ export function topicsControllerDeleteTopicSubscriptionsResponseToJSON(
     ),
   );
 }
-
 export function topicsControllerDeleteTopicSubscriptionsResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<

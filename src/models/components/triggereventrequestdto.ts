@@ -202,7 +202,6 @@ export const Channels$inboundSchema: z.ZodType<
 > = z.object({
   email: EmailChannelOverrides$inboundSchema.optional(),
 });
-
 /** @internal */
 export type Channels$Outbound = {
   email?: EmailChannelOverrides$Outbound | undefined;
@@ -217,23 +216,9 @@ export const Channels$outboundSchema: z.ZodType<
   email: EmailChannelOverrides$outboundSchema.optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Channels$ {
-  /** @deprecated use `Channels$inboundSchema` instead. */
-  export const inboundSchema = Channels$inboundSchema;
-  /** @deprecated use `Channels$outboundSchema` instead. */
-  export const outboundSchema = Channels$outboundSchema;
-  /** @deprecated use `Channels$Outbound` instead. */
-  export type Outbound = Channels$Outbound;
-}
-
 export function channelsToJSON(channels: Channels): string {
   return JSON.stringify(Channels$outboundSchema.parse(channels));
 }
-
 export function channelsFromJSON(
   jsonString: string,
 ): SafeParseResult<Channels, SDKValidationError> {
@@ -260,7 +245,6 @@ export const Overrides$inboundSchema: z.ZodType<
   layoutIdentifier: z.string().optional(),
   severity: SeverityLevelEnum$inboundSchema.optional(),
 });
-
 /** @internal */
 export type Overrides$Outbound = {
   steps?: { [k: string]: StepsOverrides$Outbound } | undefined;
@@ -291,23 +275,9 @@ export const Overrides$outboundSchema: z.ZodType<
   severity: SeverityLevelEnum$outboundSchema.optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Overrides$ {
-  /** @deprecated use `Overrides$inboundSchema` instead. */
-  export const inboundSchema = Overrides$inboundSchema;
-  /** @deprecated use `Overrides$outboundSchema` instead. */
-  export const outboundSchema = Overrides$outboundSchema;
-  /** @deprecated use `Overrides$Outbound` instead. */
-  export type Outbound = Overrides$Outbound;
-}
-
 export function overridesToJSON(overrides: Overrides): string {
   return JSON.stringify(Overrides$outboundSchema.parse(overrides));
 }
-
 export function overridesFromJSON(
   jsonString: string,
 ): SafeParseResult<Overrides, SDKValidationError> {
@@ -326,7 +296,6 @@ export const To1$inboundSchema: z.ZodType<To1, z.ZodTypeDef, unknown> = z.union(
     z.string(),
   ],
 );
-
 /** @internal */
 export type To1$Outbound =
   | TopicPayloadDto$Outbound
@@ -341,23 +310,9 @@ export const To1$outboundSchema: z.ZodType<To1$Outbound, z.ZodTypeDef, To1> = z
     z.string(),
   ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace To1$ {
-  /** @deprecated use `To1$inboundSchema` instead. */
-  export const inboundSchema = To1$inboundSchema;
-  /** @deprecated use `To1$outboundSchema` instead. */
-  export const outboundSchema = To1$outboundSchema;
-  /** @deprecated use `To1$Outbound` instead. */
-  export type Outbound = To1$Outbound;
-}
-
 export function to1ToJSON(to1: To1): string {
   return JSON.stringify(To1$outboundSchema.parse(to1));
 }
-
 export function to1FromJSON(
   jsonString: string,
 ): SafeParseResult<To1, SDKValidationError> {
@@ -381,7 +336,6 @@ export const To$inboundSchema: z.ZodType<To, z.ZodTypeDef, unknown> = z.union([
   ),
   z.string(),
 ]);
-
 /** @internal */
 export type To$Outbound =
   | TopicPayloadDto$Outbound
@@ -404,23 +358,9 @@ export const To$outboundSchema: z.ZodType<To$Outbound, z.ZodTypeDef, To> = z
     z.string(),
   ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace To$ {
-  /** @deprecated use `To$inboundSchema` instead. */
-  export const inboundSchema = To$inboundSchema;
-  /** @deprecated use `To$outboundSchema` instead. */
-  export const outboundSchema = To$outboundSchema;
-  /** @deprecated use `To$Outbound` instead. */
-  export type Outbound = To$Outbound;
-}
-
 export function toToJSON(to: To): string {
   return JSON.stringify(To$outboundSchema.parse(to));
 }
-
 export function toFromJSON(
   jsonString: string,
 ): SafeParseResult<To, SDKValidationError> {
@@ -434,7 +374,6 @@ export function toFromJSON(
 /** @internal */
 export const Actor$inboundSchema: z.ZodType<Actor, z.ZodTypeDef, unknown> = z
   .union([SubscriberPayloadDto$inboundSchema, z.string()]);
-
 /** @internal */
 export type Actor$Outbound = SubscriberPayloadDto$Outbound | string;
 
@@ -445,23 +384,9 @@ export const Actor$outboundSchema: z.ZodType<
   Actor
 > = z.union([SubscriberPayloadDto$outboundSchema, z.string()]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Actor$ {
-  /** @deprecated use `Actor$inboundSchema` instead. */
-  export const inboundSchema = Actor$inboundSchema;
-  /** @deprecated use `Actor$outboundSchema` instead. */
-  export const outboundSchema = Actor$outboundSchema;
-  /** @deprecated use `Actor$Outbound` instead. */
-  export type Outbound = Actor$Outbound;
-}
-
 export function actorToJSON(actor: Actor): string {
   return JSON.stringify(Actor$outboundSchema.parse(actor));
 }
-
 export function actorFromJSON(
   jsonString: string,
 ): SafeParseResult<Actor, SDKValidationError> {
@@ -475,7 +400,6 @@ export function actorFromJSON(
 /** @internal */
 export const Tenant$inboundSchema: z.ZodType<Tenant, z.ZodTypeDef, unknown> = z
   .union([z.string(), TenantPayloadDto$inboundSchema]);
-
 /** @internal */
 export type Tenant$Outbound = string | TenantPayloadDto$Outbound;
 
@@ -486,23 +410,9 @@ export const Tenant$outboundSchema: z.ZodType<
   Tenant
 > = z.union([z.string(), TenantPayloadDto$outboundSchema]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Tenant$ {
-  /** @deprecated use `Tenant$inboundSchema` instead. */
-  export const inboundSchema = Tenant$inboundSchema;
-  /** @deprecated use `Tenant$outboundSchema` instead. */
-  export const outboundSchema = Tenant$outboundSchema;
-  /** @deprecated use `Tenant$Outbound` instead. */
-  export type Outbound = Tenant$Outbound;
-}
-
 export function tenantToJSON(tenant: Tenant): string {
   return JSON.stringify(Tenant$outboundSchema.parse(tenant));
 }
-
 export function tenantFromJSON(
   jsonString: string,
 ): SafeParseResult<Tenant, SDKValidationError> {
@@ -519,7 +429,6 @@ export const Two$inboundSchema: z.ZodType<Two, z.ZodTypeDef, unknown> = z
     id: z.string(),
     data: z.record(z.any()).optional(),
   });
-
 /** @internal */
 export type Two$Outbound = {
   id: string;
@@ -533,23 +442,9 @@ export const Two$outboundSchema: z.ZodType<Two$Outbound, z.ZodTypeDef, Two> = z
     data: z.record(z.any()).optional(),
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Two$ {
-  /** @deprecated use `Two$inboundSchema` instead. */
-  export const inboundSchema = Two$inboundSchema;
-  /** @deprecated use `Two$outboundSchema` instead. */
-  export const outboundSchema = Two$outboundSchema;
-  /** @deprecated use `Two$Outbound` instead. */
-  export type Outbound = Two$Outbound;
-}
-
 export function twoToJSON(two: Two): string {
   return JSON.stringify(Two$outboundSchema.parse(two));
 }
-
 export function twoFromJSON(
   jsonString: string,
 ): SafeParseResult<Two, SDKValidationError> {
@@ -563,7 +458,6 @@ export function twoFromJSON(
 /** @internal */
 export const Context$inboundSchema: z.ZodType<Context, z.ZodTypeDef, unknown> =
   z.union([z.lazy(() => Two$inboundSchema), z.string()]);
-
 /** @internal */
 export type Context$Outbound = Two$Outbound | string;
 
@@ -574,23 +468,9 @@ export const Context$outboundSchema: z.ZodType<
   Context
 > = z.union([z.lazy(() => Two$outboundSchema), z.string()]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Context$ {
-  /** @deprecated use `Context$inboundSchema` instead. */
-  export const inboundSchema = Context$inboundSchema;
-  /** @deprecated use `Context$outboundSchema` instead. */
-  export const outboundSchema = Context$outboundSchema;
-  /** @deprecated use `Context$Outbound` instead. */
-  export type Outbound = Context$Outbound;
-}
-
 export function contextToJSON(context: Context): string {
   return JSON.stringify(Context$outboundSchema.parse(context));
 }
-
 export function contextFromJSON(
   jsonString: string,
 ): SafeParseResult<Context, SDKValidationError> {
@@ -632,7 +512,6 @@ export const TriggerEventRequestDto$inboundSchema: z.ZodType<
     "name": "workflowId",
   });
 });
-
 /** @internal */
 export type TriggerEventRequestDto$Outbound = {
   name: string;
@@ -681,19 +560,6 @@ export const TriggerEventRequestDto$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TriggerEventRequestDto$ {
-  /** @deprecated use `TriggerEventRequestDto$inboundSchema` instead. */
-  export const inboundSchema = TriggerEventRequestDto$inboundSchema;
-  /** @deprecated use `TriggerEventRequestDto$outboundSchema` instead. */
-  export const outboundSchema = TriggerEventRequestDto$outboundSchema;
-  /** @deprecated use `TriggerEventRequestDto$Outbound` instead. */
-  export type Outbound = TriggerEventRequestDto$Outbound;
-}
-
 export function triggerEventRequestDtoToJSON(
   triggerEventRequestDto: TriggerEventRequestDto,
 ): string {
@@ -701,7 +567,6 @@ export function triggerEventRequestDtoToJSON(
     TriggerEventRequestDto$outboundSchema.parse(triggerEventRequestDto),
   );
 }
-
 export function triggerEventRequestDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<TriggerEventRequestDto, SDKValidationError> {

@@ -22,7 +22,6 @@ export const EmailChannelOverrides$inboundSchema: z.ZodType<
 > = z.object({
   layoutId: z.nullable(z.string()).optional(),
 });
-
 /** @internal */
 export type EmailChannelOverrides$Outbound = {
   layoutId?: string | null | undefined;
@@ -37,19 +36,6 @@ export const EmailChannelOverrides$outboundSchema: z.ZodType<
   layoutId: z.nullable(z.string()).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EmailChannelOverrides$ {
-  /** @deprecated use `EmailChannelOverrides$inboundSchema` instead. */
-  export const inboundSchema = EmailChannelOverrides$inboundSchema;
-  /** @deprecated use `EmailChannelOverrides$outboundSchema` instead. */
-  export const outboundSchema = EmailChannelOverrides$outboundSchema;
-  /** @deprecated use `EmailChannelOverrides$Outbound` instead. */
-  export type Outbound = EmailChannelOverrides$Outbound;
-}
-
 export function emailChannelOverridesToJSON(
   emailChannelOverrides: EmailChannelOverrides,
 ): string {
@@ -57,7 +43,6 @@ export function emailChannelOverridesToJSON(
     EmailChannelOverrides$outboundSchema.parse(emailChannelOverrides),
   );
 }
-
 export function emailChannelOverridesFromJSON(
   jsonString: string,
 ): SafeParseResult<EmailChannelOverrides, SDKValidationError> {

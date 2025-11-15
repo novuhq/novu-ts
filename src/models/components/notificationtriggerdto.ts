@@ -50,22 +50,10 @@ export type NotificationTriggerDto = {
 export const NotificationTriggerDtoType$inboundSchema: z.ZodNativeEnum<
   typeof NotificationTriggerDtoType
 > = z.nativeEnum(NotificationTriggerDtoType);
-
 /** @internal */
 export const NotificationTriggerDtoType$outboundSchema: z.ZodNativeEnum<
   typeof NotificationTriggerDtoType
 > = NotificationTriggerDtoType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace NotificationTriggerDtoType$ {
-  /** @deprecated use `NotificationTriggerDtoType$inboundSchema` instead. */
-  export const inboundSchema = NotificationTriggerDtoType$inboundSchema;
-  /** @deprecated use `NotificationTriggerDtoType$outboundSchema` instead. */
-  export const outboundSchema = NotificationTriggerDtoType$outboundSchema;
-}
 
 /** @internal */
 export const NotificationTriggerDto$inboundSchema: z.ZodType<
@@ -79,7 +67,6 @@ export const NotificationTriggerDto$inboundSchema: z.ZodType<
   subscriberVariables: z.array(NotificationTriggerVariable$inboundSchema)
     .optional(),
 });
-
 /** @internal */
 export type NotificationTriggerDto$Outbound = {
   type: string;
@@ -101,19 +88,6 @@ export const NotificationTriggerDto$outboundSchema: z.ZodType<
     .optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace NotificationTriggerDto$ {
-  /** @deprecated use `NotificationTriggerDto$inboundSchema` instead. */
-  export const inboundSchema = NotificationTriggerDto$inboundSchema;
-  /** @deprecated use `NotificationTriggerDto$outboundSchema` instead. */
-  export const outboundSchema = NotificationTriggerDto$outboundSchema;
-  /** @deprecated use `NotificationTriggerDto$Outbound` instead. */
-  export type Outbound = NotificationTriggerDto$Outbound;
-}
-
 export function notificationTriggerDtoToJSON(
   notificationTriggerDto: NotificationTriggerDto,
 ): string {
@@ -121,7 +95,6 @@ export function notificationTriggerDtoToJSON(
     NotificationTriggerDto$outboundSchema.parse(notificationTriggerDto),
   );
 }
-
 export function notificationTriggerDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<NotificationTriggerDto, SDKValidationError> {

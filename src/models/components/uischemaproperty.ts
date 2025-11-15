@@ -52,7 +52,6 @@ export const Placeholder5$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([z.string(), z.number(), z.boolean(), z.record(z.any())]);
-
 /** @internal */
 export type Placeholder5$Outbound = string | number | boolean | {
   [k: string]: any;
@@ -65,23 +64,9 @@ export const Placeholder5$outboundSchema: z.ZodType<
   Placeholder5
 > = z.union([z.string(), z.number(), z.boolean(), z.record(z.any())]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Placeholder5$ {
-  /** @deprecated use `Placeholder5$inboundSchema` instead. */
-  export const inboundSchema = Placeholder5$inboundSchema;
-  /** @deprecated use `Placeholder5$outboundSchema` instead. */
-  export const outboundSchema = Placeholder5$outboundSchema;
-  /** @deprecated use `Placeholder5$Outbound` instead. */
-  export type Outbound = Placeholder5$Outbound;
-}
-
 export function placeholder5ToJSON(placeholder5: Placeholder5): string {
   return JSON.stringify(Placeholder5$outboundSchema.parse(placeholder5));
 }
-
 export function placeholder5FromJSON(
   jsonString: string,
 ): SafeParseResult<Placeholder5, SDKValidationError> {
@@ -104,7 +89,6 @@ export const Placeholder$inboundSchema: z.ZodType<
   z.record(z.any()),
   z.array(z.union([z.string(), z.number(), z.boolean(), z.record(z.any())])),
 ]);
-
 /** @internal */
 export type Placeholder$Outbound = string | number | boolean | {
   [k: string]: any;
@@ -123,23 +107,9 @@ export const Placeholder$outboundSchema: z.ZodType<
   z.array(z.union([z.string(), z.number(), z.boolean(), z.record(z.any())])),
 ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Placeholder$ {
-  /** @deprecated use `Placeholder$inboundSchema` instead. */
-  export const inboundSchema = Placeholder$inboundSchema;
-  /** @deprecated use `Placeholder$outboundSchema` instead. */
-  export const outboundSchema = Placeholder$outboundSchema;
-  /** @deprecated use `Placeholder$Outbound` instead. */
-  export type Outbound = Placeholder$Outbound;
-}
-
 export function placeholderToJSON(placeholder: Placeholder): string {
   return JSON.stringify(Placeholder$outboundSchema.parse(placeholder));
 }
-
 export function placeholderFromJSON(
   jsonString: string,
 ): SafeParseResult<Placeholder, SDKValidationError> {
@@ -170,7 +140,6 @@ export const UiSchemaProperty$inboundSchema: z.ZodType<
   component: UiComponentEnum$inboundSchema,
   properties: z.record(z.lazy(() => UiSchemaProperty$inboundSchema)).optional(),
 });
-
 /** @internal */
 export type UiSchemaProperty$Outbound = {
   placeholder?:
@@ -207,19 +176,6 @@ export const UiSchemaProperty$outboundSchema: z.ZodType<
     .optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UiSchemaProperty$ {
-  /** @deprecated use `UiSchemaProperty$inboundSchema` instead. */
-  export const inboundSchema = UiSchemaProperty$inboundSchema;
-  /** @deprecated use `UiSchemaProperty$outboundSchema` instead. */
-  export const outboundSchema = UiSchemaProperty$outboundSchema;
-  /** @deprecated use `UiSchemaProperty$Outbound` instead. */
-  export type Outbound = UiSchemaProperty$Outbound;
-}
-
 export function uiSchemaPropertyToJSON(
   uiSchemaProperty: UiSchemaProperty,
 ): string {
@@ -227,7 +183,6 @@ export function uiSchemaPropertyToJSON(
     UiSchemaProperty$outboundSchema.parse(uiSchemaProperty),
   );
 }
-
 export function uiSchemaPropertyFromJSON(
   jsonString: string,
 ): SafeParseResult<UiSchemaProperty, SDKValidationError> {

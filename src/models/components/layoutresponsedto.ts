@@ -116,7 +116,6 @@ export const UpdatedBy$inboundSchema: z.ZodType<
     "_id": "id",
   });
 });
-
 /** @internal */
 export type UpdatedBy$Outbound = {
   _id: string;
@@ -141,23 +140,9 @@ export const UpdatedBy$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdatedBy$ {
-  /** @deprecated use `UpdatedBy$inboundSchema` instead. */
-  export const inboundSchema = UpdatedBy$inboundSchema;
-  /** @deprecated use `UpdatedBy$outboundSchema` instead. */
-  export const outboundSchema = UpdatedBy$outboundSchema;
-  /** @deprecated use `UpdatedBy$Outbound` instead. */
-  export type Outbound = UpdatedBy$Outbound;
-}
-
 export function updatedByToJSON(updatedBy: UpdatedBy): string {
   return JSON.stringify(UpdatedBy$outboundSchema.parse(updatedBy));
 }
-
 export function updatedByFromJSON(
   jsonString: string,
 ): SafeParseResult<UpdatedBy, SDKValidationError> {
@@ -192,7 +177,6 @@ export const LayoutResponseDto$inboundSchema: z.ZodType<
     "_id": "id",
   });
 });
-
 /** @internal */
 export type LayoutResponseDto$Outbound = {
   _id: string;
@@ -235,19 +219,6 @@ export const LayoutResponseDto$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace LayoutResponseDto$ {
-  /** @deprecated use `LayoutResponseDto$inboundSchema` instead. */
-  export const inboundSchema = LayoutResponseDto$inboundSchema;
-  /** @deprecated use `LayoutResponseDto$outboundSchema` instead. */
-  export const outboundSchema = LayoutResponseDto$outboundSchema;
-  /** @deprecated use `LayoutResponseDto$Outbound` instead. */
-  export type Outbound = LayoutResponseDto$Outbound;
-}
-
 export function layoutResponseDtoToJSON(
   layoutResponseDto: LayoutResponseDto,
 ): string {
@@ -255,7 +226,6 @@ export function layoutResponseDtoToJSON(
     LayoutResponseDto$outboundSchema.parse(layoutResponseDto),
   );
 }
-
 export function layoutResponseDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<LayoutResponseDto, SDKValidationError> {

@@ -21,7 +21,6 @@ export const TenantPayloadDtoData$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({});
-
 /** @internal */
 export type TenantPayloadDtoData$Outbound = {};
 
@@ -32,19 +31,6 @@ export const TenantPayloadDtoData$outboundSchema: z.ZodType<
   TenantPayloadDtoData
 > = z.object({});
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TenantPayloadDtoData$ {
-  /** @deprecated use `TenantPayloadDtoData$inboundSchema` instead. */
-  export const inboundSchema = TenantPayloadDtoData$inboundSchema;
-  /** @deprecated use `TenantPayloadDtoData$outboundSchema` instead. */
-  export const outboundSchema = TenantPayloadDtoData$outboundSchema;
-  /** @deprecated use `TenantPayloadDtoData$Outbound` instead. */
-  export type Outbound = TenantPayloadDtoData$Outbound;
-}
-
 export function tenantPayloadDtoDataToJSON(
   tenantPayloadDtoData: TenantPayloadDtoData,
 ): string {
@@ -52,7 +38,6 @@ export function tenantPayloadDtoDataToJSON(
     TenantPayloadDtoData$outboundSchema.parse(tenantPayloadDtoData),
   );
 }
-
 export function tenantPayloadDtoDataFromJSON(
   jsonString: string,
 ): SafeParseResult<TenantPayloadDtoData, SDKValidationError> {
@@ -73,7 +58,6 @@ export const TenantPayloadDto$inboundSchema: z.ZodType<
   name: z.string().optional(),
   data: z.lazy(() => TenantPayloadDtoData$inboundSchema).optional(),
 });
-
 /** @internal */
 export type TenantPayloadDto$Outbound = {
   identifier?: string | undefined;
@@ -92,19 +76,6 @@ export const TenantPayloadDto$outboundSchema: z.ZodType<
   data: z.lazy(() => TenantPayloadDtoData$outboundSchema).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TenantPayloadDto$ {
-  /** @deprecated use `TenantPayloadDto$inboundSchema` instead. */
-  export const inboundSchema = TenantPayloadDto$inboundSchema;
-  /** @deprecated use `TenantPayloadDto$outboundSchema` instead. */
-  export const outboundSchema = TenantPayloadDto$outboundSchema;
-  /** @deprecated use `TenantPayloadDto$Outbound` instead. */
-  export type Outbound = TenantPayloadDto$Outbound;
-}
-
 export function tenantPayloadDtoToJSON(
   tenantPayloadDto: TenantPayloadDto,
 ): string {
@@ -112,7 +83,6 @@ export function tenantPayloadDtoToJSON(
     TenantPayloadDto$outboundSchema.parse(tenantPayloadDto),
   );
 }
-
 export function tenantPayloadDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<TenantPayloadDto, SDKValidationError> {

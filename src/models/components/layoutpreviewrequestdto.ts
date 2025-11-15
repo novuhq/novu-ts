@@ -33,7 +33,6 @@ export const LayoutPreviewRequestDto$inboundSchema: z.ZodType<
   controlValues: z.record(z.any()).optional(),
   previewPayload: LayoutPreviewPayloadDto$inboundSchema.optional(),
 });
-
 /** @internal */
 export type LayoutPreviewRequestDto$Outbound = {
   controlValues?: { [k: string]: any } | undefined;
@@ -50,19 +49,6 @@ export const LayoutPreviewRequestDto$outboundSchema: z.ZodType<
   previewPayload: LayoutPreviewPayloadDto$outboundSchema.optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace LayoutPreviewRequestDto$ {
-  /** @deprecated use `LayoutPreviewRequestDto$inboundSchema` instead. */
-  export const inboundSchema = LayoutPreviewRequestDto$inboundSchema;
-  /** @deprecated use `LayoutPreviewRequestDto$outboundSchema` instead. */
-  export const outboundSchema = LayoutPreviewRequestDto$outboundSchema;
-  /** @deprecated use `LayoutPreviewRequestDto$Outbound` instead. */
-  export type Outbound = LayoutPreviewRequestDto$Outbound;
-}
-
 export function layoutPreviewRequestDtoToJSON(
   layoutPreviewRequestDto: LayoutPreviewRequestDto,
 ): string {
@@ -70,7 +56,6 @@ export function layoutPreviewRequestDtoToJSON(
     LayoutPreviewRequestDto$outboundSchema.parse(layoutPreviewRequestDto),
   );
 }
-
 export function layoutPreviewRequestDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<LayoutPreviewRequestDto, SDKValidationError> {

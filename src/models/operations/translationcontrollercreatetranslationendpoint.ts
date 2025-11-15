@@ -33,7 +33,6 @@ export const TranslationControllerCreateTranslationEndpointRequest$inboundSchema
       "CreateTranslationRequestDto": "createTranslationRequestDto",
     });
   });
-
 /** @internal */
 export type TranslationControllerCreateTranslationEndpointRequest$Outbound = {
   "idempotency-key"?: string | undefined;
@@ -57,22 +56,6 @@ export const TranslationControllerCreateTranslationEndpointRequest$outboundSchem
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TranslationControllerCreateTranslationEndpointRequest$ {
-  /** @deprecated use `TranslationControllerCreateTranslationEndpointRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    TranslationControllerCreateTranslationEndpointRequest$inboundSchema;
-  /** @deprecated use `TranslationControllerCreateTranslationEndpointRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    TranslationControllerCreateTranslationEndpointRequest$outboundSchema;
-  /** @deprecated use `TranslationControllerCreateTranslationEndpointRequest$Outbound` instead. */
-  export type Outbound =
-    TranslationControllerCreateTranslationEndpointRequest$Outbound;
-}
-
 export function translationControllerCreateTranslationEndpointRequestToJSON(
   translationControllerCreateTranslationEndpointRequest:
     TranslationControllerCreateTranslationEndpointRequest,
@@ -83,7 +66,6 @@ export function translationControllerCreateTranslationEndpointRequestToJSON(
     ),
   );
 }
-
 export function translationControllerCreateTranslationEndpointRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<

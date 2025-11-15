@@ -117,7 +117,6 @@ export const PushStepResponseDtoControlValues$inboundSchema: z.ZodType<
   "additionalProperties",
   true,
 );
-
 /** @internal */
 export type PushStepResponseDtoControlValues$Outbound = {
   skip?: { [k: string]: any } | undefined;
@@ -145,19 +144,6 @@ export const PushStepResponseDtoControlValues$outboundSchema: z.ZodType<
   };
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PushStepResponseDtoControlValues$ {
-  /** @deprecated use `PushStepResponseDtoControlValues$inboundSchema` instead. */
-  export const inboundSchema = PushStepResponseDtoControlValues$inboundSchema;
-  /** @deprecated use `PushStepResponseDtoControlValues$outboundSchema` instead. */
-  export const outboundSchema = PushStepResponseDtoControlValues$outboundSchema;
-  /** @deprecated use `PushStepResponseDtoControlValues$Outbound` instead. */
-  export type Outbound = PushStepResponseDtoControlValues$Outbound;
-}
-
 export function pushStepResponseDtoControlValuesToJSON(
   pushStepResponseDtoControlValues: PushStepResponseDtoControlValues,
 ): string {
@@ -167,7 +153,6 @@ export function pushStepResponseDtoControlValuesToJSON(
     ),
   );
 }
-
 export function pushStepResponseDtoControlValuesFromJSON(
   jsonString: string,
 ): SafeParseResult<PushStepResponseDtoControlValues, SDKValidationError> {
@@ -202,7 +187,6 @@ export const PushStepResponseDto$inboundSchema: z.ZodType<
     "_id": "id",
   });
 });
-
 /** @internal */
 export type PushStepResponseDto$Outbound = {
   controls: PushControlsMetadataResponseDto$Outbound;
@@ -244,19 +228,6 @@ export const PushStepResponseDto$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PushStepResponseDto$ {
-  /** @deprecated use `PushStepResponseDto$inboundSchema` instead. */
-  export const inboundSchema = PushStepResponseDto$inboundSchema;
-  /** @deprecated use `PushStepResponseDto$outboundSchema` instead. */
-  export const outboundSchema = PushStepResponseDto$outboundSchema;
-  /** @deprecated use `PushStepResponseDto$Outbound` instead. */
-  export type Outbound = PushStepResponseDto$Outbound;
-}
-
 export function pushStepResponseDtoToJSON(
   pushStepResponseDto: PushStepResponseDto,
 ): string {
@@ -264,7 +235,6 @@ export function pushStepResponseDtoToJSON(
     PushStepResponseDto$outboundSchema.parse(pushStepResponseDto),
   );
 }
-
 export function pushStepResponseDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<PushStepResponseDto, SDKValidationError> {

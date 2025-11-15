@@ -25,7 +25,6 @@ export const UpdateContextRequestDtoData$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({});
-
 /** @internal */
 export type UpdateContextRequestDtoData$Outbound = {};
 
@@ -36,19 +35,6 @@ export const UpdateContextRequestDtoData$outboundSchema: z.ZodType<
   UpdateContextRequestDtoData
 > = z.object({});
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateContextRequestDtoData$ {
-  /** @deprecated use `UpdateContextRequestDtoData$inboundSchema` instead. */
-  export const inboundSchema = UpdateContextRequestDtoData$inboundSchema;
-  /** @deprecated use `UpdateContextRequestDtoData$outboundSchema` instead. */
-  export const outboundSchema = UpdateContextRequestDtoData$outboundSchema;
-  /** @deprecated use `UpdateContextRequestDtoData$Outbound` instead. */
-  export type Outbound = UpdateContextRequestDtoData$Outbound;
-}
-
 export function updateContextRequestDtoDataToJSON(
   updateContextRequestDtoData: UpdateContextRequestDtoData,
 ): string {
@@ -58,7 +44,6 @@ export function updateContextRequestDtoDataToJSON(
     ),
   );
 }
-
 export function updateContextRequestDtoDataFromJSON(
   jsonString: string,
 ): SafeParseResult<UpdateContextRequestDtoData, SDKValidationError> {
@@ -77,7 +62,6 @@ export const UpdateContextRequestDto$inboundSchema: z.ZodType<
 > = z.object({
   data: z.lazy(() => UpdateContextRequestDtoData$inboundSchema),
 });
-
 /** @internal */
 export type UpdateContextRequestDto$Outbound = {
   data: UpdateContextRequestDtoData$Outbound;
@@ -92,19 +76,6 @@ export const UpdateContextRequestDto$outboundSchema: z.ZodType<
   data: z.lazy(() => UpdateContextRequestDtoData$outboundSchema),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateContextRequestDto$ {
-  /** @deprecated use `UpdateContextRequestDto$inboundSchema` instead. */
-  export const inboundSchema = UpdateContextRequestDto$inboundSchema;
-  /** @deprecated use `UpdateContextRequestDto$outboundSchema` instead. */
-  export const outboundSchema = UpdateContextRequestDto$outboundSchema;
-  /** @deprecated use `UpdateContextRequestDto$Outbound` instead. */
-  export type Outbound = UpdateContextRequestDto$Outbound;
-}
-
 export function updateContextRequestDtoToJSON(
   updateContextRequestDto: UpdateContextRequestDto,
 ): string {
@@ -112,7 +83,6 @@ export function updateContextRequestDtoToJSON(
     UpdateContextRequestDto$outboundSchema.parse(updateContextRequestDto),
   );
 }
-
 export function updateContextRequestDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<UpdateContextRequestDto, SDKValidationError> {

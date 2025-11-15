@@ -52,26 +52,12 @@ export const TranslationControllerDeleteTranslationEndpointPathParamResourceType
   > = z.nativeEnum(
     TranslationControllerDeleteTranslationEndpointPathParamResourceType,
   );
-
 /** @internal */
 export const TranslationControllerDeleteTranslationEndpointPathParamResourceType$outboundSchema:
   z.ZodNativeEnum<
     typeof TranslationControllerDeleteTranslationEndpointPathParamResourceType
   > =
     TranslationControllerDeleteTranslationEndpointPathParamResourceType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TranslationControllerDeleteTranslationEndpointPathParamResourceType$ {
-  /** @deprecated use `TranslationControllerDeleteTranslationEndpointPathParamResourceType$inboundSchema` instead. */
-  export const inboundSchema =
-    TranslationControllerDeleteTranslationEndpointPathParamResourceType$inboundSchema;
-  /** @deprecated use `TranslationControllerDeleteTranslationEndpointPathParamResourceType$outboundSchema` instead. */
-  export const outboundSchema =
-    TranslationControllerDeleteTranslationEndpointPathParamResourceType$outboundSchema;
-}
 
 /** @internal */
 export const TranslationControllerDeleteTranslationEndpointRequest$inboundSchema:
@@ -90,7 +76,6 @@ export const TranslationControllerDeleteTranslationEndpointRequest$inboundSchema
       "idempotency-key": "idempotencyKey",
     });
   });
-
 /** @internal */
 export type TranslationControllerDeleteTranslationEndpointRequest$Outbound = {
   resourceType: string;
@@ -117,22 +102,6 @@ export const TranslationControllerDeleteTranslationEndpointRequest$outboundSchem
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TranslationControllerDeleteTranslationEndpointRequest$ {
-  /** @deprecated use `TranslationControllerDeleteTranslationEndpointRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    TranslationControllerDeleteTranslationEndpointRequest$inboundSchema;
-  /** @deprecated use `TranslationControllerDeleteTranslationEndpointRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    TranslationControllerDeleteTranslationEndpointRequest$outboundSchema;
-  /** @deprecated use `TranslationControllerDeleteTranslationEndpointRequest$Outbound` instead. */
-  export type Outbound =
-    TranslationControllerDeleteTranslationEndpointRequest$Outbound;
-}
-
 export function translationControllerDeleteTranslationEndpointRequestToJSON(
   translationControllerDeleteTranslationEndpointRequest:
     TranslationControllerDeleteTranslationEndpointRequest,
@@ -143,7 +112,6 @@ export function translationControllerDeleteTranslationEndpointRequestToJSON(
     ),
   );
 }
-
 export function translationControllerDeleteTranslationEndpointRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<

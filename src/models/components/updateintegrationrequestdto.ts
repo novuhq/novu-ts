@@ -48,7 +48,6 @@ export const UpdateIntegrationRequestDtoConfigurations$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({});
-
 /** @internal */
 export type UpdateIntegrationRequestDtoConfigurations$Outbound = {};
 
@@ -60,21 +59,6 @@ export const UpdateIntegrationRequestDtoConfigurations$outboundSchema:
     UpdateIntegrationRequestDtoConfigurations
   > = z.object({});
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateIntegrationRequestDtoConfigurations$ {
-  /** @deprecated use `UpdateIntegrationRequestDtoConfigurations$inboundSchema` instead. */
-  export const inboundSchema =
-    UpdateIntegrationRequestDtoConfigurations$inboundSchema;
-  /** @deprecated use `UpdateIntegrationRequestDtoConfigurations$outboundSchema` instead. */
-  export const outboundSchema =
-    UpdateIntegrationRequestDtoConfigurations$outboundSchema;
-  /** @deprecated use `UpdateIntegrationRequestDtoConfigurations$Outbound` instead. */
-  export type Outbound = UpdateIntegrationRequestDtoConfigurations$Outbound;
-}
-
 export function updateIntegrationRequestDtoConfigurationsToJSON(
   updateIntegrationRequestDtoConfigurations:
     UpdateIntegrationRequestDtoConfigurations,
@@ -85,7 +69,6 @@ export function updateIntegrationRequestDtoConfigurationsToJSON(
     ),
   );
 }
-
 export function updateIntegrationRequestDtoConfigurationsFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -123,7 +106,6 @@ export const UpdateIntegrationRequestDto$inboundSchema: z.ZodType<
     "_environmentId": "environmentId",
   });
 });
-
 /** @internal */
 export type UpdateIntegrationRequestDto$Outbound = {
   name?: string | undefined;
@@ -160,19 +142,6 @@ export const UpdateIntegrationRequestDto$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateIntegrationRequestDto$ {
-  /** @deprecated use `UpdateIntegrationRequestDto$inboundSchema` instead. */
-  export const inboundSchema = UpdateIntegrationRequestDto$inboundSchema;
-  /** @deprecated use `UpdateIntegrationRequestDto$outboundSchema` instead. */
-  export const outboundSchema = UpdateIntegrationRequestDto$outboundSchema;
-  /** @deprecated use `UpdateIntegrationRequestDto$Outbound` instead. */
-  export type Outbound = UpdateIntegrationRequestDto$Outbound;
-}
-
 export function updateIntegrationRequestDtoToJSON(
   updateIntegrationRequestDto: UpdateIntegrationRequestDto,
 ): string {
@@ -182,7 +151,6 @@ export function updateIntegrationRequestDtoToJSON(
     ),
   );
 }
-
 export function updateIntegrationRequestDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<UpdateIntegrationRequestDto, SDKValidationError> {

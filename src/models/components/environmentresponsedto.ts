@@ -68,22 +68,10 @@ export type EnvironmentResponseDto = {
 export const EnvironmentResponseDtoType$inboundSchema: z.ZodNativeEnum<
   typeof EnvironmentResponseDtoType
 > = z.nativeEnum(EnvironmentResponseDtoType);
-
 /** @internal */
 export const EnvironmentResponseDtoType$outboundSchema: z.ZodNativeEnum<
   typeof EnvironmentResponseDtoType
 > = EnvironmentResponseDtoType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EnvironmentResponseDtoType$ {
-  /** @deprecated use `EnvironmentResponseDtoType$inboundSchema` instead. */
-  export const inboundSchema = EnvironmentResponseDtoType$inboundSchema;
-  /** @deprecated use `EnvironmentResponseDtoType$outboundSchema` instead. */
-  export const outboundSchema = EnvironmentResponseDtoType$outboundSchema;
-}
 
 /** @internal */
 export const EnvironmentResponseDto$inboundSchema: z.ZodType<
@@ -106,7 +94,6 @@ export const EnvironmentResponseDto$inboundSchema: z.ZodType<
     "_parentId": "parentId",
   });
 });
-
 /** @internal */
 export type EnvironmentResponseDto$Outbound = {
   _id: string;
@@ -141,19 +128,6 @@ export const EnvironmentResponseDto$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EnvironmentResponseDto$ {
-  /** @deprecated use `EnvironmentResponseDto$inboundSchema` instead. */
-  export const inboundSchema = EnvironmentResponseDto$inboundSchema;
-  /** @deprecated use `EnvironmentResponseDto$outboundSchema` instead. */
-  export const outboundSchema = EnvironmentResponseDto$outboundSchema;
-  /** @deprecated use `EnvironmentResponseDto$Outbound` instead. */
-  export type Outbound = EnvironmentResponseDto$Outbound;
-}
-
 export function environmentResponseDtoToJSON(
   environmentResponseDto: EnvironmentResponseDto,
 ): string {
@@ -161,7 +135,6 @@ export function environmentResponseDtoToJSON(
     EnvironmentResponseDto$outboundSchema.parse(environmentResponseDto),
   );
 }
-
 export function environmentResponseDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<EnvironmentResponseDto, SDKValidationError> {

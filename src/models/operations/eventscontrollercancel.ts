@@ -34,7 +34,6 @@ export const EventsControllerCancelRequest$inboundSchema: z.ZodType<
     "idempotency-key": "idempotencyKey",
   });
 });
-
 /** @internal */
 export type EventsControllerCancelRequest$Outbound = {
   transactionId: string;
@@ -55,19 +54,6 @@ export const EventsControllerCancelRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EventsControllerCancelRequest$ {
-  /** @deprecated use `EventsControllerCancelRequest$inboundSchema` instead. */
-  export const inboundSchema = EventsControllerCancelRequest$inboundSchema;
-  /** @deprecated use `EventsControllerCancelRequest$outboundSchema` instead. */
-  export const outboundSchema = EventsControllerCancelRequest$outboundSchema;
-  /** @deprecated use `EventsControllerCancelRequest$Outbound` instead. */
-  export type Outbound = EventsControllerCancelRequest$Outbound;
-}
-
 export function eventsControllerCancelRequestToJSON(
   eventsControllerCancelRequest: EventsControllerCancelRequest,
 ): string {
@@ -77,7 +63,6 @@ export function eventsControllerCancelRequestToJSON(
     ),
   );
 }
-
 export function eventsControllerCancelRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<EventsControllerCancelRequest, SDKValidationError> {
@@ -102,7 +87,6 @@ export const EventsControllerCancelResponse$inboundSchema: z.ZodType<
     "Result": "result",
   });
 });
-
 /** @internal */
 export type EventsControllerCancelResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
@@ -124,19 +108,6 @@ export const EventsControllerCancelResponse$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EventsControllerCancelResponse$ {
-  /** @deprecated use `EventsControllerCancelResponse$inboundSchema` instead. */
-  export const inboundSchema = EventsControllerCancelResponse$inboundSchema;
-  /** @deprecated use `EventsControllerCancelResponse$outboundSchema` instead. */
-  export const outboundSchema = EventsControllerCancelResponse$outboundSchema;
-  /** @deprecated use `EventsControllerCancelResponse$Outbound` instead. */
-  export type Outbound = EventsControllerCancelResponse$Outbound;
-}
-
 export function eventsControllerCancelResponseToJSON(
   eventsControllerCancelResponse: EventsControllerCancelResponse,
 ): string {
@@ -146,7 +117,6 @@ export function eventsControllerCancelResponseToJSON(
     ),
   );
 }
-
 export function eventsControllerCancelResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<EventsControllerCancelResponse, SDKValidationError> {

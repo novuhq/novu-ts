@@ -33,7 +33,6 @@ export const ControlsMetadataDto$inboundSchema: z.ZodType<
   dataSchema: z.record(z.any()).optional(),
   uiSchema: UiSchema$inboundSchema.optional(),
 });
-
 /** @internal */
 export type ControlsMetadataDto$Outbound = {
   dataSchema?: { [k: string]: any } | undefined;
@@ -50,19 +49,6 @@ export const ControlsMetadataDto$outboundSchema: z.ZodType<
   uiSchema: UiSchema$outboundSchema.optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ControlsMetadataDto$ {
-  /** @deprecated use `ControlsMetadataDto$inboundSchema` instead. */
-  export const inboundSchema = ControlsMetadataDto$inboundSchema;
-  /** @deprecated use `ControlsMetadataDto$outboundSchema` instead. */
-  export const outboundSchema = ControlsMetadataDto$outboundSchema;
-  /** @deprecated use `ControlsMetadataDto$Outbound` instead. */
-  export type Outbound = ControlsMetadataDto$Outbound;
-}
-
 export function controlsMetadataDtoToJSON(
   controlsMetadataDto: ControlsMetadataDto,
 ): string {
@@ -70,7 +56,6 @@ export function controlsMetadataDtoToJSON(
     ControlsMetadataDto$outboundSchema.parse(controlsMetadataDto),
   );
 }
-
 export function controlsMetadataDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<ControlsMetadataDto, SDKValidationError> {

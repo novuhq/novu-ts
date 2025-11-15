@@ -37,7 +37,6 @@ export const SubscribersV1ControllerBulkCreateSubscribersRequest$inboundSchema:
       "BulkSubscriberCreateDto": "bulkSubscriberCreateDto",
     });
   });
-
 /** @internal */
 export type SubscribersV1ControllerBulkCreateSubscribersRequest$Outbound = {
   "idempotency-key"?: string | undefined;
@@ -60,22 +59,6 @@ export const SubscribersV1ControllerBulkCreateSubscribersRequest$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SubscribersV1ControllerBulkCreateSubscribersRequest$ {
-  /** @deprecated use `SubscribersV1ControllerBulkCreateSubscribersRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    SubscribersV1ControllerBulkCreateSubscribersRequest$inboundSchema;
-  /** @deprecated use `SubscribersV1ControllerBulkCreateSubscribersRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    SubscribersV1ControllerBulkCreateSubscribersRequest$outboundSchema;
-  /** @deprecated use `SubscribersV1ControllerBulkCreateSubscribersRequest$Outbound` instead. */
-  export type Outbound =
-    SubscribersV1ControllerBulkCreateSubscribersRequest$Outbound;
-}
-
 export function subscribersV1ControllerBulkCreateSubscribersRequestToJSON(
   subscribersV1ControllerBulkCreateSubscribersRequest:
     SubscribersV1ControllerBulkCreateSubscribersRequest,
@@ -86,7 +69,6 @@ export function subscribersV1ControllerBulkCreateSubscribersRequestToJSON(
     ),
   );
 }
-
 export function subscribersV1ControllerBulkCreateSubscribersRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -118,7 +100,6 @@ export const SubscribersV1ControllerBulkCreateSubscribersResponse$inboundSchema:
       "Result": "result",
     });
   });
-
 /** @internal */
 export type SubscribersV1ControllerBulkCreateSubscribersResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
@@ -141,22 +122,6 @@ export const SubscribersV1ControllerBulkCreateSubscribersResponse$outboundSchema
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SubscribersV1ControllerBulkCreateSubscribersResponse$ {
-  /** @deprecated use `SubscribersV1ControllerBulkCreateSubscribersResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    SubscribersV1ControllerBulkCreateSubscribersResponse$inboundSchema;
-  /** @deprecated use `SubscribersV1ControllerBulkCreateSubscribersResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    SubscribersV1ControllerBulkCreateSubscribersResponse$outboundSchema;
-  /** @deprecated use `SubscribersV1ControllerBulkCreateSubscribersResponse$Outbound` instead. */
-  export type Outbound =
-    SubscribersV1ControllerBulkCreateSubscribersResponse$Outbound;
-}
-
 export function subscribersV1ControllerBulkCreateSubscribersResponseToJSON(
   subscribersV1ControllerBulkCreateSubscribersResponse:
     SubscribersV1ControllerBulkCreateSubscribersResponse,
@@ -167,7 +132,6 @@ export function subscribersV1ControllerBulkCreateSubscribersResponseToJSON(
     ),
   );
 }
-
 export function subscribersV1ControllerBulkCreateSubscribersResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<

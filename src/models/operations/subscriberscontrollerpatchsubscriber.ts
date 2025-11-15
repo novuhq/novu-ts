@@ -40,7 +40,6 @@ export const SubscribersControllerPatchSubscriberRequest$inboundSchema:
       "PatchSubscriberRequestDto": "patchSubscriberRequestDto",
     });
   });
-
 /** @internal */
 export type SubscribersControllerPatchSubscriberRequest$Outbound = {
   subscriberId: string;
@@ -66,21 +65,6 @@ export const SubscribersControllerPatchSubscriberRequest$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SubscribersControllerPatchSubscriberRequest$ {
-  /** @deprecated use `SubscribersControllerPatchSubscriberRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    SubscribersControllerPatchSubscriberRequest$inboundSchema;
-  /** @deprecated use `SubscribersControllerPatchSubscriberRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    SubscribersControllerPatchSubscriberRequest$outboundSchema;
-  /** @deprecated use `SubscribersControllerPatchSubscriberRequest$Outbound` instead. */
-  export type Outbound = SubscribersControllerPatchSubscriberRequest$Outbound;
-}
-
 export function subscribersControllerPatchSubscriberRequestToJSON(
   subscribersControllerPatchSubscriberRequest:
     SubscribersControllerPatchSubscriberRequest,
@@ -91,7 +75,6 @@ export function subscribersControllerPatchSubscriberRequestToJSON(
     ),
   );
 }
-
 export function subscribersControllerPatchSubscriberRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -123,7 +106,6 @@ export const SubscribersControllerPatchSubscriberResponse$inboundSchema:
       "Result": "result",
     });
   });
-
 /** @internal */
 export type SubscribersControllerPatchSubscriberResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
@@ -146,21 +128,6 @@ export const SubscribersControllerPatchSubscriberResponse$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SubscribersControllerPatchSubscriberResponse$ {
-  /** @deprecated use `SubscribersControllerPatchSubscriberResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    SubscribersControllerPatchSubscriberResponse$inboundSchema;
-  /** @deprecated use `SubscribersControllerPatchSubscriberResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    SubscribersControllerPatchSubscriberResponse$outboundSchema;
-  /** @deprecated use `SubscribersControllerPatchSubscriberResponse$Outbound` instead. */
-  export type Outbound = SubscribersControllerPatchSubscriberResponse$Outbound;
-}
-
 export function subscribersControllerPatchSubscriberResponseToJSON(
   subscribersControllerPatchSubscriberResponse:
     SubscribersControllerPatchSubscriberResponse,
@@ -171,7 +138,6 @@ export function subscribersControllerPatchSubscriberResponseToJSON(
     ),
   );
 }
-
 export function subscribersControllerPatchSubscriberResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<

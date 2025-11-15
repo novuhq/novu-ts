@@ -33,7 +33,6 @@ export const BulkUpdateSubscriberPreferenceItemDto$inboundSchema: z.ZodType<
   channels: PatchPreferenceChannelsDto$inboundSchema,
   workflowId: z.string(),
 });
-
 /** @internal */
 export type BulkUpdateSubscriberPreferenceItemDto$Outbound = {
   channels: PatchPreferenceChannelsDto$Outbound;
@@ -50,21 +49,6 @@ export const BulkUpdateSubscriberPreferenceItemDto$outboundSchema: z.ZodType<
   workflowId: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace BulkUpdateSubscriberPreferenceItemDto$ {
-  /** @deprecated use `BulkUpdateSubscriberPreferenceItemDto$inboundSchema` instead. */
-  export const inboundSchema =
-    BulkUpdateSubscriberPreferenceItemDto$inboundSchema;
-  /** @deprecated use `BulkUpdateSubscriberPreferenceItemDto$outboundSchema` instead. */
-  export const outboundSchema =
-    BulkUpdateSubscriberPreferenceItemDto$outboundSchema;
-  /** @deprecated use `BulkUpdateSubscriberPreferenceItemDto$Outbound` instead. */
-  export type Outbound = BulkUpdateSubscriberPreferenceItemDto$Outbound;
-}
-
 export function bulkUpdateSubscriberPreferenceItemDtoToJSON(
   bulkUpdateSubscriberPreferenceItemDto: BulkUpdateSubscriberPreferenceItemDto,
 ): string {
@@ -74,7 +58,6 @@ export function bulkUpdateSubscriberPreferenceItemDtoToJSON(
     ),
   );
 }
-
 export function bulkUpdateSubscriberPreferenceItemDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<BulkUpdateSubscriberPreferenceItemDto, SDKValidationError> {

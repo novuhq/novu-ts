@@ -39,7 +39,6 @@ export const EnvironmentsControllerGetEnvironmentTagsRequest$inboundSchema:
       "idempotency-key": "idempotencyKey",
     });
   });
-
 /** @internal */
 export type EnvironmentsControllerGetEnvironmentTagsRequest$Outbound = {
   environmentId: string;
@@ -61,22 +60,6 @@ export const EnvironmentsControllerGetEnvironmentTagsRequest$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EnvironmentsControllerGetEnvironmentTagsRequest$ {
-  /** @deprecated use `EnvironmentsControllerGetEnvironmentTagsRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    EnvironmentsControllerGetEnvironmentTagsRequest$inboundSchema;
-  /** @deprecated use `EnvironmentsControllerGetEnvironmentTagsRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    EnvironmentsControllerGetEnvironmentTagsRequest$outboundSchema;
-  /** @deprecated use `EnvironmentsControllerGetEnvironmentTagsRequest$Outbound` instead. */
-  export type Outbound =
-    EnvironmentsControllerGetEnvironmentTagsRequest$Outbound;
-}
-
 export function environmentsControllerGetEnvironmentTagsRequestToJSON(
   environmentsControllerGetEnvironmentTagsRequest:
     EnvironmentsControllerGetEnvironmentTagsRequest,
@@ -87,7 +70,6 @@ export function environmentsControllerGetEnvironmentTagsRequestToJSON(
     ),
   );
 }
-
 export function environmentsControllerGetEnvironmentTagsRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -119,7 +101,6 @@ export const EnvironmentsControllerGetEnvironmentTagsResponse$inboundSchema:
       "Result": "result",
     });
   });
-
 /** @internal */
 export type EnvironmentsControllerGetEnvironmentTagsResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
@@ -142,22 +123,6 @@ export const EnvironmentsControllerGetEnvironmentTagsResponse$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EnvironmentsControllerGetEnvironmentTagsResponse$ {
-  /** @deprecated use `EnvironmentsControllerGetEnvironmentTagsResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    EnvironmentsControllerGetEnvironmentTagsResponse$inboundSchema;
-  /** @deprecated use `EnvironmentsControllerGetEnvironmentTagsResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    EnvironmentsControllerGetEnvironmentTagsResponse$outboundSchema;
-  /** @deprecated use `EnvironmentsControllerGetEnvironmentTagsResponse$Outbound` instead. */
-  export type Outbound =
-    EnvironmentsControllerGetEnvironmentTagsResponse$Outbound;
-}
-
 export function environmentsControllerGetEnvironmentTagsResponseToJSON(
   environmentsControllerGetEnvironmentTagsResponse:
     EnvironmentsControllerGetEnvironmentTagsResponse,
@@ -168,7 +133,6 @@ export function environmentsControllerGetEnvironmentTagsResponseToJSON(
     ),
   );
 }
-
 export function environmentsControllerGetEnvironmentTagsResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<

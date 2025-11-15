@@ -44,7 +44,6 @@ export const TopicsV1ControllerGetTopicSubscriberRequest$inboundSchema:
       "idempotency-key": "idempotencyKey",
     });
   });
-
 /** @internal */
 export type TopicsV1ControllerGetTopicSubscriberRequest$Outbound = {
   externalSubscriberId: string;
@@ -68,21 +67,6 @@ export const TopicsV1ControllerGetTopicSubscriberRequest$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TopicsV1ControllerGetTopicSubscriberRequest$ {
-  /** @deprecated use `TopicsV1ControllerGetTopicSubscriberRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    TopicsV1ControllerGetTopicSubscriberRequest$inboundSchema;
-  /** @deprecated use `TopicsV1ControllerGetTopicSubscriberRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    TopicsV1ControllerGetTopicSubscriberRequest$outboundSchema;
-  /** @deprecated use `TopicsV1ControllerGetTopicSubscriberRequest$Outbound` instead. */
-  export type Outbound = TopicsV1ControllerGetTopicSubscriberRequest$Outbound;
-}
-
 export function topicsV1ControllerGetTopicSubscriberRequestToJSON(
   topicsV1ControllerGetTopicSubscriberRequest:
     TopicsV1ControllerGetTopicSubscriberRequest,
@@ -93,7 +77,6 @@ export function topicsV1ControllerGetTopicSubscriberRequestToJSON(
     ),
   );
 }
-
 export function topicsV1ControllerGetTopicSubscriberRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -125,7 +108,6 @@ export const TopicsV1ControllerGetTopicSubscriberResponse$inboundSchema:
       "Result": "result",
     });
   });
-
 /** @internal */
 export type TopicsV1ControllerGetTopicSubscriberResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
@@ -148,21 +130,6 @@ export const TopicsV1ControllerGetTopicSubscriberResponse$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TopicsV1ControllerGetTopicSubscriberResponse$ {
-  /** @deprecated use `TopicsV1ControllerGetTopicSubscriberResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    TopicsV1ControllerGetTopicSubscriberResponse$inboundSchema;
-  /** @deprecated use `TopicsV1ControllerGetTopicSubscriberResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    TopicsV1ControllerGetTopicSubscriberResponse$outboundSchema;
-  /** @deprecated use `TopicsV1ControllerGetTopicSubscriberResponse$Outbound` instead. */
-  export type Outbound = TopicsV1ControllerGetTopicSubscriberResponse$Outbound;
-}
-
 export function topicsV1ControllerGetTopicSubscriberResponseToJSON(
   topicsV1ControllerGetTopicSubscriberResponse:
     TopicsV1ControllerGetTopicSubscriberResponse,
@@ -173,7 +140,6 @@ export function topicsV1ControllerGetTopicSubscriberResponseToJSON(
     ),
   );
 }
-
 export function topicsV1ControllerGetTopicSubscriberResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<

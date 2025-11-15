@@ -23,7 +23,6 @@ export const GetContextResponseDtoData$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({});
-
 /** @internal */
 export type GetContextResponseDtoData$Outbound = {};
 
@@ -34,19 +33,6 @@ export const GetContextResponseDtoData$outboundSchema: z.ZodType<
   GetContextResponseDtoData
 > = z.object({});
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetContextResponseDtoData$ {
-  /** @deprecated use `GetContextResponseDtoData$inboundSchema` instead. */
-  export const inboundSchema = GetContextResponseDtoData$inboundSchema;
-  /** @deprecated use `GetContextResponseDtoData$outboundSchema` instead. */
-  export const outboundSchema = GetContextResponseDtoData$outboundSchema;
-  /** @deprecated use `GetContextResponseDtoData$Outbound` instead. */
-  export type Outbound = GetContextResponseDtoData$Outbound;
-}
-
 export function getContextResponseDtoDataToJSON(
   getContextResponseDtoData: GetContextResponseDtoData,
 ): string {
@@ -54,7 +40,6 @@ export function getContextResponseDtoDataToJSON(
     GetContextResponseDtoData$outboundSchema.parse(getContextResponseDtoData),
   );
 }
-
 export function getContextResponseDtoDataFromJSON(
   jsonString: string,
 ): SafeParseResult<GetContextResponseDtoData, SDKValidationError> {
@@ -77,7 +62,6 @@ export const GetContextResponseDto$inboundSchema: z.ZodType<
   createdAt: z.string(),
   updatedAt: z.string(),
 });
-
 /** @internal */
 export type GetContextResponseDto$Outbound = {
   type: string;
@@ -100,19 +84,6 @@ export const GetContextResponseDto$outboundSchema: z.ZodType<
   updatedAt: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetContextResponseDto$ {
-  /** @deprecated use `GetContextResponseDto$inboundSchema` instead. */
-  export const inboundSchema = GetContextResponseDto$inboundSchema;
-  /** @deprecated use `GetContextResponseDto$outboundSchema` instead. */
-  export const outboundSchema = GetContextResponseDto$outboundSchema;
-  /** @deprecated use `GetContextResponseDto$Outbound` instead. */
-  export type Outbound = GetContextResponseDto$Outbound;
-}
-
 export function getContextResponseDtoToJSON(
   getContextResponseDto: GetContextResponseDto,
 ): string {
@@ -120,7 +91,6 @@ export function getContextResponseDtoToJSON(
     GetContextResponseDto$outboundSchema.parse(getContextResponseDto),
   );
 }
-
 export function getContextResponseDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<GetContextResponseDto, SDKValidationError> {

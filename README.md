@@ -201,6 +201,7 @@ async function run() {
     },
     overrides: {},
     to: "SUBSCRIBER_ID",
+    actor: "<value>",
     context: {
       "key": "org-acme",
     },
@@ -258,6 +259,16 @@ async function run() {
           },
         },
       },
+    },
+    actor: {
+      firstName: "John",
+      lastName: "Doe",
+      email: "john.doe@example.com",
+      phone: "+1234567890",
+      avatar: "https://example.com/avatar.jpg",
+      locale: "en-US",
+      timezone: "America/New_York",
+      subscriberId: "<id>",
     },
   });
 
@@ -616,6 +627,7 @@ async function run() {
       },
       overrides: {},
       to: "SUBSCRIBER_ID",
+      actor: "<value>",
       context: {
         "key": "org-acme",
       },
@@ -693,7 +705,7 @@ You can override the default server globally by passing a server index to the `s
 import { Novu } from "@novu/api";
 
 const novu = new Novu({
-  serverIdx: 1,
+  serverIdx: 0,
   secretKey: "YOUR_SECRET_KEY_HERE",
 });
 
@@ -708,6 +720,7 @@ async function run() {
     },
     overrides: {},
     to: "SUBSCRIBER_ID",
+    actor: "<value>",
     context: {
       "key": "org-acme",
     },
@@ -742,6 +755,7 @@ async function run() {
     },
     overrides: {},
     to: "SUBSCRIBER_ID",
+    actor: "<value>",
     context: {
       "key": "org-acme",
     },
@@ -834,6 +848,7 @@ async function run() {
     },
     overrides: {},
     to: "SUBSCRIBER_ID",
+    actor: "<value>",
     context: {
       "key": "org-acme",
     },
@@ -871,6 +886,7 @@ async function run() {
     },
     overrides: {},
     to: "SUBSCRIBER_ID",
+    actor: "<value>",
     context: {
       "key": "org-acme",
     },
@@ -923,6 +939,7 @@ async function run() {
     },
     overrides: {},
     to: "SUBSCRIBER_ID",
+    actor: "<value>",
     context: {
       "key": "org-acme",
     },

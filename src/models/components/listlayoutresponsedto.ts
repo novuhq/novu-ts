@@ -33,7 +33,6 @@ export const ListLayoutResponseDto$inboundSchema: z.ZodType<
   layouts: z.array(LayoutResponseDto$inboundSchema),
   totalCount: z.number(),
 });
-
 /** @internal */
 export type ListLayoutResponseDto$Outbound = {
   layouts: Array<LayoutResponseDto$Outbound>;
@@ -50,19 +49,6 @@ export const ListLayoutResponseDto$outboundSchema: z.ZodType<
   totalCount: z.number(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListLayoutResponseDto$ {
-  /** @deprecated use `ListLayoutResponseDto$inboundSchema` instead. */
-  export const inboundSchema = ListLayoutResponseDto$inboundSchema;
-  /** @deprecated use `ListLayoutResponseDto$outboundSchema` instead. */
-  export const outboundSchema = ListLayoutResponseDto$outboundSchema;
-  /** @deprecated use `ListLayoutResponseDto$Outbound` instead. */
-  export type Outbound = ListLayoutResponseDto$Outbound;
-}
-
 export function listLayoutResponseDtoToJSON(
   listLayoutResponseDto: ListLayoutResponseDto,
 ): string {
@@ -70,7 +56,6 @@ export function listLayoutResponseDtoToJSON(
     ListLayoutResponseDto$outboundSchema.parse(listLayoutResponseDto),
   );
 }
-
 export function listLayoutResponseDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<ListLayoutResponseDto, SDKValidationError> {

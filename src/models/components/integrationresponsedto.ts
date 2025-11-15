@@ -108,21 +108,9 @@ export type IntegrationResponseDto = {
 /** @internal */
 export const Channel$inboundSchema: z.ZodNativeEnum<typeof Channel> = z
   .nativeEnum(Channel);
-
 /** @internal */
 export const Channel$outboundSchema: z.ZodNativeEnum<typeof Channel> =
   Channel$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Channel$ {
-  /** @deprecated use `Channel$inboundSchema` instead. */
-  export const inboundSchema = Channel$inboundSchema;
-  /** @deprecated use `Channel$outboundSchema` instead. */
-  export const outboundSchema = Channel$outboundSchema;
-}
 
 /** @internal */
 export const IntegrationResponseDto$inboundSchema: z.ZodType<
@@ -152,7 +140,6 @@ export const IntegrationResponseDto$inboundSchema: z.ZodType<
     "_organizationId": "organizationId",
   });
 });
-
 /** @internal */
 export type IntegrationResponseDto$Outbound = {
   _id?: string | undefined;
@@ -201,19 +188,6 @@ export const IntegrationResponseDto$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace IntegrationResponseDto$ {
-  /** @deprecated use `IntegrationResponseDto$inboundSchema` instead. */
-  export const inboundSchema = IntegrationResponseDto$inboundSchema;
-  /** @deprecated use `IntegrationResponseDto$outboundSchema` instead. */
-  export const outboundSchema = IntegrationResponseDto$outboundSchema;
-  /** @deprecated use `IntegrationResponseDto$Outbound` instead. */
-  export type Outbound = IntegrationResponseDto$Outbound;
-}
-
 export function integrationResponseDtoToJSON(
   integrationResponseDto: IntegrationResponseDto,
 ): string {
@@ -221,7 +195,6 @@ export function integrationResponseDtoToJSON(
     IntegrationResponseDto$outboundSchema.parse(integrationResponseDto),
   );
 }
-
 export function integrationResponseDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<IntegrationResponseDto, SDKValidationError> {

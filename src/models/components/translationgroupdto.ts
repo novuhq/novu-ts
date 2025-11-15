@@ -57,22 +57,10 @@ export type TranslationGroupDto = {
 export const TranslationGroupDtoResourceType$inboundSchema: z.ZodNativeEnum<
   typeof TranslationGroupDtoResourceType
 > = z.nativeEnum(TranslationGroupDtoResourceType);
-
 /** @internal */
 export const TranslationGroupDtoResourceType$outboundSchema: z.ZodNativeEnum<
   typeof TranslationGroupDtoResourceType
 > = TranslationGroupDtoResourceType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TranslationGroupDtoResourceType$ {
-  /** @deprecated use `TranslationGroupDtoResourceType$inboundSchema` instead. */
-  export const inboundSchema = TranslationGroupDtoResourceType$inboundSchema;
-  /** @deprecated use `TranslationGroupDtoResourceType$outboundSchema` instead. */
-  export const outboundSchema = TranslationGroupDtoResourceType$outboundSchema;
-}
 
 /** @internal */
 export const TranslationGroupDto$inboundSchema: z.ZodType<
@@ -88,7 +76,6 @@ export const TranslationGroupDto$inboundSchema: z.ZodType<
   createdAt: z.string(),
   updatedAt: z.string(),
 });
-
 /** @internal */
 export type TranslationGroupDto$Outbound = {
   resourceId: string;
@@ -115,19 +102,6 @@ export const TranslationGroupDto$outboundSchema: z.ZodType<
   updatedAt: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TranslationGroupDto$ {
-  /** @deprecated use `TranslationGroupDto$inboundSchema` instead. */
-  export const inboundSchema = TranslationGroupDto$inboundSchema;
-  /** @deprecated use `TranslationGroupDto$outboundSchema` instead. */
-  export const outboundSchema = TranslationGroupDto$outboundSchema;
-  /** @deprecated use `TranslationGroupDto$Outbound` instead. */
-  export type Outbound = TranslationGroupDto$Outbound;
-}
-
 export function translationGroupDtoToJSON(
   translationGroupDto: TranslationGroupDto,
 ): string {
@@ -135,7 +109,6 @@ export function translationGroupDtoToJSON(
     TranslationGroupDto$outboundSchema.parse(translationGroupDto),
   );
 }
-
 export function translationGroupDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<TranslationGroupDto, SDKValidationError> {

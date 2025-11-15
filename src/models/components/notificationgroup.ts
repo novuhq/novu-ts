@@ -35,7 +35,6 @@ export const NotificationGroup$inboundSchema: z.ZodType<
     "_parentId": "parentId",
   });
 });
-
 /** @internal */
 export type NotificationGroup$Outbound = {
   _id?: string | undefined;
@@ -65,19 +64,6 @@ export const NotificationGroup$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace NotificationGroup$ {
-  /** @deprecated use `NotificationGroup$inboundSchema` instead. */
-  export const inboundSchema = NotificationGroup$inboundSchema;
-  /** @deprecated use `NotificationGroup$outboundSchema` instead. */
-  export const outboundSchema = NotificationGroup$outboundSchema;
-  /** @deprecated use `NotificationGroup$Outbound` instead. */
-  export type Outbound = NotificationGroup$Outbound;
-}
-
 export function notificationGroupToJSON(
   notificationGroup: NotificationGroup,
 ): string {
@@ -85,7 +71,6 @@ export function notificationGroupToJSON(
     NotificationGroup$outboundSchema.parse(notificationGroup),
   );
 }
-
 export function notificationGroupFromJSON(
   jsonString: string,
 ): SafeParseResult<NotificationGroup, SDKValidationError> {

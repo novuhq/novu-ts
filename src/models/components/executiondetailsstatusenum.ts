@@ -27,19 +27,7 @@ export type ExecutionDetailsStatusEnum = ClosedEnum<
 export const ExecutionDetailsStatusEnum$inboundSchema: z.ZodNativeEnum<
   typeof ExecutionDetailsStatusEnum
 > = z.nativeEnum(ExecutionDetailsStatusEnum);
-
 /** @internal */
 export const ExecutionDetailsStatusEnum$outboundSchema: z.ZodNativeEnum<
   typeof ExecutionDetailsStatusEnum
 > = ExecutionDetailsStatusEnum$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ExecutionDetailsStatusEnum$ {
-  /** @deprecated use `ExecutionDetailsStatusEnum$inboundSchema` instead. */
-  export const inboundSchema = ExecutionDetailsStatusEnum$inboundSchema;
-  /** @deprecated use `ExecutionDetailsStatusEnum$outboundSchema` instead. */
-  export const outboundSchema = ExecutionDetailsStatusEnum$outboundSchema;
-}

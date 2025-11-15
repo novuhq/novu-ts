@@ -42,7 +42,6 @@ export type ConstraintValidation = {
 /** @internal */
 export const Five$inboundSchema: z.ZodType<Five, z.ZodTypeDef, unknown> = z
   .union([z.string(), z.number(), z.boolean(), z.record(z.any())]);
-
 /** @internal */
 export type Five$Outbound = string | number | boolean | { [k: string]: any };
 
@@ -50,23 +49,9 @@ export type Five$Outbound = string | number | boolean | { [k: string]: any };
 export const Five$outboundSchema: z.ZodType<Five$Outbound, z.ZodTypeDef, Five> =
   z.union([z.string(), z.number(), z.boolean(), z.record(z.any())]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Five$ {
-  /** @deprecated use `Five$inboundSchema` instead. */
-  export const inboundSchema = Five$inboundSchema;
-  /** @deprecated use `Five$outboundSchema` instead. */
-  export const outboundSchema = Five$outboundSchema;
-  /** @deprecated use `Five$Outbound` instead. */
-  export type Outbound = Five$Outbound;
-}
-
 export function fiveToJSON(five: Five): string {
   return JSON.stringify(Five$outboundSchema.parse(five));
 }
-
 export function fiveFromJSON(
   jsonString: string,
 ): SafeParseResult<Five, SDKValidationError> {
@@ -80,7 +65,6 @@ export function fiveFromJSON(
 /** @internal */
 export const Four$inboundSchema: z.ZodType<Four, z.ZodTypeDef, unknown> = z
   .object({});
-
 /** @internal */
 export type Four$Outbound = {};
 
@@ -88,23 +72,9 @@ export type Four$Outbound = {};
 export const Four$outboundSchema: z.ZodType<Four$Outbound, z.ZodTypeDef, Four> =
   z.object({});
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Four$ {
-  /** @deprecated use `Four$inboundSchema` instead. */
-  export const inboundSchema = Four$inboundSchema;
-  /** @deprecated use `Four$outboundSchema` instead. */
-  export const outboundSchema = Four$outboundSchema;
-  /** @deprecated use `Four$Outbound` instead. */
-  export type Outbound = Four$Outbound;
-}
-
 export function fourToJSON(four: Four): string {
   return JSON.stringify(Four$outboundSchema.parse(four));
 }
-
 export function fourFromJSON(
   jsonString: string,
 ): SafeParseResult<Four, SDKValidationError> {
@@ -128,7 +98,6 @@ export const Value$inboundSchema: z.ZodType<Value, z.ZodTypeDef, unknown> = z
       ),
     ),
   ]);
-
 /** @internal */
 export type Value$Outbound =
   | string
@@ -154,23 +123,9 @@ export const Value$outboundSchema: z.ZodType<
   ),
 ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Value$ {
-  /** @deprecated use `Value$inboundSchema` instead. */
-  export const inboundSchema = Value$inboundSchema;
-  /** @deprecated use `Value$outboundSchema` instead. */
-  export const outboundSchema = Value$outboundSchema;
-  /** @deprecated use `Value$Outbound` instead. */
-  export type Outbound = Value$Outbound;
-}
-
 export function valueToJSON(value: Value): string {
   return JSON.stringify(Value$outboundSchema.parse(value));
 }
-
 export function valueFromJSON(
   jsonString: string,
 ): SafeParseResult<Value, SDKValidationError> {
@@ -202,7 +157,6 @@ export const ConstraintValidation$inboundSchema: z.ZodType<
     ]),
   ).optional(),
 });
-
 /** @internal */
 export type ConstraintValidation$Outbound = {
   messages: Array<string>;
@@ -238,19 +192,6 @@ export const ConstraintValidation$outboundSchema: z.ZodType<
   ).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ConstraintValidation$ {
-  /** @deprecated use `ConstraintValidation$inboundSchema` instead. */
-  export const inboundSchema = ConstraintValidation$inboundSchema;
-  /** @deprecated use `ConstraintValidation$outboundSchema` instead. */
-  export const outboundSchema = ConstraintValidation$outboundSchema;
-  /** @deprecated use `ConstraintValidation$Outbound` instead. */
-  export type Outbound = ConstraintValidation$Outbound;
-}
-
 export function constraintValidationToJSON(
   constraintValidation: ConstraintValidation,
 ): string {
@@ -258,7 +199,6 @@ export function constraintValidationToJSON(
     ConstraintValidation$outboundSchema.parse(constraintValidation),
   );
 }
-
 export function constraintValidationFromJSON(
   jsonString: string,
 ): SafeParseResult<ConstraintValidation, SDKValidationError> {

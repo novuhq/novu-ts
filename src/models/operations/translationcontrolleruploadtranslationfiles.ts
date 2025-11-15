@@ -36,7 +36,6 @@ export const TranslationControllerUploadTranslationFilesRequest$inboundSchema:
       "UploadTranslationsRequestDto": "uploadTranslationsRequestDto",
     });
   });
-
 /** @internal */
 export type TranslationControllerUploadTranslationFilesRequest$Outbound = {
   "idempotency-key"?: string | undefined;
@@ -61,22 +60,6 @@ export const TranslationControllerUploadTranslationFilesRequest$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TranslationControllerUploadTranslationFilesRequest$ {
-  /** @deprecated use `TranslationControllerUploadTranslationFilesRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    TranslationControllerUploadTranslationFilesRequest$inboundSchema;
-  /** @deprecated use `TranslationControllerUploadTranslationFilesRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    TranslationControllerUploadTranslationFilesRequest$outboundSchema;
-  /** @deprecated use `TranslationControllerUploadTranslationFilesRequest$Outbound` instead. */
-  export type Outbound =
-    TranslationControllerUploadTranslationFilesRequest$Outbound;
-}
-
 export function translationControllerUploadTranslationFilesRequestToJSON(
   translationControllerUploadTranslationFilesRequest:
     TranslationControllerUploadTranslationFilesRequest,
@@ -87,7 +70,6 @@ export function translationControllerUploadTranslationFilesRequestToJSON(
     ),
   );
 }
-
 export function translationControllerUploadTranslationFilesRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<

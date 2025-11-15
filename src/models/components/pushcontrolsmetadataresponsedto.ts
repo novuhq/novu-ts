@@ -44,7 +44,6 @@ export const PushControlsMetadataResponseDto$inboundSchema: z.ZodType<
   uiSchema: UiSchema$inboundSchema.optional(),
   values: PushControlDto$inboundSchema,
 });
-
 /** @internal */
 export type PushControlsMetadataResponseDto$Outbound = {
   dataSchema?: { [k: string]: any } | undefined;
@@ -63,19 +62,6 @@ export const PushControlsMetadataResponseDto$outboundSchema: z.ZodType<
   values: PushControlDto$outboundSchema,
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PushControlsMetadataResponseDto$ {
-  /** @deprecated use `PushControlsMetadataResponseDto$inboundSchema` instead. */
-  export const inboundSchema = PushControlsMetadataResponseDto$inboundSchema;
-  /** @deprecated use `PushControlsMetadataResponseDto$outboundSchema` instead. */
-  export const outboundSchema = PushControlsMetadataResponseDto$outboundSchema;
-  /** @deprecated use `PushControlsMetadataResponseDto$Outbound` instead. */
-  export type Outbound = PushControlsMetadataResponseDto$Outbound;
-}
-
 export function pushControlsMetadataResponseDtoToJSON(
   pushControlsMetadataResponseDto: PushControlsMetadataResponseDto,
 ): string {
@@ -85,7 +71,6 @@ export function pushControlsMetadataResponseDtoToJSON(
     ),
   );
 }
-
 export function pushControlsMetadataResponseDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<PushControlsMetadataResponseDto, SDKValidationError> {

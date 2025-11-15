@@ -55,7 +55,6 @@ export const EmailStepUpsertDtoControlValues$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([EmailControlDto$inboundSchema, z.record(z.any())]);
-
 /** @internal */
 export type EmailStepUpsertDtoControlValues$Outbound =
   | EmailControlDto$Outbound
@@ -68,19 +67,6 @@ export const EmailStepUpsertDtoControlValues$outboundSchema: z.ZodType<
   EmailStepUpsertDtoControlValues
 > = z.union([EmailControlDto$outboundSchema, z.record(z.any())]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EmailStepUpsertDtoControlValues$ {
-  /** @deprecated use `EmailStepUpsertDtoControlValues$inboundSchema` instead. */
-  export const inboundSchema = EmailStepUpsertDtoControlValues$inboundSchema;
-  /** @deprecated use `EmailStepUpsertDtoControlValues$outboundSchema` instead. */
-  export const outboundSchema = EmailStepUpsertDtoControlValues$outboundSchema;
-  /** @deprecated use `EmailStepUpsertDtoControlValues$Outbound` instead. */
-  export type Outbound = EmailStepUpsertDtoControlValues$Outbound;
-}
-
 export function emailStepUpsertDtoControlValuesToJSON(
   emailStepUpsertDtoControlValues: EmailStepUpsertDtoControlValues,
 ): string {
@@ -90,7 +76,6 @@ export function emailStepUpsertDtoControlValuesToJSON(
     ),
   );
 }
-
 export function emailStepUpsertDtoControlValuesFromJSON(
   jsonString: string,
 ): SafeParseResult<EmailStepUpsertDtoControlValues, SDKValidationError> {
@@ -118,7 +103,6 @@ export const EmailStepUpsertDto$inboundSchema: z.ZodType<
     "_id": "id",
   });
 });
-
 /** @internal */
 export type EmailStepUpsertDto$Outbound = {
   _id?: string | undefined;
@@ -146,19 +130,6 @@ export const EmailStepUpsertDto$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EmailStepUpsertDto$ {
-  /** @deprecated use `EmailStepUpsertDto$inboundSchema` instead. */
-  export const inboundSchema = EmailStepUpsertDto$inboundSchema;
-  /** @deprecated use `EmailStepUpsertDto$outboundSchema` instead. */
-  export const outboundSchema = EmailStepUpsertDto$outboundSchema;
-  /** @deprecated use `EmailStepUpsertDto$Outbound` instead. */
-  export type Outbound = EmailStepUpsertDto$Outbound;
-}
-
 export function emailStepUpsertDtoToJSON(
   emailStepUpsertDto: EmailStepUpsertDto,
 ): string {
@@ -166,7 +137,6 @@ export function emailStepUpsertDtoToJSON(
     EmailStepUpsertDto$outboundSchema.parse(emailStepUpsertDto),
   );
 }
-
 export function emailStepUpsertDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<EmailStepUpsertDto, SDKValidationError> {

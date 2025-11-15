@@ -41,7 +41,6 @@ export const TopicsControllerUpdateTopicRequest$inboundSchema: z.ZodType<
     "UpdateTopicRequestDto": "updateTopicRequestDto",
   });
 });
-
 /** @internal */
 export type TopicsControllerUpdateTopicRequest$Outbound = {
   topicKey: string;
@@ -65,20 +64,6 @@ export const TopicsControllerUpdateTopicRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TopicsControllerUpdateTopicRequest$ {
-  /** @deprecated use `TopicsControllerUpdateTopicRequest$inboundSchema` instead. */
-  export const inboundSchema = TopicsControllerUpdateTopicRequest$inboundSchema;
-  /** @deprecated use `TopicsControllerUpdateTopicRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    TopicsControllerUpdateTopicRequest$outboundSchema;
-  /** @deprecated use `TopicsControllerUpdateTopicRequest$Outbound` instead. */
-  export type Outbound = TopicsControllerUpdateTopicRequest$Outbound;
-}
-
 export function topicsControllerUpdateTopicRequestToJSON(
   topicsControllerUpdateTopicRequest: TopicsControllerUpdateTopicRequest,
 ): string {
@@ -88,7 +73,6 @@ export function topicsControllerUpdateTopicRequestToJSON(
     ),
   );
 }
-
 export function topicsControllerUpdateTopicRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<TopicsControllerUpdateTopicRequest, SDKValidationError> {
@@ -114,7 +98,6 @@ export const TopicsControllerUpdateTopicResponse$inboundSchema: z.ZodType<
     "Result": "result",
   });
 });
-
 /** @internal */
 export type TopicsControllerUpdateTopicResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
@@ -136,21 +119,6 @@ export const TopicsControllerUpdateTopicResponse$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TopicsControllerUpdateTopicResponse$ {
-  /** @deprecated use `TopicsControllerUpdateTopicResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    TopicsControllerUpdateTopicResponse$inboundSchema;
-  /** @deprecated use `TopicsControllerUpdateTopicResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    TopicsControllerUpdateTopicResponse$outboundSchema;
-  /** @deprecated use `TopicsControllerUpdateTopicResponse$Outbound` instead. */
-  export type Outbound = TopicsControllerUpdateTopicResponse$Outbound;
-}
-
 export function topicsControllerUpdateTopicResponseToJSON(
   topicsControllerUpdateTopicResponse: TopicsControllerUpdateTopicResponse,
 ): string {
@@ -160,7 +128,6 @@ export function topicsControllerUpdateTopicResponseToJSON(
     ),
   );
 }
-
 export function topicsControllerUpdateTopicResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<TopicsControllerUpdateTopicResponse, SDKValidationError> {

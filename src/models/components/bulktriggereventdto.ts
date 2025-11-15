@@ -25,7 +25,6 @@ export const BulkTriggerEventDto$inboundSchema: z.ZodType<
 > = z.object({
   events: z.array(TriggerEventRequestDto$inboundSchema),
 });
-
 /** @internal */
 export type BulkTriggerEventDto$Outbound = {
   events: Array<TriggerEventRequestDto$Outbound>;
@@ -40,19 +39,6 @@ export const BulkTriggerEventDto$outboundSchema: z.ZodType<
   events: z.array(TriggerEventRequestDto$outboundSchema),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace BulkTriggerEventDto$ {
-  /** @deprecated use `BulkTriggerEventDto$inboundSchema` instead. */
-  export const inboundSchema = BulkTriggerEventDto$inboundSchema;
-  /** @deprecated use `BulkTriggerEventDto$outboundSchema` instead. */
-  export const outboundSchema = BulkTriggerEventDto$outboundSchema;
-  /** @deprecated use `BulkTriggerEventDto$Outbound` instead. */
-  export type Outbound = BulkTriggerEventDto$Outbound;
-}
-
 export function bulkTriggerEventDtoToJSON(
   bulkTriggerEventDto: BulkTriggerEventDto,
 ): string {
@@ -60,7 +46,6 @@ export function bulkTriggerEventDtoToJSON(
     BulkTriggerEventDto$outboundSchema.parse(bulkTriggerEventDto),
   );
 }
-
 export function bulkTriggerEventDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<BulkTriggerEventDto, SDKValidationError> {

@@ -124,16 +124,3 @@ export const TopicResponseDto$outboundSchema: z.ZodType<
       });
     }),
   );
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TopicResponseDto$ {
-  /** @deprecated use `TopicResponseDto$inboundSchema` instead. */
-  export const inboundSchema = TopicResponseDto$inboundSchema;
-  /** @deprecated use `TopicResponseDto$outboundSchema` instead. */
-  export const outboundSchema = TopicResponseDto$outboundSchema;
-  /** @deprecated use `TopicResponseDto$Outbound` instead. */
-  export type Outbound = TopicResponseDto$Outbound;
-}
