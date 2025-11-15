@@ -37,7 +37,6 @@ export const UploadTranslationsResponseDto$inboundSchema: z.ZodType<
   failedUploads: z.number(),
   errors: z.array(z.string()),
 });
-
 /** @internal */
 export type UploadTranslationsResponseDto$Outbound = {
   totalFiles: number;
@@ -58,19 +57,6 @@ export const UploadTranslationsResponseDto$outboundSchema: z.ZodType<
   errors: z.array(z.string()),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UploadTranslationsResponseDto$ {
-  /** @deprecated use `UploadTranslationsResponseDto$inboundSchema` instead. */
-  export const inboundSchema = UploadTranslationsResponseDto$inboundSchema;
-  /** @deprecated use `UploadTranslationsResponseDto$outboundSchema` instead. */
-  export const outboundSchema = UploadTranslationsResponseDto$outboundSchema;
-  /** @deprecated use `UploadTranslationsResponseDto$Outbound` instead. */
-  export type Outbound = UploadTranslationsResponseDto$Outbound;
-}
-
 export function uploadTranslationsResponseDtoToJSON(
   uploadTranslationsResponseDto: UploadTranslationsResponseDto,
 ): string {
@@ -80,7 +66,6 @@ export function uploadTranslationsResponseDtoToJSON(
     ),
   );
 }
-
 export function uploadTranslationsResponseDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<UploadTranslationsResponseDto, SDKValidationError> {

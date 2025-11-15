@@ -17,6 +17,16 @@ let value: BulkTriggerEventDto = {
       },
       overrides: {},
       to: "SUBSCRIBER_ID",
+      actor: {
+        firstName: "John",
+        lastName: "Doe",
+        email: "john.doe@example.com",
+        phone: "+1234567890",
+        avatar: "https://example.com/avatar.jpg",
+        locale: "en-US",
+        timezone: "America/New_York",
+        subscriberId: "<id>",
+      },
       context: {
         "key": "org-acme",
       },

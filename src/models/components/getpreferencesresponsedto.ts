@@ -87,7 +87,6 @@ export const GetPreferencesResponseDtoData$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({});
-
 /** @internal */
 export type GetPreferencesResponseDtoData$Outbound = {};
 
@@ -98,19 +97,6 @@ export const GetPreferencesResponseDtoData$outboundSchema: z.ZodType<
   GetPreferencesResponseDtoData
 > = z.object({});
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetPreferencesResponseDtoData$ {
-  /** @deprecated use `GetPreferencesResponseDtoData$inboundSchema` instead. */
-  export const inboundSchema = GetPreferencesResponseDtoData$inboundSchema;
-  /** @deprecated use `GetPreferencesResponseDtoData$outboundSchema` instead. */
-  export const outboundSchema = GetPreferencesResponseDtoData$outboundSchema;
-  /** @deprecated use `GetPreferencesResponseDtoData$Outbound` instead. */
-  export type Outbound = GetPreferencesResponseDtoData$Outbound;
-}
-
 export function getPreferencesResponseDtoDataToJSON(
   getPreferencesResponseDtoData: GetPreferencesResponseDtoData,
 ): string {
@@ -120,7 +106,6 @@ export function getPreferencesResponseDtoDataToJSON(
     ),
   );
 }
-
 export function getPreferencesResponseDtoDataFromJSON(
   jsonString: string,
 ): SafeParseResult<GetPreferencesResponseDtoData, SDKValidationError> {
@@ -145,7 +130,6 @@ export const Workflow$inboundSchema: z.ZodType<
   data: z.lazy(() => GetPreferencesResponseDtoData$inboundSchema).optional(),
   severity: SeverityLevelEnum$inboundSchema,
 });
-
 /** @internal */
 export type Workflow$Outbound = {
   id: string;
@@ -172,23 +156,9 @@ export const Workflow$outboundSchema: z.ZodType<
   severity: SeverityLevelEnum$outboundSchema,
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Workflow$ {
-  /** @deprecated use `Workflow$inboundSchema` instead. */
-  export const inboundSchema = Workflow$inboundSchema;
-  /** @deprecated use `Workflow$outboundSchema` instead. */
-  export const outboundSchema = Workflow$outboundSchema;
-  /** @deprecated use `Workflow$Outbound` instead. */
-  export type Outbound = Workflow$Outbound;
-}
-
 export function workflowToJSON(workflow: Workflow): string {
   return JSON.stringify(Workflow$outboundSchema.parse(workflow));
 }
-
 export function workflowFromJSON(
   jsonString: string,
 ): SafeParseResult<Workflow, SDKValidationError> {
@@ -210,7 +180,6 @@ export const GetPreferencesResponseDto$inboundSchema: z.ZodType<
   enabled: z.boolean(),
   channels: SubscriberPreferenceChannels$inboundSchema,
 });
-
 /** @internal */
 export type GetPreferencesResponseDto$Outbound = {
   level: string;
@@ -231,19 +200,6 @@ export const GetPreferencesResponseDto$outboundSchema: z.ZodType<
   channels: SubscriberPreferenceChannels$outboundSchema,
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetPreferencesResponseDto$ {
-  /** @deprecated use `GetPreferencesResponseDto$inboundSchema` instead. */
-  export const inboundSchema = GetPreferencesResponseDto$inboundSchema;
-  /** @deprecated use `GetPreferencesResponseDto$outboundSchema` instead. */
-  export const outboundSchema = GetPreferencesResponseDto$outboundSchema;
-  /** @deprecated use `GetPreferencesResponseDto$Outbound` instead. */
-  export type Outbound = GetPreferencesResponseDto$Outbound;
-}
-
 export function getPreferencesResponseDtoToJSON(
   getPreferencesResponseDto: GetPreferencesResponseDto,
 ): string {
@@ -251,7 +207,6 @@ export function getPreferencesResponseDtoToJSON(
     GetPreferencesResponseDto$outboundSchema.parse(getPreferencesResponseDto),
   );
 }
-
 export function getPreferencesResponseDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<GetPreferencesResponseDto, SDKValidationError> {

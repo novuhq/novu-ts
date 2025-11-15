@@ -31,7 +31,6 @@ export type MessageActionResult = {
 /** @internal */
 export const Payload$inboundSchema: z.ZodType<Payload, z.ZodTypeDef, unknown> =
   z.object({});
-
 /** @internal */
 export type Payload$Outbound = {};
 
@@ -42,23 +41,9 @@ export const Payload$outboundSchema: z.ZodType<
   Payload
 > = z.object({});
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Payload$ {
-  /** @deprecated use `Payload$inboundSchema` instead. */
-  export const inboundSchema = Payload$inboundSchema;
-  /** @deprecated use `Payload$outboundSchema` instead. */
-  export const outboundSchema = Payload$outboundSchema;
-  /** @deprecated use `Payload$Outbound` instead. */
-  export type Outbound = Payload$Outbound;
-}
-
 export function payloadToJSON(payload: Payload): string {
   return JSON.stringify(Payload$outboundSchema.parse(payload));
 }
-
 export function payloadFromJSON(
   jsonString: string,
 ): SafeParseResult<Payload, SDKValidationError> {
@@ -78,7 +63,6 @@ export const MessageActionResult$inboundSchema: z.ZodType<
   payload: z.lazy(() => Payload$inboundSchema).optional(),
   type: ButtonTypeEnum$inboundSchema.optional(),
 });
-
 /** @internal */
 export type MessageActionResult$Outbound = {
   payload?: Payload$Outbound | undefined;
@@ -95,19 +79,6 @@ export const MessageActionResult$outboundSchema: z.ZodType<
   type: ButtonTypeEnum$outboundSchema.optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MessageActionResult$ {
-  /** @deprecated use `MessageActionResult$inboundSchema` instead. */
-  export const inboundSchema = MessageActionResult$inboundSchema;
-  /** @deprecated use `MessageActionResult$outboundSchema` instead. */
-  export const outboundSchema = MessageActionResult$outboundSchema;
-  /** @deprecated use `MessageActionResult$Outbound` instead. */
-  export type Outbound = MessageActionResult$Outbound;
-}
-
 export function messageActionResultToJSON(
   messageActionResult: MessageActionResult,
 ): string {
@@ -115,7 +86,6 @@ export function messageActionResultToJSON(
     MessageActionResult$outboundSchema.parse(messageActionResult),
   );
 }
-
 export function messageActionResultFromJSON(
   jsonString: string,
 ): SafeParseResult<MessageActionResult, SDKValidationError> {

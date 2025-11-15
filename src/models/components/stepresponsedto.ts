@@ -104,7 +104,6 @@ export const StepResponseDto$inboundSchema: z.ZodType<
     "_id": "id",
   });
 });
-
 /** @internal */
 export type StepResponseDto$Outbound = {
   controls: ControlsMetadataDto$Outbound;
@@ -145,25 +144,11 @@ export const StepResponseDto$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace StepResponseDto$ {
-  /** @deprecated use `StepResponseDto$inboundSchema` instead. */
-  export const inboundSchema = StepResponseDto$inboundSchema;
-  /** @deprecated use `StepResponseDto$outboundSchema` instead. */
-  export const outboundSchema = StepResponseDto$outboundSchema;
-  /** @deprecated use `StepResponseDto$Outbound` instead. */
-  export type Outbound = StepResponseDto$Outbound;
-}
-
 export function stepResponseDtoToJSON(
   stepResponseDto: StepResponseDto,
 ): string {
   return JSON.stringify(StepResponseDto$outboundSchema.parse(stepResponseDto));
 }
-
 export function stepResponseDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<StepResponseDto, SDKValidationError> {

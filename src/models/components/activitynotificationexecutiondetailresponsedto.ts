@@ -83,7 +83,6 @@ export const ActivityNotificationExecutionDetailResponseDto$inboundSchema:
       "_id": "id",
     });
   });
-
 /** @internal */
 export type ActivityNotificationExecutionDetailResponseDto$Outbound = {
   _id: string;
@@ -119,22 +118,6 @@ export const ActivityNotificationExecutionDetailResponseDto$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ActivityNotificationExecutionDetailResponseDto$ {
-  /** @deprecated use `ActivityNotificationExecutionDetailResponseDto$inboundSchema` instead. */
-  export const inboundSchema =
-    ActivityNotificationExecutionDetailResponseDto$inboundSchema;
-  /** @deprecated use `ActivityNotificationExecutionDetailResponseDto$outboundSchema` instead. */
-  export const outboundSchema =
-    ActivityNotificationExecutionDetailResponseDto$outboundSchema;
-  /** @deprecated use `ActivityNotificationExecutionDetailResponseDto$Outbound` instead. */
-  export type Outbound =
-    ActivityNotificationExecutionDetailResponseDto$Outbound;
-}
-
 export function activityNotificationExecutionDetailResponseDtoToJSON(
   activityNotificationExecutionDetailResponseDto:
     ActivityNotificationExecutionDetailResponseDto,
@@ -145,7 +128,6 @@ export function activityNotificationExecutionDetailResponseDtoToJSON(
     ),
   );
 }
-
 export function activityNotificationExecutionDetailResponseDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<

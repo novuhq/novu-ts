@@ -15,7 +15,6 @@ export const MessageTemplateDto$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({});
-
 /** @internal */
 export type MessageTemplateDto$Outbound = {};
 
@@ -26,19 +25,6 @@ export const MessageTemplateDto$outboundSchema: z.ZodType<
   MessageTemplateDto
 > = z.object({});
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MessageTemplateDto$ {
-  /** @deprecated use `MessageTemplateDto$inboundSchema` instead. */
-  export const inboundSchema = MessageTemplateDto$inboundSchema;
-  /** @deprecated use `MessageTemplateDto$outboundSchema` instead. */
-  export const outboundSchema = MessageTemplateDto$outboundSchema;
-  /** @deprecated use `MessageTemplateDto$Outbound` instead. */
-  export type Outbound = MessageTemplateDto$Outbound;
-}
-
 export function messageTemplateDtoToJSON(
   messageTemplateDto: MessageTemplateDto,
 ): string {
@@ -46,7 +32,6 @@ export function messageTemplateDtoToJSON(
     MessageTemplateDto$outboundSchema.parse(messageTemplateDto),
   );
 }
-
 export function messageTemplateDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<MessageTemplateDto, SDKValidationError> {

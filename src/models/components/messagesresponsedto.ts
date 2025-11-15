@@ -48,7 +48,6 @@ export const MessagesResponseDto$inboundSchema: z.ZodType<
   pageSize: z.number(),
   page: z.number(),
 });
-
 /** @internal */
 export type MessagesResponseDto$Outbound = {
   totalCount?: number | undefined;
@@ -71,19 +70,6 @@ export const MessagesResponseDto$outboundSchema: z.ZodType<
   page: z.number(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MessagesResponseDto$ {
-  /** @deprecated use `MessagesResponseDto$inboundSchema` instead. */
-  export const inboundSchema = MessagesResponseDto$inboundSchema;
-  /** @deprecated use `MessagesResponseDto$outboundSchema` instead. */
-  export const outboundSchema = MessagesResponseDto$outboundSchema;
-  /** @deprecated use `MessagesResponseDto$Outbound` instead. */
-  export type Outbound = MessagesResponseDto$Outbound;
-}
-
 export function messagesResponseDtoToJSON(
   messagesResponseDto: MessagesResponseDto,
 ): string {
@@ -91,7 +77,6 @@ export function messagesResponseDtoToJSON(
     MessagesResponseDto$outboundSchema.parse(messagesResponseDto),
   );
 }
-
 export function messagesResponseDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<MessagesResponseDto, SDKValidationError> {

@@ -35,7 +35,6 @@ export const SubscribersControllerGetSubscriberRequest$inboundSchema: z.ZodType<
     "idempotency-key": "idempotencyKey",
   });
 });
-
 /** @internal */
 export type SubscribersControllerGetSubscriberRequest$Outbound = {
   subscriberId: string;
@@ -57,21 +56,6 @@ export const SubscribersControllerGetSubscriberRequest$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SubscribersControllerGetSubscriberRequest$ {
-  /** @deprecated use `SubscribersControllerGetSubscriberRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    SubscribersControllerGetSubscriberRequest$inboundSchema;
-  /** @deprecated use `SubscribersControllerGetSubscriberRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    SubscribersControllerGetSubscriberRequest$outboundSchema;
-  /** @deprecated use `SubscribersControllerGetSubscriberRequest$Outbound` instead. */
-  export type Outbound = SubscribersControllerGetSubscriberRequest$Outbound;
-}
-
 export function subscribersControllerGetSubscriberRequestToJSON(
   subscribersControllerGetSubscriberRequest:
     SubscribersControllerGetSubscriberRequest,
@@ -82,7 +66,6 @@ export function subscribersControllerGetSubscriberRequestToJSON(
     ),
   );
 }
-
 export function subscribersControllerGetSubscriberRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -111,7 +94,6 @@ export const SubscribersControllerGetSubscriberResponse$inboundSchema:
         "Result": "result",
       });
     });
-
 /** @internal */
 export type SubscribersControllerGetSubscriberResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
@@ -134,21 +116,6 @@ export const SubscribersControllerGetSubscriberResponse$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SubscribersControllerGetSubscriberResponse$ {
-  /** @deprecated use `SubscribersControllerGetSubscriberResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    SubscribersControllerGetSubscriberResponse$inboundSchema;
-  /** @deprecated use `SubscribersControllerGetSubscriberResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    SubscribersControllerGetSubscriberResponse$outboundSchema;
-  /** @deprecated use `SubscribersControllerGetSubscriberResponse$Outbound` instead. */
-  export type Outbound = SubscribersControllerGetSubscriberResponse$Outbound;
-}
-
 export function subscribersControllerGetSubscriberResponseToJSON(
   subscribersControllerGetSubscriberResponse:
     SubscribersControllerGetSubscriberResponse,
@@ -159,7 +126,6 @@ export function subscribersControllerGetSubscriberResponseToJSON(
     ),
   );
 }
-
 export function subscribersControllerGetSubscriberResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<

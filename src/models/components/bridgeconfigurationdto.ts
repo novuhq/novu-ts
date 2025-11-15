@@ -19,7 +19,6 @@ export const BridgeConfigurationDto$inboundSchema: z.ZodType<
 > = z.object({
   url: z.string().optional(),
 });
-
 /** @internal */
 export type BridgeConfigurationDto$Outbound = {
   url?: string | undefined;
@@ -34,19 +33,6 @@ export const BridgeConfigurationDto$outboundSchema: z.ZodType<
   url: z.string().optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace BridgeConfigurationDto$ {
-  /** @deprecated use `BridgeConfigurationDto$inboundSchema` instead. */
-  export const inboundSchema = BridgeConfigurationDto$inboundSchema;
-  /** @deprecated use `BridgeConfigurationDto$outboundSchema` instead. */
-  export const outboundSchema = BridgeConfigurationDto$outboundSchema;
-  /** @deprecated use `BridgeConfigurationDto$Outbound` instead. */
-  export type Outbound = BridgeConfigurationDto$Outbound;
-}
-
 export function bridgeConfigurationDtoToJSON(
   bridgeConfigurationDto: BridgeConfigurationDto,
 ): string {
@@ -54,7 +40,6 @@ export function bridgeConfigurationDtoToJSON(
     BridgeConfigurationDto$outboundSchema.parse(bridgeConfigurationDto),
   );
 }
-
 export function bridgeConfigurationDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<BridgeConfigurationDto, SDKValidationError> {

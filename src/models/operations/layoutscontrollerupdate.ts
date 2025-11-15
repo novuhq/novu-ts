@@ -41,7 +41,6 @@ export const LayoutsControllerUpdateRequest$inboundSchema: z.ZodType<
     "UpdateLayoutDto": "updateLayoutDto",
   });
 });
-
 /** @internal */
 export type LayoutsControllerUpdateRequest$Outbound = {
   layoutId: string;
@@ -65,19 +64,6 @@ export const LayoutsControllerUpdateRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace LayoutsControllerUpdateRequest$ {
-  /** @deprecated use `LayoutsControllerUpdateRequest$inboundSchema` instead. */
-  export const inboundSchema = LayoutsControllerUpdateRequest$inboundSchema;
-  /** @deprecated use `LayoutsControllerUpdateRequest$outboundSchema` instead. */
-  export const outboundSchema = LayoutsControllerUpdateRequest$outboundSchema;
-  /** @deprecated use `LayoutsControllerUpdateRequest$Outbound` instead. */
-  export type Outbound = LayoutsControllerUpdateRequest$Outbound;
-}
-
 export function layoutsControllerUpdateRequestToJSON(
   layoutsControllerUpdateRequest: LayoutsControllerUpdateRequest,
 ): string {
@@ -87,7 +73,6 @@ export function layoutsControllerUpdateRequestToJSON(
     ),
   );
 }
-
 export function layoutsControllerUpdateRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<LayoutsControllerUpdateRequest, SDKValidationError> {
@@ -112,7 +97,6 @@ export const LayoutsControllerUpdateResponse$inboundSchema: z.ZodType<
     "Result": "result",
   });
 });
-
 /** @internal */
 export type LayoutsControllerUpdateResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
@@ -134,19 +118,6 @@ export const LayoutsControllerUpdateResponse$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace LayoutsControllerUpdateResponse$ {
-  /** @deprecated use `LayoutsControllerUpdateResponse$inboundSchema` instead. */
-  export const inboundSchema = LayoutsControllerUpdateResponse$inboundSchema;
-  /** @deprecated use `LayoutsControllerUpdateResponse$outboundSchema` instead. */
-  export const outboundSchema = LayoutsControllerUpdateResponse$outboundSchema;
-  /** @deprecated use `LayoutsControllerUpdateResponse$Outbound` instead. */
-  export type Outbound = LayoutsControllerUpdateResponse$Outbound;
-}
-
 export function layoutsControllerUpdateResponseToJSON(
   layoutsControllerUpdateResponse: LayoutsControllerUpdateResponse,
 ): string {
@@ -156,7 +127,6 @@ export function layoutsControllerUpdateResponseToJSON(
     ),
   );
 }
-
 export function layoutsControllerUpdateResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<LayoutsControllerUpdateResponse, SDKValidationError> {

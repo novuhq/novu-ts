@@ -16,6 +16,13 @@ const value: string = "<value>";
 
 ```typescript
 const value: components.SubscriberPayloadDto = {
+  firstName: "John",
+  lastName: "Doe",
+  email: "john.doe@example.com",
+  phone: "+1234567890",
+  avatar: "https://example.com/avatar.jpg",
+  locale: "en-US",
+  timezone: "America/New_York",
   subscriberId: "<id>",
 };
 ```

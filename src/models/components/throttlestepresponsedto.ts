@@ -153,43 +153,19 @@ export type ThrottleStepResponseDto = {
 export const ThrottleStepResponseDtoType$inboundSchema: z.ZodNativeEnum<
   typeof ThrottleStepResponseDtoType
 > = z.nativeEnum(ThrottleStepResponseDtoType);
-
 /** @internal */
 export const ThrottleStepResponseDtoType$outboundSchema: z.ZodNativeEnum<
   typeof ThrottleStepResponseDtoType
 > = ThrottleStepResponseDtoType$inboundSchema;
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ThrottleStepResponseDtoType$ {
-  /** @deprecated use `ThrottleStepResponseDtoType$inboundSchema` instead. */
-  export const inboundSchema = ThrottleStepResponseDtoType$inboundSchema;
-  /** @deprecated use `ThrottleStepResponseDtoType$outboundSchema` instead. */
-  export const outboundSchema = ThrottleStepResponseDtoType$outboundSchema;
-}
-
 /** @internal */
 export const ThrottleStepResponseDtoUnit$inboundSchema: z.ZodNativeEnum<
   typeof ThrottleStepResponseDtoUnit
 > = z.nativeEnum(ThrottleStepResponseDtoUnit);
-
 /** @internal */
 export const ThrottleStepResponseDtoUnit$outboundSchema: z.ZodNativeEnum<
   typeof ThrottleStepResponseDtoUnit
 > = ThrottleStepResponseDtoUnit$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ThrottleStepResponseDtoUnit$ {
-  /** @deprecated use `ThrottleStepResponseDtoUnit$inboundSchema` instead. */
-  export const inboundSchema = ThrottleStepResponseDtoUnit$inboundSchema;
-  /** @deprecated use `ThrottleStepResponseDtoUnit$outboundSchema` instead. */
-  export const outboundSchema = ThrottleStepResponseDtoUnit$outboundSchema;
-}
 
 /** @internal */
 export const ThrottleStepResponseDtoControlValues$inboundSchema: z.ZodType<
@@ -209,7 +185,6 @@ export const ThrottleStepResponseDtoControlValues$inboundSchema: z.ZodType<
   "additionalProperties",
   true,
 );
-
 /** @internal */
 export type ThrottleStepResponseDtoControlValues$Outbound = {
   skip?: { [k: string]: any } | undefined;
@@ -245,21 +220,6 @@ export const ThrottleStepResponseDtoControlValues$outboundSchema: z.ZodType<
   };
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ThrottleStepResponseDtoControlValues$ {
-  /** @deprecated use `ThrottleStepResponseDtoControlValues$inboundSchema` instead. */
-  export const inboundSchema =
-    ThrottleStepResponseDtoControlValues$inboundSchema;
-  /** @deprecated use `ThrottleStepResponseDtoControlValues$outboundSchema` instead. */
-  export const outboundSchema =
-    ThrottleStepResponseDtoControlValues$outboundSchema;
-  /** @deprecated use `ThrottleStepResponseDtoControlValues$Outbound` instead. */
-  export type Outbound = ThrottleStepResponseDtoControlValues$Outbound;
-}
-
 export function throttleStepResponseDtoControlValuesToJSON(
   throttleStepResponseDtoControlValues: ThrottleStepResponseDtoControlValues,
 ): string {
@@ -269,7 +229,6 @@ export function throttleStepResponseDtoControlValuesToJSON(
     ),
   );
 }
-
 export function throttleStepResponseDtoControlValuesFromJSON(
   jsonString: string,
 ): SafeParseResult<ThrottleStepResponseDtoControlValues, SDKValidationError> {
@@ -306,7 +265,6 @@ export const ThrottleStepResponseDto$inboundSchema: z.ZodType<
     "_id": "id",
   });
 });
-
 /** @internal */
 export type ThrottleStepResponseDto$Outbound = {
   controls: ThrottleControlsMetadataResponseDto$Outbound;
@@ -349,19 +307,6 @@ export const ThrottleStepResponseDto$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ThrottleStepResponseDto$ {
-  /** @deprecated use `ThrottleStepResponseDto$inboundSchema` instead. */
-  export const inboundSchema = ThrottleStepResponseDto$inboundSchema;
-  /** @deprecated use `ThrottleStepResponseDto$outboundSchema` instead. */
-  export const outboundSchema = ThrottleStepResponseDto$outboundSchema;
-  /** @deprecated use `ThrottleStepResponseDto$Outbound` instead. */
-  export type Outbound = ThrottleStepResponseDto$Outbound;
-}
-
 export function throttleStepResponseDtoToJSON(
   throttleStepResponseDto: ThrottleStepResponseDto,
 ): string {
@@ -369,7 +314,6 @@ export function throttleStepResponseDtoToJSON(
     ThrottleStepResponseDto$outboundSchema.parse(throttleStepResponseDto),
   );
 }
-
 export function throttleStepResponseDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<ThrottleStepResponseDto, SDKValidationError> {

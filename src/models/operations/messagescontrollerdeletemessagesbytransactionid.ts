@@ -43,21 +43,9 @@ export type MessagesControllerDeleteMessagesByTransactionIdResponse = {
 /** @internal */
 export const Channel$inboundSchema: z.ZodNativeEnum<typeof Channel> = z
   .nativeEnum(Channel);
-
 /** @internal */
 export const Channel$outboundSchema: z.ZodNativeEnum<typeof Channel> =
   Channel$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Channel$ {
-  /** @deprecated use `Channel$inboundSchema` instead. */
-  export const inboundSchema = Channel$inboundSchema;
-  /** @deprecated use `Channel$outboundSchema` instead. */
-  export const outboundSchema = Channel$outboundSchema;
-}
 
 /** @internal */
 export const MessagesControllerDeleteMessagesByTransactionIdRequest$inboundSchema:
@@ -74,7 +62,6 @@ export const MessagesControllerDeleteMessagesByTransactionIdRequest$inboundSchem
       "idempotency-key": "idempotencyKey",
     });
   });
-
 /** @internal */
 export type MessagesControllerDeleteMessagesByTransactionIdRequest$Outbound = {
   channel?: string | undefined;
@@ -98,22 +85,6 @@ export const MessagesControllerDeleteMessagesByTransactionIdRequest$outboundSche
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MessagesControllerDeleteMessagesByTransactionIdRequest$ {
-  /** @deprecated use `MessagesControllerDeleteMessagesByTransactionIdRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    MessagesControllerDeleteMessagesByTransactionIdRequest$inboundSchema;
-  /** @deprecated use `MessagesControllerDeleteMessagesByTransactionIdRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    MessagesControllerDeleteMessagesByTransactionIdRequest$outboundSchema;
-  /** @deprecated use `MessagesControllerDeleteMessagesByTransactionIdRequest$Outbound` instead. */
-  export type Outbound =
-    MessagesControllerDeleteMessagesByTransactionIdRequest$Outbound;
-}
-
 export function messagesControllerDeleteMessagesByTransactionIdRequestToJSON(
   messagesControllerDeleteMessagesByTransactionIdRequest:
     MessagesControllerDeleteMessagesByTransactionIdRequest,
@@ -124,7 +95,6 @@ export function messagesControllerDeleteMessagesByTransactionIdRequestToJSON(
     ),
   );
 }
-
 export function messagesControllerDeleteMessagesByTransactionIdRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -153,7 +123,6 @@ export const MessagesControllerDeleteMessagesByTransactionIdResponse$inboundSche
       "Headers": "headers",
     });
   });
-
 /** @internal */
 export type MessagesControllerDeleteMessagesByTransactionIdResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
@@ -173,22 +142,6 @@ export const MessagesControllerDeleteMessagesByTransactionIdResponse$outboundSch
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MessagesControllerDeleteMessagesByTransactionIdResponse$ {
-  /** @deprecated use `MessagesControllerDeleteMessagesByTransactionIdResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    MessagesControllerDeleteMessagesByTransactionIdResponse$inboundSchema;
-  /** @deprecated use `MessagesControllerDeleteMessagesByTransactionIdResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    MessagesControllerDeleteMessagesByTransactionIdResponse$outboundSchema;
-  /** @deprecated use `MessagesControllerDeleteMessagesByTransactionIdResponse$Outbound` instead. */
-  export type Outbound =
-    MessagesControllerDeleteMessagesByTransactionIdResponse$Outbound;
-}
-
 export function messagesControllerDeleteMessagesByTransactionIdResponseToJSON(
   messagesControllerDeleteMessagesByTransactionIdResponse:
     MessagesControllerDeleteMessagesByTransactionIdResponse,
@@ -198,7 +151,6 @@ export function messagesControllerDeleteMessagesByTransactionIdResponseToJSON(
       .parse(messagesControllerDeleteMessagesByTransactionIdResponse),
   );
 }
-
 export function messagesControllerDeleteMessagesByTransactionIdResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<

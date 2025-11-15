@@ -37,7 +37,6 @@ export const EnvironmentsControllerV1DeleteEnvironmentRequest$inboundSchema:
       "idempotency-key": "idempotencyKey",
     });
   });
-
 /** @internal */
 export type EnvironmentsControllerV1DeleteEnvironmentRequest$Outbound = {
   environmentId: string;
@@ -59,22 +58,6 @@ export const EnvironmentsControllerV1DeleteEnvironmentRequest$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EnvironmentsControllerV1DeleteEnvironmentRequest$ {
-  /** @deprecated use `EnvironmentsControllerV1DeleteEnvironmentRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    EnvironmentsControllerV1DeleteEnvironmentRequest$inboundSchema;
-  /** @deprecated use `EnvironmentsControllerV1DeleteEnvironmentRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    EnvironmentsControllerV1DeleteEnvironmentRequest$outboundSchema;
-  /** @deprecated use `EnvironmentsControllerV1DeleteEnvironmentRequest$Outbound` instead. */
-  export type Outbound =
-    EnvironmentsControllerV1DeleteEnvironmentRequest$Outbound;
-}
-
 export function environmentsControllerV1DeleteEnvironmentRequestToJSON(
   environmentsControllerV1DeleteEnvironmentRequest:
     EnvironmentsControllerV1DeleteEnvironmentRequest,
@@ -85,7 +68,6 @@ export function environmentsControllerV1DeleteEnvironmentRequestToJSON(
     ),
   );
 }
-
 export function environmentsControllerV1DeleteEnvironmentRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -115,7 +97,6 @@ export const EnvironmentsControllerV1DeleteEnvironmentResponse$inboundSchema:
       "Headers": "headers",
     });
   });
-
 /** @internal */
 export type EnvironmentsControllerV1DeleteEnvironmentResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
@@ -135,22 +116,6 @@ export const EnvironmentsControllerV1DeleteEnvironmentResponse$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EnvironmentsControllerV1DeleteEnvironmentResponse$ {
-  /** @deprecated use `EnvironmentsControllerV1DeleteEnvironmentResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    EnvironmentsControllerV1DeleteEnvironmentResponse$inboundSchema;
-  /** @deprecated use `EnvironmentsControllerV1DeleteEnvironmentResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    EnvironmentsControllerV1DeleteEnvironmentResponse$outboundSchema;
-  /** @deprecated use `EnvironmentsControllerV1DeleteEnvironmentResponse$Outbound` instead. */
-  export type Outbound =
-    EnvironmentsControllerV1DeleteEnvironmentResponse$Outbound;
-}
-
 export function environmentsControllerV1DeleteEnvironmentResponseToJSON(
   environmentsControllerV1DeleteEnvironmentResponse:
     EnvironmentsControllerV1DeleteEnvironmentResponse,
@@ -161,7 +126,6 @@ export function environmentsControllerV1DeleteEnvironmentResponseToJSON(
     ),
   );
 }
-
 export function environmentsControllerV1DeleteEnvironmentResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<

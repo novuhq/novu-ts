@@ -36,7 +36,6 @@ export const ContextsControllerCreateContextRequest$inboundSchema: z.ZodType<
     "CreateContextRequestDto": "createContextRequestDto",
   });
 });
-
 /** @internal */
 export type ContextsControllerCreateContextRequest$Outbound = {
   "idempotency-key"?: string | undefined;
@@ -58,21 +57,6 @@ export const ContextsControllerCreateContextRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ContextsControllerCreateContextRequest$ {
-  /** @deprecated use `ContextsControllerCreateContextRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    ContextsControllerCreateContextRequest$inboundSchema;
-  /** @deprecated use `ContextsControllerCreateContextRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    ContextsControllerCreateContextRequest$outboundSchema;
-  /** @deprecated use `ContextsControllerCreateContextRequest$Outbound` instead. */
-  export type Outbound = ContextsControllerCreateContextRequest$Outbound;
-}
-
 export function contextsControllerCreateContextRequestToJSON(
   contextsControllerCreateContextRequest:
     ContextsControllerCreateContextRequest,
@@ -83,7 +67,6 @@ export function contextsControllerCreateContextRequestToJSON(
     ),
   );
 }
-
 export function contextsControllerCreateContextRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<ContextsControllerCreateContextRequest, SDKValidationError> {
@@ -109,7 +92,6 @@ export const ContextsControllerCreateContextResponse$inboundSchema: z.ZodType<
     "Result": "result",
   });
 });
-
 /** @internal */
 export type ContextsControllerCreateContextResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
@@ -131,21 +113,6 @@ export const ContextsControllerCreateContextResponse$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ContextsControllerCreateContextResponse$ {
-  /** @deprecated use `ContextsControllerCreateContextResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    ContextsControllerCreateContextResponse$inboundSchema;
-  /** @deprecated use `ContextsControllerCreateContextResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    ContextsControllerCreateContextResponse$outboundSchema;
-  /** @deprecated use `ContextsControllerCreateContextResponse$Outbound` instead. */
-  export type Outbound = ContextsControllerCreateContextResponse$Outbound;
-}
-
 export function contextsControllerCreateContextResponseToJSON(
   contextsControllerCreateContextResponse:
     ContextsControllerCreateContextResponse,
@@ -156,7 +123,6 @@ export function contextsControllerCreateContextResponseToJSON(
     ),
   );
 }
-
 export function contextsControllerCreateContextResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<

@@ -44,7 +44,6 @@ export const EmailControlsMetadataResponseDto$inboundSchema: z.ZodType<
   uiSchema: UiSchema$inboundSchema.optional(),
   values: EmailControlDto$inboundSchema,
 });
-
 /** @internal */
 export type EmailControlsMetadataResponseDto$Outbound = {
   dataSchema?: { [k: string]: any } | undefined;
@@ -63,19 +62,6 @@ export const EmailControlsMetadataResponseDto$outboundSchema: z.ZodType<
   values: EmailControlDto$outboundSchema,
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EmailControlsMetadataResponseDto$ {
-  /** @deprecated use `EmailControlsMetadataResponseDto$inboundSchema` instead. */
-  export const inboundSchema = EmailControlsMetadataResponseDto$inboundSchema;
-  /** @deprecated use `EmailControlsMetadataResponseDto$outboundSchema` instead. */
-  export const outboundSchema = EmailControlsMetadataResponseDto$outboundSchema;
-  /** @deprecated use `EmailControlsMetadataResponseDto$Outbound` instead. */
-  export type Outbound = EmailControlsMetadataResponseDto$Outbound;
-}
-
 export function emailControlsMetadataResponseDtoToJSON(
   emailControlsMetadataResponseDto: EmailControlsMetadataResponseDto,
 ): string {
@@ -85,7 +71,6 @@ export function emailControlsMetadataResponseDtoToJSON(
     ),
   );
 }
-
 export function emailControlsMetadataResponseDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<EmailControlsMetadataResponseDto, SDKValidationError> {

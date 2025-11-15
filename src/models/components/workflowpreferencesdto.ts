@@ -38,7 +38,6 @@ export type WorkflowPreferencesDto = {
 /** @internal */
 export const All$inboundSchema: z.ZodType<All, z.ZodTypeDef, unknown> =
   WorkflowPreferenceDto$inboundSchema;
-
 /** @internal */
 export type All$Outbound = WorkflowPreferenceDto$Outbound;
 
@@ -46,23 +45,9 @@ export type All$Outbound = WorkflowPreferenceDto$Outbound;
 export const All$outboundSchema: z.ZodType<All$Outbound, z.ZodTypeDef, All> =
   WorkflowPreferenceDto$outboundSchema;
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace All$ {
-  /** @deprecated use `All$inboundSchema` instead. */
-  export const inboundSchema = All$inboundSchema;
-  /** @deprecated use `All$outboundSchema` instead. */
-  export const outboundSchema = All$outboundSchema;
-  /** @deprecated use `All$Outbound` instead. */
-  export type Outbound = All$Outbound;
-}
-
 export function allToJSON(all: All): string {
   return JSON.stringify(All$outboundSchema.parse(all));
 }
-
 export function allFromJSON(
   jsonString: string,
 ): SafeParseResult<All, SDKValidationError> {
@@ -82,7 +67,6 @@ export const WorkflowPreferencesDto$inboundSchema: z.ZodType<
   all: WorkflowPreferenceDto$inboundSchema,
   channels: z.record(ChannelPreferenceDto$inboundSchema),
 });
-
 /** @internal */
 export type WorkflowPreferencesDto$Outbound = {
   all: WorkflowPreferenceDto$Outbound;
@@ -99,19 +83,6 @@ export const WorkflowPreferencesDto$outboundSchema: z.ZodType<
   channels: z.record(ChannelPreferenceDto$outboundSchema),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WorkflowPreferencesDto$ {
-  /** @deprecated use `WorkflowPreferencesDto$inboundSchema` instead. */
-  export const inboundSchema = WorkflowPreferencesDto$inboundSchema;
-  /** @deprecated use `WorkflowPreferencesDto$outboundSchema` instead. */
-  export const outboundSchema = WorkflowPreferencesDto$outboundSchema;
-  /** @deprecated use `WorkflowPreferencesDto$Outbound` instead. */
-  export type Outbound = WorkflowPreferencesDto$Outbound;
-}
-
 export function workflowPreferencesDtoToJSON(
   workflowPreferencesDto: WorkflowPreferencesDto,
 ): string {
@@ -119,7 +90,6 @@ export function workflowPreferencesDtoToJSON(
     WorkflowPreferencesDto$outboundSchema.parse(workflowPreferencesDto),
   );
 }
-
 export function workflowPreferencesDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<WorkflowPreferencesDto, SDKValidationError> {

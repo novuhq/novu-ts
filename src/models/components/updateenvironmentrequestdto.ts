@@ -41,7 +41,6 @@ export const UpdateEnvironmentRequestDto$inboundSchema: z.ZodType<
   dns: InBoundParseDomainDto$inboundSchema.optional(),
   bridge: BridgeConfigurationDto$inboundSchema.optional(),
 });
-
 /** @internal */
 export type UpdateEnvironmentRequestDto$Outbound = {
   name?: string | undefined;
@@ -66,19 +65,6 @@ export const UpdateEnvironmentRequestDto$outboundSchema: z.ZodType<
   bridge: BridgeConfigurationDto$outboundSchema.optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateEnvironmentRequestDto$ {
-  /** @deprecated use `UpdateEnvironmentRequestDto$inboundSchema` instead. */
-  export const inboundSchema = UpdateEnvironmentRequestDto$inboundSchema;
-  /** @deprecated use `UpdateEnvironmentRequestDto$outboundSchema` instead. */
-  export const outboundSchema = UpdateEnvironmentRequestDto$outboundSchema;
-  /** @deprecated use `UpdateEnvironmentRequestDto$Outbound` instead. */
-  export type Outbound = UpdateEnvironmentRequestDto$Outbound;
-}
-
 export function updateEnvironmentRequestDtoToJSON(
   updateEnvironmentRequestDto: UpdateEnvironmentRequestDto,
 ): string {
@@ -88,7 +74,6 @@ export function updateEnvironmentRequestDtoToJSON(
     ),
   );
 }
-
 export function updateEnvironmentRequestDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<UpdateEnvironmentRequestDto, SDKValidationError> {

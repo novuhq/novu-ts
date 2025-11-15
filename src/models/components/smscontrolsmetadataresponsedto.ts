@@ -44,7 +44,6 @@ export const SmsControlsMetadataResponseDto$inboundSchema: z.ZodType<
   uiSchema: UiSchema$inboundSchema.optional(),
   values: SmsControlDto$inboundSchema,
 });
-
 /** @internal */
 export type SmsControlsMetadataResponseDto$Outbound = {
   dataSchema?: { [k: string]: any } | undefined;
@@ -63,19 +62,6 @@ export const SmsControlsMetadataResponseDto$outboundSchema: z.ZodType<
   values: SmsControlDto$outboundSchema,
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SmsControlsMetadataResponseDto$ {
-  /** @deprecated use `SmsControlsMetadataResponseDto$inboundSchema` instead. */
-  export const inboundSchema = SmsControlsMetadataResponseDto$inboundSchema;
-  /** @deprecated use `SmsControlsMetadataResponseDto$outboundSchema` instead. */
-  export const outboundSchema = SmsControlsMetadataResponseDto$outboundSchema;
-  /** @deprecated use `SmsControlsMetadataResponseDto$Outbound` instead. */
-  export type Outbound = SmsControlsMetadataResponseDto$Outbound;
-}
-
 export function smsControlsMetadataResponseDtoToJSON(
   smsControlsMetadataResponseDto: SmsControlsMetadataResponseDto,
 ): string {
@@ -85,7 +71,6 @@ export function smsControlsMetadataResponseDtoToJSON(
     ),
   );
 }
-
 export function smsControlsMetadataResponseDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<SmsControlsMetadataResponseDto, SDKValidationError> {

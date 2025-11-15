@@ -27,7 +27,6 @@ export const ChatControlDto$inboundSchema: z.ZodType<
   skip: z.record(z.any()).optional(),
   body: z.string().optional(),
 });
-
 /** @internal */
 export type ChatControlDto$Outbound = {
   skip?: { [k: string]: any } | undefined;
@@ -44,23 +43,9 @@ export const ChatControlDto$outboundSchema: z.ZodType<
   body: z.string().optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ChatControlDto$ {
-  /** @deprecated use `ChatControlDto$inboundSchema` instead. */
-  export const inboundSchema = ChatControlDto$inboundSchema;
-  /** @deprecated use `ChatControlDto$outboundSchema` instead. */
-  export const outboundSchema = ChatControlDto$outboundSchema;
-  /** @deprecated use `ChatControlDto$Outbound` instead. */
-  export type Outbound = ChatControlDto$Outbound;
-}
-
 export function chatControlDtoToJSON(chatControlDto: ChatControlDto): string {
   return JSON.stringify(ChatControlDto$outboundSchema.parse(chatControlDto));
 }
-
 export function chatControlDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<ChatControlDto, SDKValidationError> {

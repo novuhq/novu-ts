@@ -57,7 +57,6 @@ export const ChannelCredentials$inboundSchema: z.ZodType<
   state: z.string().optional(),
   externalUrl: z.string().optional(),
 });
-
 /** @internal */
 export type ChannelCredentials$Outbound = {
   webhookUrl?: string | undefined;
@@ -86,19 +85,6 @@ export const ChannelCredentials$outboundSchema: z.ZodType<
   externalUrl: z.string().optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ChannelCredentials$ {
-  /** @deprecated use `ChannelCredentials$inboundSchema` instead. */
-  export const inboundSchema = ChannelCredentials$inboundSchema;
-  /** @deprecated use `ChannelCredentials$outboundSchema` instead. */
-  export const outboundSchema = ChannelCredentials$outboundSchema;
-  /** @deprecated use `ChannelCredentials$Outbound` instead. */
-  export type Outbound = ChannelCredentials$Outbound;
-}
-
 export function channelCredentialsToJSON(
   channelCredentials: ChannelCredentials,
 ): string {
@@ -106,7 +92,6 @@ export function channelCredentialsToJSON(
     ChannelCredentials$outboundSchema.parse(channelCredentials),
   );
 }
-
 export function channelCredentialsFromJSON(
   jsonString: string,
 ): SafeParseResult<ChannelCredentials, SDKValidationError> {

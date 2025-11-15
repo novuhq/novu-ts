@@ -24,22 +24,10 @@ export type DelayScheduledMetadata = {
 export const DelayScheduledMetadataType$inboundSchema: z.ZodNativeEnum<
   typeof DelayScheduledMetadataType
 > = z.nativeEnum(DelayScheduledMetadataType);
-
 /** @internal */
 export const DelayScheduledMetadataType$outboundSchema: z.ZodNativeEnum<
   typeof DelayScheduledMetadataType
 > = DelayScheduledMetadataType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DelayScheduledMetadataType$ {
-  /** @deprecated use `DelayScheduledMetadataType$inboundSchema` instead. */
-  export const inboundSchema = DelayScheduledMetadataType$inboundSchema;
-  /** @deprecated use `DelayScheduledMetadataType$outboundSchema` instead. */
-  export const outboundSchema = DelayScheduledMetadataType$outboundSchema;
-}
 
 /** @internal */
 export const DelayScheduledMetadata$inboundSchema: z.ZodType<
@@ -50,7 +38,6 @@ export const DelayScheduledMetadata$inboundSchema: z.ZodType<
   type: DelayScheduledMetadataType$inboundSchema,
   delayPath: z.string(),
 });
-
 /** @internal */
 export type DelayScheduledMetadata$Outbound = {
   type: string;
@@ -67,19 +54,6 @@ export const DelayScheduledMetadata$outboundSchema: z.ZodType<
   delayPath: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DelayScheduledMetadata$ {
-  /** @deprecated use `DelayScheduledMetadata$inboundSchema` instead. */
-  export const inboundSchema = DelayScheduledMetadata$inboundSchema;
-  /** @deprecated use `DelayScheduledMetadata$outboundSchema` instead. */
-  export const outboundSchema = DelayScheduledMetadata$outboundSchema;
-  /** @deprecated use `DelayScheduledMetadata$Outbound` instead. */
-  export type Outbound = DelayScheduledMetadata$Outbound;
-}
-
 export function delayScheduledMetadataToJSON(
   delayScheduledMetadata: DelayScheduledMetadata,
 ): string {
@@ -87,7 +61,6 @@ export function delayScheduledMetadataToJSON(
     DelayScheduledMetadata$outboundSchema.parse(delayScheduledMetadata),
   );
 }
-
 export function delayScheduledMetadataFromJSON(
   jsonString: string,
 ): SafeParseResult<DelayScheduledMetadata, SDKValidationError> {

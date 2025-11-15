@@ -74,24 +74,10 @@ export type TopicsControllerListTopicsResponse = {
 export const TopicsControllerListTopicsQueryParamOrderDirection$inboundSchema:
   z.ZodNativeEnum<typeof TopicsControllerListTopicsQueryParamOrderDirection> = z
     .nativeEnum(TopicsControllerListTopicsQueryParamOrderDirection);
-
 /** @internal */
 export const TopicsControllerListTopicsQueryParamOrderDirection$outboundSchema:
   z.ZodNativeEnum<typeof TopicsControllerListTopicsQueryParamOrderDirection> =
     TopicsControllerListTopicsQueryParamOrderDirection$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TopicsControllerListTopicsQueryParamOrderDirection$ {
-  /** @deprecated use `TopicsControllerListTopicsQueryParamOrderDirection$inboundSchema` instead. */
-  export const inboundSchema =
-    TopicsControllerListTopicsQueryParamOrderDirection$inboundSchema;
-  /** @deprecated use `TopicsControllerListTopicsQueryParamOrderDirection$outboundSchema` instead. */
-  export const outboundSchema =
-    TopicsControllerListTopicsQueryParamOrderDirection$outboundSchema;
-}
 
 /** @internal */
 export const TopicsControllerListTopicsRequest$inboundSchema: z.ZodType<
@@ -114,7 +100,6 @@ export const TopicsControllerListTopicsRequest$inboundSchema: z.ZodType<
     "idempotency-key": "idempotencyKey",
   });
 });
-
 /** @internal */
 export type TopicsControllerListTopicsRequest$Outbound = {
   after?: string | undefined;
@@ -151,20 +136,6 @@ export const TopicsControllerListTopicsRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TopicsControllerListTopicsRequest$ {
-  /** @deprecated use `TopicsControllerListTopicsRequest$inboundSchema` instead. */
-  export const inboundSchema = TopicsControllerListTopicsRequest$inboundSchema;
-  /** @deprecated use `TopicsControllerListTopicsRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    TopicsControllerListTopicsRequest$outboundSchema;
-  /** @deprecated use `TopicsControllerListTopicsRequest$Outbound` instead. */
-  export type Outbound = TopicsControllerListTopicsRequest$Outbound;
-}
-
 export function topicsControllerListTopicsRequestToJSON(
   topicsControllerListTopicsRequest: TopicsControllerListTopicsRequest,
 ): string {
@@ -174,7 +145,6 @@ export function topicsControllerListTopicsRequestToJSON(
     ),
   );
 }
-
 export function topicsControllerListTopicsRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<TopicsControllerListTopicsRequest, SDKValidationError> {
@@ -199,7 +169,6 @@ export const TopicsControllerListTopicsResponse$inboundSchema: z.ZodType<
     "Result": "result",
   });
 });
-
 /** @internal */
 export type TopicsControllerListTopicsResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
@@ -221,20 +190,6 @@ export const TopicsControllerListTopicsResponse$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TopicsControllerListTopicsResponse$ {
-  /** @deprecated use `TopicsControllerListTopicsResponse$inboundSchema` instead. */
-  export const inboundSchema = TopicsControllerListTopicsResponse$inboundSchema;
-  /** @deprecated use `TopicsControllerListTopicsResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    TopicsControllerListTopicsResponse$outboundSchema;
-  /** @deprecated use `TopicsControllerListTopicsResponse$Outbound` instead. */
-  export type Outbound = TopicsControllerListTopicsResponse$Outbound;
-}
-
 export function topicsControllerListTopicsResponseToJSON(
   topicsControllerListTopicsResponse: TopicsControllerListTopicsResponse,
 ): string {
@@ -244,7 +199,6 @@ export function topicsControllerListTopicsResponseToJSON(
     ),
   );
 }
-
 export function topicsControllerListTopicsResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<TopicsControllerListTopicsResponse, SDKValidationError> {

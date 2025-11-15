@@ -44,7 +44,6 @@ export const ThrottleControlsMetadataResponseDto$inboundSchema: z.ZodType<
   uiSchema: UiSchema$inboundSchema.optional(),
   values: ThrottleControlDto$inboundSchema,
 });
-
 /** @internal */
 export type ThrottleControlsMetadataResponseDto$Outbound = {
   dataSchema?: { [k: string]: any } | undefined;
@@ -63,21 +62,6 @@ export const ThrottleControlsMetadataResponseDto$outboundSchema: z.ZodType<
   values: ThrottleControlDto$outboundSchema,
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ThrottleControlsMetadataResponseDto$ {
-  /** @deprecated use `ThrottleControlsMetadataResponseDto$inboundSchema` instead. */
-  export const inboundSchema =
-    ThrottleControlsMetadataResponseDto$inboundSchema;
-  /** @deprecated use `ThrottleControlsMetadataResponseDto$outboundSchema` instead. */
-  export const outboundSchema =
-    ThrottleControlsMetadataResponseDto$outboundSchema;
-  /** @deprecated use `ThrottleControlsMetadataResponseDto$Outbound` instead. */
-  export type Outbound = ThrottleControlsMetadataResponseDto$Outbound;
-}
-
 export function throttleControlsMetadataResponseDtoToJSON(
   throttleControlsMetadataResponseDto: ThrottleControlsMetadataResponseDto,
 ): string {
@@ -87,7 +71,6 @@ export function throttleControlsMetadataResponseDtoToJSON(
     ),
   );
 }
-
 export function throttleControlsMetadataResponseDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<ThrottleControlsMetadataResponseDto, SDKValidationError> {

@@ -55,7 +55,6 @@ export const DelayStepUpsertDtoControlValues$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([DelayControlDto$inboundSchema, z.record(z.any())]);
-
 /** @internal */
 export type DelayStepUpsertDtoControlValues$Outbound =
   | DelayControlDto$Outbound
@@ -68,19 +67,6 @@ export const DelayStepUpsertDtoControlValues$outboundSchema: z.ZodType<
   DelayStepUpsertDtoControlValues
 > = z.union([DelayControlDto$outboundSchema, z.record(z.any())]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DelayStepUpsertDtoControlValues$ {
-  /** @deprecated use `DelayStepUpsertDtoControlValues$inboundSchema` instead. */
-  export const inboundSchema = DelayStepUpsertDtoControlValues$inboundSchema;
-  /** @deprecated use `DelayStepUpsertDtoControlValues$outboundSchema` instead. */
-  export const outboundSchema = DelayStepUpsertDtoControlValues$outboundSchema;
-  /** @deprecated use `DelayStepUpsertDtoControlValues$Outbound` instead. */
-  export type Outbound = DelayStepUpsertDtoControlValues$Outbound;
-}
-
 export function delayStepUpsertDtoControlValuesToJSON(
   delayStepUpsertDtoControlValues: DelayStepUpsertDtoControlValues,
 ): string {
@@ -90,7 +76,6 @@ export function delayStepUpsertDtoControlValuesToJSON(
     ),
   );
 }
-
 export function delayStepUpsertDtoControlValuesFromJSON(
   jsonString: string,
 ): SafeParseResult<DelayStepUpsertDtoControlValues, SDKValidationError> {
@@ -118,7 +103,6 @@ export const DelayStepUpsertDto$inboundSchema: z.ZodType<
     "_id": "id",
   });
 });
-
 /** @internal */
 export type DelayStepUpsertDto$Outbound = {
   _id?: string | undefined;
@@ -146,19 +130,6 @@ export const DelayStepUpsertDto$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DelayStepUpsertDto$ {
-  /** @deprecated use `DelayStepUpsertDto$inboundSchema` instead. */
-  export const inboundSchema = DelayStepUpsertDto$inboundSchema;
-  /** @deprecated use `DelayStepUpsertDto$outboundSchema` instead. */
-  export const outboundSchema = DelayStepUpsertDto$outboundSchema;
-  /** @deprecated use `DelayStepUpsertDto$Outbound` instead. */
-  export type Outbound = DelayStepUpsertDto$Outbound;
-}
-
 export function delayStepUpsertDtoToJSON(
   delayStepUpsertDto: DelayStepUpsertDto,
 ): string {
@@ -166,7 +137,6 @@ export function delayStepUpsertDtoToJSON(
     DelayStepUpsertDto$outboundSchema.parse(delayStepUpsertDto),
   );
 }
-
 export function delayStepUpsertDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<DelayStepUpsertDto, SDKValidationError> {

@@ -27,7 +27,6 @@ export const DuplicateLayoutDto$inboundSchema: z.ZodType<
   name: z.string(),
   isTranslationEnabled: z.boolean().default(false),
 });
-
 /** @internal */
 export type DuplicateLayoutDto$Outbound = {
   name: string;
@@ -44,19 +43,6 @@ export const DuplicateLayoutDto$outboundSchema: z.ZodType<
   isTranslationEnabled: z.boolean().default(false),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DuplicateLayoutDto$ {
-  /** @deprecated use `DuplicateLayoutDto$inboundSchema` instead. */
-  export const inboundSchema = DuplicateLayoutDto$inboundSchema;
-  /** @deprecated use `DuplicateLayoutDto$outboundSchema` instead. */
-  export const outboundSchema = DuplicateLayoutDto$outboundSchema;
-  /** @deprecated use `DuplicateLayoutDto$Outbound` instead. */
-  export type Outbound = DuplicateLayoutDto$Outbound;
-}
-
 export function duplicateLayoutDtoToJSON(
   duplicateLayoutDto: DuplicateLayoutDto,
 ): string {
@@ -64,7 +50,6 @@ export function duplicateLayoutDtoToJSON(
     DuplicateLayoutDto$outboundSchema.parse(duplicateLayoutDto),
   );
 }
-
 export function duplicateLayoutDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<DuplicateLayoutDto, SDKValidationError> {

@@ -112,7 +112,6 @@ export const ChatStepResponseDtoControlValues$inboundSchema: z.ZodType<
   "additionalProperties",
   true,
 );
-
 /** @internal */
 export type ChatStepResponseDtoControlValues$Outbound = {
   skip?: { [k: string]: any } | undefined;
@@ -138,19 +137,6 @@ export const ChatStepResponseDtoControlValues$outboundSchema: z.ZodType<
   };
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ChatStepResponseDtoControlValues$ {
-  /** @deprecated use `ChatStepResponseDtoControlValues$inboundSchema` instead. */
-  export const inboundSchema = ChatStepResponseDtoControlValues$inboundSchema;
-  /** @deprecated use `ChatStepResponseDtoControlValues$outboundSchema` instead. */
-  export const outboundSchema = ChatStepResponseDtoControlValues$outboundSchema;
-  /** @deprecated use `ChatStepResponseDtoControlValues$Outbound` instead. */
-  export type Outbound = ChatStepResponseDtoControlValues$Outbound;
-}
-
 export function chatStepResponseDtoControlValuesToJSON(
   chatStepResponseDtoControlValues: ChatStepResponseDtoControlValues,
 ): string {
@@ -160,7 +146,6 @@ export function chatStepResponseDtoControlValuesToJSON(
     ),
   );
 }
-
 export function chatStepResponseDtoControlValuesFromJSON(
   jsonString: string,
 ): SafeParseResult<ChatStepResponseDtoControlValues, SDKValidationError> {
@@ -195,7 +180,6 @@ export const ChatStepResponseDto$inboundSchema: z.ZodType<
     "_id": "id",
   });
 });
-
 /** @internal */
 export type ChatStepResponseDto$Outbound = {
   controls: ChatControlsMetadataResponseDto$Outbound;
@@ -237,19 +221,6 @@ export const ChatStepResponseDto$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ChatStepResponseDto$ {
-  /** @deprecated use `ChatStepResponseDto$inboundSchema` instead. */
-  export const inboundSchema = ChatStepResponseDto$inboundSchema;
-  /** @deprecated use `ChatStepResponseDto$outboundSchema` instead. */
-  export const outboundSchema = ChatStepResponseDto$outboundSchema;
-  /** @deprecated use `ChatStepResponseDto$Outbound` instead. */
-  export type Outbound = ChatStepResponseDto$Outbound;
-}
-
 export function chatStepResponseDtoToJSON(
   chatStepResponseDto: ChatStepResponseDto,
 ): string {
@@ -257,7 +228,6 @@ export function chatStepResponseDtoToJSON(
     ChatStepResponseDto$outboundSchema.parse(chatStepResponseDto),
   );
 }
-
 export function chatStepResponseDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<ChatStepResponseDto, SDKValidationError> {

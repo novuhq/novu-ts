@@ -42,7 +42,6 @@ export const SubscribersV1ControllerUpdateSubscriberOnlineFlagRequest$inboundSch
         "updateSubscriberOnlineFlagRequestDto",
     });
   });
-
 /** @internal */
 export type SubscribersV1ControllerUpdateSubscriberOnlineFlagRequest$Outbound =
   {
@@ -71,22 +70,6 @@ export const SubscribersV1ControllerUpdateSubscriberOnlineFlagRequest$outboundSc
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SubscribersV1ControllerUpdateSubscriberOnlineFlagRequest$ {
-  /** @deprecated use `SubscribersV1ControllerUpdateSubscriberOnlineFlagRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    SubscribersV1ControllerUpdateSubscriberOnlineFlagRequest$inboundSchema;
-  /** @deprecated use `SubscribersV1ControllerUpdateSubscriberOnlineFlagRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    SubscribersV1ControllerUpdateSubscriberOnlineFlagRequest$outboundSchema;
-  /** @deprecated use `SubscribersV1ControllerUpdateSubscriberOnlineFlagRequest$Outbound` instead. */
-  export type Outbound =
-    SubscribersV1ControllerUpdateSubscriberOnlineFlagRequest$Outbound;
-}
-
 export function subscribersV1ControllerUpdateSubscriberOnlineFlagRequestToJSON(
   subscribersV1ControllerUpdateSubscriberOnlineFlagRequest:
     SubscribersV1ControllerUpdateSubscriberOnlineFlagRequest,
@@ -96,7 +79,6 @@ export function subscribersV1ControllerUpdateSubscriberOnlineFlagRequestToJSON(
       .parse(subscribersV1ControllerUpdateSubscriberOnlineFlagRequest),
   );
 }
-
 export function subscribersV1ControllerUpdateSubscriberOnlineFlagRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -127,7 +109,6 @@ export const SubscribersV1ControllerUpdateSubscriberOnlineFlagResponse$inboundSc
       "Result": "result",
     });
   });
-
 /** @internal */
 export type SubscribersV1ControllerUpdateSubscriberOnlineFlagResponse$Outbound =
   {
@@ -151,22 +132,6 @@ export const SubscribersV1ControllerUpdateSubscriberOnlineFlagResponse$outboundS
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SubscribersV1ControllerUpdateSubscriberOnlineFlagResponse$ {
-  /** @deprecated use `SubscribersV1ControllerUpdateSubscriberOnlineFlagResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    SubscribersV1ControllerUpdateSubscriberOnlineFlagResponse$inboundSchema;
-  /** @deprecated use `SubscribersV1ControllerUpdateSubscriberOnlineFlagResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    SubscribersV1ControllerUpdateSubscriberOnlineFlagResponse$outboundSchema;
-  /** @deprecated use `SubscribersV1ControllerUpdateSubscriberOnlineFlagResponse$Outbound` instead. */
-  export type Outbound =
-    SubscribersV1ControllerUpdateSubscriberOnlineFlagResponse$Outbound;
-}
-
 export function subscribersV1ControllerUpdateSubscriberOnlineFlagResponseToJSON(
   subscribersV1ControllerUpdateSubscriberOnlineFlagResponse:
     SubscribersV1ControllerUpdateSubscriberOnlineFlagResponse,
@@ -176,7 +141,6 @@ export function subscribersV1ControllerUpdateSubscriberOnlineFlagResponseToJSON(
       .parse(subscribersV1ControllerUpdateSubscriberOnlineFlagResponse),
   );
 }
-
 export function subscribersV1ControllerUpdateSubscriberOnlineFlagResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<

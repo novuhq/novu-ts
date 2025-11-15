@@ -28,7 +28,6 @@ export const GetLayoutUsageResponseDto$inboundSchema: z.ZodType<
 > = z.object({
   workflows: z.array(WorkflowInfoDto$inboundSchema),
 });
-
 /** @internal */
 export type GetLayoutUsageResponseDto$Outbound = {
   workflows: Array<WorkflowInfoDto$Outbound>;
@@ -43,19 +42,6 @@ export const GetLayoutUsageResponseDto$outboundSchema: z.ZodType<
   workflows: z.array(WorkflowInfoDto$outboundSchema),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetLayoutUsageResponseDto$ {
-  /** @deprecated use `GetLayoutUsageResponseDto$inboundSchema` instead. */
-  export const inboundSchema = GetLayoutUsageResponseDto$inboundSchema;
-  /** @deprecated use `GetLayoutUsageResponseDto$outboundSchema` instead. */
-  export const outboundSchema = GetLayoutUsageResponseDto$outboundSchema;
-  /** @deprecated use `GetLayoutUsageResponseDto$Outbound` instead. */
-  export type Outbound = GetLayoutUsageResponseDto$Outbound;
-}
-
 export function getLayoutUsageResponseDtoToJSON(
   getLayoutUsageResponseDto: GetLayoutUsageResponseDto,
 ): string {
@@ -63,7 +49,6 @@ export function getLayoutUsageResponseDtoToJSON(
     GetLayoutUsageResponseDto$outboundSchema.parse(getLayoutUsageResponseDto),
   );
 }
-
 export function getLayoutUsageResponseDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<GetLayoutUsageResponseDto, SDKValidationError> {

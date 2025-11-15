@@ -17,7 +17,7 @@ export type MessagesControllerGetMessagesRequest = {
   subscriberId?: string | undefined;
   transactionId?: Array<string> | undefined;
   /**
-   * Filter by exact context keys (format: "type:id")
+   * Filter by exact context keys, order insensitive (format: "type:id")
    */
   contextKeys?: Array<string> | undefined;
   page?: number | undefined;
@@ -51,7 +51,6 @@ export const MessagesControllerGetMessagesRequest$inboundSchema: z.ZodType<
     "idempotency-key": "idempotencyKey",
   });
 });
-
 /** @internal */
 export type MessagesControllerGetMessagesRequest$Outbound = {
   channel?: string | undefined;
@@ -82,21 +81,6 @@ export const MessagesControllerGetMessagesRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MessagesControllerGetMessagesRequest$ {
-  /** @deprecated use `MessagesControllerGetMessagesRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    MessagesControllerGetMessagesRequest$inboundSchema;
-  /** @deprecated use `MessagesControllerGetMessagesRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    MessagesControllerGetMessagesRequest$outboundSchema;
-  /** @deprecated use `MessagesControllerGetMessagesRequest$Outbound` instead. */
-  export type Outbound = MessagesControllerGetMessagesRequest$Outbound;
-}
-
 export function messagesControllerGetMessagesRequestToJSON(
   messagesControllerGetMessagesRequest: MessagesControllerGetMessagesRequest,
 ): string {
@@ -106,7 +90,6 @@ export function messagesControllerGetMessagesRequestToJSON(
     ),
   );
 }
-
 export function messagesControllerGetMessagesRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<MessagesControllerGetMessagesRequest, SDKValidationError> {
@@ -132,7 +115,6 @@ export const MessagesControllerGetMessagesResponse$inboundSchema: z.ZodType<
     "Result": "result",
   });
 });
-
 /** @internal */
 export type MessagesControllerGetMessagesResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
@@ -154,21 +136,6 @@ export const MessagesControllerGetMessagesResponse$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MessagesControllerGetMessagesResponse$ {
-  /** @deprecated use `MessagesControllerGetMessagesResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    MessagesControllerGetMessagesResponse$inboundSchema;
-  /** @deprecated use `MessagesControllerGetMessagesResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    MessagesControllerGetMessagesResponse$outboundSchema;
-  /** @deprecated use `MessagesControllerGetMessagesResponse$Outbound` instead. */
-  export type Outbound = MessagesControllerGetMessagesResponse$Outbound;
-}
-
 export function messagesControllerGetMessagesResponseToJSON(
   messagesControllerGetMessagesResponse: MessagesControllerGetMessagesResponse,
 ): string {
@@ -178,7 +145,6 @@ export function messagesControllerGetMessagesResponseToJSON(
     ),
   );
 }
-
 export function messagesControllerGetMessagesResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<MessagesControllerGetMessagesResponse, SDKValidationError> {

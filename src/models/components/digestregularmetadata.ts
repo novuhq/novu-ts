@@ -53,62 +53,26 @@ export type DigestRegularMetadata = {
 export const DigestRegularMetadataUnit$inboundSchema: z.ZodNativeEnum<
   typeof DigestRegularMetadataUnit
 > = z.nativeEnum(DigestRegularMetadataUnit);
-
 /** @internal */
 export const DigestRegularMetadataUnit$outboundSchema: z.ZodNativeEnum<
   typeof DigestRegularMetadataUnit
 > = DigestRegularMetadataUnit$inboundSchema;
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DigestRegularMetadataUnit$ {
-  /** @deprecated use `DigestRegularMetadataUnit$inboundSchema` instead. */
-  export const inboundSchema = DigestRegularMetadataUnit$inboundSchema;
-  /** @deprecated use `DigestRegularMetadataUnit$outboundSchema` instead. */
-  export const outboundSchema = DigestRegularMetadataUnit$outboundSchema;
-}
-
 /** @internal */
 export const DigestRegularMetadataType$inboundSchema: z.ZodNativeEnum<
   typeof DigestRegularMetadataType
 > = z.nativeEnum(DigestRegularMetadataType);
-
 /** @internal */
 export const DigestRegularMetadataType$outboundSchema: z.ZodNativeEnum<
   typeof DigestRegularMetadataType
 > = DigestRegularMetadataType$inboundSchema;
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DigestRegularMetadataType$ {
-  /** @deprecated use `DigestRegularMetadataType$inboundSchema` instead. */
-  export const inboundSchema = DigestRegularMetadataType$inboundSchema;
-  /** @deprecated use `DigestRegularMetadataType$outboundSchema` instead. */
-  export const outboundSchema = DigestRegularMetadataType$outboundSchema;
-}
-
 /** @internal */
 export const BackoffUnit$inboundSchema: z.ZodNativeEnum<typeof BackoffUnit> = z
   .nativeEnum(BackoffUnit);
-
 /** @internal */
 export const BackoffUnit$outboundSchema: z.ZodNativeEnum<typeof BackoffUnit> =
   BackoffUnit$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace BackoffUnit$ {
-  /** @deprecated use `BackoffUnit$inboundSchema` instead. */
-  export const inboundSchema = BackoffUnit$inboundSchema;
-  /** @deprecated use `BackoffUnit$outboundSchema` instead. */
-  export const outboundSchema = BackoffUnit$outboundSchema;
-}
 
 /** @internal */
 export const DigestRegularMetadata$inboundSchema: z.ZodType<
@@ -125,7 +89,6 @@ export const DigestRegularMetadata$inboundSchema: z.ZodType<
   backoffUnit: BackoffUnit$inboundSchema.optional(),
   updateMode: z.boolean().optional(),
 });
-
 /** @internal */
 export type DigestRegularMetadata$Outbound = {
   amount?: number | undefined;
@@ -154,19 +117,6 @@ export const DigestRegularMetadata$outboundSchema: z.ZodType<
   updateMode: z.boolean().optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DigestRegularMetadata$ {
-  /** @deprecated use `DigestRegularMetadata$inboundSchema` instead. */
-  export const inboundSchema = DigestRegularMetadata$inboundSchema;
-  /** @deprecated use `DigestRegularMetadata$outboundSchema` instead. */
-  export const outboundSchema = DigestRegularMetadata$outboundSchema;
-  /** @deprecated use `DigestRegularMetadata$Outbound` instead. */
-  export type Outbound = DigestRegularMetadata$Outbound;
-}
-
 export function digestRegularMetadataToJSON(
   digestRegularMetadata: DigestRegularMetadata,
 ): string {
@@ -174,7 +124,6 @@ export function digestRegularMetadataToJSON(
     DigestRegularMetadata$outboundSchema.parse(digestRegularMetadata),
   );
 }
-
 export function digestRegularMetadataFromJSON(
   jsonString: string,
 ): SafeParseResult<DigestRegularMetadata, SDKValidationError> {

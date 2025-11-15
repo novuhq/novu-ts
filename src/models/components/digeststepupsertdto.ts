@@ -55,7 +55,6 @@ export const DigestStepUpsertDtoControlValues$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([DigestControlDto$inboundSchema, z.record(z.any())]);
-
 /** @internal */
 export type DigestStepUpsertDtoControlValues$Outbound =
   | DigestControlDto$Outbound
@@ -68,19 +67,6 @@ export const DigestStepUpsertDtoControlValues$outboundSchema: z.ZodType<
   DigestStepUpsertDtoControlValues
 > = z.union([DigestControlDto$outboundSchema, z.record(z.any())]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DigestStepUpsertDtoControlValues$ {
-  /** @deprecated use `DigestStepUpsertDtoControlValues$inboundSchema` instead. */
-  export const inboundSchema = DigestStepUpsertDtoControlValues$inboundSchema;
-  /** @deprecated use `DigestStepUpsertDtoControlValues$outboundSchema` instead. */
-  export const outboundSchema = DigestStepUpsertDtoControlValues$outboundSchema;
-  /** @deprecated use `DigestStepUpsertDtoControlValues$Outbound` instead. */
-  export type Outbound = DigestStepUpsertDtoControlValues$Outbound;
-}
-
 export function digestStepUpsertDtoControlValuesToJSON(
   digestStepUpsertDtoControlValues: DigestStepUpsertDtoControlValues,
 ): string {
@@ -90,7 +76,6 @@ export function digestStepUpsertDtoControlValuesToJSON(
     ),
   );
 }
-
 export function digestStepUpsertDtoControlValuesFromJSON(
   jsonString: string,
 ): SafeParseResult<DigestStepUpsertDtoControlValues, SDKValidationError> {
@@ -118,7 +103,6 @@ export const DigestStepUpsertDto$inboundSchema: z.ZodType<
     "_id": "id",
   });
 });
-
 /** @internal */
 export type DigestStepUpsertDto$Outbound = {
   _id?: string | undefined;
@@ -146,19 +130,6 @@ export const DigestStepUpsertDto$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DigestStepUpsertDto$ {
-  /** @deprecated use `DigestStepUpsertDto$inboundSchema` instead. */
-  export const inboundSchema = DigestStepUpsertDto$inboundSchema;
-  /** @deprecated use `DigestStepUpsertDto$outboundSchema` instead. */
-  export const outboundSchema = DigestStepUpsertDto$outboundSchema;
-  /** @deprecated use `DigestStepUpsertDto$Outbound` instead. */
-  export type Outbound = DigestStepUpsertDto$Outbound;
-}
-
 export function digestStepUpsertDtoToJSON(
   digestStepUpsertDto: DigestStepUpsertDto,
 ): string {
@@ -166,7 +137,6 @@ export function digestStepUpsertDtoToJSON(
     DigestStepUpsertDto$outboundSchema.parse(digestStepUpsertDto),
   );
 }
-
 export function digestStepUpsertDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<DigestStepUpsertDto, SDKValidationError> {

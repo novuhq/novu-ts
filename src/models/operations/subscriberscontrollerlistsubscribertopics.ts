@@ -79,26 +79,12 @@ export const SubscribersControllerListSubscriberTopicsQueryParamOrderDirection$i
   > = z.nativeEnum(
     SubscribersControllerListSubscriberTopicsQueryParamOrderDirection,
   );
-
 /** @internal */
 export const SubscribersControllerListSubscriberTopicsQueryParamOrderDirection$outboundSchema:
   z.ZodNativeEnum<
     typeof SubscribersControllerListSubscriberTopicsQueryParamOrderDirection
   > =
     SubscribersControllerListSubscriberTopicsQueryParamOrderDirection$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SubscribersControllerListSubscriberTopicsQueryParamOrderDirection$ {
-  /** @deprecated use `SubscribersControllerListSubscriberTopicsQueryParamOrderDirection$inboundSchema` instead. */
-  export const inboundSchema =
-    SubscribersControllerListSubscriberTopicsQueryParamOrderDirection$inboundSchema;
-  /** @deprecated use `SubscribersControllerListSubscriberTopicsQueryParamOrderDirection$outboundSchema` instead. */
-  export const outboundSchema =
-    SubscribersControllerListSubscriberTopicsQueryParamOrderDirection$outboundSchema;
-}
 
 /** @internal */
 export const SubscribersControllerListSubscriberTopicsRequest$inboundSchema:
@@ -123,7 +109,6 @@ export const SubscribersControllerListSubscriberTopicsRequest$inboundSchema:
       "idempotency-key": "idempotencyKey",
     });
   });
-
 /** @internal */
 export type SubscribersControllerListSubscriberTopicsRequest$Outbound = {
   subscriberId: string;
@@ -161,22 +146,6 @@ export const SubscribersControllerListSubscriberTopicsRequest$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SubscribersControllerListSubscriberTopicsRequest$ {
-  /** @deprecated use `SubscribersControllerListSubscriberTopicsRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    SubscribersControllerListSubscriberTopicsRequest$inboundSchema;
-  /** @deprecated use `SubscribersControllerListSubscriberTopicsRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    SubscribersControllerListSubscriberTopicsRequest$outboundSchema;
-  /** @deprecated use `SubscribersControllerListSubscriberTopicsRequest$Outbound` instead. */
-  export type Outbound =
-    SubscribersControllerListSubscriberTopicsRequest$Outbound;
-}
-
 export function subscribersControllerListSubscriberTopicsRequestToJSON(
   subscribersControllerListSubscriberTopicsRequest:
     SubscribersControllerListSubscriberTopicsRequest,
@@ -187,7 +156,6 @@ export function subscribersControllerListSubscriberTopicsRequestToJSON(
     ),
   );
 }
-
 export function subscribersControllerListSubscriberTopicsRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -219,7 +187,6 @@ export const SubscribersControllerListSubscriberTopicsResponse$inboundSchema:
       "Result": "result",
     });
   });
-
 /** @internal */
 export type SubscribersControllerListSubscriberTopicsResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
@@ -242,22 +209,6 @@ export const SubscribersControllerListSubscriberTopicsResponse$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SubscribersControllerListSubscriberTopicsResponse$ {
-  /** @deprecated use `SubscribersControllerListSubscriberTopicsResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    SubscribersControllerListSubscriberTopicsResponse$inboundSchema;
-  /** @deprecated use `SubscribersControllerListSubscriberTopicsResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    SubscribersControllerListSubscriberTopicsResponse$outboundSchema;
-  /** @deprecated use `SubscribersControllerListSubscriberTopicsResponse$Outbound` instead. */
-  export type Outbound =
-    SubscribersControllerListSubscriberTopicsResponse$Outbound;
-}
-
 export function subscribersControllerListSubscriberTopicsResponseToJSON(
   subscribersControllerListSubscriberTopicsResponse:
     SubscribersControllerListSubscriberTopicsResponse,
@@ -268,7 +219,6 @@ export function subscribersControllerListSubscriberTopicsResponseToJSON(
     ),
   );
 }
-
 export function subscribersControllerListSubscriberTopicsResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<

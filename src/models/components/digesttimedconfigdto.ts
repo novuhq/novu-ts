@@ -75,22 +75,10 @@ export type DigestTimedConfigDto = {
 export const DigestTimedConfigDtoWeekDays$inboundSchema: z.ZodNativeEnum<
   typeof DigestTimedConfigDtoWeekDays
 > = z.nativeEnum(DigestTimedConfigDtoWeekDays);
-
 /** @internal */
 export const DigestTimedConfigDtoWeekDays$outboundSchema: z.ZodNativeEnum<
   typeof DigestTimedConfigDtoWeekDays
 > = DigestTimedConfigDtoWeekDays$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DigestTimedConfigDtoWeekDays$ {
-  /** @deprecated use `DigestTimedConfigDtoWeekDays$inboundSchema` instead. */
-  export const inboundSchema = DigestTimedConfigDtoWeekDays$inboundSchema;
-  /** @deprecated use `DigestTimedConfigDtoWeekDays$outboundSchema` instead. */
-  export const outboundSchema = DigestTimedConfigDtoWeekDays$outboundSchema;
-}
 
 /** @internal */
 export const DigestTimedConfigDto$inboundSchema: z.ZodType<
@@ -107,7 +95,6 @@ export const DigestTimedConfigDto$inboundSchema: z.ZodType<
   cronExpression: z.string().optional(),
   untilDate: z.string().optional(),
 });
-
 /** @internal */
 export type DigestTimedConfigDto$Outbound = {
   atTime?: string | undefined;
@@ -136,19 +123,6 @@ export const DigestTimedConfigDto$outboundSchema: z.ZodType<
   untilDate: z.string().optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DigestTimedConfigDto$ {
-  /** @deprecated use `DigestTimedConfigDto$inboundSchema` instead. */
-  export const inboundSchema = DigestTimedConfigDto$inboundSchema;
-  /** @deprecated use `DigestTimedConfigDto$outboundSchema` instead. */
-  export const outboundSchema = DigestTimedConfigDto$outboundSchema;
-  /** @deprecated use `DigestTimedConfigDto$Outbound` instead. */
-  export type Outbound = DigestTimedConfigDto$Outbound;
-}
-
 export function digestTimedConfigDtoToJSON(
   digestTimedConfigDto: DigestTimedConfigDto,
 ): string {
@@ -156,7 +130,6 @@ export function digestTimedConfigDtoToJSON(
     DigestTimedConfigDto$outboundSchema.parse(digestTimedConfigDto),
   );
 }
-
 export function digestTimedConfigDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<DigestTimedConfigDto, SDKValidationError> {

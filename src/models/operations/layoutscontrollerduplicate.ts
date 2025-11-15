@@ -38,7 +38,6 @@ export const LayoutsControllerDuplicateRequest$inboundSchema: z.ZodType<
     "DuplicateLayoutDto": "duplicateLayoutDto",
   });
 });
-
 /** @internal */
 export type LayoutsControllerDuplicateRequest$Outbound = {
   layoutId: string;
@@ -62,20 +61,6 @@ export const LayoutsControllerDuplicateRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace LayoutsControllerDuplicateRequest$ {
-  /** @deprecated use `LayoutsControllerDuplicateRequest$inboundSchema` instead. */
-  export const inboundSchema = LayoutsControllerDuplicateRequest$inboundSchema;
-  /** @deprecated use `LayoutsControllerDuplicateRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    LayoutsControllerDuplicateRequest$outboundSchema;
-  /** @deprecated use `LayoutsControllerDuplicateRequest$Outbound` instead. */
-  export type Outbound = LayoutsControllerDuplicateRequest$Outbound;
-}
-
 export function layoutsControllerDuplicateRequestToJSON(
   layoutsControllerDuplicateRequest: LayoutsControllerDuplicateRequest,
 ): string {
@@ -85,7 +70,6 @@ export function layoutsControllerDuplicateRequestToJSON(
     ),
   );
 }
-
 export function layoutsControllerDuplicateRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<LayoutsControllerDuplicateRequest, SDKValidationError> {
@@ -110,7 +94,6 @@ export const LayoutsControllerDuplicateResponse$inboundSchema: z.ZodType<
     "Result": "result",
   });
 });
-
 /** @internal */
 export type LayoutsControllerDuplicateResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
@@ -132,20 +115,6 @@ export const LayoutsControllerDuplicateResponse$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace LayoutsControllerDuplicateResponse$ {
-  /** @deprecated use `LayoutsControllerDuplicateResponse$inboundSchema` instead. */
-  export const inboundSchema = LayoutsControllerDuplicateResponse$inboundSchema;
-  /** @deprecated use `LayoutsControllerDuplicateResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    LayoutsControllerDuplicateResponse$outboundSchema;
-  /** @deprecated use `LayoutsControllerDuplicateResponse$Outbound` instead. */
-  export type Outbound = LayoutsControllerDuplicateResponse$Outbound;
-}
-
 export function layoutsControllerDuplicateResponseToJSON(
   layoutsControllerDuplicateResponse: LayoutsControllerDuplicateResponse,
 ): string {
@@ -155,7 +124,6 @@ export function layoutsControllerDuplicateResponseToJSON(
     ),
   );
 }
-
 export function layoutsControllerDuplicateResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<LayoutsControllerDuplicateResponse, SDKValidationError> {

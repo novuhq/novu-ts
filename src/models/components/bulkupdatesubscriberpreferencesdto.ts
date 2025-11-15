@@ -28,7 +28,6 @@ export const BulkUpdateSubscriberPreferencesDto$inboundSchema: z.ZodType<
 > = z.object({
   preferences: z.array(BulkUpdateSubscriberPreferenceItemDto$inboundSchema),
 });
-
 /** @internal */
 export type BulkUpdateSubscriberPreferencesDto$Outbound = {
   preferences: Array<BulkUpdateSubscriberPreferenceItemDto$Outbound>;
@@ -43,20 +42,6 @@ export const BulkUpdateSubscriberPreferencesDto$outboundSchema: z.ZodType<
   preferences: z.array(BulkUpdateSubscriberPreferenceItemDto$outboundSchema),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace BulkUpdateSubscriberPreferencesDto$ {
-  /** @deprecated use `BulkUpdateSubscriberPreferencesDto$inboundSchema` instead. */
-  export const inboundSchema = BulkUpdateSubscriberPreferencesDto$inboundSchema;
-  /** @deprecated use `BulkUpdateSubscriberPreferencesDto$outboundSchema` instead. */
-  export const outboundSchema =
-    BulkUpdateSubscriberPreferencesDto$outboundSchema;
-  /** @deprecated use `BulkUpdateSubscriberPreferencesDto$Outbound` instead. */
-  export type Outbound = BulkUpdateSubscriberPreferencesDto$Outbound;
-}
-
 export function bulkUpdateSubscriberPreferencesDtoToJSON(
   bulkUpdateSubscriberPreferencesDto: BulkUpdateSubscriberPreferencesDto,
 ): string {
@@ -66,7 +51,6 @@ export function bulkUpdateSubscriberPreferencesDtoToJSON(
     ),
   );
 }
-
 export function bulkUpdateSubscriberPreferencesDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<BulkUpdateSubscriberPreferencesDto, SDKValidationError> {

@@ -36,7 +36,6 @@ export const IntegrationsControllerSetIntegrationAsPrimaryRequest$inboundSchema:
       "idempotency-key": "idempotencyKey",
     });
   });
-
 /** @internal */
 export type IntegrationsControllerSetIntegrationAsPrimaryRequest$Outbound = {
   integrationId: string;
@@ -58,22 +57,6 @@ export const IntegrationsControllerSetIntegrationAsPrimaryRequest$outboundSchema
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace IntegrationsControllerSetIntegrationAsPrimaryRequest$ {
-  /** @deprecated use `IntegrationsControllerSetIntegrationAsPrimaryRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    IntegrationsControllerSetIntegrationAsPrimaryRequest$inboundSchema;
-  /** @deprecated use `IntegrationsControllerSetIntegrationAsPrimaryRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    IntegrationsControllerSetIntegrationAsPrimaryRequest$outboundSchema;
-  /** @deprecated use `IntegrationsControllerSetIntegrationAsPrimaryRequest$Outbound` instead. */
-  export type Outbound =
-    IntegrationsControllerSetIntegrationAsPrimaryRequest$Outbound;
-}
-
 export function integrationsControllerSetIntegrationAsPrimaryRequestToJSON(
   integrationsControllerSetIntegrationAsPrimaryRequest:
     IntegrationsControllerSetIntegrationAsPrimaryRequest,
@@ -84,7 +67,6 @@ export function integrationsControllerSetIntegrationAsPrimaryRequestToJSON(
     ),
   );
 }
-
 export function integrationsControllerSetIntegrationAsPrimaryRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -116,7 +98,6 @@ export const IntegrationsControllerSetIntegrationAsPrimaryResponse$inboundSchema
       "Result": "result",
     });
   });
-
 /** @internal */
 export type IntegrationsControllerSetIntegrationAsPrimaryResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
@@ -139,22 +120,6 @@ export const IntegrationsControllerSetIntegrationAsPrimaryResponse$outboundSchem
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace IntegrationsControllerSetIntegrationAsPrimaryResponse$ {
-  /** @deprecated use `IntegrationsControllerSetIntegrationAsPrimaryResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    IntegrationsControllerSetIntegrationAsPrimaryResponse$inboundSchema;
-  /** @deprecated use `IntegrationsControllerSetIntegrationAsPrimaryResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    IntegrationsControllerSetIntegrationAsPrimaryResponse$outboundSchema;
-  /** @deprecated use `IntegrationsControllerSetIntegrationAsPrimaryResponse$Outbound` instead. */
-  export type Outbound =
-    IntegrationsControllerSetIntegrationAsPrimaryResponse$Outbound;
-}
-
 export function integrationsControllerSetIntegrationAsPrimaryResponseToJSON(
   integrationsControllerSetIntegrationAsPrimaryResponse:
     IntegrationsControllerSetIntegrationAsPrimaryResponse,
@@ -165,7 +130,6 @@ export function integrationsControllerSetIntegrationAsPrimaryResponseToJSON(
     ),
   );
 }
-
 export function integrationsControllerSetIntegrationAsPrimaryResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<

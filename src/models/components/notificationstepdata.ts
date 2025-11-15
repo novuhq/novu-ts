@@ -122,7 +122,6 @@ export const NotificationStepDataMetadata$inboundSchema: z.ZodType<
   DigestTimedMetadata$inboundSchema,
   DelayRegularMetadata$inboundSchema,
 ]);
-
 /** @internal */
 export type NotificationStepDataMetadata$Outbound =
   | DelayScheduledMetadata$Outbound
@@ -142,19 +141,6 @@ export const NotificationStepDataMetadata$outboundSchema: z.ZodType<
   DelayRegularMetadata$outboundSchema,
 ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace NotificationStepDataMetadata$ {
-  /** @deprecated use `NotificationStepDataMetadata$inboundSchema` instead. */
-  export const inboundSchema = NotificationStepDataMetadata$inboundSchema;
-  /** @deprecated use `NotificationStepDataMetadata$outboundSchema` instead. */
-  export const outboundSchema = NotificationStepDataMetadata$outboundSchema;
-  /** @deprecated use `NotificationStepDataMetadata$Outbound` instead. */
-  export type Outbound = NotificationStepDataMetadata$Outbound;
-}
-
 export function notificationStepDataMetadataToJSON(
   notificationStepDataMetadata: NotificationStepDataMetadata,
 ): string {
@@ -164,7 +150,6 @@ export function notificationStepDataMetadataToJSON(
     ),
   );
 }
-
 export function notificationStepDataMetadataFromJSON(
   jsonString: string,
 ): SafeParseResult<NotificationStepDataMetadata, SDKValidationError> {
@@ -204,7 +189,6 @@ export const NotificationStepData$inboundSchema: z.ZodType<
     "_parentId": "parentId",
   });
 });
-
 /** @internal */
 export type NotificationStepData$Outbound = {
   _id?: string | undefined;
@@ -255,19 +239,6 @@ export const NotificationStepData$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace NotificationStepData$ {
-  /** @deprecated use `NotificationStepData$inboundSchema` instead. */
-  export const inboundSchema = NotificationStepData$inboundSchema;
-  /** @deprecated use `NotificationStepData$outboundSchema` instead. */
-  export const outboundSchema = NotificationStepData$outboundSchema;
-  /** @deprecated use `NotificationStepData$Outbound` instead. */
-  export type Outbound = NotificationStepData$Outbound;
-}
-
 export function notificationStepDataToJSON(
   notificationStepData: NotificationStepData,
 ): string {
@@ -275,7 +246,6 @@ export function notificationStepDataToJSON(
     NotificationStepData$outboundSchema.parse(notificationStepData),
   );
 }
-
 export function notificationStepDataFromJSON(
   jsonString: string,
 ): SafeParseResult<NotificationStepData, SDKValidationError> {

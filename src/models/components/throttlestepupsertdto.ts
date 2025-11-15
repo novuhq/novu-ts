@@ -55,7 +55,6 @@ export const ThrottleStepUpsertDtoControlValues$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([ThrottleControlDto$inboundSchema, z.record(z.any())]);
-
 /** @internal */
 export type ThrottleStepUpsertDtoControlValues$Outbound =
   | ThrottleControlDto$Outbound
@@ -68,20 +67,6 @@ export const ThrottleStepUpsertDtoControlValues$outboundSchema: z.ZodType<
   ThrottleStepUpsertDtoControlValues
 > = z.union([ThrottleControlDto$outboundSchema, z.record(z.any())]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ThrottleStepUpsertDtoControlValues$ {
-  /** @deprecated use `ThrottleStepUpsertDtoControlValues$inboundSchema` instead. */
-  export const inboundSchema = ThrottleStepUpsertDtoControlValues$inboundSchema;
-  /** @deprecated use `ThrottleStepUpsertDtoControlValues$outboundSchema` instead. */
-  export const outboundSchema =
-    ThrottleStepUpsertDtoControlValues$outboundSchema;
-  /** @deprecated use `ThrottleStepUpsertDtoControlValues$Outbound` instead. */
-  export type Outbound = ThrottleStepUpsertDtoControlValues$Outbound;
-}
-
 export function throttleStepUpsertDtoControlValuesToJSON(
   throttleStepUpsertDtoControlValues: ThrottleStepUpsertDtoControlValues,
 ): string {
@@ -91,7 +76,6 @@ export function throttleStepUpsertDtoControlValuesToJSON(
     ),
   );
 }
-
 export function throttleStepUpsertDtoControlValuesFromJSON(
   jsonString: string,
 ): SafeParseResult<ThrottleStepUpsertDtoControlValues, SDKValidationError> {
@@ -120,7 +104,6 @@ export const ThrottleStepUpsertDto$inboundSchema: z.ZodType<
     "_id": "id",
   });
 });
-
 /** @internal */
 export type ThrottleStepUpsertDto$Outbound = {
   _id?: string | undefined;
@@ -151,19 +134,6 @@ export const ThrottleStepUpsertDto$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ThrottleStepUpsertDto$ {
-  /** @deprecated use `ThrottleStepUpsertDto$inboundSchema` instead. */
-  export const inboundSchema = ThrottleStepUpsertDto$inboundSchema;
-  /** @deprecated use `ThrottleStepUpsertDto$outboundSchema` instead. */
-  export const outboundSchema = ThrottleStepUpsertDto$outboundSchema;
-  /** @deprecated use `ThrottleStepUpsertDto$Outbound` instead. */
-  export type Outbound = ThrottleStepUpsertDto$Outbound;
-}
-
 export function throttleStepUpsertDtoToJSON(
   throttleStepUpsertDto: ThrottleStepUpsertDto,
 ): string {
@@ -171,7 +141,6 @@ export function throttleStepUpsertDtoToJSON(
     ThrottleStepUpsertDto$outboundSchema.parse(throttleStepUpsertDto),
   );
 }
-
 export function throttleStepUpsertDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<ThrottleStepUpsertDto, SDKValidationError> {

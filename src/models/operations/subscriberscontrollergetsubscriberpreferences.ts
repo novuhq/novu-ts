@@ -34,21 +34,9 @@ export type SubscribersControllerGetSubscriberPreferencesResponse = {
 /** @internal */
 export const Criticality$inboundSchema: z.ZodNativeEnum<typeof Criticality> = z
   .nativeEnum(Criticality);
-
 /** @internal */
 export const Criticality$outboundSchema: z.ZodNativeEnum<typeof Criticality> =
   Criticality$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Criticality$ {
-  /** @deprecated use `Criticality$inboundSchema` instead. */
-  export const inboundSchema = Criticality$inboundSchema;
-  /** @deprecated use `Criticality$outboundSchema` instead. */
-  export const outboundSchema = Criticality$outboundSchema;
-}
 
 /** @internal */
 export const SubscribersControllerGetSubscriberPreferencesRequest$inboundSchema:
@@ -65,7 +53,6 @@ export const SubscribersControllerGetSubscriberPreferencesRequest$inboundSchema:
       "idempotency-key": "idempotencyKey",
     });
   });
-
 /** @internal */
 export type SubscribersControllerGetSubscriberPreferencesRequest$Outbound = {
   subscriberId: string;
@@ -89,22 +76,6 @@ export const SubscribersControllerGetSubscriberPreferencesRequest$outboundSchema
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SubscribersControllerGetSubscriberPreferencesRequest$ {
-  /** @deprecated use `SubscribersControllerGetSubscriberPreferencesRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    SubscribersControllerGetSubscriberPreferencesRequest$inboundSchema;
-  /** @deprecated use `SubscribersControllerGetSubscriberPreferencesRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    SubscribersControllerGetSubscriberPreferencesRequest$outboundSchema;
-  /** @deprecated use `SubscribersControllerGetSubscriberPreferencesRequest$Outbound` instead. */
-  export type Outbound =
-    SubscribersControllerGetSubscriberPreferencesRequest$Outbound;
-}
-
 export function subscribersControllerGetSubscriberPreferencesRequestToJSON(
   subscribersControllerGetSubscriberPreferencesRequest:
     SubscribersControllerGetSubscriberPreferencesRequest,
@@ -115,7 +86,6 @@ export function subscribersControllerGetSubscriberPreferencesRequestToJSON(
     ),
   );
 }
-
 export function subscribersControllerGetSubscriberPreferencesRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -147,7 +117,6 @@ export const SubscribersControllerGetSubscriberPreferencesResponse$inboundSchema
       "Result": "result",
     });
   });
-
 /** @internal */
 export type SubscribersControllerGetSubscriberPreferencesResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
@@ -170,22 +139,6 @@ export const SubscribersControllerGetSubscriberPreferencesResponse$outboundSchem
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SubscribersControllerGetSubscriberPreferencesResponse$ {
-  /** @deprecated use `SubscribersControllerGetSubscriberPreferencesResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    SubscribersControllerGetSubscriberPreferencesResponse$inboundSchema;
-  /** @deprecated use `SubscribersControllerGetSubscriberPreferencesResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    SubscribersControllerGetSubscriberPreferencesResponse$outboundSchema;
-  /** @deprecated use `SubscribersControllerGetSubscriberPreferencesResponse$Outbound` instead. */
-  export type Outbound =
-    SubscribersControllerGetSubscriberPreferencesResponse$Outbound;
-}
-
 export function subscribersControllerGetSubscriberPreferencesResponseToJSON(
   subscribersControllerGetSubscriberPreferencesResponse:
     SubscribersControllerGetSubscriberPreferencesResponse,
@@ -196,7 +149,6 @@ export function subscribersControllerGetSubscriberPreferencesResponseToJSON(
     ),
   );
 }
-
 export function subscribersControllerGetSubscriberPreferencesResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<

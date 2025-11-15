@@ -44,7 +44,6 @@ export const InboundWebhooksControllerHandleWebhookRequest$inboundSchema:
       "RequestBody": "requestBody",
     });
   });
-
 /** @internal */
 export type InboundWebhooksControllerHandleWebhookRequest$Outbound = {
   environmentId: string;
@@ -71,21 +70,6 @@ export const InboundWebhooksControllerHandleWebhookRequest$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InboundWebhooksControllerHandleWebhookRequest$ {
-  /** @deprecated use `InboundWebhooksControllerHandleWebhookRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    InboundWebhooksControllerHandleWebhookRequest$inboundSchema;
-  /** @deprecated use `InboundWebhooksControllerHandleWebhookRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    InboundWebhooksControllerHandleWebhookRequest$outboundSchema;
-  /** @deprecated use `InboundWebhooksControllerHandleWebhookRequest$Outbound` instead. */
-  export type Outbound = InboundWebhooksControllerHandleWebhookRequest$Outbound;
-}
-
 export function inboundWebhooksControllerHandleWebhookRequestToJSON(
   inboundWebhooksControllerHandleWebhookRequest:
     InboundWebhooksControllerHandleWebhookRequest,
@@ -96,7 +80,6 @@ export function inboundWebhooksControllerHandleWebhookRequestToJSON(
     ),
   );
 }
-
 export function inboundWebhooksControllerHandleWebhookRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<

@@ -52,7 +52,6 @@ export const ActivityNotificationSubscriberResponseDto$inboundSchema: z.ZodType<
     "_id": "id",
   });
 });
-
 /** @internal */
 export type ActivityNotificationSubscriberResponseDto$Outbound = {
   firstName?: string | undefined;
@@ -82,21 +81,6 @@ export const ActivityNotificationSubscriberResponseDto$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ActivityNotificationSubscriberResponseDto$ {
-  /** @deprecated use `ActivityNotificationSubscriberResponseDto$inboundSchema` instead. */
-  export const inboundSchema =
-    ActivityNotificationSubscriberResponseDto$inboundSchema;
-  /** @deprecated use `ActivityNotificationSubscriberResponseDto$outboundSchema` instead. */
-  export const outboundSchema =
-    ActivityNotificationSubscriberResponseDto$outboundSchema;
-  /** @deprecated use `ActivityNotificationSubscriberResponseDto$Outbound` instead. */
-  export type Outbound = ActivityNotificationSubscriberResponseDto$Outbound;
-}
-
 export function activityNotificationSubscriberResponseDtoToJSON(
   activityNotificationSubscriberResponseDto:
     ActivityNotificationSubscriberResponseDto,
@@ -107,7 +91,6 @@ export function activityNotificationSubscriberResponseDtoToJSON(
     ),
   );
 }
-
 export function activityNotificationSubscriberResponseDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<

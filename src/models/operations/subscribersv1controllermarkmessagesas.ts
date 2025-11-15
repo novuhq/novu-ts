@@ -39,7 +39,6 @@ export const SubscribersV1ControllerMarkMessagesAsRequest$inboundSchema:
       "MessageMarkAsRequestDto": "messageMarkAsRequestDto",
     });
   });
-
 /** @internal */
 export type SubscribersV1ControllerMarkMessagesAsRequest$Outbound = {
   subscriberId: string;
@@ -64,21 +63,6 @@ export const SubscribersV1ControllerMarkMessagesAsRequest$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SubscribersV1ControllerMarkMessagesAsRequest$ {
-  /** @deprecated use `SubscribersV1ControllerMarkMessagesAsRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    SubscribersV1ControllerMarkMessagesAsRequest$inboundSchema;
-  /** @deprecated use `SubscribersV1ControllerMarkMessagesAsRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    SubscribersV1ControllerMarkMessagesAsRequest$outboundSchema;
-  /** @deprecated use `SubscribersV1ControllerMarkMessagesAsRequest$Outbound` instead. */
-  export type Outbound = SubscribersV1ControllerMarkMessagesAsRequest$Outbound;
-}
-
 export function subscribersV1ControllerMarkMessagesAsRequestToJSON(
   subscribersV1ControllerMarkMessagesAsRequest:
     SubscribersV1ControllerMarkMessagesAsRequest,
@@ -89,7 +73,6 @@ export function subscribersV1ControllerMarkMessagesAsRequestToJSON(
     ),
   );
 }
-
 export function subscribersV1ControllerMarkMessagesAsRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -121,7 +104,6 @@ export const SubscribersV1ControllerMarkMessagesAsResponse$inboundSchema:
       "Result": "result",
     });
   });
-
 /** @internal */
 export type SubscribersV1ControllerMarkMessagesAsResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
@@ -144,21 +126,6 @@ export const SubscribersV1ControllerMarkMessagesAsResponse$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SubscribersV1ControllerMarkMessagesAsResponse$ {
-  /** @deprecated use `SubscribersV1ControllerMarkMessagesAsResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    SubscribersV1ControllerMarkMessagesAsResponse$inboundSchema;
-  /** @deprecated use `SubscribersV1ControllerMarkMessagesAsResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    SubscribersV1ControllerMarkMessagesAsResponse$outboundSchema;
-  /** @deprecated use `SubscribersV1ControllerMarkMessagesAsResponse$Outbound` instead. */
-  export type Outbound = SubscribersV1ControllerMarkMessagesAsResponse$Outbound;
-}
-
 export function subscribersV1ControllerMarkMessagesAsResponseToJSON(
   subscribersV1ControllerMarkMessagesAsResponse:
     SubscribersV1ControllerMarkMessagesAsResponse,
@@ -169,7 +136,6 @@ export function subscribersV1ControllerMarkMessagesAsResponseToJSON(
     ),
   );
 }
-
 export function subscribersV1ControllerMarkMessagesAsResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<

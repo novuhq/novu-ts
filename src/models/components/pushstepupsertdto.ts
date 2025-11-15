@@ -55,7 +55,6 @@ export const PushStepUpsertDtoControlValues$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([PushControlDto$inboundSchema, z.record(z.any())]);
-
 /** @internal */
 export type PushStepUpsertDtoControlValues$Outbound =
   | PushControlDto$Outbound
@@ -68,19 +67,6 @@ export const PushStepUpsertDtoControlValues$outboundSchema: z.ZodType<
   PushStepUpsertDtoControlValues
 > = z.union([PushControlDto$outboundSchema, z.record(z.any())]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PushStepUpsertDtoControlValues$ {
-  /** @deprecated use `PushStepUpsertDtoControlValues$inboundSchema` instead. */
-  export const inboundSchema = PushStepUpsertDtoControlValues$inboundSchema;
-  /** @deprecated use `PushStepUpsertDtoControlValues$outboundSchema` instead. */
-  export const outboundSchema = PushStepUpsertDtoControlValues$outboundSchema;
-  /** @deprecated use `PushStepUpsertDtoControlValues$Outbound` instead. */
-  export type Outbound = PushStepUpsertDtoControlValues$Outbound;
-}
-
 export function pushStepUpsertDtoControlValuesToJSON(
   pushStepUpsertDtoControlValues: PushStepUpsertDtoControlValues,
 ): string {
@@ -90,7 +76,6 @@ export function pushStepUpsertDtoControlValuesToJSON(
     ),
   );
 }
-
 export function pushStepUpsertDtoControlValuesFromJSON(
   jsonString: string,
 ): SafeParseResult<PushStepUpsertDtoControlValues, SDKValidationError> {
@@ -118,7 +103,6 @@ export const PushStepUpsertDto$inboundSchema: z.ZodType<
     "_id": "id",
   });
 });
-
 /** @internal */
 export type PushStepUpsertDto$Outbound = {
   _id?: string | undefined;
@@ -146,19 +130,6 @@ export const PushStepUpsertDto$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PushStepUpsertDto$ {
-  /** @deprecated use `PushStepUpsertDto$inboundSchema` instead. */
-  export const inboundSchema = PushStepUpsertDto$inboundSchema;
-  /** @deprecated use `PushStepUpsertDto$outboundSchema` instead. */
-  export const outboundSchema = PushStepUpsertDto$outboundSchema;
-  /** @deprecated use `PushStepUpsertDto$Outbound` instead. */
-  export type Outbound = PushStepUpsertDto$Outbound;
-}
-
 export function pushStepUpsertDtoToJSON(
   pushStepUpsertDto: PushStepUpsertDto,
 ): string {
@@ -166,7 +137,6 @@ export function pushStepUpsertDtoToJSON(
     PushStepUpsertDto$outboundSchema.parse(pushStepUpsertDto),
   );
 }
-
 export function pushStepUpsertDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<PushStepUpsertDto, SDKValidationError> {

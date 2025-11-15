@@ -54,7 +54,6 @@ export const TopicSubscriptionResponseDto$inboundSchema: z.ZodType<
     "_id": "id",
   });
 });
-
 /** @internal */
 export type TopicSubscriptionResponseDto$Outbound = {
   _id: string;
@@ -79,19 +78,6 @@ export const TopicSubscriptionResponseDto$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TopicSubscriptionResponseDto$ {
-  /** @deprecated use `TopicSubscriptionResponseDto$inboundSchema` instead. */
-  export const inboundSchema = TopicSubscriptionResponseDto$inboundSchema;
-  /** @deprecated use `TopicSubscriptionResponseDto$outboundSchema` instead. */
-  export const outboundSchema = TopicSubscriptionResponseDto$outboundSchema;
-  /** @deprecated use `TopicSubscriptionResponseDto$Outbound` instead. */
-  export type Outbound = TopicSubscriptionResponseDto$Outbound;
-}
-
 export function topicSubscriptionResponseDtoToJSON(
   topicSubscriptionResponseDto: TopicSubscriptionResponseDto,
 ): string {
@@ -101,7 +87,6 @@ export function topicSubscriptionResponseDtoToJSON(
     ),
   );
 }
-
 export function topicSubscriptionResponseDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<TopicSubscriptionResponseDto, SDKValidationError> {

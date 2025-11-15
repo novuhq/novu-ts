@@ -36,22 +36,10 @@ export type DeleteMessageResponseDto = {
 export const DeleteMessageResponseDtoStatus$inboundSchema: z.ZodNativeEnum<
   typeof DeleteMessageResponseDtoStatus
 > = z.nativeEnum(DeleteMessageResponseDtoStatus);
-
 /** @internal */
 export const DeleteMessageResponseDtoStatus$outboundSchema: z.ZodNativeEnum<
   typeof DeleteMessageResponseDtoStatus
 > = DeleteMessageResponseDtoStatus$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DeleteMessageResponseDtoStatus$ {
-  /** @deprecated use `DeleteMessageResponseDtoStatus$inboundSchema` instead. */
-  export const inboundSchema = DeleteMessageResponseDtoStatus$inboundSchema;
-  /** @deprecated use `DeleteMessageResponseDtoStatus$outboundSchema` instead. */
-  export const outboundSchema = DeleteMessageResponseDtoStatus$outboundSchema;
-}
 
 /** @internal */
 export const DeleteMessageResponseDto$inboundSchema: z.ZodType<
@@ -62,7 +50,6 @@ export const DeleteMessageResponseDto$inboundSchema: z.ZodType<
   acknowledged: z.boolean(),
   status: DeleteMessageResponseDtoStatus$inboundSchema,
 });
-
 /** @internal */
 export type DeleteMessageResponseDto$Outbound = {
   acknowledged: boolean;
@@ -79,19 +66,6 @@ export const DeleteMessageResponseDto$outboundSchema: z.ZodType<
   status: DeleteMessageResponseDtoStatus$outboundSchema,
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DeleteMessageResponseDto$ {
-  /** @deprecated use `DeleteMessageResponseDto$inboundSchema` instead. */
-  export const inboundSchema = DeleteMessageResponseDto$inboundSchema;
-  /** @deprecated use `DeleteMessageResponseDto$outboundSchema` instead. */
-  export const outboundSchema = DeleteMessageResponseDto$outboundSchema;
-  /** @deprecated use `DeleteMessageResponseDto$Outbound` instead. */
-  export type Outbound = DeleteMessageResponseDto$Outbound;
-}
-
 export function deleteMessageResponseDtoToJSON(
   deleteMessageResponseDto: DeleteMessageResponseDto,
 ): string {
@@ -99,7 +73,6 @@ export function deleteMessageResponseDtoToJSON(
     DeleteMessageResponseDto$outboundSchema.parse(deleteMessageResponseDto),
   );
 }
-
 export function deleteMessageResponseDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<DeleteMessageResponseDto, SDKValidationError> {

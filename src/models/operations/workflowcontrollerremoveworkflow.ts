@@ -33,7 +33,6 @@ export const WorkflowControllerRemoveWorkflowRequest$inboundSchema: z.ZodType<
     "idempotency-key": "idempotencyKey",
   });
 });
-
 /** @internal */
 export type WorkflowControllerRemoveWorkflowRequest$Outbound = {
   workflowId: string;
@@ -54,21 +53,6 @@ export const WorkflowControllerRemoveWorkflowRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WorkflowControllerRemoveWorkflowRequest$ {
-  /** @deprecated use `WorkflowControllerRemoveWorkflowRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    WorkflowControllerRemoveWorkflowRequest$inboundSchema;
-  /** @deprecated use `WorkflowControllerRemoveWorkflowRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    WorkflowControllerRemoveWorkflowRequest$outboundSchema;
-  /** @deprecated use `WorkflowControllerRemoveWorkflowRequest$Outbound` instead. */
-  export type Outbound = WorkflowControllerRemoveWorkflowRequest$Outbound;
-}
-
 export function workflowControllerRemoveWorkflowRequestToJSON(
   workflowControllerRemoveWorkflowRequest:
     WorkflowControllerRemoveWorkflowRequest,
@@ -79,7 +63,6 @@ export function workflowControllerRemoveWorkflowRequestToJSON(
     ),
   );
 }
-
 export function workflowControllerRemoveWorkflowRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -108,7 +91,6 @@ export const WorkflowControllerRemoveWorkflowResponse$inboundSchema: z.ZodType<
     "Headers": "headers",
   });
 });
-
 /** @internal */
 export type WorkflowControllerRemoveWorkflowResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
@@ -127,21 +109,6 @@ export const WorkflowControllerRemoveWorkflowResponse$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WorkflowControllerRemoveWorkflowResponse$ {
-  /** @deprecated use `WorkflowControllerRemoveWorkflowResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    WorkflowControllerRemoveWorkflowResponse$inboundSchema;
-  /** @deprecated use `WorkflowControllerRemoveWorkflowResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    WorkflowControllerRemoveWorkflowResponse$outboundSchema;
-  /** @deprecated use `WorkflowControllerRemoveWorkflowResponse$Outbound` instead. */
-  export type Outbound = WorkflowControllerRemoveWorkflowResponse$Outbound;
-}
-
 export function workflowControllerRemoveWorkflowResponseToJSON(
   workflowControllerRemoveWorkflowResponse:
     WorkflowControllerRemoveWorkflowResponse,
@@ -152,7 +119,6 @@ export function workflowControllerRemoveWorkflowResponseToJSON(
     ),
   );
 }
-
 export function workflowControllerRemoveWorkflowResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<

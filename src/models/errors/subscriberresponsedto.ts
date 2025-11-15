@@ -321,16 +321,3 @@ export const SubscriberResponseDto$outboundSchema: z.ZodType<
       });
     }),
   );
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SubscriberResponseDto$ {
-  /** @deprecated use `SubscriberResponseDto$inboundSchema` instead. */
-  export const inboundSchema = SubscriberResponseDto$inboundSchema;
-  /** @deprecated use `SubscriberResponseDto$outboundSchema` instead. */
-  export const outboundSchema = SubscriberResponseDto$outboundSchema;
-  /** @deprecated use `SubscriberResponseDto$Outbound` instead. */
-  export type Outbound = SubscriberResponseDto$Outbound;
-}

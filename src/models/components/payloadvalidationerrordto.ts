@@ -50,7 +50,6 @@ export type PayloadValidationErrorDto = {
 /** @internal */
 export const Value5$inboundSchema: z.ZodType<Value5, z.ZodTypeDef, unknown> = z
   .union([z.string(), z.number(), z.boolean(), z.record(z.any())]);
-
 /** @internal */
 export type Value5$Outbound = string | number | boolean | { [k: string]: any };
 
@@ -61,23 +60,9 @@ export const Value5$outboundSchema: z.ZodType<
   Value5
 > = z.union([z.string(), z.number(), z.boolean(), z.record(z.any())]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Value5$ {
-  /** @deprecated use `Value5$inboundSchema` instead. */
-  export const inboundSchema = Value5$inboundSchema;
-  /** @deprecated use `Value5$outboundSchema` instead. */
-  export const outboundSchema = Value5$outboundSchema;
-  /** @deprecated use `Value5$Outbound` instead. */
-  export type Outbound = Value5$Outbound;
-}
-
 export function value5ToJSON(value5: Value5): string {
   return JSON.stringify(Value5$outboundSchema.parse(value5));
 }
-
 export function value5FromJSON(
   jsonString: string,
 ): SafeParseResult<Value5, SDKValidationError> {
@@ -91,7 +76,6 @@ export function value5FromJSON(
 /** @internal */
 export const Value4$inboundSchema: z.ZodType<Value4, z.ZodTypeDef, unknown> = z
   .object({});
-
 /** @internal */
 export type Value4$Outbound = {};
 
@@ -102,23 +86,9 @@ export const Value4$outboundSchema: z.ZodType<
   Value4
 > = z.object({});
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Value4$ {
-  /** @deprecated use `Value4$inboundSchema` instead. */
-  export const inboundSchema = Value4$inboundSchema;
-  /** @deprecated use `Value4$outboundSchema` instead. */
-  export const outboundSchema = Value4$outboundSchema;
-  /** @deprecated use `Value4$Outbound` instead. */
-  export type Outbound = Value4$Outbound;
-}
-
 export function value4ToJSON(value4: Value4): string {
   return JSON.stringify(Value4$outboundSchema.parse(value4));
 }
-
 export function value4FromJSON(
   jsonString: string,
 ): SafeParseResult<Value4, SDKValidationError> {
@@ -145,7 +115,6 @@ export const PayloadValidationErrorDtoValue$inboundSchema: z.ZodType<
     ),
   ),
 ]);
-
 /** @internal */
 export type PayloadValidationErrorDtoValue$Outbound =
   | string
@@ -171,19 +140,6 @@ export const PayloadValidationErrorDtoValue$outboundSchema: z.ZodType<
   ),
 ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PayloadValidationErrorDtoValue$ {
-  /** @deprecated use `PayloadValidationErrorDtoValue$inboundSchema` instead. */
-  export const inboundSchema = PayloadValidationErrorDtoValue$inboundSchema;
-  /** @deprecated use `PayloadValidationErrorDtoValue$outboundSchema` instead. */
-  export const outboundSchema = PayloadValidationErrorDtoValue$outboundSchema;
-  /** @deprecated use `PayloadValidationErrorDtoValue$Outbound` instead. */
-  export type Outbound = PayloadValidationErrorDtoValue$Outbound;
-}
-
 export function payloadValidationErrorDtoValueToJSON(
   payloadValidationErrorDtoValue: PayloadValidationErrorDtoValue,
 ): string {
@@ -193,7 +149,6 @@ export function payloadValidationErrorDtoValueToJSON(
     ),
   );
 }
-
 export function payloadValidationErrorDtoValueFromJSON(
   jsonString: string,
 ): SafeParseResult<PayloadValidationErrorDtoValue, SDKValidationError> {
@@ -227,7 +182,6 @@ export const PayloadValidationErrorDto$inboundSchema: z.ZodType<
   ).optional(),
   schemaPath: z.string().optional(),
 });
-
 /** @internal */
 export type PayloadValidationErrorDto$Outbound = {
   field: string;
@@ -267,19 +221,6 @@ export const PayloadValidationErrorDto$outboundSchema: z.ZodType<
   schemaPath: z.string().optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PayloadValidationErrorDto$ {
-  /** @deprecated use `PayloadValidationErrorDto$inboundSchema` instead. */
-  export const inboundSchema = PayloadValidationErrorDto$inboundSchema;
-  /** @deprecated use `PayloadValidationErrorDto$outboundSchema` instead. */
-  export const outboundSchema = PayloadValidationErrorDto$outboundSchema;
-  /** @deprecated use `PayloadValidationErrorDto$Outbound` instead. */
-  export type Outbound = PayloadValidationErrorDto$Outbound;
-}
-
 export function payloadValidationErrorDtoToJSON(
   payloadValidationErrorDto: PayloadValidationErrorDto,
 ): string {
@@ -287,7 +228,6 @@ export function payloadValidationErrorDtoToJSON(
     PayloadValidationErrorDto$outboundSchema.parse(payloadValidationErrorDto),
   );
 }
-
 export function payloadValidationErrorDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<PayloadValidationErrorDto, SDKValidationError> {

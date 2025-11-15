@@ -44,7 +44,6 @@ export const PatchSubscriberPreferencesDto$inboundSchema: z.ZodType<
   workflowId: z.string().optional(),
   schedule: ScheduleDto$inboundSchema.optional(),
 });
-
 /** @internal */
 export type PatchSubscriberPreferencesDto$Outbound = {
   channels?: PatchPreferenceChannelsDto$Outbound | undefined;
@@ -63,19 +62,6 @@ export const PatchSubscriberPreferencesDto$outboundSchema: z.ZodType<
   schedule: ScheduleDto$outboundSchema.optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PatchSubscriberPreferencesDto$ {
-  /** @deprecated use `PatchSubscriberPreferencesDto$inboundSchema` instead. */
-  export const inboundSchema = PatchSubscriberPreferencesDto$inboundSchema;
-  /** @deprecated use `PatchSubscriberPreferencesDto$outboundSchema` instead. */
-  export const outboundSchema = PatchSubscriberPreferencesDto$outboundSchema;
-  /** @deprecated use `PatchSubscriberPreferencesDto$Outbound` instead. */
-  export type Outbound = PatchSubscriberPreferencesDto$Outbound;
-}
-
 export function patchSubscriberPreferencesDtoToJSON(
   patchSubscriberPreferencesDto: PatchSubscriberPreferencesDto,
 ): string {
@@ -85,7 +71,6 @@ export function patchSubscriberPreferencesDtoToJSON(
     ),
   );
 }
-
 export function patchSubscriberPreferencesDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<PatchSubscriberPreferencesDto, SDKValidationError> {

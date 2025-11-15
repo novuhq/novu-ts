@@ -49,7 +49,6 @@ export const MessageAction$inboundSchema: z.ZodType<
   buttons: z.array(MessageButton$inboundSchema).optional(),
   result: MessageActionResult$inboundSchema.optional(),
 });
-
 /** @internal */
 export type MessageAction$Outbound = {
   status?: string | undefined;
@@ -68,23 +67,9 @@ export const MessageAction$outboundSchema: z.ZodType<
   result: MessageActionResult$outboundSchema.optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MessageAction$ {
-  /** @deprecated use `MessageAction$inboundSchema` instead. */
-  export const inboundSchema = MessageAction$inboundSchema;
-  /** @deprecated use `MessageAction$outboundSchema` instead. */
-  export const outboundSchema = MessageAction$outboundSchema;
-  /** @deprecated use `MessageAction$Outbound` instead. */
-  export type Outbound = MessageAction$Outbound;
-}
-
 export function messageActionToJSON(messageAction: MessageAction): string {
   return JSON.stringify(MessageAction$outboundSchema.parse(messageAction));
 }
-
 export function messageActionFromJSON(
   jsonString: string,
 ): SafeParseResult<MessageAction, SDKValidationError> {

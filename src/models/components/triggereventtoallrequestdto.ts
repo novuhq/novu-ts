@@ -164,7 +164,6 @@ export const TriggerEventToAllRequestDtoChannels$inboundSchema: z.ZodType<
 > = z.object({
   email: EmailChannelOverrides$inboundSchema.optional(),
 });
-
 /** @internal */
 export type TriggerEventToAllRequestDtoChannels$Outbound = {
   email?: EmailChannelOverrides$Outbound | undefined;
@@ -179,21 +178,6 @@ export const TriggerEventToAllRequestDtoChannels$outboundSchema: z.ZodType<
   email: EmailChannelOverrides$outboundSchema.optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TriggerEventToAllRequestDtoChannels$ {
-  /** @deprecated use `TriggerEventToAllRequestDtoChannels$inboundSchema` instead. */
-  export const inboundSchema =
-    TriggerEventToAllRequestDtoChannels$inboundSchema;
-  /** @deprecated use `TriggerEventToAllRequestDtoChannels$outboundSchema` instead. */
-  export const outboundSchema =
-    TriggerEventToAllRequestDtoChannels$outboundSchema;
-  /** @deprecated use `TriggerEventToAllRequestDtoChannels$Outbound` instead. */
-  export type Outbound = TriggerEventToAllRequestDtoChannels$Outbound;
-}
-
 export function triggerEventToAllRequestDtoChannelsToJSON(
   triggerEventToAllRequestDtoChannels: TriggerEventToAllRequestDtoChannels,
 ): string {
@@ -203,7 +187,6 @@ export function triggerEventToAllRequestDtoChannelsToJSON(
     ),
   );
 }
-
 export function triggerEventToAllRequestDtoChannelsFromJSON(
   jsonString: string,
 ): SafeParseResult<TriggerEventToAllRequestDtoChannels, SDKValidationError> {
@@ -236,7 +219,6 @@ export const TriggerEventToAllRequestDtoOverrides$inboundSchema: z.ZodType<
   "additionalProperties",
   true,
 );
-
 /** @internal */
 export type TriggerEventToAllRequestDtoOverrides$Outbound = {
   steps?: { [k: string]: StepsOverrides$Outbound } | undefined;
@@ -277,21 +259,6 @@ export const TriggerEventToAllRequestDtoOverrides$outboundSchema: z.ZodType<
   };
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TriggerEventToAllRequestDtoOverrides$ {
-  /** @deprecated use `TriggerEventToAllRequestDtoOverrides$inboundSchema` instead. */
-  export const inboundSchema =
-    TriggerEventToAllRequestDtoOverrides$inboundSchema;
-  /** @deprecated use `TriggerEventToAllRequestDtoOverrides$outboundSchema` instead. */
-  export const outboundSchema =
-    TriggerEventToAllRequestDtoOverrides$outboundSchema;
-  /** @deprecated use `TriggerEventToAllRequestDtoOverrides$Outbound` instead. */
-  export type Outbound = TriggerEventToAllRequestDtoOverrides$Outbound;
-}
-
 export function triggerEventToAllRequestDtoOverridesToJSON(
   triggerEventToAllRequestDtoOverrides: TriggerEventToAllRequestDtoOverrides,
 ): string {
@@ -301,7 +268,6 @@ export function triggerEventToAllRequestDtoOverridesToJSON(
     ),
   );
 }
-
 export function triggerEventToAllRequestDtoOverridesFromJSON(
   jsonString: string,
 ): SafeParseResult<TriggerEventToAllRequestDtoOverrides, SDKValidationError> {
@@ -319,7 +285,6 @@ export const TriggerEventToAllRequestDtoActor$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([SubscriberPayloadDto$inboundSchema, z.string()]);
-
 /** @internal */
 export type TriggerEventToAllRequestDtoActor$Outbound =
   | SubscriberPayloadDto$Outbound
@@ -332,19 +297,6 @@ export const TriggerEventToAllRequestDtoActor$outboundSchema: z.ZodType<
   TriggerEventToAllRequestDtoActor
 > = z.union([SubscriberPayloadDto$outboundSchema, z.string()]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TriggerEventToAllRequestDtoActor$ {
-  /** @deprecated use `TriggerEventToAllRequestDtoActor$inboundSchema` instead. */
-  export const inboundSchema = TriggerEventToAllRequestDtoActor$inboundSchema;
-  /** @deprecated use `TriggerEventToAllRequestDtoActor$outboundSchema` instead. */
-  export const outboundSchema = TriggerEventToAllRequestDtoActor$outboundSchema;
-  /** @deprecated use `TriggerEventToAllRequestDtoActor$Outbound` instead. */
-  export type Outbound = TriggerEventToAllRequestDtoActor$Outbound;
-}
-
 export function triggerEventToAllRequestDtoActorToJSON(
   triggerEventToAllRequestDtoActor: TriggerEventToAllRequestDtoActor,
 ): string {
@@ -354,7 +306,6 @@ export function triggerEventToAllRequestDtoActorToJSON(
     ),
   );
 }
-
 export function triggerEventToAllRequestDtoActorFromJSON(
   jsonString: string,
 ): SafeParseResult<TriggerEventToAllRequestDtoActor, SDKValidationError> {
@@ -371,7 +322,6 @@ export const TriggerEventToAllRequestDtoTenant$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([z.string(), TenantPayloadDto$inboundSchema]);
-
 /** @internal */
 export type TriggerEventToAllRequestDtoTenant$Outbound =
   | string
@@ -384,20 +334,6 @@ export const TriggerEventToAllRequestDtoTenant$outboundSchema: z.ZodType<
   TriggerEventToAllRequestDtoTenant
 > = z.union([z.string(), TenantPayloadDto$outboundSchema]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TriggerEventToAllRequestDtoTenant$ {
-  /** @deprecated use `TriggerEventToAllRequestDtoTenant$inboundSchema` instead. */
-  export const inboundSchema = TriggerEventToAllRequestDtoTenant$inboundSchema;
-  /** @deprecated use `TriggerEventToAllRequestDtoTenant$outboundSchema` instead. */
-  export const outboundSchema =
-    TriggerEventToAllRequestDtoTenant$outboundSchema;
-  /** @deprecated use `TriggerEventToAllRequestDtoTenant$Outbound` instead. */
-  export type Outbound = TriggerEventToAllRequestDtoTenant$Outbound;
-}
-
 export function triggerEventToAllRequestDtoTenantToJSON(
   triggerEventToAllRequestDtoTenant: TriggerEventToAllRequestDtoTenant,
 ): string {
@@ -407,7 +343,6 @@ export function triggerEventToAllRequestDtoTenantToJSON(
     ),
   );
 }
-
 export function triggerEventToAllRequestDtoTenantFromJSON(
   jsonString: string,
 ): SafeParseResult<TriggerEventToAllRequestDtoTenant, SDKValidationError> {
@@ -432,7 +367,6 @@ export const TriggerEventToAllRequestDto$inboundSchema: z.ZodType<
   actor: z.union([SubscriberPayloadDto$inboundSchema, z.string()]).optional(),
   tenant: z.union([z.string(), TenantPayloadDto$inboundSchema]).optional(),
 });
-
 /** @internal */
 export type TriggerEventToAllRequestDto$Outbound = {
   name: string;
@@ -458,19 +392,6 @@ export const TriggerEventToAllRequestDto$outboundSchema: z.ZodType<
   tenant: z.union([z.string(), TenantPayloadDto$outboundSchema]).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TriggerEventToAllRequestDto$ {
-  /** @deprecated use `TriggerEventToAllRequestDto$inboundSchema` instead. */
-  export const inboundSchema = TriggerEventToAllRequestDto$inboundSchema;
-  /** @deprecated use `TriggerEventToAllRequestDto$outboundSchema` instead. */
-  export const outboundSchema = TriggerEventToAllRequestDto$outboundSchema;
-  /** @deprecated use `TriggerEventToAllRequestDto$Outbound` instead. */
-  export type Outbound = TriggerEventToAllRequestDto$Outbound;
-}
-
 export function triggerEventToAllRequestDtoToJSON(
   triggerEventToAllRequestDto: TriggerEventToAllRequestDto,
 ): string {
@@ -480,7 +401,6 @@ export function triggerEventToAllRequestDtoToJSON(
     ),
   );
 }
-
 export function triggerEventToAllRequestDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<TriggerEventToAllRequestDto, SDKValidationError> {

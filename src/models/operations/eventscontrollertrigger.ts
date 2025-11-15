@@ -36,7 +36,6 @@ export const EventsControllerTriggerRequest$inboundSchema: z.ZodType<
     "TriggerEventRequestDto": "triggerEventRequestDto",
   });
 });
-
 /** @internal */
 export type EventsControllerTriggerRequest$Outbound = {
   "idempotency-key"?: string | undefined;
@@ -58,19 +57,6 @@ export const EventsControllerTriggerRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EventsControllerTriggerRequest$ {
-  /** @deprecated use `EventsControllerTriggerRequest$inboundSchema` instead. */
-  export const inboundSchema = EventsControllerTriggerRequest$inboundSchema;
-  /** @deprecated use `EventsControllerTriggerRequest$outboundSchema` instead. */
-  export const outboundSchema = EventsControllerTriggerRequest$outboundSchema;
-  /** @deprecated use `EventsControllerTriggerRequest$Outbound` instead. */
-  export type Outbound = EventsControllerTriggerRequest$Outbound;
-}
-
 export function eventsControllerTriggerRequestToJSON(
   eventsControllerTriggerRequest: EventsControllerTriggerRequest,
 ): string {
@@ -80,7 +66,6 @@ export function eventsControllerTriggerRequestToJSON(
     ),
   );
 }
-
 export function eventsControllerTriggerRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<EventsControllerTriggerRequest, SDKValidationError> {
@@ -105,7 +90,6 @@ export const EventsControllerTriggerResponse$inboundSchema: z.ZodType<
     "Result": "result",
   });
 });
-
 /** @internal */
 export type EventsControllerTriggerResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
@@ -127,19 +111,6 @@ export const EventsControllerTriggerResponse$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EventsControllerTriggerResponse$ {
-  /** @deprecated use `EventsControllerTriggerResponse$inboundSchema` instead. */
-  export const inboundSchema = EventsControllerTriggerResponse$inboundSchema;
-  /** @deprecated use `EventsControllerTriggerResponse$outboundSchema` instead. */
-  export const outboundSchema = EventsControllerTriggerResponse$outboundSchema;
-  /** @deprecated use `EventsControllerTriggerResponse$Outbound` instead. */
-  export type Outbound = EventsControllerTriggerResponse$Outbound;
-}
-
 export function eventsControllerTriggerResponseToJSON(
   eventsControllerTriggerResponse: EventsControllerTriggerResponse,
 ): string {
@@ -149,7 +120,6 @@ export function eventsControllerTriggerResponseToJSON(
     ),
   );
 }
-
 export function eventsControllerTriggerResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<EventsControllerTriggerResponse, SDKValidationError> {
