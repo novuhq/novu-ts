@@ -47,7 +47,6 @@ export const PatchPreferenceChannelsDto$inboundSchema: z.ZodType<
     "in_app": "inApp",
   });
 });
-
 /** @internal */
 export type PatchPreferenceChannelsDto$Outbound = {
   email?: boolean | undefined;
@@ -74,19 +73,6 @@ export const PatchPreferenceChannelsDto$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PatchPreferenceChannelsDto$ {
-  /** @deprecated use `PatchPreferenceChannelsDto$inboundSchema` instead. */
-  export const inboundSchema = PatchPreferenceChannelsDto$inboundSchema;
-  /** @deprecated use `PatchPreferenceChannelsDto$outboundSchema` instead. */
-  export const outboundSchema = PatchPreferenceChannelsDto$outboundSchema;
-  /** @deprecated use `PatchPreferenceChannelsDto$Outbound` instead. */
-  export type Outbound = PatchPreferenceChannelsDto$Outbound;
-}
-
 export function patchPreferenceChannelsDtoToJSON(
   patchPreferenceChannelsDto: PatchPreferenceChannelsDto,
 ): string {
@@ -94,7 +80,6 @@ export function patchPreferenceChannelsDtoToJSON(
     PatchPreferenceChannelsDto$outboundSchema.parse(patchPreferenceChannelsDto),
   );
 }
-
 export function patchPreferenceChannelsDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<PatchPreferenceChannelsDto, SDKValidationError> {

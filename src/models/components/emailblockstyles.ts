@@ -27,7 +27,6 @@ export const EmailBlockStyles$inboundSchema: z.ZodType<
 > = z.object({
   textAlign: TextAlignEnum$inboundSchema,
 });
-
 /** @internal */
 export type EmailBlockStyles$Outbound = {
   textAlign: string;
@@ -42,19 +41,6 @@ export const EmailBlockStyles$outboundSchema: z.ZodType<
   textAlign: TextAlignEnum$outboundSchema,
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EmailBlockStyles$ {
-  /** @deprecated use `EmailBlockStyles$inboundSchema` instead. */
-  export const inboundSchema = EmailBlockStyles$inboundSchema;
-  /** @deprecated use `EmailBlockStyles$outboundSchema` instead. */
-  export const outboundSchema = EmailBlockStyles$outboundSchema;
-  /** @deprecated use `EmailBlockStyles$Outbound` instead. */
-  export type Outbound = EmailBlockStyles$Outbound;
-}
-
 export function emailBlockStylesToJSON(
   emailBlockStyles: EmailBlockStyles,
 ): string {
@@ -62,7 +48,6 @@ export function emailBlockStylesToJSON(
     EmailBlockStyles$outboundSchema.parse(emailBlockStyles),
   );
 }
-
 export function emailBlockStylesFromJSON(
   jsonString: string,
 ): SafeParseResult<EmailBlockStyles, SDKValidationError> {

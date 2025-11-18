@@ -41,7 +41,6 @@ export const LayoutsControllerGeneratePreviewRequest$inboundSchema: z.ZodType<
     "LayoutPreviewRequestDto": "layoutPreviewRequestDto",
   });
 });
-
 /** @internal */
 export type LayoutsControllerGeneratePreviewRequest$Outbound = {
   layoutId: string;
@@ -65,21 +64,6 @@ export const LayoutsControllerGeneratePreviewRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace LayoutsControllerGeneratePreviewRequest$ {
-  /** @deprecated use `LayoutsControllerGeneratePreviewRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    LayoutsControllerGeneratePreviewRequest$inboundSchema;
-  /** @deprecated use `LayoutsControllerGeneratePreviewRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    LayoutsControllerGeneratePreviewRequest$outboundSchema;
-  /** @deprecated use `LayoutsControllerGeneratePreviewRequest$Outbound` instead. */
-  export type Outbound = LayoutsControllerGeneratePreviewRequest$Outbound;
-}
-
 export function layoutsControllerGeneratePreviewRequestToJSON(
   layoutsControllerGeneratePreviewRequest:
     LayoutsControllerGeneratePreviewRequest,
@@ -90,7 +74,6 @@ export function layoutsControllerGeneratePreviewRequestToJSON(
     ),
   );
 }
-
 export function layoutsControllerGeneratePreviewRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -121,7 +104,6 @@ export const LayoutsControllerGeneratePreviewResponse$inboundSchema: z.ZodType<
     "Result": "result",
   });
 });
-
 /** @internal */
 export type LayoutsControllerGeneratePreviewResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
@@ -143,21 +125,6 @@ export const LayoutsControllerGeneratePreviewResponse$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace LayoutsControllerGeneratePreviewResponse$ {
-  /** @deprecated use `LayoutsControllerGeneratePreviewResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    LayoutsControllerGeneratePreviewResponse$inboundSchema;
-  /** @deprecated use `LayoutsControllerGeneratePreviewResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    LayoutsControllerGeneratePreviewResponse$outboundSchema;
-  /** @deprecated use `LayoutsControllerGeneratePreviewResponse$Outbound` instead. */
-  export type Outbound = LayoutsControllerGeneratePreviewResponse$Outbound;
-}
-
 export function layoutsControllerGeneratePreviewResponseToJSON(
   layoutsControllerGeneratePreviewResponse:
     LayoutsControllerGeneratePreviewResponse,
@@ -168,7 +135,6 @@ export function layoutsControllerGeneratePreviewResponseToJSON(
     ),
   );
 }
-
 export function layoutsControllerGeneratePreviewResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<

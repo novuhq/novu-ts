@@ -37,7 +37,6 @@ export const WorkflowControllerGetWorkflowRequest$inboundSchema: z.ZodType<
     "idempotency-key": "idempotencyKey",
   });
 });
-
 /** @internal */
 export type WorkflowControllerGetWorkflowRequest$Outbound = {
   workflowId: string;
@@ -60,21 +59,6 @@ export const WorkflowControllerGetWorkflowRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WorkflowControllerGetWorkflowRequest$ {
-  /** @deprecated use `WorkflowControllerGetWorkflowRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    WorkflowControllerGetWorkflowRequest$inboundSchema;
-  /** @deprecated use `WorkflowControllerGetWorkflowRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    WorkflowControllerGetWorkflowRequest$outboundSchema;
-  /** @deprecated use `WorkflowControllerGetWorkflowRequest$Outbound` instead. */
-  export type Outbound = WorkflowControllerGetWorkflowRequest$Outbound;
-}
-
 export function workflowControllerGetWorkflowRequestToJSON(
   workflowControllerGetWorkflowRequest: WorkflowControllerGetWorkflowRequest,
 ): string {
@@ -84,7 +68,6 @@ export function workflowControllerGetWorkflowRequestToJSON(
     ),
   );
 }
-
 export function workflowControllerGetWorkflowRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<WorkflowControllerGetWorkflowRequest, SDKValidationError> {
@@ -110,7 +93,6 @@ export const WorkflowControllerGetWorkflowResponse$inboundSchema: z.ZodType<
     "Result": "result",
   });
 });
-
 /** @internal */
 export type WorkflowControllerGetWorkflowResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
@@ -132,21 +114,6 @@ export const WorkflowControllerGetWorkflowResponse$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WorkflowControllerGetWorkflowResponse$ {
-  /** @deprecated use `WorkflowControllerGetWorkflowResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    WorkflowControllerGetWorkflowResponse$inboundSchema;
-  /** @deprecated use `WorkflowControllerGetWorkflowResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    WorkflowControllerGetWorkflowResponse$outboundSchema;
-  /** @deprecated use `WorkflowControllerGetWorkflowResponse$Outbound` instead. */
-  export type Outbound = WorkflowControllerGetWorkflowResponse$Outbound;
-}
-
 export function workflowControllerGetWorkflowResponseToJSON(
   workflowControllerGetWorkflowResponse: WorkflowControllerGetWorkflowResponse,
 ): string {
@@ -156,7 +123,6 @@ export function workflowControllerGetWorkflowResponseToJSON(
     ),
   );
 }
-
 export function workflowControllerGetWorkflowResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<WorkflowControllerGetWorkflowResponse, SDKValidationError> {

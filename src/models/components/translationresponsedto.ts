@@ -58,23 +58,10 @@ export type TranslationResponseDto = {
 export const TranslationResponseDtoResourceType$inboundSchema: z.ZodNativeEnum<
   typeof TranslationResponseDtoResourceType
 > = z.nativeEnum(TranslationResponseDtoResourceType);
-
 /** @internal */
 export const TranslationResponseDtoResourceType$outboundSchema: z.ZodNativeEnum<
   typeof TranslationResponseDtoResourceType
 > = TranslationResponseDtoResourceType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TranslationResponseDtoResourceType$ {
-  /** @deprecated use `TranslationResponseDtoResourceType$inboundSchema` instead. */
-  export const inboundSchema = TranslationResponseDtoResourceType$inboundSchema;
-  /** @deprecated use `TranslationResponseDtoResourceType$outboundSchema` instead. */
-  export const outboundSchema =
-    TranslationResponseDtoResourceType$outboundSchema;
-}
 
 /** @internal */
 export const TranslationResponseDtoContent$inboundSchema: z.ZodType<
@@ -82,7 +69,6 @@ export const TranslationResponseDtoContent$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({});
-
 /** @internal */
 export type TranslationResponseDtoContent$Outbound = {};
 
@@ -93,19 +79,6 @@ export const TranslationResponseDtoContent$outboundSchema: z.ZodType<
   TranslationResponseDtoContent
 > = z.object({});
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TranslationResponseDtoContent$ {
-  /** @deprecated use `TranslationResponseDtoContent$inboundSchema` instead. */
-  export const inboundSchema = TranslationResponseDtoContent$inboundSchema;
-  /** @deprecated use `TranslationResponseDtoContent$outboundSchema` instead. */
-  export const outboundSchema = TranslationResponseDtoContent$outboundSchema;
-  /** @deprecated use `TranslationResponseDtoContent$Outbound` instead. */
-  export type Outbound = TranslationResponseDtoContent$Outbound;
-}
-
 export function translationResponseDtoContentToJSON(
   translationResponseDtoContent: TranslationResponseDtoContent,
 ): string {
@@ -115,7 +88,6 @@ export function translationResponseDtoContentToJSON(
     ),
   );
 }
-
 export function translationResponseDtoContentFromJSON(
   jsonString: string,
 ): SafeParseResult<TranslationResponseDtoContent, SDKValidationError> {
@@ -139,7 +111,6 @@ export const TranslationResponseDto$inboundSchema: z.ZodType<
   createdAt: z.string(),
   updatedAt: z.string(),
 });
-
 /** @internal */
 export type TranslationResponseDto$Outbound = {
   resourceId: string;
@@ -164,19 +135,6 @@ export const TranslationResponseDto$outboundSchema: z.ZodType<
   updatedAt: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TranslationResponseDto$ {
-  /** @deprecated use `TranslationResponseDto$inboundSchema` instead. */
-  export const inboundSchema = TranslationResponseDto$inboundSchema;
-  /** @deprecated use `TranslationResponseDto$outboundSchema` instead. */
-  export const outboundSchema = TranslationResponseDto$outboundSchema;
-  /** @deprecated use `TranslationResponseDto$Outbound` instead. */
-  export type Outbound = TranslationResponseDto$Outbound;
-}
-
 export function translationResponseDtoToJSON(
   translationResponseDto: TranslationResponseDto,
 ): string {
@@ -184,7 +142,6 @@ export function translationResponseDtoToJSON(
     TranslationResponseDto$outboundSchema.parse(translationResponseDto),
   );
 }
-
 export function translationResponseDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<TranslationResponseDto, SDKValidationError> {

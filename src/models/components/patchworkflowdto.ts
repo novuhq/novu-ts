@@ -52,7 +52,6 @@ export const PatchWorkflowDto$inboundSchema: z.ZodType<
   validatePayload: z.boolean().optional(),
   isTranslationEnabled: z.boolean().optional(),
 });
-
 /** @internal */
 export type PatchWorkflowDto$Outbound = {
   active?: boolean | undefined;
@@ -79,19 +78,6 @@ export const PatchWorkflowDto$outboundSchema: z.ZodType<
   isTranslationEnabled: z.boolean().optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PatchWorkflowDto$ {
-  /** @deprecated use `PatchWorkflowDto$inboundSchema` instead. */
-  export const inboundSchema = PatchWorkflowDto$inboundSchema;
-  /** @deprecated use `PatchWorkflowDto$outboundSchema` instead. */
-  export const outboundSchema = PatchWorkflowDto$outboundSchema;
-  /** @deprecated use `PatchWorkflowDto$Outbound` instead. */
-  export type Outbound = PatchWorkflowDto$Outbound;
-}
-
 export function patchWorkflowDtoToJSON(
   patchWorkflowDto: PatchWorkflowDto,
 ): string {
@@ -99,7 +85,6 @@ export function patchWorkflowDtoToJSON(
     PatchWorkflowDto$outboundSchema.parse(patchWorkflowDto),
   );
 }
-
 export function patchWorkflowDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<PatchWorkflowDto, SDKValidationError> {

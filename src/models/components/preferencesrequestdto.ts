@@ -73,7 +73,6 @@ export type PreferencesRequestDto = {
 /** @internal */
 export const UserAll$inboundSchema: z.ZodType<UserAll, z.ZodTypeDef, unknown> =
   WorkflowPreferenceDto$inboundSchema;
-
 /** @internal */
 export type UserAll$Outbound = WorkflowPreferenceDto$Outbound;
 
@@ -84,23 +83,9 @@ export const UserAll$outboundSchema: z.ZodType<
   UserAll
 > = WorkflowPreferenceDto$outboundSchema;
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UserAll$ {
-  /** @deprecated use `UserAll$inboundSchema` instead. */
-  export const inboundSchema = UserAll$inboundSchema;
-  /** @deprecated use `UserAll$outboundSchema` instead. */
-  export const outboundSchema = UserAll$outboundSchema;
-  /** @deprecated use `UserAll$Outbound` instead. */
-  export type Outbound = UserAll$Outbound;
-}
-
 export function userAllToJSON(userAll: UserAll): string {
   return JSON.stringify(UserAll$outboundSchema.parse(userAll));
 }
-
 export function userAllFromJSON(
   jsonString: string,
 ): SafeParseResult<UserAll, SDKValidationError> {
@@ -120,7 +105,6 @@ export const UserWorkflowPreferencesDto$inboundSchema: z.ZodType<
   all: WorkflowPreferenceDto$inboundSchema,
   channels: z.record(ChannelPreferenceDto$inboundSchema),
 });
-
 /** @internal */
 export type UserWorkflowPreferencesDto$Outbound = {
   all: WorkflowPreferenceDto$Outbound;
@@ -137,19 +121,6 @@ export const UserWorkflowPreferencesDto$outboundSchema: z.ZodType<
   channels: z.record(ChannelPreferenceDto$outboundSchema),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UserWorkflowPreferencesDto$ {
-  /** @deprecated use `UserWorkflowPreferencesDto$inboundSchema` instead. */
-  export const inboundSchema = UserWorkflowPreferencesDto$inboundSchema;
-  /** @deprecated use `UserWorkflowPreferencesDto$outboundSchema` instead. */
-  export const outboundSchema = UserWorkflowPreferencesDto$outboundSchema;
-  /** @deprecated use `UserWorkflowPreferencesDto$Outbound` instead. */
-  export type Outbound = UserWorkflowPreferencesDto$Outbound;
-}
-
 export function userWorkflowPreferencesDtoToJSON(
   userWorkflowPreferencesDto: UserWorkflowPreferencesDto,
 ): string {
@@ -157,7 +128,6 @@ export function userWorkflowPreferencesDtoToJSON(
     UserWorkflowPreferencesDto$outboundSchema.parse(userWorkflowPreferencesDto),
   );
 }
-
 export function userWorkflowPreferencesDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<UserWorkflowPreferencesDto, SDKValidationError> {
@@ -171,7 +141,6 @@ export function userWorkflowPreferencesDtoFromJSON(
 /** @internal */
 export const User$inboundSchema: z.ZodType<User, z.ZodTypeDef, unknown> = z
   .lazy(() => UserWorkflowPreferencesDto$inboundSchema);
-
 /** @internal */
 export type User$Outbound = UserWorkflowPreferencesDto$Outbound;
 
@@ -179,23 +148,9 @@ export type User$Outbound = UserWorkflowPreferencesDto$Outbound;
 export const User$outboundSchema: z.ZodType<User$Outbound, z.ZodTypeDef, User> =
   z.lazy(() => UserWorkflowPreferencesDto$outboundSchema);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace User$ {
-  /** @deprecated use `User$inboundSchema` instead. */
-  export const inboundSchema = User$inboundSchema;
-  /** @deprecated use `User$outboundSchema` instead. */
-  export const outboundSchema = User$outboundSchema;
-  /** @deprecated use `User$Outbound` instead. */
-  export type Outbound = User$Outbound;
-}
-
 export function userToJSON(user: User): string {
   return JSON.stringify(User$outboundSchema.parse(user));
 }
-
 export function userFromJSON(
   jsonString: string,
 ): SafeParseResult<User, SDKValidationError> {
@@ -212,7 +167,6 @@ export const PreferencesRequestDtoAll$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = WorkflowPreferenceDto$inboundSchema;
-
 /** @internal */
 export type PreferencesRequestDtoAll$Outbound = WorkflowPreferenceDto$Outbound;
 
@@ -223,19 +177,6 @@ export const PreferencesRequestDtoAll$outboundSchema: z.ZodType<
   PreferencesRequestDtoAll
 > = WorkflowPreferenceDto$outboundSchema;
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PreferencesRequestDtoAll$ {
-  /** @deprecated use `PreferencesRequestDtoAll$inboundSchema` instead. */
-  export const inboundSchema = PreferencesRequestDtoAll$inboundSchema;
-  /** @deprecated use `PreferencesRequestDtoAll$outboundSchema` instead. */
-  export const outboundSchema = PreferencesRequestDtoAll$outboundSchema;
-  /** @deprecated use `PreferencesRequestDtoAll$Outbound` instead. */
-  export type Outbound = PreferencesRequestDtoAll$Outbound;
-}
-
 export function preferencesRequestDtoAllToJSON(
   preferencesRequestDtoAll: PreferencesRequestDtoAll,
 ): string {
@@ -243,7 +184,6 @@ export function preferencesRequestDtoAllToJSON(
     PreferencesRequestDtoAll$outboundSchema.parse(preferencesRequestDtoAll),
   );
 }
-
 export function preferencesRequestDtoAllFromJSON(
   jsonString: string,
 ): SafeParseResult<PreferencesRequestDtoAll, SDKValidationError> {
@@ -263,7 +203,6 @@ export const PreferencesRequestDtoWorkflow$inboundSchema: z.ZodType<
   all: WorkflowPreferenceDto$inboundSchema,
   channels: z.record(ChannelPreferenceDto$inboundSchema),
 });
-
 /** @internal */
 export type PreferencesRequestDtoWorkflow$Outbound = {
   all: WorkflowPreferenceDto$Outbound;
@@ -280,19 +219,6 @@ export const PreferencesRequestDtoWorkflow$outboundSchema: z.ZodType<
   channels: z.record(ChannelPreferenceDto$outboundSchema),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PreferencesRequestDtoWorkflow$ {
-  /** @deprecated use `PreferencesRequestDtoWorkflow$inboundSchema` instead. */
-  export const inboundSchema = PreferencesRequestDtoWorkflow$inboundSchema;
-  /** @deprecated use `PreferencesRequestDtoWorkflow$outboundSchema` instead. */
-  export const outboundSchema = PreferencesRequestDtoWorkflow$outboundSchema;
-  /** @deprecated use `PreferencesRequestDtoWorkflow$Outbound` instead. */
-  export type Outbound = PreferencesRequestDtoWorkflow$Outbound;
-}
-
 export function preferencesRequestDtoWorkflowToJSON(
   preferencesRequestDtoWorkflow: PreferencesRequestDtoWorkflow,
 ): string {
@@ -302,7 +228,6 @@ export function preferencesRequestDtoWorkflowToJSON(
     ),
   );
 }
-
 export function preferencesRequestDtoWorkflowFromJSON(
   jsonString: string,
 ): SafeParseResult<PreferencesRequestDtoWorkflow, SDKValidationError> {
@@ -325,7 +250,6 @@ export const PreferencesRequestDto$inboundSchema: z.ZodType<
     z.lazy(() => PreferencesRequestDtoWorkflow$inboundSchema),
   ).optional(),
 });
-
 /** @internal */
 export type PreferencesRequestDto$Outbound = {
   user?: UserWorkflowPreferencesDto$Outbound | null | undefined;
@@ -345,19 +269,6 @@ export const PreferencesRequestDto$outboundSchema: z.ZodType<
   ).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PreferencesRequestDto$ {
-  /** @deprecated use `PreferencesRequestDto$inboundSchema` instead. */
-  export const inboundSchema = PreferencesRequestDto$inboundSchema;
-  /** @deprecated use `PreferencesRequestDto$outboundSchema` instead. */
-  export const outboundSchema = PreferencesRequestDto$outboundSchema;
-  /** @deprecated use `PreferencesRequestDto$Outbound` instead. */
-  export type Outbound = PreferencesRequestDto$Outbound;
-}
-
 export function preferencesRequestDtoToJSON(
   preferencesRequestDto: PreferencesRequestDto,
 ): string {
@@ -365,7 +276,6 @@ export function preferencesRequestDtoToJSON(
     PreferencesRequestDto$outboundSchema.parse(preferencesRequestDto),
   );
 }
-
 export function preferencesRequestDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<PreferencesRequestDto, SDKValidationError> {

@@ -37,7 +37,6 @@ export const ImportMasterJsonResponseDto$inboundSchema: z.ZodType<
   successful: z.array(z.string()).optional(),
   failed: z.array(z.string()).optional(),
 });
-
 /** @internal */
 export type ImportMasterJsonResponseDto$Outbound = {
   success: boolean;
@@ -58,19 +57,6 @@ export const ImportMasterJsonResponseDto$outboundSchema: z.ZodType<
   failed: z.array(z.string()).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ImportMasterJsonResponseDto$ {
-  /** @deprecated use `ImportMasterJsonResponseDto$inboundSchema` instead. */
-  export const inboundSchema = ImportMasterJsonResponseDto$inboundSchema;
-  /** @deprecated use `ImportMasterJsonResponseDto$outboundSchema` instead. */
-  export const outboundSchema = ImportMasterJsonResponseDto$outboundSchema;
-  /** @deprecated use `ImportMasterJsonResponseDto$Outbound` instead. */
-  export type Outbound = ImportMasterJsonResponseDto$Outbound;
-}
-
 export function importMasterJsonResponseDtoToJSON(
   importMasterJsonResponseDto: ImportMasterJsonResponseDto,
 ): string {
@@ -80,7 +66,6 @@ export function importMasterJsonResponseDtoToJSON(
     ),
   );
 }
-
 export function importMasterJsonResponseDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<ImportMasterJsonResponseDto, SDKValidationError> {

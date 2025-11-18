@@ -22,7 +22,6 @@ export const NotificationTriggerVariable$inboundSchema: z.ZodType<
 > = z.object({
   name: z.string(),
 });
-
 /** @internal */
 export type NotificationTriggerVariable$Outbound = {
   name: string;
@@ -37,19 +36,6 @@ export const NotificationTriggerVariable$outboundSchema: z.ZodType<
   name: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace NotificationTriggerVariable$ {
-  /** @deprecated use `NotificationTriggerVariable$inboundSchema` instead. */
-  export const inboundSchema = NotificationTriggerVariable$inboundSchema;
-  /** @deprecated use `NotificationTriggerVariable$outboundSchema` instead. */
-  export const outboundSchema = NotificationTriggerVariable$outboundSchema;
-  /** @deprecated use `NotificationTriggerVariable$Outbound` instead. */
-  export type Outbound = NotificationTriggerVariable$Outbound;
-}
-
 export function notificationTriggerVariableToJSON(
   notificationTriggerVariable: NotificationTriggerVariable,
 ): string {
@@ -59,7 +45,6 @@ export function notificationTriggerVariableToJSON(
     ),
   );
 }
-
 export function notificationTriggerVariableFromJSON(
   jsonString: string,
 ): SafeParseResult<NotificationTriggerVariable, SDKValidationError> {

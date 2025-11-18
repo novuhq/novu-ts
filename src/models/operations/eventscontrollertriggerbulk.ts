@@ -36,7 +36,6 @@ export const EventsControllerTriggerBulkRequest$inboundSchema: z.ZodType<
     "BulkTriggerEventDto": "bulkTriggerEventDto",
   });
 });
-
 /** @internal */
 export type EventsControllerTriggerBulkRequest$Outbound = {
   "idempotency-key"?: string | undefined;
@@ -58,20 +57,6 @@ export const EventsControllerTriggerBulkRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EventsControllerTriggerBulkRequest$ {
-  /** @deprecated use `EventsControllerTriggerBulkRequest$inboundSchema` instead. */
-  export const inboundSchema = EventsControllerTriggerBulkRequest$inboundSchema;
-  /** @deprecated use `EventsControllerTriggerBulkRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    EventsControllerTriggerBulkRequest$outboundSchema;
-  /** @deprecated use `EventsControllerTriggerBulkRequest$Outbound` instead. */
-  export type Outbound = EventsControllerTriggerBulkRequest$Outbound;
-}
-
 export function eventsControllerTriggerBulkRequestToJSON(
   eventsControllerTriggerBulkRequest: EventsControllerTriggerBulkRequest,
 ): string {
@@ -81,7 +66,6 @@ export function eventsControllerTriggerBulkRequestToJSON(
     ),
   );
 }
-
 export function eventsControllerTriggerBulkRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<EventsControllerTriggerBulkRequest, SDKValidationError> {
@@ -107,7 +91,6 @@ export const EventsControllerTriggerBulkResponse$inboundSchema: z.ZodType<
     "Result": "result",
   });
 });
-
 /** @internal */
 export type EventsControllerTriggerBulkResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
@@ -129,21 +112,6 @@ export const EventsControllerTriggerBulkResponse$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EventsControllerTriggerBulkResponse$ {
-  /** @deprecated use `EventsControllerTriggerBulkResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    EventsControllerTriggerBulkResponse$inboundSchema;
-  /** @deprecated use `EventsControllerTriggerBulkResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    EventsControllerTriggerBulkResponse$outboundSchema;
-  /** @deprecated use `EventsControllerTriggerBulkResponse$Outbound` instead. */
-  export type Outbound = EventsControllerTriggerBulkResponse$Outbound;
-}
-
 export function eventsControllerTriggerBulkResponseToJSON(
   eventsControllerTriggerBulkResponse: EventsControllerTriggerBulkResponse,
 ): string {
@@ -153,7 +121,6 @@ export function eventsControllerTriggerBulkResponseToJSON(
     ),
   );
 }
-
 export function eventsControllerTriggerBulkResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<EventsControllerTriggerBulkResponse, SDKValidationError> {

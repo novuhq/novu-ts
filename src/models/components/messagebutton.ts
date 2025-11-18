@@ -37,7 +37,6 @@ export const MessageButton$inboundSchema: z.ZodType<
   content: z.string(),
   resultContent: z.string().optional(),
 });
-
 /** @internal */
 export type MessageButton$Outbound = {
   type: string;
@@ -56,23 +55,9 @@ export const MessageButton$outboundSchema: z.ZodType<
   resultContent: z.string().optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MessageButton$ {
-  /** @deprecated use `MessageButton$inboundSchema` instead. */
-  export const inboundSchema = MessageButton$inboundSchema;
-  /** @deprecated use `MessageButton$outboundSchema` instead. */
-  export const outboundSchema = MessageButton$outboundSchema;
-  /** @deprecated use `MessageButton$Outbound` instead. */
-  export type Outbound = MessageButton$Outbound;
-}
-
 export function messageButtonToJSON(messageButton: MessageButton): string {
   return JSON.stringify(MessageButton$outboundSchema.parse(messageButton));
 }
-
 export function messageButtonFromJSON(
   jsonString: string,
 ): SafeParseResult<MessageButton, SDKValidationError> {

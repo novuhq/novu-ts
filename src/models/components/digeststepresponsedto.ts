@@ -162,43 +162,19 @@ export type DigestStepResponseDto = {
 export const DigestStepResponseDtoType$inboundSchema: z.ZodNativeEnum<
   typeof DigestStepResponseDtoType
 > = z.nativeEnum(DigestStepResponseDtoType);
-
 /** @internal */
 export const DigestStepResponseDtoType$outboundSchema: z.ZodNativeEnum<
   typeof DigestStepResponseDtoType
 > = DigestStepResponseDtoType$inboundSchema;
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DigestStepResponseDtoType$ {
-  /** @deprecated use `DigestStepResponseDtoType$inboundSchema` instead. */
-  export const inboundSchema = DigestStepResponseDtoType$inboundSchema;
-  /** @deprecated use `DigestStepResponseDtoType$outboundSchema` instead. */
-  export const outboundSchema = DigestStepResponseDtoType$outboundSchema;
-}
-
 /** @internal */
 export const DigestStepResponseDtoUnit$inboundSchema: z.ZodNativeEnum<
   typeof DigestStepResponseDtoUnit
 > = z.nativeEnum(DigestStepResponseDtoUnit);
-
 /** @internal */
 export const DigestStepResponseDtoUnit$outboundSchema: z.ZodNativeEnum<
   typeof DigestStepResponseDtoUnit
 > = DigestStepResponseDtoUnit$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DigestStepResponseDtoUnit$ {
-  /** @deprecated use `DigestStepResponseDtoUnit$inboundSchema` instead. */
-  export const inboundSchema = DigestStepResponseDtoUnit$inboundSchema;
-  /** @deprecated use `DigestStepResponseDtoUnit$outboundSchema` instead. */
-  export const outboundSchema = DigestStepResponseDtoUnit$outboundSchema;
-}
 
 /** @internal */
 export const DigestStepResponseDtoControlValues$inboundSchema: z.ZodType<
@@ -218,7 +194,6 @@ export const DigestStepResponseDtoControlValues$inboundSchema: z.ZodType<
   "additionalProperties",
   true,
 );
-
 /** @internal */
 export type DigestStepResponseDtoControlValues$Outbound = {
   skip?: { [k: string]: any } | undefined;
@@ -254,20 +229,6 @@ export const DigestStepResponseDtoControlValues$outboundSchema: z.ZodType<
   };
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DigestStepResponseDtoControlValues$ {
-  /** @deprecated use `DigestStepResponseDtoControlValues$inboundSchema` instead. */
-  export const inboundSchema = DigestStepResponseDtoControlValues$inboundSchema;
-  /** @deprecated use `DigestStepResponseDtoControlValues$outboundSchema` instead. */
-  export const outboundSchema =
-    DigestStepResponseDtoControlValues$outboundSchema;
-  /** @deprecated use `DigestStepResponseDtoControlValues$Outbound` instead. */
-  export type Outbound = DigestStepResponseDtoControlValues$Outbound;
-}
-
 export function digestStepResponseDtoControlValuesToJSON(
   digestStepResponseDtoControlValues: DigestStepResponseDtoControlValues,
 ): string {
@@ -277,7 +238,6 @@ export function digestStepResponseDtoControlValuesToJSON(
     ),
   );
 }
-
 export function digestStepResponseDtoControlValuesFromJSON(
   jsonString: string,
 ): SafeParseResult<DigestStepResponseDtoControlValues, SDKValidationError> {
@@ -313,7 +273,6 @@ export const DigestStepResponseDto$inboundSchema: z.ZodType<
     "_id": "id",
   });
 });
-
 /** @internal */
 export type DigestStepResponseDto$Outbound = {
   controls: DigestControlsMetadataResponseDto$Outbound;
@@ -355,19 +314,6 @@ export const DigestStepResponseDto$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DigestStepResponseDto$ {
-  /** @deprecated use `DigestStepResponseDto$inboundSchema` instead. */
-  export const inboundSchema = DigestStepResponseDto$inboundSchema;
-  /** @deprecated use `DigestStepResponseDto$outboundSchema` instead. */
-  export const outboundSchema = DigestStepResponseDto$outboundSchema;
-  /** @deprecated use `DigestStepResponseDto$Outbound` instead. */
-  export type Outbound = DigestStepResponseDto$Outbound;
-}
-
 export function digestStepResponseDtoToJSON(
   digestStepResponseDto: DigestStepResponseDto,
 ): string {
@@ -375,7 +321,6 @@ export function digestStepResponseDtoToJSON(
     DigestStepResponseDto$outboundSchema.parse(digestStepResponseDto),
   );
 }
-
 export function digestStepResponseDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<DigestStepResponseDto, SDKValidationError> {

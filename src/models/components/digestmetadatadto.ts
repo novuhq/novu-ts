@@ -87,22 +87,10 @@ export type DigestMetadataDto = {
 export const DigestMetadataDtoUnit$inboundSchema: z.ZodNativeEnum<
   typeof DigestMetadataDtoUnit
 > = z.nativeEnum(DigestMetadataDtoUnit);
-
 /** @internal */
 export const DigestMetadataDtoUnit$outboundSchema: z.ZodNativeEnum<
   typeof DigestMetadataDtoUnit
 > = DigestMetadataDtoUnit$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DigestMetadataDtoUnit$ {
-  /** @deprecated use `DigestMetadataDtoUnit$inboundSchema` instead. */
-  export const inboundSchema = DigestMetadataDtoUnit$inboundSchema;
-  /** @deprecated use `DigestMetadataDtoUnit$outboundSchema` instead. */
-  export const outboundSchema = DigestMetadataDtoUnit$outboundSchema;
-}
 
 /** @internal */
 export const DigestMetadataDto$inboundSchema: z.ZodType<
@@ -121,7 +109,6 @@ export const DigestMetadataDto$inboundSchema: z.ZodType<
   updateMode: z.boolean().optional(),
   timed: DigestTimedConfigDto$inboundSchema.optional(),
 });
-
 /** @internal */
 export type DigestMetadataDto$Outbound = {
   digestKey?: string | undefined;
@@ -154,19 +141,6 @@ export const DigestMetadataDto$outboundSchema: z.ZodType<
   timed: DigestTimedConfigDto$outboundSchema.optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DigestMetadataDto$ {
-  /** @deprecated use `DigestMetadataDto$inboundSchema` instead. */
-  export const inboundSchema = DigestMetadataDto$inboundSchema;
-  /** @deprecated use `DigestMetadataDto$outboundSchema` instead. */
-  export const outboundSchema = DigestMetadataDto$outboundSchema;
-  /** @deprecated use `DigestMetadataDto$Outbound` instead. */
-  export type Outbound = DigestMetadataDto$Outbound;
-}
-
 export function digestMetadataDtoToJSON(
   digestMetadataDto: DigestMetadataDto,
 ): string {
@@ -174,7 +148,6 @@ export function digestMetadataDtoToJSON(
     DigestMetadataDto$outboundSchema.parse(digestMetadataDto),
   );
 }
-
 export function digestMetadataDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<DigestMetadataDto, SDKValidationError> {

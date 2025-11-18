@@ -55,7 +55,6 @@ export const SmsStepUpsertDtoControlValues$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([SmsControlDto$inboundSchema, z.record(z.any())]);
-
 /** @internal */
 export type SmsStepUpsertDtoControlValues$Outbound = SmsControlDto$Outbound | {
   [k: string]: any;
@@ -68,19 +67,6 @@ export const SmsStepUpsertDtoControlValues$outboundSchema: z.ZodType<
   SmsStepUpsertDtoControlValues
 > = z.union([SmsControlDto$outboundSchema, z.record(z.any())]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SmsStepUpsertDtoControlValues$ {
-  /** @deprecated use `SmsStepUpsertDtoControlValues$inboundSchema` instead. */
-  export const inboundSchema = SmsStepUpsertDtoControlValues$inboundSchema;
-  /** @deprecated use `SmsStepUpsertDtoControlValues$outboundSchema` instead. */
-  export const outboundSchema = SmsStepUpsertDtoControlValues$outboundSchema;
-  /** @deprecated use `SmsStepUpsertDtoControlValues$Outbound` instead. */
-  export type Outbound = SmsStepUpsertDtoControlValues$Outbound;
-}
-
 export function smsStepUpsertDtoControlValuesToJSON(
   smsStepUpsertDtoControlValues: SmsStepUpsertDtoControlValues,
 ): string {
@@ -90,7 +76,6 @@ export function smsStepUpsertDtoControlValuesToJSON(
     ),
   );
 }
-
 export function smsStepUpsertDtoControlValuesFromJSON(
   jsonString: string,
 ): SafeParseResult<SmsStepUpsertDtoControlValues, SDKValidationError> {
@@ -118,7 +103,6 @@ export const SmsStepUpsertDto$inboundSchema: z.ZodType<
     "_id": "id",
   });
 });
-
 /** @internal */
 export type SmsStepUpsertDto$Outbound = {
   _id?: string | undefined;
@@ -146,19 +130,6 @@ export const SmsStepUpsertDto$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SmsStepUpsertDto$ {
-  /** @deprecated use `SmsStepUpsertDto$inboundSchema` instead. */
-  export const inboundSchema = SmsStepUpsertDto$inboundSchema;
-  /** @deprecated use `SmsStepUpsertDto$outboundSchema` instead. */
-  export const outboundSchema = SmsStepUpsertDto$outboundSchema;
-  /** @deprecated use `SmsStepUpsertDto$Outbound` instead. */
-  export type Outbound = SmsStepUpsertDto$Outbound;
-}
-
 export function smsStepUpsertDtoToJSON(
   smsStepUpsertDto: SmsStepUpsertDto,
 ): string {
@@ -166,7 +137,6 @@ export function smsStepUpsertDtoToJSON(
     SmsStepUpsertDto$outboundSchema.parse(smsStepUpsertDto),
   );
 }
-
 export function smsStepUpsertDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<SmsStepUpsertDto, SDKValidationError> {

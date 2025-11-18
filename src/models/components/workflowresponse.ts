@@ -66,7 +66,6 @@ export const WorkflowResponseData$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({});
-
 /** @internal */
 export type WorkflowResponseData$Outbound = {};
 
@@ -77,19 +76,6 @@ export const WorkflowResponseData$outboundSchema: z.ZodType<
   WorkflowResponseData
 > = z.object({});
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WorkflowResponseData$ {
-  /** @deprecated use `WorkflowResponseData$inboundSchema` instead. */
-  export const inboundSchema = WorkflowResponseData$inboundSchema;
-  /** @deprecated use `WorkflowResponseData$outboundSchema` instead. */
-  export const outboundSchema = WorkflowResponseData$outboundSchema;
-  /** @deprecated use `WorkflowResponseData$Outbound` instead. */
-  export type Outbound = WorkflowResponseData$Outbound;
-}
-
 export function workflowResponseDataToJSON(
   workflowResponseData: WorkflowResponseData,
 ): string {
@@ -97,7 +83,6 @@ export function workflowResponseDataToJSON(
     WorkflowResponseData$outboundSchema.parse(workflowResponseData),
   );
 }
-
 export function workflowResponseDataFromJSON(
   jsonString: string,
 ): SafeParseResult<WorkflowResponseData, SDKValidationError> {
@@ -114,7 +99,6 @@ export const WorkflowIntegrationStatus$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({});
-
 /** @internal */
 export type WorkflowIntegrationStatus$Outbound = {};
 
@@ -125,19 +109,6 @@ export const WorkflowIntegrationStatus$outboundSchema: z.ZodType<
   WorkflowIntegrationStatus
 > = z.object({});
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WorkflowIntegrationStatus$ {
-  /** @deprecated use `WorkflowIntegrationStatus$inboundSchema` instead. */
-  export const inboundSchema = WorkflowIntegrationStatus$inboundSchema;
-  /** @deprecated use `WorkflowIntegrationStatus$outboundSchema` instead. */
-  export const outboundSchema = WorkflowIntegrationStatus$outboundSchema;
-  /** @deprecated use `WorkflowIntegrationStatus$Outbound` instead. */
-  export type Outbound = WorkflowIntegrationStatus$Outbound;
-}
-
 export function workflowIntegrationStatusToJSON(
   workflowIntegrationStatus: WorkflowIntegrationStatus,
 ): string {
@@ -145,7 +116,6 @@ export function workflowIntegrationStatusToJSON(
     WorkflowIntegrationStatus$outboundSchema.parse(workflowIntegrationStatus),
   );
 }
-
 export function workflowIntegrationStatusFromJSON(
   jsonString: string,
 ): SafeParseResult<WorkflowIntegrationStatus, SDKValidationError> {
@@ -195,7 +165,6 @@ export const WorkflowResponse$inboundSchema: z.ZodType<
     "_parentId": "parentId",
   });
 });
-
 /** @internal */
 export type WorkflowResponse$Outbound = {
   _id?: string | undefined;
@@ -261,19 +230,6 @@ export const WorkflowResponse$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WorkflowResponse$ {
-  /** @deprecated use `WorkflowResponse$inboundSchema` instead. */
-  export const inboundSchema = WorkflowResponse$inboundSchema;
-  /** @deprecated use `WorkflowResponse$outboundSchema` instead. */
-  export const outboundSchema = WorkflowResponse$outboundSchema;
-  /** @deprecated use `WorkflowResponse$Outbound` instead. */
-  export type Outbound = WorkflowResponse$Outbound;
-}
-
 export function workflowResponseToJSON(
   workflowResponse: WorkflowResponse,
 ): string {
@@ -281,7 +237,6 @@ export function workflowResponseToJSON(
     WorkflowResponse$outboundSchema.parse(workflowResponse),
   );
 }
-
 export function workflowResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<WorkflowResponse, SDKValidationError> {

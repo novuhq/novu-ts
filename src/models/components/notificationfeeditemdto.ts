@@ -166,22 +166,10 @@ export type NotificationFeedItemDto = {
 export const NotificationFeedItemDtoStatus$inboundSchema: z.ZodNativeEnum<
   typeof NotificationFeedItemDtoStatus
 > = z.nativeEnum(NotificationFeedItemDtoStatus);
-
 /** @internal */
 export const NotificationFeedItemDtoStatus$outboundSchema: z.ZodNativeEnum<
   typeof NotificationFeedItemDtoStatus
 > = NotificationFeedItemDtoStatus$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace NotificationFeedItemDtoStatus$ {
-  /** @deprecated use `NotificationFeedItemDtoStatus$inboundSchema` instead. */
-  export const inboundSchema = NotificationFeedItemDtoStatus$inboundSchema;
-  /** @deprecated use `NotificationFeedItemDtoStatus$outboundSchema` instead. */
-  export const outboundSchema = NotificationFeedItemDtoStatus$outboundSchema;
-}
 
 /** @internal */
 export const NotificationFeedItemDto$inboundSchema: z.ZodType<
@@ -234,7 +222,6 @@ export const NotificationFeedItemDto$inboundSchema: z.ZodType<
     "_jobId": "jobId",
   });
 });
-
 /** @internal */
 export type NotificationFeedItemDto$Outbound = {
   _id: string;
@@ -315,19 +302,6 @@ export const NotificationFeedItemDto$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace NotificationFeedItemDto$ {
-  /** @deprecated use `NotificationFeedItemDto$inboundSchema` instead. */
-  export const inboundSchema = NotificationFeedItemDto$inboundSchema;
-  /** @deprecated use `NotificationFeedItemDto$outboundSchema` instead. */
-  export const outboundSchema = NotificationFeedItemDto$outboundSchema;
-  /** @deprecated use `NotificationFeedItemDto$Outbound` instead. */
-  export type Outbound = NotificationFeedItemDto$Outbound;
-}
-
 export function notificationFeedItemDtoToJSON(
   notificationFeedItemDto: NotificationFeedItemDto,
 ): string {
@@ -335,7 +309,6 @@ export function notificationFeedItemDtoToJSON(
     NotificationFeedItemDto$outboundSchema.parse(notificationFeedItemDto),
   );
 }
-
 export function notificationFeedItemDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<NotificationFeedItemDto, SDKValidationError> {

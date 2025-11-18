@@ -43,7 +43,6 @@ export const ActivitiesResponseDto$inboundSchema: z.ZodType<
   pageSize: z.number(),
   page: z.number(),
 });
-
 /** @internal */
 export type ActivitiesResponseDto$Outbound = {
   hasMore: boolean;
@@ -64,19 +63,6 @@ export const ActivitiesResponseDto$outboundSchema: z.ZodType<
   page: z.number(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ActivitiesResponseDto$ {
-  /** @deprecated use `ActivitiesResponseDto$inboundSchema` instead. */
-  export const inboundSchema = ActivitiesResponseDto$inboundSchema;
-  /** @deprecated use `ActivitiesResponseDto$outboundSchema` instead. */
-  export const outboundSchema = ActivitiesResponseDto$outboundSchema;
-  /** @deprecated use `ActivitiesResponseDto$Outbound` instead. */
-  export type Outbound = ActivitiesResponseDto$Outbound;
-}
-
 export function activitiesResponseDtoToJSON(
   activitiesResponseDto: ActivitiesResponseDto,
 ): string {
@@ -84,7 +70,6 @@ export function activitiesResponseDtoToJSON(
     ActivitiesResponseDto$outboundSchema.parse(activitiesResponseDto),
   );
 }
-
 export function activitiesResponseDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<ActivitiesResponseDto, SDKValidationError> {

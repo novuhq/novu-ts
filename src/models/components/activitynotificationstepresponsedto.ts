@@ -98,7 +98,6 @@ export const ActivityNotificationStepResponseDtoReplyCallback$inboundSchema:
     z.ZodTypeDef,
     unknown
   > = z.object({});
-
 /** @internal */
 export type ActivityNotificationStepResponseDtoReplyCallback$Outbound = {};
 
@@ -110,22 +109,6 @@ export const ActivityNotificationStepResponseDtoReplyCallback$outboundSchema:
     ActivityNotificationStepResponseDtoReplyCallback
   > = z.object({});
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ActivityNotificationStepResponseDtoReplyCallback$ {
-  /** @deprecated use `ActivityNotificationStepResponseDtoReplyCallback$inboundSchema` instead. */
-  export const inboundSchema =
-    ActivityNotificationStepResponseDtoReplyCallback$inboundSchema;
-  /** @deprecated use `ActivityNotificationStepResponseDtoReplyCallback$outboundSchema` instead. */
-  export const outboundSchema =
-    ActivityNotificationStepResponseDtoReplyCallback$outboundSchema;
-  /** @deprecated use `ActivityNotificationStepResponseDtoReplyCallback$Outbound` instead. */
-  export type Outbound =
-    ActivityNotificationStepResponseDtoReplyCallback$Outbound;
-}
-
 export function activityNotificationStepResponseDtoReplyCallbackToJSON(
   activityNotificationStepResponseDtoReplyCallback:
     ActivityNotificationStepResponseDtoReplyCallback,
@@ -136,7 +119,6 @@ export function activityNotificationStepResponseDtoReplyCallbackToJSON(
     ),
   );
 }
-
 export function activityNotificationStepResponseDtoReplyCallbackFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -159,7 +141,6 @@ export const ControlVariables$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({});
-
 /** @internal */
 export type ControlVariables$Outbound = {};
 
@@ -170,19 +151,6 @@ export const ControlVariables$outboundSchema: z.ZodType<
   ControlVariables
 > = z.object({});
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ControlVariables$ {
-  /** @deprecated use `ControlVariables$inboundSchema` instead. */
-  export const inboundSchema = ControlVariables$inboundSchema;
-  /** @deprecated use `ControlVariables$outboundSchema` instead. */
-  export const outboundSchema = ControlVariables$outboundSchema;
-  /** @deprecated use `ControlVariables$Outbound` instead. */
-  export type Outbound = ControlVariables$Outbound;
-}
-
 export function controlVariablesToJSON(
   controlVariables: ControlVariables,
 ): string {
@@ -190,7 +158,6 @@ export function controlVariablesToJSON(
     ControlVariables$outboundSchema.parse(controlVariables),
   );
 }
-
 export function controlVariablesFromJSON(
   jsonString: string,
 ): SafeParseResult<ControlVariables, SDKValidationError> {
@@ -208,7 +175,6 @@ export const ActivityNotificationStepResponseDtoMetadata$inboundSchema:
     z.ZodTypeDef,
     unknown
   > = z.object({});
-
 /** @internal */
 export type ActivityNotificationStepResponseDtoMetadata$Outbound = {};
 
@@ -220,21 +186,6 @@ export const ActivityNotificationStepResponseDtoMetadata$outboundSchema:
     ActivityNotificationStepResponseDtoMetadata
   > = z.object({});
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ActivityNotificationStepResponseDtoMetadata$ {
-  /** @deprecated use `ActivityNotificationStepResponseDtoMetadata$inboundSchema` instead. */
-  export const inboundSchema =
-    ActivityNotificationStepResponseDtoMetadata$inboundSchema;
-  /** @deprecated use `ActivityNotificationStepResponseDtoMetadata$outboundSchema` instead. */
-  export const outboundSchema =
-    ActivityNotificationStepResponseDtoMetadata$outboundSchema;
-  /** @deprecated use `ActivityNotificationStepResponseDtoMetadata$Outbound` instead. */
-  export type Outbound = ActivityNotificationStepResponseDtoMetadata$Outbound;
-}
-
 export function activityNotificationStepResponseDtoMetadataToJSON(
   activityNotificationStepResponseDtoMetadata:
     ActivityNotificationStepResponseDtoMetadata,
@@ -245,7 +196,6 @@ export function activityNotificationStepResponseDtoMetadataToJSON(
     ),
   );
 }
-
 export function activityNotificationStepResponseDtoMetadataFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -265,7 +215,6 @@ export function activityNotificationStepResponseDtoMetadataFromJSON(
 /** @internal */
 export const Issues$inboundSchema: z.ZodType<Issues, z.ZodTypeDef, unknown> = z
   .object({});
-
 /** @internal */
 export type Issues$Outbound = {};
 
@@ -276,23 +225,9 @@ export const Issues$outboundSchema: z.ZodType<
   Issues
 > = z.object({});
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Issues$ {
-  /** @deprecated use `Issues$inboundSchema` instead. */
-  export const inboundSchema = Issues$inboundSchema;
-  /** @deprecated use `Issues$outboundSchema` instead. */
-  export const outboundSchema = Issues$outboundSchema;
-  /** @deprecated use `Issues$Outbound` instead. */
-  export type Outbound = Issues$Outbound;
-}
-
 export function issuesToJSON(issues: Issues): string {
   return JSON.stringify(Issues$outboundSchema.parse(issues));
 }
-
 export function issuesFromJSON(
   jsonString: string,
 ): SafeParseResult<Issues, SDKValidationError> {
@@ -334,7 +269,6 @@ export const ActivityNotificationStepResponseDto$inboundSchema: z.ZodType<
     "_parentId": "parentId",
   });
 });
-
 /** @internal */
 export type ActivityNotificationStepResponseDto$Outbound = {
   _id: string;
@@ -385,21 +319,6 @@ export const ActivityNotificationStepResponseDto$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ActivityNotificationStepResponseDto$ {
-  /** @deprecated use `ActivityNotificationStepResponseDto$inboundSchema` instead. */
-  export const inboundSchema =
-    ActivityNotificationStepResponseDto$inboundSchema;
-  /** @deprecated use `ActivityNotificationStepResponseDto$outboundSchema` instead. */
-  export const outboundSchema =
-    ActivityNotificationStepResponseDto$outboundSchema;
-  /** @deprecated use `ActivityNotificationStepResponseDto$Outbound` instead. */
-  export type Outbound = ActivityNotificationStepResponseDto$Outbound;
-}
-
 export function activityNotificationStepResponseDtoToJSON(
   activityNotificationStepResponseDto: ActivityNotificationStepResponseDto,
 ): string {
@@ -409,7 +328,6 @@ export function activityNotificationStepResponseDtoToJSON(
     ),
   );
 }
-
 export function activityNotificationStepResponseDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<ActivityNotificationStepResponseDto, SDKValidationError> {

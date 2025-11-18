@@ -104,7 +104,6 @@ export class ErrorDto extends NovuError {
 /** @internal */
 export const Five$inboundSchema: z.ZodType<Five, z.ZodTypeDef, unknown> = z
   .union([z.string(), z.number(), z.boolean(), z.record(z.any())]);
-
 /** @internal */
 export type Five$Outbound = string | number | boolean | { [k: string]: any };
 
@@ -115,23 +114,9 @@ export const Five$outboundSchema: z.ZodType<
   unknown
 > = z.union([z.string(), z.number(), z.boolean(), z.record(z.any())]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Five$ {
-  /** @deprecated use `Five$inboundSchema` instead. */
-  export const inboundSchema = Five$inboundSchema;
-  /** @deprecated use `Five$outboundSchema` instead. */
-  export const outboundSchema = Five$outboundSchema;
-  /** @deprecated use `Five$Outbound` instead. */
-  export type Outbound = Five$Outbound;
-}
-
 export function fiveToJSON(five: Five): string {
   return JSON.stringify(Five$outboundSchema.parse(five));
 }
-
 export function fiveFromJSON(
   jsonString: string,
 ): SafeParseResult<Five, SDKValidationError> {
@@ -145,7 +130,6 @@ export function fiveFromJSON(
 /** @internal */
 export const Four$inboundSchema: z.ZodType<Four, z.ZodTypeDef, unknown> = z
   .object({});
-
 /** @internal */
 export type Four$Outbound = {};
 
@@ -153,23 +137,9 @@ export type Four$Outbound = {};
 export const Four$outboundSchema: z.ZodType<Four$Outbound, z.ZodTypeDef, Four> =
   z.object({});
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Four$ {
-  /** @deprecated use `Four$inboundSchema` instead. */
-  export const inboundSchema = Four$inboundSchema;
-  /** @deprecated use `Four$outboundSchema` instead. */
-  export const outboundSchema = Four$outboundSchema;
-  /** @deprecated use `Four$Outbound` instead. */
-  export type Outbound = Four$Outbound;
-}
-
 export function fourToJSON(four: Four): string {
   return JSON.stringify(Four$outboundSchema.parse(four));
 }
-
 export function fourFromJSON(
   jsonString: string,
 ): SafeParseResult<Four, SDKValidationError> {
@@ -193,7 +163,6 @@ export const Message$inboundSchema: z.ZodType<Message, z.ZodTypeDef, unknown> =
       ),
     ),
   ]);
-
 /** @internal */
 export type Message$Outbound =
   | string
@@ -219,23 +188,9 @@ export const Message$outboundSchema: z.ZodType<
   ),
 ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Message$ {
-  /** @deprecated use `Message$inboundSchema` instead. */
-  export const inboundSchema = Message$inboundSchema;
-  /** @deprecated use `Message$outboundSchema` instead. */
-  export const outboundSchema = Message$outboundSchema;
-  /** @deprecated use `Message$Outbound` instead. */
-  export type Outbound = Message$Outbound;
-}
-
 export function messageToJSON(message: Message): string {
   return JSON.stringify(Message$outboundSchema.parse(message));
 }
-
 export function messageFromJSON(
   jsonString: string,
 ): SafeParseResult<Message, SDKValidationError> {
@@ -326,16 +281,3 @@ export const ErrorDto$outboundSchema: z.ZodType<
     ctx: z.record(z.any()).optional(),
     errorId: z.string().optional(),
   }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ErrorDto$ {
-  /** @deprecated use `ErrorDto$inboundSchema` instead. */
-  export const inboundSchema = ErrorDto$inboundSchema;
-  /** @deprecated use `ErrorDto$outboundSchema` instead. */
-  export const outboundSchema = ErrorDto$outboundSchema;
-  /** @deprecated use `ErrorDto$Outbound` instead. */
-  export type Outbound = ErrorDto$Outbound;
-}

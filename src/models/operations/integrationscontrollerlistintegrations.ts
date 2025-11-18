@@ -34,7 +34,6 @@ export const IntegrationsControllerListIntegrationsRequest$inboundSchema:
       "idempotency-key": "idempotencyKey",
     });
   });
-
 /** @internal */
 export type IntegrationsControllerListIntegrationsRequest$Outbound = {
   "idempotency-key"?: string | undefined;
@@ -54,21 +53,6 @@ export const IntegrationsControllerListIntegrationsRequest$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace IntegrationsControllerListIntegrationsRequest$ {
-  /** @deprecated use `IntegrationsControllerListIntegrationsRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    IntegrationsControllerListIntegrationsRequest$inboundSchema;
-  /** @deprecated use `IntegrationsControllerListIntegrationsRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    IntegrationsControllerListIntegrationsRequest$outboundSchema;
-  /** @deprecated use `IntegrationsControllerListIntegrationsRequest$Outbound` instead. */
-  export type Outbound = IntegrationsControllerListIntegrationsRequest$Outbound;
-}
-
 export function integrationsControllerListIntegrationsRequestToJSON(
   integrationsControllerListIntegrationsRequest:
     IntegrationsControllerListIntegrationsRequest,
@@ -79,7 +63,6 @@ export function integrationsControllerListIntegrationsRequestToJSON(
     ),
   );
 }
-
 export function integrationsControllerListIntegrationsRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -111,7 +94,6 @@ export const IntegrationsControllerListIntegrationsResponse$inboundSchema:
       "Result": "result",
     });
   });
-
 /** @internal */
 export type IntegrationsControllerListIntegrationsResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
@@ -134,22 +116,6 @@ export const IntegrationsControllerListIntegrationsResponse$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace IntegrationsControllerListIntegrationsResponse$ {
-  /** @deprecated use `IntegrationsControllerListIntegrationsResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    IntegrationsControllerListIntegrationsResponse$inboundSchema;
-  /** @deprecated use `IntegrationsControllerListIntegrationsResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    IntegrationsControllerListIntegrationsResponse$outboundSchema;
-  /** @deprecated use `IntegrationsControllerListIntegrationsResponse$Outbound` instead. */
-  export type Outbound =
-    IntegrationsControllerListIntegrationsResponse$Outbound;
-}
-
 export function integrationsControllerListIntegrationsResponseToJSON(
   integrationsControllerListIntegrationsResponse:
     IntegrationsControllerListIntegrationsResponse,
@@ -160,7 +126,6 @@ export function integrationsControllerListIntegrationsResponseToJSON(
     ),
   );
 }
-
 export function integrationsControllerListIntegrationsResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<

@@ -37,7 +37,6 @@ export const ApiKeyDto$inboundSchema: z.ZodType<
     "_userId": "userId",
   });
 });
-
 /** @internal */
 export type ApiKeyDto$Outbound = {
   key: string;
@@ -60,23 +59,9 @@ export const ApiKeyDto$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ApiKeyDto$ {
-  /** @deprecated use `ApiKeyDto$inboundSchema` instead. */
-  export const inboundSchema = ApiKeyDto$inboundSchema;
-  /** @deprecated use `ApiKeyDto$outboundSchema` instead. */
-  export const outboundSchema = ApiKeyDto$outboundSchema;
-  /** @deprecated use `ApiKeyDto$Outbound` instead. */
-  export type Outbound = ApiKeyDto$Outbound;
-}
-
 export function apiKeyDtoToJSON(apiKeyDto: ApiKeyDto): string {
   return JSON.stringify(ApiKeyDto$outboundSchema.parse(apiKeyDto));
 }
-
 export function apiKeyDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<ApiKeyDto, SDKValidationError> {

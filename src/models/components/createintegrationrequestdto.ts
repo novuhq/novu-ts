@@ -90,23 +90,10 @@ export type CreateIntegrationRequestDto = {
 export const CreateIntegrationRequestDtoChannel$inboundSchema: z.ZodNativeEnum<
   typeof CreateIntegrationRequestDtoChannel
 > = z.nativeEnum(CreateIntegrationRequestDtoChannel);
-
 /** @internal */
 export const CreateIntegrationRequestDtoChannel$outboundSchema: z.ZodNativeEnum<
   typeof CreateIntegrationRequestDtoChannel
 > = CreateIntegrationRequestDtoChannel$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateIntegrationRequestDtoChannel$ {
-  /** @deprecated use `CreateIntegrationRequestDtoChannel$inboundSchema` instead. */
-  export const inboundSchema = CreateIntegrationRequestDtoChannel$inboundSchema;
-  /** @deprecated use `CreateIntegrationRequestDtoChannel$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateIntegrationRequestDtoChannel$outboundSchema;
-}
 
 /** @internal */
 export const Configurations$inboundSchema: z.ZodType<
@@ -114,7 +101,6 @@ export const Configurations$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({});
-
 /** @internal */
 export type Configurations$Outbound = {};
 
@@ -125,23 +111,9 @@ export const Configurations$outboundSchema: z.ZodType<
   Configurations
 > = z.object({});
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Configurations$ {
-  /** @deprecated use `Configurations$inboundSchema` instead. */
-  export const inboundSchema = Configurations$inboundSchema;
-  /** @deprecated use `Configurations$outboundSchema` instead. */
-  export const outboundSchema = Configurations$outboundSchema;
-  /** @deprecated use `Configurations$Outbound` instead. */
-  export type Outbound = Configurations$Outbound;
-}
-
 export function configurationsToJSON(configurations: Configurations): string {
   return JSON.stringify(Configurations$outboundSchema.parse(configurations));
 }
-
 export function configurationsFromJSON(
   jsonString: string,
 ): SafeParseResult<Configurations, SDKValidationError> {
@@ -173,7 +145,6 @@ export const CreateIntegrationRequestDto$inboundSchema: z.ZodType<
     "_environmentId": "environmentId",
   });
 });
-
 /** @internal */
 export type CreateIntegrationRequestDto$Outbound = {
   name?: string | undefined;
@@ -210,19 +181,6 @@ export const CreateIntegrationRequestDto$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateIntegrationRequestDto$ {
-  /** @deprecated use `CreateIntegrationRequestDto$inboundSchema` instead. */
-  export const inboundSchema = CreateIntegrationRequestDto$inboundSchema;
-  /** @deprecated use `CreateIntegrationRequestDto$outboundSchema` instead. */
-  export const outboundSchema = CreateIntegrationRequestDto$outboundSchema;
-  /** @deprecated use `CreateIntegrationRequestDto$Outbound` instead. */
-  export type Outbound = CreateIntegrationRequestDto$Outbound;
-}
-
 export function createIntegrationRequestDtoToJSON(
   createIntegrationRequestDto: CreateIntegrationRequestDto,
 ): string {
@@ -232,7 +190,6 @@ export function createIntegrationRequestDtoToJSON(
     ),
   );
 }
-
 export function createIntegrationRequestDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<CreateIntegrationRequestDto, SDKValidationError> {

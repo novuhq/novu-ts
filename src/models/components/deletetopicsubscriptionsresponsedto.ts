@@ -50,7 +50,6 @@ export const DeleteTopicSubscriptionsResponseDto$inboundSchema: z.ZodType<
   meta: MetaDto$inboundSchema,
   errors: z.array(SubscriptionsDeleteErrorDto$inboundSchema).optional(),
 });
-
 /** @internal */
 export type DeleteTopicSubscriptionsResponseDto$Outbound = {
   data: Array<SubscriptionDto$Outbound>;
@@ -69,21 +68,6 @@ export const DeleteTopicSubscriptionsResponseDto$outboundSchema: z.ZodType<
   errors: z.array(SubscriptionsDeleteErrorDto$outboundSchema).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DeleteTopicSubscriptionsResponseDto$ {
-  /** @deprecated use `DeleteTopicSubscriptionsResponseDto$inboundSchema` instead. */
-  export const inboundSchema =
-    DeleteTopicSubscriptionsResponseDto$inboundSchema;
-  /** @deprecated use `DeleteTopicSubscriptionsResponseDto$outboundSchema` instead. */
-  export const outboundSchema =
-    DeleteTopicSubscriptionsResponseDto$outboundSchema;
-  /** @deprecated use `DeleteTopicSubscriptionsResponseDto$Outbound` instead. */
-  export type Outbound = DeleteTopicSubscriptionsResponseDto$Outbound;
-}
-
 export function deleteTopicSubscriptionsResponseDtoToJSON(
   deleteTopicSubscriptionsResponseDto: DeleteTopicSubscriptionsResponseDto,
 ): string {
@@ -93,7 +77,6 @@ export function deleteTopicSubscriptionsResponseDtoToJSON(
     ),
   );
 }
-
 export function deleteTopicSubscriptionsResponseDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<DeleteTopicSubscriptionsResponseDto, SDKValidationError> {

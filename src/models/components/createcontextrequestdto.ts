@@ -30,7 +30,6 @@ export type CreateContextRequestDto = {
 /** @internal */
 export const Data$inboundSchema: z.ZodType<Data, z.ZodTypeDef, unknown> = z
   .object({});
-
 /** @internal */
 export type Data$Outbound = {};
 
@@ -38,23 +37,9 @@ export type Data$Outbound = {};
 export const Data$outboundSchema: z.ZodType<Data$Outbound, z.ZodTypeDef, Data> =
   z.object({});
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Data$ {
-  /** @deprecated use `Data$inboundSchema` instead. */
-  export const inboundSchema = Data$inboundSchema;
-  /** @deprecated use `Data$outboundSchema` instead. */
-  export const outboundSchema = Data$outboundSchema;
-  /** @deprecated use `Data$Outbound` instead. */
-  export type Outbound = Data$Outbound;
-}
-
 export function dataToJSON(data: Data): string {
   return JSON.stringify(Data$outboundSchema.parse(data));
 }
-
 export function dataFromJSON(
   jsonString: string,
 ): SafeParseResult<Data, SDKValidationError> {
@@ -75,7 +60,6 @@ export const CreateContextRequestDto$inboundSchema: z.ZodType<
   id: z.string(),
   data: z.lazy(() => Data$inboundSchema).optional(),
 });
-
 /** @internal */
 export type CreateContextRequestDto$Outbound = {
   type: string;
@@ -94,19 +78,6 @@ export const CreateContextRequestDto$outboundSchema: z.ZodType<
   data: z.lazy(() => Data$outboundSchema).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateContextRequestDto$ {
-  /** @deprecated use `CreateContextRequestDto$inboundSchema` instead. */
-  export const inboundSchema = CreateContextRequestDto$inboundSchema;
-  /** @deprecated use `CreateContextRequestDto$outboundSchema` instead. */
-  export const outboundSchema = CreateContextRequestDto$outboundSchema;
-  /** @deprecated use `CreateContextRequestDto$Outbound` instead. */
-  export type Outbound = CreateContextRequestDto$Outbound;
-}
-
 export function createContextRequestDtoToJSON(
   createContextRequestDto: CreateContextRequestDto,
 ): string {
@@ -114,7 +85,6 @@ export function createContextRequestDtoToJSON(
     CreateContextRequestDto$outboundSchema.parse(createContextRequestDto),
   );
 }
-
 export function createContextRequestDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<CreateContextRequestDto, SDKValidationError> {

@@ -35,7 +35,6 @@ export const EventsControllerBroadcastEventToAllRequest$inboundSchema:
         "TriggerEventToAllRequestDto": "triggerEventToAllRequestDto",
       });
     });
-
 /** @internal */
 export type EventsControllerBroadcastEventToAllRequest$Outbound = {
   "idempotency-key"?: string | undefined;
@@ -59,21 +58,6 @@ export const EventsControllerBroadcastEventToAllRequest$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EventsControllerBroadcastEventToAllRequest$ {
-  /** @deprecated use `EventsControllerBroadcastEventToAllRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    EventsControllerBroadcastEventToAllRequest$inboundSchema;
-  /** @deprecated use `EventsControllerBroadcastEventToAllRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    EventsControllerBroadcastEventToAllRequest$outboundSchema;
-  /** @deprecated use `EventsControllerBroadcastEventToAllRequest$Outbound` instead. */
-  export type Outbound = EventsControllerBroadcastEventToAllRequest$Outbound;
-}
-
 export function eventsControllerBroadcastEventToAllRequestToJSON(
   eventsControllerBroadcastEventToAllRequest:
     EventsControllerBroadcastEventToAllRequest,
@@ -84,7 +68,6 @@ export function eventsControllerBroadcastEventToAllRequestToJSON(
     ),
   );
 }
-
 export function eventsControllerBroadcastEventToAllRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -116,7 +99,6 @@ export const EventsControllerBroadcastEventToAllResponse$inboundSchema:
       "Result": "result",
     });
   });
-
 /** @internal */
 export type EventsControllerBroadcastEventToAllResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
@@ -139,21 +121,6 @@ export const EventsControllerBroadcastEventToAllResponse$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EventsControllerBroadcastEventToAllResponse$ {
-  /** @deprecated use `EventsControllerBroadcastEventToAllResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    EventsControllerBroadcastEventToAllResponse$inboundSchema;
-  /** @deprecated use `EventsControllerBroadcastEventToAllResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    EventsControllerBroadcastEventToAllResponse$outboundSchema;
-  /** @deprecated use `EventsControllerBroadcastEventToAllResponse$Outbound` instead. */
-  export type Outbound = EventsControllerBroadcastEventToAllResponse$Outbound;
-}
-
 export function eventsControllerBroadcastEventToAllResponseToJSON(
   eventsControllerBroadcastEventToAllResponse:
     EventsControllerBroadcastEventToAllResponse,
@@ -164,7 +131,6 @@ export function eventsControllerBroadcastEventToAllResponseToJSON(
     ),
   );
 }
-
 export function eventsControllerBroadcastEventToAllResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<

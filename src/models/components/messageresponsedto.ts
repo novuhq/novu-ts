@@ -195,7 +195,7 @@ export type MessageResponseDto = {
    */
   overrides?: MessageResponseDtoOverrides | undefined;
   /**
-   * Context keys associated with the message (format: "type:id")
+   * Context (single or multi) in which the message was sent
    */
   contextKeys?: Array<string> | undefined;
 };
@@ -206,7 +206,6 @@ export const MessageResponseDtoContent$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([z.array(EmailBlock$inboundSchema), z.string()]);
-
 /** @internal */
 export type MessageResponseDtoContent$Outbound =
   | Array<EmailBlock$Outbound>
@@ -219,19 +218,6 @@ export const MessageResponseDtoContent$outboundSchema: z.ZodType<
   MessageResponseDtoContent
 > = z.union([z.array(EmailBlock$outboundSchema), z.string()]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MessageResponseDtoContent$ {
-  /** @deprecated use `MessageResponseDtoContent$inboundSchema` instead. */
-  export const inboundSchema = MessageResponseDtoContent$inboundSchema;
-  /** @deprecated use `MessageResponseDtoContent$outboundSchema` instead. */
-  export const outboundSchema = MessageResponseDtoContent$outboundSchema;
-  /** @deprecated use `MessageResponseDtoContent$Outbound` instead. */
-  export type Outbound = MessageResponseDtoContent$Outbound;
-}
-
 export function messageResponseDtoContentToJSON(
   messageResponseDtoContent: MessageResponseDtoContent,
 ): string {
@@ -239,7 +225,6 @@ export function messageResponseDtoContentToJSON(
     MessageResponseDtoContent$outboundSchema.parse(messageResponseDtoContent),
   );
 }
-
 export function messageResponseDtoContentFromJSON(
   jsonString: string,
 ): SafeParseResult<MessageResponseDtoContent, SDKValidationError> {
@@ -256,7 +241,6 @@ export const MessageResponseDtoPayload$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({});
-
 /** @internal */
 export type MessageResponseDtoPayload$Outbound = {};
 
@@ -267,19 +251,6 @@ export const MessageResponseDtoPayload$outboundSchema: z.ZodType<
   MessageResponseDtoPayload
 > = z.object({});
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MessageResponseDtoPayload$ {
-  /** @deprecated use `MessageResponseDtoPayload$inboundSchema` instead. */
-  export const inboundSchema = MessageResponseDtoPayload$inboundSchema;
-  /** @deprecated use `MessageResponseDtoPayload$outboundSchema` instead. */
-  export const outboundSchema = MessageResponseDtoPayload$outboundSchema;
-  /** @deprecated use `MessageResponseDtoPayload$Outbound` instead. */
-  export type Outbound = MessageResponseDtoPayload$Outbound;
-}
-
 export function messageResponseDtoPayloadToJSON(
   messageResponseDtoPayload: MessageResponseDtoPayload,
 ): string {
@@ -287,7 +258,6 @@ export function messageResponseDtoPayloadToJSON(
     MessageResponseDtoPayload$outboundSchema.parse(messageResponseDtoPayload),
   );
 }
-
 export function messageResponseDtoPayloadFromJSON(
   jsonString: string,
 ): SafeParseResult<MessageResponseDtoPayload, SDKValidationError> {
@@ -304,7 +274,6 @@ export const MessageResponseDtoOverrides$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({});
-
 /** @internal */
 export type MessageResponseDtoOverrides$Outbound = {};
 
@@ -315,19 +284,6 @@ export const MessageResponseDtoOverrides$outboundSchema: z.ZodType<
   MessageResponseDtoOverrides
 > = z.object({});
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MessageResponseDtoOverrides$ {
-  /** @deprecated use `MessageResponseDtoOverrides$inboundSchema` instead. */
-  export const inboundSchema = MessageResponseDtoOverrides$inboundSchema;
-  /** @deprecated use `MessageResponseDtoOverrides$outboundSchema` instead. */
-  export const outboundSchema = MessageResponseDtoOverrides$outboundSchema;
-  /** @deprecated use `MessageResponseDtoOverrides$Outbound` instead. */
-  export type Outbound = MessageResponseDtoOverrides$Outbound;
-}
-
 export function messageResponseDtoOverridesToJSON(
   messageResponseDtoOverrides: MessageResponseDtoOverrides,
 ): string {
@@ -337,7 +293,6 @@ export function messageResponseDtoOverridesToJSON(
     ),
   );
 }
-
 export function messageResponseDtoOverridesFromJSON(
   jsonString: string,
 ): SafeParseResult<MessageResponseDtoOverrides, SDKValidationError> {
@@ -402,7 +357,6 @@ export const MessageResponseDto$inboundSchema: z.ZodType<
     "_feedId": "feedId",
   });
 });
-
 /** @internal */
 export type MessageResponseDto$Outbound = {
   _id?: string | undefined;
@@ -498,19 +452,6 @@ export const MessageResponseDto$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MessageResponseDto$ {
-  /** @deprecated use `MessageResponseDto$inboundSchema` instead. */
-  export const inboundSchema = MessageResponseDto$inboundSchema;
-  /** @deprecated use `MessageResponseDto$outboundSchema` instead. */
-  export const outboundSchema = MessageResponseDto$outboundSchema;
-  /** @deprecated use `MessageResponseDto$Outbound` instead. */
-  export type Outbound = MessageResponseDto$Outbound;
-}
-
 export function messageResponseDtoToJSON(
   messageResponseDto: MessageResponseDto,
 ): string {
@@ -518,7 +459,6 @@ export function messageResponseDtoToJSON(
     MessageResponseDto$outboundSchema.parse(messageResponseDto),
   );
 }
-
 export function messageResponseDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<MessageResponseDto, SDKValidationError> {

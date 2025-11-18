@@ -47,7 +47,6 @@ export const SubscriberPreferenceChannels$inboundSchema: z.ZodType<
     "in_app": "inApp",
   });
 });
-
 /** @internal */
 export type SubscriberPreferenceChannels$Outbound = {
   email?: boolean | undefined;
@@ -74,19 +73,6 @@ export const SubscriberPreferenceChannels$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SubscriberPreferenceChannels$ {
-  /** @deprecated use `SubscriberPreferenceChannels$inboundSchema` instead. */
-  export const inboundSchema = SubscriberPreferenceChannels$inboundSchema;
-  /** @deprecated use `SubscriberPreferenceChannels$outboundSchema` instead. */
-  export const outboundSchema = SubscriberPreferenceChannels$outboundSchema;
-  /** @deprecated use `SubscriberPreferenceChannels$Outbound` instead. */
-  export type Outbound = SubscriberPreferenceChannels$Outbound;
-}
-
 export function subscriberPreferenceChannelsToJSON(
   subscriberPreferenceChannels: SubscriberPreferenceChannels,
 ): string {
@@ -96,7 +82,6 @@ export function subscriberPreferenceChannelsToJSON(
     ),
   );
 }
-
 export function subscriberPreferenceChannelsFromJSON(
   jsonString: string,
 ): SafeParseResult<SubscriberPreferenceChannels, SDKValidationError> {

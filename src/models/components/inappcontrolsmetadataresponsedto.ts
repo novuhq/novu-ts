@@ -44,7 +44,6 @@ export const InAppControlsMetadataResponseDto$inboundSchema: z.ZodType<
   uiSchema: UiSchema$inboundSchema.optional(),
   values: InAppControlDto$inboundSchema,
 });
-
 /** @internal */
 export type InAppControlsMetadataResponseDto$Outbound = {
   dataSchema?: { [k: string]: any } | undefined;
@@ -63,19 +62,6 @@ export const InAppControlsMetadataResponseDto$outboundSchema: z.ZodType<
   values: InAppControlDto$outboundSchema,
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InAppControlsMetadataResponseDto$ {
-  /** @deprecated use `InAppControlsMetadataResponseDto$inboundSchema` instead. */
-  export const inboundSchema = InAppControlsMetadataResponseDto$inboundSchema;
-  /** @deprecated use `InAppControlsMetadataResponseDto$outboundSchema` instead. */
-  export const outboundSchema = InAppControlsMetadataResponseDto$outboundSchema;
-  /** @deprecated use `InAppControlsMetadataResponseDto$Outbound` instead. */
-  export type Outbound = InAppControlsMetadataResponseDto$Outbound;
-}
-
 export function inAppControlsMetadataResponseDtoToJSON(
   inAppControlsMetadataResponseDto: InAppControlsMetadataResponseDto,
 ): string {
@@ -85,7 +71,6 @@ export function inAppControlsMetadataResponseDtoToJSON(
     ),
   );
 }
-
 export function inAppControlsMetadataResponseDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<InAppControlsMetadataResponseDto, SDKValidationError> {

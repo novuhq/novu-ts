@@ -144,7 +144,6 @@ export const MessagePayloadValidationExceptionDto5$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([z.string(), z.number(), z.boolean(), z.record(z.any())]);
-
 /** @internal */
 export type MessagePayloadValidationExceptionDto5$Outbound =
   | string
@@ -159,21 +158,6 @@ export const MessagePayloadValidationExceptionDto5$outboundSchema: z.ZodType<
   unknown
 > = z.union([z.string(), z.number(), z.boolean(), z.record(z.any())]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MessagePayloadValidationExceptionDto5$ {
-  /** @deprecated use `MessagePayloadValidationExceptionDto5$inboundSchema` instead. */
-  export const inboundSchema =
-    MessagePayloadValidationExceptionDto5$inboundSchema;
-  /** @deprecated use `MessagePayloadValidationExceptionDto5$outboundSchema` instead. */
-  export const outboundSchema =
-    MessagePayloadValidationExceptionDto5$outboundSchema;
-  /** @deprecated use `MessagePayloadValidationExceptionDto5$Outbound` instead. */
-  export type Outbound = MessagePayloadValidationExceptionDto5$Outbound;
-}
-
 export function messagePayloadValidationExceptionDto5ToJSON(
   messagePayloadValidationExceptionDto5: MessagePayloadValidationExceptionDto5,
 ): string {
@@ -183,7 +167,6 @@ export function messagePayloadValidationExceptionDto5ToJSON(
     ),
   );
 }
-
 export function messagePayloadValidationExceptionDto5FromJSON(
   jsonString: string,
 ): SafeParseResult<MessagePayloadValidationExceptionDto5, SDKValidationError> {
@@ -201,7 +184,6 @@ export const MessagePayloadValidationExceptionDto4$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({});
-
 /** @internal */
 export type MessagePayloadValidationExceptionDto4$Outbound = {};
 
@@ -212,21 +194,6 @@ export const MessagePayloadValidationExceptionDto4$outboundSchema: z.ZodType<
   MessagePayloadValidationExceptionDto4
 > = z.object({});
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MessagePayloadValidationExceptionDto4$ {
-  /** @deprecated use `MessagePayloadValidationExceptionDto4$inboundSchema` instead. */
-  export const inboundSchema =
-    MessagePayloadValidationExceptionDto4$inboundSchema;
-  /** @deprecated use `MessagePayloadValidationExceptionDto4$outboundSchema` instead. */
-  export const outboundSchema =
-    MessagePayloadValidationExceptionDto4$outboundSchema;
-  /** @deprecated use `MessagePayloadValidationExceptionDto4$Outbound` instead. */
-  export type Outbound = MessagePayloadValidationExceptionDto4$Outbound;
-}
-
 export function messagePayloadValidationExceptionDto4ToJSON(
   messagePayloadValidationExceptionDto4: MessagePayloadValidationExceptionDto4,
 ): string {
@@ -236,7 +203,6 @@ export function messagePayloadValidationExceptionDto4ToJSON(
     ),
   );
 }
-
 export function messagePayloadValidationExceptionDto4FromJSON(
   jsonString: string,
 ): SafeParseResult<MessagePayloadValidationExceptionDto4, SDKValidationError> {
@@ -264,7 +230,6 @@ export const PayloadValidationExceptionDtoMessage$inboundSchema: z.ZodType<
     ),
   ),
 ]);
-
 /** @internal */
 export type PayloadValidationExceptionDtoMessage$Outbound =
   | string
@@ -290,21 +255,6 @@ export const PayloadValidationExceptionDtoMessage$outboundSchema: z.ZodType<
   ),
 ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PayloadValidationExceptionDtoMessage$ {
-  /** @deprecated use `PayloadValidationExceptionDtoMessage$inboundSchema` instead. */
-  export const inboundSchema =
-    PayloadValidationExceptionDtoMessage$inboundSchema;
-  /** @deprecated use `PayloadValidationExceptionDtoMessage$outboundSchema` instead. */
-  export const outboundSchema =
-    PayloadValidationExceptionDtoMessage$outboundSchema;
-  /** @deprecated use `PayloadValidationExceptionDtoMessage$Outbound` instead. */
-  export type Outbound = PayloadValidationExceptionDtoMessage$Outbound;
-}
-
 export function payloadValidationExceptionDtoMessageToJSON(
   payloadValidationExceptionDtoMessage: PayloadValidationExceptionDtoMessage,
 ): string {
@@ -314,7 +264,6 @@ export function payloadValidationExceptionDtoMessageToJSON(
     ),
   );
 }
-
 export function payloadValidationExceptionDtoMessageFromJSON(
   jsonString: string,
 ): SafeParseResult<PayloadValidationExceptionDtoMessage, SDKValidationError> {
@@ -329,7 +278,6 @@ export function payloadValidationExceptionDtoMessageFromJSON(
 /** @internal */
 export const Schema$inboundSchema: z.ZodType<Schema, z.ZodTypeDef, unknown> = z
   .object({});
-
 /** @internal */
 export type Schema$Outbound = {};
 
@@ -340,23 +288,9 @@ export const Schema$outboundSchema: z.ZodType<
   Schema
 > = z.object({});
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Schema$ {
-  /** @deprecated use `Schema$inboundSchema` instead. */
-  export const inboundSchema = Schema$inboundSchema;
-  /** @deprecated use `Schema$outboundSchema` instead. */
-  export const outboundSchema = Schema$outboundSchema;
-  /** @deprecated use `Schema$Outbound` instead. */
-  export type Outbound = Schema$Outbound;
-}
-
 export function schemaToJSON(schema: Schema): string {
   return JSON.stringify(Schema$outboundSchema.parse(schema));
 }
-
 export function schemaFromJSON(
   jsonString: string,
 ): SafeParseResult<Schema, SDKValidationError> {
@@ -456,16 +390,3 @@ export const PayloadValidationExceptionDto$outboundSchema: z.ZodType<
     errors: z.array(components.PayloadValidationErrorDto$outboundSchema),
     schema: z.lazy(() => Schema$outboundSchema).optional(),
   }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PayloadValidationExceptionDto$ {
-  /** @deprecated use `PayloadValidationExceptionDto$inboundSchema` instead. */
-  export const inboundSchema = PayloadValidationExceptionDto$inboundSchema;
-  /** @deprecated use `PayloadValidationExceptionDto$outboundSchema` instead. */
-  export const outboundSchema = PayloadValidationExceptionDto$outboundSchema;
-  /** @deprecated use `PayloadValidationExceptionDto$Outbound` instead. */
-  export type Outbound = PayloadValidationExceptionDto$Outbound;
-}

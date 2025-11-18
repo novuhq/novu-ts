@@ -42,7 +42,6 @@ export const TopicsControllerUpsertTopicRequest$inboundSchema: z.ZodType<
     "CreateUpdateTopicRequestDto": "createUpdateTopicRequestDto",
   });
 });
-
 /** @internal */
 export type TopicsControllerUpsertTopicRequest$Outbound = {
   failIfExists?: boolean | undefined;
@@ -67,20 +66,6 @@ export const TopicsControllerUpsertTopicRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TopicsControllerUpsertTopicRequest$ {
-  /** @deprecated use `TopicsControllerUpsertTopicRequest$inboundSchema` instead. */
-  export const inboundSchema = TopicsControllerUpsertTopicRequest$inboundSchema;
-  /** @deprecated use `TopicsControllerUpsertTopicRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    TopicsControllerUpsertTopicRequest$outboundSchema;
-  /** @deprecated use `TopicsControllerUpsertTopicRequest$Outbound` instead. */
-  export type Outbound = TopicsControllerUpsertTopicRequest$Outbound;
-}
-
 export function topicsControllerUpsertTopicRequestToJSON(
   topicsControllerUpsertTopicRequest: TopicsControllerUpsertTopicRequest,
 ): string {
@@ -90,7 +75,6 @@ export function topicsControllerUpsertTopicRequestToJSON(
     ),
   );
 }
-
 export function topicsControllerUpsertTopicRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<TopicsControllerUpsertTopicRequest, SDKValidationError> {
@@ -116,7 +100,6 @@ export const TopicsControllerUpsertTopicResponse$inboundSchema: z.ZodType<
     "Result": "result",
   });
 });
-
 /** @internal */
 export type TopicsControllerUpsertTopicResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
@@ -138,21 +121,6 @@ export const TopicsControllerUpsertTopicResponse$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TopicsControllerUpsertTopicResponse$ {
-  /** @deprecated use `TopicsControllerUpsertTopicResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    TopicsControllerUpsertTopicResponse$inboundSchema;
-  /** @deprecated use `TopicsControllerUpsertTopicResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    TopicsControllerUpsertTopicResponse$outboundSchema;
-  /** @deprecated use `TopicsControllerUpsertTopicResponse$Outbound` instead. */
-  export type Outbound = TopicsControllerUpsertTopicResponse$Outbound;
-}
-
 export function topicsControllerUpsertTopicResponseToJSON(
   topicsControllerUpsertTopicResponse: TopicsControllerUpsertTopicResponse,
 ): string {
@@ -162,7 +130,6 @@ export function topicsControllerUpsertTopicResponseToJSON(
     ),
   );
 }
-
 export function topicsControllerUpsertTopicResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<TopicsControllerUpsertTopicResponse, SDKValidationError> {

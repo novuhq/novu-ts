@@ -32,7 +32,6 @@ export const ActorFeedItemDto$inboundSchema: z.ZodType<
   data: z.nullable(z.string()),
   type: ActorTypeEnum$inboundSchema,
 });
-
 /** @internal */
 export type ActorFeedItemDto$Outbound = {
   data: string | null;
@@ -49,19 +48,6 @@ export const ActorFeedItemDto$outboundSchema: z.ZodType<
   type: ActorTypeEnum$outboundSchema,
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ActorFeedItemDto$ {
-  /** @deprecated use `ActorFeedItemDto$inboundSchema` instead. */
-  export const inboundSchema = ActorFeedItemDto$inboundSchema;
-  /** @deprecated use `ActorFeedItemDto$outboundSchema` instead. */
-  export const outboundSchema = ActorFeedItemDto$outboundSchema;
-  /** @deprecated use `ActorFeedItemDto$Outbound` instead. */
-  export type Outbound = ActorFeedItemDto$Outbound;
-}
-
 export function actorFeedItemDtoToJSON(
   actorFeedItemDto: ActorFeedItemDto,
 ): string {
@@ -69,7 +55,6 @@ export function actorFeedItemDtoToJSON(
     ActorFeedItemDto$outboundSchema.parse(actorFeedItemDto),
   );
 }
-
 export function actorFeedItemDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<ActorFeedItemDto, SDKValidationError> {

@@ -43,7 +43,6 @@ export const StepListResponseDto$inboundSchema: z.ZodType<
   type: StepTypeEnum$inboundSchema,
   issues: StepIssuesDto$inboundSchema.optional(),
 });
-
 /** @internal */
 export type StepListResponseDto$Outbound = {
   slug: string;
@@ -62,19 +61,6 @@ export const StepListResponseDto$outboundSchema: z.ZodType<
   issues: StepIssuesDto$outboundSchema.optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace StepListResponseDto$ {
-  /** @deprecated use `StepListResponseDto$inboundSchema` instead. */
-  export const inboundSchema = StepListResponseDto$inboundSchema;
-  /** @deprecated use `StepListResponseDto$outboundSchema` instead. */
-  export const outboundSchema = StepListResponseDto$outboundSchema;
-  /** @deprecated use `StepListResponseDto$Outbound` instead. */
-  export type Outbound = StepListResponseDto$Outbound;
-}
-
 export function stepListResponseDtoToJSON(
   stepListResponseDto: StepListResponseDto,
 ): string {
@@ -82,7 +68,6 @@ export function stepListResponseDtoToJSON(
     StepListResponseDto$outboundSchema.parse(stepListResponseDto),
   );
 }
-
 export function stepListResponseDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<StepListResponseDto, SDKValidationError> {

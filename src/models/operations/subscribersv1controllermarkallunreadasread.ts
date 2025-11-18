@@ -40,7 +40,6 @@ export const SubscribersV1ControllerMarkAllUnreadAsReadRequest$inboundSchema:
       "MarkAllMessageAsRequestDto": "markAllMessageAsRequestDto",
     });
   });
-
 /** @internal */
 export type SubscribersV1ControllerMarkAllUnreadAsReadRequest$Outbound = {
   subscriberId: string;
@@ -66,22 +65,6 @@ export const SubscribersV1ControllerMarkAllUnreadAsReadRequest$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SubscribersV1ControllerMarkAllUnreadAsReadRequest$ {
-  /** @deprecated use `SubscribersV1ControllerMarkAllUnreadAsReadRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    SubscribersV1ControllerMarkAllUnreadAsReadRequest$inboundSchema;
-  /** @deprecated use `SubscribersV1ControllerMarkAllUnreadAsReadRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    SubscribersV1ControllerMarkAllUnreadAsReadRequest$outboundSchema;
-  /** @deprecated use `SubscribersV1ControllerMarkAllUnreadAsReadRequest$Outbound` instead. */
-  export type Outbound =
-    SubscribersV1ControllerMarkAllUnreadAsReadRequest$Outbound;
-}
-
 export function subscribersV1ControllerMarkAllUnreadAsReadRequestToJSON(
   subscribersV1ControllerMarkAllUnreadAsReadRequest:
     SubscribersV1ControllerMarkAllUnreadAsReadRequest,
@@ -92,7 +75,6 @@ export function subscribersV1ControllerMarkAllUnreadAsReadRequestToJSON(
     ),
   );
 }
-
 export function subscribersV1ControllerMarkAllUnreadAsReadRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -124,7 +106,6 @@ export const SubscribersV1ControllerMarkAllUnreadAsReadResponse$inboundSchema:
       "Result": "result",
     });
   });
-
 /** @internal */
 export type SubscribersV1ControllerMarkAllUnreadAsReadResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
@@ -147,22 +128,6 @@ export const SubscribersV1ControllerMarkAllUnreadAsReadResponse$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SubscribersV1ControllerMarkAllUnreadAsReadResponse$ {
-  /** @deprecated use `SubscribersV1ControllerMarkAllUnreadAsReadResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    SubscribersV1ControllerMarkAllUnreadAsReadResponse$inboundSchema;
-  /** @deprecated use `SubscribersV1ControllerMarkAllUnreadAsReadResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    SubscribersV1ControllerMarkAllUnreadAsReadResponse$outboundSchema;
-  /** @deprecated use `SubscribersV1ControllerMarkAllUnreadAsReadResponse$Outbound` instead. */
-  export type Outbound =
-    SubscribersV1ControllerMarkAllUnreadAsReadResponse$Outbound;
-}
-
 export function subscribersV1ControllerMarkAllUnreadAsReadResponseToJSON(
   subscribersV1ControllerMarkAllUnreadAsReadResponse:
     SubscribersV1ControllerMarkAllUnreadAsReadResponse,
@@ -173,7 +138,6 @@ export function subscribersV1ControllerMarkAllUnreadAsReadResponseToJSON(
     ),
   );
 }
-
 export function subscribersV1ControllerMarkAllUnreadAsReadResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<

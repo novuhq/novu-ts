@@ -28,7 +28,6 @@ export const TranslationControllerUploadMasterJsonEndpointRequest$inboundSchema:
       "idempotency-key": "idempotencyKey",
     });
   });
-
 /** @internal */
 export type TranslationControllerUploadMasterJsonEndpointRequest$Outbound = {
   "idempotency-key"?: string | undefined;
@@ -48,22 +47,6 @@ export const TranslationControllerUploadMasterJsonEndpointRequest$outboundSchema
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TranslationControllerUploadMasterJsonEndpointRequest$ {
-  /** @deprecated use `TranslationControllerUploadMasterJsonEndpointRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    TranslationControllerUploadMasterJsonEndpointRequest$inboundSchema;
-  /** @deprecated use `TranslationControllerUploadMasterJsonEndpointRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    TranslationControllerUploadMasterJsonEndpointRequest$outboundSchema;
-  /** @deprecated use `TranslationControllerUploadMasterJsonEndpointRequest$Outbound` instead. */
-  export type Outbound =
-    TranslationControllerUploadMasterJsonEndpointRequest$Outbound;
-}
-
 export function translationControllerUploadMasterJsonEndpointRequestToJSON(
   translationControllerUploadMasterJsonEndpointRequest:
     TranslationControllerUploadMasterJsonEndpointRequest,
@@ -74,7 +57,6 @@ export function translationControllerUploadMasterJsonEndpointRequestToJSON(
     ),
   );
 }
-
 export function translationControllerUploadMasterJsonEndpointRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<

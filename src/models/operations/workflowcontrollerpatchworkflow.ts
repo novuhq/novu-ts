@@ -41,7 +41,6 @@ export const WorkflowControllerPatchWorkflowRequest$inboundSchema: z.ZodType<
     "PatchWorkflowDto": "patchWorkflowDto",
   });
 });
-
 /** @internal */
 export type WorkflowControllerPatchWorkflowRequest$Outbound = {
   workflowId: string;
@@ -65,21 +64,6 @@ export const WorkflowControllerPatchWorkflowRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WorkflowControllerPatchWorkflowRequest$ {
-  /** @deprecated use `WorkflowControllerPatchWorkflowRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    WorkflowControllerPatchWorkflowRequest$inboundSchema;
-  /** @deprecated use `WorkflowControllerPatchWorkflowRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    WorkflowControllerPatchWorkflowRequest$outboundSchema;
-  /** @deprecated use `WorkflowControllerPatchWorkflowRequest$Outbound` instead. */
-  export type Outbound = WorkflowControllerPatchWorkflowRequest$Outbound;
-}
-
 export function workflowControllerPatchWorkflowRequestToJSON(
   workflowControllerPatchWorkflowRequest:
     WorkflowControllerPatchWorkflowRequest,
@@ -90,7 +74,6 @@ export function workflowControllerPatchWorkflowRequestToJSON(
     ),
   );
 }
-
 export function workflowControllerPatchWorkflowRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<WorkflowControllerPatchWorkflowRequest, SDKValidationError> {
@@ -116,7 +99,6 @@ export const WorkflowControllerPatchWorkflowResponse$inboundSchema: z.ZodType<
     "Result": "result",
   });
 });
-
 /** @internal */
 export type WorkflowControllerPatchWorkflowResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
@@ -138,21 +120,6 @@ export const WorkflowControllerPatchWorkflowResponse$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WorkflowControllerPatchWorkflowResponse$ {
-  /** @deprecated use `WorkflowControllerPatchWorkflowResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    WorkflowControllerPatchWorkflowResponse$inboundSchema;
-  /** @deprecated use `WorkflowControllerPatchWorkflowResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    WorkflowControllerPatchWorkflowResponse$outboundSchema;
-  /** @deprecated use `WorkflowControllerPatchWorkflowResponse$Outbound` instead. */
-  export type Outbound = WorkflowControllerPatchWorkflowResponse$Outbound;
-}
-
 export function workflowControllerPatchWorkflowResponseToJSON(
   workflowControllerPatchWorkflowResponse:
     WorkflowControllerPatchWorkflowResponse,
@@ -163,7 +130,6 @@ export function workflowControllerPatchWorkflowResponseToJSON(
     ),
   );
 }
-
 export function workflowControllerPatchWorkflowResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<

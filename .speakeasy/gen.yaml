@@ -19,12 +19,13 @@ generation:
     hoistGlobalSecurity: true
   schemas:
     allOfMergeStrategy: shallowMerge
+  requestBodyFieldName: ""
   tests:
     generateTests: true
     generateNewTests: false
     skipResponseBodyAssertions: false
 typescript:
-  version: 1.8.0
+  version: 1.9.0
   acceptHeaderEnum: true
   additionalDependencies:
     dependencies: {}
@@ -32,6 +33,8 @@ typescript:
     peerDependencies: {}
   additionalPackageJSON:
     description: The <Inbox /> infrastructure for modern products
+  additionalScripts: {}
+  alwaysIncludeInboundAndOutbound: false
   author: Novu
   baseErrorName: NovuError
   clientServerStatusCodesAsErrors: true
@@ -41,6 +44,7 @@ typescript:
   enableMCPServer: true
   enableReactQuery: false
   enumFormat: union
+  exportZodModelNamespace: false
   flattenGlobalSecurity: true
   flatteningOrder: body-first
   generateExamples: true
@@ -63,6 +67,7 @@ typescript:
   responseFormat: flat
   sseFlatResponse: false
   templateVersion: v2
+  unionStrategy: left-to-right
   usageSDKInitImports: []
   useIndexModules: true
   zodVersion: v3

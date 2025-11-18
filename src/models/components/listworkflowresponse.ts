@@ -33,7 +33,6 @@ export const ListWorkflowResponse$inboundSchema: z.ZodType<
   workflows: z.array(WorkflowListResponseDto$inboundSchema),
   totalCount: z.number(),
 });
-
 /** @internal */
 export type ListWorkflowResponse$Outbound = {
   workflows: Array<WorkflowListResponseDto$Outbound>;
@@ -50,19 +49,6 @@ export const ListWorkflowResponse$outboundSchema: z.ZodType<
   totalCount: z.number(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListWorkflowResponse$ {
-  /** @deprecated use `ListWorkflowResponse$inboundSchema` instead. */
-  export const inboundSchema = ListWorkflowResponse$inboundSchema;
-  /** @deprecated use `ListWorkflowResponse$outboundSchema` instead. */
-  export const outboundSchema = ListWorkflowResponse$outboundSchema;
-  /** @deprecated use `ListWorkflowResponse$Outbound` instead. */
-  export type Outbound = ListWorkflowResponse$Outbound;
-}
-
 export function listWorkflowResponseToJSON(
   listWorkflowResponse: ListWorkflowResponse,
 ): string {
@@ -70,7 +56,6 @@ export function listWorkflowResponseToJSON(
     ListWorkflowResponse$outboundSchema.parse(listWorkflowResponse),
   );
 }
-
 export function listWorkflowResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<ListWorkflowResponse, SDKValidationError> {

@@ -68,21 +68,9 @@ export type EventBody = {
 /** @internal */
 export const Status$inboundSchema: z.ZodNativeEnum<typeof Status> = z
   .nativeEnum(Status);
-
 /** @internal */
 export const Status$outboundSchema: z.ZodNativeEnum<typeof Status> =
   Status$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Status$ {
-  /** @deprecated use `Status$inboundSchema` instead. */
-  export const inboundSchema = Status$inboundSchema;
-  /** @deprecated use `Status$outboundSchema` instead. */
-  export const outboundSchema = Status$outboundSchema;
-}
 
 /** @internal */
 export const EventBody$inboundSchema: z.ZodType<
@@ -97,7 +85,6 @@ export const EventBody$inboundSchema: z.ZodType<
   response: z.string().optional(),
   row: z.string().optional(),
 });
-
 /** @internal */
 export type EventBody$Outbound = {
   status: string;
@@ -122,23 +109,9 @@ export const EventBody$outboundSchema: z.ZodType<
   row: z.string().optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EventBody$ {
-  /** @deprecated use `EventBody$inboundSchema` instead. */
-  export const inboundSchema = EventBody$inboundSchema;
-  /** @deprecated use `EventBody$outboundSchema` instead. */
-  export const outboundSchema = EventBody$outboundSchema;
-  /** @deprecated use `EventBody$Outbound` instead. */
-  export type Outbound = EventBody$Outbound;
-}
-
 export function eventBodyToJSON(eventBody: EventBody): string {
   return JSON.stringify(EventBody$outboundSchema.parse(eventBody));
 }
-
 export function eventBodyFromJSON(
   jsonString: string,
 ): SafeParseResult<EventBody, SDKValidationError> {

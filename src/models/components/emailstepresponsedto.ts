@@ -134,22 +134,10 @@ export type EmailStepResponseDto = {
 export const EmailStepResponseDtoEditorType$inboundSchema: z.ZodNativeEnum<
   typeof EmailStepResponseDtoEditorType
 > = z.nativeEnum(EmailStepResponseDtoEditorType);
-
 /** @internal */
 export const EmailStepResponseDtoEditorType$outboundSchema: z.ZodNativeEnum<
   typeof EmailStepResponseDtoEditorType
 > = EmailStepResponseDtoEditorType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EmailStepResponseDtoEditorType$ {
-  /** @deprecated use `EmailStepResponseDtoEditorType$inboundSchema` instead. */
-  export const inboundSchema = EmailStepResponseDtoEditorType$inboundSchema;
-  /** @deprecated use `EmailStepResponseDtoEditorType$outboundSchema` instead. */
-  export const outboundSchema = EmailStepResponseDtoEditorType$outboundSchema;
-}
 
 /** @internal */
 export const EmailStepResponseDtoControlValues$inboundSchema: z.ZodType<
@@ -168,7 +156,6 @@ export const EmailStepResponseDtoControlValues$inboundSchema: z.ZodType<
   "additionalProperties",
   true,
 );
-
 /** @internal */
 export type EmailStepResponseDtoControlValues$Outbound = {
   skip?: { [k: string]: any } | undefined;
@@ -202,20 +189,6 @@ export const EmailStepResponseDtoControlValues$outboundSchema: z.ZodType<
   };
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EmailStepResponseDtoControlValues$ {
-  /** @deprecated use `EmailStepResponseDtoControlValues$inboundSchema` instead. */
-  export const inboundSchema = EmailStepResponseDtoControlValues$inboundSchema;
-  /** @deprecated use `EmailStepResponseDtoControlValues$outboundSchema` instead. */
-  export const outboundSchema =
-    EmailStepResponseDtoControlValues$outboundSchema;
-  /** @deprecated use `EmailStepResponseDtoControlValues$Outbound` instead. */
-  export type Outbound = EmailStepResponseDtoControlValues$Outbound;
-}
-
 export function emailStepResponseDtoControlValuesToJSON(
   emailStepResponseDtoControlValues: EmailStepResponseDtoControlValues,
 ): string {
@@ -225,7 +198,6 @@ export function emailStepResponseDtoControlValuesToJSON(
     ),
   );
 }
-
 export function emailStepResponseDtoControlValuesFromJSON(
   jsonString: string,
 ): SafeParseResult<EmailStepResponseDtoControlValues, SDKValidationError> {
@@ -260,7 +232,6 @@ export const EmailStepResponseDto$inboundSchema: z.ZodType<
     "_id": "id",
   });
 });
-
 /** @internal */
 export type EmailStepResponseDto$Outbound = {
   controls: EmailControlsMetadataResponseDto$Outbound;
@@ -302,19 +273,6 @@ export const EmailStepResponseDto$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EmailStepResponseDto$ {
-  /** @deprecated use `EmailStepResponseDto$inboundSchema` instead. */
-  export const inboundSchema = EmailStepResponseDto$inboundSchema;
-  /** @deprecated use `EmailStepResponseDto$outboundSchema` instead. */
-  export const outboundSchema = EmailStepResponseDto$outboundSchema;
-  /** @deprecated use `EmailStepResponseDto$Outbound` instead. */
-  export type Outbound = EmailStepResponseDto$Outbound;
-}
-
 export function emailStepResponseDtoToJSON(
   emailStepResponseDto: EmailStepResponseDto,
 ): string {
@@ -322,7 +280,6 @@ export function emailStepResponseDtoToJSON(
     EmailStepResponseDto$outboundSchema.parse(emailStepResponseDto),
   );
 }
-
 export function emailStepResponseDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<EmailStepResponseDto, SDKValidationError> {

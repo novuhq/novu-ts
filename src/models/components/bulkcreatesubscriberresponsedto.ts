@@ -50,7 +50,6 @@ export const BulkCreateSubscriberResponseDto$inboundSchema: z.ZodType<
   created: z.array(CreatedSubscriberDto$inboundSchema),
   failed: z.array(FailedOperationDto$inboundSchema),
 });
-
 /** @internal */
 export type BulkCreateSubscriberResponseDto$Outbound = {
   updated: Array<UpdatedSubscriberDto$Outbound>;
@@ -69,19 +68,6 @@ export const BulkCreateSubscriberResponseDto$outboundSchema: z.ZodType<
   failed: z.array(FailedOperationDto$outboundSchema),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace BulkCreateSubscriberResponseDto$ {
-  /** @deprecated use `BulkCreateSubscriberResponseDto$inboundSchema` instead. */
-  export const inboundSchema = BulkCreateSubscriberResponseDto$inboundSchema;
-  /** @deprecated use `BulkCreateSubscriberResponseDto$outboundSchema` instead. */
-  export const outboundSchema = BulkCreateSubscriberResponseDto$outboundSchema;
-  /** @deprecated use `BulkCreateSubscriberResponseDto$Outbound` instead. */
-  export type Outbound = BulkCreateSubscriberResponseDto$Outbound;
-}
-
 export function bulkCreateSubscriberResponseDtoToJSON(
   bulkCreateSubscriberResponseDto: BulkCreateSubscriberResponseDto,
 ): string {
@@ -91,7 +77,6 @@ export function bulkCreateSubscriberResponseDtoToJSON(
     ),
   );
 }
-
 export function bulkCreateSubscriberResponseDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<BulkCreateSubscriberResponseDto, SDKValidationError> {

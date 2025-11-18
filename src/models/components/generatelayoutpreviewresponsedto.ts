@@ -53,21 +53,9 @@ export type GenerateLayoutPreviewResponseDto = {
 /** @internal */
 export const ResultType$inboundSchema: z.ZodNativeEnum<typeof ResultType> = z
   .nativeEnum(ResultType);
-
 /** @internal */
 export const ResultType$outboundSchema: z.ZodNativeEnum<typeof ResultType> =
   ResultType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ResultType$ {
-  /** @deprecated use `ResultType$inboundSchema` instead. */
-  export const inboundSchema = ResultType$inboundSchema;
-  /** @deprecated use `ResultType$outboundSchema` instead. */
-  export const outboundSchema = ResultType$outboundSchema;
-}
 
 /** @internal */
 export const One$inboundSchema: z.ZodType<One, z.ZodTypeDef, unknown> = z
@@ -75,7 +63,6 @@ export const One$inboundSchema: z.ZodType<One, z.ZodTypeDef, unknown> = z
     type: ResultType$inboundSchema.optional(),
     preview: EmailLayoutRenderOutput$inboundSchema.optional(),
   });
-
 /** @internal */
 export type One$Outbound = {
   type?: string | undefined;
@@ -89,23 +76,9 @@ export const One$outboundSchema: z.ZodType<One$Outbound, z.ZodTypeDef, One> = z
     preview: EmailLayoutRenderOutput$outboundSchema.optional(),
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace One$ {
-  /** @deprecated use `One$inboundSchema` instead. */
-  export const inboundSchema = One$inboundSchema;
-  /** @deprecated use `One$outboundSchema` instead. */
-  export const outboundSchema = One$outboundSchema;
-  /** @deprecated use `One$Outbound` instead. */
-  export type Outbound = One$Outbound;
-}
-
 export function oneToJSON(one: One): string {
   return JSON.stringify(One$outboundSchema.parse(one));
 }
-
 export function oneFromJSON(
   jsonString: string,
 ): SafeParseResult<One, SDKValidationError> {
@@ -119,7 +92,6 @@ export function oneFromJSON(
 /** @internal */
 export const Result$inboundSchema: z.ZodType<Result, z.ZodTypeDef, unknown> = z
   .lazy(() => One$inboundSchema);
-
 /** @internal */
 export type Result$Outbound = One$Outbound;
 
@@ -130,23 +102,9 @@ export const Result$outboundSchema: z.ZodType<
   Result
 > = z.lazy(() => One$outboundSchema);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Result$ {
-  /** @deprecated use `Result$inboundSchema` instead. */
-  export const inboundSchema = Result$inboundSchema;
-  /** @deprecated use `Result$outboundSchema` instead. */
-  export const outboundSchema = Result$outboundSchema;
-  /** @deprecated use `Result$Outbound` instead. */
-  export type Outbound = Result$Outbound;
-}
-
 export function resultToJSON(result: Result): string {
   return JSON.stringify(Result$outboundSchema.parse(result));
 }
-
 export function resultFromJSON(
   jsonString: string,
 ): SafeParseResult<Result, SDKValidationError> {
@@ -167,7 +125,6 @@ export const GenerateLayoutPreviewResponseDto$inboundSchema: z.ZodType<
   schema: z.nullable(z.record(z.any())).optional(),
   result: z.lazy(() => One$inboundSchema),
 });
-
 /** @internal */
 export type GenerateLayoutPreviewResponseDto$Outbound = {
   previewPayloadExample: LayoutPreviewPayloadDto$Outbound;
@@ -186,19 +143,6 @@ export const GenerateLayoutPreviewResponseDto$outboundSchema: z.ZodType<
   result: z.lazy(() => One$outboundSchema),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GenerateLayoutPreviewResponseDto$ {
-  /** @deprecated use `GenerateLayoutPreviewResponseDto$inboundSchema` instead. */
-  export const inboundSchema = GenerateLayoutPreviewResponseDto$inboundSchema;
-  /** @deprecated use `GenerateLayoutPreviewResponseDto$outboundSchema` instead. */
-  export const outboundSchema = GenerateLayoutPreviewResponseDto$outboundSchema;
-  /** @deprecated use `GenerateLayoutPreviewResponseDto$Outbound` instead. */
-  export type Outbound = GenerateLayoutPreviewResponseDto$Outbound;
-}
-
 export function generateLayoutPreviewResponseDtoToJSON(
   generateLayoutPreviewResponseDto: GenerateLayoutPreviewResponseDto,
 ): string {
@@ -208,7 +152,6 @@ export function generateLayoutPreviewResponseDtoToJSON(
     ),
   );
 }
-
 export function generateLayoutPreviewResponseDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<GenerateLayoutPreviewResponseDto, SDKValidationError> {

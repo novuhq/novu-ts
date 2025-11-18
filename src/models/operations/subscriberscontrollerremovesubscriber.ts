@@ -36,7 +36,6 @@ export const SubscribersControllerRemoveSubscriberRequest$inboundSchema:
       "idempotency-key": "idempotencyKey",
     });
   });
-
 /** @internal */
 export type SubscribersControllerRemoveSubscriberRequest$Outbound = {
   subscriberId: string;
@@ -58,21 +57,6 @@ export const SubscribersControllerRemoveSubscriberRequest$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SubscribersControllerRemoveSubscriberRequest$ {
-  /** @deprecated use `SubscribersControllerRemoveSubscriberRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    SubscribersControllerRemoveSubscriberRequest$inboundSchema;
-  /** @deprecated use `SubscribersControllerRemoveSubscriberRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    SubscribersControllerRemoveSubscriberRequest$outboundSchema;
-  /** @deprecated use `SubscribersControllerRemoveSubscriberRequest$Outbound` instead. */
-  export type Outbound = SubscribersControllerRemoveSubscriberRequest$Outbound;
-}
-
 export function subscribersControllerRemoveSubscriberRequestToJSON(
   subscribersControllerRemoveSubscriberRequest:
     SubscribersControllerRemoveSubscriberRequest,
@@ -83,7 +67,6 @@ export function subscribersControllerRemoveSubscriberRequestToJSON(
     ),
   );
 }
-
 export function subscribersControllerRemoveSubscriberRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -115,7 +98,6 @@ export const SubscribersControllerRemoveSubscriberResponse$inboundSchema:
       "Result": "result",
     });
   });
-
 /** @internal */
 export type SubscribersControllerRemoveSubscriberResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
@@ -138,21 +120,6 @@ export const SubscribersControllerRemoveSubscriberResponse$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SubscribersControllerRemoveSubscriberResponse$ {
-  /** @deprecated use `SubscribersControllerRemoveSubscriberResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    SubscribersControllerRemoveSubscriberResponse$inboundSchema;
-  /** @deprecated use `SubscribersControllerRemoveSubscriberResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    SubscribersControllerRemoveSubscriberResponse$outboundSchema;
-  /** @deprecated use `SubscribersControllerRemoveSubscriberResponse$Outbound` instead. */
-  export type Outbound = SubscribersControllerRemoveSubscriberResponse$Outbound;
-}
-
 export function subscribersControllerRemoveSubscriberResponseToJSON(
   subscribersControllerRemoveSubscriberResponse:
     SubscribersControllerRemoveSubscriberResponse,
@@ -163,7 +130,6 @@ export function subscribersControllerRemoveSubscriberResponseToJSON(
     ),
   );
 }
-
 export function subscribersControllerRemoveSubscriberResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<

@@ -22,7 +22,6 @@ export const CreateTopicSubscriptionsRequestDto$inboundSchema: z.ZodType<
 > = z.object({
   subscriberIds: z.array(z.string()),
 });
-
 /** @internal */
 export type CreateTopicSubscriptionsRequestDto$Outbound = {
   subscriberIds: Array<string>;
@@ -37,20 +36,6 @@ export const CreateTopicSubscriptionsRequestDto$outboundSchema: z.ZodType<
   subscriberIds: z.array(z.string()),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateTopicSubscriptionsRequestDto$ {
-  /** @deprecated use `CreateTopicSubscriptionsRequestDto$inboundSchema` instead. */
-  export const inboundSchema = CreateTopicSubscriptionsRequestDto$inboundSchema;
-  /** @deprecated use `CreateTopicSubscriptionsRequestDto$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateTopicSubscriptionsRequestDto$outboundSchema;
-  /** @deprecated use `CreateTopicSubscriptionsRequestDto$Outbound` instead. */
-  export type Outbound = CreateTopicSubscriptionsRequestDto$Outbound;
-}
-
 export function createTopicSubscriptionsRequestDtoToJSON(
   createTopicSubscriptionsRequestDto: CreateTopicSubscriptionsRequestDto,
 ): string {
@@ -60,7 +45,6 @@ export function createTopicSubscriptionsRequestDtoToJSON(
     ),
   );
 }
-
 export function createTopicSubscriptionsRequestDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<CreateTopicSubscriptionsRequestDto, SDKValidationError> {

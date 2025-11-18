@@ -46,7 +46,6 @@ export const SubscribersV1ControllerGetUnseenCountRequest$inboundSchema:
       "idempotency-key": "idempotencyKey",
     });
   });
-
 /** @internal */
 export type SubscribersV1ControllerGetUnseenCountRequest$Outbound = {
   subscriberId: string;
@@ -72,21 +71,6 @@ export const SubscribersV1ControllerGetUnseenCountRequest$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SubscribersV1ControllerGetUnseenCountRequest$ {
-  /** @deprecated use `SubscribersV1ControllerGetUnseenCountRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    SubscribersV1ControllerGetUnseenCountRequest$inboundSchema;
-  /** @deprecated use `SubscribersV1ControllerGetUnseenCountRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    SubscribersV1ControllerGetUnseenCountRequest$outboundSchema;
-  /** @deprecated use `SubscribersV1ControllerGetUnseenCountRequest$Outbound` instead. */
-  export type Outbound = SubscribersV1ControllerGetUnseenCountRequest$Outbound;
-}
-
 export function subscribersV1ControllerGetUnseenCountRequestToJSON(
   subscribersV1ControllerGetUnseenCountRequest:
     SubscribersV1ControllerGetUnseenCountRequest,
@@ -97,7 +81,6 @@ export function subscribersV1ControllerGetUnseenCountRequestToJSON(
     ),
   );
 }
-
 export function subscribersV1ControllerGetUnseenCountRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -129,7 +112,6 @@ export const SubscribersV1ControllerGetUnseenCountResponse$inboundSchema:
       "Result": "result",
     });
   });
-
 /** @internal */
 export type SubscribersV1ControllerGetUnseenCountResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
@@ -152,21 +134,6 @@ export const SubscribersV1ControllerGetUnseenCountResponse$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SubscribersV1ControllerGetUnseenCountResponse$ {
-  /** @deprecated use `SubscribersV1ControllerGetUnseenCountResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    SubscribersV1ControllerGetUnseenCountResponse$inboundSchema;
-  /** @deprecated use `SubscribersV1ControllerGetUnseenCountResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    SubscribersV1ControllerGetUnseenCountResponse$outboundSchema;
-  /** @deprecated use `SubscribersV1ControllerGetUnseenCountResponse$Outbound` instead. */
-  export type Outbound = SubscribersV1ControllerGetUnseenCountResponse$Outbound;
-}
-
 export function subscribersV1ControllerGetUnseenCountResponseToJSON(
   subscribersV1ControllerGetUnseenCountResponse:
     SubscribersV1ControllerGetUnseenCountResponse,
@@ -177,7 +144,6 @@ export function subscribersV1ControllerGetUnseenCountResponseToJSON(
     ),
   );
 }
-
 export function subscribersV1ControllerGetUnseenCountResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<

@@ -43,7 +43,6 @@ export const UpdateSubscriberChannelRequestDto$inboundSchema: z.ZodType<
   integrationIdentifier: z.string().optional(),
   credentials: ChannelCredentials$inboundSchema,
 });
-
 /** @internal */
 export type UpdateSubscriberChannelRequestDto$Outbound = {
   providerId: string;
@@ -62,20 +61,6 @@ export const UpdateSubscriberChannelRequestDto$outboundSchema: z.ZodType<
   credentials: ChannelCredentials$outboundSchema,
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateSubscriberChannelRequestDto$ {
-  /** @deprecated use `UpdateSubscriberChannelRequestDto$inboundSchema` instead. */
-  export const inboundSchema = UpdateSubscriberChannelRequestDto$inboundSchema;
-  /** @deprecated use `UpdateSubscriberChannelRequestDto$outboundSchema` instead. */
-  export const outboundSchema =
-    UpdateSubscriberChannelRequestDto$outboundSchema;
-  /** @deprecated use `UpdateSubscriberChannelRequestDto$Outbound` instead. */
-  export type Outbound = UpdateSubscriberChannelRequestDto$Outbound;
-}
-
 export function updateSubscriberChannelRequestDtoToJSON(
   updateSubscriberChannelRequestDto: UpdateSubscriberChannelRequestDto,
 ): string {
@@ -85,7 +70,6 @@ export function updateSubscriberChannelRequestDtoToJSON(
     ),
   );
 }
-
 export function updateSubscriberChannelRequestDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<UpdateSubscriberChannelRequestDto, SDKValidationError> {

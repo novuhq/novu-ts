@@ -117,7 +117,6 @@ export const Message5$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([z.string(), z.number(), z.boolean(), z.record(z.any())]);
-
 /** @internal */
 export type Message5$Outbound = string | number | boolean | {
   [k: string]: any;
@@ -130,23 +129,9 @@ export const Message5$outboundSchema: z.ZodType<
   unknown
 > = z.union([z.string(), z.number(), z.boolean(), z.record(z.any())]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Message5$ {
-  /** @deprecated use `Message5$inboundSchema` instead. */
-  export const inboundSchema = Message5$inboundSchema;
-  /** @deprecated use `Message5$outboundSchema` instead. */
-  export const outboundSchema = Message5$outboundSchema;
-  /** @deprecated use `Message5$Outbound` instead. */
-  export type Outbound = Message5$Outbound;
-}
-
 export function message5ToJSON(message5: Message5): string {
   return JSON.stringify(Message5$outboundSchema.parse(message5));
 }
-
 export function message5FromJSON(
   jsonString: string,
 ): SafeParseResult<Message5, SDKValidationError> {
@@ -163,7 +148,6 @@ export const Message4$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({});
-
 /** @internal */
 export type Message4$Outbound = {};
 
@@ -174,23 +158,9 @@ export const Message4$outboundSchema: z.ZodType<
   Message4
 > = z.object({});
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Message4$ {
-  /** @deprecated use `Message4$inboundSchema` instead. */
-  export const inboundSchema = Message4$inboundSchema;
-  /** @deprecated use `Message4$outboundSchema` instead. */
-  export const outboundSchema = Message4$outboundSchema;
-  /** @deprecated use `Message4$Outbound` instead. */
-  export type Outbound = Message4$Outbound;
-}
-
 export function message4ToJSON(message4: Message4): string {
   return JSON.stringify(Message4$outboundSchema.parse(message4));
 }
-
 export function message4FromJSON(
   jsonString: string,
 ): SafeParseResult<Message4, SDKValidationError> {
@@ -217,7 +187,6 @@ export const ValidationErrorDtoMessage$inboundSchema: z.ZodType<
     ),
   ),
 ]);
-
 /** @internal */
 export type ValidationErrorDtoMessage$Outbound =
   | string
@@ -243,19 +212,6 @@ export const ValidationErrorDtoMessage$outboundSchema: z.ZodType<
   ),
 ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ValidationErrorDtoMessage$ {
-  /** @deprecated use `ValidationErrorDtoMessage$inboundSchema` instead. */
-  export const inboundSchema = ValidationErrorDtoMessage$inboundSchema;
-  /** @deprecated use `ValidationErrorDtoMessage$outboundSchema` instead. */
-  export const outboundSchema = ValidationErrorDtoMessage$outboundSchema;
-  /** @deprecated use `ValidationErrorDtoMessage$Outbound` instead. */
-  export type Outbound = ValidationErrorDtoMessage$Outbound;
-}
-
 export function validationErrorDtoMessageToJSON(
   validationErrorDtoMessage: ValidationErrorDtoMessage,
 ): string {
@@ -263,7 +219,6 @@ export function validationErrorDtoMessageToJSON(
     ValidationErrorDtoMessage$outboundSchema.parse(validationErrorDtoMessage),
   );
 }
-
 export function validationErrorDtoMessageFromJSON(
   jsonString: string,
 ): SafeParseResult<ValidationErrorDtoMessage, SDKValidationError> {
@@ -357,16 +312,3 @@ export const ValidationErrorDto$outboundSchema: z.ZodType<
     errorId: z.string().optional(),
     errors: z.record(components.ConstraintValidation$outboundSchema),
   }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ValidationErrorDto$ {
-  /** @deprecated use `ValidationErrorDto$inboundSchema` instead. */
-  export const inboundSchema = ValidationErrorDto$inboundSchema;
-  /** @deprecated use `ValidationErrorDto$outboundSchema` instead. */
-  export const outboundSchema = ValidationErrorDto$outboundSchema;
-  /** @deprecated use `ValidationErrorDto$Outbound` instead. */
-  export type Outbound = ValidationErrorDto$Outbound;
-}

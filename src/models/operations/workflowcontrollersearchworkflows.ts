@@ -68,7 +68,6 @@ export const WorkflowControllerSearchWorkflowsRequest$inboundSchema: z.ZodType<
     "idempotency-key": "idempotencyKey",
   });
 });
-
 /** @internal */
 export type WorkflowControllerSearchWorkflowsRequest$Outbound = {
   limit?: number | undefined;
@@ -101,21 +100,6 @@ export const WorkflowControllerSearchWorkflowsRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WorkflowControllerSearchWorkflowsRequest$ {
-  /** @deprecated use `WorkflowControllerSearchWorkflowsRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    WorkflowControllerSearchWorkflowsRequest$inboundSchema;
-  /** @deprecated use `WorkflowControllerSearchWorkflowsRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    WorkflowControllerSearchWorkflowsRequest$outboundSchema;
-  /** @deprecated use `WorkflowControllerSearchWorkflowsRequest$Outbound` instead. */
-  export type Outbound = WorkflowControllerSearchWorkflowsRequest$Outbound;
-}
-
 export function workflowControllerSearchWorkflowsRequestToJSON(
   workflowControllerSearchWorkflowsRequest:
     WorkflowControllerSearchWorkflowsRequest,
@@ -126,7 +110,6 @@ export function workflowControllerSearchWorkflowsRequestToJSON(
     ),
   );
 }
-
 export function workflowControllerSearchWorkflowsRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -157,7 +140,6 @@ export const WorkflowControllerSearchWorkflowsResponse$inboundSchema: z.ZodType<
     "Result": "result",
   });
 });
-
 /** @internal */
 export type WorkflowControllerSearchWorkflowsResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
@@ -180,21 +162,6 @@ export const WorkflowControllerSearchWorkflowsResponse$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WorkflowControllerSearchWorkflowsResponse$ {
-  /** @deprecated use `WorkflowControllerSearchWorkflowsResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    WorkflowControllerSearchWorkflowsResponse$inboundSchema;
-  /** @deprecated use `WorkflowControllerSearchWorkflowsResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    WorkflowControllerSearchWorkflowsResponse$outboundSchema;
-  /** @deprecated use `WorkflowControllerSearchWorkflowsResponse$Outbound` instead. */
-  export type Outbound = WorkflowControllerSearchWorkflowsResponse$Outbound;
-}
-
 export function workflowControllerSearchWorkflowsResponseToJSON(
   workflowControllerSearchWorkflowsResponse:
     WorkflowControllerSearchWorkflowsResponse,
@@ -205,7 +172,6 @@ export function workflowControllerSearchWorkflowsResponseToJSON(
     ),
   );
 }
-
 export function workflowControllerSearchWorkflowsResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<

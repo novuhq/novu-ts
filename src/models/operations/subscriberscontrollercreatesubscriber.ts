@@ -43,7 +43,6 @@ export const SubscribersControllerCreateSubscriberRequest$inboundSchema:
       "CreateSubscriberRequestDto": "createSubscriberRequestDto",
     });
   });
-
 /** @internal */
 export type SubscribersControllerCreateSubscriberRequest$Outbound = {
   failIfExists?: boolean | undefined;
@@ -69,21 +68,6 @@ export const SubscribersControllerCreateSubscriberRequest$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SubscribersControllerCreateSubscriberRequest$ {
-  /** @deprecated use `SubscribersControllerCreateSubscriberRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    SubscribersControllerCreateSubscriberRequest$inboundSchema;
-  /** @deprecated use `SubscribersControllerCreateSubscriberRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    SubscribersControllerCreateSubscriberRequest$outboundSchema;
-  /** @deprecated use `SubscribersControllerCreateSubscriberRequest$Outbound` instead. */
-  export type Outbound = SubscribersControllerCreateSubscriberRequest$Outbound;
-}
-
 export function subscribersControllerCreateSubscriberRequestToJSON(
   subscribersControllerCreateSubscriberRequest:
     SubscribersControllerCreateSubscriberRequest,
@@ -94,7 +78,6 @@ export function subscribersControllerCreateSubscriberRequestToJSON(
     ),
   );
 }
-
 export function subscribersControllerCreateSubscriberRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -126,7 +109,6 @@ export const SubscribersControllerCreateSubscriberResponse$inboundSchema:
       "Result": "result",
     });
   });
-
 /** @internal */
 export type SubscribersControllerCreateSubscriberResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
@@ -149,21 +131,6 @@ export const SubscribersControllerCreateSubscriberResponse$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SubscribersControllerCreateSubscriberResponse$ {
-  /** @deprecated use `SubscribersControllerCreateSubscriberResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    SubscribersControllerCreateSubscriberResponse$inboundSchema;
-  /** @deprecated use `SubscribersControllerCreateSubscriberResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    SubscribersControllerCreateSubscriberResponse$outboundSchema;
-  /** @deprecated use `SubscribersControllerCreateSubscriberResponse$Outbound` instead. */
-  export type Outbound = SubscribersControllerCreateSubscriberResponse$Outbound;
-}
-
 export function subscribersControllerCreateSubscriberResponseToJSON(
   subscribersControllerCreateSubscriberResponse:
     SubscribersControllerCreateSubscriberResponse,
@@ -174,7 +141,6 @@ export function subscribersControllerCreateSubscriberResponseToJSON(
     ),
   );
 }
-
 export function subscribersControllerCreateSubscriberResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<

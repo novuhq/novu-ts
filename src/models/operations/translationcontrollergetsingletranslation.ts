@@ -44,22 +44,10 @@ export type TranslationControllerGetSingleTranslationRequest = {
 export const PathParamResourceType$inboundSchema: z.ZodNativeEnum<
   typeof PathParamResourceType
 > = z.nativeEnum(PathParamResourceType);
-
 /** @internal */
 export const PathParamResourceType$outboundSchema: z.ZodNativeEnum<
   typeof PathParamResourceType
 > = PathParamResourceType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PathParamResourceType$ {
-  /** @deprecated use `PathParamResourceType$inboundSchema` instead. */
-  export const inboundSchema = PathParamResourceType$inboundSchema;
-  /** @deprecated use `PathParamResourceType$outboundSchema` instead. */
-  export const outboundSchema = PathParamResourceType$outboundSchema;
-}
 
 /** @internal */
 export const TranslationControllerGetSingleTranslationRequest$inboundSchema:
@@ -77,7 +65,6 @@ export const TranslationControllerGetSingleTranslationRequest$inboundSchema:
       "idempotency-key": "idempotencyKey",
     });
   });
-
 /** @internal */
 export type TranslationControllerGetSingleTranslationRequest$Outbound = {
   resourceType: string;
@@ -103,22 +90,6 @@ export const TranslationControllerGetSingleTranslationRequest$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TranslationControllerGetSingleTranslationRequest$ {
-  /** @deprecated use `TranslationControllerGetSingleTranslationRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    TranslationControllerGetSingleTranslationRequest$inboundSchema;
-  /** @deprecated use `TranslationControllerGetSingleTranslationRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    TranslationControllerGetSingleTranslationRequest$outboundSchema;
-  /** @deprecated use `TranslationControllerGetSingleTranslationRequest$Outbound` instead. */
-  export type Outbound =
-    TranslationControllerGetSingleTranslationRequest$Outbound;
-}
-
 export function translationControllerGetSingleTranslationRequestToJSON(
   translationControllerGetSingleTranslationRequest:
     TranslationControllerGetSingleTranslationRequest,
@@ -129,7 +100,6 @@ export function translationControllerGetSingleTranslationRequestToJSON(
     ),
   );
 }
-
 export function translationControllerGetSingleTranslationRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<

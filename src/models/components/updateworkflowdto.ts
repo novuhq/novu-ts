@@ -178,7 +178,6 @@ export const UpdateWorkflowDtoSteps$inboundSchema: z.ZodType<
     })),
   ),
 ]);
-
 /** @internal */
 export type UpdateWorkflowDtoSteps$Outbound =
   | (InAppStepUpsertDto$Outbound & { type: "in_app" })
@@ -228,19 +227,6 @@ export const UpdateWorkflowDtoSteps$outboundSchema: z.ZodType<
   ),
 ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateWorkflowDtoSteps$ {
-  /** @deprecated use `UpdateWorkflowDtoSteps$inboundSchema` instead. */
-  export const inboundSchema = UpdateWorkflowDtoSteps$inboundSchema;
-  /** @deprecated use `UpdateWorkflowDtoSteps$outboundSchema` instead. */
-  export const outboundSchema = UpdateWorkflowDtoSteps$outboundSchema;
-  /** @deprecated use `UpdateWorkflowDtoSteps$Outbound` instead. */
-  export type Outbound = UpdateWorkflowDtoSteps$Outbound;
-}
-
 export function updateWorkflowDtoStepsToJSON(
   updateWorkflowDtoSteps: UpdateWorkflowDtoSteps,
 ): string {
@@ -248,7 +234,6 @@ export function updateWorkflowDtoStepsToJSON(
     UpdateWorkflowDtoSteps$outboundSchema.parse(updateWorkflowDtoSteps),
   );
 }
-
 export function updateWorkflowDtoStepsFromJSON(
   jsonString: string,
 ): SafeParseResult<UpdateWorkflowDtoSteps, SDKValidationError> {
@@ -321,7 +306,6 @@ export const UpdateWorkflowDto$inboundSchema: z.ZodType<
   origin: ResourceOriginEnum$inboundSchema,
   severity: SeverityLevelEnum$inboundSchema.optional(),
 });
-
 /** @internal */
 export type UpdateWorkflowDto$Outbound = {
   name: string;
@@ -410,19 +394,6 @@ export const UpdateWorkflowDto$outboundSchema: z.ZodType<
   severity: SeverityLevelEnum$outboundSchema.optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateWorkflowDto$ {
-  /** @deprecated use `UpdateWorkflowDto$inboundSchema` instead. */
-  export const inboundSchema = UpdateWorkflowDto$inboundSchema;
-  /** @deprecated use `UpdateWorkflowDto$outboundSchema` instead. */
-  export const outboundSchema = UpdateWorkflowDto$outboundSchema;
-  /** @deprecated use `UpdateWorkflowDto$Outbound` instead. */
-  export type Outbound = UpdateWorkflowDto$Outbound;
-}
-
 export function updateWorkflowDtoToJSON(
   updateWorkflowDto: UpdateWorkflowDto,
 ): string {
@@ -430,7 +401,6 @@ export function updateWorkflowDtoToJSON(
     UpdateWorkflowDto$outboundSchema.parse(updateWorkflowDto),
   );
 }
-
 export function updateWorkflowDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<UpdateWorkflowDto, SDKValidationError> {

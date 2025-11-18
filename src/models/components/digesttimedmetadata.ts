@@ -45,43 +45,19 @@ export type DigestTimedMetadata = {
 export const DigestTimedMetadataUnit$inboundSchema: z.ZodNativeEnum<
   typeof DigestTimedMetadataUnit
 > = z.nativeEnum(DigestTimedMetadataUnit);
-
 /** @internal */
 export const DigestTimedMetadataUnit$outboundSchema: z.ZodNativeEnum<
   typeof DigestTimedMetadataUnit
 > = DigestTimedMetadataUnit$inboundSchema;
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DigestTimedMetadataUnit$ {
-  /** @deprecated use `DigestTimedMetadataUnit$inboundSchema` instead. */
-  export const inboundSchema = DigestTimedMetadataUnit$inboundSchema;
-  /** @deprecated use `DigestTimedMetadataUnit$outboundSchema` instead. */
-  export const outboundSchema = DigestTimedMetadataUnit$outboundSchema;
-}
-
 /** @internal */
 export const DigestTimedMetadataType$inboundSchema: z.ZodNativeEnum<
   typeof DigestTimedMetadataType
 > = z.nativeEnum(DigestTimedMetadataType);
-
 /** @internal */
 export const DigestTimedMetadataType$outboundSchema: z.ZodNativeEnum<
   typeof DigestTimedMetadataType
 > = DigestTimedMetadataType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DigestTimedMetadataType$ {
-  /** @deprecated use `DigestTimedMetadataType$inboundSchema` instead. */
-  export const inboundSchema = DigestTimedMetadataType$inboundSchema;
-  /** @deprecated use `DigestTimedMetadataType$outboundSchema` instead. */
-  export const outboundSchema = DigestTimedMetadataType$outboundSchema;
-}
 
 /** @internal */
 export const DigestTimedMetadata$inboundSchema: z.ZodType<
@@ -95,7 +71,6 @@ export const DigestTimedMetadata$inboundSchema: z.ZodType<
   type: DigestTimedMetadataType$inboundSchema,
   timed: TimedConfig$inboundSchema.optional(),
 });
-
 /** @internal */
 export type DigestTimedMetadata$Outbound = {
   amount?: number | undefined;
@@ -118,19 +93,6 @@ export const DigestTimedMetadata$outboundSchema: z.ZodType<
   timed: TimedConfig$outboundSchema.optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DigestTimedMetadata$ {
-  /** @deprecated use `DigestTimedMetadata$inboundSchema` instead. */
-  export const inboundSchema = DigestTimedMetadata$inboundSchema;
-  /** @deprecated use `DigestTimedMetadata$outboundSchema` instead. */
-  export const outboundSchema = DigestTimedMetadata$outboundSchema;
-  /** @deprecated use `DigestTimedMetadata$Outbound` instead. */
-  export type Outbound = DigestTimedMetadata$Outbound;
-}
-
 export function digestTimedMetadataToJSON(
   digestTimedMetadata: DigestTimedMetadata,
 ): string {
@@ -138,7 +100,6 @@ export function digestTimedMetadataToJSON(
     DigestTimedMetadata$outboundSchema.parse(digestTimedMetadata),
   );
 }
-
 export function digestTimedMetadataFromJSON(
   jsonString: string,
 ): SafeParseResult<DigestTimedMetadata, SDKValidationError> {

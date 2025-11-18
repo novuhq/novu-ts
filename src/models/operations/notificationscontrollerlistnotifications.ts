@@ -53,7 +53,7 @@ export type NotificationsControllerListNotificationsRequest = {
    */
   topicKey?: string | undefined;
   /**
-   * Filter by exact context keys (format: "type:id")
+   * Filter by exact context keys, order insensitive (format: "type:id")
    */
   contextKeys?: Array<string> | undefined;
   /**
@@ -101,7 +101,6 @@ export const NotificationsControllerListNotificationsRequest$inboundSchema:
       "idempotency-key": "idempotencyKey",
     });
   });
-
 /** @internal */
 export type NotificationsControllerListNotificationsRequest$Outbound = {
   channels?: Array<string> | undefined;
@@ -147,22 +146,6 @@ export const NotificationsControllerListNotificationsRequest$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace NotificationsControllerListNotificationsRequest$ {
-  /** @deprecated use `NotificationsControllerListNotificationsRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    NotificationsControllerListNotificationsRequest$inboundSchema;
-  /** @deprecated use `NotificationsControllerListNotificationsRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    NotificationsControllerListNotificationsRequest$outboundSchema;
-  /** @deprecated use `NotificationsControllerListNotificationsRequest$Outbound` instead. */
-  export type Outbound =
-    NotificationsControllerListNotificationsRequest$Outbound;
-}
-
 export function notificationsControllerListNotificationsRequestToJSON(
   notificationsControllerListNotificationsRequest:
     NotificationsControllerListNotificationsRequest,
@@ -173,7 +156,6 @@ export function notificationsControllerListNotificationsRequestToJSON(
     ),
   );
 }
-
 export function notificationsControllerListNotificationsRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -205,7 +187,6 @@ export const NotificationsControllerListNotificationsResponse$inboundSchema:
       "Result": "result",
     });
   });
-
 /** @internal */
 export type NotificationsControllerListNotificationsResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
@@ -228,22 +209,6 @@ export const NotificationsControllerListNotificationsResponse$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace NotificationsControllerListNotificationsResponse$ {
-  /** @deprecated use `NotificationsControllerListNotificationsResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    NotificationsControllerListNotificationsResponse$inboundSchema;
-  /** @deprecated use `NotificationsControllerListNotificationsResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    NotificationsControllerListNotificationsResponse$outboundSchema;
-  /** @deprecated use `NotificationsControllerListNotificationsResponse$Outbound` instead. */
-  export type Outbound =
-    NotificationsControllerListNotificationsResponse$Outbound;
-}
-
 export function notificationsControllerListNotificationsResponseToJSON(
   notificationsControllerListNotificationsResponse:
     NotificationsControllerListNotificationsResponse,
@@ -254,7 +219,6 @@ export function notificationsControllerListNotificationsResponseToJSON(
     ),
   );
 }
-
 export function notificationsControllerListNotificationsResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<

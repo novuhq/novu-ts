@@ -29,15 +29,15 @@ export type PatchSubscriberRequestDto = {
    */
   avatar?: string | null | undefined;
   /**
-   * Timezone of the subscriber
-   */
-  timezone?: string | null | undefined;
-  /**
    * Locale of the subscriber
    */
   locale?: string | null | undefined;
   /**
-   * Additional custom data for the subscriber
+   * Timezone of the subscriber
+   */
+  timezone?: string | null | undefined;
+  /**
+   * Additional custom data associated with the subscriber
    */
   data?: { [k: string]: any } | null | undefined;
 };
@@ -53,11 +53,10 @@ export const PatchSubscriberRequestDto$inboundSchema: z.ZodType<
   email: z.nullable(z.string()).optional(),
   phone: z.nullable(z.string()).optional(),
   avatar: z.nullable(z.string()).optional(),
-  timezone: z.nullable(z.string()).optional(),
   locale: z.nullable(z.string()).optional(),
+  timezone: z.nullable(z.string()).optional(),
   data: z.nullable(z.record(z.any())).optional(),
 });
-
 /** @internal */
 export type PatchSubscriberRequestDto$Outbound = {
   firstName?: string | null | undefined;
@@ -65,8 +64,8 @@ export type PatchSubscriberRequestDto$Outbound = {
   email?: string | null | undefined;
   phone?: string | null | undefined;
   avatar?: string | null | undefined;
-  timezone?: string | null | undefined;
   locale?: string | null | undefined;
+  timezone?: string | null | undefined;
   data?: { [k: string]: any } | null | undefined;
 };
 
@@ -81,23 +80,10 @@ export const PatchSubscriberRequestDto$outboundSchema: z.ZodType<
   email: z.nullable(z.string()).optional(),
   phone: z.nullable(z.string()).optional(),
   avatar: z.nullable(z.string()).optional(),
-  timezone: z.nullable(z.string()).optional(),
   locale: z.nullable(z.string()).optional(),
+  timezone: z.nullable(z.string()).optional(),
   data: z.nullable(z.record(z.any())).optional(),
 });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PatchSubscriberRequestDto$ {
-  /** @deprecated use `PatchSubscriberRequestDto$inboundSchema` instead. */
-  export const inboundSchema = PatchSubscriberRequestDto$inboundSchema;
-  /** @deprecated use `PatchSubscriberRequestDto$outboundSchema` instead. */
-  export const outboundSchema = PatchSubscriberRequestDto$outboundSchema;
-  /** @deprecated use `PatchSubscriberRequestDto$Outbound` instead. */
-  export type Outbound = PatchSubscriberRequestDto$Outbound;
-}
 
 export function patchSubscriberRequestDtoToJSON(
   patchSubscriberRequestDto: PatchSubscriberRequestDto,
@@ -106,7 +92,6 @@ export function patchSubscriberRequestDtoToJSON(
     PatchSubscriberRequestDto$outboundSchema.parse(patchSubscriberRequestDto),
   );
 }
-
 export function patchSubscriberRequestDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<PatchSubscriberRequestDto, SDKValidationError> {

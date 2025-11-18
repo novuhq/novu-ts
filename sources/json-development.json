@@ -27391,7 +27391,7 @@
             "name": "contextKeys",
             "required": false,
             "in": "query",
-            "description": "Filter by exact context keys (format: \"type:id\")",
+            "description": "Filter by exact context keys, order insensitive (format: \"type:id\")",
             "example": [
               "tenant:org-123",
               "region:us-east-1"
@@ -28989,7 +28989,7 @@
             "name": "contextKeys",
             "required": false,
             "in": "query",
-            "description": "Filter by exact context keys (format: \"type:id\")",
+            "description": "Filter by exact context keys, order insensitive (format: \"type:id\")",
             "schema": {
               "type": "array",
               "items": {
@@ -35454,7 +35454,7 @@
   "info": {
     "title": "Novu API",
     "description": "Novu REST API. Please see https://docs.novu.co/api-reference for more details.",
-    "version": "3.9.0",
+    "version": "3.11.0",
     "contact": {
       "name": "Novu Support",
       "url": "https://discord.gg/novu",
@@ -35545,7 +35545,7 @@
         "type": "apiKey",
         "name": "Authorization",
         "in": "header",
-        "description": "API key authentication. Allowed headers-- \"Authorization: ApiKey \u003capi_key\u003e\".",
+        "description": "API key authentication. Allowed headers-- \"Authorization: ApiKey \u003cnovu_secret_key\u003e\".",
         "x-speakeasy-example": "YOUR_SECRET_KEY_HERE"
       }
     },
@@ -36265,56 +36265,57 @@
       "SubscriberPayloadDto": {
         "type": "object",
         "properties": {
-          "subscriberId": {
-            "type": "string",
-            "description": "The internal identifier you used to create this subscriber, usually correlates to the id the user in your systems"
-          },
-          "email": {
-            "type": "string",
-            "description": "The email address of the subscriber."
-          },
           "firstName": {
             "type": "string",
-            "description": "The first name of the subscriber."
+            "nullable": true,
+            "description": "First name of the subscriber",
+            "example": "John"
           },
           "lastName": {
             "type": "string",
-            "description": "The last name of the subscriber."
+            "nullable": true,
+            "description": "Last name of the subscriber",
+            "example": "Doe"
+          },
+          "email": {
+            "type": "string",
+            "nullable": true,
+            "description": "Email address of the subscriber",
+            "example": "john.doe@example.com"
           },
           "phone": {
             "type": "string",
-            "description": "The phone number of the subscriber."
+            "nullable": true,
+            "description": "Phone number of the subscriber",
+            "example": "+1234567890"
           },
           "avatar": {
             "type": "string",
-            "description": "An HTTP URL to the profile image of your subscriber."
+            "nullable": true,
+            "description": "Avatar URL or identifier",
+            "example": "https://example.com/avatar.jpg"
           },
           "locale": {
             "type": "string",
-            "description": "The locale of the subscriber."
+            "nullable": true,
+            "description": "Locale of the subscriber",
+            "example": "en-US"
+          },
+          "timezone": {
+            "type": "string",
+            "nullable": true,
+            "description": "Timezone of the subscriber",
+            "example": "America/New_York"
           },
           "data": {
             "type": "object",
-            "description": "An optional payload object that can contain any properties.",
-            "additionalProperties": {
-              "oneOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                {
-                  "type": "boolean"
-                },
-                {
-                  "type": "number"
-                }
-              ]
-            }
+            "nullable": true,
+            "description": "Additional custom data associated with the subscriber",
+            "additionalProperties": true
+          },
+          "subscriberId": {
+            "type": "string",
+            "description": "The internal identifier you used to create this subscriber, usually correlates to the id the user in your systems"
           },
           "channels": {
             "description": "An optional array of subscriber channels.",
@@ -36322,10 +36323,6 @@
             "items": {
               "$ref": "#/components/schemas/SubscriberChannelDto"
             }
-          },
-          "timezone": {
-            "type": "string",
-            "description": "The timezone of the subscriber."
           }
         },
         "required": [
@@ -37118,6 +37115,7 @@
           "smsmode",
           "imedia",
           "sinch",
+          "isendpro-sms",
           "fcm",
           "apns",
           "expo",
@@ -37564,7 +37562,7 @@
             "description": "Criticality of the notification"
           },
           "contextKeys": {
-            "description": "Contexts (keys) in which the notification was sent",
+            "description": "Context (single or multi) in which the notification was sent",
             "type": "array",
             "items": {
               "type": "string"
@@ -37957,7 +37955,7 @@
             "description": "Critical flag"
           },
           "contextKeys": {
-            "description": "Contexts (keys) in which the workflow run was executed",
+            "description": "Context (single or multi) in which the workflow run was executed",
             "type": "array",
             "items": {
               "type": "string"
@@ -38207,7 +38205,7 @@
             "description": "Critical flag"
           },
           "contextKeys": {
-            "description": "Contexts (keys) in which the workflow run was executed",
+            "description": "Context (single or multi) in which the workflow run was executed",
             "type": "array",
             "items": {
               "type": "string"
@@ -38810,50 +38808,57 @@
       "CreateSubscriberRequestDto": {
         "type": "object",
         "properties": {
-          "subscriberId": {
-            "type": "string",
-            "description": "Unique identifier of the subscriber"
-          },
           "firstName": {
             "type": "string",
             "nullable": true,
-            "description": "First name of the subscriber"
+            "description": "First name of the subscriber",
+            "example": "John"
           },
           "lastName": {
             "type": "string",
             "nullable": true,
-            "description": "Last name of the subscriber"
+            "description": "Last name of the subscriber",
+            "example": "Doe"
           },
           "email": {
             "type": "string",
             "nullable": true,
-            "description": "Email address of the subscriber"
+            "description": "Email address of the subscriber",
+            "example": "john.doe@example.com"
           },
           "phone": {
             "type": "string",
             "nullable": true,
-            "description": "Phone number of the subscriber"
+            "description": "Phone number of the subscriber",
+            "example": "+1234567890"
           },
           "avatar": {
             "type": "string",
             "nullable": true,
-            "description": "Avatar URL or identifier"
-          },
-          "timezone": {
-            "type": "string",
-            "nullable": true,
-            "description": "Timezone of the subscriber"
+            "description": "Avatar URL or identifier",
+            "example": "https://example.com/avatar.jpg"
           },
           "locale": {
             "type": "string",
             "nullable": true,
-            "description": "Locale of the subscriber"
+            "description": "Locale of the subscriber",
+            "example": "en-US"
+          },
+          "timezone": {
+            "type": "string",
+            "nullable": true,
+            "description": "Timezone of the subscriber",
+            "example": "America/New_York"
           },
           "data": {
             "type": "object",
             "nullable": true,
-            "description": "Additional custom data for the subscriber",
+            "description": "Additional custom data associated with the subscriber",
             "additionalProperties": true
+          },
+          "subscriberId": {
+            "type": "string",
+            "description": "Unique identifier of the subscriber"
           }
         },
         "required": [
@@ -40329,7 +40334,7 @@
             "description": "Provider specific overrides used when triggering the notification"
           },
           "contextKeys": {
-            "description": "Context keys associated with the message (format: \"type:id\")",
+            "description": "Context (single or multi) in which the message was sent",
             "example": [
               "tenant:org-123",
               "region:us-east-1"
@@ -40480,42 +40485,49 @@
           "firstName": {
             "type": "string",
             "nullable": true,
-            "description": "First name of the subscriber"
+            "description": "First name of the subscriber",
+            "example": "John"
           },
           "lastName": {
             "type": "string",
             "nullable": true,
-            "description": "Last name of the subscriber"
+            "description": "Last name of the subscriber",
+            "example": "Doe"
           },
           "email": {
             "type": "string",
             "nullable": true,
-            "description": "Email address of the subscriber"
+            "description": "Email address of the subscriber",
+            "example": "john.doe@example.com"
           },
           "phone": {
             "type": "string",
             "nullable": true,
-            "description": "Phone number of the subscriber"
+            "description": "Phone number of the subscriber",
+            "example": "+1234567890"
           },
           "avatar": {
             "type": "string",
             "nullable": true,
-            "description": "Avatar URL or identifier"
-          },
-          "timezone": {
-            "type": "string",
-            "nullable": true,
-            "description": "Timezone of the subscriber"
+            "description": "Avatar URL or identifier",
+            "example": "https://example.com/avatar.jpg"
           },
           "locale": {
             "type": "string",
             "nullable": true,
-            "description": "Locale of the subscriber"
+            "description": "Locale of the subscriber",
+            "example": "en-US"
+          },
+          "timezone": {
+            "type": "string",
+            "nullable": true,
+            "description": "Timezone of the subscriber",
+            "example": "America/New_York"
           },
           "data": {
             "type": "object",
             "nullable": true,
-            "description": "Additional custom data for the subscriber",
+            "description": "Additional custom data associated with the subscriber",
             "additionalProperties": true
           }
         }
@@ -45962,6 +45974,44 @@
           "object"
         ]
       },
+      "MessageFailedPushDto": {
+        "type": "object",
+        "properties": {
+          "isInvalidToken": {
+            "type": "boolean",
+            "description": "Is invalid token"
+          },
+          "deviceToken": {
+            "type": "string",
+            "description": "Device token"
+          }
+        },
+        "required": [
+          "isInvalidToken",
+          "deviceToken"
+        ]
+      },
+      "MessageFailedErrorDto": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "Error message"
+          },
+          "push": {
+            "description": "Push error",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MessageFailedPushDto"
+              }
+            ]
+          }
+        },
+        "required": [
+          "message",
+          "push"
+        ]
+      },
       "WebhookMessageFailedDto": {
         "type": "object",
         "properties": {
@@ -45970,8 +46020,12 @@
             "description": "Current message state"
           },
           "error": {
-            "type": "object",
-            "description": "Error message"
+            "description": "Error message",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MessageFailedErrorDto"
+              }
+            ]
           }
         },
         "required": [

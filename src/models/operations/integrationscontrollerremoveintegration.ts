@@ -36,7 +36,6 @@ export const IntegrationsControllerRemoveIntegrationRequest$inboundSchema:
       "idempotency-key": "idempotencyKey",
     });
   });
-
 /** @internal */
 export type IntegrationsControllerRemoveIntegrationRequest$Outbound = {
   integrationId: string;
@@ -58,22 +57,6 @@ export const IntegrationsControllerRemoveIntegrationRequest$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace IntegrationsControllerRemoveIntegrationRequest$ {
-  /** @deprecated use `IntegrationsControllerRemoveIntegrationRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    IntegrationsControllerRemoveIntegrationRequest$inboundSchema;
-  /** @deprecated use `IntegrationsControllerRemoveIntegrationRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    IntegrationsControllerRemoveIntegrationRequest$outboundSchema;
-  /** @deprecated use `IntegrationsControllerRemoveIntegrationRequest$Outbound` instead. */
-  export type Outbound =
-    IntegrationsControllerRemoveIntegrationRequest$Outbound;
-}
-
 export function integrationsControllerRemoveIntegrationRequestToJSON(
   integrationsControllerRemoveIntegrationRequest:
     IntegrationsControllerRemoveIntegrationRequest,
@@ -84,7 +67,6 @@ export function integrationsControllerRemoveIntegrationRequestToJSON(
     ),
   );
 }
-
 export function integrationsControllerRemoveIntegrationRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -116,7 +98,6 @@ export const IntegrationsControllerRemoveIntegrationResponse$inboundSchema:
       "Result": "result",
     });
   });
-
 /** @internal */
 export type IntegrationsControllerRemoveIntegrationResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
@@ -139,22 +120,6 @@ export const IntegrationsControllerRemoveIntegrationResponse$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace IntegrationsControllerRemoveIntegrationResponse$ {
-  /** @deprecated use `IntegrationsControllerRemoveIntegrationResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    IntegrationsControllerRemoveIntegrationResponse$inboundSchema;
-  /** @deprecated use `IntegrationsControllerRemoveIntegrationResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    IntegrationsControllerRemoveIntegrationResponse$outboundSchema;
-  /** @deprecated use `IntegrationsControllerRemoveIntegrationResponse$Outbound` instead. */
-  export type Outbound =
-    IntegrationsControllerRemoveIntegrationResponse$Outbound;
-}
-
 export function integrationsControllerRemoveIntegrationResponseToJSON(
   integrationsControllerRemoveIntegrationResponse:
     IntegrationsControllerRemoveIntegrationResponse,
@@ -165,7 +130,6 @@ export function integrationsControllerRemoveIntegrationResponseToJSON(
     ),
   );
 }
-
 export function integrationsControllerRemoveIntegrationResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<

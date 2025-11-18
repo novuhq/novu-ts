@@ -264,7 +264,6 @@ export const WorkflowResponseDtoUpdatedBy$inboundSchema: z.ZodType<
     "_id": "id",
   });
 });
-
 /** @internal */
 export type WorkflowResponseDtoUpdatedBy$Outbound = {
   _id: string;
@@ -289,19 +288,6 @@ export const WorkflowResponseDtoUpdatedBy$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WorkflowResponseDtoUpdatedBy$ {
-  /** @deprecated use `WorkflowResponseDtoUpdatedBy$inboundSchema` instead. */
-  export const inboundSchema = WorkflowResponseDtoUpdatedBy$inboundSchema;
-  /** @deprecated use `WorkflowResponseDtoUpdatedBy$outboundSchema` instead. */
-  export const outboundSchema = WorkflowResponseDtoUpdatedBy$outboundSchema;
-  /** @deprecated use `WorkflowResponseDtoUpdatedBy$Outbound` instead. */
-  export type Outbound = WorkflowResponseDtoUpdatedBy$Outbound;
-}
-
 export function workflowResponseDtoUpdatedByToJSON(
   workflowResponseDtoUpdatedBy: WorkflowResponseDtoUpdatedBy,
 ): string {
@@ -311,7 +297,6 @@ export function workflowResponseDtoUpdatedByToJSON(
     ),
   );
 }
-
 export function workflowResponseDtoUpdatedByFromJSON(
   jsonString: string,
 ): SafeParseResult<WorkflowResponseDtoUpdatedBy, SDKValidationError> {
@@ -337,7 +322,6 @@ export const LastPublishedBy$inboundSchema: z.ZodType<
     "_id": "id",
   });
 });
-
 /** @internal */
 export type LastPublishedBy$Outbound = {
   _id: string;
@@ -362,25 +346,11 @@ export const LastPublishedBy$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace LastPublishedBy$ {
-  /** @deprecated use `LastPublishedBy$inboundSchema` instead. */
-  export const inboundSchema = LastPublishedBy$inboundSchema;
-  /** @deprecated use `LastPublishedBy$outboundSchema` instead. */
-  export const outboundSchema = LastPublishedBy$outboundSchema;
-  /** @deprecated use `LastPublishedBy$Outbound` instead. */
-  export type Outbound = LastPublishedBy$Outbound;
-}
-
 export function lastPublishedByToJSON(
   lastPublishedBy: LastPublishedBy,
 ): string {
   return JSON.stringify(LastPublishedBy$outboundSchema.parse(lastPublishedBy));
 }
-
 export function lastPublishedByFromJSON(
   jsonString: string,
 ): SafeParseResult<LastPublishedBy, SDKValidationError> {
@@ -433,7 +403,6 @@ export const WorkflowResponseDtoSteps$inboundSchema: z.ZodType<
     })),
   ),
 ]);
-
 /** @internal */
 export type WorkflowResponseDtoSteps$Outbound =
   | (InAppStepResponseDto$Outbound & { type: "in_app" })
@@ -489,19 +458,6 @@ export const WorkflowResponseDtoSteps$outboundSchema: z.ZodType<
   ),
 ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WorkflowResponseDtoSteps$ {
-  /** @deprecated use `WorkflowResponseDtoSteps$inboundSchema` instead. */
-  export const inboundSchema = WorkflowResponseDtoSteps$inboundSchema;
-  /** @deprecated use `WorkflowResponseDtoSteps$outboundSchema` instead. */
-  export const outboundSchema = WorkflowResponseDtoSteps$outboundSchema;
-  /** @deprecated use `WorkflowResponseDtoSteps$Outbound` instead. */
-  export type Outbound = WorkflowResponseDtoSteps$Outbound;
-}
-
 export function workflowResponseDtoStepsToJSON(
   workflowResponseDtoSteps: WorkflowResponseDtoSteps,
 ): string {
@@ -509,7 +465,6 @@ export function workflowResponseDtoStepsToJSON(
     WorkflowResponseDtoSteps$outboundSchema.parse(workflowResponseDtoSteps),
   );
 }
-
 export function workflowResponseDtoStepsFromJSON(
   jsonString: string,
 ): SafeParseResult<WorkflowResponseDtoSteps, SDKValidationError> {
@@ -605,7 +560,6 @@ export const WorkflowResponseDto$inboundSchema: z.ZodType<
     "_id": "id",
   });
 });
-
 /** @internal */
 export type WorkflowResponseDto$Outbound = {
   name: string;
@@ -729,19 +683,6 @@ export const WorkflowResponseDto$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WorkflowResponseDto$ {
-  /** @deprecated use `WorkflowResponseDto$inboundSchema` instead. */
-  export const inboundSchema = WorkflowResponseDto$inboundSchema;
-  /** @deprecated use `WorkflowResponseDto$outboundSchema` instead. */
-  export const outboundSchema = WorkflowResponseDto$outboundSchema;
-  /** @deprecated use `WorkflowResponseDto$Outbound` instead. */
-  export type Outbound = WorkflowResponseDto$Outbound;
-}
-
 export function workflowResponseDtoToJSON(
   workflowResponseDto: WorkflowResponseDto,
 ): string {
@@ -749,7 +690,6 @@ export function workflowResponseDtoToJSON(
     WorkflowResponseDto$outboundSchema.parse(workflowResponseDto),
   );
 }
-
 export function workflowResponseDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<WorkflowResponseDto, SDKValidationError> {

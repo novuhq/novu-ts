@@ -41,7 +41,6 @@ export const WorkflowControllerUpdateRequest$inboundSchema: z.ZodType<
     "UpdateWorkflowDto": "updateWorkflowDto",
   });
 });
-
 /** @internal */
 export type WorkflowControllerUpdateRequest$Outbound = {
   workflowId: string;
@@ -65,19 +64,6 @@ export const WorkflowControllerUpdateRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WorkflowControllerUpdateRequest$ {
-  /** @deprecated use `WorkflowControllerUpdateRequest$inboundSchema` instead. */
-  export const inboundSchema = WorkflowControllerUpdateRequest$inboundSchema;
-  /** @deprecated use `WorkflowControllerUpdateRequest$outboundSchema` instead. */
-  export const outboundSchema = WorkflowControllerUpdateRequest$outboundSchema;
-  /** @deprecated use `WorkflowControllerUpdateRequest$Outbound` instead. */
-  export type Outbound = WorkflowControllerUpdateRequest$Outbound;
-}
-
 export function workflowControllerUpdateRequestToJSON(
   workflowControllerUpdateRequest: WorkflowControllerUpdateRequest,
 ): string {
@@ -87,7 +73,6 @@ export function workflowControllerUpdateRequestToJSON(
     ),
   );
 }
-
 export function workflowControllerUpdateRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<WorkflowControllerUpdateRequest, SDKValidationError> {
@@ -112,7 +97,6 @@ export const WorkflowControllerUpdateResponse$inboundSchema: z.ZodType<
     "Result": "result",
   });
 });
-
 /** @internal */
 export type WorkflowControllerUpdateResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
@@ -134,19 +118,6 @@ export const WorkflowControllerUpdateResponse$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WorkflowControllerUpdateResponse$ {
-  /** @deprecated use `WorkflowControllerUpdateResponse$inboundSchema` instead. */
-  export const inboundSchema = WorkflowControllerUpdateResponse$inboundSchema;
-  /** @deprecated use `WorkflowControllerUpdateResponse$outboundSchema` instead. */
-  export const outboundSchema = WorkflowControllerUpdateResponse$outboundSchema;
-  /** @deprecated use `WorkflowControllerUpdateResponse$Outbound` instead. */
-  export type Outbound = WorkflowControllerUpdateResponse$Outbound;
-}
-
 export function workflowControllerUpdateResponseToJSON(
   workflowControllerUpdateResponse: WorkflowControllerUpdateResponse,
 ): string {
@@ -156,7 +127,6 @@ export function workflowControllerUpdateResponseToJSON(
     ),
   );
 }
-
 export function workflowControllerUpdateResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<WorkflowControllerUpdateResponse, SDKValidationError> {

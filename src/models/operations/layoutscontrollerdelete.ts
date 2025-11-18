@@ -36,7 +36,6 @@ export const LayoutsControllerDeleteRequest$inboundSchema: z.ZodType<
     "idempotency-key": "idempotencyKey",
   });
 });
-
 /** @internal */
 export type LayoutsControllerDeleteRequest$Outbound = {
   layoutId: string;
@@ -57,19 +56,6 @@ export const LayoutsControllerDeleteRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace LayoutsControllerDeleteRequest$ {
-  /** @deprecated use `LayoutsControllerDeleteRequest$inboundSchema` instead. */
-  export const inboundSchema = LayoutsControllerDeleteRequest$inboundSchema;
-  /** @deprecated use `LayoutsControllerDeleteRequest$outboundSchema` instead. */
-  export const outboundSchema = LayoutsControllerDeleteRequest$outboundSchema;
-  /** @deprecated use `LayoutsControllerDeleteRequest$Outbound` instead. */
-  export type Outbound = LayoutsControllerDeleteRequest$Outbound;
-}
-
 export function layoutsControllerDeleteRequestToJSON(
   layoutsControllerDeleteRequest: LayoutsControllerDeleteRequest,
 ): string {
@@ -79,7 +65,6 @@ export function layoutsControllerDeleteRequestToJSON(
     ),
   );
 }
-
 export function layoutsControllerDeleteRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<LayoutsControllerDeleteRequest, SDKValidationError> {
@@ -102,7 +87,6 @@ export const LayoutsControllerDeleteResponse$inboundSchema: z.ZodType<
     "Headers": "headers",
   });
 });
-
 /** @internal */
 export type LayoutsControllerDeleteResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
@@ -121,19 +105,6 @@ export const LayoutsControllerDeleteResponse$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace LayoutsControllerDeleteResponse$ {
-  /** @deprecated use `LayoutsControllerDeleteResponse$inboundSchema` instead. */
-  export const inboundSchema = LayoutsControllerDeleteResponse$inboundSchema;
-  /** @deprecated use `LayoutsControllerDeleteResponse$outboundSchema` instead. */
-  export const outboundSchema = LayoutsControllerDeleteResponse$outboundSchema;
-  /** @deprecated use `LayoutsControllerDeleteResponse$Outbound` instead. */
-  export type Outbound = LayoutsControllerDeleteResponse$Outbound;
-}
-
 export function layoutsControllerDeleteResponseToJSON(
   layoutsControllerDeleteResponse: LayoutsControllerDeleteResponse,
 ): string {
@@ -143,7 +114,6 @@ export function layoutsControllerDeleteResponseToJSON(
     ),
   );
 }
-
 export function layoutsControllerDeleteResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<LayoutsControllerDeleteResponse, SDKValidationError> {

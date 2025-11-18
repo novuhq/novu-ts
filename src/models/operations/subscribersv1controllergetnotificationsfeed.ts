@@ -49,7 +49,6 @@ export const SubscribersV1ControllerGetNotificationsFeedRequest$inboundSchema:
       "idempotency-key": "idempotencyKey",
     });
   });
-
 /** @internal */
 export type SubscribersV1ControllerGetNotificationsFeedRequest$Outbound = {
   subscriberId: string;
@@ -81,22 +80,6 @@ export const SubscribersV1ControllerGetNotificationsFeedRequest$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SubscribersV1ControllerGetNotificationsFeedRequest$ {
-  /** @deprecated use `SubscribersV1ControllerGetNotificationsFeedRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    SubscribersV1ControllerGetNotificationsFeedRequest$inboundSchema;
-  /** @deprecated use `SubscribersV1ControllerGetNotificationsFeedRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    SubscribersV1ControllerGetNotificationsFeedRequest$outboundSchema;
-  /** @deprecated use `SubscribersV1ControllerGetNotificationsFeedRequest$Outbound` instead. */
-  export type Outbound =
-    SubscribersV1ControllerGetNotificationsFeedRequest$Outbound;
-}
-
 export function subscribersV1ControllerGetNotificationsFeedRequestToJSON(
   subscribersV1ControllerGetNotificationsFeedRequest:
     SubscribersV1ControllerGetNotificationsFeedRequest,
@@ -107,7 +90,6 @@ export function subscribersV1ControllerGetNotificationsFeedRequestToJSON(
     ),
   );
 }
-
 export function subscribersV1ControllerGetNotificationsFeedRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -139,7 +121,6 @@ export const SubscribersV1ControllerGetNotificationsFeedResponse$inboundSchema:
       "Result": "result",
     });
   });
-
 /** @internal */
 export type SubscribersV1ControllerGetNotificationsFeedResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
@@ -162,22 +143,6 @@ export const SubscribersV1ControllerGetNotificationsFeedResponse$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SubscribersV1ControllerGetNotificationsFeedResponse$ {
-  /** @deprecated use `SubscribersV1ControllerGetNotificationsFeedResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    SubscribersV1ControllerGetNotificationsFeedResponse$inboundSchema;
-  /** @deprecated use `SubscribersV1ControllerGetNotificationsFeedResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    SubscribersV1ControllerGetNotificationsFeedResponse$outboundSchema;
-  /** @deprecated use `SubscribersV1ControllerGetNotificationsFeedResponse$Outbound` instead. */
-  export type Outbound =
-    SubscribersV1ControllerGetNotificationsFeedResponse$Outbound;
-}
-
 export function subscribersV1ControllerGetNotificationsFeedResponseToJSON(
   subscribersV1ControllerGetNotificationsFeedResponse:
     SubscribersV1ControllerGetNotificationsFeedResponse,
@@ -188,7 +153,6 @@ export function subscribersV1ControllerGetNotificationsFeedResponseToJSON(
     ),
   );
 }
-
 export function subscribersV1ControllerGetNotificationsFeedResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<

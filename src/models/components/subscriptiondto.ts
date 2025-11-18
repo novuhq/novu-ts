@@ -84,7 +84,6 @@ export const Subscriber$inboundSchema: z.ZodType<
     "_id": "id",
   });
 });
-
 /** @internal */
 export type Subscriber$Outbound = {
   _id: string;
@@ -113,23 +112,9 @@ export const Subscriber$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Subscriber$ {
-  /** @deprecated use `Subscriber$inboundSchema` instead. */
-  export const inboundSchema = Subscriber$inboundSchema;
-  /** @deprecated use `Subscriber$outboundSchema` instead. */
-  export const outboundSchema = Subscriber$outboundSchema;
-  /** @deprecated use `Subscriber$Outbound` instead. */
-  export type Outbound = Subscriber$Outbound;
-}
-
 export function subscriberToJSON(subscriber: Subscriber): string {
   return JSON.stringify(Subscriber$outboundSchema.parse(subscriber));
 }
-
 export function subscriberFromJSON(
   jsonString: string,
 ): SafeParseResult<Subscriber, SDKValidationError> {
@@ -156,7 +141,6 @@ export const SubscriptionDto$inboundSchema: z.ZodType<
     "_id": "id",
   });
 });
-
 /** @internal */
 export type SubscriptionDto$Outbound = {
   _id: string;
@@ -183,25 +167,11 @@ export const SubscriptionDto$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SubscriptionDto$ {
-  /** @deprecated use `SubscriptionDto$inboundSchema` instead. */
-  export const inboundSchema = SubscriptionDto$inboundSchema;
-  /** @deprecated use `SubscriptionDto$outboundSchema` instead. */
-  export const outboundSchema = SubscriptionDto$outboundSchema;
-  /** @deprecated use `SubscriptionDto$Outbound` instead. */
-  export type Outbound = SubscriptionDto$Outbound;
-}
-
 export function subscriptionDtoToJSON(
   subscriptionDto: SubscriptionDto,
 ): string {
   return JSON.stringify(SubscriptionDto$outboundSchema.parse(subscriptionDto));
 }
-
 export function subscriptionDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<SubscriptionDto, SDKValidationError> {

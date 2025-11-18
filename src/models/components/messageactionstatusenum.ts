@@ -23,19 +23,7 @@ export type MessageActionStatusEnum = ClosedEnum<
 export const MessageActionStatusEnum$inboundSchema: z.ZodNativeEnum<
   typeof MessageActionStatusEnum
 > = z.nativeEnum(MessageActionStatusEnum);
-
 /** @internal */
 export const MessageActionStatusEnum$outboundSchema: z.ZodNativeEnum<
   typeof MessageActionStatusEnum
 > = MessageActionStatusEnum$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MessageActionStatusEnum$ {
-  /** @deprecated use `MessageActionStatusEnum$inboundSchema` instead. */
-  export const inboundSchema = MessageActionStatusEnum$inboundSchema;
-  /** @deprecated use `MessageActionStatusEnum$outboundSchema` instead. */
-  export const outboundSchema = MessageActionStatusEnum$outboundSchema;
-}

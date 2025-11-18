@@ -47,7 +47,6 @@ export const CreateLayoutDto$inboundSchema: z.ZodType<
     "__source": "source",
   });
 });
-
 /** @internal */
 export type CreateLayoutDto$Outbound = {
   layoutId: string;
@@ -72,25 +71,11 @@ export const CreateLayoutDto$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateLayoutDto$ {
-  /** @deprecated use `CreateLayoutDto$inboundSchema` instead. */
-  export const inboundSchema = CreateLayoutDto$inboundSchema;
-  /** @deprecated use `CreateLayoutDto$outboundSchema` instead. */
-  export const outboundSchema = CreateLayoutDto$outboundSchema;
-  /** @deprecated use `CreateLayoutDto$Outbound` instead. */
-  export type Outbound = CreateLayoutDto$Outbound;
-}
-
 export function createLayoutDtoToJSON(
   createLayoutDto: CreateLayoutDto,
 ): string {
   return JSON.stringify(CreateLayoutDto$outboundSchema.parse(createLayoutDto));
 }
-
 export function createLayoutDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<CreateLayoutDto, SDKValidationError> {

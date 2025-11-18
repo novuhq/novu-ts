@@ -39,7 +39,6 @@ export const GetSubscriberPreferencesDto$inboundSchema: z.ZodType<
   global: SubscriberGlobalPreferenceDto$inboundSchema,
   workflows: z.array(SubscriberWorkflowPreferenceDto$inboundSchema),
 });
-
 /** @internal */
 export type GetSubscriberPreferencesDto$Outbound = {
   global: SubscriberGlobalPreferenceDto$Outbound;
@@ -56,19 +55,6 @@ export const GetSubscriberPreferencesDto$outboundSchema: z.ZodType<
   workflows: z.array(SubscriberWorkflowPreferenceDto$outboundSchema),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetSubscriberPreferencesDto$ {
-  /** @deprecated use `GetSubscriberPreferencesDto$inboundSchema` instead. */
-  export const inboundSchema = GetSubscriberPreferencesDto$inboundSchema;
-  /** @deprecated use `GetSubscriberPreferencesDto$outboundSchema` instead. */
-  export const outboundSchema = GetSubscriberPreferencesDto$outboundSchema;
-  /** @deprecated use `GetSubscriberPreferencesDto$Outbound` instead. */
-  export type Outbound = GetSubscriberPreferencesDto$Outbound;
-}
-
 export function getSubscriberPreferencesDtoToJSON(
   getSubscriberPreferencesDto: GetSubscriberPreferencesDto,
 ): string {
@@ -78,7 +64,6 @@ export function getSubscriberPreferencesDtoToJSON(
     ),
   );
 }
-
 export function getSubscriberPreferencesDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<GetSubscriberPreferencesDto, SDKValidationError> {

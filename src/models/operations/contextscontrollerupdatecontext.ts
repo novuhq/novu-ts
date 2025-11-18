@@ -46,7 +46,6 @@ export const ContextsControllerUpdateContextRequest$inboundSchema: z.ZodType<
     "UpdateContextRequestDto": "updateContextRequestDto",
   });
 });
-
 /** @internal */
 export type ContextsControllerUpdateContextRequest$Outbound = {
   id: string;
@@ -72,21 +71,6 @@ export const ContextsControllerUpdateContextRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ContextsControllerUpdateContextRequest$ {
-  /** @deprecated use `ContextsControllerUpdateContextRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    ContextsControllerUpdateContextRequest$inboundSchema;
-  /** @deprecated use `ContextsControllerUpdateContextRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    ContextsControllerUpdateContextRequest$outboundSchema;
-  /** @deprecated use `ContextsControllerUpdateContextRequest$Outbound` instead. */
-  export type Outbound = ContextsControllerUpdateContextRequest$Outbound;
-}
-
 export function contextsControllerUpdateContextRequestToJSON(
   contextsControllerUpdateContextRequest:
     ContextsControllerUpdateContextRequest,
@@ -97,7 +81,6 @@ export function contextsControllerUpdateContextRequestToJSON(
     ),
   );
 }
-
 export function contextsControllerUpdateContextRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<ContextsControllerUpdateContextRequest, SDKValidationError> {
@@ -123,7 +106,6 @@ export const ContextsControllerUpdateContextResponse$inboundSchema: z.ZodType<
     "Result": "result",
   });
 });
-
 /** @internal */
 export type ContextsControllerUpdateContextResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
@@ -145,21 +127,6 @@ export const ContextsControllerUpdateContextResponse$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ContextsControllerUpdateContextResponse$ {
-  /** @deprecated use `ContextsControllerUpdateContextResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    ContextsControllerUpdateContextResponse$inboundSchema;
-  /** @deprecated use `ContextsControllerUpdateContextResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    ContextsControllerUpdateContextResponse$outboundSchema;
-  /** @deprecated use `ContextsControllerUpdateContextResponse$Outbound` instead. */
-  export type Outbound = ContextsControllerUpdateContextResponse$Outbound;
-}
-
 export function contextsControllerUpdateContextResponseToJSON(
   contextsControllerUpdateContextResponse:
     ContextsControllerUpdateContextResponse,
@@ -170,7 +137,6 @@ export function contextsControllerUpdateContextResponseToJSON(
     ),
   );
 }
-
 export function contextsControllerUpdateContextResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<

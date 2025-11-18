@@ -35,7 +35,6 @@ export const LayoutsControllerGetRequest$inboundSchema: z.ZodType<
     "idempotency-key": "idempotencyKey",
   });
 });
-
 /** @internal */
 export type LayoutsControllerGetRequest$Outbound = {
   layoutId: string;
@@ -56,19 +55,6 @@ export const LayoutsControllerGetRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace LayoutsControllerGetRequest$ {
-  /** @deprecated use `LayoutsControllerGetRequest$inboundSchema` instead. */
-  export const inboundSchema = LayoutsControllerGetRequest$inboundSchema;
-  /** @deprecated use `LayoutsControllerGetRequest$outboundSchema` instead. */
-  export const outboundSchema = LayoutsControllerGetRequest$outboundSchema;
-  /** @deprecated use `LayoutsControllerGetRequest$Outbound` instead. */
-  export type Outbound = LayoutsControllerGetRequest$Outbound;
-}
-
 export function layoutsControllerGetRequestToJSON(
   layoutsControllerGetRequest: LayoutsControllerGetRequest,
 ): string {
@@ -78,7 +64,6 @@ export function layoutsControllerGetRequestToJSON(
     ),
   );
 }
-
 export function layoutsControllerGetRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<LayoutsControllerGetRequest, SDKValidationError> {
@@ -103,7 +88,6 @@ export const LayoutsControllerGetResponse$inboundSchema: z.ZodType<
     "Result": "result",
   });
 });
-
 /** @internal */
 export type LayoutsControllerGetResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
@@ -125,19 +109,6 @@ export const LayoutsControllerGetResponse$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace LayoutsControllerGetResponse$ {
-  /** @deprecated use `LayoutsControllerGetResponse$inboundSchema` instead. */
-  export const inboundSchema = LayoutsControllerGetResponse$inboundSchema;
-  /** @deprecated use `LayoutsControllerGetResponse$outboundSchema` instead. */
-  export const outboundSchema = LayoutsControllerGetResponse$outboundSchema;
-  /** @deprecated use `LayoutsControllerGetResponse$Outbound` instead. */
-  export type Outbound = LayoutsControllerGetResponse$Outbound;
-}
-
 export function layoutsControllerGetResponseToJSON(
   layoutsControllerGetResponse: LayoutsControllerGetResponse,
 ): string {
@@ -147,7 +118,6 @@ export function layoutsControllerGetResponseToJSON(
     ),
   );
 }
-
 export function layoutsControllerGetResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<LayoutsControllerGetResponse, SDKValidationError> {

@@ -29,7 +29,6 @@ export const MetaDto$inboundSchema: z.ZodType<MetaDto, z.ZodTypeDef, unknown> =
     successful: z.number(),
     failed: z.number(),
   });
-
 /** @internal */
 export type MetaDto$Outbound = {
   totalCount: number;
@@ -48,23 +47,9 @@ export const MetaDto$outboundSchema: z.ZodType<
   failed: z.number(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MetaDto$ {
-  /** @deprecated use `MetaDto$inboundSchema` instead. */
-  export const inboundSchema = MetaDto$inboundSchema;
-  /** @deprecated use `MetaDto$outboundSchema` instead. */
-  export const outboundSchema = MetaDto$outboundSchema;
-  /** @deprecated use `MetaDto$Outbound` instead. */
-  export type Outbound = MetaDto$Outbound;
-}
-
 export function metaDtoToJSON(metaDto: MetaDto): string {
   return JSON.stringify(MetaDto$outboundSchema.parse(metaDto));
 }
-
 export function metaDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<MetaDto, SDKValidationError> {

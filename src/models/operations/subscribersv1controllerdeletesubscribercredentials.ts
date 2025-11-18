@@ -36,7 +36,6 @@ export const SubscribersV1ControllerDeleteSubscriberCredentialsRequest$inboundSc
       "idempotency-key": "idempotencyKey",
     });
   });
-
 /** @internal */
 export type SubscribersV1ControllerDeleteSubscriberCredentialsRequest$Outbound =
   {
@@ -61,22 +60,6 @@ export const SubscribersV1ControllerDeleteSubscriberCredentialsRequest$outboundS
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SubscribersV1ControllerDeleteSubscriberCredentialsRequest$ {
-  /** @deprecated use `SubscribersV1ControllerDeleteSubscriberCredentialsRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    SubscribersV1ControllerDeleteSubscriberCredentialsRequest$inboundSchema;
-  /** @deprecated use `SubscribersV1ControllerDeleteSubscriberCredentialsRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    SubscribersV1ControllerDeleteSubscriberCredentialsRequest$outboundSchema;
-  /** @deprecated use `SubscribersV1ControllerDeleteSubscriberCredentialsRequest$Outbound` instead. */
-  export type Outbound =
-    SubscribersV1ControllerDeleteSubscriberCredentialsRequest$Outbound;
-}
-
 export function subscribersV1ControllerDeleteSubscriberCredentialsRequestToJSON(
   subscribersV1ControllerDeleteSubscriberCredentialsRequest:
     SubscribersV1ControllerDeleteSubscriberCredentialsRequest,
@@ -86,7 +69,6 @@ export function subscribersV1ControllerDeleteSubscriberCredentialsRequestToJSON(
       .parse(subscribersV1ControllerDeleteSubscriberCredentialsRequest),
   );
 }
-
 export function subscribersV1ControllerDeleteSubscriberCredentialsRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -115,7 +97,6 @@ export const SubscribersV1ControllerDeleteSubscriberCredentialsResponse$inboundS
       "Headers": "headers",
     });
   });
-
 /** @internal */
 export type SubscribersV1ControllerDeleteSubscriberCredentialsResponse$Outbound =
   {
@@ -136,22 +117,6 @@ export const SubscribersV1ControllerDeleteSubscriberCredentialsResponse$outbound
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SubscribersV1ControllerDeleteSubscriberCredentialsResponse$ {
-  /** @deprecated use `SubscribersV1ControllerDeleteSubscriberCredentialsResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    SubscribersV1ControllerDeleteSubscriberCredentialsResponse$inboundSchema;
-  /** @deprecated use `SubscribersV1ControllerDeleteSubscriberCredentialsResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    SubscribersV1ControllerDeleteSubscriberCredentialsResponse$outboundSchema;
-  /** @deprecated use `SubscribersV1ControllerDeleteSubscriberCredentialsResponse$Outbound` instead. */
-  export type Outbound =
-    SubscribersV1ControllerDeleteSubscriberCredentialsResponse$Outbound;
-}
-
 export function subscribersV1ControllerDeleteSubscriberCredentialsResponseToJSON(
   subscribersV1ControllerDeleteSubscriberCredentialsResponse:
     SubscribersV1ControllerDeleteSubscriberCredentialsResponse,
@@ -161,7 +126,6 @@ export function subscribersV1ControllerDeleteSubscriberCredentialsResponseToJSON
       .parse(subscribersV1ControllerDeleteSubscriberCredentialsResponse),
   );
 }
-
 export function subscribersV1ControllerDeleteSubscriberCredentialsResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<

@@ -34,7 +34,6 @@ export const Workflows$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({});
-
 /** @internal */
 export type Workflows$Outbound = {};
 
@@ -45,23 +44,9 @@ export const Workflows$outboundSchema: z.ZodType<
   Workflows
 > = z.object({});
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Workflows$ {
-  /** @deprecated use `Workflows$inboundSchema` instead. */
-  export const inboundSchema = Workflows$inboundSchema;
-  /** @deprecated use `Workflows$outboundSchema` instead. */
-  export const outboundSchema = Workflows$outboundSchema;
-  /** @deprecated use `Workflows$Outbound` instead. */
-  export type Outbound = Workflows$Outbound;
-}
-
 export function workflowsToJSON(workflows: Workflows): string {
   return JSON.stringify(Workflows$outboundSchema.parse(workflows));
 }
-
 export function workflowsFromJSON(
   jsonString: string,
 ): SafeParseResult<Workflows, SDKValidationError> {
@@ -75,7 +60,6 @@ export function workflowsFromJSON(
 /** @internal */
 export const Layouts$inboundSchema: z.ZodType<Layouts, z.ZodTypeDef, unknown> =
   z.object({});
-
 /** @internal */
 export type Layouts$Outbound = {};
 
@@ -86,23 +70,9 @@ export const Layouts$outboundSchema: z.ZodType<
   Layouts
 > = z.object({});
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Layouts$ {
-  /** @deprecated use `Layouts$inboundSchema` instead. */
-  export const inboundSchema = Layouts$inboundSchema;
-  /** @deprecated use `Layouts$outboundSchema` instead. */
-  export const outboundSchema = Layouts$outboundSchema;
-  /** @deprecated use `Layouts$Outbound` instead. */
-  export type Outbound = Layouts$Outbound;
-}
-
 export function layoutsToJSON(layouts: Layouts): string {
   return JSON.stringify(Layouts$outboundSchema.parse(layouts));
 }
-
 export function layoutsFromJSON(
   jsonString: string,
 ): SafeParseResult<Layouts, SDKValidationError> {
@@ -122,7 +92,6 @@ export const GetMasterJsonResponseDto$inboundSchema: z.ZodType<
   workflows: z.lazy(() => Workflows$inboundSchema),
   layouts: z.lazy(() => Layouts$inboundSchema),
 });
-
 /** @internal */
 export type GetMasterJsonResponseDto$Outbound = {
   workflows: Workflows$Outbound;
@@ -139,19 +108,6 @@ export const GetMasterJsonResponseDto$outboundSchema: z.ZodType<
   layouts: z.lazy(() => Layouts$outboundSchema),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetMasterJsonResponseDto$ {
-  /** @deprecated use `GetMasterJsonResponseDto$inboundSchema` instead. */
-  export const inboundSchema = GetMasterJsonResponseDto$inboundSchema;
-  /** @deprecated use `GetMasterJsonResponseDto$outboundSchema` instead. */
-  export const outboundSchema = GetMasterJsonResponseDto$outboundSchema;
-  /** @deprecated use `GetMasterJsonResponseDto$Outbound` instead. */
-  export type Outbound = GetMasterJsonResponseDto$Outbound;
-}
-
 export function getMasterJsonResponseDtoToJSON(
   getMasterJsonResponseDto: GetMasterJsonResponseDto,
 ): string {
@@ -159,7 +115,6 @@ export function getMasterJsonResponseDtoToJSON(
     GetMasterJsonResponseDto$outboundSchema.parse(getMasterJsonResponseDto),
   );
 }
-
 export function getMasterJsonResponseDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<GetMasterJsonResponseDto, SDKValidationError> {

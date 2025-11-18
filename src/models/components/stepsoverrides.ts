@@ -27,7 +27,6 @@ export const StepsOverrides$inboundSchema: z.ZodType<
   providers: z.record(z.record(z.any())).optional(),
   layoutId: z.nullable(z.string()).optional(),
 });
-
 /** @internal */
 export type StepsOverrides$Outbound = {
   providers?: { [k: string]: { [k: string]: any } } | undefined;
@@ -44,23 +43,9 @@ export const StepsOverrides$outboundSchema: z.ZodType<
   layoutId: z.nullable(z.string()).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace StepsOverrides$ {
-  /** @deprecated use `StepsOverrides$inboundSchema` instead. */
-  export const inboundSchema = StepsOverrides$inboundSchema;
-  /** @deprecated use `StepsOverrides$outboundSchema` instead. */
-  export const outboundSchema = StepsOverrides$outboundSchema;
-  /** @deprecated use `StepsOverrides$Outbound` instead. */
-  export type Outbound = StepsOverrides$Outbound;
-}
-
 export function stepsOverridesToJSON(stepsOverrides: StepsOverrides): string {
   return JSON.stringify(StepsOverrides$outboundSchema.parse(stepsOverrides));
 }
-
 export function stepsOverridesFromJSON(
   jsonString: string,
 ): SafeParseResult<StepsOverrides, SDKValidationError> {

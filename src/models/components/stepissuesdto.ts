@@ -39,7 +39,6 @@ export const StepIssuesDto$inboundSchema: z.ZodType<
   controls: z.record(z.array(StepContentIssueDto$inboundSchema)).optional(),
   integration: z.record(z.array(StepIntegrationIssue$inboundSchema)).optional(),
 });
-
 /** @internal */
 export type StepIssuesDto$Outbound = {
   controls?: { [k: string]: Array<StepContentIssueDto$Outbound> } | undefined;
@@ -59,23 +58,9 @@ export const StepIssuesDto$outboundSchema: z.ZodType<
     .optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace StepIssuesDto$ {
-  /** @deprecated use `StepIssuesDto$inboundSchema` instead. */
-  export const inboundSchema = StepIssuesDto$inboundSchema;
-  /** @deprecated use `StepIssuesDto$outboundSchema` instead. */
-  export const outboundSchema = StepIssuesDto$outboundSchema;
-  /** @deprecated use `StepIssuesDto$Outbound` instead. */
-  export type Outbound = StepIssuesDto$Outbound;
-}
-
 export function stepIssuesDtoToJSON(stepIssuesDto: StepIssuesDto): string {
   return JSON.stringify(StepIssuesDto$outboundSchema.parse(stepIssuesDto));
 }
-
 export function stepIssuesDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<StepIssuesDto, SDKValidationError> {

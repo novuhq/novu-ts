@@ -22,7 +22,6 @@ export const SyncWorkflowDto$inboundSchema: z.ZodType<
 > = z.object({
   targetEnvironmentId: z.string(),
 });
-
 /** @internal */
 export type SyncWorkflowDto$Outbound = {
   targetEnvironmentId: string;
@@ -37,25 +36,11 @@ export const SyncWorkflowDto$outboundSchema: z.ZodType<
   targetEnvironmentId: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SyncWorkflowDto$ {
-  /** @deprecated use `SyncWorkflowDto$inboundSchema` instead. */
-  export const inboundSchema = SyncWorkflowDto$inboundSchema;
-  /** @deprecated use `SyncWorkflowDto$outboundSchema` instead. */
-  export const outboundSchema = SyncWorkflowDto$outboundSchema;
-  /** @deprecated use `SyncWorkflowDto$Outbound` instead. */
-  export type Outbound = SyncWorkflowDto$Outbound;
-}
-
 export function syncWorkflowDtoToJSON(
   syncWorkflowDto: SyncWorkflowDto,
 ): string {
   return JSON.stringify(SyncWorkflowDto$outboundSchema.parse(syncWorkflowDto));
 }
-
 export function syncWorkflowDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<SyncWorkflowDto, SDKValidationError> {

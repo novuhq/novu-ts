@@ -121,7 +121,7 @@ export type ActivityNotificationResponseDto = {
    */
   critical?: boolean | undefined;
   /**
-   * Contexts (keys) in which the notification was sent
+   * Context (single or multi) in which the notification was sent
    */
   contextKeys?: Array<string> | undefined;
 };
@@ -164,7 +164,6 @@ export const ActivityNotificationResponseDto$inboundSchema: z.ZodType<
     "_digestedNotificationId": "digestedNotificationId",
   });
 });
-
 /** @internal */
 export type ActivityNotificationResponseDto$Outbound = {
   _id?: string | undefined;
@@ -229,19 +228,6 @@ export const ActivityNotificationResponseDto$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ActivityNotificationResponseDto$ {
-  /** @deprecated use `ActivityNotificationResponseDto$inboundSchema` instead. */
-  export const inboundSchema = ActivityNotificationResponseDto$inboundSchema;
-  /** @deprecated use `ActivityNotificationResponseDto$outboundSchema` instead. */
-  export const outboundSchema = ActivityNotificationResponseDto$outboundSchema;
-  /** @deprecated use `ActivityNotificationResponseDto$Outbound` instead. */
-  export type Outbound = ActivityNotificationResponseDto$Outbound;
-}
-
 export function activityNotificationResponseDtoToJSON(
   activityNotificationResponseDto: ActivityNotificationResponseDto,
 ): string {
@@ -251,7 +237,6 @@ export function activityNotificationResponseDtoToJSON(
     ),
   );
 }
-
 export function activityNotificationResponseDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<ActivityNotificationResponseDto, SDKValidationError> {

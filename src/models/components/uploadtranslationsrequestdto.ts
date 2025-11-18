@@ -37,24 +37,10 @@ export type UploadTranslationsRequestDto = {
 export const UploadTranslationsRequestDtoResourceType$inboundSchema:
   z.ZodNativeEnum<typeof UploadTranslationsRequestDtoResourceType> = z
     .nativeEnum(UploadTranslationsRequestDtoResourceType);
-
 /** @internal */
 export const UploadTranslationsRequestDtoResourceType$outboundSchema:
   z.ZodNativeEnum<typeof UploadTranslationsRequestDtoResourceType> =
     UploadTranslationsRequestDtoResourceType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UploadTranslationsRequestDtoResourceType$ {
-  /** @deprecated use `UploadTranslationsRequestDtoResourceType$inboundSchema` instead. */
-  export const inboundSchema =
-    UploadTranslationsRequestDtoResourceType$inboundSchema;
-  /** @deprecated use `UploadTranslationsRequestDtoResourceType$outboundSchema` instead. */
-  export const outboundSchema =
-    UploadTranslationsRequestDtoResourceType$outboundSchema;
-}
 
 /** @internal */
 export const UploadTranslationsRequestDto$inboundSchema: z.ZodType<
@@ -65,7 +51,6 @@ export const UploadTranslationsRequestDto$inboundSchema: z.ZodType<
   resourceId: z.string(),
   resourceType: UploadTranslationsRequestDtoResourceType$inboundSchema,
 });
-
 /** @internal */
 export type UploadTranslationsRequestDto$Outbound = {
   resourceId: string;
@@ -82,19 +67,6 @@ export const UploadTranslationsRequestDto$outboundSchema: z.ZodType<
   resourceType: UploadTranslationsRequestDtoResourceType$outboundSchema,
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UploadTranslationsRequestDto$ {
-  /** @deprecated use `UploadTranslationsRequestDto$inboundSchema` instead. */
-  export const inboundSchema = UploadTranslationsRequestDto$inboundSchema;
-  /** @deprecated use `UploadTranslationsRequestDto$outboundSchema` instead. */
-  export const outboundSchema = UploadTranslationsRequestDto$outboundSchema;
-  /** @deprecated use `UploadTranslationsRequestDto$Outbound` instead. */
-  export type Outbound = UploadTranslationsRequestDto$Outbound;
-}
-
 export function uploadTranslationsRequestDtoToJSON(
   uploadTranslationsRequestDto: UploadTranslationsRequestDto,
 ): string {
@@ -104,7 +76,6 @@ export function uploadTranslationsRequestDtoToJSON(
     ),
   );
 }
-
 export function uploadTranslationsRequestDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<UploadTranslationsRequestDto, SDKValidationError> {

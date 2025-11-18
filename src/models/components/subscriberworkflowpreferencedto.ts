@@ -55,7 +55,6 @@ export const SubscriberWorkflowPreferenceDto$inboundSchema: z.ZodType<
   overrides: z.array(SubscriberPreferenceOverrideDto$inboundSchema),
   workflow: SubscriberPreferencesWorkflowInfoDto$inboundSchema,
 });
-
 /** @internal */
 export type SubscriberWorkflowPreferenceDto$Outbound = {
   enabled: boolean;
@@ -76,19 +75,6 @@ export const SubscriberWorkflowPreferenceDto$outboundSchema: z.ZodType<
   workflow: SubscriberPreferencesWorkflowInfoDto$outboundSchema,
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SubscriberWorkflowPreferenceDto$ {
-  /** @deprecated use `SubscriberWorkflowPreferenceDto$inboundSchema` instead. */
-  export const inboundSchema = SubscriberWorkflowPreferenceDto$inboundSchema;
-  /** @deprecated use `SubscriberWorkflowPreferenceDto$outboundSchema` instead. */
-  export const outboundSchema = SubscriberWorkflowPreferenceDto$outboundSchema;
-  /** @deprecated use `SubscriberWorkflowPreferenceDto$Outbound` instead. */
-  export type Outbound = SubscriberWorkflowPreferenceDto$Outbound;
-}
-
 export function subscriberWorkflowPreferenceDtoToJSON(
   subscriberWorkflowPreferenceDto: SubscriberWorkflowPreferenceDto,
 ): string {
@@ -98,7 +84,6 @@ export function subscriberWorkflowPreferenceDtoToJSON(
     ),
   );
 }
-
 export function subscriberWorkflowPreferenceDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<SubscriberWorkflowPreferenceDto, SDKValidationError> {

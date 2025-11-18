@@ -62,21 +62,9 @@ export type SubscriberChannelDto = {
 /** @internal */
 export const ProviderId$inboundSchema: z.ZodNativeEnum<typeof ProviderId> = z
   .nativeEnum(ProviderId);
-
 /** @internal */
 export const ProviderId$outboundSchema: z.ZodNativeEnum<typeof ProviderId> =
   ProviderId$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ProviderId$ {
-  /** @deprecated use `ProviderId$inboundSchema` instead. */
-  export const inboundSchema = ProviderId$inboundSchema;
-  /** @deprecated use `ProviderId$outboundSchema` instead. */
-  export const outboundSchema = ProviderId$outboundSchema;
-}
 
 /** @internal */
 export const SubscriberChannelDto$inboundSchema: z.ZodType<
@@ -88,7 +76,6 @@ export const SubscriberChannelDto$inboundSchema: z.ZodType<
   integrationIdentifier: z.string().optional(),
   credentials: ChannelCredentialsDto$inboundSchema,
 });
-
 /** @internal */
 export type SubscriberChannelDto$Outbound = {
   providerId: string;
@@ -107,19 +94,6 @@ export const SubscriberChannelDto$outboundSchema: z.ZodType<
   credentials: ChannelCredentialsDto$outboundSchema,
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SubscriberChannelDto$ {
-  /** @deprecated use `SubscriberChannelDto$inboundSchema` instead. */
-  export const inboundSchema = SubscriberChannelDto$inboundSchema;
-  /** @deprecated use `SubscriberChannelDto$outboundSchema` instead. */
-  export const outboundSchema = SubscriberChannelDto$outboundSchema;
-  /** @deprecated use `SubscriberChannelDto$Outbound` instead. */
-  export type Outbound = SubscriberChannelDto$Outbound;
-}
-
 export function subscriberChannelDtoToJSON(
   subscriberChannelDto: SubscriberChannelDto,
 ): string {
@@ -127,7 +101,6 @@ export function subscriberChannelDtoToJSON(
     SubscriberChannelDto$outboundSchema.parse(subscriberChannelDto),
   );
 }
-
 export function subscriberChannelDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<SubscriberChannelDto, SDKValidationError> {

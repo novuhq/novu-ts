@@ -35,7 +35,6 @@ export const MessagesControllerDeleteMessageRequest$inboundSchema: z.ZodType<
     "idempotency-key": "idempotencyKey",
   });
 });
-
 /** @internal */
 export type MessagesControllerDeleteMessageRequest$Outbound = {
   messageId: string;
@@ -56,21 +55,6 @@ export const MessagesControllerDeleteMessageRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MessagesControllerDeleteMessageRequest$ {
-  /** @deprecated use `MessagesControllerDeleteMessageRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    MessagesControllerDeleteMessageRequest$inboundSchema;
-  /** @deprecated use `MessagesControllerDeleteMessageRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    MessagesControllerDeleteMessageRequest$outboundSchema;
-  /** @deprecated use `MessagesControllerDeleteMessageRequest$Outbound` instead. */
-  export type Outbound = MessagesControllerDeleteMessageRequest$Outbound;
-}
-
 export function messagesControllerDeleteMessageRequestToJSON(
   messagesControllerDeleteMessageRequest:
     MessagesControllerDeleteMessageRequest,
@@ -81,7 +65,6 @@ export function messagesControllerDeleteMessageRequestToJSON(
     ),
   );
 }
-
 export function messagesControllerDeleteMessageRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<MessagesControllerDeleteMessageRequest, SDKValidationError> {
@@ -107,7 +90,6 @@ export const MessagesControllerDeleteMessageResponse$inboundSchema: z.ZodType<
     "Result": "result",
   });
 });
-
 /** @internal */
 export type MessagesControllerDeleteMessageResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
@@ -129,21 +111,6 @@ export const MessagesControllerDeleteMessageResponse$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MessagesControllerDeleteMessageResponse$ {
-  /** @deprecated use `MessagesControllerDeleteMessageResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    MessagesControllerDeleteMessageResponse$inboundSchema;
-  /** @deprecated use `MessagesControllerDeleteMessageResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    MessagesControllerDeleteMessageResponse$outboundSchema;
-  /** @deprecated use `MessagesControllerDeleteMessageResponse$Outbound` instead. */
-  export type Outbound = MessagesControllerDeleteMessageResponse$Outbound;
-}
-
 export function messagesControllerDeleteMessageResponseToJSON(
   messagesControllerDeleteMessageResponse:
     MessagesControllerDeleteMessageResponse,
@@ -154,7 +121,6 @@ export function messagesControllerDeleteMessageResponseToJSON(
     ),
   );
 }
-
 export function messagesControllerDeleteMessageResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<

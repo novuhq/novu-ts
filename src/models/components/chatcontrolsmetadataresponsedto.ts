@@ -44,7 +44,6 @@ export const ChatControlsMetadataResponseDto$inboundSchema: z.ZodType<
   uiSchema: UiSchema$inboundSchema.optional(),
   values: ChatControlDto$inboundSchema,
 });
-
 /** @internal */
 export type ChatControlsMetadataResponseDto$Outbound = {
   dataSchema?: { [k: string]: any } | undefined;
@@ -63,19 +62,6 @@ export const ChatControlsMetadataResponseDto$outboundSchema: z.ZodType<
   values: ChatControlDto$outboundSchema,
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ChatControlsMetadataResponseDto$ {
-  /** @deprecated use `ChatControlsMetadataResponseDto$inboundSchema` instead. */
-  export const inboundSchema = ChatControlsMetadataResponseDto$inboundSchema;
-  /** @deprecated use `ChatControlsMetadataResponseDto$outboundSchema` instead. */
-  export const outboundSchema = ChatControlsMetadataResponseDto$outboundSchema;
-  /** @deprecated use `ChatControlsMetadataResponseDto$Outbound` instead. */
-  export type Outbound = ChatControlsMetadataResponseDto$Outbound;
-}
-
 export function chatControlsMetadataResponseDtoToJSON(
   chatControlsMetadataResponseDto: ChatControlsMetadataResponseDto,
 ): string {
@@ -85,7 +71,6 @@ export function chatControlsMetadataResponseDtoToJSON(
     ),
   );
 }
-
 export function chatControlsMetadataResponseDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<ChatControlsMetadataResponseDto, SDKValidationError> {

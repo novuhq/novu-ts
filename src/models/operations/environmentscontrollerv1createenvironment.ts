@@ -38,7 +38,6 @@ export const EnvironmentsControllerV1CreateEnvironmentRequest$inboundSchema:
       "CreateEnvironmentRequestDto": "createEnvironmentRequestDto",
     });
   });
-
 /** @internal */
 export type EnvironmentsControllerV1CreateEnvironmentRequest$Outbound = {
   "idempotency-key"?: string | undefined;
@@ -62,22 +61,6 @@ export const EnvironmentsControllerV1CreateEnvironmentRequest$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EnvironmentsControllerV1CreateEnvironmentRequest$ {
-  /** @deprecated use `EnvironmentsControllerV1CreateEnvironmentRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    EnvironmentsControllerV1CreateEnvironmentRequest$inboundSchema;
-  /** @deprecated use `EnvironmentsControllerV1CreateEnvironmentRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    EnvironmentsControllerV1CreateEnvironmentRequest$outboundSchema;
-  /** @deprecated use `EnvironmentsControllerV1CreateEnvironmentRequest$Outbound` instead. */
-  export type Outbound =
-    EnvironmentsControllerV1CreateEnvironmentRequest$Outbound;
-}
-
 export function environmentsControllerV1CreateEnvironmentRequestToJSON(
   environmentsControllerV1CreateEnvironmentRequest:
     EnvironmentsControllerV1CreateEnvironmentRequest,
@@ -88,7 +71,6 @@ export function environmentsControllerV1CreateEnvironmentRequestToJSON(
     ),
   );
 }
-
 export function environmentsControllerV1CreateEnvironmentRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -120,7 +102,6 @@ export const EnvironmentsControllerV1CreateEnvironmentResponse$inboundSchema:
       "Result": "result",
     });
   });
-
 /** @internal */
 export type EnvironmentsControllerV1CreateEnvironmentResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
@@ -143,22 +124,6 @@ export const EnvironmentsControllerV1CreateEnvironmentResponse$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EnvironmentsControllerV1CreateEnvironmentResponse$ {
-  /** @deprecated use `EnvironmentsControllerV1CreateEnvironmentResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    EnvironmentsControllerV1CreateEnvironmentResponse$inboundSchema;
-  /** @deprecated use `EnvironmentsControllerV1CreateEnvironmentResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    EnvironmentsControllerV1CreateEnvironmentResponse$outboundSchema;
-  /** @deprecated use `EnvironmentsControllerV1CreateEnvironmentResponse$Outbound` instead. */
-  export type Outbound =
-    EnvironmentsControllerV1CreateEnvironmentResponse$Outbound;
-}
-
 export function environmentsControllerV1CreateEnvironmentResponseToJSON(
   environmentsControllerV1CreateEnvironmentResponse:
     EnvironmentsControllerV1CreateEnvironmentResponse,
@@ -169,7 +134,6 @@ export function environmentsControllerV1CreateEnvironmentResponseToJSON(
     ),
   );
 }
-
 export function environmentsControllerV1CreateEnvironmentResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<

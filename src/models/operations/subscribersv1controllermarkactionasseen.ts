@@ -44,7 +44,6 @@ export const SubscribersV1ControllerMarkActionAsSeenRequest$inboundSchema:
       "MarkMessageActionAsSeenDto": "markMessageActionAsSeenDto",
     });
   });
-
 /** @internal */
 export type SubscribersV1ControllerMarkActionAsSeenRequest$Outbound = {
   messageId: string;
@@ -74,22 +73,6 @@ export const SubscribersV1ControllerMarkActionAsSeenRequest$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SubscribersV1ControllerMarkActionAsSeenRequest$ {
-  /** @deprecated use `SubscribersV1ControllerMarkActionAsSeenRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    SubscribersV1ControllerMarkActionAsSeenRequest$inboundSchema;
-  /** @deprecated use `SubscribersV1ControllerMarkActionAsSeenRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    SubscribersV1ControllerMarkActionAsSeenRequest$outboundSchema;
-  /** @deprecated use `SubscribersV1ControllerMarkActionAsSeenRequest$Outbound` instead. */
-  export type Outbound =
-    SubscribersV1ControllerMarkActionAsSeenRequest$Outbound;
-}
-
 export function subscribersV1ControllerMarkActionAsSeenRequestToJSON(
   subscribersV1ControllerMarkActionAsSeenRequest:
     SubscribersV1ControllerMarkActionAsSeenRequest,
@@ -100,7 +83,6 @@ export function subscribersV1ControllerMarkActionAsSeenRequestToJSON(
     ),
   );
 }
-
 export function subscribersV1ControllerMarkActionAsSeenRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -132,7 +114,6 @@ export const SubscribersV1ControllerMarkActionAsSeenResponse$inboundSchema:
       "Result": "result",
     });
   });
-
 /** @internal */
 export type SubscribersV1ControllerMarkActionAsSeenResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
@@ -155,22 +136,6 @@ export const SubscribersV1ControllerMarkActionAsSeenResponse$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SubscribersV1ControllerMarkActionAsSeenResponse$ {
-  /** @deprecated use `SubscribersV1ControllerMarkActionAsSeenResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    SubscribersV1ControllerMarkActionAsSeenResponse$inboundSchema;
-  /** @deprecated use `SubscribersV1ControllerMarkActionAsSeenResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    SubscribersV1ControllerMarkActionAsSeenResponse$outboundSchema;
-  /** @deprecated use `SubscribersV1ControllerMarkActionAsSeenResponse$Outbound` instead. */
-  export type Outbound =
-    SubscribersV1ControllerMarkActionAsSeenResponse$Outbound;
-}
-
 export function subscribersV1ControllerMarkActionAsSeenResponseToJSON(
   subscribersV1ControllerMarkActionAsSeenResponse:
     SubscribersV1ControllerMarkActionAsSeenResponse,
@@ -181,7 +146,6 @@ export function subscribersV1ControllerMarkActionAsSeenResponseToJSON(
     ),
   );
 }
-
 export function subscribersV1ControllerMarkActionAsSeenResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<

@@ -42,7 +42,6 @@ export const SubscribersControllerBulkUpdateSubscriberPreferencesRequest$inbound
         "bulkUpdateSubscriberPreferencesDto",
     });
   });
-
 /** @internal */
 export type SubscribersControllerBulkUpdateSubscriberPreferencesRequest$Outbound =
   {
@@ -70,22 +69,6 @@ export const SubscribersControllerBulkUpdateSubscriberPreferencesRequest$outboun
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SubscribersControllerBulkUpdateSubscriberPreferencesRequest$ {
-  /** @deprecated use `SubscribersControllerBulkUpdateSubscriberPreferencesRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    SubscribersControllerBulkUpdateSubscriberPreferencesRequest$inboundSchema;
-  /** @deprecated use `SubscribersControllerBulkUpdateSubscriberPreferencesRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    SubscribersControllerBulkUpdateSubscriberPreferencesRequest$outboundSchema;
-  /** @deprecated use `SubscribersControllerBulkUpdateSubscriberPreferencesRequest$Outbound` instead. */
-  export type Outbound =
-    SubscribersControllerBulkUpdateSubscriberPreferencesRequest$Outbound;
-}
-
 export function subscribersControllerBulkUpdateSubscriberPreferencesRequestToJSON(
   subscribersControllerBulkUpdateSubscriberPreferencesRequest:
     SubscribersControllerBulkUpdateSubscriberPreferencesRequest,
@@ -95,7 +78,6 @@ export function subscribersControllerBulkUpdateSubscriberPreferencesRequestToJSO
       .parse(subscribersControllerBulkUpdateSubscriberPreferencesRequest),
   );
 }
-
 export function subscribersControllerBulkUpdateSubscriberPreferencesRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -126,7 +108,6 @@ export const SubscribersControllerBulkUpdateSubscriberPreferencesResponse$inboun
       "Result": "result",
     });
   });
-
 /** @internal */
 export type SubscribersControllerBulkUpdateSubscriberPreferencesResponse$Outbound =
   {
@@ -150,22 +131,6 @@ export const SubscribersControllerBulkUpdateSubscriberPreferencesResponse$outbou
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SubscribersControllerBulkUpdateSubscriberPreferencesResponse$ {
-  /** @deprecated use `SubscribersControllerBulkUpdateSubscriberPreferencesResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    SubscribersControllerBulkUpdateSubscriberPreferencesResponse$inboundSchema;
-  /** @deprecated use `SubscribersControllerBulkUpdateSubscriberPreferencesResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    SubscribersControllerBulkUpdateSubscriberPreferencesResponse$outboundSchema;
-  /** @deprecated use `SubscribersControllerBulkUpdateSubscriberPreferencesResponse$Outbound` instead. */
-  export type Outbound =
-    SubscribersControllerBulkUpdateSubscriberPreferencesResponse$Outbound;
-}
-
 export function subscribersControllerBulkUpdateSubscriberPreferencesResponseToJSON(
   subscribersControllerBulkUpdateSubscriberPreferencesResponse:
     SubscribersControllerBulkUpdateSubscriberPreferencesResponse,
@@ -175,7 +140,6 @@ export function subscribersControllerBulkUpdateSubscriberPreferencesResponseToJS
       .parse(subscribersControllerBulkUpdateSubscriberPreferencesResponse),
   );
 }
-
 export function subscribersControllerBulkUpdateSubscriberPreferencesResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<

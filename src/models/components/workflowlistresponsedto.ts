@@ -155,7 +155,6 @@ export const WorkflowListResponseDtoUpdatedBy$inboundSchema: z.ZodType<
     "_id": "id",
   });
 });
-
 /** @internal */
 export type WorkflowListResponseDtoUpdatedBy$Outbound = {
   _id: string;
@@ -180,19 +179,6 @@ export const WorkflowListResponseDtoUpdatedBy$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WorkflowListResponseDtoUpdatedBy$ {
-  /** @deprecated use `WorkflowListResponseDtoUpdatedBy$inboundSchema` instead. */
-  export const inboundSchema = WorkflowListResponseDtoUpdatedBy$inboundSchema;
-  /** @deprecated use `WorkflowListResponseDtoUpdatedBy$outboundSchema` instead. */
-  export const outboundSchema = WorkflowListResponseDtoUpdatedBy$outboundSchema;
-  /** @deprecated use `WorkflowListResponseDtoUpdatedBy$Outbound` instead. */
-  export type Outbound = WorkflowListResponseDtoUpdatedBy$Outbound;
-}
-
 export function workflowListResponseDtoUpdatedByToJSON(
   workflowListResponseDtoUpdatedBy: WorkflowListResponseDtoUpdatedBy,
 ): string {
@@ -202,7 +188,6 @@ export function workflowListResponseDtoUpdatedByToJSON(
     ),
   );
 }
-
 export function workflowListResponseDtoUpdatedByFromJSON(
   jsonString: string,
 ): SafeParseResult<WorkflowListResponseDtoUpdatedBy, SDKValidationError> {
@@ -228,7 +213,6 @@ export const WorkflowListResponseDtoLastPublishedBy$inboundSchema: z.ZodType<
     "_id": "id",
   });
 });
-
 /** @internal */
 export type WorkflowListResponseDtoLastPublishedBy$Outbound = {
   _id: string;
@@ -253,21 +237,6 @@ export const WorkflowListResponseDtoLastPublishedBy$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WorkflowListResponseDtoLastPublishedBy$ {
-  /** @deprecated use `WorkflowListResponseDtoLastPublishedBy$inboundSchema` instead. */
-  export const inboundSchema =
-    WorkflowListResponseDtoLastPublishedBy$inboundSchema;
-  /** @deprecated use `WorkflowListResponseDtoLastPublishedBy$outboundSchema` instead. */
-  export const outboundSchema =
-    WorkflowListResponseDtoLastPublishedBy$outboundSchema;
-  /** @deprecated use `WorkflowListResponseDtoLastPublishedBy$Outbound` instead. */
-  export type Outbound = WorkflowListResponseDtoLastPublishedBy$Outbound;
-}
-
 export function workflowListResponseDtoLastPublishedByToJSON(
   workflowListResponseDtoLastPublishedBy:
     WorkflowListResponseDtoLastPublishedBy,
@@ -278,7 +247,6 @@ export function workflowListResponseDtoLastPublishedByToJSON(
     ),
   );
 }
-
 export function workflowListResponseDtoLastPublishedByFromJSON(
   jsonString: string,
 ): SafeParseResult<WorkflowListResponseDtoLastPublishedBy, SDKValidationError> {
@@ -321,7 +289,6 @@ export const WorkflowListResponseDto$inboundSchema: z.ZodType<
     "_id": "id",
   });
 });
-
 /** @internal */
 export type WorkflowListResponseDto$Outbound = {
   name: string;
@@ -377,19 +344,6 @@ export const WorkflowListResponseDto$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WorkflowListResponseDto$ {
-  /** @deprecated use `WorkflowListResponseDto$inboundSchema` instead. */
-  export const inboundSchema = WorkflowListResponseDto$inboundSchema;
-  /** @deprecated use `WorkflowListResponseDto$outboundSchema` instead. */
-  export const outboundSchema = WorkflowListResponseDto$outboundSchema;
-  /** @deprecated use `WorkflowListResponseDto$Outbound` instead. */
-  export type Outbound = WorkflowListResponseDto$Outbound;
-}
-
 export function workflowListResponseDtoToJSON(
   workflowListResponseDto: WorkflowListResponseDto,
 ): string {
@@ -397,7 +351,6 @@ export function workflowListResponseDtoToJSON(
     WorkflowListResponseDto$outboundSchema.parse(workflowListResponseDto),
   );
 }
-
 export function workflowListResponseDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<WorkflowListResponseDto, SDKValidationError> {

@@ -32,7 +32,6 @@ export const CreateEnvironmentRequestDto$inboundSchema: z.ZodType<
   parentId: z.string().optional(),
   color: z.string(),
 });
-
 /** @internal */
 export type CreateEnvironmentRequestDto$Outbound = {
   name: string;
@@ -51,19 +50,6 @@ export const CreateEnvironmentRequestDto$outboundSchema: z.ZodType<
   color: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateEnvironmentRequestDto$ {
-  /** @deprecated use `CreateEnvironmentRequestDto$inboundSchema` instead. */
-  export const inboundSchema = CreateEnvironmentRequestDto$inboundSchema;
-  /** @deprecated use `CreateEnvironmentRequestDto$outboundSchema` instead. */
-  export const outboundSchema = CreateEnvironmentRequestDto$outboundSchema;
-  /** @deprecated use `CreateEnvironmentRequestDto$Outbound` instead. */
-  export type Outbound = CreateEnvironmentRequestDto$Outbound;
-}
-
 export function createEnvironmentRequestDtoToJSON(
   createEnvironmentRequestDto: CreateEnvironmentRequestDto,
 ): string {
@@ -73,7 +59,6 @@ export function createEnvironmentRequestDtoToJSON(
     ),
   );
 }
-
 export function createEnvironmentRequestDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<CreateEnvironmentRequestDto, SDKValidationError> {

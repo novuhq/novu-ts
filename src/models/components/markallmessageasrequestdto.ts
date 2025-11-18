@@ -44,7 +44,6 @@ export const FeedIdentifier$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([z.string(), z.array(z.string())]);
-
 /** @internal */
 export type FeedIdentifier$Outbound = string | Array<string>;
 
@@ -55,23 +54,9 @@ export const FeedIdentifier$outboundSchema: z.ZodType<
   FeedIdentifier
 > = z.union([z.string(), z.array(z.string())]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FeedIdentifier$ {
-  /** @deprecated use `FeedIdentifier$inboundSchema` instead. */
-  export const inboundSchema = FeedIdentifier$inboundSchema;
-  /** @deprecated use `FeedIdentifier$outboundSchema` instead. */
-  export const outboundSchema = FeedIdentifier$outboundSchema;
-  /** @deprecated use `FeedIdentifier$Outbound` instead. */
-  export type Outbound = FeedIdentifier$Outbound;
-}
-
 export function feedIdentifierToJSON(feedIdentifier: FeedIdentifier): string {
   return JSON.stringify(FeedIdentifier$outboundSchema.parse(feedIdentifier));
 }
-
 export function feedIdentifierFromJSON(
   jsonString: string,
 ): SafeParseResult<FeedIdentifier, SDKValidationError> {
@@ -85,21 +70,9 @@ export function feedIdentifierFromJSON(
 /** @internal */
 export const MarkAs$inboundSchema: z.ZodNativeEnum<typeof MarkAs> = z
   .nativeEnum(MarkAs);
-
 /** @internal */
 export const MarkAs$outboundSchema: z.ZodNativeEnum<typeof MarkAs> =
   MarkAs$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MarkAs$ {
-  /** @deprecated use `MarkAs$inboundSchema` instead. */
-  export const inboundSchema = MarkAs$inboundSchema;
-  /** @deprecated use `MarkAs$outboundSchema` instead. */
-  export const outboundSchema = MarkAs$outboundSchema;
-}
 
 /** @internal */
 export const MarkAllMessageAsRequestDto$inboundSchema: z.ZodType<
@@ -110,7 +83,6 @@ export const MarkAllMessageAsRequestDto$inboundSchema: z.ZodType<
   feedIdentifier: z.union([z.string(), z.array(z.string())]).optional(),
   markAs: MarkAs$inboundSchema,
 });
-
 /** @internal */
 export type MarkAllMessageAsRequestDto$Outbound = {
   feedIdentifier?: string | Array<string> | undefined;
@@ -127,19 +99,6 @@ export const MarkAllMessageAsRequestDto$outboundSchema: z.ZodType<
   markAs: MarkAs$outboundSchema,
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MarkAllMessageAsRequestDto$ {
-  /** @deprecated use `MarkAllMessageAsRequestDto$inboundSchema` instead. */
-  export const inboundSchema = MarkAllMessageAsRequestDto$inboundSchema;
-  /** @deprecated use `MarkAllMessageAsRequestDto$outboundSchema` instead. */
-  export const outboundSchema = MarkAllMessageAsRequestDto$outboundSchema;
-  /** @deprecated use `MarkAllMessageAsRequestDto$Outbound` instead. */
-  export type Outbound = MarkAllMessageAsRequestDto$Outbound;
-}
-
 export function markAllMessageAsRequestDtoToJSON(
   markAllMessageAsRequestDto: MarkAllMessageAsRequestDto,
 ): string {
@@ -147,7 +106,6 @@ export function markAllMessageAsRequestDtoToJSON(
     MarkAllMessageAsRequestDto$outboundSchema.parse(markAllMessageAsRequestDto),
   );
 }
-
 export function markAllMessageAsRequestDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<MarkAllMessageAsRequestDto, SDKValidationError> {

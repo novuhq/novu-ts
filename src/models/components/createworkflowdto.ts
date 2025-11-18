@@ -197,7 +197,6 @@ export const Steps$inboundSchema: z.ZodType<Steps, z.ZodTypeDef, unknown> = z
       })),
     ),
   ]);
-
 /** @internal */
 export type Steps$Outbound =
   | (InAppStepUpsertDto$Outbound & { type: "in_app" })
@@ -253,23 +252,9 @@ export const Steps$outboundSchema: z.ZodType<
   ),
 ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Steps$ {
-  /** @deprecated use `Steps$inboundSchema` instead. */
-  export const inboundSchema = Steps$inboundSchema;
-  /** @deprecated use `Steps$outboundSchema` instead. */
-  export const outboundSchema = Steps$outboundSchema;
-  /** @deprecated use `Steps$Outbound` instead. */
-  export type Outbound = Steps$Outbound;
-}
-
 export function stepsToJSON(steps: Steps): string {
   return JSON.stringify(Steps$outboundSchema.parse(steps));
 }
-
 export function stepsFromJSON(
   jsonString: string,
 ): SafeParseResult<Steps, SDKValidationError> {
@@ -351,7 +336,6 @@ export const CreateWorkflowDto$inboundSchema: z.ZodType<
     "__source": "source",
   });
 });
-
 /** @internal */
 export type CreateWorkflowDto$Outbound = {
   name: string;
@@ -450,19 +434,6 @@ export const CreateWorkflowDto$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateWorkflowDto$ {
-  /** @deprecated use `CreateWorkflowDto$inboundSchema` instead. */
-  export const inboundSchema = CreateWorkflowDto$inboundSchema;
-  /** @deprecated use `CreateWorkflowDto$outboundSchema` instead. */
-  export const outboundSchema = CreateWorkflowDto$outboundSchema;
-  /** @deprecated use `CreateWorkflowDto$Outbound` instead. */
-  export type Outbound = CreateWorkflowDto$Outbound;
-}
-
 export function createWorkflowDtoToJSON(
   createWorkflowDto: CreateWorkflowDto,
 ): string {
@@ -470,7 +441,6 @@ export function createWorkflowDtoToJSON(
     CreateWorkflowDto$outboundSchema.parse(createWorkflowDto),
   );
 }
-
 export function createWorkflowDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<CreateWorkflowDto, SDKValidationError> {

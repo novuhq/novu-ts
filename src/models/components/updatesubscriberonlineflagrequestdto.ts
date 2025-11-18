@@ -19,7 +19,6 @@ export const UpdateSubscriberOnlineFlagRequestDto$inboundSchema: z.ZodType<
 > = z.object({
   isOnline: z.boolean(),
 });
-
 /** @internal */
 export type UpdateSubscriberOnlineFlagRequestDto$Outbound = {
   isOnline: boolean;
@@ -34,21 +33,6 @@ export const UpdateSubscriberOnlineFlagRequestDto$outboundSchema: z.ZodType<
   isOnline: z.boolean(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateSubscriberOnlineFlagRequestDto$ {
-  /** @deprecated use `UpdateSubscriberOnlineFlagRequestDto$inboundSchema` instead. */
-  export const inboundSchema =
-    UpdateSubscriberOnlineFlagRequestDto$inboundSchema;
-  /** @deprecated use `UpdateSubscriberOnlineFlagRequestDto$outboundSchema` instead. */
-  export const outboundSchema =
-    UpdateSubscriberOnlineFlagRequestDto$outboundSchema;
-  /** @deprecated use `UpdateSubscriberOnlineFlagRequestDto$Outbound` instead. */
-  export type Outbound = UpdateSubscriberOnlineFlagRequestDto$Outbound;
-}
-
 export function updateSubscriberOnlineFlagRequestDtoToJSON(
   updateSubscriberOnlineFlagRequestDto: UpdateSubscriberOnlineFlagRequestDto,
 ): string {
@@ -58,7 +42,6 @@ export function updateSubscriberOnlineFlagRequestDtoToJSON(
     ),
   );
 }
-
 export function updateSubscriberOnlineFlagRequestDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<UpdateSubscriberOnlineFlagRequestDto, SDKValidationError> {

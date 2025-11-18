@@ -78,26 +78,12 @@ export const TopicsControllerListTopicSubscriptionsQueryParamOrderDirection$inbo
   > = z.nativeEnum(
     TopicsControllerListTopicSubscriptionsQueryParamOrderDirection,
   );
-
 /** @internal */
 export const TopicsControllerListTopicSubscriptionsQueryParamOrderDirection$outboundSchema:
   z.ZodNativeEnum<
     typeof TopicsControllerListTopicSubscriptionsQueryParamOrderDirection
   > =
     TopicsControllerListTopicSubscriptionsQueryParamOrderDirection$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TopicsControllerListTopicSubscriptionsQueryParamOrderDirection$ {
-  /** @deprecated use `TopicsControllerListTopicSubscriptionsQueryParamOrderDirection$inboundSchema` instead. */
-  export const inboundSchema =
-    TopicsControllerListTopicSubscriptionsQueryParamOrderDirection$inboundSchema;
-  /** @deprecated use `TopicsControllerListTopicSubscriptionsQueryParamOrderDirection$outboundSchema` instead. */
-  export const outboundSchema =
-    TopicsControllerListTopicSubscriptionsQueryParamOrderDirection$outboundSchema;
-}
 
 /** @internal */
 export const TopicsControllerListTopicSubscriptionsRequest$inboundSchema:
@@ -122,7 +108,6 @@ export const TopicsControllerListTopicSubscriptionsRequest$inboundSchema:
       "idempotency-key": "idempotencyKey",
     });
   });
-
 /** @internal */
 export type TopicsControllerListTopicSubscriptionsRequest$Outbound = {
   topicKey: string;
@@ -160,21 +145,6 @@ export const TopicsControllerListTopicSubscriptionsRequest$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TopicsControllerListTopicSubscriptionsRequest$ {
-  /** @deprecated use `TopicsControllerListTopicSubscriptionsRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    TopicsControllerListTopicSubscriptionsRequest$inboundSchema;
-  /** @deprecated use `TopicsControllerListTopicSubscriptionsRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    TopicsControllerListTopicSubscriptionsRequest$outboundSchema;
-  /** @deprecated use `TopicsControllerListTopicSubscriptionsRequest$Outbound` instead. */
-  export type Outbound = TopicsControllerListTopicSubscriptionsRequest$Outbound;
-}
-
 export function topicsControllerListTopicSubscriptionsRequestToJSON(
   topicsControllerListTopicSubscriptionsRequest:
     TopicsControllerListTopicSubscriptionsRequest,
@@ -185,7 +155,6 @@ export function topicsControllerListTopicSubscriptionsRequestToJSON(
     ),
   );
 }
-
 export function topicsControllerListTopicSubscriptionsRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -217,7 +186,6 @@ export const TopicsControllerListTopicSubscriptionsResponse$inboundSchema:
       "Result": "result",
     });
   });
-
 /** @internal */
 export type TopicsControllerListTopicSubscriptionsResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
@@ -240,22 +208,6 @@ export const TopicsControllerListTopicSubscriptionsResponse$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TopicsControllerListTopicSubscriptionsResponse$ {
-  /** @deprecated use `TopicsControllerListTopicSubscriptionsResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    TopicsControllerListTopicSubscriptionsResponse$inboundSchema;
-  /** @deprecated use `TopicsControllerListTopicSubscriptionsResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    TopicsControllerListTopicSubscriptionsResponse$outboundSchema;
-  /** @deprecated use `TopicsControllerListTopicSubscriptionsResponse$Outbound` instead. */
-  export type Outbound =
-    TopicsControllerListTopicSubscriptionsResponse$Outbound;
-}
-
 export function topicsControllerListTopicSubscriptionsResponseToJSON(
   topicsControllerListTopicSubscriptionsResponse:
     TopicsControllerListTopicSubscriptionsResponse,
@@ -266,7 +218,6 @@ export function topicsControllerListTopicSubscriptionsResponseToJSON(
     ),
   );
 }
-
 export function topicsControllerListTopicSubscriptionsResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<

@@ -40,7 +40,6 @@ export const SubscribersControllerUpdateSubscriberPreferencesRequest$inboundSche
       "PatchSubscriberPreferencesDto": "patchSubscriberPreferencesDto",
     });
   });
-
 /** @internal */
 export type SubscribersControllerUpdateSubscriberPreferencesRequest$Outbound = {
   subscriberId: string;
@@ -67,22 +66,6 @@ export const SubscribersControllerUpdateSubscriberPreferencesRequest$outboundSch
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SubscribersControllerUpdateSubscriberPreferencesRequest$ {
-  /** @deprecated use `SubscribersControllerUpdateSubscriberPreferencesRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    SubscribersControllerUpdateSubscriberPreferencesRequest$inboundSchema;
-  /** @deprecated use `SubscribersControllerUpdateSubscriberPreferencesRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    SubscribersControllerUpdateSubscriberPreferencesRequest$outboundSchema;
-  /** @deprecated use `SubscribersControllerUpdateSubscriberPreferencesRequest$Outbound` instead. */
-  export type Outbound =
-    SubscribersControllerUpdateSubscriberPreferencesRequest$Outbound;
-}
-
 export function subscribersControllerUpdateSubscriberPreferencesRequestToJSON(
   subscribersControllerUpdateSubscriberPreferencesRequest:
     SubscribersControllerUpdateSubscriberPreferencesRequest,
@@ -92,7 +75,6 @@ export function subscribersControllerUpdateSubscriberPreferencesRequestToJSON(
       .parse(subscribersControllerUpdateSubscriberPreferencesRequest),
   );
 }
-
 export function subscribersControllerUpdateSubscriberPreferencesRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -123,7 +105,6 @@ export const SubscribersControllerUpdateSubscriberPreferencesResponse$inboundSch
       "Result": "result",
     });
   });
-
 /** @internal */
 export type SubscribersControllerUpdateSubscriberPreferencesResponse$Outbound =
   {
@@ -147,22 +128,6 @@ export const SubscribersControllerUpdateSubscriberPreferencesResponse$outboundSc
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SubscribersControllerUpdateSubscriberPreferencesResponse$ {
-  /** @deprecated use `SubscribersControllerUpdateSubscriberPreferencesResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    SubscribersControllerUpdateSubscriberPreferencesResponse$inboundSchema;
-  /** @deprecated use `SubscribersControllerUpdateSubscriberPreferencesResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    SubscribersControllerUpdateSubscriberPreferencesResponse$outboundSchema;
-  /** @deprecated use `SubscribersControllerUpdateSubscriberPreferencesResponse$Outbound` instead. */
-  export type Outbound =
-    SubscribersControllerUpdateSubscriberPreferencesResponse$Outbound;
-}
-
 export function subscribersControllerUpdateSubscriberPreferencesResponseToJSON(
   subscribersControllerUpdateSubscriberPreferencesResponse:
     SubscribersControllerUpdateSubscriberPreferencesResponse,
@@ -172,7 +137,6 @@ export function subscribersControllerUpdateSubscriberPreferencesResponseToJSON(
       .parse(subscribersControllerUpdateSubscriberPreferencesResponse),
   );
 }
-
 export function subscribersControllerUpdateSubscriberPreferencesResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<

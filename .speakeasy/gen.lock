@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 6bff3a53-3f0b-40b4-942f-ff70dc583ae5
 management:
-  docChecksum: 0ec613cd60b7981f502058952ee307db
-  docVersion: 3.9.0
-  speakeasyVersion: 1.642.1
-  generationVersion: 2.731.4
-  releaseVersion: 1.8.0
-  configChecksum: 933bb669e2a1e7c357b64ad5a719ad25
+  docChecksum: 632fa4de0d14dd4b63f8adc2b7803ecb
+  docVersion: 3.11.0
+  speakeasyVersion: 1.658.2
+  generationVersion: 2.755.9
+  releaseVersion: 1.9.0
+  configChecksum: 9cccf3b9883fdea9bf9e1da218f77db6
   repoURL: https://github.com/novuhq/novu-ts.git
   installationURL: https://github.com/novuhq/novu-ts
   published: true
@@ -15,7 +15,7 @@ features:
     additionalDependencies: 0.1.0
     additionalProperties: 0.1.2
     constsAndDefaults: 0.1.12
-    core: 3.24.1
+    core: 3.26.7
     defaultEnabledRetries: 0.1.0
     deprecations: 2.81.1
     enumUnions: 0.1.0
@@ -25,7 +25,7 @@ features:
     globalSecurity: 2.82.14
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
-    globalServerURLs: 2.82.5
+    globalServerURLs: 2.83.0
     groups: 2.81.3
     mcpServer: 0.9.3
     nameOverrides: 2.81.2
@@ -327,7 +327,6 @@ generatedFiles:
   - docs/models/components/subscriberfeedresponsedto.md
   - docs/models/components/subscriberglobalpreferencedto.md
   - docs/models/components/subscriberpayloaddto.md
-  - docs/models/components/subscriberpayloaddtodata.md
   - docs/models/components/subscriberpreferencechannels.md
   - docs/models/components/subscriberpreferenceoverridedto.md
   - docs/models/components/subscriberpreferencesworkflowinfodto.md
@@ -1206,7 +1205,7 @@ examples:
   EventsController_trigger:
     speakeasy-default-events-controller-trigger:
       requestBody:
-        application/json: {"name": "workflow_identifier", "payload": {"comment_id": "string", "post": {"text": "string"}}, "overrides": {}, "to": "SUBSCRIBER_ID", "context": {"key": "org-acme"}}
+        application/json: {"name": "workflow_identifier", "payload": {"comment_id": "string", "post": {"text": "string"}}, "overrides": {}, "to": "SUBSCRIBER_ID", "actor": "<value>", "context": {"key": "org-acme"}}
       responses:
         "201":
           application/json: {"acknowledged": true, "status": "processed"}
@@ -1239,7 +1238,7 @@ examples:
   EventsController_broadcastEventToAll:
     speakeasy-default-events-controller-broadcast-event-to-all:
       requestBody:
-        application/json: {"name": "<value>", "payload": {"comment_id": "string", "post": {"text": "string"}}, "overrides": {"fcm": {"data": {"key": "value"}}}}
+        application/json: {"name": "<value>", "payload": {"comment_id": "string", "post": {"text": "string"}}, "overrides": {"fcm": {"data": {"key": "value"}}}, "actor": {"firstName": "John", "lastName": "Doe", "email": "john.doe@example.com", "phone": "+1234567890", "avatar": "https://example.com/avatar.jpg", "locale": "en-US", "timezone": "America/New_York", "subscriberId": "<id>"}}
       responses:
         "200":
           application/json: {"acknowledged": false, "status": "invalid_recipients"}
@@ -1286,7 +1285,7 @@ examples:
   SubscribersController_createSubscriber:
     speakeasy-default-subscribers-controller-create-subscriber:
       requestBody:
-        application/json: {"subscriberId": "<id>"}
+        application/json: {"firstName": "John", "lastName": "Doe", "email": "john.doe@example.com", "phone": "+1234567890", "avatar": "https://example.com/avatar.jpg", "locale": "en-US", "timezone": "America/New_York", "subscriberId": "<id>"}
       responses:
         "201":
           application/json: {"channels": [{"providerId": "zulip", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}, {"providerId": "zulip", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}], "subscriberId": "<id>", "_organizationId": "<id>", "_environmentId": "<id>", "deleted": true, "createdAt": "1714470810745", "updatedAt": "1735674320193"}
@@ -1322,7 +1321,7 @@ examples:
         path:
           subscriberId: "<id>"
       requestBody:
-        application/json: {}
+        application/json: {"firstName": "John", "lastName": "Doe", "email": "john.doe@example.com", "phone": "+1234567890", "avatar": "https://example.com/avatar.jpg", "locale": "en-US", "timezone": "America/New_York"}
       responses:
         "200":
           application/json: {"channels": [{"providerId": "fcm", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}, {"providerId": "fcm", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}], "subscriberId": "<id>", "_organizationId": "<id>", "_environmentId": "<id>", "deleted": false, "createdAt": "1732490680659", "updatedAt": "1735674157313"}
@@ -2533,4 +2532,4 @@ generatedTests:
   TopicsController_removeSubscribers: "2024-12-24T08:36:06+01:00"
   TestingController_idempotency: "2024-12-24T08:36:06+01:00"
   TestingController_idempotencyGet: "2024-12-24T08:36:06+01:00"
-releaseNotes: "## Typescript SDK Changes Detected:\n* `novu.notifications.list()`:  `request` **Changed** **Breaking** :warning:\n* `novu.triggerBulk()`: \n  *  `request.bulktriggereventdto.events.[].context` **Added**\n* `novu.integrations.list()`:  `response.[].credentials.appIoBaseUrl` **Added**\n* `novu.contexts.retrieve()`: **Added**\n* `novu.contexts.delete()`: **Added**\n* `novu.activity.track()`: **Added**\n* `novu.inboundWebhooksControllerHandleWebhook()`: **Deleted** **Breaking** :warning:\n* `novu.trigger()`: \n  *  `request.triggereventrequestdto.context` **Added**\n* `novu.contexts.create()`: **Added**\n* `novu.contexts.update()`: **Added**\n* `novu.subscribers.messages.updateAsSeen()`:  `response.contextkeys` **Added**\n* `novu.subscribers.messages.markAllAs()`:  `response.[].contextKeys` **Added**\n* `novu.integrations.create()`: \n  *  `request.createintegrationrequestdto.credentials.appIoBaseUrl` **Added**\n  *  `response.credentials.appIoBaseUrl` **Added**\n* `novu.integrations.update()`: \n  *  `request.updateintegrationrequestdto.credentials.appIoBaseUrl` **Added**\n  *  `response.credentials.appIoBaseUrl` **Added**\n* `novu.integrations.delete()`:  `response.[].credentials.appIoBaseUrl` **Added**\n* `novu.integrations.setAsPrimary()`:  `response.credentials.appIoBaseUrl` **Added**\n* `novu.integrations.listActive()`:  `response.[].credentials.appIoBaseUrl` **Added**\n* `novu.messages.retrieve()`: \n  *  `request.contextKeys` **Added**\n  *  `response.data.[].contextKeys` **Added**\n* `novu.contexts.list()`: **Added**\n"
+releaseNotes: "## Typescript SDK Changes Detected:\n* `novu.trigger()`: \n  *  `request.triggereventrequestdto.to.[array].[].[subscriberPayloadDto]` **Changed** **Breaking** :warning:\n* `novu.triggerBroadcast()`: \n  *  `request.triggereventtoallrequestdto.actor.[subscriberPayloadDto]` **Changed** **Breaking** :warning:\n* `novu.triggerBulk()`: \n  *  `request.bulktriggereventdto.events.[].to.[array].[].[subscriberPayloadDto]` **Changed** **Breaking** :warning:\n"

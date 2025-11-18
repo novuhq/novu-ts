@@ -41,7 +41,6 @@ export const SubscribersV1ControllerUpdateSubscriberChannelRequest$inboundSchema
       "UpdateSubscriberChannelRequestDto": "updateSubscriberChannelRequestDto",
     });
   });
-
 /** @internal */
 export type SubscribersV1ControllerUpdateSubscriberChannelRequest$Outbound = {
   subscriberId: string;
@@ -68,22 +67,6 @@ export const SubscribersV1ControllerUpdateSubscriberChannelRequest$outboundSchem
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SubscribersV1ControllerUpdateSubscriberChannelRequest$ {
-  /** @deprecated use `SubscribersV1ControllerUpdateSubscriberChannelRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    SubscribersV1ControllerUpdateSubscriberChannelRequest$inboundSchema;
-  /** @deprecated use `SubscribersV1ControllerUpdateSubscriberChannelRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    SubscribersV1ControllerUpdateSubscriberChannelRequest$outboundSchema;
-  /** @deprecated use `SubscribersV1ControllerUpdateSubscriberChannelRequest$Outbound` instead. */
-  export type Outbound =
-    SubscribersV1ControllerUpdateSubscriberChannelRequest$Outbound;
-}
-
 export function subscribersV1ControllerUpdateSubscriberChannelRequestToJSON(
   subscribersV1ControllerUpdateSubscriberChannelRequest:
     SubscribersV1ControllerUpdateSubscriberChannelRequest,
@@ -94,7 +77,6 @@ export function subscribersV1ControllerUpdateSubscriberChannelRequestToJSON(
     ),
   );
 }
-
 export function subscribersV1ControllerUpdateSubscriberChannelRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -126,7 +108,6 @@ export const SubscribersV1ControllerUpdateSubscriberChannelResponse$inboundSchem
       "Result": "result",
     });
   });
-
 /** @internal */
 export type SubscribersV1ControllerUpdateSubscriberChannelResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
@@ -149,22 +130,6 @@ export const SubscribersV1ControllerUpdateSubscriberChannelResponse$outboundSche
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SubscribersV1ControllerUpdateSubscriberChannelResponse$ {
-  /** @deprecated use `SubscribersV1ControllerUpdateSubscriberChannelResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    SubscribersV1ControllerUpdateSubscriberChannelResponse$inboundSchema;
-  /** @deprecated use `SubscribersV1ControllerUpdateSubscriberChannelResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    SubscribersV1ControllerUpdateSubscriberChannelResponse$outboundSchema;
-  /** @deprecated use `SubscribersV1ControllerUpdateSubscriberChannelResponse$Outbound` instead. */
-  export type Outbound =
-    SubscribersV1ControllerUpdateSubscriberChannelResponse$Outbound;
-}
-
 export function subscribersV1ControllerUpdateSubscriberChannelResponseToJSON(
   subscribersV1ControllerUpdateSubscriberChannelResponse:
     SubscribersV1ControllerUpdateSubscriberChannelResponse,
@@ -175,7 +140,6 @@ export function subscribersV1ControllerUpdateSubscriberChannelResponseToJSON(
     ),
   );
 }
-
 export function subscribersV1ControllerUpdateSubscriberChannelResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<

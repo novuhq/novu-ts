@@ -19,7 +19,6 @@ export const InBoundParseDomainDto$inboundSchema: z.ZodType<
 > = z.object({
   inboundParseDomain: z.string().optional(),
 });
-
 /** @internal */
 export type InBoundParseDomainDto$Outbound = {
   inboundParseDomain?: string | undefined;
@@ -34,19 +33,6 @@ export const InBoundParseDomainDto$outboundSchema: z.ZodType<
   inboundParseDomain: z.string().optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InBoundParseDomainDto$ {
-  /** @deprecated use `InBoundParseDomainDto$inboundSchema` instead. */
-  export const inboundSchema = InBoundParseDomainDto$inboundSchema;
-  /** @deprecated use `InBoundParseDomainDto$outboundSchema` instead. */
-  export const outboundSchema = InBoundParseDomainDto$outboundSchema;
-  /** @deprecated use `InBoundParseDomainDto$Outbound` instead. */
-  export type Outbound = InBoundParseDomainDto$Outbound;
-}
-
 export function inBoundParseDomainDtoToJSON(
   inBoundParseDomainDto: InBoundParseDomainDto,
 ): string {
@@ -54,7 +40,6 @@ export function inBoundParseDomainDtoToJSON(
     InBoundParseDomainDto$outboundSchema.parse(inBoundParseDomainDto),
   );
 }
-
 export function inBoundParseDomainDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<InBoundParseDomainDto, SDKValidationError> {

@@ -111,24 +111,10 @@ export const ActivityNotificationJobResponseDtoType$inboundSchema:
   z.ZodNativeEnum<typeof ActivityNotificationJobResponseDtoType> = z.nativeEnum(
     ActivityNotificationJobResponseDtoType,
   );
-
 /** @internal */
 export const ActivityNotificationJobResponseDtoType$outboundSchema:
   z.ZodNativeEnum<typeof ActivityNotificationJobResponseDtoType> =
     ActivityNotificationJobResponseDtoType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ActivityNotificationJobResponseDtoType$ {
-  /** @deprecated use `ActivityNotificationJobResponseDtoType$inboundSchema` instead. */
-  export const inboundSchema =
-    ActivityNotificationJobResponseDtoType$inboundSchema;
-  /** @deprecated use `ActivityNotificationJobResponseDtoType$outboundSchema` instead. */
-  export const outboundSchema =
-    ActivityNotificationJobResponseDtoType$outboundSchema;
-}
 
 /** @internal */
 export const ActivityNotificationJobResponseDtoPayload$inboundSchema: z.ZodType<
@@ -136,7 +122,6 @@ export const ActivityNotificationJobResponseDtoPayload$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({});
-
 /** @internal */
 export type ActivityNotificationJobResponseDtoPayload$Outbound = {};
 
@@ -148,21 +133,6 @@ export const ActivityNotificationJobResponseDtoPayload$outboundSchema:
     ActivityNotificationJobResponseDtoPayload
   > = z.object({});
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ActivityNotificationJobResponseDtoPayload$ {
-  /** @deprecated use `ActivityNotificationJobResponseDtoPayload$inboundSchema` instead. */
-  export const inboundSchema =
-    ActivityNotificationJobResponseDtoPayload$inboundSchema;
-  /** @deprecated use `ActivityNotificationJobResponseDtoPayload$outboundSchema` instead. */
-  export const outboundSchema =
-    ActivityNotificationJobResponseDtoPayload$outboundSchema;
-  /** @deprecated use `ActivityNotificationJobResponseDtoPayload$Outbound` instead. */
-  export type Outbound = ActivityNotificationJobResponseDtoPayload$Outbound;
-}
-
 export function activityNotificationJobResponseDtoPayloadToJSON(
   activityNotificationJobResponseDtoPayload:
     ActivityNotificationJobResponseDtoPayload,
@@ -173,7 +143,6 @@ export function activityNotificationJobResponseDtoPayloadToJSON(
     ),
   );
 }
-
 export function activityNotificationJobResponseDtoPayloadFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -215,7 +184,6 @@ export const ActivityNotificationJobResponseDto$inboundSchema: z.ZodType<
     "_id": "id",
   });
 });
-
 /** @internal */
 export type ActivityNotificationJobResponseDto$Outbound = {
   _id: string;
@@ -260,20 +228,6 @@ export const ActivityNotificationJobResponseDto$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ActivityNotificationJobResponseDto$ {
-  /** @deprecated use `ActivityNotificationJobResponseDto$inboundSchema` instead. */
-  export const inboundSchema = ActivityNotificationJobResponseDto$inboundSchema;
-  /** @deprecated use `ActivityNotificationJobResponseDto$outboundSchema` instead. */
-  export const outboundSchema =
-    ActivityNotificationJobResponseDto$outboundSchema;
-  /** @deprecated use `ActivityNotificationJobResponseDto$Outbound` instead. */
-  export type Outbound = ActivityNotificationJobResponseDto$Outbound;
-}
-
 export function activityNotificationJobResponseDtoToJSON(
   activityNotificationJobResponseDto: ActivityNotificationJobResponseDto,
 ): string {
@@ -283,7 +237,6 @@ export function activityNotificationJobResponseDtoToJSON(
     ),
   );
 }
-
 export function activityNotificationJobResponseDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<ActivityNotificationJobResponseDto, SDKValidationError> {

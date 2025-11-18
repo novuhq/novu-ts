@@ -34,21 +34,9 @@ export type EmailControlsDto = {
 /** @internal */
 export const EditorType$inboundSchema: z.ZodNativeEnum<typeof EditorType> = z
   .nativeEnum(EditorType);
-
 /** @internal */
 export const EditorType$outboundSchema: z.ZodNativeEnum<typeof EditorType> =
   EditorType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EditorType$ {
-  /** @deprecated use `EditorType$inboundSchema` instead. */
-  export const inboundSchema = EditorType$inboundSchema;
-  /** @deprecated use `EditorType$outboundSchema` instead. */
-  export const outboundSchema = EditorType$outboundSchema;
-}
 
 /** @internal */
 export const EmailControlsDto$inboundSchema: z.ZodType<
@@ -59,7 +47,6 @@ export const EmailControlsDto$inboundSchema: z.ZodType<
   body: z.string(),
   editorType: EditorType$inboundSchema,
 });
-
 /** @internal */
 export type EmailControlsDto$Outbound = {
   body: string;
@@ -76,19 +63,6 @@ export const EmailControlsDto$outboundSchema: z.ZodType<
   editorType: EditorType$outboundSchema,
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EmailControlsDto$ {
-  /** @deprecated use `EmailControlsDto$inboundSchema` instead. */
-  export const inboundSchema = EmailControlsDto$inboundSchema;
-  /** @deprecated use `EmailControlsDto$outboundSchema` instead. */
-  export const outboundSchema = EmailControlsDto$outboundSchema;
-  /** @deprecated use `EmailControlsDto$Outbound` instead. */
-  export type Outbound = EmailControlsDto$Outbound;
-}
-
 export function emailControlsDtoToJSON(
   emailControlsDto: EmailControlsDto,
 ): string {
@@ -96,7 +70,6 @@ export function emailControlsDtoToJSON(
     EmailControlsDto$outboundSchema.parse(emailControlsDto),
   );
 }
-
 export function emailControlsDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<EmailControlsDto, SDKValidationError> {

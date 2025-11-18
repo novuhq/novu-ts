@@ -33,7 +33,6 @@ export const WebhookResultDto$inboundSchema: z.ZodType<
   id: z.string(),
   event: EventBody$inboundSchema,
 });
-
 /** @internal */
 export type WebhookResultDto$Outbound = {
   id: string;
@@ -50,19 +49,6 @@ export const WebhookResultDto$outboundSchema: z.ZodType<
   event: EventBody$outboundSchema,
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WebhookResultDto$ {
-  /** @deprecated use `WebhookResultDto$inboundSchema` instead. */
-  export const inboundSchema = WebhookResultDto$inboundSchema;
-  /** @deprecated use `WebhookResultDto$outboundSchema` instead. */
-  export const outboundSchema = WebhookResultDto$outboundSchema;
-  /** @deprecated use `WebhookResultDto$Outbound` instead. */
-  export type Outbound = WebhookResultDto$Outbound;
-}
-
 export function webhookResultDtoToJSON(
   webhookResultDto: WebhookResultDto,
 ): string {
@@ -70,7 +56,6 @@ export function webhookResultDtoToJSON(
     WebhookResultDto$outboundSchema.parse(webhookResultDto),
   );
 }
-
 export function webhookResultDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<WebhookResultDto, SDKValidationError> {

@@ -29,7 +29,6 @@ export const MasterJson$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({});
-
 /** @internal */
 export type MasterJson$Outbound = {};
 
@@ -40,23 +39,9 @@ export const MasterJson$outboundSchema: z.ZodType<
   MasterJson
 > = z.object({});
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MasterJson$ {
-  /** @deprecated use `MasterJson$inboundSchema` instead. */
-  export const inboundSchema = MasterJson$inboundSchema;
-  /** @deprecated use `MasterJson$outboundSchema` instead. */
-  export const outboundSchema = MasterJson$outboundSchema;
-  /** @deprecated use `MasterJson$Outbound` instead. */
-  export type Outbound = MasterJson$Outbound;
-}
-
 export function masterJsonToJSON(masterJson: MasterJson): string {
   return JSON.stringify(MasterJson$outboundSchema.parse(masterJson));
 }
-
 export function masterJsonFromJSON(
   jsonString: string,
 ): SafeParseResult<MasterJson, SDKValidationError> {
@@ -76,7 +61,6 @@ export const ImportMasterJsonRequestDto$inboundSchema: z.ZodType<
   locale: z.string(),
   masterJson: z.lazy(() => MasterJson$inboundSchema),
 });
-
 /** @internal */
 export type ImportMasterJsonRequestDto$Outbound = {
   locale: string;
@@ -93,19 +77,6 @@ export const ImportMasterJsonRequestDto$outboundSchema: z.ZodType<
   masterJson: z.lazy(() => MasterJson$outboundSchema),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ImportMasterJsonRequestDto$ {
-  /** @deprecated use `ImportMasterJsonRequestDto$inboundSchema` instead. */
-  export const inboundSchema = ImportMasterJsonRequestDto$inboundSchema;
-  /** @deprecated use `ImportMasterJsonRequestDto$outboundSchema` instead. */
-  export const outboundSchema = ImportMasterJsonRequestDto$outboundSchema;
-  /** @deprecated use `ImportMasterJsonRequestDto$Outbound` instead. */
-  export type Outbound = ImportMasterJsonRequestDto$Outbound;
-}
-
 export function importMasterJsonRequestDtoToJSON(
   importMasterJsonRequestDto: ImportMasterJsonRequestDto,
 ): string {
@@ -113,7 +84,6 @@ export function importMasterJsonRequestDtoToJSON(
     ImportMasterJsonRequestDto$outboundSchema.parse(importMasterJsonRequestDto),
   );
 }
-
 export function importMasterJsonRequestDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<ImportMasterJsonRequestDto, SDKValidationError> {

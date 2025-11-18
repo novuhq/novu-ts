@@ -49,7 +49,6 @@ export const MessageCTA$inboundSchema: z.ZodType<
   data: MessageCTAData$inboundSchema.optional(),
   action: MessageAction$inboundSchema.optional(),
 });
-
 /** @internal */
 export type MessageCTA$Outbound = {
   type?: string | undefined;
@@ -68,23 +67,9 @@ export const MessageCTA$outboundSchema: z.ZodType<
   action: MessageAction$outboundSchema.optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MessageCTA$ {
-  /** @deprecated use `MessageCTA$inboundSchema` instead. */
-  export const inboundSchema = MessageCTA$inboundSchema;
-  /** @deprecated use `MessageCTA$outboundSchema` instead. */
-  export const outboundSchema = MessageCTA$outboundSchema;
-  /** @deprecated use `MessageCTA$Outbound` instead. */
-  export type Outbound = MessageCTA$Outbound;
-}
-
 export function messageCTAToJSON(messageCTA: MessageCTA): string {
   return JSON.stringify(MessageCTA$outboundSchema.parse(messageCTA));
 }
-
 export function messageCTAFromJSON(
   jsonString: string,
 ): SafeParseResult<MessageCTA, SDKValidationError> {

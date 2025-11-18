@@ -38,7 +38,6 @@ export const TopicsControllerGetTopicRequest$inboundSchema: z.ZodType<
     "idempotency-key": "idempotencyKey",
   });
 });
-
 /** @internal */
 export type TopicsControllerGetTopicRequest$Outbound = {
   topicKey: string;
@@ -59,19 +58,6 @@ export const TopicsControllerGetTopicRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TopicsControllerGetTopicRequest$ {
-  /** @deprecated use `TopicsControllerGetTopicRequest$inboundSchema` instead. */
-  export const inboundSchema = TopicsControllerGetTopicRequest$inboundSchema;
-  /** @deprecated use `TopicsControllerGetTopicRequest$outboundSchema` instead. */
-  export const outboundSchema = TopicsControllerGetTopicRequest$outboundSchema;
-  /** @deprecated use `TopicsControllerGetTopicRequest$Outbound` instead. */
-  export type Outbound = TopicsControllerGetTopicRequest$Outbound;
-}
-
 export function topicsControllerGetTopicRequestToJSON(
   topicsControllerGetTopicRequest: TopicsControllerGetTopicRequest,
 ): string {
@@ -81,7 +67,6 @@ export function topicsControllerGetTopicRequestToJSON(
     ),
   );
 }
-
 export function topicsControllerGetTopicRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<TopicsControllerGetTopicRequest, SDKValidationError> {
@@ -106,7 +91,6 @@ export const TopicsControllerGetTopicResponse$inboundSchema: z.ZodType<
     "Result": "result",
   });
 });
-
 /** @internal */
 export type TopicsControllerGetTopicResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
@@ -128,19 +112,6 @@ export const TopicsControllerGetTopicResponse$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TopicsControllerGetTopicResponse$ {
-  /** @deprecated use `TopicsControllerGetTopicResponse$inboundSchema` instead. */
-  export const inboundSchema = TopicsControllerGetTopicResponse$inboundSchema;
-  /** @deprecated use `TopicsControllerGetTopicResponse$outboundSchema` instead. */
-  export const outboundSchema = TopicsControllerGetTopicResponse$outboundSchema;
-  /** @deprecated use `TopicsControllerGetTopicResponse$Outbound` instead. */
-  export type Outbound = TopicsControllerGetTopicResponse$Outbound;
-}
-
 export function topicsControllerGetTopicResponseToJSON(
   topicsControllerGetTopicResponse: TopicsControllerGetTopicResponse,
 ): string {
@@ -150,7 +121,6 @@ export function topicsControllerGetTopicResponseToJSON(
     ),
   );
 }
-
 export function topicsControllerGetTopicResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<TopicsControllerGetTopicResponse, SDKValidationError> {

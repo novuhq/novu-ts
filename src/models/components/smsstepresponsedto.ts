@@ -112,7 +112,6 @@ export const SmsStepResponseDtoControlValues$inboundSchema: z.ZodType<
   "additionalProperties",
   true,
 );
-
 /** @internal */
 export type SmsStepResponseDtoControlValues$Outbound = {
   skip?: { [k: string]: any } | undefined;
@@ -138,19 +137,6 @@ export const SmsStepResponseDtoControlValues$outboundSchema: z.ZodType<
   };
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SmsStepResponseDtoControlValues$ {
-  /** @deprecated use `SmsStepResponseDtoControlValues$inboundSchema` instead. */
-  export const inboundSchema = SmsStepResponseDtoControlValues$inboundSchema;
-  /** @deprecated use `SmsStepResponseDtoControlValues$outboundSchema` instead. */
-  export const outboundSchema = SmsStepResponseDtoControlValues$outboundSchema;
-  /** @deprecated use `SmsStepResponseDtoControlValues$Outbound` instead. */
-  export type Outbound = SmsStepResponseDtoControlValues$Outbound;
-}
-
 export function smsStepResponseDtoControlValuesToJSON(
   smsStepResponseDtoControlValues: SmsStepResponseDtoControlValues,
 ): string {
@@ -160,7 +146,6 @@ export function smsStepResponseDtoControlValuesToJSON(
     ),
   );
 }
-
 export function smsStepResponseDtoControlValuesFromJSON(
   jsonString: string,
 ): SafeParseResult<SmsStepResponseDtoControlValues, SDKValidationError> {
@@ -195,7 +180,6 @@ export const SmsStepResponseDto$inboundSchema: z.ZodType<
     "_id": "id",
   });
 });
-
 /** @internal */
 export type SmsStepResponseDto$Outbound = {
   controls: SmsControlsMetadataResponseDto$Outbound;
@@ -237,19 +221,6 @@ export const SmsStepResponseDto$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SmsStepResponseDto$ {
-  /** @deprecated use `SmsStepResponseDto$inboundSchema` instead. */
-  export const inboundSchema = SmsStepResponseDto$inboundSchema;
-  /** @deprecated use `SmsStepResponseDto$outboundSchema` instead. */
-  export const outboundSchema = SmsStepResponseDto$outboundSchema;
-  /** @deprecated use `SmsStepResponseDto$Outbound` instead. */
-  export type Outbound = SmsStepResponseDto$Outbound;
-}
-
 export function smsStepResponseDtoToJSON(
   smsStepResponseDto: SmsStepResponseDto,
 ): string {
@@ -257,7 +228,6 @@ export function smsStepResponseDtoToJSON(
     SmsStepResponseDto$outboundSchema.parse(smsStepResponseDto),
   );
 }
-
 export function smsStepResponseDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<SmsStepResponseDto, SDKValidationError> {

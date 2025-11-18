@@ -33,7 +33,6 @@ export const Integration$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({});
-
 /** @internal */
 export type Integration$Outbound = {};
 
@@ -44,23 +43,9 @@ export const Integration$outboundSchema: z.ZodType<
   Integration
 > = z.object({});
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Integration$ {
-  /** @deprecated use `Integration$inboundSchema` instead. */
-  export const inboundSchema = Integration$inboundSchema;
-  /** @deprecated use `Integration$outboundSchema` instead. */
-  export const outboundSchema = Integration$outboundSchema;
-  /** @deprecated use `Integration$Outbound` instead. */
-  export type Outbound = Integration$Outbound;
-}
-
 export function integrationToJSON(integration: Integration): string {
   return JSON.stringify(Integration$outboundSchema.parse(integration));
 }
-
 export function integrationFromJSON(
   jsonString: string,
 ): SafeParseResult<Integration, SDKValidationError> {
@@ -81,7 +66,6 @@ export const AutoConfigureIntegrationResponseDto$inboundSchema: z.ZodType<
   message: z.string().optional(),
   integration: z.lazy(() => Integration$inboundSchema).optional(),
 });
-
 /** @internal */
 export type AutoConfigureIntegrationResponseDto$Outbound = {
   success: boolean;
@@ -100,21 +84,6 @@ export const AutoConfigureIntegrationResponseDto$outboundSchema: z.ZodType<
   integration: z.lazy(() => Integration$outboundSchema).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AutoConfigureIntegrationResponseDto$ {
-  /** @deprecated use `AutoConfigureIntegrationResponseDto$inboundSchema` instead. */
-  export const inboundSchema =
-    AutoConfigureIntegrationResponseDto$inboundSchema;
-  /** @deprecated use `AutoConfigureIntegrationResponseDto$outboundSchema` instead. */
-  export const outboundSchema =
-    AutoConfigureIntegrationResponseDto$outboundSchema;
-  /** @deprecated use `AutoConfigureIntegrationResponseDto$Outbound` instead. */
-  export type Outbound = AutoConfigureIntegrationResponseDto$Outbound;
-}
-
 export function autoConfigureIntegrationResponseDtoToJSON(
   autoConfigureIntegrationResponseDto: AutoConfigureIntegrationResponseDto,
 ): string {
@@ -124,7 +93,6 @@ export function autoConfigureIntegrationResponseDtoToJSON(
     ),
   );
 }
-
 export function autoConfigureIntegrationResponseDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<AutoConfigureIntegrationResponseDto, SDKValidationError> {

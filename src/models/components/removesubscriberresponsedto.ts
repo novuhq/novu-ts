@@ -27,7 +27,6 @@ export const RemoveSubscriberResponseDto$inboundSchema: z.ZodType<
   acknowledged: z.boolean(),
   status: z.string(),
 });
-
 /** @internal */
 export type RemoveSubscriberResponseDto$Outbound = {
   acknowledged: boolean;
@@ -44,19 +43,6 @@ export const RemoveSubscriberResponseDto$outboundSchema: z.ZodType<
   status: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RemoveSubscriberResponseDto$ {
-  /** @deprecated use `RemoveSubscriberResponseDto$inboundSchema` instead. */
-  export const inboundSchema = RemoveSubscriberResponseDto$inboundSchema;
-  /** @deprecated use `RemoveSubscriberResponseDto$outboundSchema` instead. */
-  export const outboundSchema = RemoveSubscriberResponseDto$outboundSchema;
-  /** @deprecated use `RemoveSubscriberResponseDto$Outbound` instead. */
-  export type Outbound = RemoveSubscriberResponseDto$Outbound;
-}
-
 export function removeSubscriberResponseDtoToJSON(
   removeSubscriberResponseDto: RemoveSubscriberResponseDto,
 ): string {
@@ -66,7 +52,6 @@ export function removeSubscriberResponseDtoToJSON(
     ),
   );
 }
-
 export function removeSubscriberResponseDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<RemoveSubscriberResponseDto, SDKValidationError> {

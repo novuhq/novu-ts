@@ -38,7 +38,6 @@ export const WorkflowControllerGetWorkflowStepDataRequest$inboundSchema:
       "idempotency-key": "idempotencyKey",
     });
   });
-
 /** @internal */
 export type WorkflowControllerGetWorkflowStepDataRequest$Outbound = {
   workflowId: string;
@@ -62,21 +61,6 @@ export const WorkflowControllerGetWorkflowStepDataRequest$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WorkflowControllerGetWorkflowStepDataRequest$ {
-  /** @deprecated use `WorkflowControllerGetWorkflowStepDataRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    WorkflowControllerGetWorkflowStepDataRequest$inboundSchema;
-  /** @deprecated use `WorkflowControllerGetWorkflowStepDataRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    WorkflowControllerGetWorkflowStepDataRequest$outboundSchema;
-  /** @deprecated use `WorkflowControllerGetWorkflowStepDataRequest$Outbound` instead. */
-  export type Outbound = WorkflowControllerGetWorkflowStepDataRequest$Outbound;
-}
-
 export function workflowControllerGetWorkflowStepDataRequestToJSON(
   workflowControllerGetWorkflowStepDataRequest:
     WorkflowControllerGetWorkflowStepDataRequest,
@@ -87,7 +71,6 @@ export function workflowControllerGetWorkflowStepDataRequestToJSON(
     ),
   );
 }
-
 export function workflowControllerGetWorkflowStepDataRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -119,7 +102,6 @@ export const WorkflowControllerGetWorkflowStepDataResponse$inboundSchema:
       "Result": "result",
     });
   });
-
 /** @internal */
 export type WorkflowControllerGetWorkflowStepDataResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
@@ -142,21 +124,6 @@ export const WorkflowControllerGetWorkflowStepDataResponse$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WorkflowControllerGetWorkflowStepDataResponse$ {
-  /** @deprecated use `WorkflowControllerGetWorkflowStepDataResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    WorkflowControllerGetWorkflowStepDataResponse$inboundSchema;
-  /** @deprecated use `WorkflowControllerGetWorkflowStepDataResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    WorkflowControllerGetWorkflowStepDataResponse$outboundSchema;
-  /** @deprecated use `WorkflowControllerGetWorkflowStepDataResponse$Outbound` instead. */
-  export type Outbound = WorkflowControllerGetWorkflowStepDataResponse$Outbound;
-}
-
 export function workflowControllerGetWorkflowStepDataResponseToJSON(
   workflowControllerGetWorkflowStepDataResponse:
     WorkflowControllerGetWorkflowStepDataResponse,
@@ -167,7 +134,6 @@ export function workflowControllerGetWorkflowStepDataResponseToJSON(
     ),
   );
 }
-
 export function workflowControllerGetWorkflowStepDataResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<

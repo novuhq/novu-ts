@@ -70,22 +70,10 @@ export type ContextsControllerListContextsResponse = {
 export const OrderDirection$inboundSchema: z.ZodNativeEnum<
   typeof OrderDirection
 > = z.nativeEnum(OrderDirection);
-
 /** @internal */
 export const OrderDirection$outboundSchema: z.ZodNativeEnum<
   typeof OrderDirection
 > = OrderDirection$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace OrderDirection$ {
-  /** @deprecated use `OrderDirection$inboundSchema` instead. */
-  export const inboundSchema = OrderDirection$inboundSchema;
-  /** @deprecated use `OrderDirection$outboundSchema` instead. */
-  export const outboundSchema = OrderDirection$outboundSchema;
-}
 
 /** @internal */
 export const ContextsControllerListContextsRequest$inboundSchema: z.ZodType<
@@ -107,7 +95,6 @@ export const ContextsControllerListContextsRequest$inboundSchema: z.ZodType<
     "idempotency-key": "idempotencyKey",
   });
 });
-
 /** @internal */
 export type ContextsControllerListContextsRequest$Outbound = {
   after?: string | undefined;
@@ -142,21 +129,6 @@ export const ContextsControllerListContextsRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ContextsControllerListContextsRequest$ {
-  /** @deprecated use `ContextsControllerListContextsRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    ContextsControllerListContextsRequest$inboundSchema;
-  /** @deprecated use `ContextsControllerListContextsRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    ContextsControllerListContextsRequest$outboundSchema;
-  /** @deprecated use `ContextsControllerListContextsRequest$Outbound` instead. */
-  export type Outbound = ContextsControllerListContextsRequest$Outbound;
-}
-
 export function contextsControllerListContextsRequestToJSON(
   contextsControllerListContextsRequest: ContextsControllerListContextsRequest,
 ): string {
@@ -166,7 +138,6 @@ export function contextsControllerListContextsRequestToJSON(
     ),
   );
 }
-
 export function contextsControllerListContextsRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<ContextsControllerListContextsRequest, SDKValidationError> {
@@ -192,7 +163,6 @@ export const ContextsControllerListContextsResponse$inboundSchema: z.ZodType<
     "Result": "result",
   });
 });
-
 /** @internal */
 export type ContextsControllerListContextsResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
@@ -214,21 +184,6 @@ export const ContextsControllerListContextsResponse$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ContextsControllerListContextsResponse$ {
-  /** @deprecated use `ContextsControllerListContextsResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    ContextsControllerListContextsResponse$inboundSchema;
-  /** @deprecated use `ContextsControllerListContextsResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    ContextsControllerListContextsResponse$outboundSchema;
-  /** @deprecated use `ContextsControllerListContextsResponse$Outbound` instead. */
-  export type Outbound = ContextsControllerListContextsResponse$Outbound;
-}
-
 export function contextsControllerListContextsResponseToJSON(
   contextsControllerListContextsResponse:
     ContextsControllerListContextsResponse,
@@ -239,7 +194,6 @@ export function contextsControllerListContextsResponseToJSON(
     ),
   );
 }
-
 export function contextsControllerListContextsResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<ContextsControllerListContextsResponse, SDKValidationError> {

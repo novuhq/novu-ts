@@ -36,7 +36,6 @@ export const NotificationsControllerGetNotificationRequest$inboundSchema:
       "idempotency-key": "idempotencyKey",
     });
   });
-
 /** @internal */
 export type NotificationsControllerGetNotificationRequest$Outbound = {
   notificationId: string;
@@ -58,21 +57,6 @@ export const NotificationsControllerGetNotificationRequest$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace NotificationsControllerGetNotificationRequest$ {
-  /** @deprecated use `NotificationsControllerGetNotificationRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    NotificationsControllerGetNotificationRequest$inboundSchema;
-  /** @deprecated use `NotificationsControllerGetNotificationRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    NotificationsControllerGetNotificationRequest$outboundSchema;
-  /** @deprecated use `NotificationsControllerGetNotificationRequest$Outbound` instead. */
-  export type Outbound = NotificationsControllerGetNotificationRequest$Outbound;
-}
-
 export function notificationsControllerGetNotificationRequestToJSON(
   notificationsControllerGetNotificationRequest:
     NotificationsControllerGetNotificationRequest,
@@ -83,7 +67,6 @@ export function notificationsControllerGetNotificationRequestToJSON(
     ),
   );
 }
-
 export function notificationsControllerGetNotificationRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -115,7 +98,6 @@ export const NotificationsControllerGetNotificationResponse$inboundSchema:
       "Result": "result",
     });
   });
-
 /** @internal */
 export type NotificationsControllerGetNotificationResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
@@ -138,22 +120,6 @@ export const NotificationsControllerGetNotificationResponse$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace NotificationsControllerGetNotificationResponse$ {
-  /** @deprecated use `NotificationsControllerGetNotificationResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    NotificationsControllerGetNotificationResponse$inboundSchema;
-  /** @deprecated use `NotificationsControllerGetNotificationResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    NotificationsControllerGetNotificationResponse$outboundSchema;
-  /** @deprecated use `NotificationsControllerGetNotificationResponse$Outbound` instead. */
-  export type Outbound =
-    NotificationsControllerGetNotificationResponse$Outbound;
-}
-
 export function notificationsControllerGetNotificationResponseToJSON(
   notificationsControllerGetNotificationResponse:
     NotificationsControllerGetNotificationResponse,
@@ -164,7 +130,6 @@ export function notificationsControllerGetNotificationResponseToJSON(
     ),
   );
 }
-
 export function notificationsControllerGetNotificationResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<

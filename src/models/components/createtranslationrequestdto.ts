@@ -47,26 +47,13 @@ export type CreateTranslationRequestDto = {
 /** @internal */
 export const ResourceType$inboundSchema: z.ZodNativeEnum<typeof ResourceType> =
   z.nativeEnum(ResourceType);
-
 /** @internal */
 export const ResourceType$outboundSchema: z.ZodNativeEnum<typeof ResourceType> =
   ResourceType$inboundSchema;
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ResourceType$ {
-  /** @deprecated use `ResourceType$inboundSchema` instead. */
-  export const inboundSchema = ResourceType$inboundSchema;
-  /** @deprecated use `ResourceType$outboundSchema` instead. */
-  export const outboundSchema = ResourceType$outboundSchema;
-}
-
 /** @internal */
 export const Content$inboundSchema: z.ZodType<Content, z.ZodTypeDef, unknown> =
   z.object({});
-
 /** @internal */
 export type Content$Outbound = {};
 
@@ -77,23 +64,9 @@ export const Content$outboundSchema: z.ZodType<
   Content
 > = z.object({});
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Content$ {
-  /** @deprecated use `Content$inboundSchema` instead. */
-  export const inboundSchema = Content$inboundSchema;
-  /** @deprecated use `Content$outboundSchema` instead. */
-  export const outboundSchema = Content$outboundSchema;
-  /** @deprecated use `Content$Outbound` instead. */
-  export type Outbound = Content$Outbound;
-}
-
 export function contentToJSON(content: Content): string {
   return JSON.stringify(Content$outboundSchema.parse(content));
 }
-
 export function contentFromJSON(
   jsonString: string,
 ): SafeParseResult<Content, SDKValidationError> {
@@ -115,7 +88,6 @@ export const CreateTranslationRequestDto$inboundSchema: z.ZodType<
   locale: z.string(),
   content: z.lazy(() => Content$inboundSchema),
 });
-
 /** @internal */
 export type CreateTranslationRequestDto$Outbound = {
   resourceId: string;
@@ -136,19 +108,6 @@ export const CreateTranslationRequestDto$outboundSchema: z.ZodType<
   content: z.lazy(() => Content$outboundSchema),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateTranslationRequestDto$ {
-  /** @deprecated use `CreateTranslationRequestDto$inboundSchema` instead. */
-  export const inboundSchema = CreateTranslationRequestDto$inboundSchema;
-  /** @deprecated use `CreateTranslationRequestDto$outboundSchema` instead. */
-  export const outboundSchema = CreateTranslationRequestDto$outboundSchema;
-  /** @deprecated use `CreateTranslationRequestDto$Outbound` instead. */
-  export type Outbound = CreateTranslationRequestDto$Outbound;
-}
-
 export function createTranslationRequestDtoToJSON(
   createTranslationRequestDto: CreateTranslationRequestDto,
 ): string {
@@ -158,7 +117,6 @@ export function createTranslationRequestDtoToJSON(
     ),
   );
 }
-
 export function createTranslationRequestDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<CreateTranslationRequestDto, SDKValidationError> {

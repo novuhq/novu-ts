@@ -42,22 +42,10 @@ export type MarkMessageActionAsSeenDto = {
 export const MarkMessageActionAsSeenDtoStatus$inboundSchema: z.ZodNativeEnum<
   typeof MarkMessageActionAsSeenDtoStatus
 > = z.nativeEnum(MarkMessageActionAsSeenDtoStatus);
-
 /** @internal */
 export const MarkMessageActionAsSeenDtoStatus$outboundSchema: z.ZodNativeEnum<
   typeof MarkMessageActionAsSeenDtoStatus
 > = MarkMessageActionAsSeenDtoStatus$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MarkMessageActionAsSeenDtoStatus$ {
-  /** @deprecated use `MarkMessageActionAsSeenDtoStatus$inboundSchema` instead. */
-  export const inboundSchema = MarkMessageActionAsSeenDtoStatus$inboundSchema;
-  /** @deprecated use `MarkMessageActionAsSeenDtoStatus$outboundSchema` instead. */
-  export const outboundSchema = MarkMessageActionAsSeenDtoStatus$outboundSchema;
-}
 
 /** @internal */
 export const MarkMessageActionAsSeenDtoPayload$inboundSchema: z.ZodType<
@@ -65,7 +53,6 @@ export const MarkMessageActionAsSeenDtoPayload$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({});
-
 /** @internal */
 export type MarkMessageActionAsSeenDtoPayload$Outbound = {};
 
@@ -76,20 +63,6 @@ export const MarkMessageActionAsSeenDtoPayload$outboundSchema: z.ZodType<
   MarkMessageActionAsSeenDtoPayload
 > = z.object({});
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MarkMessageActionAsSeenDtoPayload$ {
-  /** @deprecated use `MarkMessageActionAsSeenDtoPayload$inboundSchema` instead. */
-  export const inboundSchema = MarkMessageActionAsSeenDtoPayload$inboundSchema;
-  /** @deprecated use `MarkMessageActionAsSeenDtoPayload$outboundSchema` instead. */
-  export const outboundSchema =
-    MarkMessageActionAsSeenDtoPayload$outboundSchema;
-  /** @deprecated use `MarkMessageActionAsSeenDtoPayload$Outbound` instead. */
-  export type Outbound = MarkMessageActionAsSeenDtoPayload$Outbound;
-}
-
 export function markMessageActionAsSeenDtoPayloadToJSON(
   markMessageActionAsSeenDtoPayload: MarkMessageActionAsSeenDtoPayload,
 ): string {
@@ -99,7 +72,6 @@ export function markMessageActionAsSeenDtoPayloadToJSON(
     ),
   );
 }
-
 export function markMessageActionAsSeenDtoPayloadFromJSON(
   jsonString: string,
 ): SafeParseResult<MarkMessageActionAsSeenDtoPayload, SDKValidationError> {
@@ -120,7 +92,6 @@ export const MarkMessageActionAsSeenDto$inboundSchema: z.ZodType<
   payload: z.lazy(() => MarkMessageActionAsSeenDtoPayload$inboundSchema)
     .optional(),
 });
-
 /** @internal */
 export type MarkMessageActionAsSeenDto$Outbound = {
   status: string;
@@ -138,19 +109,6 @@ export const MarkMessageActionAsSeenDto$outboundSchema: z.ZodType<
     .optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MarkMessageActionAsSeenDto$ {
-  /** @deprecated use `MarkMessageActionAsSeenDto$inboundSchema` instead. */
-  export const inboundSchema = MarkMessageActionAsSeenDto$inboundSchema;
-  /** @deprecated use `MarkMessageActionAsSeenDto$outboundSchema` instead. */
-  export const outboundSchema = MarkMessageActionAsSeenDto$outboundSchema;
-  /** @deprecated use `MarkMessageActionAsSeenDto$Outbound` instead. */
-  export type Outbound = MarkMessageActionAsSeenDto$Outbound;
-}
-
 export function markMessageActionAsSeenDtoToJSON(
   markMessageActionAsSeenDto: MarkMessageActionAsSeenDto,
 ): string {
@@ -158,7 +116,6 @@ export function markMessageActionAsSeenDtoToJSON(
     MarkMessageActionAsSeenDto$outboundSchema.parse(markMessageActionAsSeenDto),
   );
 }
-
 export function markMessageActionAsSeenDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<MarkMessageActionAsSeenDto, SDKValidationError> {

@@ -44,7 +44,6 @@ export const CustomControlsMetadataResponseDto$inboundSchema: z.ZodType<
   uiSchema: UiSchema$inboundSchema.optional(),
   values: CustomControlDto$inboundSchema,
 });
-
 /** @internal */
 export type CustomControlsMetadataResponseDto$Outbound = {
   dataSchema?: { [k: string]: any } | undefined;
@@ -63,20 +62,6 @@ export const CustomControlsMetadataResponseDto$outboundSchema: z.ZodType<
   values: CustomControlDto$outboundSchema,
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CustomControlsMetadataResponseDto$ {
-  /** @deprecated use `CustomControlsMetadataResponseDto$inboundSchema` instead. */
-  export const inboundSchema = CustomControlsMetadataResponseDto$inboundSchema;
-  /** @deprecated use `CustomControlsMetadataResponseDto$outboundSchema` instead. */
-  export const outboundSchema =
-    CustomControlsMetadataResponseDto$outboundSchema;
-  /** @deprecated use `CustomControlsMetadataResponseDto$Outbound` instead. */
-  export type Outbound = CustomControlsMetadataResponseDto$Outbound;
-}
-
 export function customControlsMetadataResponseDtoToJSON(
   customControlsMetadataResponseDto: CustomControlsMetadataResponseDto,
 ): string {
@@ -86,7 +71,6 @@ export function customControlsMetadataResponseDtoToJSON(
     ),
   );
 }
-
 export function customControlsMetadataResponseDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<CustomControlsMetadataResponseDto, SDKValidationError> {

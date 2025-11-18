@@ -44,7 +44,6 @@ export const DelayControlsMetadataResponseDto$inboundSchema: z.ZodType<
   uiSchema: UiSchema$inboundSchema.optional(),
   values: DelayControlDto$inboundSchema,
 });
-
 /** @internal */
 export type DelayControlsMetadataResponseDto$Outbound = {
   dataSchema?: { [k: string]: any } | undefined;
@@ -63,19 +62,6 @@ export const DelayControlsMetadataResponseDto$outboundSchema: z.ZodType<
   values: DelayControlDto$outboundSchema,
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DelayControlsMetadataResponseDto$ {
-  /** @deprecated use `DelayControlsMetadataResponseDto$inboundSchema` instead. */
-  export const inboundSchema = DelayControlsMetadataResponseDto$inboundSchema;
-  /** @deprecated use `DelayControlsMetadataResponseDto$outboundSchema` instead. */
-  export const outboundSchema = DelayControlsMetadataResponseDto$outboundSchema;
-  /** @deprecated use `DelayControlsMetadataResponseDto$Outbound` instead. */
-  export type Outbound = DelayControlsMetadataResponseDto$Outbound;
-}
-
 export function delayControlsMetadataResponseDtoToJSON(
   delayControlsMetadataResponseDto: DelayControlsMetadataResponseDto,
 ): string {
@@ -85,7 +71,6 @@ export function delayControlsMetadataResponseDtoToJSON(
     ),
   );
 }
-
 export function delayControlsMetadataResponseDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<DelayControlsMetadataResponseDto, SDKValidationError> {

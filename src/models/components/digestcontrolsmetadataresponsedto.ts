@@ -44,7 +44,6 @@ export const DigestControlsMetadataResponseDto$inboundSchema: z.ZodType<
   uiSchema: UiSchema$inboundSchema.optional(),
   values: DigestControlDto$inboundSchema,
 });
-
 /** @internal */
 export type DigestControlsMetadataResponseDto$Outbound = {
   dataSchema?: { [k: string]: any } | undefined;
@@ -63,20 +62,6 @@ export const DigestControlsMetadataResponseDto$outboundSchema: z.ZodType<
   values: DigestControlDto$outboundSchema,
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DigestControlsMetadataResponseDto$ {
-  /** @deprecated use `DigestControlsMetadataResponseDto$inboundSchema` instead. */
-  export const inboundSchema = DigestControlsMetadataResponseDto$inboundSchema;
-  /** @deprecated use `DigestControlsMetadataResponseDto$outboundSchema` instead. */
-  export const outboundSchema =
-    DigestControlsMetadataResponseDto$outboundSchema;
-  /** @deprecated use `DigestControlsMetadataResponseDto$Outbound` instead. */
-  export type Outbound = DigestControlsMetadataResponseDto$Outbound;
-}
-
 export function digestControlsMetadataResponseDtoToJSON(
   digestControlsMetadataResponseDto: DigestControlsMetadataResponseDto,
 ): string {
@@ -86,7 +71,6 @@ export function digestControlsMetadataResponseDtoToJSON(
     ),
   );
 }
-
 export function digestControlsMetadataResponseDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<DigestControlsMetadataResponseDto, SDKValidationError> {

@@ -48,26 +48,12 @@ export const TranslationControllerGetTranslationGroupEndpointPathParamResourceTy
   > = z.nativeEnum(
     TranslationControllerGetTranslationGroupEndpointPathParamResourceType,
   );
-
 /** @internal */
 export const TranslationControllerGetTranslationGroupEndpointPathParamResourceType$outboundSchema:
   z.ZodNativeEnum<
     typeof TranslationControllerGetTranslationGroupEndpointPathParamResourceType
   > =
     TranslationControllerGetTranslationGroupEndpointPathParamResourceType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TranslationControllerGetTranslationGroupEndpointPathParamResourceType$ {
-  /** @deprecated use `TranslationControllerGetTranslationGroupEndpointPathParamResourceType$inboundSchema` instead. */
-  export const inboundSchema =
-    TranslationControllerGetTranslationGroupEndpointPathParamResourceType$inboundSchema;
-  /** @deprecated use `TranslationControllerGetTranslationGroupEndpointPathParamResourceType$outboundSchema` instead. */
-  export const outboundSchema =
-    TranslationControllerGetTranslationGroupEndpointPathParamResourceType$outboundSchema;
-}
 
 /** @internal */
 export const TranslationControllerGetTranslationGroupEndpointRequest$inboundSchema:
@@ -85,7 +71,6 @@ export const TranslationControllerGetTranslationGroupEndpointRequest$inboundSche
       "idempotency-key": "idempotencyKey",
     });
   });
-
 /** @internal */
 export type TranslationControllerGetTranslationGroupEndpointRequest$Outbound = {
   resourceType: string;
@@ -110,22 +95,6 @@ export const TranslationControllerGetTranslationGroupEndpointRequest$outboundSch
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TranslationControllerGetTranslationGroupEndpointRequest$ {
-  /** @deprecated use `TranslationControllerGetTranslationGroupEndpointRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    TranslationControllerGetTranslationGroupEndpointRequest$inboundSchema;
-  /** @deprecated use `TranslationControllerGetTranslationGroupEndpointRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    TranslationControllerGetTranslationGroupEndpointRequest$outboundSchema;
-  /** @deprecated use `TranslationControllerGetTranslationGroupEndpointRequest$Outbound` instead. */
-  export type Outbound =
-    TranslationControllerGetTranslationGroupEndpointRequest$Outbound;
-}
-
 export function translationControllerGetTranslationGroupEndpointRequestToJSON(
   translationControllerGetTranslationGroupEndpointRequest:
     TranslationControllerGetTranslationGroupEndpointRequest,
@@ -135,7 +104,6 @@ export function translationControllerGetTranslationGroupEndpointRequestToJSON(
       .parse(translationControllerGetTranslationGroupEndpointRequest),
   );
 }
-
 export function translationControllerGetTranslationGroupEndpointRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<

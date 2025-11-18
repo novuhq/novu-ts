@@ -47,7 +47,6 @@ export const SubscriberFeedResponseDto$inboundSchema: z.ZodType<
     "_id": "id",
   });
 });
-
 /** @internal */
 export type SubscriberFeedResponseDto$Outbound = {
   _id?: string | undefined;
@@ -74,19 +73,6 @@ export const SubscriberFeedResponseDto$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SubscriberFeedResponseDto$ {
-  /** @deprecated use `SubscriberFeedResponseDto$inboundSchema` instead. */
-  export const inboundSchema = SubscriberFeedResponseDto$inboundSchema;
-  /** @deprecated use `SubscriberFeedResponseDto$outboundSchema` instead. */
-  export const outboundSchema = SubscriberFeedResponseDto$outboundSchema;
-  /** @deprecated use `SubscriberFeedResponseDto$Outbound` instead. */
-  export type Outbound = SubscriberFeedResponseDto$Outbound;
-}
-
 export function subscriberFeedResponseDtoToJSON(
   subscriberFeedResponseDto: SubscriberFeedResponseDto,
 ): string {
@@ -94,7 +80,6 @@ export function subscriberFeedResponseDtoToJSON(
     SubscriberFeedResponseDto$outboundSchema.parse(subscriberFeedResponseDto),
   );
 }
-
 export function subscriberFeedResponseDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<SubscriberFeedResponseDto, SDKValidationError> {
