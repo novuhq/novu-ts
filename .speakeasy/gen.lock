@@ -5,8 +5,8 @@ management:
   docVersion: 3.11.0
   speakeasyVersion: 1.658.2
   generationVersion: 2.755.9
-  releaseVersion: 1.8.1
-  configChecksum: fb9d34263e4261924020aab87787d240
+  releaseVersion: 3.11.0
+  configChecksum: 2131471616bee99291e536df9e67b63b
   repoURL: https://github.com/novuhq/novu-ts.git
   installationURL: https://github.com/novuhq/novu-ts
   published: true
@@ -2438,4 +2438,3 @@ generatedTests:
   TopicsController_removeSubscribers: "2024-12-24T08:36:06+01:00"
   TestingController_idempotency: "2024-12-24T08:36:06+01:00"
   TestingController_idempotencyGet: "2024-12-24T08:36:06+01:00"
-releaseNotes: "## Typescript SDK Changes Detected:\n* `novu.trigger()`: \n  *  `request.triggereventrequestdto.to.[subscriberPayloadDto]` **Changed** **Breaking** :warning:\n* `novu.triggerBroadcast()`: \n  *  `request.triggereventtoallrequestdto.actor.[subscriberPayloadDto]` **Changed** **Breaking** :warning:\n* `novu.triggerBulk()`: \n  *  `request.bulktriggereventdto.events.[].to.[subscriberPayloadDto]` **Changed** **Breaking** :warning:\n"
