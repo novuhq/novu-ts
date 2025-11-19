@@ -22,7 +22,6 @@ export const CustomControlDto$inboundSchema: z.ZodType<
 > = z.object({
   custom: z.record(z.any()).optional(),
 });
-
 /** @internal */
 export type CustomControlDto$Outbound = {
   custom?: { [k: string]: any } | undefined;
@@ -37,19 +36,6 @@ export const CustomControlDto$outboundSchema: z.ZodType<
   custom: z.record(z.any()).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CustomControlDto$ {
-  /** @deprecated use `CustomControlDto$inboundSchema` instead. */
-  export const inboundSchema = CustomControlDto$inboundSchema;
-  /** @deprecated use `CustomControlDto$outboundSchema` instead. */
-  export const outboundSchema = CustomControlDto$outboundSchema;
-  /** @deprecated use `CustomControlDto$Outbound` instead. */
-  export type Outbound = CustomControlDto$Outbound;
-}
-
 export function customControlDtoToJSON(
   customControlDto: CustomControlDto,
 ): string {
@@ -57,7 +43,6 @@ export function customControlDtoToJSON(
     CustomControlDto$outboundSchema.parse(customControlDto),
   );
 }
-
 export function customControlDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<CustomControlDto, SDKValidationError> {

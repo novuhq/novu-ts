@@ -3,10 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * The resource type to associate translation with
@@ -45,27 +42,8 @@ export type CreateTranslationRequestDto = {
 };
 
 /** @internal */
-export const ResourceType$inboundSchema: z.ZodNativeEnum<typeof ResourceType> =
-  z.nativeEnum(ResourceType);
-
-/** @internal */
 export const ResourceType$outboundSchema: z.ZodNativeEnum<typeof ResourceType> =
-  ResourceType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ResourceType$ {
-  /** @deprecated use `ResourceType$inboundSchema` instead. */
-  export const inboundSchema = ResourceType$inboundSchema;
-  /** @deprecated use `ResourceType$outboundSchema` instead. */
-  export const outboundSchema = ResourceType$outboundSchema;
-}
-
-/** @internal */
-export const Content$inboundSchema: z.ZodType<Content, z.ZodTypeDef, unknown> =
-  z.object({});
+  z.nativeEnum(ResourceType);
 
 /** @internal */
 export type Content$Outbound = {};
@@ -77,44 +55,9 @@ export const Content$outboundSchema: z.ZodType<
   Content
 > = z.object({});
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Content$ {
-  /** @deprecated use `Content$inboundSchema` instead. */
-  export const inboundSchema = Content$inboundSchema;
-  /** @deprecated use `Content$outboundSchema` instead. */
-  export const outboundSchema = Content$outboundSchema;
-  /** @deprecated use `Content$Outbound` instead. */
-  export type Outbound = Content$Outbound;
-}
-
 export function contentToJSON(content: Content): string {
   return JSON.stringify(Content$outboundSchema.parse(content));
 }
-
-export function contentFromJSON(
-  jsonString: string,
-): SafeParseResult<Content, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Content$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Content' from JSON`,
-  );
-}
-
-/** @internal */
-export const CreateTranslationRequestDto$inboundSchema: z.ZodType<
-  CreateTranslationRequestDto,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  resourceId: z.string(),
-  resourceType: ResourceType$inboundSchema,
-  locale: z.string(),
-  content: z.lazy(() => Content$inboundSchema),
-});
 
 /** @internal */
 export type CreateTranslationRequestDto$Outbound = {
@@ -136,19 +79,6 @@ export const CreateTranslationRequestDto$outboundSchema: z.ZodType<
   content: z.lazy(() => Content$outboundSchema),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateTranslationRequestDto$ {
-  /** @deprecated use `CreateTranslationRequestDto$inboundSchema` instead. */
-  export const inboundSchema = CreateTranslationRequestDto$inboundSchema;
-  /** @deprecated use `CreateTranslationRequestDto$outboundSchema` instead. */
-  export const outboundSchema = CreateTranslationRequestDto$outboundSchema;
-  /** @deprecated use `CreateTranslationRequestDto$Outbound` instead. */
-  export type Outbound = CreateTranslationRequestDto$Outbound;
-}
-
 export function createTranslationRequestDtoToJSON(
   createTranslationRequestDto: CreateTranslationRequestDto,
 ): string {
@@ -156,15 +86,5 @@ export function createTranslationRequestDtoToJSON(
     CreateTranslationRequestDto$outboundSchema.parse(
       createTranslationRequestDto,
     ),
-  );
-}
-
-export function createTranslationRequestDtoFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateTranslationRequestDto, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreateTranslationRequestDto$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateTranslationRequestDto' from JSON`,
   );
 }

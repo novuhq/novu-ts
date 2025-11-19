@@ -22,7 +22,6 @@ export const ChannelPreferenceDto$inboundSchema: z.ZodType<
 > = z.object({
   enabled: z.boolean().default(true),
 });
-
 /** @internal */
 export type ChannelPreferenceDto$Outbound = {
   enabled: boolean;
@@ -37,19 +36,6 @@ export const ChannelPreferenceDto$outboundSchema: z.ZodType<
   enabled: z.boolean().default(true),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ChannelPreferenceDto$ {
-  /** @deprecated use `ChannelPreferenceDto$inboundSchema` instead. */
-  export const inboundSchema = ChannelPreferenceDto$inboundSchema;
-  /** @deprecated use `ChannelPreferenceDto$outboundSchema` instead. */
-  export const outboundSchema = ChannelPreferenceDto$outboundSchema;
-  /** @deprecated use `ChannelPreferenceDto$Outbound` instead. */
-  export type Outbound = ChannelPreferenceDto$Outbound;
-}
-
 export function channelPreferenceDtoToJSON(
   channelPreferenceDto: ChannelPreferenceDto,
 ): string {
@@ -57,7 +43,6 @@ export function channelPreferenceDtoToJSON(
     ChannelPreferenceDto$outboundSchema.parse(channelPreferenceDto),
   );
 }
-
 export function channelPreferenceDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<ChannelPreferenceDto, SDKValidationError> {

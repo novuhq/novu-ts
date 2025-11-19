@@ -23,21 +23,6 @@ export type IntegrationsControllerAutoConfigureIntegrationResponse = {
 };
 
 /** @internal */
-export const IntegrationsControllerAutoConfigureIntegrationRequest$inboundSchema:
-  z.ZodType<
-    IntegrationsControllerAutoConfigureIntegrationRequest,
-    z.ZodTypeDef,
-    unknown
-  > = z.object({
-    integrationId: z.string(),
-    "idempotency-key": z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "idempotency-key": "idempotencyKey",
-    });
-  });
-
-/** @internal */
 export type IntegrationsControllerAutoConfigureIntegrationRequest$Outbound = {
   integrationId: string;
   "idempotency-key"?: string | undefined;
@@ -58,22 +43,6 @@ export const IntegrationsControllerAutoConfigureIntegrationRequest$outboundSchem
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace IntegrationsControllerAutoConfigureIntegrationRequest$ {
-  /** @deprecated use `IntegrationsControllerAutoConfigureIntegrationRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    IntegrationsControllerAutoConfigureIntegrationRequest$inboundSchema;
-  /** @deprecated use `IntegrationsControllerAutoConfigureIntegrationRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    IntegrationsControllerAutoConfigureIntegrationRequest$outboundSchema;
-  /** @deprecated use `IntegrationsControllerAutoConfigureIntegrationRequest$Outbound` instead. */
-  export type Outbound =
-    IntegrationsControllerAutoConfigureIntegrationRequest$Outbound;
-}
-
 export function integrationsControllerAutoConfigureIntegrationRequestToJSON(
   integrationsControllerAutoConfigureIntegrationRequest:
     IntegrationsControllerAutoConfigureIntegrationRequest,
@@ -82,22 +51,6 @@ export function integrationsControllerAutoConfigureIntegrationRequestToJSON(
     IntegrationsControllerAutoConfigureIntegrationRequest$outboundSchema.parse(
       integrationsControllerAutoConfigureIntegrationRequest,
     ),
-  );
-}
-
-export function integrationsControllerAutoConfigureIntegrationRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  IntegrationsControllerAutoConfigureIntegrationRequest,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      IntegrationsControllerAutoConfigureIntegrationRequest$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'IntegrationsControllerAutoConfigureIntegrationRequest' from JSON`,
   );
 }
 
@@ -116,55 +69,6 @@ export const IntegrationsControllerAutoConfigureIntegrationResponse$inboundSchem
       "Result": "result",
     });
   });
-
-/** @internal */
-export type IntegrationsControllerAutoConfigureIntegrationResponse$Outbound = {
-  Headers: { [k: string]: Array<string> };
-  Result: components.AutoConfigureIntegrationResponseDto$Outbound;
-};
-
-/** @internal */
-export const IntegrationsControllerAutoConfigureIntegrationResponse$outboundSchema:
-  z.ZodType<
-    IntegrationsControllerAutoConfigureIntegrationResponse$Outbound,
-    z.ZodTypeDef,
-    IntegrationsControllerAutoConfigureIntegrationResponse
-  > = z.object({
-    headers: z.record(z.array(z.string())),
-    result: components.AutoConfigureIntegrationResponseDto$outboundSchema,
-  }).transform((v) => {
-    return remap$(v, {
-      headers: "Headers",
-      result: "Result",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace IntegrationsControllerAutoConfigureIntegrationResponse$ {
-  /** @deprecated use `IntegrationsControllerAutoConfigureIntegrationResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    IntegrationsControllerAutoConfigureIntegrationResponse$inboundSchema;
-  /** @deprecated use `IntegrationsControllerAutoConfigureIntegrationResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    IntegrationsControllerAutoConfigureIntegrationResponse$outboundSchema;
-  /** @deprecated use `IntegrationsControllerAutoConfigureIntegrationResponse$Outbound` instead. */
-  export type Outbound =
-    IntegrationsControllerAutoConfigureIntegrationResponse$Outbound;
-}
-
-export function integrationsControllerAutoConfigureIntegrationResponseToJSON(
-  integrationsControllerAutoConfigureIntegrationResponse:
-    IntegrationsControllerAutoConfigureIntegrationResponse,
-): string {
-  return JSON.stringify(
-    IntegrationsControllerAutoConfigureIntegrationResponse$outboundSchema.parse(
-      integrationsControllerAutoConfigureIntegrationResponse,
-    ),
-  );
-}
 
 export function integrationsControllerAutoConfigureIntegrationResponseFromJSON(
   jsonString: string,

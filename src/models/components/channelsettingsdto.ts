@@ -53,7 +53,6 @@ export const ChannelSettingsDto$inboundSchema: z.ZodType<
     "_integrationId": "integrationId",
   });
 });
-
 /** @internal */
 export type ChannelSettingsDto$Outbound = {
   providerId: string;
@@ -78,19 +77,6 @@ export const ChannelSettingsDto$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ChannelSettingsDto$ {
-  /** @deprecated use `ChannelSettingsDto$inboundSchema` instead. */
-  export const inboundSchema = ChannelSettingsDto$inboundSchema;
-  /** @deprecated use `ChannelSettingsDto$outboundSchema` instead. */
-  export const outboundSchema = ChannelSettingsDto$outboundSchema;
-  /** @deprecated use `ChannelSettingsDto$Outbound` instead. */
-  export type Outbound = ChannelSettingsDto$Outbound;
-}
-
 export function channelSettingsDtoToJSON(
   channelSettingsDto: ChannelSettingsDto,
 ): string {
@@ -98,7 +84,6 @@ export function channelSettingsDtoToJSON(
     ChannelSettingsDto$outboundSchema.parse(channelSettingsDto),
   );
 }
-
 export function channelSettingsDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<ChannelSettingsDto, SDKValidationError> {

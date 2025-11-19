@@ -3,12 +3,8 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   TriggerRecipientsTypeEnum,
-  TriggerRecipientsTypeEnum$inboundSchema,
   TriggerRecipientsTypeEnum$outboundSchema,
 } from "./triggerrecipientstypeenum.js";
 
@@ -20,17 +16,6 @@ export type TopicPayloadDto = {
    */
   exclude?: Array<string> | undefined;
 };
-
-/** @internal */
-export const TopicPayloadDto$inboundSchema: z.ZodType<
-  TopicPayloadDto,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  topicKey: z.string(),
-  type: TriggerRecipientsTypeEnum$inboundSchema,
-  exclude: z.array(z.string()).optional(),
-});
 
 /** @internal */
 export type TopicPayloadDto$Outbound = {
@@ -50,31 +35,8 @@ export const TopicPayloadDto$outboundSchema: z.ZodType<
   exclude: z.array(z.string()).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TopicPayloadDto$ {
-  /** @deprecated use `TopicPayloadDto$inboundSchema` instead. */
-  export const inboundSchema = TopicPayloadDto$inboundSchema;
-  /** @deprecated use `TopicPayloadDto$outboundSchema` instead. */
-  export const outboundSchema = TopicPayloadDto$outboundSchema;
-  /** @deprecated use `TopicPayloadDto$Outbound` instead. */
-  export type Outbound = TopicPayloadDto$Outbound;
-}
-
 export function topicPayloadDtoToJSON(
   topicPayloadDto: TopicPayloadDto,
 ): string {
   return JSON.stringify(TopicPayloadDto$outboundSchema.parse(topicPayloadDto));
-}
-
-export function topicPayloadDtoFromJSON(
-  jsonString: string,
-): SafeParseResult<TopicPayloadDto, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => TopicPayloadDto$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'TopicPayloadDto' from JSON`,
-  );
 }

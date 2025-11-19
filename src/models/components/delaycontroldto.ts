@@ -63,41 +63,17 @@ export type DelayControlDto = {
 export const Type$inboundSchema: z.ZodNativeEnum<typeof Type> = z.nativeEnum(
   Type,
 );
-
 /** @internal */
 export const Type$outboundSchema: z.ZodNativeEnum<typeof Type> =
   Type$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Type$ {
-  /** @deprecated use `Type$inboundSchema` instead. */
-  export const inboundSchema = Type$inboundSchema;
-  /** @deprecated use `Type$outboundSchema` instead. */
-  export const outboundSchema = Type$outboundSchema;
-}
 
 /** @internal */
 export const Unit$inboundSchema: z.ZodNativeEnum<typeof Unit> = z.nativeEnum(
   Unit,
 );
-
 /** @internal */
 export const Unit$outboundSchema: z.ZodNativeEnum<typeof Unit> =
   Unit$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Unit$ {
-  /** @deprecated use `Unit$inboundSchema` instead. */
-  export const inboundSchema = Unit$inboundSchema;
-  /** @deprecated use `Unit$outboundSchema` instead. */
-  export const outboundSchema = Unit$outboundSchema;
-}
 
 /** @internal */
 export const DelayControlDto$inboundSchema: z.ZodType<
@@ -111,7 +87,6 @@ export const DelayControlDto$inboundSchema: z.ZodType<
   unit: Unit$inboundSchema.optional(),
   cron: z.string().optional(),
 });
-
 /** @internal */
 export type DelayControlDto$Outbound = {
   skip?: { [k: string]: any } | undefined;
@@ -134,25 +109,11 @@ export const DelayControlDto$outboundSchema: z.ZodType<
   cron: z.string().optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DelayControlDto$ {
-  /** @deprecated use `DelayControlDto$inboundSchema` instead. */
-  export const inboundSchema = DelayControlDto$inboundSchema;
-  /** @deprecated use `DelayControlDto$outboundSchema` instead. */
-  export const outboundSchema = DelayControlDto$outboundSchema;
-  /** @deprecated use `DelayControlDto$Outbound` instead. */
-  export type Outbound = DelayControlDto$Outbound;
-}
-
 export function delayControlDtoToJSON(
   delayControlDto: DelayControlDto,
 ): string {
   return JSON.stringify(DelayControlDto$outboundSchema.parse(delayControlDto));
 }
-
 export function delayControlDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<DelayControlDto, SDKValidationError> {

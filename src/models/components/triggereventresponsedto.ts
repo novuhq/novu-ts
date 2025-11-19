@@ -52,22 +52,6 @@ export const TriggerEventResponseDtoStatus$inboundSchema: z.ZodNativeEnum<
 > = z.nativeEnum(TriggerEventResponseDtoStatus);
 
 /** @internal */
-export const TriggerEventResponseDtoStatus$outboundSchema: z.ZodNativeEnum<
-  typeof TriggerEventResponseDtoStatus
-> = TriggerEventResponseDtoStatus$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TriggerEventResponseDtoStatus$ {
-  /** @deprecated use `TriggerEventResponseDtoStatus$inboundSchema` instead. */
-  export const inboundSchema = TriggerEventResponseDtoStatus$inboundSchema;
-  /** @deprecated use `TriggerEventResponseDtoStatus$outboundSchema` instead. */
-  export const outboundSchema = TriggerEventResponseDtoStatus$outboundSchema;
-}
-
-/** @internal */
 export const TriggerEventResponseDto$inboundSchema: z.ZodType<
   TriggerEventResponseDto,
   z.ZodTypeDef,
@@ -78,47 +62,6 @@ export const TriggerEventResponseDto$inboundSchema: z.ZodType<
   error: z.array(z.string()).optional(),
   transactionId: z.string().optional(),
 });
-
-/** @internal */
-export type TriggerEventResponseDto$Outbound = {
-  acknowledged: boolean;
-  status: string;
-  error?: Array<string> | undefined;
-  transactionId?: string | undefined;
-};
-
-/** @internal */
-export const TriggerEventResponseDto$outboundSchema: z.ZodType<
-  TriggerEventResponseDto$Outbound,
-  z.ZodTypeDef,
-  TriggerEventResponseDto
-> = z.object({
-  acknowledged: z.boolean(),
-  status: TriggerEventResponseDtoStatus$outboundSchema,
-  error: z.array(z.string()).optional(),
-  transactionId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TriggerEventResponseDto$ {
-  /** @deprecated use `TriggerEventResponseDto$inboundSchema` instead. */
-  export const inboundSchema = TriggerEventResponseDto$inboundSchema;
-  /** @deprecated use `TriggerEventResponseDto$outboundSchema` instead. */
-  export const outboundSchema = TriggerEventResponseDto$outboundSchema;
-  /** @deprecated use `TriggerEventResponseDto$Outbound` instead. */
-  export type Outbound = TriggerEventResponseDto$Outbound;
-}
-
-export function triggerEventResponseDtoToJSON(
-  triggerEventResponseDto: TriggerEventResponseDto,
-): string {
-  return JSON.stringify(
-    TriggerEventResponseDto$outboundSchema.parse(triggerEventResponseDto),
-  );
-}
 
 export function triggerEventResponseDtoFromJSON(
   jsonString: string,

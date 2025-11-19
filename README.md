@@ -85,91 +85,6 @@ bun add @novu/api
 ```bash
 yarn add @novu/api
 ```
-
-
-
-### Model Context Protocol (MCP) Server
-
-This SDK is also an installable MCP server where the various SDK methods are
-exposed as tools that can be invoked by AI applications.
-
-> Node.js v20 or greater is required to run the MCP server from npm.
-
-<details>
-<summary>Claude installation steps</summary>
-
-Add the following server definition to your `claude_desktop_config.json` file:
-
-```json
-{
-  "mcpServers": {
-    "Novu": {
-      "command": "npx",
-      "args": [
-        "-y", "--package", "@novu/api",
-        "--",
-        "mcp", "start",
-        "--secret-key", "..."
-      ]
-    }
-  }
-}
-```
-
-</details>
-
-<details>
-<summary>Cursor installation steps</summary>
-
-Create a `.cursor/mcp.json` file in your project root with the following content:
-
-```json
-{
-  "mcpServers": {
-    "Novu": {
-      "command": "npx",
-      "args": [
-        "-y", "--package", "@novu/api",
-        "--",
-        "mcp", "start",
-        "--secret-key", "..."
-      ]
-    }
-  }
-}
-```
-
-</details>
-
-You can also run MCP servers as a standalone binary with no additional dependencies. You must pull these binaries from available Github releases:
-
-```bash
-curl -L -o mcp-server \
-    https://github.com/{org}/{repo}/releases/download/{tag}/mcp-server-bun-darwin-arm64 && \
-chmod +x mcp-server
-```
-
-If the repo is a private repo you must add your Github PAT to download a release `-H "Authorization: Bearer {GITHUB_PAT}"`.
-
-
-```json
-{
-  "mcpServers": {
-    "Todos": {
-      "command": "./DOWNLOAD/PATH/mcp-server",
-      "args": [
-        "start"
-      ]
-    }
-  }
-}
-```
-
-For a full list of server arguments, run:
-
-```sh
-npx -y --package @novu/api -- mcp start --help
-```
 <!-- End SDK Installation [installation] -->
 
 <!-- Start Requirements [requirements] -->
@@ -201,6 +116,7 @@ async function run() {
     },
     overrides: {},
     to: "SUBSCRIBER_ID",
+    actor: "<value>",
     context: {
       "key": "org-acme",
     },
@@ -258,6 +174,16 @@ async function run() {
           },
         },
       },
+    },
+    actor: {
+      firstName: "John",
+      lastName: "Doe",
+      email: "john.doe@example.com",
+      phone: "+1234567890",
+      avatar: "https://example.com/avatar.jpg",
+      locale: "en-US",
+      timezone: "America/New_York",
+      subscriberId: "<id>",
     },
   });
 
@@ -616,6 +542,7 @@ async function run() {
       },
       overrides: {},
       to: "SUBSCRIBER_ID",
+      actor: "<value>",
       context: {
         "key": "org-acme",
       },
@@ -693,7 +620,7 @@ You can override the default server globally by passing a server index to the `s
 import { Novu } from "@novu/api";
 
 const novu = new Novu({
-  serverIdx: 1,
+  serverIdx: 0,
   secretKey: "YOUR_SECRET_KEY_HERE",
 });
 
@@ -708,6 +635,7 @@ async function run() {
     },
     overrides: {},
     to: "SUBSCRIBER_ID",
+    actor: "<value>",
     context: {
       "key": "org-acme",
     },
@@ -742,6 +670,7 @@ async function run() {
     },
     overrides: {},
     to: "SUBSCRIBER_ID",
+    actor: "<value>",
     context: {
       "key": "org-acme",
     },
@@ -834,6 +763,7 @@ async function run() {
     },
     overrides: {},
     to: "SUBSCRIBER_ID",
+    actor: "<value>",
     context: {
       "key": "org-acme",
     },
@@ -871,6 +801,7 @@ async function run() {
     },
     overrides: {},
     to: "SUBSCRIBER_ID",
+    actor: "<value>",
     context: {
       "key": "org-acme",
     },
@@ -923,6 +854,7 @@ async function run() {
     },
     overrides: {},
     to: "SUBSCRIBER_ID",
+    actor: "<value>",
     context: {
       "key": "org-acme",
     },
