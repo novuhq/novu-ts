@@ -4,20 +4,12 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ChatControlDto,
-  ChatControlDto$inboundSchema,
   ChatControlDto$Outbound,
   ChatControlDto$outboundSchema,
 } from "./chatcontroldto.js";
-import {
-  StepTypeEnum,
-  StepTypeEnum$inboundSchema,
-  StepTypeEnum$outboundSchema,
-} from "./steptypeenum.js";
+import { StepTypeEnum, StepTypeEnum$outboundSchema } from "./steptypeenum.js";
 
 /**
  * Control values for the Chat step.
@@ -50,13 +42,6 @@ export type ChatStepUpsertDto = {
 };
 
 /** @internal */
-export const ChatStepUpsertDtoControlValues$inboundSchema: z.ZodType<
-  ChatStepUpsertDtoControlValues,
-  z.ZodTypeDef,
-  unknown
-> = z.union([ChatControlDto$inboundSchema, z.record(z.any())]);
-
-/** @internal */
 export type ChatStepUpsertDtoControlValues$Outbound =
   | ChatControlDto$Outbound
   | { [k: string]: any };
@@ -68,19 +53,6 @@ export const ChatStepUpsertDtoControlValues$outboundSchema: z.ZodType<
   ChatStepUpsertDtoControlValues
 > = z.union([ChatControlDto$outboundSchema, z.record(z.any())]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ChatStepUpsertDtoControlValues$ {
-  /** @deprecated use `ChatStepUpsertDtoControlValues$inboundSchema` instead. */
-  export const inboundSchema = ChatStepUpsertDtoControlValues$inboundSchema;
-  /** @deprecated use `ChatStepUpsertDtoControlValues$outboundSchema` instead. */
-  export const outboundSchema = ChatStepUpsertDtoControlValues$outboundSchema;
-  /** @deprecated use `ChatStepUpsertDtoControlValues$Outbound` instead. */
-  export type Outbound = ChatStepUpsertDtoControlValues$Outbound;
-}
-
 export function chatStepUpsertDtoControlValuesToJSON(
   chatStepUpsertDtoControlValues: ChatStepUpsertDtoControlValues,
 ): string {
@@ -90,34 +62,6 @@ export function chatStepUpsertDtoControlValuesToJSON(
     ),
   );
 }
-
-export function chatStepUpsertDtoControlValuesFromJSON(
-  jsonString: string,
-): SafeParseResult<ChatStepUpsertDtoControlValues, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ChatStepUpsertDtoControlValues$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ChatStepUpsertDtoControlValues' from JSON`,
-  );
-}
-
-/** @internal */
-export const ChatStepUpsertDto$inboundSchema: z.ZodType<
-  ChatStepUpsertDto,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  _id: z.string().optional(),
-  stepId: z.string().optional(),
-  name: z.string(),
-  type: StepTypeEnum$inboundSchema,
-  controlValues: z.union([ChatControlDto$inboundSchema, z.record(z.any())])
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_id": "id",
-  });
-});
 
 /** @internal */
 export type ChatStepUpsertDto$Outbound = {
@@ -146,33 +90,10 @@ export const ChatStepUpsertDto$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ChatStepUpsertDto$ {
-  /** @deprecated use `ChatStepUpsertDto$inboundSchema` instead. */
-  export const inboundSchema = ChatStepUpsertDto$inboundSchema;
-  /** @deprecated use `ChatStepUpsertDto$outboundSchema` instead. */
-  export const outboundSchema = ChatStepUpsertDto$outboundSchema;
-  /** @deprecated use `ChatStepUpsertDto$Outbound` instead. */
-  export type Outbound = ChatStepUpsertDto$Outbound;
-}
-
 export function chatStepUpsertDtoToJSON(
   chatStepUpsertDto: ChatStepUpsertDto,
 ): string {
   return JSON.stringify(
     ChatStepUpsertDto$outboundSchema.parse(chatStepUpsertDto),
-  );
-}
-
-export function chatStepUpsertDtoFromJSON(
-  jsonString: string,
-): SafeParseResult<ChatStepUpsertDto, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ChatStepUpsertDto$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ChatStepUpsertDto' from JSON`,
   );
 }

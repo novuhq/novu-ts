@@ -23,19 +23,7 @@ export type SeverityLevelEnum = ClosedEnum<typeof SeverityLevelEnum>;
 export const SeverityLevelEnum$inboundSchema: z.ZodNativeEnum<
   typeof SeverityLevelEnum
 > = z.nativeEnum(SeverityLevelEnum);
-
 /** @internal */
 export const SeverityLevelEnum$outboundSchema: z.ZodNativeEnum<
   typeof SeverityLevelEnum
 > = SeverityLevelEnum$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SeverityLevelEnum$ {
-  /** @deprecated use `SeverityLevelEnum$inboundSchema` instead. */
-  export const inboundSchema = SeverityLevelEnum$inboundSchema;
-  /** @deprecated use `SeverityLevelEnum$outboundSchema` instead. */
-  export const outboundSchema = SeverityLevelEnum$outboundSchema;
-}

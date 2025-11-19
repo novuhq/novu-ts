@@ -39,19 +39,7 @@ export type ChatOrPushProviderEnum = ClosedEnum<typeof ChatOrPushProviderEnum>;
 export const ChatOrPushProviderEnum$inboundSchema: z.ZodNativeEnum<
   typeof ChatOrPushProviderEnum
 > = z.nativeEnum(ChatOrPushProviderEnum);
-
 /** @internal */
 export const ChatOrPushProviderEnum$outboundSchema: z.ZodNativeEnum<
   typeof ChatOrPushProviderEnum
 > = ChatOrPushProviderEnum$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ChatOrPushProviderEnum$ {
-  /** @deprecated use `ChatOrPushProviderEnum$inboundSchema` instead. */
-  export const inboundSchema = ChatOrPushProviderEnum$inboundSchema;
-  /** @deprecated use `ChatOrPushProviderEnum$outboundSchema` instead. */
-  export const outboundSchema = ChatOrPushProviderEnum$outboundSchema;
-}

@@ -10,17 +10,14 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ExecutionDetailsSourceEnum,
   ExecutionDetailsSourceEnum$inboundSchema,
-  ExecutionDetailsSourceEnum$outboundSchema,
 } from "./executiondetailssourceenum.js";
 import {
   ExecutionDetailsStatusEnum,
   ExecutionDetailsStatusEnum$inboundSchema,
-  ExecutionDetailsStatusEnum$outboundSchema,
 } from "./executiondetailsstatusenum.js";
 import {
   ProvidersIdEnum,
   ProvidersIdEnum$inboundSchema,
-  ProvidersIdEnum$outboundSchema,
 } from "./providersidenum.js";
 
 export type ActivityNotificationExecutionDetailResponseDto = {
@@ -83,68 +80,6 @@ export const ActivityNotificationExecutionDetailResponseDto$inboundSchema:
       "_id": "id",
     });
   });
-
-/** @internal */
-export type ActivityNotificationExecutionDetailResponseDto$Outbound = {
-  _id: string;
-  createdAt?: string | undefined;
-  status: string;
-  detail: string;
-  isRetry: boolean;
-  isTest: boolean;
-  providerId?: string | undefined;
-  raw?: string | null | undefined;
-  source: string;
-};
-
-/** @internal */
-export const ActivityNotificationExecutionDetailResponseDto$outboundSchema:
-  z.ZodType<
-    ActivityNotificationExecutionDetailResponseDto$Outbound,
-    z.ZodTypeDef,
-    ActivityNotificationExecutionDetailResponseDto
-  > = z.object({
-    id: z.string(),
-    createdAt: z.string().optional(),
-    status: ExecutionDetailsStatusEnum$outboundSchema,
-    detail: z.string(),
-    isRetry: z.boolean(),
-    isTest: z.boolean(),
-    providerId: ProvidersIdEnum$outboundSchema.optional(),
-    raw: z.nullable(z.string()).optional(),
-    source: ExecutionDetailsSourceEnum$outboundSchema,
-  }).transform((v) => {
-    return remap$(v, {
-      id: "_id",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ActivityNotificationExecutionDetailResponseDto$ {
-  /** @deprecated use `ActivityNotificationExecutionDetailResponseDto$inboundSchema` instead. */
-  export const inboundSchema =
-    ActivityNotificationExecutionDetailResponseDto$inboundSchema;
-  /** @deprecated use `ActivityNotificationExecutionDetailResponseDto$outboundSchema` instead. */
-  export const outboundSchema =
-    ActivityNotificationExecutionDetailResponseDto$outboundSchema;
-  /** @deprecated use `ActivityNotificationExecutionDetailResponseDto$Outbound` instead. */
-  export type Outbound =
-    ActivityNotificationExecutionDetailResponseDto$Outbound;
-}
-
-export function activityNotificationExecutionDetailResponseDtoToJSON(
-  activityNotificationExecutionDetailResponseDto:
-    ActivityNotificationExecutionDetailResponseDto,
-): string {
-  return JSON.stringify(
-    ActivityNotificationExecutionDetailResponseDto$outboundSchema.parse(
-      activityNotificationExecutionDetailResponseDto,
-    ),
-  );
-}
 
 export function activityNotificationExecutionDetailResponseDtoFromJSON(
   jsonString: string,

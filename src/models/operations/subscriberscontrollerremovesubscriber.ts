@@ -23,21 +23,6 @@ export type SubscribersControllerRemoveSubscriberResponse = {
 };
 
 /** @internal */
-export const SubscribersControllerRemoveSubscriberRequest$inboundSchema:
-  z.ZodType<
-    SubscribersControllerRemoveSubscriberRequest,
-    z.ZodTypeDef,
-    unknown
-  > = z.object({
-    subscriberId: z.string(),
-    "idempotency-key": z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "idempotency-key": "idempotencyKey",
-    });
-  });
-
-/** @internal */
 export type SubscribersControllerRemoveSubscriberRequest$Outbound = {
   subscriberId: string;
   "idempotency-key"?: string | undefined;
@@ -58,21 +43,6 @@ export const SubscribersControllerRemoveSubscriberRequest$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SubscribersControllerRemoveSubscriberRequest$ {
-  /** @deprecated use `SubscribersControllerRemoveSubscriberRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    SubscribersControllerRemoveSubscriberRequest$inboundSchema;
-  /** @deprecated use `SubscribersControllerRemoveSubscriberRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    SubscribersControllerRemoveSubscriberRequest$outboundSchema;
-  /** @deprecated use `SubscribersControllerRemoveSubscriberRequest$Outbound` instead. */
-  export type Outbound = SubscribersControllerRemoveSubscriberRequest$Outbound;
-}
-
 export function subscribersControllerRemoveSubscriberRequestToJSON(
   subscribersControllerRemoveSubscriberRequest:
     SubscribersControllerRemoveSubscriberRequest,
@@ -81,22 +51,6 @@ export function subscribersControllerRemoveSubscriberRequestToJSON(
     SubscribersControllerRemoveSubscriberRequest$outboundSchema.parse(
       subscribersControllerRemoveSubscriberRequest,
     ),
-  );
-}
-
-export function subscribersControllerRemoveSubscriberRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  SubscribersControllerRemoveSubscriberRequest,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      SubscribersControllerRemoveSubscriberRequest$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'SubscribersControllerRemoveSubscriberRequest' from JSON`,
   );
 }
 
@@ -115,54 +69,6 @@ export const SubscribersControllerRemoveSubscriberResponse$inboundSchema:
       "Result": "result",
     });
   });
-
-/** @internal */
-export type SubscribersControllerRemoveSubscriberResponse$Outbound = {
-  Headers: { [k: string]: Array<string> };
-  Result: components.RemoveSubscriberResponseDto$Outbound;
-};
-
-/** @internal */
-export const SubscribersControllerRemoveSubscriberResponse$outboundSchema:
-  z.ZodType<
-    SubscribersControllerRemoveSubscriberResponse$Outbound,
-    z.ZodTypeDef,
-    SubscribersControllerRemoveSubscriberResponse
-  > = z.object({
-    headers: z.record(z.array(z.string())),
-    result: components.RemoveSubscriberResponseDto$outboundSchema,
-  }).transform((v) => {
-    return remap$(v, {
-      headers: "Headers",
-      result: "Result",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SubscribersControllerRemoveSubscriberResponse$ {
-  /** @deprecated use `SubscribersControllerRemoveSubscriberResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    SubscribersControllerRemoveSubscriberResponse$inboundSchema;
-  /** @deprecated use `SubscribersControllerRemoveSubscriberResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    SubscribersControllerRemoveSubscriberResponse$outboundSchema;
-  /** @deprecated use `SubscribersControllerRemoveSubscriberResponse$Outbound` instead. */
-  export type Outbound = SubscribersControllerRemoveSubscriberResponse$Outbound;
-}
-
-export function subscribersControllerRemoveSubscriberResponseToJSON(
-  subscribersControllerRemoveSubscriberResponse:
-    SubscribersControllerRemoveSubscriberResponse,
-): string {
-  return JSON.stringify(
-    SubscribersControllerRemoveSubscriberResponse$outboundSchema.parse(
-      subscribersControllerRemoveSubscriberResponse,
-    ),
-  );
-}
 
 export function subscribersControllerRemoveSubscriberResponseFromJSON(
   jsonString: string,

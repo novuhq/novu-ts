@@ -22,6 +22,7 @@ let value: TriggerEventToAllRequestDto = {
       },
     },
   },
+  actor: "<value>",
 };
 ```
 

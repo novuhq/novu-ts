@@ -3,15 +3,8 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CreateSubscriberRequestDto = {
-  /**
-   * Unique identifier of the subscriber
-   */
-  subscriberId: string;
   /**
    * First name of the subscriber
    */
@@ -33,47 +26,34 @@ export type CreateSubscriberRequestDto = {
    */
   avatar?: string | null | undefined;
   /**
-   * Timezone of the subscriber
-   */
-  timezone?: string | null | undefined;
-  /**
    * Locale of the subscriber
    */
   locale?: string | null | undefined;
   /**
-   * Additional custom data for the subscriber
+   * Timezone of the subscriber
+   */
+  timezone?: string | null | undefined;
+  /**
+   * Additional custom data associated with the subscriber
    */
   data?: { [k: string]: any } | null | undefined;
+  /**
+   * Unique identifier of the subscriber
+   */
+  subscriberId: string;
 };
 
 /** @internal */
-export const CreateSubscriberRequestDto$inboundSchema: z.ZodType<
-  CreateSubscriberRequestDto,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  subscriberId: z.string(),
-  firstName: z.nullable(z.string()).optional(),
-  lastName: z.nullable(z.string()).optional(),
-  email: z.nullable(z.string()).optional(),
-  phone: z.nullable(z.string()).optional(),
-  avatar: z.nullable(z.string()).optional(),
-  timezone: z.nullable(z.string()).optional(),
-  locale: z.nullable(z.string()).optional(),
-  data: z.nullable(z.record(z.any())).optional(),
-});
-
-/** @internal */
 export type CreateSubscriberRequestDto$Outbound = {
-  subscriberId: string;
   firstName?: string | null | undefined;
   lastName?: string | null | undefined;
   email?: string | null | undefined;
   phone?: string | null | undefined;
   avatar?: string | null | undefined;
-  timezone?: string | null | undefined;
   locale?: string | null | undefined;
+  timezone?: string | null | undefined;
   data?: { [k: string]: any } | null | undefined;
+  subscriberId: string;
 };
 
 /** @internal */
@@ -82,44 +62,21 @@ export const CreateSubscriberRequestDto$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CreateSubscriberRequestDto
 > = z.object({
-  subscriberId: z.string(),
   firstName: z.nullable(z.string()).optional(),
   lastName: z.nullable(z.string()).optional(),
   email: z.nullable(z.string()).optional(),
   phone: z.nullable(z.string()).optional(),
   avatar: z.nullable(z.string()).optional(),
-  timezone: z.nullable(z.string()).optional(),
   locale: z.nullable(z.string()).optional(),
+  timezone: z.nullable(z.string()).optional(),
   data: z.nullable(z.record(z.any())).optional(),
+  subscriberId: z.string(),
 });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateSubscriberRequestDto$ {
-  /** @deprecated use `CreateSubscriberRequestDto$inboundSchema` instead. */
-  export const inboundSchema = CreateSubscriberRequestDto$inboundSchema;
-  /** @deprecated use `CreateSubscriberRequestDto$outboundSchema` instead. */
-  export const outboundSchema = CreateSubscriberRequestDto$outboundSchema;
-  /** @deprecated use `CreateSubscriberRequestDto$Outbound` instead. */
-  export type Outbound = CreateSubscriberRequestDto$Outbound;
-}
 
 export function createSubscriberRequestDtoToJSON(
   createSubscriberRequestDto: CreateSubscriberRequestDto,
 ): string {
   return JSON.stringify(
     CreateSubscriberRequestDto$outboundSchema.parse(createSubscriberRequestDto),
-  );
-}
-
-export function createSubscriberRequestDtoFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateSubscriberRequestDto, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreateSubscriberRequestDto$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateSubscriberRequestDto' from JSON`,
   );
 }

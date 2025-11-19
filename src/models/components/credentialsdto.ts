@@ -64,7 +64,6 @@ export const TlsOptions$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({});
-
 /** @internal */
 export type TlsOptions$Outbound = {};
 
@@ -75,23 +74,9 @@ export const TlsOptions$outboundSchema: z.ZodType<
   TlsOptions
 > = z.object({});
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TlsOptions$ {
-  /** @deprecated use `TlsOptions$inboundSchema` instead. */
-  export const inboundSchema = TlsOptions$inboundSchema;
-  /** @deprecated use `TlsOptions$outboundSchema` instead. */
-  export const outboundSchema = TlsOptions$outboundSchema;
-  /** @deprecated use `TlsOptions$Outbound` instead. */
-  export type Outbound = TlsOptions$Outbound;
-}
-
 export function tlsOptionsToJSON(tlsOptions: TlsOptions): string {
   return JSON.stringify(TlsOptions$outboundSchema.parse(tlsOptions));
 }
-
 export function tlsOptionsFromJSON(
   jsonString: string,
 ): SafeParseResult<TlsOptions, SDKValidationError> {
@@ -158,7 +143,6 @@ export const CredentialsDto$inboundSchema: z.ZodType<
     "AppIOBaseUrl": "appIOBaseUrl",
   });
 });
-
 /** @internal */
 export type CredentialsDto$Outbound = {
   apiKey?: string | undefined;
@@ -265,23 +249,9 @@ export const CredentialsDto$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CredentialsDto$ {
-  /** @deprecated use `CredentialsDto$inboundSchema` instead. */
-  export const inboundSchema = CredentialsDto$inboundSchema;
-  /** @deprecated use `CredentialsDto$outboundSchema` instead. */
-  export const outboundSchema = CredentialsDto$outboundSchema;
-  /** @deprecated use `CredentialsDto$Outbound` instead. */
-  export type Outbound = CredentialsDto$Outbound;
-}
-
 export function credentialsDtoToJSON(credentialsDto: CredentialsDto): string {
   return JSON.stringify(CredentialsDto$outboundSchema.parse(credentialsDto));
 }
-
 export function credentialsDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<CredentialsDto, SDKValidationError> {
