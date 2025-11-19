@@ -15,6 +15,7 @@ let value: TriggerEventRequestDto = {
   },
   overrides: {},
   to: "SUBSCRIBER_ID",
+  actor: "<value>",
   context: {
     "key": "org-acme",
   },

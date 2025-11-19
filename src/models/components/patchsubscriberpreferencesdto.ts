@@ -3,18 +3,13 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   PatchPreferenceChannelsDto,
-  PatchPreferenceChannelsDto$inboundSchema,
   PatchPreferenceChannelsDto$Outbound,
   PatchPreferenceChannelsDto$outboundSchema,
 } from "./patchpreferencechannelsdto.js";
 import {
   ScheduleDto,
-  ScheduleDto$inboundSchema,
   ScheduleDto$Outbound,
   ScheduleDto$outboundSchema,
 } from "./scheduledto.js";
@@ -35,17 +30,6 @@ export type PatchSubscriberPreferencesDto = {
 };
 
 /** @internal */
-export const PatchSubscriberPreferencesDto$inboundSchema: z.ZodType<
-  PatchSubscriberPreferencesDto,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  channels: PatchPreferenceChannelsDto$inboundSchema.optional(),
-  workflowId: z.string().optional(),
-  schedule: ScheduleDto$inboundSchema.optional(),
-});
-
-/** @internal */
 export type PatchSubscriberPreferencesDto$Outbound = {
   channels?: PatchPreferenceChannelsDto$Outbound | undefined;
   workflowId?: string | undefined;
@@ -63,19 +47,6 @@ export const PatchSubscriberPreferencesDto$outboundSchema: z.ZodType<
   schedule: ScheduleDto$outboundSchema.optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PatchSubscriberPreferencesDto$ {
-  /** @deprecated use `PatchSubscriberPreferencesDto$inboundSchema` instead. */
-  export const inboundSchema = PatchSubscriberPreferencesDto$inboundSchema;
-  /** @deprecated use `PatchSubscriberPreferencesDto$outboundSchema` instead. */
-  export const outboundSchema = PatchSubscriberPreferencesDto$outboundSchema;
-  /** @deprecated use `PatchSubscriberPreferencesDto$Outbound` instead. */
-  export type Outbound = PatchSubscriberPreferencesDto$Outbound;
-}
-
 export function patchSubscriberPreferencesDtoToJSON(
   patchSubscriberPreferencesDto: PatchSubscriberPreferencesDto,
 ): string {
@@ -83,15 +54,5 @@ export function patchSubscriberPreferencesDtoToJSON(
     PatchSubscriberPreferencesDto$outboundSchema.parse(
       patchSubscriberPreferencesDto,
     ),
-  );
-}
-
-export function patchSubscriberPreferencesDtoFromJSON(
-  jsonString: string,
-): SafeParseResult<PatchSubscriberPreferencesDto, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => PatchSubscriberPreferencesDto$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'PatchSubscriberPreferencesDto' from JSON`,
   );
 }

@@ -23,6 +23,7 @@ let value: EventsControllerBroadcastEventToAllRequest = {
         },
       },
     },
+    actor: "<value>",
   },
 };
 ```

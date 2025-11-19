@@ -4,20 +4,12 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   InAppControlDto,
-  InAppControlDto$inboundSchema,
   InAppControlDto$Outbound,
   InAppControlDto$outboundSchema,
 } from "./inappcontroldto.js";
-import {
-  StepTypeEnum,
-  StepTypeEnum$inboundSchema,
-  StepTypeEnum$outboundSchema,
-} from "./steptypeenum.js";
+import { StepTypeEnum, StepTypeEnum$outboundSchema } from "./steptypeenum.js";
 
 /**
  * Control values for the In-App step.
@@ -50,13 +42,6 @@ export type InAppStepUpsertDto = {
 };
 
 /** @internal */
-export const InAppStepUpsertDtoControlValues$inboundSchema: z.ZodType<
-  InAppStepUpsertDtoControlValues,
-  z.ZodTypeDef,
-  unknown
-> = z.union([InAppControlDto$inboundSchema, z.record(z.any())]);
-
-/** @internal */
 export type InAppStepUpsertDtoControlValues$Outbound =
   | InAppControlDto$Outbound
   | { [k: string]: any };
@@ -68,19 +53,6 @@ export const InAppStepUpsertDtoControlValues$outboundSchema: z.ZodType<
   InAppStepUpsertDtoControlValues
 > = z.union([InAppControlDto$outboundSchema, z.record(z.any())]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InAppStepUpsertDtoControlValues$ {
-  /** @deprecated use `InAppStepUpsertDtoControlValues$inboundSchema` instead. */
-  export const inboundSchema = InAppStepUpsertDtoControlValues$inboundSchema;
-  /** @deprecated use `InAppStepUpsertDtoControlValues$outboundSchema` instead. */
-  export const outboundSchema = InAppStepUpsertDtoControlValues$outboundSchema;
-  /** @deprecated use `InAppStepUpsertDtoControlValues$Outbound` instead. */
-  export type Outbound = InAppStepUpsertDtoControlValues$Outbound;
-}
-
 export function inAppStepUpsertDtoControlValuesToJSON(
   inAppStepUpsertDtoControlValues: InAppStepUpsertDtoControlValues,
 ): string {
@@ -90,34 +62,6 @@ export function inAppStepUpsertDtoControlValuesToJSON(
     ),
   );
 }
-
-export function inAppStepUpsertDtoControlValuesFromJSON(
-  jsonString: string,
-): SafeParseResult<InAppStepUpsertDtoControlValues, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => InAppStepUpsertDtoControlValues$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'InAppStepUpsertDtoControlValues' from JSON`,
-  );
-}
-
-/** @internal */
-export const InAppStepUpsertDto$inboundSchema: z.ZodType<
-  InAppStepUpsertDto,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  _id: z.string().optional(),
-  stepId: z.string().optional(),
-  name: z.string(),
-  type: StepTypeEnum$inboundSchema,
-  controlValues: z.union([InAppControlDto$inboundSchema, z.record(z.any())])
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_id": "id",
-  });
-});
 
 /** @internal */
 export type InAppStepUpsertDto$Outbound = {
@@ -146,33 +90,10 @@ export const InAppStepUpsertDto$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InAppStepUpsertDto$ {
-  /** @deprecated use `InAppStepUpsertDto$inboundSchema` instead. */
-  export const inboundSchema = InAppStepUpsertDto$inboundSchema;
-  /** @deprecated use `InAppStepUpsertDto$outboundSchema` instead. */
-  export const outboundSchema = InAppStepUpsertDto$outboundSchema;
-  /** @deprecated use `InAppStepUpsertDto$Outbound` instead. */
-  export type Outbound = InAppStepUpsertDto$Outbound;
-}
-
 export function inAppStepUpsertDtoToJSON(
   inAppStepUpsertDto: InAppStepUpsertDto,
 ): string {
   return JSON.stringify(
     InAppStepUpsertDto$outboundSchema.parse(inAppStepUpsertDto),
-  );
-}
-
-export function inAppStepUpsertDtoFromJSON(
-  jsonString: string,
-): SafeParseResult<InAppStepUpsertDto, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => InAppStepUpsertDto$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'InAppStepUpsertDto' from JSON`,
   );
 }

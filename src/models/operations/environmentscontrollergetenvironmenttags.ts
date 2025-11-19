@@ -26,21 +26,6 @@ export type EnvironmentsControllerGetEnvironmentTagsResponse = {
 };
 
 /** @internal */
-export const EnvironmentsControllerGetEnvironmentTagsRequest$inboundSchema:
-  z.ZodType<
-    EnvironmentsControllerGetEnvironmentTagsRequest,
-    z.ZodTypeDef,
-    unknown
-  > = z.object({
-    environmentId: z.string(),
-    "idempotency-key": z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "idempotency-key": "idempotencyKey",
-    });
-  });
-
-/** @internal */
 export type EnvironmentsControllerGetEnvironmentTagsRequest$Outbound = {
   environmentId: string;
   "idempotency-key"?: string | undefined;
@@ -61,22 +46,6 @@ export const EnvironmentsControllerGetEnvironmentTagsRequest$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EnvironmentsControllerGetEnvironmentTagsRequest$ {
-  /** @deprecated use `EnvironmentsControllerGetEnvironmentTagsRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    EnvironmentsControllerGetEnvironmentTagsRequest$inboundSchema;
-  /** @deprecated use `EnvironmentsControllerGetEnvironmentTagsRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    EnvironmentsControllerGetEnvironmentTagsRequest$outboundSchema;
-  /** @deprecated use `EnvironmentsControllerGetEnvironmentTagsRequest$Outbound` instead. */
-  export type Outbound =
-    EnvironmentsControllerGetEnvironmentTagsRequest$Outbound;
-}
-
 export function environmentsControllerGetEnvironmentTagsRequestToJSON(
   environmentsControllerGetEnvironmentTagsRequest:
     EnvironmentsControllerGetEnvironmentTagsRequest,
@@ -85,22 +54,6 @@ export function environmentsControllerGetEnvironmentTagsRequestToJSON(
     EnvironmentsControllerGetEnvironmentTagsRequest$outboundSchema.parse(
       environmentsControllerGetEnvironmentTagsRequest,
     ),
-  );
-}
-
-export function environmentsControllerGetEnvironmentTagsRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  EnvironmentsControllerGetEnvironmentTagsRequest,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      EnvironmentsControllerGetEnvironmentTagsRequest$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'EnvironmentsControllerGetEnvironmentTagsRequest' from JSON`,
   );
 }
 
@@ -119,55 +72,6 @@ export const EnvironmentsControllerGetEnvironmentTagsResponse$inboundSchema:
       "Result": "result",
     });
   });
-
-/** @internal */
-export type EnvironmentsControllerGetEnvironmentTagsResponse$Outbound = {
-  Headers: { [k: string]: Array<string> };
-  Result: Array<components.GetEnvironmentTagsDto$Outbound>;
-};
-
-/** @internal */
-export const EnvironmentsControllerGetEnvironmentTagsResponse$outboundSchema:
-  z.ZodType<
-    EnvironmentsControllerGetEnvironmentTagsResponse$Outbound,
-    z.ZodTypeDef,
-    EnvironmentsControllerGetEnvironmentTagsResponse
-  > = z.object({
-    headers: z.record(z.array(z.string())),
-    result: z.array(components.GetEnvironmentTagsDto$outboundSchema),
-  }).transform((v) => {
-    return remap$(v, {
-      headers: "Headers",
-      result: "Result",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EnvironmentsControllerGetEnvironmentTagsResponse$ {
-  /** @deprecated use `EnvironmentsControllerGetEnvironmentTagsResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    EnvironmentsControllerGetEnvironmentTagsResponse$inboundSchema;
-  /** @deprecated use `EnvironmentsControllerGetEnvironmentTagsResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    EnvironmentsControllerGetEnvironmentTagsResponse$outboundSchema;
-  /** @deprecated use `EnvironmentsControllerGetEnvironmentTagsResponse$Outbound` instead. */
-  export type Outbound =
-    EnvironmentsControllerGetEnvironmentTagsResponse$Outbound;
-}
-
-export function environmentsControllerGetEnvironmentTagsResponseToJSON(
-  environmentsControllerGetEnvironmentTagsResponse:
-    EnvironmentsControllerGetEnvironmentTagsResponse,
-): string {
-  return JSON.stringify(
-    EnvironmentsControllerGetEnvironmentTagsResponse$outboundSchema.parse(
-      environmentsControllerGetEnvironmentTagsResponse,
-    ),
-  );
-}
 
 export function environmentsControllerGetEnvironmentTagsResponseFromJSON(
   jsonString: string,

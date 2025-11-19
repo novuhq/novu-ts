@@ -28,22 +28,6 @@ export type WorkflowCreationSourceEnum = ClosedEnum<
 >;
 
 /** @internal */
-export const WorkflowCreationSourceEnum$inboundSchema: z.ZodNativeEnum<
-  typeof WorkflowCreationSourceEnum
-> = z.nativeEnum(WorkflowCreationSourceEnum);
-
-/** @internal */
 export const WorkflowCreationSourceEnum$outboundSchema: z.ZodNativeEnum<
   typeof WorkflowCreationSourceEnum
-> = WorkflowCreationSourceEnum$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WorkflowCreationSourceEnum$ {
-  /** @deprecated use `WorkflowCreationSourceEnum$inboundSchema` instead. */
-  export const inboundSchema = WorkflowCreationSourceEnum$inboundSchema;
-  /** @deprecated use `WorkflowCreationSourceEnum$outboundSchema` instead. */
-  export const outboundSchema = WorkflowCreationSourceEnum$outboundSchema;
-}
+> = z.nativeEnum(WorkflowCreationSourceEnum);

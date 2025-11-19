@@ -41,6 +41,7 @@ async function run() {
     },
     overrides: {},
     to: "SUBSCRIBER_ID",
+    actor: "<value>",
     context: {
       "key": "org-acme",
     },
@@ -77,6 +78,7 @@ async function run() {
     },
     overrides: {},
     to: "SUBSCRIBER_ID",
+    actor: "<value>",
     context: {
       "key": "org-acme",
     },
@@ -227,6 +229,16 @@ async function run() {
         },
       },
     },
+    actor: {
+      firstName: "John",
+      lastName: "Doe",
+      email: "john.doe@example.com",
+      phone: "+1234567890",
+      avatar: "https://example.com/avatar.jpg",
+      locale: "en-US",
+      timezone: "America/New_York",
+      subscriberId: "<id>",
+    },
   });
 
   console.log(result);
@@ -266,6 +278,16 @@ async function run() {
           },
         },
       },
+    },
+    actor: {
+      firstName: "John",
+      lastName: "Doe",
+      email: "john.doe@example.com",
+      phone: "+1234567890",
+      avatar: "https://example.com/avatar.jpg",
+      locale: "en-US",
+      timezone: "America/New_York",
+      subscriberId: "<id>",
     },
   });
   if (res.ok) {

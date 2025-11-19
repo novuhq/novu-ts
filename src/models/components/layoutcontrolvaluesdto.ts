@@ -9,8 +9,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   EmailControlsDto,
   EmailControlsDto$inboundSchema,
-  EmailControlsDto$Outbound,
-  EmailControlsDto$outboundSchema,
 } from "./emailcontrolsdto.js";
 
 export type LayoutControlValuesDto = {
@@ -28,41 +26,6 @@ export const LayoutControlValuesDto$inboundSchema: z.ZodType<
 > = z.object({
   email: EmailControlsDto$inboundSchema.optional(),
 });
-
-/** @internal */
-export type LayoutControlValuesDto$Outbound = {
-  email?: EmailControlsDto$Outbound | undefined;
-};
-
-/** @internal */
-export const LayoutControlValuesDto$outboundSchema: z.ZodType<
-  LayoutControlValuesDto$Outbound,
-  z.ZodTypeDef,
-  LayoutControlValuesDto
-> = z.object({
-  email: EmailControlsDto$outboundSchema.optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace LayoutControlValuesDto$ {
-  /** @deprecated use `LayoutControlValuesDto$inboundSchema` instead. */
-  export const inboundSchema = LayoutControlValuesDto$inboundSchema;
-  /** @deprecated use `LayoutControlValuesDto$outboundSchema` instead. */
-  export const outboundSchema = LayoutControlValuesDto$outboundSchema;
-  /** @deprecated use `LayoutControlValuesDto$Outbound` instead. */
-  export type Outbound = LayoutControlValuesDto$Outbound;
-}
-
-export function layoutControlValuesDtoToJSON(
-  layoutControlValuesDto: LayoutControlValuesDto,
-): string {
-  return JSON.stringify(
-    LayoutControlValuesDto$outboundSchema.parse(layoutControlValuesDto),
-  );
-}
 
 export function layoutControlValuesDtoFromJSON(
   jsonString: string,

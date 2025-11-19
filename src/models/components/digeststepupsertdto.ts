@@ -4,20 +4,12 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   DigestControlDto,
-  DigestControlDto$inboundSchema,
   DigestControlDto$Outbound,
   DigestControlDto$outboundSchema,
 } from "./digestcontroldto.js";
-import {
-  StepTypeEnum,
-  StepTypeEnum$inboundSchema,
-  StepTypeEnum$outboundSchema,
-} from "./steptypeenum.js";
+import { StepTypeEnum, StepTypeEnum$outboundSchema } from "./steptypeenum.js";
 
 /**
  * Control values for the Digest step.
@@ -50,13 +42,6 @@ export type DigestStepUpsertDto = {
 };
 
 /** @internal */
-export const DigestStepUpsertDtoControlValues$inboundSchema: z.ZodType<
-  DigestStepUpsertDtoControlValues,
-  z.ZodTypeDef,
-  unknown
-> = z.union([DigestControlDto$inboundSchema, z.record(z.any())]);
-
-/** @internal */
 export type DigestStepUpsertDtoControlValues$Outbound =
   | DigestControlDto$Outbound
   | { [k: string]: any };
@@ -68,19 +53,6 @@ export const DigestStepUpsertDtoControlValues$outboundSchema: z.ZodType<
   DigestStepUpsertDtoControlValues
 > = z.union([DigestControlDto$outboundSchema, z.record(z.any())]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DigestStepUpsertDtoControlValues$ {
-  /** @deprecated use `DigestStepUpsertDtoControlValues$inboundSchema` instead. */
-  export const inboundSchema = DigestStepUpsertDtoControlValues$inboundSchema;
-  /** @deprecated use `DigestStepUpsertDtoControlValues$outboundSchema` instead. */
-  export const outboundSchema = DigestStepUpsertDtoControlValues$outboundSchema;
-  /** @deprecated use `DigestStepUpsertDtoControlValues$Outbound` instead. */
-  export type Outbound = DigestStepUpsertDtoControlValues$Outbound;
-}
-
 export function digestStepUpsertDtoControlValuesToJSON(
   digestStepUpsertDtoControlValues: DigestStepUpsertDtoControlValues,
 ): string {
@@ -90,34 +62,6 @@ export function digestStepUpsertDtoControlValuesToJSON(
     ),
   );
 }
-
-export function digestStepUpsertDtoControlValuesFromJSON(
-  jsonString: string,
-): SafeParseResult<DigestStepUpsertDtoControlValues, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => DigestStepUpsertDtoControlValues$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'DigestStepUpsertDtoControlValues' from JSON`,
-  );
-}
-
-/** @internal */
-export const DigestStepUpsertDto$inboundSchema: z.ZodType<
-  DigestStepUpsertDto,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  _id: z.string().optional(),
-  stepId: z.string().optional(),
-  name: z.string(),
-  type: StepTypeEnum$inboundSchema,
-  controlValues: z.union([DigestControlDto$inboundSchema, z.record(z.any())])
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_id": "id",
-  });
-});
 
 /** @internal */
 export type DigestStepUpsertDto$Outbound = {
@@ -146,33 +90,10 @@ export const DigestStepUpsertDto$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DigestStepUpsertDto$ {
-  /** @deprecated use `DigestStepUpsertDto$inboundSchema` instead. */
-  export const inboundSchema = DigestStepUpsertDto$inboundSchema;
-  /** @deprecated use `DigestStepUpsertDto$outboundSchema` instead. */
-  export const outboundSchema = DigestStepUpsertDto$outboundSchema;
-  /** @deprecated use `DigestStepUpsertDto$Outbound` instead. */
-  export type Outbound = DigestStepUpsertDto$Outbound;
-}
-
 export function digestStepUpsertDtoToJSON(
   digestStepUpsertDto: DigestStepUpsertDto,
 ): string {
   return JSON.stringify(
     DigestStepUpsertDto$outboundSchema.parse(digestStepUpsertDto),
-  );
-}
-
-export function digestStepUpsertDtoFromJSON(
-  jsonString: string,
-): SafeParseResult<DigestStepUpsertDto, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => DigestStepUpsertDto$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'DigestStepUpsertDto' from JSON`,
   );
 }

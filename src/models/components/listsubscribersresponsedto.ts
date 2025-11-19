@@ -9,8 +9,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   SubscriberResponseDto,
   SubscriberResponseDto$inboundSchema,
-  SubscriberResponseDto$Outbound,
-  SubscriberResponseDto$outboundSchema,
 } from "./subscriberresponsedto.js";
 
 export type ListSubscribersResponseDto = {
@@ -48,49 +46,6 @@ export const ListSubscribersResponseDto$inboundSchema: z.ZodType<
   totalCount: z.number(),
   totalCountCapped: z.boolean(),
 });
-
-/** @internal */
-export type ListSubscribersResponseDto$Outbound = {
-  data: Array<SubscriberResponseDto$Outbound>;
-  next: string | null;
-  previous: string | null;
-  totalCount: number;
-  totalCountCapped: boolean;
-};
-
-/** @internal */
-export const ListSubscribersResponseDto$outboundSchema: z.ZodType<
-  ListSubscribersResponseDto$Outbound,
-  z.ZodTypeDef,
-  ListSubscribersResponseDto
-> = z.object({
-  data: z.array(SubscriberResponseDto$outboundSchema),
-  next: z.nullable(z.string()),
-  previous: z.nullable(z.string()),
-  totalCount: z.number(),
-  totalCountCapped: z.boolean(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListSubscribersResponseDto$ {
-  /** @deprecated use `ListSubscribersResponseDto$inboundSchema` instead. */
-  export const inboundSchema = ListSubscribersResponseDto$inboundSchema;
-  /** @deprecated use `ListSubscribersResponseDto$outboundSchema` instead. */
-  export const outboundSchema = ListSubscribersResponseDto$outboundSchema;
-  /** @deprecated use `ListSubscribersResponseDto$Outbound` instead. */
-  export type Outbound = ListSubscribersResponseDto$Outbound;
-}
-
-export function listSubscribersResponseDtoToJSON(
-  listSubscribersResponseDto: ListSubscribersResponseDto,
-): string {
-  return JSON.stringify(
-    ListSubscribersResponseDto$outboundSchema.parse(listSubscribersResponseDto),
-  );
-}
 
 export function listSubscribersResponseDtoFromJSON(
   jsonString: string,

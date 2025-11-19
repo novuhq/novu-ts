@@ -9,7 +9,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   IntegrationIssueEnum,
   IntegrationIssueEnum$inboundSchema,
-  IntegrationIssueEnum$outboundSchema,
 } from "./integrationissueenum.js";
 
 export type StepIntegrationIssue = {
@@ -37,45 +36,6 @@ export const StepIntegrationIssue$inboundSchema: z.ZodType<
   variableName: z.string().optional(),
   message: z.string(),
 });
-
-/** @internal */
-export type StepIntegrationIssue$Outbound = {
-  issueType: string;
-  variableName?: string | undefined;
-  message: string;
-};
-
-/** @internal */
-export const StepIntegrationIssue$outboundSchema: z.ZodType<
-  StepIntegrationIssue$Outbound,
-  z.ZodTypeDef,
-  StepIntegrationIssue
-> = z.object({
-  issueType: IntegrationIssueEnum$outboundSchema,
-  variableName: z.string().optional(),
-  message: z.string(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace StepIntegrationIssue$ {
-  /** @deprecated use `StepIntegrationIssue$inboundSchema` instead. */
-  export const inboundSchema = StepIntegrationIssue$inboundSchema;
-  /** @deprecated use `StepIntegrationIssue$outboundSchema` instead. */
-  export const outboundSchema = StepIntegrationIssue$outboundSchema;
-  /** @deprecated use `StepIntegrationIssue$Outbound` instead. */
-  export type Outbound = StepIntegrationIssue$Outbound;
-}
-
-export function stepIntegrationIssueToJSON(
-  stepIntegrationIssue: StepIntegrationIssue,
-): string {
-  return JSON.stringify(
-    StepIntegrationIssue$outboundSchema.parse(stepIntegrationIssue),
-  );
-}
 
 export function stepIntegrationIssueFromJSON(
   jsonString: string,

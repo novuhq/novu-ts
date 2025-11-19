@@ -39,22 +39,10 @@ export type LookBackWindowDto = {
 export const LookBackWindowDtoUnit$inboundSchema: z.ZodNativeEnum<
   typeof LookBackWindowDtoUnit
 > = z.nativeEnum(LookBackWindowDtoUnit);
-
 /** @internal */
 export const LookBackWindowDtoUnit$outboundSchema: z.ZodNativeEnum<
   typeof LookBackWindowDtoUnit
 > = LookBackWindowDtoUnit$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace LookBackWindowDtoUnit$ {
-  /** @deprecated use `LookBackWindowDtoUnit$inboundSchema` instead. */
-  export const inboundSchema = LookBackWindowDtoUnit$inboundSchema;
-  /** @deprecated use `LookBackWindowDtoUnit$outboundSchema` instead. */
-  export const outboundSchema = LookBackWindowDtoUnit$outboundSchema;
-}
 
 /** @internal */
 export const LookBackWindowDto$inboundSchema: z.ZodType<
@@ -65,7 +53,6 @@ export const LookBackWindowDto$inboundSchema: z.ZodType<
   amount: z.number(),
   unit: LookBackWindowDtoUnit$inboundSchema,
 });
-
 /** @internal */
 export type LookBackWindowDto$Outbound = {
   amount: number;
@@ -82,19 +69,6 @@ export const LookBackWindowDto$outboundSchema: z.ZodType<
   unit: LookBackWindowDtoUnit$outboundSchema,
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace LookBackWindowDto$ {
-  /** @deprecated use `LookBackWindowDto$inboundSchema` instead. */
-  export const inboundSchema = LookBackWindowDto$inboundSchema;
-  /** @deprecated use `LookBackWindowDto$outboundSchema` instead. */
-  export const outboundSchema = LookBackWindowDto$outboundSchema;
-  /** @deprecated use `LookBackWindowDto$Outbound` instead. */
-  export type Outbound = LookBackWindowDto$Outbound;
-}
-
 export function lookBackWindowDtoToJSON(
   lookBackWindowDto: LookBackWindowDto,
 ): string {
@@ -102,7 +76,6 @@ export function lookBackWindowDtoToJSON(
     LookBackWindowDto$outboundSchema.parse(lookBackWindowDto),
   );
 }
-
 export function lookBackWindowDtoFromJSON(
   jsonString: string,
 ): SafeParseResult<LookBackWindowDto, SDKValidationError> {

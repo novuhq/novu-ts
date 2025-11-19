@@ -106,6 +106,13 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.subscribers.create({
+    firstName: "John",
+    lastName: "Doe",
+    email: "john.doe@example.com",
+    phone: "+1234567890",
+    avatar: "https://example.com/avatar.jpg",
+    locale: "en-US",
+    timezone: "America/New_York",
     subscriberId: "<id>",
   });
 
@@ -131,6 +138,13 @@ const novu = new NovuCore({
 
 async function run() {
   const res = await subscribersCreate(novu, {
+    firstName: "John",
+    lastName: "Doe",
+    email: "john.doe@example.com",
+    phone: "+1234567890",
+    avatar: "https://example.com/avatar.jpg",
+    locale: "en-US",
+    timezone: "America/New_York",
     subscriberId: "<id>",
   });
   if (res.ok) {
@@ -261,7 +275,15 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.subscribers.patch({}, "<id>");
+  const result = await novu.subscribers.patch({
+    firstName: "John",
+    lastName: "Doe",
+    email: "john.doe@example.com",
+    phone: "+1234567890",
+    avatar: "https://example.com/avatar.jpg",
+    locale: "en-US",
+    timezone: "America/New_York",
+  }, "<id>");
 
   console.log(result);
 }
@@ -284,7 +306,15 @@ const novu = new NovuCore({
 });
 
 async function run() {
-  const res = await subscribersPatch(novu, {}, "<id>");
+  const res = await subscribersPatch(novu, {
+    firstName: "John",
+    lastName: "Doe",
+    email: "john.doe@example.com",
+    phone: "+1234567890",
+    avatar: "https://example.com/avatar.jpg",
+    locale: "en-US",
+    timezone: "America/New_York",
+  }, "<id>");
   if (res.ok) {
     const { value: result } = res;
     console.log(result);
