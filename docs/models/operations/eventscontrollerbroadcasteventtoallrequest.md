@@ -24,6 +24,9 @@ let value: EventsControllerBroadcastEventToAllRequest = {
       },
     },
     actor: "<value>",
+    context: {
+      "key": "org-acme",
+    },
   },
 };
 ```

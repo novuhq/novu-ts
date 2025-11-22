@@ -10,7 +10,10 @@ let value: TranslationControllerCreateTranslationEndpointRequest = {
     resourceId: "welcome-email",
     resourceType: "layout",
     locale: "en_US",
-    content: {},
+    content: {
+      "welcome.title": "Welcome",
+      "welcome.message": "Hello there!",
+    },
   },
 };
 ```

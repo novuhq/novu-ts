@@ -1,6 +1,6 @@
 # ResourceType
 
-Resource type
+The resource type to associate localizations with
 
 ## Example Usage
 

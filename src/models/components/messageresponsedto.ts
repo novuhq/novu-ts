@@ -29,7 +29,7 @@ import {
 /**
  * Content of the message, can be an email block or a string
  */
-export type MessageResponseDtoContent = Array<EmailBlock> | string;
+export type Content = Array<EmailBlock> | string;
 
 /**
  * The payload that was used to send the notification trigger
@@ -185,19 +185,16 @@ export type MessageResponseDto = {
 };
 
 /** @internal */
-export const MessageResponseDtoContent$inboundSchema: z.ZodType<
-  MessageResponseDtoContent,
-  z.ZodTypeDef,
-  unknown
-> = z.union([z.array(EmailBlock$inboundSchema), z.string()]);
+export const Content$inboundSchema: z.ZodType<Content, z.ZodTypeDef, unknown> =
+  z.union([z.array(EmailBlock$inboundSchema), z.string()]);
 
-export function messageResponseDtoContentFromJSON(
+export function contentFromJSON(
   jsonString: string,
-): SafeParseResult<MessageResponseDtoContent, SDKValidationError> {
+): SafeParseResult<Content, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => MessageResponseDtoContent$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'MessageResponseDtoContent' from JSON`,
+    (x) => Content$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Content' from JSON`,
   );
 }
 

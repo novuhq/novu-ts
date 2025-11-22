@@ -81,16 +81,17 @@ export class Translations extends ClientSDK {
    * Upload translation files
    *
    * @remarks
-   * Upload one or more JSON translation files for a specific workflow. Files name must match the locale, e.g. en_US.json
+   * Upload one or more JSON translation files for a specific workflow. Files name must match the locale, e.g. en_US.json. Supports both "files" and "files[]" field names for backwards compatibility.
    */
   async upload(
-    uploadTranslationsRequestDto: components.UploadTranslationsRequestDto,
+    requestBody:
+      operations.TranslationControllerUploadTranslationFilesRequestBody,
     idempotencyKey?: string | undefined,
     options?: RequestOptions,
   ): Promise<components.UploadTranslationsResponseDto> {
     return unwrapAsync(translationsUpload(
       this,
-      uploadTranslationsRequestDto,
+      requestBody,
       idempotencyKey,
       options,
     ));

@@ -9,20 +9,25 @@ import { ClosedEnum } from "../../types/enums.js";
 /**
  * Resource type
  */
-export const ResourceType = {
-  Workflow: "workflow",
-  Layout: "layout",
-} as const;
+export const TranslationControllerDeleteTranslationGroupEndpointPathParamResourceType =
+  {
+    Workflow: "workflow",
+    Layout: "layout",
+  } as const;
 /**
  * Resource type
  */
-export type ResourceType = ClosedEnum<typeof ResourceType>;
+export type TranslationControllerDeleteTranslationGroupEndpointPathParamResourceType =
+  ClosedEnum<
+    typeof TranslationControllerDeleteTranslationGroupEndpointPathParamResourceType
+  >;
 
 export type TranslationControllerDeleteTranslationGroupEndpointRequest = {
   /**
    * Resource type
    */
-  resourceType: ResourceType;
+  resourceType:
+    TranslationControllerDeleteTranslationGroupEndpointPathParamResourceType;
   /**
    * Resource ID
    */
@@ -34,8 +39,12 @@ export type TranslationControllerDeleteTranslationGroupEndpointRequest = {
 };
 
 /** @internal */
-export const ResourceType$outboundSchema: z.ZodNativeEnum<typeof ResourceType> =
-  z.nativeEnum(ResourceType);
+export const TranslationControllerDeleteTranslationGroupEndpointPathParamResourceType$outboundSchema:
+  z.ZodNativeEnum<
+    typeof TranslationControllerDeleteTranslationGroupEndpointPathParamResourceType
+  > = z.nativeEnum(
+    TranslationControllerDeleteTranslationGroupEndpointPathParamResourceType,
+  );
 
 /** @internal */
 export type TranslationControllerDeleteTranslationGroupEndpointRequest$Outbound =
@@ -52,7 +61,8 @@ export const TranslationControllerDeleteTranslationGroupEndpointRequest$outbound
     z.ZodTypeDef,
     TranslationControllerDeleteTranslationGroupEndpointRequest
   > = z.object({
-    resourceType: ResourceType$outboundSchema,
+    resourceType:
+      TranslationControllerDeleteTranslationGroupEndpointPathParamResourceType$outboundSchema,
     resourceId: z.string(),
     idempotencyKey: z.string().optional(),
   }).transform((v) => {
