@@ -1,16 +1,24 @@
 # Content
 
-Translation content as JSON object
+Content of the message, can be an email block or a string
 
-## Example Usage
+
+## Supported Types
+
+### `components.EmailBlock[]`
 
 ```typescript
-import { Content } from "@novu/api/models/components";
-
-let value: Content = {};
+const value: components.EmailBlock[] = [
+  {
+    type: "button",
+    content: "<value>",
+  },
+];
 ```
 
-## Fields
+### `string`
 
-| Field       | Type        | Required    | Description |
-| ----------- | ----------- | ----------- | ----------- |
+```typescript
+const value: string = "<value>";
+```
+

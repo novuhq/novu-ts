@@ -22,11 +22,6 @@ export type TranslationResponseDtoResourceType = ClosedEnum<
   typeof TranslationResponseDtoResourceType
 >;
 
-/**
- * Translation content as JSON object
- */
-export type TranslationResponseDtoContent = {};
-
 export type TranslationResponseDto = {
   /**
    * Resource identifier
@@ -43,7 +38,7 @@ export type TranslationResponseDto = {
   /**
    * Translation content as JSON object
    */
-  content: TranslationResponseDtoContent;
+  content: { [k: string]: any };
   /**
    * Creation timestamp
    */
@@ -60,23 +55,6 @@ export const TranslationResponseDtoResourceType$inboundSchema: z.ZodNativeEnum<
 > = z.nativeEnum(TranslationResponseDtoResourceType);
 
 /** @internal */
-export const TranslationResponseDtoContent$inboundSchema: z.ZodType<
-  TranslationResponseDtoContent,
-  z.ZodTypeDef,
-  unknown
-> = z.object({});
-
-export function translationResponseDtoContentFromJSON(
-  jsonString: string,
-): SafeParseResult<TranslationResponseDtoContent, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => TranslationResponseDtoContent$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'TranslationResponseDtoContent' from JSON`,
-  );
-}
-
-/** @internal */
 export const TranslationResponseDto$inboundSchema: z.ZodType<
   TranslationResponseDto,
   z.ZodTypeDef,
@@ -85,7 +63,7 @@ export const TranslationResponseDto$inboundSchema: z.ZodType<
   resourceId: z.string(),
   resourceType: TranslationResponseDtoResourceType$inboundSchema,
   locale: z.string(),
-  content: z.lazy(() => TranslationResponseDtoContent$inboundSchema),
+  content: z.record(z.any()),
   createdAt: z.string(),
   updatedAt: z.string(),
 });

@@ -1,13 +1,11 @@
-# Workflows
-
-All translations for given locale organized by workflow identifier
+# JobData
 
 ## Example Usage
 
 ```typescript
-import { Workflows } from "@novu/api/models/components";
+import { JobData } from "@novu/api/models/components";
 
-let value: Workflows = {};
+let value: JobData = {};
 ```
 
 ## Fields

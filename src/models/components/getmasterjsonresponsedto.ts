@@ -7,57 +7,16 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
-/**
- * All translations for given locale organized by workflow identifier
- */
-export type Workflows = {};
-
-/**
- * All translations for given locale organized by layout identifier
- */
-export type Layouts = {};
-
 export type GetMasterJsonResponseDto = {
   /**
    * All translations for given locale organized by workflow identifier
    */
-  workflows: Workflows;
+  workflows: { [k: string]: any };
   /**
    * All translations for given locale organized by layout identifier
    */
-  layouts: Layouts;
+  layouts: { [k: string]: any };
 };
-
-/** @internal */
-export const Workflows$inboundSchema: z.ZodType<
-  Workflows,
-  z.ZodTypeDef,
-  unknown
-> = z.object({});
-
-export function workflowsFromJSON(
-  jsonString: string,
-): SafeParseResult<Workflows, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Workflows$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Workflows' from JSON`,
-  );
-}
-
-/** @internal */
-export const Layouts$inboundSchema: z.ZodType<Layouts, z.ZodTypeDef, unknown> =
-  z.object({});
-
-export function layoutsFromJSON(
-  jsonString: string,
-): SafeParseResult<Layouts, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Layouts$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Layouts' from JSON`,
-  );
-}
 
 /** @internal */
 export const GetMasterJsonResponseDto$inboundSchema: z.ZodType<
@@ -65,8 +24,8 @@ export const GetMasterJsonResponseDto$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  workflows: z.lazy(() => Workflows$inboundSchema),
-  layouts: z.lazy(() => Layouts$inboundSchema),
+  workflows: z.record(z.any()),
+  layouts: z.record(z.any()),
 });
 
 export function getMasterJsonResponseDtoFromJSON(

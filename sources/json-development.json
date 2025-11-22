@@ -16048,6 +16048,26 @@
             }
           }
         ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "Master JSON file with locale as filename (e.g., en_US.json)"
+                  }
+                },
+                "required": [
+                  "file"
+                ]
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "Master translations uploaded successfully",
@@ -16078,7 +16098,7 @@
         "operationId": "TranslationController_uploadTranslationFiles",
         "x-speakeasy-name-override": "upload",
         "summary": "Upload translation files",
-        "description": "Upload one or more JSON translation files for a specific workflow. Files name must match the locale, e.g. en_US.json",
+        "description": "Upload one or more JSON translation files for a specific workflow. Files name must match the locale, e.g. en_US.json. Supports both \"files\" and \"files[]\" field names for backwards compatibility.",
         "parameters": [
           {
             "name": "idempotency-key",
@@ -16092,11 +16112,38 @@
         ],
         "requestBody": {
           "required": true,
-          "description": "Translation files upload body details",
           "content": {
             "multipart/form-data": {
               "schema": {
-                "$ref": "#/components/schemas/UploadTranslationsRequestDto"
+                "type": "object",
+                "properties": {
+                  "resourceId": {
+                    "type": "string",
+                    "description": "The resource ID to associate localizations with. Accepts identifier or slug format",
+                    "example": "welcome-email"
+                  },
+                  "resourceType": {
+                    "type": "string",
+                    "enum": [
+                      "workflow",
+                      "layout"
+                    ],
+                    "description": "The resource type to associate localizations with"
+                  },
+                  "files": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "binary"
+                    },
+                    "description": "One or more JSON translation files. Filenames must match locale format (e.g., en_US.json, fr_FR.json). Field name can be \"files\" or \"files[]\"."
+                  }
+                },
+                "required": [
+                  "resourceId",
+                  "resourceType",
+                  "files"
+                ]
               }
             }
           }
@@ -36192,6 +36239,9 @@
           "transactionId": {
             "type": "string",
             "description": "The returned transaction ID of the trigger"
+          },
+          "jobData": {
+            "type": "object"
           }
         },
         "required": [
@@ -36725,6 +36775,40 @@
                 "$ref": "#/components/schemas/TenantPayloadDto"
               }
             ]
+          },
+          "context": {
+            "type": "object",
+            "additionalProperties": {
+              "oneOf": [
+                {
+                  "type": "string",
+                  "description": "Simple context id",
+                  "example": "org-acme"
+                },
+                {
+                  "type": "object",
+                  "description": "Rich context object with id and optional data",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "example": "org-acme"
+                    },
+                    "data": {
+                      "type": "object",
+                      "description": "Optional additional context data",
+                      "additionalProperties": true,
+                      "example": {
+                        "name": "Acme Corp",
+                        "region": "us-east-1"
+                      }
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ]
+                }
+              ]
+            }
           }
         },
         "required": [
@@ -45565,28 +45649,6 @@
           "name"
         ]
       },
-      "UploadTranslationsRequestDto": {
-        "type": "object",
-        "properties": {
-          "resourceId": {
-            "type": "string",
-            "description": "The resource ID to associate localizations with. Accepts identifier or slug format",
-            "example": "welcome-email"
-          },
-          "resourceType": {
-            "type": "string",
-            "description": "The resource type to associate localizations with",
-            "enum": [
-              "workflow",
-              "layout"
-            ]
-          }
-        },
-        "required": [
-          "resourceId",
-          "resourceType"
-        ]
-      },
       "UploadTranslationsResponseDto": {
         "type": "object",
         "properties": {
@@ -45650,7 +45712,8 @@
             "example": {
               "welcome.title": "Welcome",
               "welcome.message": "Hello there!"
-            }
+            },
+            "additionalProperties": true
           }
         },
         "required": [
@@ -45688,7 +45751,8 @@
             "example": {
               "welcome.title": "Welcome",
               "welcome.message": "Hello there!"
-            }
+            },
+            "additionalProperties": true
           },
           "createdAt": {
             "type": "string",
@@ -45725,7 +45789,8 @@
                 "reset.title": "Reset your password",
                 "reset.message": "Click the link to reset"
               }
-            }
+            },
+            "additionalProperties": true
           },
           "layouts": {
             "type": "object",
@@ -45735,7 +45800,8 @@
                 "layout.title": "Default layout",
                 "layout.message": "Hello there!"
               }
-            }
+            },
+            "additionalProperties": true
           }
         },
         "required": [
@@ -45765,7 +45831,8 @@
                   "reset.message": "Click the link to reset"
                 }
               }
-            }
+            },
+            "additionalProperties": true
           }
         },
         "required": [

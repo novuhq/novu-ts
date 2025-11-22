@@ -108,6 +108,19 @@ export type TriggerEventToAllRequestDtoActor = SubscriberPayloadDto | string;
  */
 export type TriggerEventToAllRequestDtoTenant = string | TenantPayloadDto;
 
+/**
+ * Rich context object with id and optional data
+ */
+export type Context2 = {
+  id: string;
+  /**
+   * Optional additional context data
+   */
+  data?: { [k: string]: any } | undefined;
+};
+
+export type TriggerEventToAllRequestDtoContext = Context2 | string;
+
 export type TriggerEventToAllRequestDto = {
   /**
    * The trigger identifier associated for the template you wish to send. This identifier can be found on the template page.
@@ -143,6 +156,7 @@ export type TriggerEventToAllRequestDto = {
    *     If a new tenant object is provided, we will create a new tenant.
    */
   tenant?: string | TenantPayloadDto | undefined;
+  context?: { [k: string]: Context2 | string } | undefined;
 };
 
 /** @internal */
@@ -264,6 +278,48 @@ export function triggerEventToAllRequestDtoTenantToJSON(
 }
 
 /** @internal */
+export type Context2$Outbound = {
+  id: string;
+  data?: { [k: string]: any } | undefined;
+};
+
+/** @internal */
+export const Context2$outboundSchema: z.ZodType<
+  Context2$Outbound,
+  z.ZodTypeDef,
+  Context2
+> = z.object({
+  id: z.string(),
+  data: z.record(z.any()).optional(),
+});
+
+export function context2ToJSON(context2: Context2): string {
+  return JSON.stringify(Context2$outboundSchema.parse(context2));
+}
+
+/** @internal */
+export type TriggerEventToAllRequestDtoContext$Outbound =
+  | Context2$Outbound
+  | string;
+
+/** @internal */
+export const TriggerEventToAllRequestDtoContext$outboundSchema: z.ZodType<
+  TriggerEventToAllRequestDtoContext$Outbound,
+  z.ZodTypeDef,
+  TriggerEventToAllRequestDtoContext
+> = z.union([z.lazy(() => Context2$outboundSchema), z.string()]);
+
+export function triggerEventToAllRequestDtoContextToJSON(
+  triggerEventToAllRequestDtoContext: TriggerEventToAllRequestDtoContext,
+): string {
+  return JSON.stringify(
+    TriggerEventToAllRequestDtoContext$outboundSchema.parse(
+      triggerEventToAllRequestDtoContext,
+    ),
+  );
+}
+
+/** @internal */
 export type TriggerEventToAllRequestDto$Outbound = {
   name: string;
   payload: { [k: string]: any };
@@ -271,6 +327,7 @@ export type TriggerEventToAllRequestDto$Outbound = {
   transactionId?: string | undefined;
   actor?: SubscriberPayloadDto$Outbound | string | undefined;
   tenant?: string | TenantPayloadDto$Outbound | undefined;
+  context?: { [k: string]: Context2$Outbound | string } | undefined;
 };
 
 /** @internal */
@@ -286,6 +343,9 @@ export const TriggerEventToAllRequestDto$outboundSchema: z.ZodType<
   transactionId: z.string().optional(),
   actor: z.union([SubscriberPayloadDto$outboundSchema, z.string()]).optional(),
   tenant: z.union([z.string(), TenantPayloadDto$outboundSchema]).optional(),
+  context: z.record(
+    z.union([z.lazy(() => Context2$outboundSchema), z.string()]),
+  ).optional(),
 });
 
 export function triggerEventToAllRequestDtoToJSON(
