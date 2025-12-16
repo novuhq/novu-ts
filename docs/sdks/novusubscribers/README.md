@@ -1,5 +1,4 @@
-# NovuSubscribers
-(*topics.subscribers*)
+# Topics.Subscribers
 
 ## Overview
 

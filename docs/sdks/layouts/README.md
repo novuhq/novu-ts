@@ -1,5 +1,4 @@
 # Layouts
-(*layouts*)
 
 ## Overview
 
@@ -112,7 +111,10 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.layouts.list({});
+  const result = await novu.layouts.list({
+    limit: 10,
+    offset: 0,
+  });
 
   console.log(result);
 }
@@ -135,7 +137,10 @@ const novu = new NovuCore({
 });
 
 async function run() {
-  const res = await layoutsList(novu, {});
+  const res = await layoutsList(novu, {
+    limit: 10,
+    offset: 0,
+  });
   if (res.ok) {
     const { value: result } = res;
     console.log(result);

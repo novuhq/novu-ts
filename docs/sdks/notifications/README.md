@@ -1,5 +1,4 @@
 # Notifications
-(*notifications*)
 
 ## Overview
 

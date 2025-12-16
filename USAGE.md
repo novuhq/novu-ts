@@ -88,6 +88,9 @@ async function run() {
       timezone: "America/New_York",
       subscriberId: "<id>",
     },
+    context: {
+      "key": "org-acme",
+    },
   });
 
   console.log(result);

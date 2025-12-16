@@ -1,6 +1,6 @@
 # Channel
 
-The channel type for the integration, which defines how the integration communicates (e.g., email, SMS).
+The channel type (email, sms, push, chat, etc.).
 
 ## Example Usage
 

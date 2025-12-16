@@ -239,6 +239,9 @@ async function run() {
       timezone: "America/New_York",
       subscriberId: "<id>",
     },
+    context: {
+      "key": "org-acme",
+    },
   });
 
   console.log(result);
@@ -288,6 +291,9 @@ async function run() {
       locale: "en-US",
       timezone: "America/New_York",
       subscriberId: "<id>",
+    },
+    context: {
+      "key": "org-acme",
     },
   });
   if (res.ok) {

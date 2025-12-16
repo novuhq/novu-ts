@@ -12,7 +12,7 @@ import { TopicDto, TopicDto$inboundSchema } from "./topicdto.js";
 /**
  * The subscriber information
  */
-export type Subscriber = {
+export type SubscriptionDtoSubscriber = {
   /**
    * The identifier of the subscriber
    */
@@ -45,13 +45,17 @@ export type SubscriptionDto = {
    */
   id: string;
   /**
+   * The identifier of the subscription
+   */
+  identifier?: string | undefined;
+  /**
    * The topic information
    */
   topic: TopicDto;
   /**
    * The subscriber information
    */
-  subscriber: Subscriber | null;
+  subscriber: SubscriptionDtoSubscriber | null;
   /**
    * The creation date of the subscription
    */
@@ -63,8 +67,8 @@ export type SubscriptionDto = {
 };
 
 /** @internal */
-export const Subscriber$inboundSchema: z.ZodType<
-  Subscriber,
+export const SubscriptionDtoSubscriber$inboundSchema: z.ZodType<
+  SubscriptionDtoSubscriber,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -80,13 +84,13 @@ export const Subscriber$inboundSchema: z.ZodType<
   });
 });
 
-export function subscriberFromJSON(
+export function subscriptionDtoSubscriberFromJSON(
   jsonString: string,
-): SafeParseResult<Subscriber, SDKValidationError> {
+): SafeParseResult<SubscriptionDtoSubscriber, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => Subscriber$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Subscriber' from JSON`,
+    (x) => SubscriptionDtoSubscriber$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'SubscriptionDtoSubscriber' from JSON`,
   );
 }
 
@@ -97,8 +101,9 @@ export const SubscriptionDto$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   _id: z.string(),
+  identifier: z.string().optional(),
   topic: TopicDto$inboundSchema,
-  subscriber: z.nullable(z.lazy(() => Subscriber$inboundSchema)),
+  subscriber: z.nullable(z.lazy(() => SubscriptionDtoSubscriber$inboundSchema)),
   createdAt: z.string(),
   updatedAt: z.string(),
 }).transform((v) => {

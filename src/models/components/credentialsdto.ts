@@ -55,6 +55,7 @@ export type CredentialsDto = {
   accessKey?: string | undefined;
   appSid?: string | undefined;
   senderId?: string | undefined;
+  tenantId?: string | undefined;
   appIOBaseUrl?: string | undefined;
 };
 
@@ -137,6 +138,7 @@ export const CredentialsDto$inboundSchema: z.ZodType<
   accessKey: z.string().optional(),
   appSid: z.string().optional(),
   senderId: z.string().optional(),
+  tenantId: z.string().optional(),
   AppIOBaseUrl: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -189,6 +191,7 @@ export type CredentialsDto$Outbound = {
   accessKey?: string | undefined;
   appSid?: string | undefined;
   senderId?: string | undefined;
+  tenantId?: string | undefined;
   AppIOBaseUrl?: string | undefined;
 };
 
@@ -242,6 +245,7 @@ export const CredentialsDto$outboundSchema: z.ZodType<
   accessKey: z.string().optional(),
   appSid: z.string().optional(),
   senderId: z.string().optional(),
+  tenantId: z.string().optional(),
   appIOBaseUrl: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {

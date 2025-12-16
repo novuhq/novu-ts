@@ -7,32 +7,28 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
-export type GetContextResponseDtoData = {};
-
 export type GetContextResponseDto = {
+  /**
+   * Context type (e.g., tenant, app, workspace)
+   */
   type: string;
+  /**
+   * Unique identifier for this context
+   */
   id: string;
-  data: GetContextResponseDtoData;
+  /**
+   * Custom data associated with this context
+   */
+  data: { [k: string]: any };
+  /**
+   * Creation timestamp
+   */
   createdAt: string;
+  /**
+   * Last update timestamp
+   */
   updatedAt: string;
 };
-
-/** @internal */
-export const GetContextResponseDtoData$inboundSchema: z.ZodType<
-  GetContextResponseDtoData,
-  z.ZodTypeDef,
-  unknown
-> = z.object({});
-
-export function getContextResponseDtoDataFromJSON(
-  jsonString: string,
-): SafeParseResult<GetContextResponseDtoData, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetContextResponseDtoData$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetContextResponseDtoData' from JSON`,
-  );
-}
 
 /** @internal */
 export const GetContextResponseDto$inboundSchema: z.ZodType<
@@ -42,7 +38,7 @@ export const GetContextResponseDto$inboundSchema: z.ZodType<
 > = z.object({
   type: z.string(),
   id: z.string(),
-  data: z.lazy(() => GetContextResponseDtoData$inboundSchema),
+  data: z.record(z.any()),
   createdAt: z.string(),
   updatedAt: z.string(),
 });

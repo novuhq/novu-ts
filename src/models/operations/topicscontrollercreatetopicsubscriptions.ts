@@ -24,7 +24,7 @@ export type TopicsControllerCreateTopicSubscriptionsRequest = {
 
 export type TopicsControllerCreateTopicSubscriptionsResponse = {
   headers: { [k: string]: Array<string> };
-  result: components.CreateTopicSubscriptionsResponseDto;
+  result: components.CreateSubscriptionsResponseDto;
 };
 
 /** @internal */
@@ -72,7 +72,7 @@ export const TopicsControllerCreateTopicSubscriptionsResponse$inboundSchema:
     unknown
   > = z.object({
     Headers: z.record(z.array(z.string())).default({}),
-    Result: components.CreateTopicSubscriptionsResponseDto$inboundSchema,
+    Result: components.CreateSubscriptionsResponseDto$inboundSchema,
   }).transform((v) => {
     return remap$(v, {
       "Headers": "headers",

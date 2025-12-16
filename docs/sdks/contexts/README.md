@@ -1,5 +1,4 @@
 # Contexts
-(*contexts*)
 
 ## Overview
 
@@ -30,7 +29,13 @@ async function run() {
   const result = await novu.contexts.create({
     type: "tenant",
     id: "org-acme",
-    data: {},
+    data: {
+      "tenantName": "Acme Corp",
+      "region": "us-east-1",
+      "settings": {
+        "theme": "dark",
+      },
+    },
   });
 
   console.log(result);
@@ -57,7 +62,13 @@ async function run() {
   const res = await contextsCreate(novu, {
     type: "tenant",
     id: "org-acme",
-    data: {},
+    data: {
+      "tenantName": "Acme Corp",
+      "region": "us-east-1",
+      "settings": {
+        "theme": "dark",
+      },
+    },
   });
   if (res.ok) {
     const { value: result } = res;
@@ -113,6 +124,7 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.contexts.list({
+    limit: 10,
     id: "tenant-prod-123",
     search: "tenant",
   });
@@ -139,6 +151,7 @@ const novu = new NovuCore({
 
 async function run() {
   const res = await contextsList(novu, {
+    limit: 10,
     id: "tenant-prod-123",
     search: "tenant",
   });
@@ -197,7 +210,13 @@ async function run() {
     id: "<id>",
     type: "<value>",
     updateContextRequestDto: {
-      data: {},
+      data: {
+        "tenantName": "Acme Corp",
+        "region": "us-east-1",
+        "settings": {
+          "theme": "dark",
+        },
+      },
     },
   });
 
@@ -226,7 +245,13 @@ async function run() {
     id: "<id>",
     type: "<value>",
     updateContextRequestDto: {
-      data: {},
+      data: {
+        "tenantName": "Acme Corp",
+        "region": "us-east-1",
+        "settings": {
+          "theme": "dark",
+        },
+      },
     },
   });
   if (res.ok) {

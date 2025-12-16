@@ -7,23 +7,21 @@ import { ContextsControllerCreateContextResponse } from "@novu/api/models/operat
 
 let value: ContextsControllerCreateContextResponse = {
   headers: {
-    "key": [
-      "<value 1>",
-      "<value 2>",
-      "<value 3>",
-    ],
-    "key1": [],
-    "key2": [
+    "key": [],
+    "key1": [
       "<value 1>",
       "<value 2>",
     ],
+    "key2": [],
   },
   result: {
     type: "<value>",
     id: "<id>",
-    data: {},
-    createdAt: "1712519779260",
-    updatedAt: "1735648218923",
+    data: {
+      "key": "<value>",
+    },
+    createdAt: "1720585696592",
+    updatedAt: "1735668520825",
   },
 };
 ```

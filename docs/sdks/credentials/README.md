@@ -1,5 +1,4 @@
-# Credentials
-(*subscribers.credentials*)
+# Subscribers.Credentials
 
 ## Overview
 

@@ -4,6 +4,10 @@
 
 import { NovuCore } from "../core.js";
 import { appendForm, encodeSimple } from "../lib/encodings.js";
+import {
+  getContentTypeFromFileName,
+  readableStreamToArrayBuffer,
+} from "../lib/files.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -23,17 +27,20 @@ import { ResponseValidationError } from "../models/errors/responsevalidationerro
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import * as operations from "../models/operations/index.js";
 import { APICall, APIPromise } from "../types/async.js";
+import { isBlobLike } from "../types/blobs.js";
 import { Result } from "../types/fp.js";
+import { isReadableStream } from "../types/streams.js";
 
 /**
  * Upload translation files
  *
  * @remarks
- * Upload one or more JSON translation files for a specific workflow. Files name must match the locale, e.g. en_US.json
+ * Upload one or more JSON translation files for a specific workflow. Files name must match the locale, e.g. en_US.json. Supports both "files" and "files[]" field names for backwards compatibility.
  */
 export function translationsUpload(
   client: NovuCore,
-  uploadTranslationsRequestDto: components.UploadTranslationsRequestDto,
+  requestBody:
+    operations.TranslationControllerUploadTranslationFilesRequestBody,
   idempotencyKey?: string | undefined,
   options?: RequestOptions,
 ): APIPromise<
@@ -51,7 +58,7 @@ export function translationsUpload(
 > {
   return new APIPromise($do(
     client,
-    uploadTranslationsRequestDto,
+    requestBody,
     idempotencyKey,
     options,
   ));
@@ -59,7 +66,8 @@ export function translationsUpload(
 
 async function $do(
   client: NovuCore,
-  uploadTranslationsRequestDto: components.UploadTranslationsRequestDto,
+  requestBody:
+    operations.TranslationControllerUploadTranslationFilesRequestBody,
   idempotencyKey?: string | undefined,
   options?: RequestOptions,
 ): Promise<
@@ -79,7 +87,7 @@ async function $do(
   ]
 > {
   const input: operations.TranslationControllerUploadTranslationFilesRequest = {
-    uploadTranslationsRequestDto: uploadTranslationsRequestDto,
+    requestBody: requestBody,
     idempotencyKey: idempotencyKey,
   };
 
@@ -97,16 +105,28 @@ async function $do(
   const payload = parsed.value;
   const body = new FormData();
 
-  appendForm(
-    body,
-    "resourceId",
-    payload.UploadTranslationsRequestDto.resourceId,
-  );
-  appendForm(
-    body,
-    "resourceType",
-    payload.UploadTranslationsRequestDto.resourceType,
-  );
+  for (const fileItem of payload.RequestBody.files) {
+    if (isBlobLike(fileItem)) {
+      appendForm(body, "files[]", fileItem);
+    } else if (isReadableStream(fileItem.content)) {
+      const buffer = await readableStreamToArrayBuffer(fileItem.content);
+      const contentType = getContentTypeFromFileName(fileItem.fileName)
+        || "application/octet-stream";
+      const blob = new Blob([buffer], { type: contentType });
+      appendForm(body, "files[]", blob, fileItem.fileName);
+    } else {
+      const contentType = getContentTypeFromFileName(fileItem.fileName)
+        || "application/octet-stream";
+      appendForm(
+        body,
+        "files[]",
+        new Blob([fileItem.content], { type: contentType }),
+        fileItem.fileName,
+      );
+    }
+  }
+  appendForm(body, "resourceId", payload.RequestBody.resourceId);
+  appendForm(body, "resourceType", payload.RequestBody.resourceType);
 
   const path = pathToFunc("/v2/translations/upload")();
 

@@ -1,5 +1,4 @@
-# Steps
-(*workflows.steps*)
+# Workflows.Steps
 
 ## Overview
 

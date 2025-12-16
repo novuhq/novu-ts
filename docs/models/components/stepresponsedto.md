@@ -15,8 +15,8 @@ let value: StepResponseDto = {
   id: "<id>",
   name: "<value>",
   slug: "<value>",
-  type: "throttle",
-  origin: "novu-cloud",
+  type: "<value>",
+  origin: "external",
   workflowId: "<id>",
   workflowDatabaseId: "<id>",
 };
@@ -33,7 +33,7 @@ let value: StepResponseDto = {
 | `id`                                                                             | *string*                                                                         | :heavy_check_mark:                                                               | Database identifier of the step                                                  |
 | `name`                                                                           | *string*                                                                         | :heavy_check_mark:                                                               | Name of the step                                                                 |
 | `slug`                                                                           | *string*                                                                         | :heavy_check_mark:                                                               | Slug of the step                                                                 |
-| `type`                                                                           | [components.StepTypeEnum](../../models/components/steptypeenum.md)               | :heavy_check_mark:                                                               | Type of the step                                                                 |
+| `type`                                                                           | *string*                                                                         | :heavy_check_mark:                                                               | Type of the step                                                                 |
 | `origin`                                                                         | [components.ResourceOriginEnum](../../models/components/resourceoriginenum.md)   | :heavy_check_mark:                                                               | Origin of the layout                                                             |
 | `workflowId`                                                                     | *string*                                                                         | :heavy_check_mark:                                                               | Workflow identifier                                                              |
 | `workflowDatabaseId`                                                             | *string*                                                                         | :heavy_check_mark:                                                               | Workflow database identifier                                                     |

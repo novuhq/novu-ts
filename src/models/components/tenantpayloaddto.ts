@@ -4,37 +4,30 @@
 
 import * as z from "zod/v3";
 
-export type TenantPayloadDtoData = {};
+export type Data = {};
 
 export type TenantPayloadDto = {
   identifier?: string | undefined;
   name?: string | undefined;
-  data?: TenantPayloadDtoData | undefined;
+  data?: Data | undefined;
 };
 
 /** @internal */
-export type TenantPayloadDtoData$Outbound = {};
+export type Data$Outbound = {};
 
 /** @internal */
-export const TenantPayloadDtoData$outboundSchema: z.ZodType<
-  TenantPayloadDtoData$Outbound,
-  z.ZodTypeDef,
-  TenantPayloadDtoData
-> = z.object({});
+export const Data$outboundSchema: z.ZodType<Data$Outbound, z.ZodTypeDef, Data> =
+  z.object({});
 
-export function tenantPayloadDtoDataToJSON(
-  tenantPayloadDtoData: TenantPayloadDtoData,
-): string {
-  return JSON.stringify(
-    TenantPayloadDtoData$outboundSchema.parse(tenantPayloadDtoData),
-  );
+export function dataToJSON(data: Data): string {
+  return JSON.stringify(Data$outboundSchema.parse(data));
 }
 
 /** @internal */
 export type TenantPayloadDto$Outbound = {
   identifier?: string | undefined;
   name?: string | undefined;
-  data?: TenantPayloadDtoData$Outbound | undefined;
+  data?: Data$Outbound | undefined;
 };
 
 /** @internal */
@@ -45,7 +38,7 @@ export const TenantPayloadDto$outboundSchema: z.ZodType<
 > = z.object({
   identifier: z.string().optional(),
   name: z.string().optional(),
-  data: z.lazy(() => TenantPayloadDtoData$outboundSchema).optional(),
+  data: z.lazy(() => Data$outboundSchema).optional(),
 });
 
 export function tenantPayloadDtoToJSON(

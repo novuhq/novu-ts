@@ -9,7 +9,13 @@ let value: ContextsControllerUpdateContextRequest = {
   id: "<id>",
   type: "<value>",
   updateContextRequestDto: {
-    data: {},
+    data: {
+      "tenantName": "Acme Corp",
+      "region": "us-east-1",
+      "settings": {
+        "theme": "dark",
+      },
+    },
   },
 };
 ```

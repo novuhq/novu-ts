@@ -9,7 +9,13 @@ let value: ContextsControllerCreateContextRequest = {
   createContextRequestDto: {
     type: "tenant",
     id: "org-acme",
-    data: {},
+    data: {
+      "tenantName": "Acme Corp",
+      "region": "us-east-1",
+      "settings": {
+        "theme": "dark",
+      },
+    },
   },
 };
 ```

@@ -126,7 +126,7 @@ export type Tenant = string | TenantPayloadDto;
 /**
  * Rich context object with id and optional data
  */
-export type Two = {
+export type TriggerEventRequestDtoContext2 = {
   id: string;
   /**
    * Optional additional context data
@@ -134,7 +134,9 @@ export type Two = {
   data?: { [k: string]: any } | undefined;
 };
 
-export type Context = Two | string;
+export type TriggerEventRequestDtoContext =
+  | TriggerEventRequestDtoContext2
+  | string;
 
 export type TriggerEventRequestDto = {
   /**
@@ -182,7 +184,9 @@ export type TriggerEventRequestDto = {
    *     Existing tenants will be updated with the provided details.
    */
   tenant?: string | TenantPayloadDto | undefined;
-  context?: { [k: string]: Two | string } | undefined;
+  context?:
+    | { [k: string]: TriggerEventRequestDtoContext2 | string }
+    | undefined;
 };
 
 /** @internal */
@@ -310,34 +314,54 @@ export function tenantToJSON(tenant: Tenant): string {
 }
 
 /** @internal */
-export type Two$Outbound = {
+export type TriggerEventRequestDtoContext2$Outbound = {
   id: string;
   data?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
-export const Two$outboundSchema: z.ZodType<Two$Outbound, z.ZodTypeDef, Two> = z
-  .object({
-    id: z.string(),
-    data: z.record(z.any()).optional(),
-  });
+export const TriggerEventRequestDtoContext2$outboundSchema: z.ZodType<
+  TriggerEventRequestDtoContext2$Outbound,
+  z.ZodTypeDef,
+  TriggerEventRequestDtoContext2
+> = z.object({
+  id: z.string(),
+  data: z.record(z.any()).optional(),
+});
 
-export function twoToJSON(two: Two): string {
-  return JSON.stringify(Two$outboundSchema.parse(two));
+export function triggerEventRequestDtoContext2ToJSON(
+  triggerEventRequestDtoContext2: TriggerEventRequestDtoContext2,
+): string {
+  return JSON.stringify(
+    TriggerEventRequestDtoContext2$outboundSchema.parse(
+      triggerEventRequestDtoContext2,
+    ),
+  );
 }
 
 /** @internal */
-export type Context$Outbound = Two$Outbound | string;
+export type TriggerEventRequestDtoContext$Outbound =
+  | TriggerEventRequestDtoContext2$Outbound
+  | string;
 
 /** @internal */
-export const Context$outboundSchema: z.ZodType<
-  Context$Outbound,
+export const TriggerEventRequestDtoContext$outboundSchema: z.ZodType<
+  TriggerEventRequestDtoContext$Outbound,
   z.ZodTypeDef,
-  Context
-> = z.union([z.lazy(() => Two$outboundSchema), z.string()]);
+  TriggerEventRequestDtoContext
+> = z.union([
+  z.lazy(() => TriggerEventRequestDtoContext2$outboundSchema),
+  z.string(),
+]);
 
-export function contextToJSON(context: Context): string {
-  return JSON.stringify(Context$outboundSchema.parse(context));
+export function triggerEventRequestDtoContextToJSON(
+  triggerEventRequestDtoContext: TriggerEventRequestDtoContext,
+): string {
+  return JSON.stringify(
+    TriggerEventRequestDtoContext$outboundSchema.parse(
+      triggerEventRequestDtoContext,
+    ),
+  );
 }
 
 /** @internal */
@@ -353,7 +377,9 @@ export type TriggerEventRequestDto$Outbound = {
   transactionId?: string | undefined;
   actor?: SubscriberPayloadDto$Outbound | string | undefined;
   tenant?: string | TenantPayloadDto$Outbound | undefined;
-  context?: { [k: string]: Two$Outbound | string } | undefined;
+  context?:
+    | { [k: string]: TriggerEventRequestDtoContext2$Outbound | string }
+    | undefined;
 };
 
 /** @internal */
@@ -380,8 +406,12 @@ export const TriggerEventRequestDto$outboundSchema: z.ZodType<
   transactionId: z.string().optional(),
   actor: z.union([SubscriberPayloadDto$outboundSchema, z.string()]).optional(),
   tenant: z.union([z.string(), TenantPayloadDto$outboundSchema]).optional(),
-  context: z.record(z.union([z.lazy(() => Two$outboundSchema), z.string()]))
-    .optional(),
+  context: z.record(
+    z.union([
+      z.lazy(() => TriggerEventRequestDtoContext2$outboundSchema),
+      z.string(),
+    ]),
+  ).optional(),
 }).transform((v) => {
   return remap$(v, {
     workflowId: "name",

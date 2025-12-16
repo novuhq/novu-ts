@@ -1,5 +1,4 @@
-# Master
-(*translations.master*)
+# Translations.Master
 
 ## Overview
 
@@ -96,7 +95,18 @@ const novu = new Novu({
 async function run() {
   const result = await novu.translations.master.import({
     locale: "en_US",
-    masterJson: {},
+    masterJson: {
+      "workflows": {
+        "welcome-email": {
+          "welcome.title": "Welcome to our platform",
+          "welcome.message": "Hello there!",
+        },
+        "password-reset": {
+          "reset.title": "Reset your password",
+          "reset.message": "Click the link to reset",
+        },
+      },
+    },
   });
 
   console.log(result);
@@ -122,7 +132,18 @@ const novu = new NovuCore({
 async function run() {
   const res = await translationsMasterImport(novu, {
     locale: "en_US",
-    masterJson: {},
+    masterJson: {
+      "workflows": {
+        "welcome-email": {
+          "welcome.title": "Welcome to our platform",
+          "welcome.message": "Hello there!",
+        },
+        "password-reset": {
+          "reset.title": "Reset your password",
+          "reset.message": "Click the link to reset",
+        },
+      },
+    },
   });
   if (res.ok) {
     const { value: result } = res;
@@ -164,13 +185,16 @@ Upload a master JSON file containing translations for multiple workflows. Locale
 <!-- UsageSnippet language="typescript" operationID="TranslationController_uploadMasterJsonEndpoint" method="post" path="/v2/translations/master-json/upload" -->
 ```typescript
 import { Novu } from "@novu/api";
+import { openAsBlob } from "node:fs";
 
 const novu = new Novu({
   secretKey: "YOUR_SECRET_KEY_HERE",
 });
 
 async function run() {
-  const result = await novu.translations.master.upload();
+  const result = await novu.translations.master.upload({
+    file: await openAsBlob("example.file"),
+  });
 
   console.log(result);
 }
@@ -185,6 +209,7 @@ The standalone function version of this method:
 ```typescript
 import { NovuCore } from "@novu/api/core.js";
 import { translationsMasterUpload } from "@novu/api/funcs/translationsMasterUpload.js";
+import { openAsBlob } from "node:fs";
 
 // Use `NovuCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -193,7 +218,9 @@ const novu = new NovuCore({
 });
 
 async function run() {
-  const res = await translationsMasterUpload(novu);
+  const res = await translationsMasterUpload(novu, {
+    file: await openAsBlob("example.file"),
+  });
   if (res.ok) {
     const { value: result } = res;
     console.log(result);
@@ -209,6 +236,7 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `requestBody`                                                                                                                                                                  | [operations.TranslationControllerUploadMasterJsonEndpointRequestBody](../../models/operations/translationcontrolleruploadmasterjsonendpointrequestbody.md)                     | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
 | `idempotencyKey`                                                                                                                                                               | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | A header for idempotency purposes                                                                                                                                              |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |

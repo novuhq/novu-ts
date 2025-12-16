@@ -4,11 +4,6 @@
 
 import * as z from "zod/v3";
 
-/**
- * Optional custom data to associate with this context.
- */
-export type Data = {};
-
 export type CreateContextRequestDto = {
   /**
    * Context type (e.g., tenant, app, workspace). Must be lowercase alphanumeric with optional separators.
@@ -21,25 +16,14 @@ export type CreateContextRequestDto = {
   /**
    * Optional custom data to associate with this context.
    */
-  data?: Data | undefined;
+  data?: { [k: string]: any } | undefined;
 };
-
-/** @internal */
-export type Data$Outbound = {};
-
-/** @internal */
-export const Data$outboundSchema: z.ZodType<Data$Outbound, z.ZodTypeDef, Data> =
-  z.object({});
-
-export function dataToJSON(data: Data): string {
-  return JSON.stringify(Data$outboundSchema.parse(data));
-}
 
 /** @internal */
 export type CreateContextRequestDto$Outbound = {
   type: string;
   id: string;
-  data?: Data$Outbound | undefined;
+  data?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -50,7 +34,7 @@ export const CreateContextRequestDto$outboundSchema: z.ZodType<
 > = z.object({
   type: z.string(),
   id: z.string(),
-  data: z.lazy(() => Data$outboundSchema).optional(),
+  data: z.record(z.any()).optional(),
 });
 
 export function createContextRequestDtoToJSON(

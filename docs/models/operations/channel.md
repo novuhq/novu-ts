@@ -1,13 +1,13 @@
 # Channel
 
-The channel of the message to be deleted
+Filter by channel type (email, sms, push, chat, etc.).
 
 ## Example Usage
 
 ```typescript
 import { Channel } from "@novu/api/models/operations";
 
-let value: Channel = "email";
+let value: Channel = "chat";
 ```
 
 ## Values

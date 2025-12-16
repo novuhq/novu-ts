@@ -17,11 +17,6 @@ export const ResourceType = {
  */
 export type ResourceType = ClosedEnum<typeof ResourceType>;
 
-/**
- * Translation content as JSON object
- */
-export type Content = {};
-
 export type CreateTranslationRequestDto = {
   /**
    * The resource ID to associate translation with. Accepts identifier or slug format
@@ -38,7 +33,7 @@ export type CreateTranslationRequestDto = {
   /**
    * Translation content as JSON object
    */
-  content: Content;
+  content: { [k: string]: any };
 };
 
 /** @internal */
@@ -46,25 +41,11 @@ export const ResourceType$outboundSchema: z.ZodNativeEnum<typeof ResourceType> =
   z.nativeEnum(ResourceType);
 
 /** @internal */
-export type Content$Outbound = {};
-
-/** @internal */
-export const Content$outboundSchema: z.ZodType<
-  Content$Outbound,
-  z.ZodTypeDef,
-  Content
-> = z.object({});
-
-export function contentToJSON(content: Content): string {
-  return JSON.stringify(Content$outboundSchema.parse(content));
-}
-
-/** @internal */
 export type CreateTranslationRequestDto$Outbound = {
   resourceId: string;
   resourceType: string;
   locale: string;
-  content: Content$Outbound;
+  content: { [k: string]: any };
 };
 
 /** @internal */
@@ -76,7 +57,7 @@ export const CreateTranslationRequestDto$outboundSchema: z.ZodType<
   resourceId: z.string(),
   resourceType: ResourceType$outboundSchema,
   locale: z.string(),
-  content: z.lazy(() => Content$outboundSchema),
+  content: z.record(z.any()),
 });
 
 export function createTranslationRequestDtoToJSON(
