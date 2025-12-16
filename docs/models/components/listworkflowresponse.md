@@ -17,12 +17,19 @@ let value: ListWorkflowResponse = {
       status: "ERROR",
       origin: "novu-cloud",
       stepTypeOverviews: [
-        "delay",
+        "<value 1>",
+        "<value 2>",
+        "<value 3>",
       ],
-      steps: [],
+      steps: [
+        {
+          slug: "<value>",
+          type: "<value>",
+        },
+      ],
     },
   ],
-  totalCount: 6530.67,
+  totalCount: 1941.66,
 };
 ```
 

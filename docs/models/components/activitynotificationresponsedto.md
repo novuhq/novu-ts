@@ -21,6 +21,7 @@ let value: ActivityNotificationResponseDto = {
           detail: "<value>",
           isRetry: false,
           isTest: true,
+          providerId: "slack",
           source: "Credentials",
         },
       ],
@@ -48,7 +49,7 @@ let value: ActivityNotificationResponseDto = {
         "workflowId": "some_wf_id",
         "stepId": "some_wf_id",
       },
-      providerId: "ryver",
+      providerId: "slack",
       status: "<value>",
     },
   ],
@@ -68,7 +69,7 @@ let value: ActivityNotificationResponseDto = {
 | `digestedNotificationId`                                                                                                     | *string*                                                                                                                     | :heavy_minus_sign:                                                                                                           | Digested Notification ID                                                                                                     |
 | `createdAt`                                                                                                                  | *string*                                                                                                                     | :heavy_minus_sign:                                                                                                           | Creation time of the notification                                                                                            |
 | `updatedAt`                                                                                                                  | *string*                                                                                                                     | :heavy_minus_sign:                                                                                                           | Last updated time of the notification                                                                                        |
-| `channels`                                                                                                                   | [components.StepTypeEnum](../../models/components/steptypeenum.md)[]                                                         | :heavy_minus_sign:                                                                                                           | N/A                                                                                                                          |
+| `channels`                                                                                                                   | *string*[]                                                                                                                   | :heavy_minus_sign:                                                                                                           | N/A                                                                                                                          |
 | `subscriber`                                                                                                                 | [components.ActivityNotificationSubscriberResponseDto](../../models/components/activitynotificationsubscriberresponsedto.md) | :heavy_minus_sign:                                                                                                           | Subscriber of the notification                                                                                               |
 | `template`                                                                                                                   | [components.ActivityNotificationTemplateResponseDto](../../models/components/activitynotificationtemplateresponsedto.md)     | :heavy_minus_sign:                                                                                                           | Template of the notification                                                                                                 |
 | `jobs`                                                                                                                       | [components.ActivityNotificationJobResponseDto](../../models/components/activitynotificationjobresponsedto.md)[]             | :heavy_minus_sign:                                                                                                           | Jobs of the notification                                                                                                     |

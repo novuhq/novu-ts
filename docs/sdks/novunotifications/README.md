@@ -1,5 +1,4 @@
-# NovuNotifications
-(*subscribers.notifications*)
+# Subscribers.Notifications
 
 ## Overview
 
@@ -25,6 +24,7 @@ const novu = new Novu({
 async function run() {
   const result = await novu.subscribers.notifications.feed({
     subscriberId: "<id>",
+    page: 0,
     payload: "btoa(JSON.stringify({ foo: 123 })) results in base64 encoded string like eyJmb28iOjEyM30=",
   });
 
@@ -51,6 +51,7 @@ const novu = new NovuCore({
 async function run() {
   const res = await subscribersNotificationsFeed(novu, {
     subscriberId: "<id>",
+    page: 0,
     payload: "btoa(JSON.stringify({ foo: 123 })) results in base64 encoded string like eyJmb28iOjEyM30=",
   });
   if (res.ok) {

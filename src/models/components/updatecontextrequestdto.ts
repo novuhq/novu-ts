@@ -4,41 +4,16 @@
 
 import * as z from "zod/v3";
 
-/**
- * Custom data to associate with this context. Replaces existing data.
- */
-export type UpdateContextRequestDtoData = {};
-
 export type UpdateContextRequestDto = {
   /**
    * Custom data to associate with this context. Replaces existing data.
    */
-  data: UpdateContextRequestDtoData;
+  data: { [k: string]: any };
 };
 
 /** @internal */
-export type UpdateContextRequestDtoData$Outbound = {};
-
-/** @internal */
-export const UpdateContextRequestDtoData$outboundSchema: z.ZodType<
-  UpdateContextRequestDtoData$Outbound,
-  z.ZodTypeDef,
-  UpdateContextRequestDtoData
-> = z.object({});
-
-export function updateContextRequestDtoDataToJSON(
-  updateContextRequestDtoData: UpdateContextRequestDtoData,
-): string {
-  return JSON.stringify(
-    UpdateContextRequestDtoData$outboundSchema.parse(
-      updateContextRequestDtoData,
-    ),
-  );
-}
-
-/** @internal */
 export type UpdateContextRequestDto$Outbound = {
-  data: UpdateContextRequestDtoData$Outbound;
+  data: { [k: string]: any };
 };
 
 /** @internal */
@@ -47,7 +22,7 @@ export const UpdateContextRequestDto$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   UpdateContextRequestDto
 > = z.object({
-  data: z.lazy(() => UpdateContextRequestDtoData$outboundSchema),
+  data: z.record(z.any()),
 });
 
 export function updateContextRequestDtoToJSON(

@@ -1,5 +1,4 @@
-# Subscriptions
-(*topics.subscriptions*)
+# Topics.Subscriptions
 
 ## Overview
 
@@ -8,6 +7,7 @@
 * [list](#list) - List topic subscriptions
 * [create](#create) - Create topic subscriptions
 * [delete](#delete) - Delete topic subscriptions
+* [update](#update) - Update a topic subscription
 
 ## list
 
@@ -27,6 +27,7 @@ const novu = new Novu({
 async function run() {
   const result = await novu.topics.subscriptions.list({
     topicKey: "<value>",
+    limit: 10,
   });
 
   console.log(result);
@@ -52,6 +53,7 @@ const novu = new NovuCore({
 async function run() {
   const res = await topicsSubscriptionsList(novu, {
     topicKey: "<value>",
+    limit: 10,
   });
   if (res.ok) {
     const { value: result } = res;
@@ -104,9 +106,29 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.topics.subscriptions.create({
-    subscriberIds: [
-      "subscriberId1",
-      "subscriberId2",
+    subscriptions: [
+      {
+        identifier: "subscriber-123-subscription-a",
+        subscriberId: "subscriber-123",
+      },
+      {
+        identifier: "subscriber-456-subscription-b",
+        subscriberId: "subscriber-456",
+      },
+    ],
+    name: "My Topic",
+    preferences: [
+      {
+        condition: {
+          "===": [
+            {
+              "var": "tier",
+            },
+            "premium",
+          ],
+        },
+        workflowId: "workflow-123",
+      },
     ],
   }, "<value>");
 
@@ -132,9 +154,29 @@ const novu = new NovuCore({
 
 async function run() {
   const res = await topicsSubscriptionsCreate(novu, {
-    subscriberIds: [
-      "subscriberId1",
-      "subscriberId2",
+    subscriptions: [
+      {
+        identifier: "subscriber-123-subscription-a",
+        subscriberId: "subscriber-123",
+      },
+      {
+        identifier: "subscriber-456-subscription-b",
+        subscriberId: "subscriber-456",
+      },
+    ],
+    name: "My Topic",
+    preferences: [
+      {
+        condition: {
+          "===": [
+            {
+              "var": "tier",
+            },
+            "premium",
+          ],
+        },
+        workflowId: "workflow-123",
+      },
     ],
   }, "<value>");
   if (res.ok) {
@@ -189,9 +231,17 @@ const novu = new Novu({
 
 async function run() {
   const result = await novu.topics.subscriptions.delete({
-    subscriberIds: [
-      "subscriberId1",
-      "subscriberId2",
+    subscriptions: [
+      {
+        identifier: "subscriber-123-subscription-a",
+        subscriberId: "subscriber-123",
+      },
+      {
+        subscriberId: "subscriber-456",
+      },
+      {
+        identifier: "subscriber-789-subscription-b",
+      },
     ],
   }, "<value>");
 
@@ -217,9 +267,17 @@ const novu = new NovuCore({
 
 async function run() {
   const res = await topicsSubscriptionsDelete(novu, {
-    subscriberIds: [
-      "subscriberId1",
-      "subscriberId2",
+    subscriptions: [
+      {
+        identifier: "subscriber-123-subscription-a",
+        subscriberId: "subscriber-123",
+      },
+      {
+        subscriberId: "subscriber-456",
+      },
+      {
+        identifier: "subscriber-789-subscription-b",
+      },
     ],
   }, "<value>");
   if (res.ok) {
@@ -247,6 +305,117 @@ run();
 ### Response
 
 **Promise\<[operations.TopicsControllerDeleteTopicSubscriptionsResponse](../../models/operations/topicscontrollerdeletetopicsubscriptionsresponse.md)\>**
+
+### Errors
+
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| errors.ErrorDto                        | 414                                    | application/json                       |
+| errors.ErrorDto                        | 400, 401, 403, 404, 405, 409, 413, 415 | application/json                       |
+| errors.ValidationErrorDto              | 422                                    | application/json                       |
+| errors.ErrorDto                        | 500                                    | application/json                       |
+| errors.SDKError                        | 4XX, 5XX                               | \*/\*                                  |
+
+## update
+
+Update a subscription by its unique identifier **subscriptionIdOrIdentifier** for a topic. You can update the preferences and name associated with the subscription.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="TopicsController_updateTopicSubscription" method="patch" path="/v2/topics/{topicKey}/subscriptions/{subscriptionIdOrIdentifier}" -->
+```typescript
+import { Novu } from "@novu/api";
+
+const novu = new Novu({
+  secretKey: "YOUR_SECRET_KEY_HERE",
+});
+
+async function run() {
+  const result = await novu.topics.subscriptions.update({
+    topicKey: "<value>",
+    subscriptionIdOrIdentifier: "<value>",
+    updateTopicSubscriptionRequestDto: {
+      name: "My Subscription",
+      preferences: [
+        {
+          condition: {
+            "===": [
+              {
+                "var": "tier",
+              },
+              "premium",
+            ],
+          },
+          workflowId: "workflow-123",
+        },
+      ],
+    },
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { NovuCore } from "@novu/api/core.js";
+import { topicsSubscriptionsUpdate } from "@novu/api/funcs/topicsSubscriptionsUpdate.js";
+
+// Use `NovuCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const novu = new NovuCore({
+  secretKey: "YOUR_SECRET_KEY_HERE",
+});
+
+async function run() {
+  const res = await topicsSubscriptionsUpdate(novu, {
+    topicKey: "<value>",
+    subscriptionIdOrIdentifier: "<value>",
+    updateTopicSubscriptionRequestDto: {
+      name: "My Subscription",
+      preferences: [
+        {
+          condition: {
+            "===": [
+              {
+                "var": "tier",
+              },
+              "premium",
+            ],
+          },
+          workflowId: "workflow-123",
+        },
+      ],
+    },
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("topicsSubscriptionsUpdate failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.TopicsControllerUpdateTopicSubscriptionRequest](../../models/operations/topicscontrollerupdatetopicsubscriptionrequest.md)                                         | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.TopicsControllerUpdateTopicSubscriptionResponse](../../models/operations/topicscontrollerupdatetopicsubscriptionresponse.md)\>**
 
 ### Errors
 

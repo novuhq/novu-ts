@@ -15,14 +15,11 @@ let value: WorkflowListResponseDto = {
   status: "ERROR",
   origin: "novu-cloud-v1",
   stepTypeOverviews: [
-    "in_app",
+    "<value 1>",
+    "<value 2>",
+    "<value 3>",
   ],
-  steps: [
-    {
-      slug: "<value>",
-      type: "trigger",
-    },
-  ],
+  steps: [],
 };
 ```
 
@@ -43,6 +40,6 @@ let value: WorkflowListResponseDto = {
 | `status`                                                                                                               | [components.WorkflowStatusEnum](../../models/components/workflowstatusenum.md)                                         | :heavy_check_mark:                                                                                                     | Status of the workflow                                                                                                 |
 | `origin`                                                                                                               | [components.ResourceOriginEnum](../../models/components/resourceoriginenum.md)                                         | :heavy_check_mark:                                                                                                     | Origin of the layout                                                                                                   |
 | `lastTriggeredAt`                                                                                                      | *string*                                                                                                               | :heavy_minus_sign:                                                                                                     | Timestamp of the last workflow trigger                                                                                 |
-| `stepTypeOverviews`                                                                                                    | [components.StepTypeEnum](../../models/components/steptypeenum.md)[]                                                   | :heavy_check_mark:                                                                                                     | Overview of step types in the workflow                                                                                 |
+| `stepTypeOverviews`                                                                                                    | *string*[]                                                                                                             | :heavy_check_mark:                                                                                                     | Overview of step types in the workflow                                                                                 |
 | `isTranslationEnabled`                                                                                                 | *boolean*                                                                                                              | :heavy_minus_sign:                                                                                                     | Is translation enabled for the workflow                                                                                |
 | `steps`                                                                                                                | [components.StepListResponseDto](../../models/components/steplistresponsedto.md)[]                                     | :heavy_check_mark:                                                                                                     | Steps of the workflow                                                                                                  |

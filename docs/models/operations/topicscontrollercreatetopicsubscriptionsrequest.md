@@ -8,9 +8,29 @@ import { TopicsControllerCreateTopicSubscriptionsRequest } from "@novu/api/model
 let value: TopicsControllerCreateTopicSubscriptionsRequest = {
   topicKey: "<value>",
   createTopicSubscriptionsRequestDto: {
-    subscriberIds: [
-      "subscriberId1",
-      "subscriberId2",
+    subscriptions: [
+      {
+        identifier: "subscriber-123-subscription-a",
+        subscriberId: "subscriber-123",
+      },
+      {
+        identifier: "subscriber-456-subscription-b",
+        subscriberId: "subscriber-456",
+      },
+    ],
+    name: "My Topic",
+    preferences: [
+      {
+        condition: {
+          "===": [
+            {
+              "var": "tier",
+            },
+            "premium",
+          ],
+        },
+        workflowId: "workflow-123",
+      },
     ],
   },
 };

@@ -6,16 +6,17 @@
 import { TranslationControllerUploadTranslationFilesRequest } from "@novu/api/models/operations";
 
 let value: TranslationControllerUploadTranslationFilesRequest = {
-  uploadTranslationsRequestDto: {
+  requestBody: {
     resourceId: "welcome-email",
     resourceType: "workflow",
+    files: [],
   },
 };
 ```
 
 ## Fields
 
-| Field                                                                                              | Type                                                                                               | Required                                                                                           | Description                                                                                        |
-| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| `idempotencyKey`                                                                                   | *string*                                                                                           | :heavy_minus_sign:                                                                                 | A header for idempotency purposes                                                                  |
-| `uploadTranslationsRequestDto`                                                                     | [components.UploadTranslationsRequestDto](../../models/components/uploadtranslationsrequestdto.md) | :heavy_check_mark:                                                                                 | Translation files upload body details                                                              |
+| Field                                                                                                                                                  | Type                                                                                                                                                   | Required                                                                                                                                               | Description                                                                                                                                            |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `idempotencyKey`                                                                                                                                       | *string*                                                                                                                                               | :heavy_minus_sign:                                                                                                                                     | A header for idempotency purposes                                                                                                                      |
+| `requestBody`                                                                                                                                          | [operations.TranslationControllerUploadTranslationFilesRequestBody](../../models/operations/translationcontrolleruploadtranslationfilesrequestbody.md) | :heavy_check_mark:                                                                                                                                     | N/A                                                                                                                                                    |

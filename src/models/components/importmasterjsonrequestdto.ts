@@ -4,11 +4,6 @@
 
 import * as z from "zod/v3";
 
-/**
- * Master JSON object containing all translations organized by workflow identifier
- */
-export type MasterJson = {};
-
 export type ImportMasterJsonRequestDto = {
   /**
    * The locale for which translations are being imported
@@ -17,27 +12,13 @@ export type ImportMasterJsonRequestDto = {
   /**
    * Master JSON object containing all translations organized by workflow identifier
    */
-  masterJson: MasterJson;
+  masterJson: { [k: string]: any };
 };
-
-/** @internal */
-export type MasterJson$Outbound = {};
-
-/** @internal */
-export const MasterJson$outboundSchema: z.ZodType<
-  MasterJson$Outbound,
-  z.ZodTypeDef,
-  MasterJson
-> = z.object({});
-
-export function masterJsonToJSON(masterJson: MasterJson): string {
-  return JSON.stringify(MasterJson$outboundSchema.parse(masterJson));
-}
 
 /** @internal */
 export type ImportMasterJsonRequestDto$Outbound = {
   locale: string;
-  masterJson: MasterJson$Outbound;
+  masterJson: { [k: string]: any };
 };
 
 /** @internal */
@@ -47,7 +28,7 @@ export const ImportMasterJsonRequestDto$outboundSchema: z.ZodType<
   ImportMasterJsonRequestDto
 > = z.object({
   locale: z.string(),
-  masterJson: z.lazy(() => MasterJson$outboundSchema),
+  masterJson: z.record(z.any()),
 });
 
 export function importMasterJsonRequestDtoToJSON(

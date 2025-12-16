@@ -1,5 +1,4 @@
 # Translations
-(*translations*)
 
 ## Overview
 
@@ -32,7 +31,10 @@ async function run() {
     resourceId: "welcome-email",
     resourceType: "workflow",
     locale: "en_US",
-    content: {},
+    content: {
+      "welcome.title": "Welcome",
+      "welcome.message": "Hello there!",
+    },
   });
 
   console.log(result);
@@ -60,7 +62,10 @@ async function run() {
     resourceId: "welcome-email",
     resourceType: "workflow",
     locale: "en_US",
-    content: {},
+    content: {
+      "welcome.title": "Welcome",
+      "welcome.message": "Hello there!",
+    },
   });
   if (res.ok) {
     const { value: result } = res;
@@ -249,7 +254,7 @@ run();
 
 ## upload
 
-Upload one or more JSON translation files for a specific workflow. Files name must match the locale, e.g. en_US.json
+Upload one or more JSON translation files for a specific workflow. Files name must match the locale, e.g. en_US.json. Supports both "files" and "files[]" field names for backwards compatibility.
 
 ### Example Usage
 
@@ -265,6 +270,7 @@ async function run() {
   const result = await novu.translations.upload({
     resourceId: "welcome-email",
     resourceType: "workflow",
+    files: [],
   });
 
   console.log(result);
@@ -291,6 +297,7 @@ async function run() {
   const res = await translationsUpload(novu, {
     resourceId: "welcome-email",
     resourceType: "workflow",
+    files: [],
   });
   if (res.ok) {
     const { value: result } = res;
@@ -307,7 +314,7 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `uploadTranslationsRequestDto`                                                                                                                                                 | [components.UploadTranslationsRequestDto](../../models/components/uploadtranslationsrequestdto.md)                                                                             | :heavy_check_mark:                                                                                                                                                             | Translation files upload body details                                                                                                                                          |
+| `requestBody`                                                                                                                                                                  | [operations.TranslationControllerUploadTranslationFilesRequestBody](../../models/operations/translationcontrolleruploadtranslationfilesrequestbody.md)                         | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
 | `idempotencyKey`                                                                                                                                                               | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | A header for idempotency purposes                                                                                                                                              |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |

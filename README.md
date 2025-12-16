@@ -49,6 +49,7 @@ For more information about the API: [Novu Documentation](https://docs.novu.co)
   * [Server Selection](#server-selection)
   * [Custom HTTP Client](#custom-http-client)
   * [Authentication](#authentication)
+  * [File uploads](#file-uploads)
   * [Retries](#retries)
   * [Debugging](#debugging)
 * [Development](#development)
@@ -185,6 +186,9 @@ async function run() {
       timezone: "America/New_York",
       subscriberId: "<id>",
     },
+    context: {
+      "key": "org-acme",
+    },
   });
 
   console.log(result);
@@ -256,11 +260,34 @@ run();
 <details open>
 <summary>Available methods</summary>
 
-### [activity](docs/sdks/activity/README.md)
+### [Novu SDK](docs/sdks/novu/README.md)
+
+* [trigger](docs/sdks/novu/README.md#trigger) - Trigger event
+* [cancel](docs/sdks/novu/README.md#cancel) - Cancel triggered event
+* [triggerBroadcast](docs/sdks/novu/README.md#triggerbroadcast) - Broadcast event to all
+* [triggerBulk](docs/sdks/novu/README.md#triggerbulk) - Bulk trigger event
+
+### [Activity](docs/sdks/activity/README.md)
 
 * [track](docs/sdks/activity/README.md#track) - Track activity and engagement events
 
-### [contexts](docs/sdks/contexts/README.md)
+### [ChannelConnections](docs/sdks/channelconnections/README.md)
+
+* [list](docs/sdks/channelconnections/README.md#list) - List channel connections
+* [create](docs/sdks/channelconnections/README.md#create) - Create channel connection for a resource and integration
+* [retrieve](docs/sdks/channelconnections/README.md#retrieve) - Retrieve channel connection by identifier
+* [update](docs/sdks/channelconnections/README.md#update) - Update channel connection
+* [delete](docs/sdks/channelconnections/README.md#delete) - Delete channel connection
+
+### [ChannelEndpoints](docs/sdks/channelendpoints/README.md)
+
+* [list](docs/sdks/channelendpoints/README.md#list) - List channel endpoints
+* [create](docs/sdks/channelendpoints/README.md#create) - Create channel endpoint for a resource
+* [retrieve](docs/sdks/channelendpoints/README.md#retrieve) - Retrieve channel endpoint by identifier
+* [update](docs/sdks/channelendpoints/README.md#update) - Update channel endpoint
+* [delete](docs/sdks/channelendpoints/README.md#delete) - Delete channel endpoint by identifier
+
+### [Contexts](docs/sdks/contexts/README.md)
 
 * [create](docs/sdks/contexts/README.md#create) - Create a context
 * [list](docs/sdks/contexts/README.md#list) - List all contexts
@@ -268,7 +295,7 @@ run();
 * [retrieve](docs/sdks/contexts/README.md#retrieve) - Retrieve a context
 * [delete](docs/sdks/contexts/README.md#delete) - Delete a context
 
-### [environments](docs/sdks/environments/README.md)
+### [Environments](docs/sdks/environments/README.md)
 
 * [getTags](docs/sdks/environments/README.md#gettags) - Get environment tags
 * [create](docs/sdks/environments/README.md#create) - Create an environment
@@ -276,7 +303,7 @@ run();
 * [update](docs/sdks/environments/README.md#update) - Update an environment
 * [delete](docs/sdks/environments/README.md#delete) - Delete an environment
 
-### [integrations](docs/sdks/integrations/README.md)
+### [Integrations](docs/sdks/integrations/README.md)
 
 * [list](docs/sdks/integrations/README.md#list) - List all integrations
 * [create](docs/sdks/integrations/README.md#create) - Create an integration
@@ -285,8 +312,9 @@ run();
 * [integrationsControllerAutoConfigureIntegration](docs/sdks/integrations/README.md#integrationscontrollerautoconfigureintegration) - Auto-configure an integration for inbound webhooks
 * [setAsPrimary](docs/sdks/integrations/README.md#setasprimary) - Update integration as primary
 * [listActive](docs/sdks/integrations/README.md#listactive) - List active integrations
+* [generateChatOAuthUrl](docs/sdks/integrations/README.md#generatechatoauthurl) - Generate chat OAuth URL
 
-### [layouts](docs/sdks/layouts/README.md)
+### [Layouts](docs/sdks/layouts/README.md)
 
 * [create](docs/sdks/layouts/README.md#create) - Create a layout
 * [list](docs/sdks/layouts/README.md#list) - List all layouts
@@ -297,25 +325,18 @@ run();
 * [generatePreview](docs/sdks/layouts/README.md#generatepreview) - Generate layout preview
 * [usage](docs/sdks/layouts/README.md#usage) - Get layout usage
 
-### [messages](docs/sdks/messages/README.md)
+### [Messages](docs/sdks/messages/README.md)
 
 * [retrieve](docs/sdks/messages/README.md#retrieve) - List all messages
 * [delete](docs/sdks/messages/README.md#delete) - Delete a message
 * [deleteByTransactionId](docs/sdks/messages/README.md#deletebytransactionid) - Delete messages by transactionId
 
-### [notifications](docs/sdks/notifications/README.md)
+### [Notifications](docs/sdks/notifications/README.md)
 
 * [list](docs/sdks/notifications/README.md#list) - List all events
 * [retrieve](docs/sdks/notifications/README.md#retrieve) - Retrieve an event
 
-### [Novu SDK](docs/sdks/novu/README.md)
-
-* [trigger](docs/sdks/novu/README.md#trigger) - Trigger event
-* [cancel](docs/sdks/novu/README.md#cancel) - Cancel triggered event
-* [triggerBroadcast](docs/sdks/novu/README.md#triggerbroadcast) - Broadcast event to all
-* [triggerBulk](docs/sdks/novu/README.md#triggerbulk) - Bulk trigger event
-
-### [subscribers](docs/sdks/subscribers/README.md)
+### [Subscribers](docs/sdks/subscribers/README.md)
 
 * [search](docs/sdks/subscribers/README.md#search) - Search subscribers
 * [create](docs/sdks/subscribers/README.md#create) - Create a subscriber
@@ -324,38 +345,38 @@ run();
 * [delete](docs/sdks/subscribers/README.md#delete) - Delete a subscriber
 * [createBulk](docs/sdks/subscribers/README.md#createbulk) - Bulk create subscribers
 
-#### [subscribers.credentials](docs/sdks/credentials/README.md)
+#### [Subscribers.Credentials](docs/sdks/credentials/README.md)
 
 * [update](docs/sdks/credentials/README.md#update) - Update provider credentials
 * [append](docs/sdks/credentials/README.md#append) - Upsert provider credentials
 * [delete](docs/sdks/credentials/README.md#delete) - Delete provider credentials
 
-#### [subscribers.messages](docs/sdks/novumessages/README.md)
+#### [Subscribers.Messages](docs/sdks/novumessages/README.md)
 
 * [updateAsSeen](docs/sdks/novumessages/README.md#updateasseen) - Update notification action status
 * [markAll](docs/sdks/novumessages/README.md#markall) - Update all notifications state
 * [markAllAs](docs/sdks/novumessages/README.md#markallas) - Update notifications state
 
-#### [subscribers.notifications](docs/sdks/novunotifications/README.md)
+#### [Subscribers.Notifications](docs/sdks/novunotifications/README.md)
 
 * [feed](docs/sdks/novunotifications/README.md#feed) - Retrieve subscriber notifications
 * [unseenCount](docs/sdks/novunotifications/README.md#unseencount) - Retrieve unseen notifications count
 
-#### [subscribers.preferences](docs/sdks/preferences/README.md)
+#### [Subscribers.Preferences](docs/sdks/preferences/README.md)
 
 * [list](docs/sdks/preferences/README.md#list) - Retrieve subscriber preferences
 * [update](docs/sdks/preferences/README.md#update) - Update subscriber preferences
 * [bulkUpdate](docs/sdks/preferences/README.md#bulkupdate) - Bulk update subscriber preferences
 
-#### [subscribers.properties](docs/sdks/properties/README.md)
+#### [Subscribers.Properties](docs/sdks/properties/README.md)
 
 * [updateOnlineFlag](docs/sdks/properties/README.md#updateonlineflag) - Update subscriber online status
 
-#### [subscribers.topics](docs/sdks/novutopics/README.md)
+#### [Subscribers.Topics](docs/sdks/novutopics/README.md)
 
 * [list](docs/sdks/novutopics/README.md#list) - Retrieve subscriber subscriptions
 
-### [topics](docs/sdks/topics/README.md)
+### [Topics](docs/sdks/topics/README.md)
 
 * [list](docs/sdks/topics/README.md#list) - List all topics
 * [create](docs/sdks/topics/README.md#create) - Create a topic
@@ -363,35 +384,36 @@ run();
 * [update](docs/sdks/topics/README.md#update) - Update a topic
 * [delete](docs/sdks/topics/README.md#delete) - Delete a topic
 
-#### [topics.subscribers](docs/sdks/novusubscribers/README.md)
+#### [Topics.Subscribers](docs/sdks/novusubscribers/README.md)
 
 * [retrieve](docs/sdks/novusubscribers/README.md#retrieve) - Check topic subscriber
 
-#### [topics.subscriptions](docs/sdks/subscriptions/README.md)
+#### [Topics.Subscriptions](docs/sdks/subscriptions/README.md)
 
 * [list](docs/sdks/subscriptions/README.md#list) - List topic subscriptions
 * [create](docs/sdks/subscriptions/README.md#create) - Create topic subscriptions
 * [delete](docs/sdks/subscriptions/README.md#delete) - Delete topic subscriptions
+* [update](docs/sdks/subscriptions/README.md#update) - Update a topic subscription
 
-### [translations](docs/sdks/translations/README.md)
+### [Translations](docs/sdks/translations/README.md)
 
 * [create](docs/sdks/translations/README.md#create) - Create a translation
 * [retrieve](docs/sdks/translations/README.md#retrieve) - Retrieve a translation
 * [delete](docs/sdks/translations/README.md#delete) - Delete a translation
 * [upload](docs/sdks/translations/README.md#upload) - Upload translation files
 
-#### [translations.groups](docs/sdks/groups/README.md)
+#### [Translations.Groups](docs/sdks/groups/README.md)
 
 * [delete](docs/sdks/groups/README.md#delete) - Delete a translation group
 * [retrieve](docs/sdks/groups/README.md#retrieve) - Retrieve a translation group
 
-#### [translations.master](docs/sdks/master/README.md)
+#### [Translations.Master](docs/sdks/master/README.md)
 
 * [retrieve](docs/sdks/master/README.md#retrieve) - Retrieve master translations JSON
 * [import](docs/sdks/master/README.md#import) - Import master translations JSON
 * [upload](docs/sdks/master/README.md#upload) - Upload master translations JSON file
 
-### [workflows](docs/sdks/workflows/README.md)
+### [Workflows](docs/sdks/workflows/README.md)
 
 * [create](docs/sdks/workflows/README.md#create) - Create a workflow
 * [list](docs/sdks/workflows/README.md#list) - List all workflows
@@ -401,7 +423,7 @@ run();
 * [patch](docs/sdks/workflows/README.md#patch) - Update a workflow
 * [sync](docs/sdks/workflows/README.md#sync) - Sync a workflow
 
-#### [workflows.steps](docs/sdks/steps/README.md)
+#### [Workflows.Steps](docs/sdks/steps/README.md)
 
 * [retrieve](docs/sdks/steps/README.md#retrieve) - Retrieve workflow step
 
@@ -425,6 +447,16 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 - [`activityTrack`](docs/sdks/activity/README.md#track) - Track activity and engagement events
 - [`cancel`](docs/sdks/novu/README.md#cancel) - Cancel triggered event
+- [`channelConnectionsCreate`](docs/sdks/channelconnections/README.md#create) - Create channel connection for a resource and integration
+- [`channelConnectionsDelete`](docs/sdks/channelconnections/README.md#delete) - Delete channel connection
+- [`channelConnectionsList`](docs/sdks/channelconnections/README.md#list) - List channel connections
+- [`channelConnectionsRetrieve`](docs/sdks/channelconnections/README.md#retrieve) - Retrieve channel connection by identifier
+- [`channelConnectionsUpdate`](docs/sdks/channelconnections/README.md#update) - Update channel connection
+- [`channelEndpointsCreate`](docs/sdks/channelendpoints/README.md#create) - Create channel endpoint for a resource
+- [`channelEndpointsDelete`](docs/sdks/channelendpoints/README.md#delete) - Delete channel endpoint by identifier
+- [`channelEndpointsList`](docs/sdks/channelendpoints/README.md#list) - List channel endpoints
+- [`channelEndpointsRetrieve`](docs/sdks/channelendpoints/README.md#retrieve) - Retrieve channel endpoint by identifier
+- [`channelEndpointsUpdate`](docs/sdks/channelendpoints/README.md#update) - Update channel endpoint
 - [`contextsCreate`](docs/sdks/contexts/README.md#create) - Create a context
 - [`contextsDelete`](docs/sdks/contexts/README.md#delete) - Delete a context
 - [`contextsList`](docs/sdks/contexts/README.md#list) - List all contexts
@@ -437,6 +469,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`environmentsUpdate`](docs/sdks/environments/README.md#update) - Update an environment
 - [`integrationsCreate`](docs/sdks/integrations/README.md#create) - Create an integration
 - [`integrationsDelete`](docs/sdks/integrations/README.md#delete) - Delete an integration
+- [`integrationsGenerateChatOAuthUrl`](docs/sdks/integrations/README.md#generatechatoauthurl) - Generate chat OAuth URL
 - [`integrationsIntegrationsControllerAutoConfigureIntegration`](docs/sdks/integrations/README.md#integrationscontrollerautoconfigureintegration) - Auto-configure an integration for inbound webhooks
 - [`integrationsList`](docs/sdks/integrations/README.md#list) - List all integrations
 - [`integrationsListActive`](docs/sdks/integrations/README.md#listactive) - List active integrations
@@ -482,6 +515,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`topicsSubscriptionsCreate`](docs/sdks/subscriptions/README.md#create) - Create topic subscriptions
 - [`topicsSubscriptionsDelete`](docs/sdks/subscriptions/README.md#delete) - Delete topic subscriptions
 - [`topicsSubscriptionsList`](docs/sdks/subscriptions/README.md#list) - List topic subscriptions
+- [`topicsSubscriptionsUpdate`](docs/sdks/subscriptions/README.md#update) - Update a topic subscription
 - [`topicsUpdate`](docs/sdks/topics/README.md#update) - Update a topic
 - [`translationsCreate`](docs/sdks/translations/README.md#create) - Create a translation
 - [`translationsDelete`](docs/sdks/translations/README.md#delete) - Delete a translation
@@ -592,9 +626,9 @@ run();
 
 
 **Inherit from [`NovuError`](./src/models/errors/novuerror.ts)**:
-* [`PayloadValidationExceptionDto`](./src/models/errors/payloadvalidationexceptiondto.ts): Status code `400`. Applicable to 3 of 80 methods.*
-* [`SubscriberResponseDto`](./src/models/errors/subscriberresponsedto.ts): Created. Status code `409`. Applicable to 1 of 80 methods.*
-* [`TopicResponseDto`](./src/models/errors/topicresponsedto.ts): OK. Status code `409`. Applicable to 1 of 80 methods.*
+* [`PayloadValidationExceptionDto`](./src/models/errors/payloadvalidationexceptiondto.ts): Status code `400`. Applicable to 3 of 92 methods.*
+* [`SubscriberResponseDto`](./src/models/errors/subscriberresponsedto.ts): Created. Status code `409`. Applicable to 1 of 92 methods.*
+* [`TopicResponseDto`](./src/models/errors/topicresponsedto.ts): OK. Status code `409`. Applicable to 1 of 92 methods.*
 * [`ResponseValidationError`](./src/models/errors/responsevalidationerror.ts): Type mismatch between the data returned from the server and the structure expected by the SDK. See `error.rawValue` for the raw value and `error.pretty()` for a nicely formatted multi-line string.
 
 </details>
@@ -776,6 +810,42 @@ run();
 
 ```
 <!-- End Authentication [security] -->
+
+<!-- Start File uploads [file-upload] -->
+## File uploads
+
+Certain SDK methods accept files as part of a multi-part request. It is possible and typically recommended to upload files as a stream rather than reading the entire contents into memory. This avoids excessive memory consumption and potentially crashing with out-of-memory errors when working with very large files. The following example demonstrates how to attach a file stream to a request.
+
+> [!TIP]
+>
+> Depending on your JavaScript runtime, there are convenient utilities that return a handle to a file without reading the entire contents into memory:
+>
+> - **Node.js v20+:** Since v20, Node.js comes with a native `openAsBlob` function in [`node:fs`](https://nodejs.org/docs/latest-v20.x/api/fs.html#fsopenasblobpath-options).
+> - **Bun:** The native [`Bun.file`](https://bun.sh/docs/api/file-io#reading-files-bun-file) function produces a file handle that can be used for streaming file uploads.
+> - **Browsers:** All supported browsers return an instance to a [`File`](https://developer.mozilla.org/en-US/docs/Web/API/File) when reading the value from an `<input type="file">` element.
+> - **Node.js v18:** A file stream can be created using the `fileFrom` helper from [`fetch-blob/from.js`](https://www.npmjs.com/package/fetch-blob).
+
+```typescript
+import { Novu } from "@novu/api";
+
+const novu = new Novu({
+  secretKey: "YOUR_SECRET_KEY_HERE",
+});
+
+async function run() {
+  const result = await novu.translations.upload({
+    resourceId: "welcome-email",
+    resourceType: "workflow",
+    files: [],
+  });
+
+  console.log(result);
+}
+
+run();
+
+```
+<!-- End File uploads [file-upload] -->
 
 <!-- Start Retries [retries] -->
 ## Retries

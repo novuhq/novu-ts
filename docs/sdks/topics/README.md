@@ -1,5 +1,4 @@
 # Topics
-(*topics*)
 
 ## Overview
 
@@ -31,7 +30,9 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.topics.list({});
+  const result = await novu.topics.list({
+    limit: 10,
+  });
 
   console.log(result);
 }
@@ -54,7 +55,9 @@ const novu = new NovuCore({
 });
 
 async function run() {
-  const res = await topicsList(novu, {});
+  const res = await topicsList(novu, {
+    limit: 10,
+  });
   if (res.ok) {
     const { value: result } = res;
     console.log(result);

@@ -1,5 +1,4 @@
-# NovuTopics
-(*subscribers.topics*)
+# Subscribers.Topics
 
 ## Overview
 
@@ -25,6 +24,7 @@ const novu = new Novu({
 async function run() {
   const result = await novu.subscribers.topics.list({
     subscriberId: "<id>",
+    limit: 10,
   });
 
   console.log(result);
@@ -50,6 +50,7 @@ const novu = new NovuCore({
 async function run() {
   const res = await subscribersTopicsList(novu, {
     subscriberId: "<id>",
+    limit: 10,
   });
   if (res.ok) {
     const { value: result } = res;

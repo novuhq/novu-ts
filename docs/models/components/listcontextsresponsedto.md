@@ -10,15 +10,19 @@ let value: ListContextsResponseDto = {
     {
       type: "<value>",
       id: "<id>",
-      data: {},
-      createdAt: "1735499259850",
-      updatedAt: "1735632767949",
+      data: {
+        "key": "<value>",
+        "key1": "<value>",
+        "key2": "<value>",
+      },
+      createdAt: "1714946026032",
+      updatedAt: "1735659652118",
     },
   ],
   next: "<value>",
   previous: "<value>",
-  totalCount: 2693.97,
-  totalCountCapped: true,
+  totalCount: 1824.5,
+  totalCountCapped: false,
 };
 ```
 

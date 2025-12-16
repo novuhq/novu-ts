@@ -8,7 +8,18 @@ import { TranslationControllerImportMasterJsonEndpointRequest } from "@novu/api/
 let value: TranslationControllerImportMasterJsonEndpointRequest = {
   importMasterJsonRequestDto: {
     locale: "en_US",
-    masterJson: {},
+    masterJson: {
+      "workflows": {
+        "welcome-email": {
+          "welcome.title": "Welcome to our platform",
+          "welcome.message": "Hello there!",
+        },
+        "password-reset": {
+          "reset.title": "Reset your password",
+          "reset.message": "Click the link to reset",
+        },
+      },
+    },
   },
 };
 ```

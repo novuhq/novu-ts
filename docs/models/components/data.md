@@ -1,7 +1,5 @@
 # Data
 
-Optional custom data to associate with this context.
-
 ## Example Usage
 
 ```typescript

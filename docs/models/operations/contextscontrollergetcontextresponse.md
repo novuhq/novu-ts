@@ -21,9 +21,11 @@ let value: ContextsControllerGetContextResponse = {
   result: {
     type: "<value>",
     id: "<id>",
-    data: {},
-    createdAt: "1712519779260",
-    updatedAt: "1735648218923",
+    data: {
+      "key": "<value>",
+    },
+    createdAt: "1720585696592",
+    updatedAt: "1735668520825",
   },
 };
 ```

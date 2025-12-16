@@ -1,5 +1,4 @@
 # Integrations
-(*integrations*)
 
 ## Overview
 
@@ -15,6 +14,7 @@ With the help of the Integration Store, you can easily integrate your favorite d
 * [integrationsControllerAutoConfigureIntegration](#integrationscontrollerautoconfigureintegration) - Auto-configure an integration for inbound webhooks
 * [setAsPrimary](#setasprimary) - Update integration as primary
 * [listActive](#listactive) - List active integrations
+* [generateChatOAuthUrl](#generatechatoauthurl) - Generate chat OAuth URL
 
 ## list
 
@@ -534,6 +534,112 @@ run();
 ### Response
 
 **Promise\<[operations.IntegrationsControllerGetActiveIntegrationsResponse](../../models/operations/integrationscontrollergetactiveintegrationsresponse.md)\>**
+
+### Errors
+
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| errors.ErrorDto                        | 414                                    | application/json                       |
+| errors.ErrorDto                        | 400, 401, 403, 404, 405, 409, 413, 415 | application/json                       |
+| errors.ValidationErrorDto              | 422                                    | application/json                       |
+| errors.ErrorDto                        | 500                                    | application/json                       |
+| errors.SDKError                        | 4XX, 5XX                               | \*/\*                                  |
+
+## generateChatOAuthUrl
+
+Generate an OAuth URL for chat integrations like Slack and MS Teams. 
+    This URL allows subscribers to authorize the integration, enabling the system to send messages 
+    through their chat workspace. The generated URL expires after 5 minutes.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="IntegrationsController_getChatOAuthUrl" method="post" path="/v1/integrations/chat/oauth" -->
+```typescript
+import { Novu } from "@novu/api";
+
+const novu = new Novu({
+  secretKey: "YOUR_SECRET_KEY_HERE",
+});
+
+async function run() {
+  const result = await novu.integrations.generateChatOAuthUrl({
+    subscriberId: "subscriber-123",
+    integrationIdentifier: "<value>",
+    context: {
+      "key": "org-acme",
+    },
+    scope: [
+      "chat:write",
+      "chat:write.public",
+      "channels:read",
+      "groups:read",
+      "users:read",
+      "users:read.email",
+      "incoming-webhook",
+    ],
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { NovuCore } from "@novu/api/core.js";
+import { integrationsGenerateChatOAuthUrl } from "@novu/api/funcs/integrationsGenerateChatOAuthUrl.js";
+
+// Use `NovuCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const novu = new NovuCore({
+  secretKey: "YOUR_SECRET_KEY_HERE",
+});
+
+async function run() {
+  const res = await integrationsGenerateChatOAuthUrl(novu, {
+    subscriberId: "subscriber-123",
+    integrationIdentifier: "<value>",
+    context: {
+      "key": "org-acme",
+    },
+    scope: [
+      "chat:write",
+      "chat:write.public",
+      "channels:read",
+      "groups:read",
+      "users:read",
+      "users:read.email",
+      "incoming-webhook",
+    ],
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("integrationsGenerateChatOAuthUrl failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `generateChatOauthUrlRequestDto`                                                                                                                                               | [components.GenerateChatOauthUrlRequestDto](../../models/components/generatechatoauthurlrequestdto.md)                                                                         | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
+| `idempotencyKey`                                                                                                                                                               | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | A header for idempotency purposes                                                                                                                                              |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.IntegrationsControllerGetChatOAuthUrlResponse](../../models/operations/integrationscontrollergetchatoauthurlresponse.md)\>**
 
 ### Errors
 

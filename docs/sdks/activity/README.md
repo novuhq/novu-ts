@@ -1,5 +1,4 @@
 # Activity
-(*activity*)
 
 ## Overview
 
