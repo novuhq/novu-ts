@@ -393,6 +393,7 @@ run();
 * [list](docs/sdks/subscriptions/README.md#list) - List topic subscriptions
 * [create](docs/sdks/subscriptions/README.md#create) - Create topic subscriptions
 * [delete](docs/sdks/subscriptions/README.md#delete) - Delete topic subscriptions
+* [getSubscription](docs/sdks/subscriptions/README.md#getsubscription) - Get a topic subscription
 * [update](docs/sdks/subscriptions/README.md#update) - Update a topic subscription
 
 ### [Translations](docs/sdks/translations/README.md)
@@ -514,6 +515,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`topicsSubscribersRetrieve`](docs/sdks/novusubscribers/README.md#retrieve) - Check topic subscriber
 - [`topicsSubscriptionsCreate`](docs/sdks/subscriptions/README.md#create) - Create topic subscriptions
 - [`topicsSubscriptionsDelete`](docs/sdks/subscriptions/README.md#delete) - Delete topic subscriptions
+- [`topicsSubscriptionsGetSubscription`](docs/sdks/subscriptions/README.md#getsubscription) - Get a topic subscription
 - [`topicsSubscriptionsList`](docs/sdks/subscriptions/README.md#list) - List topic subscriptions
 - [`topicsSubscriptionsUpdate`](docs/sdks/subscriptions/README.md#update) - Update a topic subscription
 - [`topicsUpdate`](docs/sdks/topics/README.md#update) - Update a topic
@@ -626,9 +628,9 @@ run();
 
 
 **Inherit from [`NovuError`](./src/models/errors/novuerror.ts)**:
-* [`PayloadValidationExceptionDto`](./src/models/errors/payloadvalidationexceptiondto.ts): Status code `400`. Applicable to 3 of 92 methods.*
-* [`SubscriberResponseDto`](./src/models/errors/subscriberresponsedto.ts): Created. Status code `409`. Applicable to 1 of 92 methods.*
-* [`TopicResponseDto`](./src/models/errors/topicresponsedto.ts): OK. Status code `409`. Applicable to 1 of 92 methods.*
+* [`PayloadValidationExceptionDto`](./src/models/errors/payloadvalidationexceptiondto.ts): Status code `400`. Applicable to 3 of 93 methods.*
+* [`SubscriberResponseDto`](./src/models/errors/subscriberresponsedto.ts): Created. Status code `409`. Applicable to 1 of 93 methods.*
+* [`TopicResponseDto`](./src/models/errors/topicresponsedto.ts): OK. Status code `409`. Applicable to 1 of 93 methods.*
 * [`ResponseValidationError`](./src/models/errors/responsevalidationerror.ts): Type mismatch between the data returned from the server and the structure expected by the SDK. See `error.rawValue` for the raw value and `error.pretty()` for a nicely formatted multi-line string.
 
 </details>

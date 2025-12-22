@@ -33,7 +33,7 @@ export type InAppControlDto = {
    */
   subject?: string | undefined;
   /**
-   * URL for an avatar image. Must be a valid URL or start with / or {{"{{"}} variable }}.
+   * URL for an avatar image. Must be a valid URL or start with / or {{ variable }}.
    */
   avatar?: string | undefined;
   /**
