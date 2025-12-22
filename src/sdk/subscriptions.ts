@@ -4,6 +4,7 @@
 
 import { topicsSubscriptionsCreate } from "../funcs/topicsSubscriptionsCreate.js";
 import { topicsSubscriptionsDelete } from "../funcs/topicsSubscriptionsDelete.js";
+import { topicsSubscriptionsGetSubscription } from "../funcs/topicsSubscriptionsGetSubscription.js";
 import { topicsSubscriptionsList } from "../funcs/topicsSubscriptionsList.js";
 import { topicsSubscriptionsUpdate } from "../funcs/topicsSubscriptionsUpdate.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
@@ -70,6 +71,27 @@ export class Subscriptions extends ClientSDK {
       this,
       deleteTopicSubscriptionsRequestDto,
       topicKey,
+      idempotencyKey,
+      options,
+    ));
+  }
+
+  /**
+   * Get a topic subscription
+   *
+   * @remarks
+   * Get a subscription by its unique identifier **subscriptionIdOrIdentifier** for a topic.
+   */
+  async getSubscription(
+    topicKey: string,
+    subscriptionIdOrIdentifier: string,
+    idempotencyKey?: string | undefined,
+    options?: RequestOptions,
+  ): Promise<operations.TopicsControllerGetTopicSubscriptionResponse> {
+    return unwrapAsync(topicsSubscriptionsGetSubscription(
+      this,
+      topicKey,
+      subscriptionIdOrIdentifier,
       idempotencyKey,
       options,
     ));

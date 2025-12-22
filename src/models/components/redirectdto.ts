@@ -25,7 +25,7 @@ export type Target = ClosedEnum<typeof Target>;
 
 export type RedirectDto = {
   /**
-   * URL for redirection. Must be a valid URL or start with / or {{"{{"}} variable }}.
+   * URL for redirection. Must be a valid URL or start with / or {{ variable }}.
    */
   url?: string | undefined;
   /**
