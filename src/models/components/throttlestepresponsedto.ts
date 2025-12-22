@@ -61,7 +61,7 @@ export type ThrottleStepResponseDtoControlValues = {
   /**
    * The type of throttle window.
    */
-  type?: ThrottleStepResponseDtoType | undefined;
+  type: ThrottleStepResponseDtoType;
   /**
    * The amount of time for the throttle window (required for fixed type).
    */
@@ -77,7 +77,7 @@ export type ThrottleStepResponseDtoControlValues = {
   /**
    * The maximum number of executions allowed within the window. Defaults to 1.
    */
-  threshold?: number | undefined;
+  threshold: number;
   /**
    * Optional key for grouping throttle rules. If not provided, defaults to workflow and subscriber combination.
    */

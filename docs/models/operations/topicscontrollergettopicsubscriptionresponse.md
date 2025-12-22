@@ -1,11 +1,11 @@
-# TopicsControllerUpdateTopicSubscriptionResponse
+# TopicsControllerGetTopicSubscriptionResponse
 
 ## Example Usage
 
 ```typescript
-import { TopicsControllerUpdateTopicSubscriptionResponse } from "@novu/api/models/operations";
+import { TopicsControllerGetTopicSubscriptionResponse } from "@novu/api/models/operations";
 
-let value: TopicsControllerUpdateTopicSubscriptionResponse = {
+let value: TopicsControllerGetTopicSubscriptionResponse = {
   headers: {},
   result: {
     id: "64f5e95d3d7946d80d0cb679",

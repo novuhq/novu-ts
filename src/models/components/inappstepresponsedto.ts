@@ -57,7 +57,7 @@ export type InAppStepResponseDtoControlValues = {
   /**
    * Disable sanitization of the output.
    */
-  disableOutputSanitization?: boolean | undefined;
+  disableOutputSanitization: boolean;
   /**
    * Additional data payload for the step.
    */

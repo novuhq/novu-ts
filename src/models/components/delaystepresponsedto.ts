@@ -64,7 +64,7 @@ export type DelayStepResponseDtoControlValues = {
   /**
    * Type of the delay. Currently only 'regular' is supported by the schema.
    */
-  type?: DelayStepResponseDtoType | undefined;
+  type: DelayStepResponseDtoType;
   /**
    * Amount of time to delay.
    */

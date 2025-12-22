@@ -50,15 +50,15 @@ export type EmailStepResponseDtoControlValues = {
   /**
    * Body content of the email, either a valid Maily JSON object, or html string.
    */
-  body?: string | undefined;
+  body: string;
   /**
    * Type of editor to use for the body.
    */
-  editorType?: EmailStepResponseDtoEditorType | undefined;
+  editorType: EmailStepResponseDtoEditorType;
   /**
    * Disable sanitization of the output.
    */
-  disableOutputSanitization?: boolean | undefined;
+  disableOutputSanitization: boolean;
   /**
    * Layout ID to use for the email. Null means no layout, undefined means default layout.
    */
