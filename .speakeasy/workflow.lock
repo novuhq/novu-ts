@@ -6,7 +6,7 @@ sources:
         sourceBlobDigest: sha256:90aab4aada26ab85bb65d795e821844350366f3cda97f2d6bd95fedaa2c1a29e
         tags:
             - latest
-            - speakeasy-sdk-regen-1766431646
+            - speakeasy-sdk-regen-1766483913
             - 3.11.0
 targets:
     my-first-target:
@@ -15,7 +15,7 @@ targets:
         sourceRevisionDigest: sha256:a68e804d93075f5d347f4d533ec3198c96bdf0c2595721c968d93623f5858723
         sourceBlobDigest: sha256:90aab4aada26ab85bb65d795e821844350366f3cda97f2d6bd95fedaa2c1a29e
         codeSamplesNamespace: code-samples-typescript
-        codeSamplesRevisionDigest: sha256:bbf805128d99829077c0bb60c78a63b9ef686bff53181c35348b7d75420c6243
+        codeSamplesRevisionDigest: sha256:07158903d7e4debbb08a463a929382b0534046ee4f67f655f3dbebde80ccf75a
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
