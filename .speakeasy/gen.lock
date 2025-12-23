@@ -5,15 +5,15 @@ management:
   docVersion: 3.11.0
   speakeasyVersion: 1.680.4
   generationVersion: 2.788.7
-  releaseVersion: 3.11.1
-  configChecksum: f15cdde7f860b8a46f2045162e300d52
+  releaseVersion: 3.12.0
+  configChecksum: 012f9f5135b9a1e3c2485cf0c00653bb
   repoURL: https://github.com/novuhq/novu-ts.git
   installationURL: https://github.com/novuhq/novu-ts
   published: true
 persistentEdits:
-  generation_id: 431f22a2-c385-469d-99f7-639b40779fae
-  pristine_commit_hash: 3a37ce18023fe73d0cd9a336202cb515a9363aad
-  pristine_tree_hash: a2fc3b70d130218e2c399db91ce77212dc389f0c
+  generation_id: fd357d20-29f7-4858-b959-3ee7726d2d45
+  pristine_commit_hash: 12fef7580bba877f9b86aba68ff6434a6bf79460
+  pristine_tree_hash: 5d76dc0c1024935ccaf34959d42ac5f90f5eb171
 features:
   typescript:
     additionalDependencies: 0.1.0
@@ -2817,12 +2817,12 @@ trackedFiles:
     pristine_git_object: 3dc64f3c7eb62819d4e24d7c524bcf5fdd516fd8
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:43a0c1b6a083d7ab467ebe8b2cb7cc0748998175
-    pristine_git_object: 82d8dd35af714278258b4b28575eb4651a970aff
+    last_write_checksum: sha1:33d83df70fc69217801a69096b940388414e7f5c
+    pristine_git_object: ea8033f3c2ca06b9b96cbc87d6ec09896af8e797
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:9810a35effedb426f4478c96556384c735e7f970
-    pristine_git_object: 04f03c69296d8b6a46eeb73f521efbb20f6cae50
+    last_write_checksum: sha1:b4ac0205c73dfe64aeb71da81dd059db67d1c6df
+    pristine_git_object: a5910fbaadea58b5ec22ddc736775a80ed64cb05
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:522fa3c145654876a02a0c62da21be6d84e87471
@@ -3221,8 +3221,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:2486789413c8ca525d0d4d86959d207fe9dc5a46
-    pristine_git_object: 1ec9646e0fa61d581eb5ecac3effe21f7b7c9e2b
+    last_write_checksum: sha1:6953be1d624c74e9d715756ee42d463dd508aacc
+    pristine_git_object: d607cd38406e0aa34ffc12eaa1668021f98894fe
   src/lib/dlv.ts:
     id: b1988214835a
     last_write_checksum: sha1:1dd3e3fbb4550c4bf31f5ef997faff355d6f3250
@@ -6503,11 +6503,6 @@ generatedTests:
   TopicsController_removeSubscribers: "2024-12-24T08:36:06+01:00"
   TestingController_idempotency: "2024-12-24T08:36:06+01:00"
   TestingController_idempotencyGet: "2024-12-24T08:36:06+01:00"
-releaseNotes: |
-  ## Typescript SDK Changes:
-  * `novu.topics.subscriptions.getSubscription()`: **Added**
-  * `novu.subscribers.topics.list()`:  `response.data.[].identifier` **Added**
-  * `novu.topics.subscriptions.list()`:  `response.data.[].identifier` **Added**
 generatedFiles:
   - .gitattributes
   - .npmignore
