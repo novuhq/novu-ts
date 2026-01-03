@@ -14,10 +14,10 @@ import { unwrapAsync } from "../types/fp.js";
 
 export class ChannelConnections extends ClientSDK {
   /**
-   * List channel connections
+   * List all channel connections
    *
    * @remarks
-   * Retrieve all channel connections for a resource.
+   * List all channel connections for a resource.
    */
   async list(
     request:
@@ -34,7 +34,7 @@ export class ChannelConnections extends ClientSDK {
   }
 
   /**
-   * Create channel connection for a resource and integration
+   * Create a channel connection
    *
    * @remarks
    * Create a new channel connection for a resource for given integration. Only one channel connection is allowed per resource and integration.
@@ -56,7 +56,7 @@ export class ChannelConnections extends ClientSDK {
   }
 
   /**
-   * Retrieve channel connection by identifier
+   * Retrieve a channel connection
    *
    * @remarks
    * Retrieve a specific channel connection by its unique identifier.
@@ -77,7 +77,7 @@ export class ChannelConnections extends ClientSDK {
   }
 
   /**
-   * Update channel connection
+   * Update a channel connection
    *
    * @remarks
    * Update an existing channel connection by its unique identifier.
@@ -101,7 +101,7 @@ export class ChannelConnections extends ClientSDK {
   }
 
   /**
-   * Delete channel connection
+   * Delete a channel connection
    *
    * @remarks
    * Delete a specific channel connection by its unique identifier.

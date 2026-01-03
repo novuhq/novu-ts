@@ -27,7 +27,7 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Create channel connection for a resource and integration
+ * Create a channel connection
  *
  * @remarks
  * Create a new channel connection for a resource for given integration. Only one channel connection is allowed per resource and integration.
