@@ -26,10 +26,10 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * List channel endpoints
+ * List all channel endpoints
  *
  * @remarks
- * Retrieve all channel endpoints for a resource based on query filters.
+ * List all channel endpoints for a resource based on query filters.
  */
 export function channelEndpointsList(
   client: NovuCore,

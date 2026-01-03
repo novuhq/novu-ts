@@ -17,7 +17,7 @@ export type TopicsControllerGetTopicSubscriptionRequest = {
   /**
    * The unique identifier of the subscription
    */
-  subscriptionIdOrIdentifier: string;
+  identifier: string;
   /**
    * A header for idempotency purposes
    */
@@ -32,7 +32,7 @@ export type TopicsControllerGetTopicSubscriptionResponse = {
 /** @internal */
 export type TopicsControllerGetTopicSubscriptionRequest$Outbound = {
   topicKey: string;
-  subscriptionIdOrIdentifier: string;
+  identifier: string;
   "idempotency-key"?: string | undefined;
 };
 
@@ -44,7 +44,7 @@ export const TopicsControllerGetTopicSubscriptionRequest$outboundSchema:
     TopicsControllerGetTopicSubscriptionRequest
   > = z.object({
     topicKey: z.string(),
-    subscriptionIdOrIdentifier: z.string(),
+    identifier: z.string(),
     idempotencyKey: z.string().optional(),
   }).transform((v) => {
     return remap$(v, {

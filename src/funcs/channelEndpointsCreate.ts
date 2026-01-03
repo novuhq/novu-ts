@@ -26,7 +26,7 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Create channel endpoint for a resource
+ * Create a channel endpoint
  *
  * @remarks
  * Create a new channel endpoint for a resource.
