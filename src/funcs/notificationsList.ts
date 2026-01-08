@@ -108,6 +108,7 @@ async function $do(
     "search": payload.search,
     "severity": payload.severity,
     "subscriberIds": payload.subscriberIds,
+    "subscriptionId": payload.subscriptionId,
     "templates": payload.templates,
     "topicKey": payload.topicKey,
     "transactionId": payload.transactionId,

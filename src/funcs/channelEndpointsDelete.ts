@@ -26,7 +26,7 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Delete channel endpoint by identifier
+ * Delete a channel endpoint
  *
  * @remarks
  * Delete a specific channel endpoint by its unique identifier.

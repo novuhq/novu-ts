@@ -53,6 +53,10 @@ export type NotificationsControllerListNotificationsRequest = {
    */
   topicKey?: string | undefined;
   /**
+   * Subscription ID for filtering notifications by subscription
+   */
+  subscriptionId?: string | undefined;
+  /**
    * Filter by exact context keys, order insensitive (format: "type:id")
    */
   contextKeys?: Array<string> | undefined;
@@ -87,6 +91,7 @@ export type NotificationsControllerListNotificationsRequest$Outbound = {
   limit: number;
   transactionId?: string | undefined;
   topicKey?: string | undefined;
+  subscriptionId?: string | undefined;
   contextKeys?: Array<string> | undefined;
   after?: string | undefined;
   before?: string | undefined;
@@ -110,6 +115,7 @@ export const NotificationsControllerListNotificationsRequest$outboundSchema:
     limit: z.number().default(10),
     transactionId: z.string().optional(),
     topicKey: z.string().optional(),
+    subscriptionId: z.string().optional(),
     contextKeys: z.array(z.string()).optional(),
     after: z.string().optional(),
     before: z.string().optional(),

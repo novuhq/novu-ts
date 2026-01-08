@@ -99,7 +99,7 @@ export type Overrides = {
 export type To1 = TopicPayloadDto | SubscriberPayloadDto | string;
 
 /**
- * The recipients list of people who will receive the notification.
+ * The recipients list of people who will receive the notification. Maximum number of recipients can be 100.
  */
 export type To =
   | TopicPayloadDto
@@ -156,7 +156,7 @@ export type TriggerEventRequestDto = {
    */
   overrides?: Overrides | undefined;
   /**
-   * The recipients list of people who will receive the notification.
+   * The recipients list of people who will receive the notification. Maximum number of recipients can be 100.
    */
   to:
     | TopicPayloadDto
