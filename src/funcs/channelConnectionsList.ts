@@ -26,10 +26,10 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * List channel connections
+ * List all channel connections
  *
  * @remarks
- * Retrieve all channel connections for a resource.
+ * List all channel connections for a resource.
  */
 export function channelConnectionsList(
   client: NovuCore,

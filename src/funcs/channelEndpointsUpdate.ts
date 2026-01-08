@@ -27,7 +27,7 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Update channel endpoint
+ * Update a channel endpoint
  *
  * @remarks
  * Update an existing channel endpoint by its unique identifier.

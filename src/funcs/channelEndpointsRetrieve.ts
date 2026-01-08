@@ -26,7 +26,7 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Retrieve channel endpoint by identifier
+ * Retrieve a channel endpoint
  *
  * @remarks
  * Retrieve a specific channel endpoint by its unique identifier.

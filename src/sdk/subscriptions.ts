@@ -80,18 +80,18 @@ export class Subscriptions extends ClientSDK {
    * Get a topic subscription
    *
    * @remarks
-   * Get a subscription by its unique identifier **subscriptionIdOrIdentifier** for a topic.
+   * Get a subscription by its unique identifier for a topic.
    */
   async getSubscription(
     topicKey: string,
-    subscriptionIdOrIdentifier: string,
+    identifier: string,
     idempotencyKey?: string | undefined,
     options?: RequestOptions,
   ): Promise<operations.TopicsControllerGetTopicSubscriptionResponse> {
     return unwrapAsync(topicsSubscriptionsGetSubscription(
       this,
       topicKey,
-      subscriptionIdOrIdentifier,
+      identifier,
       idempotencyKey,
       options,
     ));
@@ -101,7 +101,7 @@ export class Subscriptions extends ClientSDK {
    * Update a topic subscription
    *
    * @remarks
-   * Update a subscription by its unique identifier **subscriptionIdOrIdentifier** for a topic. You can update the preferences and name associated with the subscription.
+   * Update a subscription by its unique identifier for a topic. You can update the preferences and name associated with the subscription.
    */
   async update(
     request: operations.TopicsControllerUpdateTopicSubscriptionRequest,

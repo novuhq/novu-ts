@@ -29,12 +29,12 @@ import { Result } from "../types/fp.js";
  * Get a topic subscription
  *
  * @remarks
- * Get a subscription by its unique identifier **subscriptionIdOrIdentifier** for a topic.
+ * Get a subscription by its unique identifier for a topic.
  */
 export function topicsSubscriptionsGetSubscription(
   client: NovuCore,
   topicKey: string,
-  subscriptionIdOrIdentifier: string,
+  identifier: string,
   idempotencyKey?: string | undefined,
   options?: RequestOptions,
 ): APIPromise<
@@ -55,7 +55,7 @@ export function topicsSubscriptionsGetSubscription(
   return new APIPromise($do(
     client,
     topicKey,
-    subscriptionIdOrIdentifier,
+    identifier,
     idempotencyKey,
     options,
   ));
@@ -64,7 +64,7 @@ export function topicsSubscriptionsGetSubscription(
 async function $do(
   client: NovuCore,
   topicKey: string,
-  subscriptionIdOrIdentifier: string,
+  identifier: string,
   idempotencyKey?: string | undefined,
   options?: RequestOptions,
 ): Promise<
@@ -87,7 +87,7 @@ async function $do(
 > {
   const input: operations.TopicsControllerGetTopicSubscriptionRequest = {
     topicKey: topicKey,
-    subscriptionIdOrIdentifier: subscriptionIdOrIdentifier,
+    identifier: identifier,
     idempotencyKey: idempotencyKey,
   };
 
@@ -105,20 +105,19 @@ async function $do(
   const body = null;
 
   const pathParams = {
-    subscriptionIdOrIdentifier: encodeSimple(
-      "subscriptionIdOrIdentifier",
-      payload.subscriptionIdOrIdentifier,
-      { explode: false, charEncoding: "percent" },
-    ),
+    identifier: encodeSimple("identifier", payload.identifier, {
+      explode: false,
+      charEncoding: "percent",
+    }),
     topicKey: encodeSimple("topicKey", payload.topicKey, {
       explode: false,
       charEncoding: "percent",
     }),
   };
 
-  const path = pathToFunc(
-    "/v2/topics/{topicKey}/subscriptions/{subscriptionIdOrIdentifier}",
-  )(pathParams);
+  const path = pathToFunc("/v2/topics/{topicKey}/subscriptions/{identifier}")(
+    pathParams,
+  );
 
   const headers = new Headers(compactMap({
     Accept: "application/json",

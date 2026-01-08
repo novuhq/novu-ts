@@ -15603,13 +15603,13 @@
         ]
       }
     },
-    "/v2/topics/{topicKey}/subscriptions/{subscriptionIdOrIdentifier}": {
+    "/v2/topics/{topicKey}/subscriptions/{identifier}": {
       "get": {
         "operationId": "TopicsController_getTopicSubscription",
         "x-speakeasy-name-override": "getSubscription",
         "x-speakeasy-group": "Topics.Subscriptions",
         "summary": "Get a topic subscription",
-        "description": "Get a subscription by its unique identifier **subscriptionIdOrIdentifier** for a topic.",
+        "description": "Get a subscription by its unique identifier for a topic.",
         "parameters": [
           {
             "name": "topicKey",
@@ -15621,7 +15621,7 @@
             }
           },
           {
-            "name": "subscriptionIdOrIdentifier",
+            "name": "identifier",
             "required": true,
             "in": "path",
             "description": "The unique identifier of the subscription",
@@ -16102,7 +16102,7 @@
         "x-speakeasy-name-override": "update",
         "x-speakeasy-group": "Topics.Subscriptions",
         "summary": "Update a topic subscription",
-        "description": "Update a subscription by its unique identifier **subscriptionIdOrIdentifier** for a topic. You can update the preferences and name associated with the subscription.",
+        "description": "Update a subscription by its unique identifier for a topic. You can update the preferences and name associated with the subscription.",
         "parameters": [
           {
             "name": "topicKey",
@@ -16114,7 +16114,7 @@
             }
           },
           {
-            "name": "subscriptionIdOrIdentifier",
+            "name": "identifier",
             "required": true,
             "in": "path",
             "description": "The unique identifier of the subscription",
@@ -21129,8 +21129,9 @@
     "/v1/channel-connections": {
       "get": {
         "operationId": "ChannelConnectionsController_listChannelConnections",
-        "summary": "List channel connections",
-        "description": "Retrieve all channel connections for a resource.",
+        "x-speakeasy-name-override": "list",
+        "summary": "List all channel connections",
+        "description": "List all channel connections for a resource.",
         "parameters": [
           {
             "name": "after",
@@ -21725,7 +21726,8 @@
       },
       "post": {
         "operationId": "ChannelConnectionsController_createChannelConnection",
-        "summary": "Create channel connection for a resource and integration",
+        "x-speakeasy-name-override": "create",
+        "summary": "Create a channel connection",
         "description": "Create a new channel connection for a resource for given integration. Only one channel connection is allowed per resource and integration.",
         "parameters": [
           {
@@ -22210,7 +22212,8 @@
     "/v1/channel-connections/{identifier}": {
       "get": {
         "operationId": "ChannelConnectionsController_getChannelConnectionByIdentifier",
-        "summary": "Retrieve channel connection by identifier",
+        "x-speakeasy-name-override": "retrieve",
+        "summary": "Retrieve a channel connection",
         "description": "Retrieve a specific channel connection by its unique identifier.",
         "parameters": [
           {
@@ -22692,7 +22695,8 @@
       },
       "patch": {
         "operationId": "ChannelConnectionsController_updateChannelConnection",
-        "summary": "Update channel connection",
+        "x-speakeasy-name-override": "update",
+        "summary": "Update a channel connection",
         "description": "Update an existing channel connection by its unique identifier.",
         "parameters": [
           {
@@ -23184,7 +23188,8 @@
       },
       "delete": {
         "operationId": "ChannelConnectionsController_deleteChannelConnection",
-        "summary": "Delete channel connection",
+        "x-speakeasy-name-override": "delete",
+        "summary": "Delete a channel connection",
         "description": "Delete a specific channel connection by its unique identifier.",
         "parameters": [
           {
@@ -23638,8 +23643,9 @@
     "/v1/channel-endpoints": {
       "get": {
         "operationId": "ChannelEndpointsController_listChannelEndpoints",
-        "summary": "List channel endpoints",
-        "description": "Retrieve all channel endpoints for a resource based on query filters.",
+        "x-speakeasy-name-override": "list",
+        "summary": "List all channel endpoints",
+        "description": "List all channel endpoints for a resource based on query filters.",
         "parameters": [
           {
             "name": "after",
@@ -24246,7 +24252,8 @@
       },
       "post": {
         "operationId": "ChannelEndpointsController_createChannelEndpoint",
-        "summary": "Create channel endpoint for a resource",
+        "x-speakeasy-name-override": "create",
+        "summary": "Create a channel endpoint",
         "description": "Create a new channel endpoint for a resource.",
         "parameters": [
           {
@@ -24765,7 +24772,8 @@
     "/v1/channel-endpoints/{identifier}": {
       "get": {
         "operationId": "ChannelEndpointsController_getChannelEndpoint",
-        "summary": "Retrieve channel endpoint by identifier",
+        "x-speakeasy-name-override": "retrieve",
+        "summary": "Retrieve a channel endpoint",
         "description": "Retrieve a specific channel endpoint by its unique identifier.",
         "parameters": [
           {
@@ -25250,7 +25258,8 @@
       },
       "patch": {
         "operationId": "ChannelEndpointsController_updateChannelEndpoint",
-        "summary": "Update channel endpoint",
+        "x-speakeasy-name-override": "update",
+        "summary": "Update a channel endpoint",
         "description": "Update an existing channel endpoint by its unique identifier.",
         "parameters": [
           {
@@ -25745,7 +25754,8 @@
       },
       "delete": {
         "operationId": "ChannelEndpointsController_deleteChannelEndpoint",
-        "summary": "Delete channel endpoint by identifier",
+        "x-speakeasy-name-override": "delete",
+        "summary": "Delete a channel endpoint",
         "description": "Delete a specific channel endpoint by its unique identifier.",
         "parameters": [
           {
@@ -28133,7 +28143,7 @@
         },
         "x-speakeasy-name-override": "trigger",
         "summary": "Trigger event",
-        "description": "\n    Trigger event is the main (and only) way to send notifications to subscribers. The trigger identifier is used to match the particular workflow associated with it. Additional information can be passed according the body interface below.\n    To prevent duplicate triggers, you can optionally pass a **transactionId** in the request body. If the same **transactionId** is used again, the trigger will be ignored. The retention period depends on your billing tier.",
+        "description": "\n    Trigger event is the main (and only) way to send notifications to subscribers. The trigger identifier is used to match the particular workflow associated with it. Maximum number of recipients can be 100. Additional information can be passed according the body interface below.\n    To prevent duplicate triggers, you can optionally pass a **transactionId** in the request body. If the same **transactionId** is used again, the trigger will be ignored. The retention period depends on your billing tier.",
         "parameters": [
           {
             "name": "idempotency-key",
@@ -35594,6 +35604,15 @@
             "required": false,
             "in": "query",
             "description": "Topic Key for filtering notifications by topic",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "subscriptionId",
+            "required": false,
+            "in": "query",
+            "description": "Subscription ID for filtering notifications by subscription",
             "schema": {
               "type": "string"
             }
@@ -43164,7 +43183,7 @@
             ]
           },
           "to": {
-            "description": "The recipients list of people who will receive the notification.",
+            "description": "The recipients list of people who will receive the notification. Maximum number of recipients can be 100.",
             "oneOf": [
               {
                 "type": "array",
@@ -44484,6 +44503,40 @@
           "traces"
         ]
       },
+      "TopicResponseDto": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "The identifier of the topic",
+            "example": "64da692e9a94fb2e6449ad06"
+          },
+          "key": {
+            "type": "string",
+            "description": "The unique key of the topic",
+            "example": "product-updates"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the topic",
+            "example": "Product Updates"
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "The date the topic was created",
+            "example": "2023-08-15T00:00:00.000Z"
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "The date the topic was last updated",
+            "example": "2023-08-15T00:00:00.000Z"
+          }
+        },
+        "required": [
+          "_id",
+          "key"
+        ]
+      },
       "WorkflowRunStepsDetailsDto": {
         "type": "object",
         "properties": {
@@ -44611,6 +44664,13 @@
             "type": "array",
             "items": {
               "type": "string"
+            }
+          },
+          "topics": {
+            "description": "Topics",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TopicResponseDto"
             }
           },
           "steps": {
@@ -44861,6 +44921,13 @@
             "type": "array",
             "items": {
               "type": "string"
+            }
+          },
+          "topics": {
+            "description": "Topics",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TopicResponseDto"
             }
           },
           "steps": {
@@ -45300,7 +45367,8 @@
           },
           "connectionIdentifier": {
             "type": "string",
-            "description": "Identifier of the channel connection that will be created"
+            "description": "Identifier of the channel connection that will be created. It is generated automatically if not provided.",
+            "example": "slack-connection-abc123"
           },
           "context": {
             "type": "object",
@@ -46223,6 +46291,11 @@
             "description": "Indicates whether the notification has been seen by the subscriber.",
             "example": true
           },
+          "archived": {
+            "type": "boolean",
+            "description": "Indicates whether the notification has been archived by the subscriber.",
+            "example": false
+          },
           "deviceTokens": {
             "nullable": true,
             "description": "Device tokens for push notifications, if applicable.",
@@ -46304,6 +46377,7 @@
           "channel",
           "read",
           "seen",
+          "archived",
           "cta",
           "status"
         ]
@@ -47882,40 +47956,6 @@
             ]
           }
         }
-      },
-      "TopicResponseDto": {
-        "type": "object",
-        "properties": {
-          "_id": {
-            "type": "string",
-            "description": "The identifier of the topic",
-            "example": "64da692e9a94fb2e6449ad06"
-          },
-          "key": {
-            "type": "string",
-            "description": "The unique key of the topic",
-            "example": "product-updates"
-          },
-          "name": {
-            "type": "string",
-            "description": "The name of the topic",
-            "example": "Product Updates"
-          },
-          "createdAt": {
-            "type": "string",
-            "description": "The date the topic was created",
-            "example": "2023-08-15T00:00:00.000Z"
-          },
-          "updatedAt": {
-            "type": "string",
-            "description": "The date the topic was last updated",
-            "example": "2023-08-15T00:00:00.000Z"
-          }
-        },
-        "required": [
-          "_id",
-          "key"
-        ]
       },
       "SubscriberDto": {
         "type": "object",
@@ -51486,7 +51526,7 @@
           },
           "stepId": {
             "type": "string",
-            "pattern": "/^[a-z0-9]+(?:-[a-z0-9]+)*$/",
+            "pattern": "/^[a-zA-Z0-9]+(?:[-_][a-zA-Z0-9]+)*$/",
             "description": "Unique identifier for the step"
           },
           "name": {
@@ -51523,7 +51563,7 @@
           },
           "stepId": {
             "type": "string",
-            "pattern": "/^[a-z0-9]+(?:-[a-z0-9]+)*$/",
+            "pattern": "/^[a-zA-Z0-9]+(?:[-_][a-zA-Z0-9]+)*$/",
             "description": "Unique identifier for the step"
           },
           "name": {
@@ -51560,7 +51600,7 @@
           },
           "stepId": {
             "type": "string",
-            "pattern": "/^[a-z0-9]+(?:-[a-z0-9]+)*$/",
+            "pattern": "/^[a-zA-Z0-9]+(?:[-_][a-zA-Z0-9]+)*$/",
             "description": "Unique identifier for the step"
           },
           "name": {
@@ -51597,7 +51637,7 @@
           },
           "stepId": {
             "type": "string",
-            "pattern": "/^[a-z0-9]+(?:-[a-z0-9]+)*$/",
+            "pattern": "/^[a-zA-Z0-9]+(?:[-_][a-zA-Z0-9]+)*$/",
             "description": "Unique identifier for the step"
           },
           "name": {
@@ -51634,7 +51674,7 @@
           },
           "stepId": {
             "type": "string",
-            "pattern": "/^[a-z0-9]+(?:-[a-z0-9]+)*$/",
+            "pattern": "/^[a-zA-Z0-9]+(?:[-_][a-zA-Z0-9]+)*$/",
             "description": "Unique identifier for the step"
           },
           "name": {
@@ -51671,7 +51711,7 @@
           },
           "stepId": {
             "type": "string",
-            "pattern": "/^[a-z0-9]+(?:-[a-z0-9]+)*$/",
+            "pattern": "/^[a-zA-Z0-9]+(?:[-_][a-zA-Z0-9]+)*$/",
             "description": "Unique identifier for the step"
           },
           "name": {
@@ -51708,7 +51748,7 @@
           },
           "stepId": {
             "type": "string",
-            "pattern": "/^[a-z0-9]+(?:-[a-z0-9]+)*$/",
+            "pattern": "/^[a-zA-Z0-9]+(?:[-_][a-zA-Z0-9]+)*$/",
             "description": "Unique identifier for the step"
           },
           "name": {
@@ -51745,7 +51785,7 @@
           },
           "stepId": {
             "type": "string",
-            "pattern": "/^[a-z0-9]+(?:-[a-z0-9]+)*$/",
+            "pattern": "/^[a-zA-Z0-9]+(?:[-_][a-zA-Z0-9]+)*$/",
             "description": "Unique identifier for the step"
           },
           "name": {
@@ -51782,7 +51822,7 @@
           },
           "stepId": {
             "type": "string",
-            "pattern": "/^[a-z0-9]+(?:-[a-z0-9]+)*$/",
+            "pattern": "/^[a-zA-Z0-9]+(?:[-_][a-zA-Z0-9]+)*$/",
             "description": "Unique identifier for the step"
           },
           "name": {
@@ -51890,7 +51930,7 @@
           },
           "workflowId": {
             "type": "string",
-            "pattern": "/^[a-z0-9]+(?:-[a-z0-9]+)*$/",
+            "pattern": "/^[a-zA-Z0-9]+(?:[-_][a-zA-Z0-9]+)*$/",
             "description": "Unique identifier for the workflow"
           },
           "steps": {
@@ -52246,7 +52286,7 @@
           },
           "workflowId": {
             "type": "string",
-            "pattern": "/^[a-z0-9]+(?:-[a-z0-9]+)*$/",
+            "pattern": "/^[a-zA-Z0-9]+(?:[-_][a-zA-Z0-9]+)*$/",
             "description": "Custom workflow identifier for the duplicated workflow"
           },
           "tags": {
