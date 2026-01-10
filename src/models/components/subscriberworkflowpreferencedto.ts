@@ -36,6 +36,10 @@ export type SubscriberWorkflowPreferenceDto = {
    * Workflow information
    */
   workflow: SubscriberPreferencesWorkflowInfoDto;
+  /**
+   * Timestamp when the subscriber last updated their preference. Only present if subscriber explicitly set preferences.
+   */
+  updatedAt?: string | undefined;
 };
 
 /** @internal */
@@ -48,6 +52,7 @@ export const SubscriberWorkflowPreferenceDto$inboundSchema: z.ZodType<
   channels: SubscriberPreferenceChannels$inboundSchema,
   overrides: z.array(SubscriberPreferenceOverrideDto$inboundSchema),
   workflow: SubscriberPreferencesWorkflowInfoDto$inboundSchema,
+  updatedAt: z.string().optional(),
 });
 
 export function subscriberWorkflowPreferenceDtoFromJSON(

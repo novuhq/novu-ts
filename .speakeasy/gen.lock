@@ -1,25 +1,25 @@
 lockVersion: 2.0.0
 id: 6bff3a53-3f0b-40b4-942f-ff70dc583ae5
 management:
-  docChecksum: 293347efdaa55020f65024ae68ee1f32
-  docVersion: 3.11.0
-  speakeasyVersion: 1.683.0
-  generationVersion: 2.792.0
-  releaseVersion: 3.12.0
-  configChecksum: b349d2f6b79f8f8ea260d20deb2719c1
+  docChecksum: 1b577648d69b1371b5a8778c03bdaeb2
+  docVersion: 3.12.0
+  speakeasyVersion: 1.684.0
+  generationVersion: 2.793.0
+  releaseVersion: 3.13.0
+  configChecksum: 6328a80e5badd5d4739879d9ca643243
   repoURL: https://github.com/novuhq/novu-ts.git
   installationURL: https://github.com/novuhq/novu-ts
   published: true
 persistentEdits:
-  generation_id: 84ffb62f-e4c8-460e-8408-df5e7e060860
-  pristine_commit_hash: 89ab0b5e2f23fcd076ade1f6dfacad57cd10d7f2
-  pristine_tree_hash: 7e359f156f9428651c2818f7fbe124bb4f26d7d5
+  generation_id: b03595d9-abaa-429d-9fde-57e366d2fbe2
+  pristine_commit_hash: 7a50c7f1fe2ece359b84a0b5e8920fcdb3e6d02a
+  pristine_tree_hash: cf0c29b6beb77364ce04d4ddc3676f84dda369f1
 features:
   typescript:
     additionalDependencies: 0.1.0
     additionalProperties: 0.1.3
     constsAndDefaults: 0.1.12
-    core: 3.26.18
+    core: 3.26.19
     defaultEnabledRetries: 0.1.0
     deprecations: 2.81.1
     enumUnions: 0.1.0
@@ -1393,8 +1393,8 @@ trackedFiles:
     pristine_git_object: 4b94946e0f864a300f76a6d2ed91358b2cc2faf6
   docs/models/components/subscriberworkflowpreferencedto.md:
     id: 7b5e81a9be1d
-    last_write_checksum: sha1:90b2a1821727900f50b098e9de905fe51db53795
-    pristine_git_object: ff355fa86db36ac21ec3a5dce01905c3f8940d3e
+    last_write_checksum: sha1:b8c4e50b9099b36aaa92108b3c2d7f9b430d7648
+    pristine_git_object: e0c3c0f60c5a42eece27450414aa075a3f93849e
   docs/models/components/subscriptiondto.md:
     id: 2d03c551643e
     last_write_checksum: sha1:76972c2d328af4f08788a04ede25a44eb97bfe9b
@@ -2817,12 +2817,12 @@ trackedFiles:
     pristine_git_object: 3dc64f3c7eb62819d4e24d7c524bcf5fdd516fd8
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:33d83df70fc69217801a69096b940388414e7f5c
-    pristine_git_object: ea8033f3c2ca06b9b96cbc87d6ec09896af8e797
+    last_write_checksum: sha1:cb85eaa4fe089f04aa8c9df4b45b02a0c26ac0f1
+    pristine_git_object: 26572b8f415195496489ef3030427166320b0480
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:b4ac0205c73dfe64aeb71da81dd059db67d1c6df
-    pristine_git_object: a5910fbaadea58b5ec22ddc736775a80ed64cb05
+    last_write_checksum: sha1:bcc14713a9030a5fe4520e96dbe9bec2da41c61c
+    pristine_git_object: c3bb4fa68f905f86662a465690a3b29917237ebb
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:522fa3c145654876a02a0c62da21be6d84e87471
@@ -3221,8 +3221,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:707bffab12c7f8ec97245dbdd333ef4c4ddc90d8
-    pristine_git_object: 607587d72dd33553774470ed53008f5939a32b99
+    last_write_checksum: sha1:21fdc23fd40d020d041f643ee966ed4f795d789b
+    pristine_git_object: 7b3ec787c23bc389e255f332969dc14ab4f9d6a9
   src/lib/dlv.ts:
     id: b1988214835a
     last_write_checksum: sha1:1dd3e3fbb4550c4bf31f5ef997faff355d6f3250
@@ -3265,8 +3265,8 @@ trackedFiles:
     pristine_git_object: 47edb9725c2482c667e2ddc8a56b1fec4285c492
   src/lib/sdks.ts:
     id: 8a6d91f1218d
-    last_write_checksum: sha1:d7fb3ee14478f8121f389fa7b8827edd6f19e94a
-    pristine_git_object: bdb1f37cf3acf5cc0ba5710988c987fd95a19d39
+    last_write_checksum: sha1:54e6a72c708001718af4b1c437ef5a00084c223d
+    pristine_git_object: fafd32d3a7b589b46a5fe372440691d39ba8e3ec
   src/lib/security.ts:
     id: 0502afa7922e
     last_write_checksum: sha1:6d571af899aac724313d2e52f55f573d80051a9e
@@ -4125,8 +4125,8 @@ trackedFiles:
     pristine_git_object: 0e776662f82809e5ab9702a258aaa3d5a405060f
   src/models/components/subscriberworkflowpreferencedto.ts:
     id: 95f595d33009
-    last_write_checksum: sha1:d0c7ad71db08e6610174d200288ac4b016abd139
-    pristine_git_object: 83d365dd57c61d55ab683110f470cffc8d16e9ea
+    last_write_checksum: sha1:015520ca121d0a09daba237d9cd0b4d3d09d01fa
+    pristine_git_object: f5760f7bf4815cae82c36a9259d16426961eb0e3
   src/models/components/subscriptiondto.ts:
     id: 59de7cd2a05e
     last_write_checksum: sha1:8a6d04a218f841affea21e3c5543c32cac0ee6a9
@@ -6505,7 +6505,10 @@ generatedTests:
   TopicsController_removeSubscribers: "2024-12-24T08:36:06+01:00"
   TestingController_idempotency: "2024-12-24T08:36:06+01:00"
   TestingController_idempotencyGet: "2024-12-24T08:36:06+01:00"
-releaseNotes: "## Typescript SDK Changes:\n* `novu.topics.subscriptions.getSubscription()`:  `request` **Changed** **Breaking** :warning:\n* `novu.topics.subscriptions.update()`:  `request` **Changed** **Breaking** :warning:\n* `novu.subscribers.notifications.feed()`:  `response.data.[].archived` **Added**\n* `novu.notifications.list()`: \n  *  `request.subscriptionId` **Added**\n"
+releaseNotes: |
+  ## Typescript SDK Changes:
+  * `novu.subscribers.preferences.list()`:  `response.workflows.[].updatedAt` **Added**
+  * `novu.subscribers.preferences.update()`:  `response.workflows.[].updatedAt` **Added**
 generatedFiles:
   - .gitattributes
   - .npmignore
