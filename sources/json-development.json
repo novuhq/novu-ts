@@ -42088,7 +42088,7 @@
   "info": {
     "title": "Novu API",
     "description": "Novu REST API. Please see https://docs.novu.co/api-reference for more details.",
-    "version": "3.11.0",
+    "version": "3.12.0",
     "contact": {
       "name": "Novu Support",
       "url": "https://discord.gg/novu",
@@ -47735,6 +47735,10 @@
                 "$ref": "#/components/schemas/SubscriberPreferencesWorkflowInfoDto"
               }
             ]
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "Timestamp when the subscriber last updated their preference. Only present if subscriber explicitly set preferences."
           }
         },
         "required": [

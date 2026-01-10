@@ -1,6 +1,6 @@
 {
   "name": "@novu/api",
-  "version": "3.12.0",
+  "version": "3.13.0",
   "author": "Novu",
   "description": "The <Inbox /> infrastructure for modern products",
   "main": "./index.js",
