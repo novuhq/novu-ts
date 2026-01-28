@@ -6,24 +6,19 @@
 import { TopicsControllerGetTopicSubscriptionResponse } from "@novu/api/models/operations";
 
 let value: TopicsControllerGetTopicSubscriptionResponse = {
-  headers: {},
+  headers: {
+    "key": [],
+    "key1": [
+      "<value 1>",
+      "<value 2>",
+      "<value 3>",
+    ],
+    "key2": [],
+  },
   result: {
     id: "64f5e95d3d7946d80d0cb679",
-    identifier: "tk=product-updates:si=subscriber-123",
+    identifier: "subscription-identifier",
     name: "My Subscription",
-    topic: {
-      id: "64f5e95d3d7946d80d0cb677",
-      key: "product-updates",
-      name: "Product Updates",
-    },
-    subscriber: {
-      id: "64da692e9a94fb2e6449ad07",
-      subscriberId: "user-123",
-      avatar: "https://example.com/avatar.png",
-      firstName: "John",
-      lastName: "Doe",
-      email: "john@example.com",
-    },
     preferences: [
       {
         subscriptionId: "64f5e95d3d7946d80d0cb679",
@@ -54,15 +49,17 @@ let value: TopicsControllerGetTopicSubscriptionResponse = {
         },
       },
     ],
-    createdAt: "2025-04-24T05:40:21Z",
-    updatedAt: "2025-04-24T05:40:21Z",
+    contextKeys: [
+      "tenant:org-a",
+      "project:proj-123",
+    ],
   },
 };
 ```
 
 ## Fields
 
-| Field                                                                                    | Type                                                                                     | Required                                                                                 | Description                                                                              |
-| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `headers`                                                                                | Record<string, *string*[]>                                                               | :heavy_check_mark:                                                                       | N/A                                                                                      |
-| `result`                                                                                 | [components.SubscriptionResponseDto](../../models/components/subscriptionresponsedto.md) | :heavy_check_mark:                                                                       | N/A                                                                                      |
+| Field                                                                                                  | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
+| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
+| `headers`                                                                                              | Record<string, *string*[]>                                                                             | :heavy_check_mark:                                                                                     | N/A                                                                                                    |
+| `result`                                                                                               | [components.SubscriptionDetailsResponseDto](../../models/components/subscriptiondetailsresponsedto.md) | :heavy_check_mark:                                                                                     | N/A                                                                                                    |

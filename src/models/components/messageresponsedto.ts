@@ -31,16 +31,6 @@ import {
  */
 export type Content = Array<EmailBlock> | string;
 
-/**
- * The payload that was used to send the notification trigger
- */
-export type MessageResponseDtoPayload = {};
-
-/**
- * Provider specific overrides used when triggering the notification
- */
-export type MessageResponseDtoOverrides = {};
-
 export type MessageResponseDto = {
   /**
    * Unique identifier for the message
@@ -173,11 +163,11 @@ export type MessageResponseDto = {
   /**
    * The payload that was used to send the notification trigger
    */
-  payload?: MessageResponseDtoPayload | undefined;
+  payload?: { [k: string]: any } | undefined;
   /**
    * Provider specific overrides used when triggering the notification
    */
-  overrides?: MessageResponseDtoOverrides | undefined;
+  overrides?: { [k: string]: any } | undefined;
   /**
    * Context (single or multi) in which the message was sent
    */
@@ -195,40 +185,6 @@ export function contentFromJSON(
     jsonString,
     (x) => Content$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'Content' from JSON`,
-  );
-}
-
-/** @internal */
-export const MessageResponseDtoPayload$inboundSchema: z.ZodType<
-  MessageResponseDtoPayload,
-  z.ZodTypeDef,
-  unknown
-> = z.object({});
-
-export function messageResponseDtoPayloadFromJSON(
-  jsonString: string,
-): SafeParseResult<MessageResponseDtoPayload, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => MessageResponseDtoPayload$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'MessageResponseDtoPayload' from JSON`,
-  );
-}
-
-/** @internal */
-export const MessageResponseDtoOverrides$inboundSchema: z.ZodType<
-  MessageResponseDtoOverrides,
-  z.ZodTypeDef,
-  unknown
-> = z.object({});
-
-export function messageResponseDtoOverridesFromJSON(
-  jsonString: string,
-): SafeParseResult<MessageResponseDtoOverrides, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => MessageResponseDtoOverrides$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'MessageResponseDtoOverrides' from JSON`,
   );
 }
 
@@ -271,8 +227,8 @@ export const MessageResponseDto$inboundSchema: z.ZodType<
   status: MessageStatusEnum$inboundSchema,
   errorId: z.string().optional(),
   errorText: z.string().optional(),
-  payload: z.lazy(() => MessageResponseDtoPayload$inboundSchema).optional(),
-  overrides: z.lazy(() => MessageResponseDtoOverrides$inboundSchema).optional(),
+  payload: z.record(z.any()).optional(),
+  overrides: z.record(z.any()).optional(),
   contextKeys: z.array(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {

@@ -6,7 +6,17 @@
 import { TopicsControllerUpdateTopicSubscriptionResponse } from "@novu/api/models/operations";
 
 let value: TopicsControllerUpdateTopicSubscriptionResponse = {
-  headers: {},
+  headers: {
+    "key": [
+      "<value 1>",
+      "<value 2>",
+      "<value 3>",
+    ],
+    "key1": [
+      "<value 1>",
+      "<value 2>",
+    ],
+  },
   result: {
     id: "64f5e95d3d7946d80d0cb679",
     identifier: "tk=product-updates:si=subscriber-123",
@@ -53,6 +63,10 @@ let value: TopicsControllerUpdateTopicSubscriptionResponse = {
           ],
         },
       },
+    ],
+    contextKeys: [
+      "tenant:org-a",
+      "project:proj-123",
     ],
     createdAt: "2025-04-24T05:40:21Z",
     updatedAt: "2025-04-24T05:40:21Z",

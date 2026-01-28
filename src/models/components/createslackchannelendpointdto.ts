@@ -12,7 +12,7 @@ import {
 /**
  * Rich context object with id and optional data
  */
-export type Context2 = {
+export type CreateSlackChannelEndpointDtoContext2 = {
   id: string;
   /**
    * Optional additional context data
@@ -20,7 +20,9 @@ export type Context2 = {
   data?: { [k: string]: any } | undefined;
 };
 
-export type CreateSlackChannelEndpointDtoContext = Context2 | string;
+export type CreateSlackChannelEndpointDtoContext =
+  | CreateSlackChannelEndpointDtoContext2
+  | string;
 
 export type CreateSlackChannelEndpointDto = {
   /**
@@ -31,7 +33,9 @@ export type CreateSlackChannelEndpointDto = {
    * The subscriber ID to which the channel endpoint is linked
    */
   subscriberId: string;
-  context?: { [k: string]: Context2 | string } | undefined;
+  context?:
+    | { [k: string]: CreateSlackChannelEndpointDtoContext2 | string }
+    | undefined;
   /**
    * The identifier of the integration to use for this channel endpoint.
    */
@@ -51,28 +55,34 @@ export type CreateSlackChannelEndpointDto = {
 };
 
 /** @internal */
-export type Context2$Outbound = {
+export type CreateSlackChannelEndpointDtoContext2$Outbound = {
   id: string;
   data?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
-export const Context2$outboundSchema: z.ZodType<
-  Context2$Outbound,
+export const CreateSlackChannelEndpointDtoContext2$outboundSchema: z.ZodType<
+  CreateSlackChannelEndpointDtoContext2$Outbound,
   z.ZodTypeDef,
-  Context2
+  CreateSlackChannelEndpointDtoContext2
 > = z.object({
   id: z.string(),
   data: z.record(z.any()).optional(),
 });
 
-export function context2ToJSON(context2: Context2): string {
-  return JSON.stringify(Context2$outboundSchema.parse(context2));
+export function createSlackChannelEndpointDtoContext2ToJSON(
+  createSlackChannelEndpointDtoContext2: CreateSlackChannelEndpointDtoContext2,
+): string {
+  return JSON.stringify(
+    CreateSlackChannelEndpointDtoContext2$outboundSchema.parse(
+      createSlackChannelEndpointDtoContext2,
+    ),
+  );
 }
 
 /** @internal */
 export type CreateSlackChannelEndpointDtoContext$Outbound =
-  | Context2$Outbound
+  | CreateSlackChannelEndpointDtoContext2$Outbound
   | string;
 
 /** @internal */
@@ -80,7 +90,10 @@ export const CreateSlackChannelEndpointDtoContext$outboundSchema: z.ZodType<
   CreateSlackChannelEndpointDtoContext$Outbound,
   z.ZodTypeDef,
   CreateSlackChannelEndpointDtoContext
-> = z.union([z.lazy(() => Context2$outboundSchema), z.string()]);
+> = z.union([
+  z.lazy(() => CreateSlackChannelEndpointDtoContext2$outboundSchema),
+  z.string(),
+]);
 
 export function createSlackChannelEndpointDtoContextToJSON(
   createSlackChannelEndpointDtoContext: CreateSlackChannelEndpointDtoContext,
@@ -96,7 +109,9 @@ export function createSlackChannelEndpointDtoContextToJSON(
 export type CreateSlackChannelEndpointDto$Outbound = {
   identifier?: string | undefined;
   subscriberId: string;
-  context?: { [k: string]: Context2$Outbound | string } | undefined;
+  context?: {
+    [k: string]: CreateSlackChannelEndpointDtoContext2$Outbound | string;
+  } | undefined;
   integrationIdentifier: string;
   connectionIdentifier?: string | undefined;
   type: "slack_channel";
@@ -112,7 +127,10 @@ export const CreateSlackChannelEndpointDto$outboundSchema: z.ZodType<
   identifier: z.string().optional(),
   subscriberId: z.string(),
   context: z.record(
-    z.union([z.lazy(() => Context2$outboundSchema), z.string()]),
+    z.union([
+      z.lazy(() => CreateSlackChannelEndpointDtoContext2$outboundSchema),
+      z.string(),
+    ]),
   ).optional(),
   integrationIdentifier: z.string(),
   connectionIdentifier: z.string().optional(),

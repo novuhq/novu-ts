@@ -69,6 +69,10 @@ export type SubscriptionResponseDto = {
    */
   preferences?: Array<SubscriptionPreferenceDto> | undefined;
   /**
+   * Context keys that scope this subscription (e.g., tenant:org-a, project:proj-123)
+   */
+  contextKeys?: Array<string> | undefined;
+  /**
    * The creation date of the subscription
    */
   createdAt: string;
@@ -118,6 +122,7 @@ export const SubscriptionResponseDto$inboundSchema: z.ZodType<
   topic: TopicDto$inboundSchema,
   subscriber: z.nullable(z.lazy(() => Subscriber$inboundSchema)),
   preferences: z.array(SubscriptionPreferenceDto$inboundSchema).optional(),
+  contextKeys: z.array(z.string()).optional(),
   createdAt: z.string(),
   updatedAt: z.string(),
 }).transform((v) => {

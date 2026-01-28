@@ -14,7 +14,7 @@ const value: string = "xx xx xx ";
 ### `number`
 
 ```typescript
-const value: number = NaN;
+const value: number = 1284.03;
 ```
 
 ### `boolean`
@@ -32,8 +32,6 @@ const value: errors.MessagePayloadValidationExceptionDto4 = {};
 ### `errors.MessagePayloadValidationExceptionDto5[]`
 
 ```typescript
-const value: errors.MessagePayloadValidationExceptionDto5[] = [
-  "xx xx xx ",
-];
+const value: errors.MessagePayloadValidationExceptionDto5[] = [];
 ```
 

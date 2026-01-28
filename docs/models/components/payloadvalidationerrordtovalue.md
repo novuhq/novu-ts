@@ -8,13 +8,13 @@ The actual value that failed validation
 ### `string`
 
 ```typescript
-const value: string = "{\"age\":25}";
+const value: string = "<value>";
 ```
 
 ### `number`
 
 ```typescript
-const value: number = [object Object];
+const value: number = 1284.03;
 ```
 
 ### `boolean`
@@ -33,9 +33,7 @@ const value: components.Value4 = {};
 
 ```typescript
 const value: components.Value5[] = [
-  {
-    "age": 25,
-  },
+  {},
 ];
 ```
 

@@ -3023,7 +3023,9 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/"
+                "type": "object",
+                "additionalProperties": true,
+                "description": "Generic webhook payload from delivery providers"
               }
             }
           }
@@ -9507,6 +9509,21 @@
             }
           },
           {
+            "name": "contextKeys",
+            "required": false,
+            "in": "query",
+            "description": "Context keys for filtering preferences (e.g., [\"tenant:acme\"])",
+            "example": [
+              "tenant:acme"
+            ],
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
             "name": "idempotency-key",
             "in": "header",
             "description": "A header for idempotency purposes",
@@ -11050,6 +11067,22 @@
             "description": "Filter by topic key",
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "contextKeys",
+            "required": false,
+            "in": "query",
+            "description": "Filter by exact context keys, order insensitive (format: \"type:id\")",
+            "example": [
+              "tenant:org-123",
+              "region:us-east-1"
+            ],
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
             }
           },
           {
@@ -14147,6 +14180,22 @@
             }
           },
           {
+            "name": "contextKeys",
+            "required": false,
+            "in": "query",
+            "description": "Filter by exact context keys, order insensitive (format: \"type:id\")",
+            "example": [
+              "tenant:org-123",
+              "region:us-east-1"
+            ],
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
             "name": "idempotency-key",
             "in": "header",
             "description": "A header for idempotency purposes",
@@ -15668,7 +15717,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/SubscriptionResponseDto"
+                  "$ref": "#/components/schemas/SubscriptionDetailsResponseDto"
                 }
               }
             }
@@ -42088,7 +42137,7 @@
   "info": {
     "title": "Novu API",
     "description": "Novu REST API. Please see https://docs.novu.co/api-reference for more details.",
-    "version": "3.11.0",
+    "version": "3.12.0",
     "contact": {
       "name": "Novu Support",
       "url": "https://discord.gg/novu",
@@ -46061,7 +46110,8 @@
         "properties": {
           "payload": {
             "type": "object",
-            "description": "Payload of the action result"
+            "description": "Payload of the action result",
+            "additionalProperties": true
           },
           "type": {
             "$ref": "#/components/schemas/ButtonTypeEnum"
@@ -47148,11 +47198,13 @@
           },
           "payload": {
             "type": "object",
-            "description": "The payload that was used to send the notification trigger"
+            "description": "The payload that was used to send the notification trigger",
+            "additionalProperties": true
           },
           "overrides": {
             "type": "object",
-            "description": "Provider specific overrides used when triggering the notification"
+            "description": "Provider specific overrides used when triggering the notification",
+            "additionalProperties": true
           },
           "contextKeys": {
             "description": "Context (single or multi) in which the message was sent",
@@ -47735,6 +47787,10 @@
                 "$ref": "#/components/schemas/SubscriberPreferencesWorkflowInfoDto"
               }
             ]
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "Timestamp when the subscriber last updated their preference. Only present if subscriber explicitly set preferences."
           }
         },
         "required": [
@@ -47926,6 +47982,40 @@
             "items": {
               "$ref": "#/components/schemas/BulkUpdateSubscriberPreferenceItemDto"
             }
+          },
+          "context": {
+            "type": "object",
+            "additionalProperties": {
+              "oneOf": [
+                {
+                  "type": "string",
+                  "description": "Simple context id",
+                  "example": "org-acme"
+                },
+                {
+                  "type": "object",
+                  "description": "Rich context object with id and optional data",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "example": "org-acme"
+                    },
+                    "data": {
+                      "type": "object",
+                      "description": "Optional additional context data",
+                      "additionalProperties": true,
+                      "example": {
+                        "name": "Acme Corp",
+                        "region": "us-east-1"
+                      }
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ]
+                }
+              ]
+            }
           }
         },
         "required": [
@@ -47954,6 +48044,40 @@
                 "$ref": "#/components/schemas/ScheduleDto"
               }
             ]
+          },
+          "context": {
+            "type": "object",
+            "additionalProperties": {
+              "oneOf": [
+                {
+                  "type": "string",
+                  "description": "Simple context id",
+                  "example": "org-acme"
+                },
+                {
+                  "type": "object",
+                  "description": "Rich context object with id and optional data",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "example": "org-acme"
+                    },
+                    "data": {
+                      "type": "object",
+                      "description": "Optional additional context data",
+                      "additionalProperties": true,
+                      "example": {
+                        "name": "Acme Corp",
+                        "region": "us-east-1"
+                      }
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ]
+                }
+              ]
+            }
           }
         }
       },
@@ -48033,6 +48157,17 @@
                 "$ref": "#/components/schemas/SubscriberDto"
               }
             ]
+          },
+          "contextKeys": {
+            "description": "Context keys that scope this subscription (e.g., tenant:org-a, project:proj-123)",
+            "example": [
+              "tenant:org-a",
+              "project:proj-123"
+            ],
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         },
         "required": [
@@ -48989,6 +49124,17 @@
               "$ref": "#/components/schemas/SubscriptionPreferenceDto"
             }
           },
+          "contextKeys": {
+            "description": "Context keys that scope this subscription (e.g., tenant:org-a, project:proj-123)",
+            "example": [
+              "tenant:org-a",
+              "project:proj-123"
+            ],
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
           "createdAt": {
             "type": "string",
             "description": "The creation date of the subscription",
@@ -49257,6 +49403,40 @@
             "description": "The name of the topic",
             "example": "My Topic"
           },
+          "context": {
+            "type": "object",
+            "additionalProperties": {
+              "oneOf": [
+                {
+                  "type": "string",
+                  "description": "Simple context id",
+                  "example": "org-acme"
+                },
+                {
+                  "type": "object",
+                  "description": "Rich context object with id and optional data",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "example": "org-acme"
+                    },
+                    "data": {
+                      "type": "object",
+                      "description": "Optional additional context data",
+                      "additionalProperties": true,
+                      "example": {
+                        "name": "Acme Corp",
+                        "region": "us-east-1"
+                      }
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ]
+                }
+              ]
+            }
+          },
           "preferences": {
             "type": "array",
             "description": "The preferences of the topic. Can be a simple workflow ID string, workflow preference object, or group filter object",
@@ -49318,6 +49498,17 @@
                 "$ref": "#/components/schemas/SubscriberDto"
               }
             ]
+          },
+          "contextKeys": {
+            "description": "Context keys that scope this subscription (e.g., tenant:org-a, project:proj-123)",
+            "example": [
+              "tenant:org-a",
+              "project:proj-123"
+            ],
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           },
           "createdAt": {
             "type": "string",
@@ -49451,6 +49642,47 @@
             ]
           }
         }
+      },
+      "SubscriptionDetailsResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique identifier of the subscription",
+            "example": "64f5e95d3d7946d80d0cb679"
+          },
+          "identifier": {
+            "type": "string",
+            "description": "The identifier of the subscription",
+            "example": "subscription-identifier"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the subscription",
+            "example": "My Subscription"
+          },
+          "preferences": {
+            "description": "The preferences/rules for the subscription",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SubscriptionPreferenceDto"
+            }
+          },
+          "contextKeys": {
+            "description": "Context keys that scope this subscription (e.g., tenant:org-a, project:proj-123)",
+            "example": [
+              "tenant:org-a",
+              "project:proj-123"
+            ],
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "id"
+        ]
       },
       "UpdateTopicSubscriptionRequestDto": {
         "type": "object",

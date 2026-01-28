@@ -24,7 +24,9 @@ async function run() {
   const result = await novu.activity.track({
     environmentId: "<id>",
     integrationId: "<id>",
-    requestBody: "<value>",
+    requestBody: {
+
+    },
   });
 
   console.log(result);
@@ -51,7 +53,9 @@ async function run() {
   const res = await activityTrack(novu, {
     environmentId: "<id>",
     integrationId: "<id>",
-    requestBody: "<value>",
+    requestBody: {
+  
+    },
   });
   if (res.ok) {
     const { value: result } = res;

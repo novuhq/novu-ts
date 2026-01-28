@@ -19,6 +19,9 @@ let value: TopicsControllerCreateTopicSubscriptionsRequest = {
       },
     ],
     name: "My Topic",
+    context: {
+      "key": "org-acme",
+    },
     preferences: [
       {
         condition: {

@@ -14,7 +14,7 @@ const value: string = "xx xx xx ";
 ### `number`
 
 ```typescript
-const value: number = NaN;
+const value: number = 1284.03;
 ```
 
 ### `boolean`
@@ -33,7 +33,9 @@ const value: errors.Message4 = {};
 
 ```typescript
 const value: errors.Message5[] = [
-  "xx xx xx ",
+  {
+    "key": "<value>",
+  },
 ];
 ```
 

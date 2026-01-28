@@ -57,6 +57,10 @@ export type SubscriptionDto = {
    */
   subscriber: SubscriptionDtoSubscriber | null;
   /**
+   * Context keys that scope this subscription (e.g., tenant:org-a, project:proj-123)
+   */
+  contextKeys?: Array<string> | undefined;
+  /**
    * The creation date of the subscription
    */
   createdAt: string;
@@ -104,6 +108,7 @@ export const SubscriptionDto$inboundSchema: z.ZodType<
   identifier: z.string().optional(),
   topic: TopicDto$inboundSchema,
   subscriber: z.nullable(z.lazy(() => SubscriptionDtoSubscriber$inboundSchema)),
+  contextKeys: z.array(z.string()).optional(),
   createdAt: z.string(),
   updatedAt: z.string(),
 }).transform((v) => {

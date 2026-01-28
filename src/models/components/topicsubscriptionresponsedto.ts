@@ -34,6 +34,10 @@ export type TopicSubscriptionResponseDto = {
    * Subscriber information
    */
   subscriber: SubscriberDto;
+  /**
+   * Context keys that scope this subscription (e.g., tenant:org-a, project:proj-123)
+   */
+  contextKeys?: Array<string> | undefined;
 };
 
 /** @internal */
@@ -47,6 +51,7 @@ export const TopicSubscriptionResponseDto$inboundSchema: z.ZodType<
   createdAt: z.string(),
   topic: TopicResponseDto$inboundSchema,
   subscriber: SubscriberDto$inboundSchema,
+  contextKeys: z.array(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "_id": "id",

@@ -21,6 +21,10 @@ export type SubscribersControllerGetSubscriberPreferencesRequest = {
   subscriberId: string;
   criticality?: Criticality | undefined;
   /**
+   * Context keys for filtering preferences (e.g., ["tenant:acme"])
+   */
+  contextKeys?: Array<string> | undefined;
+  /**
    * A header for idempotency purposes
    */
   idempotencyKey?: string | undefined;
@@ -39,6 +43,7 @@ export const Criticality$outboundSchema: z.ZodNativeEnum<typeof Criticality> = z
 export type SubscribersControllerGetSubscriberPreferencesRequest$Outbound = {
   subscriberId: string;
   criticality: string;
+  contextKeys?: Array<string> | undefined;
   "idempotency-key"?: string | undefined;
 };
 
@@ -51,6 +56,7 @@ export const SubscribersControllerGetSubscriberPreferencesRequest$outboundSchema
   > = z.object({
     subscriberId: z.string(),
     criticality: Criticality$outboundSchema.default("nonCritical"),
+    contextKeys: z.array(z.string()).optional(),
     idempotencyKey: z.string().optional(),
   }).transform((v) => {
     return remap$(v, {

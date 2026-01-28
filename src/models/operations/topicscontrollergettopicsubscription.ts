@@ -26,7 +26,7 @@ export type TopicsControllerGetTopicSubscriptionRequest = {
 
 export type TopicsControllerGetTopicSubscriptionResponse = {
   headers: { [k: string]: Array<string> };
-  result: components.SubscriptionResponseDto;
+  result: components.SubscriptionDetailsResponseDto;
 };
 
 /** @internal */
@@ -71,7 +71,7 @@ export const TopicsControllerGetTopicSubscriptionResponse$inboundSchema:
     unknown
   > = z.object({
     Headers: z.record(z.array(z.string())).default({}),
-    Result: components.SubscriptionResponseDto$inboundSchema,
+    Result: components.SubscriptionDetailsResponseDto$inboundSchema,
   }).transform((v) => {
     return remap$(v, {
       "Headers": "headers",

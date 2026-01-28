@@ -21,6 +21,21 @@ import {
 
 export type Subscriptions = TopicSubscriberIdentifierDto | string;
 
+/**
+ * Rich context object with id and optional data
+ */
+export type CreateTopicSubscriptionsRequestDtoContext2 = {
+  id: string;
+  /**
+   * Optional additional context data
+   */
+  data?: { [k: string]: any } | undefined;
+};
+
+export type CreateTopicSubscriptionsRequestDtoContext =
+  | CreateTopicSubscriptionsRequestDtoContext2
+  | string;
+
 export type Preferences =
   | WorkflowPreferenceRequestDto
   | GroupPreferenceFilterDto
@@ -41,6 +56,9 @@ export type CreateTopicSubscriptionsRequestDto = {
    * The name of the topic
    */
   name?: string | undefined;
+  context?:
+    | { [k: string]: CreateTopicSubscriptionsRequestDtoContext2 | string }
+    | undefined;
   /**
    * The preferences of the topic. Can be a simple workflow ID string, workflow preference object, or group filter object
    */
@@ -63,6 +81,61 @@ export const Subscriptions$outboundSchema: z.ZodType<
 
 export function subscriptionsToJSON(subscriptions: Subscriptions): string {
   return JSON.stringify(Subscriptions$outboundSchema.parse(subscriptions));
+}
+
+/** @internal */
+export type CreateTopicSubscriptionsRequestDtoContext2$Outbound = {
+  id: string;
+  data?: { [k: string]: any } | undefined;
+};
+
+/** @internal */
+export const CreateTopicSubscriptionsRequestDtoContext2$outboundSchema:
+  z.ZodType<
+    CreateTopicSubscriptionsRequestDtoContext2$Outbound,
+    z.ZodTypeDef,
+    CreateTopicSubscriptionsRequestDtoContext2
+  > = z.object({
+    id: z.string(),
+    data: z.record(z.any()).optional(),
+  });
+
+export function createTopicSubscriptionsRequestDtoContext2ToJSON(
+  createTopicSubscriptionsRequestDtoContext2:
+    CreateTopicSubscriptionsRequestDtoContext2,
+): string {
+  return JSON.stringify(
+    CreateTopicSubscriptionsRequestDtoContext2$outboundSchema.parse(
+      createTopicSubscriptionsRequestDtoContext2,
+    ),
+  );
+}
+
+/** @internal */
+export type CreateTopicSubscriptionsRequestDtoContext$Outbound =
+  | CreateTopicSubscriptionsRequestDtoContext2$Outbound
+  | string;
+
+/** @internal */
+export const CreateTopicSubscriptionsRequestDtoContext$outboundSchema:
+  z.ZodType<
+    CreateTopicSubscriptionsRequestDtoContext$Outbound,
+    z.ZodTypeDef,
+    CreateTopicSubscriptionsRequestDtoContext
+  > = z.union([
+    z.lazy(() => CreateTopicSubscriptionsRequestDtoContext2$outboundSchema),
+    z.string(),
+  ]);
+
+export function createTopicSubscriptionsRequestDtoContextToJSON(
+  createTopicSubscriptionsRequestDtoContext:
+    CreateTopicSubscriptionsRequestDtoContext,
+): string {
+  return JSON.stringify(
+    CreateTopicSubscriptionsRequestDtoContext$outboundSchema.parse(
+      createTopicSubscriptionsRequestDtoContext,
+    ),
+  );
 }
 
 /** @internal */
@@ -93,6 +166,9 @@ export type CreateTopicSubscriptionsRequestDto$Outbound = {
     | Array<TopicSubscriberIdentifierDto$Outbound | string>
     | undefined;
   name?: string | undefined;
+  context?: {
+    [k: string]: CreateTopicSubscriptionsRequestDtoContext2$Outbound | string;
+  } | undefined;
   preferences?:
     | Array<
       | WorkflowPreferenceRequestDto$Outbound
@@ -113,6 +189,12 @@ export const CreateTopicSubscriptionsRequestDto$outboundSchema: z.ZodType<
     z.union([TopicSubscriberIdentifierDto$outboundSchema, z.string()]),
   ).optional(),
   name: z.string().optional(),
+  context: z.record(
+    z.union([
+      z.lazy(() => CreateTopicSubscriptionsRequestDtoContext2$outboundSchema),
+      z.string(),
+    ]),
+  ).optional(),
   preferences: z.array(
     z.union([
       WorkflowPreferenceRequestDto$outboundSchema,

@@ -52,6 +52,10 @@ let value: SubscriptionResponseDto = {
       },
     },
   ],
+  contextKeys: [
+    "tenant:org-a",
+    "project:proj-123",
+  ],
   createdAt: "2025-04-24T05:40:21Z",
   updatedAt: "2025-04-24T05:40:21Z",
 };
@@ -67,5 +71,6 @@ let value: SubscriptionResponseDto = {
 | `topic`                                                                                        | [components.TopicDto](../../models/components/topicdto.md)                                     | :heavy_check_mark:                                                                             | The topic information                                                                          |                                                                                                |
 | `subscriber`                                                                                   | [components.Subscriber](../../models/components/subscriber.md)                                 | :heavy_check_mark:                                                                             | The subscriber information                                                                     |                                                                                                |
 | `preferences`                                                                                  | [components.SubscriptionPreferenceDto](../../models/components/subscriptionpreferencedto.md)[] | :heavy_minus_sign:                                                                             | The preferences for workflows in this subscription                                             |                                                                                                |
+| `contextKeys`                                                                                  | *string*[]                                                                                     | :heavy_minus_sign:                                                                             | Context keys that scope this subscription (e.g., tenant:org-a, project:proj-123)               | [<br/>"tenant:org-a",<br/>"project:proj-123"<br/>]                                             |
 | `createdAt`                                                                                    | *string*                                                                                       | :heavy_check_mark:                                                                             | The creation date of the subscription                                                          | 2025-04-24T05:40:21Z                                                                           |
 | `updatedAt`                                                                                    | *string*                                                                                       | :heavy_check_mark:                                                                             | The last update date of the subscription                                                       | 2025-04-24T05:40:21Z                                                                           |
