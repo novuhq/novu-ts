@@ -9,16 +9,75 @@ import {
   BulkUpdateSubscriberPreferenceItemDto$outboundSchema,
 } from "./bulkupdatesubscriberpreferenceitemdto.js";
 
+/**
+ * Rich context object with id and optional data
+ */
+export type Context2 = {
+  id: string;
+  /**
+   * Optional additional context data
+   */
+  data?: { [k: string]: any } | undefined;
+};
+
+export type BulkUpdateSubscriberPreferencesDtoContext = Context2 | string;
+
 export type BulkUpdateSubscriberPreferencesDto = {
   /**
    * Array of workflow preferences to update (maximum 100 items)
    */
   preferences: Array<BulkUpdateSubscriberPreferenceItemDto>;
+  context?: { [k: string]: Context2 | string } | undefined;
 };
+
+/** @internal */
+export type Context2$Outbound = {
+  id: string;
+  data?: { [k: string]: any } | undefined;
+};
+
+/** @internal */
+export const Context2$outboundSchema: z.ZodType<
+  Context2$Outbound,
+  z.ZodTypeDef,
+  Context2
+> = z.object({
+  id: z.string(),
+  data: z.record(z.any()).optional(),
+});
+
+export function context2ToJSON(context2: Context2): string {
+  return JSON.stringify(Context2$outboundSchema.parse(context2));
+}
+
+/** @internal */
+export type BulkUpdateSubscriberPreferencesDtoContext$Outbound =
+  | Context2$Outbound
+  | string;
+
+/** @internal */
+export const BulkUpdateSubscriberPreferencesDtoContext$outboundSchema:
+  z.ZodType<
+    BulkUpdateSubscriberPreferencesDtoContext$Outbound,
+    z.ZodTypeDef,
+    BulkUpdateSubscriberPreferencesDtoContext
+  > = z.union([z.lazy(() => Context2$outboundSchema), z.string()]);
+
+export function bulkUpdateSubscriberPreferencesDtoContextToJSON(
+  bulkUpdateSubscriberPreferencesDtoContext:
+    BulkUpdateSubscriberPreferencesDtoContext,
+): string {
+  return JSON.stringify(
+    BulkUpdateSubscriberPreferencesDtoContext$outboundSchema.parse(
+      bulkUpdateSubscriberPreferencesDtoContext,
+    ),
+  );
+}
 
 /** @internal */
 export type BulkUpdateSubscriberPreferencesDto$Outbound = {
   preferences: Array<BulkUpdateSubscriberPreferenceItemDto$Outbound>;
+  context?: { [k: string]: Context2$Outbound | string } | undefined;
 };
 
 /** @internal */
@@ -28,6 +87,9 @@ export const BulkUpdateSubscriberPreferencesDto$outboundSchema: z.ZodType<
   BulkUpdateSubscriberPreferencesDto
 > = z.object({
   preferences: z.array(BulkUpdateSubscriberPreferenceItemDto$outboundSchema),
+  context: z.record(
+    z.union([z.lazy(() => Context2$outboundSchema), z.string()]),
+  ).optional(),
 });
 
 export function bulkUpdateSubscriberPreferencesDtoToJSON(

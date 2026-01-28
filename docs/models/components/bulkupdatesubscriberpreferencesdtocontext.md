@@ -1,4 +1,4 @@
-# CreateSlackChannelEndpointDtoContext
+# BulkUpdateSubscriberPreferencesDtoContext
 
 
 ## Supported Types
@@ -9,10 +9,10 @@
 const value: string = "org-acme";
 ```
 
-### `components.CreateSlackChannelEndpointDtoContext2`
+### `components.Context2`
 
 ```typescript
-const value: components.CreateSlackChannelEndpointDtoContext2 = {
+const value: components.Context2 = {
   id: "org-acme",
   data: {
     "name": "Acme Corp",

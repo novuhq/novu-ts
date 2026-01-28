@@ -107,6 +107,7 @@ async function $do(
   const query = encodeFormQuery({
     "after": payload.after,
     "before": payload.before,
+    "contextKeys": payload.contextKeys,
     "includeCursor": payload.includeCursor,
     "key": payload.key,
     "limit": payload.limit,

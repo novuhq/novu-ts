@@ -44,6 +44,10 @@ let value: SubscribersControllerListSubscriberTopicsResponse = {
           lastName: "Doe",
           email: "john@example.com",
         },
+        contextKeys: [
+          "tenant:org-a",
+          "project:proj-123",
+        ],
       },
     ],
     next: "<value>",

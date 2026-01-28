@@ -25,6 +25,10 @@ let value: TopicsControllerDeleteTopicSubscriptionsResponse = {
           name: "Product Updates",
         },
         subscriber: null,
+        contextKeys: [
+          "tenant:org-a",
+          "project:proj-123",
+        ],
         createdAt: "2025-04-24T05:40:21Z",
         updatedAt: "2025-04-24T05:40:21Z",
       },

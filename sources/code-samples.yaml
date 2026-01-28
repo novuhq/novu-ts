@@ -296,7 +296,7 @@ actions:
       "x-codeSamples":
         - "lang": "typescript"
           "label": "TypeScript"
-          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.activity.track({\n    environmentId: \"<id>\",\n    integrationId: \"<id>\",\n    requestBody: \"<value>\",\n  });\n\n  console.log(result);\n}\n\nrun();"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.activity.track({\n    environmentId: \"<id>\",\n    integrationId: \"<id>\",\n    requestBody: {\n\n    },\n  });\n\n  console.log(result);\n}\n\nrun();"
   - target: $["paths"]["/v2/layouts"]["get"]
     update:
       "x-codeSamples":
@@ -380,25 +380,25 @@ actions:
       "x-codeSamples":
         - "lang": "typescript"
           "label": "TypeScript"
-          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.subscribers.preferences.list(\"<id>\");\n\n  console.log(result);\n}\n\nrun();"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.subscribers.preferences.list({\n    subscriberId: \"<id>\",\n    contextKeys: [\n      \"tenant:acme\",\n    ],\n  });\n\n  console.log(result);\n}\n\nrun();"
   - target: $["paths"]["/v2/subscribers/{subscriberId}/preferences"]["patch"]
     update:
       "x-codeSamples":
         - "lang": "typescript"
           "label": "TypeScript"
-          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.subscribers.preferences.update({\n    schedule: {\n      isEnabled: true,\n      weeklySchedule: {\n        monday: {\n          isEnabled: true,\n          hours: [\n            {\n              start: \"09:00 AM\",\n              end: \"05:00 PM\",\n            },\n          ],\n        },\n        tuesday: {\n          isEnabled: true,\n          hours: [\n            {\n              start: \"09:00 AM\",\n              end: \"05:00 PM\",\n            },\n          ],\n        },\n        wednesday: {\n          isEnabled: true,\n          hours: [\n            {\n              start: \"09:00 AM\",\n              end: \"05:00 PM\",\n            },\n          ],\n        },\n        thursday: {\n          isEnabled: true,\n          hours: [\n            {\n              start: \"09:00 AM\",\n              end: \"05:00 PM\",\n            },\n          ],\n        },\n        friday: {\n          isEnabled: true,\n          hours: [\n            {\n              start: \"09:00 AM\",\n              end: \"05:00 PM\",\n            },\n          ],\n        },\n        saturday: {\n          isEnabled: true,\n          hours: [\n            {\n              start: \"09:00 AM\",\n              end: \"05:00 PM\",\n            },\n          ],\n        },\n        sunday: {\n          isEnabled: true,\n          hours: [\n            {\n              start: \"09:00 AM\",\n              end: \"05:00 PM\",\n            },\n          ],\n        },\n      },\n    },\n  }, \"<id>\");\n\n  console.log(result);\n}\n\nrun();"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.subscribers.preferences.update({\n    schedule: {\n      isEnabled: true,\n      weeklySchedule: {\n        monday: {\n          isEnabled: true,\n          hours: [\n            {\n              start: \"09:00 AM\",\n              end: \"05:00 PM\",\n            },\n          ],\n        },\n        tuesday: {\n          isEnabled: true,\n          hours: [\n            {\n              start: \"09:00 AM\",\n              end: \"05:00 PM\",\n            },\n          ],\n        },\n        wednesday: {\n          isEnabled: true,\n          hours: [\n            {\n              start: \"09:00 AM\",\n              end: \"05:00 PM\",\n            },\n          ],\n        },\n        thursday: {\n          isEnabled: true,\n          hours: [\n            {\n              start: \"09:00 AM\",\n              end: \"05:00 PM\",\n            },\n          ],\n        },\n        friday: {\n          isEnabled: true,\n          hours: [\n            {\n              start: \"09:00 AM\",\n              end: \"05:00 PM\",\n            },\n          ],\n        },\n        saturday: {\n          isEnabled: true,\n          hours: [\n            {\n              start: \"09:00 AM\",\n              end: \"05:00 PM\",\n            },\n          ],\n        },\n        sunday: {\n          isEnabled: true,\n          hours: [\n            {\n              start: \"09:00 AM\",\n              end: \"05:00 PM\",\n            },\n          ],\n        },\n      },\n    },\n    context: {\n      \"key\": \"org-acme\",\n    },\n  }, \"<id>\");\n\n  console.log(result);\n}\n\nrun();"
   - target: $["paths"]["/v2/subscribers/{subscriberId}/preferences/bulk"]["patch"]
     update:
       "x-codeSamples":
         - "lang": "typescript"
           "label": "TypeScript"
-          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.subscribers.preferences.bulkUpdate({\n    preferences: [],\n  }, \"<id>\");\n\n  console.log(result);\n}\n\nrun();"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.subscribers.preferences.bulkUpdate({\n    preferences: [],\n    context: {\n      \"key\": \"org-acme\",\n    },\n  }, \"<id>\");\n\n  console.log(result);\n}\n\nrun();"
   - target: $["paths"]["/v2/subscribers/{subscriberId}/subscriptions"]["get"]
     update:
       "x-codeSamples":
         - "lang": "typescript"
           "label": "TypeScript"
-          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.subscribers.topics.list({\n    subscriberId: \"<id>\",\n    limit: 10,\n  });\n\n  console.log(result);\n}\n\nrun();"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.subscribers.topics.list({\n    subscriberId: \"<id>\",\n    limit: 10,\n    contextKeys: [\n      \"tenant:org-123\",\n      \"region:us-east-1\",\n    ],\n  });\n\n  console.log(result);\n}\n\nrun();"
   - target: $["paths"]["/v2/topics"]["get"]
     update:
       "x-codeSamples":
@@ -440,13 +440,13 @@ actions:
       "x-codeSamples":
         - "lang": "typescript"
           "label": "TypeScript"
-          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.topics.subscriptions.list({\n    topicKey: \"<value>\",\n    limit: 10,\n  });\n\n  console.log(result);\n}\n\nrun();"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.topics.subscriptions.list({\n    topicKey: \"<value>\",\n    limit: 10,\n    contextKeys: [\n      \"tenant:org-123\",\n      \"region:us-east-1\",\n    ],\n  });\n\n  console.log(result);\n}\n\nrun();"
   - target: $["paths"]["/v2/topics/{topicKey}/subscriptions"]["post"]
     update:
       "x-codeSamples":
         - "lang": "typescript"
           "label": "TypeScript"
-          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.topics.subscriptions.create({\n    subscriptions: [\n      {\n        identifier: \"subscriber-123-subscription-a\",\n        subscriberId: \"subscriber-123\",\n      },\n      {\n        identifier: \"subscriber-456-subscription-b\",\n        subscriberId: \"subscriber-456\",\n      },\n    ],\n    name: \"My Topic\",\n    preferences: [\n      {\n        condition: {\n          \"===\": [\n            {\n              \"var\": \"tier\",\n            },\n            \"premium\",\n          ],\n        },\n        workflowId: \"workflow-123\",\n      },\n    ],\n  }, \"<value>\");\n\n  console.log(result);\n}\n\nrun();"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.topics.subscriptions.create({\n    subscriptions: [\n      {\n        identifier: \"subscriber-123-subscription-a\",\n        subscriberId: \"subscriber-123\",\n      },\n      {\n        identifier: \"subscriber-456-subscription-b\",\n        subscriberId: \"subscriber-456\",\n      },\n    ],\n    name: \"My Topic\",\n    context: {\n      \"key\": \"org-acme\",\n    },\n    preferences: [\n      {\n        condition: {\n          \"===\": [\n            {\n              \"var\": \"tier\",\n            },\n            \"premium\",\n          ],\n        },\n        workflowId: \"workflow-123\",\n      },\n    ],\n  }, \"<value>\");\n\n  console.log(result);\n}\n\nrun();"
   - target: $["paths"]["/v2/topics/{topicKey}/subscriptions/{identifier}"]["get"]
     update:
       "x-codeSamples":

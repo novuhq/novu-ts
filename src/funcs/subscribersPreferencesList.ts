@@ -34,9 +34,7 @@ import { Result } from "../types/fp.js";
  */
 export function subscribersPreferencesList(
   client: NovuCore,
-  subscriberId: string,
-  criticality?: operations.Criticality | undefined,
-  idempotencyKey?: string | undefined,
+  request: operations.SubscribersControllerGetSubscriberPreferencesRequest,
   options?: RequestOptions,
 ): APIPromise<
   Result<
@@ -55,18 +53,14 @@ export function subscribersPreferencesList(
 > {
   return new APIPromise($do(
     client,
-    subscriberId,
-    criticality,
-    idempotencyKey,
+    request,
     options,
   ));
 }
 
 async function $do(
   client: NovuCore,
-  subscriberId: string,
-  criticality?: operations.Criticality | undefined,
-  idempotencyKey?: string | undefined,
+  request: operations.SubscribersControllerGetSubscriberPreferencesRequest,
   options?: RequestOptions,
 ): Promise<
   [
@@ -86,15 +80,8 @@ async function $do(
     APICall,
   ]
 > {
-  const input: operations.SubscribersControllerGetSubscriberPreferencesRequest =
-    {
-      subscriberId: subscriberId,
-      criticality: criticality,
-      idempotencyKey: idempotencyKey,
-    };
-
   const parsed = safeParse(
-    input,
+    request,
     (value) =>
       operations
         .SubscribersControllerGetSubscriberPreferencesRequest$outboundSchema
@@ -119,6 +106,7 @@ async function $do(
   );
 
   const query = encodeFormQuery({
+    "contextKeys": payload.contextKeys,
     "criticality": payload.criticality,
   });
 

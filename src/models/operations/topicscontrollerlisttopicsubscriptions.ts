@@ -61,6 +61,10 @@ export type TopicsControllerListTopicSubscriptionsRequest = {
    */
   subscriberId?: string | undefined;
   /**
+   * Filter by exact context keys, order insensitive (format: "type:id")
+   */
+  contextKeys?: Array<string> | undefined;
+  /**
    * A header for idempotency purposes
    */
   idempotencyKey?: string | undefined;
@@ -89,6 +93,7 @@ export type TopicsControllerListTopicSubscriptionsRequest$Outbound = {
   orderBy?: string | undefined;
   includeCursor?: boolean | undefined;
   subscriberId?: string | undefined;
+  contextKeys?: Array<string> | undefined;
   "idempotency-key"?: string | undefined;
 };
 
@@ -109,6 +114,7 @@ export const TopicsControllerListTopicSubscriptionsRequest$outboundSchema:
     orderBy: z.string().optional(),
     includeCursor: z.boolean().optional(),
     subscriberId: z.string().optional(),
+    contextKeys: z.array(z.string()).optional(),
     idempotencyKey: z.string().optional(),
   }).transform((v) => {
     return remap$(v, {

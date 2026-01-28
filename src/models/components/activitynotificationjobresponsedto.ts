@@ -50,7 +50,7 @@ export type ActivityNotificationJobResponseDtoType = ClosedEnum<
 /**
  * Optional payload for the job
  */
-export type ActivityNotificationJobResponseDtoPayload = {};
+export type Payload = {};
 
 export type ActivityNotificationJobResponseDto = {
   /**
@@ -80,7 +80,7 @@ export type ActivityNotificationJobResponseDto = {
   /**
    * Optional payload for the job
    */
-  payload?: ActivityNotificationJobResponseDtoPayload | undefined;
+  payload?: Payload | undefined;
   /**
    * Provider ID of the job
    */
@@ -106,25 +106,16 @@ export const ActivityNotificationJobResponseDtoType$inboundSchema:
   );
 
 /** @internal */
-export const ActivityNotificationJobResponseDtoPayload$inboundSchema: z.ZodType<
-  ActivityNotificationJobResponseDtoPayload,
-  z.ZodTypeDef,
-  unknown
-> = z.object({});
+export const Payload$inboundSchema: z.ZodType<Payload, z.ZodTypeDef, unknown> =
+  z.object({});
 
-export function activityNotificationJobResponseDtoPayloadFromJSON(
+export function payloadFromJSON(
   jsonString: string,
-): SafeParseResult<
-  ActivityNotificationJobResponseDtoPayload,
-  SDKValidationError
-> {
+): SafeParseResult<Payload, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) =>
-      ActivityNotificationJobResponseDtoPayload$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'ActivityNotificationJobResponseDtoPayload' from JSON`,
+    (x) => Payload$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Payload' from JSON`,
   );
 }
 
@@ -142,8 +133,7 @@ export const ActivityNotificationJobResponseDto$inboundSchema: z.ZodType<
   ),
   step: ActivityNotificationStepResponseDto$inboundSchema,
   overrides: z.record(z.any()).optional(),
-  payload: z.lazy(() => ActivityNotificationJobResponseDtoPayload$inboundSchema)
-    .optional(),
+  payload: z.lazy(() => Payload$inboundSchema).optional(),
   providerId: ProvidersIdEnum$inboundSchema,
   status: z.string(),
   updatedAt: z.string().optional(),

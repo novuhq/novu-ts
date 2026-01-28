@@ -25,6 +25,10 @@ async function run() {
   const result = await novu.subscribers.topics.list({
     subscriberId: "<id>",
     limit: 10,
+    contextKeys: [
+      "tenant:org-123",
+      "region:us-east-1",
+    ],
   });
 
   console.log(result);
@@ -51,6 +55,10 @@ async function run() {
   const res = await subscribersTopicsList(novu, {
     subscriberId: "<id>",
     limit: 10,
+    contextKeys: [
+      "tenant:org-123",
+      "region:us-east-1",
+    ],
   });
   if (res.ok) {
     const { value: result } = res;

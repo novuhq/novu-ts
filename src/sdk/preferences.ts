@@ -19,16 +19,12 @@ export class Preferences extends ClientSDK {
    *     This API returns all five channels preferences for all workflows and global preferences.
    */
   async list(
-    subscriberId: string,
-    criticality?: operations.Criticality | undefined,
-    idempotencyKey?: string | undefined,
+    request: operations.SubscribersControllerGetSubscriberPreferencesRequest,
     options?: RequestOptions,
   ): Promise<operations.SubscribersControllerGetSubscriberPreferencesResponse> {
     return unwrapAsync(subscribersPreferencesList(
       this,
-      subscriberId,
-      criticality,
-      idempotencyKey,
+      request,
       options,
     ));
   }
