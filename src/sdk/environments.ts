@@ -14,7 +14,7 @@ import { unwrapAsync } from "../types/fp.js";
 
 export class Environments extends ClientSDK {
   /**
-   * Get environment tags
+   * List environment tags
    *
    * @remarks
    * Retrieve all unique tags used in workflows within the specified environment. These tags can be used for filtering workflows.

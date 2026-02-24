@@ -297,7 +297,7 @@ run();
 
 ### [Environments](docs/sdks/environments/README.md)
 
-* [getTags](docs/sdks/environments/README.md#gettags) - Get environment tags
+* [getTags](docs/sdks/environments/README.md#gettags) - List environment tags
 * [create](docs/sdks/environments/README.md#create) - Create an environment
 * [list](docs/sdks/environments/README.md#list) - List all environments
 * [update](docs/sdks/environments/README.md#update) - Update an environment
@@ -393,7 +393,7 @@ run();
 * [list](docs/sdks/subscriptions/README.md#list) - List topic subscriptions
 * [create](docs/sdks/subscriptions/README.md#create) - Create topic subscriptions
 * [delete](docs/sdks/subscriptions/README.md#delete) - Delete topic subscriptions
-* [getSubscription](docs/sdks/subscriptions/README.md#getsubscription) - Get a topic subscription
+* [getSubscription](docs/sdks/subscriptions/README.md#getsubscription) - Retrieve a topic subscription
 * [update](docs/sdks/subscriptions/README.md#update) - Update a topic subscription
 
 ### [Translations](docs/sdks/translations/README.md)
@@ -465,7 +465,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`contextsUpdate`](docs/sdks/contexts/README.md#update) - Update a context
 - [`environmentsCreate`](docs/sdks/environments/README.md#create) - Create an environment
 - [`environmentsDelete`](docs/sdks/environments/README.md#delete) - Delete an environment
-- [`environmentsGetTags`](docs/sdks/environments/README.md#gettags) - Get environment tags
+- [`environmentsGetTags`](docs/sdks/environments/README.md#gettags) - List environment tags
 - [`environmentsList`](docs/sdks/environments/README.md#list) - List all environments
 - [`environmentsUpdate`](docs/sdks/environments/README.md#update) - Update an environment
 - [`integrationsCreate`](docs/sdks/integrations/README.md#create) - Create an integration
@@ -515,7 +515,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`topicsSubscribersRetrieve`](docs/sdks/novusubscribers/README.md#retrieve) - Check topic subscriber
 - [`topicsSubscriptionsCreate`](docs/sdks/subscriptions/README.md#create) - Create topic subscriptions
 - [`topicsSubscriptionsDelete`](docs/sdks/subscriptions/README.md#delete) - Delete topic subscriptions
-- [`topicsSubscriptionsGetSubscription`](docs/sdks/subscriptions/README.md#getsubscription) - Get a topic subscription
+- [`topicsSubscriptionsGetSubscription`](docs/sdks/subscriptions/README.md#getsubscription) - Retrieve a topic subscription
 - [`topicsSubscriptionsList`](docs/sdks/subscriptions/README.md#list) - List topic subscriptions
 - [`topicsSubscriptionsUpdate`](docs/sdks/subscriptions/README.md#update) - Update a topic subscription
 - [`topicsUpdate`](docs/sdks/topics/README.md#update) - Update a topic
@@ -733,19 +733,23 @@ The `HTTPClient` constructor takes an optional `fetcher` argument that can be
 used to integrate a third-party HTTP client or when writing tests to mock out
 the HTTP client and feed in fixtures.
 
-The following example shows how to use the `"beforeRequest"` hook to to add a
-custom header and a timeout to requests and how to use the `"requestError"` hook
-to log errors:
+The following example shows how to:
+- route requests through a proxy server using [undici](https://www.npmjs.com/package/undici)'s ProxyAgent
+- use the `"beforeRequest"` hook to add a custom header and a timeout to requests
+- use the `"requestError"` hook to log errors
 
 ```typescript
 import { Novu } from "@novu/api";
+import { ProxyAgent } from "undici";
 import { HTTPClient } from "@novu/api/lib/http";
 
+const dispatcher = new ProxyAgent("http://proxy.example.com:8080");
+
 const httpClient = new HTTPClient({
-  // fetcher takes a function that has the same signature as native `fetch`.
-  fetcher: (request) => {
-    return fetch(request);
-  }
+  // 'fetcher' takes a function that has the same signature as native 'fetch'.
+  fetcher: (input, init) =>
+    // 'dispatcher' is specific to undici and not part of the standard Fetch API.
+    fetch(input, { ...init, dispatcher } as RequestInit),
 });
 
 httpClient.addHook("beforeRequest", (request) => {
@@ -863,32 +867,36 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.trigger({
-    workflowId: "workflow_identifier",
-    payload: {
-      "comment_id": "string",
-      "post": {
-        "text": "string",
+  const result = await novu.trigger(
+    {
+      workflowId: "workflow_identifier",
+      payload: {
+        "comment_id": "string",
+        "post": {
+          "text": "string",
+        },
+      },
+      overrides: {},
+      to: "SUBSCRIBER_ID",
+      actor: "<value>",
+      context: {
+        "key": "org-acme",
       },
     },
-    overrides: {},
-    to: "SUBSCRIBER_ID",
-    actor: "<value>",
-    context: {
-      "key": "org-acme",
-    },
-  }, {
-    retries: {
-      strategy: "backoff",
-      backoff: {
-        initialInterval: 1,
-        maxInterval: 50,
-        exponent: 1.1,
-        maxElapsedTime: 100,
+    undefined,
+    {
+      retries: {
+        strategy: "backoff",
+        backoff: {
+          initialInterval: 1,
+          maxInterval: 50,
+          exponent: 1.1,
+          maxElapsedTime: 100,
+        },
+        retryConnectionErrors: false,
       },
-      retryConnectionErrors: false,
     },
-  });
+  );
 
   console.log(result);
 }

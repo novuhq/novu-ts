@@ -26,10 +26,10 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Get a topic subscription
+ * Retrieve a topic subscription
  *
  * @remarks
- * Get a subscription by its unique identifier for a topic.
+ * Retrieve a subscription by its unique identifier for a topic.
  */
 export function topicsSubscriptionsGetSubscription(
   client: NovuCore,
