@@ -7,7 +7,7 @@
 * [list](#list) - List topic subscriptions
 * [create](#create) - Create topic subscriptions
 * [delete](#delete) - Delete topic subscriptions
-* [getSubscription](#getsubscription) - Get a topic subscription
+* [getSubscription](#getsubscription) - Retrieve a topic subscription
 * [update](#update) - Update a topic subscription
 
 ## list
@@ -333,7 +333,7 @@ run();
 
 ## getSubscription
 
-Get a subscription by its unique identifier for a topic.
+Retrieve a subscription by its unique identifier for a topic.
 
 ### Example Usage
 

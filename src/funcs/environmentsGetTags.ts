@@ -26,7 +26,7 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Get environment tags
+ * List environment tags
  *
  * @remarks
  * Retrieve all unique tags used in workflows within the specified environment. These tags can be used for filtering workflows.

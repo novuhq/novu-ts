@@ -2497,7 +2497,7 @@
       "get": {
         "operationId": "EnvironmentsController_getEnvironmentTags",
         "x-speakeasy-name-override": "getTags",
-        "summary": "Get environment tags",
+        "summary": "List environment tags",
         "description": "Retrieve all unique tags used in workflows within the specified environment. These tags can be used for filtering workflows.",
         "parameters": [
           {
@@ -15657,8 +15657,8 @@
         "operationId": "TopicsController_getTopicSubscription",
         "x-speakeasy-name-override": "getSubscription",
         "x-speakeasy-group": "Topics.Subscriptions",
-        "summary": "Get a topic subscription",
-        "description": "Get a subscription by its unique identifier for a topic.",
+        "summary": "Retrieve a topic subscription",
+        "description": "Retrieve a subscription by its unique identifier for a topic.",
         "parameters": [
           {
             "name": "topicKey",
@@ -42137,7 +42137,7 @@
   "info": {
     "title": "Novu API",
     "description": "Novu REST API. Please see https://docs.novu.co/api-reference for more details.",
-    "version": "3.12.0",
+    "version": "3.13.0",
     "contact": {
       "name": "Novu Support",
       "url": "https://discord.gg/novu",
@@ -42228,7 +42228,7 @@
         "type": "apiKey",
         "name": "Authorization",
         "in": "header",
-        "description": "API key authentication. Allowed headers-- \"Authorization: ApiKey \u003cnovu_secret_key\u003e\".",
+        "description": "API key authentication. Allowed headers-- \"Authorization: ApiKey <novu_secret_key>\".",
         "x-speakeasy-example": "YOUR_SECRET_KEY_HERE"
       }
     },
@@ -43362,7 +43362,7 @@
                 "text": "string"
               }
             },
-            "description": "The payload object is used to pass additional information that \n    could be used to render the template, or perform routing rules based on it. \n      For In-App channel, payload data are also available in \u003cInbox /\u003e",
+            "description": "The payload object is used to pass additional information that \n    could be used to render the template, or perform routing rules based on it. \n      For In-App channel, payload data are also available in <Inbox />",
             "additionalProperties": true
           },
           "overrides": {
@@ -49948,7 +49948,7 @@
                   ]
                 },
                 {
-                  "\u003e": [
+                  ">": [
                     {
                       "var": "payload.amount"
                     },
@@ -50126,7 +50126,7 @@
                   ]
                 },
                 {
-                  "\u003e": [
+                  ">": [
                     {
                       "var": "payload.amount"
                     },
@@ -50274,7 +50274,7 @@
                   ]
                 },
                 {
-                  "\u003e": [
+                  ">": [
                     {
                       "var": "payload.amount"
                     },
@@ -50426,7 +50426,7 @@
                   ]
                 },
                 {
-                  "\u003e": [
+                  ">": [
                     {
                       "var": "payload.amount"
                     },
@@ -50574,7 +50574,7 @@
                   ]
                 },
                 {
-                  "\u003e": [
+                  ">": [
                     {
                       "var": "payload.amount"
                     },
@@ -50775,7 +50775,7 @@
                   ]
                 },
                 {
-                  "\u003e": [
+                  ">": [
                     {
                       "var": "payload.amount"
                     },
@@ -50961,7 +50961,7 @@
                   ]
                 },
                 {
-                  "\u003e": [
+                  ">": [
                     {
                       "var": "payload.amount"
                     },
@@ -51299,7 +51299,7 @@
                   ]
                 },
                 {
-                  "\u003e": [
+                  ">": [
                     {
                       "var": "payload.amount"
                     },
@@ -51758,7 +51758,7 @@
           },
           "stepId": {
             "type": "string",
-            "pattern": "/^[a-zA-Z0-9]+(?:[-_][a-zA-Z0-9]+)*$/",
+            "pattern": "/^[a-zA-Z0-9]+(?:[-_.][a-zA-Z0-9]+)*$/",
             "description": "Unique identifier for the step"
           },
           "name": {
@@ -51795,7 +51795,7 @@
           },
           "stepId": {
             "type": "string",
-            "pattern": "/^[a-zA-Z0-9]+(?:[-_][a-zA-Z0-9]+)*$/",
+            "pattern": "/^[a-zA-Z0-9]+(?:[-_.][a-zA-Z0-9]+)*$/",
             "description": "Unique identifier for the step"
           },
           "name": {
@@ -51832,7 +51832,7 @@
           },
           "stepId": {
             "type": "string",
-            "pattern": "/^[a-zA-Z0-9]+(?:[-_][a-zA-Z0-9]+)*$/",
+            "pattern": "/^[a-zA-Z0-9]+(?:[-_.][a-zA-Z0-9]+)*$/",
             "description": "Unique identifier for the step"
           },
           "name": {
@@ -51869,7 +51869,7 @@
           },
           "stepId": {
             "type": "string",
-            "pattern": "/^[a-zA-Z0-9]+(?:[-_][a-zA-Z0-9]+)*$/",
+            "pattern": "/^[a-zA-Z0-9]+(?:[-_.][a-zA-Z0-9]+)*$/",
             "description": "Unique identifier for the step"
           },
           "name": {
@@ -51906,7 +51906,7 @@
           },
           "stepId": {
             "type": "string",
-            "pattern": "/^[a-zA-Z0-9]+(?:[-_][a-zA-Z0-9]+)*$/",
+            "pattern": "/^[a-zA-Z0-9]+(?:[-_.][a-zA-Z0-9]+)*$/",
             "description": "Unique identifier for the step"
           },
           "name": {
@@ -51943,7 +51943,7 @@
           },
           "stepId": {
             "type": "string",
-            "pattern": "/^[a-zA-Z0-9]+(?:[-_][a-zA-Z0-9]+)*$/",
+            "pattern": "/^[a-zA-Z0-9]+(?:[-_.][a-zA-Z0-9]+)*$/",
             "description": "Unique identifier for the step"
           },
           "name": {
@@ -51980,7 +51980,7 @@
           },
           "stepId": {
             "type": "string",
-            "pattern": "/^[a-zA-Z0-9]+(?:[-_][a-zA-Z0-9]+)*$/",
+            "pattern": "/^[a-zA-Z0-9]+(?:[-_.][a-zA-Z0-9]+)*$/",
             "description": "Unique identifier for the step"
           },
           "name": {
@@ -52017,7 +52017,7 @@
           },
           "stepId": {
             "type": "string",
-            "pattern": "/^[a-zA-Z0-9]+(?:[-_][a-zA-Z0-9]+)*$/",
+            "pattern": "/^[a-zA-Z0-9]+(?:[-_.][a-zA-Z0-9]+)*$/",
             "description": "Unique identifier for the step"
           },
           "name": {
@@ -52054,7 +52054,7 @@
           },
           "stepId": {
             "type": "string",
-            "pattern": "/^[a-zA-Z0-9]+(?:[-_][a-zA-Z0-9]+)*$/",
+            "pattern": "/^[a-zA-Z0-9]+(?:[-_.][a-zA-Z0-9]+)*$/",
             "description": "Unique identifier for the step"
           },
           "name": {
@@ -52162,7 +52162,7 @@
           },
           "workflowId": {
             "type": "string",
-            "pattern": "/^[a-zA-Z0-9]+(?:[-_][a-zA-Z0-9]+)*$/",
+            "pattern": "/^[a-zA-Z0-9]+(?:[-_.][a-zA-Z0-9]+)*$/",
             "description": "Unique identifier for the workflow"
           },
           "steps": {
@@ -52518,7 +52518,7 @@
           },
           "workflowId": {
             "type": "string",
-            "pattern": "/^[a-zA-Z0-9]+(?:[-_][a-zA-Z0-9]+)*$/",
+            "pattern": "/^[a-zA-Z0-9]+(?:[-_.][a-zA-Z0-9]+)*$/",
             "description": "Custom workflow identifier for the duplicated workflow"
           },
           "tags": {
@@ -54609,10 +54609,15 @@
           "object": {
             "type": "object",
             "description": "Current preference state"
+          },
+          "subscriberId": {
+            "type": "string",
+            "description": "Subscriber ID"
           }
         },
         "required": [
-          "object"
+          "object",
+          "subscriberId"
         ]
       },
       "WebhookMessageDtoWebhookPayloadWrapper": {

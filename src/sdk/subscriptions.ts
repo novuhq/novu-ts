@@ -77,10 +77,10 @@ export class Subscriptions extends ClientSDK {
   }
 
   /**
-   * Get a topic subscription
+   * Retrieve a topic subscription
    *
    * @remarks
-   * Get a subscription by its unique identifier for a topic.
+   * Retrieve a subscription by its unique identifier for a topic.
    */
   async getSubscription(
     topicKey: string,
