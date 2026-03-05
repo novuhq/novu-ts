@@ -134,6 +134,10 @@ export type ThrottleStepResponseDto = {
    * Issues associated with the step
    */
   issues?: StepIssuesDto | undefined;
+  /**
+   * Hash identifying the deployed Cloudflare Worker for this step
+   */
+  stepResolverHash?: string | undefined;
 };
 
 /** @internal */
@@ -196,6 +200,7 @@ export const ThrottleStepResponseDto$inboundSchema: z.ZodType<
   workflowId: z.string(),
   workflowDatabaseId: z.string(),
   issues: StepIssuesDto$inboundSchema.optional(),
+  stepResolverHash: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     "_id": "id",
