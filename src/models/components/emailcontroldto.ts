@@ -22,6 +22,18 @@ export type EmailControlDtoEditorType = ClosedEnum<
   typeof EmailControlDtoEditorType
 >;
 
+/**
+ * Type of renderer to use (raw HTML or React Email step resolver)
+ */
+export const RendererType = {
+  Html: "html",
+  ReactEmail: "react-email",
+} as const;
+/**
+ * Type of renderer to use (raw HTML or React Email step resolver)
+ */
+export type RendererType = ClosedEnum<typeof RendererType>;
+
 export type EmailControlDto = {
   /**
    * JSONLogic filter conditions for conditionally skipping the step execution. Supports complex logical operations with AND, OR, and comparison operators. See https://jsonlogic.com/ for full typing reference.
@@ -39,6 +51,10 @@ export type EmailControlDto = {
    * Type of editor to use for the body.
    */
   editorType?: EmailControlDtoEditorType | undefined;
+  /**
+   * Type of renderer to use (raw HTML or React Email step resolver)
+   */
+  rendererType?: RendererType | undefined;
   /**
    * Disable sanitization of the output.
    */
@@ -59,6 +75,13 @@ export const EmailControlDtoEditorType$outboundSchema: z.ZodNativeEnum<
 > = EmailControlDtoEditorType$inboundSchema;
 
 /** @internal */
+export const RendererType$inboundSchema: z.ZodNativeEnum<typeof RendererType> =
+  z.nativeEnum(RendererType);
+/** @internal */
+export const RendererType$outboundSchema: z.ZodNativeEnum<typeof RendererType> =
+  RendererType$inboundSchema;
+
+/** @internal */
 export const EmailControlDto$inboundSchema: z.ZodType<
   EmailControlDto,
   z.ZodTypeDef,
@@ -68,6 +91,7 @@ export const EmailControlDto$inboundSchema: z.ZodType<
   subject: z.string(),
   body: z.string().default(""),
   editorType: EmailControlDtoEditorType$inboundSchema.default("block"),
+  rendererType: RendererType$inboundSchema.default("html"),
   disableOutputSanitization: z.boolean().default(false),
   layoutId: z.nullable(z.string()).optional(),
 });
@@ -77,6 +101,7 @@ export type EmailControlDto$Outbound = {
   subject: string;
   body: string;
   editorType: string;
+  rendererType: string;
   disableOutputSanitization: boolean;
   layoutId?: string | null | undefined;
 };
@@ -91,6 +116,7 @@ export const EmailControlDto$outboundSchema: z.ZodType<
   subject: z.string(),
   body: z.string().default(""),
   editorType: EmailControlDtoEditorType$outboundSchema.default("block"),
+  rendererType: RendererType$outboundSchema.default("html"),
   disableOutputSanitization: z.boolean().default(false),
   layoutId: z.nullable(z.string()).optional(),
 });

@@ -105,7 +105,7 @@ async function $do(
   const payload = parsed.value;
   const body = new FormData();
 
-  for (const fileItem of payload.RequestBody.files) {
+  for (const fileItem of payload.RequestBody.files ?? []) {
     if (isBlobLike(fileItem)) {
       appendForm(body, "files[]", fileItem);
     } else if (isReadableStream(fileItem.content)) {
@@ -114,6 +114,17 @@ async function $do(
         || "application/octet-stream";
       const blob = new Blob([buffer], { type: contentType });
       appendForm(body, "files[]", blob, fileItem.fileName);
+    } else if (fileItem.content instanceof Uint8Array) {
+      const contentType = getContentTypeFromFileName(fileItem.fileName)
+        || "application/octet-stream";
+      appendForm(
+        body,
+        "files[]",
+        new Blob([new Uint8Array(fileItem.content).buffer], {
+          type: contentType,
+        }),
+        fileItem.fileName,
+      );
     } else {
       const contentType = getContentTypeFromFileName(fileItem.fileName)
         || "application/octet-stream";

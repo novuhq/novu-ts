@@ -8,6 +8,8 @@ Environments allow you to manage different stages of your application developmen
 ### Available Operations
 
 * [getTags](#gettags) - List environment tags
+* [diff](#diff) - Compare resources between environments
+* [publish](#publish) - Publish resources to target environment
 * [create](#create) - Create an environment
 * [list](#list) - List all environments
 * [update](#update) - Update an environment
@@ -76,6 +78,176 @@ run();
 ### Response
 
 **Promise\<[operations.EnvironmentsControllerGetEnvironmentTagsResponse](../../models/operations/environmentscontrollergetenvironmenttagsresponse.md)\>**
+
+### Errors
+
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| errors.ErrorDto                        | 414                                    | application/json                       |
+| errors.ErrorDto                        | 400, 401, 403, 404, 405, 409, 413, 415 | application/json                       |
+| errors.ValidationErrorDto              | 422                                    | application/json                       |
+| errors.ErrorDto                        | 500                                    | application/json                       |
+| errors.SDKError                        | 4XX, 5XX                               | \*/\*                                  |
+
+## diff
+
+Compares workflows and other resources between the source and target environments, returning detailed diff information including additions, modifications, and deletions.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="EnvironmentsController_diffEnvironment" method="post" path="/v2/environments/{targetEnvironmentId}/diff" -->
+```typescript
+import { Novu } from "@novu/api";
+
+const novu = new Novu({
+  secretKey: "YOUR_SECRET_KEY_HERE",
+});
+
+async function run() {
+  const result = await novu.environments.diff({
+    sourceEnvironmentId: "507f1f77bcf86cd799439011",
+  }, "6615943e7ace93b0540ae377");
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { NovuCore } from "@novu/api/core.js";
+import { environmentsDiff } from "@novu/api/funcs/environmentsDiff.js";
+
+// Use `NovuCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const novu = new NovuCore({
+  secretKey: "YOUR_SECRET_KEY_HERE",
+});
+
+async function run() {
+  const res = await environmentsDiff(novu, {
+    sourceEnvironmentId: "507f1f77bcf86cd799439011",
+  }, "6615943e7ace93b0540ae377");
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("environmentsDiff failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `targetEnvironmentId`                                                                                                                                                          | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | Target environment ID (MongoDB ObjectId) to compare against                                                                                                                    | 6615943e7ace93b0540ae377                                                                                                                                                       |
+| `diffEnvironmentRequestDto`                                                                                                                                                    | [components.DiffEnvironmentRequestDto](../../models/components/diffenvironmentrequestdto.md)                                                                                   | :heavy_check_mark:                                                                                                                                                             | Diff request configuration                                                                                                                                                     |                                                                                                                                                                                |
+| `idempotencyKey`                                                                                                                                                               | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | A header for idempotency purposes                                                                                                                                              |                                                                                                                                                                                |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
+
+### Response
+
+**Promise\<[operations.EnvironmentsControllerDiffEnvironmentResponse](../../models/operations/environmentscontrollerdiffenvironmentresponse.md)\>**
+
+### Errors
+
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| errors.ErrorDto                        | 414                                    | application/json                       |
+| errors.ErrorDto                        | 400, 401, 403, 404, 405, 409, 413, 415 | application/json                       |
+| errors.ValidationErrorDto              | 422                                    | application/json                       |
+| errors.ErrorDto                        | 500                                    | application/json                       |
+| errors.SDKError                        | 4XX, 5XX                               | \*/\*                                  |
+
+## publish
+
+Publishes all workflows and resources from the source environment to the target environment. Optionally specify specific resources to publish or use dryRun mode to preview changes.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="EnvironmentsController_publishEnvironment" method="post" path="/v2/environments/{targetEnvironmentId}/publish" -->
+```typescript
+import { Novu } from "@novu/api";
+
+const novu = new Novu({
+  secretKey: "YOUR_SECRET_KEY_HERE",
+});
+
+async function run() {
+  const result = await novu.environments.publish({
+    sourceEnvironmentId: "507f1f77bcf86cd799439011",
+    resources: [
+      {
+        resourceType: "REGULAR",
+        resourceId: "workflow-id-1",
+      },
+    ],
+  }, "6615943e7ace93b0540ae377");
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { NovuCore } from "@novu/api/core.js";
+import { environmentsPublish } from "@novu/api/funcs/environmentsPublish.js";
+
+// Use `NovuCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const novu = new NovuCore({
+  secretKey: "YOUR_SECRET_KEY_HERE",
+});
+
+async function run() {
+  const res = await environmentsPublish(novu, {
+    sourceEnvironmentId: "507f1f77bcf86cd799439011",
+    resources: [
+      {
+        resourceType: "REGULAR",
+        resourceId: "workflow-id-1",
+      },
+    ],
+  }, "6615943e7ace93b0540ae377");
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("environmentsPublish failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `targetEnvironmentId`                                                                                                                                                          | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | Target environment ID (MongoDB ObjectId) to publish resources to                                                                                                               | 6615943e7ace93b0540ae377                                                                                                                                                       |
+| `publishEnvironmentRequestDto`                                                                                                                                                 | [components.PublishEnvironmentRequestDto](../../models/components/publishenvironmentrequestdto.md)                                                                             | :heavy_check_mark:                                                                                                                                                             | Publish request configuration                                                                                                                                                  |                                                                                                                                                                                |
+| `idempotencyKey`                                                                                                                                                               | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | A header for idempotency purposes                                                                                                                                              |                                                                                                                                                                                |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
+
+### Response
+
+**Promise\<[operations.EnvironmentsControllerPublishEnvironmentResponse](../../models/operations/environmentscontrollerpublishenvironmentresponse.md)\>**
 
 ### Errors
 

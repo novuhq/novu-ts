@@ -298,6 +298,8 @@ run();
 ### [Environments](docs/sdks/environments/README.md)
 
 * [getTags](docs/sdks/environments/README.md#gettags) - List environment tags
+* [diff](docs/sdks/environments/README.md#diff) - Compare resources between environments
+* [publish](docs/sdks/environments/README.md#publish) - Publish resources to target environment
 * [create](docs/sdks/environments/README.md#create) - Create an environment
 * [list](docs/sdks/environments/README.md#list) - List all environments
 * [update](docs/sdks/environments/README.md#update) - Update an environment
@@ -465,8 +467,10 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`contextsUpdate`](docs/sdks/contexts/README.md#update) - Update a context
 - [`environmentsCreate`](docs/sdks/environments/README.md#create) - Create an environment
 - [`environmentsDelete`](docs/sdks/environments/README.md#delete) - Delete an environment
+- [`environmentsDiff`](docs/sdks/environments/README.md#diff) - Compare resources between environments
 - [`environmentsGetTags`](docs/sdks/environments/README.md#gettags) - List environment tags
 - [`environmentsList`](docs/sdks/environments/README.md#list) - List all environments
+- [`environmentsPublish`](docs/sdks/environments/README.md#publish) - Publish resources to target environment
 - [`environmentsUpdate`](docs/sdks/environments/README.md#update) - Update an environment
 - [`integrationsCreate`](docs/sdks/integrations/README.md#create) - Create an integration
 - [`integrationsDelete`](docs/sdks/integrations/README.md#delete) - Delete an integration
@@ -628,9 +632,9 @@ run();
 
 
 **Inherit from [`NovuError`](./src/models/errors/novuerror.ts)**:
-* [`PayloadValidationExceptionDto`](./src/models/errors/payloadvalidationexceptiondto.ts): Status code `400`. Applicable to 3 of 93 methods.*
-* [`SubscriberResponseDto`](./src/models/errors/subscriberresponsedto.ts): Created. Status code `409`. Applicable to 1 of 93 methods.*
-* [`TopicResponseDto`](./src/models/errors/topicresponsedto.ts): OK. Status code `409`. Applicable to 1 of 93 methods.*
+* [`PayloadValidationExceptionDto`](./src/models/errors/payloadvalidationexceptiondto.ts): Status code `400`. Applicable to 3 of 95 methods.*
+* [`SubscriberResponseDto`](./src/models/errors/subscriberresponsedto.ts): Created. Status code `409`. Applicable to 1 of 95 methods.*
+* [`TopicResponseDto`](./src/models/errors/topicresponsedto.ts): OK. Status code `409`. Applicable to 1 of 95 methods.*
 * [`ResponseValidationError`](./src/models/errors/responsevalidationerror.ts): Type mismatch between the data returned from the server and the structure expected by the SDK. See `error.rawValue` for the raw value and `error.pretty()` for a nicely formatted multi-line string.
 
 </details>
