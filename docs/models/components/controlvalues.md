@@ -1,17 +1,52 @@
 # ControlValues
 
-Control values for the layout
+Control values for the In-App step.
 
-## Example Usage
+
+## Supported Types
+
+### `components.InAppControlDto`
 
 ```typescript
-import { ControlValues } from "@novu/api/models/components";
-
-let value: ControlValues = {};
+const value: components.InAppControlDto = {
+  skip: {
+    "and": [
+      {
+        "==": [
+          {
+            "var": "payload.tier",
+          },
+          "pro",
+        ],
+      },
+      {
+        "==": [
+          {
+            "var": "subscriber.data.role",
+          },
+          "admin",
+        ],
+      },
+      {
+        ">": [
+          {
+            "var": "payload.amount",
+          },
+          "4",
+        ],
+      },
+    ],
+  },
+};
 ```
 
-## Fields
+### `{ [k: string]: any }`
 
-| Field                                                                      | Type                                                                       | Required                                                                   | Description                                                                |
-| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| `email`                                                                    | [components.EmailControlsDto](../../models/components/emailcontrolsdto.md) | :heavy_minus_sign:                                                         | Email layout controls                                                      |
+```typescript
+const value: { [k: string]: any } = {
+  "key": "<value>",
+  "key1": "<value>",
+  "key2": "<value>",
+};
+```
+

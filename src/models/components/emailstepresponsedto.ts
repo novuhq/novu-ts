@@ -36,20 +36,6 @@ export type EmailStepResponseDtoEditorType = ClosedEnum<
 >;
 
 /**
- * Type of renderer to use (raw HTML or React Email step resolver)
- */
-export const EmailStepResponseDtoRendererType = {
-  Html: "html",
-  ReactEmail: "react-email",
-} as const;
-/**
- * Type of renderer to use (raw HTML or React Email step resolver)
- */
-export type EmailStepResponseDtoRendererType = ClosedEnum<
-  typeof EmailStepResponseDtoRendererType
->;
-
-/**
  * Control values for the email step
  */
 export type EmailStepResponseDtoControlValues = {
@@ -69,10 +55,6 @@ export type EmailStepResponseDtoControlValues = {
    * Type of editor to use for the body.
    */
   editorType: EmailStepResponseDtoEditorType;
-  /**
-   * Type of renderer to use (raw HTML or React Email step resolver)
-   */
-  rendererType: EmailStepResponseDtoRendererType;
   /**
    * Disable sanitization of the output.
    */
@@ -145,11 +127,6 @@ export const EmailStepResponseDtoEditorType$inboundSchema: z.ZodNativeEnum<
 > = z.nativeEnum(EmailStepResponseDtoEditorType);
 
 /** @internal */
-export const EmailStepResponseDtoRendererType$inboundSchema: z.ZodNativeEnum<
-  typeof EmailStepResponseDtoRendererType
-> = z.nativeEnum(EmailStepResponseDtoRendererType);
-
-/** @internal */
 export const EmailStepResponseDtoControlValues$inboundSchema: z.ZodType<
   EmailStepResponseDtoControlValues,
   z.ZodTypeDef,
@@ -160,9 +137,6 @@ export const EmailStepResponseDtoControlValues$inboundSchema: z.ZodType<
     subject: z.string(),
     body: z.string().default(""),
     editorType: EmailStepResponseDtoEditorType$inboundSchema.default("block"),
-    rendererType: EmailStepResponseDtoRendererType$inboundSchema.default(
-      "html",
-    ),
     disableOutputSanitization: z.boolean().default(false),
     layoutId: z.nullable(z.string()).optional(),
   }).catchall(z.any()),

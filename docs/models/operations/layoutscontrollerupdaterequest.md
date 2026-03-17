@@ -9,6 +9,12 @@ let value: LayoutsControllerUpdateRequest = {
   layoutId: "<id>",
   updateLayoutDto: {
     name: "<value>",
+    controlValues: {
+      email: {
+        body: "<value>",
+        editorType: "html",
+      },
+    },
   },
 };
 ```

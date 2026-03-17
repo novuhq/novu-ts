@@ -8,9 +8,12 @@ import { ListSubscribersResponseDto } from "@novu/api/models/components";
 let value: ListSubscribersResponseDto = {
   data: [
     {
+      firstName: "Austyn",
+      lastName: "Doyle",
       channels: [
         {
-          providerId: "expo",
+          providerId: "chat-webhook",
+          integrationIdentifier: "<value>",
           credentials: {
             webhookUrl: "https://example.com/webhook",
             channel: "general",
@@ -28,12 +31,14 @@ let value: ListSubscribersResponseDto = {
           integrationId: "<id>",
         },
       ],
+      isOnline: true,
+      lastOnlineAt: "<value>",
       subscriberId: "<id>",
       organizationId: "<id>",
       environmentId: "<id>",
       deleted: true,
-      createdAt: "1707186272785",
-      updatedAt: "1735684986103",
+      createdAt: "1705383873554",
+      updatedAt: "1735620479568",
     },
   ],
   next: "<value>",

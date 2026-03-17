@@ -192,6 +192,12 @@ const novu = new Novu({
 async function run() {
   const result = await novu.layouts.update({
     name: "<value>",
+    controlValues: {
+      email: {
+        body: "<value>",
+        editorType: "html",
+      },
+    },
   }, "<id>");
 
   console.log(result);
@@ -217,6 +223,12 @@ const novu = new NovuCore({
 async function run() {
   const res = await layoutsUpdate(novu, {
     name: "<value>",
+    controlValues: {
+      email: {
+        body: "<value>",
+        editorType: "html",
+      },
+    },
   }, "<id>");
   if (res.ok) {
     const { value: result } = res;
@@ -499,9 +511,12 @@ async function run() {
   const result = await novu.layouts.generatePreview({
     previewPayload: {
       subscriber: {
+        firstName: "Marion",
+        lastName: "Kirlin",
         channels: [
           {
             providerId: "mattermost",
+            integrationIdentifier: "<value>",
             credentials: {
               webhookUrl: "https://example.com/webhook",
               channel: "general",
@@ -519,6 +534,8 @@ async function run() {
             integrationId: "<id>",
           },
         ],
+        isOnline: false,
+        lastOnlineAt: "<value>",
       },
     },
   }, "<id>");
@@ -547,9 +564,12 @@ async function run() {
   const res = await layoutsGeneratePreview(novu, {
     previewPayload: {
       subscriber: {
+        firstName: "Marion",
+        lastName: "Kirlin",
         channels: [
           {
             providerId: "mattermost",
+            integrationIdentifier: "<value>",
             credentials: {
               webhookUrl: "https://example.com/webhook",
               channel: "general",
@@ -567,6 +587,8 @@ async function run() {
             integrationId: "<id>",
           },
         ],
+        isOnline: false,
+        lastOnlineAt: "<value>",
       },
     },
   }, "<id>");

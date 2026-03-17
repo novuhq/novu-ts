@@ -671,3 +671,25 @@ const value: components.ThrottleStepResponseDto = {
 };
 ```
 
+### `components.HttpRequestStepResponseDto`
+
+```typescript
+const value: components.HttpRequestStepResponseDto = {
+  controls: {
+    values: {
+      method: "PATCH",
+      url: "https://frightened-pillow.name",
+    },
+  },
+  variables: {},
+  stepId: "<id>",
+  id: "<id>",
+  name: "<value>",
+  slug: "<value>",
+  type: "http_request",
+  origin: "novu-cloud-v1",
+  workflowId: "<id>",
+  workflowDatabaseId: "<id>",
+};
+```
+

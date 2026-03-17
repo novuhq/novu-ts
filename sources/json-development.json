@@ -44470,7 +44470,8 @@
           "trigger",
           "delay",
           "throttle",
-          "custom"
+          "custom",
+          "http_request"
         ]
       },
       "ActivityNotificationSubscriberResponseDto": {
@@ -45088,7 +45089,8 @@
               "trigger",
               "delay",
               "throttle",
-              "custom"
+              "custom",
+              "http_request"
             ],
             "type": "string",
             "description": "Type of the job"
@@ -45591,9 +45593,17 @@
             "type": "string",
             "description": "Step identifier"
           },
+          "stepId": {
+            "type": "string",
+            "description": "Step identifier"
+          },
           "stepType": {
             "type": "string",
             "description": "Step type"
+          },
+          "providerId": {
+            "type": "string",
+            "description": "Provider identifier"
           },
           "status": {
             "type": "string",
@@ -45614,6 +45624,7 @@
         "required": [
           "id",
           "stepRunId",
+          "stepId",
           "stepType",
           "status"
         ]
@@ -46198,15 +46209,15 @@
             "description": "The identifier for the provider of the integration (e.g., \"mailgun\", \"twilio\")."
           },
           "channel": {
+            "type": "string",
+            "description": "The channel type for the integration, which defines how it communicates (e.g., email, SMS).",
             "enum": [
               "in_app",
               "email",
               "sms",
               "chat",
               "push"
-            ],
-            "type": "string",
-            "description": "The channel type for the integration, which defines how the integration communicates (e.g., email, SMS)."
+            ]
           },
           "credentials": {
             "description": "The credentials required for the integration to function, including API keys and other sensitive information.",
@@ -46260,6 +46271,7 @@
           "providerId",
           "channel",
           "credentials",
+          "configurations",
           "active",
           "deleted",
           "primary"
@@ -46841,6 +46853,7 @@
         },
         "required": [
           "providerId",
+          "integrationIdentifier",
           "credentials",
           "_integrationId"
         ]
@@ -46854,33 +46867,33 @@
           },
           "firstName": {
             "type": "string",
-            "nullable": true,
-            "description": "The first name of the subscriber."
+            "description": "The first name of the subscriber.",
+            "nullable": true
           },
           "lastName": {
             "type": "string",
-            "nullable": true,
-            "description": "The last name of the subscriber."
+            "description": "The last name of the subscriber.",
+            "nullable": true
           },
           "email": {
             "type": "string",
-            "nullable": true,
-            "description": "The email address of the subscriber."
+            "description": "The email address of the subscriber.",
+            "nullable": true
           },
           "phone": {
             "type": "string",
-            "nullable": true,
-            "description": "The phone number of the subscriber."
+            "description": "The phone number of the subscriber.",
+            "nullable": true
           },
           "avatar": {
             "type": "string",
-            "nullable": true,
-            "description": "The URL of the subscriber's avatar image."
+            "description": "The URL of the subscriber's avatar image.",
+            "nullable": true
           },
           "locale": {
             "type": "string",
-            "nullable": true,
-            "description": "The locale setting of the subscriber, indicating their preferred language or region."
+            "description": "The locale setting of the subscriber, indicating their preferred language or region.",
+            "nullable": true
           },
           "channels": {
             "description": "An array of channel settings associated with the subscriber.",
@@ -46899,13 +46912,13 @@
           },
           "isOnline": {
             "type": "boolean",
-            "nullable": true,
-            "description": "Indicates whether the subscriber is currently online."
+            "description": "Indicates whether the subscriber is currently online.",
+            "nullable": true
           },
           "lastOnlineAt": {
             "type": "string",
-            "nullable": true,
-            "description": "The timestamp indicating when the subscriber was last online, in ISO 8601 format."
+            "description": "The timestamp indicating when the subscriber was last online, in ISO 8601 format.",
+            "nullable": true
           },
           "__v": {
             "type": "number",
@@ -46913,14 +46926,14 @@
           },
           "data": {
             "type": "object",
-            "nullable": true,
             "description": "Additional custom data for the subscriber",
-            "additionalProperties": true
+            "additionalProperties": true,
+            "nullable": true
           },
           "timezone": {
             "type": "string",
-            "nullable": true,
-            "description": "Timezone of the subscriber"
+            "description": "Timezone of the subscriber",
+            "nullable": true
           },
           "subscriberId": {
             "type": "string",
@@ -46948,6 +46961,10 @@
           }
         },
         "required": [
+          "firstName",
+          "lastName",
+          "isOnline",
+          "lastOnlineAt",
           "subscriberId",
           "_organizationId",
           "_environmentId",
@@ -46977,6 +46994,7 @@
         },
         "required": [
           "providerId",
+          "integrationIdentifier",
           "credentials"
         ]
       },
@@ -49223,8 +49241,8 @@
           },
           "lastName": {
             "type": "string",
-            "nullable": true,
-            "description": "User last name"
+            "description": "User last name",
+            "nullable": true
           },
           "externalId": {
             "type": "string",
@@ -49251,7 +49269,6 @@
         "enum": [
           "EMAIL_EDITOR_SELECT",
           "LAYOUT_SELECT",
-          "EMAIL_RENDERER_SELECT",
           "BLOCK_EDITOR",
           "EMAIL_BODY",
           "TEXT_FULL_LINE",
@@ -49286,7 +49303,15 @@
           "PUSH_SUBJECT",
           "QUERY_EDITOR",
           "DATA",
-          "LAYOUT_EMAIL"
+          "LAYOUT_EMAIL",
+          "DESTINATION_METHOD",
+          "DESTINATION_URL",
+          "DESTINATION_HEADERS",
+          "DESTINATION_BODY",
+          "DESTINATION_RESPONSE_BODY_SCHEMA",
+          "DESTINATION_ENFORCE_SCHEMA_VALIDATION",
+          "DESTINATION_CONTINUE_ON_FAILURE",
+          "DESTINATION_TIMEOUT"
         ],
         "x-speakeasy-unknown-values": "allow"
       },
@@ -49360,7 +49385,8 @@
           "CHAT",
           "PUSH",
           "SKIP",
-          "LAYOUT"
+          "LAYOUT",
+          "HTTP_REQUEST"
         ]
       },
       "UiSchema": {
@@ -49410,7 +49436,10 @@
               }
             ]
           }
-        }
+        },
+        "required": [
+          "email"
+        ]
       },
       "LayoutControlsDto": {
         "type": "object",
@@ -49566,7 +49595,6 @@
             "default": false
           },
           "controlValues": {
-            "nullable": true,
             "description": "Control values for the layout",
             "allOf": [
               {
@@ -49576,7 +49604,8 @@
           }
         },
         "required": [
-          "name"
+          "name",
+          "controlValues"
         ]
       },
       "DuplicateLayoutDto": {
@@ -49652,33 +49681,33 @@
           },
           "firstName": {
             "type": "string",
-            "nullable": true,
-            "description": "The first name of the subscriber."
+            "description": "The first name of the subscriber.",
+            "nullable": true
           },
           "lastName": {
             "type": "string",
-            "nullable": true,
-            "description": "The last name of the subscriber."
+            "description": "The last name of the subscriber.",
+            "nullable": true
           },
           "email": {
             "type": "string",
-            "nullable": true,
-            "description": "The email address of the subscriber."
+            "description": "The email address of the subscriber.",
+            "nullable": true
           },
           "phone": {
             "type": "string",
-            "nullable": true,
-            "description": "The phone number of the subscriber."
+            "description": "The phone number of the subscriber.",
+            "nullable": true
           },
           "avatar": {
             "type": "string",
-            "nullable": true,
-            "description": "The URL of the subscriber's avatar image."
+            "description": "The URL of the subscriber's avatar image.",
+            "nullable": true
           },
           "locale": {
             "type": "string",
-            "nullable": true,
-            "description": "The locale setting of the subscriber, indicating their preferred language or region."
+            "description": "The locale setting of the subscriber, indicating their preferred language or region.",
+            "nullable": true
           },
           "channels": {
             "description": "An array of channel settings associated with the subscriber.",
@@ -49697,13 +49726,13 @@
           },
           "isOnline": {
             "type": "boolean",
-            "nullable": true,
-            "description": "Indicates whether the subscriber is currently online."
+            "description": "Indicates whether the subscriber is currently online.",
+            "nullable": true
           },
           "lastOnlineAt": {
             "type": "string",
-            "nullable": true,
-            "description": "The timestamp indicating when the subscriber was last online, in ISO 8601 format."
+            "description": "The timestamp indicating when the subscriber was last online, in ISO 8601 format.",
+            "nullable": true
           },
           "__v": {
             "type": "number",
@@ -49711,16 +49740,22 @@
           },
           "data": {
             "type": "object",
-            "nullable": true,
             "description": "Additional custom data for the subscriber",
-            "additionalProperties": true
+            "additionalProperties": true,
+            "nullable": true
           },
           "timezone": {
             "type": "string",
-            "nullable": true,
-            "description": "Timezone of the subscriber"
+            "description": "Timezone of the subscriber",
+            "nullable": true
           }
-        }
+        },
+        "required": [
+          "firstName",
+          "lastName",
+          "isOnline",
+          "lastOnlineAt"
+        ]
       },
       "LayoutPreviewPayloadDto": {
         "type": "object",
@@ -50722,28 +50757,7 @@
       },
       "RuntimeIssueDto": {
         "type": "object",
-        "properties": {
-          "issueType": {
-            "enum": [
-              "MISSING_VALUE",
-              "MAX_LENGTH_ACCESSED",
-              "WORKFLOW_ID_ALREADY_EXISTS",
-              "DUPLICATED_VALUE",
-              "LIMIT_REACHED"
-            ],
-            "type": "string"
-          },
-          "variableName": {
-            "type": "string"
-          },
-          "message": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "issueType",
-          "message"
-        ]
+        "properties": {}
       },
       "ControlsMetadataDto": {
         "type": "object",
@@ -50966,37 +50980,27 @@
           },
           "body": {
             "type": "string",
-            "default": "",
-            "description": "Body content of the email, either a valid Maily JSON object, or html string."
+            "description": "Body content of the email, either a valid Maily JSON object, or html string.",
+            "default": ""
           },
           "editorType": {
             "type": "string",
-            "default": "block",
             "description": "Type of editor to use for the body.",
             "enum": [
               "block",
               "html"
-            ]
-          },
-          "rendererType": {
-            "type": "string",
-            "default": "html",
-            "description": "Type of renderer to use (raw HTML or React Email step resolver)",
-            "enum": [
-              "html",
-              "react-email"
-            ]
+            ],
+            "default": "block"
           },
           "disableOutputSanitization": {
             "type": "boolean",
-            "default": false,
-            "description": "Disable sanitization of the output."
+            "description": "Disable sanitization of the output.",
+            "default": false
           },
           "layoutId": {
             "type": "string",
-            "nullable": true,
-            "minLength": 1,
-            "description": "Layout ID to use for the email. Null means no layout, undefined means default layout."
+            "description": "Layout ID to use for the email. Null means no layout, undefined means default layout.",
+            "nullable": true
           }
         },
         "required": [
@@ -51612,19 +51616,21 @@
           },
           "type": {
             "type": "string",
+            "description": "Type of the delay. Currently only 'regular' is supported by the schema.",
             "enum": [
               "regular",
               "timed"
             ],
-            "description": "Type of the delay. Currently only 'regular' is supported by the schema.",
             "default": "regular"
           },
           "amount": {
             "type": "number",
-            "minimum": 1,
-            "description": "Amount of time to delay."
+            "description": "Amount of time to delay.",
+            "minimum": 1
           },
           "unit": {
+            "type": "string",
+            "description": "Unit of time for the delay amount.",
             "enum": [
               "seconds",
               "minutes",
@@ -51632,16 +51638,16 @@
               "days",
               "weeks",
               "months"
-            ],
-            "type": "string",
-            "description": "Unit of time for the delay amount."
+            ]
           },
           "cron": {
             "type": "string",
-            "minLength": 1,
             "description": "Cron expression for the delay. Min length 1."
           }
-        }
+        },
+        "required": [
+          "type"
+        ]
       },
       "DelayControlsMetadataResponseDto": {
         "type": "object",
@@ -51758,10 +51764,12 @@
         "properties": {
           "amount": {
             "type": "number",
-            "minimum": 1,
-            "description": "Amount of time for the look-back window."
+            "description": "Amount of time for the look-back window.",
+            "minimum": 1
           },
           "unit": {
+            "type": "string",
+            "description": "Unit of time for the look-back window.",
             "enum": [
               "seconds",
               "minutes",
@@ -51769,9 +51777,7 @@
               "days",
               "weeks",
               "months"
-            ],
-            "type": "string",
-            "description": "Unit of time for the look-back window."
+            ]
           }
         },
         "required": [
@@ -51817,18 +51823,20 @@
           },
           "type": {
             "type": "string",
+            "description": "The type of digest strategy. Determines which fields are applicable.",
             "enum": [
               "regular",
               "timed"
-            ],
-            "description": "The type of digest strategy. Determines which fields are applicable."
+            ]
           },
           "amount": {
             "type": "number",
-            "minimum": 1,
-            "description": "The amount of time for the digest interval (for REGULAR type). Min 1."
+            "description": "The amount of time for the digest interval (for REGULAR type). Min 1.",
+            "minimum": 1
           },
           "unit": {
+            "type": "string",
+            "description": "The unit of time for the digest interval (for REGULAR type).",
             "enum": [
               "seconds",
               "minutes",
@@ -51836,9 +51844,7 @@
               "days",
               "weeks",
               "months"
-            ],
-            "type": "string",
-            "description": "The unit of time for the digest interval (for REGULAR type)."
+            ]
           },
           "lookBackWindow": {
             "description": "Configuration for look-back window (for REGULAR type).",
@@ -51850,7 +51856,6 @@
           },
           "cron": {
             "type": "string",
-            "minLength": 1,
             "description": "Cron expression for TIMED digest. Min length 1."
           },
           "digestKey": {
@@ -52016,36 +52021,37 @@
           },
           "amount": {
             "type": "number",
-            "minimum": 1,
-            "description": "The amount of time for the throttle window (required for fixed type)."
+            "description": "The amount of time for the throttle window (required for fixed type).",
+            "minimum": 1
           },
           "unit": {
             "type": "string",
+            "description": "The unit of time for the throttle window (required for fixed type).",
             "enum": [
               "minutes",
               "hours",
               "days"
-            ],
-            "description": "The unit of time for the throttle window (required for fixed type)."
+            ]
           },
           "dynamicKey": {
             "type": "string",
-            "minLength": 1,
             "description": "Key path to retrieve dynamic window value (required for dynamic type).",
             "example": "payload.timestamp"
           },
           "threshold": {
             "type": "number",
-            "minimum": 1,
-            "maximum": 100,
             "description": "The maximum number of executions allowed within the window. Defaults to 1.",
+            "minimum": 1,
             "default": 1
           },
           "throttleKey": {
             "type": "string",
             "description": "Optional key for grouping throttle rules. If not provided, defaults to workflow and subscriber combination."
           }
-        }
+        },
+        "required": [
+          "type"
+        ]
       },
       "ThrottleControlsMetadataResponseDto": {
         "type": "object",
@@ -52277,6 +52283,187 @@
           "workflowDatabaseId"
         ]
       },
+      "HttpMethodEnum": {
+        "type": "string",
+        "description": "HTTP method",
+        "enum": [
+          "GET",
+          "POST",
+          "PUT",
+          "DELETE",
+          "PATCH"
+        ]
+      },
+      "HttpRequestKeyValuePairDto": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "description": "Key of the key-value pair"
+          },
+          "value": {
+            "type": "string",
+            "description": "Value of the key-value pair"
+          }
+        },
+        "required": [
+          "key",
+          "value"
+        ]
+      },
+      "HttpRequestControlDto": {
+        "type": "object",
+        "properties": {
+          "method": {
+            "$ref": "#/components/schemas/HttpMethodEnum"
+          },
+          "url": {
+            "type": "string",
+            "description": "Target URL for the HTTP request"
+          },
+          "headers": {
+            "description": "Request headers as key-value pairs",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/HttpRequestKeyValuePairDto"
+            }
+          },
+          "body": {
+            "description": "Request body as key-value pairs",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/HttpRequestKeyValuePairDto"
+            }
+          },
+          "responseBodySchema": {
+            "type": "object",
+            "description": "JSON schema to validate response body against",
+            "additionalProperties": true
+          },
+          "enforceSchemaValidation": {
+            "type": "boolean",
+            "description": "Whether to enforce response body schema validation"
+          },
+          "continueOnFailure": {
+            "type": "boolean",
+            "description": "Whether to continue workflow execution on failure"
+          }
+        },
+        "required": [
+          "method",
+          "url"
+        ]
+      },
+      "HttpRequestControlsMetadataResponseDto": {
+        "type": "object",
+        "properties": {
+          "dataSchema": {
+            "type": "object",
+            "description": "JSON Schema for data",
+            "additionalProperties": true
+          },
+          "uiSchema": {
+            "description": "UI Schema for rendering",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/UiSchema"
+              }
+            ]
+          },
+          "values": {
+            "description": "Control values specific to HTTP Request step",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/HttpRequestControlDto"
+              }
+            ]
+          }
+        },
+        "required": [
+          "values"
+        ]
+      },
+      "HttpRequestStepResponseDto": {
+        "type": "object",
+        "properties": {
+          "controls": {
+            "description": "Controls metadata for the HTTP request step",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/HttpRequestControlsMetadataResponseDto"
+              }
+            ]
+          },
+          "controlValues": {
+            "description": "Control values for the HTTP request step",
+            "additionalProperties": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/HttpRequestControlDto"
+              }
+            ]
+          },
+          "variables": {
+            "type": "object",
+            "description": "JSON Schema for variables, follows the JSON Schema standard",
+            "additionalProperties": true
+          },
+          "stepId": {
+            "type": "string",
+            "description": "Unique identifier of the step"
+          },
+          "_id": {
+            "type": "string",
+            "description": "Database identifier of the step"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the step"
+          },
+          "slug": {
+            "type": "string",
+            "description": "Slug of the step"
+          },
+          "type": {
+            "$ref": "#/components/schemas/StepTypeEnum"
+          },
+          "origin": {
+            "$ref": "#/components/schemas/ResourceOriginEnum"
+          },
+          "workflowId": {
+            "type": "string",
+            "description": "Workflow identifier"
+          },
+          "workflowDatabaseId": {
+            "type": "string",
+            "description": "Workflow database identifier"
+          },
+          "issues": {
+            "description": "Issues associated with the step",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StepIssuesDto"
+              }
+            ]
+          },
+          "stepResolverHash": {
+            "type": "string",
+            "description": "Hash identifying the deployed Cloudflare Worker for this step"
+          }
+        },
+        "required": [
+          "controls",
+          "variables",
+          "stepId",
+          "_id",
+          "name",
+          "slug",
+          "type",
+          "origin",
+          "workflowId",
+          "workflowDatabaseId"
+        ]
+      },
       "RedirectDto": {
         "type": "object",
         "properties": {
@@ -52353,13 +52540,13 @@
           },
           "body": {
             "type": "string",
-            "minLength": 1,
-            "description": "Content/body of the in-app message. Required if subject is empty."
+            "description": "Content/body of the in-app message. Required if subject is empty.",
+            "minLength": 1
           },
           "subject": {
             "type": "string",
-            "minLength": 1,
-            "description": "Subject/title of the in-app message. Required if body is empty."
+            "description": "Subject/title of the in-app message. Required if body is empty.",
+            "minLength": 1
           },
           "avatar": {
             "type": "string",
@@ -52391,8 +52578,8 @@
           },
           "disableOutputSanitization": {
             "type": "boolean",
-            "default": false,
-            "description": "Disable sanitization of the output."
+            "description": "Disable sanitization of the output.",
+            "default": false
           },
           "data": {
             "type": "object",
@@ -52516,13 +52703,13 @@
         "properties": {
           "enabled": {
             "type": "boolean",
-            "default": true,
-            "description": "A flag specifying if notification delivery is enabled for the workflow. If true, notification delivery is enabled by default for all channels. This setting can be overridden by the channel preferences."
+            "description": "A flag specifying if notification delivery is enabled for the workflow. If true, notification delivery is enabled by default for all channels. This setting can be overridden by the channel preferences.",
+            "default": true
           },
           "readOnly": {
             "type": "boolean",
-            "default": false,
-            "description": "A flag specifying if the preference is read-only. If true, the preference cannot be changed by the Subscriber."
+            "description": "A flag specifying if the preference is read-only. If true, the preference cannot be changed by the Subscriber.",
+            "default": false
           }
         },
         "required": [
@@ -52535,8 +52722,8 @@
         "properties": {
           "enabled": {
             "type": "boolean",
-            "default": true,
-            "description": "A flag specifying if notification delivery is enabled for the channel. If true, notification delivery is enabled."
+            "description": "A flag specifying if notification delivery is enabled for the channel. If true, notification delivery is enabled.",
+            "default": true
           }
         },
         "required": [
@@ -52584,8 +52771,8 @@
         "type": "object",
         "properties": {
           "user": {
-            "nullable": true,
             "description": "User-specific workflow preferences",
+            "nullable": true,
             "allOf": [
               {
                 "$ref": "#/components/schemas/WorkflowPreferencesDto"
@@ -52643,8 +52830,8 @@
           },
           "payloadSchema": {
             "type": "object",
-            "nullable": true,
             "description": "The payload JSON Schema for the workflow",
+            "nullable": true,
             "additionalProperties": true
           },
           "isTranslationEnabled": {
@@ -52683,12 +52870,12 @@
           },
           "lastPublishedAt": {
             "type": "string",
-            "nullable": true,
-            "description": "Timestamp of the last workflow publication"
+            "description": "Timestamp of the last workflow publication",
+            "nullable": true
           },
           "lastPublishedBy": {
-            "nullable": true,
             "description": "User who last published the workflow",
+            "nullable": true,
             "allOf": [
               {
                 "$ref": "#/components/schemas/UserResponseDto"
@@ -52726,6 +52913,9 @@
                 },
                 {
                   "$ref": "#/components/schemas/ThrottleStepResponseDto"
+                },
+                {
+                  "$ref": "#/components/schemas/HttpRequestStepResponseDto"
                 }
               ],
               "discriminator": {
@@ -52739,7 +52929,8 @@
                   "delay": "#/components/schemas/DelayStepResponseDto",
                   "digest": "#/components/schemas/DigestStepResponseDto",
                   "custom": "#/components/schemas/CustomStepResponseDto",
-                  "throttle": "#/components/schemas/ThrottleStepResponseDto"
+                  "throttle": "#/components/schemas/ThrottleStepResponseDto",
+                  "http_request": "#/components/schemas/HttpRequestStepResponseDto"
                 }
               }
             }
@@ -52772,8 +52963,8 @@
           },
           "payloadExample": {
             "type": "object",
-            "nullable": true,
             "description": "Generated payload example based on the payload schema",
+            "nullable": true,
             "additionalProperties": true
           },
           "severity": {
@@ -53127,6 +53318,43 @@
           "type"
         ]
       },
+      "HttpRequestStepUpsertDto": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "Database identifier of the step. Used for updating the step."
+          },
+          "stepId": {
+            "type": "string",
+            "pattern": "/^[a-zA-Z0-9]+(?:[-_.][a-zA-Z0-9]+)*$/",
+            "description": "Unique identifier for the step"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the step"
+          },
+          "type": {
+            "$ref": "#/components/schemas/StepTypeEnum"
+          },
+          "controlValues": {
+            "description": "Control values for the HTTP Request step.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/HttpRequestControlDto"
+              },
+              {
+                "type": "object",
+                "additionalProperties": true
+              }
+            ]
+          }
+        },
+        "required": [
+          "name",
+          "type"
+        ]
+      },
       "WorkflowCreationSourceEnum": {
         "type": "string",
         "description": "Source of workflow creation",
@@ -53197,8 +53425,8 @@
           },
           "payloadSchema": {
             "type": "object",
-            "nullable": true,
             "description": "The payload JSON Schema for the workflow",
+            "nullable": true,
             "additionalProperties": true
           },
           "isTranslationEnabled": {
@@ -53242,6 +53470,9 @@
                 },
                 {
                   "$ref": "#/components/schemas/CustomStepUpsertDto"
+                },
+                {
+                  "$ref": "#/components/schemas/HttpRequestStepUpsertDto"
                 }
               ],
               "discriminator": {
@@ -53255,7 +53486,8 @@
                   "delay": "#/components/schemas/DelayStepUpsertDto",
                   "digest": "#/components/schemas/DigestStepUpsertDto",
                   "throttle": "#/components/schemas/ThrottleStepUpsertDto",
-                  "custom": "#/components/schemas/CustomStepUpsertDto"
+                  "custom": "#/components/schemas/CustomStepUpsertDto",
+                  "http_request": "#/components/schemas/HttpRequestStepUpsertDto"
                 }
               }
             }
@@ -53322,8 +53554,8 @@
           },
           "payloadSchema": {
             "type": "object",
-            "nullable": true,
             "description": "The payload JSON Schema for the workflow",
+            "nullable": true,
             "additionalProperties": true
           },
           "isTranslationEnabled": {
@@ -53363,6 +53595,9 @@
                 },
                 {
                   "$ref": "#/components/schemas/CustomStepUpsertDto"
+                },
+                {
+                  "$ref": "#/components/schemas/HttpRequestStepUpsertDto"
                 }
               ],
               "discriminator": {
@@ -53375,7 +53610,8 @@
                   "chat": "#/components/schemas/ChatStepUpsertDto",
                   "delay": "#/components/schemas/DelayStepUpsertDto",
                   "digest": "#/components/schemas/DigestStepUpsertDto",
-                  "custom": "#/components/schemas/CustomStepUpsertDto"
+                  "custom": "#/components/schemas/CustomStepUpsertDto",
+                  "http_request": "#/components/schemas/HttpRequestStepUpsertDto"
                 }
               }
             }
@@ -53496,10 +53732,10 @@
           },
           "stepTypeOverviews": {
             "type": "array",
+            "description": "Overview of step types in the workflow",
             "items": {
               "$ref": "#/components/schemas/StepTypeEnum"
-            },
-            "description": "Overview of step types in the workflow"
+            }
           },
           "isTranslationEnabled": {
             "type": "boolean",
@@ -53835,9 +54071,13 @@
           },
           "schema": {
             "type": "object",
-            "nullable": true,
             "description": "The payload schema that was used to generate the preview payload example",
+            "nullable": true,
             "additionalProperties": true
+          },
+          "novuSignature": {
+            "type": "string",
+            "description": "Sample novu-signature header value for HTTP request steps"
           },
           "result": {
             "description": "Preview result",

@@ -6,7 +6,7 @@
 import { UiSchemaProperty } from "@novu/api/models/components";
 
 let value: UiSchemaProperty = {
-  component: "SMS_BODY",
+  component: "LAYOUT_EMAIL",
 };
 ```
 

@@ -9,15 +9,23 @@ let value: SubscribersControllerCreateSubscriberResponse = {
   headers: {
     "key": [
       "<value 1>",
+    ],
+    "key1": [
+      "<value 1>",
       "<value 2>",
     ],
-    "key1": [],
-    "key2": [],
+    "key2": [
+      "<value 1>",
+      "<value 2>",
+    ],
   },
   result: {
+    firstName: "Mason",
+    lastName: "Kuvalis",
     channels: [
       {
-        providerId: "expo",
+        providerId: "chat-webhook",
+        integrationIdentifier: "<value>",
         credentials: {
           webhookUrl: "https://example.com/webhook",
           channel: "general",
@@ -35,12 +43,14 @@ let value: SubscribersControllerCreateSubscriberResponse = {
         integrationId: "<id>",
       },
     ],
+    isOnline: null,
+    lastOnlineAt: null,
     subscriberId: "<id>",
     organizationId: "<id>",
     environmentId: "<id>",
     deleted: false,
-    createdAt: "1725943596323",
-    updatedAt: "1735661089926",
+    createdAt: "1725616712251",
+    updatedAt: "1735627647106",
   },
 };
 ```

@@ -1,25 +1,25 @@
 lockVersion: 2.0.0
 id: 6bff3a53-3f0b-40b4-942f-ff70dc583ae5
 management:
-  docChecksum: 41f2a50734cc57f17b43962dc2b33711
+  docChecksum: 569067a21e01ab3ffa79281db17b761e
   docVersion: 3.14.0
-  speakeasyVersion: 1.741.6
-  generationVersion: 2.849.8
-  releaseVersion: 3.14.1
-  configChecksum: 39f8ad6dac1c77267c096bd1eea7b6d9
+  speakeasyVersion: 1.755.1
+  generationVersion: 2.865.2
+  releaseVersion: 3.14.2
+  configChecksum: f38dfe799e38b0ab196da5f54377fefc
   repoURL: https://github.com/novuhq/novu-ts.git
   installationURL: https://github.com/novuhq/novu-ts
   published: true
 persistentEdits:
-  generation_id: c963e3f8-b79a-488f-b052-f589f1fca166
-  pristine_commit_hash: 8433b5791847cbcd635c739ccb83e60008b44bee
-  pristine_tree_hash: 57e2e1c518e87a3e0ece3512dae11816756e3e75
+  generation_id: 4650ac0c-3ee3-4672-a1f2-9c38b31262bf
+  pristine_commit_hash: b62422f73fdcb6926b2b0828b4a8f555dfd35680
+  pristine_tree_hash: aedf6f23ee568b04bed7de8b3cabb1998c98e553
 features:
   typescript:
     additionalDependencies: 0.1.0
     additionalProperties: 0.1.3
     constsAndDefaults: 0.1.14
-    core: 3.26.40
+    core: 3.26.42
     defaultEnabledRetries: 0.1.0
     deprecations: 2.81.1
     enumUnions: 0.1.0
@@ -82,8 +82,8 @@ trackedFiles:
     pristine_git_object: 5bc81c61c30a97a2b5543d840b193dc44e0a8f4d
   docs/models/components/activitynotificationjobresponsedtotype.md:
     id: b414948c9754
-    last_write_checksum: sha1:b3a596be02044d9bb22410258ec23f8fab687107
-    pristine_git_object: 9ec5f0e7cd437a4d311f983e4656c6224c76a9d8
+    last_write_checksum: sha1:188bf98dfe5d17f1262377e2513abed72fd89d7c
+    pristine_git_object: 2bd47dc848e63fe30845c4a26eb70e8e144062ff
   docs/models/components/activitynotificationresponsedto.md:
     id: d50f8b18e21c
     last_write_checksum: sha1:31b66aec6d804af10cb88095ea270b811177b093
@@ -206,8 +206,8 @@ trackedFiles:
     pristine_git_object: de49f6cc9b590da54d552603d44d76c7d9f63e65
   docs/models/components/channelsettingsdto.md:
     id: facbd50c0c91
-    last_write_checksum: sha1:07f499948262504eccb7cd6b8390886c3f3febb4
-    pristine_git_object: ca89ef0e1d2bc8d5184501a529c6d6544951bc99
+    last_write_checksum: sha1:48abcb9a8e0cff350107dd9ede4132c7bbde98a5
+    pristine_git_object: 1f94e844dcebd6d1cf2812e41d16d49a37cd1e68
   docs/models/components/channeltypeenum.md:
     id: 25aa32c0e138
     last_write_checksum: sha1:14479a757cebd6bc425d6ca0fb7639cd567261cb
@@ -278,8 +278,8 @@ trackedFiles:
     pristine_git_object: 28cc863fb3457ba7ec42fd26d9f7b18eca69dd63
   docs/models/components/controlvalues.md:
     id: 58262613adee
-    last_write_checksum: sha1:7e17e8fee08332d644da297631c0bc6d9a12cf59
-    pristine_git_object: 78e1a27fc2b4f7bd2d54d71bed2bb54c1fa2e965
+    last_write_checksum: sha1:38dd299b994ce272fa830d80c86438f9422dbd64
+    pristine_git_object: e1b0e3787910995116e8a1affb52d527c69e0550
   docs/models/components/controlvariables.md:
     id: b604fee431a8
     last_write_checksum: sha1:62e90758bb2e06d7f2baeb910198e9e8844a5bf3
@@ -678,8 +678,8 @@ trackedFiles:
     pristine_git_object: ed6a995eaa5dfc771ff217d3365589b56081b39a
   docs/models/components/emailcontroldto.md:
     id: ca903dd8ac61
-    last_write_checksum: sha1:f80905015e43b04db4d9a2da737f98cf9a25d030
-    pristine_git_object: e8b20fc3a20083764435ac0cb7a70c656cccfbed
+    last_write_checksum: sha1:03d6eb3a70ea33c0b4c867c454ee1f2bef5f624d
+    pristine_git_object: a9558c6f97823e007e11095cd66c95bc7bae242b
   docs/models/components/emailcontroldtoeditortype.md:
     id: 3a064a0ccb29
     last_write_checksum: sha1:eb66ed63fe1cd98940a8c9259fcafe86f347e7e2
@@ -702,16 +702,12 @@ trackedFiles:
     pristine_git_object: 381bea6e98fc7130196d5be4e63bf157e175c909
   docs/models/components/emailstepresponsedtocontrolvalues.md:
     id: 155f46d6b47b
-    last_write_checksum: sha1:519ef806d3c7af95be6bc6e7c187868a441c26fd
-    pristine_git_object: 2c714aa4ec1e43d67245730fa4db1c08b06e21be
+    last_write_checksum: sha1:887e5cf336240583bdecf1e09046091ef3e365fd
+    pristine_git_object: 7fe7e355248ec9930b9abbc15b97b9ee673616cb
   docs/models/components/emailstepresponsedtoeditortype.md:
     id: 513879e9d47c
     last_write_checksum: sha1:4f6d56e92e1f6b7ba7f2cc4db625c8d4947808d4
     pristine_git_object: 698c790367111a7cea46bc474d33e0f0ca79122f
-  docs/models/components/emailstepresponsedtorenderertype.md:
-    id: 3d2f3c53499e
-    last_write_checksum: sha1:d1a3a7bf1120bd13220e312e2948ae8d898ed630
-    pristine_git_object: 102aee9d869b6b396c8e5477af3e863405b0ebaa
   docs/models/components/emailstepupsertdto.md:
     id: 595494067a55
     last_write_checksum: sha1:c5c10e56b3a9fec60cf6e6810178886299cbf4b4
@@ -798,8 +794,8 @@ trackedFiles:
     pristine_git_object: d94f82bd85383c6369e9b7d4c658af262a5a7120
   docs/models/components/generatelayoutpreviewresponsedto.md:
     id: aedd6ae2707e
-    last_write_checksum: sha1:f8286425a41803efb67278901b69244e5168c826
-    pristine_git_object: 023feecec898cd22d183a106cb051ae0d25ff920
+    last_write_checksum: sha1:0079982e343a25926d1347f1014f71f4c877de0e
+    pristine_git_object: 584f60c624359dc48ebfb4f02d80475c3305a476
   docs/models/components/getchannelconnectionresponsedto.md:
     id: 06ab80a9799a
     last_write_checksum: sha1:24632e6999b9ddde9930d73102f15a119e3a7fce
@@ -856,6 +852,38 @@ trackedFiles:
     id: e52be4fb2b2e
     last_write_checksum: sha1:e70b6261333b60bfb82e8aa87a501f0d6059e506
     pristine_git_object: 1fa9986b3b866b5aadd7bf6e99b109db73bb4afa
+  docs/models/components/httpmethodenum.md:
+    id: "452282169e01"
+    last_write_checksum: sha1:5b00799472e3afa520b3c97ade8e50c7f5768d07
+    pristine_git_object: 99ea4e2462d9826214049fc38b8466c25f228c1f
+  docs/models/components/httprequestcontroldto.md:
+    id: 485812e9a65f
+    last_write_checksum: sha1:d1c8f67e45a961c963c915f7f5fa391a76d1cba9
+    pristine_git_object: 56f9e5bb8e104f7d1fbacc8b409165f8d099b2e1
+  docs/models/components/httprequestcontrolsmetadataresponsedto.md:
+    id: ead4e1946653
+    last_write_checksum: sha1:ff32a67edfa5ffc4f75f536db5e5266235d953c6
+    pristine_git_object: 3921116db657ea807b157775b03ff6b75d506d89
+  docs/models/components/httprequestkeyvaluepairdto.md:
+    id: 70f343c3dcc8
+    last_write_checksum: sha1:8e4a83645c4fbfcbfc6568a6096e5ebd46e72de6
+    pristine_git_object: e1da5545d3a3bea31b18d89c45a98f660d2757a7
+  docs/models/components/httprequeststepresponsedto.md:
+    id: ce2d2ab36de0
+    last_write_checksum: sha1:5d60b22ba5ed2d124cbb63a9491695384923bce5
+    pristine_git_object: 62e92cd16a067b8371e5e87fc9c06969acda6bb8
+  docs/models/components/httprequeststepresponsedtocontrolvalues.md:
+    id: 5cb1cbefed0d
+    last_write_checksum: sha1:372872eba21d6fa7cf53c4e6c8dda1dee039fb2e
+    pristine_git_object: c1ba23010698dd24ea825de559e6d272d9ea7791
+  docs/models/components/httprequeststepupsertdto.md:
+    id: 946b55359bad
+    last_write_checksum: sha1:4cea74625e521e8b11af690b4a24e602475950b6
+    pristine_git_object: dadef5b11ccb4bec0723a7ce63dbd7f75876a7d9
+  docs/models/components/httprequeststepupsertdtocontrolvalues.md:
+    id: 61ba18d0ac80
+    last_write_checksum: sha1:f3756d1cc99aaa8b053fd7bd2126307019d5a562
+    pristine_git_object: 7b9d1f5848252d7024451b2e66a31a18637845c4
   docs/models/components/importmasterjsonrequestdto.md:
     id: 7bcb0b75a1b9
     last_write_checksum: sha1:05d3f7efd099e3108167c4737a6163321994c302
@@ -882,12 +910,8 @@ trackedFiles:
     pristine_git_object: a90cd87a367ae5d8879509216b29b6ce87639b52
   docs/models/components/inappstepupsertdto.md:
     id: a70b06956221
-    last_write_checksum: sha1:d2aef49a3a92ca044862740392cd08efe3d3ff20
-    pristine_git_object: 0b60ef8385d4177647ac8b954c42686967210657
-  docs/models/components/inappstepupsertdtocontrolvalues.md:
-    id: 374acbfcf1a9
-    last_write_checksum: sha1:ab3414e48470754cbe6bab62ecd7d415803a30bc
-    pristine_git_object: 7ef1f963554160af8e53ecce298c616d2c32fc6e
+    last_write_checksum: sha1:dd5513604f2c4ad58deec8cfca945af806a0d3e7
+    pristine_git_object: caadb0d318b47ee62615f5351daaf5e4ec854e71
   docs/models/components/inboundparsedomaindto.md:
     id: e6b124c9ed8b
     last_write_checksum: sha1:d3c6c2bcdf590e5f8732d5813df716419af333a1
@@ -902,20 +926,16 @@ trackedFiles:
     pristine_git_object: e9a91de8bc89394f874f58487db65d768032459a
   docs/models/components/integrationresponsedto.md:
     id: 5867f95cf026
-    last_write_checksum: sha1:463f486761a53aeb086710b1f9eac9d71d4793a3
-    pristine_git_object: c90376da07f067568aebca84efbce05130aa0bde
+    last_write_checksum: sha1:44ef6312220fba26b724b86ea80a9ed9b05ffb69
+    pristine_git_object: 02f36702b495aa377cecda89e22adc77b7d379f6
   docs/models/components/integrationresponsedtochannel.md:
     id: d17fd4de79b1
-    last_write_checksum: sha1:6fcb036e581a70357b368b784ac44c421f375563
-    pristine_git_object: 325b222a860beb9f56ba9115c98d2bcb74412219
+    last_write_checksum: sha1:de1b8af565dce672b1c1c120a7192b17a6b2b0a6
+    pristine_git_object: 5ec6e8190cf2e38ecc6f1f3cfacd5e82eccb7549
   docs/models/components/issues.md:
     id: 18e03b70b5fe
     last_write_checksum: sha1:65f768724e30172ee08dc0f06f3cb79e7bc1b7b2
     pristine_git_object: f1c3c30aa8e3f0a5caefbcb19fc0b4e7576fa7ce
-  docs/models/components/issuetype.md:
-    id: c177b0aaa97c
-    last_write_checksum: sha1:b7ebb435af070707d2c2f322af9caa1903842a44
-    pristine_git_object: 28fb65243189df2e7a58d2f6191e3d24c338569b
   docs/models/components/jobdata.md:
     id: f5caebac9019
     last_write_checksum: sha1:1a85b7705c597cfed3e499b6450e7de9983b9106
@@ -926,28 +946,28 @@ trackedFiles:
     pristine_git_object: e0e6efe28a19b3269fd92161ac2489518ec53cbf
   docs/models/components/layoutcontrolsdto.md:
     id: 051ee6dc7769
-    last_write_checksum: sha1:4d19be9f056e92461c33cefe572a7c303e2b695a
-    pristine_git_object: d14fc6a9290dccf4a63bdb4fbc0a9a5a40da3e60
+    last_write_checksum: sha1:03c814d77cc51d3a84649b96eb66e166e45b7956
+    pristine_git_object: 4bddf92c9fda2ff71543eaf57fa871e87f5e38a5
   docs/models/components/layoutcontrolvaluesdto.md:
     id: 80d0bda98e60
-    last_write_checksum: sha1:042d10244c747f36d221c6bfab6bf4ea888caaf1
-    pristine_git_object: f7449651cc6791191d147ec1959722cf0ec21a7e
+    last_write_checksum: sha1:8ec32de46313af15214f71d1359c6cda9b05395c
+    pristine_git_object: a279bbfc805785af75ba2ab6298ed3c8b24a5c55
   docs/models/components/layoutcreationsourceenum.md:
     id: 6da3a95ff74b
     last_write_checksum: sha1:d9f5ae3fd3966c67fd68e8f66b745099fb9012e6
     pristine_git_object: 46e0d5e86042f8d61c50bbed7f13a679c63743da
   docs/models/components/layoutpreviewpayloaddto.md:
     id: da298a9889ea
-    last_write_checksum: sha1:56b8b93b760c8788928fba55ce1dd90c23536356
-    pristine_git_object: fb55277a577be8ba34faeee0922ccb5b356f6f01
+    last_write_checksum: sha1:47fc4a92c6320f2cfc79063ad850b32757b3b4f2
+    pristine_git_object: 386fed205e3149f34a4dbd956a756d779fb2346c
   docs/models/components/layoutpreviewrequestdto.md:
     id: 36f5b85b6027
-    last_write_checksum: sha1:4f494c2656a85bd2750c849a723e96be9be85968
-    pristine_git_object: 9f897b8f6943d45f559c0e7c02a6dca2eedd15f2
+    last_write_checksum: sha1:edc96e16222e0ea8ed1364e3740c1029f4c89db2
+    pristine_git_object: 06dfa450412f1b270381ad718ddacb7180c11bcd
   docs/models/components/layoutresponsedto.md:
     id: c2ba406e0a4c
-    last_write_checksum: sha1:4f97e779ed66a86e4400f084986358b31e525189
-    pristine_git_object: 5ceed2924fc95297275f25566e2ea60ff33e87da
+    last_write_checksum: sha1:6450d294c1d9c656b65d5f77c7bcac898a23999c
+    pristine_git_object: cf8c64874077f10bcb52aba34b1e3182c77639f7
   docs/models/components/layoutresponsedtosortfield.md:
     id: da48973eeae9
     last_write_checksum: sha1:c0c70eb851eb0eaec760ef96d0994af95471b34e
@@ -970,8 +990,8 @@ trackedFiles:
     pristine_git_object: 4efb1afdeb5db4123abe086cc4bb859d03ba0659
   docs/models/components/listsubscribersresponsedto.md:
     id: 2466c76e5a02
-    last_write_checksum: sha1:f04c25288fdf67286931d5a70feccd1a843bd32e
-    pristine_git_object: bbdfa8b3cbc2e4119b88565b398ed2674e6714a4
+    last_write_checksum: sha1:1d84b5cab1471510663aa942b7f0671a77ddf874
+    pristine_git_object: 2dc9aaebf7382a47034fb46c3d81c9c4483272c9
   docs/models/components/listtopicsresponsedto.md:
     id: d668660219fe
     last_write_checksum: sha1:53d0f568ba465ba24d4691ea77da751af1af4259
@@ -1050,8 +1070,8 @@ trackedFiles:
     pristine_git_object: bb8f7782f57cffb03b2acd29360f75c0f79b1044
   docs/models/components/messageresponsedto.md:
     id: 45a4094672e2
-    last_write_checksum: sha1:3ee71ed05fb57c86e0ef35b873ff02fd5415ffca
-    pristine_git_object: 5ef4b5c16efb8564cf8d11393c902b9f340df504
+    last_write_checksum: sha1:c15fa3da97779de6cdbe05d8e9b8aeda5a55d6f5
+    pristine_git_object: 0655cf3dbf432d9dbb02b91f136a7f25f77df44a
   docs/models/components/messagesresponsedto.md:
     id: 40f84e8b77e5
     last_write_checksum: sha1:d2da5fea2392608b0420688f02efb527587c32d3
@@ -1288,10 +1308,6 @@ trackedFiles:
     id: a85ee1300f43
     last_write_checksum: sha1:ba0262abb6ee84bca664d811fec1462eb9bacf16
     pristine_git_object: 954b31f007fafe804140540db1c8c3b30a61ddfd
-  docs/models/components/renderertype.md:
-    id: 416b61c99d8a
-    last_write_checksum: sha1:da0e66c0675762b0f63f884bb5f8ac7ba1d67c1d
-    pristine_git_object: 7e67493359f7854a4951e8b7b337d897172d2ae4
   docs/models/components/replycallback.md:
     id: 788e1fca4ee2
     last_write_checksum: sha1:285958662f4079fe01db08e29df26683e0c9118e
@@ -1358,8 +1374,8 @@ trackedFiles:
     pristine_git_object: 16655f4f44ee933821911b79dc60bebc9f4df3d1
   docs/models/components/runtimeissuedto.md:
     id: 19b7b6f196e4
-    last_write_checksum: sha1:79a6a0ec3087a65caf93a4521e73287a6f6de2a3
-    pristine_git_object: 32a05cc83215b314327630ea6b69d74c1d8f2d00
+    last_write_checksum: sha1:05baef1b44d4f3e8274a1f664bab6a53c2842d93
+    pristine_git_object: 50e91127fb53c67dd2ef3c5b09c543247c50c2ca
   docs/models/components/saturday.md:
     id: 8aa718b89a1f
     last_write_checksum: sha1:82d4ce497d2d1631e5a25bec0931664a4ea6adc8
@@ -1450,8 +1466,8 @@ trackedFiles:
     pristine_git_object: 033c3a76c2bb46296cb81c8006280d29f5f7e71b
   docs/models/components/steps.md:
     id: 35ba3cbb3686
-    last_write_checksum: sha1:d4c5943ffd9d819e0ffb0233dc05a9a4e834cc14
-    pristine_git_object: 7b8ad70676c3f40e0c5a19b81bce0b32c1ff2e47
+    last_write_checksum: sha1:4d0e9faf849e7c02c4e4fb297094fcb56bcac033
+    pristine_git_object: 70f7d0e71f7aaa2b6ab186d2194a843c8f366422
   docs/models/components/stepsoverrides.md:
     id: 0a84eee7ba54
     last_write_checksum: sha1:d82cc6475bddc05487692bcb6d8e0db45ed78990
@@ -1498,12 +1514,12 @@ trackedFiles:
     pristine_git_object: bc7b54fa6bc558d6b46008bf03f2c56815a0e4c8
   docs/models/components/subscriberresponsedto.md:
     id: 7a243f343aa7
-    last_write_checksum: sha1:db83682b51b5e2a122c2fcb4d7d91bbc9bdd1d27
-    pristine_git_object: 364f490ed34d38b49c20989b04dd2e5f20f8c822
+    last_write_checksum: sha1:20d4ca659026627cd678feeb17e066f1962d7c44
+    pristine_git_object: 6c459c72d8857740a62735bb3973b235f738372e
   docs/models/components/subscriberresponsedtooptional.md:
     id: fc1d2868a40d
-    last_write_checksum: sha1:f8801c4ee7815cca2fb52b0c63ec703fb8b90354
-    pristine_git_object: 4b94946e0f864a300f76a6d2ed91358b2cc2faf6
+    last_write_checksum: sha1:1da2965f30ff1684d3ce54d28bd9683f44eba65d
+    pristine_git_object: 5aa213f00d0e8989dcf2d4f223cc0e8cf156e465
   docs/models/components/subscriberworkflowpreferencedto.md:
     id: 7b5e81a9be1d
     last_write_checksum: sha1:b8c4e50b9099b36aaa92108b3c2d7f9b430d7648
@@ -1758,20 +1774,20 @@ trackedFiles:
     pristine_git_object: 41bd17d0f40a943bcf41c107925e92e39b2c2a72
   docs/models/components/uicomponentenum.md:
     id: d1a3107a941c
-    last_write_checksum: sha1:6ed3a0e2fd64cb2efab51801ec24eb4f24a53cc3
-    pristine_git_object: 3b66409b962fd84bdb4e6ad0e6e80ee318272c3b
+    last_write_checksum: sha1:25260fa7aa48ea5167f88e7766f7ea71cd176e35
+    pristine_git_object: 31e4e68b938beb503bc7d1b5a42c8ac74161e7d4
   docs/models/components/uischema.md:
     id: 7ca5c774f671
     last_write_checksum: sha1:220b95657d38a551c870d5289f0c998f1c091722
     pristine_git_object: 090622887648c307141e21ba786e14da5968d54a
   docs/models/components/uischemagroupenum.md:
     id: 31e6e5d40ce1
-    last_write_checksum: sha1:dc4c40a3fc9854a7fe82daaca78aaa0e74094d3c
-    pristine_git_object: 72c10453e52239a6584d8cb103693845b8d477af
+    last_write_checksum: sha1:08dbc54f6990d9d2b46cb6b8f04d38fa77ddb98e
+    pristine_git_object: 9a3f2bde75a53d04326bde8c7db7ab6adfe82bea
   docs/models/components/uischemaproperty.md:
     id: b84adac9cb13
-    last_write_checksum: sha1:7438449b27614e8e5833ae36e405b5945e8afa13
-    pristine_git_object: d8114276563b08a6bae3263d4186c75d985fd8fe
+    last_write_checksum: sha1:d14e9c8c15f36fdf17163531e8d016b72e09b4db
+    pristine_git_object: 2c4afdb67cf0182c05f35a7c2d5324214835a12b
   docs/models/components/unit.md:
     id: 01afc62b46e5
     last_write_checksum: sha1:15630fe3a86ac2ef9b6ea6d007af650efca0433a
@@ -1818,12 +1834,12 @@ trackedFiles:
     pristine_git_object: 1a834daea33d361237fd32b208376a3fbc868b07
   docs/models/components/updatelayoutdto.md:
     id: adf0b49f5f3d
-    last_write_checksum: sha1:73a4124327b3f69442a385911d481d2d169dfd80
-    pristine_git_object: 34892655f80fdce72335f3a35dd3d38d8e0dd824
+    last_write_checksum: sha1:5ac374c6922c43c9a9bc3218cb9be97c663eb05a
+    pristine_git_object: 0867e116a7b75cb515d75fe3d08a021fb4487433
   docs/models/components/updatesubscriberchannelrequestdto.md:
     id: 5b0af664603b
-    last_write_checksum: sha1:896967200cd13b003af8bcd06412c4c861bd0a67
-    pristine_git_object: a61c20037d46b6b6d790da54ddde85dc287a57b0
+    last_write_checksum: sha1:3a684a3b45fb044ed4c7ef95e19e4fcdeac2f63d
+    pristine_git_object: 71626a184a27e5344accb605f8d1109c00b75667
   docs/models/components/updatesubscriberonlineflagrequestdto.md:
     id: 7e049667762f
     last_write_checksum: sha1:ef80298b474d7d111a57aa562bf5d5f9c9946f2a
@@ -1846,8 +1862,8 @@ trackedFiles:
     pristine_git_object: 174e4eecc8c7ac1ebc6eb75bfad26b1de982109d
   docs/models/components/updateworkflowdtosteps.md:
     id: 5db2744049e3
-    last_write_checksum: sha1:3a91ea06b5848e233816fe60147333e4f63196a5
-    pristine_git_object: 8e4488c2b9d913984841986f6f643a72d3b07ca6
+    last_write_checksum: sha1:b31c047c150c279ee721c99a97fdd788945e5914
+    pristine_git_object: bed4d5236b0f1fcae09956ff1617afdf0f00db65
   docs/models/components/uploadtranslationsresponsedto.md:
     id: f569985baca7
     last_write_checksum: sha1:39b47323fd23e28210d1a95538f55526d47161cf
@@ -1966,8 +1982,8 @@ trackedFiles:
     pristine_git_object: 9a15b7f038a2951dbc6a25520d29a03e9e46d192
   docs/models/components/workflowresponsedtosteps.md:
     id: d95ec1db539b
-    last_write_checksum: sha1:7f082f09200ff30412c16ba6cca34f917961f1f2
-    pristine_git_object: 089fae18f940918e6c7a1579a03694b884ba9cdb
+    last_write_checksum: sha1:b0464f5d59f681d5977dd418cf4e50f07067b3b8
+    pristine_git_object: 935d1fe35b616cd51bded257b4e494613100e28d
   docs/models/components/workflowresponsedtoupdatedby.md:
     id: b762666d05b4
     last_write_checksum: sha1:6dff15beb6c445e6285e6a27572324e4d2449807
@@ -2026,8 +2042,8 @@ trackedFiles:
     pristine_git_object: 6df014ee904bb27a24f7c0388a69cf1f4072ddda
   docs/models/errors/subscriberresponsedto.md:
     id: 60d9776d5844
-    last_write_checksum: sha1:f4af2295ada65e24f55a69fee36172bec7b7bd5c
-    pristine_git_object: c8b76c8588a9dad9cc67ca3cb5af20ff8c72a665
+    last_write_checksum: sha1:61be6c7382087deb0808456473780eeece26a49c
+    pristine_git_object: 077166b31b61fde1917c14025a3a55a716ce3503
   docs/models/errors/topicresponsedto.md:
     id: af56f212bc07
     last_write_checksum: sha1:ea66bfd6dba0c4c47576b35a8c45881cc420ad41
@@ -2294,8 +2310,8 @@ trackedFiles:
     pristine_git_object: 8561c6b70af7daa6ead4fd099f3594a8f3f0b8cb
   docs/models/operations/integrationscontrollercreateintegrationresponse.md:
     id: 528f328318b9
-    last_write_checksum: sha1:6e99b4cf8237a14d9c599a2c84e488da344539c2
-    pristine_git_object: 4cc053a4153cd2b02271df6a169715a787ee682e
+    last_write_checksum: sha1:e04daa1690899c98e3e4944a90750ee0d2fff289
+    pristine_git_object: 7ddeb7380a588a6f15abb5f3149405a50a147f74
   docs/models/operations/integrationscontrollergetactiveintegrationsrequest.md:
     id: e0150026f7c2
     last_write_checksum: sha1:37591ff7e47847f67d640c4dc5df1239ab0c727f
@@ -2318,40 +2334,40 @@ trackedFiles:
     pristine_git_object: 1626475da037af7650f1a4e4fc93ad07eeee74b4
   docs/models/operations/integrationscontrollerlistintegrationsresponse.md:
     id: d5cd9e96ef5d
-    last_write_checksum: sha1:e7d28ad0d10a9a9ac5c226c303997b70b5a36b6c
-    pristine_git_object: 861f008fc3c52e3db84afab957f9d24dc91afa88
+    last_write_checksum: sha1:dff61b49aa170ede873fca920232e33d5d58435e
+    pristine_git_object: 146d74aea30cee92125212422555faede76a43f5
   docs/models/operations/integrationscontrollerremoveintegrationrequest.md:
     id: 35a08aa49828
     last_write_checksum: sha1:95faafb26b0d30f443a5654b58a8fdb16ad8f315
     pristine_git_object: 8e16dcbf2b97d56210d9c58e2fa43f043d1f48cc
   docs/models/operations/integrationscontrollerremoveintegrationresponse.md:
     id: 60e513ac60aa
-    last_write_checksum: sha1:01a25f9929dce892a8e1b083184621e5c0b8bedb
-    pristine_git_object: e76751af92f90e1b6fba1644ccc36cef5d76538a
+    last_write_checksum: sha1:fca7f856d45e11974601b09440020a0739f2504c
+    pristine_git_object: 0440c830e82d1c2d1f28243de51abc58837270e3
   docs/models/operations/integrationscontrollersetintegrationasprimaryrequest.md:
     id: 870090194c28
     last_write_checksum: sha1:a37a549e4796534e557cba94af3272a6fe55ba5b
     pristine_git_object: 95a851f11db1f13fad56ef25dc659edcc2284f0a
   docs/models/operations/integrationscontrollersetintegrationasprimaryresponse.md:
     id: 4dca8f7b9f74
-    last_write_checksum: sha1:caf31e915bd68faa80aeb355295d5692f846593b
-    pristine_git_object: 1c8ccc042622966e5be311daac256d651c49e199
+    last_write_checksum: sha1:0014e80a7bdaf227566e3a3a1f3f6cde78a3d936
+    pristine_git_object: dec410c4d2b33dc1c037fbe8968c9fed2fc0f210
   docs/models/operations/integrationscontrollerupdateintegrationbyidrequest.md:
     id: 1425adc4289c
     last_write_checksum: sha1:e808de93c70606eb828844cee53c11be62c00f8d
     pristine_git_object: 520b61116abe2cdde2e53bb75b0072117628e9a1
   docs/models/operations/integrationscontrollerupdateintegrationbyidresponse.md:
     id: 3dc532ea1c32
-    last_write_checksum: sha1:1fd803d834d462cae2ce0097b351b3275afcf6c7
-    pristine_git_object: 477b0cf0499b6778d1216087bacc7321c66a07bd
+    last_write_checksum: sha1:8f5bb72c66059cd428f9ff266ef6ef5a66aa1bec
+    pristine_git_object: 2a0b7aec3a3f8105c57c2766e740a8fa341df358
   docs/models/operations/layoutscontrollercreaterequest.md:
     id: 0f2b5a930903
     last_write_checksum: sha1:33f08412b621748562522c3a9cc215beb6ba53d1
     pristine_git_object: d314aedc860f2c223f6abe553d6562dfc958a1ee
   docs/models/operations/layoutscontrollercreateresponse.md:
     id: 6b1731d915dc
-    last_write_checksum: sha1:977e394b34d278d8a4102eb8db7fb686cdaf7700
-    pristine_git_object: 1010cd2de07fdeeda27c0f21d063a8efcd980de9
+    last_write_checksum: sha1:c2987c689e1702aee7c4198c3cebcd97ce6f1e5d
+    pristine_git_object: c284f0fc95b346d91d78e37da161de4168fa89b0
   docs/models/operations/layoutscontrollerdeleterequest.md:
     id: "791561475645"
     last_write_checksum: sha1:34a49dfae0bea0b4ccd59b7206a5f9a6681d5a9e
@@ -2366,24 +2382,24 @@ trackedFiles:
     pristine_git_object: 5ce8620b376fec8a17474fe39388f6f55e4da34e
   docs/models/operations/layoutscontrollerduplicateresponse.md:
     id: 740b57103f5c
-    last_write_checksum: sha1:7d9a4eda5accf94d56176384a7b593734b285ce5
-    pristine_git_object: a40fc20b858a068136f2deff78f0b5f37ae65e85
+    last_write_checksum: sha1:a89ea74f9fc908c914f46942423cc7ed33043b5c
+    pristine_git_object: cd1707f427f540385e9f7252b49724dfa859adc9
   docs/models/operations/layoutscontrollergeneratepreviewrequest.md:
     id: 49a80e088989
-    last_write_checksum: sha1:8e76de432c284a0b8975f69982f7e3248f16b872
-    pristine_git_object: 90223894c9c9538fe292bcca2cc294495dd64650
+    last_write_checksum: sha1:983964fa937c0dd46b044eba9103228e8c327d04
+    pristine_git_object: 5b999c9eb2e1a9e13874504e82a3326382b70e67
   docs/models/operations/layoutscontrollergeneratepreviewresponse.md:
     id: f9d712a223e8
-    last_write_checksum: sha1:807b3fda49d5977bd0a18216149d501c909d2729
-    pristine_git_object: 7e5563fb8df87e2a14f5f321dfb0d336716face9
+    last_write_checksum: sha1:95ac7073145294f37173bc71f4dd7741090de57e
+    pristine_git_object: cf8de53f42bb803c907d29e394af80f8e47459c1
   docs/models/operations/layoutscontrollergetrequest.md:
     id: 70d1862a6f3b
     last_write_checksum: sha1:41b4e55014a3743abc28bc119a45039536a515c3
     pristine_git_object: b1d2751303da7d9ff6cb0c00ad3e831cf6073e0d
   docs/models/operations/layoutscontrollergetresponse.md:
     id: 07fa09677d54
-    last_write_checksum: sha1:61055c31ed1099125db7125a818186fc4c4564ea
-    pristine_git_object: 41e4ae9ca911a1cf72a9babacdb38cf9c2020db9
+    last_write_checksum: sha1:c65115146f6b087e9b22f24838f193196d9c7774
+    pristine_git_object: 87c291f94622af7cdad745bb31e2d77b1241a7cf
   docs/models/operations/layoutscontrollergetusagerequest.md:
     id: efc27774e040
     last_write_checksum: sha1:a55ccfe27bf8e6ab1bee57fbc33eedcca22dd796
@@ -2402,12 +2418,12 @@ trackedFiles:
     pristine_git_object: e1f353c9adb64c6b69061a873fbd03ad56213263
   docs/models/operations/layoutscontrollerupdaterequest.md:
     id: c435d80ff34d
-    last_write_checksum: sha1:d155e698b681126fe1fbfb465347dcd81a6243a4
-    pristine_git_object: 0c295fd08b89f37da034d8cfd3c51d9e9bbb5a98
+    last_write_checksum: sha1:2a9b13000b5ed1eaa4b06b44d703d957ffd3dd44
+    pristine_git_object: 09abc594003f890e3102938e023da52b90b94cc5
   docs/models/operations/layoutscontrollerupdateresponse.md:
     id: 410850ea2f8c
-    last_write_checksum: sha1:6e571fcfe2ddcfade02ef986252039071794ac4d
-    pristine_git_object: b814a97e0635a9050b9465e5a85ad791263073dc
+    last_write_checksum: sha1:dfd021cd9442ac9c39f028dde34a370865940f7c
+    pristine_git_object: ad0f2b6200a711df34d4b5ffe04e4ba8e617592c
   docs/models/operations/messagescontrollerdeletemessagerequest.md:
     id: ffadf852e736
     last_write_checksum: sha1:7c26587e6a6d917021b8ac38e01d52dc5586a1b4
@@ -2434,8 +2450,8 @@ trackedFiles:
     pristine_git_object: ac676f69a4a89142953063e2aa6335c5f4fba2ee
   docs/models/operations/messagescontrollergetmessagesresponse.md:
     id: c136678fabaa
-    last_write_checksum: sha1:1d4e9d46b46f795a18af60734a420eff3a4296bc
-    pristine_git_object: 6f1ec7b69363274aa66b452ce3d503e2b87aaf66
+    last_write_checksum: sha1:7ad70bc9ec6a1af6b035254bb26e84c41a2b8dc2
+    pristine_git_object: 5db60a260580fd0fa3f2973b70a55da346f176b4
   docs/models/operations/notificationscontrollergetnotificationrequest.md:
     id: b790afc5bca1
     last_write_checksum: sha1:16647e54f54a819235d63bc4b692e0d71bc3e907
@@ -2486,8 +2502,8 @@ trackedFiles:
     pristine_git_object: fb6eab682bdd5ec15d2f11271231c50275cc8621
   docs/models/operations/subscriberscontrollercreatesubscriberresponse.md:
     id: e5424d0466ee
-    last_write_checksum: sha1:7d52c56b6988fc481d2cbb72a01a1a5feb7c284f
-    pristine_git_object: afa877812ba28d6c21945ffa0d965847cab70209
+    last_write_checksum: sha1:dcfb5aa83fb2eec85dd4923e17d70714d500327d
+    pristine_git_object: 553326345b0a7b1ba40eca2dfbc82b93856b7329
   docs/models/operations/subscriberscontrollergetsubscriberpreferencesrequest.md:
     id: 78ebe233b367
     last_write_checksum: sha1:1c8303ab633819714f4fc1483410812f4376e5a1
@@ -2502,8 +2518,8 @@ trackedFiles:
     pristine_git_object: c8186a5e292e95a3bfe34120cc592a0b0895a6f9
   docs/models/operations/subscriberscontrollergetsubscriberresponse.md:
     id: ad5c0e6d8995
-    last_write_checksum: sha1:9d38c0793db17e117f9fe4467ce13f1b31b34d39
-    pristine_git_object: 0a39027bdb791970fed75ae362f240d19d805b66
+    last_write_checksum: sha1:03968c307e429a93137078aa96e71db1762a0c35
+    pristine_git_object: 9156bfc4f70504fdcfac6a11bd4e2c78db05e0c6
   docs/models/operations/subscriberscontrollerlistsubscribertopicsqueryparamorderdirection.md:
     id: 4c699dcfbde8
     last_write_checksum: sha1:ad351ed11e5544b4fe20c497fd6dbc9c537985d9
@@ -2522,8 +2538,8 @@ trackedFiles:
     pristine_git_object: b43de7470c9d4b20634de58531b3fa141c5b31ec
   docs/models/operations/subscriberscontrollerpatchsubscriberresponse.md:
     id: 0a415ace8cd1
-    last_write_checksum: sha1:952d323a2b9a6bd7d4e13dbbc36d8d9f1a943015
-    pristine_git_object: 71cc1ee7d1707ad036190e3c8d636fb46ef52b4f
+    last_write_checksum: sha1:1cfbfa8593a068c1a5f4ce058aa909c09330c440
+    pristine_git_object: 92fb492f007503fe5be0e6e37340b033064c9564
   docs/models/operations/subscriberscontrollerremovesubscriberrequest.md:
     id: 43986e49eeac
     last_write_checksum: sha1:78abe15550b15730c462df2a755b67081f939291
@@ -2538,8 +2554,8 @@ trackedFiles:
     pristine_git_object: 585ed11324a32235c7007fa8f2e1e86550bf12a3
   docs/models/operations/subscriberscontrollersearchsubscribersresponse.md:
     id: e4d3ce94f41e
-    last_write_checksum: sha1:d1e66d7cf66246617c153bea113955ddfac36b76
-    pristine_git_object: a97b2485d1fe3200058bb29cd58a6d2d502ce4ef
+    last_write_checksum: sha1:c701fcf7a1d017497400f70eeb989d14a5bd94c7
+    pristine_git_object: 90c4b11f5d5d5997501d3c0c9b3e0be4df18a8a9
   docs/models/operations/subscriberscontrollerupdatesubscriberpreferencesrequest.md:
     id: 45f7e51bd786
     last_write_checksum: sha1:bf4d400845b7bfefae839532d160981edcd228d7
@@ -2586,8 +2602,8 @@ trackedFiles:
     pristine_git_object: fb639cb5e7201dde9cad4d5a9dcc34e91fabda47
   docs/models/operations/subscribersv1controllermarkactionasseenresponse.md:
     id: dddfe4e926fd
-    last_write_checksum: sha1:3e638d1e7b9824fcd83c115515b38af492858adf
-    pristine_git_object: 54669460fbfac91be18c6c44ea9e5c1a338ff0ff
+    last_write_checksum: sha1:21dedb2b3ccccdcc5d819f17baf9f3b08e257a57
+    pristine_git_object: b25079b1eb48030c14e96446b61f916ce3073a5a
   docs/models/operations/subscribersv1controllermarkallunreadasreadrequest.md:
     id: 8d7afe351812
     last_write_checksum: sha1:ceedeb51022dd9fc5018d71e1b7d26848a60857e
@@ -2606,28 +2622,28 @@ trackedFiles:
     pristine_git_object: 2a1b4783cd57b2e4dd9fb6a4f4b5b3c7a135458b
   docs/models/operations/subscribersv1controllermodifysubscriberchannelrequest.md:
     id: c14e9027cc26
-    last_write_checksum: sha1:5f448fbb68ecbcd10c608ebf3bb094cd56c995d9
-    pristine_git_object: 8f50431503924d263513c34c697caa7746f99761
+    last_write_checksum: sha1:a4778729e60ae20fc36520d5d0b4b4b3350b04da
+    pristine_git_object: a53ab282acd1aa3eabba81cdb8d3fe5c9fc3baa1
   docs/models/operations/subscribersv1controllermodifysubscriberchannelresponse.md:
     id: 7755d8601698
-    last_write_checksum: sha1:a99616ea3b780932aee89199e9033c76efcf7565
-    pristine_git_object: d858764d6b788d2388e43a45d9dd01f73a26e530
+    last_write_checksum: sha1:4f4e61987b12f13e078869a2ebe1c98ace106308
+    pristine_git_object: c0a1faa14beac0dc02dc5b36f5fab8c896999536
   docs/models/operations/subscribersv1controllerupdatesubscriberchannelrequest.md:
     id: ca5649b7a8d2
-    last_write_checksum: sha1:8b7c4aeabd4e2dac825d50fbb593c91fd725ed2f
-    pristine_git_object: 49b630d23e3a80101171af2761f324d145407d0d
+    last_write_checksum: sha1:c1948c6e208977625e0a7e6cdc9e74282ac7d705
+    pristine_git_object: 1a46df2c50e9bf8f285843fc19848623aef7d115
   docs/models/operations/subscribersv1controllerupdatesubscriberchannelresponse.md:
     id: aec8cdf22103
-    last_write_checksum: sha1:8c89d97c8088f72e1892226605a8426b0f089823
-    pristine_git_object: 9a92d78ed64cdb1678d15e9ed7d0296afad8c797
+    last_write_checksum: sha1:e45972e9308935e7fc5fd2b30a28fffbf2583717
+    pristine_git_object: 2c612dcd22e6e167eff34e83d58de75fecb59e66
   docs/models/operations/subscribersv1controllerupdatesubscriberonlineflagrequest.md:
     id: 74dd661438a1
     last_write_checksum: sha1:0830aebfc9f683f586daf370d9b2bf364bfacf5e
     pristine_git_object: aa3c363a4d4e7644e3165dd36069ea0ceee56a0b
   docs/models/operations/subscribersv1controllerupdatesubscriberonlineflagresponse.md:
     id: 9c228a0b31a4
-    last_write_checksum: sha1:517d09a84c30571993445af53f61439392e351a5
-    pristine_git_object: f059d304d25811f2534de1e542c530017378b4f1
+    last_write_checksum: sha1:5f1dd5fd8c3ba5dc757807099b83d849199dad7e
+    pristine_git_object: b2abf832026d8558c3d1df2ef399711ae7e439d4
   docs/models/operations/topicscontrollercreatetopicsubscriptionsrequest.md:
     id: 68ef254c4082
     last_write_checksum: sha1:7b7dfa8f98ef8b2e1e49f83aebc17c1c5a8a61fd
@@ -2782,20 +2798,20 @@ trackedFiles:
     pristine_git_object: 4ce6765b7db906d0f5ddc3e53c35002d4fbcaff0
   docs/models/operations/workflowcontrollercreaterequest.md:
     id: 6a14d2cb16c5
-    last_write_checksum: sha1:ffe33dbb1bbf2e50033ee51a1c77b1f1e491aa2f
-    pristine_git_object: 3bdbb9be08571fb34cf354a84e8721818a9bbd89
+    last_write_checksum: sha1:42a3c0cff0a1f3b60cb7453d2d21db405129e582
+    pristine_git_object: 85c192b0fafc971ebdd9219381a90077252939fe
   docs/models/operations/workflowcontrollercreateresponse.md:
     id: e6b6585ac6da
-    last_write_checksum: sha1:0f1f7a5f357d4541f73c90f435a7015658fd0040
-    pristine_git_object: 7a46ef25b91cbb3028ab3425d906330787583e12
+    last_write_checksum: sha1:14f1fb68c431ed73d68d63476f63c949b2f4c2f9
+    pristine_git_object: 552c6d4f29b0de00b685cc94daedb4250c7c2bb6
   docs/models/operations/workflowcontrollergetworkflowrequest.md:
     id: 817a8be2c76e
     last_write_checksum: sha1:8414643b035dc956acc39704cb1a55fc69c5039f
     pristine_git_object: 3f9ee8789b054a74f58e6987d69cda63486b5fbd
   docs/models/operations/workflowcontrollergetworkflowresponse.md:
     id: b052faecb15b
-    last_write_checksum: sha1:90bebe02224861cfb16a7d237785e0e50619b23b
-    pristine_git_object: 986d0d27e8b1c6426f81500ba22cf6fdb356a78f
+    last_write_checksum: sha1:4b05a20fcaca3bb26c00be0f94debe1d22322f1a
+    pristine_git_object: 0d0fcf0e0c2902b9f99c90dad63ebfd98327dda3
   docs/models/operations/workflowcontrollergetworkflowstepdatarequest.md:
     id: 96dc3c7e637a
     last_write_checksum: sha1:87302e6ab4071d44dc04af8c378348147107ba5d
@@ -2810,8 +2826,8 @@ trackedFiles:
     pristine_git_object: cba3e7d52ee7cdb74175c3b0e125a6755b1c9421
   docs/models/operations/workflowcontrollerpatchworkflowresponse.md:
     id: 06354774c0f3
-    last_write_checksum: sha1:054336b87b320d1f7567e16a81e8af6a8c98f28f
-    pristine_git_object: a8c2cf5fc9a6efc548c9904d707507e2ec2d9cc8
+    last_write_checksum: sha1:f42faec17ecc5e304061023188c6186722a15816
+    pristine_git_object: 01c2e81354b68ed4522b1579e083fbb7cc53b8d2
   docs/models/operations/workflowcontrollerremoveworkflowrequest.md:
     id: c17709b3cd6a
     last_write_checksum: sha1:c37b005c0f867c597192e770fc3b5a1933b1c630
@@ -2834,16 +2850,16 @@ trackedFiles:
     pristine_git_object: 5b7561475f663d478eb9c84bb06aa0b7b3b96493
   docs/models/operations/workflowcontrollersyncresponse.md:
     id: 78e31f5b2dc8
-    last_write_checksum: sha1:5349a17e9a74170092f6e7ade2ce3e96dd1dfed7
-    pristine_git_object: c5f44643b058c2484ab512384c8a4c92454f4a37
+    last_write_checksum: sha1:3f85cff4f507539007e16f912d86374bb969bd72
+    pristine_git_object: 6d6a5070b1a3456c54cebd285b2ed53949982c04
   docs/models/operations/workflowcontrollerupdaterequest.md:
     id: b9ccef9cbe6b
-    last_write_checksum: sha1:aabeb7b26798cfac97ef01db7ef387c49059ca31
-    pristine_git_object: 1d14484c0dc4ad19d45c1b6d78e46edd96c6a881
+    last_write_checksum: sha1:c5ae51d2a3ee5365e598a3290b1674ddd8a20af9
+    pristine_git_object: 6dc1d7001fadaa7ee4c0a101c905fdd0992b23fd
   docs/models/operations/workflowcontrollerupdateresponse.md:
     id: a06f3cb9758b
-    last_write_checksum: sha1:3d21a7a21351274ce7c1777997cc5185a1e7608d
-    pristine_git_object: 6d1ad159a73c48989c589d10d897264e4b58aa8d
+    last_write_checksum: sha1:040b54a4707547f91495541f0427661acfb79142
+    pristine_git_object: 0a741ac596492c43e4245184309f8b37aa5f0822
   docs/sdks/activity/README.md:
     id: f6e8241fca80
     last_write_checksum: sha1:462934fe6ac3195857db4e7d677013eb3f65ff4b
@@ -2862,8 +2878,8 @@ trackedFiles:
     pristine_git_object: 1f0ecde71169d36ca378fe8b45f6c64d3638b1fe
   docs/sdks/credentials/README.md:
     id: fb7e49751327
-    last_write_checksum: sha1:fe3dcf8eabf91529c7738585c0957bcd0c50a947
-    pristine_git_object: d33259c36c347805ec121786f07c80ee46ff4832
+    last_write_checksum: sha1:4b72a0b19b51116270fd61a546fd1229a5dc98bb
+    pristine_git_object: 225835544ac4ea0f97b5e599c022dfdcbc437ff2
   docs/sdks/environments/README.md:
     id: d15fc95481b6
     last_write_checksum: sha1:2d0078609b1c1c7b06c6ce1c585c98acc697e9dd
@@ -2878,8 +2894,8 @@ trackedFiles:
     pristine_git_object: 405d355911ea01a5879c313b3c7a03dac7f0f82d
   docs/sdks/layouts/README.md:
     id: 9cae4f89dc39
-    last_write_checksum: sha1:351da197101be83e3d8050542881e67cfb04cf9b
-    pristine_git_object: beb8f9189853589244b006baaf835a07e271577f
+    last_write_checksum: sha1:518c0de4fdc6e5f13bf2e620e75297ee74d95684
+    pristine_git_object: 3d7088367ef44058b9cf366310616e7fa92261a2
   docs/sdks/master/README.md:
     id: 231dfd929df7
     last_write_checksum: sha1:92d601ed02fb771a7c1b2dd43c723720ed073a37
@@ -2966,12 +2982,12 @@ trackedFiles:
     pristine_git_object: 3dc64f3c7eb62819d4e24d7c524bcf5fdd516fd8
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:45ac52e8510d235b47f517f30db9b742b9958f2b
-    pristine_git_object: 43e8b775837c206642ba9804f320bdb4df052e1d
+    last_write_checksum: sha1:ebb2047f70b0f20d26cc0efa5cbba8f6663f3d84
+    pristine_git_object: 672cc60b895ae368277d718674f5762aa1af5faf
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:65d26458af8a556a5613a4da5ae2a72561fe18bf
-    pristine_git_object: 5b518990a390e1996fdfe8e31df399544fdca239
+    last_write_checksum: sha1:448e047929b814f9cfd6d75bfa0e5c7e6211e21a
+    pristine_git_object: 5559dc462982ec5a09ae746b94211ed820224ffe
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:522fa3c145654876a02a0c62da21be6d84e87471
@@ -3378,8 +3394,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:e945d61d57b3fe924e912f1951a83cac26840081
-    pristine_git_object: f387e67c1bd9da28af3ab41901aa6c03175ded67
+    last_write_checksum: sha1:ab3601f9a5f6f26b04dc04a6f85ce134d506fd8b
+    pristine_git_object: 78bb915f712dd8e9ebe4a304f0d27b5fe419b242
   src/lib/dlv.ts:
     id: b1988214835a
     last_write_checksum: sha1:1dd3e3fbb4550c4bf31f5ef997faff355d6f3250
@@ -3446,8 +3462,8 @@ trackedFiles:
     pristine_git_object: 6d99ecb8d37cd05e964cd67e57b0e9684e06e4e8
   src/models/components/activitynotificationjobresponsedto.ts:
     id: dd973c9b998f
-    last_write_checksum: sha1:31b8c84f01da5f2ed7b45c6bc96452e710d502ab
-    pristine_git_object: 9e8bf0be7ddb17a6860ace622a60976e6b4b3512
+    last_write_checksum: sha1:53c1a3399f0bfbaa217f92f6911d6c40c5e60e83
+    pristine_git_object: 7f2dfd71544d938ae21f25ff302df2e5e239eab1
   src/models/components/activitynotificationresponsedto.ts:
     id: 65bcc7635c0c
     last_write_checksum: sha1:762b269aec23de0e5ef828881ca6a150d733bddf
@@ -3538,8 +3554,8 @@ trackedFiles:
     pristine_git_object: 72e416ab5e47cce12ba1baefa5265792a2e1670a
   src/models/components/channelsettingsdto.ts:
     id: fb3d4d28cb08
-    last_write_checksum: sha1:615407b8373b30d9cdf3caf3967e318b82a37ec5
-    pristine_git_object: d53a6fc2b3b42ed05fbb22a829f06e07af95953b
+    last_write_checksum: sha1:d71d64af10cf63688e196738285a5a32683aa19a
+    pristine_git_object: deb1c1a86bef825ecdbba1ddbc9d48413d73e5bb
   src/models/components/channeltypeenum.ts:
     id: e470aee31902
     last_write_checksum: sha1:effbca5aeb15a9c80c8ed561aab35976c96d8c36
@@ -3650,8 +3666,8 @@ trackedFiles:
     pristine_git_object: 77f5e1fcc726ed55d06eae2fc22f94670a9e3ead
   src/models/components/createworkflowdto.ts:
     id: 00c5929eca9a
-    last_write_checksum: sha1:7c16e611c3b3d4179f24bb597fd792aec388f7e0
-    pristine_git_object: 9545c5868586273afe184d961c14536aff7bec86
+    last_write_checksum: sha1:a0539638d7f9d6202ac01893a5f32d59ce53740c
+    pristine_git_object: c8efe22517cf48500563386aea713c85625697c3
   src/models/components/credentialsdto.ts:
     id: 18e4699b7534
     last_write_checksum: sha1:0b5fa5f5852e5bc6468b62a8a638a1a5f2742155
@@ -3802,8 +3818,8 @@ trackedFiles:
     pristine_git_object: 1356b1a12e961c253e93a8f90ec5cebf800795c8
   src/models/components/emailcontroldto.ts:
     id: e0160c279361
-    last_write_checksum: sha1:02310d9099fa4159d11e1a34335cc0c29b3f314b
-    pristine_git_object: 920e9c5b17cbf8ac9e33ce27ec7bfe694eecf7cb
+    last_write_checksum: sha1:7e9edfc197dae4b3aca71ea05aa8ce07495fa8aa
+    pristine_git_object: dbdd25128bf08c7532db90d6116fb63037437a05
   src/models/components/emailcontrolsdto.ts:
     id: 71442dbb69a9
     last_write_checksum: sha1:3a367feb8043482deab54a23aa3e201a7c0322e7
@@ -3818,8 +3834,8 @@ trackedFiles:
     pristine_git_object: aa2b9d499305123a5c53cea7d086855c6c1b5177
   src/models/components/emailstepresponsedto.ts:
     id: f042a4fdf591
-    last_write_checksum: sha1:5d6345e8b50ee9f320efb017198a758909e8a166
-    pristine_git_object: 3294dc7bdca93f6fdd287bdd5021ec722c9d55a2
+    last_write_checksum: sha1:8ef099c6a2f1e7a5f4df24feeaa36e31ecdf7090
+    pristine_git_object: 13a59786b45896f324d7c811ba22efdb272c406c
   src/models/components/emailstepupsertdto.ts:
     id: cb8074e067df
     last_write_checksum: sha1:e3addcc313aae619deef75eca884a8f205b3b87b
@@ -3912,6 +3928,30 @@ trackedFiles:
     id: e2f2d8ba50c0
     last_write_checksum: sha1:91416252a0d39d57233cf4edc912b53e4daa2ee1
     pristine_git_object: e9b72bb0e7a8dd7828793115f09c341eb35277cf
+  src/models/components/httpmethodenum.ts:
+    id: 82e77b3fe046
+    last_write_checksum: sha1:8f27d6bdf16c3e7cefc97ae9e706c30e96c6e95a
+    pristine_git_object: bf979756133950f8d42d2bb421fa6021adf3d286
+  src/models/components/httprequestcontroldto.ts:
+    id: 071f9e68e0f6
+    last_write_checksum: sha1:83b1a577c9085a2ef7202fbc9a130302576233b0
+    pristine_git_object: 2a4cfe89c519ebbbbdd6ca428a4ba75b3876c28a
+  src/models/components/httprequestcontrolsmetadataresponsedto.ts:
+    id: b6d106aea466
+    last_write_checksum: sha1:3b98568905bbd02cd64ed6bd1d9d94ae821185a6
+    pristine_git_object: 8340efb747f054ee1afb1993a7560dfdd7e673aa
+  src/models/components/httprequestkeyvaluepairdto.ts:
+    id: 72c3554f7640
+    last_write_checksum: sha1:1d88bdf4cb1ff087e7fb45aae798f2c5fed07bd1
+    pristine_git_object: 82f427d546cd89823406c49fe945dcb41d063b29
+  src/models/components/httprequeststepresponsedto.ts:
+    id: 467dc73ddb95
+    last_write_checksum: sha1:3e2b9a5cae14b6aff0a6e2b7dc198a0126d7d001
+    pristine_git_object: 6ac3c8c2de920f97fe30e1f2156a44af0d7e0c76
+  src/models/components/httprequeststepupsertdto.ts:
+    id: 5f79bccdcdb2
+    last_write_checksum: sha1:2981097607830d19144c14bd36df84a94836cbac
+    pristine_git_object: 8f4ddb3660a418e2d60133aa13d16dfddbab8244
   src/models/components/importmasterjsonrequestdto.ts:
     id: 72bbe9b13d56
     last_write_checksum: sha1:f5c417549f3b47d13d7a7891a8e4c9482273cc1e
@@ -3934,32 +3974,32 @@ trackedFiles:
     pristine_git_object: 27634867e98adc1fb757a8a8aefd68959de123e5
   src/models/components/inappstepupsertdto.ts:
     id: 2925e7114a46
-    last_write_checksum: sha1:aa0a3bd92abd78b06ba659bbc7b698f0167fcaf7
-    pristine_git_object: 65b094ab3c356c8c270f4ad47496ee33021a926e
+    last_write_checksum: sha1:fa745109486bdf389307d41eaf7ecc43b2850275
+    pristine_git_object: 640ef369017567a41ded24577fc23edde248b365
   src/models/components/inboundparsedomaindto.ts:
     id: 91ced0bc13e2
     last_write_checksum: sha1:7249404715c689d4af9e75e2e95974b9cf911c09
     pristine_git_object: 9387e6b452235de37cfc5f4603813d7a3064e5a5
   src/models/components/index.ts:
     id: 0aa842dce54d
-    last_write_checksum: sha1:aaddf254262bfda19e56e540cc8b7f3eea9fd262
-    pristine_git_object: cb6c413b554fdbb9305e8b02a159b68d729bc568
+    last_write_checksum: sha1:0b25307df69666e830b20de466dd6c859d9c059b
+    pristine_git_object: f579c5593f66e282d4ac29dd14b337bb74606b59
   src/models/components/integrationissueenum.ts:
     id: bdde08140b27
     last_write_checksum: sha1:b99b9f0f048b2e25eae4e6a38efd6a15bc919f4d
     pristine_git_object: b969a9a9e8a716ffb89deb105e01b43a36c048ec
   src/models/components/integrationresponsedto.ts:
     id: 9083f927664b
-    last_write_checksum: sha1:da64696f4fb4a004ffee35d46e517cae4d711bf3
-    pristine_git_object: e0fdac4ebb5fc8b16f93bead31dc8ba3d4614945
+    last_write_checksum: sha1:3b57e2e08c98123f8c5cefcf18e82a15fb4225b8
+    pristine_git_object: 304269d1fdd735c30a844620c21e67d935f943ee
   src/models/components/layoutcontrolsdto.ts:
     id: b8673c2624eb
     last_write_checksum: sha1:694d5cf7791a9183391900335f927aad567f2f2f
     pristine_git_object: 681abb000fe238e3810703b6e72639b391b37cb9
   src/models/components/layoutcontrolvaluesdto.ts:
     id: bd7f82b23d59
-    last_write_checksum: sha1:11dea715df0fb1ef614c6c8edbc4463b358a3078
-    pristine_git_object: 686a04a5c19375b100da6357170684950728a9d7
+    last_write_checksum: sha1:9083d488688f831a2767bfdb57ebb2bb64450e98
+    pristine_git_object: a9c8cb5cd68d7796c7516e3ea6972c854f7929fe
   src/models/components/layoutcreationsourceenum.ts:
     id: b4991514a020
     last_write_checksum: sha1:b3d7ca78f639549513991c8d77ee3dc542e30161
@@ -4230,8 +4270,8 @@ trackedFiles:
     pristine_git_object: bdfecaa4585029e6e41ce5c0f1d0b954b4464ddd
   src/models/components/runtimeissuedto.ts:
     id: 485aae89db4a
-    last_write_checksum: sha1:5c40fe56ad2d4c8e29d0b9e992a44fc8c502ade9
-    pristine_git_object: c71521337900d7402662c8cae04262b081523ddc
+    last_write_checksum: sha1:cf0f0dfb6e1539e1e2a7178c92da8b3f2ba5950a
+    pristine_git_object: 2a12b1eec89396d2d229dd9ae2c7a8b16a6f9975
   src/models/components/scheduledto.ts:
     id: d8570c96f43c
     last_write_checksum: sha1:bb71a14b6463a062b71b50c6f61192f6a34ae7c9
@@ -4334,12 +4374,12 @@ trackedFiles:
     pristine_git_object: 1af574029e8d3622f6ba7da3d930e721450de358
   src/models/components/subscriberresponsedto.ts:
     id: bef7f75eda3e
-    last_write_checksum: sha1:60cb49193a9dc0293e605f4ffcc9747f7732e97d
-    pristine_git_object: c4dc458ddee84fd2fc124863edf4758f406a1990
+    last_write_checksum: sha1:fd041221e6e36e58e3015cabfc497ef53cb39e18
+    pristine_git_object: b29b65b232f695c0eec8caa13ca9c95fbf967224
   src/models/components/subscriberresponsedtooptional.ts:
     id: 9038383378b2
-    last_write_checksum: sha1:1e7034b14f537254d5fec511ad9b9d28a5f9d87e
-    pristine_git_object: 0e776662f82809e5ab9702a258aaa3d5a405060f
+    last_write_checksum: sha1:21b484236763ed00904282d6a3cab95cbc92e249
+    pristine_git_object: f133236f9d58852ef928613c2a9ac948d3e7385d
   src/models/components/subscriberworkflowpreferencedto.ts:
     id: 95f595d33009
     last_write_checksum: sha1:015520ca121d0a09daba237d9cd0b4d3d09d01fa
@@ -4466,16 +4506,16 @@ trackedFiles:
     pristine_git_object: 67e631b32d0fe741fa8758ed82e514330fbcb591
   src/models/components/uicomponentenum.ts:
     id: 1dc20ac30782
-    last_write_checksum: sha1:6067fe1d61801202959c3944fae5b907b914c341
-    pristine_git_object: 01912412fef0b1ed5fd66a3f91332bfb7ff28489
+    last_write_checksum: sha1:7b746f0fe21c1a7d9247c67829aa2de0edaa7ba7
+    pristine_git_object: 9846b979fc000a84e9352764b20fbc7048c47239
   src/models/components/uischema.ts:
     id: abb16d8c8197
     last_write_checksum: sha1:f2882261c01feb2c3341918e9051129e3e16a391
     pristine_git_object: b92c21f158e035f06a5df70a12ae66c08aa16d49
   src/models/components/uischemagroupenum.ts:
     id: f23575941e62
-    last_write_checksum: sha1:061e8753d24371d29703a5995d261bc728b7a0b9
-    pristine_git_object: ef7e9e7fcb33ab02eebdac991f4bf787825cf1b3
+    last_write_checksum: sha1:2afa5b6788d0a6f2bcb7f699d7dfe06300c8734a
+    pristine_git_object: bf33ab6c386c90f23ebbd8290e5f14b12b4490e0
   src/models/components/uischemaproperty.ts:
     id: 38a5a09ba6e9
     last_write_checksum: sha1:a1dd1c62924022ba5194b78f8e03a7079ebf71b0
@@ -4510,12 +4550,12 @@ trackedFiles:
     pristine_git_object: 1e33b8194a167fcb9d06d528adc62413bf268b8f
   src/models/components/updatelayoutdto.ts:
     id: 9689edd79698
-    last_write_checksum: sha1:c583e612322ee8fda5f962bb28fe49e5aa1f7b2b
-    pristine_git_object: b2bc59311d1ff3d73bf21f7fdeacd09a5e57d654
+    last_write_checksum: sha1:19c1e59afa335897e36f6018acaee2dcb0a33844
+    pristine_git_object: 44ecb5a3b7b92974632be1d40d4df0cd41b6d9e4
   src/models/components/updatesubscriberchannelrequestdto.ts:
     id: 78d2bfc8881e
-    last_write_checksum: sha1:b76d29b60b35b0e93b9884c74e883bbfd46ffd15
-    pristine_git_object: 08f0a241c10a3566c85029e60400900cb0056d4a
+    last_write_checksum: sha1:db2eef9f3fa50c4e22fc85a6968e4ffc947e230d
+    pristine_git_object: 9b8c142bb457780b3ed75fe10d4590f37df23a91
   src/models/components/updatesubscriberonlineflagrequestdto.ts:
     id: 78efc7b8ac9d
     last_write_checksum: sha1:ea4bb20c15b91925081c7d5e5aca20c49c619bca
@@ -4530,8 +4570,8 @@ trackedFiles:
     pristine_git_object: c6e4e82edb4b5fd6b59b06ee5fcadd81796c4cde
   src/models/components/updateworkflowdto.ts:
     id: da9e89bd99f5
-    last_write_checksum: sha1:acd2503a35f5b1ec00644f5cbba7243534409ef4
-    pristine_git_object: 65fd2c05416ee494064738956e056b4069289e83
+    last_write_checksum: sha1:ba6e40fa55fdbbd8a20a82cdc49a2da3466b8292
+    pristine_git_object: 1cce1ad19722df82b95d5cd4f848b1a1072e617f
   src/models/components/uploadtranslationsresponsedto.ts:
     id: 7f08367300ec
     last_write_checksum: sha1:b7211e22b2cd7af0a11702471c88b9c5ebbd95d3
@@ -4578,8 +4618,8 @@ trackedFiles:
     pristine_git_object: 41db52824995ccc9487f46fcc2e62fc8c9d893fb
   src/models/components/workflowresponsedto.ts:
     id: 6caa704a6ac2
-    last_write_checksum: sha1:a0be00a02f031c384ea789b347ba5080c05fe030
-    pristine_git_object: a8ebd3730a557495db1b874e3f35bfb740e8d0db
+    last_write_checksum: sha1:7bfd3fc8d22656540a90cf5ee69bf6aa93333c9c
+    pristine_git_object: 14c5a0614a7f1164b486a09b700ef1cbe8ec2f6c
   src/models/components/workflowresponsedtosortfield.ts:
     id: 4cf93de87f89
     last_write_checksum: sha1:a33a70041aabb728620f626b3263c0067f2e5635
@@ -4626,8 +4666,8 @@ trackedFiles:
     pristine_git_object: 6826e1208a5d7b7d310535d18909646522bf0fbd
   src/models/errors/subscriberresponsedto.ts:
     id: 1f65a0ad8546
-    last_write_checksum: sha1:bdcd441f5038ab3c5360e4581bff568dfcf5e228
-    pristine_git_object: 1f77df3001b01cb157a9023d78ff035f07a58917
+    last_write_checksum: sha1:1bb7344e1da367c77a97d68206372dfeac075877
+    pristine_git_object: addf16ffdbfab0189374083be5d3d23444fe8bd6
   src/models/errors/topicresponsedto.ts:
     id: 2b61a5d5c2fc
     last_write_checksum: sha1:f27651196e843fc801111db04a7f8d5982d9d9c6
@@ -5243,7 +5283,7 @@ examples:
           limit: 10
       responses:
         "200":
-          application/json: {"data": [{"channels": [{"providerId": "pusher-beams", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}, {"providerId": "pusher-beams", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}], "subscriberId": "<id>", "_organizationId": "<id>", "_environmentId": "<id>", "deleted": false, "createdAt": "1723832108589", "updatedAt": "1735636837621"}, {"channels": [{"providerId": "pusher-beams", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}, {"providerId": "pusher-beams", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}], "subscriberId": "<id>", "_organizationId": "<id>", "_environmentId": "<id>", "deleted": false, "createdAt": "1723832108589", "updatedAt": "1735636837621"}, {"channels": [{"providerId": "pusher-beams", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}, {"providerId": "pusher-beams", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}], "subscriberId": "<id>", "_organizationId": "<id>", "_environmentId": "<id>", "deleted": false, "createdAt": "1723832108589", "updatedAt": "1735636837621"}], "next": "<value>", "previous": null, "totalCount": 9050.11, "totalCountCapped": false}
+          application/json: {"data": [{"firstName": "Maegan", "lastName": "Muller", "channels": [{"providerId": "pusher-beams", "integrationIdentifier": "<value>", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}, {"providerId": "pusher-beams", "integrationIdentifier": "<value>", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}], "isOnline": true, "lastOnlineAt": null, "subscriberId": "<id>", "_organizationId": "<id>", "_environmentId": "<id>", "deleted": false, "createdAt": "1723832108589", "updatedAt": "1735636837621"}, {"firstName": null, "lastName": "Satterfield", "channels": [{"providerId": "pusher-beams", "integrationIdentifier": "<value>", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}, {"providerId": "pusher-beams", "integrationIdentifier": "<value>", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}], "isOnline": true, "lastOnlineAt": "<value>", "subscriberId": "<id>", "_organizationId": "<id>", "_environmentId": "<id>", "deleted": false, "createdAt": "1723832108589", "updatedAt": "1735636837621"}, {"firstName": "Nolan", "lastName": "Nicolas", "channels": [{"providerId": "pusher-beams", "integrationIdentifier": "<value>", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}, {"providerId": "pusher-beams", "integrationIdentifier": "<value>", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}], "isOnline": true, "lastOnlineAt": "<value>", "subscriberId": "<id>", "_organizationId": "<id>", "_environmentId": "<id>", "deleted": false, "createdAt": "1723832108589", "updatedAt": "1735636837621"}], "next": "<value>", "previous": null, "totalCount": 9050.11, "totalCountCapped": false}
         "414":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
         "400":
@@ -5258,7 +5298,7 @@ examples:
         application/json: {"firstName": "John", "lastName": "Doe", "email": "john.doe@example.com", "phone": "+1234567890", "avatar": "https://example.com/avatar.jpg", "locale": "en-US", "timezone": "America/New_York", "subscriberId": "<id>"}
       responses:
         "201":
-          application/json: {"channels": [{"providerId": "zulip", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}, {"providerId": "zulip", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}], "subscriberId": "<id>", "_organizationId": "<id>", "_environmentId": "<id>", "deleted": true, "createdAt": "1714470810745", "updatedAt": "1735674320193"}
+          application/json: {"firstName": "Eli", "lastName": "Senger", "channels": [{"providerId": "zulip", "integrationIdentifier": "<value>", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}, {"providerId": "zulip", "integrationIdentifier": "<value>", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}], "isOnline": true, "lastOnlineAt": "<value>", "subscriberId": "<id>", "_organizationId": "<id>", "_environmentId": "<id>", "deleted": true, "createdAt": "1714470810745", "updatedAt": "1735674320193"}
         "414":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
         "400":
@@ -5268,7 +5308,7 @@ examples:
         "500":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
         "409":
-          application/json: {"channels": [{"providerId": "whatsapp-business", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}], "subscriberId": "<id>", "_organizationId": "<id>", "_environmentId": "<id>", "deleted": true, "createdAt": "1714911393177", "updatedAt": "1735631466004"}
+          application/json: {"firstName": "Terence", "lastName": "Schulist", "channels": [{"providerId": "whatsapp-business", "integrationIdentifier": "<value>", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}], "isOnline": false, "lastOnlineAt": "<value>", "subscriberId": "<id>", "_organizationId": "<id>", "_environmentId": "<id>", "deleted": true, "createdAt": "1714911393177", "updatedAt": "1735631466004"}
   SubscribersController_getSubscriber:
     speakeasy-default-subscribers-controller-get-subscriber:
       parameters:
@@ -5276,7 +5316,7 @@ examples:
           subscriberId: "<id>"
       responses:
         "200":
-          application/json: {"channels": [{"providerId": "slack", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}], "subscriberId": "<id>", "_organizationId": "<id>", "_environmentId": "<id>", "deleted": true, "createdAt": "1727316522922", "updatedAt": "1735624846579"}
+          application/json: {"firstName": "Ali", "lastName": null, "channels": [{"providerId": "slack", "integrationIdentifier": "<value>", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}], "isOnline": true, "lastOnlineAt": "<value>", "subscriberId": "<id>", "_organizationId": "<id>", "_environmentId": "<id>", "deleted": true, "createdAt": "1727316522922", "updatedAt": "1735624846579"}
         "414":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
         "400":
@@ -5294,7 +5334,7 @@ examples:
         application/json: {"firstName": "John", "lastName": "Doe", "email": "john.doe@example.com", "phone": "+1234567890", "avatar": "https://example.com/avatar.jpg", "locale": "en-US", "timezone": "America/New_York"}
       responses:
         "200":
-          application/json: {"channels": [{"providerId": "fcm", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}, {"providerId": "fcm", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}], "subscriberId": "<id>", "_organizationId": "<id>", "_environmentId": "<id>", "deleted": false, "createdAt": "1732490680659", "updatedAt": "1735674157313"}
+          application/json: {"firstName": "Lenore", "lastName": "Schuster", "channels": [{"providerId": "fcm", "integrationIdentifier": "<value>", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}, {"providerId": "fcm", "integrationIdentifier": "<value>", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}], "isOnline": false, "lastOnlineAt": "<value>", "subscriberId": "<id>", "_organizationId": "<id>", "_environmentId": "<id>", "deleted": false, "createdAt": "1732490680659", "updatedAt": "1735674157313"}
         "414":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
         "400":
@@ -5396,10 +5436,10 @@ examples:
         path:
           subscriberId: "<id>"
       requestBody:
-        application/json: {"providerId": "slack", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}}
+        application/json: {"providerId": "slack", "integrationIdentifier": "<value>", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}}
       responses:
         "200":
-          application/json: {"channels": [{"providerId": "zulip", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}, {"providerId": "zulip", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}, {"providerId": "zulip", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}], "subscriberId": "<id>", "_organizationId": "<id>", "_environmentId": "<id>", "deleted": false, "createdAt": "1720451246282", "updatedAt": "1735627699916"}
+          application/json: {"firstName": null, "lastName": "Willms", "channels": [{"providerId": "zulip", "integrationIdentifier": "<value>", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}, {"providerId": "zulip", "integrationIdentifier": "<value>", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}, {"providerId": "zulip", "integrationIdentifier": "<value>", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}], "isOnline": true, "lastOnlineAt": null, "subscriberId": "<id>", "_organizationId": "<id>", "_environmentId": "<id>", "deleted": false, "createdAt": "1720451246282", "updatedAt": "1735627699916"}
         "414":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
         "400":
@@ -5414,10 +5454,10 @@ examples:
         path:
           subscriberId: "<id>"
       requestBody:
-        application/json: {"providerId": "one-signal", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}}
+        application/json: {"providerId": "one-signal", "integrationIdentifier": "<value>", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}}
       responses:
         "200":
-          application/json: {"channels": [{"providerId": "msteams", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}, {"providerId": "msteams", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}, {"providerId": "msteams", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}], "subscriberId": "<id>", "_organizationId": "<id>", "_environmentId": "<id>", "deleted": false, "createdAt": "1733544020906", "updatedAt": "1735604004137"}
+          application/json: {"firstName": "Rylan", "lastName": "Waters", "channels": [{"providerId": "msteams", "integrationIdentifier": "<value>", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}, {"providerId": "msteams", "integrationIdentifier": "<value>", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}, {"providerId": "msteams", "integrationIdentifier": "<value>", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}], "isOnline": null, "lastOnlineAt": "<value>", "subscriberId": "<id>", "_organizationId": "<id>", "_environmentId": "<id>", "deleted": false, "createdAt": "1733544020906", "updatedAt": "1735604004137"}
         "414":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
         "400":
@@ -5452,7 +5492,7 @@ examples:
         application/json: {"status": "pending"}
       responses:
         "201":
-          application/json: {"_environmentId": "<id>", "_organizationId": "<id>", "_notificationId": "<id>", "_subscriberId": "<id>", "subscriber": {"channels": [{"providerId": "getstream", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}, {"providerId": "getstream", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}], "subscriberId": "<id>", "_organizationId": "<id>", "_environmentId": "<id>", "deleted": false, "createdAt": "1718333764322", "updatedAt": "1735651735471"}, "template": {"name": "<value>", "description": "loaf than of familiarize puppet transom worth", "active": true, "draft": true, "preferenceSettings": {"email": true, "sms": false, "in_app": true, "chat": false, "push": true}, "critical": true, "tags": [], "steps": [{}, {}, {}], "_organizationId": "<id>", "_creatorId": "<id>", "_environmentId": "<id>", "triggers": [{"type": "event", "identifier": "<value>", "variables": [{"name": "<value>"}, {"name": "<value>"}]}, {"type": "event", "identifier": "<value>", "variables": [{"name": "<value>"}, {"name": "<value>"}]}, {"type": "event", "identifier": "<value>", "variables": [{"name": "<value>"}, {"name": "<value>"}]}], "_notificationGroupId": "<id>", "deleted": true, "deletedAt": "<value>", "deletedBy": "<value>"}, "createdAt": "1712367103281", "transactionId": "<id>", "channel": "in_app", "read": false, "seen": false, "cta": {}, "status": "sent", "contextKeys": ["tenant:org-123", "region:us-east-1"]}
+          application/json: {"_environmentId": "<id>", "_organizationId": "<id>", "_notificationId": "<id>", "_subscriberId": "<id>", "subscriber": {"firstName": "Kody", "lastName": "Kirlin", "channels": [{"providerId": "getstream", "integrationIdentifier": "<value>", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}, {"providerId": "getstream", "integrationIdentifier": "<value>", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}], "isOnline": false, "lastOnlineAt": "<value>", "subscriberId": "<id>", "_organizationId": "<id>", "_environmentId": "<id>", "deleted": false, "createdAt": "1718333764322", "updatedAt": "1735651735471"}, "template": {"name": "<value>", "description": "loaf than of familiarize puppet transom worth", "active": true, "draft": true, "preferenceSettings": {"email": true, "sms": false, "in_app": true, "chat": false, "push": true}, "critical": true, "tags": [], "steps": [{}, {}, {}], "_organizationId": "<id>", "_creatorId": "<id>", "_environmentId": "<id>", "triggers": [{"type": "event", "identifier": "<value>", "variables": [{"name": "<value>"}, {"name": "<value>"}]}, {"type": "event", "identifier": "<value>", "variables": [{"name": "<value>"}, {"name": "<value>"}]}, {"type": "event", "identifier": "<value>", "variables": [{"name": "<value>"}, {"name": "<value>"}]}], "_notificationGroupId": "<id>", "deleted": true, "deletedAt": "<value>", "deletedBy": "<value>"}, "createdAt": "1712367103281", "transactionId": "<id>", "channel": "in_app", "read": false, "seen": false, "cta": {}, "status": "sent", "contextKeys": ["tenant:org-123", "region:us-east-1"]}
         "414":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
         "400":
@@ -5488,7 +5528,7 @@ examples:
         application/json: {"messageId": [], "markAs": "seen"}
       responses:
         "201":
-          application/json: [{"_templateId": "<id>", "_environmentId": "<id>", "_messageTemplateId": "<id>", "_organizationId": "<id>", "_notificationId": "<id>", "_subscriberId": "<id>", "subscriber": {"channels": [{"providerId": "pushpad", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}, {"providerId": "pushpad", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}, {"providerId": "pushpad", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}], "subscriberId": "<id>", "_organizationId": "<id>", "_environmentId": "<id>", "deleted": false, "createdAt": "1725589939815", "updatedAt": "1735615487347"}, "template": {"name": "<value>", "description": "aircraft gadzooks lawmaker shaft", "active": true, "draft": true, "preferenceSettings": {"email": true, "sms": false, "in_app": true, "chat": false, "push": true}, "critical": true, "tags": ["<value 1>", "<value 2>", "<value 3>"], "steps": [{}], "_organizationId": "<id>", "_creatorId": "<id>", "_environmentId": "<id>", "triggers": [{"type": "event", "identifier": "<value>", "variables": []}], "_notificationGroupId": "<id>", "deleted": true, "deletedAt": "<value>", "deletedBy": "<value>"}, "createdAt": "1710273627479", "content": [{"type": "text", "content": "<value>"}], "transactionId": "<id>", "channel": "email", "read": true, "seen": true, "cta": {}, "status": "error"}, {"_templateId": "<id>", "_environmentId": "<id>", "_messageTemplateId": "<id>", "_organizationId": "<id>", "_notificationId": "<id>", "_subscriberId": "<id>", "subscriber": {"channels": [{"providerId": "pushpad", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}, {"providerId": "pushpad", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}, {"providerId": "pushpad", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}], "subscriberId": "<id>", "_organizationId": "<id>", "_environmentId": "<id>", "deleted": false, "createdAt": "1725589939815", "updatedAt": "1735615487347"}, "template": {"name": "<value>", "description": "aircraft gadzooks lawmaker shaft", "active": true, "draft": true, "preferenceSettings": {"email": true, "sms": false, "in_app": true, "chat": false, "push": true}, "critical": true, "tags": ["<value 1>", "<value 2>", "<value 3>"], "steps": [{}], "_organizationId": "<id>", "_creatorId": "<id>", "_environmentId": "<id>", "triggers": [{"type": "event", "identifier": "<value>", "variables": []}], "_notificationGroupId": "<id>", "deleted": true, "deletedAt": "<value>", "deletedBy": "<value>"}, "createdAt": "1710273627479", "content": [{"type": "text", "content": "<value>"}], "transactionId": "<id>", "channel": "email", "read": true, "seen": true, "cta": {}, "status": "error"}, {"_templateId": "<id>", "_environmentId": "<id>", "_messageTemplateId": "<id>", "_organizationId": "<id>", "_notificationId": "<id>", "_subscriberId": "<id>", "subscriber": {"channels": [{"providerId": "pushpad", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}, {"providerId": "pushpad", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}, {"providerId": "pushpad", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}], "subscriberId": "<id>", "_organizationId": "<id>", "_environmentId": "<id>", "deleted": false, "createdAt": "1725589939815", "updatedAt": "1735615487347"}, "template": {"name": "<value>", "description": "aircraft gadzooks lawmaker shaft", "active": true, "draft": true, "preferenceSettings": {"email": true, "sms": false, "in_app": true, "chat": false, "push": true}, "critical": true, "tags": ["<value 1>", "<value 2>", "<value 3>"], "steps": [{}], "_organizationId": "<id>", "_creatorId": "<id>", "_environmentId": "<id>", "triggers": [{"type": "event", "identifier": "<value>", "variables": []}], "_notificationGroupId": "<id>", "deleted": true, "deletedAt": "<value>", "deletedBy": "<value>"}, "createdAt": "1710273627479", "content": [{"type": "text", "content": "<value>"}], "transactionId": "<id>", "channel": "email", "read": true, "seen": true, "cta": {}, "status": "error"}]
+          application/json: [{"_templateId": "<id>", "_environmentId": "<id>", "_messageTemplateId": "<id>", "_organizationId": "<id>", "_notificationId": "<id>", "_subscriberId": "<id>", "subscriber": {"firstName": "Autumn", "lastName": "Yost", "channels": [{"providerId": "pushpad", "integrationIdentifier": "<value>", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}, {"providerId": "pushpad", "integrationIdentifier": "<value>", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}, {"providerId": "pushpad", "integrationIdentifier": "<value>", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}], "isOnline": false, "lastOnlineAt": "<value>", "subscriberId": "<id>", "_organizationId": "<id>", "_environmentId": "<id>", "deleted": false, "createdAt": "1725589939815", "updatedAt": "1735615487347"}, "template": {"name": "<value>", "description": "aircraft gadzooks lawmaker shaft", "active": true, "draft": true, "preferenceSettings": {"email": true, "sms": false, "in_app": true, "chat": false, "push": true}, "critical": true, "tags": ["<value 1>", "<value 2>", "<value 3>"], "steps": [{}], "_organizationId": "<id>", "_creatorId": "<id>", "_environmentId": "<id>", "triggers": [{"type": "event", "identifier": "<value>", "variables": []}], "_notificationGroupId": "<id>", "deleted": true, "deletedAt": "<value>", "deletedBy": "<value>"}, "createdAt": "1710273627479", "content": [{"type": "text", "content": "<value>"}], "transactionId": "<id>", "channel": "email", "read": true, "seen": true, "cta": {}, "status": "error"}, {"_templateId": "<id>", "_environmentId": "<id>", "_messageTemplateId": "<id>", "_organizationId": "<id>", "_notificationId": "<id>", "_subscriberId": "<id>", "subscriber": {"firstName": "Cecile", "lastName": "Rutherford", "channels": [{"providerId": "pushpad", "integrationIdentifier": "<value>", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}, {"providerId": "pushpad", "integrationIdentifier": "<value>", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}, {"providerId": "pushpad", "integrationIdentifier": "<value>", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}], "isOnline": true, "lastOnlineAt": "<value>", "subscriberId": "<id>", "_organizationId": "<id>", "_environmentId": "<id>", "deleted": false, "createdAt": "1725589939815", "updatedAt": "1735615487347"}, "template": {"name": "<value>", "description": "aircraft gadzooks lawmaker shaft", "active": true, "draft": true, "preferenceSettings": {"email": true, "sms": false, "in_app": true, "chat": false, "push": true}, "critical": true, "tags": ["<value 1>", "<value 2>", "<value 3>"], "steps": [{}], "_organizationId": "<id>", "_creatorId": "<id>", "_environmentId": "<id>", "triggers": [{"type": "event", "identifier": "<value>", "variables": []}], "_notificationGroupId": "<id>", "deleted": true, "deletedAt": "<value>", "deletedBy": "<value>"}, "createdAt": "1710273627479", "content": [{"type": "text", "content": "<value>"}], "transactionId": "<id>", "channel": "email", "read": true, "seen": true, "cta": {}, "status": "error"}, {"_templateId": "<id>", "_environmentId": "<id>", "_messageTemplateId": "<id>", "_organizationId": "<id>", "_notificationId": "<id>", "_subscriberId": "<id>", "subscriber": {"firstName": null, "lastName": "Conroy", "channels": [{"providerId": "pushpad", "integrationIdentifier": "<value>", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}, {"providerId": "pushpad", "integrationIdentifier": "<value>", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}, {"providerId": "pushpad", "integrationIdentifier": "<value>", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}], "isOnline": false, "lastOnlineAt": "<value>", "subscriberId": "<id>", "_organizationId": "<id>", "_environmentId": "<id>", "deleted": false, "createdAt": "1725589939815", "updatedAt": "1735615487347"}, "template": {"name": "<value>", "description": "aircraft gadzooks lawmaker shaft", "active": true, "draft": true, "preferenceSettings": {"email": true, "sms": false, "in_app": true, "chat": false, "push": true}, "critical": true, "tags": ["<value 1>", "<value 2>", "<value 3>"], "steps": [{}], "_organizationId": "<id>", "_creatorId": "<id>", "_environmentId": "<id>", "triggers": [{"type": "event", "identifier": "<value>", "variables": []}], "_notificationGroupId": "<id>", "deleted": true, "deletedAt": "<value>", "deletedBy": "<value>"}, "createdAt": "1710273627479", "content": [{"type": "text", "content": "<value>"}], "transactionId": "<id>", "channel": "email", "read": true, "seen": true, "cta": {}, "status": "error"}]
         "414":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
         "400":
@@ -5563,7 +5603,7 @@ examples:
         application/json: {"isOnline": false}
       responses:
         "200":
-          application/json: {"channels": [{"providerId": "whatsapp-business", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}, {"providerId": "whatsapp-business", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}], "subscriberId": "<id>", "_organizationId": "<id>", "_environmentId": "<id>", "deleted": false, "createdAt": "1734987954011", "updatedAt": "1735680893525"}
+          application/json: {"firstName": "Larry", "lastName": "Wolff", "channels": [{"providerId": "whatsapp-business", "integrationIdentifier": "<value>", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}, {"providerId": "whatsapp-business", "integrationIdentifier": "<value>", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}], "isOnline": true, "lastOnlineAt": null, "subscriberId": "<id>", "_organizationId": "<id>", "_environmentId": "<id>", "deleted": false, "createdAt": "1734987954011", "updatedAt": "1735680893525"}
         "414":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
         "400":
@@ -5731,7 +5771,7 @@ examples:
     speakeasy-default-integrations-controller-list-integrations:
       responses:
         "200":
-          application/json: [{"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>", "identifier": "<value>", "providerId": "<id>", "channel": "push", "credentials": {}, "active": true, "deleted": false, "primary": false}]
+          application/json: [{"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>", "identifier": "<value>", "providerId": "<id>", "channel": "push", "credentials": {}, "configurations": {}, "active": true, "deleted": false, "primary": false}]
         "414":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
         "400":
@@ -5746,7 +5786,7 @@ examples:
         application/json: {"providerId": "<id>", "channel": "email"}
       responses:
         "201":
-          application/json: {"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>", "identifier": "<value>", "providerId": "<id>", "channel": "chat", "credentials": {}, "active": false, "deleted": false, "primary": true}
+          application/json: {"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>", "identifier": "<value>", "providerId": "<id>", "channel": "chat", "credentials": {}, "configurations": {}, "active": false, "deleted": false, "primary": true}
         "414":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
         "400":
@@ -5764,7 +5804,7 @@ examples:
         application/json: {}
       responses:
         "200":
-          application/json: {"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>", "identifier": "<value>", "providerId": "<id>", "channel": "push", "credentials": {}, "active": false, "deleted": false, "primary": true}
+          application/json: {"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>", "identifier": "<value>", "providerId": "<id>", "channel": "push", "credentials": {}, "configurations": {}, "active": false, "deleted": false, "primary": true}
         "414":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
         "400":
@@ -5780,7 +5820,7 @@ examples:
           integrationId: "<id>"
       responses:
         "200":
-          application/json: [{"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>", "identifier": "<value>", "providerId": "<id>", "channel": "sms", "credentials": {}, "active": true, "deleted": false, "primary": false}, {"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>", "identifier": "<value>", "providerId": "<id>", "channel": "sms", "credentials": {}, "active": true, "deleted": false, "primary": false}]
+          application/json: [{"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>", "identifier": "<value>", "providerId": "<id>", "channel": "sms", "credentials": {}, "configurations": {}, "active": true, "deleted": false, "primary": false}, {"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>", "identifier": "<value>", "providerId": "<id>", "channel": "sms", "credentials": {}, "configurations": {}, "active": true, "deleted": false, "primary": false}]
         "414":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
         "400":
@@ -5796,7 +5836,7 @@ examples:
           integrationId: "<id>"
       responses:
         "200":
-          application/json: {"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>", "identifier": "<value>", "providerId": "<id>", "channel": "in_app", "credentials": {}, "active": false, "deleted": false, "primary": false}
+          application/json: {"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>", "identifier": "<value>", "providerId": "<id>", "channel": "in_app", "credentials": {}, "configurations": {}, "active": false, "deleted": false, "primary": false}
         "414":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
         "400":
@@ -5809,7 +5849,7 @@ examples:
     speakeasy-default-integrations-controller-get-active-integrations:
       responses:
         "200":
-          application/json: [{"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>", "identifier": "<value>", "providerId": "<id>", "channel": "push", "credentials": {}, "active": false, "deleted": false, "primary": false}, {"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>", "identifier": "<value>", "providerId": "<id>", "channel": "push", "credentials": {}, "active": false, "deleted": false, "primary": false}]
+          application/json: [{"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>", "identifier": "<value>", "providerId": "<id>", "channel": "push", "credentials": {}, "configurations": {}, "active": false, "deleted": false, "primary": false}, {"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>", "identifier": "<value>", "providerId": "<id>", "channel": "push", "credentials": {}, "configurations": {}, "active": false, "deleted": false, "primary": false}]
         "414":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
         "400":
@@ -5827,7 +5867,7 @@ examples:
           contextKeys: ["tenant:org-123", "region:us-east-1"]
       responses:
         "200":
-          application/json: {"hasMore": true, "data": [{"_templateId": "<id>", "_environmentId": "<id>", "_messageTemplateId": "<id>", "_organizationId": "<id>", "_notificationId": "<id>", "_subscriberId": "<id>", "subscriber": {"channels": [{"providerId": "pushpad", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}, {"providerId": "pushpad", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}, {"providerId": "pushpad", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}], "subscriberId": "<id>", "_organizationId": "<id>", "_environmentId": "<id>", "deleted": true, "createdAt": "1719298308933", "updatedAt": "1735648395125"}, "template": {"name": "<value>", "description": "ack what ceramics", "active": false, "draft": true, "preferenceSettings": {"email": true, "sms": false, "in_app": true, "chat": false, "push": true}, "critical": true, "tags": ["<value 1>", "<value 2>"], "steps": [{}, {}, {}], "_organizationId": "<id>", "_creatorId": "<id>", "_environmentId": "<id>", "triggers": [{"type": "event", "identifier": "<value>", "variables": []}, {"type": "event", "identifier": "<value>", "variables": []}], "_notificationGroupId": "<id>", "deleted": true, "deletedAt": "<value>", "deletedBy": "<value>"}, "createdAt": "1734200353431", "content": [{"type": "text", "content": "<value>"}, {"type": "text", "content": "<value>"}], "transactionId": "<id>", "channel": "push", "read": false, "seen": false, "cta": {}, "status": "error"}, {"_templateId": "<id>", "_environmentId": "<id>", "_messageTemplateId": "<id>", "_organizationId": "<id>", "_notificationId": "<id>", "_subscriberId": "<id>", "subscriber": {"channels": [{"providerId": "pushpad", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}, {"providerId": "pushpad", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}, {"providerId": "pushpad", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}], "subscriberId": "<id>", "_organizationId": "<id>", "_environmentId": "<id>", "deleted": true, "createdAt": "1719298308933", "updatedAt": "1735648395125"}, "template": {"name": "<value>", "description": "ack what ceramics", "active": false, "draft": true, "preferenceSettings": {"email": true, "sms": false, "in_app": true, "chat": false, "push": true}, "critical": true, "tags": ["<value 1>", "<value 2>"], "steps": [{}, {}, {}], "_organizationId": "<id>", "_creatorId": "<id>", "_environmentId": "<id>", "triggers": [{"type": "event", "identifier": "<value>", "variables": []}, {"type": "event", "identifier": "<value>", "variables": []}], "_notificationGroupId": "<id>", "deleted": true, "deletedAt": "<value>", "deletedBy": "<value>"}, "createdAt": "1734200353431", "content": [{"type": "text", "content": "<value>"}, {"type": "text", "content": "<value>"}], "transactionId": "<id>", "channel": "push", "read": false, "seen": false, "cta": {}, "status": "error"}, {"_templateId": "<id>", "_environmentId": "<id>", "_messageTemplateId": "<id>", "_organizationId": "<id>", "_notificationId": "<id>", "_subscriberId": "<id>", "subscriber": {"channels": [{"providerId": "pushpad", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}, {"providerId": "pushpad", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}, {"providerId": "pushpad", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}], "subscriberId": "<id>", "_organizationId": "<id>", "_environmentId": "<id>", "deleted": true, "createdAt": "1719298308933", "updatedAt": "1735648395125"}, "template": {"name": "<value>", "description": "ack what ceramics", "active": false, "draft": true, "preferenceSettings": {"email": true, "sms": false, "in_app": true, "chat": false, "push": true}, "critical": true, "tags": ["<value 1>", "<value 2>"], "steps": [{}, {}, {}], "_organizationId": "<id>", "_creatorId": "<id>", "_environmentId": "<id>", "triggers": [{"type": "event", "identifier": "<value>", "variables": []}, {"type": "event", "identifier": "<value>", "variables": []}], "_notificationGroupId": "<id>", "deleted": true, "deletedAt": "<value>", "deletedBy": "<value>"}, "createdAt": "1734200353431", "content": [{"type": "text", "content": "<value>"}, {"type": "text", "content": "<value>"}], "transactionId": "<id>", "channel": "push", "read": false, "seen": false, "cta": {}, "status": "error"}], "pageSize": 3755.69, "page": 3670.04}
+          application/json: {"hasMore": true, "data": [{"_templateId": "<id>", "_environmentId": "<id>", "_messageTemplateId": "<id>", "_organizationId": "<id>", "_notificationId": "<id>", "_subscriberId": "<id>", "subscriber": {"firstName": "Reymundo", "lastName": "Beatty", "channels": [{"providerId": "pushpad", "integrationIdentifier": "<value>", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}, {"providerId": "pushpad", "integrationIdentifier": "<value>", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}, {"providerId": "pushpad", "integrationIdentifier": "<value>", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}], "isOnline": false, "lastOnlineAt": null, "subscriberId": "<id>", "_organizationId": "<id>", "_environmentId": "<id>", "deleted": true, "createdAt": "1719298308933", "updatedAt": "1735648395125"}, "template": {"name": "<value>", "description": "ack what ceramics", "active": false, "draft": true, "preferenceSettings": {"email": true, "sms": false, "in_app": true, "chat": false, "push": true}, "critical": true, "tags": ["<value 1>", "<value 2>"], "steps": [{}, {}, {}], "_organizationId": "<id>", "_creatorId": "<id>", "_environmentId": "<id>", "triggers": [{"type": "event", "identifier": "<value>", "variables": []}, {"type": "event", "identifier": "<value>", "variables": []}], "_notificationGroupId": "<id>", "deleted": true, "deletedAt": "<value>", "deletedBy": "<value>"}, "createdAt": "1734200353431", "content": [{"type": "text", "content": "<value>"}, {"type": "text", "content": "<value>"}], "transactionId": "<id>", "channel": "push", "read": false, "seen": false, "cta": {}, "status": "error"}, {"_templateId": "<id>", "_environmentId": "<id>", "_messageTemplateId": "<id>", "_organizationId": "<id>", "_notificationId": "<id>", "_subscriberId": "<id>", "subscriber": {"firstName": "Porter", "lastName": "Bogan", "channels": [{"providerId": "pushpad", "integrationIdentifier": "<value>", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}, {"providerId": "pushpad", "integrationIdentifier": "<value>", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}, {"providerId": "pushpad", "integrationIdentifier": "<value>", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}], "isOnline": false, "lastOnlineAt": "<value>", "subscriberId": "<id>", "_organizationId": "<id>", "_environmentId": "<id>", "deleted": true, "createdAt": "1719298308933", "updatedAt": "1735648395125"}, "template": {"name": "<value>", "description": "ack what ceramics", "active": false, "draft": true, "preferenceSettings": {"email": true, "sms": false, "in_app": true, "chat": false, "push": true}, "critical": true, "tags": ["<value 1>", "<value 2>"], "steps": [{}, {}, {}], "_organizationId": "<id>", "_creatorId": "<id>", "_environmentId": "<id>", "triggers": [{"type": "event", "identifier": "<value>", "variables": []}, {"type": "event", "identifier": "<value>", "variables": []}], "_notificationGroupId": "<id>", "deleted": true, "deletedAt": "<value>", "deletedBy": "<value>"}, "createdAt": "1734200353431", "content": [{"type": "text", "content": "<value>"}, {"type": "text", "content": "<value>"}], "transactionId": "<id>", "channel": "push", "read": false, "seen": false, "cta": {}, "status": "error"}, {"_templateId": "<id>", "_environmentId": "<id>", "_messageTemplateId": "<id>", "_organizationId": "<id>", "_notificationId": "<id>", "_subscriberId": "<id>", "subscriber": {"firstName": "Magdalen", "lastName": "Schuppe", "channels": [{"providerId": "pushpad", "integrationIdentifier": "<value>", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}, {"providerId": "pushpad", "integrationIdentifier": "<value>", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}, {"providerId": "pushpad", "integrationIdentifier": "<value>", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}], "isOnline": false, "lastOnlineAt": "<value>", "subscriberId": "<id>", "_organizationId": "<id>", "_environmentId": "<id>", "deleted": true, "createdAt": "1719298308933", "updatedAt": "1735648395125"}, "template": {"name": "<value>", "description": "ack what ceramics", "active": false, "draft": true, "preferenceSettings": {"email": true, "sms": false, "in_app": true, "chat": false, "push": true}, "critical": true, "tags": ["<value 1>", "<value 2>"], "steps": [{}, {}, {}], "_organizationId": "<id>", "_creatorId": "<id>", "_environmentId": "<id>", "triggers": [{"type": "event", "identifier": "<value>", "variables": []}, {"type": "event", "identifier": "<value>", "variables": []}], "_notificationGroupId": "<id>", "deleted": true, "deletedAt": "<value>", "deletedBy": "<value>"}, "createdAt": "1734200353431", "content": [{"type": "text", "content": "<value>"}, {"type": "text", "content": "<value>"}], "transactionId": "<id>", "channel": "push", "read": false, "seen": false, "cta": {}, "status": "error"}], "pageSize": 3755.69, "page": 3670.04}
         "414":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
         "400":
@@ -5968,7 +6008,7 @@ examples:
         application/json: {"name": "<value>", "active": false, "isTranslationEnabled": false, "steps": [], "preferences": {"user": {"all": {"enabled": true, "readOnly": false}, "channels": {"email": {"enabled": true}, "sms": {"enabled": false}}}, "workflow": {"all": {"enabled": true, "readOnly": false}, "channels": {"email": {"enabled": true}, "sms": {"enabled": false}}}}, "origin": "external"}
       responses:
         "200":
-          application/json: {"name": "<value>", "active": false, "isTranslationEnabled": false, "_id": "<id>", "workflowId": "<id>", "slug": "{}", "updatedAt": "1735625998632", "createdAt": "1709428435642", "steps": [{"controls": {"values": {"skip": {"and": [{"==": [{"var": "payload.tier"}, "pro"]}, {"==": [{"var": "subscriber.data.role"}, "admin"]}, {">": [{"var": "payload.amount"}, "4"]}]}, "subject": "<value>", "body": "", "editorType": "block", "rendererType": "html", "disableOutputSanitization": false}}, "variables": {}, "stepId": "<id>", "_id": "<id>", "name": "<value>", "slug": "{}", "type": "email", "origin": "novu-cloud", "workflowId": "<id>", "workflowDatabaseId": "<id>"}], "origin": "novu-cloud-v1", "preferences": {"user": {"all": {"enabled": true, "readOnly": false}, "channels": {"email": {"enabled": true}, "sms": {"enabled": false}}}, "default": {"all": {"enabled": true, "readOnly": false}, "channels": {"email": {"enabled": true}, "sms": {"enabled": false}}}}, "status": "ACTIVE", "severity": "high"}
+          application/json: {"name": "<value>", "active": false, "isTranslationEnabled": false, "_id": "<id>", "workflowId": "<id>", "slug": "{}", "updatedAt": "1735625998632", "createdAt": "1709428435642", "steps": [{"controls": {"values": {"skip": {"and": [{"==": [{"var": "payload.tier"}, "pro"]}, {"==": [{"var": "subscriber.data.role"}, "admin"]}, {">": [{"var": "payload.amount"}, "4"]}]}, "subject": "<value>", "body": "", "editorType": "block", "disableOutputSanitization": false}}, "variables": {}, "stepId": "<id>", "_id": "<id>", "name": "<value>", "slug": "{}", "type": "email", "origin": "novu-cloud", "workflowId": "<id>", "workflowDatabaseId": "<id>"}], "origin": "novu-cloud-v1", "preferences": {"user": {"all": {"enabled": true, "readOnly": false}, "channels": {"email": {"enabled": true}, "sms": {"enabled": false}}}, "default": {"all": {"enabled": true, "readOnly": false}, "channels": {"email": {"enabled": true}, "sms": {"enabled": false}}}}, "status": "ACTIVE", "severity": "high"}
         "414":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
         "400":
@@ -5984,7 +6024,7 @@ examples:
           workflowId: "<id>"
       responses:
         "200":
-          application/json: {"name": "<value>", "active": false, "isTranslationEnabled": false, "_id": "<id>", "workflowId": "<id>", "slug": "{}", "updatedAt": "1735639255382", "createdAt": "1721141645591", "steps": [{"controls": {"values": {"skip": {"and": [{"==": [{"var": "payload.tier"}, "pro"]}, {"==": [{"var": "subscriber.data.role"}, "admin"]}, {">": [{"var": "payload.amount"}, "4"]}]}, "subject": "<value>", "body": "", "editorType": "block", "rendererType": "html", "disableOutputSanitization": false}}, "variables": {"key": "<value>", "key1": "<value>"}, "stepId": "<id>", "_id": "<id>", "name": "<value>", "slug": "{}", "type": "email", "origin": "novu-cloud", "workflowId": "<id>", "workflowDatabaseId": "<id>"}], "origin": "external", "preferences": {"user": null, "default": {"all": {"enabled": true, "readOnly": false}, "channels": {"email": {"enabled": true}, "sms": {"enabled": false}}}}, "status": "ACTIVE", "severity": "medium"}
+          application/json: {"name": "<value>", "active": false, "isTranslationEnabled": false, "_id": "<id>", "workflowId": "<id>", "slug": "{}", "updatedAt": "1735639255382", "createdAt": "1721141645591", "steps": [{"controls": {"values": {"skip": {"and": [{"==": [{"var": "payload.tier"}, "pro"]}, {"==": [{"var": "subscriber.data.role"}, "admin"]}, {">": [{"var": "payload.amount"}, "4"]}]}, "subject": "<value>", "body": "", "editorType": "block", "disableOutputSanitization": false}}, "variables": {"key": "<value>", "key1": "<value>"}, "stepId": "<id>", "_id": "<id>", "name": "<value>", "slug": "{}", "type": "email", "origin": "novu-cloud", "workflowId": "<id>", "workflowDatabaseId": "<id>"}], "origin": "external", "preferences": {"user": null, "default": {"all": {"enabled": true, "readOnly": false}, "channels": {"email": {"enabled": true}, "sms": {"enabled": false}}}}, "status": "ACTIVE", "severity": "medium"}
         "414":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
         "400":
@@ -6176,7 +6216,7 @@ examples:
         application/json: {"layoutId": "<id>", "name": "<value>", "isTranslationEnabled": false, "__source": "dashboard"}
       responses:
         "201":
-          application/json: {"_id": "<id>", "layoutId": "<id>", "slug": "{}", "name": "<value>", "isDefault": true, "isTranslationEnabled": true, "updatedAt": "1735665022530", "createdAt": "1730096151643", "origin": "novu-cloud-v1", "type": "BRIDGE", "controls": {"values": {}}}
+          application/json: {"_id": "<id>", "layoutId": "<id>", "slug": "{}", "name": "<value>", "isDefault": true, "isTranslationEnabled": true, "updatedAt": "1735665022530", "createdAt": "1730096151643", "origin": "novu-cloud-v1", "type": "BRIDGE", "controls": {"values": {"email": {"body": "<value>", "editorType": "html"}}}}
         "414":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
         "400":
@@ -6193,7 +6233,7 @@ examples:
           offset: 0
       responses:
         "200":
-          application/json: {"layouts": [{"_id": "<id>", "layoutId": "<id>", "slug": "{}", "name": "<value>", "isDefault": false, "isTranslationEnabled": false, "updatedAt": "1735604623075", "createdAt": "1732563359623", "origin": "external", "type": "ECHO", "controls": {"values": {}}}], "totalCount": 8515.1}
+          application/json: {"layouts": [{"_id": "<id>", "layoutId": "<id>", "slug": "{}", "name": "<value>", "isDefault": false, "isTranslationEnabled": false, "updatedAt": "1735604623075", "createdAt": "1732563359623", "origin": "external", "type": "ECHO", "controls": {"values": {"email": {"body": "<value>", "editorType": "block"}}}}], "totalCount": 8515.1}
         "414":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
         "400":
@@ -6208,10 +6248,10 @@ examples:
         path:
           layoutId: "<id>"
       requestBody:
-        application/json: {"name": "<value>", "isTranslationEnabled": false}
+        application/json: {"name": "<value>", "isTranslationEnabled": false, "controlValues": {"email": {"body": "<value>", "editorType": "html"}}}
       responses:
         "200":
-          application/json: {"_id": "<id>", "layoutId": "<id>", "slug": "{}", "name": "<value>", "isDefault": true, "isTranslationEnabled": true, "updatedAt": "1735617825142", "createdAt": "1712735891318", "origin": "novu-cloud-v1", "type": "BRIDGE", "controls": {"values": {}}}
+          application/json: {"_id": "<id>", "layoutId": "<id>", "slug": "{}", "name": "<value>", "isDefault": true, "isTranslationEnabled": true, "updatedAt": "1735617825142", "createdAt": "1712735891318", "origin": "novu-cloud-v1", "type": "BRIDGE", "controls": {"values": {"email": {"body": "<value>", "editorType": "html"}}}}
         "414":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
         "400":
@@ -6227,7 +6267,7 @@ examples:
           layoutId: "<id>"
       responses:
         "200":
-          application/json: {"_id": "<id>", "layoutId": "<id>", "slug": "{}", "name": "<value>", "isDefault": false, "isTranslationEnabled": false, "updatedAt": "1735664130299", "createdAt": "1727615996858", "origin": "external", "type": "ECHO", "controls": {"values": {}}}
+          application/json: {"_id": "<id>", "layoutId": "<id>", "slug": "{}", "name": "<value>", "isDefault": false, "isTranslationEnabled": false, "updatedAt": "1735664130299", "createdAt": "1727615996858", "origin": "external", "type": "ECHO", "controls": {"values": {"email": {"body": "<value>", "editorType": "block"}}}}
         "414":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
         "400":
@@ -6259,7 +6299,7 @@ examples:
         application/json: {"name": "<value>", "isTranslationEnabled": false}
       responses:
         "201":
-          application/json: {"_id": "<id>", "layoutId": "<id>", "slug": "{}", "name": "<value>", "isDefault": true, "isTranslationEnabled": true, "updatedAt": "1735641806286", "createdAt": "1705127183206", "origin": "novu-cloud", "type": "BRIDGE", "controls": {"values": {}}}
+          application/json: {"_id": "<id>", "layoutId": "<id>", "slug": "{}", "name": "<value>", "isDefault": true, "isTranslationEnabled": true, "updatedAt": "1735641806286", "createdAt": "1705127183206", "origin": "novu-cloud", "type": "BRIDGE", "controls": {"values": {"email": {"body": "<value>", "editorType": "html"}}}}
         "414":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
         "400":
@@ -6274,10 +6314,10 @@ examples:
         path:
           layoutId: "<id>"
       requestBody:
-        application/json: {"previewPayload": {"subscriber": {"channels": [{"providerId": "mattermost", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}]}}}
+        application/json: {"previewPayload": {"subscriber": {"firstName": "Marion", "lastName": "Kirlin", "channels": [{"providerId": "mattermost", "integrationIdentifier": "<value>", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}], "isOnline": false, "lastOnlineAt": "<value>"}}}
       responses:
         "201":
-          application/json: {"previewPayloadExample": {"subscriber": {"channels": [{"providerId": "mattermost", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}]}}, "result": {}}
+          application/json: {"previewPayloadExample": {"subscriber": {"firstName": "Marion", "lastName": "Kirlin", "channels": [{"providerId": "mattermost", "integrationIdentifier": "<value>", "credentials": {"webhookUrl": "https://example.com/webhook", "channel": "general", "deviceTokens": ["token1", "token2", "token3"], "alertUid": "12345-abcde", "title": "Critical Alert", "imageUrl": "https://example.com/image.png", "state": "resolved", "externalUrl": "https://example.com/details"}, "_integrationId": "<id>"}], "isOnline": false, "lastOnlineAt": "<value>"}}, "result": {}}
         "414":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
         "400":
@@ -6781,7 +6821,7 @@ generatedTests:
   TopicsController_removeSubscribers: "2024-12-24T08:36:06+01:00"
   TestingController_idempotency: "2024-12-24T08:36:06+01:00"
   TestingController_idempotencyGet: "2024-12-24T08:36:06+01:00"
-releaseNotes: "## Typescript SDK Changes:\n* `novu.layouts.duplicate()`:  `response.controls.uiSchema.properties.Map<UiSchemaProperty>.component.enum(emailRendererSelect)` **Added** (Breaking ⚠️)\n* `novu.layouts.create()`:  `response.controls.uiSchema.properties.Map<UiSchemaProperty>.component.enum(emailRendererSelect)` **Added** (Breaking ⚠️)\n* `novu.layouts.list()`:  `response.layouts[].controls.uiSchema.properties.Map<UiSchemaProperty>.component.enum(emailRendererSelect)` **Added** (Breaking ⚠️)\n* `novu.layouts.update()`:  `response.controls.uiSchema.properties.Map<UiSchemaProperty>.component.enum(emailRendererSelect)` **Added** (Breaking ⚠️)\n* `novu.layouts.retrieve()`:  `response.controls.uiSchema.properties.Map<UiSchemaProperty>.component.enum(emailRendererSelect)` **Added** (Breaking ⚠️)\n* `novu.workflows.create()`: \n  *  `request.createWorkflowDto` **Changed**\n  *  `response.steps[]` **Changed** (Breaking ⚠️)\n* `novu.workflows.update()`: \n  *  `request.updateWorkflowDto.steps[].union(email).controlValues.union(EmailControlDto).rendererType` **Added**\n  *  `response.steps[]` **Changed** (Breaking ⚠️)\n* `novu.workflows.get()`:  `response.steps[]` **Changed** (Breaking ⚠️)\n* `novu.workflows.patch()`:  `response.steps[]` **Changed** (Breaking ⚠️)\n* `novu.workflows.sync()`:  `response.steps[]` **Changed** (Breaking ⚠️)\n* `novu.workflows.steps.retrieve()`:  `response` **Changed** (Breaking ⚠️)\n* `novu.environments.publish()`: **Added**\n* `novu.environments.diff()`: **Added**\n"
+releaseNotes: "## Typescript SDK Changes:\n* `novu.notifications.list()`:  `response.data[]` **Changed** (Breaking ⚠️)\n* `novu.workflows.steps.retrieve()`:  `response` **Changed** (Breaking ⚠️)\n* `novu.layouts.update()`: \n  *  `request.updateLayoutDto.controlValues` **Changed** (Breaking ⚠️)\n  *  `response.controls` **Changed** (Breaking ⚠️)\n* `novu.layouts.retrieve()`:  `response.controls` **Changed** (Breaking ⚠️)\n* `novu.layouts.duplicate()`:  `response.controls` **Changed** (Breaking ⚠️)\n* `novu.layouts.generatePreview()`: \n  *  `request.layoutPreviewRequestDto.previewPayload.subscriber` **Changed** (Breaking ⚠️)\n  *  `response.previewPayloadExample.subscriber` **Changed**\n* `novu.notifications.retrieve()`:  `response` **Changed** (Breaking ⚠️)\n* `novu.layouts.create()`:  `response.controls` **Changed** (Breaking ⚠️)\n* `novu.layouts.list()`:  `response.layouts[].controls` **Changed** (Breaking ⚠️)\n* `novu.subscribers.credentials.update()`: \n  *  `request.updateSubscriberChannelRequestDto.integrationIdentifier` **Changed** (Breaking ⚠️)\n  *  `response` **Changed**\n* `novu.workflows.update()`: \n  *  `request.updateWorkflowDto.steps[]` **Changed** (Breaking ⚠️)\n  *  `response` **Changed** (Breaking ⚠️)\n* `novu.subscribers.credentials.append()`: \n  *  `request.updateSubscriberChannelRequestDto.integrationIdentifier` **Changed** (Breaking ⚠️)\n  *  `response` **Changed**\n* `novu.workflows.sync()`:  `response` **Changed** (Breaking ⚠️)\n* `novu.workflows.patch()`:  `response` **Changed** (Breaking ⚠️)\n* `novu.workflows.get()`:  `response` **Changed** (Breaking ⚠️)\n* `novu.workflows.create()`: \n  *  `request.createWorkflowDto.steps[]` **Changed** (Breaking ⚠️)\n  *  `response` **Changed** (Breaking ⚠️)\n* `novu.workflows.list()`:  `response.workflows[].stepTypeOverviews[].enum(httpRequest)` **Added** (Breaking ⚠️)\n* `novu.subscribers.create()`: \n  *  `response` **Changed**\n  *  `error` **Changed**\n* `novu.subscribers.properties.updateOnlineFlag()`:  `response` **Changed**\n* `novu.subscribers.messages.markAllAs()`:  `response.[].subscriber` **Changed**\n* `novu.subscribers.messages.updateAsSeen()`:  `response.subscriber` **Changed**\n* `novu.subscribers.patch()`:  `response` **Changed**\n* `novu.integrations.list()`:  `response.[].configurations` **Changed**\n* `novu.integrations.create()`:  `response.configurations` **Changed**\n* `novu.integrations.update()`:  `response.configurations` **Changed**\n* `novu.integrations.delete()`:  `response.[].configurations` **Changed**\n* `novu.integrations.setAsPrimary()`:  `response.configurations` **Changed**\n* `novu.integrations.listActive()`:  `response.[].configurations` **Changed**\n* `novu.messages.retrieve()`:  `response.data[].subscriber` **Changed**\n* `novu.subscribers.retrieve()`:  `response` **Changed**\n* `novu.subscribers.search()`:  `response.data[]` **Changed**\n"
 generatedFiles:
   - .gitattributes
   - .npmignore
