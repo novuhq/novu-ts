@@ -29,9 +29,12 @@ let value: MessagesControllerGetMessagesResponse = {
         notificationId: "<id>",
         subscriberId: "<id>",
         subscriber: {
+          firstName: "Alessia",
+          lastName: "Mitchell",
           channels: [
             {
-              providerId: "expo",
+              providerId: "chat-webhook",
+              integrationIdentifier: "<value>",
               credentials: {
                 webhookUrl: "https://example.com/webhook",
                 channel: "general",
@@ -49,18 +52,21 @@ let value: MessagesControllerGetMessagesResponse = {
               integrationId: "<id>",
             },
           ],
+          isOnline: true,
+          lastOnlineAt: null,
           subscriberId: "<id>",
           organizationId: "<id>",
           environmentId: "<id>",
           deleted: false,
-          createdAt: "1705073857759",
-          updatedAt: "1735637622608",
+          createdAt: "1734035424000",
+          updatedAt: "1735620226725",
         },
         template: {
           name: "<value>",
-          description: "fooey tasty aching although",
-          active: true,
-          draft: false,
+          description:
+            "frank mortally daily by bicycle bitterly until reschedule delightfully finally",
+          active: false,
+          draft: true,
           preferenceSettings: {
             email: true,
             sms: false,
@@ -68,11 +74,9 @@ let value: MessagesControllerGetMessagesResponse = {
             chat: false,
             push: true,
           },
-          critical: true,
+          critical: false,
           tags: [
             "<value 1>",
-            "<value 2>",
-            "<value 3>",
           ],
           steps: [],
           organizationId: "<id>",

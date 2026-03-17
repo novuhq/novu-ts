@@ -30,36 +30,7 @@ let value: WorkflowControllerGetWorkflowResponse = {
     steps: [
       {
         controls: {
-          values: {
-            skip: {
-              "and": [
-                {
-                  "==": [
-                    {
-                      "var": "payload.tier",
-                    },
-                    "pro",
-                  ],
-                },
-                {
-                  "==": [
-                    {
-                      "var": "subscriber.data.role",
-                    },
-                    "admin",
-                  ],
-                },
-                {
-                  ">": [
-                    {
-                      "var": "payload.amount",
-                    },
-                    "4",
-                  ],
-                },
-              ],
-            },
-          },
+          values: {},
         },
         variables: {
           "key": "<value>",
@@ -70,7 +41,7 @@ let value: WorkflowControllerGetWorkflowResponse = {
         id: "<id>",
         name: "<value>",
         slug: "<value>",
-        type: "digest",
+        type: "custom",
         origin: "novu-cloud-v1",
         workflowId: "<id>",
         workflowDatabaseId: "<id>",

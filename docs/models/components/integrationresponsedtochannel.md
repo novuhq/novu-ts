@@ -1,6 +1,6 @@
 # IntegrationResponseDtoChannel
 
-The channel type for the integration, which defines how the integration communicates (e.g., email, SMS).
+The channel type for the integration, which defines how it communicates (e.g., email, SMS).
 
 ## Example Usage
 

@@ -17,7 +17,12 @@ let value: LayoutResponseDto = {
   origin: "novu-cloud",
   type: "ECHO",
   controls: {
-    values: {},
+    values: {
+      email: {
+        body: "<value>",
+        editorType: "html",
+      },
+    },
   },
 };
 ```

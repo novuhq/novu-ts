@@ -179,3 +179,12 @@ const value: components.CustomStepUpsertDto = {
 };
 ```
 
+### `components.HttpRequestStepUpsertDto`
+
+```typescript
+const value: components.HttpRequestStepUpsertDto = {
+  name: "<value>",
+  type: "http_request",
+};
+```
+

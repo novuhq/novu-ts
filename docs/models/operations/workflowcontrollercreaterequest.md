@@ -12,7 +12,7 @@ let value: WorkflowControllerCreateRequest = {
     steps: [
       {
         name: "<value>",
-        type: "custom",
+        type: "http_request",
       },
     ],
     preferences: {
