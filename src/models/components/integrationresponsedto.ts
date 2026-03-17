@@ -19,7 +19,7 @@ import {
 import { StepFilterDto, StepFilterDto$inboundSchema } from "./stepfilterdto.js";
 
 /**
- * The channel type for the integration, which defines how the integration communicates (e.g., email, SMS).
+ * The channel type for the integration, which defines how it communicates (e.g., email, SMS).
  */
 export const IntegrationResponseDtoChannel = {
   InApp: "in_app",
@@ -29,7 +29,7 @@ export const IntegrationResponseDtoChannel = {
   Push: "push",
 } as const;
 /**
- * The channel type for the integration, which defines how the integration communicates (e.g., email, SMS).
+ * The channel type for the integration, which defines how it communicates (e.g., email, SMS).
  */
 export type IntegrationResponseDtoChannel = ClosedEnum<
   typeof IntegrationResponseDtoChannel
@@ -61,7 +61,7 @@ export type IntegrationResponseDto = {
    */
   providerId: string;
   /**
-   * The channel type for the integration, which defines how the integration communicates (e.g., email, SMS).
+   * The channel type for the integration, which defines how it communicates (e.g., email, SMS).
    */
   channel: IntegrationResponseDtoChannel;
   /**
@@ -71,7 +71,7 @@ export type IntegrationResponseDto = {
   /**
    * The configurations required for enabling the additional configurations of the integration.
    */
-  configurations?: ConfigurationsDto | undefined;
+  configurations: ConfigurationsDto;
   /**
    * Indicates whether the integration is currently active. An active integration will process events and messages.
    */
@@ -117,7 +117,7 @@ export const IntegrationResponseDto$inboundSchema: z.ZodType<
   providerId: z.string(),
   channel: IntegrationResponseDtoChannel$inboundSchema,
   credentials: CredentialsDto$inboundSchema,
-  configurations: ConfigurationsDto$inboundSchema.optional(),
+  configurations: ConfigurationsDto$inboundSchema,
   active: z.boolean(),
   deleted: z.boolean(),
   deletedAt: z.string().optional(),

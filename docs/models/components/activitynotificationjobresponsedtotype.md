@@ -13,5 +13,5 @@ let value: ActivityNotificationJobResponseDtoType = "email";
 ## Values
 
 ```typescript
-"in_app" | "email" | "sms" | "chat" | "push" | "digest" | "trigger" | "delay" | "throttle" | "custom"
+"in_app" | "email" | "sms" | "chat" | "push" | "digest" | "trigger" | "delay" | "throttle" | "custom" | "http_request"
 ```

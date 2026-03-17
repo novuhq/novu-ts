@@ -28,6 +28,10 @@ import {
   EmailStepResponseDto$inboundSchema,
 } from "./emailstepresponsedto.js";
 import {
+  HttpRequestStepResponseDto,
+  HttpRequestStepResponseDto$inboundSchema,
+} from "./httprequeststepresponsedto.js";
+import {
   InAppStepResponseDto,
   InAppStepResponseDto$inboundSchema,
 } from "./inappstepresponsedto.js";
@@ -117,7 +121,8 @@ export type WorkflowResponseDtoSteps =
   | DelayStepResponseDto
   | DigestStepResponseDto
   | CustomStepResponseDto
-  | ThrottleStepResponseDto;
+  | ThrottleStepResponseDto
+  | HttpRequestStepResponseDto;
 
 export type WorkflowResponseDto = {
   /**
@@ -193,6 +198,7 @@ export type WorkflowResponseDto = {
     | DigestStepResponseDto
     | CustomStepResponseDto
     | ThrottleStepResponseDto
+    | HttpRequestStepResponseDto
   >;
   /**
    * Origin of the layout
@@ -291,6 +297,7 @@ export const WorkflowResponseDtoSteps$inboundSchema: z.ZodType<
   DigestStepResponseDto$inboundSchema,
   CustomStepResponseDto$inboundSchema,
   ThrottleStepResponseDto$inboundSchema,
+  HttpRequestStepResponseDto$inboundSchema,
 ]);
 
 export function workflowResponseDtoStepsFromJSON(
@@ -338,6 +345,7 @@ export const WorkflowResponseDto$inboundSchema: z.ZodType<
       DigestStepResponseDto$inboundSchema,
       CustomStepResponseDto$inboundSchema,
       ThrottleStepResponseDto$inboundSchema,
+      HttpRequestStepResponseDto$inboundSchema,
     ]),
   ),
   origin: ResourceOriginEnum$inboundSchema,

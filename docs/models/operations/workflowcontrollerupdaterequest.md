@@ -12,7 +12,7 @@ let value: WorkflowControllerUpdateRequest = {
     steps: [
       {
         name: "<value>",
-        type: "delay",
+        type: "digest",
       },
     ],
     preferences: {

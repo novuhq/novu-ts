@@ -10,9 +10,12 @@ let value: LayoutsControllerGeneratePreviewRequest = {
   layoutPreviewRequestDto: {
     previewPayload: {
       subscriber: {
+        firstName: "Jacinto",
+        lastName: null,
         channels: [
           {
-            providerId: "expo",
+            providerId: "chat-webhook",
+            integrationIdentifier: "<value>",
             credentials: {
               webhookUrl: "https://example.com/webhook",
               channel: "general",
@@ -30,6 +33,8 @@ let value: LayoutsControllerGeneratePreviewRequest = {
             integrationId: "<id>",
           },
         ],
+        isOnline: true,
+        lastOnlineAt: "<value>",
       },
     },
   },

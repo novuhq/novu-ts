@@ -7,9 +7,12 @@ import { LayoutPreviewPayloadDto } from "@novu/api/models/components";
 
 let value: LayoutPreviewPayloadDto = {
   subscriber: {
+    firstName: "Jacinto",
+    lastName: null,
     channels: [
       {
-        providerId: "expo",
+        providerId: "chat-webhook",
+        integrationIdentifier: "<value>",
         credentials: {
           webhookUrl: "https://example.com/webhook",
           channel: "general",
@@ -27,6 +30,8 @@ let value: LayoutPreviewPayloadDto = {
         integrationId: "<id>",
       },
     ],
+    isOnline: true,
+    lastOnlineAt: "<value>",
   },
 };
 ```

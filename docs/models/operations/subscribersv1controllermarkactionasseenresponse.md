@@ -6,23 +6,19 @@
 import { SubscribersV1ControllerMarkActionAsSeenResponse } from "@novu/api/models/operations";
 
 let value: SubscribersV1ControllerMarkActionAsSeenResponse = {
-  headers: {
-    "key": [],
-    "key1": [
-      "<value 1>",
-      "<value 2>",
-      "<value 3>",
-    ],
-  },
+  headers: {},
   result: {
     environmentId: "<id>",
     organizationId: "<id>",
     notificationId: "<id>",
     subscriberId: "<id>",
     subscriber: {
+      firstName: "Alessia",
+      lastName: "Mitchell",
       channels: [
         {
-          providerId: "expo",
+          providerId: "chat-webhook",
+          integrationIdentifier: "<value>",
           credentials: {
             webhookUrl: "https://example.com/webhook",
             channel: "general",
@@ -40,18 +36,21 @@ let value: SubscribersV1ControllerMarkActionAsSeenResponse = {
           integrationId: "<id>",
         },
       ],
+      isOnline: true,
+      lastOnlineAt: null,
       subscriberId: "<id>",
       organizationId: "<id>",
       environmentId: "<id>",
       deleted: false,
-      createdAt: "1705073857759",
-      updatedAt: "1735637622608",
+      createdAt: "1734035424000",
+      updatedAt: "1735620226725",
     },
     template: {
       name: "<value>",
-      description: "fooey tasty aching although",
-      active: true,
-      draft: false,
+      description:
+        "frank mortally daily by bicycle bitterly until reschedule delightfully finally",
+      active: false,
+      draft: true,
       preferenceSettings: {
         email: true,
         sms: false,
@@ -59,11 +58,9 @@ let value: SubscribersV1ControllerMarkActionAsSeenResponse = {
         chat: false,
         push: true,
       },
-      critical: true,
+      critical: false,
       tags: [
         "<value 1>",
-        "<value 2>",
-        "<value 3>",
       ],
       steps: [],
       organizationId: "<id>",
@@ -85,13 +82,13 @@ let value: SubscribersV1ControllerMarkActionAsSeenResponse = {
       deletedAt: "<value>",
       deletedBy: "<value>",
     },
-    createdAt: "1720844674049",
+    createdAt: "1734324059060",
     transactionId: "<id>",
     channel: "email",
-    read: false,
+    read: true,
     seen: true,
     cta: {},
-    status: "warning",
+    status: "sent",
     contextKeys: [
       "tenant:org-123",
       "region:us-east-1",
