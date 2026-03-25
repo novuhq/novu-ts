@@ -90,6 +90,7 @@ export * from "./translationcontrollerimportmasterjsonendpoint.js";
 export * from "./translationcontrolleruploadmasterjsonendpoint.js";
 export * from "./translationcontrolleruploadtranslationfiles.js";
 export * from "./workflowcontrollercreate.js";
+export * from "./workflowcontrollergeneratepreview.js";
 export * from "./workflowcontrollergetworkflow.js";
 export * from "./workflowcontrollergetworkflowstepdata.js";
 export * from "./workflowcontrollerpatchworkflow.js";
