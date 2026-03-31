@@ -8,12 +8,9 @@ import { GenerateLayoutPreviewResponseDto } from "@novu/api/models/components";
 let value: GenerateLayoutPreviewResponseDto = {
   previewPayloadExample: {
     subscriber: {
-      firstName: "Jacinto",
-      lastName: null,
       channels: [
         {
-          providerId: "chat-webhook",
-          integrationIdentifier: "<value>",
+          providerId: "expo",
           credentials: {
             webhookUrl: "https://example.com/webhook",
             channel: "general",
@@ -31,8 +28,6 @@ let value: GenerateLayoutPreviewResponseDto = {
           integrationId: "<id>",
         },
       ],
-      isOnline: true,
-      lastOnlineAt: "<value>",
     },
   },
   result: {},

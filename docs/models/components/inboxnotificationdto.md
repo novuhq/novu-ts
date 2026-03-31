@@ -1,0 +1,53 @@
+# InboxNotificationDto
+
+## Example Usage
+
+```typescript
+import { InboxNotificationDto } from "@novu/api/models/components";
+
+let value: InboxNotificationDto = {
+  id: "<id>",
+  transactionId: "<id>",
+  body: "<value>",
+  to: {
+    id: "<id>",
+    subscriberId: "<id>",
+  },
+  isRead: true,
+  isSeen: false,
+  isArchived: true,
+  isSnoozed: true,
+  createdAt: "1709885650321",
+  channelType: "sms",
+  severity: "low",
+};
+```
+
+## Fields
+
+| Field                                                                                          | Type                                                                                           | Required                                                                                       | Description                                                                                    |
+| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| `id`                                                                                           | *string*                                                                                       | :heavy_check_mark:                                                                             | Unique identifier of the notification                                                          |
+| `transactionId`                                                                                | *string*                                                                                       | :heavy_check_mark:                                                                             | Transaction identifier of the notification                                                     |
+| `subject`                                                                                      | *string*                                                                                       | :heavy_minus_sign:                                                                             | Subject of the notification                                                                    |
+| `body`                                                                                         | *string*                                                                                       | :heavy_check_mark:                                                                             | Body content of the notification                                                               |
+| `to`                                                                                           | [components.InboxSubscriberResponseDto](../../models/components/inboxsubscriberresponsedto.md) | :heavy_check_mark:                                                                             | Subscriber this notification was sent to                                                       |
+| `isRead`                                                                                       | *boolean*                                                                                      | :heavy_check_mark:                                                                             | Whether the notification has been read                                                         |
+| `isSeen`                                                                                       | *boolean*                                                                                      | :heavy_check_mark:                                                                             | Whether the notification has been seen                                                         |
+| `isArchived`                                                                                   | *boolean*                                                                                      | :heavy_check_mark:                                                                             | Whether the notification has been archived                                                     |
+| `isSnoozed`                                                                                    | *boolean*                                                                                      | :heavy_check_mark:                                                                             | Whether the notification is snoozed                                                            |
+| `snoozedUntil`                                                                                 | *string*                                                                                       | :heavy_minus_sign:                                                                             | ISO timestamp when the notification will be unsnoozed                                          |
+| `deliveredAt`                                                                                  | *string*[]                                                                                     | :heavy_minus_sign:                                                                             | Timestamps when the notification was delivered                                                 |
+| `createdAt`                                                                                    | *string*                                                                                       | :heavy_check_mark:                                                                             | ISO timestamp when the notification was created                                                |
+| `readAt`                                                                                       | *string*                                                                                       | :heavy_minus_sign:                                                                             | ISO timestamp when the notification was read                                                   |
+| `firstSeenAt`                                                                                  | *string*                                                                                       | :heavy_minus_sign:                                                                             | ISO timestamp when the notification was first seen                                             |
+| `archivedAt`                                                                                   | *string*                                                                                       | :heavy_minus_sign:                                                                             | ISO timestamp when the notification was archived                                               |
+| `avatar`                                                                                       | *string*                                                                                       | :heavy_minus_sign:                                                                             | Avatar URL for the notification                                                                |
+| `primaryAction`                                                                                | [components.InboxActionDto](../../models/components/inboxactiondto.md)                         | :heavy_minus_sign:                                                                             | Primary action button for the notification                                                     |
+| `secondaryAction`                                                                              | [components.InboxActionDto](../../models/components/inboxactiondto.md)                         | :heavy_minus_sign:                                                                             | Secondary action button for the notification                                                   |
+| `channelType`                                                                                  | [components.ChannelTypeEnum](../../models/components/channeltypeenum.md)                       | :heavy_check_mark:                                                                             | Channel type through which the message is sent                                                 |
+| `tags`                                                                                         | *string*[]                                                                                     | :heavy_minus_sign:                                                                             | Tags associated with the notification                                                          |
+| `data`                                                                                         | Record<string, *any*>                                                                          | :heavy_minus_sign:                                                                             | Custom data payload of the notification                                                        |
+| `redirect`                                                                                     | [components.RedirectDto](../../models/components/redirectdto.md)                               | :heavy_minus_sign:                                                                             | Redirect configuration for the notification                                                    |
+| `workflow`                                                                                     | [components.NotificationWorkflowDto](../../models/components/notificationworkflowdto.md)       | :heavy_minus_sign:                                                                             | Workflow associated with the notification                                                      |
+| `severity`                                                                                     | [components.SeverityLevelEnum](../../models/components/severitylevelenum.md)                   | :heavy_check_mark:                                                                             | Severity of the workflow                                                                       |

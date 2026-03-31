@@ -7,7 +7,6 @@ import { UpdateSubscriberChannelRequestDto } from "@novu/api/models/components";
 
 let value: UpdateSubscriberChannelRequestDto = {
   providerId: "rocket-chat",
-  integrationIdentifier: "<value>",
   credentials: {
     webhookUrl: "https://example.com/webhook",
     channel: "general",
@@ -30,5 +29,5 @@ let value: UpdateSubscriberChannelRequestDto = {
 | Field                                                                                  | Type                                                                                   | Required                                                                               | Description                                                                            |
 | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
 | `providerId`                                                                           | [components.ChatOrPushProviderEnum](../../models/components/chatorpushproviderenum.md) | :heavy_check_mark:                                                                     | The provider identifier for the credentials                                            |
-| `integrationIdentifier`                                                                | *string*                                                                               | :heavy_check_mark:                                                                     | The integration identifier                                                             |
+| `integrationIdentifier`                                                                | *string*                                                                               | :heavy_minus_sign:                                                                     | The integration identifier                                                             |
 | `credentials`                                                                          | [components.ChannelCredentials](../../models/components/channelcredentials.md)         | :heavy_check_mark:                                                                     | Credentials payload for the specified provider                                         |

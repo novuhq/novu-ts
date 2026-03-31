@@ -30,12 +30,7 @@ let value: LayoutsControllerDuplicateResponse = {
     origin: "novu-cloud",
     type: "REGULAR",
     controls: {
-      values: {
-        email: {
-          body: "<value>",
-          editorType: "html",
-        },
-      },
+      values: {},
     },
   },
 };

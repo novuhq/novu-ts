@@ -11,12 +11,9 @@ let value: MessageResponseDto = {
   notificationId: "<id>",
   subscriberId: "<id>",
   subscriber: {
-    firstName: "Alessia",
-    lastName: "Mitchell",
     channels: [
       {
-        providerId: "chat-webhook",
-        integrationIdentifier: "<value>",
+        providerId: "expo",
         credentials: {
           webhookUrl: "https://example.com/webhook",
           channel: "general",
@@ -34,21 +31,18 @@ let value: MessageResponseDto = {
         integrationId: "<id>",
       },
     ],
-    isOnline: true,
-    lastOnlineAt: null,
     subscriberId: "<id>",
     organizationId: "<id>",
     environmentId: "<id>",
     deleted: false,
-    createdAt: "1734035424000",
-    updatedAt: "1735620226725",
+    createdAt: "1705073857759",
+    updatedAt: "1735637622608",
   },
   template: {
     name: "<value>",
-    description:
-      "frank mortally daily by bicycle bitterly until reschedule delightfully finally",
-    active: false,
-    draft: true,
+    description: "fooey tasty aching although",
+    active: true,
+    draft: false,
     preferenceSettings: {
       email: true,
       sms: false,
@@ -56,9 +50,11 @@ let value: MessageResponseDto = {
       chat: false,
       push: true,
     },
-    critical: false,
+    critical: true,
     tags: [
       "<value 1>",
+      "<value 2>",
+      "<value 3>",
     ],
     steps: [],
     organizationId: "<id>",

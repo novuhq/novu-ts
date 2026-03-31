@@ -30,6 +30,8 @@ import { Result } from "../types/fp.js";
  *
  * @remarks
  * Create a new channel endpoint for a resource.
+ *
+ * This operation requires either {@link Security.secretKey} or {@link Security.secretKey} to be set on the `security` parameter when initializing the SDK.
  */
 export function channelEndpointsCreate(
   client: NovuCore,
@@ -118,7 +120,7 @@ async function $do(
 
   const secConfig = await extractSecurity(client._options.secretKey);
   const securityInput = secConfig == null ? {} : { secretKey: secConfig };
-  const requestSecurity = resolveGlobalSecurity(securityInput);
+  const requestSecurity = resolveGlobalSecurity(securityInput, [0]);
 
   const context = {
     options: client._options,

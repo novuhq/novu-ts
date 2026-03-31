@@ -6,26 +6,13 @@
 import { SubscribersControllerSearchSubscribersResponse } from "@novu/api/models/operations";
 
 let value: SubscribersControllerSearchSubscribersResponse = {
-  headers: {
-    "key": [
-      "<value 1>",
-      "<value 2>",
-      "<value 3>",
-    ],
-    "key1": [
-      "<value 1>",
-      "<value 2>",
-    ],
-  },
+  headers: {},
   result: {
     data: [
       {
-        firstName: "Austyn",
-        lastName: "Doyle",
         channels: [
           {
-            providerId: "chat-webhook",
-            integrationIdentifier: "<value>",
+            providerId: "expo",
             credentials: {
               webhookUrl: "https://example.com/webhook",
               channel: "general",
@@ -43,20 +30,18 @@ let value: SubscribersControllerSearchSubscribersResponse = {
             integrationId: "<id>",
           },
         ],
-        isOnline: true,
-        lastOnlineAt: "<value>",
         subscriberId: "<id>",
         organizationId: "<id>",
         environmentId: "<id>",
         deleted: true,
-        createdAt: "1705383873554",
-        updatedAt: "1735620479568",
+        createdAt: "1707186272785",
+        updatedAt: "1735684986103",
       },
     ],
     next: "<value>",
     previous: "<value>",
-    totalCount: 7720.83,
-    totalCountCapped: false,
+    totalCount: 9492.65,
+    totalCountCapped: true,
   },
 };
 ```

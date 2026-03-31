@@ -9,7 +9,6 @@ let value: SubscribersV1ControllerModifySubscriberChannelRequest = {
   subscriberId: "<id>",
   updateSubscriberChannelRequestDto: {
     providerId: "appio",
-    integrationIdentifier: "<value>",
     credentials: {
       webhookUrl: "https://example.com/webhook",
       channel: "general",

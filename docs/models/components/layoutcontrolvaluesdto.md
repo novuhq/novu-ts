@@ -5,16 +5,11 @@
 ```typescript
 import { LayoutControlValuesDto } from "@novu/api/models/components";
 
-let value: LayoutControlValuesDto = {
-  email: {
-    body: "<value>",
-    editorType: "html",
-  },
-};
+let value: LayoutControlValuesDto = {};
 ```
 
 ## Fields
 
 | Field                                                                      | Type                                                                       | Required                                                                   | Description                                                                |
 | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| `email`                                                                    | [components.EmailControlsDto](../../models/components/emailcontrolsdto.md) | :heavy_check_mark:                                                         | Email layout controls                                                      |
+| `email`                                                                    | [components.EmailControlsDto](../../models/components/emailcontrolsdto.md) | :heavy_minus_sign:                                                         | Email layout controls                                                      |

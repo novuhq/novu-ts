@@ -20,7 +20,6 @@ let value: IntegrationsControllerCreateIntegrationResponse = {
     providerId: "<id>",
     channel: "sms",
     credentials: {},
-    configurations: {},
     active: false,
     deleted: true,
     primary: true,
