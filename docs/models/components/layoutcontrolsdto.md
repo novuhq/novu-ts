@@ -6,12 +6,7 @@
 import { LayoutControlsDto } from "@novu/api/models/components";
 
 let value: LayoutControlsDto = {
-  values: {
-    email: {
-      body: "<value>",
-      editorType: "html",
-    },
-  },
+  values: {},
 };
 ```
 

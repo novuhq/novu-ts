@@ -5,6 +5,7 @@
 import { NovuCore } from "../core.js";
 import { appendForm, encodeSimple } from "../lib/encodings.js";
 import {
+  bytesToBlob,
   getContentTypeFromFileName,
   readableStreamToArrayBuffer,
 } from "../lib/files.js";
@@ -36,6 +37,8 @@ import { isReadableStream } from "../types/streams.js";
  *
  * @remarks
  * Upload one or more JSON translation files for a specific workflow. Files name must match the locale, e.g. en_US.json. Supports both "files" and "files[]" field names for backwards compatibility.
+ *
+ * This operation requires either {@link Security.secretKey} or {@link Security.secretKey} to be set on the `security` parameter when initializing the SDK.
  */
 export function translationsUpload(
   client: NovuCore,
@@ -107,22 +110,17 @@ async function $do(
 
   for (const fileItem of payload.RequestBody.files ?? []) {
     if (isBlobLike(fileItem)) {
-      appendForm(body, "files[]", fileItem);
+      const blob = fileItem;
+      const name = "name" in blob ? (blob.name as string) : undefined;
+      appendForm(body, "files[]", blob, name);
     } else if (isReadableStream(fileItem.content)) {
       const buffer = await readableStreamToArrayBuffer(fileItem.content);
-      const contentType = getContentTypeFromFileName(fileItem.fileName)
-        || "application/octet-stream";
-      const blob = new Blob([buffer], { type: contentType });
-      appendForm(body, "files[]", blob, fileItem.fileName);
-    } else if (fileItem.content instanceof Uint8Array) {
       const contentType = getContentTypeFromFileName(fileItem.fileName)
         || "application/octet-stream";
       appendForm(
         body,
         "files[]",
-        new Blob([new Uint8Array(fileItem.content).buffer], {
-          type: contentType,
-        }),
+        bytesToBlob(buffer, contentType),
         fileItem.fileName,
       );
     } else {
@@ -131,7 +129,7 @@ async function $do(
       appendForm(
         body,
         "files[]",
-        new Blob([fileItem.content], { type: contentType }),
+        bytesToBlob(fileItem.content, contentType),
         fileItem.fileName,
       );
     }
@@ -152,7 +150,7 @@ async function $do(
 
   const secConfig = await extractSecurity(client._options.secretKey);
   const securityInput = secConfig == null ? {} : { secretKey: secConfig };
-  const requestSecurity = resolveGlobalSecurity(securityInput);
+  const requestSecurity = resolveGlobalSecurity(securityInput, [0]);
 
   const context = {
     options: client._options,

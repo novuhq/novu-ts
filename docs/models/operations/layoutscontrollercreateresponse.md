@@ -6,7 +6,9 @@
 import { LayoutsControllerCreateResponse } from "@novu/api/models/operations";
 
 let value: LayoutsControllerCreateResponse = {
-  headers: {},
+  headers: {
+    "key": [],
+  },
   result: {
     id: "<id>",
     layoutId: "<id>",
@@ -19,12 +21,7 @@ let value: LayoutsControllerCreateResponse = {
     origin: "novu-cloud",
     type: "REGULAR",
     controls: {
-      values: {
-        email: {
-          body: "<value>",
-          editorType: "html",
-        },
-      },
+      values: {},
     },
   },
 };

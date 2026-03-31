@@ -26,7 +26,6 @@ const novu = new Novu({
 async function run() {
   const result = await novu.subscribers.credentials.update({
     providerId: "slack",
-    integrationIdentifier: "<value>",
     credentials: {
       webhookUrl: "https://example.com/webhook",
       channel: "general",
@@ -66,7 +65,6 @@ const novu = new NovuCore({
 async function run() {
   const res = await subscribersCredentialsUpdate(novu, {
     providerId: "slack",
-    integrationIdentifier: "<value>",
     credentials: {
       webhookUrl: "https://example.com/webhook",
       channel: "general",
@@ -136,7 +134,6 @@ const novu = new Novu({
 async function run() {
   const result = await novu.subscribers.credentials.append({
     providerId: "one-signal",
-    integrationIdentifier: "<value>",
     credentials: {
       webhookUrl: "https://example.com/webhook",
       channel: "general",
@@ -176,7 +173,6 @@ const novu = new NovuCore({
 async function run() {
   const res = await subscribersCredentialsAppend(novu, {
     providerId: "one-signal",
-    integrationIdentifier: "<value>",
     credentials: {
       webhookUrl: "https://example.com/webhook",
       channel: "general",

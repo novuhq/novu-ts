@@ -1,6 +1,6 @@
 # Target
 
-Target window for the redirection.
+Target attribute for the redirect link
 
 ## Example Usage
 
