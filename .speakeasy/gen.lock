@@ -5,15 +5,15 @@ management:
   docVersion: 3.14.0
   speakeasyVersion: 1.761.0
   generationVersion: 2.879.1
-  releaseVersion: 3.14.2-rc.1
-  configChecksum: 80ccc3d1e3ad59000ed463afea918d1e
+  releaseVersion: 3.14.3
+  configChecksum: 87bae177311e99bdc4b002ccc0a3c09a
   repoURL: https://github.com/novuhq/novu-ts.git
   installationURL: https://github.com/novuhq/novu-ts
   published: true
 persistentEdits:
-  generation_id: c7d2c945-eb19-4347-9f4d-d0963767e684
-  pristine_commit_hash: b75c673d3ecba63391ef11be5306af47dcf9b1b4
-  pristine_tree_hash: 03c218d48ebe5930187f22f6ad0f70b041a5d19b
+  generation_id: 5727e7b3-77cb-4a8c-a21a-174f5b84587f
+  pristine_commit_hash: 5e234f2160ad6604e26a70017a54580c4d3829be
+  pristine_tree_hash: fc48b9fd9d9bac9d13bc5ad514d6c686f148d762
 features:
   typescript:
     additionalDependencies: 0.1.0
@@ -3390,12 +3390,12 @@ trackedFiles:
     pristine_git_object: 3dc64f3c7eb62819d4e24d7c524bcf5fdd516fd8
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:d9be2d4f31ff50a56a945dd5bd86bef3c8f73d61
-    pristine_git_object: c39cd61715aad858b278d62385daa3c1eef7f9a5
+    last_write_checksum: sha1:a76f068dca74e80cbdf77992f268da5a67ab9898
+    pristine_git_object: e7d32b372ccb1455f4938390fcf950bccb1abdd7
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:f9afb3deb9e37cbbb4f8ff254a6096180ff5635a
-    pristine_git_object: 46e732b1887e9a1b4294fbaae543e2d238d82911
+    last_write_checksum: sha1:abb60fcf758ce967a8da032d94d000148f5ed2e3
+    pristine_git_object: b9f000a9a4225bced6d4f70a3278771a691af71b
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:522fa3c145654876a02a0c62da21be6d84e87471
@@ -3894,8 +3894,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:efd83a9cfc898c8d48bed34351994cdaac2d8dd6
-    pristine_git_object: c93000d308edce79bdf1a654305e5d01008aa0fa
+    last_write_checksum: sha1:038a001836ef6838828330e388aee34d106634a4
+    pristine_git_object: a3050621f81bb3efddacd8511c829763814430db
   src/lib/dlv.ts:
     id: b1988214835a
     last_write_checksum: sha1:1dd3e3fbb4550c4bf31f5ef997faff355d6f3250
@@ -7660,7 +7660,7 @@ examples:
         "400":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
         "422":
-          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123", "errors": {"fieldName1": {"messages": ["Field is required", "Must be a valid email address"], "value": "invalidEmail"}, "fieldName2": {"messages": ["Must be at least 18 years old"], "value": 17}, "fieldName3": {"messages": ["Must be a boolean value"], "value": true}, "fieldName4": {"messages": ["Must be a valid object"], "value": []}, "fieldName5": {"messages": ["Field is missing"], "value": null}, "fieldName6": {"messages": ["Undefined value"]}}}
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123", "errors": {"fieldName1": {"messages": ["Field is required", "Must be a valid email address"], "value": "invalidEmail"}, "fieldName2": {"messages": ["Must be at least 18 years old"], "value": 17}, "fieldName3": {"messages": ["Must be a boolean value"], "value": true}, "fieldName4": {"messages": ["Must be a valid object"], "value": {}}, "fieldName5": {"messages": ["Field is missing"], "value": null}, "fieldName6": {"messages": ["Undefined value"]}}}
         "500":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
   SubscribersController_getSubscriberNotificationsCount:
@@ -7678,7 +7678,7 @@ examples:
         "400":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
         "422":
-          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123", "errors": {"fieldName1": {"messages": ["Field is required", "Must be a valid email address"], "value": "invalidEmail"}, "fieldName2": {"messages": ["Must be at least 18 years old"], "value": 17}, "fieldName3": {"messages": ["Must be a boolean value"], "value": true}, "fieldName4": {"messages": ["Must be a valid object"], "value": []}, "fieldName5": {"messages": ["Field is missing"], "value": null}, "fieldName6": {"messages": ["Undefined value"]}}}
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123", "errors": {"fieldName1": {"messages": ["Field is required", "Must be a valid email address"], "value": "invalidEmail"}, "fieldName2": {"messages": ["Must be at least 18 years old"], "value": 17}, "fieldName3": {"messages": ["Must be a boolean value"], "value": true}, "fieldName4": {"messages": ["Must be a valid object"], "value": {}}, "fieldName5": {"messages": ["Field is missing"], "value": null}, "fieldName6": {"messages": ["Undefined value"]}}}
         "500":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
   SubscribersController_deleteAllNotifications:
@@ -7789,7 +7789,7 @@ examples:
         "400":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
         "422":
-          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123", "errors": {"fieldName1": {"messages": ["Field is required", "Must be a valid email address"], "value": "invalidEmail"}, "fieldName2": {"messages": ["Must be at least 18 years old"], "value": 17}, "fieldName3": {"messages": ["Must be a boolean value"], "value": true}, "fieldName4": {"messages": ["Must be a valid object"], "value": []}, "fieldName5": {"messages": ["Field is missing"], "value": null}, "fieldName6": {"messages": ["Undefined value"]}}}
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123", "errors": {"fieldName1": {"messages": ["Field is required", "Must be a valid email address"], "value": "invalidEmail"}, "fieldName2": {"messages": ["Must be at least 18 years old"], "value": 17}, "fieldName3": {"messages": ["Must be a boolean value"], "value": true}, "fieldName4": {"messages": ["Must be a valid object"], "value": {}}, "fieldName5": {"messages": ["Field is missing"], "value": null}, "fieldName6": {"messages": ["Undefined value"]}}}
         "500":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
   EnvironmentVariablesController_getEnvironmentVariable:
@@ -7910,7 +7910,6 @@ generatedTests:
   TopicsController_removeSubscribers: "2024-12-24T08:36:06+01:00"
   TestingController_idempotency: "2024-12-24T08:36:06+01:00"
   TestingController_idempotencyGet: "2024-12-24T08:36:06+01:00"
-releaseNotes: "## Typescript SDK Changes:\n* `novu.workflows.create()`: \n  *  `request.createWorkflowDto.steps[].union(in_app).controlValues.union(InAppControlDto).primaryAction.redirect` **Changed** (Breaking ⚠️)\n  *  `response.steps[]` **Changed** (Breaking ⚠️)\n* `novu.workflows.list()`:  `response.workflows[].steps[].issues.controls.Map<Array<StepContentIssueDto>>[].issueType.enum(invalidUrl)` **Added** (Breaking ⚠️)\n* `novu.workflows.update()`: \n  *  `request.updateWorkflowDto.steps[].union(in_app).controlValues.union(InAppControlDto).primaryAction.redirect` **Changed** (Breaking ⚠️)\n  *  `response.steps[]` **Changed** (Breaking ⚠️)\n* `novu.workflows.get()`:  `response.steps[]` **Changed** (Breaking ⚠️)\n* `novu.workflows.patch()`:  `response.steps[]` **Changed** (Breaking ⚠️)\n* `novu.workflows.steps.retrieve()`:  `response.issues.controls.Map<Array<StepContentIssueDto>>[].issueType.enum(invalidUrl)` **Added** (Breaking ⚠️)\n* `novu.workflows.sync()`:  `response.steps[].union(in_app)` **Changed** (Breaking ⚠️)\n* `novu.environmentVariables.delete()`: **Added**\n* `novu.triggerBulk()`:  `response.[].activityFeedLink` **Added**\n* `novu.subscribers.notifications.archive()`: **Added**\n* `novu.subscribers.notifications.markAsRead()`: **Added**\n* `novu.subscribers.notifications.snooze()`: **Added**\n* `novu.subscribers.notifications.unarchive()`: **Added**\n* `novu.subscribers.notifications.markAsUnread()`: **Added**\n* `novu.subscribers.notifications.unsnooze()`: **Added**\n* `novu.subscribers.notifications.archiveAll()`: **Added**\n* `novu.subscribers.notifications.count()`: **Added**\n* `novu.subscribers.notifications.deleteAll()`: **Added**\n* `novu.subscribers.notifications.markAllAsRead()`: **Added**\n* `novu.subscribers.notifications.archiveAllRead()`: **Added**\n* `novu.subscribers.notifications.markAsSeen()`: **Added**\n* `novu.workflows.steps.generatePreview()`: **Added**\n* `novu.environmentVariables.list()`: **Added**\n* `novu.environmentVariables.create()`: **Added**\n* `novu.environmentVariables.retrieve()`: **Added**\n* `novu.environmentVariables.update()`: **Added**\n* `novu.subscribers.notifications.completeAction()`: **Added**\n* `novu.environmentVariables.usage()`: **Added**\n* `novu.trigger()`:  `response.activityFeedLink` **Added**\n* `novu.triggerBroadcast()`:  `response.activityFeedLink` **Added**\n* `novu.subscribers.notifications.revertAction()`: **Added**\n* `novu.layouts.create()`:  `response.controls.values.email` **Changed**\n* `novu.layouts.list()`:  `response.layouts[].controls.values.email` **Changed**\n* `novu.layouts.update()`: \n  *  `request.updateLayoutDto.controlValues` **Changed**\n  *  `response.controls.values.email` **Changed**\n* `novu.layouts.retrieve()`:  `response.controls.values.email` **Changed**\n* `novu.layouts.duplicate()`:  `response.controls.values.email` **Changed**\n* `novu.layouts.generatePreview()`: \n  *  `request.layoutPreviewRequestDto.previewPayload.subscriber` **Changed**\n  *  `response.previewPayloadExample.subscriber` **Changed**\n* `novu.subscribers.search()`:  `response.data[]` **Changed**\n* `novu.subscribers.create()`: \n  *  `response` **Changed**\n  *  `error` **Changed**\n* `novu.subscribers.retrieve()`:  `response` **Changed**\n* `novu.subscribers.patch()`:  `response` **Changed**\n* `novu.subscribers.notifications.delete()`: **Added**\n* `novu.subscribers.notifications.list()`: **Added**\n* `novu.subscribers.credentials.update()`: \n  *  `request.updateSubscriberChannelRequestDto.integrationIdentifier` **Changed**\n  *  `response` **Changed**\n* `novu.subscribers.credentials.append()`: \n  *  `request.updateSubscriberChannelRequestDto.integrationIdentifier` **Changed**\n  *  `response` **Changed**\n* `novu.subscribers.messages.updateAsSeen()`:  `response.subscriber` **Changed**\n* `novu.subscribers.messages.markAllAs()`:  `response.[].subscriber` **Changed**\n* `novu.subscribers.properties.updateOnlineFlag()`:  `response` **Changed**\n* `novu.integrations.list()`:  `response.[].configurations` **Changed**\n* `novu.integrations.create()`:  `response.configurations` **Changed**\n* `novu.integrations.update()`:  `response.configurations` **Changed**\n* `novu.integrations.delete()`:  `response.[].configurations` **Changed**\n* `novu.integrations.setAsPrimary()`:  `response.configurations` **Changed**\n* `novu.integrations.listActive()`:  `response.[].configurations` **Changed**\n* `novu.messages.retrieve()`:  `response.data[].subscriber` **Changed**\n"
 generatedFiles:
   - .gitattributes
   - .npmignore
