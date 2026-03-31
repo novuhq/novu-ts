@@ -295,6 +295,15 @@ run();
 * [retrieve](docs/sdks/contexts/README.md#retrieve) - Retrieve a context
 * [delete](docs/sdks/contexts/README.md#delete) - Delete a context
 
+### [EnvironmentVariables](docs/sdks/environmentvariables/README.md)
+
+* [list](docs/sdks/environmentvariables/README.md#list) - List environment variables
+* [create](docs/sdks/environmentvariables/README.md#create) - Create environment variable
+* [retrieve](docs/sdks/environmentvariables/README.md#retrieve) - Get environment variable
+* [update](docs/sdks/environmentvariables/README.md#update) - Update environment variable
+* [delete](docs/sdks/environmentvariables/README.md#delete) - Delete environment variable
+* [usage](docs/sdks/environmentvariables/README.md#usage) - Get environment variable usage
+
 ### [Environments](docs/sdks/environments/README.md)
 
 * [getTags](docs/sdks/environments/README.md#gettags) - List environment tags
@@ -361,6 +370,22 @@ run();
 
 #### [Subscribers.Notifications](docs/sdks/novunotifications/README.md)
 
+* [list](docs/sdks/novunotifications/README.md#list) - Retrieve subscriber notifications
+* [delete](docs/sdks/novunotifications/README.md#delete) - Delete notification
+* [completeAction](docs/sdks/novunotifications/README.md#completeaction) - Complete notification action
+* [revertAction](docs/sdks/novunotifications/README.md#revertaction) - Revert notification action
+* [archive](docs/sdks/novunotifications/README.md#archive) - Archive notification
+* [markAsRead](docs/sdks/novunotifications/README.md#markasread) - Mark notification as read
+* [snooze](docs/sdks/novunotifications/README.md#snooze) - Snooze notification
+* [unarchive](docs/sdks/novunotifications/README.md#unarchive) - Unarchive notification
+* [markAsUnread](docs/sdks/novunotifications/README.md#markasunread) - Mark notification as unread
+* [unsnooze](docs/sdks/novunotifications/README.md#unsnooze) - Unsnooze notification
+* [archiveAll](docs/sdks/novunotifications/README.md#archiveall) - Archive all notifications
+* [count](docs/sdks/novunotifications/README.md#count) - Retrieve subscriber notifications count
+* [deleteAll](docs/sdks/novunotifications/README.md#deleteall) - Delete all notifications
+* [markAllAsRead](docs/sdks/novunotifications/README.md#markallasread) - Mark all notifications as read
+* [archiveAllRead](docs/sdks/novunotifications/README.md#archiveallread) - Archive all read notifications
+* [markAsSeen](docs/sdks/novunotifications/README.md#markasseen) - Mark notifications as seen
 * [feed](docs/sdks/novunotifications/README.md#feed) - Retrieve subscriber notifications
 * [unseenCount](docs/sdks/novunotifications/README.md#unseencount) - Retrieve unseen notifications count
 
@@ -428,6 +453,7 @@ run();
 
 #### [Workflows.Steps](docs/sdks/steps/README.md)
 
+* [generatePreview](docs/sdks/steps/README.md#generatepreview) - Generate step preview
 * [retrieve](docs/sdks/steps/README.md#retrieve) - Retrieve workflow step
 
 </details>
@@ -472,6 +498,12 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`environmentsList`](docs/sdks/environments/README.md#list) - List all environments
 - [`environmentsPublish`](docs/sdks/environments/README.md#publish) - Publish resources to target environment
 - [`environmentsUpdate`](docs/sdks/environments/README.md#update) - Update an environment
+- [`environmentVariablesCreate`](docs/sdks/environmentvariables/README.md#create) - Create environment variable
+- [`environmentVariablesDelete`](docs/sdks/environmentvariables/README.md#delete) - Delete environment variable
+- [`environmentVariablesList`](docs/sdks/environmentvariables/README.md#list) - List environment variables
+- [`environmentVariablesRetrieve`](docs/sdks/environmentvariables/README.md#retrieve) - Get environment variable
+- [`environmentVariablesUpdate`](docs/sdks/environmentvariables/README.md#update) - Update environment variable
+- [`environmentVariablesUsage`](docs/sdks/environmentvariables/README.md#usage) - Get environment variable usage
 - [`integrationsCreate`](docs/sdks/integrations/README.md#create) - Create an integration
 - [`integrationsDelete`](docs/sdks/integrations/README.md#delete) - Delete an integration
 - [`integrationsGenerateChatOAuthUrl`](docs/sdks/integrations/README.md#generatechatoauthurl) - Generate chat OAuth URL
@@ -502,8 +534,24 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`subscribersMessagesMarkAll`](docs/sdks/novumessages/README.md#markall) - Update all notifications state
 - [`subscribersMessagesMarkAllAs`](docs/sdks/novumessages/README.md#markallas) - Update notifications state
 - [`subscribersMessagesUpdateAsSeen`](docs/sdks/novumessages/README.md#updateasseen) - Update notification action status
+- [`subscribersNotificationsArchive`](docs/sdks/novunotifications/README.md#archive) - Archive notification
+- [`subscribersNotificationsArchiveAll`](docs/sdks/novunotifications/README.md#archiveall) - Archive all notifications
+- [`subscribersNotificationsArchiveAllRead`](docs/sdks/novunotifications/README.md#archiveallread) - Archive all read notifications
+- [`subscribersNotificationsCompleteAction`](docs/sdks/novunotifications/README.md#completeaction) - Complete notification action
+- [`subscribersNotificationsCount`](docs/sdks/novunotifications/README.md#count) - Retrieve subscriber notifications count
+- [`subscribersNotificationsDelete`](docs/sdks/novunotifications/README.md#delete) - Delete notification
+- [`subscribersNotificationsDeleteAll`](docs/sdks/novunotifications/README.md#deleteall) - Delete all notifications
 - [`subscribersNotificationsFeed`](docs/sdks/novunotifications/README.md#feed) - Retrieve subscriber notifications
+- [`subscribersNotificationsList`](docs/sdks/novunotifications/README.md#list) - Retrieve subscriber notifications
+- [`subscribersNotificationsMarkAllAsRead`](docs/sdks/novunotifications/README.md#markallasread) - Mark all notifications as read
+- [`subscribersNotificationsMarkAsRead`](docs/sdks/novunotifications/README.md#markasread) - Mark notification as read
+- [`subscribersNotificationsMarkAsSeen`](docs/sdks/novunotifications/README.md#markasseen) - Mark notifications as seen
+- [`subscribersNotificationsMarkAsUnread`](docs/sdks/novunotifications/README.md#markasunread) - Mark notification as unread
+- [`subscribersNotificationsRevertAction`](docs/sdks/novunotifications/README.md#revertaction) - Revert notification action
+- [`subscribersNotificationsSnooze`](docs/sdks/novunotifications/README.md#snooze) - Snooze notification
+- [`subscribersNotificationsUnarchive`](docs/sdks/novunotifications/README.md#unarchive) - Unarchive notification
 - [`subscribersNotificationsUnseenCount`](docs/sdks/novunotifications/README.md#unseencount) - Retrieve unseen notifications count
+- [`subscribersNotificationsUnsnooze`](docs/sdks/novunotifications/README.md#unsnooze) - Unsnooze notification
 - [`subscribersPatch`](docs/sdks/subscribers/README.md#patch) - Update a subscriber
 - [`subscribersPreferencesBulkUpdate`](docs/sdks/preferences/README.md#bulkupdate) - Bulk update subscriber preferences
 - [`subscribersPreferencesList`](docs/sdks/preferences/README.md#list) - Retrieve subscriber preferences
@@ -540,6 +588,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`workflowsGet`](docs/sdks/workflows/README.md#get) - Retrieve a workflow
 - [`workflowsList`](docs/sdks/workflows/README.md#list) - List all workflows
 - [`workflowsPatch`](docs/sdks/workflows/README.md#patch) - Update a workflow
+- [`workflowsStepsGeneratePreview`](docs/sdks/steps/README.md#generatepreview) - Generate step preview
 - [`workflowsStepsRetrieve`](docs/sdks/steps/README.md#retrieve) - Retrieve workflow step
 - [`workflowsSync`](docs/sdks/workflows/README.md#sync) - Sync a workflow
 - [`workflowsUpdate`](docs/sdks/workflows/README.md#update) - Update a workflow
@@ -632,9 +681,9 @@ run();
 
 
 **Inherit from [`NovuError`](./src/models/errors/novuerror.ts)**:
-* [`PayloadValidationExceptionDto`](./src/models/errors/payloadvalidationexceptiondto.ts): Status code `400`. Applicable to 3 of 95 methods.*
-* [`SubscriberResponseDto`](./src/models/errors/subscriberresponsedto.ts): Created. Status code `409`. Applicable to 1 of 95 methods.*
-* [`TopicResponseDto`](./src/models/errors/topicresponsedto.ts): OK. Status code `409`. Applicable to 1 of 95 methods.*
+* [`PayloadValidationExceptionDto`](./src/models/errors/payloadvalidationexceptiondto.ts): Status code `400`. Applicable to 3 of 118 methods.*
+* [`SubscriberResponseDto`](./src/models/errors/subscriberresponsedto.ts): Created. Status code `409`. Applicable to 1 of 118 methods.*
+* [`TopicResponseDto`](./src/models/errors/topicresponsedto.ts): OK. Status code `409`. Applicable to 1 of 118 methods.*
 * [`ResponseValidationError`](./src/models/errors/responsevalidationerror.ts): Type mismatch between the data returned from the server and the structure expected by the SDK. See `error.rawValue` for the raw value and `error.pretty()` for a nicely formatted multi-line string.
 
 </details>

@@ -7,7 +7,6 @@ import { ChannelSettingsDto } from "@novu/api/models/components";
 
 let value: ChannelSettingsDto = {
   providerId: "whatsapp-business",
-  integrationIdentifier: "<value>",
   credentials: {
     webhookUrl: "https://example.com/webhook",
     channel: "general",
@@ -31,6 +30,6 @@ let value: ChannelSettingsDto = {
 | Field                                                                                  | Type                                                                                   | Required                                                                               | Description                                                                            |
 | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
 | `providerId`                                                                           | [components.ChatOrPushProviderEnum](../../models/components/chatorpushproviderenum.md) | :heavy_check_mark:                                                                     | The provider identifier for the credentials                                            |
-| `integrationIdentifier`                                                                | *string*                                                                               | :heavy_check_mark:                                                                     | The integration identifier                                                             |
+| `integrationIdentifier`                                                                | *string*                                                                               | :heavy_minus_sign:                                                                     | The integration identifier                                                             |
 | `credentials`                                                                          | [components.ChannelCredentials](../../models/components/channelcredentials.md)         | :heavy_check_mark:                                                                     | Credentials payload for the specified provider                                         |
 | `integrationId`                                                                        | *string*                                                                               | :heavy_check_mark:                                                                     | The unique identifier of the integration associated with this channel.                 |

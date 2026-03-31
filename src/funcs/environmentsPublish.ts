@@ -114,7 +114,6 @@ async function $do(
       { explode: false, charEncoding: "percent" },
     ),
   };
-
   const path = pathToFunc("/v2/environments/{targetEnvironmentId}/publish")(
     pathParams,
   );
