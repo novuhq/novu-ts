@@ -3,17 +3,17 @@ id: 6bff3a53-3f0b-40b4-942f-ff70dc583ae5
 management:
   docChecksum: 5e768174aa215768fce81e6203460a98
   docVersion: 3.14.0
-  speakeasyVersion: 1.761.0
-  generationVersion: 2.879.1
-  releaseVersion: 3.14.3
-  configChecksum: 87bae177311e99bdc4b002ccc0a3c09a
+  speakeasyVersion: 1.761.1
+  generationVersion: 2.879.6
+  releaseVersion: 3.14.4
+  configChecksum: 7993806389e1a7b25fe644604078b427
   repoURL: https://github.com/novuhq/novu-ts.git
   installationURL: https://github.com/novuhq/novu-ts
   published: true
 persistentEdits:
-  generation_id: 5727e7b3-77cb-4a8c-a21a-174f5b84587f
-  pristine_commit_hash: 5e234f2160ad6604e26a70017a54580c4d3829be
-  pristine_tree_hash: fc48b9fd9d9bac9d13bc5ad514d6c686f148d762
+  generation_id: dbb6a57f-c48a-4807-a332-7c154d498a31
+  pristine_commit_hash: b11a8f23c4e6689486f2e8264811ac56016b0cab
+  pristine_tree_hash: 58bd4c1a815e0f6836c7ff4d08ecd9e2f8a9ea94
 features:
   typescript:
     additionalDependencies: 0.1.0
@@ -3390,12 +3390,12 @@ trackedFiles:
     pristine_git_object: 3dc64f3c7eb62819d4e24d7c524bcf5fdd516fd8
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:a76f068dca74e80cbdf77992f268da5a67ab9898
-    pristine_git_object: e7d32b372ccb1455f4938390fcf950bccb1abdd7
+    last_write_checksum: sha1:4332251cba3407cdb72f5299888a9ff166007d33
+    pristine_git_object: c3d78063e38a647862f5a6a3598946a03c906c1d
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:abb60fcf758ce967a8da032d94d000148f5ed2e3
-    pristine_git_object: b9f000a9a4225bced6d4f70a3278771a691af71b
+    last_write_checksum: sha1:b51cde332c4a5d134633330adf68405db9c4f488
+    pristine_git_object: 093afba9e60685204bd340c7f41832fb666730f8
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:522fa3c145654876a02a0c62da21be6d84e87471
@@ -3894,8 +3894,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:038a001836ef6838828330e388aee34d106634a4
-    pristine_git_object: a3050621f81bb3efddacd8511c829763814430db
+    last_write_checksum: sha1:bcbc6cae00f454fbcdfb634cc157730b135222e9
+    pristine_git_object: 4dad612b4f97bdc91b8155dcf3c695f33f2be97b
   src/lib/dlv.ts:
     id: b1988214835a
     last_write_checksum: sha1:1dd3e3fbb4550c4bf31f5ef997faff355d6f3250
