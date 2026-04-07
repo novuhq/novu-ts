@@ -30,7 +30,7 @@ import { Result } from "../types/fp.js";
  * Mark notifications as seen
  *
  * @remarks
- * Mark specific notifications or notifications matching filters as seen. Supports context-based filtering.
+ * Mark specific and multiple in-app (inbox) notifications as seen. Supports context-based filtering.
  */
 export function subscribersNotificationsMarkAsSeen(
   client: NovuCore,

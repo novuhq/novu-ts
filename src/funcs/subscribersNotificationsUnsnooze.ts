@@ -26,10 +26,10 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Unsnooze notification
+ * Unsnooze a notification
  *
  * @remarks
- * Unsnooze a specific notification by its unique identifier **notificationId**.
+ * Unsnooze a specific in-app (inbox) notification by its unique identifier **notificationId**.
  */
 export function subscribersNotificationsUnsnooze(
   client: NovuCore,

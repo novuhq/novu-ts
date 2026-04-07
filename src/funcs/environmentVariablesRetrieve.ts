@@ -26,7 +26,7 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Get environment variable
+ * Retrieve a variable
  *
  * @remarks
  * Returns a single environment variable by id. Secret values are masked.

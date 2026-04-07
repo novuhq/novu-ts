@@ -15,7 +15,7 @@ import { unwrapAsync } from "../types/fp.js";
 
 export class EnvironmentVariables extends ClientSDK {
   /**
-   * List environment variables
+   * List all variables
    *
    * @remarks
    * Returns all environment variables for the current organization. Secret values are masked.
@@ -36,7 +36,7 @@ export class EnvironmentVariables extends ClientSDK {
   }
 
   /**
-   * Create environment variable
+   * Create a variable
    *
    * @remarks
    * Creates a new environment variable. Keys must be uppercase with underscores only (e.g. BASE_URL). Secret variables are encrypted at rest and masked in API responses.
@@ -58,7 +58,7 @@ export class EnvironmentVariables extends ClientSDK {
   }
 
   /**
-   * Get environment variable
+   * Retrieve a variable
    *
    * @remarks
    * Returns a single environment variable by id. Secret values are masked.
@@ -79,7 +79,7 @@ export class EnvironmentVariables extends ClientSDK {
   }
 
   /**
-   * Update environment variable
+   * Update a variable
    *
    * @remarks
    * Updates an existing environment variable. Providing values replaces all existing per-environment values.
@@ -103,7 +103,7 @@ export class EnvironmentVariables extends ClientSDK {
   }
 
   /**
-   * Delete environment variable
+   * Delete a variable
    *
    * @remarks
    * Deletes an environment variable by id.
@@ -125,10 +125,10 @@ export class EnvironmentVariables extends ClientSDK {
   }
 
   /**
-   * Get environment variable usage
+   * Retrieve a variable usage
    *
    * @remarks
-   * Returns the workflows that reference this environment variable via {{env.KEY}} in their step controls.
+   * Returns the workflows that reference this environment variable via `{{env.KEY}}` in their step controls. **variableId** is required.
    */
   async usage(
     variableId: string,

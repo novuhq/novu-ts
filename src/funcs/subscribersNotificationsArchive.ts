@@ -26,10 +26,10 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Archive notification
+ * Archive a notification
  *
  * @remarks
- * Archive a specific notification by its unique identifier **notificationId**.
+ * Archive a specific in-app (inbox) notification by its unique identifier **notificationId**.
  */
 export function subscribersNotificationsArchive(
   client: NovuCore,

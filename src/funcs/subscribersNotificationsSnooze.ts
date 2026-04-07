@@ -26,10 +26,10 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Snooze notification
+ * Snooze a notification
  *
  * @remarks
- * Snooze a specific notification by its unique identifier **notificationId** until a specified time.
+ * Snooze a specific in-app (inbox) notification by its unique identifier **notificationId** until a specified time.
  */
 export function subscribersNotificationsSnooze(
   client: NovuCore,

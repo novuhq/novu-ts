@@ -26,7 +26,7 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Generate step preview
+ * Generate a step preview
  *
  * @remarks
  * Generates a preview for a specific workflow step by its unique identifier **stepId**

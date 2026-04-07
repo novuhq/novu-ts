@@ -26,10 +26,10 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Complete notification action
+ * Complete a notification action
  *
  * @remarks
- * Mark a notification action (primary or secondary) as completed by its unique identifier **notificationId** and action type.
+ * Mark a single in-app (inbox) notification's action (primary or secondary) as completed by its unique identifier **notificationId** and action type **actionType**.
  */
 export function subscribersNotificationsCompleteAction(
   client: NovuCore,

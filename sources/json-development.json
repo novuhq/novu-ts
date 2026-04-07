@@ -10481,7 +10481,7 @@
         "x-speakeasy-name-override": "list",
         "x-speakeasy-group": "Subscribers.Notifications",
         "summary": "Retrieve subscriber notifications",
-        "description": "Retrieve in-app notifications for a subscriber by its unique key identifier **subscriberId**. \n    Supports filtering by tags, read/archived/snoozed/seen state, data attributes, severity, date range, and context keys.",
+        "description": "Retrieve in-app (inbox) notifications for a subscriber by its unique key identifier **subscriberId**. \n    Supports filtering by tags, read/archived/snoozed/seen state, data attributes, severity, date range, and context keys.",
         "parameters": [
           {
             "name": "subscriberId",
@@ -11101,8 +11101,8 @@
         "operationId": "SubscribersController_deleteNotification",
         "x-speakeasy-name-override": "delete",
         "x-speakeasy-group": "Subscribers.Notifications",
-        "summary": "Delete notification",
-        "description": "Delete a specific notification by its unique identifier **notificationId**.",
+        "summary": "Delete a notification",
+        "description": "Delete a specific in-app (inbox) notification permanently by its unique identifier **notificationId**.",
         "parameters": [
           {
             "name": "subscriberId",
@@ -11578,8 +11578,8 @@
         "operationId": "SubscribersController_completeNotificationAction",
         "x-speakeasy-name-override": "completeAction",
         "x-speakeasy-group": "Subscribers.Notifications",
-        "summary": "Complete notification action",
-        "description": "Mark a notification action (primary or secondary) as completed by its unique identifier **notificationId** and action type.",
+        "summary": "Complete a notification action",
+        "description": "Mark a single in-app (inbox) notification's action (primary or secondary) as completed by its unique identifier **notificationId** and action type **actionType**.",
         "parameters": [
           {
             "name": "subscriberId",
@@ -12098,8 +12098,8 @@
         "operationId": "SubscribersController_revertNotificationAction",
         "x-speakeasy-name-override": "revertAction",
         "x-speakeasy-group": "Subscribers.Notifications",
-        "summary": "Revert notification action",
-        "description": "Revert a notification action (primary or secondary) to pending state by its unique identifier **notificationId** and action type.",
+        "summary": "Revert a notification action",
+        "description": "Revert a single in-app (inbox) notification's action (primary or secondary) to pending state by its unique identifier **notificationId** and action type **actionType**.",
         "parameters": [
           {
             "name": "subscriberId",
@@ -12618,8 +12618,8 @@
         "operationId": "SubscribersController_archiveNotification",
         "x-speakeasy-name-override": "archive",
         "x-speakeasy-group": "Subscribers.Notifications",
-        "summary": "Archive notification",
-        "description": "Archive a specific notification by its unique identifier **notificationId**.",
+        "summary": "Archive a notification",
+        "description": "Archive a specific in-app (inbox) notification by its unique identifier **notificationId**.",
         "parameters": [
           {
             "name": "subscriberId",
@@ -13125,8 +13125,8 @@
         "operationId": "SubscribersController_markNotificationAsRead",
         "x-speakeasy-name-override": "markAsRead",
         "x-speakeasy-group": "Subscribers.Notifications",
-        "summary": "Mark notification as read",
-        "description": "Mark a specific notification as read by its unique identifier **notificationId**.",
+        "summary": "Mark a notification as read",
+        "description": "Mark a specific in-app (inbox) notification as read by its unique identifier **notificationId**.",
         "parameters": [
           {
             "name": "subscriberId",
@@ -13632,8 +13632,8 @@
         "operationId": "SubscribersController_snoozeNotification",
         "x-speakeasy-name-override": "snooze",
         "x-speakeasy-group": "Subscribers.Notifications",
-        "summary": "Snooze notification",
-        "description": "Snooze a specific notification by its unique identifier **notificationId** until a specified time.",
+        "summary": "Snooze a notification",
+        "description": "Snooze a specific in-app (inbox) notification by its unique identifier **notificationId** until a specified time.",
         "parameters": [
           {
             "name": "subscriberId",
@@ -14149,8 +14149,8 @@
         "operationId": "SubscribersController_unarchiveNotification",
         "x-speakeasy-name-override": "unarchive",
         "x-speakeasy-group": "Subscribers.Notifications",
-        "summary": "Unarchive notification",
-        "description": "Unarchive a specific notification by its unique identifier **notificationId**.",
+        "summary": "Unarchive a notification",
+        "description": "Unarchive a specific in-app (inbox) notification by its unique identifier **notificationId**.",
         "parameters": [
           {
             "name": "subscriberId",
@@ -14656,8 +14656,8 @@
         "operationId": "SubscribersController_markNotificationAsUnread",
         "x-speakeasy-name-override": "markAsUnread",
         "x-speakeasy-group": "Subscribers.Notifications",
-        "summary": "Mark notification as unread",
-        "description": "Mark a specific notification as unread by its unique identifier **notificationId**.",
+        "summary": "Mark a notification as unread",
+        "description": "Mark a specific in-app (inbox) notification as unread by its unique identifier **notificationId**.",
         "parameters": [
           {
             "name": "subscriberId",
@@ -15163,8 +15163,8 @@
         "operationId": "SubscribersController_unsnoozeNotification",
         "x-speakeasy-name-override": "unsnooze",
         "x-speakeasy-group": "Subscribers.Notifications",
-        "summary": "Unsnooze notification",
-        "description": "Unsnooze a specific notification by its unique identifier **notificationId**.",
+        "summary": "Unsnooze a notification",
+        "description": "Unsnooze a specific in-app (inbox) notification by its unique identifier **notificationId**.",
         "parameters": [
           {
             "name": "subscriberId",
@@ -15671,7 +15671,7 @@
         "x-speakeasy-name-override": "archiveAll",
         "x-speakeasy-group": "Subscribers.Notifications",
         "summary": "Archive all notifications",
-        "description": "Archive all notifications matching the specified filters. Supports context-based filtering.",
+        "description": "Archive all in-app (inbox) notifications matching the specified filters. Supports context-based filtering.",
         "parameters": [
           {
             "name": "subscriberId",
@@ -16137,7 +16137,7 @@
         "x-speakeasy-name-override": "count",
         "x-speakeasy-group": "Subscribers.Notifications",
         "summary": "Retrieve subscriber notifications count",
-        "description": "Retrieve count of notifications for a subscriber by its unique key identifier **subscriberId**. \n    Supports multiple filters to count notifications by different criteria, including context keys.",
+        "description": "Retrieve count of in-app (inbox) notifications for a subscriber by its unique key identifier **subscriberId**. \n    Supports multiple filters to count in-app (inbox) notifications by different criteria, including context keys.",
         "parameters": [
           {
             "name": "subscriberId",
@@ -16636,7 +16636,7 @@
         "x-speakeasy-name-override": "deleteAll",
         "x-speakeasy-group": "Subscribers.Notifications",
         "summary": "Delete all notifications",
-        "description": "Delete all notifications matching the specified filters. Supports context-based filtering.",
+        "description": "Permanently delete all in-app (inbox) notifications matching the specified filters. Supports context-based filtering.",
         "parameters": [
           {
             "name": "subscriberId",
@@ -17102,7 +17102,7 @@
         "x-speakeasy-name-override": "markAllAsRead",
         "x-speakeasy-group": "Subscribers.Notifications",
         "summary": "Mark all notifications as read",
-        "description": "Mark all notifications matching the specified filters as read. Supports context-based filtering.",
+        "description": "Mark all in-app (inbox) notifications matching the specified filters as read. Supports context-based filtering.",
         "parameters": [
           {
             "name": "subscriberId",
@@ -17568,7 +17568,7 @@
         "x-speakeasy-name-override": "archiveAllRead",
         "x-speakeasy-group": "Subscribers.Notifications",
         "summary": "Archive all read notifications",
-        "description": "Archive all read notifications matching the specified filters. Supports context-based filtering.",
+        "description": "Archive all read in-app (inbox) notifications matching the specified filters. Supports context-based filtering.",
         "parameters": [
           {
             "name": "subscriberId",
@@ -18034,7 +18034,7 @@
         "x-speakeasy-name-override": "markAsSeen",
         "x-speakeasy-group": "Subscribers.Notifications",
         "summary": "Mark notifications as seen",
-        "description": "Mark specific notifications or notifications matching filters as seen. Supports context-based filtering.",
+        "description": "Mark specific and multiple in-app (inbox) notifications as seen. Supports context-based filtering.",
         "parameters": [
           {
             "name": "subscriberId",
@@ -29211,7 +29211,7 @@
         "operationId": "WorkflowController_generatePreview",
         "x-speakeasy-name-override": "generatePreview",
         "x-speakeasy-group": "Workflows.Steps",
-        "summary": "Generate step preview",
+        "summary": "Generate a step preview",
         "description": "Generates a preview for a specific workflow step by its unique identifier **stepId**",
         "parameters": [
           {
@@ -35784,7 +35784,7 @@
     "/v1/environment-variables": {
       "get": {
         "operationId": "EnvironmentVariablesController_listEnvironmentVariables",
-        "summary": "List environment variables",
+        "summary": "List all variables",
         "description": "Returns all environment variables for the current organization. Secret values are masked.",
         "parameters": [
           {
@@ -36270,7 +36270,7 @@
       },
       "post": {
         "operationId": "EnvironmentVariablesController_createEnvironmentVariable",
-        "summary": "Create environment variable",
+        "summary": "Create a variable",
         "description": "Creates a new environment variable. Keys must be uppercase with underscores only (e.g. BASE_URL). Secret variables are encrypted at rest and masked in API responses.",
         "parameters": [
           {
@@ -36757,7 +36757,7 @@
       "get": {
         "operationId": "EnvironmentVariablesController_getEnvironmentVariable",
         "x-speakeasy-name-override": "retrieve",
-        "summary": "Get environment variable",
+        "summary": "Retrieve a variable",
         "description": "Returns a single environment variable by id. Secret values are masked.",
         "parameters": [
           {
@@ -37231,7 +37231,7 @@
       },
       "patch": {
         "operationId": "EnvironmentVariablesController_updateEnvironmentVariable",
-        "summary": "Update environment variable",
+        "summary": "Update a variable",
         "description": "Updates an existing environment variable. Providing values replaces all existing per-environment values.",
         "parameters": [
           {
@@ -37715,7 +37715,7 @@
       },
       "delete": {
         "operationId": "EnvironmentVariablesController_deleteEnvironmentVariable",
-        "summary": "Delete environment variable",
+        "summary": "Delete a variable",
         "description": "Deletes an environment variable by id.",
         "parameters": [
           {
@@ -38185,8 +38185,8 @@
       "get": {
         "operationId": "EnvironmentVariablesController_getEnvironmentVariableUsage",
         "x-speakeasy-name-override": "usage",
-        "summary": "Get environment variable usage",
-        "description": "Returns the workflows that reference this environment variable via {{env.KEY}} in their step controls.",
+        "summary": "Retrieve a variable usage",
+        "description": "Returns the workflows that reference this environment variable via `{{env.KEY}}` in their step controls. **variableId** is required.",
         "parameters": [
           {
             "name": "variableId",
@@ -56241,6 +56241,7 @@
           "imedia",
           "sinch",
           "isendpro-sms",
+          "cm-telecom",
           "fcm",
           "apns",
           "expo",
@@ -66868,6 +66869,7 @@
               "imedia",
               "sinch",
               "isendpro-sms",
+              "cm-telecom",
               "fcm",
               "apns",
               "expo",
@@ -67715,6 +67717,7 @@
               "imedia",
               "sinch",
               "isendpro-sms",
+              "cm-telecom",
               "fcm",
               "apns",
               "expo",

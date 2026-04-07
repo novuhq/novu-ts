@@ -26,7 +26,7 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * List environment variables
+ * List all variables
  *
  * @remarks
  * Returns all environment variables for the current organization. Secret values are masked.

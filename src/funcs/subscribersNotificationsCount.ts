@@ -29,8 +29,8 @@ import { Result } from "../types/fp.js";
  * Retrieve subscriber notifications count
  *
  * @remarks
- * Retrieve count of notifications for a subscriber by its unique key identifier **subscriberId**.
- *     Supports multiple filters to count notifications by different criteria, including context keys.
+ * Retrieve count of in-app (inbox) notifications for a subscriber by its unique key identifier **subscriberId**.
+ *     Supports multiple filters to count in-app (inbox) notifications by different criteria, including context keys.
  */
 export function subscribersNotificationsCount(
   client: NovuCore,

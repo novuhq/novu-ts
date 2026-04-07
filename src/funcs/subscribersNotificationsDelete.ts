@@ -26,10 +26,10 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Delete notification
+ * Delete a notification
  *
  * @remarks
- * Delete a specific notification by its unique identifier **notificationId**.
+ * Delete a specific in-app (inbox) notification permanently by its unique identifier **notificationId**.
  */
 export function subscribersNotificationsDelete(
   client: NovuCore,

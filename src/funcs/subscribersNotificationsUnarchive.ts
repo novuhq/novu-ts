@@ -26,10 +26,10 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Unarchive notification
+ * Unarchive a notification
  *
  * @remarks
- * Unarchive a specific notification by its unique identifier **notificationId**.
+ * Unarchive a specific in-app (inbox) notification by its unique identifier **notificationId**.
  */
 export function subscribersNotificationsUnarchive(
   client: NovuCore,

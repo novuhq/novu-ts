@@ -297,12 +297,12 @@ run();
 
 ### [EnvironmentVariables](docs/sdks/environmentvariables/README.md)
 
-* [list](docs/sdks/environmentvariables/README.md#list) - List environment variables
-* [create](docs/sdks/environmentvariables/README.md#create) - Create environment variable
-* [retrieve](docs/sdks/environmentvariables/README.md#retrieve) - Get environment variable
-* [update](docs/sdks/environmentvariables/README.md#update) - Update environment variable
-* [delete](docs/sdks/environmentvariables/README.md#delete) - Delete environment variable
-* [usage](docs/sdks/environmentvariables/README.md#usage) - Get environment variable usage
+* [list](docs/sdks/environmentvariables/README.md#list) - List all variables
+* [create](docs/sdks/environmentvariables/README.md#create) - Create a variable
+* [retrieve](docs/sdks/environmentvariables/README.md#retrieve) - Retrieve a variable
+* [update](docs/sdks/environmentvariables/README.md#update) - Update a variable
+* [delete](docs/sdks/environmentvariables/README.md#delete) - Delete a variable
+* [usage](docs/sdks/environmentvariables/README.md#usage) - Retrieve a variable usage
 
 ### [Environments](docs/sdks/environments/README.md)
 
@@ -371,15 +371,15 @@ run();
 #### [Subscribers.Notifications](docs/sdks/novunotifications/README.md)
 
 * [list](docs/sdks/novunotifications/README.md#list) - Retrieve subscriber notifications
-* [delete](docs/sdks/novunotifications/README.md#delete) - Delete notification
-* [completeAction](docs/sdks/novunotifications/README.md#completeaction) - Complete notification action
-* [revertAction](docs/sdks/novunotifications/README.md#revertaction) - Revert notification action
-* [archive](docs/sdks/novunotifications/README.md#archive) - Archive notification
-* [markAsRead](docs/sdks/novunotifications/README.md#markasread) - Mark notification as read
-* [snooze](docs/sdks/novunotifications/README.md#snooze) - Snooze notification
-* [unarchive](docs/sdks/novunotifications/README.md#unarchive) - Unarchive notification
-* [markAsUnread](docs/sdks/novunotifications/README.md#markasunread) - Mark notification as unread
-* [unsnooze](docs/sdks/novunotifications/README.md#unsnooze) - Unsnooze notification
+* [delete](docs/sdks/novunotifications/README.md#delete) - Delete a notification
+* [completeAction](docs/sdks/novunotifications/README.md#completeaction) - Complete a notification action
+* [revertAction](docs/sdks/novunotifications/README.md#revertaction) - Revert a notification action
+* [archive](docs/sdks/novunotifications/README.md#archive) - Archive a notification
+* [markAsRead](docs/sdks/novunotifications/README.md#markasread) - Mark a notification as read
+* [snooze](docs/sdks/novunotifications/README.md#snooze) - Snooze a notification
+* [unarchive](docs/sdks/novunotifications/README.md#unarchive) - Unarchive a notification
+* [markAsUnread](docs/sdks/novunotifications/README.md#markasunread) - Mark a notification as unread
+* [unsnooze](docs/sdks/novunotifications/README.md#unsnooze) - Unsnooze a notification
 * [archiveAll](docs/sdks/novunotifications/README.md#archiveall) - Archive all notifications
 * [count](docs/sdks/novunotifications/README.md#count) - Retrieve subscriber notifications count
 * [deleteAll](docs/sdks/novunotifications/README.md#deleteall) - Delete all notifications
@@ -453,7 +453,7 @@ run();
 
 #### [Workflows.Steps](docs/sdks/steps/README.md)
 
-* [generatePreview](docs/sdks/steps/README.md#generatepreview) - Generate step preview
+* [generatePreview](docs/sdks/steps/README.md#generatepreview) - Generate a step preview
 * [retrieve](docs/sdks/steps/README.md#retrieve) - Retrieve workflow step
 
 </details>
@@ -498,12 +498,12 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`environmentsList`](docs/sdks/environments/README.md#list) - List all environments
 - [`environmentsPublish`](docs/sdks/environments/README.md#publish) - Publish resources to target environment
 - [`environmentsUpdate`](docs/sdks/environments/README.md#update) - Update an environment
-- [`environmentVariablesCreate`](docs/sdks/environmentvariables/README.md#create) - Create environment variable
-- [`environmentVariablesDelete`](docs/sdks/environmentvariables/README.md#delete) - Delete environment variable
-- [`environmentVariablesList`](docs/sdks/environmentvariables/README.md#list) - List environment variables
-- [`environmentVariablesRetrieve`](docs/sdks/environmentvariables/README.md#retrieve) - Get environment variable
-- [`environmentVariablesUpdate`](docs/sdks/environmentvariables/README.md#update) - Update environment variable
-- [`environmentVariablesUsage`](docs/sdks/environmentvariables/README.md#usage) - Get environment variable usage
+- [`environmentVariablesCreate`](docs/sdks/environmentvariables/README.md#create) - Create a variable
+- [`environmentVariablesDelete`](docs/sdks/environmentvariables/README.md#delete) - Delete a variable
+- [`environmentVariablesList`](docs/sdks/environmentvariables/README.md#list) - List all variables
+- [`environmentVariablesRetrieve`](docs/sdks/environmentvariables/README.md#retrieve) - Retrieve a variable
+- [`environmentVariablesUpdate`](docs/sdks/environmentvariables/README.md#update) - Update a variable
+- [`environmentVariablesUsage`](docs/sdks/environmentvariables/README.md#usage) - Retrieve a variable usage
 - [`integrationsCreate`](docs/sdks/integrations/README.md#create) - Create an integration
 - [`integrationsDelete`](docs/sdks/integrations/README.md#delete) - Delete an integration
 - [`integrationsGenerateChatOAuthUrl`](docs/sdks/integrations/README.md#generatechatoauthurl) - Generate chat OAuth URL
@@ -534,24 +534,24 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`subscribersMessagesMarkAll`](docs/sdks/novumessages/README.md#markall) - Update all notifications state
 - [`subscribersMessagesMarkAllAs`](docs/sdks/novumessages/README.md#markallas) - Update notifications state
 - [`subscribersMessagesUpdateAsSeen`](docs/sdks/novumessages/README.md#updateasseen) - Update notification action status
-- [`subscribersNotificationsArchive`](docs/sdks/novunotifications/README.md#archive) - Archive notification
+- [`subscribersNotificationsArchive`](docs/sdks/novunotifications/README.md#archive) - Archive a notification
 - [`subscribersNotificationsArchiveAll`](docs/sdks/novunotifications/README.md#archiveall) - Archive all notifications
 - [`subscribersNotificationsArchiveAllRead`](docs/sdks/novunotifications/README.md#archiveallread) - Archive all read notifications
-- [`subscribersNotificationsCompleteAction`](docs/sdks/novunotifications/README.md#completeaction) - Complete notification action
+- [`subscribersNotificationsCompleteAction`](docs/sdks/novunotifications/README.md#completeaction) - Complete a notification action
 - [`subscribersNotificationsCount`](docs/sdks/novunotifications/README.md#count) - Retrieve subscriber notifications count
-- [`subscribersNotificationsDelete`](docs/sdks/novunotifications/README.md#delete) - Delete notification
+- [`subscribersNotificationsDelete`](docs/sdks/novunotifications/README.md#delete) - Delete a notification
 - [`subscribersNotificationsDeleteAll`](docs/sdks/novunotifications/README.md#deleteall) - Delete all notifications
 - [`subscribersNotificationsFeed`](docs/sdks/novunotifications/README.md#feed) - Retrieve subscriber notifications
 - [`subscribersNotificationsList`](docs/sdks/novunotifications/README.md#list) - Retrieve subscriber notifications
 - [`subscribersNotificationsMarkAllAsRead`](docs/sdks/novunotifications/README.md#markallasread) - Mark all notifications as read
-- [`subscribersNotificationsMarkAsRead`](docs/sdks/novunotifications/README.md#markasread) - Mark notification as read
+- [`subscribersNotificationsMarkAsRead`](docs/sdks/novunotifications/README.md#markasread) - Mark a notification as read
 - [`subscribersNotificationsMarkAsSeen`](docs/sdks/novunotifications/README.md#markasseen) - Mark notifications as seen
-- [`subscribersNotificationsMarkAsUnread`](docs/sdks/novunotifications/README.md#markasunread) - Mark notification as unread
-- [`subscribersNotificationsRevertAction`](docs/sdks/novunotifications/README.md#revertaction) - Revert notification action
-- [`subscribersNotificationsSnooze`](docs/sdks/novunotifications/README.md#snooze) - Snooze notification
-- [`subscribersNotificationsUnarchive`](docs/sdks/novunotifications/README.md#unarchive) - Unarchive notification
+- [`subscribersNotificationsMarkAsUnread`](docs/sdks/novunotifications/README.md#markasunread) - Mark a notification as unread
+- [`subscribersNotificationsRevertAction`](docs/sdks/novunotifications/README.md#revertaction) - Revert a notification action
+- [`subscribersNotificationsSnooze`](docs/sdks/novunotifications/README.md#snooze) - Snooze a notification
+- [`subscribersNotificationsUnarchive`](docs/sdks/novunotifications/README.md#unarchive) - Unarchive a notification
 - [`subscribersNotificationsUnseenCount`](docs/sdks/novunotifications/README.md#unseencount) - Retrieve unseen notifications count
-- [`subscribersNotificationsUnsnooze`](docs/sdks/novunotifications/README.md#unsnooze) - Unsnooze notification
+- [`subscribersNotificationsUnsnooze`](docs/sdks/novunotifications/README.md#unsnooze) - Unsnooze a notification
 - [`subscribersPatch`](docs/sdks/subscribers/README.md#patch) - Update a subscriber
 - [`subscribersPreferencesBulkUpdate`](docs/sdks/preferences/README.md#bulkupdate) - Bulk update subscriber preferences
 - [`subscribersPreferencesList`](docs/sdks/preferences/README.md#list) - Retrieve subscriber preferences
@@ -588,7 +588,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`workflowsGet`](docs/sdks/workflows/README.md#get) - Retrieve a workflow
 - [`workflowsList`](docs/sdks/workflows/README.md#list) - List all workflows
 - [`workflowsPatch`](docs/sdks/workflows/README.md#patch) - Update a workflow
-- [`workflowsStepsGeneratePreview`](docs/sdks/steps/README.md#generatepreview) - Generate step preview
+- [`workflowsStepsGeneratePreview`](docs/sdks/steps/README.md#generatepreview) - Generate a step preview
 - [`workflowsStepsRetrieve`](docs/sdks/steps/README.md#retrieve) - Retrieve workflow step
 - [`workflowsSync`](docs/sdks/workflows/README.md#sync) - Sync a workflow
 - [`workflowsUpdate`](docs/sdks/workflows/README.md#update) - Update a workflow

@@ -4,7 +4,7 @@
 
 ### Available Operations
 
-* [generatePreview](#generatepreview) - Generate step preview
+* [generatePreview](#generatepreview) - Generate a step preview
 * [retrieve](#retrieve) - Retrieve workflow step
 
 ## generatePreview
