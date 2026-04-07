@@ -5,15 +5,15 @@
 ### Available Operations
 
 * [list](#list) - Retrieve subscriber notifications
-* [delete](#delete) - Delete notification
-* [completeAction](#completeaction) - Complete notification action
-* [revertAction](#revertaction) - Revert notification action
-* [archive](#archive) - Archive notification
-* [markAsRead](#markasread) - Mark notification as read
-* [snooze](#snooze) - Snooze notification
-* [unarchive](#unarchive) - Unarchive notification
-* [markAsUnread](#markasunread) - Mark notification as unread
-* [unsnooze](#unsnooze) - Unsnooze notification
+* [delete](#delete) - Delete a notification
+* [completeAction](#completeaction) - Complete a notification action
+* [revertAction](#revertaction) - Revert a notification action
+* [archive](#archive) - Archive a notification
+* [markAsRead](#markasread) - Mark a notification as read
+* [snooze](#snooze) - Snooze a notification
+* [unarchive](#unarchive) - Unarchive a notification
+* [markAsUnread](#markasunread) - Mark a notification as unread
+* [unsnooze](#unsnooze) - Unsnooze a notification
 * [archiveAll](#archiveall) - Archive all notifications
 * [count](#count) - Retrieve subscriber notifications count
 * [deleteAll](#deleteall) - Delete all notifications
@@ -25,7 +25,7 @@
 
 ## list
 
-Retrieve in-app notifications for a subscriber by its unique key identifier **subscriberId**. 
+Retrieve in-app (inbox) notifications for a subscriber by its unique key identifier **subscriberId**. 
     Supports filtering by tags, read/archived/snoozed/seen state, data attributes, severity, date range, and context keys.
 
 ### Example Usage
@@ -109,7 +109,7 @@ run();
 
 ## delete
 
-Delete a specific notification by its unique identifier **notificationId**.
+Delete a specific in-app (inbox) notification permanently by its unique identifier **notificationId**.
 
 ### Example Usage
 
@@ -188,7 +188,7 @@ run();
 
 ## completeAction
 
-Mark a notification action (primary or secondary) as completed by its unique identifier **notificationId** and action type.
+Mark a single in-app (inbox) notification's action (primary or secondary) as completed by its unique identifier **notificationId** and action type **actionType**.
 
 ### Example Usage
 
@@ -269,7 +269,7 @@ run();
 
 ## revertAction
 
-Revert a notification action (primary or secondary) to pending state by its unique identifier **notificationId** and action type.
+Revert a single in-app (inbox) notification's action (primary or secondary) to pending state by its unique identifier **notificationId** and action type **actionType**.
 
 ### Example Usage
 
@@ -350,7 +350,7 @@ run();
 
 ## archive
 
-Archive a specific notification by its unique identifier **notificationId**.
+Archive a specific in-app (inbox) notification by its unique identifier **notificationId**.
 
 ### Example Usage
 
@@ -429,7 +429,7 @@ run();
 
 ## markAsRead
 
-Mark a specific notification as read by its unique identifier **notificationId**.
+Mark a specific in-app (inbox) notification as read by its unique identifier **notificationId**.
 
 ### Example Usage
 
@@ -508,7 +508,7 @@ run();
 
 ## snooze
 
-Snooze a specific notification by its unique identifier **notificationId** until a specified time.
+Snooze a specific in-app (inbox) notification by its unique identifier **notificationId** until a specified time.
 
 ### Example Usage
 
@@ -593,7 +593,7 @@ run();
 
 ## unarchive
 
-Unarchive a specific notification by its unique identifier **notificationId**.
+Unarchive a specific in-app (inbox) notification by its unique identifier **notificationId**.
 
 ### Example Usage
 
@@ -672,7 +672,7 @@ run();
 
 ## markAsUnread
 
-Mark a specific notification as unread by its unique identifier **notificationId**.
+Mark a specific in-app (inbox) notification as unread by its unique identifier **notificationId**.
 
 ### Example Usage
 
@@ -751,7 +751,7 @@ run();
 
 ## unsnooze
 
-Unsnooze a specific notification by its unique identifier **notificationId**.
+Unsnooze a specific in-app (inbox) notification by its unique identifier **notificationId**.
 
 ### Example Usage
 
@@ -830,7 +830,7 @@ run();
 
 ## archiveAll
 
-Archive all notifications matching the specified filters. Supports context-based filtering.
+Archive all in-app (inbox) notifications matching the specified filters. Supports context-based filtering.
 
 ### Example Usage
 
@@ -905,8 +905,8 @@ run();
 
 ## count
 
-Retrieve count of notifications for a subscriber by its unique key identifier **subscriberId**. 
-    Supports multiple filters to count notifications by different criteria, including context keys.
+Retrieve count of in-app (inbox) notifications for a subscriber by its unique key identifier **subscriberId**. 
+    Supports multiple filters to count in-app (inbox) notifications by different criteria, including context keys.
 
 ### Example Usage
 
@@ -981,7 +981,7 @@ run();
 
 ## deleteAll
 
-Delete all notifications matching the specified filters. Supports context-based filtering.
+Permanently delete all in-app (inbox) notifications matching the specified filters. Supports context-based filtering.
 
 ### Example Usage
 
@@ -1056,7 +1056,7 @@ run();
 
 ## markAllAsRead
 
-Mark all notifications matching the specified filters as read. Supports context-based filtering.
+Mark all in-app (inbox) notifications matching the specified filters as read. Supports context-based filtering.
 
 ### Example Usage
 
@@ -1131,7 +1131,7 @@ run();
 
 ## archiveAllRead
 
-Archive all read notifications matching the specified filters. Supports context-based filtering.
+Archive all read in-app (inbox) notifications matching the specified filters. Supports context-based filtering.
 
 ### Example Usage
 
@@ -1206,7 +1206,7 @@ run();
 
 ## markAsSeen
 
-Mark specific notifications or notifications matching filters as seen. Supports context-based filtering.
+Mark specific and multiple in-app (inbox) notifications as seen. Supports context-based filtering.
 
 ### Example Usage
 

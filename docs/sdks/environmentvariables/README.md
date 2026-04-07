@@ -4,12 +4,12 @@
 
 ### Available Operations
 
-* [list](#list) - List environment variables
-* [create](#create) - Create environment variable
-* [retrieve](#retrieve) - Get environment variable
-* [update](#update) - Update environment variable
-* [delete](#delete) - Delete environment variable
-* [usage](#usage) - Get environment variable usage
+* [list](#list) - List all variables
+* [create](#create) - Create a variable
+* [retrieve](#retrieve) - Retrieve a variable
+* [update](#update) - Update a variable
+* [delete](#delete) - Delete a variable
+* [usage](#usage) - Retrieve a variable usage
 
 ## list
 
@@ -388,7 +388,7 @@ run();
 
 ## usage
 
-Returns the workflows that reference this environment variable via {{env.KEY}} in their step controls.
+Returns the workflows that reference this environment variable via `{{env.KEY}}` in their step controls. **variableId** is required.
 
 ### Example Usage
 

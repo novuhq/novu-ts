@@ -30,7 +30,7 @@ import { Result } from "../types/fp.js";
  * Archive all notifications
  *
  * @remarks
- * Archive all notifications matching the specified filters. Supports context-based filtering.
+ * Archive all in-app (inbox) notifications matching the specified filters. Supports context-based filtering.
  */
 export function subscribersNotificationsArchiveAll(
   client: NovuCore,

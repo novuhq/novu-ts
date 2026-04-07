@@ -26,10 +26,10 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Mark notification as read
+ * Mark a notification as read
  *
  * @remarks
- * Mark a specific notification as read by its unique identifier **notificationId**.
+ * Mark a specific in-app (inbox) notification as read by its unique identifier **notificationId**.
  */
 export function subscribersNotificationsMarkAsRead(
   client: NovuCore,

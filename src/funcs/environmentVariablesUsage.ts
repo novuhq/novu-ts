@@ -26,10 +26,10 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Get environment variable usage
+ * Retrieve a variable usage
  *
  * @remarks
- * Returns the workflows that reference this environment variable via {{env.KEY}} in their step controls.
+ * Returns the workflows that reference this environment variable via `{{env.KEY}}` in their step controls. **variableId** is required.
  */
 export function environmentVariablesUsage(
   client: NovuCore,

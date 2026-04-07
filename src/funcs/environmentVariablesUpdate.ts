@@ -27,7 +27,7 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Update environment variable
+ * Update a variable
  *
  * @remarks
  * Updates an existing environment variable. Providing values replaces all existing per-environment values.

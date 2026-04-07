@@ -26,7 +26,7 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Delete environment variable
+ * Delete a variable
  *
  * @remarks
  * Deletes an environment variable by id.

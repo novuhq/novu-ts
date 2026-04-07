@@ -29,7 +29,7 @@ import { Result } from "../types/fp.js";
  * Retrieve subscriber notifications
  *
  * @remarks
- * Retrieve in-app notifications for a subscriber by its unique key identifier **subscriberId**.
+ * Retrieve in-app (inbox) notifications for a subscriber by its unique key identifier **subscriberId**.
  *     Supports filtering by tags, read/archived/snoozed/seen state, data attributes, severity, date range, and context keys.
  */
 export function subscribersNotificationsList(

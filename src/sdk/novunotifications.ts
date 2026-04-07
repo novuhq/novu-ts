@@ -30,7 +30,7 @@ export class NovuNotifications extends ClientSDK {
    * Retrieve subscriber notifications
    *
    * @remarks
-   * Retrieve in-app notifications for a subscriber by its unique key identifier **subscriberId**.
+   * Retrieve in-app (inbox) notifications for a subscriber by its unique key identifier **subscriberId**.
    *     Supports filtering by tags, read/archived/snoozed/seen state, data attributes, severity, date range, and context keys.
    */
   async list(
@@ -47,10 +47,10 @@ export class NovuNotifications extends ClientSDK {
   }
 
   /**
-   * Delete notification
+   * Delete a notification
    *
    * @remarks
-   * Delete a specific notification by its unique identifier **notificationId**.
+   * Delete a specific in-app (inbox) notification permanently by its unique identifier **notificationId**.
    */
   async delete(
     request: operations.SubscribersControllerDeleteNotificationRequest,
@@ -66,10 +66,10 @@ export class NovuNotifications extends ClientSDK {
   }
 
   /**
-   * Complete notification action
+   * Complete a notification action
    *
    * @remarks
-   * Mark a notification action (primary or secondary) as completed by its unique identifier **notificationId** and action type.
+   * Mark a single in-app (inbox) notification's action (primary or secondary) as completed by its unique identifier **notificationId** and action type **actionType**.
    */
   async completeAction(
     request: operations.SubscribersControllerCompleteNotificationActionRequest,
@@ -85,10 +85,10 @@ export class NovuNotifications extends ClientSDK {
   }
 
   /**
-   * Revert notification action
+   * Revert a notification action
    *
    * @remarks
-   * Revert a notification action (primary or secondary) to pending state by its unique identifier **notificationId** and action type.
+   * Revert a single in-app (inbox) notification's action (primary or secondary) to pending state by its unique identifier **notificationId** and action type **actionType**.
    */
   async revertAction(
     request: operations.SubscribersControllerRevertNotificationActionRequest,
@@ -102,10 +102,10 @@ export class NovuNotifications extends ClientSDK {
   }
 
   /**
-   * Archive notification
+   * Archive a notification
    *
    * @remarks
-   * Archive a specific notification by its unique identifier **notificationId**.
+   * Archive a specific in-app (inbox) notification by its unique identifier **notificationId**.
    */
   async archive(
     request: operations.SubscribersControllerArchiveNotificationRequest,
@@ -119,10 +119,10 @@ export class NovuNotifications extends ClientSDK {
   }
 
   /**
-   * Mark notification as read
+   * Mark a notification as read
    *
    * @remarks
-   * Mark a specific notification as read by its unique identifier **notificationId**.
+   * Mark a specific in-app (inbox) notification as read by its unique identifier **notificationId**.
    */
   async markAsRead(
     request: operations.SubscribersControllerMarkNotificationAsReadRequest,
@@ -136,10 +136,10 @@ export class NovuNotifications extends ClientSDK {
   }
 
   /**
-   * Snooze notification
+   * Snooze a notification
    *
    * @remarks
-   * Snooze a specific notification by its unique identifier **notificationId** until a specified time.
+   * Snooze a specific in-app (inbox) notification by its unique identifier **notificationId** until a specified time.
    */
   async snooze(
     request: operations.SubscribersControllerSnoozeNotificationRequest,
@@ -153,10 +153,10 @@ export class NovuNotifications extends ClientSDK {
   }
 
   /**
-   * Unarchive notification
+   * Unarchive a notification
    *
    * @remarks
-   * Unarchive a specific notification by its unique identifier **notificationId**.
+   * Unarchive a specific in-app (inbox) notification by its unique identifier **notificationId**.
    */
   async unarchive(
     request: operations.SubscribersControllerUnarchiveNotificationRequest,
@@ -170,10 +170,10 @@ export class NovuNotifications extends ClientSDK {
   }
 
   /**
-   * Mark notification as unread
+   * Mark a notification as unread
    *
    * @remarks
-   * Mark a specific notification as unread by its unique identifier **notificationId**.
+   * Mark a specific in-app (inbox) notification as unread by its unique identifier **notificationId**.
    */
   async markAsUnread(
     request: operations.SubscribersControllerMarkNotificationAsUnreadRequest,
@@ -187,10 +187,10 @@ export class NovuNotifications extends ClientSDK {
   }
 
   /**
-   * Unsnooze notification
+   * Unsnooze a notification
    *
    * @remarks
-   * Unsnooze a specific notification by its unique identifier **notificationId**.
+   * Unsnooze a specific in-app (inbox) notification by its unique identifier **notificationId**.
    */
   async unsnooze(
     request: operations.SubscribersControllerUnsnoozeNotificationRequest,
@@ -207,7 +207,7 @@ export class NovuNotifications extends ClientSDK {
    * Archive all notifications
    *
    * @remarks
-   * Archive all notifications matching the specified filters. Supports context-based filtering.
+   * Archive all in-app (inbox) notifications matching the specified filters. Supports context-based filtering.
    */
   async archiveAll(
     updateAllSubscriberNotificationsDto:
@@ -231,8 +231,8 @@ export class NovuNotifications extends ClientSDK {
    * Retrieve subscriber notifications count
    *
    * @remarks
-   * Retrieve count of notifications for a subscriber by its unique key identifier **subscriberId**.
-   *     Supports multiple filters to count notifications by different criteria, including context keys.
+   * Retrieve count of in-app (inbox) notifications for a subscriber by its unique key identifier **subscriberId**.
+   *     Supports multiple filters to count in-app (inbox) notifications by different criteria, including context keys.
    */
   async count(
     subscriberId: string,
@@ -255,7 +255,7 @@ export class NovuNotifications extends ClientSDK {
    * Delete all notifications
    *
    * @remarks
-   * Delete all notifications matching the specified filters. Supports context-based filtering.
+   * Permanently delete all in-app (inbox) notifications matching the specified filters. Supports context-based filtering.
    */
   async deleteAll(
     updateAllSubscriberNotificationsDto:
@@ -279,7 +279,7 @@ export class NovuNotifications extends ClientSDK {
    * Mark all notifications as read
    *
    * @remarks
-   * Mark all notifications matching the specified filters as read. Supports context-based filtering.
+   * Mark all in-app (inbox) notifications matching the specified filters as read. Supports context-based filtering.
    */
   async markAllAsRead(
     updateAllSubscriberNotificationsDto:
@@ -304,7 +304,7 @@ export class NovuNotifications extends ClientSDK {
    * Archive all read notifications
    *
    * @remarks
-   * Archive all read notifications matching the specified filters. Supports context-based filtering.
+   * Archive all read in-app (inbox) notifications matching the specified filters. Supports context-based filtering.
    */
   async archiveAllRead(
     updateAllSubscriberNotificationsDto:
@@ -329,7 +329,7 @@ export class NovuNotifications extends ClientSDK {
    * Mark notifications as seen
    *
    * @remarks
-   * Mark specific notifications or notifications matching filters as seen. Supports context-based filtering.
+   * Mark specific and multiple in-app (inbox) notifications as seen. Supports context-based filtering.
    */
   async markAsSeen(
     markSubscriberNotificationsAsSeenDto:

@@ -30,7 +30,7 @@ import { Result } from "../types/fp.js";
  * Mark all notifications as read
  *
  * @remarks
- * Mark all notifications matching the specified filters as read. Supports context-based filtering.
+ * Mark all in-app (inbox) notifications matching the specified filters as read. Supports context-based filtering.
  */
 export function subscribersNotificationsMarkAllAsRead(
   client: NovuCore,

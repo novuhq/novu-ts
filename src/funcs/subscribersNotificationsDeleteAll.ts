@@ -30,7 +30,7 @@ import { Result } from "../types/fp.js";
  * Delete all notifications
  *
  * @remarks
- * Delete all notifications matching the specified filters. Supports context-based filtering.
+ * Permanently delete all in-app (inbox) notifications matching the specified filters. Supports context-based filtering.
  */
 export function subscribersNotificationsDeleteAll(
   client: NovuCore,
