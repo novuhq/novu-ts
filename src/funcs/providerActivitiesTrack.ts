@@ -27,12 +27,12 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Track activity and engagement events
+ * Track provider activity and engagement events
  *
  * @remarks
  * Track activity and engagement events for a specific delivery provider
  */
-export function activityTrack(
+export function providerActivitiesTrack(
   client: NovuCore,
   request: operations.InboundWebhooksControllerHandleWebhookRequest,
   options?: RequestOptions,

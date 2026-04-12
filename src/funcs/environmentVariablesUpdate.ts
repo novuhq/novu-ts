@@ -36,7 +36,7 @@ export function environmentVariablesUpdate(
   client: NovuCore,
   updateEnvironmentVariableRequestDto:
     components.UpdateEnvironmentVariableRequestDto,
-  variableId: string,
+  variableKey: string,
   idempotencyKey?: string | undefined,
   options?: RequestOptions,
 ): APIPromise<
@@ -57,7 +57,7 @@ export function environmentVariablesUpdate(
   return new APIPromise($do(
     client,
     updateEnvironmentVariableRequestDto,
-    variableId,
+    variableKey,
     idempotencyKey,
     options,
   ));
@@ -67,7 +67,7 @@ async function $do(
   client: NovuCore,
   updateEnvironmentVariableRequestDto:
     components.UpdateEnvironmentVariableRequestDto,
-  variableId: string,
+  variableKey: string,
   idempotencyKey?: string | undefined,
   options?: RequestOptions,
 ): Promise<
@@ -93,7 +93,7 @@ async function $do(
       {
         updateEnvironmentVariableRequestDto:
           updateEnvironmentVariableRequestDto,
-        variableId: variableId,
+        variableKey: variableKey,
         idempotencyKey: idempotencyKey,
       };
 
@@ -114,12 +114,14 @@ async function $do(
   });
 
   const pathParams = {
-    variableId: encodeSimple("variableId", payload.variableId, {
+    variableKey: encodeSimple("variableKey", payload.variableKey, {
       explode: false,
       charEncoding: "percent",
     }),
   };
-  const path = pathToFunc("/v1/environment-variables/{variableId}")(pathParams);
+  const path = pathToFunc("/v1/environment-variables/{variableKey}")(
+    pathParams,
+  );
 
   const headers = new Headers(compactMap({
     "Content-Type": "application/json",

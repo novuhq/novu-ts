@@ -10,7 +10,6 @@ import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as components from "../models/components/index.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
-import { Activity } from "./activity.js";
 import { ChannelConnections } from "./channelconnections.js";
 import { ChannelEndpoints } from "./channelendpoints.js";
 import { Contexts } from "./contexts.js";
@@ -20,6 +19,7 @@ import { Integrations } from "./integrations.js";
 import { Layouts } from "./layouts.js";
 import { Messages } from "./messages.js";
 import { Notifications } from "./notifications.js";
+import { ProviderActivities } from "./provideractivities.js";
 import { Subscribers } from "./subscribers.js";
 import { Topics } from "./topics.js";
 import { Translations } from "./translations.js";
@@ -36,9 +36,9 @@ export class Novu extends ClientSDK {
     return (this._environments ??= new Environments(this._options));
   }
 
-  private _activity?: Activity;
-  get activity(): Activity {
-    return (this._activity ??= new Activity(this._options));
+  private _providerActivities?: ProviderActivities;
+  get providerActivities(): ProviderActivities {
+    return (this._providerActivities ??= new ProviderActivities(this._options));
   }
 
   private _layouts?: Layouts;
