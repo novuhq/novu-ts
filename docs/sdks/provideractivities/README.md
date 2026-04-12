@@ -1,10 +1,10 @@
-# Activity
+# ProviderActivities
 
 ## Overview
 
 ### Available Operations
 
-* [track](#track) - Track activity and engagement events
+* [track](#track) - Track provider activity and engagement events
 
 ## track
 
@@ -21,7 +21,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.activity.track({
+  const result = await novu.providerActivities.track({
     environmentId: "<id>",
     integrationId: "<id>",
     requestBody: {
@@ -41,7 +41,7 @@ The standalone function version of this method:
 
 ```typescript
 import { NovuCore } from "@novu/api/core.js";
-import { activityTrack } from "@novu/api/funcs/activityTrack.js";
+import { providerActivitiesTrack } from "@novu/api/funcs/providerActivitiesTrack.js";
 
 // Use `NovuCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -50,7 +50,7 @@ const novu = new NovuCore({
 });
 
 async function run() {
-  const res = await activityTrack(novu, {
+  const res = await providerActivitiesTrack(novu, {
     environmentId: "<id>",
     integrationId: "<id>",
     requestBody: {
@@ -61,7 +61,7 @@ async function run() {
     const { value: result } = res;
     console.log(result);
   } else {
-    console.log("activityTrack failed:", res.error);
+    console.log("providerActivitiesTrack failed:", res.error);
   }
 }
 

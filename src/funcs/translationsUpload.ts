@@ -3,7 +3,7 @@
  */
 
 import { NovuCore } from "../core.js";
-import { appendForm, encodeSimple } from "../lib/encodings.js";
+import { appendForm, encodeSimple, normalizeBlob } from "../lib/encodings.js";
 import {
   bytesToBlob,
   getContentTypeFromFileName,
@@ -110,8 +110,9 @@ async function $do(
 
   for (const fileItem of payload.RequestBody.files ?? []) {
     if (isBlobLike(fileItem)) {
-      const blob = fileItem;
-      const name = "name" in blob ? (blob.name as string) : undefined;
+      const file = fileItem;
+      const blob = await normalizeBlob(file);
+      const name = "name" in file ? (file.name as string) : undefined;
       appendForm(body, "files[]", blob, name);
     } else if (isReadableStream(fileItem.content)) {
       const buffer = await readableStreamToArrayBuffer(fileItem.content);

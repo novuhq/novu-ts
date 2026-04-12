@@ -267,10 +267,6 @@ run();
 * [triggerBroadcast](docs/sdks/novu/README.md#triggerbroadcast) - Broadcast event to all
 * [triggerBulk](docs/sdks/novu/README.md#triggerbulk) - Bulk trigger event
 
-### [Activity](docs/sdks/activity/README.md)
-
-* [track](docs/sdks/activity/README.md#track) - Track activity and engagement events
-
 ### [ChannelConnections](docs/sdks/channelconnections/README.md)
 
 * [list](docs/sdks/channelconnections/README.md#list) - List all channel connections
@@ -299,9 +295,9 @@ run();
 
 * [list](docs/sdks/environmentvariables/README.md#list) - List all variables
 * [create](docs/sdks/environmentvariables/README.md#create) - Create a variable
-* [retrieve](docs/sdks/environmentvariables/README.md#retrieve) - Retrieve a variable
+* [retrieve](docs/sdks/environmentvariables/README.md#retrieve) - Get environment variable
 * [update](docs/sdks/environmentvariables/README.md#update) - Update a variable
-* [delete](docs/sdks/environmentvariables/README.md#delete) - Delete a variable
+* [delete](docs/sdks/environmentvariables/README.md#delete) - Delete environment variable
 * [usage](docs/sdks/environmentvariables/README.md#usage) - Retrieve a variable usage
 
 ### [Environments](docs/sdks/environments/README.md)
@@ -346,6 +342,10 @@ run();
 
 * [list](docs/sdks/notifications/README.md#list) - List all events
 * [retrieve](docs/sdks/notifications/README.md#retrieve) - Retrieve an event
+
+### [ProviderActivities](docs/sdks/provideractivities/README.md)
+
+* [track](docs/sdks/provideractivities/README.md#track) - Track provider activity and engagement events
 
 ### [Subscribers](docs/sdks/subscribers/README.md)
 
@@ -474,7 +474,6 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 <summary>Available standalone functions</summary>
 
-- [`activityTrack`](docs/sdks/activity/README.md#track) - Track activity and engagement events
 - [`cancel`](docs/sdks/novu/README.md#cancel) - Cancel triggered event
 - [`channelConnectionsCreate`](docs/sdks/channelconnections/README.md#create) - Create a channel connection
 - [`channelConnectionsDelete`](docs/sdks/channelconnections/README.md#delete) - Delete a channel connection
@@ -499,9 +498,9 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`environmentsPublish`](docs/sdks/environments/README.md#publish) - Publish resources to target environment
 - [`environmentsUpdate`](docs/sdks/environments/README.md#update) - Update an environment
 - [`environmentVariablesCreate`](docs/sdks/environmentvariables/README.md#create) - Create a variable
-- [`environmentVariablesDelete`](docs/sdks/environmentvariables/README.md#delete) - Delete a variable
+- [`environmentVariablesDelete`](docs/sdks/environmentvariables/README.md#delete) - Delete environment variable
 - [`environmentVariablesList`](docs/sdks/environmentvariables/README.md#list) - List all variables
-- [`environmentVariablesRetrieve`](docs/sdks/environmentvariables/README.md#retrieve) - Retrieve a variable
+- [`environmentVariablesRetrieve`](docs/sdks/environmentvariables/README.md#retrieve) - Get environment variable
 - [`environmentVariablesUpdate`](docs/sdks/environmentvariables/README.md#update) - Update a variable
 - [`environmentVariablesUsage`](docs/sdks/environmentvariables/README.md#usage) - Retrieve a variable usage
 - [`integrationsCreate`](docs/sdks/integrations/README.md#create) - Create an integration
@@ -525,6 +524,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`messagesRetrieve`](docs/sdks/messages/README.md#retrieve) - List all messages
 - [`notificationsList`](docs/sdks/notifications/README.md#list) - List all events
 - [`notificationsRetrieve`](docs/sdks/notifications/README.md#retrieve) - Retrieve an event
+- [`providerActivitiesTrack`](docs/sdks/provideractivities/README.md#track) - Track provider activity and engagement events
 - [`subscribersCreate`](docs/sdks/subscribers/README.md#create) - Create a subscriber
 - [`subscribersCreateBulk`](docs/sdks/subscribers/README.md#createbulk) - Bulk create subscribers
 - [`subscribersCredentialsAppend`](docs/sdks/credentials/README.md#append) - Upsert provider credentials

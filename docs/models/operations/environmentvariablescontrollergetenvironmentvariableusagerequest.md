@@ -6,13 +6,13 @@
 import { EnvironmentVariablesControllerGetEnvironmentVariableUsageRequest } from "@novu/api/models/operations";
 
 let value: EnvironmentVariablesControllerGetEnvironmentVariableUsageRequest = {
-  variableId: "<id>",
+  variableKey: "BASE_URL",
 };
 ```
 
 ## Fields
 
-| Field                             | Type                              | Required                          | Description                       |
-| --------------------------------- | --------------------------------- | --------------------------------- | --------------------------------- |
-| `variableId`                      | *string*                          | :heavy_check_mark:                | N/A                               |
-| `idempotencyKey`                  | *string*                          | :heavy_minus_sign:                | A header for idempotency purposes |
+| Field                                                      | Type                                                       | Required                                                   | Description                                                | Example                                                    |
+| ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- |
+| `variableKey`                                              | *string*                                                   | :heavy_check_mark:                                         | The unique key of the environment variable (e.g. BASE_URL) | BASE_URL                                                   |
+| `idempotencyKey`                                           | *string*                                                   | :heavy_minus_sign:                                         | A header for idempotency purposes                          |                                                            |

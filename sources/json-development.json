@@ -3980,7 +3980,7 @@
       "post": {
         "operationId": "InboundWebhooksController_handleWebhook",
         "x-speakeasy-name-override": "track",
-        "summary": "Track activity and engagement events",
+        "summary": "Track provider activity and engagement events",
         "description": "Track activity and engagement events for a specific delivery provider",
         "parameters": [
           {
@@ -4040,7 +4040,7 @@
           }
         },
         "tags": [
-          "Activity"
+          "Provider Activities"
         ]
       }
     },
@@ -10521,18 +10521,6 @@
             }
           },
           {
-            "name": "tags",
-            "required": false,
-            "in": "query",
-            "description": "Filter by workflow tags",
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          },
-          {
             "name": "read",
             "required": false,
             "in": "query",
@@ -16153,7 +16141,7 @@
             "required": true,
             "in": "query",
             "description": "Array of filter objects (max 30) to count notifications by different criteria",
-            "example": "[{\"read\":false,\"archived\":false},{\"tags\":[\"important\"]}]",
+            "example": "[{\"read\":false,\"archived\":false},{\"tags\":[\"important\"]},{\"tags\":{\"and\":[{\"or\":[\"a\",\"b\"]},{\"or\":[\"c\"]}]}}]",
             "schema": {
               "type": "string"
             }
@@ -36753,17 +36741,19 @@
         ]
       }
     },
-    "/v1/environment-variables/{variableId}": {
+    "/v1/environment-variables/{variableKey}": {
       "get": {
         "operationId": "EnvironmentVariablesController_getEnvironmentVariable",
         "x-speakeasy-name-override": "retrieve",
-        "summary": "Retrieve a variable",
-        "description": "Returns a single environment variable by id. Secret values are masked.",
+        "summary": "Get environment variable",
+        "description": "Returns a single environment variable by key. Secret values are masked.",
         "parameters": [
           {
-            "name": "variableId",
+            "name": "variableKey",
             "required": true,
             "in": "path",
+            "description": "The unique key of the environment variable (e.g. BASE_URL)",
+            "example": "BASE_URL",
             "schema": {
               "type": "string"
             }
@@ -37235,9 +37225,11 @@
         "description": "Updates an existing environment variable. Providing values replaces all existing per-environment values.",
         "parameters": [
           {
-            "name": "variableId",
+            "name": "variableKey",
             "required": true,
             "in": "path",
+            "description": "The unique key of the environment variable (e.g. BASE_URL)",
+            "example": "BASE_URL",
             "schema": {
               "type": "string"
             }
@@ -37715,13 +37707,15 @@
       },
       "delete": {
         "operationId": "EnvironmentVariablesController_deleteEnvironmentVariable",
-        "summary": "Delete a variable",
-        "description": "Deletes an environment variable by id.",
+        "summary": "Delete environment variable",
+        "description": "Deletes an environment variable by key.",
         "parameters": [
           {
-            "name": "variableId",
+            "name": "variableKey",
             "required": true,
             "in": "path",
+            "description": "The unique key of the environment variable (e.g. BASE_URL)",
+            "example": "BASE_URL",
             "schema": {
               "type": "string"
             }
@@ -38181,7 +38175,7 @@
         ]
       }
     },
-    "/v1/environment-variables/{variableId}/usage": {
+    "/v1/environment-variables/{variableKey}/usage": {
       "get": {
         "operationId": "EnvironmentVariablesController_getEnvironmentVariableUsage",
         "x-speakeasy-name-override": "usage",
@@ -38189,9 +38183,11 @@
         "description": "Returns the workflows that reference this environment variable via `{{env.KEY}}` in their step controls. **variableId** is required.",
         "parameters": [
           {
-            "name": "variableId",
+            "name": "variableKey",
             "required": true,
             "in": "path",
+            "description": "The unique key of the environment variable (e.g. BASE_URL)",
+            "example": "BASE_URL",
             "schema": {
               "type": "string"
             }
@@ -60967,11 +60963,8 @@
             }
           },
           "tags": {
-            "description": "Filter notifications by workflow tags",
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
+            "type": "object",
+            "description": "Filter notifications by workflow tags (OR for string[], or { and: [{ or: string[] }, ...] } for AND of OR-groups)."
           },
           "data": {
             "type": "string",
@@ -60990,11 +60983,8 @@
         "type": "object",
         "properties": {
           "tags": {
-            "description": "Filter notifications by workflow tags",
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
+            "type": "object",
+            "description": "Filter notifications by workflow tags (OR for string[], or { and: [{ or: string[] }, ...] } for AND of OR-groups)."
           },
           "data": {
             "type": "string",
