@@ -33,7 +33,7 @@ import { Result } from "../types/fp.js";
  */
 export function environmentVariablesUsage(
   client: NovuCore,
-  variableId: string,
+  variableKey: string,
   idempotencyKey?: string | undefined,
   options?: RequestOptions,
 ): APIPromise<
@@ -53,7 +53,7 @@ export function environmentVariablesUsage(
 > {
   return new APIPromise($do(
     client,
-    variableId,
+    variableKey,
     idempotencyKey,
     options,
   ));
@@ -61,7 +61,7 @@ export function environmentVariablesUsage(
 
 async function $do(
   client: NovuCore,
-  variableId: string,
+  variableKey: string,
   idempotencyKey?: string | undefined,
   options?: RequestOptions,
 ): Promise<
@@ -85,7 +85,7 @@ async function $do(
   const input:
     operations.EnvironmentVariablesControllerGetEnvironmentVariableUsageRequest =
       {
-        variableId: variableId,
+        variableKey: variableKey,
         idempotencyKey: idempotencyKey,
       };
 
@@ -104,12 +104,12 @@ async function $do(
   const body = null;
 
   const pathParams = {
-    variableId: encodeSimple("variableId", payload.variableId, {
+    variableKey: encodeSimple("variableKey", payload.variableKey, {
       explode: false,
       charEncoding: "percent",
     }),
   };
-  const path = pathToFunc("/v1/environment-variables/{variableId}/usage")(
+  const path = pathToFunc("/v1/environment-variables/{variableKey}/usage")(
     pathParams,
   );
 

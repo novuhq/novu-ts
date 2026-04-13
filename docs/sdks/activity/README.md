@@ -4,7 +4,7 @@
 
 ### Available Operations
 
-* [track](#track) - Track activity and engagement events
+* [track](#track) - Track provider activity and engagement events
 
 ## track
 

@@ -75,30 +75,30 @@ actions:
         - "lang": "typescript"
           "label": "TypeScript"
           "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.environmentVariables.create({\n    key: \"<key>\",\n  });\n\n  console.log(result);\n}\n\nrun();"
-  - target: $["paths"]["/v1/environment-variables/{variableId}"]["delete"]
+  - target: $["paths"]["/v1/environment-variables/{variableKey}"]["delete"]
     update:
       "x-codeSamples":
         - "lang": "typescript"
           "label": "TypeScript"
-          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.environmentVariables.delete(\"<id>\");\n\n  console.log(result);\n}\n\nrun();"
-  - target: $["paths"]["/v1/environment-variables/{variableId}"]["get"]
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.environmentVariables.delete(\"BASE_URL\");\n\n  console.log(result);\n}\n\nrun();"
+  - target: $["paths"]["/v1/environment-variables/{variableKey}"]["get"]
     update:
       "x-codeSamples":
         - "lang": "typescript"
           "label": "TypeScript"
-          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.environmentVariables.retrieve(\"<id>\");\n\n  console.log(result);\n}\n\nrun();"
-  - target: $["paths"]["/v1/environment-variables/{variableId}"]["patch"]
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.environmentVariables.retrieve(\"BASE_URL\");\n\n  console.log(result);\n}\n\nrun();"
+  - target: $["paths"]["/v1/environment-variables/{variableKey}"]["patch"]
     update:
       "x-codeSamples":
         - "lang": "typescript"
           "label": "TypeScript"
-          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.environmentVariables.update({}, \"<id>\");\n\n  console.log(result);\n}\n\nrun();"
-  - target: $["paths"]["/v1/environment-variables/{variableId}/usage"]["get"]
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.environmentVariables.update({}, \"BASE_URL\");\n\n  console.log(result);\n}\n\nrun();"
+  - target: $["paths"]["/v1/environment-variables/{variableKey}/usage"]["get"]
     update:
       "x-codeSamples":
         - "lang": "typescript"
           "label": "TypeScript"
-          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.environmentVariables.usage(\"<id>\");\n\n  console.log(result);\n}\n\nrun();"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.environmentVariables.usage(\"BASE_URL\");\n\n  console.log(result);\n}\n\nrun();"
   - target: $["paths"]["/v1/environments"]["get"]
     update:
       "x-codeSamples":
@@ -440,7 +440,7 @@ actions:
       "x-codeSamples":
         - "lang": "typescript"
           "label": "TypeScript"
-          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.subscribers.notifications.count(\"<id>\", \"[{\\\"read\\\":false,\\\"archived\\\":false},{\\\"tags\\\":[\\\"important\\\"]}]\");\n\n  console.log(result);\n}\n\nrun();"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.subscribers.notifications.count(\"<id>\", \"[{\\\"read\\\":false,\\\"archived\\\":false},{\\\"tags\\\":[\\\"important\\\"]},{\\\"tags\\\":{\\\"and\\\":[{\\\"or\\\":[\\\"a\\\",\\\"b\\\"]},{\\\"or\\\":[\\\"c\\\"]}]}}]\");\n\n  console.log(result);\n}\n\nrun();"
   - target: $["paths"]["/v2/subscribers/{subscriberId}/notifications/delete"]["post"]
     update:
       "x-codeSamples":

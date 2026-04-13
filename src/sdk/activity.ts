@@ -10,7 +10,7 @@ import { unwrapAsync } from "../types/fp.js";
 
 export class Activity extends ClientSDK {
   /**
-   * Track activity and engagement events
+   * Track provider activity and engagement events
    *
    * @remarks
    * Track activity and engagement events for a specific delivery provider

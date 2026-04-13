@@ -58,13 +58,13 @@ export class EnvironmentVariables extends ClientSDK {
   }
 
   /**
-   * Retrieve a variable
+   * Get environment variable
    *
    * @remarks
-   * Returns a single environment variable by id. Secret values are masked.
+   * Returns a single environment variable by key. Secret values are masked.
    */
   async retrieve(
-    variableId: string,
+    variableKey: string,
     idempotencyKey?: string | undefined,
     options?: RequestOptions,
   ): Promise<
@@ -72,7 +72,7 @@ export class EnvironmentVariables extends ClientSDK {
   > {
     return unwrapAsync(environmentVariablesRetrieve(
       this,
-      variableId,
+      variableKey,
       idempotencyKey,
       options,
     ));
@@ -87,7 +87,7 @@ export class EnvironmentVariables extends ClientSDK {
   async update(
     updateEnvironmentVariableRequestDto:
       components.UpdateEnvironmentVariableRequestDto,
-    variableId: string,
+    variableKey: string,
     idempotencyKey?: string | undefined,
     options?: RequestOptions,
   ): Promise<
@@ -96,20 +96,20 @@ export class EnvironmentVariables extends ClientSDK {
     return unwrapAsync(environmentVariablesUpdate(
       this,
       updateEnvironmentVariableRequestDto,
-      variableId,
+      variableKey,
       idempotencyKey,
       options,
     ));
   }
 
   /**
-   * Delete a variable
+   * Delete environment variable
    *
    * @remarks
-   * Deletes an environment variable by id.
+   * Deletes an environment variable by key.
    */
   async delete(
-    variableId: string,
+    variableKey: string,
     idempotencyKey?: string | undefined,
     options?: RequestOptions,
   ): Promise<
@@ -118,7 +118,7 @@ export class EnvironmentVariables extends ClientSDK {
   > {
     return unwrapAsync(environmentVariablesDelete(
       this,
-      variableId,
+      variableKey,
       idempotencyKey,
       options,
     ));
@@ -131,7 +131,7 @@ export class EnvironmentVariables extends ClientSDK {
    * Returns the workflows that reference this environment variable via `{{env.KEY}}` in their step controls. **variableId** is required.
    */
   async usage(
-    variableId: string,
+    variableKey: string,
     idempotencyKey?: string | undefined,
     options?: RequestOptions,
   ): Promise<
@@ -139,7 +139,7 @@ export class EnvironmentVariables extends ClientSDK {
   > {
     return unwrapAsync(environmentVariablesUsage(
       this,
-      variableId,
+      variableKey,
       idempotencyKey,
       options,
     ));

@@ -26,14 +26,14 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Delete a variable
+ * Delete environment variable
  *
  * @remarks
- * Deletes an environment variable by id.
+ * Deletes an environment variable by key.
  */
 export function environmentVariablesDelete(
   client: NovuCore,
-  variableId: string,
+  variableKey: string,
   idempotencyKey?: string | undefined,
   options?: RequestOptions,
 ): APIPromise<
@@ -54,7 +54,7 @@ export function environmentVariablesDelete(
 > {
   return new APIPromise($do(
     client,
-    variableId,
+    variableKey,
     idempotencyKey,
     options,
   ));
@@ -62,7 +62,7 @@ export function environmentVariablesDelete(
 
 async function $do(
   client: NovuCore,
-  variableId: string,
+  variableKey: string,
   idempotencyKey?: string | undefined,
   options?: RequestOptions,
 ): Promise<
@@ -87,7 +87,7 @@ async function $do(
   const input:
     operations.EnvironmentVariablesControllerDeleteEnvironmentVariableRequest =
       {
-        variableId: variableId,
+        variableKey: variableKey,
         idempotencyKey: idempotencyKey,
       };
 
@@ -106,12 +106,14 @@ async function $do(
   const body = null;
 
   const pathParams = {
-    variableId: encodeSimple("variableId", payload.variableId, {
+    variableKey: encodeSimple("variableKey", payload.variableKey, {
       explode: false,
       charEncoding: "percent",
     }),
   };
-  const path = pathToFunc("/v1/environment-variables/{variableId}")(pathParams);
+  const path = pathToFunc("/v1/environment-variables/{variableKey}")(
+    pathParams,
+  );
 
   const headers = new Headers(compactMap({
     Accept: "application/json",
