@@ -26,14 +26,14 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Retrieve a variable
+ * Get environment variable
  *
  * @remarks
- * Returns a single environment variable by id. Secret values are masked.
+ * Returns a single environment variable by key. Secret values are masked.
  */
 export function environmentVariablesRetrieve(
   client: NovuCore,
-  variableId: string,
+  variableKey: string,
   idempotencyKey?: string | undefined,
   options?: RequestOptions,
 ): APIPromise<
@@ -53,7 +53,7 @@ export function environmentVariablesRetrieve(
 > {
   return new APIPromise($do(
     client,
-    variableId,
+    variableKey,
     idempotencyKey,
     options,
   ));
@@ -61,7 +61,7 @@ export function environmentVariablesRetrieve(
 
 async function $do(
   client: NovuCore,
-  variableId: string,
+  variableKey: string,
   idempotencyKey?: string | undefined,
   options?: RequestOptions,
 ): Promise<
@@ -84,7 +84,7 @@ async function $do(
 > {
   const input:
     operations.EnvironmentVariablesControllerGetEnvironmentVariableRequest = {
-      variableId: variableId,
+      variableKey: variableKey,
       idempotencyKey: idempotencyKey,
     };
 
@@ -103,12 +103,14 @@ async function $do(
   const body = null;
 
   const pathParams = {
-    variableId: encodeSimple("variableId", payload.variableId, {
+    variableKey: encodeSimple("variableKey", payload.variableKey, {
       explode: false,
       charEncoding: "percent",
     }),
   };
-  const path = pathToFunc("/v1/environment-variables/{variableId}")(pathParams);
+  const path = pathToFunc("/v1/environment-variables/{variableKey}")(
+    pathParams,
+  );
 
   const headers = new Headers(compactMap({
     Accept: "application/json",
