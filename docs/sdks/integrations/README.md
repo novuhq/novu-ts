@@ -578,6 +578,11 @@ async function run() {
       "users:read.email",
       "incoming-webhook",
     ],
+    userScope: [
+      "identity.basic",
+    ],
+    mode: "link_user",
+    connectionMode: "shared",
   });
 
   console.log(result);
@@ -617,6 +622,11 @@ async function run() {
       "users:read.email",
       "incoming-webhook",
     ],
+    userScope: [
+      "identity.basic",
+    ],
+    mode: "link_user",
+    connectionMode: "shared",
   });
   if (res.ok) {
     const { value: result } = res;

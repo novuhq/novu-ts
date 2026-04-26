@@ -12,6 +12,7 @@ let value: ChannelConnectionsControllerCreateChannelConnectionRequest = {
     context: {
       "key": "org-acme",
     },
+    connectionMode: "shared",
     integrationIdentifier: "slack-prod",
     workspace: {
       id: "T123456",
