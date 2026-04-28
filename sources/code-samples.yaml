@@ -14,7 +14,7 @@ actions:
       "x-codeSamples":
         - "lang": "typescript"
           "label": "TypeScript"
-          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.channelConnections.create({\n    identifier: \"slack-prod-user123-abc4\",\n    subscriberId: \"subscriber-123\",\n    context: {\n      \"key\": \"org-acme\",\n    },\n    integrationIdentifier: \"slack-prod\",\n    workspace: {\n      id: \"T123456\",\n      name: \"Acme HQ\",\n    },\n    auth: {\n      accessToken: \"Workspace access token\",\n    },\n  });\n\n  console.log(result);\n}\n\nrun();"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.channelConnections.create({\n    identifier: \"slack-prod-user123-abc4\",\n    subscriberId: \"subscriber-123\",\n    context: {\n      \"key\": \"org-acme\",\n    },\n    connectionMode: \"shared\",\n    integrationIdentifier: \"slack-prod\",\n    workspace: {\n      id: \"T123456\",\n      name: \"Acme HQ\",\n    },\n    auth: {\n      accessToken: \"Workspace access token\",\n    },\n  });\n\n  console.log(result);\n}\n\nrun();"
   - target: $["paths"]["/v1/channel-connections/{identifier}"]["delete"]
     update:
       "x-codeSamples":
@@ -63,6 +63,96 @@ actions:
         - "lang": "typescript"
           "label": "TypeScript"
           "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.channelEndpoints.update({\n    endpoint: {\n      userId: \"U123456789\",\n    },\n  }, \"<value>\");\n\n  console.log(result);\n}\n\nrun();"
+  - target: $["paths"]["/v1/domains"]["get"]
+    update:
+      "x-codeSamples":
+        - "lang": "typescript"
+          "label": "TypeScript"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.domains.list({\n    limit: 10,\n  });\n\n  console.log(result);\n}\n\nrun();"
+  - target: $["paths"]["/v1/domains"]["post"]
+    update:
+      "x-codeSamples":
+        - "lang": "typescript"
+          "label": "TypeScript"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.domains.create({\n    name: \"<value>\",\n  });\n\n  console.log(result);\n}\n\nrun();"
+  - target: $["paths"]["/v1/domains/{domain}"]["delete"]
+    update:
+      "x-codeSamples":
+        - "lang": "typescript"
+          "label": "TypeScript"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.domains.delete(\"complicated-finer.org\");\n\n  console.log(result);\n}\n\nrun();"
+  - target: $["paths"]["/v1/domains/{domain}"]["get"]
+    update:
+      "x-codeSamples":
+        - "lang": "typescript"
+          "label": "TypeScript"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.domains.retrieve(\"foolish-requirement.org\");\n\n  console.log(result);\n}\n\nrun();"
+  - target: $["paths"]["/v1/domains/{domain}"]["patch"]
+    update:
+      "x-codeSamples":
+        - "lang": "typescript"
+          "label": "TypeScript"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.domains.update({}, \"ordinary-eternity.org\");\n\n  console.log(result);\n}\n\nrun();"
+  - target: $["paths"]["/v1/domains/{domain}/auto-configure"]["get"]
+    update:
+      "x-codeSamples":
+        - "lang": "typescript"
+          "label": "TypeScript"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.domains.autoConfigure.retrieve(\"hidden-subsidy.info\");\n\n  console.log(result);\n}\n\nrun();"
+  - target: $["paths"]["/v1/domains/{domain}/auto-configure/start"]["post"]
+    update:
+      "x-codeSamples":
+        - "lang": "typescript"
+          "label": "TypeScript"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.domains.autoConfigure.start({}, \"criminal-other.name\");\n\n  console.log(result);\n}\n\nrun();"
+  - target: $["paths"]["/v1/domains/{domain}/diagnose"]["post"]
+    update:
+      "x-codeSamples":
+        - "lang": "typescript"
+          "label": "TypeScript"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.domains.diagnose(\"alive-publication.biz\");\n\n  console.log(result);\n}\n\nrun();"
+  - target: $["paths"]["/v1/domains/{domain}/routes"]["get"]
+    update:
+      "x-codeSamples":
+        - "lang": "typescript"
+          "label": "TypeScript"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.domains.routes.list({\n    domain: \"fearless-fishery.com\",\n    limit: 10,\n  });\n\n  console.log(result);\n}\n\nrun();"
+  - target: $["paths"]["/v1/domains/{domain}/routes"]["post"]
+    update:
+      "x-codeSamples":
+        - "lang": "typescript"
+          "label": "TypeScript"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.domains.routes.create({\n    address: \"6581 Birch Road\",\n    type: \"webhook\",\n  }, \"radiant-solvency.net\");\n\n  console.log(result);\n}\n\nrun();"
+  - target: $["paths"]["/v1/domains/{domain}/routes/{address}"]["delete"]
+    update:
+      "x-codeSamples":
+        - "lang": "typescript"
+          "label": "TypeScript"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.domains.routes.delete(\"corrupt-avalanche.biz\", \"753 W 4th Avenue\");\n\n  console.log(result);\n}\n\nrun();"
+  - target: $["paths"]["/v1/domains/{domain}/routes/{address}"]["get"]
+    update:
+      "x-codeSamples":
+        - "lang": "typescript"
+          "label": "TypeScript"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.domains.routes.retrieve(\"adolescent-petal.net\", \"42531 Green Lane\");\n\n  console.log(result);\n}\n\nrun();"
+  - target: $["paths"]["/v1/domains/{domain}/routes/{address}"]["patch"]
+    update:
+      "x-codeSamples":
+        - "lang": "typescript"
+          "label": "TypeScript"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.domains.routes.update({}, \"cavernous-cycle.com\", \"70213 Gerlach Rue\");\n\n  console.log(result);\n}\n\nrun();"
+  - target: $["paths"]["/v1/domains/{domain}/routes/{address}/test"]["post"]
+    update:
+      "x-codeSamples":
+        - "lang": "typescript"
+          "label": "TypeScript"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.domains.routes.test({\n    from: {\n      address: \"58851 Konopelski Overpass\",\n    },\n    subject: \"<value>\",\n  }, \"exalted-bonfire.com\", \"90499 Rowan Close\");\n\n  console.log(result);\n}\n\nrun();"
+  - target: $["paths"]["/v1/domains/{domain}/verify"]["post"]
+    update:
+      "x-codeSamples":
+        - "lang": "typescript"
+          "label": "TypeScript"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.domains.verify(\"formal-fork.com\");\n\n  console.log(result);\n}\n\nrun();"
   - target: $["paths"]["/v1/environment-variables"]["get"]
     update:
       "x-codeSamples":
@@ -165,12 +255,18 @@ actions:
         - "lang": "typescript"
           "label": "TypeScript"
           "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.integrations.listActive();\n\n  console.log(result);\n}\n\nrun();"
-  - target: $["paths"]["/v1/integrations/chat/oauth"]["post"]
+  - target: $["paths"]["/v1/integrations/channel-connections/oauth"]["post"]
     update:
       "x-codeSamples":
         - "lang": "typescript"
           "label": "TypeScript"
-          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.integrations.generateChatOAuthUrl({\n    subscriberId: \"subscriber-123\",\n    integrationIdentifier: \"<value>\",\n    connectionIdentifier: \"slack-connection-abc123\",\n    context: {\n      \"key\": \"org-acme\",\n    },\n    scope: [\n      \"chat:write\",\n      \"chat:write.public\",\n      \"channels:read\",\n      \"groups:read\",\n      \"users:read\",\n      \"users:read.email\",\n      \"incoming-webhook\",\n    ],\n  });\n\n  console.log(result);\n}\n\nrun();"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.integrations.generateConnectOAuthUrl({\n    subscriberId: \"subscriber-123\",\n    integrationIdentifier: \"<value>\",\n    connectionIdentifier: \"slack-connection-abc123\",\n    context: {\n      \"key\": \"org-acme\",\n    },\n    scope: [\n      \"chat:write\",\n      \"chat:write.public\",\n      \"channels:read\",\n    ],\n    connectionMode: \"shared\",\n    autoLinkUser: true,\n  });\n\n  console.log(result);\n}\n\nrun();"
+  - target: $["paths"]["/v1/integrations/channel-endpoints/oauth"]["post"]
+    update:
+      "x-codeSamples":
+        - "lang": "typescript"
+          "label": "TypeScript"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.integrations.generateLinkUserOAuthUrl({\n    subscriberId: \"subscriber-123\",\n    integrationIdentifier: \"<value>\",\n    connectionIdentifier: \"slack-connection-abc123\",\n    context: {\n      \"key\": \"org-acme\",\n    },\n    userScope: [\n      \"identity.basic\",\n    ],\n  });\n\n  console.log(result);\n}\n\nrun();"
   - target: $["paths"]["/v1/integrations/{integrationId}"]["delete"]
     update:
       "x-codeSamples":
