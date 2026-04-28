@@ -22,6 +22,12 @@ let value: IntegrationsControllerGetChatOAuthUrlRequest = {
       "users:read.email",
       "incoming-webhook",
     ],
+    userScope: [
+      "identity.basic",
+    ],
+    mode: "link_user",
+    connectionMode: "shared",
+    autoLinkUser: true,
   },
 };
 ```

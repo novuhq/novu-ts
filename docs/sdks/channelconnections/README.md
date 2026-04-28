@@ -124,6 +124,7 @@ async function run() {
     context: {
       "key": "org-acme",
     },
+    connectionMode: "shared",
     integrationIdentifier: "slack-prod",
     workspace: {
       id: "T123456",
@@ -161,6 +162,7 @@ async function run() {
     context: {
       "key": "org-acme",
     },
+    connectionMode: "shared",
     integrationIdentifier: "slack-prod",
     workspace: {
       id: "T123456",

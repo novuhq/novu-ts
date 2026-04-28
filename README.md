@@ -295,6 +295,30 @@ run();
 * [retrieve](docs/sdks/contexts/README.md#retrieve) - Retrieve a context
 * [delete](docs/sdks/contexts/README.md#delete) - Delete a context
 
+### [Domains](docs/sdks/domains/README.md)
+
+* [list](docs/sdks/domains/README.md#list) - List domains for an environment
+* [create](docs/sdks/domains/README.md#create) - Create a domain
+* [retrieve](docs/sdks/domains/README.md#retrieve) - Retrieve a domain by name
+* [update](docs/sdks/domains/README.md#update) - Update a domain
+* [delete](docs/sdks/domains/README.md#delete) - Delete a domain
+* [diagnose](docs/sdks/domains/README.md#diagnose) - Diagnose inbound DNS for a domain
+* [verify](docs/sdks/domains/README.md#verify) - Verify a domain
+
+#### [Domains.AutoConfigure](docs/sdks/autoconfigure/README.md)
+
+* [retrieve](docs/sdks/autoconfigure/README.md#retrieve) - Retrieve auto-configuration availability
+* [start](docs/sdks/autoconfigure/README.md#start) - Start DNS auto-configuration
+
+#### [Domains.Routes](docs/sdks/routes/README.md)
+
+* [list](docs/sdks/routes/README.md#list) - List routes for a domain
+* [create](docs/sdks/routes/README.md#create) - Create a route
+* [retrieve](docs/sdks/routes/README.md#retrieve) - Retrieve a route by address
+* [update](docs/sdks/routes/README.md#update) - Update a route
+* [delete](docs/sdks/routes/README.md#delete) - Delete a route
+* [test](docs/sdks/routes/README.md#test) - Test an inbound route
+
 ### [EnvironmentVariables](docs/sdks/environmentvariables/README.md)
 
 * [list](docs/sdks/environmentvariables/README.md#list) - List all variables
@@ -323,7 +347,9 @@ run();
 * [integrationsControllerAutoConfigureIntegration](docs/sdks/integrations/README.md#integrationscontrollerautoconfigureintegration) - Auto-configure an integration for inbound webhooks
 * [setAsPrimary](docs/sdks/integrations/README.md#setasprimary) - Update integration as primary
 * [listActive](docs/sdks/integrations/README.md#listactive) - List active integrations
-* [generateChatOAuthUrl](docs/sdks/integrations/README.md#generatechatoauthurl) - Generate chat OAuth URL
+* [generateConnectOAuthUrl](docs/sdks/integrations/README.md#generateconnectoauthurl) - Generate OAuth URL for a workspace/tenant connection
+* [generateLinkUserOAuthUrl](docs/sdks/integrations/README.md#generatelinkuseroauthurl) - Generate OAuth URL to link a subscriber user identity
+* [~~generateChatOAuthUrl~~](docs/sdks/integrations/README.md#generatechatoauthurl) - Generate chat OAuth URL :warning: **Deprecated**
 
 ### [Layouts](docs/sdks/layouts/README.md)
 
@@ -491,6 +517,21 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`contextsList`](docs/sdks/contexts/README.md#list) - List all contexts
 - [`contextsRetrieve`](docs/sdks/contexts/README.md#retrieve) - Retrieve a context
 - [`contextsUpdate`](docs/sdks/contexts/README.md#update) - Update a context
+- [`domainsAutoConfigureRetrieve`](docs/sdks/autoconfigure/README.md#retrieve) - Retrieve auto-configuration availability
+- [`domainsAutoConfigureStart`](docs/sdks/autoconfigure/README.md#start) - Start DNS auto-configuration
+- [`domainsCreate`](docs/sdks/domains/README.md#create) - Create a domain
+- [`domainsDelete`](docs/sdks/domains/README.md#delete) - Delete a domain
+- [`domainsDiagnose`](docs/sdks/domains/README.md#diagnose) - Diagnose inbound DNS for a domain
+- [`domainsList`](docs/sdks/domains/README.md#list) - List domains for an environment
+- [`domainsRetrieve`](docs/sdks/domains/README.md#retrieve) - Retrieve a domain by name
+- [`domainsRoutesCreate`](docs/sdks/routes/README.md#create) - Create a route
+- [`domainsRoutesDelete`](docs/sdks/routes/README.md#delete) - Delete a route
+- [`domainsRoutesList`](docs/sdks/routes/README.md#list) - List routes for a domain
+- [`domainsRoutesRetrieve`](docs/sdks/routes/README.md#retrieve) - Retrieve a route by address
+- [`domainsRoutesTest`](docs/sdks/routes/README.md#test) - Test an inbound route
+- [`domainsRoutesUpdate`](docs/sdks/routes/README.md#update) - Update a route
+- [`domainsUpdate`](docs/sdks/domains/README.md#update) - Update a domain
+- [`domainsVerify`](docs/sdks/domains/README.md#verify) - Verify a domain
 - [`environmentsCreate`](docs/sdks/environments/README.md#create) - Create an environment
 - [`environmentsDelete`](docs/sdks/environments/README.md#delete) - Delete an environment
 - [`environmentsDiff`](docs/sdks/environments/README.md#diff) - Compare resources between environments
@@ -506,7 +547,8 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`environmentVariablesUsage`](docs/sdks/environmentvariables/README.md#usage) - Retrieve a variable usage
 - [`integrationsCreate`](docs/sdks/integrations/README.md#create) - Create an integration
 - [`integrationsDelete`](docs/sdks/integrations/README.md#delete) - Delete an integration
-- [`integrationsGenerateChatOAuthUrl`](docs/sdks/integrations/README.md#generatechatoauthurl) - Generate chat OAuth URL
+- [`integrationsGenerateConnectOAuthUrl`](docs/sdks/integrations/README.md#generateconnectoauthurl) - Generate OAuth URL for a workspace/tenant connection
+- [`integrationsGenerateLinkUserOAuthUrl`](docs/sdks/integrations/README.md#generatelinkuseroauthurl) - Generate OAuth URL to link a subscriber user identity
 - [`integrationsIntegrationsControllerAutoConfigureIntegration`](docs/sdks/integrations/README.md#integrationscontrollerautoconfigureintegration) - Auto-configure an integration for inbound webhooks
 - [`integrationsList`](docs/sdks/integrations/README.md#list) - List all integrations
 - [`integrationsListActive`](docs/sdks/integrations/README.md#listactive) - List active integrations
@@ -592,6 +634,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`workflowsStepsRetrieve`](docs/sdks/steps/README.md#retrieve) - Retrieve workflow step
 - [`workflowsSync`](docs/sdks/workflows/README.md#sync) - Sync a workflow
 - [`workflowsUpdate`](docs/sdks/workflows/README.md#update) - Update a workflow
+- ~~[`integrationsGenerateChatOAuthUrl`](docs/sdks/integrations/README.md#generatechatoauthurl)~~ - Generate chat OAuth URL :warning: **Deprecated**
 
 </details>
 <!-- End Standalone functions [standalone-funcs] -->
@@ -681,9 +724,9 @@ run();
 
 
 **Inherit from [`NovuError`](./src/models/errors/novuerror.ts)**:
-* [`PayloadValidationExceptionDto`](./src/models/errors/payloadvalidationexceptiondto.ts): Status code `400`. Applicable to 3 of 118 methods.*
-* [`SubscriberResponseDto`](./src/models/errors/subscriberresponsedto.ts): Created. Status code `409`. Applicable to 1 of 118 methods.*
-* [`TopicResponseDto`](./src/models/errors/topicresponsedto.ts): OK. Status code `409`. Applicable to 1 of 118 methods.*
+* [`PayloadValidationExceptionDto`](./src/models/errors/payloadvalidationexceptiondto.ts): Status code `400`. Applicable to 3 of 135 methods.*
+* [`SubscriberResponseDto`](./src/models/errors/subscriberresponsedto.ts): Created. Status code `409`. Applicable to 1 of 135 methods.*
+* [`TopicResponseDto`](./src/models/errors/topicresponsedto.ts): OK. Status code `409`. Applicable to 1 of 135 methods.*
 * [`ResponseValidationError`](./src/models/errors/responsevalidationerror.ts): Type mismatch between the data returned from the server and the structure expected by the SDK. See `error.rawValue` for the raw value and `error.pretty()` for a nicely formatted multi-line string.
 
 </details>
