@@ -66336,7 +66336,8 @@
           },
           "payload": {
             "type": "object",
-            "description": "The outbound payload (dry-run only)."
+            "description": "The outbound payload (dry-run only).",
+            "additionalProperties": true
           },
           "webhook": {
             "$ref": "#/components/schemas/TestDomainRouteWebhookResultDto"
