@@ -1,25 +1,25 @@
 lockVersion: 2.0.0
 id: 6bff3a53-3f0b-40b4-942f-ff70dc583ae5
 management:
-  docChecksum: 41094073e8157ab52a7b0568c44a9721
+  docChecksum: d043882d44b117e6c970ccd22417aa71
   docVersion: 3.15.0
-  speakeasyVersion: 1.761.9
-  generationVersion: 2.881.4
-  releaseVersion: 3.15.1-rc.1
-  configChecksum: 917a9b107acd91cc3e895fc712b3a825
+  speakeasyVersion: 1.761.11
+  generationVersion: 2.881.17
+  releaseVersion: 3.15.1-rc.2
+  configChecksum: 3ae45caf7388d44396ed44c21ade997d
   repoURL: https://github.com/novuhq/novu-ts.git
   installationURL: https://github.com/novuhq/novu-ts
   published: true
 persistentEdits:
-  generation_id: 4eab43bd-dc42-4cb8-9cd3-0e669beabfe3
-  pristine_commit_hash: 54827a98a8ac349d3bfc748537ddfdf9c1c1d9e7
-  pristine_tree_hash: 167165f3deb1929b3923115975108f53ba8ac1d0
+  generation_id: 51e74bc4-0ee6-41b5-a38e-eea4a9e1bdda
+  pristine_commit_hash: 898f2f5129f8526d747b3522da75de0bc61973fc
+  pristine_tree_hash: d455d56a4c0ffa7574b6c5de68a3d9d9d47ff976
 features:
   typescript:
     additionalDependencies: 0.1.0
     additionalProperties: 0.1.3
     constsAndDefaults: 0.1.14
-    core: 3.26.49
+    core: 3.26.50
     defaultEnabledRetries: 0.1.0
     deprecations: 2.81.1
     enumUnions: 0.1.0
@@ -50,8 +50,8 @@ trackedFiles:
     pristine_git_object: 670ac0a62d7e568c9d44a14f5deafb8442a255d8
   FUNCTIONS.md:
     id: 21b9df02aaeb
-    last_write_checksum: sha1:daa60374ee435baf93a381af0a9ab72e39f230d7
-    pristine_git_object: 78e81709aac76fa9ddeaeb39be0c824163f68e5c
+    last_write_checksum: sha1:1ab8e16272527bc9d630fccb23894ef9ace691d5
+    pristine_git_object: 2ba30207e28e8171eed91d866ee2e9860862205a
   RUNTIMES.md:
     id: 620c490847b6
     last_write_checksum: sha1:e45b854f02c357cbcfdb8c3663000e8339e16505
@@ -78,12 +78,8 @@ trackedFiles:
     pristine_git_object: f1e5097585fc9f464d94b83fbad37bdeadf4eb0e
   docs/models/components/activitynotificationjobresponsedto.md:
     id: 111a68b8adae
-    last_write_checksum: sha1:1e6d73dc0de692fb6a6f6c341bfa9023195b687d
-    pristine_git_object: 5fc222890dd18d04fbd1f508214f5ac09180afe7
-  docs/models/components/activitynotificationjobresponsedtopayload.md:
-    id: 02a7924c6612
-    last_write_checksum: sha1:f2c418e68c319b2aa16156514c561d44b66d6f4c
-    pristine_git_object: 08023d1e0737d77b8ee672d99f28143b4b9b7694
+    last_write_checksum: sha1:fa7fb2417a11f03594dcf2fcc27f4b6330d7a8a2
+    pristine_git_object: 5bc81c61c30a97a2b5543d840b193dc44e0a8f4d
   docs/models/components/activitynotificationjobresponsedtotype.md:
     id: b414948c9754
     last_write_checksum: sha1:188bf98dfe5d17f1262377e2513abed72fd89d7c
@@ -1490,8 +1486,8 @@ trackedFiles:
     pristine_git_object: 2665a0f7888dea914acf24a6bd72962be482a956
   docs/models/components/payload.md:
     id: 47ff98df070b
-    last_write_checksum: sha1:dca1855b8c5cb34a35c711ad6b143f03aa4d7233
-    pristine_git_object: 9e60e05aae02365dc860d5b132f654ab98330c04
+    last_write_checksum: sha1:0af57290e624944e700f80a8e657fec764656a61
+    pristine_git_object: 919c262a74ae2cc5e0655dcdfea67b0baf6f7544
   docs/models/components/payloadvalidationerrordto.md:
     id: 314611620fa9
     last_write_checksum: sha1:557290c2266cfcd0efacac691c4c2c54e5fea44c
@@ -1954,8 +1950,8 @@ trackedFiles:
     pristine_git_object: 201cf4c40d77ce69aaccea93185c9aaa2bcb4905
   docs/models/components/testdomainrouteresponsedto.md:
     id: bcb697aaeda4
-    last_write_checksum: sha1:a5b38f34d67e359962239a4d50f617740db7e3b1
-    pristine_git_object: 8d9ac606e54ccb337154ca48d8e32bfac697d2d2
+    last_write_checksum: sha1:9343302856822ab2f387d0b51d2813d33c472d37
+    pristine_git_object: c440e6b6204453ed1bdb5c7330c3257a115134fe
   docs/models/components/testdomainrouteresponsedtotype.md:
     id: 47688a13eca2
     last_write_checksum: sha1:8ebe407982b97b092e9c44a1dc8263d783a75b5e
@@ -3734,12 +3730,12 @@ trackedFiles:
     pristine_git_object: 3dc64f3c7eb62819d4e24d7c524bcf5fdd516fd8
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:5981ef47967ebfad19ff8caba35612251be5387e
-    pristine_git_object: 1d8da3fd560c487b73948aa3e09dc206fe5a02c2
+    last_write_checksum: sha1:86e68a14c3781e015a511268af265103b13a3131
+    pristine_git_object: 9768e08f1c4fd0d37c402d3ad6449f58342cd050
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:405dae44f98ec46056994a4927f7bd751b34059d
-    pristine_git_object: edb1a9cb2dbc2cd2fcde71e5b64686bff48a4522
+    last_write_checksum: sha1:cdd9b4b5a19bb1d9485c6238788618ff29e12fa9
+    pristine_git_object: 75efa7f3dbfa4e0ce7e5e6dcba750465f6f498d1
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:522fa3c145654876a02a0c62da21be6d84e87471
@@ -4306,8 +4302,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:03cf5f3a0383f6f3805ad43759b4c40a788e0a4f
-    pristine_git_object: 9b7077a851f6ab4dd3a9ed50cd955359f48772a4
+    last_write_checksum: sha1:20f1de7fdb008784e9f616c551e6af5e195aa424
+    pristine_git_object: 28bf917eb034c132c6f847b59d89041805228b35
   src/lib/dlv.ts:
     id: b1988214835a
     last_write_checksum: sha1:1dd3e3fbb4550c4bf31f5ef997faff355d6f3250
@@ -4374,8 +4370,8 @@ trackedFiles:
     pristine_git_object: 6d99ecb8d37cd05e964cd67e57b0e9684e06e4e8
   src/models/components/activitynotificationjobresponsedto.ts:
     id: dd973c9b998f
-    last_write_checksum: sha1:98b63673e001081f5cb37ccc2878b1289b115eff
-    pristine_git_object: 9f3cb8c4540ed337fffb755a3759116b230765bf
+    last_write_checksum: sha1:53c1a3399f0bfbaa217f92f6911d6c40c5e60e83
+    pristine_git_object: 7f2dfd71544d938ae21f25ff302df2e5e239eab1
   src/models/components/activitynotificationresponsedto.ts:
     id: 65bcc7635c0c
     last_write_checksum: sha1:762b269aec23de0e5ef828881ca6a150d733bddf
@@ -5510,8 +5506,8 @@ trackedFiles:
     pristine_git_object: 84c248ee1112dd1b8ae91173a0e4dcb3d54d32e6
   src/models/components/testdomainrouteresponsedto.ts:
     id: 73b17ae325e6
-    last_write_checksum: sha1:01cabf884894dd86566a99b2d3183b728f4446be
-    pristine_git_object: a72ec8b077cb25a016879fc60212df9307d0bf53
+    last_write_checksum: sha1:2388a6be8ca036d14f16fd8a6d9b6a7d9cbb1379
+    pristine_git_object: 3a0b92f59117b1ce4390c6bc57d916dcea40ec66
   src/models/components/testdomainroutewebhookresultdto.ts:
     id: 53afa2f74238
     last_write_checksum: sha1:fc9ca276c0df3447a56b9b0e14f040a27a9fa938
@@ -8516,7 +8512,7 @@ examples:
         "400":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
         "422":
-          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123", "errors": {"fieldName1": {"messages": ["Field is required", "Must be a valid email address"], "value": "invalidEmail"}, "fieldName2": {"messages": ["Must be at least 18 years old"], "value": 17}, "fieldName3": {"messages": ["Must be a boolean value"], "value": true}, "fieldName4": {"messages": ["Must be a valid object"], "value": []}, "fieldName5": {"messages": ["Field is missing"], "value": null}, "fieldName6": {"messages": ["Undefined value"]}}}
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123", "errors": {"fieldName1": {"messages": ["Field is required", "Must be a valid email address"], "value": "invalidEmail"}, "fieldName2": {"messages": ["Must be at least 18 years old"], "value": 17}, "fieldName3": {"messages": ["Must be a boolean value"], "value": true}, "fieldName4": {"messages": ["Must be a valid object"], "value": {}}, "fieldName5": {"messages": ["Field is missing"], "value": null}, "fieldName6": {"messages": ["Undefined value"]}}}
         "500":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
   DomainsController_diagnoseDomain:
@@ -8775,7 +8771,9 @@ generatedTests:
   TopicsController_removeSubscribers: "2024-12-24T08:36:06+01:00"
   TestingController_idempotency: "2024-12-24T08:36:06+01:00"
   TestingController_idempotencyGet: "2024-12-24T08:36:06+01:00"
-releaseNotes: "## Typescript SDK Changes:\n* `novu.channelEndpoints.update()`:  `response.providerId.enum(novuEmailAgent)` **Added** (Breaking ⚠️)\n* `novu.workflows.create()`: \n  *  `request.createWorkflowDto.steps[].union(http_request).controlValues.union(HttpRequestControlDto).body` **Changed** (Breaking ⚠️)\n  *  `response.steps[].union(http_request)` **Changed** (Breaking ⚠️)\n* `novu.notifications.retrieve()`:  `response.jobs[].executionDetails[].providerId.enum(novuEmailAgent)` **Added** (Breaking ⚠️)\n* `novu.notifications.list()`:  `response.data[].jobs[].executionDetails[].providerId.enum(novuEmailAgent)` **Added** (Breaking ⚠️)\n* `novu.channelEndpoints.retrieve()`:  `response.providerId.enum(novuEmailAgent)` **Added** (Breaking ⚠️)\n* `novu.channelEndpoints.create()`:  `response.providerId.enum(novuEmailAgent)` **Added** (Breaking ⚠️)\n* `novu.channelEndpoints.list()`: \n  *  `request.providerId` **Changed**\n  *  `response.data[].providerId.enum(novuEmailAgent)` **Added** (Breaking ⚠️)\n* `novu.channelConnections.update()`:  `response.providerId.enum(novuEmailAgent)` **Added** (Breaking ⚠️)\n* `novu.channelConnections.retrieve()`:  `response.providerId.enum(novuEmailAgent)` **Added** (Breaking ⚠️)\n* `novu.channelConnections.create()`: \n  *  `request.createChannelConnectionRequestDto.connectionMode` **Added**\n  *  `response.providerId.enum(novuEmailAgent)` **Added** (Breaking ⚠️)\n* `novu.channelConnections.list()`: \n  *  `request.providerId` **Changed**\n  *  `response.data[].providerId.enum(novuEmailAgent)` **Added** (Breaking ⚠️)\n* `novu.workflows.sync()`:  `response.steps[].union(http_request)` **Changed** (Breaking ⚠️)\n* `novu.workflows.get()`:  `response.steps[].union(http_request)` **Changed** (Breaking ⚠️)\n* `novu.workflows.patch()`:  `response.steps[].union(http_request)` **Changed** (Breaking ⚠️)\n* `novu.workflows.update()`: \n  *  `request.updateWorkflowDto.steps[].union(http_request).controlValues.union(HttpRequestControlDto).body` **Changed** (Breaking ⚠️)\n  *  `response.steps[].union(http_request)` **Changed** (Breaking ⚠️)\n* `novu.domains.routes.retrieve()`: **Added**\n* `novu.domains.diagnose()`: **Added**\n* `novu.layouts.duplicate()`: \n  *  `request.duplicateLayoutDto.layoutId` **Added**\n* `novu.integrations.generateConnectOAuthUrl()`: **Added**\n* `novu.domains.routes.test()`: **Added**\n* `novu.domains.create()`: **Added**\n* `novu.domains.routes.delete()`: **Added**\n* `novu.domains.routes.update()`: **Added**\n* `novu.domains.routes.create()`: **Added**\n* `novu.domains.routes.list()`: **Added**\n* `novu.domains.autoConfigure.start()`: **Added**\n* `novu.domains.autoConfigure.retrieve()`: **Added**\n* `novu.domains.verify()`: **Added**\n* `novu.integrations.generateLinkUserOAuthUrl()`: **Added**\n* `novu.domains.delete()`: **Added**\n* `novu.domains.list()`: **Added**\n* `novu.integrations.list()`:  `response.[].credentials` **Changed**\n* `novu.integrations.create()`: \n  *  `request.createIntegrationRequestDto.credentials` **Changed**\n  *  `response.credentials` **Changed**\n* `novu.integrations.update()`: \n  *  `request.updateIntegrationRequestDto.credentials` **Changed**\n  *  `response.credentials` **Changed**\n* `novu.integrations.delete()`:  `response.[].credentials` **Changed**\n* `novu.integrations.setAsPrimary()`:  `response.credentials` **Changed**\n* `novu.integrations.listActive()`:  `response.[].credentials` **Changed**\n* `novu.integrations.generateChatOAuthUrl()`: **Deprecated**\n* `novu.integrations.generateChatOAuthUrl()`:  `request.generateChatOauthUrlRequestDto` **Changed**\n* `novu.domains.update()`: **Added**\n* `novu.domains.retrieve()`: **Added**\n"
+releaseNotes: |
+  ## Typescript SDK Changes:
+  * `novu.domains.routes.test()`:  `response.payload` **Changed** (Breaking ⚠️)
 generatedFiles:
   - .gitattributes
   - .npmignore
