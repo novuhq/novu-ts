@@ -21,8 +21,6 @@ let value: IntegrationsControllerRemoveIntegrationResponse = {
       name: "<value>",
       identifier: "<value>",
       providerId: "<id>",
-      channel: "sms",
-      credentials: {},
       active: false,
       deleted: false,
       primary: false,

@@ -9,7 +9,6 @@ let value: IntegrationsControllerCreateIntegrationResponse = {
   headers: {
     "key": [
       "<value 1>",
-      "<value 2>",
     ],
   },
   result: {
@@ -18,10 +17,8 @@ let value: IntegrationsControllerCreateIntegrationResponse = {
     name: "<value>",
     identifier: "<value>",
     providerId: "<id>",
-    channel: "sms",
-    credentials: {},
-    active: false,
-    deleted: true,
+    active: true,
+    deleted: false,
     primary: true,
   },
 };

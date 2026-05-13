@@ -89,6 +89,7 @@ export const ProvidersIdEnum = {
   WhatsappBusiness: "whatsapp-business",
   ChatWebhook: "chat-webhook",
   NovuSlack: "novu-slack",
+  Anthropic: "anthropic",
 } as const;
 /**
  * Provider ID of the job

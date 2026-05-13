@@ -1,6 +1,6 @@
 # Payload
 
-The outbound payload (dry-run only).
+Optional payload for the job
 
 ## Example Usage
 
