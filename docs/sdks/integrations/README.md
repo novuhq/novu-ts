@@ -107,10 +107,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.integrations.create({
-    providerId: "<id>",
-    channel: "email",
-  });
+  const result = await novu.integrations.create({});
 
   console.log(result);
 }
@@ -133,10 +130,7 @@ const novu = new NovuCore({
 });
 
 async function run() {
-  const res = await integrationsCreate(novu, {
-    providerId: "<id>",
-    channel: "email",
-  });
+  const res = await integrationsCreate(novu, {});
   if (res.ok) {
     const { value: result } = res;
     console.log(result);

@@ -125,6 +125,7 @@ export const GetChannelEndpointResponseDtoProviderId = {
   WhatsappBusiness: "whatsapp-business",
   ChatWebhook: "chat-webhook",
   NovuSlack: "novu-slack",
+  Anthropic: "anthropic",
 } as const;
 /**
  * The provider identifier (e.g., sendgrid, twilio, slack, etc.).
