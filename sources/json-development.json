@@ -33850,6 +33850,9 @@
                   },
                   {
                     "$ref": "#/components/schemas/CreateMsTeamsUserEndpointDto"
+                  },
+                  {
+                    "$ref": "#/components/schemas/CreateTelegramChatEndpointDto"
                   }
                 ],
                 "discriminator": {
@@ -33860,7 +33863,8 @@
                     "webhook": "#/components/schemas/CreateWebhookEndpointDto",
                     "phone": "#/components/schemas/CreatePhoneEndpointDto",
                     "ms_teams_channel": "#/components/schemas/CreateMsTeamsChannelEndpointDto",
-                    "ms_teams_user": "#/components/schemas/CreateMsTeamsUserEndpointDto"
+                    "ms_teams_user": "#/components/schemas/CreateMsTeamsUserEndpointDto",
+                    "telegram_chat": "#/components/schemas/CreateTelegramChatEndpointDto"
                   }
                 }
               }
@@ -63757,6 +63761,7 @@
               "whatsapp-business",
               "chat-webhook",
               "novu-slack",
+              "telegram",
               "fcm",
               "apns",
               "expo",
@@ -64701,7 +64706,10 @@
           "whatsapp-business",
           "chat-webhook",
           "novu-slack",
-          "anthropic"
+          "telegram",
+          "anthropic",
+          "novu-anthropic",
+          "anthropic-aws"
         ]
       },
       "ExecutionDetailsSourceEnum": {
@@ -66626,6 +66634,22 @@
           },
           "fromAddressOverride": {
             "type": "string"
+          },
+          "emailSlugPrefix": {
+            "type": "string",
+            "description": "Agent default shared inbox slug prefix used in `{emailSlugPrefix}-{agentId}@<shared-domain>`. Only meaningful on the NovuAgent email integration."
+          },
+          "externalEnvironmentId": {
+            "type": "string",
+            "description": "Claude Managed Agents: ID of the Anthropic environment tied to this integration. Hydrated by the API at integration provisioning time."
+          },
+          "externalVaultId": {
+            "type": "string",
+            "description": "Claude Managed Agents: ID of the Anthropic vault (`vlt_…`) tied to this integration. Hydrated by the API at integration provisioning time and used to push OAuth-completed MCP credentials to the per-vault credentials API."
+          },
+          "externalWorkspaceId": {
+            "type": "string",
+            "description": "Claude Managed Agents: id of the Anthropic workspace used in console deep links. Defaults to `'default'` (the Default Workspace). Set this when the API key is scoped to a custom workspace (e.g. `wrkspc_…`)."
           }
         }
       },
@@ -67416,6 +67440,7 @@
           "whatsapp-business",
           "chat-webhook",
           "novu-slack",
+          "telegram",
           "fcm",
           "apns",
           "expo",
@@ -76132,7 +76157,10 @@
               "whatsapp-business",
               "chat-webhook",
               "novu-slack",
-              "anthropic"
+              "telegram",
+              "anthropic",
+              "novu-anthropic",
+              "anthropic-aws"
             ],
             "example": "slack"
           },
@@ -76887,6 +76915,100 @@
           "endpoint"
         ]
       },
+      "TelegramChatEndpointDto": {
+        "type": "object",
+        "properties": {
+          "chatId": {
+            "type": "string",
+            "description": "Telegram chat ID",
+            "example": "123456789"
+          }
+        },
+        "required": [
+          "chatId"
+        ]
+      },
+      "CreateTelegramChatEndpointDto": {
+        "type": "object",
+        "properties": {
+          "identifier": {
+            "type": "string",
+            "description": "The unique identifier for the channel endpoint. If not provided, one will be generated automatically.",
+            "example": "slack-channel-user123-abc4"
+          },
+          "subscriberId": {
+            "type": "string",
+            "description": "The subscriber ID to which the channel endpoint is linked",
+            "example": "subscriber-123"
+          },
+          "context": {
+            "type": "object",
+            "additionalProperties": {
+              "oneOf": [
+                {
+                  "type": "string",
+                  "description": "Simple context id",
+                  "example": "org-acme"
+                },
+                {
+                  "type": "object",
+                  "description": "Rich context object with id and optional data",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "example": "org-acme"
+                    },
+                    "data": {
+                      "type": "object",
+                      "description": "Optional additional context data",
+                      "additionalProperties": true,
+                      "example": {
+                        "name": "Acme Corp",
+                        "region": "us-east-1"
+                      }
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ]
+                }
+              ]
+            }
+          },
+          "integrationIdentifier": {
+            "type": "string",
+            "description": "The identifier of the integration to use for this channel endpoint.",
+            "example": "slack-prod"
+          },
+          "connectionIdentifier": {
+            "type": "string",
+            "description": "The identifier of the channel connection to use for this channel endpoint.",
+            "example": "slack-connection-abc123"
+          },
+          "type": {
+            "type": "string",
+            "description": "Type of channel endpoint",
+            "enum": [
+              "telegram_chat"
+            ],
+            "example": "telegram_chat"
+          },
+          "endpoint": {
+            "description": "Telegram chat endpoint data",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TelegramChatEndpointDto"
+              }
+            ]
+          }
+        },
+        "required": [
+          "subscriberId",
+          "integrationIdentifier",
+          "type",
+          "endpoint"
+        ]
+      },
       "GetChannelEndpointResponseDto": {
         "type": "object",
         "properties": {
@@ -76991,7 +77113,10 @@
               "whatsapp-business",
               "chat-webhook",
               "novu-slack",
-              "anthropic"
+              "telegram",
+              "anthropic",
+              "novu-anthropic",
+              "anthropic-aws"
             ],
             "example": "slack"
           },
@@ -77033,7 +77158,8 @@
               "webhook",
               "phone",
               "ms_teams_channel",
-              "ms_teams_user"
+              "ms_teams_user",
+              "telegram_chat"
             ],
             "example": "slack_channel"
           },
@@ -77051,6 +77177,15 @@
               },
               {
                 "$ref": "#/components/schemas/PhoneEndpointDto"
+              },
+              {
+                "$ref": "#/components/schemas/MsTeamsChannelEndpointDto"
+              },
+              {
+                "$ref": "#/components/schemas/MsTeamsUserEndpointDto"
+              },
+              {
+                "$ref": "#/components/schemas/TelegramChatEndpointDto"
               }
             ]
           },
