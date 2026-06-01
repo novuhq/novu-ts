@@ -9,9 +9,9 @@ let value: ChannelEndpointsControllerCreateChannelEndpointRequest = {
   requestBody: {
     subscriberId: "subscriber-123",
     integrationIdentifier: "slack-prod",
-    type: "slack_user",
+    type: "webhook",
     endpoint: {
-      userId: "U123456789",
+      url: "https://example.com/webhook",
     },
   },
 };

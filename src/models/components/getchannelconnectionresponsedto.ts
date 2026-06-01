@@ -109,7 +109,10 @@ export const ProviderId = {
   WhatsappBusiness: "whatsapp-business",
   ChatWebhook: "chat-webhook",
   NovuSlack: "novu-slack",
+  Telegram: "telegram",
   Anthropic: "anthropic",
+  NovuAnthropic: "novu-anthropic",
+  AnthropicAws: "anthropic-aws",
 } as const;
 /**
  * The provider identifier (e.g., sendgrid, twilio, slack, etc.).

@@ -31,7 +31,8 @@ let value: ChannelEndpointsControllerCreateChannelEndpointResponse = {
     ],
     type: "slack_channel",
     endpoint: {
-      url: "https://example.com/webhook",
+      teamId: "19:abc123...@thread.tacv2",
+      channelId: "19:def456...@thread.tacv2",
     },
     createdAt: "1708230094902",
     updatedAt: "1735667248047",

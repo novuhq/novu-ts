@@ -13,5 +13,5 @@ let value: GetChannelEndpointResponseDtoType = "slack_channel";
 ## Values
 
 ```typescript
-"slack_channel" | "slack_user" | "webhook" | "phone" | "ms_teams_channel" | "ms_teams_user"
+"slack_channel" | "slack_user" | "webhook" | "phone" | "ms_teams_channel" | "ms_teams_user" | "telegram_chat"
 ```

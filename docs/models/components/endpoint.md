@@ -37,3 +37,28 @@ const value: components.PhoneEndpointDto = {
 };
 ```
 
+### `components.MsTeamsChannelEndpointDto`
+
+```typescript
+const value: components.MsTeamsChannelEndpointDto = {
+  teamId: "19:abc123...@thread.tacv2",
+  channelId: "19:def456...@thread.tacv2",
+};
+```
+
+### `components.MsTeamsUserEndpointDto`
+
+```typescript
+const value: components.MsTeamsUserEndpointDto = {
+  userId: "29:1234567890abcdef",
+};
+```
+
+### `components.TelegramChatEndpointDto`
+
+```typescript
+const value: components.TelegramChatEndpointDto = {
+  chatId: "123456789",
+};
+```
+

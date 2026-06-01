@@ -114,3 +114,21 @@ const value: components.CreateMsTeamsUserEndpointDto = {
 };
 ```
 
+### `components.CreateTelegramChatEndpointDto`
+
+```typescript
+const value: components.CreateTelegramChatEndpointDto = {
+  identifier: "slack-channel-user123-abc4",
+  subscriberId: "subscriber-123",
+  context: {
+    "key": "org-acme",
+  },
+  integrationIdentifier: "slack-prod",
+  connectionIdentifier: "slack-connection-abc123",
+  type: "telegram_chat",
+  endpoint: {
+    chatId: "123456789",
+  },
+};
+```
+
