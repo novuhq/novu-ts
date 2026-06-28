@@ -345,36 +345,6 @@ actions:
         - "lang": "typescript"
           "label": "TypeScript"
           "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.subscribers.credentials.delete(\"<id>\", \"<id>\");\n\n  console.log(result);\n}\n\nrun();"
-  - target: $["paths"]["/v1/subscribers/{subscriberId}/messages/mark-all"]["post"]
-    update:
-      "x-codeSamples":
-        - "lang": "typescript"
-          "label": "TypeScript"
-          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.subscribers.messages.markAll({\n    markAs: \"read\",\n  }, \"<id>\");\n\n  console.log(result);\n}\n\nrun();"
-  - target: $["paths"]["/v1/subscribers/{subscriberId}/messages/mark-as"]["post"]
-    update:
-      "x-codeSamples":
-        - "lang": "typescript"
-          "label": "TypeScript"
-          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.subscribers.messages.markAllAs({\n    messageId: [],\n    markAs: \"seen\",\n  }, \"<id>\");\n\n  console.log(result);\n}\n\nrun();"
-  - target: $["paths"]["/v1/subscribers/{subscriberId}/messages/{messageId}/actions/{type}"]["post"]
-    update:
-      "x-codeSamples":
-        - "lang": "typescript"
-          "label": "TypeScript"
-          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.subscribers.messages.updateAsSeen({\n    messageId: \"<id>\",\n    type: \"<value>\",\n    subscriberId: \"<id>\",\n    markMessageActionAsSeenDto: {\n      status: \"pending\",\n    },\n  });\n\n  console.log(result);\n}\n\nrun();"
-  - target: $["paths"]["/v1/subscribers/{subscriberId}/notifications/feed"]["get"]
-    update:
-      "x-codeSamples":
-        - "lang": "typescript"
-          "label": "TypeScript"
-          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.subscribers.notifications.feed({\n    subscriberId: \"<id>\",\n    page: 0,\n    payload: \"btoa(JSON.stringify({ foo: 123 })) results in base64 encoded string like eyJmb28iOjEyM30=\",\n  });\n\n  console.log(result);\n}\n\nrun();"
-  - target: $["paths"]["/v1/subscribers/{subscriberId}/notifications/unseen"]["get"]
-    update:
-      "x-codeSamples":
-        - "lang": "typescript"
-          "label": "TypeScript"
-          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.subscribers.notifications.unseenCount({\n    subscriberId: \"<id>\",\n  });\n\n  console.log(result);\n}\n\nrun();"
   - target: $["paths"]["/v1/subscribers/{subscriberId}/online-status"]["patch"]
     update:
       "x-codeSamples":

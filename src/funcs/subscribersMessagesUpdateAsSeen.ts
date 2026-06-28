@@ -30,8 +30,10 @@ import { Result } from "../types/fp.js";
  * Update notification action status
  *
  * @remarks
- * Update in-app (inbox) notification's action status by its unique key identifier **messageId** and type field **type**.
+ * This API is deprecated, use v2 API instead. Update in-app notification's action status by its unique key identifier **messageId** and type field **type**.
  *       **type** field can be **primary** or **secondary**
+ *
+ * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
  */
 export function subscribersMessagesUpdateAsSeen(
   client: NovuCore,

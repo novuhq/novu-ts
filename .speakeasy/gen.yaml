@@ -29,7 +29,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 typescript:
-  version: 3.17.0
+  version: 3.18.0
   acceptHeaderEnum: true
   additionalDependencies:
     dependencies: {}
@@ -39,6 +39,7 @@ typescript:
     description: The <Inbox /> infrastructure for modern products
   additionalScripts: {}
   alwaysIncludeInboundAndOutbound: false
+  apiPromiseHelpers: false
   author: Novu
   baseErrorName: NovuError
   clientServerStatusCodesAsErrors: true
@@ -48,6 +49,7 @@ typescript:
   enableMCPServer: false
   enableReactQuery: false
   enumFormat: union
+  eventStreamClassName: EventStream
   exportZodModelNamespace: false
   fixEnumNameSanitization: false
   flatAdditionalProperties: false
@@ -80,6 +82,7 @@ typescript:
   preApplyUnionDiscriminators: true
   preserveModelFieldNames: false
   privateIdentifierPrefix: '#'
+  requestExtras: false
   responseFormat: flat
   sseFlatResponse: false
   templateVersion: v2
