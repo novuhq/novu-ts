@@ -30,7 +30,9 @@ import { Result } from "../types/fp.js";
  * Retrieve subscriber notifications
  *
  * @remarks
- * Retrieve subscriber in-app (inbox) notifications by its unique key identifier **subscriberId**.
+ * This API is deprecated, use v2 API instead. Retrieve subscriber in-app notifications by its unique key identifier **subscriberId**.
+ *
+ * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
  */
 export function subscribersNotificationsFeed(
   client: NovuCore,

@@ -31,7 +31,7 @@ import { Result } from "../types/fp.js";
  *
  * @remarks
  * Delete an integration by its unique key identifier **integrationId**.
- *     This action is irreversible.
+ *     This action is irreversible. Only integration metadata is returned, credentials field is returned as empty object.
  */
 export function integrationsDelete(
   client: NovuCore,

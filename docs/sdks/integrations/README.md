@@ -13,14 +13,17 @@ With the help of the Integration Store, you can easily integrate your favorite d
 * [delete](#delete) - Delete an integration
 * [integrationsControllerAutoConfigureIntegration](#integrationscontrollerautoconfigureintegration) - Auto-configure an integration for inbound webhooks
 * [setAsPrimary](#setasprimary) - Update integration as primary
+* [createMobileLink](#createmobilelink) - Issue a short-lived mobile setup link for an existing integration
+* [integrationsControllerConfigureIntegrationWebhook](#integrationscontrollerconfigureintegrationwebhook) - Configure a chat integration webhook
 * [listActive](#listactive) - List active integrations
 * [generateConnectOAuthUrl](#generateconnectoauthurl) - Generate OAuth URL for a workspace/tenant connection
+* [linkChannelEndpoint](#linkchannelendpoint) - Issue a URL to link a subscriber chat identity
 * [generateLinkUserOAuthUrl](#generatelinkuseroauthurl) - Generate OAuth URL to link a subscriber user identity
 * [~~generateChatOAuthUrl~~](#generatechatoauthurl) - Generate chat OAuth URL :warning: **Deprecated**
 
 ## list
 
-List all the channels integrations created in the organization
+List all the channels integrations created in the organization. Only integration metadata is returned, credentials field is returned as an empty object.
 
 ### Example Usage
 
@@ -94,7 +97,7 @@ run();
 ## create
 
 Create an integration for the current environment the user is based on the API key provided. 
-    Each provider supports different credentials, check the provider documentation for more details.
+    Each provider supports different credentials, check the provider documentation for more details. Only integration metadata is returned, credentials field is returned as an empty object.
 
 ### Example Usage
 
@@ -169,7 +172,7 @@ run();
 ## update
 
 Update an integration by its unique key identifier **integrationId**. 
-    Each provider supports different credentials, check the provider documentation for more details.
+    Each provider supports different credentials, check the provider documentation for more details. Only integration metadata is returned, credentials field is returned as an empty object.
 
 ### Example Usage
 
@@ -245,7 +248,7 @@ run();
 ## delete
 
 Delete an integration by its unique key identifier **integrationId**. 
-    This action is irreversible.
+    This action is irreversible. Only integration metadata is returned, credentials field is returned as empty object.
 
 ### Example Usage
 
@@ -320,7 +323,7 @@ run();
 ## integrationsControllerAutoConfigureIntegration
 
 Auto-configure an integration by its unique key identifier **integrationId** for inbound webhook support. 
-    This will automatically generate required webhook signing keys and configure webhook endpoints.
+    This will automatically generate required webhook signing keys and configure webhook endpoints. Only integration metadata is returned, credentials field is returned as an empty object.
 
 ### Example Usage
 
@@ -396,7 +399,8 @@ run();
 
 Update an integration as **primary** by its unique key identifier **integrationId**. 
     This API will set the integration as primary for that channel in the current environment. 
-    Primary integration is used to deliver notification for sms and email channels in the workflow.
+    Primary integration is used to deliver notification for sms and email channels in the workflow. 
+    Only integration metadata is returned, credentials field is returned as an empty object.
 
 ### Example Usage
 
@@ -468,9 +472,162 @@ run();
 | errors.ErrorDto                   | 500                               | application/json                  |
 | errors.SDKError                   | 4XX, 5XX                          | \*/\*                             |
 
+## createMobileLink
+
+Returns an opaque, single-use setup token plus a mobile URL for configuring an existing chat integration. Telegram is the only supported provider initially.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="IntegrationsController_createIntegrationMobileLink" method="post" path="/v1/integrations/{integrationIdentifier}/mobile-link" -->
+```typescript
+import { Novu } from "@novu/api";
+
+const novu = new Novu({
+  secretKey: "YOUR_SECRET_KEY_HERE",
+});
+
+async function run() {
+  const result = await novu.integrations.createMobileLink({
+    subscriberId: "subscriber-123",
+  }, "<value>");
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { NovuCore } from "@novu/api/core.js";
+import { integrationsCreateMobileLink } from "@novu/api/funcs/integrationsCreateMobileLink.js";
+
+// Use `NovuCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const novu = new NovuCore({
+  secretKey: "YOUR_SECRET_KEY_HERE",
+});
+
+async function run() {
+  const res = await integrationsCreateMobileLink(novu, {
+    subscriberId: "subscriber-123",
+  }, "<value>");
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("integrationsCreateMobileLink failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `integrationIdentifier`                                                                                                                                                        | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
+| `issueIntegrationMobileLinkRequestDto`                                                                                                                                         | [components.IssueIntegrationMobileLinkRequestDto](../../models/components/issueintegrationmobilelinkrequestdto.md)                                                             | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
+| `idempotencyKey`                                                                                                                                                               | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | A header for idempotency purposes                                                                                                                                              |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.IntegrationsControllerCreateIntegrationMobileLinkResponse](../../models/operations/integrationscontrollercreateintegrationmobilelinkresponse.md)\>**
+
+### Errors
+
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| errors.ErrorDto                        | 414                                    | application/json                       |
+| errors.ErrorDto                        | 400, 401, 403, 404, 405, 409, 413, 415 | application/json                       |
+| errors.ValidationErrorDto              | 422                                    | application/json                       |
+| errors.ErrorDto                        | 500                                    | application/json                       |
+| errors.SDKError                        | 4XX, 5XX                               | \*/\*                                  |
+
+## integrationsControllerConfigureIntegrationWebhook
+
+Registers the Novu webhook URL with the chat provider for the specified integration. Telegram is the only supported provider initially.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="IntegrationsController_configureIntegrationWebhook" method="post" path="/v1/integrations/{integrationIdentifier}/webhook/configure" -->
+```typescript
+import { Novu } from "@novu/api";
+
+const novu = new Novu({
+  secretKey: "YOUR_SECRET_KEY_HERE",
+});
+
+async function run() {
+  const result = await novu.integrations.integrationsControllerConfigureIntegrationWebhook("<value>");
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { NovuCore } from "@novu/api/core.js";
+import { integrationsIntegrationsControllerConfigureIntegrationWebhook } from "@novu/api/funcs/integrationsIntegrationsControllerConfigureIntegrationWebhook.js";
+
+// Use `NovuCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const novu = new NovuCore({
+  secretKey: "YOUR_SECRET_KEY_HERE",
+});
+
+async function run() {
+  const res = await integrationsIntegrationsControllerConfigureIntegrationWebhook(novu, "<value>");
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("integrationsIntegrationsControllerConfigureIntegrationWebhook failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `integrationIdentifier`                                                                                                                                                        | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
+| `idempotencyKey`                                                                                                                                                               | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | A header for idempotency purposes                                                                                                                                              |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.IntegrationsControllerConfigureIntegrationWebhookResponse](../../models/operations/integrationscontrollerconfigureintegrationwebhookresponse.md)\>**
+
+### Errors
+
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| errors.ErrorDto                        | 414                                    | application/json                       |
+| errors.ErrorDto                        | 400, 401, 403, 404, 405, 409, 413, 415 | application/json                       |
+| errors.ValidationErrorDto              | 422                                    | application/json                       |
+| errors.ErrorDto                        | 500                                    | application/json                       |
+| errors.SDKError                        | 4XX, 5XX                               | \*/\*                                  |
+
 ## listActive
 
-List all the active integrations created in the organization
+List all the active integrations created in the organization. Only integration metadata is returned, credentials field is returned as an empty object.
 
 ### Example Usage
 
@@ -633,6 +790,86 @@ run();
 ### Response
 
 **Promise\<[operations.IntegrationsControllerGenerateConnectOAuthUrlResponse](../../models/operations/integrationscontrollergenerateconnectoauthurlresponse.md)\>**
+
+### Errors
+
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| errors.ErrorDto                        | 414                                    | application/json                       |
+| errors.ErrorDto                        | 400, 401, 403, 404, 405, 409, 413, 415 | application/json                       |
+| errors.ValidationErrorDto              | 422                                    | application/json                       |
+| errors.ErrorDto                        | 500                                    | application/json                       |
+| errors.SDKError                        | 4XX, 5XX                               | \*/\*                                  |
+
+## linkChannelEndpoint
+
+Returns a provider-specific URL the subscriber opens to link their chat identity. The integration provider is resolved from integrationIdentifier; Telegram returns a deep link.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="IntegrationsController_linkChannelEndpoint" method="post" path="/v1/integrations/channel-endpoints/link" -->
+```typescript
+import { Novu } from "@novu/api";
+
+const novu = new Novu({
+  secretKey: "YOUR_SECRET_KEY_HERE",
+});
+
+async function run() {
+  const result = await novu.integrations.linkChannelEndpoint({
+    integrationIdentifier: "telegram-bot",
+    subscriberId: "subscriber-123",
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { NovuCore } from "@novu/api/core.js";
+import { integrationsLinkChannelEndpoint } from "@novu/api/funcs/integrationsLinkChannelEndpoint.js";
+
+// Use `NovuCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const novu = new NovuCore({
+  secretKey: "YOUR_SECRET_KEY_HERE",
+});
+
+async function run() {
+  const res = await integrationsLinkChannelEndpoint(novu, {
+    integrationIdentifier: "telegram-bot",
+    subscriberId: "subscriber-123",
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("integrationsLinkChannelEndpoint failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `linkChannelEndpointRequestDto`                                                                                                                                                | [components.LinkChannelEndpointRequestDto](../../models/components/linkchannelendpointrequestdto.md)                                                                           | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
+| `idempotencyKey`                                                                                                                                                               | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | A header for idempotency purposes                                                                                                                                              |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.IntegrationsControllerLinkChannelEndpointResponse](../../models/operations/integrationscontrollerlinkchannelendpointresponse.md)\>**
 
 ### Errors
 

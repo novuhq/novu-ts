@@ -346,8 +346,11 @@ run();
 * [delete](docs/sdks/integrations/README.md#delete) - Delete an integration
 * [integrationsControllerAutoConfigureIntegration](docs/sdks/integrations/README.md#integrationscontrollerautoconfigureintegration) - Auto-configure an integration for inbound webhooks
 * [setAsPrimary](docs/sdks/integrations/README.md#setasprimary) - Update integration as primary
+* [createMobileLink](docs/sdks/integrations/README.md#createmobilelink) - Issue a short-lived mobile setup link for an existing integration
+* [integrationsControllerConfigureIntegrationWebhook](docs/sdks/integrations/README.md#integrationscontrollerconfigureintegrationwebhook) - Configure a chat integration webhook
 * [listActive](docs/sdks/integrations/README.md#listactive) - List active integrations
 * [generateConnectOAuthUrl](docs/sdks/integrations/README.md#generateconnectoauthurl) - Generate OAuth URL for a workspace/tenant connection
+* [linkChannelEndpoint](docs/sdks/integrations/README.md#linkchannelendpoint) - Issue a URL to link a subscriber chat identity
 * [generateLinkUserOAuthUrl](docs/sdks/integrations/README.md#generatelinkuseroauthurl) - Generate OAuth URL to link a subscriber user identity
 * [~~generateChatOAuthUrl~~](docs/sdks/integrations/README.md#generatechatoauthurl) - Generate chat OAuth URL :warning: **Deprecated**
 
@@ -388,11 +391,11 @@ run();
 * [append](docs/sdks/credentials/README.md#append) - Upsert provider credentials
 * [delete](docs/sdks/credentials/README.md#delete) - Delete provider credentials
 
-#### [Subscribers.Messages](docs/sdks/novumessages/README.md)
+#### [~~Subscribers.Messages~~](docs/sdks/novumessages/README.md)
 
-* [updateAsSeen](docs/sdks/novumessages/README.md#updateasseen) - Update notification action status
-* [markAll](docs/sdks/novumessages/README.md#markall) - Update all notifications state
-* [markAllAs](docs/sdks/novumessages/README.md#markallas) - Update notifications state
+* [~~updateAsSeen~~](docs/sdks/novumessages/README.md#updateasseen) - Update notification action status :warning: **Deprecated**
+* [~~markAll~~](docs/sdks/novumessages/README.md#markall) - Update all notifications state :warning: **Deprecated**
+* [~~markAllAs~~](docs/sdks/novumessages/README.md#markallas) - Update notifications state :warning: **Deprecated**
 
 #### [Subscribers.Notifications](docs/sdks/novunotifications/README.md)
 
@@ -412,8 +415,8 @@ run();
 * [markAllAsRead](docs/sdks/novunotifications/README.md#markallasread) - Mark all notifications as read
 * [archiveAllRead](docs/sdks/novunotifications/README.md#archiveallread) - Archive all read notifications
 * [markAsSeen](docs/sdks/novunotifications/README.md#markasseen) - Mark notifications as seen
-* [feed](docs/sdks/novunotifications/README.md#feed) - Retrieve subscriber notifications
-* [unseenCount](docs/sdks/novunotifications/README.md#unseencount) - Retrieve unseen notifications count
+* [~~feed~~](docs/sdks/novunotifications/README.md#feed) - Retrieve subscriber notifications :warning: **Deprecated**
+* [~~unseenCount~~](docs/sdks/novunotifications/README.md#unseencount) - Retrieve unseen notifications count :warning: **Deprecated**
 
 #### [Subscribers.Preferences](docs/sdks/preferences/README.md)
 
@@ -546,10 +549,13 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`environmentVariablesUpdate`](docs/sdks/environmentvariables/README.md#update) - Update a variable
 - [`environmentVariablesUsage`](docs/sdks/environmentvariables/README.md#usage) - Retrieve a variable usage
 - [`integrationsCreate`](docs/sdks/integrations/README.md#create) - Create an integration
+- [`integrationsCreateMobileLink`](docs/sdks/integrations/README.md#createmobilelink) - Issue a short-lived mobile setup link for an existing integration
 - [`integrationsDelete`](docs/sdks/integrations/README.md#delete) - Delete an integration
 - [`integrationsGenerateConnectOAuthUrl`](docs/sdks/integrations/README.md#generateconnectoauthurl) - Generate OAuth URL for a workspace/tenant connection
 - [`integrationsGenerateLinkUserOAuthUrl`](docs/sdks/integrations/README.md#generatelinkuseroauthurl) - Generate OAuth URL to link a subscriber user identity
 - [`integrationsIntegrationsControllerAutoConfigureIntegration`](docs/sdks/integrations/README.md#integrationscontrollerautoconfigureintegration) - Auto-configure an integration for inbound webhooks
+- [`integrationsIntegrationsControllerConfigureIntegrationWebhook`](docs/sdks/integrations/README.md#integrationscontrollerconfigureintegrationwebhook) - Configure a chat integration webhook
+- [`integrationsLinkChannelEndpoint`](docs/sdks/integrations/README.md#linkchannelendpoint) - Issue a URL to link a subscriber chat identity
 - [`integrationsList`](docs/sdks/integrations/README.md#list) - List all integrations
 - [`integrationsListActive`](docs/sdks/integrations/README.md#listactive) - List active integrations
 - [`integrationsSetAsPrimary`](docs/sdks/integrations/README.md#setasprimary) - Update integration as primary
@@ -573,9 +579,6 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`subscribersCredentialsDelete`](docs/sdks/credentials/README.md#delete) - Delete provider credentials
 - [`subscribersCredentialsUpdate`](docs/sdks/credentials/README.md#update) - Update provider credentials
 - [`subscribersDelete`](docs/sdks/subscribers/README.md#delete) - Delete a subscriber
-- [`subscribersMessagesMarkAll`](docs/sdks/novumessages/README.md#markall) - Update all notifications state
-- [`subscribersMessagesMarkAllAs`](docs/sdks/novumessages/README.md#markallas) - Update notifications state
-- [`subscribersMessagesUpdateAsSeen`](docs/sdks/novumessages/README.md#updateasseen) - Update notification action status
 - [`subscribersNotificationsArchive`](docs/sdks/novunotifications/README.md#archive) - Archive a notification
 - [`subscribersNotificationsArchiveAll`](docs/sdks/novunotifications/README.md#archiveall) - Archive all notifications
 - [`subscribersNotificationsArchiveAllRead`](docs/sdks/novunotifications/README.md#archiveallread) - Archive all read notifications
@@ -583,7 +586,6 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`subscribersNotificationsCount`](docs/sdks/novunotifications/README.md#count) - Retrieve subscriber notifications count
 - [`subscribersNotificationsDelete`](docs/sdks/novunotifications/README.md#delete) - Delete a notification
 - [`subscribersNotificationsDeleteAll`](docs/sdks/novunotifications/README.md#deleteall) - Delete all notifications
-- [`subscribersNotificationsFeed`](docs/sdks/novunotifications/README.md#feed) - Retrieve subscriber notifications
 - [`subscribersNotificationsList`](docs/sdks/novunotifications/README.md#list) - Retrieve subscriber notifications
 - [`subscribersNotificationsMarkAllAsRead`](docs/sdks/novunotifications/README.md#markallasread) - Mark all notifications as read
 - [`subscribersNotificationsMarkAsRead`](docs/sdks/novunotifications/README.md#markasread) - Mark a notification as read
@@ -592,7 +594,6 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`subscribersNotificationsRevertAction`](docs/sdks/novunotifications/README.md#revertaction) - Revert a notification action
 - [`subscribersNotificationsSnooze`](docs/sdks/novunotifications/README.md#snooze) - Snooze a notification
 - [`subscribersNotificationsUnarchive`](docs/sdks/novunotifications/README.md#unarchive) - Unarchive a notification
-- [`subscribersNotificationsUnseenCount`](docs/sdks/novunotifications/README.md#unseencount) - Retrieve unseen notifications count
 - [`subscribersNotificationsUnsnooze`](docs/sdks/novunotifications/README.md#unsnooze) - Unsnooze a notification
 - [`subscribersPatch`](docs/sdks/subscribers/README.md#patch) - Update a subscriber
 - [`subscribersPreferencesBulkUpdate`](docs/sdks/preferences/README.md#bulkupdate) - Bulk update subscriber preferences
@@ -635,6 +636,11 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`workflowsSync`](docs/sdks/workflows/README.md#sync) - Sync a workflow
 - [`workflowsUpdate`](docs/sdks/workflows/README.md#update) - Update a workflow
 - ~~[`integrationsGenerateChatOAuthUrl`](docs/sdks/integrations/README.md#generatechatoauthurl)~~ - Generate chat OAuth URL :warning: **Deprecated**
+- ~~[`subscribersMessagesMarkAll`](docs/sdks/novumessages/README.md#markall)~~ - Update all notifications state :warning: **Deprecated**
+- ~~[`subscribersMessagesMarkAllAs`](docs/sdks/novumessages/README.md#markallas)~~ - Update notifications state :warning: **Deprecated**
+- ~~[`subscribersMessagesUpdateAsSeen`](docs/sdks/novumessages/README.md#updateasseen)~~ - Update notification action status :warning: **Deprecated**
+- ~~[`subscribersNotificationsFeed`](docs/sdks/novunotifications/README.md#feed)~~ - Retrieve subscriber notifications :warning: **Deprecated**
+- ~~[`subscribersNotificationsUnseenCount`](docs/sdks/novunotifications/README.md#unseencount)~~ - Retrieve unseen notifications count :warning: **Deprecated**
 
 </details>
 <!-- End Standalone functions [standalone-funcs] -->
@@ -724,9 +730,9 @@ run();
 
 
 **Inherit from [`NovuError`](./src/models/errors/novuerror.ts)**:
-* [`PayloadValidationExceptionDto`](./src/models/errors/payloadvalidationexceptiondto.ts): Status code `400`. Applicable to 3 of 135 methods.*
-* [`SubscriberResponseDto`](./src/models/errors/subscriberresponsedto.ts): Created. Status code `409`. Applicable to 1 of 135 methods.*
-* [`TopicResponseDto`](./src/models/errors/topicresponsedto.ts): OK. Status code `409`. Applicable to 1 of 135 methods.*
+* [`PayloadValidationExceptionDto`](./src/models/errors/payloadvalidationexceptiondto.ts): Status code `400`. Applicable to 3 of 138 methods.*
+* [`SubscriberResponseDto`](./src/models/errors/subscriberresponsedto.ts): Created. Status code `409`. Applicable to 1 of 138 methods.*
+* [`TopicResponseDto`](./src/models/errors/topicresponsedto.ts): OK. Status code `409`. Applicable to 1 of 138 methods.*
 * [`ResponseValidationError`](./src/models/errors/responsevalidationerror.ts): Type mismatch between the data returned from the server and the structure expected by the SDK. See `error.rawValue` for the raw value and `error.pretty()` for a nicely formatted multi-line string.
 
 </details>
