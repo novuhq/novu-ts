@@ -20,8 +20,8 @@
 * [markAllAsRead](#markallasread) - Mark all notifications as read
 * [archiveAllRead](#archiveallread) - Archive all read notifications
 * [markAsSeen](#markasseen) - Mark notifications as seen
-* [feed](#feed) - Retrieve subscriber notifications
-* [unseenCount](#unseencount) - Retrieve unseen notifications count
+* [~~feed~~](#feed) - Retrieve subscriber notifications :warning: **Deprecated**
+* [~~unseenCount~~](#unseencount) - Retrieve unseen notifications count :warning: **Deprecated**
 
 ## list
 
@@ -1279,9 +1279,11 @@ run();
 | errors.ErrorDto                        | 500                                    | application/json                       |
 | errors.SDKError                        | 4XX, 5XX                               | \*/\*                                  |
 
-## feed
+## ~~feed~~
 
-Retrieve subscriber in-app (inbox) notifications by its unique key identifier **subscriberId**.
+This API is deprecated, use v2 API instead. Retrieve subscriber in-app notifications by its unique key identifier **subscriberId**.
+
+> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
 
 ### Example Usage
 
@@ -1360,9 +1362,11 @@ run();
 | errors.ErrorDto                        | 500                                    | application/json                       |
 | errors.SDKError                        | 4XX, 5XX                               | \*/\*                                  |
 
-## unseenCount
+## ~~unseenCount~~
 
-Retrieve unseen in-app (inbox) notifications count for a subscriber by its unique key identifier **subscriberId**.
+This API is deprecated, use v2 API instead. Retrieve unseen in-app notifications count for a subscriber by its unique key identifier **subscriberId**.
+
+> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
 
 ### Example Usage
 

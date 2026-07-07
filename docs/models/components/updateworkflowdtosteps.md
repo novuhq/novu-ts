@@ -170,6 +170,16 @@ const value: components.DigestStepUpsertDto = {
 };
 ```
 
+### `components.ThrottleStepUpsertDto`
+
+```typescript
+const value: components.ThrottleStepUpsertDto = {
+  name: "<value>",
+  type: "throttle",
+  controlValues: {},
+};
+```
+
 ### `components.CustomStepUpsertDto`
 
 ```typescript

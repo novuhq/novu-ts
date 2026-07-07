@@ -59,6 +59,7 @@ export type CredentialsDto = {
   appIOBaseUrl?: string | undefined;
   signingSecret?: string | undefined;
   outboundIntegrationId?: string | undefined;
+  outboundConnectedAt?: string | undefined;
   useFromAddressOverride?: boolean | undefined;
   fromAddressOverride?: string | undefined;
   /**
@@ -162,6 +163,7 @@ export const CredentialsDto$inboundSchema: z.ZodType<
   AppIOBaseUrl: z.string().optional(),
   signingSecret: z.string().optional(),
   outboundIntegrationId: z.string().optional(),
+  outboundConnectedAt: z.string().optional(),
   useFromAddressOverride: z.boolean().optional(),
   fromAddressOverride: z.string().optional(),
   emailSlugPrefix: z.string().optional(),
@@ -223,6 +225,7 @@ export type CredentialsDto$Outbound = {
   AppIOBaseUrl?: string | undefined;
   signingSecret?: string | undefined;
   outboundIntegrationId?: string | undefined;
+  outboundConnectedAt?: string | undefined;
   useFromAddressOverride?: boolean | undefined;
   fromAddressOverride?: string | undefined;
   emailSlugPrefix?: string | undefined;
@@ -285,6 +288,7 @@ export const CredentialsDto$outboundSchema: z.ZodType<
   appIOBaseUrl: z.string().optional(),
   signingSecret: z.string().optional(),
   outboundIntegrationId: z.string().optional(),
+  outboundConnectedAt: z.string().optional(),
   useFromAddressOverride: z.boolean().optional(),
   fromAddressOverride: z.string().optional(),
   emailSlugPrefix: z.string().optional(),

@@ -30,7 +30,7 @@ import { Result } from "../types/fp.js";
  * List active integrations
  *
  * @remarks
- * List all the active integrations created in the organization
+ * List all the active integrations created in the organization. Only integration metadata is returned, credentials field is returned as an empty object.
  */
 export function integrationsListActive(
   client: NovuCore,
