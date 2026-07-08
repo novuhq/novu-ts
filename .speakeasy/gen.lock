@@ -5,15 +5,15 @@ management:
   docVersion: 3.17.1
   speakeasyVersion: 1.789.0
   generationVersion: 2.916.2
-  releaseVersion: 3.17.1
-  configChecksum: 57f2fda5d5e75a93471dcf58cd89132b
+  releaseVersion: 3.18.0
+  configChecksum: 9f78a3af3e9d0c8fb41f50efd392d7ae
   repoURL: https://github.com/novuhq/novu-ts.git
   installationURL: https://github.com/novuhq/novu-ts
   published: true
 persistentEdits:
-  generation_id: 38d96b23-a1a4-4995-af3b-7f3f1979a0ab
-  pristine_commit_hash: 997a44a56974b43c89287179854ed09336bc8bdb
-  pristine_tree_hash: a3ccaaa9cfcf66b83706d6bd8bb0d87a34d924cc
+  generation_id: 3b73050f-0c2f-4fcc-b9be-350541666aaf
+  pristine_commit_hash: cc25fe5bdc636f473b8722ee92faac000ba36d02
+  pristine_tree_hash: ede814a611f50ba00d5f7aa8674b2b8d73073d80
 features:
   typescript:
     additionalDependencies: 0.1.0
@@ -3798,12 +3798,12 @@ trackedFiles:
     pristine_git_object: 3dc64f3c7eb62819d4e24d7c524bcf5fdd516fd8
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:b06a6c56ffbfb8baf97f6aa24989b74226d96428
-    pristine_git_object: 8018b7ba9e6922a63dbf9a04b97fac48f86c20ab
+    last_write_checksum: sha1:c513f674552c36c0d259d4766c6b6240cf03d7ef
+    pristine_git_object: f470c2f5881aabe304ac4a716c263a5ab43af59b
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:fab2ec8235829e292a03e3fd29a6fdcd17888eb7
-    pristine_git_object: 045cd6d9ffbfb102084af104ea3b50d390327328
+    last_write_checksum: sha1:650052c669e10d05623ec2b32156c1bdce512bef
+    pristine_git_object: 3bf55640a541cf078a1231c0766f487c0ee56607
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:522fa3c145654876a02a0c62da21be6d84e87471
@@ -4382,8 +4382,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:837ae52db0a475f68b6a9ee9505ea5585ca8648b
-    pristine_git_object: feaa18191121bfe3129f460c2763754455b8107d
+    last_write_checksum: sha1:a3677b9da01ddc810a619c5817dfd722ebf052d5
+    pristine_git_object: 61c66b76ea0d3b5d8aa35f30faa26a49b9e6beb1
   src/lib/encodings.ts:
     id: 3bd8ead98afd
     last_write_checksum: sha1:50d9b187dcfc3cca8d3bbd9fe074f865d715d2b0
@@ -8932,7 +8932,6 @@ generatedTests:
   TopicsController_removeSubscribers: "2024-12-24T08:36:06+01:00"
   TestingController_idempotency: "2024-12-24T08:36:06+01:00"
   TestingController_idempotencyGet: "2024-12-24T08:36:06+01:00"
-releaseNotes: "## Typescript SDK Changes:\n* `novu.integrations.createMobileLink()`: **Added**\n* `novu.integrations.integrationsControllerConfigureIntegrationWebhook()`: **Added**\n* `novu.integrations.linkChannelEndpoint()`: **Added**\n* `novu.subscribers.notifications.feed()`: **Deprecated**\n* `novu.subscribers.notifications.unseenCount()`: **Deprecated**\n* `novu.subscribers.messages.updateAsSeen()`: **Deprecated**\n* `novu.subscribers.messages.markAll()`: **Deprecated**\n* `novu.subscribers.messages.markAllAs()`: **Deprecated**\n* `novu.workflows.update()`: \n  *  `request.updateWorkflowDto.steps[].union(throttle)` **Added**\n* `novu.workflows.steps.generatePreview()`: \n  *  `request.generatePreviewRequestDto.previewPayload.actor` **Added**\n  *  `response.previewPayloadExample.actor` **Added**\n* `novu.integrations.list()`:  `response.[].credentials.outboundConnectedAt` **Added**\n* `novu.integrations.create()`: \n  *  `request.createIntegrationRequestDto.credentials.outboundConnectedAt` **Added**\n  *  `response.credentials.outboundConnectedAt` **Added**\n* `novu.integrations.update()`: \n  *  `request.updateIntegrationRequestDto.credentials.outboundConnectedAt` **Added**\n  *  `response.credentials.outboundConnectedAt` **Added**\n* `novu.integrations.delete()`:  `response.[].credentials.outboundConnectedAt` **Added**\n* `novu.integrations.setAsPrimary()`:  `response.credentials.outboundConnectedAt` **Added**\n* `novu.integrations.listActive()`:  `response.[].credentials.outboundConnectedAt` **Added**\n"
 generatedFiles:
   - .gitattributes
   - .npmignore
