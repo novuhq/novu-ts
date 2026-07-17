@@ -132,6 +132,9 @@ async function run() {
     },
     auth: {
       accessToken: "Workspace access token",
+      refreshToken: "Workspace refresh token",
+      expiresAt: "2026-06-15T12:00:00.000Z",
+      refreshTokenExpiresAt: "2026-09-15T12:00:00.000Z",
     },
   });
 
@@ -170,6 +173,9 @@ async function run() {
     },
     auth: {
       accessToken: "Workspace access token",
+      refreshToken: "Workspace refresh token",
+      expiresAt: "2026-06-15T12:00:00.000Z",
+      refreshTokenExpiresAt: "2026-09-15T12:00:00.000Z",
     },
   });
   if (res.ok) {
@@ -303,6 +309,9 @@ async function run() {
     },
     auth: {
       accessToken: "Workspace access token",
+      refreshToken: "Workspace refresh token",
+      expiresAt: "2026-06-15T12:00:00.000Z",
+      refreshTokenExpiresAt: "2026-09-15T12:00:00.000Z",
     },
   }, "<value>");
 
@@ -334,6 +343,9 @@ async function run() {
     },
     auth: {
       accessToken: "Workspace access token",
+      refreshToken: "Workspace refresh token",
+      expiresAt: "2026-06-15T12:00:00.000Z",
+      refreshTokenExpiresAt: "2026-09-15T12:00:00.000Z",
     },
   }, "<value>");
   if (res.ok) {

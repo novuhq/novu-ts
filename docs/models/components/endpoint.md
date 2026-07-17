@@ -62,3 +62,29 @@ const value: components.TelegramChatEndpointDto = {
 };
 ```
 
+### `components.WebexRoomEndpointDto`
+
+```typescript
+const value: components.WebexRoomEndpointDto = {
+  roomId: "Y2lzY29zcGFyazovL3VzL1JPT00v...",
+  parentId: "Y2lzY29zcGFyazovL3VzL01FU1NBR0Uv...",
+};
+```
+
+### `components.WebexPersonEndpointDto`
+
+```typescript
+const value: components.WebexPersonEndpointDto = {
+  personId: "Y2lzY29zcGFyazovL3VzL1BFT1BMRS8...",
+  personEmail: "user@example.com",
+};
+```
+
+### `components.LineUserEndpointDto`
+
+```typescript
+const value: components.LineUserEndpointDto = {
+  userId: "U1234567890abcdef",
+};
+```
+

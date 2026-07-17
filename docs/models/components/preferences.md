@@ -19,7 +19,7 @@ const value: components.WorkflowPreferenceRequestDto = {
       {
         "===": [
           {
-            "var": "tier",
+            "var": "payload.tier",
           },
           "premium",
         ],
@@ -40,7 +40,7 @@ const value: components.GroupPreferenceFilterDto = {
       {
         "===": [
           {
-            "var": "tier",
+            "var": "payload.tier",
           },
           "premium",
         ],

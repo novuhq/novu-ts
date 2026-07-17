@@ -26,8 +26,7 @@ let value: ChannelEndpointsControllerUpdateChannelEndpointResponse = {
     ],
     type: "slack_channel",
     endpoint: {
-      teamId: "19:abc123...@thread.tacv2",
-      channelId: "19:def456...@thread.tacv2",
+      userId: "29:1234567890abcdef",
     },
     createdAt: "1708230094902",
     updatedAt: "1735667248047",

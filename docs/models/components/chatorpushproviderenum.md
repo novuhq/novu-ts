@@ -13,5 +13,5 @@ let value: ChatOrPushProviderEnum = "novu-slack";
 ## Values
 
 ```typescript
-"slack" | "discord" | "msteams" | "mattermost" | "ryver" | "zulip" | "grafana-on-call" | "getstream" | "rocket-chat" | "whatsapp-business" | "chat-webhook" | "novu-slack" | "telegram" | "fcm" | "apns" | "expo" | "one-signal" | "pushpad" | "push-webhook" | "pusher-beams" | "appio"
+"slack" | "discord" | "msteams" | "webex-messaging" | "mattermost" | "ryver" | "zulip" | "grafana-on-call" | "getstream" | "rocket-chat" | "whatsapp-business" | "line" | "chat-webhook" | "novu-slack" | "telegram" | "sendblue" | "fcm" | "apns" | "expo" | "one-signal" | "pushpad" | "push-webhook" | "pusher-beams" | "appio"
 ```

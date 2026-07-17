@@ -20,6 +20,9 @@ let value: ChannelConnectionsControllerCreateChannelConnectionRequest = {
     },
     auth: {
       accessToken: "Workspace access token",
+      refreshToken: "Workspace refresh token",
+      expiresAt: "2026-06-15T12:00:00.000Z",
+      refreshTokenExpiresAt: "2026-09-15T12:00:00.000Z",
     },
   },
 };

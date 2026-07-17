@@ -15,7 +15,7 @@ let value: TopicsControllerUpdateTopicSubscriptionRequest = {
         condition: {
           "===": [
             {
-              "var": "tier",
+              "var": "payload.tier",
             },
             "premium",
           ],

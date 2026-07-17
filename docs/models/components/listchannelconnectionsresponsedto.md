@@ -23,6 +23,9 @@ let value: ListChannelConnectionsResponseDto = {
       },
       auth: {
         accessToken: "Workspace access token",
+        refreshToken: "Workspace refresh token",
+        expiresAt: "2026-06-15T12:00:00.000Z",
+        refreshTokenExpiresAt: "2026-09-15T12:00:00.000Z",
       },
       createdAt: "1720659958037",
       updatedAt: "1735640898786",

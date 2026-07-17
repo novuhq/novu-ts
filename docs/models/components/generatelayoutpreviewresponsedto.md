@@ -10,7 +10,7 @@ let value: GenerateLayoutPreviewResponseDto = {
     subscriber: {
       channels: [
         {
-          providerId: "expo",
+          providerId: "apns",
           credentials: {
             webhookUrl: "https://example.com/webhook",
             channel: "general",

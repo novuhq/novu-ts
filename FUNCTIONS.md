@@ -37,6 +37,7 @@ async function run() {
         "text": "string",
       },
     },
+    bridgeUrl: "https://your-tunnel.novu.co/api/novu",
     overrides: {},
     to: "SUBSCRIBER_ID",
     actor: "<value>",
