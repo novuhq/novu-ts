@@ -1,0 +1,34 @@
+# CreateWebexRoomEndpointDto
+
+## Example Usage
+
+```typescript
+import { CreateWebexRoomEndpointDto } from "@novu/api/models/components";
+
+let value: CreateWebexRoomEndpointDto = {
+  identifier: "slack-channel-user123-abc4",
+  subscriberId: "subscriber-123",
+  context: {
+    "key": "org-acme",
+  },
+  integrationIdentifier: "slack-prod",
+  connectionIdentifier: "webex-connection-abc123",
+  type: "webex_room",
+  endpoint: {
+    roomId: "Y2lzY29zcGFyazovL3VzL1JPT00v...",
+    parentId: "Y2lzY29zcGFyazovL3VzL01FU1NBR0Uv...",
+  },
+};
+```
+
+## Fields
+
+| Field                                                                                                 | Type                                                                                                  | Required                                                                                              | Description                                                                                           | Example                                                                                               |
+| ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| `identifier`                                                                                          | *string*                                                                                              | :heavy_minus_sign:                                                                                    | The unique identifier for the channel endpoint. If not provided, one will be generated automatically. | slack-channel-user123-abc4                                                                            |
+| `subscriberId`                                                                                        | *string*                                                                                              | :heavy_check_mark:                                                                                    | The subscriber ID to which the channel endpoint is linked                                             | subscriber-123                                                                                        |
+| `context`                                                                                             | Record<string, *components.CreateWebexRoomEndpointDtoContext*>                                        | :heavy_minus_sign:                                                                                    | N/A                                                                                                   |                                                                                                       |
+| `integrationIdentifier`                                                                               | *string*                                                                                              | :heavy_check_mark:                                                                                    | The identifier of the integration to use for this channel endpoint.                                   | slack-prod                                                                                            |
+| `connectionIdentifier`                                                                                | *string*                                                                                              | :heavy_minus_sign:                                                                                    | The identifier of the channel connection to use for this Webex endpoint.                              | webex-connection-abc123                                                                               |
+| `type`                                                                                                | *"webex_room"*                                                                                        | :heavy_check_mark:                                                                                    | Type of channel endpoint                                                                              | webex_room                                                                                            |
+| `endpoint`                                                                                            | [components.WebexRoomEndpointDto](../../models/components/webexroomendpointdto.md)                    | :heavy_check_mark:                                                                                    | Webex room endpoint data                                                                              |                                                                                                       |

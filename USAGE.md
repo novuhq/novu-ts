@@ -17,6 +17,7 @@ async function run() {
         "text": "string",
       },
     },
+    bridgeUrl: "https://your-tunnel.novu.co/api/novu",
     overrides: {},
     to: "SUBSCRIBER_ID",
     actor: "<value>",
@@ -147,6 +148,31 @@ async function run() {
       },
     ],
   });
+
+  console.log(result);
+}
+
+run();
+
+```
+
+### Send an agent reply
+
+```typescript
+import { Novu } from "@novu/api";
+
+const novu = new Novu({
+  secretKey: "YOUR_SECRET_KEY_HERE",
+});
+
+async function run() {
+  const result = await novu.agents.sendReply({
+    conversationId: "64f5a1c2e8b7a3d9f0c1b2a3",
+    integrationIdentifier: "slack-support",
+    reply: {
+      markdown: "**Report ready.** Your weekly summary is attached.",
+    },
+  }, "support-agent");
 
   console.log(result);
 }

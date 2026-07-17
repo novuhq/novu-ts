@@ -115,6 +115,7 @@ async function run() {
         "text": "string",
       },
     },
+    bridgeUrl: "https://your-tunnel.novu.co/api/novu",
     overrides: {},
     to: "SUBSCRIBER_ID",
     actor: "<value>",
@@ -252,6 +253,31 @@ async function run() {
 run();
 
 ```
+
+### Send an agent reply
+
+```typescript
+import { Novu } from "@novu/api";
+
+const novu = new Novu({
+  secretKey: "YOUR_SECRET_KEY_HERE",
+});
+
+async function run() {
+  const result = await novu.agents.sendReply({
+    conversationId: "64f5a1c2e8b7a3d9f0c1b2a3",
+    integrationIdentifier: "slack-support",
+    reply: {
+      markdown: "**Report ready.** Your weekly summary is attached.",
+    },
+  }, "support-agent");
+
+  console.log(result);
+}
+
+run();
+
+```
 <!-- End SDK Example Usage [usage] -->
 
 <!-- Start Available Resources and Operations [operations] -->
@@ -270,6 +296,23 @@ run();
 ### [Activity](docs/sdks/activity/README.md)
 
 * [track](docs/sdks/activity/README.md#track) - Track provider activity and engagement events
+
+### [Agents](docs/sdks/agents/README.md)
+
+* [create](docs/sdks/agents/README.md#create) - Create an agent
+* [list](docs/sdks/agents/README.md#list) - List all agents
+* [sendReply](docs/sdks/agents/README.md#sendreply) - Send an agent reply
+* [retrieve](docs/sdks/agents/README.md#retrieve) - Retrieve an agent
+* [update](docs/sdks/agents/README.md#update) - Update an agent
+* [delete](docs/sdks/agents/README.md#delete) - Delete an agent
+* [updateBridge](docs/sdks/agents/README.md#updatebridge) - Update an agent bridge
+
+#### [Agents.Integrations](docs/sdks/novuintegrations/README.md)
+
+* [create](docs/sdks/novuintegrations/README.md#create) - Create an agent integration
+* [list](docs/sdks/novuintegrations/README.md#list) - List agent integrations
+* [update](docs/sdks/novuintegrations/README.md#update) - Update an agent integration
+* [delete](docs/sdks/novuintegrations/README.md#delete) - Delete an agent integration
 
 ### [ChannelConnections](docs/sdks/channelconnections/README.md)
 
@@ -504,6 +547,17 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 <summary>Available standalone functions</summary>
 
 - [`activityTrack`](docs/sdks/activity/README.md#track) - Track provider activity and engagement events
+- [`agentsCreate`](docs/sdks/agents/README.md#create) - Create an agent
+- [`agentsDelete`](docs/sdks/agents/README.md#delete) - Delete an agent
+- [`agentsIntegrationsCreate`](docs/sdks/novuintegrations/README.md#create) - Create an agent integration
+- [`agentsIntegrationsDelete`](docs/sdks/novuintegrations/README.md#delete) - Delete an agent integration
+- [`agentsIntegrationsList`](docs/sdks/novuintegrations/README.md#list) - List agent integrations
+- [`agentsIntegrationsUpdate`](docs/sdks/novuintegrations/README.md#update) - Update an agent integration
+- [`agentsList`](docs/sdks/agents/README.md#list) - List all agents
+- [`agentsRetrieve`](docs/sdks/agents/README.md#retrieve) - Retrieve an agent
+- [`agentsSendReply`](docs/sdks/agents/README.md#sendreply) - Send an agent reply
+- [`agentsUpdate`](docs/sdks/agents/README.md#update) - Update an agent
+- [`agentsUpdateBridge`](docs/sdks/agents/README.md#updatebridge) - Update an agent bridge
 - [`cancel`](docs/sdks/novu/README.md#cancel) - Cancel triggered event
 - [`channelConnectionsCreate`](docs/sdks/channelconnections/README.md#create) - Create a channel connection
 - [`channelConnectionsDelete`](docs/sdks/channelconnections/README.md#delete) - Delete a channel connection
@@ -678,6 +732,7 @@ async function run() {
           "text": "string",
         },
       },
+      bridgeUrl: "https://your-tunnel.novu.co/api/novu",
       overrides: {},
       to: "SUBSCRIBER_ID",
       actor: "<value>",
@@ -730,9 +785,9 @@ run();
 
 
 **Inherit from [`NovuError`](./src/models/errors/novuerror.ts)**:
-* [`PayloadValidationExceptionDto`](./src/models/errors/payloadvalidationexceptiondto.ts): Status code `400`. Applicable to 3 of 138 methods.*
-* [`SubscriberResponseDto`](./src/models/errors/subscriberresponsedto.ts): Created. Status code `409`. Applicable to 1 of 138 methods.*
-* [`TopicResponseDto`](./src/models/errors/topicresponsedto.ts): OK. Status code `409`. Applicable to 1 of 138 methods.*
+* [`PayloadValidationExceptionDto`](./src/models/errors/payloadvalidationexceptiondto.ts): Status code `400`. Applicable to 3 of 149 methods.*
+* [`SubscriberResponseDto`](./src/models/errors/subscriberresponsedto.ts): Created. Status code `409`. Applicable to 1 of 149 methods.*
+* [`TopicResponseDto`](./src/models/errors/topicresponsedto.ts): OK. Status code `409`. Applicable to 1 of 149 methods.*
 * [`ResponseValidationError`](./src/models/errors/responsevalidationerror.ts): Type mismatch between the data returned from the server and the structure expected by the SDK. See `error.rawValue` for the raw value and `error.pretty()` for a nicely formatted multi-line string.
 
 </details>
@@ -771,6 +826,7 @@ async function run() {
         "text": "string",
       },
     },
+    bridgeUrl: "https://your-tunnel.novu.co/api/novu",
     overrides: {},
     to: "SUBSCRIBER_ID",
     actor: "<value>",
@@ -806,6 +862,7 @@ async function run() {
         "text": "string",
       },
     },
+    bridgeUrl: "https://your-tunnel.novu.co/api/novu",
     overrides: {},
     to: "SUBSCRIBER_ID",
     actor: "<value>",
@@ -903,6 +960,7 @@ async function run() {
         "text": "string",
       },
     },
+    bridgeUrl: "https://your-tunnel.novu.co/api/novu",
     overrides: {},
     to: "SUBSCRIBER_ID",
     actor: "<value>",
@@ -978,6 +1036,7 @@ async function run() {
           "text": "string",
         },
       },
+      bridgeUrl: "https://your-tunnel.novu.co/api/novu",
       overrides: {},
       to: "SUBSCRIBER_ID",
       actor: "<value>",
@@ -1034,6 +1093,7 @@ async function run() {
         "text": "string",
       },
     },
+    bridgeUrl: "https://your-tunnel.novu.co/api/novu",
     overrides: {},
     to: "SUBSCRIBER_ID",
     actor: "<value>",

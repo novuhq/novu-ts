@@ -13,7 +13,7 @@ let value: WorkflowControllerGeneratePreviewRequest = {
       subscriber: {
         channels: [
           {
-            providerId: "expo",
+            providerId: "apns",
             credentials: {
               webhookUrl: "https://example.com/webhook",
               channel: "general",
@@ -35,7 +35,7 @@ let value: WorkflowControllerGeneratePreviewRequest = {
       actor: {
         channels: [
           {
-            providerId: "expo",
+            providerId: "apns",
             credentials: {
               webhookUrl: "https://example.com/webhook",
               channel: "general",

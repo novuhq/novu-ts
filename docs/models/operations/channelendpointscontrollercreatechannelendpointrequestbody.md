@@ -132,3 +132,59 @@ const value: components.CreateTelegramChatEndpointDto = {
 };
 ```
 
+### `components.CreateWebexRoomEndpointDto`
+
+```typescript
+const value: components.CreateWebexRoomEndpointDto = {
+  identifier: "slack-channel-user123-abc4",
+  subscriberId: "subscriber-123",
+  context: {
+    "key": "org-acme",
+  },
+  integrationIdentifier: "slack-prod",
+  connectionIdentifier: "webex-connection-abc123",
+  type: "webex_room",
+  endpoint: {
+    roomId: "Y2lzY29zcGFyazovL3VzL1JPT00v...",
+    parentId: "Y2lzY29zcGFyazovL3VzL01FU1NBR0Uv...",
+  },
+};
+```
+
+### `components.CreateWebexPersonEndpointDto`
+
+```typescript
+const value: components.CreateWebexPersonEndpointDto = {
+  identifier: "slack-channel-user123-abc4",
+  subscriberId: "subscriber-123",
+  context: {
+    "key": "org-acme",
+  },
+  integrationIdentifier: "slack-prod",
+  connectionIdentifier: "webex-connection-abc123",
+  type: "webex_person",
+  endpoint: {
+    personId: "Y2lzY29zcGFyazovL3VzL1BFT1BMRS8...",
+    personEmail: "user@example.com",
+  },
+};
+```
+
+### `components.CreateLineUserEndpointDto`
+
+```typescript
+const value: components.CreateLineUserEndpointDto = {
+  identifier: "slack-channel-user123-abc4",
+  subscriberId: "subscriber-123",
+  context: {
+    "key": "org-acme",
+  },
+  integrationIdentifier: "slack-prod",
+  connectionIdentifier: "slack-connection-abc123",
+  type: "line_user",
+  endpoint: {
+    userId: "U1234567890abcdef",
+  },
+};
+```
+

@@ -7,7 +7,8 @@ import { UpdateChannelEndpointRequestDto } from "@novu/api/models/components";
 
 let value: UpdateChannelEndpointRequestDto = {
   endpoint: {
-    phoneNumber: "+1234567890",
+    personId: "Y2lzY29zcGFyazovL3VzL1BFT1BMRS8...",
+    personEmail: "user@example.com",
   },
 };
 ```

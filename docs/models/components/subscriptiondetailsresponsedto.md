@@ -30,7 +30,7 @@ let value: SubscriptionDetailsResponseDto = {
           {
             "===": [
               {
-                "var": "tier",
+                "var": "payload.tier",
               },
               "premium",
             ],

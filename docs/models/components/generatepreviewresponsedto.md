@@ -10,7 +10,7 @@ let value: GeneratePreviewResponseDto = {
     subscriber: {
       channels: [
         {
-          providerId: "expo",
+          providerId: "apns",
           credentials: {
             webhookUrl: "https://example.com/webhook",
             channel: "general",
@@ -32,7 +32,7 @@ let value: GeneratePreviewResponseDto = {
     actor: {
       channels: [
         {
-          providerId: "expo",
+          providerId: "apns",
           credentials: {
             webhookUrl: "https://example.com/webhook",
             channel: "general",

@@ -101,7 +101,7 @@ export type To1 = TopicPayloadDto | SubscriberPayloadDto | string;
 /**
  * The recipients list of people who will receive the notification. Maximum number of recipients can be 100.
  */
-export type To =
+export type TriggerEventRequestDtoTo =
   | TopicPayloadDto
   | SubscriberPayloadDto
   | Array<TopicPayloadDto | SubscriberPayloadDto | string>
@@ -151,6 +151,10 @@ export type TriggerEventRequestDto = {
    *       This data will also be available when fetching the notifications feed from the API to display certain parts of the UI.
    */
   payload?: { [k: string]: any } | undefined;
+  /**
+   * Optional Bridge Endpoint URL used to route this trigger to a specific Bridge application. Useful during local development when multiple engineers share an organization: set this to your personal tunnel URL from `npx novu@latest dev` (for example via NOVU_BRIDGE_URL) so app-fired triggers hit your machine instead of the environment's synced Bridge URL. Must be a publicly reachable https URL — private or localhost addresses are rejected.
+   */
+  bridgeUrl?: string | undefined;
   /**
    * This could be used to override provider specific configurations
    */
@@ -260,29 +264,36 @@ export function to1ToJSON(to1: To1): string {
 }
 
 /** @internal */
-export type To$Outbound =
+export type TriggerEventRequestDtoTo$Outbound =
   | TopicPayloadDto$Outbound
   | SubscriberPayloadDto$Outbound
   | Array<TopicPayloadDto$Outbound | SubscriberPayloadDto$Outbound | string>
   | string;
 
 /** @internal */
-export const To$outboundSchema: z.ZodType<To$Outbound, z.ZodTypeDef, To> = z
-  .union([
-    TopicPayloadDto$outboundSchema,
-    SubscriberPayloadDto$outboundSchema,
-    z.array(
-      z.union([
-        TopicPayloadDto$outboundSchema,
-        SubscriberPayloadDto$outboundSchema,
-        z.string(),
-      ]),
-    ),
-    z.string(),
-  ]);
+export const TriggerEventRequestDtoTo$outboundSchema: z.ZodType<
+  TriggerEventRequestDtoTo$Outbound,
+  z.ZodTypeDef,
+  TriggerEventRequestDtoTo
+> = z.union([
+  TopicPayloadDto$outboundSchema,
+  SubscriberPayloadDto$outboundSchema,
+  z.array(
+    z.union([
+      TopicPayloadDto$outboundSchema,
+      SubscriberPayloadDto$outboundSchema,
+      z.string(),
+    ]),
+  ),
+  z.string(),
+]);
 
-export function toToJSON(to: To): string {
-  return JSON.stringify(To$outboundSchema.parse(to));
+export function triggerEventRequestDtoToToJSON(
+  triggerEventRequestDtoTo: TriggerEventRequestDtoTo,
+): string {
+  return JSON.stringify(
+    TriggerEventRequestDtoTo$outboundSchema.parse(triggerEventRequestDtoTo),
+  );
 }
 
 /** @internal */
@@ -368,6 +379,7 @@ export function triggerEventRequestDtoContextToJSON(
 export type TriggerEventRequestDto$Outbound = {
   name: string;
   payload?: { [k: string]: any } | undefined;
+  bridgeUrl?: string | undefined;
   overrides?: Overrides$Outbound | undefined;
   to:
     | TopicPayloadDto$Outbound
@@ -390,6 +402,7 @@ export const TriggerEventRequestDto$outboundSchema: z.ZodType<
 > = z.object({
   workflowId: z.string(),
   payload: z.record(z.any()).optional(),
+  bridgeUrl: z.string().optional(),
   overrides: z.lazy(() => Overrides$outboundSchema).optional(),
   to: z.union([
     TopicPayloadDto$outboundSchema,

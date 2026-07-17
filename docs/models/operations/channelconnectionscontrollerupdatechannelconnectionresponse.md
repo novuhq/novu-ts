@@ -38,6 +38,9 @@ let value: ChannelConnectionsControllerUpdateChannelConnectionResponse = {
     },
     auth: {
       accessToken: "Workspace access token",
+      refreshToken: "Workspace refresh token",
+      expiresAt: "2026-06-15T12:00:00.000Z",
+      refreshTokenExpiresAt: "2026-09-15T12:00:00.000Z",
     },
     createdAt: "1725328375497",
     updatedAt: "1735640461995",

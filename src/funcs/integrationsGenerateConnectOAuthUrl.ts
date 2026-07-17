@@ -31,7 +31,7 @@ import { Result } from "../types/fp.js";
  * Generate OAuth URL for a workspace/tenant connection
  *
  * @remarks
- * Generate an OAuth URL that creates a workspace or tenant-level channel connection (Slack workspace install or MS Teams admin consent).
+ * Generate an OAuth URL that creates a workspace or tenant-level channel connection (Slack workspace install, MS Teams admin consent, or Webex integration authorization).
  *     The generated URL expires after 5 minutes.
  */
 export function integrationsGenerateConnectOAuthUrl(

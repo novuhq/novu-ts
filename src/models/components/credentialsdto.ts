@@ -60,6 +60,10 @@ export type CredentialsDto = {
   signingSecret?: string | undefined;
   outboundIntegrationId?: string | undefined;
   outboundConnectedAt?: string | undefined;
+  /**
+   * ISO timestamp marking Layer-2 What's next completion (Connected badge + guide hide). WhatsApp Business: stamped on post-connect Access Token rotation or manual confirm.
+   */
+  whatsNextCompletedAt?: string | undefined;
   useFromAddressOverride?: boolean | undefined;
   fromAddressOverride?: string | undefined;
   /**
@@ -164,6 +168,7 @@ export const CredentialsDto$inboundSchema: z.ZodType<
   signingSecret: z.string().optional(),
   outboundIntegrationId: z.string().optional(),
   outboundConnectedAt: z.string().optional(),
+  whatsNextCompletedAt: z.string().optional(),
   useFromAddressOverride: z.boolean().optional(),
   fromAddressOverride: z.string().optional(),
   emailSlugPrefix: z.string().optional(),
@@ -226,6 +231,7 @@ export type CredentialsDto$Outbound = {
   signingSecret?: string | undefined;
   outboundIntegrationId?: string | undefined;
   outboundConnectedAt?: string | undefined;
+  whatsNextCompletedAt?: string | undefined;
   useFromAddressOverride?: boolean | undefined;
   fromAddressOverride?: string | undefined;
   emailSlugPrefix?: string | undefined;
@@ -289,6 +295,7 @@ export const CredentialsDto$outboundSchema: z.ZodType<
   signingSecret: z.string().optional(),
   outboundIntegrationId: z.string().optional(),
   outboundConnectedAt: z.string().optional(),
+  whatsNextCompletedAt: z.string().optional(),
   useFromAddressOverride: z.boolean().optional(),
   fromAddressOverride: z.string().optional(),
   emailSlugPrefix: z.string().optional(),

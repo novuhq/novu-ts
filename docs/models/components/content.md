@@ -1,24 +1,76 @@
 # Content
 
-Content of the message, can be an email block or a string
+Replacement content. Exactly one of markdown, card, or toolApprovalCard.
 
 
 ## Supported Types
 
-### `components.EmailBlock[]`
+### `components.MarkdownReplyContentDto`
 
 ```typescript
-const value: components.EmailBlock[] = [
-  {
-    type: "button",
-    content: "<value>",
-  },
-];
+const value: components.MarkdownReplyContentDto = {
+  markdown: "**Report ready.** Your weekly summary is attached.",
+  files: [
+    {
+      filename: "report.pdf",
+      mimeType: "application/pdf",
+      data: "JVBERi0xLjQK...",
+      url: "https://example.com/files/report.pdf",
+    },
+  ],
+};
 ```
 
-### `string`
+### `components.CardReplyContentDto`
 
 ```typescript
-const value: string = "<value>";
+const value: components.CardReplyContentDto = {
+  card: {
+    "type": "card",
+    "title": "Order #123",
+    "children": [
+      {
+        "type": "text",
+        "content": "Your order is ready for pickup.",
+      },
+      {
+        "type": "button",
+        "id": "confirm",
+        "label": "Confirm",
+        "style": "primary",
+      },
+    ],
+  },
+  files: [
+    {
+      filename: "report.pdf",
+      mimeType: "application/pdf",
+      data: "JVBERi0xLjQK...",
+      url: "https://example.com/files/report.pdf",
+    },
+  ],
+};
+```
+
+### `components.ToolApprovalCardReplyContentDto`
+
+```typescript
+const value: components.ToolApprovalCardReplyContentDto = {
+  toolApprovalCard: {
+    "type": "tool-approval-card",
+    "title": "Approve refund?",
+    "subtitle": "issue_refund · ORD-42 · $25.00",
+    "approveLabel": "Approve",
+    "denyLabel": "Deny",
+  },
+  files: [
+    {
+      filename: "report.pdf",
+      mimeType: "application/pdf",
+      data: "JVBERi0xLjQK...",
+      url: "https://example.com/files/report.pdf",
+    },
+  ],
+};
 ```
 
