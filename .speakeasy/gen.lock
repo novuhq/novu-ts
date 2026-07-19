@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 6bff3a53-3f0b-40b4-942f-ff70dc583ae5
 management:
-  docChecksum: 7268f86398970f1475e0701ed15a9ac8
+  docChecksum: 9154dab8e5c8e732bc2c410b42426098
   docVersion: 3.18.1
   speakeasyVersion: 1.790.2
   generationVersion: 2.918.3
-  releaseVersion: 3.18.1
-  configChecksum: 088c39e72f4256808a04cc5074fe2907
+  releaseVersion: 3.18.2
+  configChecksum: e78459e76720a43334942bfb3cba4af8
   repoURL: https://github.com/novuhq/novu-ts.git
   installationURL: https://github.com/novuhq/novu-ts
   published: true
 persistentEdits:
-  generation_id: 80010fd2-8e42-4524-b5d1-53e0387c5ea6
-  pristine_commit_hash: e2c45f7d5c7f25b886147edf2571979779f590e8
-  pristine_tree_hash: aaab8088ee008267abee78fed659fa5791331e0d
+  generation_id: 62649572-c596-4f01-8b7a-b428a56816fd
+  pristine_commit_hash: adb125fc65152dac94b7ce9c98af538edfabca60
+  pristine_tree_hash: 9b8385e1f36ebc6511446b8783898b7a1e43e4f8
 features:
   typescript:
     additionalDependencies: 0.1.0
@@ -166,8 +166,8 @@ trackedFiles:
     pristine_git_object: 291f5039f22abbe312ee13fb5345bfe1729d6ce2
   docs/models/components/agentreplypayloaddto.md:
     id: a0a23079435b
-    last_write_checksum: sha1:7bc6b019af2c6f5e24d86f8e6eb61ec08a268142
-    pristine_git_object: e8e10d72d5156e631c8a01ad8bd76b2e74292fa7
+    last_write_checksum: sha1:4413d48dee34d276d9e4eccb6096ddbe735fb9db
+    pristine_git_object: 7be05b78acae5d2c87914f8a7031e173ea7e4dfa
   docs/models/components/agentresponsedto.md:
     id: 6791ded01c75
     last_write_checksum: sha1:b4ce6bd4577a1f1ca1aed5b4b8cc08eb5df5a067
@@ -1218,8 +1218,8 @@ trackedFiles:
     pristine_git_object: 038ed6d3c0511e315956bcb70756965381377d15
   docs/models/components/grouppreferencefilterdto.md:
     id: e52be4fb2b2e
-    last_write_checksum: sha1:5bf17b3e1625981684ee3038b68141673714c741
-    pristine_git_object: 20a3c87e879d875330145ad03e73ef25d3ae7786
+    last_write_checksum: sha1:55a914768d227664829751d0598f5d9b8dd579c0
+    pristine_git_object: 849dc335a63af7bbf00501e9303b13ff42427802
   docs/models/components/httpmethodenum.md:
     id: "452282169e01"
     last_write_checksum: sha1:5b00799472e3afa520b3c97ade8e50c7f5768d07
@@ -2678,8 +2678,8 @@ trackedFiles:
     pristine_git_object: 8f841ff7eb8d70868fe94afdcf55a2127721caba
   docs/models/components/workflowpreferencerequestdto.md:
     id: a66976a22f8b
-    last_write_checksum: sha1:c1387b2e297b5cbc0446b71d90bd8b202f258a80
-    pristine_git_object: d7fb63ff93624722aab1cb3d1967c400c7855768
+    last_write_checksum: sha1:451b42a81dfb8f5663c6599f92d76083991b87c9
+    pristine_git_object: 300d05ab7951864a55728b4eda9af404193a6ca7
   docs/models/components/workflowpreferencesdto.md:
     id: db96b58a6150
     last_write_checksum: sha1:b53d95c5074f7bbb962c0438bce294bc663da7f4
@@ -4202,12 +4202,12 @@ trackedFiles:
     pristine_git_object: 42291a4e4403ca988833daae934598b3680c94b5
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:4a8b924c061115708923bfde14807c96124bb7b6
-    pristine_git_object: 896dc31d64e4cb99dade0e458f9b8a4d3b1d6e1f
+    last_write_checksum: sha1:3779d5c1068c1bcbb11fc9c46b51dbc008c2f080
+    pristine_git_object: 415c88a893a70c33e60137915f60a07884cc9aa3
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:6aa6ca1ebe05b2f9660d014105bfbb2e07c294b2
-    pristine_git_object: edcc0e575d406b3bb421f07c9f6026f9dc8ff791
+    last_write_checksum: sha1:f8409bc84552c1d5f112fe15324c601477441a05
+    pristine_git_object: a18d611ac7f41778ecbd5ed8b92ec4688af16dc2
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:522fa3c145654876a02a0c62da21be6d84e87471
@@ -4830,8 +4830,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:a18521724f3d5ec74e7e6aa5d0e6249119c9aeb7
-    pristine_git_object: b860637706d830ac92fb9af4ec90e8a5e2e0e8c4
+    last_write_checksum: sha1:0c8fa936058dbd74245b962563ded6b44662a4d3
+    pristine_git_object: c7c7d63f2c2e68d0047b10e5bead14127f81e898
   src/lib/encodings.ts:
     id: 3bd8ead98afd
     last_write_checksum: sha1:50d9b187dcfc3cca8d3bbd9fe074f865d715d2b0
@@ -5546,8 +5546,8 @@ trackedFiles:
     pristine_git_object: bb61de570787ccd978021c1d363b24757f48b2aa
   src/models/components/grouppreferencefilterdto.ts:
     id: e2f2d8ba50c0
-    last_write_checksum: sha1:944207541ac3104efa5a5d714dffe8643bf79a06
-    pristine_git_object: 48e6d49d4b8669861f226aad99d96cd12474e925
+    last_write_checksum: sha1:9b7eeca906876881c2ab341fe4a1e1df6c88dfac
+    pristine_git_object: eabb1ee79a40d5fcacc5f85d177e05c8c69ee9a8
   src/models/components/httpmethodenum.ts:
     id: 82e77b3fe046
     last_write_checksum: sha1:8f27d6bdf16c3e7cefc97ae9e706c30e96c6e95a
@@ -6418,8 +6418,8 @@ trackedFiles:
     pristine_git_object: 1cb51df1ff9b5eb092545ead659ee21baf057bcb
   src/models/components/workflowpreferencerequestdto.ts:
     id: dd8477b1290a
-    last_write_checksum: sha1:a957c9b118ee81db650596bbd53df62187c28d56
-    pristine_git_object: fd0361d1be7beddfe8c87843d98d71201165ae4c
+    last_write_checksum: sha1:e0b922bf77e690d4a06ad69b61e9318e4c44a1e1
+    pristine_git_object: 5007ffc8fd0ffec8932a4e2b0a46aa20190e08c1
   src/models/components/workflowpreferencesdto.ts:
     id: 02f450432c35
     last_write_checksum: sha1:38443a029159f198a210d87f29ce945d51564013
@@ -9573,7 +9573,7 @@ examples:
         "400":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
         "422":
-          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123", "errors": {"fieldName1": {"messages": ["Field is required", "Must be a valid email address"], "value": "invalidEmail"}, "fieldName2": {"messages": ["Must be at least 18 years old"], "value": 17}, "fieldName3": {"messages": ["Must be a boolean value"], "value": true}, "fieldName4": {"messages": ["Must be a valid object"], "value": []}, "fieldName5": {"messages": ["Field is missing"], "value": null}, "fieldName6": {"messages": ["Undefined value"]}}}
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123", "errors": {"fieldName1": {"messages": ["Field is required", "Must be a valid email address"], "value": "invalidEmail"}, "fieldName2": {"messages": ["Must be at least 18 years old"], "value": 17}, "fieldName3": {"messages": ["Must be a boolean value"], "value": true}, "fieldName4": {"messages": ["Must be a valid object"], "value": {}}, "fieldName5": {"messages": ["Field is missing"], "value": null}, "fieldName6": {"messages": ["Undefined value"]}}}
         "500":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
   AgentReplyController_handleAgentReplyHandler:
@@ -9879,7 +9879,7 @@ examples:
         "400":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
         "422":
-          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123", "errors": {"fieldName1": {"messages": ["Field is required", "Must be a valid email address"], "value": "invalidEmail"}, "fieldName2": {"messages": ["Must be at least 18 years old"], "value": 17}, "fieldName3": {"messages": ["Must be a boolean value"], "value": true}, "fieldName4": {"messages": ["Must be a valid object"], "value": []}, "fieldName5": {"messages": ["Field is missing"], "value": null}, "fieldName6": {"messages": ["Undefined value"]}}}
+          application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123", "errors": {"fieldName1": {"messages": ["Field is required", "Must be a valid email address"], "value": "invalidEmail"}, "fieldName2": {"messages": ["Must be at least 18 years old"], "value": 17}, "fieldName3": {"messages": ["Must be a boolean value"], "value": true}, "fieldName4": {"messages": ["Must be a valid object"], "value": {}}, "fieldName5": {"messages": ["Field is missing"], "value": null}, "fieldName6": {"messages": ["Undefined value"]}}}
         "500":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
   AgentsController_updateAgentBridge:
@@ -10024,7 +10024,6 @@ generatedTests:
   TopicsController_removeSubscribers: "2024-12-24T08:36:06+01:00"
   TestingController_idempotency: "2024-12-24T08:36:06+01:00"
   TestingController_idempotencyGet: "2024-12-24T08:36:06+01:00"
-releaseNotes: "## Typescript SDK Changes:\n* `novu.channelEndpoints.create()`: \n  *  `requestBody` **Changed**\n  *  `response` **Changed** (Breaking ⚠️)\n* `novu.channelEndpoints.retrieve()`:  `response` **Changed** (Breaking ⚠️)\n* `novu.subscribers.messages.markAllAs()`:  `response.[].subscriber.channels[].providerId` **Changed** (Breaking ⚠️)\n* `novu.notifications.retrieve()`:  `response.jobs[].executionDetails[].providerId` **Changed** (Breaking ⚠️)\n* `novu.notifications.list()`:  `response.data[].jobs[].executionDetails[].providerId` **Changed** (Breaking ⚠️)\n* `novu.messages.retrieve()`:  `response.data[].subscriber.channels[].providerId` **Changed** (Breaking ⚠️)\n* `novu.channelEndpoints.update()`: \n  *  `request.updateChannelEndpointRequestDto.endpoint` **Changed**\n  *  `response` **Changed** (Breaking ⚠️)\n* `novu.subscribers.credentials.append()`: \n  *  `request.updateSubscriberChannelRequestDto.providerId` **Changed**\n  *  `response.channels[].providerId` **Changed** (Breaking ⚠️)\n* `novu.channelEndpoints.list()`: \n  *  `request.providerId` **Changed**\n  *  `response.data[]` **Changed** (Breaking ⚠️)\n* `novu.channelConnections.update()`: \n  *  `request.updateChannelConnectionRequestDto.auth` **Changed**\n  *  `response` **Changed** (Breaking ⚠️)\n* `novu.channelConnections.retrieve()`:  `response` **Changed** (Breaking ⚠️)\n* `novu.channelConnections.create()`: \n  *  `request.createChannelConnectionRequestDto.auth` **Changed**\n  *  `response` **Changed** (Breaking ⚠️)\n* `novu.channelConnections.list()`: \n  *  `request.providerId` **Changed**\n  *  `response.data[]` **Changed** (Breaking ⚠️)\n* `novu.workflows.steps.generatePreview()`: \n  *  `request.generatePreviewRequestDto.previewPayload.subscriber.channels[].providerId` **Changed**\n  *  `response.previewPayloadExample.subscriber.channels[].providerId` **Changed** (Breaking ⚠️)\n* `novu.layouts.generatePreview()`: \n  *  `request.layoutPreviewRequestDto.previewPayload.subscriber.channels[].providerId` **Changed**\n  *  `response.previewPayloadExample.subscriber.channels[].providerId` **Changed** (Breaking ⚠️)\n* `novu.subscribers.search()`:  `response.data[].channels[].providerId` **Changed** (Breaking ⚠️)\n* `novu.subscribers.create()`: \n  *  `response.channels[].providerId` **Changed** (Breaking ⚠️)\n  *  `error.channels[].providerId` **Changed** (Breaking ⚠️)\n* `novu.subscribers.retrieve()`:  `response.channels[].providerId` **Changed** (Breaking ⚠️)\n* `novu.subscribers.patch()`:  `response.channels[].providerId` **Changed** (Breaking ⚠️)\n* `novu.subscribers.credentials.update()`: \n  *  `request.updateSubscriberChannelRequestDto.providerId` **Changed**\n  *  `response.channels[].providerId` **Changed** (Breaking ⚠️)\n* `novu.subscribers.properties.updateOnlineFlag()`:  `response.channels[].providerId` **Changed** (Breaking ⚠️)\n* `novu.subscribers.messages.updateAsSeen()`:  `response.subscriber.channels[].providerId` **Changed** (Breaking ⚠️)\n* `novu.agents.updateBridge()`: **Added**\n* `novu.agents.list()`: **Added**\n* `novu.triggerBulk()`: \n  *  `request.bulkTriggerEventDto.events[]` **Changed**\n* `novu.triggerBroadcast()`: \n  *  `request.triggerEventToAllRequestDto.actor.union(SubscriberPayloadDto).channels[].providerId` **Changed**\n* `novu.trigger()`:  `request.triggerEventRequestDto` **Changed**\n* `novu.agents.integrations.delete()`: **Added**\n* `novu.agents.integrations.update()`: **Added**\n* `novu.agents.integrations.list()`: **Added**\n* `novu.agents.sendReply()`: **Added**\n* `novu.agents.create()`: **Added**\n* `novu.integrations.create()`: \n  *  `request.createIntegrationRequestDto.credentials.whatsNextCompletedAt` **Added**\n  *  `response.credentials.whatsNextCompletedAt` **Added**\n* `novu.agents.integrations.create()`: **Added**\n* `novu.integrations.list()`:  `response.[].credentials.whatsNextCompletedAt` **Added**\n* `novu.integrations.update()`: \n  *  `request.updateIntegrationRequestDto.credentials.whatsNextCompletedAt` **Added**\n  *  `response.credentials.whatsNextCompletedAt` **Added**\n* `novu.integrations.delete()`:  `response.[].credentials.whatsNextCompletedAt` **Added**\n* `novu.integrations.setAsPrimary()`:  `response.credentials.whatsNextCompletedAt` **Added**\n* `novu.integrations.listActive()`:  `response.[].credentials.whatsNextCompletedAt` **Added**\n* `novu.agents.delete()`: **Added**\n* `novu.agents.update()`: **Added**\n* `novu.agents.retrieve()`: **Added**\n"
 generatedFiles:
   - .gitattributes
   - .npmignore

@@ -74323,12 +74323,9 @@
                 "$ref": "#/components/schemas/TypingStatusDto"
               }
             ],
-            "examples": [
-              {
-                "status": "Looking up your order…"
-              },
-              "stop"
-            ]
+            "example": {
+              "status": "Looking up your order…"
+            }
           },
           "error": {
             "type": "boolean",
@@ -79909,7 +79906,7 @@
           },
           "condition": {
             "type": "object",
-            "description": "Optional JSON Logic condition evaluated against the trigger payload at fan-out time (for example, `{ \"var\": \"payload.tier\" }`)",
+            "description": "Optional JSON Logic condition evaluated at fan-out time against trigger payload, subscriber profile, actor, and context (for example, `{ \"var\": \"payload.tier\" }`, `{ \"var\": \"subscriber.data.plan\" }`, or `{ \"var\": \"actor.data.role\" }`)",
             "additionalProperties": true,
             "example": {
               "and": [
@@ -79971,7 +79968,7 @@
           },
           "condition": {
             "type": "object",
-            "description": "Optional JSON Logic condition evaluated against the trigger payload at fan-out time (for example, `{ \"var\": \"payload.tier\" }`)",
+            "description": "Optional JSON Logic condition evaluated at fan-out time against trigger payload, subscriber profile, actor, and context (for example, `{ \"var\": \"payload.tier\" }`, `{ \"var\": \"subscriber.data.plan\" }`, or `{ \"var\": \"actor.data.role\" }`)",
             "additionalProperties": true,
             "example": {
               "and": [
