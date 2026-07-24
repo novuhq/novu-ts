@@ -20,6 +20,14 @@ import {
   MsTeamsUserEndpointDto$inboundSchema,
 } from "./msteamsuserendpointdto.js";
 import {
+  OpsgenieIntegrationEndpointDto,
+  OpsgenieIntegrationEndpointDto$inboundSchema,
+} from "./opsgenieintegrationendpointdto.js";
+import {
+  PagerDutyServiceEndpointDto,
+  PagerDutyServiceEndpointDto$inboundSchema,
+} from "./pagerdutyserviceendpointdto.js";
+import {
   PhoneEndpointDto,
   PhoneEndpointDto$inboundSchema,
 } from "./phoneendpointdto.js";
@@ -57,6 +65,7 @@ export const GetChannelEndpointResponseDtoChannel = {
   Sms: "sms",
   Chat: "chat",
   Push: "push",
+  Tool: "tool",
 } as const;
 /**
  * The channel type (email, sms, push, chat, etc.).
@@ -129,6 +138,7 @@ export const GetChannelEndpointResponseDtoProviderId = {
   Sinch: "sinch",
   IsendproSms: "isendpro-sms",
   CmTelecom: "cm-telecom",
+  RuachSms: "ruach-sms",
   Fcm: "fcm",
   Apns: "apns",
   Expo: "expo",
@@ -157,6 +167,9 @@ export const GetChannelEndpointResponseDtoProviderId = {
   Anthropic: "anthropic",
   NovuAnthropic: "novu-anthropic",
   AnthropicAws: "anthropic-aws",
+  Pagerduty: "pagerduty",
+  Opsgenie: "opsgenie",
+  ToolWebhook: "tool-webhook",
 } as const;
 /**
  * The provider identifier (e.g., sendgrid, twilio, slack, etc.).
@@ -179,6 +192,8 @@ export const GetChannelEndpointResponseDtoType = {
   WebexRoom: "webex_room",
   WebexPerson: "webex_person",
   LineUser: "line_user",
+  PagerdutyService: "pagerduty_service",
+  OpsgenieIntegration: "opsgenie_integration",
 } as const;
 /**
  * Type of channel endpoint
@@ -192,6 +207,8 @@ export type GetChannelEndpointResponseDtoType = ClosedEnum<
  */
 export type Endpoint =
   | MsTeamsChannelEndpointDto
+  | PagerDutyServiceEndpointDto
+  | OpsgenieIntegrationEndpointDto
   | SlackChannelEndpointDto
   | SlackUserEndpointDto
   | WebhookEndpointDto
@@ -240,6 +257,8 @@ export type GetChannelEndpointResponseDto = {
    */
   endpoint:
     | MsTeamsChannelEndpointDto
+    | PagerDutyServiceEndpointDto
+    | OpsgenieIntegrationEndpointDto
     | SlackChannelEndpointDto
     | SlackUserEndpointDto
     | WebhookEndpointDto
@@ -282,6 +301,8 @@ export const Endpoint$inboundSchema: z.ZodType<
   unknown
 > = z.union([
   MsTeamsChannelEndpointDto$inboundSchema,
+  PagerDutyServiceEndpointDto$inboundSchema,
+  OpsgenieIntegrationEndpointDto$inboundSchema,
   SlackChannelEndpointDto$inboundSchema,
   SlackUserEndpointDto$inboundSchema,
   WebhookEndpointDto$inboundSchema,
@@ -319,6 +340,8 @@ export const GetChannelEndpointResponseDto$inboundSchema: z.ZodType<
   type: GetChannelEndpointResponseDtoType$inboundSchema,
   endpoint: z.union([
     MsTeamsChannelEndpointDto$inboundSchema,
+    PagerDutyServiceEndpointDto$inboundSchema,
+    OpsgenieIntegrationEndpointDto$inboundSchema,
     SlackChannelEndpointDto$inboundSchema,
     SlackUserEndpointDto$inboundSchema,
     WebhookEndpointDto$inboundSchema,

@@ -35,6 +35,20 @@ export type SmsStepResponseDtoControlValues = {
   additionalProperties?: { [k: string]: any } | undefined;
 };
 
+/**
+ * Per-provider content overrides keyed by providerId. Stored separately from controlValues and merged over the default body at send time.
+ */
+export type SmsStepResponseDtoProviderOverrides = {
+  /**
+   * PagerDuty content overrides. Merged over the default step body at send time. Supported keys are documented in the PagerDuty override schema.
+   */
+  pagerduty?: { [k: string]: any } | undefined;
+  /**
+   * Opsgenie content overrides. Merged over the default step body at send time. Supported keys are documented in the Opsgenie override schema.
+   */
+  opsgenie?: { [k: string]: any } | undefined;
+};
+
 export type SmsStepResponseDto = {
   /**
    * Controls metadata for the SMS step
@@ -44,6 +58,10 @@ export type SmsStepResponseDto = {
    * Control values for the SMS step
    */
   controlValues?: SmsStepResponseDtoControlValues | undefined;
+  /**
+   * Per-provider content overrides keyed by providerId. Stored separately from controlValues and merged over the default body at send time.
+   */
+  providerOverrides?: SmsStepResponseDtoProviderOverrides | null | undefined;
   /**
    * JSON Schema for variables, follows the JSON Schema standard
    */
@@ -115,6 +133,27 @@ export function smsStepResponseDtoControlValuesFromJSON(
 }
 
 /** @internal */
+export const SmsStepResponseDtoProviderOverrides$inboundSchema: z.ZodType<
+  SmsStepResponseDtoProviderOverrides,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  pagerduty: z.record(z.any()).optional(),
+  opsgenie: z.record(z.any()).optional(),
+});
+
+export function smsStepResponseDtoProviderOverridesFromJSON(
+  jsonString: string,
+): SafeParseResult<SmsStepResponseDtoProviderOverrides, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      SmsStepResponseDtoProviderOverrides$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'SmsStepResponseDtoProviderOverrides' from JSON`,
+  );
+}
+
+/** @internal */
 export const SmsStepResponseDto$inboundSchema: z.ZodType<
   SmsStepResponseDto,
   z.ZodTypeDef,
@@ -123,6 +162,9 @@ export const SmsStepResponseDto$inboundSchema: z.ZodType<
   controls: SmsControlsMetadataResponseDto$inboundSchema,
   controlValues: z.lazy(() => SmsStepResponseDtoControlValues$inboundSchema)
     .optional(),
+  providerOverrides: z.nullable(
+    z.lazy(() => SmsStepResponseDtoProviderOverrides$inboundSchema),
+  ).optional(),
   variables: z.record(z.any()),
   stepId: z.string(),
   _id: z.string(),

@@ -13,6 +13,7 @@ let value: IntegrationsControllerGenerateConnectOAuthUrlRequest = {
     context: {
       "key": "org-acme",
     },
+    contextHash: "a1b2c3d4e5f6...",
     scope: [
       "chat:write",
       "chat:write.public",

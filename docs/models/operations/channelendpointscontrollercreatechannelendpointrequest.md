@@ -8,10 +8,11 @@ import { ChannelEndpointsControllerCreateChannelEndpointRequest } from "@novu/ap
 let value: ChannelEndpointsControllerCreateChannelEndpointRequest = {
   requestBody: {
     subscriberId: "subscriber-123",
+    createSubscriberIfMissing: false,
     integrationIdentifier: "slack-prod",
-    type: "webhook",
+    type: "phone",
     endpoint: {
-      url: "https://example.com/webhook",
+      phoneNumber: "+1234567890",
     },
   },
 };

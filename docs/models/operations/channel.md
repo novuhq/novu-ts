@@ -13,5 +13,5 @@ let value: Channel = "chat";
 ## Values
 
 ```typescript
-"in_app" | "email" | "sms" | "chat" | "push"
+"in_app" | "email" | "sms" | "chat" | "push" | "tool"
 ```

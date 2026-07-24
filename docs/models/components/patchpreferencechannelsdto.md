@@ -17,3 +17,4 @@ let value: PatchPreferenceChannelsDto = {};
 | `inApp`                   | *boolean*                 | :heavy_minus_sign:        | In-app channel preference |
 | `push`                    | *boolean*                 | :heavy_minus_sign:        | Push channel preference   |
 | `chat`                    | *boolean*                 | :heavy_minus_sign:        | Chat channel preference   |
+| `tool`                    | *boolean*                 | :heavy_minus_sign:        | Tool channel preference   |

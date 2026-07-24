@@ -26,6 +26,7 @@ let value: GetPreferencesResponseDto = {
     inApp: true,
     chat: false,
     push: true,
+    tool: true,
   },
 };
 ```

@@ -13,5 +13,5 @@ let value: CreateIntegrationRequestDtoChannel = "in_app";
 ## Values
 
 ```typescript
-"in_app" | "email" | "sms" | "chat" | "push"
+"in_app" | "email" | "sms" | "chat" | "push" | "tool"
 ```

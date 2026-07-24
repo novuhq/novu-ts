@@ -43,7 +43,6 @@ let value: WorkflowControllerUpdateRequest = {
         },
       },
     },
-    origin: "novu-cloud",
   },
 };
 ```

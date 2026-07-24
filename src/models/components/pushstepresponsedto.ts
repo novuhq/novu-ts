@@ -39,6 +39,20 @@ export type PushStepResponseDtoControlValues = {
   additionalProperties?: { [k: string]: any } | undefined;
 };
 
+/**
+ * Per-provider content overrides keyed by providerId. Stored separately from controlValues and merged over the default body at send time.
+ */
+export type PushStepResponseDtoProviderOverrides = {
+  /**
+   * PagerDuty content overrides. Merged over the default step body at send time. Supported keys are documented in the PagerDuty override schema.
+   */
+  pagerduty?: { [k: string]: any } | undefined;
+  /**
+   * Opsgenie content overrides. Merged over the default step body at send time. Supported keys are documented in the Opsgenie override schema.
+   */
+  opsgenie?: { [k: string]: any } | undefined;
+};
+
 export type PushStepResponseDto = {
   /**
    * Controls metadata for the push step
@@ -48,6 +62,10 @@ export type PushStepResponseDto = {
    * Control values for the push step
    */
   controlValues?: PushStepResponseDtoControlValues | undefined;
+  /**
+   * Per-provider content overrides keyed by providerId. Stored separately from controlValues and merged over the default body at send time.
+   */
+  providerOverrides?: PushStepResponseDtoProviderOverrides | null | undefined;
   /**
    * JSON Schema for variables, follows the JSON Schema standard
    */
@@ -120,6 +138,27 @@ export function pushStepResponseDtoControlValuesFromJSON(
 }
 
 /** @internal */
+export const PushStepResponseDtoProviderOverrides$inboundSchema: z.ZodType<
+  PushStepResponseDtoProviderOverrides,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  pagerduty: z.record(z.any()).optional(),
+  opsgenie: z.record(z.any()).optional(),
+});
+
+export function pushStepResponseDtoProviderOverridesFromJSON(
+  jsonString: string,
+): SafeParseResult<PushStepResponseDtoProviderOverrides, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      PushStepResponseDtoProviderOverrides$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PushStepResponseDtoProviderOverrides' from JSON`,
+  );
+}
+
+/** @internal */
 export const PushStepResponseDto$inboundSchema: z.ZodType<
   PushStepResponseDto,
   z.ZodTypeDef,
@@ -128,6 +167,9 @@ export const PushStepResponseDto$inboundSchema: z.ZodType<
   controls: PushControlsMetadataResponseDto$inboundSchema,
   controlValues: z.lazy(() => PushStepResponseDtoControlValues$inboundSchema)
     .optional(),
+  providerOverrides: z.nullable(
+    z.lazy(() => PushStepResponseDtoProviderOverrides$inboundSchema),
+  ).optional(),
   variables: z.record(z.any()),
   stepId: z.string(),
   _id: z.string(),

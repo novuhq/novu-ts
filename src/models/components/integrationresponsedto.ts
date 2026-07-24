@@ -27,6 +27,7 @@ export const IntegrationResponseDtoChannel = {
   Sms: "sms",
   Chat: "chat",
   Push: "push",
+  Tool: "tool",
 } as const;
 /**
  * The channel type for the integration, which defines how it communicates (e.g., email, SMS). Not set for agent-kind integrations.

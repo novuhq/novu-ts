@@ -13,5 +13,5 @@ let value: UiSchemaGroupEnum = "LAYOUT";
 ## Values
 
 ```typescript
-"IN_APP" | "EMAIL" | "DIGEST" | "DELAY" | "THROTTLE" | "SMS" | "CHAT" | "PUSH" | "SKIP" | "LAYOUT" | "HTTP_REQUEST"
+"IN_APP" | "EMAIL" | "DIGEST" | "DELAY" | "THROTTLE" | "SMS" | "CHAT" | "PUSH" | "TOOL" | "SKIP" | "LAYOUT" | "HTTP_REQUEST"
 ```

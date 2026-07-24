@@ -13,6 +13,7 @@ let value: IntegrationsControllerGenerateLinkUserOAuthUrlRequest = {
     context: {
       "key": "org-acme",
     },
+    contextHash: "a1b2c3d4e5f6...",
     userScope: [
       "identity.basic",
     ],

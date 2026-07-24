@@ -17,6 +17,20 @@ import {
 } from "./resourceoriginenum.js";
 import { StepIssuesDto, StepIssuesDto$inboundSchema } from "./stepissuesdto.js";
 
+/**
+ * Per-provider content overrides keyed by providerId. Stored separately from controlValues and merged over the default body at send time.
+ */
+export type StepResponseDtoProviderOverrides = {
+  /**
+   * PagerDuty content overrides. Merged over the default step body at send time. Supported keys are documented in the PagerDuty override schema.
+   */
+  pagerduty?: { [k: string]: any } | undefined;
+  /**
+   * Opsgenie content overrides. Merged over the default step body at send time. Supported keys are documented in the Opsgenie override schema.
+   */
+  opsgenie?: { [k: string]: any } | undefined;
+};
+
 export type StepResponseDto = {
   /**
    * Controls metadata for the step
@@ -26,6 +40,10 @@ export type StepResponseDto = {
    * Control values for the step (alias for controls.values)
    */
   controlValues?: { [k: string]: any } | undefined;
+  /**
+   * Per-provider content overrides keyed by providerId. Stored separately from controlValues and merged over the default body at send time.
+   */
+  providerOverrides?: StepResponseDtoProviderOverrides | null | undefined;
   /**
    * JSON Schema for variables, follows the JSON Schema standard
    */
@@ -73,6 +91,26 @@ export type StepResponseDto = {
 };
 
 /** @internal */
+export const StepResponseDtoProviderOverrides$inboundSchema: z.ZodType<
+  StepResponseDtoProviderOverrides,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  pagerduty: z.record(z.any()).optional(),
+  opsgenie: z.record(z.any()).optional(),
+});
+
+export function stepResponseDtoProviderOverridesFromJSON(
+  jsonString: string,
+): SafeParseResult<StepResponseDtoProviderOverrides, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => StepResponseDtoProviderOverrides$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'StepResponseDtoProviderOverrides' from JSON`,
+  );
+}
+
+/** @internal */
 export const StepResponseDto$inboundSchema: z.ZodType<
   StepResponseDto,
   z.ZodTypeDef,
@@ -80,6 +118,9 @@ export const StepResponseDto$inboundSchema: z.ZodType<
 > = z.object({
   controls: ControlsMetadataDto$inboundSchema,
   controlValues: z.record(z.any()).optional(),
+  providerOverrides: z.nullable(
+    z.lazy(() => StepResponseDtoProviderOverrides$inboundSchema),
+  ).optional(),
   variables: z.record(z.any()),
   stepId: z.string(),
   _id: z.string(),

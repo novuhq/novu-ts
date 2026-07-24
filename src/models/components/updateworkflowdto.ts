@@ -134,7 +134,7 @@ export type UpdateWorkflowDto = {
   /**
    * Origin of the layout
    */
-  origin: ResourceOriginEnum;
+  origin?: ResourceOriginEnum | undefined;
   /**
    * Severity of the workflow
    */
@@ -203,7 +203,7 @@ export type UpdateWorkflowDto$Outbound = {
     | HttpRequestStepUpsertDto$Outbound
   >;
   preferences: PreferencesRequestDto$Outbound;
-  origin: string;
+  origin?: string | undefined;
   severity?: string | undefined;
 };
 
@@ -236,7 +236,7 @@ export const UpdateWorkflowDto$outboundSchema: z.ZodType<
     ]),
   ),
   preferences: PreferencesRequestDto$outboundSchema,
-  origin: ResourceOriginEnum$outboundSchema,
+  origin: ResourceOriginEnum$outboundSchema.optional(),
   severity: SeverityLevelEnum$outboundSchema.optional(),
 });
 

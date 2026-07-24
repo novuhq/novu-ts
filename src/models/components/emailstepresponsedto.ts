@@ -66,6 +66,20 @@ export type EmailStepResponseDtoControlValues = {
   additionalProperties?: { [k: string]: any } | undefined;
 };
 
+/**
+ * Per-provider content overrides keyed by providerId. Stored separately from controlValues and merged over the default body at send time.
+ */
+export type EmailStepResponseDtoProviderOverrides = {
+  /**
+   * PagerDuty content overrides. Merged over the default step body at send time. Supported keys are documented in the PagerDuty override schema.
+   */
+  pagerduty?: { [k: string]: any } | undefined;
+  /**
+   * Opsgenie content overrides. Merged over the default step body at send time. Supported keys are documented in the Opsgenie override schema.
+   */
+  opsgenie?: { [k: string]: any } | undefined;
+};
+
 export type EmailStepResponseDto = {
   /**
    * Controls metadata for the email step
@@ -75,6 +89,10 @@ export type EmailStepResponseDto = {
    * Control values for the email step
    */
   controlValues?: EmailStepResponseDtoControlValues | undefined;
+  /**
+   * Per-provider content overrides keyed by providerId. Stored separately from controlValues and merged over the default body at send time.
+   */
+  providerOverrides?: EmailStepResponseDtoProviderOverrides | null | undefined;
   /**
    * JSON Schema for variables, follows the JSON Schema standard
    */
@@ -155,6 +173,27 @@ export function emailStepResponseDtoControlValuesFromJSON(
 }
 
 /** @internal */
+export const EmailStepResponseDtoProviderOverrides$inboundSchema: z.ZodType<
+  EmailStepResponseDtoProviderOverrides,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  pagerduty: z.record(z.any()).optional(),
+  opsgenie: z.record(z.any()).optional(),
+});
+
+export function emailStepResponseDtoProviderOverridesFromJSON(
+  jsonString: string,
+): SafeParseResult<EmailStepResponseDtoProviderOverrides, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      EmailStepResponseDtoProviderOverrides$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'EmailStepResponseDtoProviderOverrides' from JSON`,
+  );
+}
+
+/** @internal */
 export const EmailStepResponseDto$inboundSchema: z.ZodType<
   EmailStepResponseDto,
   z.ZodTypeDef,
@@ -163,6 +202,9 @@ export const EmailStepResponseDto$inboundSchema: z.ZodType<
   controls: EmailControlsMetadataResponseDto$inboundSchema,
   controlValues: z.lazy(() => EmailStepResponseDtoControlValues$inboundSchema)
     .optional(),
+  providerOverrides: z.nullable(
+    z.lazy(() => EmailStepResponseDtoProviderOverrides$inboundSchema),
+  ).optional(),
   variables: z.record(z.any()),
   stepId: z.string(),
   _id: z.string(),

@@ -14,6 +14,7 @@ export const ContentIssueEnum = {
   InvalidUrl: "INVALID_URL",
   MissingValue: "MISSING_VALUE",
   TierLimitExceeded: "TIER_LIMIT_EXCEEDED",
+  UnsupportedProperty: "UNSUPPORTED_PROPERTY",
 } as const;
 /**
  * Type of step content issue

@@ -4541,6 +4541,8 @@
             "description": "Number of items to return per page",
             "example": 10,
             "schema": {
+              "minimum": 1,
+              "maximum": 100,
               "type": "number"
             }
           },
@@ -4551,6 +4553,7 @@
             "description": "Number of items to skip before starting to return results",
             "example": 0,
             "schema": {
+              "minimum": 0,
               "type": "number"
             }
           },
@@ -26732,6 +26735,8 @@
             "description": "Number of items to return per page",
             "example": 10,
             "schema": {
+              "minimum": 1,
+              "maximum": 100,
               "type": "number"
             }
           },
@@ -26742,6 +26747,7 @@
             "description": "Number of items to skip before starting to return results",
             "example": 0,
             "schema": {
+              "minimum": 0,
               "type": "number"
             }
           },
@@ -36458,6 +36464,20 @@
             }
           },
           {
+            "name": "connectionMode",
+            "required": false,
+            "in": "query",
+            "description": "Scope results relative to the subscriber. `subscriber` returns only the subscriber-owned connections, `shared` returns only shared (workspace-level) connections. Omit to return both.",
+            "example": "shared",
+            "schema": {
+              "enum": [
+                "subscriber",
+                "shared"
+              ],
+              "type": "string"
+            }
+          },
+          {
             "name": "channel",
             "required": false,
             "in": "query",
@@ -36469,7 +36489,8 @@
                 "email",
                 "sms",
                 "chat",
-                "push"
+                "push",
+                "tool"
               ],
               "type": "string"
             }
@@ -38998,7 +39019,8 @@
                 "email",
                 "sms",
                 "chat",
-                "push"
+                "push",
+                "tool"
               ],
               "type": "string"
             }
@@ -39556,6 +39578,12 @@
                   },
                   {
                     "$ref": "#/components/schemas/CreateLineUserEndpointDto"
+                  },
+                  {
+                    "$ref": "#/components/schemas/CreatePagerDutyServiceEndpointDto"
+                  },
+                  {
+                    "$ref": "#/components/schemas/CreateOpsgenieIntegrationEndpointDto"
                   }
                 ],
                 "discriminator": {
@@ -39570,7 +39598,9 @@
                     "telegram_chat": "#/components/schemas/CreateTelegramChatEndpointDto",
                     "webex_room": "#/components/schemas/CreateWebexRoomEndpointDto",
                     "webex_person": "#/components/schemas/CreateWebexPersonEndpointDto",
-                    "line_user": "#/components/schemas/CreateLineUserEndpointDto"
+                    "line_user": "#/components/schemas/CreateLineUserEndpointDto",
+                    "pagerduty_service": "#/components/schemas/CreatePagerDutyServiceEndpointDto",
+                    "opsgenie_integration": "#/components/schemas/CreateOpsgenieIntegrationEndpointDto"
                   }
                 }
               }
@@ -63063,7 +63093,8 @@
                 "email",
                 "sms",
                 "chat",
-                "push"
+                "push",
+                "tool"
               ],
               "type": "string"
             }
@@ -71496,7 +71527,8 @@
           "email",
           "sms",
           "chat",
-          "push"
+          "push",
+          "tool"
         ]
       },
       "StepTypeEnum": {
@@ -71508,6 +71540,7 @@
           "sms",
           "chat",
           "push",
+          "tool",
           "digest",
           "trigger",
           "delay",
@@ -71876,6 +71909,7 @@
           "sinch",
           "isendpro-sms",
           "cm-telecom",
+          "ruach-sms",
           "fcm",
           "apns",
           "expo",
@@ -71903,7 +71937,10 @@
           "sendblue",
           "anthropic",
           "novu-anthropic",
-          "anthropic-aws"
+          "anthropic-aws",
+          "pagerduty",
+          "opsgenie",
+          "tool-webhook"
         ]
       },
       "ExecutionDetailsSourceEnum": {
@@ -72137,6 +72174,7 @@
               "sms",
               "chat",
               "push",
+              "tool",
               "digest",
               "trigger",
               "delay",
@@ -75200,7 +75238,8 @@
               "email",
               "sms",
               "chat",
-              "push"
+              "push",
+              "tool"
             ]
           },
           "kind": {
@@ -75292,7 +75331,8 @@
               "email",
               "sms",
               "chat",
-              "push"
+              "push",
+              "tool"
             ],
             "type": "string",
             "description": "The channel type for the integration. Not required for agent-kind integrations."
@@ -75557,6 +75597,11 @@
               ]
             }
           },
+          "contextHash": {
+            "type": "string",
+            "description": "HMAC-SHA256 of the canonicalized `context`, signed with the tenant environment secret key (the same \"Inbox with context\" signing scheme). Required when the integration has HMAC validation enabled and the session did not already HMAC-verify the context. Establishes that the context/tenant binding was minted by an authenticated backend rather than forged in the browser.",
+            "example": "a1b2c3d4e5f6..."
+          },
           "scope": {
             "description": "**Slack only**: OAuth scopes to request during authorization. If not specified, default scopes will be used: chat:write, chat:write.public, channels:read, groups:read, users:read, users:read.email. **Webex**: OAuth scopes to request during authorization. Defaults to: spark:messages_write, spark:rooms_read, spark:people_read, spark:memberships_read, spark:kms. **MS Teams**: ignored — uses admin consent with pre-configured Azure AD permissions.",
             "example": [
@@ -75639,6 +75684,11 @@
               ]
             }
           },
+          "contextHash": {
+            "type": "string",
+            "description": "HMAC-SHA256 of the canonicalized `context`, signed with the tenant environment secret key (the same \"Inbox with context\" signing scheme). Required when the integration has HMAC validation enabled and the session did not already HMAC-verify the context, so the per-user link carries a trustworthy subscriber/tenant binding.",
+            "example": "a1b2c3d4e5f6..."
+          },
           "userScope": {
             "description": "**Slack only**: User-level OAuth scopes for \"Sign in with Slack\". Defaults to: identity.basic. **Webex**: Optional Webex scopes for people/me; defaults to spark:people_read. **MS Teams**: ignored — uses delegated OpenID scopes (openid, profile, User.Read).",
             "example": [
@@ -75689,6 +75739,40 @@
             "type": "string",
             "description": "External subscriber identifier to link to their chat identity",
             "example": "subscriber-123"
+          },
+          "context": {
+            "type": "object",
+            "additionalProperties": {
+              "oneOf": [
+                {
+                  "type": "string",
+                  "description": "Simple context id",
+                  "example": "org-acme"
+                },
+                {
+                  "type": "object",
+                  "description": "Rich context object with id and optional data",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "example": "org-acme"
+                    },
+                    "data": {
+                      "type": "object",
+                      "description": "Optional additional context data",
+                      "additionalProperties": true,
+                      "example": {
+                        "name": "Acme Corp",
+                        "region": "us-east-1"
+                      }
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ]
+                }
+              ]
+            }
           }
         },
         "required": [
@@ -76812,6 +76896,11 @@
           "push": {
             "type": "boolean",
             "description": "Push notification channel preference",
+            "example": true
+          },
+          "tool": {
+            "type": "boolean",
+            "description": "Tool channel preference",
             "example": true
           }
         }
@@ -78228,6 +78317,10 @@
           "chat": {
             "type": "boolean",
             "description": "Chat channel preference"
+          },
+          "tool": {
+            "type": "boolean",
+            "description": "Tool channel preference"
           }
         }
       },
@@ -78935,6 +79028,7 @@
           "SMS_BODY",
           "CHAT_BODY",
           "PUSH_BODY",
+          "TOOL_BODY",
           "PUSH_SUBJECT",
           "QUERY_EDITOR",
           "DATA",
@@ -79019,6 +79113,7 @@
           "SMS",
           "CHAT",
           "PUSH",
+          "TOOL",
           "SKIP",
           "LAYOUT",
           "HTTP_REQUEST"
@@ -80577,6 +80672,30 @@
           }
         }
       },
+      "ProviderOverridesDto": {
+        "type": "object",
+        "properties": {
+          "pagerduty": {
+            "type": "object",
+            "description": "PagerDuty content overrides. Merged over the default step body at send time. Supported keys are documented in the PagerDuty override schema.",
+            "additionalProperties": true,
+            "example": {
+              "severity": "warning",
+              "source": "novu",
+              "summary": "{{payload.title}}"
+            }
+          },
+          "opsgenie": {
+            "type": "object",
+            "description": "Opsgenie content overrides. Merged over the default step body at send time. Supported keys are documented in the Opsgenie override schema.",
+            "additionalProperties": true,
+            "example": {
+              "priority": "P2",
+              "message": "{{payload.title}}"
+            }
+          }
+        }
+      },
       "ContentIssueEnum": {
         "type": "string",
         "description": "Type of step content issue",
@@ -80585,7 +80704,8 @@
           "INVALID_FILTER_ARG_IN_VARIABLE",
           "INVALID_URL",
           "MISSING_VALUE",
-          "TIER_LIMIT_EXCEEDED"
+          "TIER_LIMIT_EXCEEDED",
+          "UNSUPPORTED_PROPERTY"
         ]
       },
       "StepContentIssueDto": {
@@ -80676,6 +80796,15 @@
             "type": "object",
             "description": "Control values for the step (alias for controls.values)",
             "additionalProperties": true
+          },
+          "providerOverrides": {
+            "description": "Per-provider content overrides keyed by providerId. Stored separately from controlValues and merged over the default body at send time.",
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ProviderOverridesDto"
+              }
+            ]
           },
           "variables": {
             "type": "object",
@@ -80858,6 +80987,15 @@
               }
             ]
           },
+          "providerOverrides": {
+            "description": "Per-provider content overrides keyed by providerId. Stored separately from controlValues and merged over the default body at send time.",
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ProviderOverridesDto"
+              }
+            ]
+          },
           "variables": {
             "type": "object",
             "description": "JSON Schema for variables, follows the JSON Schema standard",
@@ -81007,6 +81145,15 @@
             "allOf": [
               {
                 "$ref": "#/components/schemas/SmsControlDto"
+              }
+            ]
+          },
+          "providerOverrides": {
+            "description": "Per-provider content overrides keyed by providerId. Stored separately from controlValues and merged over the default body at send time.",
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ProviderOverridesDto"
               }
             ]
           },
@@ -81166,6 +81313,15 @@
               }
             ]
           },
+          "providerOverrides": {
+            "description": "Per-provider content overrides keyed by providerId. Stored separately from controlValues and merged over the default body at send time.",
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ProviderOverridesDto"
+              }
+            ]
+          },
           "variables": {
             "type": "object",
             "description": "JSON Schema for variables, follows the JSON Schema standard",
@@ -81315,6 +81471,15 @@
             "allOf": [
               {
                 "$ref": "#/components/schemas/ChatControlDto"
+              }
+            ]
+          },
+          "providerOverrides": {
+            "description": "Per-provider content overrides keyed by providerId. Stored separately from controlValues and merged over the default body at send time.",
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ProviderOverridesDto"
               }
             ]
           },
@@ -81496,6 +81661,15 @@
             "allOf": [
               {
                 "$ref": "#/components/schemas/DelayControlDto"
+              }
+            ]
+          },
+          "providerOverrides": {
+            "description": "Per-provider content overrides keyed by providerId. Stored separately from controlValues and merged over the default body at send time.",
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ProviderOverridesDto"
               }
             ]
           },
@@ -81714,6 +81888,15 @@
               }
             ]
           },
+          "providerOverrides": {
+            "description": "Per-provider content overrides keyed by providerId. Stored separately from controlValues and merged over the default body at send time.",
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ProviderOverridesDto"
+              }
+            ]
+          },
           "variables": {
             "type": "object",
             "description": "JSON Schema for variables, follows the JSON Schema standard",
@@ -81903,6 +82086,15 @@
               }
             ]
           },
+          "providerOverrides": {
+            "description": "Per-provider content overrides keyed by providerId. Stored separately from controlValues and merged over the default body at send time.",
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ProviderOverridesDto"
+              }
+            ]
+          },
           "variables": {
             "type": "object",
             "description": "JSON Schema for variables, follows the JSON Schema standard",
@@ -82020,6 +82212,15 @@
             "allOf": [
               {
                 "$ref": "#/components/schemas/CustomControlDto"
+              }
+            ]
+          },
+          "providerOverrides": {
+            "description": "Per-provider content overrides keyed by providerId. Stored separately from controlValues and merged over the default body at send time.",
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ProviderOverridesDto"
               }
             ]
           },
@@ -82208,6 +82409,15 @@
             "allOf": [
               {
                 "$ref": "#/components/schemas/HttpRequestControlDto"
+              }
+            ]
+          },
+          "providerOverrides": {
+            "description": "Per-provider content overrides keyed by providerId. Stored separately from controlValues and merged over the default body at send time.",
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ProviderOverridesDto"
               }
             ]
           },
@@ -82421,6 +82631,176 @@
             "allOf": [
               {
                 "$ref": "#/components/schemas/InAppControlDto"
+              }
+            ]
+          },
+          "providerOverrides": {
+            "description": "Per-provider content overrides keyed by providerId. Stored separately from controlValues and merged over the default body at send time.",
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ProviderOverridesDto"
+              }
+            ]
+          },
+          "variables": {
+            "type": "object",
+            "description": "JSON Schema for variables, follows the JSON Schema standard",
+            "additionalProperties": true
+          },
+          "stepId": {
+            "type": "string",
+            "description": "Unique identifier of the step"
+          },
+          "_id": {
+            "type": "string",
+            "description": "Database identifier of the step"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the step"
+          },
+          "slug": {
+            "type": "string",
+            "description": "Slug of the step"
+          },
+          "type": {
+            "$ref": "#/components/schemas/StepTypeEnum"
+          },
+          "origin": {
+            "$ref": "#/components/schemas/ResourceOriginEnum"
+          },
+          "workflowId": {
+            "type": "string",
+            "description": "Workflow identifier"
+          },
+          "workflowDatabaseId": {
+            "type": "string",
+            "description": "Workflow database identifier"
+          },
+          "issues": {
+            "description": "Issues associated with the step",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StepIssuesDto"
+              }
+            ]
+          },
+          "stepResolverHash": {
+            "type": "string",
+            "description": "Hash identifying the deployed Cloudflare Worker for this step"
+          }
+        },
+        "required": [
+          "controls",
+          "variables",
+          "stepId",
+          "_id",
+          "name",
+          "slug",
+          "type",
+          "origin",
+          "workflowId",
+          "workflowDatabaseId"
+        ]
+      },
+      "ToolControlDto": {
+        "type": "object",
+        "properties": {
+          "skip": {
+            "type": "object",
+            "description": "JSONLogic filter conditions for conditionally skipping the step execution. Supports complex logical operations with AND, OR, and comparison operators. See https://jsonlogic.com/ for full typing reference.",
+            "example": {
+              "and": [
+                {
+                  "==": [
+                    {
+                      "var": "payload.tier"
+                    },
+                    "pro"
+                  ]
+                },
+                {
+                  "==": [
+                    {
+                      "var": "subscriber.data.role"
+                    },
+                    "admin"
+                  ]
+                },
+                {
+                  ">": [
+                    {
+                      "var": "payload.amount"
+                    },
+                    "4"
+                  ]
+                }
+              ]
+            },
+            "additionalProperties": true
+          },
+          "body": {
+            "type": "string",
+            "description": "Content of the tool payload."
+          }
+        }
+      },
+      "ToolControlsMetadataResponseDto": {
+        "type": "object",
+        "properties": {
+          "dataSchema": {
+            "type": "object",
+            "description": "JSON Schema for data",
+            "additionalProperties": true
+          },
+          "uiSchema": {
+            "description": "UI Schema for rendering",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/UiSchema"
+              }
+            ]
+          },
+          "values": {
+            "description": "Control values specific to Tool",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ToolControlDto"
+              }
+            ]
+          }
+        },
+        "required": [
+          "values"
+        ]
+      },
+      "ToolStepResponseDto": {
+        "type": "object",
+        "properties": {
+          "controls": {
+            "description": "Controls metadata for the tool step",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ToolControlsMetadataResponseDto"
+              }
+            ]
+          },
+          "controlValues": {
+            "description": "Control values for the tool step",
+            "additionalProperties": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ToolControlDto"
+              }
+            ]
+          },
+          "providerOverrides": {
+            "description": "Per-provider content overrides keyed by providerId. Stored separately from controlValues and merged over the default body at send time.",
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ProviderOverridesDto"
               }
             ]
           },
@@ -82703,6 +83083,9 @@
                 },
                 {
                   "$ref": "#/components/schemas/HttpRequestStepResponseDto"
+                },
+                {
+                  "$ref": "#/components/schemas/ToolStepResponseDto"
                 }
               ],
               "discriminator": {
@@ -82717,7 +83100,8 @@
                   "digest": "#/components/schemas/DigestStepResponseDto",
                   "custom": "#/components/schemas/CustomStepResponseDto",
                   "throttle": "#/components/schemas/ThrottleStepResponseDto",
-                  "http_request": "#/components/schemas/HttpRequestStepResponseDto"
+                  "http_request": "#/components/schemas/HttpRequestStepResponseDto",
+                  "tool": "#/components/schemas/ToolStepResponseDto"
                 }
               }
             }
@@ -83425,8 +83809,7 @@
         "required": [
           "name",
           "steps",
-          "preferences",
-          "origin"
+          "preferences"
         ]
       },
       "StepListResponseDto": {
@@ -83996,6 +84379,22 @@
                   },
                   "preview": {
                     "$ref": "#/components/schemas/ChatRenderOutput"
+                  },
+                  "error": {
+                    "$ref": "#/components/schemas/PreviewErrorDto"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "type": {
+                    "enum": [
+                      "tool"
+                    ]
+                  },
+                  "preview": {
+                    "type": "object",
+                    "additionalProperties": true
                   },
                   "error": {
                     "$ref": "#/components/schemas/PreviewErrorDto"
@@ -84647,6 +85046,10 @@
           "name": {
             "type": "string",
             "example": "Acme HQ"
+          },
+          "botUserId": {
+            "type": "string",
+            "example": "U0123456789"
           }
         },
         "required": [
@@ -84691,7 +85094,8 @@
               "email",
               "sms",
               "chat",
-              "push"
+              "push",
+              "tool"
             ],
             "type": "string",
             "description": "The channel type (email, sms, push, chat, etc.)."
@@ -84761,6 +85165,7 @@
               "sinch",
               "isendpro-sms",
               "cm-telecom",
+              "ruach-sms",
               "fcm",
               "apns",
               "expo",
@@ -84788,7 +85193,10 @@
               "sendblue",
               "anthropic",
               "novu-anthropic",
-              "anthropic-aws"
+              "anthropic-aws",
+              "pagerduty",
+              "opsgenie",
+              "tool-webhook"
             ],
             "example": "slack"
           },
@@ -84995,6 +85403,11 @@
             "description": "The subscriber ID to which the channel endpoint is linked",
             "example": "subscriber-123"
           },
+          "createSubscriberIfMissing": {
+            "type": "boolean",
+            "description": "When true, the subscriber is created if it does not exist yet (existing subscribers are never modified). When false or omitted, an unknown subscriberId returns 404.",
+            "default": false
+          },
           "context": {
             "type": "object",
             "additionalProperties": {
@@ -85088,6 +85501,11 @@
             "type": "string",
             "description": "The subscriber ID to which the channel endpoint is linked",
             "example": "subscriber-123"
+          },
+          "createSubscriberIfMissing": {
+            "type": "boolean",
+            "description": "When true, the subscriber is created if it does not exist yet (existing subscribers are never modified). When false or omitted, an unknown subscriberId returns 404.",
+            "default": false
           },
           "context": {
             "type": "object",
@@ -85187,6 +85605,11 @@
             "description": "The subscriber ID to which the channel endpoint is linked",
             "example": "subscriber-123"
           },
+          "createSubscriberIfMissing": {
+            "type": "boolean",
+            "description": "When true, the subscriber is created if it does not exist yet (existing subscribers are never modified). When false or omitted, an unknown subscriberId returns 404.",
+            "default": false
+          },
           "context": {
             "type": "object",
             "additionalProperties": {
@@ -85280,6 +85703,11 @@
             "type": "string",
             "description": "The subscriber ID to which the channel endpoint is linked",
             "example": "subscriber-123"
+          },
+          "createSubscriberIfMissing": {
+            "type": "boolean",
+            "description": "When true, the subscriber is created if it does not exist yet (existing subscribers are never modified). When false or omitted, an unknown subscriberId returns 404.",
+            "default": false
           },
           "context": {
             "type": "object",
@@ -85381,6 +85809,11 @@
             "description": "The subscriber ID to which the channel endpoint is linked",
             "example": "subscriber-123"
           },
+          "createSubscriberIfMissing": {
+            "type": "boolean",
+            "description": "When true, the subscriber is created if it does not exist yet (existing subscribers are never modified). When false or omitted, an unknown subscriberId returns 404.",
+            "default": false
+          },
           "context": {
             "type": "object",
             "additionalProperties": {
@@ -85475,6 +85908,11 @@
             "description": "The subscriber ID to which the channel endpoint is linked",
             "example": "subscriber-123"
           },
+          "createSubscriberIfMissing": {
+            "type": "boolean",
+            "description": "When true, the subscriber is created if it does not exist yet (existing subscribers are never modified). When false or omitted, an unknown subscriberId returns 404.",
+            "default": false
+          },
           "context": {
             "type": "object",
             "additionalProperties": {
@@ -85568,6 +86006,11 @@
             "type": "string",
             "description": "The subscriber ID to which the channel endpoint is linked",
             "example": "subscriber-123"
+          },
+          "createSubscriberIfMissing": {
+            "type": "boolean",
+            "description": "When true, the subscriber is created if it does not exist yet (existing subscribers are never modified). When false or omitted, an unknown subscriberId returns 404.",
+            "default": false
           },
           "context": {
             "type": "object",
@@ -85664,6 +86107,11 @@
             "type": "string",
             "description": "The subscriber ID to which the channel endpoint is linked",
             "example": "subscriber-123"
+          },
+          "createSubscriberIfMissing": {
+            "type": "boolean",
+            "description": "When true, the subscriber is created if it does not exist yet (existing subscribers are never modified). When false or omitted, an unknown subscriberId returns 404.",
+            "default": false
           },
           "context": {
             "type": "object",
@@ -85764,6 +86212,11 @@
             "description": "The subscriber ID to which the channel endpoint is linked",
             "example": "subscriber-123"
           },
+          "createSubscriberIfMissing": {
+            "type": "boolean",
+            "description": "When true, the subscriber is created if it does not exist yet (existing subscribers are never modified). When false or omitted, an unknown subscriberId returns 404.",
+            "default": false
+          },
           "context": {
             "type": "object",
             "additionalProperties": {
@@ -85858,6 +86311,11 @@
             "description": "The subscriber ID to which the channel endpoint is linked",
             "example": "subscriber-123"
           },
+          "createSubscriberIfMissing": {
+            "type": "boolean",
+            "description": "When true, the subscriber is created if it does not exist yet (existing subscribers are never modified). When false or omitted, an unknown subscriberId returns 404.",
+            "default": false
+          },
           "context": {
             "type": "object",
             "additionalProperties": {
@@ -85926,6 +86384,228 @@
           "endpoint"
         ]
       },
+      "PagerDutyServiceEndpointDto": {
+        "type": "object",
+        "properties": {
+          "routingKey": {
+            "type": "string",
+            "pattern": "/^[a-zA-Z0-9]{32}$/",
+            "description": "PagerDuty Events API v2 integration key (32-character alphanumeric string). Stored encrypted on the linked channel connection.",
+            "example": "R0UTINGK3YEXAMPLE000000000000000",
+            "minLength": 32,
+            "maxLength": 32
+          },
+          "region": {
+            "type": "string",
+            "description": "PagerDuty account region — determines the events API data-center endpoint.",
+            "enum": [
+              "us",
+              "eu"
+            ],
+            "example": "us"
+          }
+        },
+        "required": [
+          "routingKey",
+          "region"
+        ]
+      },
+      "CreatePagerDutyServiceEndpointDto": {
+        "type": "object",
+        "properties": {
+          "identifier": {
+            "type": "string",
+            "description": "The unique identifier for the channel endpoint. If not provided, one will be generated automatically.",
+            "example": "slack-channel-user123-abc4"
+          },
+          "subscriberId": {
+            "type": "string",
+            "description": "The subscriber ID to which the channel endpoint is linked",
+            "example": "subscriber-123"
+          },
+          "createSubscriberIfMissing": {
+            "type": "boolean",
+            "description": "When true, the subscriber is created if it does not exist yet (existing subscribers are never modified). When false or omitted, an unknown subscriberId returns 404.",
+            "default": false
+          },
+          "context": {
+            "type": "object",
+            "additionalProperties": {
+              "oneOf": [
+                {
+                  "type": "string",
+                  "description": "Simple context id",
+                  "example": "org-acme"
+                },
+                {
+                  "type": "object",
+                  "description": "Rich context object with id and optional data",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "example": "org-acme"
+                    },
+                    "data": {
+                      "type": "object",
+                      "description": "Optional additional context data",
+                      "additionalProperties": true,
+                      "example": {
+                        "name": "Acme Corp",
+                        "region": "us-east-1"
+                      }
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ]
+                }
+              ]
+            }
+          },
+          "integrationIdentifier": {
+            "type": "string",
+            "description": "The identifier of the integration to use for this channel endpoint.",
+            "example": "slack-prod"
+          },
+          "connectionIdentifier": {
+            "type": "string",
+            "description": "The identifier of the channel connection to use for this channel endpoint.",
+            "example": "slack-connection-abc123"
+          },
+          "type": {
+            "type": "string",
+            "description": "Type of channel endpoint",
+            "enum": [
+              "pagerduty_service"
+            ],
+            "example": "pagerduty_service"
+          },
+          "endpoint": {
+            "description": "PagerDuty service endpoint data. The routing key is persisted encrypted on the linked ChannelConnection; the ChannelEndpoint itself carries a lightweight connection reference.",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PagerDutyServiceEndpointDto"
+              }
+            ]
+          }
+        },
+        "required": [
+          "subscriberId",
+          "integrationIdentifier",
+          "type",
+          "endpoint"
+        ]
+      },
+      "OpsgenieIntegrationEndpointDto": {
+        "type": "object",
+        "properties": {
+          "apiKey": {
+            "type": "string",
+            "pattern": "OPSGENIE_API_KEY_PATTERN",
+            "description": "Opsgenie API integration key (GenieKey) in UUID format. Stored encrypted on the linked channel connection.",
+            "example": "abcdefg-a25a-4652-883c-73703b12345"
+          },
+          "region": {
+            "type": "string",
+            "description": "Opsgenie account region that determines the alert API data-center endpoint.",
+            "enum": [
+              "us",
+              "eu"
+            ],
+            "example": "us"
+          }
+        },
+        "required": [
+          "apiKey",
+          "region"
+        ]
+      },
+      "CreateOpsgenieIntegrationEndpointDto": {
+        "type": "object",
+        "properties": {
+          "identifier": {
+            "type": "string",
+            "description": "The unique identifier for the channel endpoint. If not provided, one will be generated automatically.",
+            "example": "slack-channel-user123-abc4"
+          },
+          "subscriberId": {
+            "type": "string",
+            "description": "The subscriber ID to which the channel endpoint is linked",
+            "example": "subscriber-123"
+          },
+          "createSubscriberIfMissing": {
+            "type": "boolean",
+            "description": "When true, the subscriber is created if it does not exist yet (existing subscribers are never modified). When false or omitted, an unknown subscriberId returns 404.",
+            "default": false
+          },
+          "context": {
+            "type": "object",
+            "additionalProperties": {
+              "oneOf": [
+                {
+                  "type": "string",
+                  "description": "Simple context id",
+                  "example": "org-acme"
+                },
+                {
+                  "type": "object",
+                  "description": "Rich context object with id and optional data",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "example": "org-acme"
+                    },
+                    "data": {
+                      "type": "object",
+                      "description": "Optional additional context data",
+                      "additionalProperties": true,
+                      "example": {
+                        "name": "Acme Corp",
+                        "region": "us-east-1"
+                      }
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ]
+                }
+              ]
+            }
+          },
+          "integrationIdentifier": {
+            "type": "string",
+            "description": "The identifier of the integration to use for this channel endpoint.",
+            "example": "slack-prod"
+          },
+          "connectionIdentifier": {
+            "type": "string",
+            "description": "The identifier of the channel connection to use for this channel endpoint.",
+            "example": "slack-connection-abc123"
+          },
+          "type": {
+            "type": "string",
+            "description": "Type of channel endpoint",
+            "enum": [
+              "opsgenie_integration"
+            ],
+            "example": "opsgenie_integration"
+          },
+          "endpoint": {
+            "description": "Opsgenie integration endpoint data. The API key is persisted encrypted on the linked ChannelConnection; the ChannelEndpoint itself carries a lightweight connection reference.",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/OpsgenieIntegrationEndpointDto"
+              }
+            ]
+          }
+        },
+        "required": [
+          "subscriberId",
+          "integrationIdentifier",
+          "type",
+          "endpoint"
+        ]
+      },
       "GetChannelEndpointResponseDto": {
         "type": "object",
         "properties": {
@@ -85940,7 +86620,8 @@
               "email",
               "sms",
               "chat",
-              "push"
+              "push",
+              "tool"
             ],
             "type": "string",
             "description": "The channel type (email, sms, push, chat, etc.)."
@@ -86010,6 +86691,7 @@
               "sinch",
               "isendpro-sms",
               "cm-telecom",
+              "ruach-sms",
               "fcm",
               "apns",
               "expo",
@@ -86037,7 +86719,10 @@
               "sendblue",
               "anthropic",
               "novu-anthropic",
-              "anthropic-aws"
+              "anthropic-aws",
+              "pagerduty",
+              "opsgenie",
+              "tool-webhook"
             ],
             "example": "slack"
           },
@@ -86083,7 +86768,9 @@
               "telegram_chat",
               "webex_room",
               "webex_person",
-              "line_user"
+              "line_user",
+              "pagerduty_service",
+              "opsgenie_integration"
             ],
             "example": "slack_channel"
           },
@@ -86119,6 +86806,12 @@
               },
               {
                 "$ref": "#/components/schemas/LineUserEndpointDto"
+              },
+              {
+                "$ref": "#/components/schemas/PagerDutyServiceEndpointDto"
+              },
+              {
+                "$ref": "#/components/schemas/OpsgenieIntegrationEndpointDto"
               }
             ]
           },

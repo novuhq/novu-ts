@@ -92,6 +92,20 @@ export type DigestStepResponseDtoControlValues = {
   additionalProperties?: { [k: string]: any } | undefined;
 };
 
+/**
+ * Per-provider content overrides keyed by providerId. Stored separately from controlValues and merged over the default body at send time.
+ */
+export type DigestStepResponseDtoProviderOverrides = {
+  /**
+   * PagerDuty content overrides. Merged over the default step body at send time. Supported keys are documented in the PagerDuty override schema.
+   */
+  pagerduty?: { [k: string]: any } | undefined;
+  /**
+   * Opsgenie content overrides. Merged over the default step body at send time. Supported keys are documented in the Opsgenie override schema.
+   */
+  opsgenie?: { [k: string]: any } | undefined;
+};
+
 export type DigestStepResponseDto = {
   /**
    * Controls metadata for the digest step
@@ -101,6 +115,10 @@ export type DigestStepResponseDto = {
    * Control values for the digest step
    */
   controlValues?: DigestStepResponseDtoControlValues | undefined;
+  /**
+   * Per-provider content overrides keyed by providerId. Stored separately from controlValues and merged over the default body at send time.
+   */
+  providerOverrides?: DigestStepResponseDtoProviderOverrides | null | undefined;
   /**
    * JSON Schema for variables, follows the JSON Schema standard
    */
@@ -188,6 +206,27 @@ export function digestStepResponseDtoControlValuesFromJSON(
 }
 
 /** @internal */
+export const DigestStepResponseDtoProviderOverrides$inboundSchema: z.ZodType<
+  DigestStepResponseDtoProviderOverrides,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  pagerduty: z.record(z.any()).optional(),
+  opsgenie: z.record(z.any()).optional(),
+});
+
+export function digestStepResponseDtoProviderOverridesFromJSON(
+  jsonString: string,
+): SafeParseResult<DigestStepResponseDtoProviderOverrides, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      DigestStepResponseDtoProviderOverrides$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DigestStepResponseDtoProviderOverrides' from JSON`,
+  );
+}
+
+/** @internal */
 export const DigestStepResponseDto$inboundSchema: z.ZodType<
   DigestStepResponseDto,
   z.ZodTypeDef,
@@ -196,6 +235,9 @@ export const DigestStepResponseDto$inboundSchema: z.ZodType<
   controls: DigestControlsMetadataResponseDto$inboundSchema,
   controlValues: z.lazy(() => DigestStepResponseDtoControlValues$inboundSchema)
     .optional(),
+  providerOverrides: z.nullable(
+    z.lazy(() => DigestStepResponseDtoProviderOverrides$inboundSchema),
+  ).optional(),
   variables: z.record(z.any()),
   stepId: z.string(),
   _id: z.string(),

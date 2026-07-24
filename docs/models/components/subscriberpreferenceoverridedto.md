@@ -6,7 +6,7 @@
 import { SubscriberPreferenceOverrideDto } from "@novu/api/models/components";
 
 let value: SubscriberPreferenceOverrideDto = {
-  channel: "chat",
+  channel: "push",
   source: "subscriber",
 };
 ```

@@ -63,3 +63,9 @@ const value: components.Eight = {};
 const value: components.Nine = {};
 ```
 
+### `components.Ten`
+
+```typescript
+const value: components.Ten = {};
+```
+

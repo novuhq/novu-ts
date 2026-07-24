@@ -74,13 +74,13 @@ actions:
       "x-codeSamples":
         - "lang": "typescript"
           "label": "TypeScript"
-          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.channelConnections.list({\n    limit: 10,\n    subscriberId: \"subscriber-123\",\n    channel: \"chat\",\n    providerId: \"slack\",\n    integrationIdentifier: \"slack-prod\",\n    contextKeys: [\n      \"tenant:org-123\",\n      \"region:us-east-1\",\n    ],\n  });\n\n  console.log(result);\n}\n\nrun();"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.channelConnections.list({\n    limit: 10,\n    subscriberId: \"subscriber-123\",\n    connectionMode: \"shared\",\n    channel: \"chat\",\n    providerId: \"slack\",\n    integrationIdentifier: \"slack-prod\",\n    contextKeys: [\n      \"tenant:org-123\",\n      \"region:us-east-1\",\n    ],\n  });\n\n  console.log(result);\n}\n\nrun();"
   - target: $["paths"]["/v1/channel-connections"]["post"]
     update:
       "x-codeSamples":
         - "lang": "typescript"
           "label": "TypeScript"
-          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.channelConnections.create({\n    identifier: \"slack-prod-user123-abc4\",\n    subscriberId: \"subscriber-123\",\n    context: {\n      \"key\": \"org-acme\",\n    },\n    connectionMode: \"shared\",\n    integrationIdentifier: \"slack-prod\",\n    workspace: {\n      id: \"T123456\",\n      name: \"Acme HQ\",\n    },\n    auth: {\n      accessToken: \"Workspace access token\",\n      refreshToken: \"Workspace refresh token\",\n      expiresAt: \"2026-06-15T12:00:00.000Z\",\n      refreshTokenExpiresAt: \"2026-09-15T12:00:00.000Z\",\n    },\n  });\n\n  console.log(result);\n}\n\nrun();"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.channelConnections.create({\n    identifier: \"slack-prod-user123-abc4\",\n    subscriberId: \"subscriber-123\",\n    context: {\n      \"key\": \"org-acme\",\n    },\n    connectionMode: \"shared\",\n    integrationIdentifier: \"slack-prod\",\n    workspace: {\n      id: \"T123456\",\n      name: \"Acme HQ\",\n      botUserId: \"U0123456789\",\n    },\n    auth: {\n      accessToken: \"Workspace access token\",\n      refreshToken: \"Workspace refresh token\",\n      expiresAt: \"2026-06-15T12:00:00.000Z\",\n      refreshTokenExpiresAt: \"2026-09-15T12:00:00.000Z\",\n    },\n  });\n\n  console.log(result);\n}\n\nrun();"
   - target: $["paths"]["/v1/channel-connections/{identifier}"]["delete"]
     update:
       "x-codeSamples":
@@ -98,7 +98,7 @@ actions:
       "x-codeSamples":
         - "lang": "typescript"
           "label": "TypeScript"
-          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.channelConnections.update({\n    workspace: {\n      id: \"T123456\",\n      name: \"Acme HQ\",\n    },\n    auth: {\n      accessToken: \"Workspace access token\",\n      refreshToken: \"Workspace refresh token\",\n      expiresAt: \"2026-06-15T12:00:00.000Z\",\n      refreshTokenExpiresAt: \"2026-09-15T12:00:00.000Z\",\n    },\n  }, \"<value>\");\n\n  console.log(result);\n}\n\nrun();"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.channelConnections.update({\n    workspace: {\n      id: \"T123456\",\n      name: \"Acme HQ\",\n      botUserId: \"U0123456789\",\n    },\n    auth: {\n      accessToken: \"Workspace access token\",\n      refreshToken: \"Workspace refresh token\",\n      expiresAt: \"2026-06-15T12:00:00.000Z\",\n      refreshTokenExpiresAt: \"2026-09-15T12:00:00.000Z\",\n    },\n  }, \"<value>\");\n\n  console.log(result);\n}\n\nrun();"
   - target: $["paths"]["/v1/channel-endpoints"]["get"]
     update:
       "x-codeSamples":
@@ -110,7 +110,7 @@ actions:
       "x-codeSamples":
         - "lang": "typescript"
           "label": "TypeScript"
-          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.channelEndpoints.create({\n    subscriberId: \"subscriber-123\",\n    integrationIdentifier: \"slack-prod\",\n    type: \"slack_channel\",\n    endpoint: {\n      channelId: \"C123456789\",\n    },\n  });\n\n  console.log(result);\n}\n\nrun();"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.channelEndpoints.create({\n    subscriberId: \"subscriber-123\",\n    createSubscriberIfMissing: false,\n    integrationIdentifier: \"slack-prod\",\n    type: \"slack_channel\",\n    endpoint: {\n      channelId: \"C123456789\",\n    },\n  });\n\n  console.log(result);\n}\n\nrun();"
   - target: $["paths"]["/v1/channel-endpoints/{identifier}"]["delete"]
     update:
       "x-codeSamples":
@@ -326,19 +326,19 @@ actions:
       "x-codeSamples":
         - "lang": "typescript"
           "label": "TypeScript"
-          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.integrations.generateConnectOAuthUrl({\n    subscriberId: \"subscriber-123\",\n    integrationIdentifier: \"<value>\",\n    connectionIdentifier: \"slack-connection-abc123\",\n    context: {\n      \"key\": \"org-acme\",\n    },\n    scope: [\n      \"chat:write\",\n      \"chat:write.public\",\n      \"channels:read\",\n    ],\n    connectionMode: \"shared\",\n    autoLinkUser: true,\n  });\n\n  console.log(result);\n}\n\nrun();"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.integrations.generateConnectOAuthUrl({\n    subscriberId: \"subscriber-123\",\n    integrationIdentifier: \"<value>\",\n    connectionIdentifier: \"slack-connection-abc123\",\n    context: {\n      \"key\": \"org-acme\",\n    },\n    contextHash: \"a1b2c3d4e5f6...\",\n    scope: [\n      \"chat:write\",\n      \"chat:write.public\",\n      \"channels:read\",\n    ],\n    connectionMode: \"shared\",\n    autoLinkUser: true,\n  });\n\n  console.log(result);\n}\n\nrun();"
   - target: $["paths"]["/v1/integrations/channel-endpoints/link"]["post"]
     update:
       "x-codeSamples":
         - "lang": "typescript"
           "label": "TypeScript"
-          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.integrations.linkChannelEndpoint({\n    integrationIdentifier: \"telegram-bot\",\n    subscriberId: \"subscriber-123\",\n  });\n\n  console.log(result);\n}\n\nrun();"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.integrations.linkChannelEndpoint({\n    integrationIdentifier: \"telegram-bot\",\n    subscriberId: \"subscriber-123\",\n    context: {\n      \"key\": \"org-acme\",\n    },\n  });\n\n  console.log(result);\n}\n\nrun();"
   - target: $["paths"]["/v1/integrations/channel-endpoints/oauth"]["post"]
     update:
       "x-codeSamples":
         - "lang": "typescript"
           "label": "TypeScript"
-          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.integrations.generateLinkUserOAuthUrl({\n    subscriberId: \"subscriber-123\",\n    integrationIdentifier: \"<value>\",\n    connectionIdentifier: \"slack-connection-abc123\",\n    context: {\n      \"key\": \"org-acme\",\n    },\n    userScope: [\n      \"identity.basic\",\n    ],\n  });\n\n  console.log(result);\n}\n\nrun();"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.integrations.generateLinkUserOAuthUrl({\n    subscriberId: \"subscriber-123\",\n    integrationIdentifier: \"<value>\",\n    connectionIdentifier: \"slack-connection-abc123\",\n    context: {\n      \"key\": \"org-acme\",\n    },\n    contextHash: \"a1b2c3d4e5f6...\",\n    userScope: [\n      \"identity.basic\",\n    ],\n  });\n\n  console.log(result);\n}\n\nrun();"
   - target: $["paths"]["/v1/integrations/{integrationIdentifier}/mobile-link"]["post"]
     update:
       "x-codeSamples":
@@ -842,7 +842,7 @@ actions:
       "x-codeSamples":
         - "lang": "typescript"
           "label": "TypeScript"
-          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.workflows.update({\n    name: \"<value>\",\n    steps: [],\n    preferences: {\n      user: {\n        all: {\n          enabled: true,\n          readOnly: false,\n        },\n        channels: {\n          \"email\": {\n            enabled: true,\n          },\n          \"sms\": {\n            enabled: false,\n          },\n        },\n      },\n      workflow: {\n        all: {\n          enabled: true,\n          readOnly: false,\n        },\n        channels: {\n          \"email\": {},\n          \"sms\": {\n            enabled: false,\n          },\n        },\n      },\n    },\n    origin: \"external\",\n  }, \"<id>\");\n\n  console.log(result);\n}\n\nrun();"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.workflows.update({\n    name: \"<value>\",\n    steps: [],\n    preferences: {\n      user: {\n        all: {\n          enabled: true,\n          readOnly: false,\n        },\n        channels: {\n          \"email\": {\n            enabled: true,\n          },\n          \"sms\": {\n            enabled: false,\n          },\n        },\n      },\n      workflow: {\n        all: {\n          enabled: true,\n          readOnly: false,\n        },\n        channels: {\n          \"email\": {},\n          \"sms\": {\n            enabled: false,\n          },\n        },\n      },\n    },\n  }, \"<id>\");\n\n  console.log(result);\n}\n\nrun();"
   - target: $["paths"]["/v2/workflows/{workflowId}/step/{stepId}/preview"]["post"]
     update:
       "x-codeSamples":

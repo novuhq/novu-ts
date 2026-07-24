@@ -65,6 +65,20 @@ export type InAppStepResponseDtoControlValues = {
   additionalProperties?: { [k: string]: any } | undefined;
 };
 
+/**
+ * Per-provider content overrides keyed by providerId. Stored separately from controlValues and merged over the default body at send time.
+ */
+export type ProviderOverrides = {
+  /**
+   * PagerDuty content overrides. Merged over the default step body at send time. Supported keys are documented in the PagerDuty override schema.
+   */
+  pagerduty?: { [k: string]: any } | undefined;
+  /**
+   * Opsgenie content overrides. Merged over the default step body at send time. Supported keys are documented in the Opsgenie override schema.
+   */
+  opsgenie?: { [k: string]: any } | undefined;
+};
+
 export type InAppStepResponseDto = {
   /**
    * Controls metadata for the in-app step
@@ -74,6 +88,10 @@ export type InAppStepResponseDto = {
    * Control values for the in-app step
    */
   controlValues?: InAppStepResponseDtoControlValues | undefined;
+  /**
+   * Per-provider content overrides keyed by providerId. Stored separately from controlValues and merged over the default body at send time.
+   */
+  providerOverrides?: ProviderOverrides | null | undefined;
   /**
    * JSON Schema for variables, follows the JSON Schema standard
    */
@@ -152,6 +170,26 @@ export function inAppStepResponseDtoControlValuesFromJSON(
 }
 
 /** @internal */
+export const ProviderOverrides$inboundSchema: z.ZodType<
+  ProviderOverrides,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  pagerduty: z.record(z.any()).optional(),
+  opsgenie: z.record(z.any()).optional(),
+});
+
+export function providerOverridesFromJSON(
+  jsonString: string,
+): SafeParseResult<ProviderOverrides, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ProviderOverrides$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ProviderOverrides' from JSON`,
+  );
+}
+
+/** @internal */
 export const InAppStepResponseDto$inboundSchema: z.ZodType<
   InAppStepResponseDto,
   z.ZodTypeDef,
@@ -159,6 +197,8 @@ export const InAppStepResponseDto$inboundSchema: z.ZodType<
 > = z.object({
   controls: InAppControlsMetadataResponseDto$inboundSchema,
   controlValues: z.lazy(() => InAppStepResponseDtoControlValues$inboundSchema)
+    .optional(),
+  providerOverrides: z.nullable(z.lazy(() => ProviderOverrides$inboundSchema))
     .optional(),
   variables: z.record(z.any()),
   stepId: z.string(),

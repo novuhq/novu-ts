@@ -18,7 +18,7 @@ let value: InboxNotificationDto = {
   isArchived: true,
   isSnoozed: true,
   createdAt: "1709885650321",
-  channelType: "sms",
+  channelType: "chat",
   severity: "low",
 };
 ```
