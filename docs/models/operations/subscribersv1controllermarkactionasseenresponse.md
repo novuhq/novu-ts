@@ -58,6 +58,7 @@ let value: SubscribersV1ControllerMarkActionAsSeenResponse = {
         inApp: true,
         chat: false,
         push: true,
+        tool: true,
       },
       critical: true,
       tags: [
@@ -87,7 +88,7 @@ let value: SubscribersV1ControllerMarkActionAsSeenResponse = {
     },
     createdAt: "1720844674049",
     transactionId: "<id>",
-    channel: "email",
+    channel: "sms",
     read: false,
     seen: true,
     cta: {},

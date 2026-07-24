@@ -31,6 +31,20 @@ export type CustomStepResponseDtoControlValues = {
   additionalProperties?: { [k: string]: any } | undefined;
 };
 
+/**
+ * Per-provider content overrides keyed by providerId. Stored separately from controlValues and merged over the default body at send time.
+ */
+export type CustomStepResponseDtoProviderOverrides = {
+  /**
+   * PagerDuty content overrides. Merged over the default step body at send time. Supported keys are documented in the PagerDuty override schema.
+   */
+  pagerduty?: { [k: string]: any } | undefined;
+  /**
+   * Opsgenie content overrides. Merged over the default step body at send time. Supported keys are documented in the Opsgenie override schema.
+   */
+  opsgenie?: { [k: string]: any } | undefined;
+};
+
 export type CustomStepResponseDto = {
   /**
    * Controls metadata for the custom step
@@ -40,6 +54,10 @@ export type CustomStepResponseDto = {
    * Control values for the custom step
    */
   controlValues?: CustomStepResponseDtoControlValues | undefined;
+  /**
+   * Per-provider content overrides keyed by providerId. Stored separately from controlValues and merged over the default body at send time.
+   */
+  providerOverrides?: CustomStepResponseDtoProviderOverrides | null | undefined;
   /**
    * JSON Schema for variables, follows the JSON Schema standard
    */
@@ -111,6 +129,27 @@ export function customStepResponseDtoControlValuesFromJSON(
 }
 
 /** @internal */
+export const CustomStepResponseDtoProviderOverrides$inboundSchema: z.ZodType<
+  CustomStepResponseDtoProviderOverrides,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  pagerduty: z.record(z.any()).optional(),
+  opsgenie: z.record(z.any()).optional(),
+});
+
+export function customStepResponseDtoProviderOverridesFromJSON(
+  jsonString: string,
+): SafeParseResult<CustomStepResponseDtoProviderOverrides, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      CustomStepResponseDtoProviderOverrides$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CustomStepResponseDtoProviderOverrides' from JSON`,
+  );
+}
+
+/** @internal */
 export const CustomStepResponseDto$inboundSchema: z.ZodType<
   CustomStepResponseDto,
   z.ZodTypeDef,
@@ -119,6 +158,9 @@ export const CustomStepResponseDto$inboundSchema: z.ZodType<
   controls: CustomControlsMetadataResponseDto$inboundSchema,
   controlValues: z.lazy(() => CustomStepResponseDtoControlValues$inboundSchema)
     .optional(),
+  providerOverrides: z.nullable(
+    z.lazy(() => CustomStepResponseDtoProviderOverrides$inboundSchema),
+  ).optional(),
   variables: z.record(z.any()),
   stepId: z.string(),
   _id: z.string(),

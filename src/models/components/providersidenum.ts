@@ -69,6 +69,7 @@ export const ProvidersIdEnum = {
   Sinch: "sinch",
   IsendproSms: "isendpro-sms",
   CmTelecom: "cm-telecom",
+  RuachSms: "ruach-sms",
   Fcm: "fcm",
   Apns: "apns",
   Expo: "expo",
@@ -97,6 +98,9 @@ export const ProvidersIdEnum = {
   Anthropic: "anthropic",
   NovuAnthropic: "novu-anthropic",
   AnthropicAws: "anthropic-aws",
+  Pagerduty: "pagerduty",
+  Opsgenie: "opsgenie",
+  ToolWebhook: "tool-webhook",
 } as const;
 /**
  * Provider ID of the job

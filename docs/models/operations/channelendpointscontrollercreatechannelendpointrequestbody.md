@@ -188,3 +188,41 @@ const value: components.CreateLineUserEndpointDto = {
 };
 ```
 
+### `components.CreatePagerDutyServiceEndpointDto`
+
+```typescript
+const value: components.CreatePagerDutyServiceEndpointDto = {
+  identifier: "slack-channel-user123-abc4",
+  subscriberId: "subscriber-123",
+  context: {
+    "key": "org-acme",
+  },
+  integrationIdentifier: "slack-prod",
+  connectionIdentifier: "slack-connection-abc123",
+  type: "pagerduty_service",
+  endpoint: {
+    routingKey: "R0UTINGK3YEXAMPLE000000000000000",
+    region: "us",
+  },
+};
+```
+
+### `components.CreateOpsgenieIntegrationEndpointDto`
+
+```typescript
+const value: components.CreateOpsgenieIntegrationEndpointDto = {
+  identifier: "slack-channel-user123-abc4",
+  subscriberId: "subscriber-123",
+  context: {
+    "key": "org-acme",
+  },
+  integrationIdentifier: "slack-prod",
+  connectionIdentifier: "slack-connection-abc123",
+  type: "opsgenie_integration",
+  endpoint: {
+    apiKey: "abcdefg-a25a-4652-883c-73703b12345",
+    region: "us",
+  },
+};
+```
+

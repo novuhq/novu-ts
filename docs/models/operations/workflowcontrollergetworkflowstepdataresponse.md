@@ -6,18 +6,36 @@
 import { WorkflowControllerGetWorkflowStepDataResponse } from "@novu/api/models/operations";
 
 let value: WorkflowControllerGetWorkflowStepDataResponse = {
-  headers: {},
+  headers: {
+    "key": [
+      "<value 1>",
+    ],
+    "key1": [],
+  },
   result: {
     controls: {},
+    providerOverrides: {
+      pagerduty: {
+        "severity": "warning",
+        "source": "novu",
+        "summary": "{{payload.title}}",
+      },
+      opsgenie: {
+        "priority": "P2",
+        "message": "{{payload.title}}",
+      },
+    },
     variables: {
       "key": "<value>",
+      "key1": "<value>",
+      "key2": "<value>",
     },
     stepId: "<id>",
     id: "<id>",
     name: "<value>",
     slug: "<value>",
     type: "<value>",
-    origin: "external",
+    origin: "novu-cloud",
     workflowId: "<id>",
     workflowDatabaseId: "<id>",
   },

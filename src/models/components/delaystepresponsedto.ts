@@ -80,6 +80,20 @@ export type DelayStepResponseDtoControlValues = {
   additionalProperties?: { [k: string]: any } | undefined;
 };
 
+/**
+ * Per-provider content overrides keyed by providerId. Stored separately from controlValues and merged over the default body at send time.
+ */
+export type DelayStepResponseDtoProviderOverrides = {
+  /**
+   * PagerDuty content overrides. Merged over the default step body at send time. Supported keys are documented in the PagerDuty override schema.
+   */
+  pagerduty?: { [k: string]: any } | undefined;
+  /**
+   * Opsgenie content overrides. Merged over the default step body at send time. Supported keys are documented in the Opsgenie override schema.
+   */
+  opsgenie?: { [k: string]: any } | undefined;
+};
+
 export type DelayStepResponseDto = {
   /**
    * Controls metadata for the delay step
@@ -89,6 +103,10 @@ export type DelayStepResponseDto = {
    * Control values for the delay step
    */
   controlValues?: DelayStepResponseDtoControlValues | undefined;
+  /**
+   * Per-provider content overrides keyed by providerId. Stored separately from controlValues and merged over the default body at send time.
+   */
+  providerOverrides?: DelayStepResponseDtoProviderOverrides | null | undefined;
   /**
    * JSON Schema for variables, follows the JSON Schema standard
    */
@@ -173,6 +191,27 @@ export function delayStepResponseDtoControlValuesFromJSON(
 }
 
 /** @internal */
+export const DelayStepResponseDtoProviderOverrides$inboundSchema: z.ZodType<
+  DelayStepResponseDtoProviderOverrides,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  pagerduty: z.record(z.any()).optional(),
+  opsgenie: z.record(z.any()).optional(),
+});
+
+export function delayStepResponseDtoProviderOverridesFromJSON(
+  jsonString: string,
+): SafeParseResult<DelayStepResponseDtoProviderOverrides, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      DelayStepResponseDtoProviderOverrides$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DelayStepResponseDtoProviderOverrides' from JSON`,
+  );
+}
+
+/** @internal */
 export const DelayStepResponseDto$inboundSchema: z.ZodType<
   DelayStepResponseDto,
   z.ZodTypeDef,
@@ -181,6 +220,9 @@ export const DelayStepResponseDto$inboundSchema: z.ZodType<
   controls: DelayControlsMetadataResponseDto$inboundSchema,
   controlValues: z.lazy(() => DelayStepResponseDtoControlValues$inboundSchema)
     .optional(),
+  providerOverrides: z.nullable(
+    z.lazy(() => DelayStepResponseDtoProviderOverrides$inboundSchema),
+  ).optional(),
   variables: z.record(z.any()),
   stepId: z.string(),
   _id: z.string(),

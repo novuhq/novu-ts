@@ -14,6 +14,7 @@ let value: GetSubscriberPreferencesDto = {
       inApp: true,
       chat: false,
       push: true,
+      tool: true,
     },
     schedule: {
       isEnabled: true,

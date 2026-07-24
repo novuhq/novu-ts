@@ -7,11 +7,11 @@ The channel type (email, sms, push, chat, etc.).
 ```typescript
 import { Channel } from "@novu/api/models/components";
 
-let value: Channel = "email";
+let value: Channel = "sms";
 ```
 
 ## Values
 
 ```typescript
-"in_app" | "email" | "sms" | "chat" | "push"
+"in_app" | "email" | "sms" | "chat" | "push" | "tool"
 ```

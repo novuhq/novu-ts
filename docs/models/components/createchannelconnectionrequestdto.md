@@ -16,6 +16,7 @@ let value: CreateChannelConnectionRequestDto = {
   workspace: {
     id: "T123456",
     name: "Acme HQ",
+    botUserId: "U0123456789",
   },
   auth: {
     accessToken: "Workspace access token",

@@ -21,6 +21,7 @@ let value: SubscribersControllerUpdateSubscriberPreferencesResponse = {
         inApp: true,
         chat: false,
         push: true,
+        tool: true,
       },
       schedule: {
         isEnabled: true,
@@ -100,6 +101,7 @@ let value: SubscribersControllerUpdateSubscriberPreferencesResponse = {
           inApp: true,
           chat: false,
           push: true,
+          tool: true,
         },
         overrides: [
           {

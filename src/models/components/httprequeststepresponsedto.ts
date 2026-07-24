@@ -70,6 +70,20 @@ export type HttpRequestStepResponseDtoControlValues = {
   additionalProperties?: { [k: string]: any } | undefined;
 };
 
+/**
+ * Per-provider content overrides keyed by providerId. Stored separately from controlValues and merged over the default body at send time.
+ */
+export type HttpRequestStepResponseDtoProviderOverrides = {
+  /**
+   * PagerDuty content overrides. Merged over the default step body at send time. Supported keys are documented in the PagerDuty override schema.
+   */
+  pagerduty?: { [k: string]: any } | undefined;
+  /**
+   * Opsgenie content overrides. Merged over the default step body at send time. Supported keys are documented in the Opsgenie override schema.
+   */
+  opsgenie?: { [k: string]: any } | undefined;
+};
+
 export type HttpRequestStepResponseDto = {
   /**
    * Controls metadata for the HTTP request step
@@ -79,6 +93,13 @@ export type HttpRequestStepResponseDto = {
    * Control values for the HTTP request step
    */
   controlValues?: HttpRequestStepResponseDtoControlValues | undefined;
+  /**
+   * Per-provider content overrides keyed by providerId. Stored separately from controlValues and merged over the default body at send time.
+   */
+  providerOverrides?:
+    | HttpRequestStepResponseDtoProviderOverrides
+    | null
+    | undefined;
   /**
    * JSON Schema for variables, follows the JSON Schema standard
    */
@@ -181,6 +202,33 @@ export function httpRequestStepResponseDtoControlValuesFromJSON(
 }
 
 /** @internal */
+export const HttpRequestStepResponseDtoProviderOverrides$inboundSchema:
+  z.ZodType<
+    HttpRequestStepResponseDtoProviderOverrides,
+    z.ZodTypeDef,
+    unknown
+  > = z.object({
+    pagerduty: z.record(z.any()).optional(),
+    opsgenie: z.record(z.any()).optional(),
+  });
+
+export function httpRequestStepResponseDtoProviderOverridesFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  HttpRequestStepResponseDtoProviderOverrides,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      HttpRequestStepResponseDtoProviderOverrides$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'HttpRequestStepResponseDtoProviderOverrides' from JSON`,
+  );
+}
+
+/** @internal */
 export const HttpRequestStepResponseDto$inboundSchema: z.ZodType<
   HttpRequestStepResponseDto,
   z.ZodTypeDef,
@@ -189,6 +237,9 @@ export const HttpRequestStepResponseDto$inboundSchema: z.ZodType<
   controls: HttpRequestControlsMetadataResponseDto$inboundSchema,
   controlValues: z.lazy(() =>
     HttpRequestStepResponseDtoControlValues$inboundSchema
+  ).optional(),
+  providerOverrides: z.nullable(
+    z.lazy(() => HttpRequestStepResponseDtoProviderOverrides$inboundSchema),
   ).optional(),
   variables: z.record(z.any()),
   stepId: z.string(),

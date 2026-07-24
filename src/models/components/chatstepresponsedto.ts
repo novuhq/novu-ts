@@ -35,6 +35,20 @@ export type ChatStepResponseDtoControlValues = {
   additionalProperties?: { [k: string]: any } | undefined;
 };
 
+/**
+ * Per-provider content overrides keyed by providerId. Stored separately from controlValues and merged over the default body at send time.
+ */
+export type ChatStepResponseDtoProviderOverrides = {
+  /**
+   * PagerDuty content overrides. Merged over the default step body at send time. Supported keys are documented in the PagerDuty override schema.
+   */
+  pagerduty?: { [k: string]: any } | undefined;
+  /**
+   * Opsgenie content overrides. Merged over the default step body at send time. Supported keys are documented in the Opsgenie override schema.
+   */
+  opsgenie?: { [k: string]: any } | undefined;
+};
+
 export type ChatStepResponseDto = {
   /**
    * Controls metadata for the chat step
@@ -44,6 +58,10 @@ export type ChatStepResponseDto = {
    * Control values for the chat step
    */
   controlValues?: ChatStepResponseDtoControlValues | undefined;
+  /**
+   * Per-provider content overrides keyed by providerId. Stored separately from controlValues and merged over the default body at send time.
+   */
+  providerOverrides?: ChatStepResponseDtoProviderOverrides | null | undefined;
   /**
    * JSON Schema for variables, follows the JSON Schema standard
    */
@@ -115,6 +133,27 @@ export function chatStepResponseDtoControlValuesFromJSON(
 }
 
 /** @internal */
+export const ChatStepResponseDtoProviderOverrides$inboundSchema: z.ZodType<
+  ChatStepResponseDtoProviderOverrides,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  pagerduty: z.record(z.any()).optional(),
+  opsgenie: z.record(z.any()).optional(),
+});
+
+export function chatStepResponseDtoProviderOverridesFromJSON(
+  jsonString: string,
+): SafeParseResult<ChatStepResponseDtoProviderOverrides, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      ChatStepResponseDtoProviderOverrides$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ChatStepResponseDtoProviderOverrides' from JSON`,
+  );
+}
+
+/** @internal */
 export const ChatStepResponseDto$inboundSchema: z.ZodType<
   ChatStepResponseDto,
   z.ZodTypeDef,
@@ -123,6 +162,9 @@ export const ChatStepResponseDto$inboundSchema: z.ZodType<
   controls: ChatControlsMetadataResponseDto$inboundSchema,
   controlValues: z.lazy(() => ChatStepResponseDtoControlValues$inboundSchema)
     .optional(),
+  providerOverrides: z.nullable(
+    z.lazy(() => ChatStepResponseDtoProviderOverrides$inboundSchema),
+  ).optional(),
   variables: z.record(z.any()),
   stepId: z.string(),
   _id: z.string(),

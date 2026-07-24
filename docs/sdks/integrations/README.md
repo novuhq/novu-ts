@@ -721,6 +721,7 @@ async function run() {
     context: {
       "key": "org-acme",
     },
+    contextHash: "a1b2c3d4e5f6...",
     scope: [
       "chat:write",
       "chat:write.public",
@@ -758,6 +759,7 @@ async function run() {
     context: {
       "key": "org-acme",
     },
+    contextHash: "a1b2c3d4e5f6...",
     scope: [
       "chat:write",
       "chat:write.public",
@@ -819,6 +821,9 @@ async function run() {
   const result = await novu.integrations.linkChannelEndpoint({
     integrationIdentifier: "telegram-bot",
     subscriberId: "subscriber-123",
+    context: {
+      "key": "org-acme",
+    },
   });
 
   console.log(result);
@@ -845,6 +850,9 @@ async function run() {
   const res = await integrationsLinkChannelEndpoint(novu, {
     integrationIdentifier: "telegram-bot",
     subscriberId: "subscriber-123",
+    context: {
+      "key": "org-acme",
+    },
   });
   if (res.ok) {
     const { value: result } = res;
@@ -904,6 +912,7 @@ async function run() {
     context: {
       "key": "org-acme",
     },
+    contextHash: "a1b2c3d4e5f6...",
     userScope: [
       "identity.basic",
     ],
@@ -937,6 +946,7 @@ async function run() {
     context: {
       "key": "org-acme",
     },
+    contextHash: "a1b2c3d4e5f6...",
     userScope: [
       "identity.basic",
     ],

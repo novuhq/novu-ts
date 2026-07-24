@@ -25,6 +25,7 @@ export const CreateIntegrationRequestDtoChannel = {
   Sms: "sms",
   Chat: "chat",
   Push: "push",
+  Tool: "tool",
 } as const;
 /**
  * The channel type for the integration. Not required for agent-kind integrations.

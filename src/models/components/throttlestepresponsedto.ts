@@ -85,6 +85,20 @@ export type ThrottleStepResponseDtoControlValues = {
   additionalProperties?: { [k: string]: any } | undefined;
 };
 
+/**
+ * Per-provider content overrides keyed by providerId. Stored separately from controlValues and merged over the default body at send time.
+ */
+export type ThrottleStepResponseDtoProviderOverrides = {
+  /**
+   * PagerDuty content overrides. Merged over the default step body at send time. Supported keys are documented in the PagerDuty override schema.
+   */
+  pagerduty?: { [k: string]: any } | undefined;
+  /**
+   * Opsgenie content overrides. Merged over the default step body at send time. Supported keys are documented in the Opsgenie override schema.
+   */
+  opsgenie?: { [k: string]: any } | undefined;
+};
+
 export type ThrottleStepResponseDto = {
   /**
    * Controls metadata for the throttle step
@@ -94,6 +108,13 @@ export type ThrottleStepResponseDto = {
    * Control values for the throttle step
    */
   controlValues?: ThrottleStepResponseDtoControlValues | undefined;
+  /**
+   * Per-provider content overrides keyed by providerId. Stored separately from controlValues and merged over the default body at send time.
+   */
+  providerOverrides?:
+    | ThrottleStepResponseDtoProviderOverrides
+    | null
+    | undefined;
   /**
    * JSON Schema for variables, follows the JSON Schema standard
    */
@@ -181,6 +202,32 @@ export function throttleStepResponseDtoControlValuesFromJSON(
 }
 
 /** @internal */
+export const ThrottleStepResponseDtoProviderOverrides$inboundSchema: z.ZodType<
+  ThrottleStepResponseDtoProviderOverrides,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  pagerduty: z.record(z.any()).optional(),
+  opsgenie: z.record(z.any()).optional(),
+});
+
+export function throttleStepResponseDtoProviderOverridesFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  ThrottleStepResponseDtoProviderOverrides,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      ThrottleStepResponseDtoProviderOverrides$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'ThrottleStepResponseDtoProviderOverrides' from JSON`,
+  );
+}
+
+/** @internal */
 export const ThrottleStepResponseDto$inboundSchema: z.ZodType<
   ThrottleStepResponseDto,
   z.ZodTypeDef,
@@ -189,6 +236,9 @@ export const ThrottleStepResponseDto$inboundSchema: z.ZodType<
   controls: ThrottleControlsMetadataResponseDto$inboundSchema,
   controlValues: z.lazy(() =>
     ThrottleStepResponseDtoControlValues$inboundSchema
+  ).optional(),
+  providerOverrides: z.nullable(
+    z.lazy(() => ThrottleStepResponseDtoProviderOverrides$inboundSchema),
   ).optional(),
   variables: z.record(z.any()),
   stepId: z.string(),

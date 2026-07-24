@@ -5,11 +5,11 @@
 ```typescript
 import { GeneratePreviewResponseDtoResult9Type } from "@novu/api/models/components";
 
-let value: GeneratePreviewResponseDtoResult9Type = "digest";
+let value: GeneratePreviewResponseDtoResult9Type = "delay";
 ```
 
 ## Values
 
 ```typescript
-"digest"
+"delay"
 ```

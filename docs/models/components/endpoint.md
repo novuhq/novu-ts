@@ -88,3 +88,21 @@ const value: components.LineUserEndpointDto = {
 };
 ```
 
+### `components.PagerDutyServiceEndpointDto`
+
+```typescript
+const value: components.PagerDutyServiceEndpointDto = {
+  routingKey: "R0UTINGK3YEXAMPLE000000000000000",
+  region: "us",
+};
+```
+
+### `components.OpsgenieIntegrationEndpointDto`
+
+```typescript
+const value: components.OpsgenieIntegrationEndpointDto = {
+  apiKey: "abcdefg-a25a-4652-883c-73703b12345",
+  region: "us",
+};
+```
+

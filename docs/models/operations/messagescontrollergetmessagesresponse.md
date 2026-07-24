@@ -67,6 +67,7 @@ let value: MessagesControllerGetMessagesResponse = {
             inApp: true,
             chat: false,
             push: true,
+            tool: true,
           },
           critical: true,
           tags: [
@@ -96,7 +97,7 @@ let value: MessagesControllerGetMessagesResponse = {
         },
         createdAt: "1730871293069",
         transactionId: "<id>",
-        channel: "in_app",
+        channel: "email",
         read: true,
         seen: false,
         cta: {},

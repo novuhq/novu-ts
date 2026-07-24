@@ -36,7 +36,6 @@ let value: UpdateWorkflowDto = {
       },
     },
   },
-  origin: "external",
 };
 ```
 
@@ -54,5 +53,5 @@ let value: UpdateWorkflowDto = {
 | `workflowId`                                                                         | *string*                                                                             | :heavy_minus_sign:                                                                   | Workflow ID (allowed only for code-first workflows)                                  |
 | `steps`                                                                              | *components.UpdateWorkflowDtoSteps*[]                                                | :heavy_check_mark:                                                                   | Steps of the workflow                                                                |
 | `preferences`                                                                        | [components.PreferencesRequestDto](../../models/components/preferencesrequestdto.md) | :heavy_check_mark:                                                                   | Workflow preferences                                                                 |
-| `origin`                                                                             | [components.ResourceOriginEnum](../../models/components/resourceoriginenum.md)       | :heavy_check_mark:                                                                   | Origin of the layout                                                                 |
+| `origin`                                                                             | [components.ResourceOriginEnum](../../models/components/resourceoriginenum.md)       | :heavy_minus_sign:                                                                   | Origin of the layout                                                                 |
 | `severity`                                                                           | [components.SeverityLevelEnum](../../models/components/severitylevelenum.md)         | :heavy_minus_sign:                                                                   | Severity of the workflow                                                             |

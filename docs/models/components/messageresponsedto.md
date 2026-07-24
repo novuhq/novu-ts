@@ -49,6 +49,7 @@ let value: MessageResponseDto = {
       inApp: true,
       chat: false,
       push: true,
+      tool: true,
     },
     critical: true,
     tags: [
@@ -78,7 +79,7 @@ let value: MessageResponseDto = {
   },
   createdAt: "1705841468546",
   transactionId: "<id>",
-  channel: "email",
+  channel: "sms",
   read: true,
   seen: false,
   cta: {},
