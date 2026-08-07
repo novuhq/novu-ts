@@ -12,11 +12,7 @@ let value: SubscribersControllerListSubscriberTopicsResponse = {
       "<value 2>",
       "<value 3>",
     ],
-    "key1": [
-      "<value 1>",
-      "<value 2>",
-      "<value 3>",
-    ],
+    "key1": [],
     "key2": [
       "<value 1>",
       "<value 2>",
@@ -48,12 +44,42 @@ let value: SubscribersControllerListSubscriberTopicsResponse = {
           "tenant:org-a",
           "project:proj-123",
         ],
+        preferences: [
+          {
+            subscriptionId: "64f5e95d3d7946d80d0cb679",
+            workflow: {
+              id: "64a1b2c3d4e5f6g7h8i9j0k1",
+              identifier: "welcome-email",
+              name: "Welcome Email Workflow",
+              critical: false,
+              tags: [
+                "user-onboarding",
+                "email",
+              ],
+              data: {},
+              severity: "low",
+            },
+            enabled: true,
+            condition: {
+              "and": [
+                {
+                  "===": [
+                    {
+                      "var": "payload.tier",
+                    },
+                    "premium",
+                  ],
+                },
+              ],
+            },
+          },
+        ],
       },
     ],
-    next: "<value>",
+    next: null,
     previous: "<value>",
-    totalCount: 474.27,
-    totalCountCapped: true,
+    totalCount: 8461.59,
+    totalCountCapped: false,
   },
 };
 ```

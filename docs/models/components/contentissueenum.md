@@ -7,11 +7,11 @@ Type of step content issue
 ```typescript
 import { ContentIssueEnum } from "@novu/api/models/components";
 
-let value: ContentIssueEnum = "TIER_LIMIT_EXCEEDED";
+let value: ContentIssueEnum = "UNSUPPORTED_PROPERTY";
 ```
 
 ## Values
 
 ```typescript
-"ILLEGAL_VARIABLE_IN_CONTROL_VALUE" | "INVALID_FILTER_ARG_IN_VARIABLE" | "INVALID_URL" | "MISSING_VALUE" | "TIER_LIMIT_EXCEEDED"
+"ILLEGAL_VARIABLE_IN_CONTROL_VALUE" | "INVALID_FILTER_ARG_IN_VARIABLE" | "INVALID_URL" | "MISSING_VALUE" | "TIER_LIMIT_EXCEEDED" | "UNSUPPORTED_PROPERTY"
 ```

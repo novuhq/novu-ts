@@ -17,6 +17,7 @@ let value: AgentsControllerUpdateAgentBridgeResponse = {
     id: "<id>",
     name: "<value>",
     identifier: "<value>",
+    behavior: {},
     active: true,
     environmentId: "<id>",
     organizationId: "<id>",

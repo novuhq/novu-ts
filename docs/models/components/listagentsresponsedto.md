@@ -11,6 +11,7 @@ let value: ListAgentsResponseDto = {
       id: "<id>",
       name: "<value>",
       identifier: "<value>",
+      behavior: {},
       active: false,
       environmentId: "<id>",
       organizationId: "<id>",

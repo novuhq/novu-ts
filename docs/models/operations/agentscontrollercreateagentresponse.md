@@ -25,6 +25,7 @@ let value: AgentsControllerCreateAgentResponse = {
     id: "<id>",
     name: "<value>",
     identifier: "<value>",
+    behavior: {},
     active: true,
     environmentId: "<id>",
     organizationId: "<id>",

@@ -7,6 +7,12 @@ import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+import {
+  EmailFromControlDto,
+  EmailFromControlDto$inboundSchema,
+  EmailFromControlDto$Outbound,
+  EmailFromControlDto$outboundSchema,
+} from "./emailfromcontroldto.js";
 
 /**
  * Type of editor to use for the body.
@@ -47,6 +53,22 @@ export type EmailControlDto = {
    * Layout ID to use for the email. Null means no layout, undefined means default layout.
    */
   layoutId?: string | null | undefined;
+  /**
+   * Sender name and email overrides for this step.
+   */
+  from?: EmailFromControlDto | undefined;
+  /**
+   * When true, sender name/email use the primary email integration defaults and skip workflow agent defaults.
+   */
+  useProviderDefaults?: boolean | undefined;
+  /**
+   * Step-level Reply-To override. When unset, inherits the workflow agent reply-to.
+   */
+  replyTo?: string | undefined;
+  /**
+   * One-line inbox preview text shown next to the subject.
+   */
+  preheader?: string | undefined;
 };
 
 /** @internal */
@@ -70,6 +92,10 @@ export const EmailControlDto$inboundSchema: z.ZodType<
   editorType: EmailControlDtoEditorType$inboundSchema.default("block"),
   disableOutputSanitization: z.boolean().default(false),
   layoutId: z.nullable(z.string()).optional(),
+  from: EmailFromControlDto$inboundSchema.optional(),
+  useProviderDefaults: z.boolean().optional(),
+  replyTo: z.string().optional(),
+  preheader: z.string().optional(),
 });
 /** @internal */
 export type EmailControlDto$Outbound = {
@@ -79,6 +105,10 @@ export type EmailControlDto$Outbound = {
   editorType: string;
   disableOutputSanitization: boolean;
   layoutId?: string | null | undefined;
+  from?: EmailFromControlDto$Outbound | undefined;
+  useProviderDefaults?: boolean | undefined;
+  replyTo?: string | undefined;
+  preheader?: string | undefined;
 };
 
 /** @internal */
@@ -93,6 +123,10 @@ export const EmailControlDto$outboundSchema: z.ZodType<
   editorType: EmailControlDtoEditorType$outboundSchema.default("block"),
   disableOutputSanitization: z.boolean().default(false),
   layoutId: z.nullable(z.string()).optional(),
+  from: EmailFromControlDto$outboundSchema.optional(),
+  useProviderDefaults: z.boolean().optional(),
+  replyTo: z.string().optional(),
+  preheader: z.string().optional(),
 });
 
 export function emailControlDtoToJSON(

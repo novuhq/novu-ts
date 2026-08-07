@@ -6,7 +6,14 @@
 import { TopicsControllerCreateTopicSubscriptionsResponse } from "@novu/api/models/operations";
 
 let value: TopicsControllerCreateTopicSubscriptionsResponse = {
-  headers: {},
+  headers: {
+    "key": [
+      "<value 1>",
+      "<value 2>",
+      "<value 3>",
+    ],
+    "key1": [],
+  },
   result: {
     data: [
       {
@@ -39,7 +46,7 @@ let value: TopicsControllerCreateTopicSubscriptionsResponse = {
                 "email",
               ],
               data: {},
-              severity: "none",
+              severity: "low",
             },
             enabled: true,
             condition: {

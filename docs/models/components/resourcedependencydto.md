@@ -10,7 +10,7 @@ let value: ResourceDependencyDto = {
   resourceId: "<id>",
   resourceName: "<value>",
   isBlocking: false,
-  reason: "LAYOUT_REQUIRED_FOR_WORKFLOW",
+  reason: "LAYOUT_EXISTS_IN_TARGET",
 };
 ```
 

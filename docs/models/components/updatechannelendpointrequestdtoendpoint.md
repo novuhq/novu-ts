@@ -55,3 +55,13 @@ const value: components.WebexPersonEndpointDto = {
 };
 ```
 
+### `components.ToolWebhookEndpointDto`
+
+```typescript
+const value: components.ToolWebhookEndpointDto = {
+  url: "https://example.com/tools/incoming",
+  headers: {},
+  method: "POST",
+};
+```
+

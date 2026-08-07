@@ -1,0 +1,21 @@
+# ToolWebhookEndpointDto
+
+## Example Usage
+
+```typescript
+import { ToolWebhookEndpointDto } from "@novu/api/models/components";
+
+let value: ToolWebhookEndpointDto = {
+  url: "https://example.com/tools/incoming",
+  headers: {},
+  method: "POST",
+};
+```
+
+## Fields
+
+| Field                                                                                                                                                        | Type                                                                                                                                                         | Required                                                                                                                                                     | Description                                                                                                                                                  | Example                                                                                                                                                      |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `url`                                                                                                                                                        | *string*                                                                                                                                                     | :heavy_check_mark:                                                                                                                                           | Destination webhook URL (often a per-subscriber capability URL). Encrypted at rest on the channel endpoint (`endpoint` field).                               | https://example.com/tools/incoming                                                                                                                           |
+| `headers`                                                                                                                                                    | [components.Headers](../../models/components/headers.md)                                                                                                     | :heavy_minus_sign:                                                                                                                                           | Optional headers (e.g. auth tokens) sent with every request to this webhook. Header values are encrypted at rest on the channel endpoint (`endpoint` field). | {<br/>"Authorization": "Bearer \u003ctoken\u003e"<br/>}                                                                                                      |
+| `method`                                                                                                                                                     | [components.Method](../../models/components/method.md)                                                                                                       | :heavy_minus_sign:                                                                                                                                           | Optional HTTP method override for this webhook. Defaults to the integration-level method.                                                                    | POST                                                                                                                                                         |

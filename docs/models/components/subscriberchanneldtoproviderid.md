@@ -13,5 +13,5 @@ let value: SubscriberChannelDtoProviderId = "mattermost";
 ## Values
 
 ```typescript
-"slack" | "discord" | "msteams" | "webex-messaging" | "mattermost" | "ryver" | "zulip" | "grafana-on-call" | "getstream" | "rocket-chat" | "whatsapp-business" | "line" | "chat-webhook" | "novu-slack" | "telegram" | "sendblue" | "fcm" | "apns" | "expo" | "one-signal" | "pushpad" | "push-webhook" | "pusher-beams" | "appio"
+"slack" | "discord" | "msteams" | "webex-messaging" | "mattermost" | "ryver" | "zulip" | "grafana-on-call" | "getstream" | "rocket-chat" | "whatsapp-business" | "line" | "chat-webhook" | "novu-slack" | "telegram" | "sendblue" | "novu-web-chat" | "fcm" | "apns" | "expo" | "one-signal" | "pushpad" | "push-webhook" | "pusher-beams" | "appio"
 ```

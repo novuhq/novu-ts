@@ -13,6 +13,7 @@ let value: SubscriberWorkflowPreferenceDto = {
     inApp: true,
     chat: false,
     push: true,
+    tool: true,
   },
   overrides: [],
   workflow: {

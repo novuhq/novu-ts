@@ -6,9 +6,32 @@
 import { WorkflowControllerGetWorkflowStepDataResponse } from "@novu/api/models/operations";
 
 let value: WorkflowControllerGetWorkflowStepDataResponse = {
-  headers: {},
+  headers: {
+
+  },
   result: {
     controls: {},
+    providerOverrides: {
+      "slack": {
+        "text": "{{payload.title}}",
+        "blocks": [
+          {
+            "type": "divider",
+          },
+        ],
+      },
+      "whatsapp-business": {
+        "type": "text",
+        "text": {
+          "body": "{{payload.title}}",
+        },
+      },
+      "pagerduty": {
+        "severity": "warning",
+        "source": "novu",
+        "summary": "{{payload.title}}",
+      },
+    },
     variables: {
       "key": "<value>",
     },

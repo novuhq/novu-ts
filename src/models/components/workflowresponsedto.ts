@@ -60,6 +60,10 @@ import {
   ThrottleStepResponseDto$inboundSchema,
 } from "./throttlestepresponsedto.js";
 import {
+  ToolStepResponseDto,
+  ToolStepResponseDto$inboundSchema,
+} from "./toolstepresponsedto.js";
+import {
   WorkflowPreferencesResponseDto,
   WorkflowPreferencesResponseDto$inboundSchema,
 } from "./workflowpreferencesresponsedto.js";
@@ -67,6 +71,24 @@ import {
   WorkflowStatusEnum,
   WorkflowStatusEnum$inboundSchema,
 } from "./workflowstatusenum.js";
+
+export type WorkflowResponseDtoProviders = {
+  replyTo?: string | undefined;
+};
+
+/**
+ * Optional agent assignment used to route this workflow through an agent's connected channels. Null when unassigned.
+ */
+export type WorkflowResponseDtoAgent = {
+  /**
+   * Public agent identifier used to route this workflow through an agent's connected channels.
+   */
+  identifier: string;
+  /**
+   * Optional per-provider overrides keyed by providerId (e.g. novu-email-agent). Today only Novu Email replyTo is supported.
+   */
+  providers?: { [k: string]: WorkflowResponseDtoProviders } | undefined;
+};
 
 /**
  * User who last updated the workflow
@@ -122,7 +144,8 @@ export type WorkflowResponseDtoSteps =
   | DigestStepResponseDto
   | CustomStepResponseDto
   | ThrottleStepResponseDto
-  | HttpRequestStepResponseDto;
+  | HttpRequestStepResponseDto
+  | ToolStepResponseDto;
 
 export type WorkflowResponseDto = {
   /**
@@ -153,6 +176,10 @@ export type WorkflowResponseDto = {
    * Enable or disable translations for this workflow
    */
   isTranslationEnabled: boolean;
+  /**
+   * Optional agent assignment used to route this workflow through an agent's connected channels. Null when unassigned.
+   */
+  agent?: WorkflowResponseDtoAgent | null | undefined;
   /**
    * Database identifier of the workflow
    */
@@ -199,6 +226,7 @@ export type WorkflowResponseDto = {
     | CustomStepResponseDto
     | ThrottleStepResponseDto
     | HttpRequestStepResponseDto
+    | ToolStepResponseDto
   >;
   /**
    * Origin of the layout
@@ -229,6 +257,46 @@ export type WorkflowResponseDto = {
    */
   severity: SeverityLevelEnum;
 };
+
+/** @internal */
+export const WorkflowResponseDtoProviders$inboundSchema: z.ZodType<
+  WorkflowResponseDtoProviders,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  replyTo: z.string().optional(),
+});
+
+export function workflowResponseDtoProvidersFromJSON(
+  jsonString: string,
+): SafeParseResult<WorkflowResponseDtoProviders, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => WorkflowResponseDtoProviders$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'WorkflowResponseDtoProviders' from JSON`,
+  );
+}
+
+/** @internal */
+export const WorkflowResponseDtoAgent$inboundSchema: z.ZodType<
+  WorkflowResponseDtoAgent,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  identifier: z.string(),
+  providers: z.record(z.lazy(() => WorkflowResponseDtoProviders$inboundSchema))
+    .optional(),
+});
+
+export function workflowResponseDtoAgentFromJSON(
+  jsonString: string,
+): SafeParseResult<WorkflowResponseDtoAgent, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => WorkflowResponseDtoAgent$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'WorkflowResponseDtoAgent' from JSON`,
+  );
+}
 
 /** @internal */
 export const WorkflowResponseDtoUpdatedBy$inboundSchema: z.ZodType<
@@ -298,6 +366,7 @@ export const WorkflowResponseDtoSteps$inboundSchema: z.ZodType<
   CustomStepResponseDto$inboundSchema,
   ThrottleStepResponseDto$inboundSchema,
   HttpRequestStepResponseDto$inboundSchema,
+  ToolStepResponseDto$inboundSchema,
 ]);
 
 export function workflowResponseDtoStepsFromJSON(
@@ -323,6 +392,8 @@ export const WorkflowResponseDto$inboundSchema: z.ZodType<
   validatePayload: z.boolean().optional(),
   payloadSchema: z.nullable(z.record(z.any())).optional(),
   isTranslationEnabled: z.boolean().default(false),
+  agent: z.nullable(z.lazy(() => WorkflowResponseDtoAgent$inboundSchema))
+    .optional(),
   _id: z.string(),
   workflowId: z.string(),
   slug: z.string(),
@@ -346,6 +417,7 @@ export const WorkflowResponseDto$inboundSchema: z.ZodType<
       CustomStepResponseDto$inboundSchema,
       ThrottleStepResponseDto$inboundSchema,
       HttpRequestStepResponseDto$inboundSchema,
+      ToolStepResponseDto$inboundSchema,
     ]),
   ),
   origin: ResourceOriginEnum$inboundSchema,

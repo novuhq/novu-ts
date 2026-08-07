@@ -117,6 +117,27 @@ const value: components.ChatStepUpsertDto = {
   controlValues: {
     "key": "<value>",
   },
+  providerOverrides: {
+    "slack": {
+      "text": "{{"{{"}}payload.title}}",
+      "blocks": [
+        {
+          "type": "divider",
+        },
+      ],
+    },
+    "whatsapp-business": {
+      "type": "text",
+      "text": {
+        "body": "{{"{{"}}payload.title}}",
+      },
+    },
+    "pagerduty": {
+      "severity": "warning",
+      "source": "novu",
+      "summary": "{{"{{"}}payload.title}}",
+    },
+  },
 };
 ```
 
@@ -177,6 +198,66 @@ const value: components.ThrottleStepUpsertDto = {
   name: "<value>",
   type: "throttle",
   controlValues: {},
+};
+```
+
+### `components.ToolStepUpsertDto`
+
+```typescript
+const value: components.ToolStepUpsertDto = {
+  name: "<value>",
+  type: "tool",
+  controlValues: {
+    "skip": {
+      "and": [
+        {
+          "==": [
+            {
+              "var": "payload.tier",
+            },
+            "pro",
+          ],
+        },
+        {
+          "==": [
+            {
+              "var": "subscriber.data.role",
+            },
+            "admin",
+          ],
+        },
+        {
+          ">": [
+            {
+              "var": "payload.amount",
+            },
+            "4",
+          ],
+        },
+      ],
+    },
+  },
+  providerOverrides: {
+    "slack": {
+      "text": "{{"{{"}}payload.title}}",
+      "blocks": [
+        {
+          "type": "divider",
+        },
+      ],
+    },
+    "whatsapp-business": {
+      "type": "text",
+      "text": {
+        "body": "{{"{{"}}payload.title}}",
+      },
+    },
+    "pagerduty": {
+      "severity": "warning",
+      "source": "novu",
+      "summary": "{{"{{"}}payload.title}}",
+    },
+  },
 };
 ```
 

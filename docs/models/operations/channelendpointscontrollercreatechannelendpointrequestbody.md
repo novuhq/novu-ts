@@ -188,3 +188,81 @@ const value: components.CreateLineUserEndpointDto = {
 };
 ```
 
+### `components.CreatePagerDutyServiceEndpointDto`
+
+```typescript
+const value: components.CreatePagerDutyServiceEndpointDto = {
+  identifier: "slack-channel-user123-abc4",
+  subscriberId: "subscriber-123",
+  context: {
+    "key": "org-acme",
+  },
+  integrationIdentifier: "slack-prod",
+  connectionIdentifier: "slack-connection-abc123",
+  type: "pagerduty_service",
+  endpoint: {
+    routingKey: "R0UTINGK3YEXAMPLE000000000000000",
+    region: "us",
+  },
+};
+```
+
+### `components.CreateOpsgenieIntegrationEndpointDto`
+
+```typescript
+const value: components.CreateOpsgenieIntegrationEndpointDto = {
+  identifier: "slack-channel-user123-abc4",
+  subscriberId: "subscriber-123",
+  context: {
+    "key": "org-acme",
+  },
+  integrationIdentifier: "slack-prod",
+  connectionIdentifier: "slack-connection-abc123",
+  type: "opsgenie_integration",
+  endpoint: {
+    apiKey: "abcdefg-a25a-4652-883c-73703b12345",
+    region: "us",
+  },
+};
+```
+
+### `components.CreateGrafanaOnCallIntegrationEndpointDto`
+
+```typescript
+const value: components.CreateGrafanaOnCallIntegrationEndpointDto = {
+  identifier: "slack-channel-user123-abc4",
+  subscriberId: "subscriber-123",
+  context: {
+    "key": "org-acme",
+  },
+  integrationIdentifier: "slack-prod",
+  connectionIdentifier: "slack-connection-abc123",
+  type: "grafana_oncall_integration",
+  endpoint: {
+    url:
+      "https://acme.grafana.net/integrations/v1/formatted_webhook/m12xmIjOcgwH74UF8CN4dk0Dh/",
+    authToken: "glsa_abc123...",
+  },
+};
+```
+
+### `components.CreateToolWebhookEndpointDto`
+
+```typescript
+const value: components.CreateToolWebhookEndpointDto = {
+  identifier: "slack-channel-user123-abc4",
+  subscriberId: "subscriber-123",
+  context: {
+    "key": "org-acme",
+  },
+  integrationIdentifier: "slack-prod",
+  connectionIdentifier: "slack-connection-abc123",
+  type: "tool_webhook",
+  endpoint: {
+    url: "https://example.com/tools/incoming",
+    headers: {},
+    method: "POST",
+  },
+};
+```
+

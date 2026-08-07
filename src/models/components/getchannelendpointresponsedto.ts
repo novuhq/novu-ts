@@ -8,6 +8,10 @@ import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
+  GrafanaOnCallIntegrationEndpointDto,
+  GrafanaOnCallIntegrationEndpointDto$inboundSchema,
+} from "./grafanaoncallintegrationendpointdto.js";
+import {
   LineUserEndpointDto,
   LineUserEndpointDto$inboundSchema,
 } from "./lineuserendpointdto.js";
@@ -19,6 +23,14 @@ import {
   MsTeamsUserEndpointDto,
   MsTeamsUserEndpointDto$inboundSchema,
 } from "./msteamsuserendpointdto.js";
+import {
+  OpsgenieIntegrationEndpointDto,
+  OpsgenieIntegrationEndpointDto$inboundSchema,
+} from "./opsgenieintegrationendpointdto.js";
+import {
+  PagerDutyServiceEndpointDto,
+  PagerDutyServiceEndpointDto$inboundSchema,
+} from "./pagerdutyserviceendpointdto.js";
 import {
   PhoneEndpointDto,
   PhoneEndpointDto$inboundSchema,
@@ -35,6 +47,10 @@ import {
   TelegramChatEndpointDto,
   TelegramChatEndpointDto$inboundSchema,
 } from "./telegramchatendpointdto.js";
+import {
+  ToolWebhookEndpointDto,
+  ToolWebhookEndpointDto$inboundSchema,
+} from "./toolwebhookendpointdto.js";
 import {
   WebexPersonEndpointDto,
   WebexPersonEndpointDto$inboundSchema,
@@ -57,6 +73,7 @@ export const GetChannelEndpointResponseDtoChannel = {
   Sms: "sms",
   Chat: "chat",
   Push: "push",
+  Tool: "tool",
 } as const;
 /**
  * The channel type (email, sms, push, chat, etc.).
@@ -129,6 +146,7 @@ export const GetChannelEndpointResponseDtoProviderId = {
   Sinch: "sinch",
   IsendproSms: "isendpro-sms",
   CmTelecom: "cm-telecom",
+  RuachSms: "ruach-sms",
   Fcm: "fcm",
   Apns: "apns",
   Expo: "expo",
@@ -154,9 +172,14 @@ export const GetChannelEndpointResponseDtoProviderId = {
   NovuSlack: "novu-slack",
   Telegram: "telegram",
   Sendblue: "sendblue",
+  NovuWebChat: "novu-web-chat",
   Anthropic: "anthropic",
   NovuAnthropic: "novu-anthropic",
   AnthropicAws: "anthropic-aws",
+  Pagerduty: "pagerduty",
+  Opsgenie: "opsgenie",
+  Grafana: "grafana",
+  ToolWebhook: "tool-webhook",
 } as const;
 /**
  * The provider identifier (e.g., sendgrid, twilio, slack, etc.).
@@ -179,6 +202,10 @@ export const GetChannelEndpointResponseDtoType = {
   WebexRoom: "webex_room",
   WebexPerson: "webex_person",
   LineUser: "line_user",
+  PagerdutyService: "pagerduty_service",
+  OpsgenieIntegration: "opsgenie_integration",
+  GrafanaOncallIntegration: "grafana_oncall_integration",
+  ToolWebhook: "tool_webhook",
 } as const;
 /**
  * Type of channel endpoint
@@ -192,6 +219,8 @@ export type GetChannelEndpointResponseDtoType = ClosedEnum<
  */
 export type Endpoint =
   | MsTeamsChannelEndpointDto
+  | PagerDutyServiceEndpointDto
+  | OpsgenieIntegrationEndpointDto
   | SlackChannelEndpointDto
   | SlackUserEndpointDto
   | WebhookEndpointDto
@@ -200,6 +229,8 @@ export type Endpoint =
   | TelegramChatEndpointDto
   | WebexRoomEndpointDto
   | LineUserEndpointDto
+  | GrafanaOnCallIntegrationEndpointDto
+  | ToolWebhookEndpointDto
   | WebexPersonEndpointDto;
 
 export type GetChannelEndpointResponseDto = {
@@ -240,6 +271,8 @@ export type GetChannelEndpointResponseDto = {
    */
   endpoint:
     | MsTeamsChannelEndpointDto
+    | PagerDutyServiceEndpointDto
+    | OpsgenieIntegrationEndpointDto
     | SlackChannelEndpointDto
     | SlackUserEndpointDto
     | WebhookEndpointDto
@@ -248,6 +281,8 @@ export type GetChannelEndpointResponseDto = {
     | TelegramChatEndpointDto
     | WebexRoomEndpointDto
     | LineUserEndpointDto
+    | GrafanaOnCallIntegrationEndpointDto
+    | ToolWebhookEndpointDto
     | WebexPersonEndpointDto;
   /**
    * The timestamp indicating when the channel endpoint was created, in ISO 8601 format.
@@ -282,6 +317,8 @@ export const Endpoint$inboundSchema: z.ZodType<
   unknown
 > = z.union([
   MsTeamsChannelEndpointDto$inboundSchema,
+  PagerDutyServiceEndpointDto$inboundSchema,
+  OpsgenieIntegrationEndpointDto$inboundSchema,
   SlackChannelEndpointDto$inboundSchema,
   SlackUserEndpointDto$inboundSchema,
   WebhookEndpointDto$inboundSchema,
@@ -290,6 +327,8 @@ export const Endpoint$inboundSchema: z.ZodType<
   TelegramChatEndpointDto$inboundSchema,
   WebexRoomEndpointDto$inboundSchema,
   LineUserEndpointDto$inboundSchema,
+  GrafanaOnCallIntegrationEndpointDto$inboundSchema,
+  ToolWebhookEndpointDto$inboundSchema,
   WebexPersonEndpointDto$inboundSchema,
 ]);
 
@@ -319,6 +358,8 @@ export const GetChannelEndpointResponseDto$inboundSchema: z.ZodType<
   type: GetChannelEndpointResponseDtoType$inboundSchema,
   endpoint: z.union([
     MsTeamsChannelEndpointDto$inboundSchema,
+    PagerDutyServiceEndpointDto$inboundSchema,
+    OpsgenieIntegrationEndpointDto$inboundSchema,
     SlackChannelEndpointDto$inboundSchema,
     SlackUserEndpointDto$inboundSchema,
     WebhookEndpointDto$inboundSchema,
@@ -327,6 +368,8 @@ export const GetChannelEndpointResponseDto$inboundSchema: z.ZodType<
     TelegramChatEndpointDto$inboundSchema,
     WebexRoomEndpointDto$inboundSchema,
     LineUserEndpointDto$inboundSchema,
+    GrafanaOnCallIntegrationEndpointDto$inboundSchema,
+    ToolWebhookEndpointDto$inboundSchema,
     WebexPersonEndpointDto$inboundSchema,
   ]),
   createdAt: z.string(),

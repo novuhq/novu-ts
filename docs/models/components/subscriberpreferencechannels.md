@@ -11,6 +11,7 @@ let value: SubscriberPreferenceChannels = {
   inApp: true,
   chat: false,
   push: true,
+  tool: true,
 };
 ```
 
@@ -23,3 +24,4 @@ let value: SubscriberPreferenceChannels = {
 | `inApp`                              | *boolean*                            | :heavy_minus_sign:                   | In-app channel preference            | true                                 |
 | `chat`                               | *boolean*                            | :heavy_minus_sign:                   | Chat channel preference              | false                                |
 | `push`                               | *boolean*                            | :heavy_minus_sign:                   | Push notification channel preference | true                                 |
+| `tool`                               | *boolean*                            | :heavy_minus_sign:                   | Tool channel preference              | true                                 |

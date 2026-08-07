@@ -9,7 +9,7 @@ let value: PreviewPayloadDto = {
   subscriber: {
     channels: [
       {
-        providerId: "apns",
+        providerId: "fcm",
         credentials: {
           webhookUrl: "https://example.com/webhook",
           channel: "general",
@@ -31,7 +31,7 @@ let value: PreviewPayloadDto = {
   actor: {
     channels: [
       {
-        providerId: "apns",
+        providerId: "fcm",
         credentials: {
           webhookUrl: "https://example.com/webhook",
           channel: "general",

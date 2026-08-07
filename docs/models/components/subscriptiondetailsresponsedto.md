@@ -22,7 +22,7 @@ let value: SubscriptionDetailsResponseDto = {
           "email",
         ],
         data: {},
-        severity: "none",
+        severity: "low",
       },
       enabled: true,
       condition: {

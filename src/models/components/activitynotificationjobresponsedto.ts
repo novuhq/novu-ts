@@ -34,6 +34,7 @@ export const ActivityNotificationJobResponseDtoType = {
   Sms: "sms",
   Chat: "chat",
   Push: "push",
+  Tool: "tool",
   Digest: "digest",
   Trigger: "trigger",
   Delay: "delay",

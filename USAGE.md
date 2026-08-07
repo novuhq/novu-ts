@@ -19,6 +19,7 @@ async function run() {
     },
     bridgeUrl: "https://your-tunnel.novu.co/api/novu",
     overrides: {},
+    agentId: "support-agent",
     to: "SUBSCRIBER_ID",
     actor: "<value>",
     context: {
@@ -79,6 +80,7 @@ async function run() {
         },
       },
     },
+    agentId: "support-agent",
     actor: {
       firstName: "John",
       lastName: "Doe",
