@@ -20,7 +20,7 @@ let value: GetSubscriberNotificationsResponseDto = {
       isArchived: true,
       isSnoozed: false,
       createdAt: "1713754831404",
-      channelType: "email",
+      channelType: "sms",
       severity: "none",
     },
   ],

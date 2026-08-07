@@ -13,6 +13,7 @@ let value: SubscriberGlobalPreferenceDto = {
     inApp: true,
     chat: false,
     push: true,
+    tool: true,
   },
   schedule: {
     isEnabled: true,

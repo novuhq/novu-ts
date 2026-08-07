@@ -7,7 +7,7 @@ import { GetChannelConnectionResponseDto } from "@novu/api/models/components";
 
 let value: GetChannelConnectionResponseDto = {
   identifier: "<value>",
-  channel: "push",
+  channel: "tool",
   providerId: "slack",
   integrationIdentifier: "slack-prod",
   subscriberId: "subscriber-123",
@@ -18,6 +18,7 @@ let value: GetChannelConnectionResponseDto = {
   workspace: {
     id: "T123456",
     name: "Acme HQ",
+    botUserId: "U0123456789",
   },
   auth: {
     accessToken: "Workspace access token",

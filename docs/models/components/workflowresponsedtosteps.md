@@ -69,6 +69,27 @@ const value: components.InAppStepResponseDto = {
       ],
     },
   },
+  providerOverrides: {
+    "slack": {
+      "text": "{{"{{"}}payload.title}}",
+      "blocks": [
+        {
+          "type": "divider",
+        },
+      ],
+    },
+    "whatsapp-business": {
+      "type": "text",
+      "text": {
+        "body": "{{"{{"}}payload.title}}",
+      },
+    },
+    "pagerduty": {
+      "severity": "warning",
+      "source": "novu",
+      "summary": "{{"{{"}}payload.title}}",
+    },
+  },
   variables: {
     "key": "<value>",
     "key1": "<value>",
@@ -153,6 +174,27 @@ const value: components.EmailStepResponseDto = {
     },
     subject: "<value>",
   },
+  providerOverrides: {
+    "slack": {
+      "text": "{{"{{"}}payload.title}}",
+      "blocks": [
+        {
+          "type": "divider",
+        },
+      ],
+    },
+    "whatsapp-business": {
+      "type": "text",
+      "text": {
+        "body": "{{"{{"}}payload.title}}",
+      },
+    },
+    "pagerduty": {
+      "severity": "warning",
+      "source": "novu",
+      "summary": "{{"{{"}}payload.title}}",
+    },
+  },
   variables: {
     "key": "<value>",
   },
@@ -231,6 +273,27 @@ const value: components.SmsStepResponseDto = {
           ],
         },
       ],
+    },
+  },
+  providerOverrides: {
+    "slack": {
+      "text": "{{"{{"}}payload.title}}",
+      "blocks": [
+        {
+          "type": "divider",
+        },
+      ],
+    },
+    "whatsapp-business": {
+      "type": "text",
+      "text": {
+        "body": "{{"{{"}}payload.title}}",
+      },
+    },
+    "pagerduty": {
+      "severity": "warning",
+      "source": "novu",
+      "summary": "{{"{{"}}payload.title}}",
     },
   },
   variables: {
@@ -313,6 +376,27 @@ const value: components.PushStepResponseDto = {
       ],
     },
   },
+  providerOverrides: {
+    "slack": {
+      "text": "{{"{{"}}payload.title}}",
+      "blocks": [
+        {
+          "type": "divider",
+        },
+      ],
+    },
+    "whatsapp-business": {
+      "type": "text",
+      "text": {
+        "body": "{{"{{"}}payload.title}}",
+      },
+    },
+    "pagerduty": {
+      "severity": "warning",
+      "source": "novu",
+      "summary": "{{"{{"}}payload.title}}",
+    },
+  },
   variables: {
     "key": "<value>",
     "key1": "<value>",
@@ -392,6 +476,27 @@ const value: components.ChatStepResponseDto = {
           ],
         },
       ],
+    },
+  },
+  providerOverrides: {
+    "slack": {
+      "text": "{{"{{"}}payload.title}}",
+      "blocks": [
+        {
+          "type": "divider",
+        },
+      ],
+    },
+    "whatsapp-business": {
+      "type": "text",
+      "text": {
+        "body": "{{"{{"}}payload.title}}",
+      },
+    },
+    "pagerduty": {
+      "severity": "warning",
+      "source": "novu",
+      "summary": "{{"{{"}}payload.title}}",
     },
   },
   variables: {
@@ -476,6 +581,27 @@ const value: components.DelayStepResponseDto = {
       ],
     },
   },
+  providerOverrides: {
+    "slack": {
+      "text": "{{"{{"}}payload.title}}",
+      "blocks": [
+        {
+          "type": "divider",
+        },
+      ],
+    },
+    "whatsapp-business": {
+      "type": "text",
+      "text": {
+        "body": "{{"{{"}}payload.title}}",
+      },
+    },
+    "pagerduty": {
+      "severity": "warning",
+      "source": "novu",
+      "summary": "{{"{{"}}payload.title}}",
+    },
+  },
   variables: {
     "key": "<value>",
   },
@@ -556,7 +682,30 @@ const value: components.DigestStepResponseDto = {
       ],
     },
   },
-  variables: {},
+  providerOverrides: {
+    "slack": {
+      "text": "{{"{{"}}payload.title}}",
+      "blocks": [
+        {
+          "type": "divider",
+        },
+      ],
+    },
+    "whatsapp-business": {
+      "type": "text",
+      "text": {
+        "body": "{{"{{"}}payload.title}}",
+      },
+    },
+    "pagerduty": {
+      "severity": "warning",
+      "source": "novu",
+      "summary": "{{"{{"}}payload.title}}",
+    },
+  },
+  variables: {
+
+  },
   stepId: "<id>",
   id: "<id>",
   name: "<value>",
@@ -575,7 +724,30 @@ const value: components.CustomStepResponseDto = {
   controls: {
     values: {},
   },
-  variables: {},
+  providerOverrides: {
+    "slack": {
+      "text": "{{"{{"}}payload.title}}",
+      "blocks": [
+        {
+          "type": "divider",
+        },
+      ],
+    },
+    "whatsapp-business": {
+      "type": "text",
+      "text": {
+        "body": "{{"{{"}}payload.title}}",
+      },
+    },
+    "pagerduty": {
+      "severity": "warning",
+      "source": "novu",
+      "summary": "{{"{{"}}payload.title}}",
+    },
+  },
+  variables: {
+
+  },
   stepId: "<id>",
   id: "<id>",
   name: "<value>",
@@ -655,6 +827,27 @@ const value: components.ThrottleStepResponseDto = {
     },
     dynamicKey: "payload.timestamp",
   },
+  providerOverrides: {
+    "slack": {
+      "text": "{{"{{"}}payload.title}}",
+      "blocks": [
+        {
+          "type": "divider",
+        },
+      ],
+    },
+    "whatsapp-business": {
+      "type": "text",
+      "text": {
+        "body": "{{"{{"}}payload.title}}",
+      },
+    },
+    "pagerduty": {
+      "severity": "warning",
+      "source": "novu",
+      "summary": "{{"{{"}}payload.title}}",
+    },
+  },
   variables: {
     "key": "<value>",
     "key1": "<value>",
@@ -681,13 +874,137 @@ const value: components.HttpRequestStepResponseDto = {
       url: "https://frightened-pillow.name",
     },
   },
-  variables: {},
+  providerOverrides: {
+    "slack": {
+      "text": "{{"{{"}}payload.title}}",
+      "blocks": [
+        {
+          "type": "divider",
+        },
+      ],
+    },
+    "whatsapp-business": {
+      "type": "text",
+      "text": {
+        "body": "{{"{{"}}payload.title}}",
+      },
+    },
+    "pagerduty": {
+      "severity": "warning",
+      "source": "novu",
+      "summary": "{{"{{"}}payload.title}}",
+    },
+  },
+  variables: {
+
+  },
   stepId: "<id>",
   id: "<id>",
   name: "<value>",
   slug: "<value>",
   type: "http_request",
   origin: "novu-cloud-v1",
+  workflowId: "<id>",
+  workflowDatabaseId: "<id>",
+};
+```
+
+### `components.ToolStepResponseDto`
+
+```typescript
+const value: components.ToolStepResponseDto = {
+  controls: {
+    values: {
+      skip: {
+        "and": [
+          {
+            "==": [
+              {
+                "var": "payload.tier",
+              },
+              "pro",
+            ],
+          },
+          {
+            "==": [
+              {
+                "var": "subscriber.data.role",
+              },
+              "admin",
+            ],
+          },
+          {
+            ">": [
+              {
+                "var": "payload.amount",
+              },
+              "4",
+            ],
+          },
+        ],
+      },
+    },
+  },
+  controlValues: {
+    skip: {
+      "and": [
+        {
+          "==": [
+            {
+              "var": "payload.tier",
+            },
+            "pro",
+          ],
+        },
+        {
+          "==": [
+            {
+              "var": "subscriber.data.role",
+            },
+            "admin",
+          ],
+        },
+        {
+          ">": [
+            {
+              "var": "payload.amount",
+            },
+            "4",
+          ],
+        },
+      ],
+    },
+  },
+  providerOverrides: {
+    "slack": {
+      "text": "{{"{{"}}payload.title}}",
+      "blocks": [
+        {
+          "type": "divider",
+        },
+      ],
+    },
+    "whatsapp-business": {
+      "type": "text",
+      "text": {
+        "body": "{{"{{"}}payload.title}}",
+      },
+    },
+    "pagerduty": {
+      "severity": "warning",
+      "source": "novu",
+      "summary": "{{"{{"}}payload.title}}",
+    },
+  },
+  variables: {
+    "key": "<value>",
+  },
+  stepId: "<id>",
+  id: "<id>",
+  name: "<value>",
+  slug: "<value>",
+  type: "tool",
+  origin: "novu-cloud",
   workflowId: "<id>",
   workflowDatabaseId: "<id>",
 };

@@ -146,7 +146,7 @@ export class Agents extends ClientSDK {
    * Delete an agent
    *
    * @remarks
-   * Delete an agent by identifier and remove all agent-integration links. For managed-runtime agents, pass `deleteFromProvider=true` to also archive the agent on the provider side (e.g. Anthropic). By default only the Novu record is deleted and the provider agent is left intact.
+   * Delete an agent by identifier, remove all agent-integration links, and clear the agent assignment from any workflows that reference it. For managed-runtime agents, pass `deleteFromProvider=true` to also archive the agent on the provider side (e.g. Anthropic). By default only the Novu record is deleted and the provider agent is left intact.
    */
   async delete(
     identifier: string,

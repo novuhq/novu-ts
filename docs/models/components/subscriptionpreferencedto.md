@@ -17,7 +17,7 @@ let value: SubscriptionPreferenceDto = {
       "email",
     ],
     data: {},
-    severity: "none",
+    severity: "low",
   },
   enabled: true,
   condition: {

@@ -278,7 +278,6 @@ async function run() {
         },
       },
     },
-    origin: "external",
   }, "<id>");
 
   console.log(result);
@@ -333,7 +332,6 @@ async function run() {
         },
       },
     },
-    origin: "external",
   }, "<id>");
   if (res.ok) {
     const { value: result } = res;

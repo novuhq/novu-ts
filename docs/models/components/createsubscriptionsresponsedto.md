@@ -37,7 +37,7 @@ let value: CreateSubscriptionsResponseDto = {
               "email",
             ],
             data: {},
-            severity: "none",
+            severity: "low",
           },
           enabled: true,
           condition: {

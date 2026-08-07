@@ -8,11 +8,11 @@ The channel of the message to be deleted
 import { MessagesControllerDeleteMessagesByTransactionIdQueryParamChannel } from "@novu/api/models/operations";
 
 let value: MessagesControllerDeleteMessagesByTransactionIdQueryParamChannel =
-  "push";
+  "tool";
 ```
 
 ## Values
 
 ```typescript
-"in_app" | "email" | "sms" | "chat" | "push"
+"in_app" | "email" | "sms" | "chat" | "push" | "tool"
 ```

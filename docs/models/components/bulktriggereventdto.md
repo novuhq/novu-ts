@@ -17,6 +17,7 @@ let value: BulkTriggerEventDto = {
       },
       bridgeUrl: "https://your-tunnel.novu.co/api/novu",
       overrides: {},
+      agentId: "support-agent",
       to: "SUBSCRIBER_ID",
       actor: {
         firstName: "John",

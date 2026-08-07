@@ -80,6 +80,10 @@ export type HttpRequestStepResponseDto = {
    */
   controlValues?: HttpRequestStepResponseDtoControlValues | undefined;
   /**
+   * Per-provider content overrides keyed by providerId. Stored separately from controlValues and merged over the default body at send time. Keys are ChatProviderIdEnum / ToolProviderIdEnum values (e.g. `slack`, `whatsapp-business`, `pagerduty`).
+   */
+  providerOverrides?: { [k: string]: { [k: string]: any } } | null | undefined;
+  /**
    * JSON Schema for variables, follows the JSON Schema standard
    */
   variables: { [k: string]: any };
@@ -190,6 +194,7 @@ export const HttpRequestStepResponseDto$inboundSchema: z.ZodType<
   controlValues: z.lazy(() =>
     HttpRequestStepResponseDtoControlValues$inboundSchema
   ).optional(),
+  providerOverrides: z.nullable(z.record(z.record(z.any()))).optional(),
   variables: z.record(z.any()),
   stepId: z.string(),
   _id: z.string(),

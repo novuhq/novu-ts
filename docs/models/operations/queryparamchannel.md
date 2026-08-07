@@ -13,5 +13,5 @@ let value: QueryParamChannel = "email";
 ## Values
 
 ```typescript
-"in_app" | "email" | "sms" | "chat" | "push"
+"in_app" | "email" | "sms" | "chat" | "push" | "tool"
 ```

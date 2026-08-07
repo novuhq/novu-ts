@@ -22,7 +22,39 @@ let value: WorkflowControllerPatchWorkflowResponse = {
     steps: [
       {
         controls: {
-          values: {},
+          values: {
+            skip: {
+              "and": [
+                {
+                  "==": [
+                    {
+                      "var": "payload.tier",
+                    },
+                    "pro",
+                  ],
+                },
+                {
+                  "==": [
+                    {
+                      "var": "subscriber.data.role",
+                    },
+                    "admin",
+                  ],
+                },
+                {
+                  ">": [
+                    {
+                      "var": "payload.amount",
+                    },
+                    "4",
+                  ],
+                },
+              ],
+            },
+            type: "fixed",
+            dynamicKey: "payload.timestamp",
+            threshold: 1,
+          },
         },
         variables: {
           "key": "<value>",
@@ -33,7 +65,7 @@ let value: WorkflowControllerPatchWorkflowResponse = {
         id: "<id>",
         name: "<value>",
         slug: "<value>",
-        type: "custom",
+        type: "throttle",
         origin: "novu-cloud-v1",
         workflowId: "<id>",
         workflowDatabaseId: "<id>",

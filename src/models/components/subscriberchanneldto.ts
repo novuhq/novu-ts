@@ -30,6 +30,7 @@ export const SubscriberChannelDtoProviderId = {
   NovuSlack: "novu-slack",
   Telegram: "telegram",
   Sendblue: "sendblue",
+  NovuWebChat: "novu-web-chat",
   Fcm: "fcm",
   Apns: "apns",
   Expo: "expo",

@@ -4541,6 +4541,8 @@
             "description": "Number of items to return per page",
             "example": 10,
             "schema": {
+              "minimum": 1,
+              "maximum": 100,
               "type": "number"
             }
           },
@@ -4551,6 +4553,7 @@
             "description": "Number of items to skip before starting to return results",
             "example": 0,
             "schema": {
+              "minimum": 0,
               "type": "number"
             }
           },
@@ -26732,6 +26735,8 @@
             "description": "Number of items to return per page",
             "example": 10,
             "schema": {
+              "minimum": 1,
+              "maximum": 100,
               "type": "number"
             }
           },
@@ -26742,6 +26747,7 @@
             "description": "Number of items to skip before starting to return results",
             "example": 0,
             "schema": {
+              "minimum": 0,
               "type": "number"
             }
           },
@@ -33414,7 +33420,7 @@
         "x-speakeasy-name-override": "delete",
         "x-speakeasy-group": "Agents",
         "summary": "Delete an agent",
-        "description": "Delete an agent by identifier and remove all agent-integration links. For managed-runtime agents, pass `deleteFromProvider=true` to also archive the agent on the provider side (e.g. Anthropic). By default only the Novu record is deleted and the provider agent is left intact.",
+        "description": "Delete an agent by identifier, remove all agent-integration links, and clear the agent assignment from any workflows that reference it. For managed-runtime agents, pass `deleteFromProvider=true` to also archive the agent on the provider side (e.g. Anthropic). By default only the Novu record is deleted and the provider agent is left intact.",
         "parameters": [
           {
             "name": "identifier",
@@ -36458,6 +36464,20 @@
             }
           },
           {
+            "name": "connectionMode",
+            "required": false,
+            "in": "query",
+            "description": "Scope results relative to the subscriber. `subscriber` returns only the subscriber-owned connections, `shared` returns only shared (workspace-level) connections. Omit to return both.",
+            "example": "shared",
+            "schema": {
+              "enum": [
+                "subscriber",
+                "shared"
+              ],
+              "type": "string"
+            }
+          },
+          {
             "name": "channel",
             "required": false,
             "in": "query",
@@ -36469,7 +36489,8 @@
                 "email",
                 "sms",
                 "chat",
-                "push"
+                "push",
+                "tool"
               ],
               "type": "string"
             }
@@ -38998,7 +39019,8 @@
                 "email",
                 "sms",
                 "chat",
-                "push"
+                "push",
+                "tool"
               ],
               "type": "string"
             }
@@ -39556,6 +39578,18 @@
                   },
                   {
                     "$ref": "#/components/schemas/CreateLineUserEndpointDto"
+                  },
+                  {
+                    "$ref": "#/components/schemas/CreatePagerDutyServiceEndpointDto"
+                  },
+                  {
+                    "$ref": "#/components/schemas/CreateOpsgenieIntegrationEndpointDto"
+                  },
+                  {
+                    "$ref": "#/components/schemas/CreateGrafanaOnCallIntegrationEndpointDto"
+                  },
+                  {
+                    "$ref": "#/components/schemas/CreateToolWebhookEndpointDto"
                   }
                 ],
                 "discriminator": {
@@ -39570,7 +39604,11 @@
                     "telegram_chat": "#/components/schemas/CreateTelegramChatEndpointDto",
                     "webex_room": "#/components/schemas/CreateWebexRoomEndpointDto",
                     "webex_person": "#/components/schemas/CreateWebexPersonEndpointDto",
-                    "line_user": "#/components/schemas/CreateLineUserEndpointDto"
+                    "line_user": "#/components/schemas/CreateLineUserEndpointDto",
+                    "pagerduty_service": "#/components/schemas/CreatePagerDutyServiceEndpointDto",
+                    "opsgenie_integration": "#/components/schemas/CreateOpsgenieIntegrationEndpointDto",
+                    "grafana_oncall_integration": "#/components/schemas/CreateGrafanaOnCallIntegrationEndpointDto",
+                    "tool_webhook": "#/components/schemas/CreateToolWebhookEndpointDto"
                   }
                 }
               }
@@ -63063,7 +63101,8 @@
                 "email",
                 "sms",
                 "chat",
-                "push"
+                "push",
+                "tool"
               ],
               "type": "string"
             }
@@ -70947,6 +70986,7 @@
               "novu-slack",
               "telegram",
               "sendblue",
+              "novu-web-chat",
               "fcm",
               "apns",
               "expo",
@@ -71265,6 +71305,12 @@
               }
             ]
           },
+          "agentId": {
+            "type": "string",
+            "nullable": true,
+            "description": "Override the workflow-assigned agent for this trigger using the public agent identifier. Omit to use the workflow default; pass null to disable agent routing for this execution.",
+            "example": "support-agent"
+          },
           "to": {
             "description": "The recipients list of people who will receive the notification. Maximum number of recipients can be 100.",
             "oneOf": [
@@ -71420,6 +71466,12 @@
               }
             ]
           },
+          "agentId": {
+            "type": "string",
+            "nullable": true,
+            "description": "Override the workflow-assigned agent for this trigger using the public agent identifier. Omit to use the workflow default; pass null to disable agent routing for this execution.",
+            "example": "support-agent"
+          },
           "transactionId": {
             "type": "string",
             "description": "A unique identifier for this transaction, we will generated a UUID if not provided."
@@ -71496,7 +71548,8 @@
           "email",
           "sms",
           "chat",
-          "push"
+          "push",
+          "tool"
         ]
       },
       "StepTypeEnum": {
@@ -71508,6 +71561,7 @@
           "sms",
           "chat",
           "push",
+          "tool",
           "digest",
           "trigger",
           "delay",
@@ -71876,6 +71930,7 @@
           "sinch",
           "isendpro-sms",
           "cm-telecom",
+          "ruach-sms",
           "fcm",
           "apns",
           "expo",
@@ -71901,9 +71956,14 @@
           "novu-slack",
           "telegram",
           "sendblue",
+          "novu-web-chat",
           "anthropic",
           "novu-anthropic",
-          "anthropic-aws"
+          "anthropic-aws",
+          "pagerduty",
+          "opsgenie",
+          "grafana",
+          "tool-webhook"
         ]
       },
       "ExecutionDetailsSourceEnum": {
@@ -72137,6 +72197,7 @@
               "sms",
               "chat",
               "push",
+              "tool",
               "digest",
               "trigger",
               "delay",
@@ -73113,7 +73174,7 @@
               "restricted"
             ],
             "type": "string",
-            "description": "Controls whether the agent accepts inbound messages from senders not yet linked to a subscriber, across all channels. \"open\" on managed agents auto-creates a lightweight subscriber so the agent can reply; on custom-code / self-hosted agents, the turn is forwarded to the bridge with a null subscriber. \"restricted\" rejects unknown senders with a managed denial reply (any runtime). Unset resolves as \"restricted\". Managed agent create defaults to \"open\"; self-hosted create defaults to \"restricted\"."
+            "description": "Controls whether the agent accepts inbound messages from senders not yet linked to a subscriber, across all channels. \"open\" on managed agents auto-creates a lightweight subscriber so the agent can reply; on custom-code / self-hosted agents, the turn is forwarded to the bridge with a null subscriber. \"restricted\" rejects unknown senders with a managed denial reply (any runtime). Optional on update (partial PATCH). Persisted agents always have a value — managed create defaults to \"open\"; self-hosted create defaults to \"restricted\"."
           }
         }
       },
@@ -73330,6 +73391,7 @@
           "_id",
           "name",
           "identifier",
+          "behavior",
           "active",
           "_environmentId",
           "_organizationId",
@@ -75162,6 +75224,10 @@
           },
           "inboundWebhookSigningKey": {
             "type": "string"
+          },
+          "payloadSchema": {
+            "type": "string",
+            "description": "JSON Schema describing the payload accepted by this integration."
           }
         }
       },
@@ -75200,7 +75266,8 @@
               "email",
               "sms",
               "chat",
-              "push"
+              "push",
+              "tool"
             ]
           },
           "kind": {
@@ -75292,7 +75359,8 @@
               "email",
               "sms",
               "chat",
-              "push"
+              "push",
+              "tool"
             ],
             "type": "string",
             "description": "The channel type for the integration. Not required for agent-kind integrations."
@@ -75557,6 +75625,11 @@
               ]
             }
           },
+          "contextHash": {
+            "type": "string",
+            "description": "HMAC-SHA256 of the canonicalized `context`, signed with the tenant environment secret key (the same \"Inbox with context\" signing scheme). Required when the integration has HMAC validation enabled and the session did not already HMAC-verify the context. Establishes that the context/tenant binding was minted by an authenticated backend rather than forged in the browser.",
+            "example": "a1b2c3d4e5f6..."
+          },
           "scope": {
             "description": "**Slack only**: OAuth scopes to request during authorization. If not specified, default scopes will be used: chat:write, chat:write.public, channels:read, groups:read, users:read, users:read.email. **Webex**: OAuth scopes to request during authorization. Defaults to: spark:messages_write, spark:rooms_read, spark:people_read, spark:memberships_read, spark:kms. **MS Teams**: ignored — uses admin consent with pre-configured Azure AD permissions.",
             "example": [
@@ -75639,6 +75712,11 @@
               ]
             }
           },
+          "contextHash": {
+            "type": "string",
+            "description": "HMAC-SHA256 of the canonicalized `context`, signed with the tenant environment secret key (the same \"Inbox with context\" signing scheme). Required when the integration has HMAC validation enabled and the session did not already HMAC-verify the context, so the per-user link carries a trustworthy subscriber/tenant binding.",
+            "example": "a1b2c3d4e5f6..."
+          },
           "userScope": {
             "description": "**Slack only**: User-level OAuth scopes for \"Sign in with Slack\". Defaults to: identity.basic. **Webex**: Optional Webex scopes for people/me; defaults to spark:people_read. **MS Teams**: ignored — uses delegated OpenID scopes (openid, profile, User.Read).",
             "example": [
@@ -75689,6 +75767,45 @@
             "type": "string",
             "description": "External subscriber identifier to link to their chat identity",
             "example": "subscriber-123"
+          },
+          "context": {
+            "type": "object",
+            "additionalProperties": {
+              "oneOf": [
+                {
+                  "type": "string",
+                  "description": "Simple context id",
+                  "example": "org-acme"
+                },
+                {
+                  "type": "object",
+                  "description": "Rich context object with id and optional data",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "example": "org-acme"
+                    },
+                    "data": {
+                      "type": "object",
+                      "description": "Optional additional context data",
+                      "additionalProperties": true,
+                      "example": {
+                        "name": "Acme Corp",
+                        "region": "us-east-1"
+                      }
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ]
+                }
+              ]
+            }
+          },
+          "contextHash": {
+            "type": "string",
+            "description": "HMAC-SHA256 of the canonicalized `context`, signed with the tenant environment secret key (the same \"Inbox with context\" signing scheme). Required when the integration has HMAC validation enabled.",
+            "example": "a1b2c3d4e5f6..."
           }
         },
         "required": [
@@ -76040,6 +76157,7 @@
           "novu-slack",
           "telegram",
           "sendblue",
+          "novu-web-chat",
           "fcm",
           "apns",
           "expo",
@@ -76812,6 +76930,11 @@
           "push": {
             "type": "boolean",
             "description": "Push notification channel preference",
+            "example": true
+          },
+          "tool": {
+            "type": "boolean",
+            "description": "Tool channel preference",
             "example": true
           }
         }
@@ -78228,6 +78351,10 @@
           "chat": {
             "type": "boolean",
             "description": "Chat channel preference"
+          },
+          "tool": {
+            "type": "boolean",
+            "description": "Tool channel preference"
           }
         }
       },
@@ -78404,6 +78531,51 @@
           "subscriberId"
         ]
       },
+      "SubscriptionPreferenceDto": {
+        "type": "object",
+        "properties": {
+          "subscriptionId": {
+            "type": "string",
+            "description": "The unique identifier of the subscription",
+            "example": "64f5e95d3d7946d80d0cb679"
+          },
+          "workflow": {
+            "description": "Workflow information if this is a template-level preference",
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/WorkflowDto"
+              }
+            ]
+          },
+          "enabled": {
+            "type": "boolean",
+            "description": "Whether the preference is enabled",
+            "example": true
+          },
+          "condition": {
+            "type": "object",
+            "description": "Optional JSON Logic condition evaluated against the trigger payload at fan-out time (for example, `{ \"var\": \"payload.tier\" }`)",
+            "additionalProperties": true,
+            "example": {
+              "and": [
+                {
+                  "===": [
+                    {
+                      "var": "payload.tier"
+                    },
+                    "premium"
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        "required": [
+          "subscriptionId",
+          "enabled"
+        ]
+      },
       "TopicSubscriptionResponseDto": {
         "type": "object",
         "properties": {
@@ -78447,6 +78619,13 @@
             "type": "array",
             "items": {
               "type": "string"
+            }
+          },
+          "preferences": {
+            "description": "The preferences for workflows in this subscription",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SubscriptionPreferenceDto"
             }
           }
         },
@@ -78935,6 +79114,7 @@
           "SMS_BODY",
           "CHAT_BODY",
           "PUSH_BODY",
+          "TOOL_BODY",
           "PUSH_SUBJECT",
           "QUERY_EDITOR",
           "DATA",
@@ -79019,6 +79199,7 @@
           "SMS",
           "CHAT",
           "PUSH",
+          "TOOL",
           "SKIP",
           "LAYOUT",
           "HTTP_REQUEST"
@@ -79696,51 +79877,6 @@
         "required": [
           "_id",
           "key"
-        ]
-      },
-      "SubscriptionPreferenceDto": {
-        "type": "object",
-        "properties": {
-          "subscriptionId": {
-            "type": "string",
-            "description": "The unique identifier of the subscription",
-            "example": "64f5e95d3d7946d80d0cb679"
-          },
-          "workflow": {
-            "description": "Workflow information if this is a template-level preference",
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/WorkflowDto"
-              }
-            ]
-          },
-          "enabled": {
-            "type": "boolean",
-            "description": "Whether the preference is enabled",
-            "example": true
-          },
-          "condition": {
-            "type": "object",
-            "description": "Optional JSON Logic condition evaluated against the trigger payload at fan-out time (for example, `{ \"var\": \"payload.tier\" }`)",
-            "additionalProperties": true,
-            "example": {
-              "and": [
-                {
-                  "===": [
-                    {
-                      "var": "payload.tier"
-                    },
-                    "premium"
-                  ]
-                }
-              ]
-            }
-          }
-        },
-        "required": [
-          "subscriptionId",
-          "enabled"
         ]
       },
       "SubscriptionResponseDto": {
@@ -80585,7 +80721,8 @@
           "INVALID_FILTER_ARG_IN_VARIABLE",
           "INVALID_URL",
           "MISSING_VALUE",
-          "TIER_LIMIT_EXCEEDED"
+          "TIER_LIMIT_EXCEEDED",
+          "UNSUPPORTED_PROPERTY"
         ]
       },
       "StepContentIssueDto": {
@@ -80677,6 +80814,36 @@
             "description": "Control values for the step (alias for controls.values)",
             "additionalProperties": true
           },
+          "providerOverrides": {
+            "type": "object",
+            "description": "Per-provider content overrides keyed by providerId. Stored separately from controlValues and merged over the default body at send time. Keys are ChatProviderIdEnum / ToolProviderIdEnum values (e.g. `slack`, `whatsapp-business`, `pagerduty`).",
+            "example": {
+              "slack": {
+                "text": "{{payload.title}}",
+                "blocks": [
+                  {
+                    "type": "divider"
+                  }
+                ]
+              },
+              "whatsapp-business": {
+                "type": "text",
+                "text": {
+                  "body": "{{payload.title}}"
+                }
+              },
+              "pagerduty": {
+                "severity": "warning",
+                "source": "novu",
+                "summary": "{{payload.title}}"
+              }
+            },
+            "additionalProperties": {
+              "type": "object",
+              "additionalProperties": true
+            },
+            "nullable": true
+          },
           "variables": {
             "type": "object",
             "description": "JSON Schema for variables, follows the JSON Schema standard",
@@ -80737,6 +80904,19 @@
           "workflowId",
           "workflowDatabaseId"
         ]
+      },
+      "EmailFromControlDto": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "Sender email address override for this step."
+          },
+          "name": {
+            "type": "string",
+            "description": "Sender display name override for this step."
+          }
+        }
       },
       "EmailControlDto": {
         "type": "object",
@@ -80802,6 +80982,27 @@
             "type": "string",
             "description": "Layout ID to use for the email. Null means no layout, undefined means default layout.",
             "nullable": true
+          },
+          "from": {
+            "description": "Sender name and email overrides for this step.",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EmailFromControlDto"
+              }
+            ]
+          },
+          "useProviderDefaults": {
+            "type": "boolean",
+            "description": "When true, sender name/email use the primary email integration defaults and skip workflow agent defaults."
+          },
+          "replyTo": {
+            "type": "string",
+            "description": "Step-level Reply-To override. When unset, inherits the workflow agent reply-to."
+          },
+          "preheader": {
+            "type": "string",
+            "description": "One-line inbox preview text shown next to the subject.",
+            "maxLength": 84
           }
         },
         "required": [
@@ -80857,6 +81058,36 @@
                 "$ref": "#/components/schemas/EmailControlDto"
               }
             ]
+          },
+          "providerOverrides": {
+            "type": "object",
+            "description": "Per-provider content overrides keyed by providerId. Stored separately from controlValues and merged over the default body at send time. Keys are ChatProviderIdEnum / ToolProviderIdEnum values (e.g. `slack`, `whatsapp-business`, `pagerduty`).",
+            "example": {
+              "slack": {
+                "text": "{{payload.title}}",
+                "blocks": [
+                  {
+                    "type": "divider"
+                  }
+                ]
+              },
+              "whatsapp-business": {
+                "type": "text",
+                "text": {
+                  "body": "{{payload.title}}"
+                }
+              },
+              "pagerduty": {
+                "severity": "warning",
+                "source": "novu",
+                "summary": "{{payload.title}}"
+              }
+            },
+            "additionalProperties": {
+              "type": "object",
+              "additionalProperties": true
+            },
+            "nullable": true
           },
           "variables": {
             "type": "object",
@@ -81009,6 +81240,36 @@
                 "$ref": "#/components/schemas/SmsControlDto"
               }
             ]
+          },
+          "providerOverrides": {
+            "type": "object",
+            "description": "Per-provider content overrides keyed by providerId. Stored separately from controlValues and merged over the default body at send time. Keys are ChatProviderIdEnum / ToolProviderIdEnum values (e.g. `slack`, `whatsapp-business`, `pagerduty`).",
+            "example": {
+              "slack": {
+                "text": "{{payload.title}}",
+                "blocks": [
+                  {
+                    "type": "divider"
+                  }
+                ]
+              },
+              "whatsapp-business": {
+                "type": "text",
+                "text": {
+                  "body": "{{payload.title}}"
+                }
+              },
+              "pagerduty": {
+                "severity": "warning",
+                "source": "novu",
+                "summary": "{{payload.title}}"
+              }
+            },
+            "additionalProperties": {
+              "type": "object",
+              "additionalProperties": true
+            },
+            "nullable": true
           },
           "variables": {
             "type": "object",
@@ -81166,6 +81427,36 @@
               }
             ]
           },
+          "providerOverrides": {
+            "type": "object",
+            "description": "Per-provider content overrides keyed by providerId. Stored separately from controlValues and merged over the default body at send time. Keys are ChatProviderIdEnum / ToolProviderIdEnum values (e.g. `slack`, `whatsapp-business`, `pagerduty`).",
+            "example": {
+              "slack": {
+                "text": "{{payload.title}}",
+                "blocks": [
+                  {
+                    "type": "divider"
+                  }
+                ]
+              },
+              "whatsapp-business": {
+                "type": "text",
+                "text": {
+                  "body": "{{payload.title}}"
+                }
+              },
+              "pagerduty": {
+                "severity": "warning",
+                "source": "novu",
+                "summary": "{{payload.title}}"
+              }
+            },
+            "additionalProperties": {
+              "type": "object",
+              "additionalProperties": true
+            },
+            "nullable": true
+          },
           "variables": {
             "type": "object",
             "description": "JSON Schema for variables, follows the JSON Schema standard",
@@ -81317,6 +81608,36 @@
                 "$ref": "#/components/schemas/ChatControlDto"
               }
             ]
+          },
+          "providerOverrides": {
+            "type": "object",
+            "description": "Per-provider content overrides keyed by providerId. Stored separately from controlValues and merged over the default body at send time. Keys are ChatProviderIdEnum / ToolProviderIdEnum values (e.g. `slack`, `whatsapp-business`, `pagerduty`).",
+            "example": {
+              "slack": {
+                "text": "{{payload.title}}",
+                "blocks": [
+                  {
+                    "type": "divider"
+                  }
+                ]
+              },
+              "whatsapp-business": {
+                "type": "text",
+                "text": {
+                  "body": "{{payload.title}}"
+                }
+              },
+              "pagerduty": {
+                "severity": "warning",
+                "source": "novu",
+                "summary": "{{payload.title}}"
+              }
+            },
+            "additionalProperties": {
+              "type": "object",
+              "additionalProperties": true
+            },
+            "nullable": true
           },
           "variables": {
             "type": "object",
@@ -81498,6 +81819,36 @@
                 "$ref": "#/components/schemas/DelayControlDto"
               }
             ]
+          },
+          "providerOverrides": {
+            "type": "object",
+            "description": "Per-provider content overrides keyed by providerId. Stored separately from controlValues and merged over the default body at send time. Keys are ChatProviderIdEnum / ToolProviderIdEnum values (e.g. `slack`, `whatsapp-business`, `pagerduty`).",
+            "example": {
+              "slack": {
+                "text": "{{payload.title}}",
+                "blocks": [
+                  {
+                    "type": "divider"
+                  }
+                ]
+              },
+              "whatsapp-business": {
+                "type": "text",
+                "text": {
+                  "body": "{{payload.title}}"
+                }
+              },
+              "pagerduty": {
+                "severity": "warning",
+                "source": "novu",
+                "summary": "{{payload.title}}"
+              }
+            },
+            "additionalProperties": {
+              "type": "object",
+              "additionalProperties": true
+            },
+            "nullable": true
           },
           "variables": {
             "type": "object",
@@ -81714,6 +82065,36 @@
               }
             ]
           },
+          "providerOverrides": {
+            "type": "object",
+            "description": "Per-provider content overrides keyed by providerId. Stored separately from controlValues and merged over the default body at send time. Keys are ChatProviderIdEnum / ToolProviderIdEnum values (e.g. `slack`, `whatsapp-business`, `pagerduty`).",
+            "example": {
+              "slack": {
+                "text": "{{payload.title}}",
+                "blocks": [
+                  {
+                    "type": "divider"
+                  }
+                ]
+              },
+              "whatsapp-business": {
+                "type": "text",
+                "text": {
+                  "body": "{{payload.title}}"
+                }
+              },
+              "pagerduty": {
+                "severity": "warning",
+                "source": "novu",
+                "summary": "{{payload.title}}"
+              }
+            },
+            "additionalProperties": {
+              "type": "object",
+              "additionalProperties": true
+            },
+            "nullable": true
+          },
           "variables": {
             "type": "object",
             "description": "JSON Schema for variables, follows the JSON Schema standard",
@@ -81903,6 +82284,36 @@
               }
             ]
           },
+          "providerOverrides": {
+            "type": "object",
+            "description": "Per-provider content overrides keyed by providerId. Stored separately from controlValues and merged over the default body at send time. Keys are ChatProviderIdEnum / ToolProviderIdEnum values (e.g. `slack`, `whatsapp-business`, `pagerduty`).",
+            "example": {
+              "slack": {
+                "text": "{{payload.title}}",
+                "blocks": [
+                  {
+                    "type": "divider"
+                  }
+                ]
+              },
+              "whatsapp-business": {
+                "type": "text",
+                "text": {
+                  "body": "{{payload.title}}"
+                }
+              },
+              "pagerduty": {
+                "severity": "warning",
+                "source": "novu",
+                "summary": "{{payload.title}}"
+              }
+            },
+            "additionalProperties": {
+              "type": "object",
+              "additionalProperties": true
+            },
+            "nullable": true
+          },
           "variables": {
             "type": "object",
             "description": "JSON Schema for variables, follows the JSON Schema standard",
@@ -82022,6 +82433,36 @@
                 "$ref": "#/components/schemas/CustomControlDto"
               }
             ]
+          },
+          "providerOverrides": {
+            "type": "object",
+            "description": "Per-provider content overrides keyed by providerId. Stored separately from controlValues and merged over the default body at send time. Keys are ChatProviderIdEnum / ToolProviderIdEnum values (e.g. `slack`, `whatsapp-business`, `pagerduty`).",
+            "example": {
+              "slack": {
+                "text": "{{payload.title}}",
+                "blocks": [
+                  {
+                    "type": "divider"
+                  }
+                ]
+              },
+              "whatsapp-business": {
+                "type": "text",
+                "text": {
+                  "body": "{{payload.title}}"
+                }
+              },
+              "pagerduty": {
+                "severity": "warning",
+                "source": "novu",
+                "summary": "{{payload.title}}"
+              }
+            },
+            "additionalProperties": {
+              "type": "object",
+              "additionalProperties": true
+            },
+            "nullable": true
           },
           "variables": {
             "type": "object",
@@ -82210,6 +82651,36 @@
                 "$ref": "#/components/schemas/HttpRequestControlDto"
               }
             ]
+          },
+          "providerOverrides": {
+            "type": "object",
+            "description": "Per-provider content overrides keyed by providerId. Stored separately from controlValues and merged over the default body at send time. Keys are ChatProviderIdEnum / ToolProviderIdEnum values (e.g. `slack`, `whatsapp-business`, `pagerduty`).",
+            "example": {
+              "slack": {
+                "text": "{{payload.title}}",
+                "blocks": [
+                  {
+                    "type": "divider"
+                  }
+                ]
+              },
+              "whatsapp-business": {
+                "type": "text",
+                "text": {
+                  "body": "{{payload.title}}"
+                }
+              },
+              "pagerduty": {
+                "severity": "warning",
+                "source": "novu",
+                "summary": "{{payload.title}}"
+              }
+            },
+            "additionalProperties": {
+              "type": "object",
+              "additionalProperties": true
+            },
+            "nullable": true
           },
           "variables": {
             "type": "object",
@@ -82424,6 +82895,36 @@
               }
             ]
           },
+          "providerOverrides": {
+            "type": "object",
+            "description": "Per-provider content overrides keyed by providerId. Stored separately from controlValues and merged over the default body at send time. Keys are ChatProviderIdEnum / ToolProviderIdEnum values (e.g. `slack`, `whatsapp-business`, `pagerduty`).",
+            "example": {
+              "slack": {
+                "text": "{{payload.title}}",
+                "blocks": [
+                  {
+                    "type": "divider"
+                  }
+                ]
+              },
+              "whatsapp-business": {
+                "type": "text",
+                "text": {
+                  "body": "{{payload.title}}"
+                }
+              },
+              "pagerduty": {
+                "severity": "warning",
+                "source": "novu",
+                "summary": "{{payload.title}}"
+              }
+            },
+            "additionalProperties": {
+              "type": "object",
+              "additionalProperties": true
+            },
+            "nullable": true
+          },
           "variables": {
             "type": "object",
             "description": "JSON Schema for variables, follows the JSON Schema standard",
@@ -82483,6 +82984,212 @@
           "origin",
           "workflowId",
           "workflowDatabaseId"
+        ]
+      },
+      "ToolControlDto": {
+        "type": "object",
+        "properties": {
+          "skip": {
+            "type": "object",
+            "description": "JSONLogic filter conditions for conditionally skipping the step execution. Supports complex logical operations with AND, OR, and comparison operators. See https://jsonlogic.com/ for full typing reference.",
+            "example": {
+              "and": [
+                {
+                  "==": [
+                    {
+                      "var": "payload.tier"
+                    },
+                    "pro"
+                  ]
+                },
+                {
+                  "==": [
+                    {
+                      "var": "subscriber.data.role"
+                    },
+                    "admin"
+                  ]
+                },
+                {
+                  ">": [
+                    {
+                      "var": "payload.amount"
+                    },
+                    "4"
+                  ]
+                }
+              ]
+            },
+            "additionalProperties": true
+          },
+          "body": {
+            "type": "string",
+            "description": "Content of the tool payload."
+          }
+        }
+      },
+      "ToolControlsMetadataResponseDto": {
+        "type": "object",
+        "properties": {
+          "dataSchema": {
+            "type": "object",
+            "description": "JSON Schema for data",
+            "additionalProperties": true
+          },
+          "uiSchema": {
+            "description": "UI Schema for rendering",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/UiSchema"
+              }
+            ]
+          },
+          "values": {
+            "description": "Control values specific to Tool",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ToolControlDto"
+              }
+            ]
+          }
+        },
+        "required": [
+          "values"
+        ]
+      },
+      "ToolStepResponseDto": {
+        "type": "object",
+        "properties": {
+          "controls": {
+            "description": "Controls metadata for the tool step",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ToolControlsMetadataResponseDto"
+              }
+            ]
+          },
+          "controlValues": {
+            "description": "Control values for the tool step",
+            "additionalProperties": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ToolControlDto"
+              }
+            ]
+          },
+          "providerOverrides": {
+            "type": "object",
+            "description": "Per-provider content overrides keyed by providerId. Stored separately from controlValues and merged over the default body at send time. Keys are ChatProviderIdEnum / ToolProviderIdEnum values (e.g. `slack`, `whatsapp-business`, `pagerduty`).",
+            "example": {
+              "slack": {
+                "text": "{{payload.title}}",
+                "blocks": [
+                  {
+                    "type": "divider"
+                  }
+                ]
+              },
+              "whatsapp-business": {
+                "type": "text",
+                "text": {
+                  "body": "{{payload.title}}"
+                }
+              },
+              "pagerduty": {
+                "severity": "warning",
+                "source": "novu",
+                "summary": "{{payload.title}}"
+              }
+            },
+            "additionalProperties": {
+              "type": "object",
+              "additionalProperties": true
+            },
+            "nullable": true
+          },
+          "variables": {
+            "type": "object",
+            "description": "JSON Schema for variables, follows the JSON Schema standard",
+            "additionalProperties": true
+          },
+          "stepId": {
+            "type": "string",
+            "description": "Unique identifier of the step"
+          },
+          "_id": {
+            "type": "string",
+            "description": "Database identifier of the step"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the step"
+          },
+          "slug": {
+            "type": "string",
+            "description": "Slug of the step"
+          },
+          "type": {
+            "$ref": "#/components/schemas/StepTypeEnum"
+          },
+          "origin": {
+            "$ref": "#/components/schemas/ResourceOriginEnum"
+          },
+          "workflowId": {
+            "type": "string",
+            "description": "Workflow identifier"
+          },
+          "workflowDatabaseId": {
+            "type": "string",
+            "description": "Workflow database identifier"
+          },
+          "issues": {
+            "description": "Issues associated with the step",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StepIssuesDto"
+              }
+            ]
+          },
+          "stepResolverHash": {
+            "type": "string",
+            "description": "Hash identifying the deployed Cloudflare Worker for this step"
+          }
+        },
+        "required": [
+          "controls",
+          "variables",
+          "stepId",
+          "_id",
+          "name",
+          "slug",
+          "type",
+          "origin",
+          "workflowId",
+          "workflowDatabaseId"
+        ]
+      },
+      "WorkflowAgentConfigDto": {
+        "type": "object",
+        "properties": {
+          "identifier": {
+            "type": "string",
+            "description": "Public agent identifier used to route this workflow through an agent's connected channels."
+          },
+          "providers": {
+            "type": "object",
+            "description": "Optional per-provider overrides keyed by providerId (e.g. novu-email-agent). Today only Novu Email replyTo is supported.",
+            "additionalProperties": {
+              "type": "object",
+              "properties": {
+                "replyTo": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "required": [
+          "identifier"
         ]
       },
       "WorkflowPreferenceDto": {
@@ -82626,6 +83333,15 @@
             "description": "Enable or disable translations for this workflow",
             "default": false
           },
+          "agent": {
+            "description": "Optional agent assignment used to route this workflow through an agent's connected channels. Null when unassigned.",
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/WorkflowAgentConfigDto"
+              }
+            ]
+          },
           "_id": {
             "type": "string",
             "description": "Database identifier of the workflow"
@@ -82703,6 +83419,9 @@
                 },
                 {
                   "$ref": "#/components/schemas/HttpRequestStepResponseDto"
+                },
+                {
+                  "$ref": "#/components/schemas/ToolStepResponseDto"
                 }
               ],
               "discriminator": {
@@ -82717,7 +83436,8 @@
                   "digest": "#/components/schemas/DigestStepResponseDto",
                   "custom": "#/components/schemas/CustomStepResponseDto",
                   "throttle": "#/components/schemas/ThrottleStepResponseDto",
-                  "http_request": "#/components/schemas/HttpRequestStepResponseDto"
+                  "http_request": "#/components/schemas/HttpRequestStepResponseDto",
+                  "tool": "#/components/schemas/ToolStepResponseDto"
                 }
               }
             }
@@ -82950,6 +83670,36 @@
                 "additionalProperties": true
               }
             ]
+          },
+          "providerOverrides": {
+            "type": "object",
+            "nullable": true,
+            "description": "Per-provider content overrides keyed by providerId. Stored separately from controlValues and merged over the default body at send time. Keys are ChatProviderIdEnum / ToolProviderIdEnum values (e.g. `slack`, `whatsapp-business`, `pagerduty`). Omit to leave unchanged; pass null to delete all provider overrides; pass an object to replace the full set.",
+            "example": {
+              "slack": {
+                "text": "{{payload.title}}",
+                "blocks": [
+                  {
+                    "type": "divider"
+                  }
+                ]
+              },
+              "whatsapp-business": {
+                "type": "text",
+                "text": {
+                  "body": "{{payload.title}}"
+                }
+              },
+              "pagerduty": {
+                "severity": "warning",
+                "source": "novu",
+                "summary": "{{payload.title}}"
+              }
+            },
+            "additionalProperties": {
+              "type": "object",
+              "additionalProperties": true
+            }
           }
         },
         "required": [
@@ -83061,6 +83811,73 @@
                 "additionalProperties": true
               }
             ]
+          }
+        },
+        "required": [
+          "name",
+          "type"
+        ]
+      },
+      "ToolStepUpsertDto": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "Database identifier of the step. Used for updating the step."
+          },
+          "stepId": {
+            "type": "string",
+            "pattern": "SLUG_IDENTIFIER_REGEX",
+            "description": "Unique identifier for the step"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the step"
+          },
+          "type": {
+            "$ref": "#/components/schemas/StepTypeEnum"
+          },
+          "controlValues": {
+            "description": "Control values for the Tool step.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/ToolControlDto"
+              },
+              {
+                "type": "object",
+                "additionalProperties": true
+              }
+            ]
+          },
+          "providerOverrides": {
+            "type": "object",
+            "nullable": true,
+            "description": "Per-provider content overrides keyed by providerId. Stored separately from controlValues and merged over the default body at send time. Keys are ChatProviderIdEnum / ToolProviderIdEnum values (e.g. `slack`, `whatsapp-business`, `pagerduty`). Omit to leave unchanged; pass null to delete all provider overrides; pass an object to replace the full set.",
+            "example": {
+              "slack": {
+                "text": "{{payload.title}}",
+                "blocks": [
+                  {
+                    "type": "divider"
+                  }
+                ]
+              },
+              "whatsapp-business": {
+                "type": "text",
+                "text": {
+                  "body": "{{payload.title}}"
+                }
+              },
+              "pagerduty": {
+                "severity": "warning",
+                "source": "novu",
+                "summary": "{{payload.title}}"
+              }
+            },
+            "additionalProperties": {
+              "type": "object",
+              "additionalProperties": true
+            }
           }
         },
         "required": [
@@ -83221,6 +84038,15 @@
             "description": "Enable or disable translations for this workflow",
             "default": false
           },
+          "agent": {
+            "description": "Optional agent assignment used to route this workflow through an agent's connected channels. Pass null to clear.",
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/WorkflowAgentConfigDto"
+              }
+            ]
+          },
           "workflowId": {
             "type": "string",
             "pattern": "SLUG_IDENTIFIER_REGEX",
@@ -83256,6 +84082,9 @@
                   "$ref": "#/components/schemas/ThrottleStepUpsertDto"
                 },
                 {
+                  "$ref": "#/components/schemas/ToolStepUpsertDto"
+                },
+                {
                   "$ref": "#/components/schemas/CustomStepUpsertDto"
                 },
                 {
@@ -83273,6 +84102,7 @@
                   "delay": "#/components/schemas/DelayStepUpsertDto",
                   "digest": "#/components/schemas/DigestStepUpsertDto",
                   "throttle": "#/components/schemas/ThrottleStepUpsertDto",
+                  "tool": "#/components/schemas/ToolStepUpsertDto",
                   "custom": "#/components/schemas/CustomStepUpsertDto",
                   "http_request": "#/components/schemas/HttpRequestStepUpsertDto"
                 }
@@ -83350,6 +84180,15 @@
             "description": "Enable or disable translations for this workflow",
             "default": false
           },
+          "agent": {
+            "description": "Optional agent assignment used to route this workflow through an agent's connected channels. Pass null to clear.",
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/WorkflowAgentConfigDto"
+              }
+            ]
+          },
           "workflowId": {
             "type": "string",
             "description": "Workflow ID (allowed only for code-first workflows)"
@@ -83384,6 +84223,9 @@
                   "$ref": "#/components/schemas/ThrottleStepUpsertDto"
                 },
                 {
+                  "$ref": "#/components/schemas/ToolStepUpsertDto"
+                },
+                {
                   "$ref": "#/components/schemas/CustomStepUpsertDto"
                 },
                 {
@@ -83401,6 +84243,7 @@
                   "delay": "#/components/schemas/DelayStepUpsertDto",
                   "digest": "#/components/schemas/DigestStepUpsertDto",
                   "throttle": "#/components/schemas/ThrottleStepUpsertDto",
+                  "tool": "#/components/schemas/ToolStepUpsertDto",
                   "custom": "#/components/schemas/CustomStepUpsertDto",
                   "http_request": "#/components/schemas/HttpRequestStepUpsertDto"
                 }
@@ -83425,8 +84268,7 @@
         "required": [
           "name",
           "steps",
-          "preferences",
-          "origin"
+          "preferences"
         ]
       },
       "StepListResponseDto": {
@@ -83712,12 +84554,14 @@
         "properties": {
           "body": {
             "type": "string",
-            "description": "Body of the chat message"
+            "description": "Body of the chat message. Mutually exclusive with `card`."
+          },
+          "card": {
+            "type": "object",
+            "description": "Rich Chat: compiled provider-agnostic card DSL. Mutually exclusive with `body`.",
+            "additionalProperties": true
           }
-        },
-        "required": [
-          "body"
-        ]
+        }
       },
       "TimeUnitEnum": {
         "type": "string",
@@ -83996,6 +84840,22 @@
                   },
                   "preview": {
                     "$ref": "#/components/schemas/ChatRenderOutput"
+                  },
+                  "error": {
+                    "$ref": "#/components/schemas/PreviewErrorDto"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "type": {
+                    "enum": [
+                      "tool"
+                    ]
+                  },
+                  "preview": {
+                    "type": "object",
+                    "additionalProperties": true
                   },
                   "error": {
                     "$ref": "#/components/schemas/PreviewErrorDto"
@@ -84485,7 +85345,9 @@
         "description": "Reason for the dependency",
         "enum": [
           "LAYOUT_REQUIRED_FOR_WORKFLOW",
-          "LAYOUT_EXISTS_IN_TARGET"
+          "LAYOUT_EXISTS_IN_TARGET",
+          "AGENT_REQUIRED_FOR_WORKFLOW",
+          "AGENT_EXISTS_IN_TARGET"
         ]
       },
       "ResourceDependencyDto": {
@@ -84647,6 +85509,10 @@
           "name": {
             "type": "string",
             "example": "Acme HQ"
+          },
+          "botUserId": {
+            "type": "string",
+            "example": "U0123456789"
           }
         },
         "required": [
@@ -84691,7 +85557,8 @@
               "email",
               "sms",
               "chat",
-              "push"
+              "push",
+              "tool"
             ],
             "type": "string",
             "description": "The channel type (email, sms, push, chat, etc.)."
@@ -84761,6 +85628,7 @@
               "sinch",
               "isendpro-sms",
               "cm-telecom",
+              "ruach-sms",
               "fcm",
               "apns",
               "expo",
@@ -84786,9 +85654,14 @@
               "novu-slack",
               "telegram",
               "sendblue",
+              "novu-web-chat",
               "anthropic",
               "novu-anthropic",
-              "anthropic-aws"
+              "anthropic-aws",
+              "pagerduty",
+              "opsgenie",
+              "grafana",
+              "tool-webhook"
             ],
             "example": "slack"
           },
@@ -84995,6 +85868,11 @@
             "description": "The subscriber ID to which the channel endpoint is linked",
             "example": "subscriber-123"
           },
+          "createSubscriberIfMissing": {
+            "type": "boolean",
+            "description": "When true, the subscriber is created if it does not exist yet (existing subscribers are never modified). When false or omitted, an unknown subscriberId returns 404.",
+            "default": false
+          },
           "context": {
             "type": "object",
             "additionalProperties": {
@@ -85088,6 +85966,11 @@
             "type": "string",
             "description": "The subscriber ID to which the channel endpoint is linked",
             "example": "subscriber-123"
+          },
+          "createSubscriberIfMissing": {
+            "type": "boolean",
+            "description": "When true, the subscriber is created if it does not exist yet (existing subscribers are never modified). When false or omitted, an unknown subscriberId returns 404.",
+            "default": false
           },
           "context": {
             "type": "object",
@@ -85187,6 +86070,11 @@
             "description": "The subscriber ID to which the channel endpoint is linked",
             "example": "subscriber-123"
           },
+          "createSubscriberIfMissing": {
+            "type": "boolean",
+            "description": "When true, the subscriber is created if it does not exist yet (existing subscribers are never modified). When false or omitted, an unknown subscriberId returns 404.",
+            "default": false
+          },
           "context": {
             "type": "object",
             "additionalProperties": {
@@ -85280,6 +86168,11 @@
             "type": "string",
             "description": "The subscriber ID to which the channel endpoint is linked",
             "example": "subscriber-123"
+          },
+          "createSubscriberIfMissing": {
+            "type": "boolean",
+            "description": "When true, the subscriber is created if it does not exist yet (existing subscribers are never modified). When false or omitted, an unknown subscriberId returns 404.",
+            "default": false
           },
           "context": {
             "type": "object",
@@ -85381,6 +86274,11 @@
             "description": "The subscriber ID to which the channel endpoint is linked",
             "example": "subscriber-123"
           },
+          "createSubscriberIfMissing": {
+            "type": "boolean",
+            "description": "When true, the subscriber is created if it does not exist yet (existing subscribers are never modified). When false or omitted, an unknown subscriberId returns 404.",
+            "default": false
+          },
           "context": {
             "type": "object",
             "additionalProperties": {
@@ -85475,6 +86373,11 @@
             "description": "The subscriber ID to which the channel endpoint is linked",
             "example": "subscriber-123"
           },
+          "createSubscriberIfMissing": {
+            "type": "boolean",
+            "description": "When true, the subscriber is created if it does not exist yet (existing subscribers are never modified). When false or omitted, an unknown subscriberId returns 404.",
+            "default": false
+          },
           "context": {
             "type": "object",
             "additionalProperties": {
@@ -85568,6 +86471,11 @@
             "type": "string",
             "description": "The subscriber ID to which the channel endpoint is linked",
             "example": "subscriber-123"
+          },
+          "createSubscriberIfMissing": {
+            "type": "boolean",
+            "description": "When true, the subscriber is created if it does not exist yet (existing subscribers are never modified). When false or omitted, an unknown subscriberId returns 404.",
+            "default": false
           },
           "context": {
             "type": "object",
@@ -85664,6 +86572,11 @@
             "type": "string",
             "description": "The subscriber ID to which the channel endpoint is linked",
             "example": "subscriber-123"
+          },
+          "createSubscriberIfMissing": {
+            "type": "boolean",
+            "description": "When true, the subscriber is created if it does not exist yet (existing subscribers are never modified). When false or omitted, an unknown subscriberId returns 404.",
+            "default": false
           },
           "context": {
             "type": "object",
@@ -85764,6 +86677,11 @@
             "description": "The subscriber ID to which the channel endpoint is linked",
             "example": "subscriber-123"
           },
+          "createSubscriberIfMissing": {
+            "type": "boolean",
+            "description": "When true, the subscriber is created if it does not exist yet (existing subscribers are never modified). When false or omitted, an unknown subscriberId returns 404.",
+            "default": false
+          },
           "context": {
             "type": "object",
             "additionalProperties": {
@@ -85858,6 +86776,11 @@
             "description": "The subscriber ID to which the channel endpoint is linked",
             "example": "subscriber-123"
           },
+          "createSubscriberIfMissing": {
+            "type": "boolean",
+            "description": "When true, the subscriber is created if it does not exist yet (existing subscribers are never modified). When false or omitted, an unknown subscriberId returns 404.",
+            "default": false
+          },
           "context": {
             "type": "object",
             "additionalProperties": {
@@ -85926,6 +86849,449 @@
           "endpoint"
         ]
       },
+      "PagerDutyServiceEndpointDto": {
+        "type": "object",
+        "properties": {
+          "routingKey": {
+            "type": "string",
+            "pattern": "/^[a-zA-Z0-9]{32}$/",
+            "description": "PagerDuty Events API v2 integration key (32-character alphanumeric string). Encrypted at rest on the channel endpoint (`endpoint` field).",
+            "example": "R0UTINGK3YEXAMPLE000000000000000",
+            "minLength": 32,
+            "maxLength": 32
+          },
+          "region": {
+            "type": "string",
+            "description": "PagerDuty account region — determines the events API data-center endpoint.",
+            "enum": [
+              "us",
+              "eu"
+            ],
+            "example": "us"
+          }
+        },
+        "required": [
+          "routingKey",
+          "region"
+        ]
+      },
+      "CreatePagerDutyServiceEndpointDto": {
+        "type": "object",
+        "properties": {
+          "identifier": {
+            "type": "string",
+            "description": "The unique identifier for the channel endpoint. If not provided, one will be generated automatically.",
+            "example": "slack-channel-user123-abc4"
+          },
+          "subscriberId": {
+            "type": "string",
+            "description": "The subscriber ID to which the channel endpoint is linked",
+            "example": "subscriber-123"
+          },
+          "createSubscriberIfMissing": {
+            "type": "boolean",
+            "description": "When true, the subscriber is created if it does not exist yet (existing subscribers are never modified). When false or omitted, an unknown subscriberId returns 404.",
+            "default": false
+          },
+          "context": {
+            "type": "object",
+            "additionalProperties": {
+              "oneOf": [
+                {
+                  "type": "string",
+                  "description": "Simple context id",
+                  "example": "org-acme"
+                },
+                {
+                  "type": "object",
+                  "description": "Rich context object with id and optional data",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "example": "org-acme"
+                    },
+                    "data": {
+                      "type": "object",
+                      "description": "Optional additional context data",
+                      "additionalProperties": true,
+                      "example": {
+                        "name": "Acme Corp",
+                        "region": "us-east-1"
+                      }
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ]
+                }
+              ]
+            }
+          },
+          "integrationIdentifier": {
+            "type": "string",
+            "description": "The identifier of the integration to use for this channel endpoint.",
+            "example": "slack-prod"
+          },
+          "connectionIdentifier": {
+            "type": "string",
+            "description": "The identifier of the channel connection to use for this channel endpoint.",
+            "example": "slack-connection-abc123"
+          },
+          "type": {
+            "type": "string",
+            "description": "Type of channel endpoint",
+            "enum": [
+              "pagerduty_service"
+            ],
+            "example": "pagerduty_service"
+          },
+          "endpoint": {
+            "description": "PagerDuty service endpoint data. `routingKey` is encrypted at rest on the channel endpoint (`endpoint` field); `region` remains plaintext. No linked channel connection.",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PagerDutyServiceEndpointDto"
+              }
+            ]
+          }
+        },
+        "required": [
+          "subscriberId",
+          "integrationIdentifier",
+          "type",
+          "endpoint"
+        ]
+      },
+      "OpsgenieIntegrationEndpointDto": {
+        "type": "object",
+        "properties": {
+          "apiKey": {
+            "type": "string",
+            "pattern": "OPSGENIE_API_KEY_PATTERN",
+            "description": "Opsgenie API integration key (GenieKey) in UUID format. Encrypted at rest on the channel endpoint (`endpoint` field).",
+            "example": "abcdefg-a25a-4652-883c-73703b12345"
+          },
+          "region": {
+            "type": "string",
+            "description": "Opsgenie account region that determines the alert API data-center endpoint.",
+            "enum": [
+              "us",
+              "eu"
+            ],
+            "example": "us"
+          }
+        },
+        "required": [
+          "apiKey",
+          "region"
+        ]
+      },
+      "CreateOpsgenieIntegrationEndpointDto": {
+        "type": "object",
+        "properties": {
+          "identifier": {
+            "type": "string",
+            "description": "The unique identifier for the channel endpoint. If not provided, one will be generated automatically.",
+            "example": "slack-channel-user123-abc4"
+          },
+          "subscriberId": {
+            "type": "string",
+            "description": "The subscriber ID to which the channel endpoint is linked",
+            "example": "subscriber-123"
+          },
+          "createSubscriberIfMissing": {
+            "type": "boolean",
+            "description": "When true, the subscriber is created if it does not exist yet (existing subscribers are never modified). When false or omitted, an unknown subscriberId returns 404.",
+            "default": false
+          },
+          "context": {
+            "type": "object",
+            "additionalProperties": {
+              "oneOf": [
+                {
+                  "type": "string",
+                  "description": "Simple context id",
+                  "example": "org-acme"
+                },
+                {
+                  "type": "object",
+                  "description": "Rich context object with id and optional data",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "example": "org-acme"
+                    },
+                    "data": {
+                      "type": "object",
+                      "description": "Optional additional context data",
+                      "additionalProperties": true,
+                      "example": {
+                        "name": "Acme Corp",
+                        "region": "us-east-1"
+                      }
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ]
+                }
+              ]
+            }
+          },
+          "integrationIdentifier": {
+            "type": "string",
+            "description": "The identifier of the integration to use for this channel endpoint.",
+            "example": "slack-prod"
+          },
+          "connectionIdentifier": {
+            "type": "string",
+            "description": "The identifier of the channel connection to use for this channel endpoint.",
+            "example": "slack-connection-abc123"
+          },
+          "type": {
+            "type": "string",
+            "description": "Type of channel endpoint",
+            "enum": [
+              "opsgenie_integration"
+            ],
+            "example": "opsgenie_integration"
+          },
+          "endpoint": {
+            "description": "Opsgenie integration endpoint data. `apiKey` is encrypted at rest on the channel endpoint (`endpoint` field); `region` remains plaintext. No linked channel connection.",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/OpsgenieIntegrationEndpointDto"
+              }
+            ]
+          }
+        },
+        "required": [
+          "subscriberId",
+          "integrationIdentifier",
+          "type",
+          "endpoint"
+        ]
+      },
+      "GrafanaOnCallIntegrationEndpointDto": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "pattern": "GRAFANA_ONCALL_WEBHOOK_URL_PATTERN",
+            "description": "Grafana IRM/OnCall incoming-webhook (Formatted Webhook) integration URL. The routing secret is embedded in the URL path. Encrypted at rest on the channel endpoint (`endpoint` field).",
+            "example": "https://acme.grafana.net/integrations/v1/formatted_webhook/m12xmIjOcgwH74UF8CN4dk0Dh/"
+          },
+          "authToken": {
+            "type": "string",
+            "description": "Optional Grafana service account bearer token, required when the integration enforces authenticated ingestion. Encrypted at rest on the channel endpoint (`endpoint` field).",
+            "example": "glsa_abc123..."
+          }
+        },
+        "required": [
+          "url"
+        ]
+      },
+      "CreateGrafanaOnCallIntegrationEndpointDto": {
+        "type": "object",
+        "properties": {
+          "identifier": {
+            "type": "string",
+            "description": "The unique identifier for the channel endpoint. If not provided, one will be generated automatically.",
+            "example": "slack-channel-user123-abc4"
+          },
+          "subscriberId": {
+            "type": "string",
+            "description": "The subscriber ID to which the channel endpoint is linked",
+            "example": "subscriber-123"
+          },
+          "createSubscriberIfMissing": {
+            "type": "boolean",
+            "description": "When true, the subscriber is created if it does not exist yet (existing subscribers are never modified). When false or omitted, an unknown subscriberId returns 404.",
+            "default": false
+          },
+          "context": {
+            "type": "object",
+            "additionalProperties": {
+              "oneOf": [
+                {
+                  "type": "string",
+                  "description": "Simple context id",
+                  "example": "org-acme"
+                },
+                {
+                  "type": "object",
+                  "description": "Rich context object with id and optional data",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "example": "org-acme"
+                    },
+                    "data": {
+                      "type": "object",
+                      "description": "Optional additional context data",
+                      "additionalProperties": true,
+                      "example": {
+                        "name": "Acme Corp",
+                        "region": "us-east-1"
+                      }
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ]
+                }
+              ]
+            }
+          },
+          "integrationIdentifier": {
+            "type": "string",
+            "description": "The identifier of the integration to use for this channel endpoint.",
+            "example": "slack-prod"
+          },
+          "connectionIdentifier": {
+            "type": "string",
+            "description": "The identifier of the channel connection to use for this channel endpoint.",
+            "example": "slack-connection-abc123"
+          },
+          "type": {
+            "type": "string",
+            "description": "Type of channel endpoint",
+            "enum": [
+              "grafana_oncall_integration"
+            ],
+            "example": "grafana_oncall_integration"
+          },
+          "endpoint": {
+            "description": "Grafana OnCall integration endpoint data. `url` and `authToken` are encrypted at rest on the channel endpoint (`endpoint` field). No linked channel connection.",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/GrafanaOnCallIntegrationEndpointDto"
+              }
+            ]
+          }
+        },
+        "required": [
+          "subscriberId",
+          "integrationIdentifier",
+          "type",
+          "endpoint"
+        ]
+      },
+      "ToolWebhookEndpointDto": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "Destination webhook URL (often a per-subscriber capability URL). Encrypted at rest on the channel endpoint (`endpoint` field).",
+            "example": "https://example.com/tools/incoming"
+          },
+          "headers": {
+            "type": "object",
+            "description": "Optional headers (e.g. auth tokens) sent with every request to this webhook. Header values are encrypted at rest on the channel endpoint (`endpoint` field).",
+            "example": {
+              "Authorization": "Bearer <token>"
+            }
+          },
+          "method": {
+            "type": "string",
+            "description": "Optional HTTP method override for this webhook. Defaults to the integration-level method.",
+            "enum": [
+              "POST",
+              "PUT",
+              "PATCH"
+            ],
+            "example": "POST"
+          }
+        },
+        "required": [
+          "url"
+        ]
+      },
+      "CreateToolWebhookEndpointDto": {
+        "type": "object",
+        "properties": {
+          "identifier": {
+            "type": "string",
+            "description": "The unique identifier for the channel endpoint. If not provided, one will be generated automatically.",
+            "example": "slack-channel-user123-abc4"
+          },
+          "subscriberId": {
+            "type": "string",
+            "description": "The subscriber ID to which the channel endpoint is linked",
+            "example": "subscriber-123"
+          },
+          "createSubscriberIfMissing": {
+            "type": "boolean",
+            "description": "When true, the subscriber is created if it does not exist yet (existing subscribers are never modified). When false or omitted, an unknown subscriberId returns 404.",
+            "default": false
+          },
+          "context": {
+            "type": "object",
+            "additionalProperties": {
+              "oneOf": [
+                {
+                  "type": "string",
+                  "description": "Simple context id",
+                  "example": "org-acme"
+                },
+                {
+                  "type": "object",
+                  "description": "Rich context object with id and optional data",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "example": "org-acme"
+                    },
+                    "data": {
+                      "type": "object",
+                      "description": "Optional additional context data",
+                      "additionalProperties": true,
+                      "example": {
+                        "name": "Acme Corp",
+                        "region": "us-east-1"
+                      }
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ]
+                }
+              ]
+            }
+          },
+          "integrationIdentifier": {
+            "type": "string",
+            "description": "The identifier of the integration to use for this channel endpoint.",
+            "example": "slack-prod"
+          },
+          "connectionIdentifier": {
+            "type": "string",
+            "description": "The identifier of the channel connection to use for this channel endpoint.",
+            "example": "slack-connection-abc123"
+          },
+          "type": {
+            "type": "string",
+            "description": "Type of channel endpoint",
+            "enum": [
+              "tool_webhook"
+            ],
+            "example": "tool_webhook"
+          },
+          "endpoint": {
+            "description": "Tool webhook endpoint data. `url` and header values are encrypted at rest on the channel endpoint (`endpoint` field); `method` remains plaintext. No linked channel connection.",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ToolWebhookEndpointDto"
+              }
+            ]
+          }
+        },
+        "required": [
+          "subscriberId",
+          "integrationIdentifier",
+          "type",
+          "endpoint"
+        ]
+      },
       "GetChannelEndpointResponseDto": {
         "type": "object",
         "properties": {
@@ -85940,7 +87306,8 @@
               "email",
               "sms",
               "chat",
-              "push"
+              "push",
+              "tool"
             ],
             "type": "string",
             "description": "The channel type (email, sms, push, chat, etc.)."
@@ -86010,6 +87377,7 @@
               "sinch",
               "isendpro-sms",
               "cm-telecom",
+              "ruach-sms",
               "fcm",
               "apns",
               "expo",
@@ -86035,9 +87403,14 @@
               "novu-slack",
               "telegram",
               "sendblue",
+              "novu-web-chat",
               "anthropic",
               "novu-anthropic",
-              "anthropic-aws"
+              "anthropic-aws",
+              "pagerduty",
+              "opsgenie",
+              "grafana",
+              "tool-webhook"
             ],
             "example": "slack"
           },
@@ -86083,7 +87456,11 @@
               "telegram_chat",
               "webex_room",
               "webex_person",
-              "line_user"
+              "line_user",
+              "pagerduty_service",
+              "opsgenie_integration",
+              "grafana_oncall_integration",
+              "tool_webhook"
             ],
             "example": "slack_channel"
           },
@@ -86119,6 +87496,18 @@
               },
               {
                 "$ref": "#/components/schemas/LineUserEndpointDto"
+              },
+              {
+                "$ref": "#/components/schemas/PagerDutyServiceEndpointDto"
+              },
+              {
+                "$ref": "#/components/schemas/OpsgenieIntegrationEndpointDto"
+              },
+              {
+                "$ref": "#/components/schemas/GrafanaOnCallIntegrationEndpointDto"
+              },
+              {
+                "$ref": "#/components/schemas/ToolWebhookEndpointDto"
               }
             ]
           },
@@ -86205,6 +87594,9 @@
               },
               {
                 "$ref": "#/components/schemas/WebexPersonEndpointDto"
+              },
+              {
+                "$ref": "#/components/schemas/ToolWebhookEndpointDto"
               }
             ]
           }

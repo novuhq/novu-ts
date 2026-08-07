@@ -9,6 +9,10 @@ let value: IntegrationsControllerLinkChannelEndpointRequest = {
   linkChannelEndpointRequestDto: {
     integrationIdentifier: "telegram-bot",
     subscriberId: "subscriber-123",
+    context: {
+      "key": "org-acme",
+    },
+    contextHash: "a1b2c3d4e5f6...",
   },
 };
 ```

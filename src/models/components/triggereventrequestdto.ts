@@ -160,6 +160,10 @@ export type TriggerEventRequestDto = {
    */
   overrides?: Overrides | undefined;
   /**
+   * Override the workflow-assigned agent for this trigger using the public agent identifier. Omit to use the workflow default; pass null to disable agent routing for this execution.
+   */
+  agentId?: string | null | undefined;
+  /**
    * The recipients list of people who will receive the notification. Maximum number of recipients can be 100.
    */
   to:
@@ -381,6 +385,7 @@ export type TriggerEventRequestDto$Outbound = {
   payload?: { [k: string]: any } | undefined;
   bridgeUrl?: string | undefined;
   overrides?: Overrides$Outbound | undefined;
+  agentId?: string | null | undefined;
   to:
     | TopicPayloadDto$Outbound
     | SubscriberPayloadDto$Outbound
@@ -404,6 +409,7 @@ export const TriggerEventRequestDto$outboundSchema: z.ZodType<
   payload: z.record(z.any()).optional(),
   bridgeUrl: z.string().optional(),
   overrides: z.lazy(() => Overrides$outboundSchema).optional(),
+  agentId: z.nullable(z.string()).optional(),
   to: z.union([
     TopicPayloadDto$outboundSchema,
     SubscriberPayloadDto$outboundSchema,

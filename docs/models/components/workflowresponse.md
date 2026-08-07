@@ -16,6 +16,7 @@ let value: WorkflowResponse = {
     inApp: true,
     chat: false,
     push: true,
+    tool: true,
   },
   critical: false,
   tags: [

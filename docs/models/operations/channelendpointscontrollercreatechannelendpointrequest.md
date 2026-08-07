@@ -8,10 +8,12 @@ import { ChannelEndpointsControllerCreateChannelEndpointRequest } from "@novu/ap
 let value: ChannelEndpointsControllerCreateChannelEndpointRequest = {
   requestBody: {
     subscriberId: "subscriber-123",
+    createSubscriberIfMissing: false,
     integrationIdentifier: "slack-prod",
-    type: "webhook",
+    type: "ms_teams_channel",
     endpoint: {
-      url: "https://example.com/webhook",
+      teamId: "19:abc123...@thread.tacv2",
+      channelId: "19:def456...@thread.tacv2",
     },
   },
 };

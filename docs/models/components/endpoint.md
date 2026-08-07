@@ -88,3 +88,41 @@ const value: components.LineUserEndpointDto = {
 };
 ```
 
+### `components.PagerDutyServiceEndpointDto`
+
+```typescript
+const value: components.PagerDutyServiceEndpointDto = {
+  routingKey: "R0UTINGK3YEXAMPLE000000000000000",
+  region: "us",
+};
+```
+
+### `components.OpsgenieIntegrationEndpointDto`
+
+```typescript
+const value: components.OpsgenieIntegrationEndpointDto = {
+  apiKey: "abcdefg-a25a-4652-883c-73703b12345",
+  region: "us",
+};
+```
+
+### `components.GrafanaOnCallIntegrationEndpointDto`
+
+```typescript
+const value: components.GrafanaOnCallIntegrationEndpointDto = {
+  url:
+    "https://acme.grafana.net/integrations/v1/formatted_webhook/m12xmIjOcgwH74UF8CN4dk0Dh/",
+  authToken: "glsa_abc123...",
+};
+```
+
+### `components.ToolWebhookEndpointDto`
+
+```typescript
+const value: components.ToolWebhookEndpointDto = {
+  url: "https://example.com/tools/incoming",
+  headers: {},
+  method: "POST",
+};
+```
+

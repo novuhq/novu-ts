@@ -23,6 +23,7 @@ let value: EventsControllerBroadcastEventToAllRequest = {
         },
       },
     },
+    agentId: "support-agent",
     actor: "<value>",
     context: {
       "key": "org-acme",

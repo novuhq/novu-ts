@@ -25,6 +25,7 @@ export const ChatOrPushProviderEnum = {
   NovuSlack: "novu-slack",
   Telegram: "telegram",
   Sendblue: "sendblue",
+  NovuWebChat: "novu-web-chat",
   Fcm: "fcm",
   Apns: "apns",
   Expo: "expo",

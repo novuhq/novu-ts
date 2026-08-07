@@ -31,7 +31,8 @@ let value: ChannelEndpointsControllerCreateChannelEndpointResponse = {
     ],
     type: "slack_channel",
     endpoint: {
-      userId: "29:1234567890abcdef",
+      personId: "Y2lzY29zcGFyazovL3VzL1BFT1BMRS8...",
+      personEmail: "user@example.com",
     },
     createdAt: "1708230094902",
     updatedAt: "1735667248047",

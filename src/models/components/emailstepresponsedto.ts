@@ -16,6 +16,10 @@ import {
   EmailControlsMetadataResponseDto$inboundSchema,
 } from "./emailcontrolsmetadataresponsedto.js";
 import {
+  EmailFromControlDto,
+  EmailFromControlDto$inboundSchema,
+} from "./emailfromcontroldto.js";
+import {
   ResourceOriginEnum,
   ResourceOriginEnum$inboundSchema,
 } from "./resourceoriginenum.js";
@@ -63,6 +67,22 @@ export type EmailStepResponseDtoControlValues = {
    * Layout ID to use for the email. Null means no layout, undefined means default layout.
    */
   layoutId?: string | null | undefined;
+  /**
+   * Sender name and email overrides for this step.
+   */
+  from?: EmailFromControlDto | undefined;
+  /**
+   * When true, sender name/email use the primary email integration defaults and skip workflow agent defaults.
+   */
+  useProviderDefaults?: boolean | undefined;
+  /**
+   * Step-level Reply-To override. When unset, inherits the workflow agent reply-to.
+   */
+  replyTo?: string | undefined;
+  /**
+   * One-line inbox preview text shown next to the subject.
+   */
+  preheader?: string | undefined;
   additionalProperties?: { [k: string]: any } | undefined;
 };
 
@@ -75,6 +95,10 @@ export type EmailStepResponseDto = {
    * Control values for the email step
    */
   controlValues?: EmailStepResponseDtoControlValues | undefined;
+  /**
+   * Per-provider content overrides keyed by providerId. Stored separately from controlValues and merged over the default body at send time. Keys are ChatProviderIdEnum / ToolProviderIdEnum values (e.g. `slack`, `whatsapp-business`, `pagerduty`).
+   */
+  providerOverrides?: { [k: string]: { [k: string]: any } } | null | undefined;
   /**
    * JSON Schema for variables, follows the JSON Schema standard
    */
@@ -139,6 +163,10 @@ export const EmailStepResponseDtoControlValues$inboundSchema: z.ZodType<
     editorType: EmailStepResponseDtoEditorType$inboundSchema.default("block"),
     disableOutputSanitization: z.boolean().default(false),
     layoutId: z.nullable(z.string()).optional(),
+    from: EmailFromControlDto$inboundSchema.optional(),
+    useProviderDefaults: z.boolean().optional(),
+    replyTo: z.string().optional(),
+    preheader: z.string().optional(),
   }).catchall(z.any()),
   "additionalProperties",
   true,
@@ -163,6 +191,7 @@ export const EmailStepResponseDto$inboundSchema: z.ZodType<
   controls: EmailControlsMetadataResponseDto$inboundSchema,
   controlValues: z.lazy(() => EmailStepResponseDtoControlValues$inboundSchema)
     .optional(),
+  providerOverrides: z.nullable(z.record(z.record(z.any()))).optional(),
   variables: z.record(z.any()),
   stepId: z.string(),
   _id: z.string(),

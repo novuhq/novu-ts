@@ -14,6 +14,7 @@ let value: AgentsControllerUpdateAgentResponse = {
     id: "<id>",
     name: "<value>",
     identifier: "<value>",
+    behavior: {},
     active: true,
     environmentId: "<id>",
     organizationId: "<id>",

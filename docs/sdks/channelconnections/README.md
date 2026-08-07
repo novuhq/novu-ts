@@ -28,6 +28,7 @@ async function run() {
   const result = await novu.channelConnections.list({
     limit: 10,
     subscriberId: "subscriber-123",
+    connectionMode: "shared",
     channel: "chat",
     providerId: "slack",
     integrationIdentifier: "slack-prod",
@@ -61,6 +62,7 @@ async function run() {
   const res = await channelConnectionsList(novu, {
     limit: 10,
     subscriberId: "subscriber-123",
+    connectionMode: "shared",
     channel: "chat",
     providerId: "slack",
     integrationIdentifier: "slack-prod",
@@ -129,6 +131,7 @@ async function run() {
     workspace: {
       id: "T123456",
       name: "Acme HQ",
+      botUserId: "U0123456789",
     },
     auth: {
       accessToken: "Workspace access token",
@@ -170,6 +173,7 @@ async function run() {
     workspace: {
       id: "T123456",
       name: "Acme HQ",
+      botUserId: "U0123456789",
     },
     auth: {
       accessToken: "Workspace access token",
@@ -306,6 +310,7 @@ async function run() {
     workspace: {
       id: "T123456",
       name: "Acme HQ",
+      botUserId: "U0123456789",
     },
     auth: {
       accessToken: "Workspace access token",
@@ -340,6 +345,7 @@ async function run() {
     workspace: {
       id: "T123456",
       name: "Acme HQ",
+      botUserId: "U0123456789",
     },
     auth: {
       accessToken: "Workspace access token",

@@ -38,6 +38,10 @@ export type ChatStepUpsertDto = {
    * Control values for the Chat step.
    */
   controlValues?: ChatControlDto | { [k: string]: any } | undefined;
+  /**
+   * Per-provider content overrides keyed by providerId. Stored separately from controlValues and merged over the default body at send time. Keys are ChatProviderIdEnum / ToolProviderIdEnum values (e.g. `slack`, `whatsapp-business`, `pagerduty`). Omit to leave unchanged; pass null to delete all provider overrides; pass an object to replace the full set.
+   */
+  providerOverrides?: { [k: string]: { [k: string]: any } } | null | undefined;
 };
 
 /** @internal */
@@ -69,6 +73,7 @@ export type ChatStepUpsertDto$Outbound = {
   name: string;
   type: "chat";
   controlValues?: ChatControlDto$Outbound | { [k: string]: any } | undefined;
+  providerOverrides?: { [k: string]: { [k: string]: any } } | null | undefined;
 };
 
 /** @internal */
@@ -83,6 +88,7 @@ export const ChatStepUpsertDto$outboundSchema: z.ZodType<
   type: z.literal("chat"),
   controlValues: z.union([ChatControlDto$outboundSchema, z.record(z.any())])
     .optional(),
+  providerOverrides: z.nullable(z.record(z.record(z.any()))).optional(),
 }).transform((v) => {
   return remap$(v, {
     id: "_id",

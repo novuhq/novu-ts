@@ -12,7 +12,7 @@ let value: WorkflowControllerUpdateRequest = {
     steps: [
       {
         name: "<value>",
-        type: "throttle",
+        type: "tool",
       },
     ],
     preferences: {
@@ -43,7 +43,6 @@ let value: WorkflowControllerUpdateRequest = {
         },
       },
     },
-    origin: "novu-cloud",
   },
 };
 ```

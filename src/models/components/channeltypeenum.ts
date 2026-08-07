@@ -14,6 +14,7 @@ export const ChannelTypeEnum = {
   Sms: "sms",
   Chat: "chat",
   Push: "push",
+  Tool: "tool",
 } as const;
 /**
  * Channel type through which the message is sent

@@ -120,6 +120,7 @@ const novu = new Novu({
 async function run() {
   const result = await novu.channelEndpoints.create({
     subscriberId: "subscriber-123",
+    createSubscriberIfMissing: false,
     integrationIdentifier: "slack-prod",
     type: "slack_channel",
     endpoint: {
@@ -150,6 +151,7 @@ const novu = new NovuCore({
 async function run() {
   const res = await channelEndpointsCreate(novu, {
     subscriberId: "subscriber-123",
+    createSubscriberIfMissing: false,
     integrationIdentifier: "slack-prod",
     type: "slack_channel",
     endpoint: {
