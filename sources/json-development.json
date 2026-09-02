@@ -22132,7 +22132,7 @@
         "operationId": "TopicsController_updateTopic",
         "x-speakeasy-name-override": "update",
         "summary": "Update a topic",
-        "description": "Update a topic name by its unique key identifier **topicKey**",
+        "description": "Update a topic name or data by its unique key identifier **topicKey**",
         "parameters": [
           {
             "name": "topicKey",
@@ -31912,6 +31912,22 @@
                         "action": "set",
                         "key": "crm:ticketId",
                         "value": "TCK-1001"
+                      }
+                    ]
+                  }
+                },
+                "humanApprove": {
+                  "summary": "Ask the conversation subscriber to approve",
+                  "description": "Create an approve/deny card in the current conversation thread. The verdict arrives later on `onAction` with `ctx.humanResponse`.",
+                  "value": {
+                    "conversationId": "64f5a1c2e8b7a3d9f0c1b2a3",
+                    "integrationIdentifier": "slack-support",
+                    "signals": [
+                      {
+                        "type": "human",
+                        "kind": "approve",
+                        "prompt": "Deploy v2.4.1 to production?",
+                        "requestId": "hr_7c2e1a3b-4d5f-6789-abcd-ef0123456789"
                       }
                     ]
                   }
@@ -70181,7 +70197,7 @@
   "info": {
     "title": "Novu API",
     "description": "Novu REST API. Please see https://docs.novu.co/api-reference for more details.",
-    "version": "3.18.1",
+    "version": "3.19.0",
     "contact": {
       "name": "Novu Support",
       "url": "https://discord.gg/novu",
@@ -70575,7 +70591,7 @@
           "key": {
             "type": "string",
             "description": "API key",
-            "example": "sk_test_1234567890abcdef"
+            "example": "api-key-1234567890abcdef"
           },
           "_userId": {
             "type": "string",
@@ -72688,6 +72704,15 @@
             "description": "The name of the topic",
             "example": "Product Updates"
           },
+          "data": {
+            "type": "object",
+            "description": "Additional custom data associated with the topic",
+            "additionalProperties": true,
+            "example": {
+              "category": "product",
+              "priority": 1
+            }
+          },
           "createdAt": {
             "type": "string",
             "description": "The date the topic was created",
@@ -73953,6 +73978,21 @@
               "orderId": "ORD-42",
               "amountCents": 2500
             }
+          },
+          "approveActionId": {
+            "type": "string",
+            "description": "Server-minted approve action id. When omitted, self-hosted tool-approval:* is minted at persist.",
+            "example": "tool-approval:approve:apr_01HZX"
+          },
+          "denyActionId": {
+            "type": "string",
+            "description": "Server-minted deny action id. When omitted, self-hosted tool-approval:* is minted at persist.",
+            "example": "tool-approval:deny:apr_01HZX"
+          },
+          "mcpServerName": {
+            "type": "string",
+            "description": "MCP server name when the gated tool is from an MCP server (for UI labels).",
+            "example": "GitHub"
           }
         },
         "required": [
@@ -74139,75 +74179,86 @@
           "workflowId"
         ]
       },
-      "SignalDto": {
+      "HumanSignalDto": {
         "type": "object",
         "properties": {
           "type": {
             "type": "string",
             "enum": [
-              "metadata",
-              "trigger"
-            ],
-            "description": "`metadata` updates conversation state; `trigger` fires a Novu workflow."
+              "human"
+            ]
           },
-          "action": {
+          "kind": {
             "type": "string",
             "enum": [
-              "set",
-              "delete",
-              "clear"
+              "ask",
+              "approve",
+              "choose",
+              "tell"
             ],
-            "description": "Required for metadata signals other than the default `set`."
+            "description": "Interaction verb queued by `ctx.ask` / `ctx.approve` / `ctx.choose` / `ctx.tell`.",
+            "example": "approve"
           },
-          "key": {
+          "prompt": {
             "type": "string",
-            "description": "Metadata key for `set` / `delete` actions.",
-            "example": "crm:ticketId"
+            "pattern": "/\\S/",
+            "description": "Question, action description, or one-way message shown to the human.",
+            "example": "Deploy v2.4.1 to production?"
           },
-          "value": {
-            "type": "object",
-            "description": "Value for metadata `set` actions. JSON-serializable."
-          },
-          "workflowId": {
+          "requestId": {
             "type": "string",
-            "description": "Workflow identifier for `trigger` signals.",
-            "example": "order-shipped"
+            "pattern": "/\\S/",
+            "description": "Client-minted id returned by the framework helper; echoed on `ctx.humanResponse.requestId`.",
+            "example": "hr_7c2e1a3b-4d5f-6789-abcd-ef0123456789"
+          },
+          "options": {
+            "description": "Choice labels — required for `choose`, ignored otherwise.",
+            "example": [
+              "us-east",
+              "eu-west"
+            ],
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "/\\S/"
+            }
+          },
+          "from": {
+            "type": "string",
+            "description": "Attribution label rendered in the card.",
+            "example": "deploy-bot"
+          },
+          "ttlSeconds": {
+            "type": "number",
+            "minimum": 60,
+            "description": "Seconds until the interaction expires. Default 86400 (24h), max 259200.",
+            "example": 3600
           },
           "to": {
-            "description": "Trigger recipients. SubscriberId string, subscriber/topic object, or array. Falls back to the conversation subscriber when omitted.",
+            "description": "Novu subscriberId(s) allowed to settle this interaction (max 50). First valid answer wins. When omitted, the conversation subscriber is used. Subscriber ids only — not workflow topic recipients.",
             "oneOf": [
               {
                 "type": "string",
-                "example": "subscriber-123"
-              },
-              {
-                "type": "object",
-                "additionalProperties": true
+                "example": "alice"
               },
               {
                 "type": "array",
                 "items": {
-                  "oneOf": [
-                    {
-                      "type": "string"
-                    },
-                    {
-                      "type": "object",
-                      "additionalProperties": true
-                    }
-                  ]
-                }
+                  "type": "string"
+                },
+                "example": [
+                  "alice",
+                  "bob"
+                ]
               }
             ]
-          },
-          "payload": {
-            "type": "object",
-            "description": "Workflow payload for `trigger` signals.",
-            "additionalProperties": true
           }
         },
         "required": [
-          "type"
+          "type",
+          "kind",
+          "prompt",
+          "requestId"
         ]
       },
       "ToolResultDto": {
@@ -74332,7 +74383,7 @@
           },
           "signals": {
             "type": "array",
-            "description": "Side-effect signals executed during this turn: conversation metadata mutations or Novu workflow triggers.",
+            "description": "Side-effect signals executed during this turn: conversation metadata mutations, Novu workflow triggers, or human-in-the-loop interactions.",
             "items": {
               "oneOf": [
                 {
@@ -74346,6 +74397,9 @@
                 },
                 {
                   "$ref": "#/components/schemas/TriggerSignalDto"
+                },
+                {
+                  "$ref": "#/components/schemas/HumanSignalDto"
                 }
               ]
             }
@@ -75050,6 +75104,15 @@
           "secretKey": {
             "type": "string"
           },
+          "hmacSecretKeyEncoding": {
+            "type": "string",
+            "description": "Email webhook: how `secretKey` is interpreted when signing webhook calls. `text` signs with the raw UTF-8 bytes; `base64`/`hex` decode it to binary first (e.g. for AWS KMS).",
+            "enum": [
+              "text",
+              "base64",
+              "hex"
+            ]
+          },
           "domain": {
             "type": "string"
           },
@@ -75117,6 +75180,9 @@
             "type": "string"
           },
           "ipPoolName": {
+            "type": "string"
+          },
+          "configurationSetName": {
             "type": "string"
           },
           "apiKeyRequestHeader": {
@@ -75883,6 +75949,10 @@
             "description": "Custom data associated with this context",
             "additionalProperties": true
           },
+          "bridgeUrl": {
+            "type": "string",
+            "description": "Bridge URL override for agent connect, if configured on this context"
+          },
           "createdAt": {
             "type": "string",
             "description": "Creation timestamp"
@@ -75930,6 +76000,11 @@
               }
             },
             "additionalProperties": true
+          },
+          "bridgeUrl": {
+            "type": "string",
+            "description": "Optional bridge URL override for agent connect. When an inbound agent turn resolves this context, its bridge call is routed here instead of the agent default bridge URL. Must be a publicly reachable URL.",
+            "example": "https://tenant-acme.example.com/api/novu"
           }
         },
         "required": [
@@ -75951,6 +76026,12 @@
               }
             },
             "additionalProperties": true
+          },
+          "bridgeUrl": {
+            "type": "string",
+            "nullable": true,
+            "description": "Optional bridge URL override for agent connect. When an inbound agent turn resolves this context, its bridge call is routed here instead of the agent default bridge URL. Must be a publicly reachable URL. Pass null to clear an existing override.",
+            "example": "https://tenant-acme.example.com/api/novu"
           }
         },
         "required": [
@@ -79082,6 +79163,7 @@
         "description": "Component type for the UI Schema Property",
         "enum": [
           "EMAIL_EDITOR_SELECT",
+          "CHAT_EDITOR_SELECT",
           "LAYOUT_SELECT",
           "BLOCK_EDITOR",
           "EMAIL_BODY",
@@ -79823,6 +79905,16 @@
             "maxLength": 100,
             "description": "The display name for the topic",
             "example": "Task Title"
+          },
+          "data": {
+            "type": "object",
+            "nullable": true,
+            "description": "Additional custom data associated with the topic. Flat key-value pairs of scalars (string, number, boolean, string[]). Maximum size: 64KB.",
+            "additionalProperties": true,
+            "example": {
+              "category": "product",
+              "priority": 1
+            }
           }
         },
         "required": [
@@ -79834,13 +79926,22 @@
         "properties": {
           "name": {
             "type": "string",
+            "minLength": 0,
+            "maxLength": 100,
             "description": "The display name for the topic",
             "example": "Updated Topic Name"
+          },
+          "data": {
+            "type": "object",
+            "nullable": true,
+            "description": "Additional custom data associated with the topic. Flat key-value pairs of scalars (string, number, boolean, string[]). Maximum size: 64KB. Pass null to clear.",
+            "additionalProperties": true,
+            "example": {
+              "category": "product",
+              "priority": 1
+            }
           }
-        },
-        "required": [
-          "name"
-        ]
+        }
       },
       "DeleteTopicResponseDto": {
         "type": "object",
@@ -79872,6 +79973,15 @@
             "type": "string",
             "description": "The name of the topic",
             "example": "Product Updates"
+          },
+          "data": {
+            "type": "object",
+            "description": "Additional custom data associated with the topic",
+            "additionalProperties": true,
+            "example": {
+              "category": "product",
+              "priority": 1
+            }
           }
         },
         "required": [
@@ -80722,7 +80832,17 @@
           "INVALID_URL",
           "MISSING_VALUE",
           "TIER_LIMIT_EXCEEDED",
-          "UNSUPPORTED_PROPERTY"
+          "UNSUPPORTED_PROPERTY",
+          "CHAT_CARD_LIMIT_EXCEEDED",
+          "CHAT_CARD_INVALID_BUTTON"
+        ]
+      },
+      "StepIssueSeverityEnum": {
+        "type": "string",
+        "description": "Blocking severity of the issue. `error` (default when omitted) blocks save; `warning` is a non-blocking notice.",
+        "enum": [
+          "error",
+          "warning"
         ]
       },
       "StepContentIssueDto": {
@@ -80738,6 +80858,9 @@
           "message": {
             "type": "string",
             "description": "Detailed message describing the issue"
+          },
+          "severity": {
+            "$ref": "#/components/schemas/StepIssueSeverityEnum"
           }
         },
         "required": [
@@ -80766,6 +80889,9 @@
           "message": {
             "type": "string",
             "description": "Detailed message describing the issue"
+          },
+          "severity": {
+            "$ref": "#/components/schemas/StepIssueSeverityEnum"
           }
         },
         "required": [
@@ -81001,8 +81127,7 @@
           },
           "preheader": {
             "type": "string",
-            "description": "One-line inbox preview text shown next to the subject.",
-            "maxLength": 84
+            "description": "One-line inbox preview text shown next to the subject."
           }
         },
         "required": [
@@ -81557,6 +81682,14 @@
           "body": {
             "type": "string",
             "description": "Content of the chat message."
+          },
+          "editorType": {
+            "type": "string",
+            "description": "Type of editor to use for the body. When omitted, inferred from the body: Maily JSON is \"block\", otherwise \"text\".",
+            "enum": [
+              "block",
+              "text"
+            ]
           }
         }
       },
@@ -88189,6 +88322,13 @@
           },
           "to": {
             "description": "Recipient address info",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WebhookInboundEmailAddressDto"
+            }
+          },
+          "bcc": {
+            "description": "Matched SMTP envelope recipient when it is absent from the To and Cc headers",
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/WebhookInboundEmailAddressDto"

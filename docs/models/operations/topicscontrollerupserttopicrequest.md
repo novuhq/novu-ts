@@ -9,6 +9,10 @@ let value: TopicsControllerUpsertTopicRequest = {
   createUpdateTopicRequestDto: {
     key: "task:12345",
     name: "Task Title",
+    data: {
+      "category": "product",
+      "priority": 1,
+    },
   },
 };
 ```

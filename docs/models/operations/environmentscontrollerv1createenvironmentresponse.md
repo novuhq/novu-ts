@@ -15,7 +15,7 @@ let value: EnvironmentsControllerV1CreateEnvironmentResponse = {
     type: "prod",
     apiKeys: [
       {
-        key: "sk_test_1234567890abcdef",
+        key: "api-key-1234567890abcdef",
         userId: "60d5ecb8b3b3a30015f3e1a4",
         hash: "hash_value_here",
       },

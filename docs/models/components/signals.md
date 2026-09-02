@@ -45,3 +45,21 @@ const value: components.TriggerSignalDto = {
 };
 ```
 
+### `components.HumanSignalDto`
+
+```typescript
+const value: components.HumanSignalDto = {
+  type: "human",
+  kind: "approve",
+  prompt: "Deploy v2.4.1 to production?",
+  requestId: "hr_7c2e1a3b-4d5f-6789-abcd-ef0123456789",
+  options: [
+    "us-east",
+    "eu-west",
+  ],
+  from: "deploy-bot",
+  ttlSeconds: 3600,
+  to: "alice",
+};
+```
+

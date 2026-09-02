@@ -473,6 +473,73 @@ async function run() {
 
 run();
 ```
+### Example Usage: humanApprove
+
+<!-- UsageSnippet language="typescript" operationID="AgentReplyController_handleAgentReplyHandler" method="post" path="/v1/agents/{agentId}/reply" example="humanApprove" -->
+```typescript
+import { Novu } from "@novu/api";
+
+const novu = new Novu({
+  secretKey: "YOUR_SECRET_KEY_HERE",
+});
+
+async function run() {
+  const result = await novu.agents.sendReply({
+    conversationId: "64f5a1c2e8b7a3d9f0c1b2a3",
+    integrationIdentifier: "slack-support",
+    signals: [
+      {
+        type: "human",
+        kind: "approve",
+        prompt: "Deploy v2.4.1 to production?",
+        requestId: "hr_7c2e1a3b-4d5f-6789-abcd-ef0123456789",
+      },
+    ],
+  }, "support-agent");
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { NovuCore } from "@novu/api/core.js";
+import { agentsSendReply } from "@novu/api/funcs/agentsSendReply.js";
+
+// Use `NovuCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const novu = new NovuCore({
+  secretKey: "YOUR_SECRET_KEY_HERE",
+});
+
+async function run() {
+  const res = await agentsSendReply(novu, {
+    conversationId: "64f5a1c2e8b7a3d9f0c1b2a3",
+    integrationIdentifier: "slack-support",
+    signals: [
+      {
+        type: "human",
+        kind: "approve",
+        prompt: "Deploy v2.4.1 to production?",
+        requestId: "hr_7c2e1a3b-4d5f-6789-abcd-ef0123456789",
+      },
+    ],
+  }, "support-agent");
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("agentsSendReply failed:", res.error);
+  }
+}
+
+run();
+```
 ### Example Usage: markdownReply
 
 <!-- UsageSnippet language="typescript" operationID="AgentReplyController_handleAgentReplyHandler" method="post" path="/v1/agents/{agentId}/reply" example="markdownReply" -->

@@ -21,6 +21,18 @@ export type ToolApprovalRequestPayloadDto = {
    * Tool input the model proposed.
    */
   input?: { [k: string]: any } | undefined;
+  /**
+   * Server-minted approve action id. When omitted, self-hosted tool-approval:* is minted at persist.
+   */
+  approveActionId?: string | undefined;
+  /**
+   * Server-minted deny action id. When omitted, self-hosted tool-approval:* is minted at persist.
+   */
+  denyActionId?: string | undefined;
+  /**
+   * MCP server name when the gated tool is from an MCP server (for UI labels).
+   */
+  mcpServerName?: string | undefined;
 };
 
 /** @internal */
@@ -29,6 +41,9 @@ export type ToolApprovalRequestPayloadDto$Outbound = {
   toolCallId: string;
   name: string;
   input?: { [k: string]: any } | undefined;
+  approveActionId?: string | undefined;
+  denyActionId?: string | undefined;
+  mcpServerName?: string | undefined;
 };
 
 /** @internal */
@@ -41,6 +56,9 @@ export const ToolApprovalRequestPayloadDto$outboundSchema: z.ZodType<
   toolCallId: z.string(),
   name: z.string(),
   input: z.record(z.any()).optional(),
+  approveActionId: z.string().optional(),
+  denyActionId: z.string().optional(),
+  mcpServerName: z.string().optional(),
 });
 
 export function toolApprovalRequestPayloadDtoToJSON(

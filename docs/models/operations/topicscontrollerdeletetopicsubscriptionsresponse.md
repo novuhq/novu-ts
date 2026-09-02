@@ -23,6 +23,10 @@ let value: TopicsControllerDeleteTopicSubscriptionsResponse = {
           id: "64f5e95d3d7946d80d0cb677",
           key: "product-updates",
           name: "Product Updates",
+          data: {
+            "category": "product",
+            "priority": 1,
+          },
         },
         subscriber: null,
         contextKeys: [

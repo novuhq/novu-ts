@@ -23,6 +23,10 @@ let value: TopicsControllerListTopicsResponse = {
         id: "64da692e9a94fb2e6449ad06",
         key: "product-updates",
         name: "Product Updates",
+        data: {
+          "category": "product",
+          "priority": 1,
+        },
         createdAt: "2023-08-15T00:00:00.000Z",
         updatedAt: "2023-08-15T00:00:00.000Z",
       },

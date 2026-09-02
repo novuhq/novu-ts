@@ -36,6 +36,7 @@ async function run() {
         "theme": "dark",
       },
     },
+    bridgeUrl: "https://tenant-acme.example.com/api/novu",
   });
 
   console.log(result);
@@ -69,6 +70,7 @@ async function run() {
         "theme": "dark",
       },
     },
+    bridgeUrl: "https://tenant-acme.example.com/api/novu",
   });
   if (res.ok) {
     const { value: result } = res;
@@ -217,6 +219,7 @@ async function run() {
           "theme": "dark",
         },
       },
+      bridgeUrl: "https://tenant-acme.example.com/api/novu",
     },
   });
 
@@ -252,6 +255,7 @@ async function run() {
           "theme": "dark",
         },
       },
+      bridgeUrl: "https://tenant-acme.example.com/api/novu",
     },
   });
   if (res.ok) {

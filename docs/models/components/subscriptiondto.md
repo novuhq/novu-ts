@@ -12,6 +12,10 @@ let value: SubscriptionDto = {
     id: "64f5e95d3d7946d80d0cb677",
     key: "product-updates",
     name: "Product Updates",
+    data: {
+      "category": "product",
+      "priority": 1,
+    },
   },
   subscriber: {
     id: "64da692e9a94fb2e6449ad07",
