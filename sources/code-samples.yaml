@@ -452,7 +452,7 @@ actions:
       "x-codeSamples":
         - "lang": "typescript"
           "label": "TypeScript"
-          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.contexts.create({\n    type: \"tenant\",\n    id: \"org-acme\",\n    data: {\n      \"tenantName\": \"Acme Corp\",\n      \"region\": \"us-east-1\",\n      \"settings\": {\n        \"theme\": \"dark\",\n      },\n    },\n  });\n\n  console.log(result);\n}\n\nrun();"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.contexts.create({\n    type: \"tenant\",\n    id: \"org-acme\",\n    data: {\n      \"tenantName\": \"Acme Corp\",\n      \"region\": \"us-east-1\",\n      \"settings\": {\n        \"theme\": \"dark\",\n      },\n    },\n    bridgeUrl: \"https://tenant-acme.example.com/api/novu\",\n  });\n\n  console.log(result);\n}\n\nrun();"
   - target: $["paths"]["/v2/contexts/{type}/{id}"]["delete"]
     update:
       "x-codeSamples":
@@ -470,7 +470,7 @@ actions:
       "x-codeSamples":
         - "lang": "typescript"
           "label": "TypeScript"
-          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.contexts.update({\n    id: \"<id>\",\n    type: \"<value>\",\n    updateContextRequestDto: {\n      data: {\n        \"tenantName\": \"Acme Corp\",\n        \"region\": \"us-east-1\",\n        \"settings\": {\n          \"theme\": \"dark\",\n        },\n      },\n    },\n  });\n\n  console.log(result);\n}\n\nrun();"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.contexts.update({\n    id: \"<id>\",\n    type: \"<value>\",\n    updateContextRequestDto: {\n      data: {\n        \"tenantName\": \"Acme Corp\",\n        \"region\": \"us-east-1\",\n        \"settings\": {\n          \"theme\": \"dark\",\n        },\n      },\n      bridgeUrl: \"https://tenant-acme.example.com/api/novu\",\n    },\n  });\n\n  console.log(result);\n}\n\nrun();"
   - target: $["paths"]["/v2/environments/{environmentId}/tags"]["get"]
     update:
       "x-codeSamples":
@@ -704,7 +704,7 @@ actions:
       "x-codeSamples":
         - "lang": "typescript"
           "label": "TypeScript"
-          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.topics.create({\n    key: \"task:12345\",\n    name: \"Task Title\",\n  });\n\n  console.log(result);\n}\n\nrun();"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.topics.create({\n    key: \"task:12345\",\n    name: \"Task Title\",\n    data: {\n      \"category\": \"product\",\n      \"priority\": 1,\n    },\n  });\n\n  console.log(result);\n}\n\nrun();"
   - target: $["paths"]["/v2/topics/{topicKey}"]["delete"]
     update:
       "x-codeSamples":
@@ -722,7 +722,7 @@ actions:
       "x-codeSamples":
         - "lang": "typescript"
           "label": "TypeScript"
-          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.topics.update({\n    name: \"Updated Topic Name\",\n  }, \"<value>\");\n\n  console.log(result);\n}\n\nrun();"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.topics.update({\n    name: \"Updated Topic Name\",\n    data: {\n      \"category\": \"product\",\n      \"priority\": 1,\n    },\n  }, \"<value>\");\n\n  console.log(result);\n}\n\nrun();"
   - target: $["paths"]["/v2/topics/{topicKey}/subscriptions"]["delete"]
     update:
       "x-codeSamples":

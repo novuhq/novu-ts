@@ -16,6 +16,7 @@ let value: ContextsControllerCreateContextRequest = {
         "theme": "dark",
       },
     },
+    bridgeUrl: "https://tenant-acme.example.com/api/novu",
   },
 };
 ```

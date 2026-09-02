@@ -8,6 +8,7 @@ import {
   collectExtraKeys as collectExtraKeys$,
   safeParse,
 } from "../../lib/schemas.js";
+import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -21,6 +22,20 @@ import {
 import { StepIssuesDto, StepIssuesDto$inboundSchema } from "./stepissuesdto.js";
 
 /**
+ * Type of editor to use for the body. When omitted, inferred from the body: Maily JSON is "block", otherwise "text".
+ */
+export const ChatStepResponseDtoEditorType = {
+  Block: "block",
+  Text: "text",
+} as const;
+/**
+ * Type of editor to use for the body. When omitted, inferred from the body: Maily JSON is "block", otherwise "text".
+ */
+export type ChatStepResponseDtoEditorType = ClosedEnum<
+  typeof ChatStepResponseDtoEditorType
+>;
+
+/**
  * Control values for the chat step
  */
 export type ChatStepResponseDtoControlValues = {
@@ -32,6 +47,10 @@ export type ChatStepResponseDtoControlValues = {
    * Content of the chat message.
    */
   body?: string | undefined;
+  /**
+   * Type of editor to use for the body. When omitted, inferred from the body: Maily JSON is "block", otherwise "text".
+   */
+  editorType?: ChatStepResponseDtoEditorType | undefined;
   additionalProperties?: { [k: string]: any } | undefined;
 };
 
@@ -95,6 +114,11 @@ export type ChatStepResponseDto = {
 };
 
 /** @internal */
+export const ChatStepResponseDtoEditorType$inboundSchema: z.ZodNativeEnum<
+  typeof ChatStepResponseDtoEditorType
+> = z.nativeEnum(ChatStepResponseDtoEditorType);
+
+/** @internal */
 export const ChatStepResponseDtoControlValues$inboundSchema: z.ZodType<
   ChatStepResponseDtoControlValues,
   z.ZodTypeDef,
@@ -103,6 +127,7 @@ export const ChatStepResponseDtoControlValues$inboundSchema: z.ZodType<
   z.object({
     skip: z.record(z.any()).optional(),
     body: z.string().optional(),
+    editorType: ChatStepResponseDtoEditorType$inboundSchema.optional(),
   }).catchall(z.any()),
   "additionalProperties",
   true,

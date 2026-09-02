@@ -1,17 +1,17 @@
 # Kind
 
-Distinguishes delivery integrations from agent-runtime integrations. Defaults to "delivery". Agent integrations do not have a channel.
+Interaction verb queued by `ctx.ask` / `ctx.approve` / `ctx.choose` / `ctx.tell`.
 
 ## Example Usage
 
 ```typescript
 import { Kind } from "@novu/api/models/components";
 
-let value: Kind = "delivery";
+let value: Kind = "approve";
 ```
 
 ## Values
 
 ```typescript
-"delivery" | "agent"
+"ask" | "approve" | "choose" | "tell"
 ```

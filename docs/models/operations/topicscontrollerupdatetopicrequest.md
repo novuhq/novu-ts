@@ -9,6 +9,10 @@ let value: TopicsControllerUpdateTopicRequest = {
   topicKey: "<value>",
   updateTopicRequestDto: {
     name: "Updated Topic Name",
+    data: {
+      "category": "product",
+      "priority": 1,
+    },
   },
 };
 ```

@@ -31,7 +31,7 @@ import { Result } from "../types/fp.js";
  * Update a topic
  *
  * @remarks
- * Update a topic name by its unique key identifier **topicKey**
+ * Update a topic name or data by its unique key identifier **topicKey**
  */
 export function topicsUpdate(
   client: NovuCore,

@@ -5,8 +5,22 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
+import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+
+/**
+ * Email webhook: how `secretKey` is interpreted when signing webhook calls. `text` signs with the raw UTF-8 bytes; `base64`/`hex` decode it to binary first (e.g. for AWS KMS).
+ */
+export const HmacSecretKeyEncoding = {
+  Text: "text",
+  Base64: "base64",
+  Hex: "hex",
+} as const;
+/**
+ * Email webhook: how `secretKey` is interpreted when signing webhook calls. `text` signs with the raw UTF-8 bytes; `base64`/`hex` decode it to binary first (e.g. for AWS KMS).
+ */
+export type HmacSecretKeyEncoding = ClosedEnum<typeof HmacSecretKeyEncoding>;
 
 export type TlsOptions = {};
 
@@ -14,6 +28,10 @@ export type CredentialsDto = {
   apiKey?: string | undefined;
   user?: string | undefined;
   secretKey?: string | undefined;
+  /**
+   * Email webhook: how `secretKey` is interpreted when signing webhook calls. `text` signs with the raw UTF-8 bytes; `base64`/`hex` decode it to binary first (e.g. for AWS KMS).
+   */
+  hmacSecretKeyEncoding?: HmacSecretKeyEncoding | undefined;
   domain?: string | undefined;
   password?: string | undefined;
   host?: string | undefined;
@@ -37,6 +55,7 @@ export type CredentialsDto = {
   hmac?: boolean | undefined;
   serviceAccount?: string | undefined;
   ipPoolName?: string | undefined;
+  configurationSetName?: string | undefined;
   apiKeyRequestHeader?: string | undefined;
   secretKeyRequestHeader?: string | undefined;
   idPath?: string | undefined;
@@ -85,6 +104,15 @@ export type CredentialsDto = {
 };
 
 /** @internal */
+export const HmacSecretKeyEncoding$inboundSchema: z.ZodNativeEnum<
+  typeof HmacSecretKeyEncoding
+> = z.nativeEnum(HmacSecretKeyEncoding);
+/** @internal */
+export const HmacSecretKeyEncoding$outboundSchema: z.ZodNativeEnum<
+  typeof HmacSecretKeyEncoding
+> = HmacSecretKeyEncoding$inboundSchema;
+
+/** @internal */
 export const TlsOptions$inboundSchema: z.ZodType<
   TlsOptions,
   z.ZodTypeDef,
@@ -122,6 +150,7 @@ export const CredentialsDto$inboundSchema: z.ZodType<
   apiKey: z.string().optional(),
   user: z.string().optional(),
   secretKey: z.string().optional(),
+  hmacSecretKeyEncoding: HmacSecretKeyEncoding$inboundSchema.optional(),
   domain: z.string().optional(),
   password: z.string().optional(),
   host: z.string().optional(),
@@ -145,6 +174,7 @@ export const CredentialsDto$inboundSchema: z.ZodType<
   hmac: z.boolean().optional(),
   serviceAccount: z.string().optional(),
   ipPoolName: z.string().optional(),
+  configurationSetName: z.string().optional(),
   apiKeyRequestHeader: z.string().optional(),
   secretKeyRequestHeader: z.string().optional(),
   idPath: z.string().optional(),
@@ -185,6 +215,7 @@ export type CredentialsDto$Outbound = {
   apiKey?: string | undefined;
   user?: string | undefined;
   secretKey?: string | undefined;
+  hmacSecretKeyEncoding?: string | undefined;
   domain?: string | undefined;
   password?: string | undefined;
   host?: string | undefined;
@@ -208,6 +239,7 @@ export type CredentialsDto$Outbound = {
   hmac?: boolean | undefined;
   serviceAccount?: string | undefined;
   ipPoolName?: string | undefined;
+  configurationSetName?: string | undefined;
   apiKeyRequestHeader?: string | undefined;
   secretKeyRequestHeader?: string | undefined;
   idPath?: string | undefined;
@@ -249,6 +281,7 @@ export const CredentialsDto$outboundSchema: z.ZodType<
   apiKey: z.string().optional(),
   user: z.string().optional(),
   secretKey: z.string().optional(),
+  hmacSecretKeyEncoding: HmacSecretKeyEncoding$outboundSchema.optional(),
   domain: z.string().optional(),
   password: z.string().optional(),
   host: z.string().optional(),
@@ -272,6 +305,7 @@ export const CredentialsDto$outboundSchema: z.ZodType<
   hmac: z.boolean().optional(),
   serviceAccount: z.string().optional(),
   ipPoolName: z.string().optional(),
+  configurationSetName: z.string().optional(),
   apiKeyRequestHeader: z.string().optional(),
   secretKeyRequestHeader: z.string().optional(),
   idPath: z.string().optional(),

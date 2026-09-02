@@ -110,6 +110,10 @@ async function run() {
   const result = await novu.topics.create({
     key: "task:12345",
     name: "Task Title",
+    data: {
+      "category": "product",
+      "priority": 1,
+    },
   });
 
   console.log(result);
@@ -136,6 +140,10 @@ async function run() {
   const res = await topicsCreate(novu, {
     key: "task:12345",
     name: "Task Title",
+    data: {
+      "category": "product",
+      "priority": 1,
+    },
   });
   if (res.ok) {
     const { value: result } = res;
@@ -250,7 +258,7 @@ run();
 
 ## update
 
-Update a topic name by its unique key identifier **topicKey**
+Update a topic name or data by its unique key identifier **topicKey**
 
 ### Example Usage
 
@@ -265,6 +273,10 @@ const novu = new Novu({
 async function run() {
   const result = await novu.topics.update({
     name: "Updated Topic Name",
+    data: {
+      "category": "product",
+      "priority": 1,
+    },
   }, "<value>");
 
   console.log(result);
@@ -290,6 +302,10 @@ const novu = new NovuCore({
 async function run() {
   const res = await topicsUpdate(novu, {
     name: "Updated Topic Name",
+    data: {
+      "category": "product",
+      "priority": 1,
+    },
   }, "<value>");
   if (res.ok) {
     const { value: result } = res;

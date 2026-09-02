@@ -29,6 +29,9 @@ let value: AgentReplyControllerHandleAgentReplyHandlerRequest = {
         "orderId": "ORD-42",
         "amountCents": 2500,
       },
+      approveActionId: "tool-approval:approve:apr_01HZX",
+      denyActionId: "tool-approval:deny:apr_01HZX",
+      mcpServerName: "GitHub",
     },
     edit: {
       messageId: "1712345678.123456",
