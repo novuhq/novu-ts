@@ -70197,7 +70197,7 @@
   "info": {
     "title": "Novu API",
     "description": "Novu REST API. Please see https://docs.novu.co/api-reference for more details.",
-    "version": "3.19.0",
+    "version": "3.19.1",
     "contact": {
       "name": "Novu Support",
       "url": "https://discord.gg/novu",
@@ -75381,10 +75381,25 @@
             "description": "Indicates whether this integration is marked as primary. A primary integration is often the default choice for processing."
           },
           "conditions": {
-            "description": "An array of conditions associated with the integration that may influence its behavior or processing logic.",
+            "description": "Legacy StepFilter conditions. Ignored when `rules` is also set.",
+            "deprecated": true,
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/StepFilterDto"
+            }
+          },
+          "rules": {
+            "type": "object",
+            "description": "JSONLogic used at send time to select this integration. Takes precedence over `conditions`.",
+            "additionalProperties": true,
+            "nullable": true,
+            "example": {
+              "==": [
+                {
+                  "var": "context.tenant.id"
+                },
+                "acme"
+              ]
             }
           }
         },
@@ -75456,10 +75471,25 @@
             "description": "Flag to check the integration status"
           },
           "conditions": {
-            "description": "Conditions for the integration",
+            "deprecated": true,
+            "description": "Legacy StepFilter conditions. Ignored when `rules` is also set.",
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/StepFilterDto"
+            }
+          },
+          "rules": {
+            "type": "object",
+            "nullable": true,
+            "additionalProperties": true,
+            "description": "JSONLogic used at send time to select this integration. Takes precedence over `conditions`.",
+            "example": {
+              "==": [
+                {
+                  "var": "context.tenant.id"
+                },
+                "acme"
+              ]
             }
           },
           "configurations": {
@@ -75491,9 +75521,25 @@
             "type": "boolean"
           },
           "conditions": {
+            "deprecated": true,
+            "description": "Legacy StepFilter conditions. Ignored when `rules` is also set.",
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/StepFilterDto"
+            }
+          },
+          "rules": {
+            "type": "object",
+            "nullable": true,
+            "additionalProperties": true,
+            "description": "JSONLogic used at send time to select this integration. Takes precedence over `conditions`.",
+            "example": {
+              "==": [
+                {
+                  "var": "context.tenant.id"
+                },
+                "acme"
+              ]
             }
           },
           "configurations": {

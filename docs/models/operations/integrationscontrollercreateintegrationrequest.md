@@ -6,7 +6,16 @@
 import { IntegrationsControllerCreateIntegrationRequest } from "@novu/api/models/operations";
 
 let value: IntegrationsControllerCreateIntegrationRequest = {
-  createIntegrationRequestDto: {},
+  createIntegrationRequestDto: {
+    rules: {
+      "==": [
+        {
+          "var": "context.tenant.id",
+        },
+        "acme",
+      ],
+    },
+  },
 };
 ```
 
