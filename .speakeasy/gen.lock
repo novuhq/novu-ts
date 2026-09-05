@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 6bff3a53-3f0b-40b4-942f-ff70dc583ae5
 management:
-  docChecksum: 0404726769ad3041faaedda3b88a6e23
-  docVersion: 3.19.0
-  speakeasyVersion: 1.796.2
-  generationVersion: 2.933.0
-  releaseVersion: 3.19.1
-  configChecksum: 8b0e4b78f5261ea5d4aa1dd8a6ccc7a7
+  docChecksum: 0ef24d0ba874597aa1df33dd9cfef639
+  docVersion: 3.19.1
+  speakeasyVersion: 1.796.4
+  generationVersion: 2.935.1
+  releaseVersion: 3.19.2
+  configChecksum: 482c267d64ee6b26a959e23da9cedb64
   repoURL: https://github.com/novuhq/novu-ts.git
   installationURL: https://github.com/novuhq/novu-ts
   published: true
 persistentEdits:
-  generation_id: 49e877a3-972a-44db-b8d9-5a6b87b90668
-  pristine_commit_hash: 246db8eb49fa1c9512952ea27574c8c3feecb420
-  pristine_tree_hash: 48dd0404a6817ea074d263eb6b6697cec712504b
+  generation_id: e3d6c093-ebd7-49dd-b7e1-d56879077b9d
+  pristine_commit_hash: fd3eb88f33803d85782ca6181501bbfa542bb26e
+  pristine_tree_hash: e86cb25052ac575dc1c8be30a6aec62bf8c0a909
 features:
   typescript:
     additionalDependencies: 0.1.0
@@ -35,7 +35,7 @@ features:
     nullables: 0.1.1
     openEnums: 0.1.3
     responseFormat: 0.3.0
-    retries: 2.83.1
+    retries: 2.83.2
     sdkHooks: 0.4.0
     unions: 2.86.5
     uploadStreams: 0.1.1
@@ -450,8 +450,8 @@ trackedFiles:
     pristine_git_object: 2d2c7425ef08a4775261d6f67273d6e624e06079
   docs/models/components/createintegrationrequestdto.md:
     id: d0207de6dfa3
-    last_write_checksum: sha1:2da4fa15e865b5f80b7b8a71dbc252ee2511d18f
-    pristine_git_object: 975346ce1d694b212b7012d9d188694f797cf5dd
+    last_write_checksum: sha1:4173adb6ed5a41a80819ab5edf0ca94684129184
+    pristine_git_object: bd11882a57edda3e921a8548863954fd943568c4
   docs/models/components/createintegrationrequestdtochannel.md:
     id: e2f3f6e24df6
     last_write_checksum: sha1:99b97e45dbb67d3086462bf6d9b6d2dbd57f6f16
@@ -1410,8 +1410,8 @@ trackedFiles:
     pristine_git_object: e9a91de8bc89394f874f58487db65d768032459a
   docs/models/components/integrationresponsedto.md:
     id: 5867f95cf026
-    last_write_checksum: sha1:d57b156e9a962d8984d2fe0bf1e03089b73585b9
-    pristine_git_object: 8052e98914b4cad7a3b0376a93869f8103e79d5c
+    last_write_checksum: sha1:1781a6455dde454120e073915e4597e179f4b0e1
+    pristine_git_object: fcbd451118c3e0c5477ee1d5110d59c6213de80c
   docs/models/components/integrationresponsedtochannel.md:
     id: d17fd4de79b1
     last_write_checksum: sha1:54dc457cf145937496f67dcca3c8553ab1ba4035
@@ -2706,8 +2706,8 @@ trackedFiles:
     pristine_git_object: 32bd92ca37c381ad188e5ae1f620090d9b604cf8
   docs/models/components/updateintegrationrequestdto.md:
     id: c830e115b497
-    last_write_checksum: sha1:3bfd39d0d9555b88db1dfae9eccc9f76ae1d1a1b
-    pristine_git_object: 7c9db13bf9ca6e59f2522296cd410e2a217acfb9
+    last_write_checksum: sha1:c6cb8f5ef0d8717b29645fceea366337da2cb2dc
+    pristine_git_object: a7166e2b57b013bfd3ac9c5eec7ddb58dc67e3dd
   docs/models/components/updateintegrationrequestdtoconfigurations.md:
     id: 9774ee2533fc
     last_write_checksum: sha1:11050785a0c0d4dacaa25a3bd5d1eb4af6ff913e
@@ -3518,12 +3518,12 @@ trackedFiles:
     pristine_git_object: 4d40e90cb0c93abf154cd6e69a628514fa231162
   docs/models/operations/integrationscontrollercreateintegrationrequest.md:
     id: 86339ec2e9fe
-    last_write_checksum: sha1:9ab8ba315b21a1ac93d21c23fe5de9b77f3e75f3
-    pristine_git_object: 0febd5e542ac2a97490b9b915acf005dbe5121c6
+    last_write_checksum: sha1:1a267176adeb2d0a16d5be5e687892de0833a3b7
+    pristine_git_object: 1a4e06b72fe8e9585f0d204c04e1b0fb106bc1cd
   docs/models/operations/integrationscontrollercreateintegrationresponse.md:
     id: 528f328318b9
-    last_write_checksum: sha1:bf2a7b378b7aacce0e1c983aec3e0b2bf26ab56b
-    pristine_git_object: a7793187a36ffd400778265d4bdeec6634a20d54
+    last_write_checksum: sha1:f2cb93af9fd8e70b39b03016ae4cdce1fb02dfd4
+    pristine_git_object: 77b16ec4445e4f36e43980761666fc149677ef2a
   docs/models/operations/integrationscontrollergenerateconnectoauthurlrequest.md:
     id: 19f31d996d39
     last_write_checksum: sha1:b4c58a12d542f830b89c9538eaca58db682b4880
@@ -3578,24 +3578,24 @@ trackedFiles:
     pristine_git_object: 8e16dcbf2b97d56210d9c58e2fa43f043d1f48cc
   docs/models/operations/integrationscontrollerremoveintegrationresponse.md:
     id: 60e513ac60aa
-    last_write_checksum: sha1:57c7daf82abaf2924457bff8c22720702d6f515e
-    pristine_git_object: f1687969e5132d55f1488ee102f2c2ee41217d9c
+    last_write_checksum: sha1:9dc4517fb4ea28656168fa0da5eb4ee28e6eb9d0
+    pristine_git_object: a3ab9a43c814a0e0c61dc2195db9292aff06e6a2
   docs/models/operations/integrationscontrollersetintegrationasprimaryrequest.md:
     id: 870090194c28
     last_write_checksum: sha1:a37a549e4796534e557cba94af3272a6fe55ba5b
     pristine_git_object: 95a851f11db1f13fad56ef25dc659edcc2284f0a
   docs/models/operations/integrationscontrollersetintegrationasprimaryresponse.md:
     id: 4dca8f7b9f74
-    last_write_checksum: sha1:3374d540f69059c125dea7c75c081e24aef80bc8
-    pristine_git_object: b08fdf0728a516a3cf61a993c6c72d41afda5da2
+    last_write_checksum: sha1:9090f7bb83d87e6e46fffeb4acaf7a5ff572d907
+    pristine_git_object: 7defe13153ef641144aa1ab0a00198045aabc842
   docs/models/operations/integrationscontrollerupdateintegrationbyidrequest.md:
     id: 1425adc4289c
-    last_write_checksum: sha1:e808de93c70606eb828844cee53c11be62c00f8d
-    pristine_git_object: 520b61116abe2cdde2e53bb75b0072117628e9a1
+    last_write_checksum: sha1:1a49da5f31c90b98f924479b84bc970f61bbb3eb
+    pristine_git_object: 3387e03720033e14600dbd0273d85e9cb3793f50
   docs/models/operations/integrationscontrollerupdateintegrationbyidresponse.md:
     id: 3dc532ea1c32
-    last_write_checksum: sha1:c6b8bc5b6c8d72bef3a894a539c9340eca7d19bf
-    pristine_git_object: 5669260456413333c77125e3241af60302e8e362
+    last_write_checksum: sha1:2b1d7a2fb825bee77896e007d7b8318763139299
+    pristine_git_object: 91c1bab100bd8f2f9b2d78eafdf587f40d18290b
   docs/models/operations/layoutscontrollercreaterequest.md:
     id: 0f2b5a930903
     last_write_checksum: sha1:33f08412b621748562522c3a9cc215beb6ba53d1
@@ -4286,8 +4286,8 @@ trackedFiles:
     pristine_git_object: 70a0e80b706cdedab303142a7ff4329a6293d16d
   docs/sdks/integrations/README.md:
     id: 7b29664808c0
-    last_write_checksum: sha1:c3bb63229b8a39a62100097695d87710c5c766aa
-    pristine_git_object: dab56d8e7401739579b96d1d572be6efd23a9b3b
+    last_write_checksum: sha1:08c09c5fcedf3e24f88a9a88c868b129d475240d
+    pristine_git_object: 6ad9cebde90532d88d895ac17dc6087a2872a234
   docs/sdks/layouts/README.md:
     id: 9cae4f89dc39
     last_write_checksum: sha1:23c8030df9388b93941c6ad6ee030ba19adcd54a
@@ -4386,12 +4386,12 @@ trackedFiles:
     pristine_git_object: 7f8e3a8a45d0f834b177a9f6b847c5a9ebbd5b17
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:d242a413d1a085aeb694d837a942665996bb64b0
-    pristine_git_object: e47ea5af013895d3e163eddc0a394d6c2bad76e1
+    last_write_checksum: sha1:bf98f0229342a60f14a7cb892e723ef4fda4a467
+    pristine_git_object: 34d4cd3e15f3764fa475078f3bfc0717ad2f9869
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:5dd5e69e655abc6e10f08f91e2bd1821b8655cd2
-    pristine_git_object: acf6f2933de2bee73ce45edfc5ae05fd1d867405
+    last_write_checksum: sha1:b0c7fda201b8f5d8a025eaaeb09543c102ee4101
+    pristine_git_object: 937cd712b67b7c93480bd02b941fc5fd91b49ab8
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:522fa3c145654876a02a0c62da21be6d84e87471
@@ -5014,8 +5014,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:e7a810af18dfa36d671c185b7bfde7cbd5a4b46d
-    pristine_git_object: e9db293a77bd380714839346eb1e83597983eb80
+    last_write_checksum: sha1:c998a938f3dc3f65d16d3ac05fc700db1614c987
+    pristine_git_object: 04d0b8f61bbb92cb5eb1b95aea2779dfac4545aa
   src/lib/encodings.ts:
     id: 3bd8ead98afd
     last_write_checksum: sha1:a257d6f6108693db2197617c579400bc8f0da914
@@ -5306,8 +5306,8 @@ trackedFiles:
     pristine_git_object: cc5fdf8f471e298dd15a5a2bdecd212cf853fa58
   src/models/components/createintegrationrequestdto.ts:
     id: 4b88e90d32f2
-    last_write_checksum: sha1:9e470931445b2fa5c346c60d3ff11d3184a55071
-    pristine_git_object: 648279e572cae3f72967868d879b437c07a889f6
+    last_write_checksum: sha1:fd2ce7e8f6279a68a81236a27bedef33bd984a75
+    pristine_git_object: b5ae02b4ff1198de2f27b1945d40f50b3156fa60
   src/models/components/createlayoutdto.ts:
     id: 24fbf981a24e
     last_write_checksum: sha1:60f8ef29fae3420ecd8fcb69e00fb1542b8149a1
@@ -5838,8 +5838,8 @@ trackedFiles:
     pristine_git_object: b969a9a9e8a716ffb89deb105e01b43a36c048ec
   src/models/components/integrationresponsedto.ts:
     id: 9083f927664b
-    last_write_checksum: sha1:6e042dd9b5c3a6cbfb29f63bf31a6e02291cdecc
-    pristine_git_object: 1d1af64731951408db23a96dc7ffcf491c9155ab
+    last_write_checksum: sha1:da3cdcd64a5667393816defffff36e2bf40ee3e9
+    pristine_git_object: e56626fcc37b2560ded064043835f3cdceb5a4ba
   src/models/components/issueintegrationmobilelinkrequestdto.ts:
     id: 222b7ac45f54
     last_write_checksum: sha1:87da7bc93c1023051d9a2113283c849acba27c61
@@ -6598,8 +6598,8 @@ trackedFiles:
     pristine_git_object: b752108243adfb8452bf9a611498205b414e5edd
   src/models/components/updateintegrationrequestdto.ts:
     id: 516563e2f055
-    last_write_checksum: sha1:3a6c2659859c6865dc023e119c7421f9330b0b37
-    pristine_git_object: 1e33b8194a167fcb9d06d528adc62413bf268b8f
+    last_write_checksum: sha1:98ddc74f5a0d5ff92415ba59d21a1fe93ce6eff7
+    pristine_git_object: 0cb26000fcc5e778785e1ccff40c25cf0f01aa55
   src/models/components/updatelayoutdto.ts:
     id: 9689edd79698
     last_write_checksum: sha1:129ac9b142513b460cd102c0a4ae0e9012755481
@@ -8087,10 +8087,10 @@ examples:
   IntegrationsController_createIntegration:
     speakeasy-default-integrations-controller-create-integration:
       requestBody:
-        application/json: {}
+        application/json: {"rules": {"==": [{"var": "context.tenant.id"}, "acme"]}}
       responses:
         "201":
-          application/json: {"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>", "identifier": "<value>", "providerId": "<id>", "active": false, "deleted": false, "primary": true}
+          application/json: {"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>", "identifier": "<value>", "providerId": "<id>", "active": false, "deleted": false, "primary": true, "rules": {"==": [{"var": "context.tenant.id"}, "acme"]}}
         "414":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
         "400":
@@ -8105,10 +8105,10 @@ examples:
         path:
           integrationId: "<id>"
       requestBody:
-        application/json: {}
+        application/json: {"rules": {"==": [{"var": "context.tenant.id"}, "acme"]}}
       responses:
         "200":
-          application/json: {"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>", "identifier": "<value>", "providerId": "<id>", "active": false, "deleted": false, "primary": true}
+          application/json: {"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>", "identifier": "<value>", "providerId": "<id>", "active": false, "deleted": false, "primary": true, "rules": {"==": [{"var": "context.tenant.id"}, "acme"]}}
         "414":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
         "400":
@@ -8140,7 +8140,7 @@ examples:
           integrationId: "<id>"
       responses:
         "200":
-          application/json: {"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>", "identifier": "<value>", "providerId": "<id>", "active": false, "deleted": false, "primary": false}
+          application/json: {"_environmentId": "<id>", "_organizationId": "<id>", "name": "<value>", "identifier": "<value>", "providerId": "<id>", "active": false, "deleted": false, "primary": false, "rules": {"==": [{"var": "context.tenant.id"}, "acme"]}}
         "414":
           application/json: {"statusCode": 404, "timestamp": "2024-12-12T13:00:00Z", "path": "/api/v1/resource", "message": "xx xx xx ", "ctx": {"workflowId": "some_wf_id", "stepId": "some_wf_id"}, "errorId": "abc123"}
         "400":
@@ -10290,7 +10290,7 @@ generatedTests:
   TopicsController_removeSubscribers: "2024-12-24T08:36:06+01:00"
   TestingController_idempotency: "2024-12-24T08:36:06+01:00"
   TestingController_idempotencyGet: "2024-12-24T08:36:06+01:00"
-releaseNotes: "## Typescript SDK Changes:\n* `novu.workflows.create()`: \n  *  `request.createWorkflowDto.steps[].union(chat).controlValues.union(ChatControlDto).editorType` **Added**\n  *  `response.steps[]` **Changed** (Breaking ⚠️)\n* `novu.workflows.steps.retrieve()`:  `response` **Changed** (Breaking ⚠️)\n* `novu.workflows.sync()`:  `response.steps[]` **Changed** (Breaking ⚠️)\n* `novu.workflows.patch()`:  `response.steps[].union(chat)` **Changed** (Breaking ⚠️)\n* `novu.workflows.get()`:  `response.steps[]` **Changed** (Breaking ⚠️)\n* `novu.workflows.update()`: \n  *  `request.updateWorkflowDto.steps[].union(chat).controlValues.union(ChatControlDto).editorType` **Added**\n  *  `response.steps[]` **Changed** (Breaking ⚠️)\n* `novu.workflows.list()`:  `response.workflows[].steps[].issues` **Changed** (Breaking ⚠️)\n* `novu.layouts.duplicate()`:  `response.controls.uiSchema.properties.Map<UiSchemaProperty>.component.enum(chatEditorSelect)` **Added**\n* `novu.layouts.list()`:  `response.layouts[].controls.uiSchema.properties.Map<UiSchemaProperty>.component.enum(chatEditorSelect)` **Added**\n* `novu.subscribers.topics.list()`:  `response.data[].topic.data` **Added**\n* `novu.topics.list()`:  `response.data[].data` **Added**\n* `novu.topics.create()`: \n  *  `request.createUpdateTopicRequestDto.data` **Added**\n  *  `response.data` **Added**\n  *  `error.data` **Added**\n* `novu.topics.get()`:  `response.data` **Added**\n* `novu.topics.update()`: \n  *  `request.updateTopicRequestDto` **Changed**\n  *  `response.data` **Added**\n* `novu.topics.subscriptions.list()`:  `response.data[].topic.data` **Added**\n* `novu.topics.subscriptions.create()`:  `response.data[].topic.data` **Added**\n* `novu.topics.subscriptions.delete()`:  `response.data[].topic.data` **Added**\n* `novu.topics.subscriptions.update()`:  `response.topic.data` **Added**\n* `novu.layouts.retrieve()`:  `response.controls.uiSchema.properties.Map<UiSchemaProperty>.component.enum(chatEditorSelect)` **Added**\n* `novu.layouts.update()`:  `response.controls.uiSchema.properties.Map<UiSchemaProperty>.component.enum(chatEditorSelect)` **Added**\n* `novu.contexts.create()`: \n  *  `request.createContextRequestDto.bridgeUrl` **Added**\n  *  `response.bridgeUrl` **Added**\n* `novu.layouts.create()`:  `response.controls.uiSchema.properties.Map<UiSchemaProperty>.component.enum(chatEditorSelect)` **Added**\n* `novu.contexts.retrieve()`:  `response.bridgeUrl` **Added**\n* `novu.contexts.update()`: \n  *  `request.updateContextRequestDto.bridgeUrl` **Added**\n  *  `response.bridgeUrl` **Added**\n* `novu.contexts.list()`:  `response.data[].bridgeUrl` **Added**\n* `novu.agents.sendReply()`:  `request.agentReplyPayloadDto` **Changed**\n* `novu.integrations.list()`:  `response.[].credentials` **Changed**\n* `novu.integrations.create()`: \n  *  `request.createIntegrationRequestDto.credentials` **Changed**\n  *  `response.credentials` **Changed**\n* `novu.integrations.update()`: \n  *  `request.updateIntegrationRequestDto.credentials` **Changed**\n  *  `response.credentials` **Changed**\n* `novu.integrations.delete()`:  `response.[].credentials` **Changed**\n* `novu.integrations.setAsPrimary()`:  `response.credentials` **Changed**\n* `novu.integrations.listActive()`:  `response.[].credentials` **Changed**\n"
+releaseNotes: "## Typescript SDK Changes:\n* `novu.integrations.list()`:  `response.[].rules` **Added**\n* `novu.integrations.create()`: \n  *  `request.createIntegrationRequestDto.rules` **Added**\n  *  `response.rules` **Added**\n* `novu.integrations.update()`: \n  *  `request.updateIntegrationRequestDto.rules` **Added**\n  *  `response.rules` **Added**\n* `novu.integrations.delete()`:  `response.[].rules` **Added**\n* `novu.integrations.setAsPrimary()`:  `response.rules` **Added**\n* `novu.integrations.listActive()`:  `response.[].rules` **Added**\n"
 generatedFiles:
   - .gitattributes
   - .npmignore

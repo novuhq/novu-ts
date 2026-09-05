@@ -499,3 +499,13 @@ Based on:
 - [typescript v3.19.1] .
 ### Releases
 - [NPM v3.19.1] https://www.npmjs.com/package/@novu/api/v/3.19.1 - .
+
+## 2026-09-05 00:28:46
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.796.4 (2.935.1) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [typescript v3.19.2] .
+### Releases
+- [NPM v3.19.2] https://www.npmjs.com/package/@novu/api/v/3.19.2 - .
