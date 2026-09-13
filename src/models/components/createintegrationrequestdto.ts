@@ -91,9 +91,15 @@ export type CreateIntegrationRequestDto = {
    */
   check?: boolean | undefined;
   /**
-   * Conditions for the integration
+   * Legacy StepFilter conditions. Ignored when `rules` is also set.
+   *
+   * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
    */
   conditions?: Array<StepFilterDto> | undefined;
+  /**
+   * JSONLogic used at send time to select this integration. Takes precedence over `conditions`.
+   */
+  rules?: { [k: string]: any } | null | undefined;
   /**
    * Configurations for the integration
    */
@@ -136,6 +142,7 @@ export type CreateIntegrationRequestDto$Outbound = {
   active?: boolean | undefined;
   check?: boolean | undefined;
   conditions?: Array<StepFilterDto$Outbound> | undefined;
+  rules?: { [k: string]: any } | null | undefined;
   configurations?: Configurations$Outbound | undefined;
 };
 
@@ -155,6 +162,7 @@ export const CreateIntegrationRequestDto$outboundSchema: z.ZodType<
   active: z.boolean().optional(),
   check: z.boolean().optional(),
   conditions: z.array(StepFilterDto$outboundSchema).optional(),
+  rules: z.nullable(z.record(z.any())).optional(),
   configurations: z.lazy(() => Configurations$outboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {

@@ -112,9 +112,15 @@ export type IntegrationResponseDto = {
    */
   primary: boolean;
   /**
-   * An array of conditions associated with the integration that may influence its behavior or processing logic.
+   * Legacy StepFilter conditions. Ignored when `rules` is also set.
+   *
+   * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
    */
   conditions?: Array<StepFilterDto> | undefined;
+  /**
+   * JSONLogic used at send time to select this integration. Takes precedence over `conditions`.
+   */
+  rules?: { [k: string]: any } | null | undefined;
 };
 
 /** @internal */
@@ -149,6 +155,7 @@ export const IntegrationResponseDto$inboundSchema: z.ZodType<
   deletedBy: z.string().optional(),
   primary: z.boolean(),
   conditions: z.array(StepFilterDto$inboundSchema).optional(),
+  rules: z.nullable(z.record(z.any())).optional(),
 }).transform((v) => {
   return remap$(v, {
     "_id": "id",
