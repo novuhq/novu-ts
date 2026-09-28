@@ -24,6 +24,14 @@ let value: IntegrationsControllerRemoveIntegrationResponse = {
       active: false,
       deleted: false,
       primary: false,
+      rules: {
+        "==": [
+          {
+            "var": "context.tenant.id",
+          },
+          "acme",
+        ],
+      },
     },
   ],
 };

@@ -110,7 +110,16 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.integrations.create({});
+  const result = await novu.integrations.create({
+    rules: {
+      "==": [
+        {
+          "var": "context.tenant.id",
+        },
+        "acme",
+      ],
+    },
+  });
 
   console.log(result);
 }
@@ -133,7 +142,16 @@ const novu = new NovuCore({
 });
 
 async function run() {
-  const res = await integrationsCreate(novu, {});
+  const res = await integrationsCreate(novu, {
+    rules: {
+      "==": [
+        {
+          "var": "context.tenant.id",
+        },
+        "acme",
+      ],
+    },
+  });
   if (res.ok) {
     const { value: result } = res;
     console.log(result);
@@ -185,7 +203,16 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.integrations.update({}, "<id>");
+  const result = await novu.integrations.update({
+    rules: {
+      "==": [
+        {
+          "var": "context.tenant.id",
+        },
+        "acme",
+      ],
+    },
+  }, "<id>");
 
   console.log(result);
 }
@@ -208,7 +235,16 @@ const novu = new NovuCore({
 });
 
 async function run() {
-  const res = await integrationsUpdate(novu, {}, "<id>");
+  const res = await integrationsUpdate(novu, {
+    rules: {
+      "==": [
+        {
+          "var": "context.tenant.id",
+        },
+        "acme",
+      ],
+    },
+  }, "<id>");
   if (res.ok) {
     const { value: result } = res;
     console.log(result);

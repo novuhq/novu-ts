@@ -303,7 +303,7 @@ run();
 
 * [create](docs/sdks/agents/README.md#create) - Create an agent
 * [list](docs/sdks/agents/README.md#list) - List all agents
-* [sendReply](docs/sdks/agents/README.md#sendreply) - Send an agent reply
+* [~~sendReply~~](docs/sdks/agents/README.md#sendreply) - Send an agent reply :warning: **Deprecated**
 * [retrieve](docs/sdks/agents/README.md#retrieve) - Retrieve an agent
 * [update](docs/sdks/agents/README.md#update) - Update an agent
 * [delete](docs/sdks/agents/README.md#delete) - Delete an agent
@@ -557,7 +557,6 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`agentsIntegrationsUpdate`](docs/sdks/novuintegrations/README.md#update) - Update an agent integration
 - [`agentsList`](docs/sdks/agents/README.md#list) - List all agents
 - [`agentsRetrieve`](docs/sdks/agents/README.md#retrieve) - Retrieve an agent
-- [`agentsSendReply`](docs/sdks/agents/README.md#sendreply) - Send an agent reply
 - [`agentsUpdate`](docs/sdks/agents/README.md#update) - Update an agent
 - [`agentsUpdateBridge`](docs/sdks/agents/README.md#updatebridge) - Update an agent bridge
 - [`cancel`](docs/sdks/novu/README.md#cancel) - Cancel triggered event
@@ -691,6 +690,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`workflowsStepsRetrieve`](docs/sdks/steps/README.md#retrieve) - Retrieve workflow step
 - [`workflowsSync`](docs/sdks/workflows/README.md#sync) - Sync a workflow
 - [`workflowsUpdate`](docs/sdks/workflows/README.md#update) - Update a workflow
+- ~~[`agentsSendReply`](docs/sdks/agents/README.md#sendreply)~~ - Send an agent reply :warning: **Deprecated**
 - ~~[`integrationsGenerateChatOAuthUrl`](docs/sdks/integrations/README.md#generatechatoauthurl)~~ - Generate chat OAuth URL :warning: **Deprecated**
 - ~~[`subscribersMessagesMarkAll`](docs/sdks/novumessages/README.md#markall)~~ - Update all notifications state :warning: **Deprecated**
 - ~~[`subscribersMessagesMarkAllAs`](docs/sdks/novumessages/README.md#markallas)~~ - Update notifications state :warning: **Deprecated**

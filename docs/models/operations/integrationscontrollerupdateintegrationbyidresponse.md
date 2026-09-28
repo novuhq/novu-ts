@@ -20,6 +20,14 @@ let value: IntegrationsControllerUpdateIntegrationByIdResponse = {
     active: true,
     deleted: false,
     primary: true,
+    rules: {
+      "==": [
+        {
+          "var": "context.tenant.id",
+        },
+        "acme",
+      ],
+    },
   },
 };
 ```
