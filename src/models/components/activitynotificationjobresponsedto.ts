@@ -49,11 +49,6 @@ export type ActivityNotificationJobResponseDtoType = ClosedEnum<
   typeof ActivityNotificationJobResponseDtoType
 >;
 
-/**
- * Optional payload for the job
- */
-export type Payload = {};
-
 export type ActivityNotificationJobResponseDto = {
   /**
    * Unique identifier of the job
@@ -82,9 +77,9 @@ export type ActivityNotificationJobResponseDto = {
   /**
    * Optional payload for the job
    */
-  payload?: Payload | undefined;
+  payload?: { [k: string]: any } | undefined;
   /**
-   * Provider ID of the job
+   * Provider ID of the execution
    */
   providerId: ProvidersIdEnum;
   /**
@@ -108,20 +103,6 @@ export const ActivityNotificationJobResponseDtoType$inboundSchema:
   );
 
 /** @internal */
-export const Payload$inboundSchema: z.ZodType<Payload, z.ZodTypeDef, unknown> =
-  z.object({});
-
-export function payloadFromJSON(
-  jsonString: string,
-): SafeParseResult<Payload, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Payload$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Payload' from JSON`,
-  );
-}
-
-/** @internal */
 export const ActivityNotificationJobResponseDto$inboundSchema: z.ZodType<
   ActivityNotificationJobResponseDto,
   z.ZodTypeDef,
@@ -135,7 +116,7 @@ export const ActivityNotificationJobResponseDto$inboundSchema: z.ZodType<
   ),
   step: ActivityNotificationStepResponseDto$inboundSchema,
   overrides: z.record(z.any()).optional(),
-  payload: z.lazy(() => Payload$inboundSchema).optional(),
+  payload: z.record(z.any()).optional(),
   providerId: ProvidersIdEnum$inboundSchema,
   status: z.string(),
   updatedAt: z.string().optional(),

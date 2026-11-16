@@ -9,7 +9,7 @@ import { TranslationControllerDeleteTranslationGroupEndpointPathParamResourceTyp
 
 let value:
   TranslationControllerDeleteTranslationGroupEndpointPathParamResourceType =
-    "workflow";
+    "layout";
 ```
 
 ## Values

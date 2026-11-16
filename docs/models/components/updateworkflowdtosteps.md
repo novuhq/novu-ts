@@ -138,6 +138,16 @@ const value: components.ChatStepUpsertDto = {
       "summary": "{{"{{"}}payload.title}}",
     },
   },
+  integrationOverrides: {
+    "tool-webhook": {
+      "prod-alerts": {
+        "alert_type": "incident",
+      },
+      "staging-alerts": {
+        "alert_type": "test",
+      },
+    },
+  },
 };
 ```
 
@@ -256,6 +266,16 @@ const value: components.ToolStepUpsertDto = {
       "severity": "warning",
       "source": "novu",
       "summary": "{{"{{"}}payload.title}}",
+    },
+  },
+  integrationOverrides: {
+    "tool-webhook": {
+      "prod-alerts": {
+        "alert_type": "incident",
+      },
+      "staging-alerts": {
+        "alert_type": "test",
+      },
     },
   },
 };

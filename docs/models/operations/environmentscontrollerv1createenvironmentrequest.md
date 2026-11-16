@@ -9,7 +9,7 @@ let value: EnvironmentsControllerV1CreateEnvironmentRequest = {
   createEnvironmentRequestDto: {
     name: "Production Environment",
     parentId: "60d5ecb8b3b3a30015f3e1a1",
-    color: "#3498db",
+    color: "#3498DB",
   },
 };
 ```

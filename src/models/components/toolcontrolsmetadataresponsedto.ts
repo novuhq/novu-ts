@@ -3,14 +3,28 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  ToolControlDto,
-  ToolControlDto$inboundSchema,
-} from "./toolcontroldto.js";
 import { UiSchema, UiSchema$inboundSchema } from "./uischema.js";
+
+/**
+ * Control values specific to Tool
+ */
+export type ToolControlsMetadataResponseDtoValues = {
+  /**
+   * JSONLogic filter conditions for conditionally skipping the step execution. Supports complex logical operations with AND, OR, and comparison operators. See https://jsonlogic.com/ for full typing reference.
+   */
+  skip?: { [k: string]: any } | undefined;
+  /**
+   * Content of the tool payload.
+   */
+  body?: string | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
+};
 
 export type ToolControlsMetadataResponseDto = {
   /**
@@ -24,8 +38,33 @@ export type ToolControlsMetadataResponseDto = {
   /**
    * Control values specific to Tool
    */
-  values: ToolControlDto;
+  values?: ToolControlsMetadataResponseDtoValues | undefined;
 };
+
+/** @internal */
+export const ToolControlsMetadataResponseDtoValues$inboundSchema: z.ZodType<
+  ToolControlsMetadataResponseDtoValues,
+  z.ZodTypeDef,
+  unknown
+> = collectExtraKeys$(
+  z.object({
+    skip: z.record(z.any()).optional(),
+    body: z.string().optional(),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+);
+
+export function toolControlsMetadataResponseDtoValuesFromJSON(
+  jsonString: string,
+): SafeParseResult<ToolControlsMetadataResponseDtoValues, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      ToolControlsMetadataResponseDtoValues$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ToolControlsMetadataResponseDtoValues' from JSON`,
+  );
+}
 
 /** @internal */
 export const ToolControlsMetadataResponseDto$inboundSchema: z.ZodType<
@@ -35,7 +74,8 @@ export const ToolControlsMetadataResponseDto$inboundSchema: z.ZodType<
 > = z.object({
   dataSchema: z.record(z.any()).optional(),
   uiSchema: UiSchema$inboundSchema.optional(),
-  values: ToolControlDto$inboundSchema,
+  values: z.lazy(() => ToolControlsMetadataResponseDtoValues$inboundSchema)
+    .optional(),
 });
 
 export function toolControlsMetadataResponseDtoFromJSON(

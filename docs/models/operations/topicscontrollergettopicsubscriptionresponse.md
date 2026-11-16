@@ -31,7 +31,10 @@ let value: TopicsControllerGetTopicSubscriptionResponse = {
             "user-onboarding",
             "email",
           ],
-          data: {},
+          data: {
+            "category": "onboarding",
+            "priority": "high",
+          },
           severity: "low",
         },
         enabled: true,

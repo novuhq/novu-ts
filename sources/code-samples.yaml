@@ -56,7 +56,7 @@ actions:
       "x-codeSamples":
         - "lang": "typescript"
           "label": "TypeScript"
-          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.agents.integrations.create({}, \"<value>\");\n\n  console.log(result);\n}\n\nrun();"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.agents.integrations.create({\n    identifier: \"<value>\",\n    novuAnalyticsSource: \"<value>\",\n    addAgentIntegrationRequestDto: {},\n  });\n\n  console.log(result);\n}\n\nrun();"
   - target: $["paths"]["/v1/agents/{identifier}/integrations/{agentIntegrationId}"]["delete"]
     update:
       "x-codeSamples":
@@ -314,7 +314,7 @@ actions:
       "x-codeSamples":
         - "lang": "typescript"
           "label": "TypeScript"
-          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.integrations.create({});\n\n  console.log(result);\n}\n\nrun();"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.integrations.create({\n    rules: {\n      \"==\": [\n        {\n          \"var\": \"context.tenant.id\",\n        },\n        \"acme\",\n      ],\n    },\n  });\n\n  console.log(result);\n}\n\nrun();"
   - target: $["paths"]["/v1/integrations/active"]["get"]
     update:
       "x-codeSamples":
@@ -362,7 +362,7 @@ actions:
       "x-codeSamples":
         - "lang": "typescript"
           "label": "TypeScript"
-          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.integrations.update({}, \"<id>\");\n\n  console.log(result);\n}\n\nrun();"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.integrations.update({\n    rules: {\n      \"==\": [\n        {\n          \"var\": \"context.tenant.id\",\n        },\n        \"acme\",\n      ],\n    },\n  }, \"<id>\");\n\n  console.log(result);\n}\n\nrun();"
   - target: $["paths"]["/v1/integrations/{integrationId}/auto-configure"]["post"]
     update:
       "x-codeSamples":
@@ -446,7 +446,7 @@ actions:
       "x-codeSamples":
         - "lang": "typescript"
           "label": "TypeScript"
-          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.contexts.list({\n    limit: 10,\n    id: \"tenant-prod-123\",\n    search: \"tenant\",\n  });\n\n  console.log(result);\n}\n\nrun();"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.contexts.list({\n    limit: 10,\n    type: \"tenant\",\n    id: \"tenant-prod-123\",\n    search: \"tenant\",\n  });\n\n  console.log(result);\n}\n\nrun();"
   - target: $["paths"]["/v2/contexts"]["post"]
     update:
       "x-codeSamples":
@@ -590,7 +590,7 @@ actions:
       "x-codeSamples":
         - "lang": "typescript"
           "label": "TypeScript"
-          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.subscribers.notifications.count(\"<id>\", \"[{\\\"read\\\":false,\\\"archived\\\":false},{\\\"tags\\\":[\\\"important\\\"]},{\\\"tags\\\":{\\\"and\\\":[{\\\"or\\\":[\\\"a\\\",\\\"b\\\"]},{\\\"or\\\":[\\\"c\\\"]}]}}]\");\n\n  console.log(result);\n}\n\nrun();"
+          "source": "import { Novu } from \"@novu/api\";\n\nconst novu = new Novu({\n  secretKey: \"YOUR_SECRET_KEY_HERE\",\n});\n\nasync function run() {\n  const result = await novu.subscribers.notifications.count(\"<id>\", \"[{\\\"read\\\":false,\\\"archived\\\":false},{\\\"tags\\\":[\\\"important\\\"]}]\");\n\n  console.log(result);\n}\n\nrun();"
   - target: $["paths"]["/v2/subscribers/{subscriberId}/notifications/delete"]["post"]
     update:
       "x-codeSamples":

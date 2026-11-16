@@ -31,7 +31,7 @@ import { Result } from "../types/fp.js";
  * Compare resources between environments
  *
  * @remarks
- * Compares workflows and other resources between the source and target environments, returning detailed diff information including additions, modifications, and deletions.
+ * Compares workflows and other resources between the development and target environments, returning detailed diff information including additions, modifications, and deletions.
  */
 export function environmentsDiff(
   client: NovuCore,

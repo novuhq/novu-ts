@@ -83,7 +83,7 @@ let value: AgentReplyPayloadDto = {
       type: "metadata",
       action: "set",
       key: "crm:ticketId",
-      value: {},
+      value: "TCK-1001",
     },
   ],
   toolResults: [

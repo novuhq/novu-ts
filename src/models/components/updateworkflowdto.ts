@@ -161,11 +161,11 @@ export type UpdateWorkflowDto = {
    */
   preferences: PreferencesRequestDto;
   /**
-   * Origin of the layout
+   * Origin of the workflow
    */
   origin?: ResourceOriginEnum | undefined;
   /**
-   * Severity of the workflow
+   * Override the severity of the workflow
    */
   severity?: SeverityLevelEnum | undefined;
 };

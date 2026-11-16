@@ -334,7 +334,7 @@ Removes a specific layout by its unique identifier **layoutId**
 
 ### Example Usage
 
-<!-- UsageSnippet language="typescript" operationID="LayoutsController__delete" method="delete" path="/v2/layouts/{layoutId}" -->
+<!-- UsageSnippet language="typescript" operationID="LayoutsController_delete" method="delete" path="/v2/layouts/{layoutId}" -->
 ```typescript
 import { Novu } from "@novu/api";
 

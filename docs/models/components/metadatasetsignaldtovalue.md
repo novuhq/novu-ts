@@ -2,15 +2,44 @@
 
 JSON-serializable value to store.
 
-## Example Usage
+
+## Supported Types
+
+### `string`
 
 ```typescript
-import { MetadataSetSignalDtoValue } from "@novu/api/models/components";
-
-let value: MetadataSetSignalDtoValue = {};
+const value: string = "TCK-1001";
 ```
 
-## Fields
+### `number`
 
-| Field       | Type        | Required    | Description |
-| ----------- | ----------- | ----------- | ----------- |
+```typescript
+const value: number = 1284.03;
+```
+
+### `boolean`
+
+```typescript
+const value: boolean = true;
+```
+
+### `{ [k: string]: any }`
+
+```typescript
+const value: { [k: string]: any } = {
+  "key": "<value>",
+  "key1": "<value>",
+  "key2": "<value>",
+};
+```
+
+### `any[]`
+
+```typescript
+const value: any[] = [
+  "<value 1>",
+  "<value 2>",
+  "<value 3>",
+];
+```
+

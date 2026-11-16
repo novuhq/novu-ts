@@ -9,12 +9,8 @@ let value: NotificationsControllerGetNotificationResponse = {
   headers: {
     "key": [
       "<value 1>",
-    ],
-    "key1": [
-      "<value 1>",
       "<value 2>",
     ],
-    "key2": [],
   },
   result: {
     environmentId: "<id>",
@@ -32,7 +28,6 @@ let value: NotificationsControllerGetNotificationResponse = {
             detail: "<value>",
             isRetry: false,
             isTest: true,
-            providerId: "slack",
             source: "Credentials",
           },
         ],
@@ -60,7 +55,7 @@ let value: NotificationsControllerGetNotificationResponse = {
           "workflowId": "some_wf_id",
           "stepId": "some_wf_id",
         },
-        providerId: "slack",
+        providerId: "sendblue",
         status: "<value>",
       },
     ],

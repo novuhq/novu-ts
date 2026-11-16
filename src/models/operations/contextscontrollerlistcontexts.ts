@@ -48,6 +48,10 @@ export type ContextsControllerListContextsRequest = {
    */
   includeCursor?: boolean | undefined;
   /**
+   * Filter contexts by type
+   */
+  type?: string | undefined;
+  /**
    * Filter contexts by id
    */
   id?: string | undefined;
@@ -79,6 +83,7 @@ export type ContextsControllerListContextsRequest$Outbound = {
   orderDirection?: string | undefined;
   orderBy?: string | undefined;
   includeCursor?: boolean | undefined;
+  type?: string | undefined;
   id?: string | undefined;
   search?: string | undefined;
   "idempotency-key"?: string | undefined;
@@ -96,6 +101,7 @@ export const ContextsControllerListContextsRequest$outboundSchema: z.ZodType<
   orderDirection: OrderDirection$outboundSchema.optional(),
   orderBy: z.string().optional(),
   includeCursor: z.boolean().optional(),
+  type: z.string().optional(),
   id: z.string().optional(),
   search: z.string().optional(),
   idempotencyKey: z.string().optional(),

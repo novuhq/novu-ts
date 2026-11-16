@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ToolControlDto = {
   /**
@@ -18,15 +15,6 @@ export type ToolControlDto = {
   body?: string | undefined;
 };
 
-/** @internal */
-export const ToolControlDto$inboundSchema: z.ZodType<
-  ToolControlDto,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  skip: z.record(z.any()).optional(),
-  body: z.string().optional(),
-});
 /** @internal */
 export type ToolControlDto$Outbound = {
   skip?: { [k: string]: any } | undefined;
@@ -45,13 +33,4 @@ export const ToolControlDto$outboundSchema: z.ZodType<
 
 export function toolControlDtoToJSON(toolControlDto: ToolControlDto): string {
   return JSON.stringify(ToolControlDto$outboundSchema.parse(toolControlDto));
-}
-export function toolControlDtoFromJSON(
-  jsonString: string,
-): SafeParseResult<ToolControlDto, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ToolControlDto$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ToolControlDto' from JSON`,
-  );
 }

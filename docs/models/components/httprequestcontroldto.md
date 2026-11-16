@@ -6,8 +6,8 @@
 import { HttpRequestControlDto } from "@novu/api/models/components";
 
 let value: HttpRequestControlDto = {
-  method: "PATCH",
-  url: "https://weighty-sonar.name/",
+  method: "PUT",
+  url: "https://educated-blight.biz/",
 };
 ```
 

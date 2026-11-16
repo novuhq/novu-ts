@@ -22,6 +22,17 @@ export const HmacSecretKeyEncoding = {
  */
 export type HmacSecretKeyEncoding = ClosedEnum<typeof HmacSecretKeyEncoding>;
 
+/**
+ * Twilio: `apiKey` authenticates with `apiKey` (API Key SID) and `secretKey` (API Key Secret) on behalf of `accountSid`. When omitted, `token` (Auth Token) is used.
+ */
+export const AuthMethod = {
+  ApiKey: "apiKey",
+} as const;
+/**
+ * Twilio: `apiKey` authenticates with `apiKey` (API Key SID) and `secretKey` (API Key Secret) on behalf of `accountSid`. When omitted, `token` (Auth Token) is used.
+ */
+export type AuthMethod = ClosedEnum<typeof AuthMethod>;
+
 export type TlsOptions = {};
 
 export type CredentialsDto = {
@@ -32,6 +43,10 @@ export type CredentialsDto = {
    * Email webhook: how `secretKey` is interpreted when signing webhook calls. `text` signs with the raw UTF-8 bytes; `base64`/`hex` decode it to binary first (e.g. for AWS KMS).
    */
   hmacSecretKeyEncoding?: HmacSecretKeyEncoding | undefined;
+  /**
+   * Twilio: `apiKey` authenticates with `apiKey` (API Key SID) and `secretKey` (API Key Secret) on behalf of `accountSid`. When omitted, `token` (Auth Token) is used.
+   */
+  authMethod?: AuthMethod | undefined;
   domain?: string | undefined;
   password?: string | undefined;
   host?: string | undefined;
@@ -113,6 +128,13 @@ export const HmacSecretKeyEncoding$outboundSchema: z.ZodNativeEnum<
 > = HmacSecretKeyEncoding$inboundSchema;
 
 /** @internal */
+export const AuthMethod$inboundSchema: z.ZodNativeEnum<typeof AuthMethod> = z
+  .nativeEnum(AuthMethod);
+/** @internal */
+export const AuthMethod$outboundSchema: z.ZodNativeEnum<typeof AuthMethod> =
+  AuthMethod$inboundSchema;
+
+/** @internal */
 export const TlsOptions$inboundSchema: z.ZodType<
   TlsOptions,
   z.ZodTypeDef,
@@ -151,6 +173,7 @@ export const CredentialsDto$inboundSchema: z.ZodType<
   user: z.string().optional(),
   secretKey: z.string().optional(),
   hmacSecretKeyEncoding: HmacSecretKeyEncoding$inboundSchema.optional(),
+  authMethod: AuthMethod$inboundSchema.optional(),
   domain: z.string().optional(),
   password: z.string().optional(),
   host: z.string().optional(),
@@ -216,6 +239,7 @@ export type CredentialsDto$Outbound = {
   user?: string | undefined;
   secretKey?: string | undefined;
   hmacSecretKeyEncoding?: string | undefined;
+  authMethod?: string | undefined;
   domain?: string | undefined;
   password?: string | undefined;
   host?: string | undefined;
@@ -282,6 +306,7 @@ export const CredentialsDto$outboundSchema: z.ZodType<
   user: z.string().optional(),
   secretKey: z.string().optional(),
   hmacSecretKeyEncoding: HmacSecretKeyEncoding$outboundSchema.optional(),
+  authMethod: AuthMethod$outboundSchema.optional(),
   domain: z.string().optional(),
   password: z.string().optional(),
   host: z.string().optional(),

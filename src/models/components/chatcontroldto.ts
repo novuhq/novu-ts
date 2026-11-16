@@ -3,10 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * Type of editor to use for the body. When omitted, inferred from the body: Maily JSON is "block", otherwise "text".
@@ -38,24 +35,10 @@ export type ChatControlDto = {
 };
 
 /** @internal */
-export const ChatControlDtoEditorType$inboundSchema: z.ZodNativeEnum<
-  typeof ChatControlDtoEditorType
-> = z.nativeEnum(ChatControlDtoEditorType);
-/** @internal */
 export const ChatControlDtoEditorType$outboundSchema: z.ZodNativeEnum<
   typeof ChatControlDtoEditorType
-> = ChatControlDtoEditorType$inboundSchema;
+> = z.nativeEnum(ChatControlDtoEditorType);
 
-/** @internal */
-export const ChatControlDto$inboundSchema: z.ZodType<
-  ChatControlDto,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  skip: z.record(z.any()).optional(),
-  body: z.string().optional(),
-  editorType: ChatControlDtoEditorType$inboundSchema.optional(),
-});
 /** @internal */
 export type ChatControlDto$Outbound = {
   skip?: { [k: string]: any } | undefined;
@@ -76,13 +59,4 @@ export const ChatControlDto$outboundSchema: z.ZodType<
 
 export function chatControlDtoToJSON(chatControlDto: ChatControlDto): string {
   return JSON.stringify(ChatControlDto$outboundSchema.parse(chatControlDto));
-}
-export function chatControlDtoFromJSON(
-  jsonString: string,
-): SafeParseResult<ChatControlDto, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ChatControlDto$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ChatControlDto' from JSON`,
-  );
 }

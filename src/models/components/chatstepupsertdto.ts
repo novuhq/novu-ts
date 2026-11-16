@@ -31,7 +31,7 @@ export type ChatStepUpsertDto = {
    */
   name: string;
   /**
-   * Type of the step
+   * Channels of the notification
    */
   type: "chat";
   /**
@@ -42,6 +42,13 @@ export type ChatStepUpsertDto = {
    * Per-provider content overrides keyed by providerId. Stored separately from controlValues and merged over the default body at send time. Keys are ChatProviderIdEnum / ToolProviderIdEnum values (e.g. `slack`, `whatsapp-business`, `pagerduty`). Omit to leave unchanged; pass null to delete all provider overrides; pass an object to replace the full set.
    */
   providerOverrides?: { [k: string]: { [k: string]: any } } | null | undefined;
+  /**
+   * Per-integration content overrides keyed by providerId, then by integration identifier. Each entry is merged over the matching providerOverrides entry, only for sends through that integration. Trigger-time overrides still take precedence. Entries whose integration does not exist in the environment are kept but not applied. Omit to leave unchanged; pass null to delete all integration overrides; pass an object to replace the full set.
+   */
+  integrationOverrides?:
+    | { [k: string]: { [k: string]: { [k: string]: any } } }
+    | null
+    | undefined;
 };
 
 /** @internal */
@@ -74,6 +81,10 @@ export type ChatStepUpsertDto$Outbound = {
   type: "chat";
   controlValues?: ChatControlDto$Outbound | { [k: string]: any } | undefined;
   providerOverrides?: { [k: string]: { [k: string]: any } } | null | undefined;
+  integrationOverrides?:
+    | { [k: string]: { [k: string]: { [k: string]: any } } }
+    | null
+    | undefined;
 };
 
 /** @internal */
@@ -89,6 +100,8 @@ export const ChatStepUpsertDto$outboundSchema: z.ZodType<
   controlValues: z.union([ChatControlDto$outboundSchema, z.record(z.any())])
     .optional(),
   providerOverrides: z.nullable(z.record(z.record(z.any()))).optional(),
+  integrationOverrides: z.nullable(z.record(z.record(z.record(z.any()))))
+    .optional(),
 }).transform((v) => {
   return remap$(v, {
     id: "_id",

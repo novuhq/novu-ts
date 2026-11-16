@@ -6,7 +6,7 @@
 import { TestDomainRouteFromDto } from "@novu/api/models/components";
 
 let value: TestDomainRouteFromDto = {
-  address: "521 Kub Meadow",
+  address: "Jeromy.Cruickshank@hotmail.com",
 };
 ```
 

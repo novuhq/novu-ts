@@ -106,6 +106,13 @@ export type DigestStepResponseDto = {
    */
   providerOverrides?: { [k: string]: { [k: string]: any } } | null | undefined;
   /**
+   * Per-integration content overrides keyed by providerId, then by integration identifier. Each entry is merged over the matching providerOverrides entry, only for sends through that integration. Trigger-time overrides still take precedence. Entries whose integration does not exist in the environment are kept but not applied.
+   */
+  integrationOverrides?:
+    | { [k: string]: { [k: string]: { [k: string]: any } } }
+    | null
+    | undefined;
+  /**
    * JSON Schema for variables, follows the JSON Schema standard
    */
   variables: { [k: string]: any };
@@ -126,11 +133,11 @@ export type DigestStepResponseDto = {
    */
   slug: string;
   /**
-   * Type of the step
+   * Channels of the notification
    */
   type: "digest";
   /**
-   * Origin of the layout
+   * Origin of the workflow
    */
   origin: ResourceOriginEnum;
   /**
@@ -201,6 +208,8 @@ export const DigestStepResponseDto$inboundSchema: z.ZodType<
   controlValues: z.lazy(() => DigestStepResponseDtoControlValues$inboundSchema)
     .optional(),
   providerOverrides: z.nullable(z.record(z.record(z.any()))).optional(),
+  integrationOverrides: z.nullable(z.record(z.record(z.record(z.any()))))
+    .optional(),
   variables: z.record(z.any()),
   stepId: z.string(),
   _id: z.string(),

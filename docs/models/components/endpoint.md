@@ -121,7 +121,9 @@ const value: components.GrafanaOnCallIntegrationEndpointDto = {
 ```typescript
 const value: components.ToolWebhookEndpointDto = {
   url: "https://example.com/tools/incoming",
-  headers: {},
+  headers: {
+    "Authorization": "Bearer <token>",
+  },
   method: "POST",
 };
 ```

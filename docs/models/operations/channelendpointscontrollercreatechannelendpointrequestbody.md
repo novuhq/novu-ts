@@ -260,7 +260,9 @@ const value: components.CreateToolWebhookEndpointDto = {
   type: "tool_webhook",
   endpoint: {
     url: "https://example.com/tools/incoming",
-    headers: {},
+    headers: {
+      "Authorization": "Bearer <token>",
+    },
     method: "POST",
   },
 };

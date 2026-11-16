@@ -29,9 +29,7 @@ let value: LayoutsControllerDuplicateResponse = {
     createdAt: "1716695410716",
     origin: "novu-cloud",
     type: "REGULAR",
-    controls: {
-      values: {},
-    },
+    controls: {},
   },
 };
 ```

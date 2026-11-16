@@ -91,7 +91,7 @@ export type Overrides = {
    */
   layoutIdentifier?: string | undefined;
   /**
-   * Severity of the workflow
+   * Override the severity of the workflow
    */
   severity?: SeverityLevelEnum | undefined;
 };

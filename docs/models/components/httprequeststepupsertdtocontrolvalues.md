@@ -9,8 +9,8 @@ Control values for the HTTP Request step.
 
 ```typescript
 const value: components.HttpRequestControlDto = {
-  method: "PATCH",
-  url: "https://weighty-sonar.name/",
+  method: "PUT",
+  url: "https://educated-blight.biz/",
 };
 ```
 

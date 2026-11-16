@@ -9,7 +9,7 @@
 const value: components.MetadataSetSignalDto = {
   type: "metadata",
   key: "crm:ticketId",
-  value: {},
+  value: "TCK-1001",
 };
 ```
 
@@ -51,12 +51,11 @@ const value: components.TriggerSignalDto = {
 const value: components.HumanSignalDto = {
   type: "human",
   kind: "approve",
-  prompt: "Deploy v2.4.1 to production?",
+  card: {
+    "markdown": "Please approve in the thread.",
+  },
   requestId: "hr_7c2e1a3b-4d5f-6789-abcd-ef0123456789",
-  options: [
-    "us-east",
-    "eu-west",
-  ],
+  actionIdentifier: "hr_7c2e1a3b-4d5f-6789-abcd-ef0123456789",
   from: "deploy-bot",
   ttlSeconds: 3600,
   to: "alice",

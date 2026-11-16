@@ -9,11 +9,6 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
- * Optional headers (e.g. auth tokens) sent with every request to this webhook. Header values are encrypted at rest on the channel endpoint (`endpoint` field).
- */
-export type Headers = {};
-
-/**
  * Optional HTTP method override for this webhook. Defaults to the integration-level method.
  */
 export const Method = {
@@ -34,38 +29,12 @@ export type ToolWebhookEndpointDto = {
   /**
    * Optional headers (e.g. auth tokens) sent with every request to this webhook. Header values are encrypted at rest on the channel endpoint (`endpoint` field).
    */
-  headers?: Headers | undefined;
+  headers?: { [k: string]: string } | undefined;
   /**
    * Optional HTTP method override for this webhook. Defaults to the integration-level method.
    */
   method?: Method | undefined;
 };
-
-/** @internal */
-export const Headers$inboundSchema: z.ZodType<Headers, z.ZodTypeDef, unknown> =
-  z.object({});
-/** @internal */
-export type Headers$Outbound = {};
-
-/** @internal */
-export const Headers$outboundSchema: z.ZodType<
-  Headers$Outbound,
-  z.ZodTypeDef,
-  Headers
-> = z.object({});
-
-export function headersToJSON(headers: Headers): string {
-  return JSON.stringify(Headers$outboundSchema.parse(headers));
-}
-export function headersFromJSON(
-  jsonString: string,
-): SafeParseResult<Headers, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Headers$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Headers' from JSON`,
-  );
-}
 
 /** @internal */
 export const Method$inboundSchema: z.ZodNativeEnum<typeof Method> = z
@@ -81,13 +50,13 @@ export const ToolWebhookEndpointDto$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   url: z.string(),
-  headers: z.lazy(() => Headers$inboundSchema).optional(),
+  headers: z.record(z.string()).optional(),
   method: Method$inboundSchema.optional(),
 });
 /** @internal */
 export type ToolWebhookEndpointDto$Outbound = {
   url: string;
-  headers?: Headers$Outbound | undefined;
+  headers?: { [k: string]: string } | undefined;
   method?: string | undefined;
 };
 
@@ -98,7 +67,7 @@ export const ToolWebhookEndpointDto$outboundSchema: z.ZodType<
   ToolWebhookEndpointDto
 > = z.object({
   url: z.string(),
-  headers: z.lazy(() => Headers$outboundSchema).optional(),
+  headers: z.record(z.string()).optional(),
   method: Method$outboundSchema.optional(),
 });
 

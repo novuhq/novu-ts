@@ -7,7 +7,7 @@ import { SubscribersV1ControllerMarkActionAsSeenRequest } from "@novu/api/models
 
 let value: SubscribersV1ControllerMarkActionAsSeenRequest = {
   messageId: "<id>",
-  type: "<value>",
+  type: "secondary",
   subscriberId: "<id>",
   markMessageActionAsSeenDto: {
     status: "done",
@@ -20,7 +20,7 @@ let value: SubscribersV1ControllerMarkActionAsSeenRequest = {
 | Field                                                                                          | Type                                                                                           | Required                                                                                       | Description                                                                                    |
 | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
 | `messageId`                                                                                    | *string*                                                                                       | :heavy_check_mark:                                                                             | N/A                                                                                            |
-| `type`                                                                                         | *any*                                                                                          | :heavy_check_mark:                                                                             | N/A                                                                                            |
+| `type`                                                                                         | [operations.Type](../../models/operations/type.md)                                             | :heavy_check_mark:                                                                             | N/A                                                                                            |
 | `subscriberId`                                                                                 | *string*                                                                                       | :heavy_check_mark:                                                                             | N/A                                                                                            |
 | `idempotencyKey`                                                                               | *string*                                                                                       | :heavy_minus_sign:                                                                             | A header for idempotency purposes                                                              |
 | `markMessageActionAsSeenDto`                                                                   | [components.MarkMessageActionAsSeenDto](../../models/components/markmessageactionasseendto.md) | :heavy_check_mark:                                                                             | N/A                                                                                            |

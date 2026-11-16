@@ -6,7 +6,7 @@ import * as z from "zod/v3";
 import { ClosedEnum } from "../../types/enums.js";
 
 /**
- * Provider ID of the job
+ * Provider ID of the execution
  */
 export const ProvidersIdEnum = {
   Anypost: "anypost",
@@ -32,6 +32,7 @@ export const ProvidersIdEnum = {
   EmailWebhook: "email-webhook",
   Braze: "braze",
   NovuEmailAgent: "novu-email-agent",
+  AgentEmailInbox: "agent-email-inbox",
   Nexmo: "nexmo",
   Plivo: "plivo",
   Sms77: "sms77",
@@ -81,6 +82,7 @@ export const ProvidersIdEnum = {
   Novu: "novu",
   Slack: "slack",
   Discord: "discord",
+  GoogleChat: "google-chat",
   Msteams: "msteams",
   WebexMessaging: "webex-messaging",
   Mattermost: "mattermost",
@@ -95,6 +97,7 @@ export const ProvidersIdEnum = {
   NovuSlack: "novu-slack",
   Telegram: "telegram",
   Sendblue: "sendblue",
+  PhotonImessage: "photon-imessage",
   NovuWebChat: "novu-web-chat",
   Anthropic: "anthropic",
   NovuAnthropic: "novu-anthropic",
@@ -105,7 +108,7 @@ export const ProvidersIdEnum = {
   ToolWebhook: "tool-webhook",
 } as const;
 /**
- * Provider ID of the job
+ * Provider ID of the execution
  */
 export type ProvidersIdEnum = ClosedEnum<typeof ProvidersIdEnum>;
 

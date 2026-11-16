@@ -8,7 +8,9 @@ import { UpdateChannelEndpointRequestDto } from "@novu/api/models/components";
 let value: UpdateChannelEndpointRequestDto = {
   endpoint: {
     url: "https://example.com/tools/incoming",
-    headers: {},
+    headers: {
+      "Authorization": "Bearer <token>",
+    },
     method: "POST",
   },
 };
