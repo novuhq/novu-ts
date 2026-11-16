@@ -36,23 +36,23 @@ export type HumanSignalDto = {
    */
   kind: Kind;
   /**
-   * Question, action description, or one-way message shown to the human.
+   * Markdown, HITL chrome, or a posted Card element (`type: "card"`) from `{ render }`.
    */
-  prompt: string;
+  card?: any | undefined;
   /**
    * Client-minted id returned by the framework helper; echoed on `ctx.humanResponse.requestId`.
    */
   requestId: string;
   /**
-   * Choice labels — required for `choose`, ignored otherwise.
+   * When set, pending chrome buttons use `human:{actionIdentifier}:…` (the client `requestId` for `renderApprove`).
    */
-  options?: Array<string> | undefined;
+  actionIdentifier?: string | undefined;
   /**
    * Attribution label rendered in the card.
    */
   from?: string | undefined;
   /**
-   * Seconds until the interaction expires. Default 86400 (24h), max 259200.
+   * Seconds until the interaction expires. Default 86400 (24h), max 432000.
    */
   ttlSeconds?: number | undefined;
   /**
@@ -93,9 +93,9 @@ export function humanSignalDtoToToJSON(
 export type HumanSignalDto$Outbound = {
   type: string;
   kind: string;
-  prompt: string;
+  card?: any | undefined;
   requestId: string;
-  options?: Array<string> | undefined;
+  actionIdentifier?: string | undefined;
   from?: string | undefined;
   ttlSeconds?: number | undefined;
   to?: string | Array<string> | undefined;
@@ -109,9 +109,9 @@ export const HumanSignalDto$outboundSchema: z.ZodType<
 > = z.object({
   type: HumanSignalDtoType$outboundSchema,
   kind: Kind$outboundSchema,
-  prompt: z.string(),
+  card: z.any().optional(),
   requestId: z.string(),
-  options: z.array(z.string()).optional(),
+  actionIdentifier: z.string().optional(),
   from: z.string().optional(),
   ttlSeconds: z.number().optional(),
   to: z.union([z.string(), z.array(z.string())]).optional(),

@@ -7,6 +7,7 @@ import { AgentIntegrationsControllerAddAgentIntegrationRequest } from "@novu/api
 
 let value: AgentIntegrationsControllerAddAgentIntegrationRequest = {
   identifier: "<value>",
+  novuAnalyticsSource: "<value>",
   addAgentIntegrationRequestDto: {},
 };
 ```
@@ -16,5 +17,6 @@ let value: AgentIntegrationsControllerAddAgentIntegrationRequest = {
 | Field                                                                                                | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
 | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
 | `identifier`                                                                                         | *string*                                                                                             | :heavy_check_mark:                                                                                   | N/A                                                                                                  |
+| `novuAnalyticsSource`                                                                                | *string*                                                                                             | :heavy_check_mark:                                                                                   | N/A                                                                                                  |
 | `idempotencyKey`                                                                                     | *string*                                                                                             | :heavy_minus_sign:                                                                                   | A header for idempotency purposes                                                                    |
 | `addAgentIntegrationRequestDto`                                                                      | [components.AddAgentIntegrationRequestDto](../../models/components/addagentintegrationrequestdto.md) | :heavy_check_mark:                                                                                   | N/A                                                                                                  |

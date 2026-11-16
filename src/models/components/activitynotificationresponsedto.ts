@@ -65,6 +65,9 @@ export type ActivityNotificationResponseDto = {
    * Last updated time of the notification
    */
   updatedAt?: string | undefined;
+  /**
+   * Channels of the notification
+   */
   channels?: Array<string> | undefined;
   /**
    * Subscriber of the notification
@@ -99,7 +102,7 @@ export type ActivityNotificationResponseDto = {
    */
   topics?: Array<ActivityTopicDto> | undefined;
   /**
-   * Severity of the workflow
+   * Override the severity of the workflow
    */
   severity?: SeverityLevelEnum | undefined;
   /**

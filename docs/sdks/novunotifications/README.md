@@ -919,7 +919,7 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.subscribers.notifications.count("<id>", "[{\"read\":false,\"archived\":false},{\"tags\":[\"important\"]},{\"tags\":{\"and\":[{\"or\":[\"a\",\"b\"]},{\"or\":[\"c\"]}]}}]");
+  const result = await novu.subscribers.notifications.count("<id>", "[{\"read\":false,\"archived\":false},{\"tags\":[\"important\"]}]");
 
   console.log(result);
 }
@@ -942,7 +942,7 @@ const novu = new NovuCore({
 });
 
 async function run() {
-  const res = await subscribersNotificationsCount(novu, "<id>", "[{\"read\":false,\"archived\":false},{\"tags\":[\"important\"]},{\"tags\":{\"and\":[{\"or\":[\"a\",\"b\"]},{\"or\":[\"c\"]}]}}]");
+  const res = await subscribersNotificationsCount(novu, "<id>", "[{\"read\":false,\"archived\":false},{\"tags\":[\"important\"]}]");
   if (res.ok) {
     const { value: result } = res;
     console.log(result);

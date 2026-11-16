@@ -5,13 +5,20 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
+import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export const Type = {
+  Primary: "primary",
+  Secondary: "secondary",
+} as const;
+export type Type = ClosedEnum<typeof Type>;
+
 export type SubscribersV1ControllerMarkActionAsSeenRequest = {
   messageId: string;
-  type?: any | undefined;
+  type: Type;
   subscriberId: string;
   /**
    * A header for idempotency purposes
@@ -26,9 +33,14 @@ export type SubscribersV1ControllerMarkActionAsSeenResponse = {
 };
 
 /** @internal */
+export const Type$outboundSchema: z.ZodNativeEnum<typeof Type> = z.nativeEnum(
+  Type,
+);
+
+/** @internal */
 export type SubscribersV1ControllerMarkActionAsSeenRequest$Outbound = {
   messageId: string;
-  type?: any | undefined;
+  type: string;
   subscriberId: string;
   "idempotency-key"?: string | undefined;
   MarkMessageActionAsSeenDto: components.MarkMessageActionAsSeenDto$Outbound;
@@ -42,7 +54,7 @@ export const SubscribersV1ControllerMarkActionAsSeenRequest$outboundSchema:
     SubscribersV1ControllerMarkActionAsSeenRequest
   > = z.object({
     messageId: z.string(),
-    type: z.any().optional(),
+    type: Type$outboundSchema,
     subscriberId: z.string(),
     idempotencyKey: z.string().optional(),
     markMessageActionAsSeenDto:

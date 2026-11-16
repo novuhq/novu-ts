@@ -229,7 +229,7 @@ export type WorkflowResponseDto = {
     | ToolStepResponseDto
   >;
   /**
-   * Origin of the layout
+   * Origin of the workflow
    */
   origin: ResourceOriginEnum;
   /**
@@ -243,7 +243,7 @@ export type WorkflowResponseDto = {
   /**
    * Runtime issues for workflow creation and update
    */
-  issues?: { [k: string]: RuntimeIssueDto } | undefined;
+  issues?: { [k: string]: Array<RuntimeIssueDto> } | undefined;
   /**
    * Timestamp of the last workflow trigger
    */
@@ -253,7 +253,7 @@ export type WorkflowResponseDto = {
    */
   payloadExample?: { [k: string]: any } | null | undefined;
   /**
-   * Severity of the workflow
+   * Override the severity of the workflow
    */
   severity: SeverityLevelEnum;
 };
@@ -423,7 +423,7 @@ export const WorkflowResponseDto$inboundSchema: z.ZodType<
   origin: ResourceOriginEnum$inboundSchema,
   preferences: WorkflowPreferencesResponseDto$inboundSchema,
   status: WorkflowStatusEnum$inboundSchema,
-  issues: z.record(RuntimeIssueDto$inboundSchema).optional(),
+  issues: z.record(z.array(RuntimeIssueDto$inboundSchema)).optional(),
   lastTriggeredAt: z.nullable(z.string()).optional(),
   payloadExample: z.nullable(z.record(z.any())).optional(),
   severity: SeverityLevelEnum$inboundSchema,

@@ -90,6 +90,16 @@ const value: components.InAppStepResponseDto = {
       "summary": "{{"{{"}}payload.title}}",
     },
   },
+  integrationOverrides: {
+    "tool-webhook": {
+      "prod-alerts": {
+        "alert_type": "incident",
+      },
+      "staging-alerts": {
+        "alert_type": "test",
+      },
+    },
+  },
   variables: {
     "key": "<value>",
     "key1": "<value>",
@@ -195,6 +205,16 @@ const value: components.EmailStepResponseDto = {
       "summary": "{{"{{"}}payload.title}}",
     },
   },
+  integrationOverrides: {
+    "tool-webhook": {
+      "prod-alerts": {
+        "alert_type": "incident",
+      },
+      "staging-alerts": {
+        "alert_type": "test",
+      },
+    },
+  },
   variables: {
     "key": "<value>",
   },
@@ -294,6 +314,16 @@ const value: components.SmsStepResponseDto = {
       "severity": "warning",
       "source": "novu",
       "summary": "{{"{{"}}payload.title}}",
+    },
+  },
+  integrationOverrides: {
+    "tool-webhook": {
+      "prod-alerts": {
+        "alert_type": "incident",
+      },
+      "staging-alerts": {
+        "alert_type": "test",
+      },
     },
   },
   variables: {
@@ -397,6 +427,16 @@ const value: components.PushStepResponseDto = {
       "summary": "{{"{{"}}payload.title}}",
     },
   },
+  integrationOverrides: {
+    "tool-webhook": {
+      "prod-alerts": {
+        "alert_type": "incident",
+      },
+      "staging-alerts": {
+        "alert_type": "test",
+      },
+    },
+  },
   variables: {
     "key": "<value>",
     "key1": "<value>",
@@ -497,6 +537,16 @@ const value: components.ChatStepResponseDto = {
       "severity": "warning",
       "source": "novu",
       "summary": "{{"{{"}}payload.title}}",
+    },
+  },
+  integrationOverrides: {
+    "tool-webhook": {
+      "prod-alerts": {
+        "alert_type": "incident",
+      },
+      "staging-alerts": {
+        "alert_type": "test",
+      },
     },
   },
   variables: {
@@ -602,6 +652,16 @@ const value: components.DelayStepResponseDto = {
       "summary": "{{"{{"}}payload.title}}",
     },
   },
+  integrationOverrides: {
+    "tool-webhook": {
+      "prod-alerts": {
+        "alert_type": "incident",
+      },
+      "staging-alerts": {
+        "alert_type": "test",
+      },
+    },
+  },
   variables: {
     "key": "<value>",
   },
@@ -703,6 +763,16 @@ const value: components.DigestStepResponseDto = {
       "summary": "{{"{{"}}payload.title}}",
     },
   },
+  integrationOverrides: {
+    "tool-webhook": {
+      "prod-alerts": {
+        "alert_type": "incident",
+      },
+      "staging-alerts": {
+        "alert_type": "test",
+      },
+    },
+  },
   variables: {
 
   },
@@ -721,9 +791,7 @@ const value: components.DigestStepResponseDto = {
 
 ```typescript
 const value: components.CustomStepResponseDto = {
-  controls: {
-    values: {},
-  },
+  controls: {},
   providerOverrides: {
     "slack": {
       "text": "{{"{{"}}payload.title}}",
@@ -743,6 +811,16 @@ const value: components.CustomStepResponseDto = {
       "severity": "warning",
       "source": "novu",
       "summary": "{{"{{"}}payload.title}}",
+    },
+  },
+  integrationOverrides: {
+    "tool-webhook": {
+      "prod-alerts": {
+        "alert_type": "incident",
+      },
+      "staging-alerts": {
+        "alert_type": "test",
+      },
     },
   },
   variables: {
@@ -848,6 +926,16 @@ const value: components.ThrottleStepResponseDto = {
       "summary": "{{"{{"}}payload.title}}",
     },
   },
+  integrationOverrides: {
+    "tool-webhook": {
+      "prod-alerts": {
+        "alert_type": "incident",
+      },
+      "staging-alerts": {
+        "alert_type": "test",
+      },
+    },
+  },
   variables: {
     "key": "<value>",
     "key1": "<value>",
@@ -868,12 +956,7 @@ const value: components.ThrottleStepResponseDto = {
 
 ```typescript
 const value: components.HttpRequestStepResponseDto = {
-  controls: {
-    values: {
-      method: "PATCH",
-      url: "https://frightened-pillow.name",
-    },
-  },
+  controls: {},
   providerOverrides: {
     "slack": {
       "text": "{{"{{"}}payload.title}}",
@@ -895,15 +978,27 @@ const value: components.HttpRequestStepResponseDto = {
       "summary": "{{"{{"}}payload.title}}",
     },
   },
+  integrationOverrides: {
+    "tool-webhook": {
+      "prod-alerts": {
+        "alert_type": "incident",
+      },
+      "staging-alerts": {
+        "alert_type": "test",
+      },
+    },
+  },
   variables: {
-
+    "key": "<value>",
+    "key1": "<value>",
+    "key2": "<value>",
   },
   stepId: "<id>",
   id: "<id>",
   name: "<value>",
   slug: "<value>",
   type: "http_request",
-  origin: "novu-cloud-v1",
+  origin: "external",
   workflowId: "<id>",
   workflowDatabaseId: "<id>",
 };
@@ -994,6 +1089,16 @@ const value: components.ToolStepResponseDto = {
       "severity": "warning",
       "source": "novu",
       "summary": "{{"{{"}}payload.title}}",
+    },
+  },
+  integrationOverrides: {
+    "tool-webhook": {
+      "prod-alerts": {
+        "alert_type": "incident",
+      },
+      "staging-alerts": {
+        "alert_type": "test",
+      },
     },
   },
   variables: {

@@ -127,6 +127,7 @@ const novu = new Novu({
 async function run() {
   const result = await novu.contexts.list({
     limit: 10,
+    type: "tenant",
     id: "tenant-prod-123",
     search: "tenant",
   });
@@ -154,6 +155,7 @@ const novu = new NovuCore({
 async function run() {
   const res = await contextsList(novu, {
     limit: 10,
+    type: "tenant",
     id: "tenant-prod-123",
     search: "tenant",
   });

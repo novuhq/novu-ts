@@ -86,7 +86,7 @@ export type TriggerEventToAllRequestDtoOverrides = {
    */
   layoutIdentifier?: string | undefined;
   /**
-   * Severity of the workflow
+   * Override the severity of the workflow
    */
   severity?: SeverityLevelEnum | undefined;
   additionalProperties?: { [k: string]: { [k: string]: any } } | undefined;

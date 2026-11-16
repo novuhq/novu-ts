@@ -1,27 +1,16 @@
 # To
 
-Recipient(s). Accepts a subscriberId string, subscriber object, topic object, or an array of those. When omitted, Novu falls back to the conversation subscriber.
+Novu subscriberId(s) allowed to settle this tool gate when HITL is enabled.
 
-
-## Supported Types
-
-### `string`
+## Example Usage
 
 ```typescript
-const value: string = "subscriber-123";
+import { To } from "@novu/api/models/components";
+
+let value: To = {};
 ```
 
-### `{ [k: string]: any }`
+## Fields
 
-```typescript
-const value: { [k: string]: any } = {
-  "subscriberId": "subscriber-123",
-};
-```
-
-### `components.To3[]`
-
-```typescript
-const value: components.To3[] = [];
-```
-
+| Field       | Type        | Required    | Description |
+| ----------- | ----------- | ----------- | ----------- |

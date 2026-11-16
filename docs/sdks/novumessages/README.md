@@ -31,7 +31,7 @@ const novu = new Novu({
 async function run() {
   const result = await novu.subscribers.messages.updateAsSeen({
     messageId: "<id>",
-    type: "<value>",
+    type: "primary",
     subscriberId: "<id>",
     markMessageActionAsSeenDto: {
       status: "pending",
@@ -61,7 +61,7 @@ const novu = new NovuCore({
 async function run() {
   const res = await subscribersMessagesUpdateAsSeen(novu, {
     messageId: "<id>",
-    type: "<value>",
+    type: "primary",
     subscriberId: "<id>",
     markMessageActionAsSeenDto: {
       status: "pending",

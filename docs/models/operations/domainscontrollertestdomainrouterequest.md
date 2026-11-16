@@ -10,7 +10,7 @@ let value: DomainsControllerTestDomainRouteRequest = {
   address: "79139 7th Street",
   testDomainRouteDto: {
     from: {
-      address: "677 Hillside Road",
+      address: "Kip_Ryan36@hotmail.com",
     },
     subject: "<value>",
   },

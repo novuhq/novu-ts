@@ -3,13 +3,9 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   EmailFromControlDto,
-  EmailFromControlDto$inboundSchema,
   EmailFromControlDto$Outbound,
   EmailFromControlDto$outboundSchema,
 } from "./emailfromcontroldto.js";
@@ -72,31 +68,10 @@ export type EmailControlDto = {
 };
 
 /** @internal */
-export const EmailControlDtoEditorType$inboundSchema: z.ZodNativeEnum<
-  typeof EmailControlDtoEditorType
-> = z.nativeEnum(EmailControlDtoEditorType);
-/** @internal */
 export const EmailControlDtoEditorType$outboundSchema: z.ZodNativeEnum<
   typeof EmailControlDtoEditorType
-> = EmailControlDtoEditorType$inboundSchema;
+> = z.nativeEnum(EmailControlDtoEditorType);
 
-/** @internal */
-export const EmailControlDto$inboundSchema: z.ZodType<
-  EmailControlDto,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  skip: z.record(z.any()).optional(),
-  subject: z.string(),
-  body: z.string().default(""),
-  editorType: EmailControlDtoEditorType$inboundSchema.default("block"),
-  disableOutputSanitization: z.boolean().default(false),
-  layoutId: z.nullable(z.string()).optional(),
-  from: EmailFromControlDto$inboundSchema.optional(),
-  useProviderDefaults: z.boolean().optional(),
-  replyTo: z.string().optional(),
-  preheader: z.string().optional(),
-});
 /** @internal */
 export type EmailControlDto$Outbound = {
   skip?: { [k: string]: any } | undefined;
@@ -133,13 +108,4 @@ export function emailControlDtoToJSON(
   emailControlDto: EmailControlDto,
 ): string {
   return JSON.stringify(EmailControlDto$outboundSchema.parse(emailControlDto));
-}
-export function emailControlDtoFromJSON(
-  jsonString: string,
-): SafeParseResult<EmailControlDto, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => EmailControlDto$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'EmailControlDto' from JSON`,
-  );
 }

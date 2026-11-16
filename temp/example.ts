@@ -25,6 +25,16 @@ let value: StepResponseDto = {
       "summary": "{{"{{"}}payload.title}}",
     },
   },
+  integrationOverrides: {
+    "tool-webhook": {
+      "prod-alerts": {
+        "alert_type": "incident",
+      },
+      "staging-alerts": {
+        "alert_type": "test",
+      },
+    },
+  },
   variables: {
     "key": "<value>",
     "key1": "<value>",

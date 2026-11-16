@@ -166,7 +166,7 @@ export type CreateWorkflowDto = {
    */
   preferences?: PreferencesRequestDto | undefined;
   /**
-   * Severity of the workflow
+   * Override the severity of the workflow
    */
   severity?: SeverityLevelEnum | undefined;
 };
