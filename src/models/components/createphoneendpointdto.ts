@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   PhoneEndpointDto,
   PhoneEndpointDto$Outbound,
@@ -69,10 +70,12 @@ export const CreatePhoneEndpointDtoContext2$outboundSchema: z.ZodType<
   CreatePhoneEndpointDtoContext2$Outbound,
   z.ZodTypeDef,
   CreatePhoneEndpointDtoContext2
-> = z.object({
-  id: z.string(),
-  data: z.record(z.any()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    data: z.record(z.any()).optional(),
+  })
+);
 
 export function createPhoneEndpointDtoContext2ToJSON(
   createPhoneEndpointDtoContext2: CreatePhoneEndpointDtoContext2,
@@ -94,10 +97,12 @@ export const CreatePhoneEndpointDtoContext$outboundSchema: z.ZodType<
   CreatePhoneEndpointDtoContext$Outbound,
   z.ZodTypeDef,
   CreatePhoneEndpointDtoContext
-> = z.union([
-  z.lazy(() => CreatePhoneEndpointDtoContext2$outboundSchema),
-  z.string(),
-]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.union([
+    z.lazy(() => CreatePhoneEndpointDtoContext2$outboundSchema),
+    z.string(),
+  ])
+);
 
 export function createPhoneEndpointDtoContextToJSON(
   createPhoneEndpointDtoContext: CreatePhoneEndpointDtoContext,
@@ -128,21 +133,21 @@ export const CreatePhoneEndpointDto$outboundSchema: z.ZodType<
   CreatePhoneEndpointDto$Outbound,
   z.ZodTypeDef,
   CreatePhoneEndpointDto
-> = z.object({
-  identifier: z.string().optional(),
-  subscriberId: z.string(),
-  createSubscriberIfMissing: z.boolean().default(false),
-  context: z.record(
-    z.union([
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    identifier: z.string().optional(),
+    subscriberId: z.string(),
+    createSubscriberIfMissing: z.boolean().default(false),
+    context: z.record(z.union([
       z.lazy(() => CreatePhoneEndpointDtoContext2$outboundSchema),
       z.string(),
-    ]),
-  ).optional(),
-  integrationIdentifier: z.string(),
-  connectionIdentifier: z.string().optional(),
-  type: z.literal("phone"),
-  endpoint: PhoneEndpointDto$outboundSchema,
-});
+    ])).optional(),
+    integrationIdentifier: z.string(),
+    connectionIdentifier: z.string().optional(),
+    type: z.literal("phone"),
+    endpoint: PhoneEndpointDto$outboundSchema,
+  })
+);
 
 export function createPhoneEndpointDtoToJSON(
   createPhoneEndpointDto: CreatePhoneEndpointDto,

@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -41,17 +41,20 @@ export const TopicsControllerDeleteTopicSubscriptionsRequest$outboundSchema:
     TopicsControllerDeleteTopicSubscriptionsRequest$Outbound,
     z.ZodTypeDef,
     TopicsControllerDeleteTopicSubscriptionsRequest
-  > = z.object({
-    topicKey: z.string(),
-    idempotencyKey: z.string().optional(),
-    deleteTopicSubscriptionsRequestDto:
-      components.DeleteTopicSubscriptionsRequestDto$outboundSchema,
-  }).transform((v) => {
-    return remap$(v, {
-      idempotencyKey: "idempotency-key",
-      deleteTopicSubscriptionsRequestDto: "DeleteTopicSubscriptionsRequestDto",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      topicKey: z.string(),
+      idempotencyKey: z.string().optional(),
+      deleteTopicSubscriptionsRequestDto:
+        components.DeleteTopicSubscriptionsRequestDto$outboundSchema,
+    }).transform((v) => {
+      return remap$(v, {
+        idempotencyKey: "idempotency-key",
+        deleteTopicSubscriptionsRequestDto:
+          "DeleteTopicSubscriptionsRequestDto",
+      });
+    })
+  );
 
 export function topicsControllerDeleteTopicSubscriptionsRequestToJSON(
   topicsControllerDeleteTopicSubscriptionsRequest:
@@ -70,15 +73,17 @@ export const TopicsControllerDeleteTopicSubscriptionsResponse$inboundSchema:
     TopicsControllerDeleteTopicSubscriptionsResponse,
     z.ZodTypeDef,
     unknown
-  > = z.object({
-    Headers: z.record(z.array(z.string())).default({}),
-    Result: components.DeleteTopicSubscriptionsResponseDto$inboundSchema,
-  }).transform((v) => {
-    return remap$(v, {
-      "Headers": "headers",
-      "Result": "result",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      Headers: z.record(z.array(z.string())).default({}),
+      Result: components.DeleteTopicSubscriptionsResponseDto$inboundSchema,
+    }).transform((v) => {
+      return remap$(v, {
+        "Headers": "headers",
+        "Result": "result",
+      });
+    })
+  );
 
 export function topicsControllerDeleteTopicSubscriptionsResponseFromJSON(
   jsonString: string,

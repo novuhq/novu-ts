@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { ActorTypeEnum, ActorTypeEnum$inboundSchema } from "./actortypeenum.js";
@@ -24,10 +24,12 @@ export const ActorFeedItemDto$inboundSchema: z.ZodType<
   ActorFeedItemDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  data: z.nullable(z.string()),
-  type: ActorTypeEnum$inboundSchema,
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    data: z.nullable(z.string()),
+    type: ActorTypeEnum$inboundSchema,
+  })
+);
 
 export function actorFeedItemDtoFromJSON(
   jsonString: string,

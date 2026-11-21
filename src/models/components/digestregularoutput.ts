@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { TimeUnitEnum, TimeUnitEnum$inboundSchema } from "./timeunitenum.js";
@@ -37,7 +37,7 @@ export const LookBackWindow$inboundSchema: z.ZodType<
   LookBackWindow,
   z.ZodTypeDef,
   unknown
-> = z.object({});
+> = /* @__PURE__ */ lazySchema$(() => z.object({}));
 
 export function lookBackWindowFromJSON(
   jsonString: string,
@@ -54,12 +54,14 @@ export const DigestRegularOutput$inboundSchema: z.ZodType<
   DigestRegularOutput,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  amount: z.number(),
-  unit: TimeUnitEnum$inboundSchema,
-  digestKey: z.string().optional(),
-  lookBackWindow: z.lazy(() => LookBackWindow$inboundSchema).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    amount: z.number(),
+    unit: TimeUnitEnum$inboundSchema,
+    digestKey: z.string().optional(),
+    lookBackWindow: z.lazy(() => LookBackWindow$inboundSchema).optional(),
+  })
+);
 
 export function digestRegularOutputFromJSON(
   jsonString: string,

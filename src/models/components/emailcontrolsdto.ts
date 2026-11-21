@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 
 /**
@@ -29,8 +30,8 @@ export type EmailControlsDto = {
 };
 
 /** @internal */
-export const EditorType$outboundSchema: z.ZodNativeEnum<typeof EditorType> = z
-  .nativeEnum(EditorType);
+export const EditorType$outboundSchema: z.ZodNativeEnum<typeof EditorType> =
+  /* @__PURE__ */ lazySchema$(() => z.nativeEnum(EditorType));
 
 /** @internal */
 export type EmailControlsDto$Outbound = {
@@ -43,10 +44,12 @@ export const EmailControlsDto$outboundSchema: z.ZodType<
   EmailControlsDto$Outbound,
   z.ZodTypeDef,
   EmailControlsDto
-> = z.object({
-  body: z.string(),
-  editorType: EditorType$outboundSchema,
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    body: z.string(),
+    editorType: EditorType$outboundSchema,
+  })
+);
 
 export function emailControlsDtoToJSON(
   emailControlsDto: EmailControlsDto,

@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -39,17 +39,19 @@ export const SubscribersControllerPatchSubscriberRequest$outboundSchema:
     SubscribersControllerPatchSubscriberRequest$Outbound,
     z.ZodTypeDef,
     SubscribersControllerPatchSubscriberRequest
-  > = z.object({
-    subscriberId: z.string(),
-    idempotencyKey: z.string().optional(),
-    patchSubscriberRequestDto:
-      components.PatchSubscriberRequestDto$outboundSchema,
-  }).transform((v) => {
-    return remap$(v, {
-      idempotencyKey: "idempotency-key",
-      patchSubscriberRequestDto: "PatchSubscriberRequestDto",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      subscriberId: z.string(),
+      idempotencyKey: z.string().optional(),
+      patchSubscriberRequestDto:
+        components.PatchSubscriberRequestDto$outboundSchema,
+    }).transform((v) => {
+      return remap$(v, {
+        idempotencyKey: "idempotency-key",
+        patchSubscriberRequestDto: "PatchSubscriberRequestDto",
+      });
+    })
+  );
 
 export function subscribersControllerPatchSubscriberRequestToJSON(
   subscribersControllerPatchSubscriberRequest:
@@ -68,15 +70,17 @@ export const SubscribersControllerPatchSubscriberResponse$inboundSchema:
     SubscribersControllerPatchSubscriberResponse,
     z.ZodTypeDef,
     unknown
-  > = z.object({
-    Headers: z.record(z.array(z.string())).default({}),
-    Result: components.SubscriberResponseDto$inboundSchema,
-  }).transform((v) => {
-    return remap$(v, {
-      "Headers": "headers",
-      "Result": "result",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      Headers: z.record(z.array(z.string())).default({}),
+      Result: components.SubscriberResponseDto$inboundSchema,
+    }).transform((v) => {
+      return remap$(v, {
+        "Headers": "headers",
+        "Result": "result",
+      });
+    })
+  );
 
 export function subscribersControllerPatchSubscriberResponseFromJSON(
   jsonString: string,

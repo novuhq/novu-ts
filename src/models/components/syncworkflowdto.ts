@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type SyncWorkflowDto = {
   /**
@@ -21,9 +22,11 @@ export const SyncWorkflowDto$outboundSchema: z.ZodType<
   SyncWorkflowDto$Outbound,
   z.ZodTypeDef,
   SyncWorkflowDto
-> = z.object({
-  targetEnvironmentId: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    targetEnvironmentId: z.string(),
+  })
+);
 
 export function syncWorkflowDtoToJSON(
   syncWorkflowDto: SyncWorkflowDto,

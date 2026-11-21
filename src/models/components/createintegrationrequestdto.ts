@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import {
   CredentialsDto,
@@ -104,12 +105,16 @@ export type CreateIntegrationRequestDto = {
 /** @internal */
 export const CreateIntegrationRequestDtoChannel$outboundSchema: z.ZodNativeEnum<
   typeof CreateIntegrationRequestDtoChannel
-> = z.nativeEnum(CreateIntegrationRequestDtoChannel);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.nativeEnum(CreateIntegrationRequestDtoChannel)
+);
 
 /** @internal */
 export const CreateIntegrationRequestDtoKind$outboundSchema: z.ZodNativeEnum<
   typeof CreateIntegrationRequestDtoKind
-> = z.nativeEnum(CreateIntegrationRequestDtoKind);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.nativeEnum(CreateIntegrationRequestDtoKind)
+);
 
 /** @internal */
 export type CreateIntegrationRequestDto$Outbound = {
@@ -132,24 +137,26 @@ export const CreateIntegrationRequestDto$outboundSchema: z.ZodType<
   CreateIntegrationRequestDto$Outbound,
   z.ZodTypeDef,
   CreateIntegrationRequestDto
-> = z.object({
-  name: z.string().optional(),
-  identifier: z.string().optional(),
-  environmentId: z.string().optional(),
-  providerId: z.string().optional(),
-  channel: CreateIntegrationRequestDtoChannel$outboundSchema.optional(),
-  kind: CreateIntegrationRequestDtoKind$outboundSchema.optional(),
-  credentials: CredentialsDto$outboundSchema.optional(),
-  active: z.boolean().optional(),
-  check: z.boolean().optional(),
-  conditions: z.array(StepFilterDto$outboundSchema).optional(),
-  rules: z.nullable(z.record(z.any())).optional(),
-  configurations: z.record(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    environmentId: "_environmentId",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    name: z.string().optional(),
+    identifier: z.string().optional(),
+    environmentId: z.string().optional(),
+    providerId: z.string().optional(),
+    channel: CreateIntegrationRequestDtoChannel$outboundSchema.optional(),
+    kind: CreateIntegrationRequestDtoKind$outboundSchema.optional(),
+    credentials: CredentialsDto$outboundSchema.optional(),
+    active: z.boolean().optional(),
+    check: z.boolean().optional(),
+    conditions: z.array(StepFilterDto$outboundSchema).optional(),
+    rules: z.nullable(z.record(z.any())).optional(),
+    configurations: z.record(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      environmentId: "_environmentId",
+    });
+  })
+);
 
 export function createIntegrationRequestDtoToJSON(
   createIntegrationRequestDto: CreateIntegrationRequestDto,

@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 
 /**
@@ -95,10 +96,12 @@ export const GenerateChatOauthUrlRequestDtoContext2$outboundSchema: z.ZodType<
   GenerateChatOauthUrlRequestDtoContext2$Outbound,
   z.ZodTypeDef,
   GenerateChatOauthUrlRequestDtoContext2
-> = z.object({
-  id: z.string(),
-  data: z.record(z.any()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    data: z.record(z.any()).optional(),
+  })
+);
 
 export function generateChatOauthUrlRequestDtoContext2ToJSON(
   generateChatOauthUrlRequestDtoContext2:
@@ -121,10 +124,12 @@ export const GenerateChatOauthUrlRequestDtoContext$outboundSchema: z.ZodType<
   GenerateChatOauthUrlRequestDtoContext$Outbound,
   z.ZodTypeDef,
   GenerateChatOauthUrlRequestDtoContext
-> = z.union([
-  z.lazy(() => GenerateChatOauthUrlRequestDtoContext2$outboundSchema),
-  z.string(),
-]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.union([
+    z.lazy(() => GenerateChatOauthUrlRequestDtoContext2$outboundSchema),
+    z.string(),
+  ])
+);
 
 export function generateChatOauthUrlRequestDtoContextToJSON(
   generateChatOauthUrlRequestDtoContext: GenerateChatOauthUrlRequestDtoContext,
@@ -137,14 +142,15 @@ export function generateChatOauthUrlRequestDtoContextToJSON(
 }
 
 /** @internal */
-export const Mode$outboundSchema: z.ZodNativeEnum<typeof Mode> = z.nativeEnum(
-  Mode,
-);
+export const Mode$outboundSchema: z.ZodNativeEnum<typeof Mode> =
+  /* @__PURE__ */ lazySchema$(() => z.nativeEnum(Mode));
 
 /** @internal */
 export const GenerateChatOauthUrlRequestDtoConnectionMode$outboundSchema:
-  z.ZodNativeEnum<typeof GenerateChatOauthUrlRequestDtoConnectionMode> = z
-    .nativeEnum(GenerateChatOauthUrlRequestDtoConnectionMode);
+  z.ZodNativeEnum<typeof GenerateChatOauthUrlRequestDtoConnectionMode> =
+    /* @__PURE__ */ lazySchema$(() =>
+      z.nativeEnum(GenerateChatOauthUrlRequestDtoConnectionMode)
+    );
 
 /** @internal */
 export type GenerateChatOauthUrlRequestDto$Outbound = {
@@ -166,23 +172,23 @@ export const GenerateChatOauthUrlRequestDto$outboundSchema: z.ZodType<
   GenerateChatOauthUrlRequestDto$Outbound,
   z.ZodTypeDef,
   GenerateChatOauthUrlRequestDto
-> = z.object({
-  subscriberId: z.string().optional(),
-  integrationIdentifier: z.string(),
-  connectionIdentifier: z.string().optional(),
-  context: z.record(
-    z.union([
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    subscriberId: z.string().optional(),
+    integrationIdentifier: z.string(),
+    connectionIdentifier: z.string().optional(),
+    context: z.record(z.union([
       z.lazy(() => GenerateChatOauthUrlRequestDtoContext2$outboundSchema),
       z.string(),
-    ]),
-  ).optional(),
-  scope: z.array(z.string()).optional(),
-  userScope: z.array(z.string()).optional(),
-  mode: Mode$outboundSchema.optional(),
-  connectionMode: GenerateChatOauthUrlRequestDtoConnectionMode$outboundSchema
-    .optional(),
-  autoLinkUser: z.boolean().optional(),
-});
+    ])).optional(),
+    scope: z.array(z.string()).optional(),
+    userScope: z.array(z.string()).optional(),
+    mode: Mode$outboundSchema.optional(),
+    connectionMode: GenerateChatOauthUrlRequestDtoConnectionMode$outboundSchema
+      .optional(),
+    autoLinkUser: z.boolean().optional(),
+  })
+);
 
 export function generateChatOauthUrlRequestDtoToJSON(
   generateChatOauthUrlRequestDto: GenerateChatOauthUrlRequestDto,

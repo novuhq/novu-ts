@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -55,10 +55,12 @@ export const PreviewPayloadDtoContext2$inboundSchema: z.ZodType<
   PreviewPayloadDtoContext2,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: z.string(),
-  data: z.record(z.any()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    data: z.record(z.any()).optional(),
+  })
+);
 /** @internal */
 export type PreviewPayloadDtoContext2$Outbound = {
   id: string;
@@ -70,10 +72,12 @@ export const PreviewPayloadDtoContext2$outboundSchema: z.ZodType<
   PreviewPayloadDtoContext2$Outbound,
   z.ZodTypeDef,
   PreviewPayloadDtoContext2
-> = z.object({
-  id: z.string(),
-  data: z.record(z.any()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    data: z.record(z.any()).optional(),
+  })
+);
 
 export function previewPayloadDtoContext2ToJSON(
   previewPayloadDtoContext2: PreviewPayloadDtoContext2,
@@ -97,10 +101,9 @@ export const PreviewPayloadDtoContext$inboundSchema: z.ZodType<
   PreviewPayloadDtoContext,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  z.lazy(() => PreviewPayloadDtoContext2$inboundSchema),
-  z.string(),
-]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.union([z.lazy(() => PreviewPayloadDtoContext2$inboundSchema), z.string()])
+);
 /** @internal */
 export type PreviewPayloadDtoContext$Outbound =
   | PreviewPayloadDtoContext2$Outbound
@@ -111,10 +114,9 @@ export const PreviewPayloadDtoContext$outboundSchema: z.ZodType<
   PreviewPayloadDtoContext$Outbound,
   z.ZodTypeDef,
   PreviewPayloadDtoContext
-> = z.union([
-  z.lazy(() => PreviewPayloadDtoContext2$outboundSchema),
-  z.string(),
-]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.union([z.lazy(() => PreviewPayloadDtoContext2$outboundSchema), z.string()])
+);
 
 export function previewPayloadDtoContextToJSON(
   previewPayloadDtoContext: PreviewPayloadDtoContext,
@@ -138,19 +140,19 @@ export const PreviewPayloadDto$inboundSchema: z.ZodType<
   PreviewPayloadDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  subscriber: SubscriberResponseDtoOptional$inboundSchema.optional(),
-  actor: SubscriberResponseDtoOptional$inboundSchema.optional(),
-  payload: z.record(z.any()).optional(),
-  steps: z.record(z.any()).optional(),
-  context: z.record(
-    z.union([
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    subscriber: SubscriberResponseDtoOptional$inboundSchema.optional(),
+    actor: SubscriberResponseDtoOptional$inboundSchema.optional(),
+    payload: z.record(z.any()).optional(),
+    steps: z.record(z.any()).optional(),
+    context: z.record(z.union([
       z.lazy(() => PreviewPayloadDtoContext2$inboundSchema),
       z.string(),
-    ]),
-  ).optional(),
-  env: z.record(z.any()).optional(),
-});
+    ])).optional(),
+    env: z.record(z.any()).optional(),
+  })
+);
 /** @internal */
 export type PreviewPayloadDto$Outbound = {
   subscriber?: SubscriberResponseDtoOptional$Outbound | undefined;
@@ -168,19 +170,19 @@ export const PreviewPayloadDto$outboundSchema: z.ZodType<
   PreviewPayloadDto$Outbound,
   z.ZodTypeDef,
   PreviewPayloadDto
-> = z.object({
-  subscriber: SubscriberResponseDtoOptional$outboundSchema.optional(),
-  actor: SubscriberResponseDtoOptional$outboundSchema.optional(),
-  payload: z.record(z.any()).optional(),
-  steps: z.record(z.any()).optional(),
-  context: z.record(
-    z.union([
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    subscriber: SubscriberResponseDtoOptional$outboundSchema.optional(),
+    actor: SubscriberResponseDtoOptional$outboundSchema.optional(),
+    payload: z.record(z.any()).optional(),
+    steps: z.record(z.any()).optional(),
+    context: z.record(z.union([
       z.lazy(() => PreviewPayloadDtoContext2$outboundSchema),
       z.string(),
-    ]),
-  ).optional(),
-  env: z.record(z.any()).optional(),
-});
+    ])).optional(),
+    env: z.record(z.any()).optional(),
+  })
+);
 
 export function previewPayloadDtoToJSON(
   previewPayloadDto: PreviewPayloadDto,

@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   PagerDutyServiceEndpointDto,
   PagerDutyServiceEndpointDto$Outbound,
@@ -70,10 +71,12 @@ export const CreatePagerDutyServiceEndpointDtoContext2$outboundSchema:
     CreatePagerDutyServiceEndpointDtoContext2$Outbound,
     z.ZodTypeDef,
     CreatePagerDutyServiceEndpointDtoContext2
-  > = z.object({
-    id: z.string(),
-    data: z.record(z.any()).optional(),
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      id: z.string(),
+      data: z.record(z.any()).optional(),
+    })
+  );
 
 export function createPagerDutyServiceEndpointDtoContext2ToJSON(
   createPagerDutyServiceEndpointDtoContext2:
@@ -96,10 +99,12 @@ export const CreatePagerDutyServiceEndpointDtoContext$outboundSchema: z.ZodType<
   CreatePagerDutyServiceEndpointDtoContext$Outbound,
   z.ZodTypeDef,
   CreatePagerDutyServiceEndpointDtoContext
-> = z.union([
-  z.lazy(() => CreatePagerDutyServiceEndpointDtoContext2$outboundSchema),
-  z.string(),
-]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.union([
+    z.lazy(() => CreatePagerDutyServiceEndpointDtoContext2$outboundSchema),
+    z.string(),
+  ])
+);
 
 export function createPagerDutyServiceEndpointDtoContextToJSON(
   createPagerDutyServiceEndpointDtoContext:
@@ -131,21 +136,21 @@ export const CreatePagerDutyServiceEndpointDto$outboundSchema: z.ZodType<
   CreatePagerDutyServiceEndpointDto$Outbound,
   z.ZodTypeDef,
   CreatePagerDutyServiceEndpointDto
-> = z.object({
-  identifier: z.string().optional(),
-  subscriberId: z.string(),
-  createSubscriberIfMissing: z.boolean().default(false),
-  context: z.record(
-    z.union([
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    identifier: z.string().optional(),
+    subscriberId: z.string(),
+    createSubscriberIfMissing: z.boolean().default(false),
+    context: z.record(z.union([
       z.lazy(() => CreatePagerDutyServiceEndpointDtoContext2$outboundSchema),
       z.string(),
-    ]),
-  ).optional(),
-  integrationIdentifier: z.string(),
-  connectionIdentifier: z.string().optional(),
-  type: z.literal("pagerduty_service"),
-  endpoint: PagerDutyServiceEndpointDto$outboundSchema,
-});
+    ])).optional(),
+    integrationIdentifier: z.string(),
+    connectionIdentifier: z.string().optional(),
+    type: z.literal("pagerduty_service"),
+    endpoint: PagerDutyServiceEndpointDto$outboundSchema,
+  })
+);
 
 export function createPagerDutyServiceEndpointDtoToJSON(
   createPagerDutyServiceEndpointDto: CreatePagerDutyServiceEndpointDto,

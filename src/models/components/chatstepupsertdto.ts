@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   ChatControlDto,
   ChatControlDto$Outbound,
@@ -61,7 +62,9 @@ export const ChatStepUpsertDtoControlValues$outboundSchema: z.ZodType<
   ChatStepUpsertDtoControlValues$Outbound,
   z.ZodTypeDef,
   ChatStepUpsertDtoControlValues
-> = z.union([ChatControlDto$outboundSchema, z.record(z.any())]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.union([ChatControlDto$outboundSchema, z.record(z.any())])
+);
 
 export function chatStepUpsertDtoControlValuesToJSON(
   chatStepUpsertDtoControlValues: ChatStepUpsertDtoControlValues,
@@ -92,21 +95,23 @@ export const ChatStepUpsertDto$outboundSchema: z.ZodType<
   ChatStepUpsertDto$Outbound,
   z.ZodTypeDef,
   ChatStepUpsertDto
-> = z.object({
-  id: z.string().optional(),
-  stepId: z.string().optional(),
-  name: z.string(),
-  type: z.literal("chat"),
-  controlValues: z.union([ChatControlDto$outboundSchema, z.record(z.any())])
-    .optional(),
-  providerOverrides: z.nullable(z.record(z.record(z.any()))).optional(),
-  integrationOverrides: z.nullable(z.record(z.record(z.record(z.any()))))
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    id: "_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string().optional(),
+    stepId: z.string().optional(),
+    name: z.string(),
+    type: z.literal("chat"),
+    controlValues: z.union([ChatControlDto$outboundSchema, z.record(z.any())])
+      .optional(),
+    providerOverrides: z.nullable(z.record(z.record(z.any()))).optional(),
+    integrationOverrides: z.nullable(z.record(z.record(z.record(z.any()))))
+      .optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      id: "_id",
+    });
+  })
+);
 
 export function chatStepUpsertDtoToJSON(
   chatStepUpsertDto: ChatStepUpsertDto,

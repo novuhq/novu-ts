@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
@@ -120,18 +120,20 @@ export type ChannelConnectionsControllerListChannelConnectionsResponse = {
 export const ChannelConnectionsControllerListChannelConnectionsQueryParamOrderDirection$outboundSchema:
   z.ZodNativeEnum<
     typeof ChannelConnectionsControllerListChannelConnectionsQueryParamOrderDirection
-  > = z.nativeEnum(
-    ChannelConnectionsControllerListChannelConnectionsQueryParamOrderDirection,
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.nativeEnum(
+      ChannelConnectionsControllerListChannelConnectionsQueryParamOrderDirection,
+    )
   );
 
 /** @internal */
 export const ConnectionMode$outboundSchema: z.ZodNativeEnum<
   typeof ConnectionMode
-> = z.nativeEnum(ConnectionMode);
+> = /* @__PURE__ */ lazySchema$(() => z.nativeEnum(ConnectionMode));
 
 /** @internal */
-export const Channel$outboundSchema: z.ZodNativeEnum<typeof Channel> = z
-  .nativeEnum(Channel);
+export const Channel$outboundSchema: z.ZodNativeEnum<typeof Channel> =
+  /* @__PURE__ */ lazySchema$(() => z.nativeEnum(Channel));
 
 /** @internal */
 export type ChannelConnectionsControllerListChannelConnectionsRequest$Outbound =
@@ -157,27 +159,29 @@ export const ChannelConnectionsControllerListChannelConnectionsRequest$outboundS
     ChannelConnectionsControllerListChannelConnectionsRequest$Outbound,
     z.ZodTypeDef,
     ChannelConnectionsControllerListChannelConnectionsRequest
-  > = z.object({
-    after: z.string().optional(),
-    before: z.string().optional(),
-    limit: z.number().optional(),
-    orderDirection:
-      ChannelConnectionsControllerListChannelConnectionsQueryParamOrderDirection$outboundSchema
-        .optional(),
-    orderBy: z.string().optional(),
-    includeCursor: z.boolean().optional(),
-    subscriberId: z.string().optional(),
-    connectionMode: ConnectionMode$outboundSchema.optional(),
-    channel: Channel$outboundSchema.optional(),
-    providerId: components.ProvidersIdEnum$outboundSchema.optional(),
-    integrationIdentifier: z.string().optional(),
-    contextKeys: z.array(z.string()).optional(),
-    idempotencyKey: z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      idempotencyKey: "idempotency-key",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      after: z.string().optional(),
+      before: z.string().optional(),
+      limit: z.number().optional(),
+      orderDirection:
+        ChannelConnectionsControllerListChannelConnectionsQueryParamOrderDirection$outboundSchema
+          .optional(),
+      orderBy: z.string().optional(),
+      includeCursor: z.boolean().optional(),
+      subscriberId: z.string().optional(),
+      connectionMode: ConnectionMode$outboundSchema.optional(),
+      channel: Channel$outboundSchema.optional(),
+      providerId: components.ProvidersIdEnum$outboundSchema.optional(),
+      integrationIdentifier: z.string().optional(),
+      contextKeys: z.array(z.string()).optional(),
+      idempotencyKey: z.string().optional(),
+    }).transform((v) => {
+      return remap$(v, {
+        idempotencyKey: "idempotency-key",
+      });
+    })
+  );
 
 export function channelConnectionsControllerListChannelConnectionsRequestToJSON(
   channelConnectionsControllerListChannelConnectionsRequest:
@@ -195,15 +199,17 @@ export const ChannelConnectionsControllerListChannelConnectionsResponse$inboundS
     ChannelConnectionsControllerListChannelConnectionsResponse,
     z.ZodTypeDef,
     unknown
-  > = z.object({
-    Headers: z.record(z.array(z.string())).default({}),
-    Result: components.ListChannelConnectionsResponseDto$inboundSchema,
-  }).transform((v) => {
-    return remap$(v, {
-      "Headers": "headers",
-      "Result": "result",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      Headers: z.record(z.array(z.string())).default({}),
+      Result: components.ListChannelConnectionsResponseDto$inboundSchema,
+    }).transform((v) => {
+      return remap$(v, {
+        "Headers": "headers",
+        "Result": "result",
+      });
+    })
+  );
 
 export function channelConnectionsControllerListChannelConnectionsResponseFromJSON(
   jsonString: string,

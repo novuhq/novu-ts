@@ -6,6 +6,7 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import {
   collectExtraKeys as collectExtraKeys$,
+  lazySchema as lazySchema$,
   safeParse,
 } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
@@ -149,28 +150,30 @@ export type DelayStepResponseDto = {
 /** @internal */
 export const DelayStepResponseDtoType$inboundSchema: z.ZodNativeEnum<
   typeof DelayStepResponseDtoType
-> = z.nativeEnum(DelayStepResponseDtoType);
+> = /* @__PURE__ */ lazySchema$(() => z.nativeEnum(DelayStepResponseDtoType));
 
 /** @internal */
 export const DelayStepResponseDtoUnit$inboundSchema: z.ZodNativeEnum<
   typeof DelayStepResponseDtoUnit
-> = z.nativeEnum(DelayStepResponseDtoUnit);
+> = /* @__PURE__ */ lazySchema$(() => z.nativeEnum(DelayStepResponseDtoUnit));
 
 /** @internal */
 export const DelayStepResponseDtoControlValues$inboundSchema: z.ZodType<
   DelayStepResponseDtoControlValues,
   z.ZodTypeDef,
   unknown
-> = collectExtraKeys$(
-  z.object({
-    skip: z.record(z.any()).optional(),
-    type: DelayStepResponseDtoType$inboundSchema.default("regular"),
-    amount: z.number().optional(),
-    unit: DelayStepResponseDtoUnit$inboundSchema.optional(),
-    cron: z.string().optional(),
-  }).catchall(z.any()),
-  "additionalProperties",
-  true,
+> = /* @__PURE__ */ lazySchema$(() =>
+  collectExtraKeys$(
+    z.object({
+      skip: z.record(z.any()).optional(),
+      type: DelayStepResponseDtoType$inboundSchema.default("regular"),
+      amount: z.number().optional(),
+      unit: DelayStepResponseDtoUnit$inboundSchema.optional(),
+      cron: z.string().optional(),
+    }).catchall(z.any()),
+    "additionalProperties",
+    true,
+  )
 );
 
 export function delayStepResponseDtoControlValuesFromJSON(
@@ -188,29 +191,31 @@ export const DelayStepResponseDto$inboundSchema: z.ZodType<
   DelayStepResponseDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  controls: DelayControlsMetadataResponseDto$inboundSchema,
-  controlValues: z.lazy(() => DelayStepResponseDtoControlValues$inboundSchema)
-    .optional(),
-  providerOverrides: z.nullable(z.record(z.record(z.any()))).optional(),
-  integrationOverrides: z.nullable(z.record(z.record(z.record(z.any()))))
-    .optional(),
-  variables: z.record(z.any()),
-  stepId: z.string(),
-  _id: z.string(),
-  name: z.string(),
-  slug: z.string(),
-  type: z.literal("delay"),
-  origin: ResourceOriginEnum$inboundSchema,
-  workflowId: z.string(),
-  workflowDatabaseId: z.string(),
-  issues: StepIssuesDto$inboundSchema.optional(),
-  stepResolverHash: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_id": "id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    controls: DelayControlsMetadataResponseDto$inboundSchema,
+    controlValues: z.lazy(() => DelayStepResponseDtoControlValues$inboundSchema)
+      .optional(),
+    providerOverrides: z.nullable(z.record(z.record(z.any()))).optional(),
+    integrationOverrides: z.nullable(z.record(z.record(z.record(z.any()))))
+      .optional(),
+    variables: z.record(z.any()),
+    stepId: z.string(),
+    _id: z.string(),
+    name: z.string(),
+    slug: z.string(),
+    type: z.literal("delay"),
+    origin: ResourceOriginEnum$inboundSchema,
+    workflowId: z.string(),
+    workflowDatabaseId: z.string(),
+    issues: StepIssuesDto$inboundSchema.optional(),
+    stepResolverHash: z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_id": "id",
+    });
+  })
+);
 
 export function delayStepResponseDtoFromJSON(
   jsonString: string,

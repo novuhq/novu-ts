@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -44,21 +44,23 @@ export type AgentPlanUsageDto = {
 };
 
 /** @internal */
-export const LimitSource$inboundSchema: z.ZodNativeEnum<typeof LimitSource> = z
-  .nativeEnum(LimitSource);
+export const LimitSource$inboundSchema: z.ZodNativeEnum<typeof LimitSource> =
+  /* @__PURE__ */ lazySchema$(() => z.nativeEnum(LimitSource));
 
 /** @internal */
 export const AgentPlanUsageDto$inboundSchema: z.ZodType<
   AgentPlanUsageDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  used: z.number(),
-  limit: z.number(),
-  totalCreated: z.number(),
-  creationLimit: z.number(),
-  limitSource: LimitSource$inboundSchema,
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    used: z.number(),
+    limit: z.number(),
+    totalCreated: z.number(),
+    creationLimit: z.number(),
+    limitSource: LimitSource$inboundSchema,
+  })
+);
 
 export function agentPlanUsageDtoFromJSON(
   jsonString: string,

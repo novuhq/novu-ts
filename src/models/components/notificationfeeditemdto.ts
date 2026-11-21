@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -156,60 +156,64 @@ export type NotificationFeedItemDto = {
 /** @internal */
 export const NotificationFeedItemDtoStatus$inboundSchema: z.ZodNativeEnum<
   typeof NotificationFeedItemDtoStatus
-> = z.nativeEnum(NotificationFeedItemDtoStatus);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.nativeEnum(NotificationFeedItemDtoStatus)
+);
 
 /** @internal */
 export const NotificationFeedItemDto$inboundSchema: z.ZodType<
   NotificationFeedItemDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  _id: z.string(),
-  _templateId: z.string(),
-  _environmentId: z.string(),
-  _messageTemplateId: z.string().optional(),
-  _organizationId: z.string(),
-  _notificationId: z.string(),
-  _subscriberId: z.string(),
-  _feedId: z.nullable(z.string()).optional(),
-  _jobId: z.string(),
-  createdAt: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  updatedAt: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  actor: ActorFeedItemDto$inboundSchema.optional(),
-  subscriber: SubscriberFeedResponseDto$inboundSchema.optional(),
-  transactionId: z.string(),
-  templateIdentifier: z.nullable(z.string()).optional(),
-  providerId: z.nullable(z.string()).optional(),
-  content: z.string(),
-  subject: z.nullable(z.string()).optional(),
-  channel: ChannelTypeEnum$inboundSchema,
-  read: z.boolean(),
-  seen: z.boolean(),
-  archived: z.boolean(),
-  deviceTokens: z.nullable(z.array(z.string())).optional(),
-  cta: MessageCTA$inboundSchema,
-  status: NotificationFeedItemDtoStatus$inboundSchema,
-  payload: z.record(z.any()).optional(),
-  data: z.nullable(z.record(z.any())).optional(),
-  overrides: z.record(z.any()).optional(),
-  tags: z.nullable(z.array(z.string())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_id": "id",
-    "_templateId": "templateId",
-    "_environmentId": "environmentId",
-    "_messageTemplateId": "messageTemplateId",
-    "_organizationId": "organizationId",
-    "_notificationId": "notificationId",
-    "_subscriberId": "subscriberId",
-    "_feedId": "feedId",
-    "_jobId": "jobId",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    _id: z.string(),
+    _templateId: z.string(),
+    _environmentId: z.string(),
+    _messageTemplateId: z.string().optional(),
+    _organizationId: z.string(),
+    _notificationId: z.string(),
+    _subscriberId: z.string(),
+    _feedId: z.nullable(z.string()).optional(),
+    _jobId: z.string(),
+    createdAt: z.nullable(
+      z.string().datetime({ offset: true }).transform(v => new Date(v)),
+    ).optional(),
+    updatedAt: z.nullable(
+      z.string().datetime({ offset: true }).transform(v => new Date(v)),
+    ).optional(),
+    actor: ActorFeedItemDto$inboundSchema.optional(),
+    subscriber: SubscriberFeedResponseDto$inboundSchema.optional(),
+    transactionId: z.string(),
+    templateIdentifier: z.nullable(z.string()).optional(),
+    providerId: z.nullable(z.string()).optional(),
+    content: z.string(),
+    subject: z.nullable(z.string()).optional(),
+    channel: ChannelTypeEnum$inboundSchema,
+    read: z.boolean(),
+    seen: z.boolean(),
+    archived: z.boolean(),
+    deviceTokens: z.nullable(z.array(z.string())).optional(),
+    cta: MessageCTA$inboundSchema,
+    status: NotificationFeedItemDtoStatus$inboundSchema,
+    payload: z.record(z.any()).optional(),
+    data: z.nullable(z.record(z.any())).optional(),
+    overrides: z.record(z.any()).optional(),
+    tags: z.nullable(z.array(z.string())).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_id": "id",
+      "_templateId": "templateId",
+      "_environmentId": "environmentId",
+      "_messageTemplateId": "messageTemplateId",
+      "_organizationId": "organizationId",
+      "_notificationId": "notificationId",
+      "_subscriberId": "subscriberId",
+      "_feedId": "feedId",
+      "_jobId": "jobId",
+    });
+  })
+);
 
 export function notificationFeedItemDtoFromJSON(
   jsonString: string,

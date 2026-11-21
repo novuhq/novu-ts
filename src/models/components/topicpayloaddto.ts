@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   TriggerRecipientsTypeEnum,
   TriggerRecipientsTypeEnum$outboundSchema,
@@ -29,11 +30,13 @@ export const TopicPayloadDto$outboundSchema: z.ZodType<
   TopicPayloadDto$Outbound,
   z.ZodTypeDef,
   TopicPayloadDto
-> = z.object({
-  topicKey: z.string(),
-  type: TriggerRecipientsTypeEnum$outboundSchema,
-  exclude: z.array(z.string()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    topicKey: z.string(),
+    type: TriggerRecipientsTypeEnum$outboundSchema,
+    exclude: z.array(z.string()).optional(),
+  })
+);
 
 export function topicPayloadDtoToJSON(
   topicPayloadDto: TopicPayloadDto,

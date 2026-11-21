@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type TenantPayloadDto = {
   identifier?: string | undefined;
@@ -22,11 +23,13 @@ export const TenantPayloadDto$outboundSchema: z.ZodType<
   TenantPayloadDto$Outbound,
   z.ZodTypeDef,
   TenantPayloadDto
-> = z.object({
-  identifier: z.string().optional(),
-  name: z.string().optional(),
-  data: z.record(z.any()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    identifier: z.string().optional(),
+    name: z.string().optional(),
+    data: z.record(z.any()).optional(),
+  })
+);
 
 export function tenantPayloadDtoToJSON(
   tenantPayloadDto: TenantPayloadDto,

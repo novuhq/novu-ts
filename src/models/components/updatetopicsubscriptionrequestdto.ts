@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   GroupPreferenceFilterDto,
   GroupPreferenceFilterDto$Outbound,
@@ -44,11 +45,13 @@ export const UpdateTopicSubscriptionRequestDtoPreferences$outboundSchema:
     UpdateTopicSubscriptionRequestDtoPreferences$Outbound,
     z.ZodTypeDef,
     UpdateTopicSubscriptionRequestDtoPreferences
-  > = z.union([
-    WorkflowPreferenceRequestDto$outboundSchema,
-    GroupPreferenceFilterDto$outboundSchema,
-    z.string(),
-  ]);
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.union([
+      WorkflowPreferenceRequestDto$outboundSchema,
+      GroupPreferenceFilterDto$outboundSchema,
+      z.string(),
+    ])
+  );
 
 export function updateTopicSubscriptionRequestDtoPreferencesToJSON(
   updateTopicSubscriptionRequestDtoPreferences:
@@ -78,16 +81,18 @@ export const UpdateTopicSubscriptionRequestDto$outboundSchema: z.ZodType<
   UpdateTopicSubscriptionRequestDto$Outbound,
   z.ZodTypeDef,
   UpdateTopicSubscriptionRequestDto
-> = z.object({
-  name: z.string().optional(),
-  preferences: z.array(
-    z.union([
-      WorkflowPreferenceRequestDto$outboundSchema,
-      GroupPreferenceFilterDto$outboundSchema,
-      z.string(),
-    ]),
-  ).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    name: z.string().optional(),
+    preferences: z.array(
+      z.union([
+        WorkflowPreferenceRequestDto$outboundSchema,
+        GroupPreferenceFilterDto$outboundSchema,
+        z.string(),
+      ]),
+    ).optional(),
+  })
+);
 
 export function updateTopicSubscriptionRequestDtoToJSON(
   updateTopicSubscriptionRequestDto: UpdateTopicSubscriptionRequestDto,

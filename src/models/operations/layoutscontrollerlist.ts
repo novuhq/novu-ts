@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -56,18 +56,20 @@ export const LayoutsControllerListRequest$outboundSchema: z.ZodType<
   LayoutsControllerListRequest$Outbound,
   z.ZodTypeDef,
   LayoutsControllerListRequest
-> = z.object({
-  limit: z.number().optional(),
-  offset: z.number().optional(),
-  orderDirection: components.DirectionEnum$outboundSchema.optional(),
-  orderBy: components.LayoutResponseDtoSortField$outboundSchema.optional(),
-  query: z.string().optional(),
-  idempotencyKey: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    idempotencyKey: "idempotency-key",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    limit: z.number().optional(),
+    offset: z.number().optional(),
+    orderDirection: components.DirectionEnum$outboundSchema.optional(),
+    orderBy: components.LayoutResponseDtoSortField$outboundSchema.optional(),
+    query: z.string().optional(),
+    idempotencyKey: z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      idempotencyKey: "idempotency-key",
+    });
+  })
+);
 
 export function layoutsControllerListRequestToJSON(
   layoutsControllerListRequest: LayoutsControllerListRequest,
@@ -84,15 +86,17 @@ export const LayoutsControllerListResponse$inboundSchema: z.ZodType<
   LayoutsControllerListResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  Headers: z.record(z.array(z.string())).default({}),
-  Result: components.ListLayoutResponseDto$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "Headers": "headers",
-    "Result": "result",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    Headers: z.record(z.array(z.string())).default({}),
+    Result: components.ListLayoutResponseDto$inboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      "Headers": "headers",
+      "Result": "result",
+    });
+  })
+);
 
 export function layoutsControllerListResponseFromJSON(
   jsonString: string,

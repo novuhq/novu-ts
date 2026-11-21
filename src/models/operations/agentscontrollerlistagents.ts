@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
@@ -68,8 +68,10 @@ export type AgentsControllerListAgentsResponse = {
 
 /** @internal */
 export const AgentsControllerListAgentsQueryParamOrderDirection$outboundSchema:
-  z.ZodNativeEnum<typeof AgentsControllerListAgentsQueryParamOrderDirection> = z
-    .nativeEnum(AgentsControllerListAgentsQueryParamOrderDirection);
+  z.ZodNativeEnum<typeof AgentsControllerListAgentsQueryParamOrderDirection> =
+    /* @__PURE__ */ lazySchema$(() =>
+      z.nativeEnum(AgentsControllerListAgentsQueryParamOrderDirection)
+    );
 
 /** @internal */
 export type AgentsControllerListAgentsRequest$Outbound = {
@@ -88,22 +90,24 @@ export const AgentsControllerListAgentsRequest$outboundSchema: z.ZodType<
   AgentsControllerListAgentsRequest$Outbound,
   z.ZodTypeDef,
   AgentsControllerListAgentsRequest
-> = z.object({
-  after: z.string().optional(),
-  before: z.string().optional(),
-  limit: z.number().optional(),
-  orderDirection:
-    AgentsControllerListAgentsQueryParamOrderDirection$outboundSchema
-      .optional(),
-  orderBy: z.string().optional(),
-  includeCursor: z.boolean().optional(),
-  identifier: z.string().optional(),
-  idempotencyKey: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    idempotencyKey: "idempotency-key",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    after: z.string().optional(),
+    before: z.string().optional(),
+    limit: z.number().optional(),
+    orderDirection:
+      AgentsControllerListAgentsQueryParamOrderDirection$outboundSchema
+        .optional(),
+    orderBy: z.string().optional(),
+    includeCursor: z.boolean().optional(),
+    identifier: z.string().optional(),
+    idempotencyKey: z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      idempotencyKey: "idempotency-key",
+    });
+  })
+);
 
 export function agentsControllerListAgentsRequestToJSON(
   agentsControllerListAgentsRequest: AgentsControllerListAgentsRequest,
@@ -120,15 +124,17 @@ export const AgentsControllerListAgentsResponse$inboundSchema: z.ZodType<
   AgentsControllerListAgentsResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  Headers: z.record(z.array(z.string())).default({}),
-  Result: components.ListAgentsResponseDto$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "Headers": "headers",
-    "Result": "result",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    Headers: z.record(z.array(z.string())).default({}),
+    Result: components.ListAgentsResponseDto$inboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      "Headers": "headers",
+      "Result": "result",
+    });
+  })
+);
 
 export function agentsControllerListAgentsResponseFromJSON(
   jsonString: string,

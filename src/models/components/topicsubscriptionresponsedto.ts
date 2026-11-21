@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { SubscriberDto, SubscriberDto$inboundSchema } from "./subscriberdto.js";
@@ -53,19 +53,21 @@ export const TopicSubscriptionResponseDto$inboundSchema: z.ZodType<
   TopicSubscriptionResponseDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  _id: z.string(),
-  identifier: z.string(),
-  createdAt: z.string(),
-  topic: TopicResponseDto$inboundSchema,
-  subscriber: SubscriberDto$inboundSchema,
-  contextKeys: z.array(z.string()).optional(),
-  preferences: z.array(SubscriptionPreferenceDto$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_id": "id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    _id: z.string(),
+    identifier: z.string(),
+    createdAt: z.string(),
+    topic: TopicResponseDto$inboundSchema,
+    subscriber: SubscriberDto$inboundSchema,
+    contextKeys: z.array(z.string()).optional(),
+    preferences: z.array(SubscriptionPreferenceDto$inboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_id": "id",
+    });
+  })
+);
 
 export function topicSubscriptionResponseDtoFromJSON(
   jsonString: string,

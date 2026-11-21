@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   GrafanaOnCallIntegrationEndpointDto,
   GrafanaOnCallIntegrationEndpointDto$Outbound,
@@ -70,10 +71,12 @@ export const CreateGrafanaOnCallIntegrationEndpointDtoContext2$outboundSchema:
     CreateGrafanaOnCallIntegrationEndpointDtoContext2$Outbound,
     z.ZodTypeDef,
     CreateGrafanaOnCallIntegrationEndpointDtoContext2
-  > = z.object({
-    id: z.string(),
-    data: z.record(z.any()).optional(),
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      id: z.string(),
+      data: z.record(z.any()).optional(),
+    })
+  );
 
 export function createGrafanaOnCallIntegrationEndpointDtoContext2ToJSON(
   createGrafanaOnCallIntegrationEndpointDtoContext2:
@@ -97,12 +100,14 @@ export const CreateGrafanaOnCallIntegrationEndpointDtoContext$outboundSchema:
     CreateGrafanaOnCallIntegrationEndpointDtoContext$Outbound,
     z.ZodTypeDef,
     CreateGrafanaOnCallIntegrationEndpointDtoContext
-  > = z.union([
-    z.lazy(() =>
-      CreateGrafanaOnCallIntegrationEndpointDtoContext2$outboundSchema
-    ),
-    z.string(),
-  ]);
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.union([
+      z.lazy(() =>
+        CreateGrafanaOnCallIntegrationEndpointDtoContext2$outboundSchema
+      ),
+      z.string(),
+    ])
+  );
 
 export function createGrafanaOnCallIntegrationEndpointDtoContextToJSON(
   createGrafanaOnCallIntegrationEndpointDtoContext:
@@ -137,23 +142,23 @@ export const CreateGrafanaOnCallIntegrationEndpointDto$outboundSchema:
     CreateGrafanaOnCallIntegrationEndpointDto$Outbound,
     z.ZodTypeDef,
     CreateGrafanaOnCallIntegrationEndpointDto
-  > = z.object({
-    identifier: z.string().optional(),
-    subscriberId: z.string(),
-    createSubscriberIfMissing: z.boolean().default(false),
-    context: z.record(
-      z.union([
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      identifier: z.string().optional(),
+      subscriberId: z.string(),
+      createSubscriberIfMissing: z.boolean().default(false),
+      context: z.record(z.union([
         z.lazy(() =>
           CreateGrafanaOnCallIntegrationEndpointDtoContext2$outboundSchema
         ),
         z.string(),
-      ]),
-    ).optional(),
-    integrationIdentifier: z.string(),
-    connectionIdentifier: z.string().optional(),
-    type: z.literal("grafana_oncall_integration"),
-    endpoint: GrafanaOnCallIntegrationEndpointDto$outboundSchema,
-  });
+      ])).optional(),
+      integrationIdentifier: z.string(),
+      connectionIdentifier: z.string().optional(),
+      type: z.literal("grafana_oncall_integration"),
+      endpoint: GrafanaOnCallIntegrationEndpointDto$outboundSchema,
+    })
+  );
 
 export function createGrafanaOnCallIntegrationEndpointDtoToJSON(
   createGrafanaOnCallIntegrationEndpointDto:

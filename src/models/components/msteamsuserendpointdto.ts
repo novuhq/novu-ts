@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -19,9 +19,11 @@ export const MsTeamsUserEndpointDto$inboundSchema: z.ZodType<
   MsTeamsUserEndpointDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  userId: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    userId: z.string(),
+  })
+);
 /** @internal */
 export type MsTeamsUserEndpointDto$Outbound = {
   userId: string;
@@ -32,9 +34,11 @@ export const MsTeamsUserEndpointDto$outboundSchema: z.ZodType<
   MsTeamsUserEndpointDto$Outbound,
   z.ZodTypeDef,
   MsTeamsUserEndpointDto
-> = z.object({
-  userId: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    userId: z.string(),
+  })
+);
 
 export function msTeamsUserEndpointDtoToJSON(
   msTeamsUserEndpointDto: MsTeamsUserEndpointDto,

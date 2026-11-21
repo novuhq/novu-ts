@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -23,10 +23,12 @@ export const WebexPersonEndpointDto$inboundSchema: z.ZodType<
   WebexPersonEndpointDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  personId: z.string().optional(),
-  personEmail: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    personId: z.string().optional(),
+    personEmail: z.string().optional(),
+  })
+);
 /** @internal */
 export type WebexPersonEndpointDto$Outbound = {
   personId?: string | undefined;
@@ -38,10 +40,12 @@ export const WebexPersonEndpointDto$outboundSchema: z.ZodType<
   WebexPersonEndpointDto$Outbound,
   z.ZodTypeDef,
   WebexPersonEndpointDto
-> = z.object({
-  personId: z.string().optional(),
-  personEmail: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    personId: z.string().optional(),
+    personEmail: z.string().optional(),
+  })
+);
 
 export function webexPersonEndpointDtoToJSON(
   webexPersonEndpointDto: WebexPersonEndpointDto,

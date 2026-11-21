@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -19,9 +19,11 @@ export const SlackChannelEndpointDto$inboundSchema: z.ZodType<
   SlackChannelEndpointDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  channelId: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    channelId: z.string(),
+  })
+);
 /** @internal */
 export type SlackChannelEndpointDto$Outbound = {
   channelId: string;
@@ -32,9 +34,11 @@ export const SlackChannelEndpointDto$outboundSchema: z.ZodType<
   SlackChannelEndpointDto$Outbound,
   z.ZodTypeDef,
   SlackChannelEndpointDto
-> = z.object({
-  channelId: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    channelId: z.string(),
+  })
+);
 
 export function slackChannelEndpointDtoToJSON(
   slackChannelEndpointDto: SlackChannelEndpointDto,

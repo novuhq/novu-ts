@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 
 /**
@@ -43,15 +44,17 @@ export const FeedIdentifier$outboundSchema: z.ZodType<
   FeedIdentifier$Outbound,
   z.ZodTypeDef,
   FeedIdentifier
-> = z.union([z.string(), z.array(z.string())]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.union([z.string(), z.array(z.string())])
+);
 
 export function feedIdentifierToJSON(feedIdentifier: FeedIdentifier): string {
   return JSON.stringify(FeedIdentifier$outboundSchema.parse(feedIdentifier));
 }
 
 /** @internal */
-export const MarkAs$outboundSchema: z.ZodNativeEnum<typeof MarkAs> = z
-  .nativeEnum(MarkAs);
+export const MarkAs$outboundSchema: z.ZodNativeEnum<typeof MarkAs> =
+  /* @__PURE__ */ lazySchema$(() => z.nativeEnum(MarkAs));
 
 /** @internal */
 export type MarkAllMessageAsRequestDto$Outbound = {
@@ -64,10 +67,12 @@ export const MarkAllMessageAsRequestDto$outboundSchema: z.ZodType<
   MarkAllMessageAsRequestDto$Outbound,
   z.ZodTypeDef,
   MarkAllMessageAsRequestDto
-> = z.object({
-  feedIdentifier: z.union([z.string(), z.array(z.string())]).optional(),
-  markAs: MarkAs$outboundSchema,
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    feedIdentifier: z.union([z.string(), z.array(z.string())]).optional(),
+    markAs: MarkAs$outboundSchema,
+  })
+);
 
 export function markAllMessageAsRequestDtoToJSON(
   markAllMessageAsRequestDto: MarkAllMessageAsRequestDto,

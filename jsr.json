@@ -2,11 +2,12 @@
 
 {
   "name": "@novu/api",
-  "version": "3.20.0",
+  "version": "3.21.0",
   "exports": {
-    ".": "./src/index.ts",    
-    "./models/errors": "./src/models/errors/index.ts",    
-    "./models/components": "./src/models/components/index.ts",    
+    ".": "./src/index.ts",
+    "./node": "./src/node.ts",
+    "./models/errors": "./src/models/errors/index.ts",
+    "./models/components": "./src/models/components/index.ts",
     "./models/operations": "./src/models/operations/index.ts",
     "./lib/config": "./src/lib/config.ts",
     "./lib/http": "./src/lib/http.ts",

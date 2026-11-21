@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
@@ -79,7 +79,7 @@ export type SubscribersControllerSearchSubscribersResponse = {
 /** @internal */
 export const QueryParamOrderDirection$outboundSchema: z.ZodNativeEnum<
   typeof QueryParamOrderDirection
-> = z.nativeEnum(QueryParamOrderDirection);
+> = /* @__PURE__ */ lazySchema$(() => z.nativeEnum(QueryParamOrderDirection));
 
 /** @internal */
 export type SubscribersControllerSearchSubscribersRequest$Outbound = {
@@ -102,23 +102,25 @@ export const SubscribersControllerSearchSubscribersRequest$outboundSchema:
     SubscribersControllerSearchSubscribersRequest$Outbound,
     z.ZodTypeDef,
     SubscribersControllerSearchSubscribersRequest
-  > = z.object({
-    after: z.string().optional(),
-    before: z.string().optional(),
-    limit: z.number().optional(),
-    orderDirection: QueryParamOrderDirection$outboundSchema.optional(),
-    orderBy: z.string().optional(),
-    includeCursor: z.boolean().optional(),
-    email: z.string().optional(),
-    name: z.string().optional(),
-    phone: z.string().optional(),
-    subscriberId: z.string().optional(),
-    idempotencyKey: z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      idempotencyKey: "idempotency-key",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      after: z.string().optional(),
+      before: z.string().optional(),
+      limit: z.number().optional(),
+      orderDirection: QueryParamOrderDirection$outboundSchema.optional(),
+      orderBy: z.string().optional(),
+      includeCursor: z.boolean().optional(),
+      email: z.string().optional(),
+      name: z.string().optional(),
+      phone: z.string().optional(),
+      subscriberId: z.string().optional(),
+      idempotencyKey: z.string().optional(),
+    }).transform((v) => {
+      return remap$(v, {
+        idempotencyKey: "idempotency-key",
+      });
+    })
+  );
 
 export function subscribersControllerSearchSubscribersRequestToJSON(
   subscribersControllerSearchSubscribersRequest:
@@ -137,15 +139,17 @@ export const SubscribersControllerSearchSubscribersResponse$inboundSchema:
     SubscribersControllerSearchSubscribersResponse,
     z.ZodTypeDef,
     unknown
-  > = z.object({
-    Headers: z.record(z.array(z.string())).default({}),
-    Result: components.ListSubscribersResponseDto$inboundSchema,
-  }).transform((v) => {
-    return remap$(v, {
-      "Headers": "headers",
-      "Result": "result",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      Headers: z.record(z.array(z.string())).default({}),
+      Result: components.ListSubscribersResponseDto$inboundSchema,
+    }).transform((v) => {
+      return remap$(v, {
+        "Headers": "headers",
+        "Result": "result",
+      });
+    })
+  );
 
 export function subscribersControllerSearchSubscribersResponseFromJSON(
   jsonString: string,

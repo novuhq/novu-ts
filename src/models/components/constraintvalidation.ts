@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -40,8 +40,10 @@ export type ConstraintValidation = {
 };
 
 /** @internal */
-export const Five$inboundSchema: z.ZodType<Five, z.ZodTypeDef, unknown> = z
-  .union([z.string(), z.number(), z.boolean(), z.record(z.any())]);
+export const Five$inboundSchema: z.ZodType<Five, z.ZodTypeDef, unknown> =
+  /* @__PURE__ */ lazySchema$(() =>
+    z.union([z.string(), z.number(), z.boolean(), z.record(z.any())])
+  );
 
 export function fiveFromJSON(
   jsonString: string,
@@ -54,8 +56,8 @@ export function fiveFromJSON(
 }
 
 /** @internal */
-export const Four$inboundSchema: z.ZodType<Four, z.ZodTypeDef, unknown> = z
-  .object({});
+export const Four$inboundSchema: z.ZodType<Four, z.ZodTypeDef, unknown> =
+  /* @__PURE__ */ lazySchema$(() => z.object({}));
 
 export function fourFromJSON(
   jsonString: string,
@@ -68,18 +70,20 @@ export function fourFromJSON(
 }
 
 /** @internal */
-export const Value$inboundSchema: z.ZodType<Value, z.ZodTypeDef, unknown> = z
-  .union([
-    z.string(),
-    z.number(),
-    z.boolean(),
-    z.lazy(() => Four$inboundSchema),
-    z.array(
-      z.nullable(
-        z.union([z.string(), z.number(), z.boolean(), z.record(z.any())]),
+export const Value$inboundSchema: z.ZodType<Value, z.ZodTypeDef, unknown> =
+  /* @__PURE__ */ lazySchema$(() =>
+    z.union([
+      z.string(),
+      z.number(),
+      z.boolean(),
+      z.lazy(() => Four$inboundSchema),
+      z.array(
+        z.nullable(
+          z.union([z.string(), z.number(), z.boolean(), z.record(z.any())]),
+        ),
       ),
-    ),
-  ]);
+    ])
+  );
 
 export function valueFromJSON(
   jsonString: string,
@@ -96,10 +100,10 @@ export const ConstraintValidation$inboundSchema: z.ZodType<
   ConstraintValidation,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  messages: z.array(z.string()),
-  value: z.nullable(
-    z.union([
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    messages: z.array(z.string()),
+    value: z.nullable(z.union([
       z.string(),
       z.number(),
       z.boolean(),
@@ -109,9 +113,9 @@ export const ConstraintValidation$inboundSchema: z.ZodType<
           z.union([z.string(), z.number(), z.boolean(), z.record(z.any())]),
         ),
       ),
-    ]),
-  ).optional(),
-});
+    ])).optional(),
+  })
+);
 
 export function constraintValidationFromJSON(
   jsonString: string,

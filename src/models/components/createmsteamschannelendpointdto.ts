@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   MsTeamsChannelEndpointDto,
   MsTeamsChannelEndpointDto$Outbound,
@@ -69,10 +70,12 @@ export const CreateMsTeamsChannelEndpointDtoContext2$outboundSchema: z.ZodType<
   CreateMsTeamsChannelEndpointDtoContext2$Outbound,
   z.ZodTypeDef,
   CreateMsTeamsChannelEndpointDtoContext2
-> = z.object({
-  id: z.string(),
-  data: z.record(z.any()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    data: z.record(z.any()).optional(),
+  })
+);
 
 export function createMsTeamsChannelEndpointDtoContext2ToJSON(
   createMsTeamsChannelEndpointDtoContext2:
@@ -95,10 +98,12 @@ export const CreateMsTeamsChannelEndpointDtoContext$outboundSchema: z.ZodType<
   CreateMsTeamsChannelEndpointDtoContext$Outbound,
   z.ZodTypeDef,
   CreateMsTeamsChannelEndpointDtoContext
-> = z.union([
-  z.lazy(() => CreateMsTeamsChannelEndpointDtoContext2$outboundSchema),
-  z.string(),
-]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.union([
+    z.lazy(() => CreateMsTeamsChannelEndpointDtoContext2$outboundSchema),
+    z.string(),
+  ])
+);
 
 export function createMsTeamsChannelEndpointDtoContextToJSON(
   createMsTeamsChannelEndpointDtoContext:
@@ -130,21 +135,21 @@ export const CreateMsTeamsChannelEndpointDto$outboundSchema: z.ZodType<
   CreateMsTeamsChannelEndpointDto$Outbound,
   z.ZodTypeDef,
   CreateMsTeamsChannelEndpointDto
-> = z.object({
-  identifier: z.string().optional(),
-  subscriberId: z.string(),
-  createSubscriberIfMissing: z.boolean().default(false),
-  context: z.record(
-    z.union([
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    identifier: z.string().optional(),
+    subscriberId: z.string(),
+    createSubscriberIfMissing: z.boolean().default(false),
+    context: z.record(z.union([
       z.lazy(() => CreateMsTeamsChannelEndpointDtoContext2$outboundSchema),
       z.string(),
-    ]),
-  ).optional(),
-  integrationIdentifier: z.string(),
-  connectionIdentifier: z.string().optional(),
-  type: z.literal("ms_teams_channel"),
-  endpoint: MsTeamsChannelEndpointDto$outboundSchema,
-});
+    ])).optional(),
+    integrationIdentifier: z.string(),
+    connectionIdentifier: z.string().optional(),
+    type: z.literal("ms_teams_channel"),
+    endpoint: MsTeamsChannelEndpointDto$outboundSchema,
+  })
+);
 
 export function createMsTeamsChannelEndpointDtoToJSON(
   createMsTeamsChannelEndpointDto: CreateMsTeamsChannelEndpointDto,

@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -39,14 +39,16 @@ export const GetContextResponseDto$inboundSchema: z.ZodType<
   GetContextResponseDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  type: z.string(),
-  id: z.string(),
-  data: z.record(z.any()),
-  bridgeUrl: z.string().optional(),
-  createdAt: z.string(),
-  updatedAt: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    type: z.string(),
+    id: z.string(),
+    data: z.record(z.any()),
+    bridgeUrl: z.string().optional(),
+    createdAt: z.string(),
+    updatedAt: z.string(),
+  })
+);
 
 export function getContextResponseDtoFromJSON(
   jsonString: string,

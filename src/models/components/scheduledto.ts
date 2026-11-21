@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -157,11 +157,13 @@ export type ScheduleDto = {
 };
 
 /** @internal */
-export const Monday$inboundSchema: z.ZodType<Monday, z.ZodTypeDef, unknown> = z
-  .object({
-    isEnabled: z.boolean(),
-    hours: z.array(TimeRangeDto$inboundSchema).optional(),
-  });
+export const Monday$inboundSchema: z.ZodType<Monday, z.ZodTypeDef, unknown> =
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      isEnabled: z.boolean(),
+      hours: z.array(TimeRangeDto$inboundSchema).optional(),
+    })
+  );
 /** @internal */
 export type Monday$Outbound = {
   isEnabled: boolean;
@@ -173,10 +175,12 @@ export const Monday$outboundSchema: z.ZodType<
   Monday$Outbound,
   z.ZodTypeDef,
   Monday
-> = z.object({
-  isEnabled: z.boolean(),
-  hours: z.array(TimeRangeDto$outboundSchema).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    isEnabled: z.boolean(),
+    hours: z.array(TimeRangeDto$outboundSchema).optional(),
+  })
+);
 
 export function mondayToJSON(monday: Monday): string {
   return JSON.stringify(Monday$outboundSchema.parse(monday));
@@ -193,10 +197,12 @@ export function mondayFromJSON(
 
 /** @internal */
 export const Tuesday$inboundSchema: z.ZodType<Tuesday, z.ZodTypeDef, unknown> =
-  z.object({
-    isEnabled: z.boolean(),
-    hours: z.array(TimeRangeDto$inboundSchema).optional(),
-  });
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      isEnabled: z.boolean(),
+      hours: z.array(TimeRangeDto$inboundSchema).optional(),
+    })
+  );
 /** @internal */
 export type Tuesday$Outbound = {
   isEnabled: boolean;
@@ -208,10 +214,12 @@ export const Tuesday$outboundSchema: z.ZodType<
   Tuesday$Outbound,
   z.ZodTypeDef,
   Tuesday
-> = z.object({
-  isEnabled: z.boolean(),
-  hours: z.array(TimeRangeDto$outboundSchema).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    isEnabled: z.boolean(),
+    hours: z.array(TimeRangeDto$outboundSchema).optional(),
+  })
+);
 
 export function tuesdayToJSON(tuesday: Tuesday): string {
   return JSON.stringify(Tuesday$outboundSchema.parse(tuesday));
@@ -231,10 +239,12 @@ export const Wednesday$inboundSchema: z.ZodType<
   Wednesday,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  isEnabled: z.boolean(),
-  hours: z.array(TimeRangeDto$inboundSchema).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    isEnabled: z.boolean(),
+    hours: z.array(TimeRangeDto$inboundSchema).optional(),
+  })
+);
 /** @internal */
 export type Wednesday$Outbound = {
   isEnabled: boolean;
@@ -246,10 +256,12 @@ export const Wednesday$outboundSchema: z.ZodType<
   Wednesday$Outbound,
   z.ZodTypeDef,
   Wednesday
-> = z.object({
-  isEnabled: z.boolean(),
-  hours: z.array(TimeRangeDto$outboundSchema).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    isEnabled: z.boolean(),
+    hours: z.array(TimeRangeDto$outboundSchema).optional(),
+  })
+);
 
 export function wednesdayToJSON(wednesday: Wednesday): string {
   return JSON.stringify(Wednesday$outboundSchema.parse(wednesday));
@@ -269,10 +281,12 @@ export const Thursday$inboundSchema: z.ZodType<
   Thursday,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  isEnabled: z.boolean(),
-  hours: z.array(TimeRangeDto$inboundSchema).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    isEnabled: z.boolean(),
+    hours: z.array(TimeRangeDto$inboundSchema).optional(),
+  })
+);
 /** @internal */
 export type Thursday$Outbound = {
   isEnabled: boolean;
@@ -284,10 +298,12 @@ export const Thursday$outboundSchema: z.ZodType<
   Thursday$Outbound,
   z.ZodTypeDef,
   Thursday
-> = z.object({
-  isEnabled: z.boolean(),
-  hours: z.array(TimeRangeDto$outboundSchema).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    isEnabled: z.boolean(),
+    hours: z.array(TimeRangeDto$outboundSchema).optional(),
+  })
+);
 
 export function thursdayToJSON(thursday: Thursday): string {
   return JSON.stringify(Thursday$outboundSchema.parse(thursday));
@@ -303,11 +319,13 @@ export function thursdayFromJSON(
 }
 
 /** @internal */
-export const Friday$inboundSchema: z.ZodType<Friday, z.ZodTypeDef, unknown> = z
-  .object({
-    isEnabled: z.boolean(),
-    hours: z.array(TimeRangeDto$inboundSchema).optional(),
-  });
+export const Friday$inboundSchema: z.ZodType<Friday, z.ZodTypeDef, unknown> =
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      isEnabled: z.boolean(),
+      hours: z.array(TimeRangeDto$inboundSchema).optional(),
+    })
+  );
 /** @internal */
 export type Friday$Outbound = {
   isEnabled: boolean;
@@ -319,10 +337,12 @@ export const Friday$outboundSchema: z.ZodType<
   Friday$Outbound,
   z.ZodTypeDef,
   Friday
-> = z.object({
-  isEnabled: z.boolean(),
-  hours: z.array(TimeRangeDto$outboundSchema).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    isEnabled: z.boolean(),
+    hours: z.array(TimeRangeDto$outboundSchema).optional(),
+  })
+);
 
 export function fridayToJSON(friday: Friday): string {
   return JSON.stringify(Friday$outboundSchema.parse(friday));
@@ -342,10 +362,12 @@ export const Saturday$inboundSchema: z.ZodType<
   Saturday,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  isEnabled: z.boolean(),
-  hours: z.array(TimeRangeDto$inboundSchema).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    isEnabled: z.boolean(),
+    hours: z.array(TimeRangeDto$inboundSchema).optional(),
+  })
+);
 /** @internal */
 export type Saturday$Outbound = {
   isEnabled: boolean;
@@ -357,10 +379,12 @@ export const Saturday$outboundSchema: z.ZodType<
   Saturday$Outbound,
   z.ZodTypeDef,
   Saturday
-> = z.object({
-  isEnabled: z.boolean(),
-  hours: z.array(TimeRangeDto$outboundSchema).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    isEnabled: z.boolean(),
+    hours: z.array(TimeRangeDto$outboundSchema).optional(),
+  })
+);
 
 export function saturdayToJSON(saturday: Saturday): string {
   return JSON.stringify(Saturday$outboundSchema.parse(saturday));
@@ -376,11 +400,13 @@ export function saturdayFromJSON(
 }
 
 /** @internal */
-export const Sunday$inboundSchema: z.ZodType<Sunday, z.ZodTypeDef, unknown> = z
-  .object({
-    isEnabled: z.boolean(),
-    hours: z.array(TimeRangeDto$inboundSchema).optional(),
-  });
+export const Sunday$inboundSchema: z.ZodType<Sunday, z.ZodTypeDef, unknown> =
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      isEnabled: z.boolean(),
+      hours: z.array(TimeRangeDto$inboundSchema).optional(),
+    })
+  );
 /** @internal */
 export type Sunday$Outbound = {
   isEnabled: boolean;
@@ -392,10 +418,12 @@ export const Sunday$outboundSchema: z.ZodType<
   Sunday$Outbound,
   z.ZodTypeDef,
   Sunday
-> = z.object({
-  isEnabled: z.boolean(),
-  hours: z.array(TimeRangeDto$outboundSchema).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    isEnabled: z.boolean(),
+    hours: z.array(TimeRangeDto$outboundSchema).optional(),
+  })
+);
 
 export function sundayToJSON(sunday: Sunday): string {
   return JSON.stringify(Sunday$outboundSchema.parse(sunday));
@@ -415,15 +443,17 @@ export const WeeklySchedule$inboundSchema: z.ZodType<
   WeeklySchedule,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  monday: z.lazy(() => Monday$inboundSchema).optional(),
-  tuesday: z.lazy(() => Tuesday$inboundSchema).optional(),
-  wednesday: z.lazy(() => Wednesday$inboundSchema).optional(),
-  thursday: z.lazy(() => Thursday$inboundSchema).optional(),
-  friday: z.lazy(() => Friday$inboundSchema).optional(),
-  saturday: z.lazy(() => Saturday$inboundSchema).optional(),
-  sunday: z.lazy(() => Sunday$inboundSchema).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    monday: z.lazy(() => Monday$inboundSchema).optional(),
+    tuesday: z.lazy(() => Tuesday$inboundSchema).optional(),
+    wednesday: z.lazy(() => Wednesday$inboundSchema).optional(),
+    thursday: z.lazy(() => Thursday$inboundSchema).optional(),
+    friday: z.lazy(() => Friday$inboundSchema).optional(),
+    saturday: z.lazy(() => Saturday$inboundSchema).optional(),
+    sunday: z.lazy(() => Sunday$inboundSchema).optional(),
+  })
+);
 /** @internal */
 export type WeeklySchedule$Outbound = {
   monday?: Monday$Outbound | undefined;
@@ -440,15 +470,17 @@ export const WeeklySchedule$outboundSchema: z.ZodType<
   WeeklySchedule$Outbound,
   z.ZodTypeDef,
   WeeklySchedule
-> = z.object({
-  monday: z.lazy(() => Monday$outboundSchema).optional(),
-  tuesday: z.lazy(() => Tuesday$outboundSchema).optional(),
-  wednesday: z.lazy(() => Wednesday$outboundSchema).optional(),
-  thursday: z.lazy(() => Thursday$outboundSchema).optional(),
-  friday: z.lazy(() => Friday$outboundSchema).optional(),
-  saturday: z.lazy(() => Saturday$outboundSchema).optional(),
-  sunday: z.lazy(() => Sunday$outboundSchema).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    monday: z.lazy(() => Monday$outboundSchema).optional(),
+    tuesday: z.lazy(() => Tuesday$outboundSchema).optional(),
+    wednesday: z.lazy(() => Wednesday$outboundSchema).optional(),
+    thursday: z.lazy(() => Thursday$outboundSchema).optional(),
+    friday: z.lazy(() => Friday$outboundSchema).optional(),
+    saturday: z.lazy(() => Saturday$outboundSchema).optional(),
+    sunday: z.lazy(() => Sunday$outboundSchema).optional(),
+  })
+);
 
 export function weeklyScheduleToJSON(weeklySchedule: WeeklySchedule): string {
   return JSON.stringify(WeeklySchedule$outboundSchema.parse(weeklySchedule));
@@ -468,10 +500,12 @@ export const ScheduleDto$inboundSchema: z.ZodType<
   ScheduleDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  isEnabled: z.boolean(),
-  weeklySchedule: z.lazy(() => WeeklySchedule$inboundSchema).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    isEnabled: z.boolean(),
+    weeklySchedule: z.lazy(() => WeeklySchedule$inboundSchema).optional(),
+  })
+);
 /** @internal */
 export type ScheduleDto$Outbound = {
   isEnabled: boolean;
@@ -483,10 +517,12 @@ export const ScheduleDto$outboundSchema: z.ZodType<
   ScheduleDto$Outbound,
   z.ZodTypeDef,
   ScheduleDto
-> = z.object({
-  isEnabled: z.boolean(),
-  weeklySchedule: z.lazy(() => WeeklySchedule$outboundSchema).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    isEnabled: z.boolean(),
+    weeklySchedule: z.lazy(() => WeeklySchedule$outboundSchema).optional(),
+  })
+);
 
 export function scheduleDtoToJSON(scheduleDto: ScheduleDto): string {
   return JSON.stringify(ScheduleDto$outboundSchema.parse(scheduleDto));

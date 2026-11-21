@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type EmailChannelOverrides = {
   /**
@@ -21,9 +22,11 @@ export const EmailChannelOverrides$outboundSchema: z.ZodType<
   EmailChannelOverrides$Outbound,
   z.ZodTypeDef,
   EmailChannelOverrides
-> = z.object({
-  layoutId: z.nullable(z.string()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    layoutId: z.nullable(z.string()).optional(),
+  })
+);
 
 export function emailChannelOverridesToJSON(
   emailChannelOverrides: EmailChannelOverrides,

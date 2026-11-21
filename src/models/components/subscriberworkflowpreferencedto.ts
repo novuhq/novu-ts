@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -47,13 +47,15 @@ export const SubscriberWorkflowPreferenceDto$inboundSchema: z.ZodType<
   SubscriberWorkflowPreferenceDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  enabled: z.boolean(),
-  channels: SubscriberPreferenceChannels$inboundSchema,
-  overrides: z.array(SubscriberPreferenceOverrideDto$inboundSchema),
-  workflow: SubscriberPreferencesWorkflowInfoDto$inboundSchema,
-  updatedAt: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    enabled: z.boolean(),
+    channels: SubscriberPreferenceChannels$inboundSchema,
+    overrides: z.array(SubscriberPreferenceOverrideDto$inboundSchema),
+    workflow: SubscriberPreferencesWorkflowInfoDto$inboundSchema,
+    updatedAt: z.string().optional(),
+  })
+);
 
 export function subscriberWorkflowPreferenceDtoFromJSON(
   jsonString: string,

@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   ChatStepUpsertDto,
   ChatStepUpsertDto$Outbound,
@@ -180,9 +181,11 @@ export const UpdateWorkflowDtoProviders$outboundSchema: z.ZodType<
   UpdateWorkflowDtoProviders$Outbound,
   z.ZodTypeDef,
   UpdateWorkflowDtoProviders
-> = z.object({
-  replyTo: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    replyTo: z.string().optional(),
+  })
+);
 
 export function updateWorkflowDtoProvidersToJSON(
   updateWorkflowDtoProviders: UpdateWorkflowDtoProviders,
@@ -203,11 +206,13 @@ export const UpdateWorkflowDtoAgent$outboundSchema: z.ZodType<
   UpdateWorkflowDtoAgent$Outbound,
   z.ZodTypeDef,
   UpdateWorkflowDtoAgent
-> = z.object({
-  identifier: z.string(),
-  providers: z.record(z.lazy(() => UpdateWorkflowDtoProviders$outboundSchema))
-    .optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    identifier: z.string(),
+    providers: z.record(z.lazy(() => UpdateWorkflowDtoProviders$outboundSchema))
+      .optional(),
+  })
+);
 
 export function updateWorkflowDtoAgentToJSON(
   updateWorkflowDtoAgent: UpdateWorkflowDtoAgent,
@@ -236,19 +241,21 @@ export const UpdateWorkflowDtoSteps$outboundSchema: z.ZodType<
   UpdateWorkflowDtoSteps$Outbound,
   z.ZodTypeDef,
   UpdateWorkflowDtoSteps
-> = z.union([
-  InAppStepUpsertDto$outboundSchema,
-  EmailStepUpsertDto$outboundSchema,
-  SmsStepUpsertDto$outboundSchema,
-  PushStepUpsertDto$outboundSchema,
-  ChatStepUpsertDto$outboundSchema,
-  DelayStepUpsertDto$outboundSchema,
-  DigestStepUpsertDto$outboundSchema,
-  ThrottleStepUpsertDto$outboundSchema,
-  ToolStepUpsertDto$outboundSchema,
-  CustomStepUpsertDto$outboundSchema,
-  HttpRequestStepUpsertDto$outboundSchema,
-]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.union([
+    InAppStepUpsertDto$outboundSchema,
+    EmailStepUpsertDto$outboundSchema,
+    SmsStepUpsertDto$outboundSchema,
+    PushStepUpsertDto$outboundSchema,
+    ChatStepUpsertDto$outboundSchema,
+    DelayStepUpsertDto$outboundSchema,
+    DigestStepUpsertDto$outboundSchema,
+    ThrottleStepUpsertDto$outboundSchema,
+    ToolStepUpsertDto$outboundSchema,
+    CustomStepUpsertDto$outboundSchema,
+    HttpRequestStepUpsertDto$outboundSchema,
+  ])
+);
 
 export function updateWorkflowDtoStepsToJSON(
   updateWorkflowDtoSteps: UpdateWorkflowDtoSteps,
@@ -292,36 +299,38 @@ export const UpdateWorkflowDto$outboundSchema: z.ZodType<
   UpdateWorkflowDto$Outbound,
   z.ZodTypeDef,
   UpdateWorkflowDto
-> = z.object({
-  name: z.string(),
-  description: z.string().optional(),
-  tags: z.array(z.string()).optional(),
-  active: z.boolean().default(false),
-  validatePayload: z.boolean().optional(),
-  payloadSchema: z.nullable(z.record(z.any())).optional(),
-  isTranslationEnabled: z.boolean().default(false),
-  agent: z.nullable(z.lazy(() => UpdateWorkflowDtoAgent$outboundSchema))
-    .optional(),
-  workflowId: z.string().optional(),
-  steps: z.array(
-    z.union([
-      InAppStepUpsertDto$outboundSchema,
-      EmailStepUpsertDto$outboundSchema,
-      SmsStepUpsertDto$outboundSchema,
-      PushStepUpsertDto$outboundSchema,
-      ChatStepUpsertDto$outboundSchema,
-      DelayStepUpsertDto$outboundSchema,
-      DigestStepUpsertDto$outboundSchema,
-      ThrottleStepUpsertDto$outboundSchema,
-      ToolStepUpsertDto$outboundSchema,
-      CustomStepUpsertDto$outboundSchema,
-      HttpRequestStepUpsertDto$outboundSchema,
-    ]),
-  ),
-  preferences: PreferencesRequestDto$outboundSchema,
-  origin: ResourceOriginEnum$outboundSchema.optional(),
-  severity: SeverityLevelEnum$outboundSchema.optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    name: z.string(),
+    description: z.string().optional(),
+    tags: z.array(z.string()).optional(),
+    active: z.boolean().default(false),
+    validatePayload: z.boolean().optional(),
+    payloadSchema: z.nullable(z.record(z.any())).optional(),
+    isTranslationEnabled: z.boolean().default(false),
+    agent: z.nullable(z.lazy(() => UpdateWorkflowDtoAgent$outboundSchema))
+      .optional(),
+    workflowId: z.string().optional(),
+    steps: z.array(
+      z.union([
+        InAppStepUpsertDto$outboundSchema,
+        EmailStepUpsertDto$outboundSchema,
+        SmsStepUpsertDto$outboundSchema,
+        PushStepUpsertDto$outboundSchema,
+        ChatStepUpsertDto$outboundSchema,
+        DelayStepUpsertDto$outboundSchema,
+        DigestStepUpsertDto$outboundSchema,
+        ThrottleStepUpsertDto$outboundSchema,
+        ToolStepUpsertDto$outboundSchema,
+        CustomStepUpsertDto$outboundSchema,
+        HttpRequestStepUpsertDto$outboundSchema,
+      ]),
+    ),
+    preferences: PreferencesRequestDto$outboundSchema,
+    origin: ResourceOriginEnum$outboundSchema.optional(),
+    severity: SeverityLevelEnum$outboundSchema.optional(),
+  })
+);
 
 export function updateWorkflowDtoToJSON(
   updateWorkflowDto: UpdateWorkflowDto,

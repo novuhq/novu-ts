@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
@@ -51,8 +51,8 @@ export type SubscribersControllerCompleteNotificationActionResponse = {
 };
 
 /** @internal */
-export const ActionType$outboundSchema: z.ZodNativeEnum<typeof ActionType> = z
-  .nativeEnum(ActionType);
+export const ActionType$outboundSchema: z.ZodNativeEnum<typeof ActionType> =
+  /* @__PURE__ */ lazySchema$(() => z.nativeEnum(ActionType));
 
 /** @internal */
 export type SubscribersControllerCompleteNotificationActionRequest$Outbound = {
@@ -69,17 +69,19 @@ export const SubscribersControllerCompleteNotificationActionRequest$outboundSche
     SubscribersControllerCompleteNotificationActionRequest$Outbound,
     z.ZodTypeDef,
     SubscribersControllerCompleteNotificationActionRequest
-  > = z.object({
-    subscriberId: z.string(),
-    notificationId: z.string(),
-    actionType: ActionType$outboundSchema,
-    contextKeys: z.array(z.string()).optional(),
-    idempotencyKey: z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      idempotencyKey: "idempotency-key",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      subscriberId: z.string(),
+      notificationId: z.string(),
+      actionType: ActionType$outboundSchema,
+      contextKeys: z.array(z.string()).optional(),
+      idempotencyKey: z.string().optional(),
+    }).transform((v) => {
+      return remap$(v, {
+        idempotencyKey: "idempotency-key",
+      });
+    })
+  );
 
 export function subscribersControllerCompleteNotificationActionRequestToJSON(
   subscribersControllerCompleteNotificationActionRequest:
@@ -98,15 +100,17 @@ export const SubscribersControllerCompleteNotificationActionResponse$inboundSche
     SubscribersControllerCompleteNotificationActionResponse,
     z.ZodTypeDef,
     unknown
-  > = z.object({
-    Headers: z.record(z.array(z.string())).default({}),
-    Result: components.InboxNotificationDto$inboundSchema,
-  }).transform((v) => {
-    return remap$(v, {
-      "Headers": "headers",
-      "Result": "result",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      Headers: z.record(z.array(z.string())).default({}),
+      Result: components.InboxNotificationDto$inboundSchema,
+    }).transform((v) => {
+      return remap$(v, {
+        "Headers": "headers",
+        "Result": "result",
+      });
+    })
+  );
 
 export function subscribersControllerCompleteNotificationActionResponseFromJSON(
   jsonString: string,

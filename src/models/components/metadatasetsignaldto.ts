@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 
 export const MetadataSetSignalDtoType = {
@@ -49,11 +50,11 @@ export type MetadataSetSignalDto = {
 /** @internal */
 export const MetadataSetSignalDtoType$outboundSchema: z.ZodNativeEnum<
   typeof MetadataSetSignalDtoType
-> = z.nativeEnum(MetadataSetSignalDtoType);
+> = /* @__PURE__ */ lazySchema$(() => z.nativeEnum(MetadataSetSignalDtoType));
 
 /** @internal */
-export const Action$outboundSchema: z.ZodNativeEnum<typeof Action> = z
-  .nativeEnum(Action);
+export const Action$outboundSchema: z.ZodNativeEnum<typeof Action> =
+  /* @__PURE__ */ lazySchema$(() => z.nativeEnum(Action));
 
 /** @internal */
 export type MetadataSetSignalDtoValue$Outbound = string | number | boolean | {
@@ -65,13 +66,15 @@ export const MetadataSetSignalDtoValue$outboundSchema: z.ZodType<
   MetadataSetSignalDtoValue$Outbound,
   z.ZodTypeDef,
   MetadataSetSignalDtoValue
-> = z.union([
-  z.string(),
-  z.number(),
-  z.boolean(),
-  z.record(z.any()),
-  z.array(z.any()),
-]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.union([
+    z.string(),
+    z.number(),
+    z.boolean(),
+    z.record(z.any()),
+    z.array(z.any()),
+  ])
+);
 
 export function metadataSetSignalDtoValueToJSON(
   metadataSetSignalDtoValue: MetadataSetSignalDtoValue,
@@ -94,18 +97,20 @@ export const MetadataSetSignalDto$outboundSchema: z.ZodType<
   MetadataSetSignalDto$Outbound,
   z.ZodTypeDef,
   MetadataSetSignalDto
-> = z.object({
-  type: MetadataSetSignalDtoType$outboundSchema,
-  action: Action$outboundSchema.default("set"),
-  key: z.string(),
-  value: z.union([
-    z.string(),
-    z.number(),
-    z.boolean(),
-    z.record(z.any()),
-    z.array(z.any()),
-  ]),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    type: MetadataSetSignalDtoType$outboundSchema,
+    action: Action$outboundSchema.default("set"),
+    key: z.string(),
+    value: z.union([
+      z.string(),
+      z.number(),
+      z.boolean(),
+      z.record(z.any()),
+      z.array(z.any()),
+    ]),
+  })
+);
 
 export function metadataSetSignalDtoToJSON(
   metadataSetSignalDto: MetadataSetSignalDto,

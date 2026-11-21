@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -50,29 +50,33 @@ export type TestDomainRouteResponseDto = {
 
 /** @internal */
 export const DomainStatus$inboundSchema: z.ZodNativeEnum<typeof DomainStatus> =
-  z.nativeEnum(DomainStatus);
+  /* @__PURE__ */ lazySchema$(() => z.nativeEnum(DomainStatus));
 
 /** @internal */
 export const TestDomainRouteResponseDtoType$inboundSchema: z.ZodNativeEnum<
   typeof TestDomainRouteResponseDtoType
-> = z.nativeEnum(TestDomainRouteResponseDtoType);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.nativeEnum(TestDomainRouteResponseDtoType)
+);
 
 /** @internal */
 export const TestDomainRouteResponseDto$inboundSchema: z.ZodType<
   TestDomainRouteResponseDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  matched: z.boolean(),
-  dryRun: z.boolean(),
-  domainStatus: DomainStatus$inboundSchema.optional(),
-  mxRecordConfigured: z.boolean().optional(),
-  type: TestDomainRouteResponseDtoType$inboundSchema.optional(),
-  wouldDeliverTo: z.string().optional(),
-  payload: z.record(z.any()).optional(),
-  webhook: TestDomainRouteWebhookResultDto$inboundSchema.optional(),
-  agent: TestDomainRouteAgentResultDto$inboundSchema.optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    matched: z.boolean(),
+    dryRun: z.boolean(),
+    domainStatus: DomainStatus$inboundSchema.optional(),
+    mxRecordConfigured: z.boolean().optional(),
+    type: TestDomainRouteResponseDtoType$inboundSchema.optional(),
+    wouldDeliverTo: z.string().optional(),
+    payload: z.record(z.any()).optional(),
+    webhook: TestDomainRouteWebhookResultDto$inboundSchema.optional(),
+    agent: TestDomainRouteAgentResultDto$inboundSchema.optional(),
+  })
+);
 
 export function testDomainRouteResponseDtoFromJSON(
   jsonString: string,

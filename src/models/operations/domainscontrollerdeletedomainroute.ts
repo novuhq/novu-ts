@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -34,15 +34,17 @@ export const DomainsControllerDeleteDomainRouteRequest$outboundSchema:
     DomainsControllerDeleteDomainRouteRequest$Outbound,
     z.ZodTypeDef,
     DomainsControllerDeleteDomainRouteRequest
-  > = z.object({
-    domain: z.string(),
-    address: z.string(),
-    idempotencyKey: z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      idempotencyKey: "idempotency-key",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      domain: z.string(),
+      address: z.string(),
+      idempotencyKey: z.string().optional(),
+    }).transform((v) => {
+      return remap$(v, {
+        idempotencyKey: "idempotency-key",
+      });
+    })
+  );
 
 export function domainsControllerDeleteDomainRouteRequestToJSON(
   domainsControllerDeleteDomainRouteRequest:
@@ -58,13 +60,15 @@ export function domainsControllerDeleteDomainRouteRequestToJSON(
 /** @internal */
 export const DomainsControllerDeleteDomainRouteResponse$inboundSchema:
   z.ZodType<DomainsControllerDeleteDomainRouteResponse, z.ZodTypeDef, unknown> =
-    z.object({
-      Headers: z.record(z.array(z.string())).default({}),
-    }).transform((v) => {
-      return remap$(v, {
-        "Headers": "headers",
-      });
-    });
+    /* @__PURE__ */ lazySchema$(() =>
+      z.object({
+        Headers: z.record(z.array(z.string())).default({}),
+      }).transform((v) => {
+        return remap$(v, {
+          "Headers": "headers",
+        });
+      })
+    );
 
 export function domainsControllerDeleteDomainRouteResponseFromJSON(
   jsonString: string,

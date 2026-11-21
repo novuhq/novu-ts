@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   CardReplyContentDto,
   CardReplyContentDto$Outbound,
@@ -52,11 +53,13 @@ export const Content$outboundSchema: z.ZodType<
   Content$Outbound,
   z.ZodTypeDef,
   Content
-> = z.union([
-  MarkdownReplyContentDto$outboundSchema,
-  CardReplyContentDto$outboundSchema,
-  ToolApprovalCardReplyContentDto$outboundSchema,
-]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.union([
+    MarkdownReplyContentDto$outboundSchema,
+    CardReplyContentDto$outboundSchema,
+    ToolApprovalCardReplyContentDto$outboundSchema,
+  ])
+);
 
 export function contentToJSON(content: Content): string {
   return JSON.stringify(Content$outboundSchema.parse(content));
@@ -76,14 +79,16 @@ export const EditPayloadDto$outboundSchema: z.ZodType<
   EditPayloadDto$Outbound,
   z.ZodTypeDef,
   EditPayloadDto
-> = z.object({
-  messageId: z.string(),
-  content: z.union([
-    MarkdownReplyContentDto$outboundSchema,
-    CardReplyContentDto$outboundSchema,
-    ToolApprovalCardReplyContentDto$outboundSchema,
-  ]),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    messageId: z.string(),
+    content: z.union([
+      MarkdownReplyContentDto$outboundSchema,
+      CardReplyContentDto$outboundSchema,
+      ToolApprovalCardReplyContentDto$outboundSchema,
+    ]),
+  })
+);
 
 export function editPayloadDtoToJSON(editPayloadDto: EditPayloadDto): string {
   return JSON.stringify(EditPayloadDto$outboundSchema.parse(editPayloadDto));

@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   LineUserEndpointDto,
   LineUserEndpointDto$Outbound,
@@ -69,10 +70,12 @@ export const CreateLineUserEndpointDtoContext2$outboundSchema: z.ZodType<
   CreateLineUserEndpointDtoContext2$Outbound,
   z.ZodTypeDef,
   CreateLineUserEndpointDtoContext2
-> = z.object({
-  id: z.string(),
-  data: z.record(z.any()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    data: z.record(z.any()).optional(),
+  })
+);
 
 export function createLineUserEndpointDtoContext2ToJSON(
   createLineUserEndpointDtoContext2: CreateLineUserEndpointDtoContext2,
@@ -94,10 +97,12 @@ export const CreateLineUserEndpointDtoContext$outboundSchema: z.ZodType<
   CreateLineUserEndpointDtoContext$Outbound,
   z.ZodTypeDef,
   CreateLineUserEndpointDtoContext
-> = z.union([
-  z.lazy(() => CreateLineUserEndpointDtoContext2$outboundSchema),
-  z.string(),
-]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.union([
+    z.lazy(() => CreateLineUserEndpointDtoContext2$outboundSchema),
+    z.string(),
+  ])
+);
 
 export function createLineUserEndpointDtoContextToJSON(
   createLineUserEndpointDtoContext: CreateLineUserEndpointDtoContext,
@@ -128,21 +133,21 @@ export const CreateLineUserEndpointDto$outboundSchema: z.ZodType<
   CreateLineUserEndpointDto$Outbound,
   z.ZodTypeDef,
   CreateLineUserEndpointDto
-> = z.object({
-  identifier: z.string().optional(),
-  subscriberId: z.string(),
-  createSubscriberIfMissing: z.boolean().default(false),
-  context: z.record(
-    z.union([
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    identifier: z.string().optional(),
+    subscriberId: z.string(),
+    createSubscriberIfMissing: z.boolean().default(false),
+    context: z.record(z.union([
       z.lazy(() => CreateLineUserEndpointDtoContext2$outboundSchema),
       z.string(),
-    ]),
-  ).optional(),
-  integrationIdentifier: z.string(),
-  connectionIdentifier: z.string().optional(),
-  type: z.literal("line_user"),
-  endpoint: LineUserEndpointDto$outboundSchema,
-});
+    ])).optional(),
+    integrationIdentifier: z.string(),
+    connectionIdentifier: z.string().optional(),
+    type: z.literal("line_user"),
+    endpoint: LineUserEndpointDto$outboundSchema,
+  })
+);
 
 export function createLineUserEndpointDtoToJSON(
   createLineUserEndpointDto: CreateLineUserEndpointDto,

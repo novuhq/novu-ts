@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -40,18 +40,20 @@ export const WorkflowControllerGeneratePreviewRequest$outboundSchema: z.ZodType<
   WorkflowControllerGeneratePreviewRequest$Outbound,
   z.ZodTypeDef,
   WorkflowControllerGeneratePreviewRequest
-> = z.object({
-  workflowId: z.string(),
-  stepId: z.string(),
-  idempotencyKey: z.string().optional(),
-  generatePreviewRequestDto:
-    components.GeneratePreviewRequestDto$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    idempotencyKey: "idempotency-key",
-    generatePreviewRequestDto: "GeneratePreviewRequestDto",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    workflowId: z.string(),
+    stepId: z.string(),
+    idempotencyKey: z.string().optional(),
+    generatePreviewRequestDto:
+      components.GeneratePreviewRequestDto$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      idempotencyKey: "idempotency-key",
+      generatePreviewRequestDto: "GeneratePreviewRequestDto",
+    });
+  })
+);
 
 export function workflowControllerGeneratePreviewRequestToJSON(
   workflowControllerGeneratePreviewRequest:
@@ -69,15 +71,17 @@ export const WorkflowControllerGeneratePreviewResponse$inboundSchema: z.ZodType<
   WorkflowControllerGeneratePreviewResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  Headers: z.record(z.array(z.string())).default({}),
-  Result: components.GeneratePreviewResponseDto$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "Headers": "headers",
-    "Result": "result",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    Headers: z.record(z.array(z.string())).default({}),
+    Result: components.GeneratePreviewResponseDto$inboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      "Headers": "headers",
+      "Result": "result",
+    });
+  })
+);
 
 export function workflowControllerGeneratePreviewResponseFromJSON(
   jsonString: string,

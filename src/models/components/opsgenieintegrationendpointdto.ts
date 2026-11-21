@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -35,9 +35,10 @@ export type OpsgenieIntegrationEndpointDto = {
 
 /** @internal */
 export const OpsgenieIntegrationEndpointDtoRegion$inboundSchema:
-  z.ZodNativeEnum<typeof OpsgenieIntegrationEndpointDtoRegion> = z.nativeEnum(
-    OpsgenieIntegrationEndpointDtoRegion,
-  );
+  z.ZodNativeEnum<typeof OpsgenieIntegrationEndpointDtoRegion> =
+    /* @__PURE__ */ lazySchema$(() =>
+      z.nativeEnum(OpsgenieIntegrationEndpointDtoRegion)
+    );
 /** @internal */
 export const OpsgenieIntegrationEndpointDtoRegion$outboundSchema:
   z.ZodNativeEnum<typeof OpsgenieIntegrationEndpointDtoRegion> =
@@ -48,10 +49,12 @@ export const OpsgenieIntegrationEndpointDto$inboundSchema: z.ZodType<
   OpsgenieIntegrationEndpointDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  apiKey: z.string(),
-  region: OpsgenieIntegrationEndpointDtoRegion$inboundSchema,
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    apiKey: z.string(),
+    region: OpsgenieIntegrationEndpointDtoRegion$inboundSchema,
+  })
+);
 /** @internal */
 export type OpsgenieIntegrationEndpointDto$Outbound = {
   apiKey: string;
@@ -63,10 +66,12 @@ export const OpsgenieIntegrationEndpointDto$outboundSchema: z.ZodType<
   OpsgenieIntegrationEndpointDto$Outbound,
   z.ZodTypeDef,
   OpsgenieIntegrationEndpointDto
-> = z.object({
-  apiKey: z.string(),
-  region: OpsgenieIntegrationEndpointDtoRegion$outboundSchema,
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    apiKey: z.string(),
+    region: OpsgenieIntegrationEndpointDtoRegion$outboundSchema,
+  })
+);
 
 export function opsgenieIntegrationEndpointDtoToJSON(
   opsgenieIntegrationEndpointDto: OpsgenieIntegrationEndpointDto,

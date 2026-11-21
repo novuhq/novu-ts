@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -27,10 +27,12 @@ export const MessageActionResult$inboundSchema: z.ZodType<
   MessageActionResult,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  payload: z.record(z.any()).optional(),
-  type: ButtonTypeEnum$inboundSchema.optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    payload: z.record(z.any()).optional(),
+    type: ButtonTypeEnum$inboundSchema.optional(),
+  })
+);
 
 export function messageActionResultFromJSON(
   jsonString: string,

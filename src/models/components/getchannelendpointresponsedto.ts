@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -299,41 +299,48 @@ export type GetChannelEndpointResponseDto = {
 
 /** @internal */
 export const GetChannelEndpointResponseDtoChannel$inboundSchema:
-  z.ZodNativeEnum<typeof GetChannelEndpointResponseDtoChannel> = z.nativeEnum(
-    GetChannelEndpointResponseDtoChannel,
-  );
+  z.ZodNativeEnum<typeof GetChannelEndpointResponseDtoChannel> =
+    /* @__PURE__ */ lazySchema$(() =>
+      z.nativeEnum(GetChannelEndpointResponseDtoChannel)
+    );
 
 /** @internal */
 export const GetChannelEndpointResponseDtoProviderId$inboundSchema:
-  z.ZodNativeEnum<typeof GetChannelEndpointResponseDtoProviderId> = z
-    .nativeEnum(GetChannelEndpointResponseDtoProviderId);
+  z.ZodNativeEnum<typeof GetChannelEndpointResponseDtoProviderId> =
+    /* @__PURE__ */ lazySchema$(() =>
+      z.nativeEnum(GetChannelEndpointResponseDtoProviderId)
+    );
 
 /** @internal */
 export const GetChannelEndpointResponseDtoType$inboundSchema: z.ZodNativeEnum<
   typeof GetChannelEndpointResponseDtoType
-> = z.nativeEnum(GetChannelEndpointResponseDtoType);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.nativeEnum(GetChannelEndpointResponseDtoType)
+);
 
 /** @internal */
 export const Endpoint$inboundSchema: z.ZodType<
   Endpoint,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  MsTeamsChannelEndpointDto$inboundSchema,
-  PagerDutyServiceEndpointDto$inboundSchema,
-  OpsgenieIntegrationEndpointDto$inboundSchema,
-  SlackChannelEndpointDto$inboundSchema,
-  SlackUserEndpointDto$inboundSchema,
-  WebhookEndpointDto$inboundSchema,
-  PhoneEndpointDto$inboundSchema,
-  MsTeamsUserEndpointDto$inboundSchema,
-  TelegramChatEndpointDto$inboundSchema,
-  WebexRoomEndpointDto$inboundSchema,
-  LineUserEndpointDto$inboundSchema,
-  GrafanaOnCallIntegrationEndpointDto$inboundSchema,
-  ToolWebhookEndpointDto$inboundSchema,
-  WebexPersonEndpointDto$inboundSchema,
-]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.union([
+    MsTeamsChannelEndpointDto$inboundSchema,
+    PagerDutyServiceEndpointDto$inboundSchema,
+    OpsgenieIntegrationEndpointDto$inboundSchema,
+    SlackChannelEndpointDto$inboundSchema,
+    SlackUserEndpointDto$inboundSchema,
+    WebhookEndpointDto$inboundSchema,
+    PhoneEndpointDto$inboundSchema,
+    MsTeamsUserEndpointDto$inboundSchema,
+    TelegramChatEndpointDto$inboundSchema,
+    WebexRoomEndpointDto$inboundSchema,
+    LineUserEndpointDto$inboundSchema,
+    GrafanaOnCallIntegrationEndpointDto$inboundSchema,
+    ToolWebhookEndpointDto$inboundSchema,
+    WebexPersonEndpointDto$inboundSchema,
+  ])
+);
 
 export function endpointFromJSON(
   jsonString: string,
@@ -350,34 +357,38 @@ export const GetChannelEndpointResponseDto$inboundSchema: z.ZodType<
   GetChannelEndpointResponseDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  identifier: z.string(),
-  channel: z.nullable(GetChannelEndpointResponseDtoChannel$inboundSchema),
-  providerId: z.nullable(GetChannelEndpointResponseDtoProviderId$inboundSchema),
-  integrationIdentifier: z.nullable(z.string()),
-  connectionIdentifier: z.nullable(z.string()),
-  subscriberId: z.nullable(z.string()),
-  contextKeys: z.array(z.string()),
-  type: GetChannelEndpointResponseDtoType$inboundSchema,
-  endpoint: z.union([
-    MsTeamsChannelEndpointDto$inboundSchema,
-    PagerDutyServiceEndpointDto$inboundSchema,
-    OpsgenieIntegrationEndpointDto$inboundSchema,
-    SlackChannelEndpointDto$inboundSchema,
-    SlackUserEndpointDto$inboundSchema,
-    WebhookEndpointDto$inboundSchema,
-    PhoneEndpointDto$inboundSchema,
-    MsTeamsUserEndpointDto$inboundSchema,
-    TelegramChatEndpointDto$inboundSchema,
-    WebexRoomEndpointDto$inboundSchema,
-    LineUserEndpointDto$inboundSchema,
-    GrafanaOnCallIntegrationEndpointDto$inboundSchema,
-    ToolWebhookEndpointDto$inboundSchema,
-    WebexPersonEndpointDto$inboundSchema,
-  ]),
-  createdAt: z.string(),
-  updatedAt: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    identifier: z.string(),
+    channel: z.nullable(GetChannelEndpointResponseDtoChannel$inboundSchema),
+    providerId: z.nullable(
+      GetChannelEndpointResponseDtoProviderId$inboundSchema,
+    ),
+    integrationIdentifier: z.nullable(z.string()),
+    connectionIdentifier: z.nullable(z.string()),
+    subscriberId: z.nullable(z.string()),
+    contextKeys: z.array(z.string()),
+    type: GetChannelEndpointResponseDtoType$inboundSchema,
+    endpoint: z.union([
+      MsTeamsChannelEndpointDto$inboundSchema,
+      PagerDutyServiceEndpointDto$inboundSchema,
+      OpsgenieIntegrationEndpointDto$inboundSchema,
+      SlackChannelEndpointDto$inboundSchema,
+      SlackUserEndpointDto$inboundSchema,
+      WebhookEndpointDto$inboundSchema,
+      PhoneEndpointDto$inboundSchema,
+      MsTeamsUserEndpointDto$inboundSchema,
+      TelegramChatEndpointDto$inboundSchema,
+      WebexRoomEndpointDto$inboundSchema,
+      LineUserEndpointDto$inboundSchema,
+      GrafanaOnCallIntegrationEndpointDto$inboundSchema,
+      ToolWebhookEndpointDto$inboundSchema,
+      WebexPersonEndpointDto$inboundSchema,
+    ]),
+    createdAt: z.string(),
+    updatedAt: z.string(),
+  })
+);
 
 export function getChannelEndpointResponseDtoFromJSON(
   jsonString: string,

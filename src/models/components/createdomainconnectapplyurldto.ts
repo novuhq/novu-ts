@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type CreateDomainConnectApplyUrlDto = {
   /**
@@ -21,9 +22,11 @@ export const CreateDomainConnectApplyUrlDto$outboundSchema: z.ZodType<
   CreateDomainConnectApplyUrlDto$Outbound,
   z.ZodTypeDef,
   CreateDomainConnectApplyUrlDto
-> = z.object({
-  redirectUri: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    redirectUri: z.string().optional(),
+  })
+);
 
 export function createDomainConnectApplyUrlDtoToJSON(
   createDomainConnectApplyUrlDto: CreateDomainConnectApplyUrlDto,

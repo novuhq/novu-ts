@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -35,12 +35,14 @@ export const ActivitiesResponseDto$inboundSchema: z.ZodType<
   ActivitiesResponseDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  hasMore: z.boolean(),
-  data: z.array(ActivityNotificationResponseDto$inboundSchema),
-  pageSize: z.number(),
-  page: z.number(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    hasMore: z.boolean(),
+    data: z.array(ActivityNotificationResponseDto$inboundSchema),
+    pageSize: z.number(),
+    page: z.number(),
+  })
+);
 
 export function activitiesResponseDtoFromJSON(
   jsonString: string,

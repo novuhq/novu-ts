@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -52,21 +52,25 @@ export type TranslationResponseDto = {
 /** @internal */
 export const TranslationResponseDtoResourceType$inboundSchema: z.ZodNativeEnum<
   typeof TranslationResponseDtoResourceType
-> = z.nativeEnum(TranslationResponseDtoResourceType);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.nativeEnum(TranslationResponseDtoResourceType)
+);
 
 /** @internal */
 export const TranslationResponseDto$inboundSchema: z.ZodType<
   TranslationResponseDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  resourceId: z.string(),
-  resourceType: TranslationResponseDtoResourceType$inboundSchema,
-  locale: z.string(),
-  content: z.record(z.any()),
-  createdAt: z.string(),
-  updatedAt: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    resourceId: z.string(),
+    resourceType: TranslationResponseDtoResourceType$inboundSchema,
+    locale: z.string(),
+    content: z.record(z.any()),
+    createdAt: z.string(),
+    updatedAt: z.string(),
+  })
+);
 
 export function translationResponseDtoFromJSON(
   jsonString: string,

@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type PatchPreferenceChannelsDto = {
   /**
@@ -47,18 +48,20 @@ export const PatchPreferenceChannelsDto$outboundSchema: z.ZodType<
   PatchPreferenceChannelsDto$Outbound,
   z.ZodTypeDef,
   PatchPreferenceChannelsDto
-> = z.object({
-  email: z.boolean().optional(),
-  sms: z.boolean().optional(),
-  inApp: z.boolean().optional(),
-  push: z.boolean().optional(),
-  chat: z.boolean().optional(),
-  tool: z.boolean().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    inApp: "in_app",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    email: z.boolean().optional(),
+    sms: z.boolean().optional(),
+    inApp: z.boolean().optional(),
+    push: z.boolean().optional(),
+    chat: z.boolean().optional(),
+    tool: z.boolean().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      inApp: "in_app",
+    });
+  })
+);
 
 export function patchPreferenceChannelsDtoToJSON(
   patchPreferenceChannelsDto: PatchPreferenceChannelsDto,

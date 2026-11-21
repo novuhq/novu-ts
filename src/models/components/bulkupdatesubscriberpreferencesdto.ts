@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   BulkUpdateSubscriberPreferenceItemDto,
   BulkUpdateSubscriberPreferenceItemDto$Outbound,
@@ -41,10 +42,12 @@ export const Context2$outboundSchema: z.ZodType<
   Context2$Outbound,
   z.ZodTypeDef,
   Context2
-> = z.object({
-  id: z.string(),
-  data: z.record(z.any()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    data: z.record(z.any()).optional(),
+  })
+);
 
 export function context2ToJSON(context2: Context2): string {
   return JSON.stringify(Context2$outboundSchema.parse(context2));
@@ -61,7 +64,9 @@ export const BulkUpdateSubscriberPreferencesDtoContext$outboundSchema:
     BulkUpdateSubscriberPreferencesDtoContext$Outbound,
     z.ZodTypeDef,
     BulkUpdateSubscriberPreferencesDtoContext
-  > = z.union([z.lazy(() => Context2$outboundSchema), z.string()]);
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.union([z.lazy(() => Context2$outboundSchema), z.string()])
+  );
 
 export function bulkUpdateSubscriberPreferencesDtoContextToJSON(
   bulkUpdateSubscriberPreferencesDtoContext:
@@ -85,12 +90,14 @@ export const BulkUpdateSubscriberPreferencesDto$outboundSchema: z.ZodType<
   BulkUpdateSubscriberPreferencesDto$Outbound,
   z.ZodTypeDef,
   BulkUpdateSubscriberPreferencesDto
-> = z.object({
-  preferences: z.array(BulkUpdateSubscriberPreferenceItemDto$outboundSchema),
-  context: z.record(
-    z.union([z.lazy(() => Context2$outboundSchema), z.string()]),
-  ).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    preferences: z.array(BulkUpdateSubscriberPreferenceItemDto$outboundSchema),
+    context: z.record(
+      z.union([z.lazy(() => Context2$outboundSchema), z.string()]),
+    ).optional(),
+  })
+);
 
 export function bulkUpdateSubscriberPreferencesDtoToJSON(
   bulkUpdateSubscriberPreferencesDto: BulkUpdateSubscriberPreferencesDto,

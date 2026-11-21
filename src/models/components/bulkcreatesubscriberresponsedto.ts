@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -39,11 +39,13 @@ export const BulkCreateSubscriberResponseDto$inboundSchema: z.ZodType<
   BulkCreateSubscriberResponseDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  updated: z.array(UpdatedSubscriberDto$inboundSchema),
-  created: z.array(CreatedSubscriberDto$inboundSchema),
-  failed: z.array(FailedOperationDto$inboundSchema),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    updated: z.array(UpdatedSubscriberDto$inboundSchema),
+    created: z.array(CreatedSubscriberDto$inboundSchema),
+    failed: z.array(FailedOperationDto$inboundSchema),
+  })
+);
 
 export function bulkCreateSubscriberResponseDtoFromJSON(
   jsonString: string,

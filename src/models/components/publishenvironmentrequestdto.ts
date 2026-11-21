@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   ResourceToPublishDto,
   ResourceToPublishDto$Outbound,
@@ -36,11 +37,13 @@ export const PublishEnvironmentRequestDto$outboundSchema: z.ZodType<
   PublishEnvironmentRequestDto$Outbound,
   z.ZodTypeDef,
   PublishEnvironmentRequestDto
-> = z.object({
-  sourceEnvironmentId: z.string().optional(),
-  dryRun: z.boolean().default(false),
-  resources: z.array(ResourceToPublishDto$outboundSchema).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    sourceEnvironmentId: z.string().optional(),
+    dryRun: z.boolean().default(false),
+    resources: z.array(ResourceToPublishDto$outboundSchema).optional(),
+  })
+);
 
 export function publishEnvironmentRequestDtoToJSON(
   publishEnvironmentRequestDto: PublishEnvironmentRequestDto,

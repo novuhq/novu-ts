@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { RedirectDto, RedirectDto$inboundSchema } from "./redirectdto.js";
@@ -28,11 +28,13 @@ export const InboxActionDto$inboundSchema: z.ZodType<
   InboxActionDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  label: z.string(),
-  isCompleted: z.boolean(),
-  redirect: RedirectDto$inboundSchema.optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    label: z.string(),
+    isCompleted: z.boolean(),
+    redirect: RedirectDto$inboundSchema.optional(),
+  })
+);
 
 export function inboxActionDtoFromJSON(
   jsonString: string,

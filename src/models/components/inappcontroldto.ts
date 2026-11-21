@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   ActionDto,
   ActionDto$Outbound,
@@ -71,17 +72,19 @@ export const InAppControlDto$outboundSchema: z.ZodType<
   InAppControlDto$Outbound,
   z.ZodTypeDef,
   InAppControlDto
-> = z.object({
-  skip: z.record(z.any()).optional(),
-  body: z.string().optional(),
-  subject: z.string().optional(),
-  avatar: z.string().optional(),
-  primaryAction: ActionDto$outboundSchema.optional(),
-  secondaryAction: ActionDto$outboundSchema.optional(),
-  redirect: RedirectDto$outboundSchema.optional(),
-  disableOutputSanitization: z.boolean().default(false),
-  data: z.record(z.any()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    skip: z.record(z.any()).optional(),
+    body: z.string().optional(),
+    subject: z.string().optional(),
+    avatar: z.string().optional(),
+    primaryAction: ActionDto$outboundSchema.optional(),
+    secondaryAction: ActionDto$outboundSchema.optional(),
+    redirect: RedirectDto$outboundSchema.optional(),
+    disableOutputSanitization: z.boolean().default(false),
+    data: z.record(z.any()).optional(),
+  })
+);
 
 export function inAppControlDtoToJSON(
   inAppControlDto: InAppControlDto,

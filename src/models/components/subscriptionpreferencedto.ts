@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -69,15 +69,17 @@ export const SubscriptionPreferenceDtoWorkflow$inboundSchema: z.ZodType<
   SubscriptionPreferenceDtoWorkflow,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: z.string(),
-  identifier: z.string(),
-  name: z.string(),
-  critical: z.boolean(),
-  tags: z.array(z.string()).optional(),
-  data: z.record(z.any()).optional(),
-  severity: SeverityLevelEnum$inboundSchema,
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    identifier: z.string(),
+    name: z.string(),
+    critical: z.boolean(),
+    tags: z.array(z.string()).optional(),
+    data: z.record(z.any()).optional(),
+    severity: SeverityLevelEnum$inboundSchema,
+  })
+);
 
 export function subscriptionPreferenceDtoWorkflowFromJSON(
   jsonString: string,
@@ -94,14 +96,16 @@ export const SubscriptionPreferenceDto$inboundSchema: z.ZodType<
   SubscriptionPreferenceDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  subscriptionId: z.string(),
-  workflow: z.nullable(
-    z.lazy(() => SubscriptionPreferenceDtoWorkflow$inboundSchema),
-  ).optional(),
-  enabled: z.boolean(),
-  condition: z.record(z.any()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    subscriptionId: z.string(),
+    workflow: z.nullable(
+      z.lazy(() => SubscriptionPreferenceDtoWorkflow$inboundSchema),
+    ).optional(),
+    enabled: z.boolean(),
+    condition: z.record(z.any()).optional(),
+  })
+);
 
 export function subscriptionPreferenceDtoFromJSON(
   jsonString: string,

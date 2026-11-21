@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -56,16 +56,18 @@ export const AgentReplyControllerHandleAgentReplyHandlerRequest$outboundSchema:
     AgentReplyControllerHandleAgentReplyHandlerRequest$Outbound,
     z.ZodTypeDef,
     AgentReplyControllerHandleAgentReplyHandlerRequest
-  > = z.object({
-    agentId: z.string(),
-    idempotencyKey: z.string().optional(),
-    agentReplyPayloadDto: components.AgentReplyPayloadDto$outboundSchema,
-  }).transform((v) => {
-    return remap$(v, {
-      idempotencyKey: "idempotency-key",
-      agentReplyPayloadDto: "AgentReplyPayloadDto",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      agentId: z.string(),
+      idempotencyKey: z.string().optional(),
+      agentReplyPayloadDto: components.AgentReplyPayloadDto$outboundSchema,
+    }).transform((v) => {
+      return remap$(v, {
+        idempotencyKey: "idempotency-key",
+        agentReplyPayloadDto: "AgentReplyPayloadDto",
+      });
+    })
+  );
 
 export function agentReplyControllerHandleAgentReplyHandlerRequestToJSON(
   agentReplyControllerHandleAgentReplyHandlerRequest:
@@ -84,10 +86,12 @@ export const AgentReplyControllerHandleAgentReplyHandlerResponseBody$inboundSche
     AgentReplyControllerHandleAgentReplyHandlerResponseBody,
     z.ZodTypeDef,
     unknown
-  > = z.object({
-    messageId: z.string(),
-    platformThreadId: z.string(),
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      messageId: z.string(),
+      platformThreadId: z.string(),
+    })
+  );
 
 export function agentReplyControllerHandleAgentReplyHandlerResponseBodyFromJSON(
   jsonString: string,
@@ -110,17 +114,19 @@ export const AgentReplyControllerHandleAgentReplyHandlerResponse$inboundSchema:
     AgentReplyControllerHandleAgentReplyHandlerResponse,
     z.ZodTypeDef,
     unknown
-  > = z.object({
-    Headers: z.record(z.array(z.string())).default({}),
-    Result: z.lazy(() =>
-      AgentReplyControllerHandleAgentReplyHandlerResponseBody$inboundSchema
-    ),
-  }).transform((v) => {
-    return remap$(v, {
-      "Headers": "headers",
-      "Result": "result",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      Headers: z.record(z.array(z.string())).default({}),
+      Result: z.lazy(() =>
+        AgentReplyControllerHandleAgentReplyHandlerResponseBody$inboundSchema
+      ),
+    }).transform((v) => {
+      return remap$(v, {
+        "Headers": "headers",
+        "Result": "result",
+      });
+    })
+  );
 
 export function agentReplyControllerHandleAgentReplyHandlerResponseFromJSON(
   jsonString: string,

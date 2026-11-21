@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   MsTeamsUserEndpointDto,
   MsTeamsUserEndpointDto$Outbound,
@@ -69,10 +70,12 @@ export const CreateMsTeamsUserEndpointDtoContext2$outboundSchema: z.ZodType<
   CreateMsTeamsUserEndpointDtoContext2$Outbound,
   z.ZodTypeDef,
   CreateMsTeamsUserEndpointDtoContext2
-> = z.object({
-  id: z.string(),
-  data: z.record(z.any()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    data: z.record(z.any()).optional(),
+  })
+);
 
 export function createMsTeamsUserEndpointDtoContext2ToJSON(
   createMsTeamsUserEndpointDtoContext2: CreateMsTeamsUserEndpointDtoContext2,
@@ -94,10 +97,12 @@ export const CreateMsTeamsUserEndpointDtoContext$outboundSchema: z.ZodType<
   CreateMsTeamsUserEndpointDtoContext$Outbound,
   z.ZodTypeDef,
   CreateMsTeamsUserEndpointDtoContext
-> = z.union([
-  z.lazy(() => CreateMsTeamsUserEndpointDtoContext2$outboundSchema),
-  z.string(),
-]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.union([
+    z.lazy(() => CreateMsTeamsUserEndpointDtoContext2$outboundSchema),
+    z.string(),
+  ])
+);
 
 export function createMsTeamsUserEndpointDtoContextToJSON(
   createMsTeamsUserEndpointDtoContext: CreateMsTeamsUserEndpointDtoContext,
@@ -128,21 +133,21 @@ export const CreateMsTeamsUserEndpointDto$outboundSchema: z.ZodType<
   CreateMsTeamsUserEndpointDto$Outbound,
   z.ZodTypeDef,
   CreateMsTeamsUserEndpointDto
-> = z.object({
-  identifier: z.string().optional(),
-  subscriberId: z.string(),
-  createSubscriberIfMissing: z.boolean().default(false),
-  context: z.record(
-    z.union([
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    identifier: z.string().optional(),
+    subscriberId: z.string(),
+    createSubscriberIfMissing: z.boolean().default(false),
+    context: z.record(z.union([
       z.lazy(() => CreateMsTeamsUserEndpointDtoContext2$outboundSchema),
       z.string(),
-    ]),
-  ).optional(),
-  integrationIdentifier: z.string(),
-  connectionIdentifier: z.string().optional(),
-  type: z.literal("ms_teams_user"),
-  endpoint: MsTeamsUserEndpointDto$outboundSchema,
-});
+    ])).optional(),
+    integrationIdentifier: z.string(),
+    connectionIdentifier: z.string().optional(),
+    type: z.literal("ms_teams_user"),
+    endpoint: MsTeamsUserEndpointDto$outboundSchema,
+  })
+);
 
 export function createMsTeamsUserEndpointDtoToJSON(
   createMsTeamsUserEndpointDto: CreateMsTeamsUserEndpointDto,

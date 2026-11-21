@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -23,10 +23,12 @@ export const HttpRequestKeyValuePairDto$inboundSchema: z.ZodType<
   HttpRequestKeyValuePairDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  key: z.string(),
-  value: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    key: z.string(),
+    value: z.string(),
+  })
+);
 /** @internal */
 export type HttpRequestKeyValuePairDto$Outbound = {
   key: string;
@@ -38,10 +40,12 @@ export const HttpRequestKeyValuePairDto$outboundSchema: z.ZodType<
   HttpRequestKeyValuePairDto$Outbound,
   z.ZodTypeDef,
   HttpRequestKeyValuePairDto
-> = z.object({
-  key: z.string(),
-  value: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    key: z.string(),
+    value: z.string(),
+  })
+);
 
 export function httpRequestKeyValuePairDtoToJSON(
   httpRequestKeyValuePairDto: HttpRequestKeyValuePairDto,

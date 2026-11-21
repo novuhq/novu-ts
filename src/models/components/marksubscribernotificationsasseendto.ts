@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 /**
  * Filter notifications by workflow tags (OR for string[], or { and: [{ or: string[] }, ...] } for AND of OR-groups).
@@ -36,7 +37,7 @@ export const MarkSubscriberNotificationsAsSeenDtoTags$outboundSchema: z.ZodType<
   MarkSubscriberNotificationsAsSeenDtoTags$Outbound,
   z.ZodTypeDef,
   MarkSubscriberNotificationsAsSeenDtoTags
-> = z.object({});
+> = /* @__PURE__ */ lazySchema$(() => z.object({}));
 
 export function markSubscriberNotificationsAsSeenDtoTagsToJSON(
   markSubscriberNotificationsAsSeenDtoTags:
@@ -62,13 +63,15 @@ export const MarkSubscriberNotificationsAsSeenDto$outboundSchema: z.ZodType<
   MarkSubscriberNotificationsAsSeenDto$Outbound,
   z.ZodTypeDef,
   MarkSubscriberNotificationsAsSeenDto
-> = z.object({
-  notificationIds: z.array(z.string()).optional(),
-  tags: z.lazy(() => MarkSubscriberNotificationsAsSeenDtoTags$outboundSchema)
-    .optional(),
-  data: z.string().optional(),
-  contextKeys: z.array(z.string()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    notificationIds: z.array(z.string()).optional(),
+    tags: z.lazy(() => MarkSubscriberNotificationsAsSeenDtoTags$outboundSchema)
+      .optional(),
+    data: z.string().optional(),
+    contextKeys: z.array(z.string()).optional(),
+  })
+);
 
 export function markSubscriberNotificationsAsSeenDtoToJSON(
   markSubscriberNotificationsAsSeenDto: MarkSubscriberNotificationsAsSeenDto,
