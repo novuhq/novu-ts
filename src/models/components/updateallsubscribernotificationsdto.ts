@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 /**
  * Filter notifications by workflow tags (OR for string[], or { and: [{ or: string[] }, ...] } for AND of OR-groups).
@@ -29,7 +30,7 @@ export type Tags$Outbound = {};
 
 /** @internal */
 export const Tags$outboundSchema: z.ZodType<Tags$Outbound, z.ZodTypeDef, Tags> =
-  z.object({});
+  /* @__PURE__ */ lazySchema$(() => z.object({}));
 
 export function tagsToJSON(tags: Tags): string {
   return JSON.stringify(Tags$outboundSchema.parse(tags));
@@ -47,11 +48,13 @@ export const UpdateAllSubscriberNotificationsDto$outboundSchema: z.ZodType<
   UpdateAllSubscriberNotificationsDto$Outbound,
   z.ZodTypeDef,
   UpdateAllSubscriberNotificationsDto
-> = z.object({
-  tags: z.lazy(() => Tags$outboundSchema).optional(),
-  data: z.string().optional(),
-  contextKeys: z.array(z.string()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    tags: z.lazy(() => Tags$outboundSchema).optional(),
+    data: z.string().optional(),
+    contextKeys: z.array(z.string()).optional(),
+  })
+);
 
 export function updateAllSubscriberNotificationsDtoToJSON(
   updateAllSubscriberNotificationsDto: UpdateAllSubscriberNotificationsDto,

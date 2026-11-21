@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
@@ -78,8 +78,8 @@ export type SubscribersControllerGetSubscriberNotificationsResponse = {
 };
 
 /** @internal */
-export const Severity$outboundSchema: z.ZodNativeEnum<typeof Severity> = z
-  .nativeEnum(Severity);
+export const Severity$outboundSchema: z.ZodNativeEnum<typeof Severity> =
+  /* @__PURE__ */ lazySchema$(() => z.nativeEnum(Severity));
 
 /** @internal */
 export type SubscribersControllerGetSubscriberNotificationsRequest$Outbound = {
@@ -106,27 +106,29 @@ export const SubscribersControllerGetSubscriberNotificationsRequest$outboundSche
     SubscribersControllerGetSubscriberNotificationsRequest$Outbound,
     z.ZodTypeDef,
     SubscribersControllerGetSubscriberNotificationsRequest
-  > = z.object({
-    subscriberId: z.string(),
-    limit: z.number().default(10),
-    after: z.string().optional(),
-    offset: z.number().optional(),
-    tags: z.array(z.string()).optional(),
-    read: z.boolean().optional(),
-    archived: z.boolean().optional(),
-    snoozed: z.boolean().optional(),
-    seen: z.boolean().optional(),
-    data: z.string().optional(),
-    severity: z.array(Severity$outboundSchema).optional(),
-    createdGte: z.number().optional(),
-    createdLte: z.number().optional(),
-    contextKeys: z.array(z.string()).optional(),
-    idempotencyKey: z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      idempotencyKey: "idempotency-key",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      subscriberId: z.string(),
+      limit: z.number().default(10),
+      after: z.string().optional(),
+      offset: z.number().optional(),
+      tags: z.array(z.string()).optional(),
+      read: z.boolean().optional(),
+      archived: z.boolean().optional(),
+      snoozed: z.boolean().optional(),
+      seen: z.boolean().optional(),
+      data: z.string().optional(),
+      severity: z.array(Severity$outboundSchema).optional(),
+      createdGte: z.number().optional(),
+      createdLte: z.number().optional(),
+      contextKeys: z.array(z.string()).optional(),
+      idempotencyKey: z.string().optional(),
+    }).transform((v) => {
+      return remap$(v, {
+        idempotencyKey: "idempotency-key",
+      });
+    })
+  );
 
 export function subscribersControllerGetSubscriberNotificationsRequestToJSON(
   subscribersControllerGetSubscriberNotificationsRequest:
@@ -145,15 +147,17 @@ export const SubscribersControllerGetSubscriberNotificationsResponse$inboundSche
     SubscribersControllerGetSubscriberNotificationsResponse,
     z.ZodTypeDef,
     unknown
-  > = z.object({
-    Headers: z.record(z.array(z.string())).default({}),
-    Result: components.GetSubscriberNotificationsResponseDto$inboundSchema,
-  }).transform((v) => {
-    return remap$(v, {
-      "Headers": "headers",
-      "Result": "result",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      Headers: z.record(z.array(z.string())).default({}),
+      Result: components.GetSubscriberNotificationsResponseDto$inboundSchema,
+    }).transform((v) => {
+      return remap$(v, {
+        "Headers": "headers",
+        "Result": "result",
+      });
+    })
+  );
 
 export function subscribersControllerGetSubscriberNotificationsResponseFromJSON(
   jsonString: string,

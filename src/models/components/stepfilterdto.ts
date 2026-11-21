@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -35,7 +35,7 @@ export type StepFilterDto = {
 /** @internal */
 export const StepFilterDtoValue$inboundSchema: z.ZodNativeEnum<
   typeof StepFilterDtoValue
-> = z.nativeEnum(StepFilterDtoValue);
+> = /* @__PURE__ */ lazySchema$(() => z.nativeEnum(StepFilterDtoValue));
 /** @internal */
 export const StepFilterDtoValue$outboundSchema: z.ZodNativeEnum<
   typeof StepFilterDtoValue
@@ -46,12 +46,14 @@ export const StepFilterDto$inboundSchema: z.ZodType<
   StepFilterDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  isNegated: z.boolean(),
-  type: BuilderFieldTypeEnum$inboundSchema,
-  value: StepFilterDtoValue$inboundSchema,
-  children: z.array(FieldFilterPartDto$inboundSchema),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    isNegated: z.boolean(),
+    type: BuilderFieldTypeEnum$inboundSchema,
+    value: StepFilterDtoValue$inboundSchema,
+    children: z.array(FieldFilterPartDto$inboundSchema),
+  })
+);
 /** @internal */
 export type StepFilterDto$Outbound = {
   isNegated: boolean;
@@ -65,12 +67,14 @@ export const StepFilterDto$outboundSchema: z.ZodType<
   StepFilterDto$Outbound,
   z.ZodTypeDef,
   StepFilterDto
-> = z.object({
-  isNegated: z.boolean(),
-  type: BuilderFieldTypeEnum$outboundSchema,
-  value: StepFilterDtoValue$outboundSchema,
-  children: z.array(FieldFilterPartDto$outboundSchema),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    isNegated: z.boolean(),
+    type: BuilderFieldTypeEnum$outboundSchema,
+    value: StepFilterDtoValue$outboundSchema,
+    children: z.array(FieldFilterPartDto$outboundSchema),
+  })
+);
 
 export function stepFilterDtoToJSON(stepFilterDto: StepFilterDto): string {
   return JSON.stringify(StepFilterDto$outboundSchema.parse(stepFilterDto));

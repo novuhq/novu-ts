@@ -5,6 +5,7 @@
 import * as z from "zod/v3";
 import {
   collectExtraKeys as collectExtraKeys$,
+  lazySchema as lazySchema$,
   safeParse,
 } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -42,12 +43,14 @@ export const CustomControlsMetadataResponseDtoValues$inboundSchema: z.ZodType<
   CustomControlsMetadataResponseDtoValues,
   z.ZodTypeDef,
   unknown
-> = collectExtraKeys$(
-  z.object({
-    custom: z.record(z.any()).optional(),
-  }).catchall(z.any()),
-  "additionalProperties",
-  true,
+> = /* @__PURE__ */ lazySchema$(() =>
+  collectExtraKeys$(
+    z.object({
+      custom: z.record(z.any()).optional(),
+    }).catchall(z.any()),
+    "additionalProperties",
+    true,
+  )
 );
 
 export function customControlsMetadataResponseDtoValuesFromJSON(
@@ -71,12 +74,14 @@ export const CustomControlsMetadataResponseDto$inboundSchema: z.ZodType<
   CustomControlsMetadataResponseDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  dataSchema: z.record(z.any()).optional(),
-  uiSchema: UiSchema$inboundSchema.optional(),
-  values: z.lazy(() => CustomControlsMetadataResponseDtoValues$inboundSchema)
-    .optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    dataSchema: z.record(z.any()).optional(),
+    uiSchema: UiSchema$inboundSchema.optional(),
+    values: z.lazy(() => CustomControlsMetadataResponseDtoValues$inboundSchema)
+      .optional(),
+  })
+);
 
 export function customControlsMetadataResponseDtoFromJSON(
   jsonString: string,

@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 
 /**
@@ -64,12 +65,12 @@ export type ThrottleControlDto = {
 /** @internal */
 export const ThrottleControlDtoType$outboundSchema: z.ZodNativeEnum<
   typeof ThrottleControlDtoType
-> = z.nativeEnum(ThrottleControlDtoType);
+> = /* @__PURE__ */ lazySchema$(() => z.nativeEnum(ThrottleControlDtoType));
 
 /** @internal */
 export const ThrottleControlDtoUnit$outboundSchema: z.ZodNativeEnum<
   typeof ThrottleControlDtoUnit
-> = z.nativeEnum(ThrottleControlDtoUnit);
+> = /* @__PURE__ */ lazySchema$(() => z.nativeEnum(ThrottleControlDtoUnit));
 
 /** @internal */
 export type ThrottleControlDto$Outbound = {
@@ -87,15 +88,17 @@ export const ThrottleControlDto$outboundSchema: z.ZodType<
   ThrottleControlDto$Outbound,
   z.ZodTypeDef,
   ThrottleControlDto
-> = z.object({
-  skip: z.record(z.any()).optional(),
-  type: ThrottleControlDtoType$outboundSchema.default("fixed"),
-  amount: z.number().optional(),
-  unit: ThrottleControlDtoUnit$outboundSchema.optional(),
-  dynamicKey: z.string().optional(),
-  threshold: z.number().default(1),
-  throttleKey: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    skip: z.record(z.any()).optional(),
+    type: ThrottleControlDtoType$outboundSchema.default("fixed"),
+    amount: z.number().optional(),
+    unit: ThrottleControlDtoUnit$outboundSchema.optional(),
+    dynamicKey: z.string().optional(),
+    threshold: z.number().default(1),
+    throttleKey: z.string().optional(),
+  })
+);
 
 export function throttleControlDtoToJSON(
   throttleControlDto: ThrottleControlDto,

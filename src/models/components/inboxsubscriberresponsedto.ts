@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -35,13 +35,15 @@ export const InboxSubscriberResponseDto$inboundSchema: z.ZodType<
   InboxSubscriberResponseDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: z.string(),
-  firstName: z.string().optional(),
-  lastName: z.string().optional(),
-  avatar: z.string().optional(),
-  subscriberId: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    firstName: z.string().optional(),
+    lastName: z.string().optional(),
+    avatar: z.string().optional(),
+    subscriberId: z.string(),
+  })
+);
 
 export function inboxSubscriberResponseDtoFromJSON(
   jsonString: string,

@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -40,18 +40,20 @@ export const AgentIntegrationsControllerUpdateAgentIntegrationRequest$outboundSc
     AgentIntegrationsControllerUpdateAgentIntegrationRequest$Outbound,
     z.ZodTypeDef,
     AgentIntegrationsControllerUpdateAgentIntegrationRequest
-  > = z.object({
-    identifier: z.string(),
-    agentIntegrationId: z.string(),
-    idempotencyKey: z.string().optional(),
-    updateAgentIntegrationRequestDto:
-      components.UpdateAgentIntegrationRequestDto$outboundSchema,
-  }).transform((v) => {
-    return remap$(v, {
-      idempotencyKey: "idempotency-key",
-      updateAgentIntegrationRequestDto: "UpdateAgentIntegrationRequestDto",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      identifier: z.string(),
+      agentIntegrationId: z.string(),
+      idempotencyKey: z.string().optional(),
+      updateAgentIntegrationRequestDto:
+        components.UpdateAgentIntegrationRequestDto$outboundSchema,
+    }).transform((v) => {
+      return remap$(v, {
+        idempotencyKey: "idempotency-key",
+        updateAgentIntegrationRequestDto: "UpdateAgentIntegrationRequestDto",
+      });
+    })
+  );
 
 export function agentIntegrationsControllerUpdateAgentIntegrationRequestToJSON(
   agentIntegrationsControllerUpdateAgentIntegrationRequest:
@@ -69,15 +71,17 @@ export const AgentIntegrationsControllerUpdateAgentIntegrationResponse$inboundSc
     AgentIntegrationsControllerUpdateAgentIntegrationResponse,
     z.ZodTypeDef,
     unknown
-  > = z.object({
-    Headers: z.record(z.array(z.string())).default({}),
-    Result: components.AgentIntegrationResponseDto$inboundSchema,
-  }).transform((v) => {
-    return remap$(v, {
-      "Headers": "headers",
-      "Result": "result",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      Headers: z.record(z.array(z.string())).default({}),
+      Result: components.AgentIntegrationResponseDto$inboundSchema,
+    }).transform((v) => {
+      return remap$(v, {
+        "Headers": "headers",
+        "Result": "result",
+      });
+    })
+  );
 
 export function agentIntegrationsControllerUpdateAgentIntegrationResponseFromJSON(
   jsonString: string,

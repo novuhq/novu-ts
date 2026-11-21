@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type UpdateSubscriberOnlineFlagRequestDto = {
   isOnline: boolean;
@@ -18,9 +19,11 @@ export const UpdateSubscriberOnlineFlagRequestDto$outboundSchema: z.ZodType<
   UpdateSubscriberOnlineFlagRequestDto$Outbound,
   z.ZodTypeDef,
   UpdateSubscriberOnlineFlagRequestDto
-> = z.object({
-  isOnline: z.boolean(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    isOnline: z.boolean(),
+  })
+);
 
 export function updateSubscriberOnlineFlagRequestDtoToJSON(
   updateSubscriberOnlineFlagRequestDto: UpdateSubscriberOnlineFlagRequestDto,

@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type IssueIntegrationMobileLinkRequestDto = {
   /**
@@ -21,9 +22,11 @@ export const IssueIntegrationMobileLinkRequestDto$outboundSchema: z.ZodType<
   IssueIntegrationMobileLinkRequestDto$Outbound,
   z.ZodTypeDef,
   IssueIntegrationMobileLinkRequestDto
-> = z.object({
-  subscriberId: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    subscriberId: z.string().optional(),
+  })
+);
 
 export function issueIntegrationMobileLinkRequestDtoToJSON(
   issueIntegrationMobileLinkRequestDto: IssueIntegrationMobileLinkRequestDto,

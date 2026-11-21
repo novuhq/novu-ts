@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   PatchPreferenceChannelsDto,
   PatchPreferenceChannelsDto$Outbound,
@@ -31,10 +32,12 @@ export const BulkUpdateSubscriberPreferenceItemDto$outboundSchema: z.ZodType<
   BulkUpdateSubscriberPreferenceItemDto$Outbound,
   z.ZodTypeDef,
   BulkUpdateSubscriberPreferenceItemDto
-> = z.object({
-  channels: PatchPreferenceChannelsDto$outboundSchema,
-  workflowId: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    channels: PatchPreferenceChannelsDto$outboundSchema,
+    workflowId: z.string(),
+  })
+);
 
 export function bulkUpdateSubscriberPreferenceItemDtoToJSON(
   bulkUpdateSubscriberPreferenceItemDto: BulkUpdateSubscriberPreferenceItemDto,

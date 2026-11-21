@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 
 /**
@@ -30,4 +31,4 @@ export type UiSchemaGroupEnum = ClosedEnum<typeof UiSchemaGroupEnum>;
 /** @internal */
 export const UiSchemaGroupEnum$inboundSchema: z.ZodNativeEnum<
   typeof UiSchemaGroupEnum
-> = z.nativeEnum(UiSchemaGroupEnum);
+> = /* @__PURE__ */ lazySchema$(() => z.nativeEnum(UiSchemaGroupEnum));

@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   PatchPreferenceChannelsDto,
   PatchPreferenceChannelsDto$Outbound,
@@ -50,11 +51,13 @@ export type Two$Outbound = {
 };
 
 /** @internal */
-export const Two$outboundSchema: z.ZodType<Two$Outbound, z.ZodTypeDef, Two> = z
-  .object({
-    id: z.string(),
-    data: z.record(z.any()).optional(),
-  });
+export const Two$outboundSchema: z.ZodType<Two$Outbound, z.ZodTypeDef, Two> =
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      id: z.string(),
+      data: z.record(z.any()).optional(),
+    })
+  );
 
 export function twoToJSON(two: Two): string {
   return JSON.stringify(Two$outboundSchema.parse(two));
@@ -68,7 +71,9 @@ export const Context$outboundSchema: z.ZodType<
   Context$Outbound,
   z.ZodTypeDef,
   Context
-> = z.union([z.lazy(() => Two$outboundSchema), z.string()]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.union([z.lazy(() => Two$outboundSchema), z.string()])
+);
 
 export function contextToJSON(context: Context): string {
   return JSON.stringify(Context$outboundSchema.parse(context));
@@ -87,13 +92,15 @@ export const PatchSubscriberPreferencesDto$outboundSchema: z.ZodType<
   PatchSubscriberPreferencesDto$Outbound,
   z.ZodTypeDef,
   PatchSubscriberPreferencesDto
-> = z.object({
-  channels: PatchPreferenceChannelsDto$outboundSchema.optional(),
-  workflowId: z.string().optional(),
-  schedule: ScheduleDto$outboundSchema.optional(),
-  context: z.record(z.union([z.lazy(() => Two$outboundSchema), z.string()]))
-    .optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    channels: PatchPreferenceChannelsDto$outboundSchema.optional(),
+    workflowId: z.string().optional(),
+    schedule: ScheduleDto$outboundSchema.optional(),
+    context: z.record(z.union([z.lazy(() => Two$outboundSchema), z.string()]))
+      .optional(),
+  })
+);
 
 export function patchSubscriberPreferencesDtoToJSON(
   patchSubscriberPreferencesDto: PatchSubscriberPreferencesDto,

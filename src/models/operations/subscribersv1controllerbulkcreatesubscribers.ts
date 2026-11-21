@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -34,15 +34,18 @@ export const SubscribersV1ControllerBulkCreateSubscribersRequest$outboundSchema:
     SubscribersV1ControllerBulkCreateSubscribersRequest$Outbound,
     z.ZodTypeDef,
     SubscribersV1ControllerBulkCreateSubscribersRequest
-  > = z.object({
-    idempotencyKey: z.string().optional(),
-    bulkSubscriberCreateDto: components.BulkSubscriberCreateDto$outboundSchema,
-  }).transform((v) => {
-    return remap$(v, {
-      idempotencyKey: "idempotency-key",
-      bulkSubscriberCreateDto: "BulkSubscriberCreateDto",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      idempotencyKey: z.string().optional(),
+      bulkSubscriberCreateDto:
+        components.BulkSubscriberCreateDto$outboundSchema,
+    }).transform((v) => {
+      return remap$(v, {
+        idempotencyKey: "idempotency-key",
+        bulkSubscriberCreateDto: "BulkSubscriberCreateDto",
+      });
+    })
+  );
 
 export function subscribersV1ControllerBulkCreateSubscribersRequestToJSON(
   subscribersV1ControllerBulkCreateSubscribersRequest:
@@ -61,15 +64,17 @@ export const SubscribersV1ControllerBulkCreateSubscribersResponse$inboundSchema:
     SubscribersV1ControllerBulkCreateSubscribersResponse,
     z.ZodTypeDef,
     unknown
-  > = z.object({
-    Headers: z.record(z.array(z.string())).default({}),
-    Result: components.BulkCreateSubscriberResponseDto$inboundSchema,
-  }).transform((v) => {
-    return remap$(v, {
-      "Headers": "headers",
-      "Result": "result",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      Headers: z.record(z.array(z.string())).default({}),
+      Result: components.BulkCreateSubscriberResponseDto$inboundSchema,
+    }).transform((v) => {
+      return remap$(v, {
+        "Headers": "headers",
+        "Result": "result",
+      });
+    })
+  );
 
 export function subscribersV1ControllerBulkCreateSubscribersResponseFromJSON(
   jsonString: string,

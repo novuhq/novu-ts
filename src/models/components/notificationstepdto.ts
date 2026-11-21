@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -101,12 +101,14 @@ export const Metadata$inboundSchema: z.ZodType<
   Metadata,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  DelayScheduledMetadata$inboundSchema,
-  DigestRegularMetadata$inboundSchema,
-  DigestTimedMetadata$inboundSchema,
-  DelayRegularMetadata$inboundSchema,
-]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.union([
+    DelayScheduledMetadata$inboundSchema,
+    DigestRegularMetadata$inboundSchema,
+    DigestTimedMetadata$inboundSchema,
+    DelayRegularMetadata$inboundSchema,
+  ])
+);
 
 export function metadataFromJSON(
   jsonString: string,
@@ -123,31 +125,33 @@ export const NotificationStepDto$inboundSchema: z.ZodType<
   NotificationStepDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  _id: z.string().optional(),
-  uuid: z.string().optional(),
-  name: z.string().optional(),
-  _templateId: z.string().optional(),
-  active: z.boolean().optional(),
-  shouldStopOnFail: z.boolean().optional(),
-  template: MessageTemplate$inboundSchema.optional(),
-  filters: z.array(StepFilterDto$inboundSchema).optional(),
-  _parentId: z.string().optional(),
-  metadata: z.union([
-    DelayScheduledMetadata$inboundSchema,
-    DigestRegularMetadata$inboundSchema,
-    DigestTimedMetadata$inboundSchema,
-    DelayRegularMetadata$inboundSchema,
-  ]).optional(),
-  replyCallback: ReplyCallback$inboundSchema.optional(),
-  variants: z.array(NotificationStepData$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_id": "id",
-    "_templateId": "templateId",
-    "_parentId": "parentId",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    _id: z.string().optional(),
+    uuid: z.string().optional(),
+    name: z.string().optional(),
+    _templateId: z.string().optional(),
+    active: z.boolean().optional(),
+    shouldStopOnFail: z.boolean().optional(),
+    template: MessageTemplate$inboundSchema.optional(),
+    filters: z.array(StepFilterDto$inboundSchema).optional(),
+    _parentId: z.string().optional(),
+    metadata: z.union([
+      DelayScheduledMetadata$inboundSchema,
+      DigestRegularMetadata$inboundSchema,
+      DigestTimedMetadata$inboundSchema,
+      DelayRegularMetadata$inboundSchema,
+    ]).optional(),
+    replyCallback: ReplyCallback$inboundSchema.optional(),
+    variants: z.array(NotificationStepData$inboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_id": "id",
+      "_templateId": "templateId",
+      "_parentId": "parentId",
+    });
+  })
+);
 
 export function notificationStepDtoFromJSON(
   jsonString: string,

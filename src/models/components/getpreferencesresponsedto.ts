@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -86,15 +86,17 @@ export const Workflow$inboundSchema: z.ZodType<
   Workflow,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: z.string(),
-  identifier: z.string(),
-  name: z.string(),
-  critical: z.boolean(),
-  tags: z.array(z.string()).optional(),
-  data: z.record(z.any()).optional(),
-  severity: SeverityLevelEnum$inboundSchema,
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    identifier: z.string(),
+    name: z.string(),
+    critical: z.boolean(),
+    tags: z.array(z.string()).optional(),
+    data: z.record(z.any()).optional(),
+    severity: SeverityLevelEnum$inboundSchema,
+  })
+);
 
 export function workflowFromJSON(
   jsonString: string,
@@ -111,7 +113,7 @@ export const Condition$inboundSchema: z.ZodType<
   Condition,
   z.ZodTypeDef,
   unknown
-> = z.object({});
+> = /* @__PURE__ */ lazySchema$(() => z.object({}));
 
 export function conditionFromJSON(
   jsonString: string,
@@ -128,13 +130,15 @@ export const GetPreferencesResponseDto$inboundSchema: z.ZodType<
   GetPreferencesResponseDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  level: PreferenceLevelEnum$inboundSchema,
-  workflow: z.nullable(z.lazy(() => Workflow$inboundSchema)).optional(),
-  enabled: z.boolean(),
-  channels: SubscriberPreferenceChannels$inboundSchema,
-  condition: z.nullable(z.lazy(() => Condition$inboundSchema)).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    level: PreferenceLevelEnum$inboundSchema,
+    workflow: z.nullable(z.lazy(() => Workflow$inboundSchema)).optional(),
+    enabled: z.boolean(),
+    channels: SubscriberPreferenceChannels$inboundSchema,
+    condition: z.nullable(z.lazy(() => Condition$inboundSchema)).optional(),
+  })
+);
 
 export function getPreferencesResponseDtoFromJSON(
   jsonString: string,

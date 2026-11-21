@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -40,14 +40,15 @@ export type FieldFilterPartDto = {
 };
 
 /** @internal */
-export const Operator$inboundSchema: z.ZodNativeEnum<typeof Operator> = z
-  .nativeEnum(Operator);
+export const Operator$inboundSchema: z.ZodNativeEnum<typeof Operator> =
+  /* @__PURE__ */ lazySchema$(() => z.nativeEnum(Operator));
 /** @internal */
 export const Operator$outboundSchema: z.ZodNativeEnum<typeof Operator> =
   Operator$inboundSchema;
 
 /** @internal */
-export const On$inboundSchema: z.ZodNativeEnum<typeof On> = z.nativeEnum(On);
+export const On$inboundSchema: z.ZodNativeEnum<typeof On> =
+  /* @__PURE__ */ lazySchema$(() => z.nativeEnum(On));
 /** @internal */
 export const On$outboundSchema: z.ZodNativeEnum<typeof On> = On$inboundSchema;
 
@@ -56,12 +57,14 @@ export const FieldFilterPartDto$inboundSchema: z.ZodType<
   FieldFilterPartDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  field: z.string(),
-  value: z.string(),
-  operator: Operator$inboundSchema,
-  on: On$inboundSchema,
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    field: z.string(),
+    value: z.string(),
+    operator: Operator$inboundSchema,
+    on: On$inboundSchema,
+  })
+);
 /** @internal */
 export type FieldFilterPartDto$Outbound = {
   field: string;
@@ -75,12 +78,14 @@ export const FieldFilterPartDto$outboundSchema: z.ZodType<
   FieldFilterPartDto$Outbound,
   z.ZodTypeDef,
   FieldFilterPartDto
-> = z.object({
-  field: z.string(),
-  value: z.string(),
-  operator: Operator$outboundSchema,
-  on: On$outboundSchema,
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    field: z.string(),
+    value: z.string(),
+    operator: Operator$outboundSchema,
+    on: On$outboundSchema,
+  })
+);
 
 export function fieldFilterPartDtoToJSON(
   fieldFilterPartDto: FieldFilterPartDto,

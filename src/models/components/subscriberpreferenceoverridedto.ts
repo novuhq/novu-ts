@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -28,10 +28,12 @@ export const SubscriberPreferenceOverrideDto$inboundSchema: z.ZodType<
   SubscriberPreferenceOverrideDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  channel: ChannelTypeEnum$inboundSchema,
-  source: PreferenceOverrideSourceEnum$inboundSchema,
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    channel: ChannelTypeEnum$inboundSchema,
+    source: PreferenceOverrideSourceEnum$inboundSchema,
+  })
+);
 
 export function subscriberPreferenceOverrideDtoFromJSON(
   jsonString: string,

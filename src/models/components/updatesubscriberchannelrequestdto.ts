@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   ChannelCredentials,
   ChannelCredentials$Outbound,
@@ -40,11 +41,13 @@ export const UpdateSubscriberChannelRequestDto$outboundSchema: z.ZodType<
   UpdateSubscriberChannelRequestDto$Outbound,
   z.ZodTypeDef,
   UpdateSubscriberChannelRequestDto
-> = z.object({
-  providerId: ChatOrPushProviderEnum$outboundSchema,
-  integrationIdentifier: z.string().optional(),
-  credentials: ChannelCredentials$outboundSchema,
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    providerId: ChatOrPushProviderEnum$outboundSchema,
+    integrationIdentifier: z.string().optional(),
+    credentials: ChannelCredentials$outboundSchema,
+  })
+);
 
 export function updateSubscriberChannelRequestDtoToJSON(
   updateSubscriberChannelRequestDto: UpdateSubscriberChannelRequestDto,

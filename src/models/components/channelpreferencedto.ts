@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -19,9 +19,11 @@ export const ChannelPreferenceDto$inboundSchema: z.ZodType<
   ChannelPreferenceDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  enabled: z.boolean().default(true),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    enabled: z.boolean().default(true),
+  })
+);
 /** @internal */
 export type ChannelPreferenceDto$Outbound = {
   enabled: boolean;
@@ -32,9 +34,11 @@ export const ChannelPreferenceDto$outboundSchema: z.ZodType<
   ChannelPreferenceDto$Outbound,
   z.ZodTypeDef,
   ChannelPreferenceDto
-> = z.object({
-  enabled: z.boolean().default(true),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    enabled: z.boolean().default(true),
+  })
+);
 
 export function channelPreferenceDtoToJSON(
   channelPreferenceDto: ChannelPreferenceDto,

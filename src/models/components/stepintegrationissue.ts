@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -39,12 +39,14 @@ export const StepIntegrationIssue$inboundSchema: z.ZodType<
   StepIntegrationIssue,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  issueType: IntegrationIssueEnum$inboundSchema,
-  variableName: z.string().optional(),
-  message: z.string(),
-  severity: StepIssueSeverityEnum$inboundSchema.optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    issueType: IntegrationIssueEnum$inboundSchema,
+    variableName: z.string().optional(),
+    message: z.string(),
+    severity: StepIssueSeverityEnum$inboundSchema.optional(),
+  })
+);
 
 export function stepIntegrationIssueFromJSON(
   jsonString: string,

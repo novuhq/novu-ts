@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 
 export const AgentSkillInputDtoType = {
@@ -31,7 +32,7 @@ export type AgentSkillInputDto = {
 /** @internal */
 export const AgentSkillInputDtoType$outboundSchema: z.ZodNativeEnum<
   typeof AgentSkillInputDtoType
-> = z.nativeEnum(AgentSkillInputDtoType);
+> = /* @__PURE__ */ lazySchema$(() => z.nativeEnum(AgentSkillInputDtoType));
 
 /** @internal */
 export type Version$Outbound = {};
@@ -41,7 +42,7 @@ export const Version$outboundSchema: z.ZodType<
   Version$Outbound,
   z.ZodTypeDef,
   Version
-> = z.object({});
+> = /* @__PURE__ */ lazySchema$(() => z.object({}));
 
 export function versionToJSON(version: Version): string {
   return JSON.stringify(Version$outboundSchema.parse(version));
@@ -59,11 +60,13 @@ export const AgentSkillInputDto$outboundSchema: z.ZodType<
   AgentSkillInputDto$Outbound,
   z.ZodTypeDef,
   AgentSkillInputDto
-> = z.object({
-  type: AgentSkillInputDtoType$outboundSchema,
-  skillId: z.string(),
-  version: z.nullable(z.lazy(() => Version$outboundSchema)).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    type: AgentSkillInputDtoType$outboundSchema,
+    skillId: z.string(),
+    version: z.nullable(z.lazy(() => Version$outboundSchema)).optional(),
+  })
+);
 
 export function agentSkillInputDtoToJSON(
   agentSkillInputDto: AgentSkillInputDto,

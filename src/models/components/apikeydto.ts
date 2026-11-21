@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -28,15 +28,17 @@ export const ApiKeyDto$inboundSchema: z.ZodType<
   ApiKeyDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  key: z.string(),
-  _userId: z.string(),
-  hash: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_userId": "userId",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    key: z.string(),
+    _userId: z.string(),
+    hash: z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_userId": "userId",
+    });
+  })
+);
 
 export function apiKeyDtoFromJSON(
   jsonString: string,

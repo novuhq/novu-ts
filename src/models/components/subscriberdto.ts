@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -40,18 +40,20 @@ export const SubscriberDto$inboundSchema: z.ZodType<
   SubscriberDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  _id: z.string(),
-  subscriberId: z.string(),
-  avatar: z.nullable(z.string()).optional(),
-  firstName: z.nullable(z.string()).optional(),
-  lastName: z.nullable(z.string()).optional(),
-  email: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_id": "id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    _id: z.string(),
+    subscriberId: z.string(),
+    avatar: z.nullable(z.string()).optional(),
+    firstName: z.nullable(z.string()).optional(),
+    lastName: z.nullable(z.string()).optional(),
+    email: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_id": "id",
+    });
+  })
+);
 
 export function subscriberDtoFromJSON(
   jsonString: string,

@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   BridgeConfigurationDto,
   BridgeConfigurationDto$Outbound,
@@ -38,14 +39,16 @@ export const UpdateEnvironmentRequestDto$outboundSchema: z.ZodType<
   UpdateEnvironmentRequestDto$Outbound,
   z.ZodTypeDef,
   UpdateEnvironmentRequestDto
-> = z.object({
-  name: z.string().optional(),
-  identifier: z.string().optional(),
-  parentId: z.string().optional(),
-  color: z.string().optional(),
-  dns: InBoundParseDomainDto$outboundSchema.optional(),
-  bridge: BridgeConfigurationDto$outboundSchema.optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    name: z.string().optional(),
+    identifier: z.string().optional(),
+    parentId: z.string().optional(),
+    color: z.string().optional(),
+    dns: InBoundParseDomainDto$outboundSchema.optional(),
+    bridge: BridgeConfigurationDto$outboundSchema.optional(),
+  })
+);
 
 export function updateEnvironmentRequestDtoToJSON(
   updateEnvironmentRequestDto: UpdateEnvironmentRequestDto,

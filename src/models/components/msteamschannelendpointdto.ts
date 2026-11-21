@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -23,10 +23,12 @@ export const MsTeamsChannelEndpointDto$inboundSchema: z.ZodType<
   MsTeamsChannelEndpointDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  teamId: z.string(),
-  channelId: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    teamId: z.string(),
+    channelId: z.string(),
+  })
+);
 /** @internal */
 export type MsTeamsChannelEndpointDto$Outbound = {
   teamId: string;
@@ -38,10 +40,12 @@ export const MsTeamsChannelEndpointDto$outboundSchema: z.ZodType<
   MsTeamsChannelEndpointDto$Outbound,
   z.ZodTypeDef,
   MsTeamsChannelEndpointDto
-> = z.object({
-  teamId: z.string(),
-  channelId: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    teamId: z.string(),
+    channelId: z.string(),
+  })
+);
 
 export function msTeamsChannelEndpointDtoToJSON(
   msTeamsChannelEndpointDto: MsTeamsChannelEndpointDto,

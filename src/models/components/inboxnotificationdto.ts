@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -129,32 +129,34 @@ export const InboxNotificationDto$inboundSchema: z.ZodType<
   InboxNotificationDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: z.string(),
-  transactionId: z.string(),
-  subject: z.string().optional(),
-  body: z.string(),
-  to: InboxSubscriberResponseDto$inboundSchema,
-  isRead: z.boolean(),
-  isSeen: z.boolean(),
-  isArchived: z.boolean(),
-  isSnoozed: z.boolean(),
-  snoozedUntil: z.nullable(z.string()).optional(),
-  deliveredAt: z.array(z.string()).optional(),
-  createdAt: z.string(),
-  readAt: z.nullable(z.string()).optional(),
-  firstSeenAt: z.nullable(z.string()).optional(),
-  archivedAt: z.nullable(z.string()).optional(),
-  avatar: z.string().optional(),
-  primaryAction: InboxActionDto$inboundSchema.optional(),
-  secondaryAction: InboxActionDto$inboundSchema.optional(),
-  channelType: ChannelTypeEnum$inboundSchema,
-  tags: z.array(z.string()).optional(),
-  data: z.record(z.any()).optional(),
-  redirect: RedirectDto$inboundSchema.optional(),
-  workflow: NotificationWorkflowDto$inboundSchema.optional(),
-  severity: SeverityLevelEnum$inboundSchema,
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    transactionId: z.string(),
+    subject: z.string().optional(),
+    body: z.string(),
+    to: InboxSubscriberResponseDto$inboundSchema,
+    isRead: z.boolean(),
+    isSeen: z.boolean(),
+    isArchived: z.boolean(),
+    isSnoozed: z.boolean(),
+    snoozedUntil: z.nullable(z.string()).optional(),
+    deliveredAt: z.array(z.string()).optional(),
+    createdAt: z.string(),
+    readAt: z.nullable(z.string()).optional(),
+    firstSeenAt: z.nullable(z.string()).optional(),
+    archivedAt: z.nullable(z.string()).optional(),
+    avatar: z.string().optional(),
+    primaryAction: InboxActionDto$inboundSchema.optional(),
+    secondaryAction: InboxActionDto$inboundSchema.optional(),
+    channelType: ChannelTypeEnum$inboundSchema,
+    tags: z.array(z.string()).optional(),
+    data: z.record(z.any()).optional(),
+    redirect: RedirectDto$inboundSchema.optional(),
+    workflow: NotificationWorkflowDto$inboundSchema.optional(),
+    severity: SeverityLevelEnum$inboundSchema,
+  })
+);
 
 export function inboxNotificationDtoFromJSON(
   jsonString: string,

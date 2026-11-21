@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   EmailControlDto,
   EmailControlDto$Outbound,
@@ -50,7 +51,9 @@ export const EmailStepUpsertDtoControlValues$outboundSchema: z.ZodType<
   EmailStepUpsertDtoControlValues$Outbound,
   z.ZodTypeDef,
   EmailStepUpsertDtoControlValues
-> = z.union([EmailControlDto$outboundSchema, z.record(z.any())]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.union([EmailControlDto$outboundSchema, z.record(z.any())])
+);
 
 export function emailStepUpsertDtoControlValuesToJSON(
   emailStepUpsertDtoControlValues: EmailStepUpsertDtoControlValues,
@@ -76,18 +79,20 @@ export const EmailStepUpsertDto$outboundSchema: z.ZodType<
   EmailStepUpsertDto$Outbound,
   z.ZodTypeDef,
   EmailStepUpsertDto
-> = z.object({
-  id: z.string().optional(),
-  stepId: z.string().optional(),
-  name: z.string(),
-  type: z.literal("email"),
-  controlValues: z.union([EmailControlDto$outboundSchema, z.record(z.any())])
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    id: "_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string().optional(),
+    stepId: z.string().optional(),
+    name: z.string(),
+    type: z.literal("email"),
+    controlValues: z.union([EmailControlDto$outboundSchema, z.record(z.any())])
+      .optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      id: "_id",
+    });
+  })
+);
 
 export function emailStepUpsertDtoToJSON(
   emailStepUpsertDto: EmailStepUpsertDto,

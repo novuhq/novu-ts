@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 
 /**
@@ -37,7 +38,7 @@ export type ChatControlDto = {
 /** @internal */
 export const ChatControlDtoEditorType$outboundSchema: z.ZodNativeEnum<
   typeof ChatControlDtoEditorType
-> = z.nativeEnum(ChatControlDtoEditorType);
+> = /* @__PURE__ */ lazySchema$(() => z.nativeEnum(ChatControlDtoEditorType));
 
 /** @internal */
 export type ChatControlDto$Outbound = {
@@ -51,11 +52,13 @@ export const ChatControlDto$outboundSchema: z.ZodType<
   ChatControlDto$Outbound,
   z.ZodTypeDef,
   ChatControlDto
-> = z.object({
-  skip: z.record(z.any()).optional(),
-  body: z.string().optional(),
-  editorType: ChatControlDtoEditorType$outboundSchema.optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    skip: z.record(z.any()).optional(),
+    body: z.string().optional(),
+    editorType: ChatControlDtoEditorType$outboundSchema.optional(),
+  })
+);
 
 export function chatControlDtoToJSON(chatControlDto: ChatControlDto): string {
   return JSON.stringify(ChatControlDto$outboundSchema.parse(chatControlDto));

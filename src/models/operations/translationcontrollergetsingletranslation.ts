@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 
 /**
@@ -40,7 +41,7 @@ export type TranslationControllerGetSingleTranslationRequest = {
 /** @internal */
 export const PathParamResourceType$outboundSchema: z.ZodNativeEnum<
   typeof PathParamResourceType
-> = z.nativeEnum(PathParamResourceType);
+> = /* @__PURE__ */ lazySchema$(() => z.nativeEnum(PathParamResourceType));
 
 /** @internal */
 export type TranslationControllerGetSingleTranslationRequest$Outbound = {
@@ -56,16 +57,18 @@ export const TranslationControllerGetSingleTranslationRequest$outboundSchema:
     TranslationControllerGetSingleTranslationRequest$Outbound,
     z.ZodTypeDef,
     TranslationControllerGetSingleTranslationRequest
-  > = z.object({
-    resourceType: PathParamResourceType$outboundSchema,
-    resourceId: z.string(),
-    locale: z.string(),
-    idempotencyKey: z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      idempotencyKey: "idempotency-key",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      resourceType: PathParamResourceType$outboundSchema,
+      resourceId: z.string(),
+      locale: z.string(),
+      idempotencyKey: z.string().optional(),
+    }).transform((v) => {
+      return remap$(v, {
+        idempotencyKey: "idempotency-key",
+      });
+    })
+  );
 
 export function translationControllerGetSingleTranslationRequestToJSON(
   translationControllerGetSingleTranslationRequest:

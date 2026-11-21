@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import {
   ChannelCredentialsDto,
@@ -67,7 +68,9 @@ export type SubscriberChannelDto = {
 /** @internal */
 export const SubscriberChannelDtoProviderId$outboundSchema: z.ZodNativeEnum<
   typeof SubscriberChannelDtoProviderId
-> = z.nativeEnum(SubscriberChannelDtoProviderId);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.nativeEnum(SubscriberChannelDtoProviderId)
+);
 
 /** @internal */
 export type SubscriberChannelDto$Outbound = {
@@ -81,11 +84,13 @@ export const SubscriberChannelDto$outboundSchema: z.ZodType<
   SubscriberChannelDto$Outbound,
   z.ZodTypeDef,
   SubscriberChannelDto
-> = z.object({
-  providerId: SubscriberChannelDtoProviderId$outboundSchema,
-  integrationIdentifier: z.string().optional(),
-  credentials: ChannelCredentialsDto$outboundSchema,
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    providerId: SubscriberChannelDtoProviderId$outboundSchema,
+    integrationIdentifier: z.string().optional(),
+    credentials: ChannelCredentialsDto$outboundSchema,
+  })
+);
 
 export function subscriberChannelDtoToJSON(
   subscriberChannelDto: SubscriberChannelDto,

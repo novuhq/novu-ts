@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -47,15 +47,17 @@ export type GenerateLayoutPreviewResponseDto = {
 };
 
 /** @internal */
-export const ResultType$inboundSchema: z.ZodNativeEnum<typeof ResultType> = z
-  .nativeEnum(ResultType);
+export const ResultType$inboundSchema: z.ZodNativeEnum<typeof ResultType> =
+  /* @__PURE__ */ lazySchema$(() => z.nativeEnum(ResultType));
 
 /** @internal */
-export const One$inboundSchema: z.ZodType<One, z.ZodTypeDef, unknown> = z
-  .object({
-    type: ResultType$inboundSchema.optional(),
-    preview: EmailLayoutRenderOutput$inboundSchema.optional(),
-  });
+export const One$inboundSchema: z.ZodType<One, z.ZodTypeDef, unknown> =
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      type: ResultType$inboundSchema.optional(),
+      preview: EmailLayoutRenderOutput$inboundSchema.optional(),
+    })
+  );
 
 export function oneFromJSON(
   jsonString: string,
@@ -68,8 +70,8 @@ export function oneFromJSON(
 }
 
 /** @internal */
-export const Result$inboundSchema: z.ZodType<Result, z.ZodTypeDef, unknown> = z
-  .lazy(() => One$inboundSchema);
+export const Result$inboundSchema: z.ZodType<Result, z.ZodTypeDef, unknown> =
+  /* @__PURE__ */ lazySchema$(() => z.lazy(() => One$inboundSchema));
 
 export function resultFromJSON(
   jsonString: string,
@@ -86,11 +88,13 @@ export const GenerateLayoutPreviewResponseDto$inboundSchema: z.ZodType<
   GenerateLayoutPreviewResponseDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  previewPayloadExample: LayoutPreviewPayloadDto$inboundSchema,
-  schema: z.nullable(z.record(z.any())).optional(),
-  result: z.lazy(() => One$inboundSchema),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    previewPayloadExample: LayoutPreviewPayloadDto$inboundSchema,
+    schema: z.nullable(z.record(z.any())).optional(),
+    result: z.lazy(() => One$inboundSchema),
+  })
+);
 
 export function generateLayoutPreviewResponseDtoFromJSON(
   jsonString: string,

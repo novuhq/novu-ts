@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -35,16 +35,18 @@ export const DomainsControllerUpdateDomainRequest$outboundSchema: z.ZodType<
   DomainsControllerUpdateDomainRequest$Outbound,
   z.ZodTypeDef,
   DomainsControllerUpdateDomainRequest
-> = z.object({
-  domain: z.string(),
-  idempotencyKey: z.string().optional(),
-  updateDomainDto: components.UpdateDomainDto$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    idempotencyKey: "idempotency-key",
-    updateDomainDto: "UpdateDomainDto",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    domain: z.string(),
+    idempotencyKey: z.string().optional(),
+    updateDomainDto: components.UpdateDomainDto$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      idempotencyKey: "idempotency-key",
+      updateDomainDto: "UpdateDomainDto",
+    });
+  })
+);
 
 export function domainsControllerUpdateDomainRequestToJSON(
   domainsControllerUpdateDomainRequest: DomainsControllerUpdateDomainRequest,
@@ -61,15 +63,17 @@ export const DomainsControllerUpdateDomainResponse$inboundSchema: z.ZodType<
   DomainsControllerUpdateDomainResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  Headers: z.record(z.array(z.string())).default({}),
-  Result: components.DomainResponseDto$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "Headers": "headers",
-    "Result": "result",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    Headers: z.record(z.array(z.string())).default({}),
+    Result: components.DomainResponseDto$inboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      "Headers": "headers",
+      "Result": "result",
+    });
+  })
+);
 
 export function domainsControllerUpdateDomainResponseFromJSON(
   jsonString: string,

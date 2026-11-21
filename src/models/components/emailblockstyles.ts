@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { TextAlignEnum, TextAlignEnum$inboundSchema } from "./textalignenum.js";
@@ -20,9 +20,11 @@ export const EmailBlockStyles$inboundSchema: z.ZodType<
   EmailBlockStyles,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  textAlign: TextAlignEnum$inboundSchema,
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    textAlign: TextAlignEnum$inboundSchema,
+  })
+);
 
 export function emailBlockStylesFromJSON(
   jsonString: string,

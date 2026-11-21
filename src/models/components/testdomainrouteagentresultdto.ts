@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -27,7 +27,7 @@ export const AgentReply$inboundSchema: z.ZodType<
   AgentReply,
   z.ZodTypeDef,
   unknown
-> = z.object({});
+> = /* @__PURE__ */ lazySchema$(() => z.object({}));
 
 export function agentReplyFromJSON(
   jsonString: string,
@@ -44,12 +44,14 @@ export const TestDomainRouteAgentResultDto$inboundSchema: z.ZodType<
   TestDomainRouteAgentResultDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  agentId: z.string(),
-  httpStatus: z.number(),
-  agentReply: z.lazy(() => AgentReply$inboundSchema).optional(),
-  latencyMs: z.number(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    agentId: z.string(),
+    httpStatus: z.number(),
+    agentReply: z.lazy(() => AgentReply$inboundSchema).optional(),
+    latencyMs: z.number(),
+  })
+);
 
 export function testDomainRouteAgentResultDtoFromJSON(
   jsonString: string,

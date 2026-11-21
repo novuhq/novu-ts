@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -36,16 +36,18 @@ export const DomainsControllerCreateDomainRouteRequest$outboundSchema:
     DomainsControllerCreateDomainRouteRequest$Outbound,
     z.ZodTypeDef,
     DomainsControllerCreateDomainRouteRequest
-  > = z.object({
-    domain: z.string(),
-    idempotencyKey: z.string().optional(),
-    domainRouteDto: components.DomainRouteDto$outboundSchema,
-  }).transform((v) => {
-    return remap$(v, {
-      idempotencyKey: "idempotency-key",
-      domainRouteDto: "DomainRouteDto",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      domain: z.string(),
+      idempotencyKey: z.string().optional(),
+      domainRouteDto: components.DomainRouteDto$outboundSchema,
+    }).transform((v) => {
+      return remap$(v, {
+        idempotencyKey: "idempotency-key",
+        domainRouteDto: "DomainRouteDto",
+      });
+    })
+  );
 
 export function domainsControllerCreateDomainRouteRequestToJSON(
   domainsControllerCreateDomainRouteRequest:
@@ -61,15 +63,17 @@ export function domainsControllerCreateDomainRouteRequestToJSON(
 /** @internal */
 export const DomainsControllerCreateDomainRouteResponse$inboundSchema:
   z.ZodType<DomainsControllerCreateDomainRouteResponse, z.ZodTypeDef, unknown> =
-    z.object({
-      Headers: z.record(z.array(z.string())).default({}),
-      Result: components.DomainRouteResponseDto$inboundSchema,
-    }).transform((v) => {
-      return remap$(v, {
-        "Headers": "headers",
-        "Result": "result",
-      });
-    });
+    /* @__PURE__ */ lazySchema$(() =>
+      z.object({
+        Headers: z.record(z.array(z.string())).default({}),
+        Result: components.DomainRouteResponseDto$inboundSchema,
+      }).transform((v) => {
+        return remap$(v, {
+          "Headers": "headers",
+          "Result": "result",
+        });
+      })
+    );
 
 export function domainsControllerCreateDomainRouteResponseFromJSON(
   jsonString: string,

@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -23,17 +23,19 @@ export type DelayScheduledMetadata = {
 /** @internal */
 export const DelayScheduledMetadataType$inboundSchema: z.ZodNativeEnum<
   typeof DelayScheduledMetadataType
-> = z.nativeEnum(DelayScheduledMetadataType);
+> = /* @__PURE__ */ lazySchema$(() => z.nativeEnum(DelayScheduledMetadataType));
 
 /** @internal */
 export const DelayScheduledMetadata$inboundSchema: z.ZodType<
   DelayScheduledMetadata,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  type: DelayScheduledMetadataType$inboundSchema,
-  delayPath: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    type: DelayScheduledMetadataType$inboundSchema,
+    delayPath: z.string(),
+  })
+);
 
 export function delayScheduledMetadataFromJSON(
   jsonString: string,

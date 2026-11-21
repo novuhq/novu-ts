@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -34,16 +34,18 @@ export const EnvironmentsControllerV1CreateEnvironmentRequest$outboundSchema:
     EnvironmentsControllerV1CreateEnvironmentRequest$Outbound,
     z.ZodTypeDef,
     EnvironmentsControllerV1CreateEnvironmentRequest
-  > = z.object({
-    idempotencyKey: z.string().optional(),
-    createEnvironmentRequestDto:
-      components.CreateEnvironmentRequestDto$outboundSchema,
-  }).transform((v) => {
-    return remap$(v, {
-      idempotencyKey: "idempotency-key",
-      createEnvironmentRequestDto: "CreateEnvironmentRequestDto",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      idempotencyKey: z.string().optional(),
+      createEnvironmentRequestDto:
+        components.CreateEnvironmentRequestDto$outboundSchema,
+    }).transform((v) => {
+      return remap$(v, {
+        idempotencyKey: "idempotency-key",
+        createEnvironmentRequestDto: "CreateEnvironmentRequestDto",
+      });
+    })
+  );
 
 export function environmentsControllerV1CreateEnvironmentRequestToJSON(
   environmentsControllerV1CreateEnvironmentRequest:
@@ -62,15 +64,17 @@ export const EnvironmentsControllerV1CreateEnvironmentResponse$inboundSchema:
     EnvironmentsControllerV1CreateEnvironmentResponse,
     z.ZodTypeDef,
     unknown
-  > = z.object({
-    Headers: z.record(z.array(z.string())).default({}),
-    Result: components.EnvironmentResponseDto$inboundSchema,
-  }).transform((v) => {
-    return remap$(v, {
-      "Headers": "headers",
-      "Result": "result",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      Headers: z.record(z.array(z.string())).default({}),
+      Result: components.EnvironmentResponseDto$inboundSchema,
+    }).transform((v) => {
+      return remap$(v, {
+        "Headers": "headers",
+        "Result": "result",
+      });
+    })
+  );
 
 export function environmentsControllerV1CreateEnvironmentResponseFromJSON(
   jsonString: string,

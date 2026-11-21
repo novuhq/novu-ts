@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -23,10 +23,12 @@ export const ReplyCallback$inboundSchema: z.ZodType<
   ReplyCallback,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  active: z.boolean().optional(),
-  url: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    active: z.boolean().optional(),
+    url: z.string().optional(),
+  })
+);
 
 export function replyCallbackFromJSON(
   jsonString: string,

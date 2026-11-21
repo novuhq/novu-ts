@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -85,7 +85,7 @@ export const ActivityNotificationStepResponseDtoReplyCallback$inboundSchema:
     ActivityNotificationStepResponseDtoReplyCallback,
     z.ZodTypeDef,
     unknown
-  > = z.object({});
+  > = /* @__PURE__ */ lazySchema$(() => z.object({}));
 
 export function activityNotificationStepResponseDtoReplyCallbackFromJSON(
   jsonString: string,
@@ -109,7 +109,7 @@ export const ActivityNotificationStepResponseDtoMetadata$inboundSchema:
     ActivityNotificationStepResponseDtoMetadata,
     z.ZodTypeDef,
     unknown
-  > = z.object({});
+  > = /* @__PURE__ */ lazySchema$(() => z.object({}));
 
 export function activityNotificationStepResponseDtoMetadataFromJSON(
   jsonString: string,
@@ -128,8 +128,8 @@ export function activityNotificationStepResponseDtoMetadataFromJSON(
 }
 
 /** @internal */
-export const Issues$inboundSchema: z.ZodType<Issues, z.ZodTypeDef, unknown> = z
-  .object({});
+export const Issues$inboundSchema: z.ZodType<Issues, z.ZodTypeDef, unknown> =
+  /* @__PURE__ */ lazySchema$(() => z.object({}));
 
 export function issuesFromJSON(
   jsonString: string,
@@ -146,32 +146,34 @@ export const ActivityNotificationStepResponseDto$inboundSchema: z.ZodType<
   ActivityNotificationStepResponseDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  _id: z.string(),
-  active: z.boolean(),
-  replyCallback: z.lazy(() =>
-    ActivityNotificationStepResponseDtoReplyCallback$inboundSchema
-  ).optional(),
-  controlVariables: z.record(z.any()).optional(),
-  metadata: z.lazy(() =>
-    ActivityNotificationStepResponseDtoMetadata$inboundSchema
-  ).optional(),
-  issues: z.lazy(() => Issues$inboundSchema).optional(),
-  filters: z.array(StepFilterDto$inboundSchema),
-  template: MessageTemplateDto$inboundSchema.optional(),
-  variants: z.array(
-    z.lazy(() => ActivityNotificationStepResponseDto$inboundSchema),
-  ).optional(),
-  _templateId: z.string(),
-  name: z.string().optional(),
-  _parentId: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_id": "id",
-    "_templateId": "templateId",
-    "_parentId": "parentId",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    _id: z.string(),
+    active: z.boolean(),
+    replyCallback: z.lazy(() =>
+      ActivityNotificationStepResponseDtoReplyCallback$inboundSchema
+    ).optional(),
+    controlVariables: z.record(z.any()).optional(),
+    metadata: z.lazy(() =>
+      ActivityNotificationStepResponseDtoMetadata$inboundSchema
+    ).optional(),
+    issues: z.lazy(() => Issues$inboundSchema).optional(),
+    filters: z.array(StepFilterDto$inboundSchema),
+    template: MessageTemplateDto$inboundSchema.optional(),
+    variants: z.array(
+      z.lazy(() => ActivityNotificationStepResponseDto$inboundSchema),
+    ).optional(),
+    _templateId: z.string(),
+    name: z.string().optional(),
+    _parentId: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_id": "id",
+      "_templateId": "templateId",
+      "_parentId": "parentId",
+    });
+  })
+);
 
 export function activityNotificationStepResponseDtoFromJSON(
   jsonString: string,

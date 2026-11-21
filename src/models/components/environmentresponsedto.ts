@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -62,29 +62,31 @@ export type EnvironmentResponseDto = {
 /** @internal */
 export const EnvironmentResponseDtoType$inboundSchema: z.ZodNativeEnum<
   typeof EnvironmentResponseDtoType
-> = z.nativeEnum(EnvironmentResponseDtoType);
+> = /* @__PURE__ */ lazySchema$(() => z.nativeEnum(EnvironmentResponseDtoType));
 
 /** @internal */
 export const EnvironmentResponseDto$inboundSchema: z.ZodType<
   EnvironmentResponseDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  _id: z.string(),
-  name: z.string(),
-  _organizationId: z.string(),
-  identifier: z.string(),
-  type: z.nullable(EnvironmentResponseDtoType$inboundSchema).optional(),
-  apiKeys: z.array(ApiKeyDto$inboundSchema).optional(),
-  _parentId: z.string().optional(),
-  slug: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_id": "id",
-    "_organizationId": "organizationId",
-    "_parentId": "parentId",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    _id: z.string(),
+    name: z.string(),
+    _organizationId: z.string(),
+    identifier: z.string(),
+    type: z.nullable(EnvironmentResponseDtoType$inboundSchema).optional(),
+    apiKeys: z.array(ApiKeyDto$inboundSchema).optional(),
+    _parentId: z.string().optional(),
+    slug: z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_id": "id",
+      "_organizationId": "organizationId",
+      "_parentId": "parentId",
+    });
+  })
+);
 
 export function environmentResponseDtoFromJSON(
   jsonString: string,

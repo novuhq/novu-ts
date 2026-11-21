@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -66,22 +66,24 @@ export type EventBody = {
 };
 
 /** @internal */
-export const Status$inboundSchema: z.ZodNativeEnum<typeof Status> = z
-  .nativeEnum(Status);
+export const Status$inboundSchema: z.ZodNativeEnum<typeof Status> =
+  /* @__PURE__ */ lazySchema$(() => z.nativeEnum(Status));
 
 /** @internal */
 export const EventBody$inboundSchema: z.ZodType<
   EventBody,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  status: Status$inboundSchema,
-  date: z.string(),
-  externalId: z.string().optional(),
-  attempts: z.number().optional(),
-  response: z.string().optional(),
-  row: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    status: Status$inboundSchema,
+    date: z.string(),
+    externalId: z.string().optional(),
+    attempts: z.number().optional(),
+    response: z.string().optional(),
+    row: z.string().optional(),
+  })
+);
 
 export function eventBodyFromJSON(
   jsonString: string,

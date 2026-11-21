@@ -6,6 +6,7 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import {
   collectExtraKeys as collectExtraKeys$,
+  lazySchema as lazySchema$,
   safeParse,
 } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
@@ -161,30 +162,32 @@ export type DigestStepResponseDto = {
 /** @internal */
 export const DigestStepResponseDtoType$inboundSchema: z.ZodNativeEnum<
   typeof DigestStepResponseDtoType
-> = z.nativeEnum(DigestStepResponseDtoType);
+> = /* @__PURE__ */ lazySchema$(() => z.nativeEnum(DigestStepResponseDtoType));
 
 /** @internal */
 export const DigestStepResponseDtoUnit$inboundSchema: z.ZodNativeEnum<
   typeof DigestStepResponseDtoUnit
-> = z.nativeEnum(DigestStepResponseDtoUnit);
+> = /* @__PURE__ */ lazySchema$(() => z.nativeEnum(DigestStepResponseDtoUnit));
 
 /** @internal */
 export const DigestStepResponseDtoControlValues$inboundSchema: z.ZodType<
   DigestStepResponseDtoControlValues,
   z.ZodTypeDef,
   unknown
-> = collectExtraKeys$(
-  z.object({
-    skip: z.record(z.any()).optional(),
-    type: DigestStepResponseDtoType$inboundSchema.optional(),
-    amount: z.number().optional(),
-    unit: DigestStepResponseDtoUnit$inboundSchema.optional(),
-    lookBackWindow: LookBackWindowDto$inboundSchema.optional(),
-    cron: z.string().optional(),
-    digestKey: z.string().optional(),
-  }).catchall(z.any()),
-  "additionalProperties",
-  true,
+> = /* @__PURE__ */ lazySchema$(() =>
+  collectExtraKeys$(
+    z.object({
+      skip: z.record(z.any()).optional(),
+      type: DigestStepResponseDtoType$inboundSchema.optional(),
+      amount: z.number().optional(),
+      unit: DigestStepResponseDtoUnit$inboundSchema.optional(),
+      lookBackWindow: LookBackWindowDto$inboundSchema.optional(),
+      cron: z.string().optional(),
+      digestKey: z.string().optional(),
+    }).catchall(z.any()),
+    "additionalProperties",
+    true,
+  )
 );
 
 export function digestStepResponseDtoControlValuesFromJSON(
@@ -203,29 +206,32 @@ export const DigestStepResponseDto$inboundSchema: z.ZodType<
   DigestStepResponseDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  controls: DigestControlsMetadataResponseDto$inboundSchema,
-  controlValues: z.lazy(() => DigestStepResponseDtoControlValues$inboundSchema)
-    .optional(),
-  providerOverrides: z.nullable(z.record(z.record(z.any()))).optional(),
-  integrationOverrides: z.nullable(z.record(z.record(z.record(z.any()))))
-    .optional(),
-  variables: z.record(z.any()),
-  stepId: z.string(),
-  _id: z.string(),
-  name: z.string(),
-  slug: z.string(),
-  type: z.literal("digest"),
-  origin: ResourceOriginEnum$inboundSchema,
-  workflowId: z.string(),
-  workflowDatabaseId: z.string(),
-  issues: StepIssuesDto$inboundSchema.optional(),
-  stepResolverHash: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_id": "id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    controls: DigestControlsMetadataResponseDto$inboundSchema,
+    controlValues: z.lazy(() =>
+      DigestStepResponseDtoControlValues$inboundSchema
+    ).optional(),
+    providerOverrides: z.nullable(z.record(z.record(z.any()))).optional(),
+    integrationOverrides: z.nullable(z.record(z.record(z.record(z.any()))))
+      .optional(),
+    variables: z.record(z.any()),
+    stepId: z.string(),
+    _id: z.string(),
+    name: z.string(),
+    slug: z.string(),
+    type: z.literal("digest"),
+    origin: ResourceOriginEnum$inboundSchema,
+    workflowId: z.string(),
+    workflowDatabaseId: z.string(),
+    issues: StepIssuesDto$inboundSchema.optional(),
+    stepResolverHash: z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_id": "id",
+    });
+  })
+);
 
 export function digestStepResponseDtoFromJSON(
   jsonString: string,

@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import { blobLikeSchema } from "../../types/blobs.js";
 
 export type FileT = {
@@ -37,15 +38,17 @@ export const FileT$outboundSchema: z.ZodType<
   FileT$Outbound,
   z.ZodTypeDef,
   FileT
-> = z.object({
-  fileName: z.string(),
-  content: z.union([
-    z.instanceof(ReadableStream<Uint8Array>),
-    z.instanceof(Blob),
-    z.instanceof(ArrayBuffer),
-    z.instanceof(Uint8Array),
-  ]),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    fileName: z.string(),
+    content: z.union([
+      z.instanceof(ReadableStream<Uint8Array>),
+      z.instanceof(Blob),
+      z.instanceof(ArrayBuffer),
+      z.instanceof(Uint8Array),
+    ]),
+  })
+);
 
 export function fileToJSON(fileT: FileT): string {
   return JSON.stringify(FileT$outboundSchema.parse(fileT));
@@ -63,9 +66,11 @@ export const TranslationControllerUploadMasterJsonEndpointRequestBody$outboundSc
     TranslationControllerUploadMasterJsonEndpointRequestBody$Outbound,
     z.ZodTypeDef,
     TranslationControllerUploadMasterJsonEndpointRequestBody
-  > = z.object({
-    file: z.lazy(() => FileT$outboundSchema).or(blobLikeSchema),
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      file: z.lazy(() => FileT$outboundSchema).or(blobLikeSchema),
+    })
+  );
 
 export function translationControllerUploadMasterJsonEndpointRequestBodyToJSON(
   translationControllerUploadMasterJsonEndpointRequestBody:
@@ -90,17 +95,19 @@ export const TranslationControllerUploadMasterJsonEndpointRequest$outboundSchema
     TranslationControllerUploadMasterJsonEndpointRequest$Outbound,
     z.ZodTypeDef,
     TranslationControllerUploadMasterJsonEndpointRequest
-  > = z.object({
-    idempotencyKey: z.string().optional(),
-    requestBody: z.lazy(() =>
-      TranslationControllerUploadMasterJsonEndpointRequestBody$outboundSchema
-    ),
-  }).transform((v) => {
-    return remap$(v, {
-      idempotencyKey: "idempotency-key",
-      requestBody: "RequestBody",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      idempotencyKey: z.string().optional(),
+      requestBody: z.lazy(() =>
+        TranslationControllerUploadMasterJsonEndpointRequestBody$outboundSchema
+      ),
+    }).transform((v) => {
+      return remap$(v, {
+        idempotencyKey: "idempotency-key",
+        requestBody: "RequestBody",
+      });
+    })
+  );
 
 export function translationControllerUploadMasterJsonEndpointRequestToJSON(
   translationControllerUploadMasterJsonEndpointRequest:

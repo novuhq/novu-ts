@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -47,20 +47,22 @@ export type NotificationTriggerDto = {
 /** @internal */
 export const NotificationTriggerDtoType$inboundSchema: z.ZodNativeEnum<
   typeof NotificationTriggerDtoType
-> = z.nativeEnum(NotificationTriggerDtoType);
+> = /* @__PURE__ */ lazySchema$(() => z.nativeEnum(NotificationTriggerDtoType));
 
 /** @internal */
 export const NotificationTriggerDto$inboundSchema: z.ZodType<
   NotificationTriggerDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  type: NotificationTriggerDtoType$inboundSchema,
-  identifier: z.string(),
-  variables: z.array(NotificationTriggerVariable$inboundSchema),
-  subscriberVariables: z.array(NotificationTriggerVariable$inboundSchema)
-    .optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    type: NotificationTriggerDtoType$inboundSchema,
+    identifier: z.string(),
+    variables: z.array(NotificationTriggerVariable$inboundSchema),
+    subscriberVariables: z.array(NotificationTriggerVariable$inboundSchema)
+      .optional(),
+  })
+);
 
 export function notificationTriggerDtoFromJSON(
   jsonString: string,

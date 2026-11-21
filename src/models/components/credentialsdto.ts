@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -121,15 +121,15 @@ export type CredentialsDto = {
 /** @internal */
 export const HmacSecretKeyEncoding$inboundSchema: z.ZodNativeEnum<
   typeof HmacSecretKeyEncoding
-> = z.nativeEnum(HmacSecretKeyEncoding);
+> = /* @__PURE__ */ lazySchema$(() => z.nativeEnum(HmacSecretKeyEncoding));
 /** @internal */
 export const HmacSecretKeyEncoding$outboundSchema: z.ZodNativeEnum<
   typeof HmacSecretKeyEncoding
 > = HmacSecretKeyEncoding$inboundSchema;
 
 /** @internal */
-export const AuthMethod$inboundSchema: z.ZodNativeEnum<typeof AuthMethod> = z
-  .nativeEnum(AuthMethod);
+export const AuthMethod$inboundSchema: z.ZodNativeEnum<typeof AuthMethod> =
+  /* @__PURE__ */ lazySchema$(() => z.nativeEnum(AuthMethod));
 /** @internal */
 export const AuthMethod$outboundSchema: z.ZodNativeEnum<typeof AuthMethod> =
   AuthMethod$inboundSchema;
@@ -139,7 +139,7 @@ export const TlsOptions$inboundSchema: z.ZodType<
   TlsOptions,
   z.ZodTypeDef,
   unknown
-> = z.object({});
+> = /* @__PURE__ */ lazySchema$(() => z.object({}));
 /** @internal */
 export type TlsOptions$Outbound = {};
 
@@ -148,7 +148,7 @@ export const TlsOptions$outboundSchema: z.ZodType<
   TlsOptions$Outbound,
   z.ZodTypeDef,
   TlsOptions
-> = z.object({});
+> = /* @__PURE__ */ lazySchema$(() => z.object({}));
 
 export function tlsOptionsToJSON(tlsOptions: TlsOptions): string {
   return JSON.stringify(TlsOptions$outboundSchema.parse(tlsOptions));
@@ -168,71 +168,73 @@ export const CredentialsDto$inboundSchema: z.ZodType<
   CredentialsDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  apiKey: z.string().optional(),
-  user: z.string().optional(),
-  secretKey: z.string().optional(),
-  hmacSecretKeyEncoding: HmacSecretKeyEncoding$inboundSchema.optional(),
-  authMethod: AuthMethod$inboundSchema.optional(),
-  domain: z.string().optional(),
-  password: z.string().optional(),
-  host: z.string().optional(),
-  port: z.string().optional(),
-  secure: z.boolean().optional(),
-  region: z.string().optional(),
-  accountSid: z.string().optional(),
-  messageProfileId: z.string().optional(),
-  token: z.string().optional(),
-  from: z.string().optional(),
-  senderName: z.string().optional(),
-  projectName: z.string().optional(),
-  applicationId: z.string().optional(),
-  clientId: z.string().optional(),
-  requireTls: z.boolean().optional(),
-  ignoreTls: z.boolean().optional(),
-  tlsOptions: z.lazy(() => TlsOptions$inboundSchema).optional(),
-  baseUrl: z.string().optional(),
-  webhookUrl: z.string().optional(),
-  redirectUrl: z.string().optional(),
-  hmac: z.boolean().optional(),
-  serviceAccount: z.string().optional(),
-  ipPoolName: z.string().optional(),
-  configurationSetName: z.string().optional(),
-  apiKeyRequestHeader: z.string().optional(),
-  secretKeyRequestHeader: z.string().optional(),
-  idPath: z.string().optional(),
-  datePath: z.string().optional(),
-  apiToken: z.string().optional(),
-  authenticateByToken: z.boolean().optional(),
-  authenticationTokenKey: z.string().optional(),
-  instanceId: z.string().optional(),
-  alertUid: z.string().optional(),
-  title: z.string().optional(),
-  imageUrl: z.string().optional(),
-  state: z.string().optional(),
-  externalLink: z.string().optional(),
-  channelId: z.string().optional(),
-  phoneNumberIdentification: z.string().optional(),
-  accessKey: z.string().optional(),
-  appSid: z.string().optional(),
-  senderId: z.string().optional(),
-  tenantId: z.string().optional(),
-  AppIOBaseUrl: z.string().optional(),
-  signingSecret: z.string().optional(),
-  outboundIntegrationId: z.string().optional(),
-  outboundConnectedAt: z.string().optional(),
-  whatsNextCompletedAt: z.string().optional(),
-  useFromAddressOverride: z.boolean().optional(),
-  fromAddressOverride: z.string().optional(),
-  emailSlugPrefix: z.string().optional(),
-  externalEnvironmentId: z.string().optional(),
-  externalVaultId: z.string().optional(),
-  externalWorkspaceId: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "AppIOBaseUrl": "appIOBaseUrl",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    apiKey: z.string().optional(),
+    user: z.string().optional(),
+    secretKey: z.string().optional(),
+    hmacSecretKeyEncoding: HmacSecretKeyEncoding$inboundSchema.optional(),
+    authMethod: AuthMethod$inboundSchema.optional(),
+    domain: z.string().optional(),
+    password: z.string().optional(),
+    host: z.string().optional(),
+    port: z.string().optional(),
+    secure: z.boolean().optional(),
+    region: z.string().optional(),
+    accountSid: z.string().optional(),
+    messageProfileId: z.string().optional(),
+    token: z.string().optional(),
+    from: z.string().optional(),
+    senderName: z.string().optional(),
+    projectName: z.string().optional(),
+    applicationId: z.string().optional(),
+    clientId: z.string().optional(),
+    requireTls: z.boolean().optional(),
+    ignoreTls: z.boolean().optional(),
+    tlsOptions: z.lazy(() => TlsOptions$inboundSchema).optional(),
+    baseUrl: z.string().optional(),
+    webhookUrl: z.string().optional(),
+    redirectUrl: z.string().optional(),
+    hmac: z.boolean().optional(),
+    serviceAccount: z.string().optional(),
+    ipPoolName: z.string().optional(),
+    configurationSetName: z.string().optional(),
+    apiKeyRequestHeader: z.string().optional(),
+    secretKeyRequestHeader: z.string().optional(),
+    idPath: z.string().optional(),
+    datePath: z.string().optional(),
+    apiToken: z.string().optional(),
+    authenticateByToken: z.boolean().optional(),
+    authenticationTokenKey: z.string().optional(),
+    instanceId: z.string().optional(),
+    alertUid: z.string().optional(),
+    title: z.string().optional(),
+    imageUrl: z.string().optional(),
+    state: z.string().optional(),
+    externalLink: z.string().optional(),
+    channelId: z.string().optional(),
+    phoneNumberIdentification: z.string().optional(),
+    accessKey: z.string().optional(),
+    appSid: z.string().optional(),
+    senderId: z.string().optional(),
+    tenantId: z.string().optional(),
+    AppIOBaseUrl: z.string().optional(),
+    signingSecret: z.string().optional(),
+    outboundIntegrationId: z.string().optional(),
+    outboundConnectedAt: z.string().optional(),
+    whatsNextCompletedAt: z.string().optional(),
+    useFromAddressOverride: z.boolean().optional(),
+    fromAddressOverride: z.string().optional(),
+    emailSlugPrefix: z.string().optional(),
+    externalEnvironmentId: z.string().optional(),
+    externalVaultId: z.string().optional(),
+    externalWorkspaceId: z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "AppIOBaseUrl": "appIOBaseUrl",
+    });
+  })
+);
 /** @internal */
 export type CredentialsDto$Outbound = {
   apiKey?: string | undefined;
@@ -301,71 +303,73 @@ export const CredentialsDto$outboundSchema: z.ZodType<
   CredentialsDto$Outbound,
   z.ZodTypeDef,
   CredentialsDto
-> = z.object({
-  apiKey: z.string().optional(),
-  user: z.string().optional(),
-  secretKey: z.string().optional(),
-  hmacSecretKeyEncoding: HmacSecretKeyEncoding$outboundSchema.optional(),
-  authMethod: AuthMethod$outboundSchema.optional(),
-  domain: z.string().optional(),
-  password: z.string().optional(),
-  host: z.string().optional(),
-  port: z.string().optional(),
-  secure: z.boolean().optional(),
-  region: z.string().optional(),
-  accountSid: z.string().optional(),
-  messageProfileId: z.string().optional(),
-  token: z.string().optional(),
-  from: z.string().optional(),
-  senderName: z.string().optional(),
-  projectName: z.string().optional(),
-  applicationId: z.string().optional(),
-  clientId: z.string().optional(),
-  requireTls: z.boolean().optional(),
-  ignoreTls: z.boolean().optional(),
-  tlsOptions: z.lazy(() => TlsOptions$outboundSchema).optional(),
-  baseUrl: z.string().optional(),
-  webhookUrl: z.string().optional(),
-  redirectUrl: z.string().optional(),
-  hmac: z.boolean().optional(),
-  serviceAccount: z.string().optional(),
-  ipPoolName: z.string().optional(),
-  configurationSetName: z.string().optional(),
-  apiKeyRequestHeader: z.string().optional(),
-  secretKeyRequestHeader: z.string().optional(),
-  idPath: z.string().optional(),
-  datePath: z.string().optional(),
-  apiToken: z.string().optional(),
-  authenticateByToken: z.boolean().optional(),
-  authenticationTokenKey: z.string().optional(),
-  instanceId: z.string().optional(),
-  alertUid: z.string().optional(),
-  title: z.string().optional(),
-  imageUrl: z.string().optional(),
-  state: z.string().optional(),
-  externalLink: z.string().optional(),
-  channelId: z.string().optional(),
-  phoneNumberIdentification: z.string().optional(),
-  accessKey: z.string().optional(),
-  appSid: z.string().optional(),
-  senderId: z.string().optional(),
-  tenantId: z.string().optional(),
-  appIOBaseUrl: z.string().optional(),
-  signingSecret: z.string().optional(),
-  outboundIntegrationId: z.string().optional(),
-  outboundConnectedAt: z.string().optional(),
-  whatsNextCompletedAt: z.string().optional(),
-  useFromAddressOverride: z.boolean().optional(),
-  fromAddressOverride: z.string().optional(),
-  emailSlugPrefix: z.string().optional(),
-  externalEnvironmentId: z.string().optional(),
-  externalVaultId: z.string().optional(),
-  externalWorkspaceId: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    appIOBaseUrl: "AppIOBaseUrl",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    apiKey: z.string().optional(),
+    user: z.string().optional(),
+    secretKey: z.string().optional(),
+    hmacSecretKeyEncoding: HmacSecretKeyEncoding$outboundSchema.optional(),
+    authMethod: AuthMethod$outboundSchema.optional(),
+    domain: z.string().optional(),
+    password: z.string().optional(),
+    host: z.string().optional(),
+    port: z.string().optional(),
+    secure: z.boolean().optional(),
+    region: z.string().optional(),
+    accountSid: z.string().optional(),
+    messageProfileId: z.string().optional(),
+    token: z.string().optional(),
+    from: z.string().optional(),
+    senderName: z.string().optional(),
+    projectName: z.string().optional(),
+    applicationId: z.string().optional(),
+    clientId: z.string().optional(),
+    requireTls: z.boolean().optional(),
+    ignoreTls: z.boolean().optional(),
+    tlsOptions: z.lazy(() => TlsOptions$outboundSchema).optional(),
+    baseUrl: z.string().optional(),
+    webhookUrl: z.string().optional(),
+    redirectUrl: z.string().optional(),
+    hmac: z.boolean().optional(),
+    serviceAccount: z.string().optional(),
+    ipPoolName: z.string().optional(),
+    configurationSetName: z.string().optional(),
+    apiKeyRequestHeader: z.string().optional(),
+    secretKeyRequestHeader: z.string().optional(),
+    idPath: z.string().optional(),
+    datePath: z.string().optional(),
+    apiToken: z.string().optional(),
+    authenticateByToken: z.boolean().optional(),
+    authenticationTokenKey: z.string().optional(),
+    instanceId: z.string().optional(),
+    alertUid: z.string().optional(),
+    title: z.string().optional(),
+    imageUrl: z.string().optional(),
+    state: z.string().optional(),
+    externalLink: z.string().optional(),
+    channelId: z.string().optional(),
+    phoneNumberIdentification: z.string().optional(),
+    accessKey: z.string().optional(),
+    appSid: z.string().optional(),
+    senderId: z.string().optional(),
+    tenantId: z.string().optional(),
+    appIOBaseUrl: z.string().optional(),
+    signingSecret: z.string().optional(),
+    outboundIntegrationId: z.string().optional(),
+    outboundConnectedAt: z.string().optional(),
+    whatsNextCompletedAt: z.string().optional(),
+    useFromAddressOverride: z.boolean().optional(),
+    fromAddressOverride: z.string().optional(),
+    emailSlugPrefix: z.string().optional(),
+    externalEnvironmentId: z.string().optional(),
+    externalVaultId: z.string().optional(),
+    externalWorkspaceId: z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      appIOBaseUrl: "AppIOBaseUrl",
+    });
+  })
+);
 
 export function credentialsDtoToJSON(credentialsDto: CredentialsDto): string {
   return JSON.stringify(CredentialsDto$outboundSchema.parse(credentialsDto));

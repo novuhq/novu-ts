@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -34,16 +34,18 @@ export const IntegrationsControllerCreateIntegrationRequest$outboundSchema:
     IntegrationsControllerCreateIntegrationRequest$Outbound,
     z.ZodTypeDef,
     IntegrationsControllerCreateIntegrationRequest
-  > = z.object({
-    idempotencyKey: z.string().optional(),
-    createIntegrationRequestDto:
-      components.CreateIntegrationRequestDto$outboundSchema,
-  }).transform((v) => {
-    return remap$(v, {
-      idempotencyKey: "idempotency-key",
-      createIntegrationRequestDto: "CreateIntegrationRequestDto",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      idempotencyKey: z.string().optional(),
+      createIntegrationRequestDto:
+        components.CreateIntegrationRequestDto$outboundSchema,
+    }).transform((v) => {
+      return remap$(v, {
+        idempotencyKey: "idempotency-key",
+        createIntegrationRequestDto: "CreateIntegrationRequestDto",
+      });
+    })
+  );
 
 export function integrationsControllerCreateIntegrationRequestToJSON(
   integrationsControllerCreateIntegrationRequest:
@@ -62,15 +64,17 @@ export const IntegrationsControllerCreateIntegrationResponse$inboundSchema:
     IntegrationsControllerCreateIntegrationResponse,
     z.ZodTypeDef,
     unknown
-  > = z.object({
-    Headers: z.record(z.array(z.string())).default({}),
-    Result: components.IntegrationResponseDto$inboundSchema,
-  }).transform((v) => {
-    return remap$(v, {
-      "Headers": "headers",
-      "Result": "result",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      Headers: z.record(z.array(z.string())).default({}),
+      Result: components.IntegrationResponseDto$inboundSchema,
+    }).transform((v) => {
+      return remap$(v, {
+        "Headers": "headers",
+        "Result": "result",
+      });
+    })
+  );
 
 export function integrationsControllerCreateIntegrationResponseFromJSON(
   jsonString: string,

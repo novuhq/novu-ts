@@ -1312,7 +1312,21 @@ const novu = new Novu({
 });
 
 async function run() {
-  const result = await novu.agents.update({}, "<value>");
+  const result = await novu.agents.update({
+    behavior: {
+      accessRule: {
+        "in": [
+          {
+            "var": "context.tenant.data.plan",
+          },
+          [
+            "pro",
+            "enterprise",
+          ],
+        ],
+      },
+    },
+  }, "<value>");
 
   console.log(result);
 }
@@ -1335,7 +1349,21 @@ const novu = new NovuCore({
 });
 
 async function run() {
-  const res = await agentsUpdate(novu, {}, "<value>");
+  const res = await agentsUpdate(novu, {
+    behavior: {
+      accessRule: {
+        "in": [
+          {
+            "var": "context.tenant.data.plan",
+          },
+          [
+            "pro",
+            "enterprise",
+          ],
+        ],
+      },
+    },
+  }, "<value>");
   if (res.ok) {
     const { value: result } = res;
     console.log(result);

@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -51,13 +51,15 @@ export const SyncResultDto$inboundSchema: z.ZodType<
   SyncResultDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  resourceType: ResourceTypeEnum$inboundSchema,
-  successful: z.array(SyncedWorkflowDto$inboundSchema),
-  failed: z.array(FailedWorkflowDto$inboundSchema),
-  skipped: z.array(SkippedWorkflowDto$inboundSchema),
-  totalProcessed: z.number(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    resourceType: ResourceTypeEnum$inboundSchema,
+    successful: z.array(SyncedWorkflowDto$inboundSchema),
+    failed: z.array(FailedWorkflowDto$inboundSchema),
+    skipped: z.array(SkippedWorkflowDto$inboundSchema),
+    totalProcessed: z.number(),
+  })
+);
 
 export function syncResultDtoFromJSON(
   jsonString: string,

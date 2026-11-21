@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -173,33 +173,37 @@ export type GetChannelConnectionResponseDto = {
 };
 
 /** @internal */
-export const Channel$inboundSchema: z.ZodNativeEnum<typeof Channel> = z
-  .nativeEnum(Channel);
+export const Channel$inboundSchema: z.ZodNativeEnum<typeof Channel> =
+  /* @__PURE__ */ lazySchema$(() => z.nativeEnum(Channel));
 
 /** @internal */
 export const GetChannelConnectionResponseDtoProviderId$inboundSchema:
-  z.ZodNativeEnum<typeof GetChannelConnectionResponseDtoProviderId> = z
-    .nativeEnum(GetChannelConnectionResponseDtoProviderId);
+  z.ZodNativeEnum<typeof GetChannelConnectionResponseDtoProviderId> =
+    /* @__PURE__ */ lazySchema$(() =>
+      z.nativeEnum(GetChannelConnectionResponseDtoProviderId)
+    );
 
 /** @internal */
 export const GetChannelConnectionResponseDto$inboundSchema: z.ZodType<
   GetChannelConnectionResponseDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  identifier: z.string(),
-  channel: z.nullable(Channel$inboundSchema),
-  providerId: z.nullable(
-    GetChannelConnectionResponseDtoProviderId$inboundSchema,
-  ),
-  integrationIdentifier: z.nullable(z.string()),
-  subscriberId: z.nullable(z.string()),
-  contextKeys: z.array(z.string()),
-  workspace: WorkspaceDto$inboundSchema,
-  auth: AuthDto$inboundSchema,
-  createdAt: z.string(),
-  updatedAt: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    identifier: z.string(),
+    channel: z.nullable(Channel$inboundSchema),
+    providerId: z.nullable(
+      GetChannelConnectionResponseDtoProviderId$inboundSchema,
+    ),
+    integrationIdentifier: z.nullable(z.string()),
+    subscriberId: z.nullable(z.string()),
+    contextKeys: z.array(z.string()),
+    workspace: WorkspaceDto$inboundSchema,
+    auth: AuthDto$inboundSchema,
+    createdAt: z.string(),
+    updatedAt: z.string(),
+  })
+);
 
 export function getChannelConnectionResponseDtoFromJSON(
   jsonString: string,

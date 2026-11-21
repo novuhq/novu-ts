@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -39,12 +39,14 @@ export const DiffEnvironmentResponseDto$inboundSchema: z.ZodType<
   DiffEnvironmentResponseDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  sourceEnvironmentId: z.string(),
-  targetEnvironmentId: z.string(),
-  resources: z.array(ResourceDiffResultDto$inboundSchema),
-  summary: EnvironmentDiffSummaryDto$inboundSchema,
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    sourceEnvironmentId: z.string(),
+    targetEnvironmentId: z.string(),
+    resources: z.array(ResourceDiffResultDto$inboundSchema),
+    summary: EnvironmentDiffSummaryDto$inboundSchema,
+  })
+);
 
 export function diffEnvironmentResponseDtoFromJSON(
   jsonString: string,

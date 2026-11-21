@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 
 /**
@@ -38,7 +39,7 @@ export type CreateTranslationRequestDto = {
 
 /** @internal */
 export const ResourceType$outboundSchema: z.ZodNativeEnum<typeof ResourceType> =
-  z.nativeEnum(ResourceType);
+  /* @__PURE__ */ lazySchema$(() => z.nativeEnum(ResourceType));
 
 /** @internal */
 export type CreateTranslationRequestDto$Outbound = {
@@ -53,12 +54,14 @@ export const CreateTranslationRequestDto$outboundSchema: z.ZodType<
   CreateTranslationRequestDto$Outbound,
   z.ZodTypeDef,
   CreateTranslationRequestDto
-> = z.object({
-  resourceId: z.string(),
-  resourceType: ResourceType$outboundSchema,
-  locale: z.string(),
-  content: z.record(z.any()),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    resourceId: z.string(),
+    resourceType: ResourceType$outboundSchema,
+    locale: z.string(),
+    content: z.record(z.any()),
+  })
+);
 
 export function createTranslationRequestDtoToJSON(
   createTranslationRequestDto: CreateTranslationRequestDto,

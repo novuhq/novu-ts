@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -32,8 +32,8 @@ export type PagerDutyServiceEndpointDto = {
 };
 
 /** @internal */
-export const Region$inboundSchema: z.ZodNativeEnum<typeof Region> = z
-  .nativeEnum(Region);
+export const Region$inboundSchema: z.ZodNativeEnum<typeof Region> =
+  /* @__PURE__ */ lazySchema$(() => z.nativeEnum(Region));
 /** @internal */
 export const Region$outboundSchema: z.ZodNativeEnum<typeof Region> =
   Region$inboundSchema;
@@ -43,10 +43,12 @@ export const PagerDutyServiceEndpointDto$inboundSchema: z.ZodType<
   PagerDutyServiceEndpointDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  routingKey: z.string(),
-  region: Region$inboundSchema,
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    routingKey: z.string(),
+    region: Region$inboundSchema,
+  })
+);
 /** @internal */
 export type PagerDutyServiceEndpointDto$Outbound = {
   routingKey: string;
@@ -58,10 +60,12 @@ export const PagerDutyServiceEndpointDto$outboundSchema: z.ZodType<
   PagerDutyServiceEndpointDto$Outbound,
   z.ZodTypeDef,
   PagerDutyServiceEndpointDto
-> = z.object({
-  routingKey: z.string(),
-  region: Region$outboundSchema,
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    routingKey: z.string(),
+    region: Region$outboundSchema,
+  })
+);
 
 export function pagerDutyServiceEndpointDtoToJSON(
   pagerDutyServiceEndpointDto: PagerDutyServiceEndpointDto,

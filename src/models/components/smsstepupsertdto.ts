@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   SmsControlDto,
   SmsControlDto$Outbound,
@@ -50,7 +51,9 @@ export const SmsStepUpsertDtoControlValues$outboundSchema: z.ZodType<
   SmsStepUpsertDtoControlValues$Outbound,
   z.ZodTypeDef,
   SmsStepUpsertDtoControlValues
-> = z.union([SmsControlDto$outboundSchema, z.record(z.any())]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.union([SmsControlDto$outboundSchema, z.record(z.any())])
+);
 
 export function smsStepUpsertDtoControlValuesToJSON(
   smsStepUpsertDtoControlValues: SmsStepUpsertDtoControlValues,
@@ -76,18 +79,20 @@ export const SmsStepUpsertDto$outboundSchema: z.ZodType<
   SmsStepUpsertDto$Outbound,
   z.ZodTypeDef,
   SmsStepUpsertDto
-> = z.object({
-  id: z.string().optional(),
-  stepId: z.string().optional(),
-  name: z.string(),
-  type: z.literal("sms"),
-  controlValues: z.union([SmsControlDto$outboundSchema, z.record(z.any())])
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    id: "_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string().optional(),
+    stepId: z.string().optional(),
+    name: z.string(),
+    type: z.literal("sms"),
+    controlValues: z.union([SmsControlDto$outboundSchema, z.record(z.any())])
+      .optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      id: "_id",
+    });
+  })
+);
 
 export function smsStepUpsertDtoToJSON(
   smsStepUpsertDto: SmsStepUpsertDto,

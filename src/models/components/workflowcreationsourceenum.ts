@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 
 /**
@@ -31,4 +32,4 @@ export type WorkflowCreationSourceEnum = ClosedEnum<
 /** @internal */
 export const WorkflowCreationSourceEnum$outboundSchema: z.ZodNativeEnum<
   typeof WorkflowCreationSourceEnum
-> = z.nativeEnum(WorkflowCreationSourceEnum);
+> = /* @__PURE__ */ lazySchema$(() => z.nativeEnum(WorkflowCreationSourceEnum));

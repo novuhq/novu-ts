@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -32,13 +32,15 @@ export const EnvironmentsControllerV1ListMyEnvironmentsRequest$outboundSchema:
     EnvironmentsControllerV1ListMyEnvironmentsRequest$Outbound,
     z.ZodTypeDef,
     EnvironmentsControllerV1ListMyEnvironmentsRequest
-  > = z.object({
-    idempotencyKey: z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      idempotencyKey: "idempotency-key",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      idempotencyKey: z.string().optional(),
+    }).transform((v) => {
+      return remap$(v, {
+        idempotencyKey: "idempotency-key",
+      });
+    })
+  );
 
 export function environmentsControllerV1ListMyEnvironmentsRequestToJSON(
   environmentsControllerV1ListMyEnvironmentsRequest:
@@ -57,15 +59,17 @@ export const EnvironmentsControllerV1ListMyEnvironmentsResponse$inboundSchema:
     EnvironmentsControllerV1ListMyEnvironmentsResponse,
     z.ZodTypeDef,
     unknown
-  > = z.object({
-    Headers: z.record(z.array(z.string())).default({}),
-    Result: z.array(components.EnvironmentResponseDto$inboundSchema),
-  }).transform((v) => {
-    return remap$(v, {
-      "Headers": "headers",
-      "Result": "result",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      Headers: z.record(z.array(z.string())).default({}),
+      Result: z.array(components.EnvironmentResponseDto$inboundSchema),
+    }).transform((v) => {
+      return remap$(v, {
+        "Headers": "headers",
+        "Result": "result",
+      });
+    })
+  );
 
 export function environmentsControllerV1ListMyEnvironmentsResponseFromJSON(
   jsonString: string,

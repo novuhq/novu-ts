@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -42,17 +42,19 @@ export const EnvironmentsControllerDiffEnvironmentRequest$outboundSchema:
     EnvironmentsControllerDiffEnvironmentRequest$Outbound,
     z.ZodTypeDef,
     EnvironmentsControllerDiffEnvironmentRequest
-  > = z.object({
-    targetEnvironmentId: z.string(),
-    idempotencyKey: z.string().optional(),
-    diffEnvironmentRequestDto:
-      components.DiffEnvironmentRequestDto$outboundSchema,
-  }).transform((v) => {
-    return remap$(v, {
-      idempotencyKey: "idempotency-key",
-      diffEnvironmentRequestDto: "DiffEnvironmentRequestDto",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      targetEnvironmentId: z.string(),
+      idempotencyKey: z.string().optional(),
+      diffEnvironmentRequestDto:
+        components.DiffEnvironmentRequestDto$outboundSchema,
+    }).transform((v) => {
+      return remap$(v, {
+        idempotencyKey: "idempotency-key",
+        diffEnvironmentRequestDto: "DiffEnvironmentRequestDto",
+      });
+    })
+  );
 
 export function environmentsControllerDiffEnvironmentRequestToJSON(
   environmentsControllerDiffEnvironmentRequest:
@@ -71,15 +73,17 @@ export const EnvironmentsControllerDiffEnvironmentResponse$inboundSchema:
     EnvironmentsControllerDiffEnvironmentResponse,
     z.ZodTypeDef,
     unknown
-  > = z.object({
-    Headers: z.record(z.array(z.string())).default({}),
-    Result: components.DiffEnvironmentResponseDto$inboundSchema,
-  }).transform((v) => {
-    return remap$(v, {
-      "Headers": "headers",
-      "Result": "result",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      Headers: z.record(z.array(z.string())).default({}),
+      Result: components.DiffEnvironmentResponseDto$inboundSchema,
+    }).transform((v) => {
+      return remap$(v, {
+        "Headers": "headers",
+        "Result": "result",
+      });
+    })
+  );
 
 export function environmentsControllerDiffEnvironmentResponseFromJSON(
   jsonString: string,

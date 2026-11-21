@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -51,8 +51,10 @@ export type MessagesControllerDeleteMessagesByTransactionIdResponse = {
 export const MessagesControllerDeleteMessagesByTransactionIdQueryParamChannel$outboundSchema:
   z.ZodNativeEnum<
     typeof MessagesControllerDeleteMessagesByTransactionIdQueryParamChannel
-  > = z.nativeEnum(
-    MessagesControllerDeleteMessagesByTransactionIdQueryParamChannel,
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.nativeEnum(
+      MessagesControllerDeleteMessagesByTransactionIdQueryParamChannel,
+    )
   );
 
 /** @internal */
@@ -68,17 +70,19 @@ export const MessagesControllerDeleteMessagesByTransactionIdRequest$outboundSche
     MessagesControllerDeleteMessagesByTransactionIdRequest$Outbound,
     z.ZodTypeDef,
     MessagesControllerDeleteMessagesByTransactionIdRequest
-  > = z.object({
-    channel:
-      MessagesControllerDeleteMessagesByTransactionIdQueryParamChannel$outboundSchema
-        .optional(),
-    transactionId: z.string(),
-    idempotencyKey: z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      idempotencyKey: "idempotency-key",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      channel:
+        MessagesControllerDeleteMessagesByTransactionIdQueryParamChannel$outboundSchema
+          .optional(),
+      transactionId: z.string(),
+      idempotencyKey: z.string().optional(),
+    }).transform((v) => {
+      return remap$(v, {
+        idempotencyKey: "idempotency-key",
+      });
+    })
+  );
 
 export function messagesControllerDeleteMessagesByTransactionIdRequestToJSON(
   messagesControllerDeleteMessagesByTransactionIdRequest:
@@ -97,13 +101,15 @@ export const MessagesControllerDeleteMessagesByTransactionIdResponse$inboundSche
     MessagesControllerDeleteMessagesByTransactionIdResponse,
     z.ZodTypeDef,
     unknown
-  > = z.object({
-    Headers: z.record(z.array(z.string())).default({}),
-  }).transform((v) => {
-    return remap$(v, {
-      "Headers": "headers",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      Headers: z.record(z.array(z.string())).default({}),
+    }).transform((v) => {
+      return remap$(v, {
+        "Headers": "headers",
+      });
+    })
+  );
 
 export function messagesControllerDeleteMessagesByTransactionIdResponseFromJSON(
   jsonString: string,

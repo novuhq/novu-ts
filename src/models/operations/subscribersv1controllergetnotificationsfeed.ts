@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -49,20 +49,22 @@ export const SubscribersV1ControllerGetNotificationsFeedRequest$outboundSchema:
     SubscribersV1ControllerGetNotificationsFeedRequest$Outbound,
     z.ZodTypeDef,
     SubscribersV1ControllerGetNotificationsFeedRequest
-  > = z.object({
-    subscriberId: z.string(),
-    page: z.number().optional(),
-    limit: z.number().default(10),
-    feedIdentifier: z.array(z.string()).optional(),
-    read: z.boolean().optional(),
-    seen: z.boolean().optional(),
-    payload: z.string().optional(),
-    idempotencyKey: z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      idempotencyKey: "idempotency-key",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      subscriberId: z.string(),
+      page: z.number().optional(),
+      limit: z.number().default(10),
+      feedIdentifier: z.array(z.string()).optional(),
+      read: z.boolean().optional(),
+      seen: z.boolean().optional(),
+      payload: z.string().optional(),
+      idempotencyKey: z.string().optional(),
+    }).transform((v) => {
+      return remap$(v, {
+        idempotencyKey: "idempotency-key",
+      });
+    })
+  );
 
 export function subscribersV1ControllerGetNotificationsFeedRequestToJSON(
   subscribersV1ControllerGetNotificationsFeedRequest:
@@ -81,15 +83,17 @@ export const SubscribersV1ControllerGetNotificationsFeedResponse$inboundSchema:
     SubscribersV1ControllerGetNotificationsFeedResponse,
     z.ZodTypeDef,
     unknown
-  > = z.object({
-    Headers: z.record(z.array(z.string())).default({}),
-    Result: components.FeedResponseDto$inboundSchema,
-  }).transform((v) => {
-    return remap$(v, {
-      "Headers": "headers",
-      "Result": "result",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      Headers: z.record(z.array(z.string())).default({}),
+      Result: components.FeedResponseDto$inboundSchema,
+    }).transform((v) => {
+      return remap$(v, {
+        "Headers": "headers",
+        "Result": "result",
+      });
+    })
+  );
 
 export function subscribersV1ControllerGetNotificationsFeedResponseFromJSON(
   jsonString: string,

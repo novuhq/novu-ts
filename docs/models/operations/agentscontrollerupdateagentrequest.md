@@ -7,7 +7,21 @@ import { AgentsControllerUpdateAgentRequest } from "@novu/api/models/operations"
 
 let value: AgentsControllerUpdateAgentRequest = {
   identifier: "<value>",
-  updateAgentRequestDto: {},
+  updateAgentRequestDto: {
+    behavior: {
+      accessRule: {
+        "in": [
+          {
+            "var": "context.tenant.data.plan",
+          },
+          [
+            "pro",
+            "enterprise",
+          ],
+        ],
+      },
+    },
+  },
 };
 ```
 

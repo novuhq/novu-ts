@@ -5,6 +5,7 @@
 import * as z from "zod/v3";
 import {
   collectExtraKeys as collectExtraKeys$,
+  lazySchema as lazySchema$,
   safeParse,
 } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
@@ -94,30 +95,34 @@ export type EmailControlsMetadataResponseDto = {
 
 /** @internal */
 export const EmailControlsMetadataResponseDtoEditorType$inboundSchema:
-  z.ZodNativeEnum<typeof EmailControlsMetadataResponseDtoEditorType> = z
-    .nativeEnum(EmailControlsMetadataResponseDtoEditorType);
+  z.ZodNativeEnum<typeof EmailControlsMetadataResponseDtoEditorType> =
+    /* @__PURE__ */ lazySchema$(() =>
+      z.nativeEnum(EmailControlsMetadataResponseDtoEditorType)
+    );
 
 /** @internal */
 export const EmailControlsMetadataResponseDtoValues$inboundSchema: z.ZodType<
   EmailControlsMetadataResponseDtoValues,
   z.ZodTypeDef,
   unknown
-> = collectExtraKeys$(
-  z.object({
-    skip: z.record(z.any()).optional(),
-    subject: z.string(),
-    body: z.string().default(""),
-    editorType: EmailControlsMetadataResponseDtoEditorType$inboundSchema
-      .default("block"),
-    disableOutputSanitization: z.boolean().default(false),
-    layoutId: z.nullable(z.string()).optional(),
-    from: EmailFromControlDto$inboundSchema.optional(),
-    useProviderDefaults: z.boolean().optional(),
-    replyTo: z.string().optional(),
-    preheader: z.string().optional(),
-  }).catchall(z.any()),
-  "additionalProperties",
-  true,
+> = /* @__PURE__ */ lazySchema$(() =>
+  collectExtraKeys$(
+    z.object({
+      skip: z.record(z.any()).optional(),
+      subject: z.string(),
+      body: z.string().default(""),
+      editorType: EmailControlsMetadataResponseDtoEditorType$inboundSchema
+        .default("block"),
+      disableOutputSanitization: z.boolean().default(false),
+      layoutId: z.nullable(z.string()).optional(),
+      from: EmailFromControlDto$inboundSchema.optional(),
+      useProviderDefaults: z.boolean().optional(),
+      replyTo: z.string().optional(),
+      preheader: z.string().optional(),
+    }).catchall(z.any()),
+    "additionalProperties",
+    true,
+  )
 );
 
 export function emailControlsMetadataResponseDtoValuesFromJSON(
@@ -136,12 +141,14 @@ export const EmailControlsMetadataResponseDto$inboundSchema: z.ZodType<
   EmailControlsMetadataResponseDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  dataSchema: z.record(z.any()).optional(),
-  uiSchema: UiSchema$inboundSchema.optional(),
-  values: z.lazy(() => EmailControlsMetadataResponseDtoValues$inboundSchema)
-    .optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    dataSchema: z.record(z.any()).optional(),
+    uiSchema: UiSchema$inboundSchema.optional(),
+    values: z.lazy(() => EmailControlsMetadataResponseDtoValues$inboundSchema)
+      .optional(),
+  })
+);
 
 export function emailControlsMetadataResponseDtoFromJSON(
   jsonString: string,

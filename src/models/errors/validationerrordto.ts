@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { NovuError } from "./novuerror.js";
@@ -116,7 +116,9 @@ export const Message5$inboundSchema: z.ZodType<
   Message5,
   z.ZodTypeDef,
   unknown
-> = z.union([z.string(), z.number(), z.boolean(), z.record(z.any())]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.union([z.string(), z.number(), z.boolean(), z.record(z.any())])
+);
 
 export function message5FromJSON(
   jsonString: string,
@@ -133,7 +135,7 @@ export const Message4$inboundSchema: z.ZodType<
   Message4,
   z.ZodTypeDef,
   unknown
-> = z.object({});
+> = /* @__PURE__ */ lazySchema$(() => z.object({}));
 
 export function message4FromJSON(
   jsonString: string,
@@ -150,17 +152,19 @@ export const ValidationErrorDtoMessage$inboundSchema: z.ZodType<
   ValidationErrorDtoMessage,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  z.string(),
-  z.number(),
-  z.boolean(),
-  z.lazy(() => Message4$inboundSchema),
-  z.array(
-    z.nullable(
-      z.union([z.string(), z.number(), z.boolean(), z.record(z.any())]),
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.union([
+    z.string(),
+    z.number(),
+    z.boolean(),
+    z.lazy(() => Message4$inboundSchema),
+    z.array(
+      z.nullable(
+        z.union([z.string(), z.number(), z.boolean(), z.record(z.any())]),
+      ),
     ),
-  ),
-]);
+  ])
+);
 
 export function validationErrorDtoMessageFromJSON(
   jsonString: string,
@@ -177,34 +181,36 @@ export const ValidationErrorDto$inboundSchema: z.ZodType<
   ValidationErrorDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  statusCode: z.number(),
-  timestamp: z.string(),
-  path: z.string(),
-  message: z.nullable(
-    z.union([
-      z.string(),
-      z.number(),
-      z.boolean(),
-      z.lazy(() => Message4$inboundSchema),
-      z.array(
-        z.nullable(
-          z.union([z.string(), z.number(), z.boolean(), z.record(z.any())]),
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    statusCode: z.number(),
+    timestamp: z.string(),
+    path: z.string(),
+    message: z.nullable(
+      z.union([
+        z.string(),
+        z.number(),
+        z.boolean(),
+        z.lazy(() => Message4$inboundSchema),
+        z.array(
+          z.nullable(
+            z.union([z.string(), z.number(), z.boolean(), z.record(z.any())]),
+          ),
         ),
-      ),
-    ]),
-  ).optional(),
-  ctx: z.record(z.any()).optional(),
-  errorId: z.string().optional(),
-  errors: z.record(components.ConstraintValidation$inboundSchema),
-  request$: z.instanceof(Request),
-  response$: z.instanceof(Response),
-  body$: z.string(),
-})
-  .transform((v) => {
-    return new ValidationErrorDto(v, {
-      request: v.request$,
-      response: v.response$,
-      body: v.body$,
-    });
-  });
+      ]),
+    ).optional(),
+    ctx: z.record(z.any()).optional(),
+    errorId: z.string().optional(),
+    errors: z.record(components.ConstraintValidation$inboundSchema),
+    request$: z.instanceof(Request),
+    response$: z.instanceof(Response),
+    body$: z.string(),
+  })
+    .transform((v) => {
+      return new ValidationErrorDto(v, {
+        request: v.request$,
+        response: v.response$,
+        body: v.body$,
+      });
+    })
+);

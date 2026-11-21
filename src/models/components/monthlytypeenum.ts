@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 
 /**
@@ -20,4 +21,4 @@ export type MonthlyTypeEnum = ClosedEnum<typeof MonthlyTypeEnum>;
 /** @internal */
 export const MonthlyTypeEnum$inboundSchema: z.ZodNativeEnum<
   typeof MonthlyTypeEnum
-> = z.nativeEnum(MonthlyTypeEnum);
+> = /* @__PURE__ */ lazySchema$(() => z.nativeEnum(MonthlyTypeEnum));

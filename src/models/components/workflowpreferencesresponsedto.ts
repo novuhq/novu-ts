@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -54,7 +54,7 @@ export const WorkflowPreferencesResponseDtoAll$inboundSchema: z.ZodType<
   WorkflowPreferencesResponseDtoAll,
   z.ZodTypeDef,
   unknown
-> = WorkflowPreferenceDto$inboundSchema;
+> = /* @__PURE__ */ lazySchema$(() => WorkflowPreferenceDto$inboundSchema);
 
 export function workflowPreferencesResponseDtoAllFromJSON(
   jsonString: string,
@@ -71,10 +71,12 @@ export const WorkflowPreferencesResponseDtoUser$inboundSchema: z.ZodType<
   WorkflowPreferencesResponseDtoUser,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  all: WorkflowPreferenceDto$inboundSchema,
-  channels: z.record(ChannelPreferenceDto$inboundSchema),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    all: WorkflowPreferenceDto$inboundSchema,
+    channels: z.record(ChannelPreferenceDto$inboundSchema),
+  })
+);
 
 export function workflowPreferencesResponseDtoUserFromJSON(
   jsonString: string,
@@ -92,12 +94,14 @@ export const WorkflowPreferencesResponseDto$inboundSchema: z.ZodType<
   WorkflowPreferencesResponseDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  user: z.nullable(
-    z.lazy(() => WorkflowPreferencesResponseDtoUser$inboundSchema),
-  ).optional(),
-  default: WorkflowPreferencesDto$inboundSchema,
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    user: z.nullable(
+      z.lazy(() => WorkflowPreferencesResponseDtoUser$inboundSchema),
+    ).optional(),
+    default: WorkflowPreferencesDto$inboundSchema,
+  })
+);
 
 export function workflowPreferencesResponseDtoFromJSON(
   jsonString: string,

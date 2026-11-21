@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type ImportMasterJsonRequestDto = {
   /**
@@ -26,10 +27,12 @@ export const ImportMasterJsonRequestDto$outboundSchema: z.ZodType<
   ImportMasterJsonRequestDto$Outbound,
   z.ZodTypeDef,
   ImportMasterJsonRequestDto
-> = z.object({
-  locale: z.string(),
-  masterJson: z.record(z.any()),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    locale: z.string(),
+    masterJson: z.record(z.any()),
+  })
+);
 
 export function importMasterJsonRequestDtoToJSON(
   importMasterJsonRequestDto: ImportMasterJsonRequestDto,

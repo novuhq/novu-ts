@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   CredentialsDto,
   CredentialsDto$Outbound,
@@ -59,21 +60,23 @@ export const UpdateIntegrationRequestDto$outboundSchema: z.ZodType<
   UpdateIntegrationRequestDto$Outbound,
   z.ZodTypeDef,
   UpdateIntegrationRequestDto
-> = z.object({
-  name: z.string().optional(),
-  identifier: z.string().optional(),
-  environmentId: z.string().optional(),
-  active: z.boolean().optional(),
-  credentials: CredentialsDto$outboundSchema.optional(),
-  check: z.boolean().optional(),
-  conditions: z.array(StepFilterDto$outboundSchema).optional(),
-  rules: z.nullable(z.record(z.any())).optional(),
-  configurations: z.record(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    environmentId: "_environmentId",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    name: z.string().optional(),
+    identifier: z.string().optional(),
+    environmentId: z.string().optional(),
+    active: z.boolean().optional(),
+    credentials: CredentialsDto$outboundSchema.optional(),
+    check: z.boolean().optional(),
+    conditions: z.array(StepFilterDto$outboundSchema).optional(),
+    rules: z.nullable(z.record(z.any())).optional(),
+    configurations: z.record(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      environmentId: "_environmentId",
+    });
+  })
+);
 
 export function updateIntegrationRequestDtoToJSON(
   updateIntegrationRequestDto: UpdateIntegrationRequestDto,

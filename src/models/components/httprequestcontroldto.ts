@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   HttpMethodEnum,
   HttpMethodEnum$outboundSchema,
@@ -54,7 +55,9 @@ export type Body$Outbound = string | Array<HttpRequestKeyValuePairDto$Outbound>;
 
 /** @internal */
 export const Body$outboundSchema: z.ZodType<Body$Outbound, z.ZodTypeDef, Body> =
-  z.union([z.string(), z.array(HttpRequestKeyValuePairDto$outboundSchema)]);
+  /* @__PURE__ */ lazySchema$(() =>
+    z.union([z.string(), z.array(HttpRequestKeyValuePairDto$outboundSchema)])
+  );
 
 export function bodyToJSON(body: Body): string {
   return JSON.stringify(Body$outboundSchema.parse(body));
@@ -76,18 +79,20 @@ export const HttpRequestControlDto$outboundSchema: z.ZodType<
   HttpRequestControlDto$Outbound,
   z.ZodTypeDef,
   HttpRequestControlDto
-> = z.object({
-  method: HttpMethodEnum$outboundSchema,
-  url: z.string(),
-  headers: z.array(HttpRequestKeyValuePairDto$outboundSchema).optional(),
-  body: z.union([
-    z.string(),
-    z.array(HttpRequestKeyValuePairDto$outboundSchema),
-  ]).optional(),
-  responseBodySchema: z.record(z.any()).optional(),
-  enforceSchemaValidation: z.boolean().optional(),
-  continueOnFailure: z.boolean().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    method: HttpMethodEnum$outboundSchema,
+    url: z.string(),
+    headers: z.array(HttpRequestKeyValuePairDto$outboundSchema).optional(),
+    body: z.union([
+      z.string(),
+      z.array(HttpRequestKeyValuePairDto$outboundSchema),
+    ]).optional(),
+    responseBodySchema: z.record(z.any()).optional(),
+    enforceSchemaValidation: z.boolean().optional(),
+    continueOnFailure: z.boolean().optional(),
+  })
+);
 
 export function httpRequestControlDtoToJSON(
   httpRequestControlDto: HttpRequestControlDto,

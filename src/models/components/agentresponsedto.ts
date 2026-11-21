@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -96,44 +96,46 @@ export type AgentResponseDto = {
 /** @internal */
 export const AgentResponseDtoRuntime$inboundSchema: z.ZodNativeEnum<
   typeof AgentResponseDtoRuntime
-> = z.nativeEnum(AgentResponseDtoRuntime);
+> = /* @__PURE__ */ lazySchema$(() => z.nativeEnum(AgentResponseDtoRuntime));
 
 /** @internal */
-export const Visibility$inboundSchema: z.ZodNativeEnum<typeof Visibility> = z
-  .nativeEnum(Visibility);
+export const Visibility$inboundSchema: z.ZodNativeEnum<typeof Visibility> =
+  /* @__PURE__ */ lazySchema$(() => z.nativeEnum(Visibility));
 
 /** @internal */
 export const AgentResponseDto$inboundSchema: z.ZodType<
   AgentResponseDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  _id: z.string(),
-  name: z.string(),
-  identifier: z.string(),
-  description: z.string().optional(),
-  behavior: AgentBehaviorDto$inboundSchema,
-  active: z.boolean(),
-  bridgeUrl: z.string().optional(),
-  devBridgeUrl: z.string().optional(),
-  devBridgeActive: z.boolean().optional(),
-  runtime: AgentResponseDtoRuntime$inboundSchema.optional(),
-  visibility: Visibility$inboundSchema.optional(),
-  managedRuntime: ManagedRuntimeResponseDto$inboundSchema.optional(),
-  _environmentId: z.string(),
-  _organizationId: z.string(),
-  createdBy: z.string().optional(),
-  createdAt: z.string(),
-  updatedAt: z.string(),
-  integrations: z.array(AgentIntegrationSummaryDto$inboundSchema).optional(),
-  exceedsPlanLimit: z.boolean().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_id": "id",
-    "_environmentId": "environmentId",
-    "_organizationId": "organizationId",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    _id: z.string(),
+    name: z.string(),
+    identifier: z.string(),
+    description: z.string().optional(),
+    behavior: AgentBehaviorDto$inboundSchema,
+    active: z.boolean(),
+    bridgeUrl: z.string().optional(),
+    devBridgeUrl: z.string().optional(),
+    devBridgeActive: z.boolean().optional(),
+    runtime: AgentResponseDtoRuntime$inboundSchema.optional(),
+    visibility: Visibility$inboundSchema.optional(),
+    managedRuntime: ManagedRuntimeResponseDto$inboundSchema.optional(),
+    _environmentId: z.string(),
+    _organizationId: z.string(),
+    createdBy: z.string().optional(),
+    createdAt: z.string(),
+    updatedAt: z.string(),
+    integrations: z.array(AgentIntegrationSummaryDto$inboundSchema).optional(),
+    exceedsPlanLimit: z.boolean().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_id": "id",
+      "_environmentId": "environmentId",
+      "_organizationId": "organizationId",
+    });
+  })
+);
 
 export function agentResponseDtoFromJSON(
   jsonString: string,

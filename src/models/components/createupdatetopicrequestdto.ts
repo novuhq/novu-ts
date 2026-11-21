@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type CreateUpdateTopicRequestDto = {
   /**
@@ -31,11 +32,13 @@ export const CreateUpdateTopicRequestDto$outboundSchema: z.ZodType<
   CreateUpdateTopicRequestDto$Outbound,
   z.ZodTypeDef,
   CreateUpdateTopicRequestDto
-> = z.object({
-  key: z.string(),
-  name: z.string().optional(),
-  data: z.nullable(z.record(z.any())).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    key: z.string(),
+    name: z.string().optional(),
+    data: z.nullable(z.record(z.any())).optional(),
+  })
+);
 
 export function createUpdateTopicRequestDtoToJSON(
   createUpdateTopicRequestDto: CreateUpdateTopicRequestDto,

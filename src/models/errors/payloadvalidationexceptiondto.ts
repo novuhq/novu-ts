@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { NovuError } from "./novuerror.js";
@@ -143,7 +143,9 @@ export const MessagePayloadValidationExceptionDto5$inboundSchema: z.ZodType<
   MessagePayloadValidationExceptionDto5,
   z.ZodTypeDef,
   unknown
-> = z.union([z.string(), z.number(), z.boolean(), z.record(z.any())]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.union([z.string(), z.number(), z.boolean(), z.record(z.any())])
+);
 
 export function messagePayloadValidationExceptionDto5FromJSON(
   jsonString: string,
@@ -161,7 +163,7 @@ export const MessagePayloadValidationExceptionDto4$inboundSchema: z.ZodType<
   MessagePayloadValidationExceptionDto4,
   z.ZodTypeDef,
   unknown
-> = z.object({});
+> = /* @__PURE__ */ lazySchema$(() => z.object({}));
 
 export function messagePayloadValidationExceptionDto4FromJSON(
   jsonString: string,
@@ -179,17 +181,19 @@ export const PayloadValidationExceptionDtoMessage$inboundSchema: z.ZodType<
   PayloadValidationExceptionDtoMessage,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  z.string(),
-  z.number(),
-  z.boolean(),
-  z.lazy(() => MessagePayloadValidationExceptionDto4$inboundSchema),
-  z.array(
-    z.nullable(
-      z.union([z.string(), z.number(), z.boolean(), z.record(z.any())]),
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.union([
+    z.string(),
+    z.number(),
+    z.boolean(),
+    z.lazy(() => MessagePayloadValidationExceptionDto4$inboundSchema),
+    z.array(
+      z.nullable(
+        z.union([z.string(), z.number(), z.boolean(), z.record(z.any())]),
+      ),
     ),
-  ),
-]);
+  ])
+);
 
 export function payloadValidationExceptionDtoMessageFromJSON(
   jsonString: string,
@@ -203,8 +207,8 @@ export function payloadValidationExceptionDtoMessageFromJSON(
 }
 
 /** @internal */
-export const Schema$inboundSchema: z.ZodType<Schema, z.ZodTypeDef, unknown> = z
-  .object({});
+export const Schema$inboundSchema: z.ZodType<Schema, z.ZodTypeDef, unknown> =
+  /* @__PURE__ */ lazySchema$(() => z.object({}));
 
 export function schemaFromJSON(
   jsonString: string,
@@ -221,36 +225,38 @@ export const PayloadValidationExceptionDto$inboundSchema: z.ZodType<
   PayloadValidationExceptionDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  statusCode: z.number(),
-  timestamp: z.string(),
-  path: z.string(),
-  message: z.nullable(
-    z.union([
-      z.string(),
-      z.number(),
-      z.boolean(),
-      z.lazy(() => MessagePayloadValidationExceptionDto4$inboundSchema),
-      z.array(
-        z.nullable(
-          z.union([z.string(), z.number(), z.boolean(), z.record(z.any())]),
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    statusCode: z.number(),
+    timestamp: z.string(),
+    path: z.string(),
+    message: z.nullable(
+      z.union([
+        z.string(),
+        z.number(),
+        z.boolean(),
+        z.lazy(() => MessagePayloadValidationExceptionDto4$inboundSchema),
+        z.array(
+          z.nullable(
+            z.union([z.string(), z.number(), z.boolean(), z.record(z.any())]),
+          ),
         ),
-      ),
-    ]),
-  ).optional(),
-  ctx: z.record(z.any()).optional(),
-  errorId: z.string().optional(),
-  type: z.string(),
-  errors: z.array(components.PayloadValidationErrorDto$inboundSchema),
-  schema: z.lazy(() => Schema$inboundSchema).optional(),
-  request$: z.instanceof(Request),
-  response$: z.instanceof(Response),
-  body$: z.string(),
-})
-  .transform((v) => {
-    return new PayloadValidationExceptionDto(v, {
-      request: v.request$,
-      response: v.response$,
-      body: v.body$,
-    });
-  });
+      ]),
+    ).optional(),
+    ctx: z.record(z.any()).optional(),
+    errorId: z.string().optional(),
+    type: z.string(),
+    errors: z.array(components.PayloadValidationErrorDto$inboundSchema),
+    schema: z.lazy(() => Schema$inboundSchema).optional(),
+    request$: z.instanceof(Request),
+    response$: z.instanceof(Response),
+    body$: z.string(),
+  })
+    .transform((v) => {
+      return new PayloadValidationExceptionDto(v, {
+        request: v.request$,
+        response: v.response$,
+        body: v.body$,
+      });
+    })
+);

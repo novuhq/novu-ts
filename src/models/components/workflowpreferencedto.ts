@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -27,11 +27,13 @@ export const WorkflowPreferenceDto$inboundSchema: z.ZodType<
   WorkflowPreferenceDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  enabled: z.boolean().default(true),
-  readOnly: z.boolean().default(false),
-  condition: z.record(z.any()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    enabled: z.boolean().default(true),
+    readOnly: z.boolean().default(false),
+    condition: z.record(z.any()).optional(),
+  })
+);
 /** @internal */
 export type WorkflowPreferenceDto$Outbound = {
   enabled: boolean;
@@ -44,11 +46,13 @@ export const WorkflowPreferenceDto$outboundSchema: z.ZodType<
   WorkflowPreferenceDto$Outbound,
   z.ZodTypeDef,
   WorkflowPreferenceDto
-> = z.object({
-  enabled: z.boolean().default(true),
-  readOnly: z.boolean().default(false),
-  condition: z.record(z.any()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    enabled: z.boolean().default(true),
+    readOnly: z.boolean().default(false),
+    condition: z.record(z.any()).optional(),
+  })
+);
 
 export function workflowPreferenceDtoToJSON(
   workflowPreferenceDto: WorkflowPreferenceDto,

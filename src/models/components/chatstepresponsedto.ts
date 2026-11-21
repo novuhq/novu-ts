@@ -6,6 +6,7 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import {
   collectExtraKeys as collectExtraKeys$,
+  lazySchema as lazySchema$,
   safeParse,
 } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
@@ -123,21 +124,25 @@ export type ChatStepResponseDto = {
 /** @internal */
 export const ChatStepResponseDtoEditorType$inboundSchema: z.ZodNativeEnum<
   typeof ChatStepResponseDtoEditorType
-> = z.nativeEnum(ChatStepResponseDtoEditorType);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.nativeEnum(ChatStepResponseDtoEditorType)
+);
 
 /** @internal */
 export const ChatStepResponseDtoControlValues$inboundSchema: z.ZodType<
   ChatStepResponseDtoControlValues,
   z.ZodTypeDef,
   unknown
-> = collectExtraKeys$(
-  z.object({
-    skip: z.record(z.any()).optional(),
-    body: z.string().optional(),
-    editorType: ChatStepResponseDtoEditorType$inboundSchema.optional(),
-  }).catchall(z.any()),
-  "additionalProperties",
-  true,
+> = /* @__PURE__ */ lazySchema$(() =>
+  collectExtraKeys$(
+    z.object({
+      skip: z.record(z.any()).optional(),
+      body: z.string().optional(),
+      editorType: ChatStepResponseDtoEditorType$inboundSchema.optional(),
+    }).catchall(z.any()),
+    "additionalProperties",
+    true,
+  )
 );
 
 export function chatStepResponseDtoControlValuesFromJSON(
@@ -155,29 +160,31 @@ export const ChatStepResponseDto$inboundSchema: z.ZodType<
   ChatStepResponseDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  controls: ChatControlsMetadataResponseDto$inboundSchema,
-  controlValues: z.lazy(() => ChatStepResponseDtoControlValues$inboundSchema)
-    .optional(),
-  providerOverrides: z.nullable(z.record(z.record(z.any()))).optional(),
-  integrationOverrides: z.nullable(z.record(z.record(z.record(z.any()))))
-    .optional(),
-  variables: z.record(z.any()),
-  stepId: z.string(),
-  _id: z.string(),
-  name: z.string(),
-  slug: z.string(),
-  type: z.literal("chat"),
-  origin: ResourceOriginEnum$inboundSchema,
-  workflowId: z.string(),
-  workflowDatabaseId: z.string(),
-  issues: StepIssuesDto$inboundSchema.optional(),
-  stepResolverHash: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_id": "id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    controls: ChatControlsMetadataResponseDto$inboundSchema,
+    controlValues: z.lazy(() => ChatStepResponseDtoControlValues$inboundSchema)
+      .optional(),
+    providerOverrides: z.nullable(z.record(z.record(z.any()))).optional(),
+    integrationOverrides: z.nullable(z.record(z.record(z.record(z.any()))))
+      .optional(),
+    variables: z.record(z.any()),
+    stepId: z.string(),
+    _id: z.string(),
+    name: z.string(),
+    slug: z.string(),
+    type: z.literal("chat"),
+    origin: ResourceOriginEnum$inboundSchema,
+    workflowId: z.string(),
+    workflowDatabaseId: z.string(),
+    issues: StepIssuesDto$inboundSchema.optional(),
+    stepResolverHash: z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_id": "id",
+    });
+  })
+);
 
 export function chatStepResponseDtoFromJSON(
   jsonString: string,

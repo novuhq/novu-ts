@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -23,10 +23,12 @@ export const WebhookEndpointDto$inboundSchema: z.ZodType<
   WebhookEndpointDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  url: z.string(),
-  channel: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    url: z.string(),
+    channel: z.string().optional(),
+  })
+);
 /** @internal */
 export type WebhookEndpointDto$Outbound = {
   url: string;
@@ -38,10 +40,12 @@ export const WebhookEndpointDto$outboundSchema: z.ZodType<
   WebhookEndpointDto$Outbound,
   z.ZodTypeDef,
   WebhookEndpointDto
-> = z.object({
-  url: z.string(),
-  channel: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    url: z.string(),
+    channel: z.string().optional(),
+  })
+);
 
 export function webhookEndpointDtoToJSON(
   webhookEndpointDto: WebhookEndpointDto,

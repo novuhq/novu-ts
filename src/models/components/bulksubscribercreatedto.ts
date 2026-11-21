@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   CreateSubscriberRequestDto,
   CreateSubscriberRequestDto$Outbound,
@@ -26,9 +27,11 @@ export const BulkSubscriberCreateDto$outboundSchema: z.ZodType<
   BulkSubscriberCreateDto$Outbound,
   z.ZodTypeDef,
   BulkSubscriberCreateDto
-> = z.object({
-  subscribers: z.array(CreateSubscriberRequestDto$outboundSchema),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    subscribers: z.array(CreateSubscriberRequestDto$outboundSchema),
+  })
+);
 
 export function bulkSubscriberCreateDtoToJSON(
   bulkSubscriberCreateDto: BulkSubscriberCreateDto,

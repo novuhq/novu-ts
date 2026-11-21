@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -39,18 +39,20 @@ export const IntegrationsControllerCreateIntegrationMobileLinkRequest$outboundSc
     IntegrationsControllerCreateIntegrationMobileLinkRequest$Outbound,
     z.ZodTypeDef,
     IntegrationsControllerCreateIntegrationMobileLinkRequest
-  > = z.object({
-    integrationIdentifier: z.string(),
-    idempotencyKey: z.string().optional(),
-    issueIntegrationMobileLinkRequestDto:
-      components.IssueIntegrationMobileLinkRequestDto$outboundSchema,
-  }).transform((v) => {
-    return remap$(v, {
-      idempotencyKey: "idempotency-key",
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      integrationIdentifier: z.string(),
+      idempotencyKey: z.string().optional(),
       issueIntegrationMobileLinkRequestDto:
-        "IssueIntegrationMobileLinkRequestDto",
-    });
-  });
+        components.IssueIntegrationMobileLinkRequestDto$outboundSchema,
+    }).transform((v) => {
+      return remap$(v, {
+        idempotencyKey: "idempotency-key",
+        issueIntegrationMobileLinkRequestDto:
+          "IssueIntegrationMobileLinkRequestDto",
+      });
+    })
+  );
 
 export function integrationsControllerCreateIntegrationMobileLinkRequestToJSON(
   integrationsControllerCreateIntegrationMobileLinkRequest:
@@ -68,15 +70,17 @@ export const IntegrationsControllerCreateIntegrationMobileLinkResponse$inboundSc
     IntegrationsControllerCreateIntegrationMobileLinkResponse,
     z.ZodTypeDef,
     unknown
-  > = z.object({
-    Headers: z.record(z.array(z.string())).default({}),
-    Result: components.IssueTelegramMobileLinkResponseDto$inboundSchema,
-  }).transform((v) => {
-    return remap$(v, {
-      "Headers": "headers",
-      "Result": "result",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      Headers: z.record(z.array(z.string())).default({}),
+      Result: components.IssueTelegramMobileLinkResponseDto$inboundSchema,
+    }).transform((v) => {
+      return remap$(v, {
+        "Headers": "headers",
+        "Result": "result",
+      });
+    })
+  );
 
 export function integrationsControllerCreateIntegrationMobileLinkResponseFromJSON(
   jsonString: string,

@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -19,9 +19,11 @@ export const TelegramChatEndpointDto$inboundSchema: z.ZodType<
   TelegramChatEndpointDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  chatId: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    chatId: z.string(),
+  })
+);
 /** @internal */
 export type TelegramChatEndpointDto$Outbound = {
   chatId: string;
@@ -32,9 +34,11 @@ export const TelegramChatEndpointDto$outboundSchema: z.ZodType<
   TelegramChatEndpointDto$Outbound,
   z.ZodTypeDef,
   TelegramChatEndpointDto
-> = z.object({
-  chatId: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    chatId: z.string(),
+  })
+);
 
 export function telegramChatEndpointDtoToJSON(
   telegramChatEndpointDto: TelegramChatEndpointDto,

@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type CreateContextRequestDto = {
   /**
@@ -36,12 +37,14 @@ export const CreateContextRequestDto$outboundSchema: z.ZodType<
   CreateContextRequestDto$Outbound,
   z.ZodTypeDef,
   CreateContextRequestDto
-> = z.object({
-  type: z.string(),
-  id: z.string(),
-  data: z.record(z.any()).optional(),
-  bridgeUrl: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    type: z.string(),
+    id: z.string(),
+    data: z.record(z.any()).optional(),
+    bridgeUrl: z.string().optional(),
+  })
+);
 
 export function createContextRequestDtoToJSON(
   createContextRequestDto: CreateContextRequestDto,

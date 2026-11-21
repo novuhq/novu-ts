@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -98,34 +98,37 @@ export type ActivityNotificationJobResponseDto = {
 
 /** @internal */
 export const ActivityNotificationJobResponseDtoType$inboundSchema:
-  z.ZodNativeEnum<typeof ActivityNotificationJobResponseDtoType> = z.nativeEnum(
-    ActivityNotificationJobResponseDtoType,
-  );
+  z.ZodNativeEnum<typeof ActivityNotificationJobResponseDtoType> =
+    /* @__PURE__ */ lazySchema$(() =>
+      z.nativeEnum(ActivityNotificationJobResponseDtoType)
+    );
 
 /** @internal */
 export const ActivityNotificationJobResponseDto$inboundSchema: z.ZodType<
   ActivityNotificationJobResponseDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  _id: z.string(),
-  type: ActivityNotificationJobResponseDtoType$inboundSchema,
-  digest: DigestMetadataDto$inboundSchema.optional(),
-  executionDetails: z.array(
-    ActivityNotificationExecutionDetailResponseDto$inboundSchema,
-  ),
-  step: ActivityNotificationStepResponseDto$inboundSchema,
-  overrides: z.record(z.any()).optional(),
-  payload: z.record(z.any()).optional(),
-  providerId: ProvidersIdEnum$inboundSchema,
-  status: z.string(),
-  updatedAt: z.string().optional(),
-  scheduleExtensionsCount: z.number().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_id": "id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    _id: z.string(),
+    type: ActivityNotificationJobResponseDtoType$inboundSchema,
+    digest: DigestMetadataDto$inboundSchema.optional(),
+    executionDetails: z.array(
+      ActivityNotificationExecutionDetailResponseDto$inboundSchema,
+    ),
+    step: ActivityNotificationStepResponseDto$inboundSchema,
+    overrides: z.record(z.any()).optional(),
+    payload: z.record(z.any()).optional(),
+    providerId: ProvidersIdEnum$inboundSchema,
+    status: z.string(),
+    updatedAt: z.string().optional(),
+    scheduleExtensionsCount: z.number().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_id": "id",
+    });
+  })
+);
 
 export function activityNotificationJobResponseDtoFromJSON(
   jsonString: string,

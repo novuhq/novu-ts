@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -35,17 +35,19 @@ export const AgentsControllerUpdateAgentBridgeRequest$outboundSchema: z.ZodType<
   AgentsControllerUpdateAgentBridgeRequest$Outbound,
   z.ZodTypeDef,
   AgentsControllerUpdateAgentBridgeRequest
-> = z.object({
-  identifier: z.string(),
-  idempotencyKey: z.string().optional(),
-  updateAgentBridgeRequestDto:
-    components.UpdateAgentBridgeRequestDto$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    idempotencyKey: "idempotency-key",
-    updateAgentBridgeRequestDto: "UpdateAgentBridgeRequestDto",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    identifier: z.string(),
+    idempotencyKey: z.string().optional(),
+    updateAgentBridgeRequestDto:
+      components.UpdateAgentBridgeRequestDto$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      idempotencyKey: "idempotency-key",
+      updateAgentBridgeRequestDto: "UpdateAgentBridgeRequestDto",
+    });
+  })
+);
 
 export function agentsControllerUpdateAgentBridgeRequestToJSON(
   agentsControllerUpdateAgentBridgeRequest:
@@ -63,15 +65,17 @@ export const AgentsControllerUpdateAgentBridgeResponse$inboundSchema: z.ZodType<
   AgentsControllerUpdateAgentBridgeResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  Headers: z.record(z.array(z.string())).default({}),
-  Result: components.AgentResponseDto$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "Headers": "headers",
-    "Result": "result",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    Headers: z.record(z.array(z.string())).default({}),
+    Result: components.AgentResponseDto$inboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      "Headers": "headers",
+      "Result": "result",
+    });
+  })
+);
 
 export function agentsControllerUpdateAgentBridgeResponseFromJSON(
   jsonString: string,

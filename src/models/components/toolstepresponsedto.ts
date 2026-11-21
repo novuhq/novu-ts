@@ -6,6 +6,7 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import {
   collectExtraKeys as collectExtraKeys$,
+  lazySchema as lazySchema$,
   safeParse,
 } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -106,13 +107,15 @@ export const ToolStepResponseDtoControlValues$inboundSchema: z.ZodType<
   ToolStepResponseDtoControlValues,
   z.ZodTypeDef,
   unknown
-> = collectExtraKeys$(
-  z.object({
-    skip: z.record(z.any()).optional(),
-    body: z.string().optional(),
-  }).catchall(z.any()),
-  "additionalProperties",
-  true,
+> = /* @__PURE__ */ lazySchema$(() =>
+  collectExtraKeys$(
+    z.object({
+      skip: z.record(z.any()).optional(),
+      body: z.string().optional(),
+    }).catchall(z.any()),
+    "additionalProperties",
+    true,
+  )
 );
 
 export function toolStepResponseDtoControlValuesFromJSON(
@@ -130,29 +133,31 @@ export const ToolStepResponseDto$inboundSchema: z.ZodType<
   ToolStepResponseDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  controls: ToolControlsMetadataResponseDto$inboundSchema,
-  controlValues: z.lazy(() => ToolStepResponseDtoControlValues$inboundSchema)
-    .optional(),
-  providerOverrides: z.nullable(z.record(z.record(z.any()))).optional(),
-  integrationOverrides: z.nullable(z.record(z.record(z.record(z.any()))))
-    .optional(),
-  variables: z.record(z.any()),
-  stepId: z.string(),
-  _id: z.string(),
-  name: z.string(),
-  slug: z.string(),
-  type: z.literal("tool"),
-  origin: ResourceOriginEnum$inboundSchema,
-  workflowId: z.string(),
-  workflowDatabaseId: z.string(),
-  issues: StepIssuesDto$inboundSchema.optional(),
-  stepResolverHash: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_id": "id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    controls: ToolControlsMetadataResponseDto$inboundSchema,
+    controlValues: z.lazy(() => ToolStepResponseDtoControlValues$inboundSchema)
+      .optional(),
+    providerOverrides: z.nullable(z.record(z.record(z.any()))).optional(),
+    integrationOverrides: z.nullable(z.record(z.record(z.record(z.any()))))
+      .optional(),
+    variables: z.record(z.any()),
+    stepId: z.string(),
+    _id: z.string(),
+    name: z.string(),
+    slug: z.string(),
+    type: z.literal("tool"),
+    origin: ResourceOriginEnum$inboundSchema,
+    workflowId: z.string(),
+    workflowDatabaseId: z.string(),
+    issues: StepIssuesDto$inboundSchema.optional(),
+    stepResolverHash: z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_id": "id",
+    });
+  })
+);
 
 export function toolStepResponseDtoFromJSON(
   jsonString: string,

@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -35,15 +35,17 @@ export const SubscribersV1ControllerDeleteSubscriberCredentialsRequest$outboundS
     SubscribersV1ControllerDeleteSubscriberCredentialsRequest$Outbound,
     z.ZodTypeDef,
     SubscribersV1ControllerDeleteSubscriberCredentialsRequest
-  > = z.object({
-    subscriberId: z.string(),
-    providerId: z.string(),
-    idempotencyKey: z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      idempotencyKey: "idempotency-key",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      subscriberId: z.string(),
+      providerId: z.string(),
+      idempotencyKey: z.string().optional(),
+    }).transform((v) => {
+      return remap$(v, {
+        idempotencyKey: "idempotency-key",
+      });
+    })
+  );
 
 export function subscribersV1ControllerDeleteSubscriberCredentialsRequestToJSON(
   subscribersV1ControllerDeleteSubscriberCredentialsRequest:
@@ -61,13 +63,15 @@ export const SubscribersV1ControllerDeleteSubscriberCredentialsResponse$inboundS
     SubscribersV1ControllerDeleteSubscriberCredentialsResponse,
     z.ZodTypeDef,
     unknown
-  > = z.object({
-    Headers: z.record(z.array(z.string())).default({}),
-  }).transform((v) => {
-    return remap$(v, {
-      "Headers": "headers",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      Headers: z.record(z.array(z.string())).default({}),
+    }).transform((v) => {
+      return remap$(v, {
+        "Headers": "headers",
+      });
+    })
+  );
 
 export function subscribersV1ControllerDeleteSubscriberCredentialsResponseFromJSON(
   jsonString: string,

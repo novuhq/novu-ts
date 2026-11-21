@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 /**
  * Rich context object with id and optional data
@@ -57,10 +58,12 @@ export const GenerateLinkUserOauthUrlRequestDtoContext2$outboundSchema:
     GenerateLinkUserOauthUrlRequestDtoContext2$Outbound,
     z.ZodTypeDef,
     GenerateLinkUserOauthUrlRequestDtoContext2
-  > = z.object({
-    id: z.string(),
-    data: z.record(z.any()).optional(),
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      id: z.string(),
+      data: z.record(z.any()).optional(),
+    })
+  );
 
 export function generateLinkUserOauthUrlRequestDtoContext2ToJSON(
   generateLinkUserOauthUrlRequestDtoContext2:
@@ -84,10 +87,12 @@ export const GenerateLinkUserOauthUrlRequestDtoContext$outboundSchema:
     GenerateLinkUserOauthUrlRequestDtoContext$Outbound,
     z.ZodTypeDef,
     GenerateLinkUserOauthUrlRequestDtoContext
-  > = z.union([
-    z.lazy(() => GenerateLinkUserOauthUrlRequestDtoContext2$outboundSchema),
-    z.string(),
-  ]);
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.union([
+      z.lazy(() => GenerateLinkUserOauthUrlRequestDtoContext2$outboundSchema),
+      z.string(),
+    ])
+  );
 
 export function generateLinkUserOauthUrlRequestDtoContextToJSON(
   generateLinkUserOauthUrlRequestDtoContext:
@@ -117,19 +122,19 @@ export const GenerateLinkUserOauthUrlRequestDto$outboundSchema: z.ZodType<
   GenerateLinkUserOauthUrlRequestDto$Outbound,
   z.ZodTypeDef,
   GenerateLinkUserOauthUrlRequestDto
-> = z.object({
-  subscriberId: z.string(),
-  integrationIdentifier: z.string(),
-  connectionIdentifier: z.string().optional(),
-  context: z.record(
-    z.union([
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    subscriberId: z.string(),
+    integrationIdentifier: z.string(),
+    connectionIdentifier: z.string().optional(),
+    context: z.record(z.union([
       z.lazy(() => GenerateLinkUserOauthUrlRequestDtoContext2$outboundSchema),
       z.string(),
-    ]),
-  ).optional(),
-  contextHash: z.string().optional(),
-  userScope: z.array(z.string()).optional(),
-});
+    ])).optional(),
+    contextHash: z.string().optional(),
+    userScope: z.array(z.string()).optional(),
+  })
+);
 
 export function generateLinkUserOauthUrlRequestDtoToJSON(
   generateLinkUserOauthUrlRequestDto: GenerateLinkUserOauthUrlRequestDto,

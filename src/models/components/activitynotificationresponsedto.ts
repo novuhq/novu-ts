@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -86,6 +86,10 @@ export type ActivityNotificationResponseDto = {
    */
   payload?: { [k: string]: any } | undefined;
   /**
+   * Trigger overrides of the notification, as passed to the original workflow trigger
+   */
+  overrides?: { [k: string]: any } | undefined;
+  /**
    * Tags associated with the notification
    */
   tags?: Array<string> | undefined;
@@ -120,39 +124,42 @@ export const ActivityNotificationResponseDto$inboundSchema: z.ZodType<
   ActivityNotificationResponseDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  _id: z.string().optional(),
-  _environmentId: z.string(),
-  _organizationId: z.string(),
-  _subscriberId: z.string(),
-  transactionId: z.string(),
-  _templateId: z.string().optional(),
-  _digestedNotificationId: z.string().optional(),
-  createdAt: z.string().optional(),
-  updatedAt: z.string().optional(),
-  channels: z.array(z.string()).optional(),
-  subscriber: ActivityNotificationSubscriberResponseDto$inboundSchema
-    .optional(),
-  template: ActivityNotificationTemplateResponseDto$inboundSchema.optional(),
-  jobs: z.array(ActivityNotificationJobResponseDto$inboundSchema).optional(),
-  payload: z.record(z.any()).optional(),
-  tags: z.array(z.string()).optional(),
-  controls: z.record(z.any()).optional(),
-  to: z.record(z.any()).optional(),
-  topics: z.array(ActivityTopicDto$inboundSchema).optional(),
-  severity: SeverityLevelEnum$inboundSchema.optional(),
-  critical: z.boolean().optional(),
-  contextKeys: z.array(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_id": "id",
-    "_environmentId": "environmentId",
-    "_organizationId": "organizationId",
-    "_subscriberId": "subscriberId",
-    "_templateId": "templateId",
-    "_digestedNotificationId": "digestedNotificationId",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    _id: z.string().optional(),
+    _environmentId: z.string(),
+    _organizationId: z.string(),
+    _subscriberId: z.string(),
+    transactionId: z.string(),
+    _templateId: z.string().optional(),
+    _digestedNotificationId: z.string().optional(),
+    createdAt: z.string().optional(),
+    updatedAt: z.string().optional(),
+    channels: z.array(z.string()).optional(),
+    subscriber: ActivityNotificationSubscriberResponseDto$inboundSchema
+      .optional(),
+    template: ActivityNotificationTemplateResponseDto$inboundSchema.optional(),
+    jobs: z.array(ActivityNotificationJobResponseDto$inboundSchema).optional(),
+    payload: z.record(z.any()).optional(),
+    overrides: z.record(z.any()).optional(),
+    tags: z.array(z.string()).optional(),
+    controls: z.record(z.any()).optional(),
+    to: z.record(z.any()).optional(),
+    topics: z.array(ActivityTopicDto$inboundSchema).optional(),
+    severity: SeverityLevelEnum$inboundSchema.optional(),
+    critical: z.boolean().optional(),
+    contextKeys: z.array(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_id": "id",
+      "_environmentId": "environmentId",
+      "_organizationId": "organizationId",
+      "_subscriberId": "subscriberId",
+      "_templateId": "templateId",
+      "_digestedNotificationId": "digestedNotificationId",
+    });
+  })
+);
 
 export function activityNotificationResponseDtoFromJSON(
   jsonString: string,

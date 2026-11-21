@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as components from "../components/index.js";
 
 export type TranslationControllerCreateTranslationEndpointRequest = {
@@ -26,16 +27,18 @@ export const TranslationControllerCreateTranslationEndpointRequest$outboundSchem
     TranslationControllerCreateTranslationEndpointRequest$Outbound,
     z.ZodTypeDef,
     TranslationControllerCreateTranslationEndpointRequest
-  > = z.object({
-    idempotencyKey: z.string().optional(),
-    createTranslationRequestDto:
-      components.CreateTranslationRequestDto$outboundSchema,
-  }).transform((v) => {
-    return remap$(v, {
-      idempotencyKey: "idempotency-key",
-      createTranslationRequestDto: "CreateTranslationRequestDto",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      idempotencyKey: z.string().optional(),
+      createTranslationRequestDto:
+        components.CreateTranslationRequestDto$outboundSchema,
+    }).transform((v) => {
+      return remap$(v, {
+        idempotencyKey: "idempotency-key",
+        createTranslationRequestDto: "CreateTranslationRequestDto",
+      });
+    })
+  );
 
 export function translationControllerCreateTranslationEndpointRequestToJSON(
   translationControllerCreateTranslationEndpointRequest:

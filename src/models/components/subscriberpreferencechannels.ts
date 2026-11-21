@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -40,18 +40,20 @@ export const SubscriberPreferenceChannels$inboundSchema: z.ZodType<
   SubscriberPreferenceChannels,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  email: z.boolean().optional(),
-  sms: z.boolean().optional(),
-  in_app: z.boolean().optional(),
-  chat: z.boolean().optional(),
-  push: z.boolean().optional(),
-  tool: z.boolean().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "in_app": "inApp",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    email: z.boolean().optional(),
+    sms: z.boolean().optional(),
+    in_app: z.boolean().optional(),
+    chat: z.boolean().optional(),
+    push: z.boolean().optional(),
+    tool: z.boolean().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "in_app": "inApp",
+    });
+  })
+);
 
 export function subscriberPreferenceChannelsFromJSON(
   jsonString: string,

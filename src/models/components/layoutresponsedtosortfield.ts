@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 
 export const LayoutResponseDtoSortField = {
@@ -17,4 +18,4 @@ export type LayoutResponseDtoSortField = ClosedEnum<
 /** @internal */
 export const LayoutResponseDtoSortField$outboundSchema: z.ZodNativeEnum<
   typeof LayoutResponseDtoSortField
-> = z.nativeEnum(LayoutResponseDtoSortField);
+> = /* @__PURE__ */ lazySchema$(() => z.nativeEnum(LayoutResponseDtoSortField));

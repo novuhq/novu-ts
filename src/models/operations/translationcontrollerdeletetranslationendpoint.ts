@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 
 /**
@@ -46,8 +47,10 @@ export type TranslationControllerDeleteTranslationEndpointRequest = {
 export const TranslationControllerDeleteTranslationEndpointPathParamResourceType$outboundSchema:
   z.ZodNativeEnum<
     typeof TranslationControllerDeleteTranslationEndpointPathParamResourceType
-  > = z.nativeEnum(
-    TranslationControllerDeleteTranslationEndpointPathParamResourceType,
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.nativeEnum(
+      TranslationControllerDeleteTranslationEndpointPathParamResourceType,
+    )
   );
 
 /** @internal */
@@ -64,17 +67,19 @@ export const TranslationControllerDeleteTranslationEndpointRequest$outboundSchem
     TranslationControllerDeleteTranslationEndpointRequest$Outbound,
     z.ZodTypeDef,
     TranslationControllerDeleteTranslationEndpointRequest
-  > = z.object({
-    resourceType:
-      TranslationControllerDeleteTranslationEndpointPathParamResourceType$outboundSchema,
-    resourceId: z.string(),
-    locale: z.string(),
-    idempotencyKey: z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      idempotencyKey: "idempotency-key",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      resourceType:
+        TranslationControllerDeleteTranslationEndpointPathParamResourceType$outboundSchema,
+      resourceId: z.string(),
+      locale: z.string(),
+      idempotencyKey: z.string().optional(),
+    }).transform((v) => {
+      return remap$(v, {
+        idempotencyKey: "idempotency-key",
+      });
+    })
+  );
 
 export function translationControllerDeleteTranslationEndpointRequestToJSON(
   translationControllerDeleteTranslationEndpointRequest:

@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
@@ -39,8 +39,8 @@ export type SubscribersControllerGetSubscriberPreferencesResponse = {
 };
 
 /** @internal */
-export const Criticality$outboundSchema: z.ZodNativeEnum<typeof Criticality> = z
-  .nativeEnum(Criticality);
+export const Criticality$outboundSchema: z.ZodNativeEnum<typeof Criticality> =
+  /* @__PURE__ */ lazySchema$(() => z.nativeEnum(Criticality));
 
 /** @internal */
 export type SubscribersControllerGetSubscriberPreferencesRequest$Outbound = {
@@ -56,16 +56,18 @@ export const SubscribersControllerGetSubscriberPreferencesRequest$outboundSchema
     SubscribersControllerGetSubscriberPreferencesRequest$Outbound,
     z.ZodTypeDef,
     SubscribersControllerGetSubscriberPreferencesRequest
-  > = z.object({
-    subscriberId: z.string(),
-    criticality: Criticality$outboundSchema.default("nonCritical"),
-    contextKeys: z.array(z.string()).optional(),
-    idempotencyKey: z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      idempotencyKey: "idempotency-key",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      subscriberId: z.string(),
+      criticality: Criticality$outboundSchema.default("nonCritical"),
+      contextKeys: z.array(z.string()).optional(),
+      idempotencyKey: z.string().optional(),
+    }).transform((v) => {
+      return remap$(v, {
+        idempotencyKey: "idempotency-key",
+      });
+    })
+  );
 
 export function subscribersControllerGetSubscriberPreferencesRequestToJSON(
   subscribersControllerGetSubscriberPreferencesRequest:
@@ -84,15 +86,17 @@ export const SubscribersControllerGetSubscriberPreferencesResponse$inboundSchema
     SubscribersControllerGetSubscriberPreferencesResponse,
     z.ZodTypeDef,
     unknown
-  > = z.object({
-    Headers: z.record(z.array(z.string())).default({}),
-    Result: components.GetSubscriberPreferencesDto$inboundSchema,
-  }).transform((v) => {
-    return remap$(v, {
-      "Headers": "headers",
-      "Result": "result",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      Headers: z.record(z.array(z.string())).default({}),
+      Result: components.GetSubscriberPreferencesDto$inboundSchema,
+    }).transform((v) => {
+      return remap$(v, {
+        "Headers": "headers",
+        "Result": "result",
+      });
+    })
+  );
 
 export function subscribersControllerGetSubscriberPreferencesResponseFromJSON(
   jsonString: string,

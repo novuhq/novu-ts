@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -87,18 +87,20 @@ export const Subscriber$inboundSchema: z.ZodType<
   Subscriber,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  _id: z.string(),
-  subscriberId: z.string(),
-  avatar: z.nullable(z.string()).optional(),
-  firstName: z.nullable(z.string()).optional(),
-  lastName: z.nullable(z.string()).optional(),
-  email: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_id": "id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    _id: z.string(),
+    subscriberId: z.string(),
+    avatar: z.nullable(z.string()).optional(),
+    firstName: z.nullable(z.string()).optional(),
+    lastName: z.nullable(z.string()).optional(),
+    email: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_id": "id",
+    });
+  })
+);
 
 export function subscriberFromJSON(
   jsonString: string,
@@ -115,21 +117,23 @@ export const SubscriptionResponseDto$inboundSchema: z.ZodType<
   SubscriptionResponseDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  _id: z.string(),
-  identifier: z.string().optional(),
-  name: z.string().optional(),
-  topic: TopicDto$inboundSchema,
-  subscriber: z.nullable(z.lazy(() => Subscriber$inboundSchema)),
-  preferences: z.array(SubscriptionPreferenceDto$inboundSchema).optional(),
-  contextKeys: z.array(z.string()).optional(),
-  createdAt: z.string(),
-  updatedAt: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    "_id": "id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    _id: z.string(),
+    identifier: z.string().optional(),
+    name: z.string().optional(),
+    topic: TopicDto$inboundSchema,
+    subscriber: z.nullable(z.lazy(() => Subscriber$inboundSchema)),
+    preferences: z.array(SubscriptionPreferenceDto$inboundSchema).optional(),
+    contextKeys: z.array(z.string()).optional(),
+    createdAt: z.string(),
+    updatedAt: z.string(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_id": "id",
+    });
+  })
+);
 
 export function subscriptionResponseDtoFromJSON(
   jsonString: string,

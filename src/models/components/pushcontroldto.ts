@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type PushControlDto = {
   /**
@@ -31,11 +32,13 @@ export const PushControlDto$outboundSchema: z.ZodType<
   PushControlDto$Outbound,
   z.ZodTypeDef,
   PushControlDto
-> = z.object({
-  skip: z.record(z.any()).optional(),
-  subject: z.string().optional(),
-  body: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    skip: z.record(z.any()).optional(),
+    subject: z.string().optional(),
+    body: z.string().optional(),
+  })
+);
 
 export function pushControlDtoToJSON(pushControlDto: PushControlDto): string {
   return JSON.stringify(PushControlDto$outboundSchema.parse(pushControlDto));
