@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -35,17 +35,21 @@ export type DeleteMessageResponseDto = {
 /** @internal */
 export const DeleteMessageResponseDtoStatus$inboundSchema: z.ZodNativeEnum<
   typeof DeleteMessageResponseDtoStatus
-> = z.nativeEnum(DeleteMessageResponseDtoStatus);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.nativeEnum(DeleteMessageResponseDtoStatus)
+);
 
 /** @internal */
 export const DeleteMessageResponseDto$inboundSchema: z.ZodType<
   DeleteMessageResponseDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  acknowledged: z.boolean(),
-  status: DeleteMessageResponseDtoStatus$inboundSchema,
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    acknowledged: z.boolean(),
+    status: DeleteMessageResponseDtoStatus$inboundSchema,
+  })
+);
 
 export function deleteMessageResponseDtoFromJSON(
   jsonString: string,

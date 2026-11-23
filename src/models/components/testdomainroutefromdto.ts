@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type TestDomainRouteFromDto = {
   address: string;
@@ -20,10 +21,12 @@ export const TestDomainRouteFromDto$outboundSchema: z.ZodType<
   TestDomainRouteFromDto$Outbound,
   z.ZodTypeDef,
   TestDomainRouteFromDto
-> = z.object({
-  address: z.string(),
-  name: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    address: z.string(),
+    name: z.string().optional(),
+  })
+);
 
 export function testDomainRouteFromDtoToJSON(
   testDomainRouteFromDto: TestDomainRouteFromDto,

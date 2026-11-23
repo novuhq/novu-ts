@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -35,8 +35,8 @@ export type RedirectDto = {
 };
 
 /** @internal */
-export const Target$inboundSchema: z.ZodNativeEnum<typeof Target> = z
-  .nativeEnum(Target);
+export const Target$inboundSchema: z.ZodNativeEnum<typeof Target> =
+  /* @__PURE__ */ lazySchema$(() => z.nativeEnum(Target));
 /** @internal */
 export const Target$outboundSchema: z.ZodNativeEnum<typeof Target> =
   Target$inboundSchema;
@@ -46,10 +46,12 @@ export const RedirectDto$inboundSchema: z.ZodType<
   RedirectDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  url: z.string(),
-  target: Target$inboundSchema.optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    url: z.string(),
+    target: Target$inboundSchema.optional(),
+  })
+);
 /** @internal */
 export type RedirectDto$Outbound = {
   url: string;
@@ -61,10 +63,12 @@ export const RedirectDto$outboundSchema: z.ZodType<
   RedirectDto$Outbound,
   z.ZodTypeDef,
   RedirectDto
-> = z.object({
-  url: z.string(),
-  target: Target$outboundSchema.optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    url: z.string(),
+    target: Target$outboundSchema.optional(),
+  })
+);
 
 export function redirectDtoToJSON(redirectDto: RedirectDto): string {
   return JSON.stringify(RedirectDto$outboundSchema.parse(redirectDto));

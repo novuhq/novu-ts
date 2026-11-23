@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -38,7 +38,7 @@ export type LookBackWindowDto = {
 /** @internal */
 export const LookBackWindowDtoUnit$inboundSchema: z.ZodNativeEnum<
   typeof LookBackWindowDtoUnit
-> = z.nativeEnum(LookBackWindowDtoUnit);
+> = /* @__PURE__ */ lazySchema$(() => z.nativeEnum(LookBackWindowDtoUnit));
 /** @internal */
 export const LookBackWindowDtoUnit$outboundSchema: z.ZodNativeEnum<
   typeof LookBackWindowDtoUnit
@@ -49,10 +49,12 @@ export const LookBackWindowDto$inboundSchema: z.ZodType<
   LookBackWindowDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  amount: z.number(),
-  unit: LookBackWindowDtoUnit$inboundSchema,
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    amount: z.number(),
+    unit: LookBackWindowDtoUnit$inboundSchema,
+  })
+);
 /** @internal */
 export type LookBackWindowDto$Outbound = {
   amount: number;
@@ -64,10 +66,12 @@ export const LookBackWindowDto$outboundSchema: z.ZodType<
   LookBackWindowDto$Outbound,
   z.ZodTypeDef,
   LookBackWindowDto
-> = z.object({
-  amount: z.number(),
-  unit: LookBackWindowDtoUnit$outboundSchema,
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    amount: z.number(),
+    unit: LookBackWindowDtoUnit$outboundSchema,
+  })
+);
 
 export function lookBackWindowDtoToJSON(
   lookBackWindowDto: LookBackWindowDto,

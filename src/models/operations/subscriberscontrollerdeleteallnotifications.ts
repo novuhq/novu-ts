@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -40,18 +40,20 @@ export const SubscribersControllerDeleteAllNotificationsRequest$outboundSchema:
     SubscribersControllerDeleteAllNotificationsRequest$Outbound,
     z.ZodTypeDef,
     SubscribersControllerDeleteAllNotificationsRequest
-  > = z.object({
-    subscriberId: z.string(),
-    idempotencyKey: z.string().optional(),
-    updateAllSubscriberNotificationsDto:
-      components.UpdateAllSubscriberNotificationsDto$outboundSchema,
-  }).transform((v) => {
-    return remap$(v, {
-      idempotencyKey: "idempotency-key",
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      subscriberId: z.string(),
+      idempotencyKey: z.string().optional(),
       updateAllSubscriberNotificationsDto:
-        "UpdateAllSubscriberNotificationsDto",
-    });
-  });
+        components.UpdateAllSubscriberNotificationsDto$outboundSchema,
+    }).transform((v) => {
+      return remap$(v, {
+        idempotencyKey: "idempotency-key",
+        updateAllSubscriberNotificationsDto:
+          "UpdateAllSubscriberNotificationsDto",
+      });
+    })
+  );
 
 export function subscribersControllerDeleteAllNotificationsRequestToJSON(
   subscribersControllerDeleteAllNotificationsRequest:
@@ -70,13 +72,15 @@ export const SubscribersControllerDeleteAllNotificationsResponse$inboundSchema:
     SubscribersControllerDeleteAllNotificationsResponse,
     z.ZodTypeDef,
     unknown
-  > = z.object({
-    Headers: z.record(z.array(z.string())).default({}),
-  }).transform((v) => {
-    return remap$(v, {
-      "Headers": "headers",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      Headers: z.record(z.array(z.string())).default({}),
+    }).transform((v) => {
+      return remap$(v, {
+        "Headers": "headers",
+      });
+    })
+  );
 
 export function subscribersControllerDeleteAllNotificationsResponseFromJSON(
   jsonString: string,

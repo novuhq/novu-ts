@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -48,8 +48,10 @@ export type PayloadValidationErrorDto = {
 };
 
 /** @internal */
-export const Value5$inboundSchema: z.ZodType<Value5, z.ZodTypeDef, unknown> = z
-  .union([z.string(), z.number(), z.boolean(), z.record(z.any())]);
+export const Value5$inboundSchema: z.ZodType<Value5, z.ZodTypeDef, unknown> =
+  /* @__PURE__ */ lazySchema$(() =>
+    z.union([z.string(), z.number(), z.boolean(), z.record(z.any())])
+  );
 
 export function value5FromJSON(
   jsonString: string,
@@ -62,8 +64,8 @@ export function value5FromJSON(
 }
 
 /** @internal */
-export const Value4$inboundSchema: z.ZodType<Value4, z.ZodTypeDef, unknown> = z
-  .object({});
+export const Value4$inboundSchema: z.ZodType<Value4, z.ZodTypeDef, unknown> =
+  /* @__PURE__ */ lazySchema$(() => z.object({}));
 
 export function value4FromJSON(
   jsonString: string,
@@ -80,17 +82,19 @@ export const PayloadValidationErrorDtoValue$inboundSchema: z.ZodType<
   PayloadValidationErrorDtoValue,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  z.string(),
-  z.number(),
-  z.boolean(),
-  z.lazy(() => Value4$inboundSchema),
-  z.array(
-    z.nullable(
-      z.union([z.string(), z.number(), z.boolean(), z.record(z.any())]),
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.union([
+    z.string(),
+    z.number(),
+    z.boolean(),
+    z.lazy(() => Value4$inboundSchema),
+    z.array(
+      z.nullable(
+        z.union([z.string(), z.number(), z.boolean(), z.record(z.any())]),
+      ),
     ),
-  ),
-]);
+  ])
+);
 
 export function payloadValidationErrorDtoValueFromJSON(
   jsonString: string,
@@ -107,11 +111,11 @@ export const PayloadValidationErrorDto$inboundSchema: z.ZodType<
   PayloadValidationErrorDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  field: z.string(),
-  message: z.string(),
-  value: z.nullable(
-    z.union([
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    field: z.string(),
+    message: z.string(),
+    value: z.nullable(z.union([
       z.string(),
       z.number(),
       z.boolean(),
@@ -121,10 +125,10 @@ export const PayloadValidationErrorDto$inboundSchema: z.ZodType<
           z.union([z.string(), z.number(), z.boolean(), z.record(z.any())]),
         ),
       ),
-    ]),
-  ).optional(),
-  schemaPath: z.string().optional(),
-});
+    ])).optional(),
+    schemaPath: z.string().optional(),
+  })
+);
 
 export function payloadValidationErrorDtoFromJSON(
   jsonString: string,

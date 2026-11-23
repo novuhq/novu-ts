@@ -6,6 +6,7 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import {
   collectExtraKeys as collectExtraKeys$,
+  lazySchema as lazySchema$,
   safeParse,
 } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
@@ -154,30 +155,36 @@ export type ThrottleStepResponseDto = {
 /** @internal */
 export const ThrottleStepResponseDtoType$inboundSchema: z.ZodNativeEnum<
   typeof ThrottleStepResponseDtoType
-> = z.nativeEnum(ThrottleStepResponseDtoType);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.nativeEnum(ThrottleStepResponseDtoType)
+);
 
 /** @internal */
 export const ThrottleStepResponseDtoUnit$inboundSchema: z.ZodNativeEnum<
   typeof ThrottleStepResponseDtoUnit
-> = z.nativeEnum(ThrottleStepResponseDtoUnit);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.nativeEnum(ThrottleStepResponseDtoUnit)
+);
 
 /** @internal */
 export const ThrottleStepResponseDtoControlValues$inboundSchema: z.ZodType<
   ThrottleStepResponseDtoControlValues,
   z.ZodTypeDef,
   unknown
-> = collectExtraKeys$(
-  z.object({
-    skip: z.record(z.any()).optional(),
-    type: ThrottleStepResponseDtoType$inboundSchema.default("fixed"),
-    amount: z.number().optional(),
-    unit: ThrottleStepResponseDtoUnit$inboundSchema.optional(),
-    dynamicKey: z.string().optional(),
-    threshold: z.number().default(1),
-    throttleKey: z.string().optional(),
-  }).catchall(z.any()),
-  "additionalProperties",
-  true,
+> = /* @__PURE__ */ lazySchema$(() =>
+  collectExtraKeys$(
+    z.object({
+      skip: z.record(z.any()).optional(),
+      type: ThrottleStepResponseDtoType$inboundSchema.default("fixed"),
+      amount: z.number().optional(),
+      unit: ThrottleStepResponseDtoUnit$inboundSchema.optional(),
+      dynamicKey: z.string().optional(),
+      threshold: z.number().default(1),
+      throttleKey: z.string().optional(),
+    }).catchall(z.any()),
+    "additionalProperties",
+    true,
+  )
 );
 
 export function throttleStepResponseDtoControlValuesFromJSON(
@@ -196,30 +203,32 @@ export const ThrottleStepResponseDto$inboundSchema: z.ZodType<
   ThrottleStepResponseDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  controls: ThrottleControlsMetadataResponseDto$inboundSchema,
-  controlValues: z.lazy(() =>
-    ThrottleStepResponseDtoControlValues$inboundSchema
-  ).optional(),
-  providerOverrides: z.nullable(z.record(z.record(z.any()))).optional(),
-  integrationOverrides: z.nullable(z.record(z.record(z.record(z.any()))))
-    .optional(),
-  variables: z.record(z.any()),
-  stepId: z.string(),
-  _id: z.string(),
-  name: z.string(),
-  slug: z.string(),
-  type: z.literal("throttle"),
-  origin: ResourceOriginEnum$inboundSchema,
-  workflowId: z.string(),
-  workflowDatabaseId: z.string(),
-  issues: StepIssuesDto$inboundSchema.optional(),
-  stepResolverHash: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_id": "id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    controls: ThrottleControlsMetadataResponseDto$inboundSchema,
+    controlValues: z.lazy(() =>
+      ThrottleStepResponseDtoControlValues$inboundSchema
+    ).optional(),
+    providerOverrides: z.nullable(z.record(z.record(z.any()))).optional(),
+    integrationOverrides: z.nullable(z.record(z.record(z.record(z.any()))))
+      .optional(),
+    variables: z.record(z.any()),
+    stepId: z.string(),
+    _id: z.string(),
+    name: z.string(),
+    slug: z.string(),
+    type: z.literal("throttle"),
+    origin: ResourceOriginEnum$inboundSchema,
+    workflowId: z.string(),
+    workflowDatabaseId: z.string(),
+    issues: StepIssuesDto$inboundSchema.optional(),
+    stepResolverHash: z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_id": "id",
+    });
+  })
+);
 
 export function throttleStepResponseDtoFromJSON(
   jsonString: string,

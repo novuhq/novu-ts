@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -29,10 +29,12 @@ export const ActionDto$inboundSchema: z.ZodType<
   ActionDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  label: z.string().optional(),
-  redirect: RedirectDto$inboundSchema.optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    label: z.string().optional(),
+    redirect: RedirectDto$inboundSchema.optional(),
+  })
+);
 /** @internal */
 export type ActionDto$Outbound = {
   label?: string | undefined;
@@ -44,10 +46,12 @@ export const ActionDto$outboundSchema: z.ZodType<
   ActionDto$Outbound,
   z.ZodTypeDef,
   ActionDto
-> = z.object({
-  label: z.string().optional(),
-  redirect: RedirectDto$outboundSchema.optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    label: z.string().optional(),
+    redirect: RedirectDto$outboundSchema.optional(),
+  })
+);
 
 export function actionDtoToJSON(actionDto: ActionDto): string {
   return JSON.stringify(ActionDto$outboundSchema.parse(actionDto));

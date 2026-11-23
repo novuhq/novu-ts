@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -32,7 +32,7 @@ export const Integration$inboundSchema: z.ZodType<
   Integration,
   z.ZodTypeDef,
   unknown
-> = z.object({});
+> = /* @__PURE__ */ lazySchema$(() => z.object({}));
 
 export function integrationFromJSON(
   jsonString: string,
@@ -49,11 +49,13 @@ export const AutoConfigureIntegrationResponseDto$inboundSchema: z.ZodType<
   AutoConfigureIntegrationResponseDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  success: z.boolean(),
-  message: z.string().optional(),
-  integration: z.lazy(() => Integration$inboundSchema).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    success: z.boolean(),
+    message: z.string().optional(),
+    integration: z.lazy(() => Integration$inboundSchema).optional(),
+  })
+);
 
 export function autoConfigureIntegrationResponseDtoFromJSON(
   jsonString: string,

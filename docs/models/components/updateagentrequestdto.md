@@ -5,7 +5,21 @@
 ```typescript
 import { UpdateAgentRequestDto } from "@novu/api/models/components";
 
-let value: UpdateAgentRequestDto = {};
+let value: UpdateAgentRequestDto = {
+  behavior: {
+    accessRule: {
+      "in": [
+        {
+          "var": "context.tenant.data.plan",
+        },
+        [
+          "pro",
+          "enterprise",
+        ],
+      ],
+    },
+  },
+};
 ```
 
 ## Fields

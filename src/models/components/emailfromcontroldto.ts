@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -23,10 +23,12 @@ export const EmailFromControlDto$inboundSchema: z.ZodType<
   EmailFromControlDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  email: z.string().optional(),
-  name: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    email: z.string().optional(),
+    name: z.string().optional(),
+  })
+);
 /** @internal */
 export type EmailFromControlDto$Outbound = {
   email?: string | undefined;
@@ -38,10 +40,12 @@ export const EmailFromControlDto$outboundSchema: z.ZodType<
   EmailFromControlDto$Outbound,
   z.ZodTypeDef,
   EmailFromControlDto
-> = z.object({
-  email: z.string().optional(),
-  name: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    email: z.string().optional(),
+    name: z.string().optional(),
+  })
+);
 
 export function emailFromControlDtoToJSON(
   emailFromControlDto: EmailFromControlDto,

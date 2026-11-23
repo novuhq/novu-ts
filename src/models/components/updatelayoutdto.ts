@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   EmailControlsDto,
   EmailControlsDto$Outbound,
@@ -44,9 +45,11 @@ export const ControlValues$outboundSchema: z.ZodType<
   ControlValues$Outbound,
   z.ZodTypeDef,
   ControlValues
-> = z.object({
-  email: EmailControlsDto$outboundSchema.optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    email: EmailControlsDto$outboundSchema.optional(),
+  })
+);
 
 export function controlValuesToJSON(controlValues: ControlValues): string {
   return JSON.stringify(ControlValues$outboundSchema.parse(controlValues));
@@ -64,12 +67,14 @@ export const UpdateLayoutDto$outboundSchema: z.ZodType<
   UpdateLayoutDto$Outbound,
   z.ZodTypeDef,
   UpdateLayoutDto
-> = z.object({
-  name: z.string(),
-  isTranslationEnabled: z.boolean().default(false),
-  controlValues: z.nullable(z.lazy(() => ControlValues$outboundSchema))
-    .optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    name: z.string(),
+    isTranslationEnabled: z.boolean().default(false),
+    controlValues: z.nullable(z.lazy(() => ControlValues$outboundSchema))
+      .optional(),
+  })
+);
 
 export function updateLayoutDtoToJSON(
   updateLayoutDto: UpdateLayoutDto,

@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -33,14 +33,16 @@ export const LayoutsControllerGetRequest$outboundSchema: z.ZodType<
   LayoutsControllerGetRequest$Outbound,
   z.ZodTypeDef,
   LayoutsControllerGetRequest
-> = z.object({
-  layoutId: z.string(),
-  idempotencyKey: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    idempotencyKey: "idempotency-key",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    layoutId: z.string(),
+    idempotencyKey: z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      idempotencyKey: "idempotency-key",
+    });
+  })
+);
 
 export function layoutsControllerGetRequestToJSON(
   layoutsControllerGetRequest: LayoutsControllerGetRequest,
@@ -57,15 +59,17 @@ export const LayoutsControllerGetResponse$inboundSchema: z.ZodType<
   LayoutsControllerGetResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  Headers: z.record(z.array(z.string())).default({}),
-  Result: components.LayoutResponseDto$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "Headers": "headers",
-    "Result": "result",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    Headers: z.record(z.array(z.string())).default({}),
+    Result: components.LayoutResponseDto$inboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      "Headers": "headers",
+      "Result": "result",
+    });
+  })
+);
 
 export function layoutsControllerGetResponseFromJSON(
   jsonString: string,

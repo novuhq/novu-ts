@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -38,23 +38,27 @@ export type DomainDiagnosticIssueDto = {
 /** @internal */
 export const DomainDiagnosticIssueDtoCode$inboundSchema: z.ZodNativeEnum<
   typeof DomainDiagnosticIssueDtoCode
-> = z.nativeEnum(DomainDiagnosticIssueDtoCode);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.nativeEnum(DomainDiagnosticIssueDtoCode)
+);
 
 /** @internal */
-export const Severity$inboundSchema: z.ZodNativeEnum<typeof Severity> = z
-  .nativeEnum(Severity);
+export const Severity$inboundSchema: z.ZodNativeEnum<typeof Severity> =
+  /* @__PURE__ */ lazySchema$(() => z.nativeEnum(Severity));
 
 /** @internal */
 export const DomainDiagnosticIssueDto$inboundSchema: z.ZodType<
   DomainDiagnosticIssueDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  code: DomainDiagnosticIssueDtoCode$inboundSchema,
-  severity: Severity$inboundSchema,
-  message: z.string(),
-  fix: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    code: DomainDiagnosticIssueDtoCode$inboundSchema,
+    severity: Severity$inboundSchema,
+    message: z.string(),
+    fix: z.string(),
+  })
+);
 
 export function domainDiagnosticIssueDtoFromJSON(
   jsonString: string,

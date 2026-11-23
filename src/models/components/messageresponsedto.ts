@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -176,7 +176,9 @@ export const MessageResponseDtoContent$inboundSchema: z.ZodType<
   MessageResponseDtoContent,
   z.ZodTypeDef,
   unknown
-> = z.union([z.array(EmailBlock$inboundSchema), z.string()]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.union([z.array(EmailBlock$inboundSchema), z.string()])
+);
 
 export function messageResponseDtoContentFromJSON(
   jsonString: string,
@@ -193,55 +195,58 @@ export const MessageResponseDto$inboundSchema: z.ZodType<
   MessageResponseDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  _id: z.string().optional(),
-  _templateId: z.nullable(z.string()).optional(),
-  _environmentId: z.string(),
-  _messageTemplateId: z.nullable(z.string()).optional(),
-  _organizationId: z.string(),
-  _notificationId: z.string(),
-  _subscriberId: z.string(),
-  subscriber: SubscriberResponseDto$inboundSchema.optional(),
-  template: WorkflowResponse$inboundSchema.optional(),
-  templateIdentifier: z.string().optional(),
-  createdAt: z.string(),
-  deliveredAt: z.array(z.string()).optional(),
-  lastSeenDate: z.string().optional(),
-  lastReadDate: z.string().optional(),
-  content: z.nullable(z.union([z.array(EmailBlock$inboundSchema), z.string()]))
-    .optional(),
-  transactionId: z.string(),
-  subject: z.string().optional(),
-  channel: ChannelTypeEnum$inboundSchema,
-  read: z.boolean(),
-  seen: z.boolean(),
-  snoozedUntil: z.string().optional(),
-  email: z.string().optional(),
-  phone: z.string().optional(),
-  directWebhookUrl: z.string().optional(),
-  providerId: z.string().optional(),
-  deviceTokens: z.array(z.string()).optional(),
-  title: z.string().optional(),
-  cta: MessageCTA$inboundSchema,
-  _feedId: z.nullable(z.string()).optional(),
-  status: MessageStatusEnum$inboundSchema,
-  errorId: z.string().optional(),
-  errorText: z.string().optional(),
-  payload: z.record(z.any()).optional(),
-  overrides: z.record(z.any()).optional(),
-  contextKeys: z.array(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_id": "id",
-    "_templateId": "templateId",
-    "_environmentId": "environmentId",
-    "_messageTemplateId": "messageTemplateId",
-    "_organizationId": "organizationId",
-    "_notificationId": "notificationId",
-    "_subscriberId": "subscriberId",
-    "_feedId": "feedId",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    _id: z.string().optional(),
+    _templateId: z.nullable(z.string()).optional(),
+    _environmentId: z.string(),
+    _messageTemplateId: z.nullable(z.string()).optional(),
+    _organizationId: z.string(),
+    _notificationId: z.string(),
+    _subscriberId: z.string(),
+    subscriber: SubscriberResponseDto$inboundSchema.optional(),
+    template: WorkflowResponse$inboundSchema.optional(),
+    templateIdentifier: z.string().optional(),
+    createdAt: z.string(),
+    deliveredAt: z.array(z.string()).optional(),
+    lastSeenDate: z.string().optional(),
+    lastReadDate: z.string().optional(),
+    content: z.nullable(
+      z.union([z.array(EmailBlock$inboundSchema), z.string()]),
+    ).optional(),
+    transactionId: z.string(),
+    subject: z.string().optional(),
+    channel: ChannelTypeEnum$inboundSchema,
+    read: z.boolean(),
+    seen: z.boolean(),
+    snoozedUntil: z.string().optional(),
+    email: z.string().optional(),
+    phone: z.string().optional(),
+    directWebhookUrl: z.string().optional(),
+    providerId: z.string().optional(),
+    deviceTokens: z.array(z.string()).optional(),
+    title: z.string().optional(),
+    cta: MessageCTA$inboundSchema,
+    _feedId: z.nullable(z.string()).optional(),
+    status: MessageStatusEnum$inboundSchema,
+    errorId: z.string().optional(),
+    errorText: z.string().optional(),
+    payload: z.record(z.any()).optional(),
+    overrides: z.record(z.any()).optional(),
+    contextKeys: z.array(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_id": "id",
+      "_templateId": "templateId",
+      "_environmentId": "environmentId",
+      "_messageTemplateId": "messageTemplateId",
+      "_organizationId": "organizationId",
+      "_notificationId": "notificationId",
+      "_subscriberId": "subscriberId",
+      "_feedId": "feedId",
+    });
+  })
+);
 
 export function messageResponseDtoFromJSON(
   jsonString: string,

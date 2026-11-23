@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -37,14 +37,16 @@ export const EnvironmentsControllerGetEnvironmentTagsRequest$outboundSchema:
     EnvironmentsControllerGetEnvironmentTagsRequest$Outbound,
     z.ZodTypeDef,
     EnvironmentsControllerGetEnvironmentTagsRequest
-  > = z.object({
-    environmentId: z.string(),
-    idempotencyKey: z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      idempotencyKey: "idempotency-key",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      environmentId: z.string(),
+      idempotencyKey: z.string().optional(),
+    }).transform((v) => {
+      return remap$(v, {
+        idempotencyKey: "idempotency-key",
+      });
+    })
+  );
 
 export function environmentsControllerGetEnvironmentTagsRequestToJSON(
   environmentsControllerGetEnvironmentTagsRequest:
@@ -63,15 +65,17 @@ export const EnvironmentsControllerGetEnvironmentTagsResponse$inboundSchema:
     EnvironmentsControllerGetEnvironmentTagsResponse,
     z.ZodTypeDef,
     unknown
-  > = z.object({
-    Headers: z.record(z.array(z.string())).default({}),
-    Result: z.array(components.GetEnvironmentTagsDto$inboundSchema),
-  }).transform((v) => {
-    return remap$(v, {
-      "Headers": "headers",
-      "Result": "result",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      Headers: z.record(z.array(z.string())).default({}),
+      Result: z.array(components.GetEnvironmentTagsDto$inboundSchema),
+    }).transform((v) => {
+      return remap$(v, {
+        "Headers": "headers",
+        "Result": "result",
+      });
+    })
+  );
 
 export function environmentsControllerGetEnvironmentTagsResponseFromJSON(
   jsonString: string,

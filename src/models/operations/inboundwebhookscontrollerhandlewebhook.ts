@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type InboundWebhooksControllerHandleWebhookRequest = {
   /**
@@ -38,17 +39,19 @@ export const InboundWebhooksControllerHandleWebhookRequest$outboundSchema:
     InboundWebhooksControllerHandleWebhookRequest$Outbound,
     z.ZodTypeDef,
     InboundWebhooksControllerHandleWebhookRequest
-  > = z.object({
-    environmentId: z.string(),
-    integrationId: z.string(),
-    idempotencyKey: z.string().optional(),
-    requestBody: z.record(z.any()),
-  }).transform((v) => {
-    return remap$(v, {
-      idempotencyKey: "idempotency-key",
-      requestBody: "RequestBody",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      environmentId: z.string(),
+      integrationId: z.string(),
+      idempotencyKey: z.string().optional(),
+      requestBody: z.record(z.any()),
+    }).transform((v) => {
+      return remap$(v, {
+        idempotencyKey: "idempotency-key",
+        requestBody: "RequestBody",
+      });
+    })
+  );
 
 export function inboundWebhooksControllerHandleWebhookRequestToJSON(
   inboundWebhooksControllerHandleWebhookRequest:

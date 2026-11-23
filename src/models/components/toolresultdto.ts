@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 /**
  * JSON-serializable tool output (or the execution-denied marker).
@@ -36,7 +37,7 @@ export const Output$outboundSchema: z.ZodType<
   Output$Outbound,
   z.ZodTypeDef,
   Output
-> = z.object({});
+> = /* @__PURE__ */ lazySchema$(() => z.object({}));
 
 export function outputToJSON(output: Output): string {
   return JSON.stringify(Output$outboundSchema.parse(output));
@@ -55,12 +56,14 @@ export const ToolResultDto$outboundSchema: z.ZodType<
   ToolResultDto$Outbound,
   z.ZodTypeDef,
   ToolResultDto
-> = z.object({
-  toolCallId: z.string(),
-  toolName: z.string().optional(),
-  output: z.lazy(() => Output$outboundSchema).optional(),
-  preview: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    toolCallId: z.string(),
+    toolName: z.string().optional(),
+    output: z.lazy(() => Output$outboundSchema).optional(),
+    preview: z.string().optional(),
+  })
+);
 
 export function toolResultDtoToJSON(toolResultDto: ToolResultDto): string {
   return JSON.stringify(ToolResultDto$outboundSchema.parse(toolResultDto));

@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -27,11 +27,13 @@ export const SubscriptionsDeleteErrorDto$inboundSchema: z.ZodType<
   SubscriptionsDeleteErrorDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  subscriberId: z.string(),
-  code: z.string(),
-  message: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    subscriberId: z.string(),
+    code: z.string(),
+    message: z.string(),
+  })
+);
 
 export function subscriptionsDeleteErrorDtoFromJSON(
   jsonString: string,

@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
@@ -33,9 +33,8 @@ export type SubscribersV1ControllerMarkActionAsSeenResponse = {
 };
 
 /** @internal */
-export const Type$outboundSchema: z.ZodNativeEnum<typeof Type> = z.nativeEnum(
-  Type,
-);
+export const Type$outboundSchema: z.ZodNativeEnum<typeof Type> =
+  /* @__PURE__ */ lazySchema$(() => z.nativeEnum(Type));
 
 /** @internal */
 export type SubscribersV1ControllerMarkActionAsSeenRequest$Outbound = {
@@ -52,19 +51,21 @@ export const SubscribersV1ControllerMarkActionAsSeenRequest$outboundSchema:
     SubscribersV1ControllerMarkActionAsSeenRequest$Outbound,
     z.ZodTypeDef,
     SubscribersV1ControllerMarkActionAsSeenRequest
-  > = z.object({
-    messageId: z.string(),
-    type: Type$outboundSchema,
-    subscriberId: z.string(),
-    idempotencyKey: z.string().optional(),
-    markMessageActionAsSeenDto:
-      components.MarkMessageActionAsSeenDto$outboundSchema,
-  }).transform((v) => {
-    return remap$(v, {
-      idempotencyKey: "idempotency-key",
-      markMessageActionAsSeenDto: "MarkMessageActionAsSeenDto",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      messageId: z.string(),
+      type: Type$outboundSchema,
+      subscriberId: z.string(),
+      idempotencyKey: z.string().optional(),
+      markMessageActionAsSeenDto:
+        components.MarkMessageActionAsSeenDto$outboundSchema,
+    }).transform((v) => {
+      return remap$(v, {
+        idempotencyKey: "idempotency-key",
+        markMessageActionAsSeenDto: "MarkMessageActionAsSeenDto",
+      });
+    })
+  );
 
 export function subscribersV1ControllerMarkActionAsSeenRequestToJSON(
   subscribersV1ControllerMarkActionAsSeenRequest:
@@ -83,15 +84,17 @@ export const SubscribersV1ControllerMarkActionAsSeenResponse$inboundSchema:
     SubscribersV1ControllerMarkActionAsSeenResponse,
     z.ZodTypeDef,
     unknown
-  > = z.object({
-    Headers: z.record(z.array(z.string())).default({}),
-    Result: components.MessageResponseDto$inboundSchema,
-  }).transform((v) => {
-    return remap$(v, {
-      "Headers": "headers",
-      "Result": "result",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      Headers: z.record(z.array(z.string())).default({}),
+      Result: components.MessageResponseDto$inboundSchema,
+    }).transform((v) => {
+      return remap$(v, {
+        "Headers": "headers",
+        "Result": "result",
+      });
+    })
+  );
 
 export function subscribersV1ControllerMarkActionAsSeenResponseFromJSON(
   jsonString: string,

@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -31,12 +31,14 @@ export const UploadTranslationsResponseDto$inboundSchema: z.ZodType<
   UploadTranslationsResponseDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  totalFiles: z.number(),
-  successfulUploads: z.number(),
-  failedUploads: z.number(),
-  errors: z.array(z.string()),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    totalFiles: z.number(),
+    successfulUploads: z.number(),
+    failedUploads: z.number(),
+    errors: z.array(z.string()),
+  })
+);
 
 export function uploadTranslationsResponseDtoFromJSON(
   jsonString: string,

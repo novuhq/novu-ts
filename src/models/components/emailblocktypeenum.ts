@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 
 /**
@@ -20,4 +21,4 @@ export type EmailBlockTypeEnum = ClosedEnum<typeof EmailBlockTypeEnum>;
 /** @internal */
 export const EmailBlockTypeEnum$inboundSchema: z.ZodNativeEnum<
   typeof EmailBlockTypeEnum
-> = z.nativeEnum(EmailBlockTypeEnum);
+> = /* @__PURE__ */ lazySchema$(() => z.nativeEnum(EmailBlockTypeEnum));

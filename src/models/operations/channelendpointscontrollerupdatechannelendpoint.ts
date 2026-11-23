@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -40,17 +40,19 @@ export const ChannelEndpointsControllerUpdateChannelEndpointRequest$outboundSche
     ChannelEndpointsControllerUpdateChannelEndpointRequest$Outbound,
     z.ZodTypeDef,
     ChannelEndpointsControllerUpdateChannelEndpointRequest
-  > = z.object({
-    identifier: z.string(),
-    idempotencyKey: z.string().optional(),
-    updateChannelEndpointRequestDto:
-      components.UpdateChannelEndpointRequestDto$outboundSchema,
-  }).transform((v) => {
-    return remap$(v, {
-      idempotencyKey: "idempotency-key",
-      updateChannelEndpointRequestDto: "UpdateChannelEndpointRequestDto",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      identifier: z.string(),
+      idempotencyKey: z.string().optional(),
+      updateChannelEndpointRequestDto:
+        components.UpdateChannelEndpointRequestDto$outboundSchema,
+    }).transform((v) => {
+      return remap$(v, {
+        idempotencyKey: "idempotency-key",
+        updateChannelEndpointRequestDto: "UpdateChannelEndpointRequestDto",
+      });
+    })
+  );
 
 export function channelEndpointsControllerUpdateChannelEndpointRequestToJSON(
   channelEndpointsControllerUpdateChannelEndpointRequest:
@@ -69,15 +71,17 @@ export const ChannelEndpointsControllerUpdateChannelEndpointResponse$inboundSche
     ChannelEndpointsControllerUpdateChannelEndpointResponse,
     z.ZodTypeDef,
     unknown
-  > = z.object({
-    Headers: z.record(z.array(z.string())).default({}),
-    Result: components.GetChannelEndpointResponseDto$inboundSchema,
-  }).transform((v) => {
-    return remap$(v, {
-      "Headers": "headers",
-      "Result": "result",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      Headers: z.record(z.array(z.string())).default({}),
+      Result: components.GetChannelEndpointResponseDto$inboundSchema,
+    }).transform((v) => {
+      return remap$(v, {
+        "Headers": "headers",
+        "Result": "result",
+      });
+    })
+  );
 
 export function channelEndpointsControllerUpdateChannelEndpointResponseFromJSON(
   jsonString: string,

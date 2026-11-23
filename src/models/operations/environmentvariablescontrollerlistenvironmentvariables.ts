@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -38,14 +38,16 @@ export const EnvironmentVariablesControllerListEnvironmentVariablesRequest$outbo
     EnvironmentVariablesControllerListEnvironmentVariablesRequest$Outbound,
     z.ZodTypeDef,
     EnvironmentVariablesControllerListEnvironmentVariablesRequest
-  > = z.object({
-    search: z.string().optional(),
-    idempotencyKey: z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      idempotencyKey: "idempotency-key",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      search: z.string().optional(),
+      idempotencyKey: z.string().optional(),
+    }).transform((v) => {
+      return remap$(v, {
+        idempotencyKey: "idempotency-key",
+      });
+    })
+  );
 
 export function environmentVariablesControllerListEnvironmentVariablesRequestToJSON(
   environmentVariablesControllerListEnvironmentVariablesRequest:
@@ -63,15 +65,17 @@ export const EnvironmentVariablesControllerListEnvironmentVariablesResponse$inbo
     EnvironmentVariablesControllerListEnvironmentVariablesResponse,
     z.ZodTypeDef,
     unknown
-  > = z.object({
-    Headers: z.record(z.array(z.string())).default({}),
-    Result: z.array(components.EnvironmentVariableResponseDto$inboundSchema),
-  }).transform((v) => {
-    return remap$(v, {
-      "Headers": "headers",
-      "Result": "result",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      Headers: z.record(z.array(z.string())).default({}),
+      Result: z.array(components.EnvironmentVariableResponseDto$inboundSchema),
+    }).transform((v) => {
+      return remap$(v, {
+        "Headers": "headers",
+        "Result": "result",
+      });
+    })
+  );
 
 export function environmentVariablesControllerListEnvironmentVariablesResponseFromJSON(
   jsonString: string,

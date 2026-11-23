@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import {
   AddReactionPayloadDto,
@@ -185,11 +186,13 @@ export const Reply$outboundSchema: z.ZodType<
   Reply$Outbound,
   z.ZodTypeDef,
   Reply
-> = z.union([
-  MarkdownReplyContentDto$outboundSchema,
-  CardReplyContentDto$outboundSchema,
-  ToolApprovalCardReplyContentDto$outboundSchema,
-]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.union([
+    MarkdownReplyContentDto$outboundSchema,
+    CardReplyContentDto$outboundSchema,
+    ToolApprovalCardReplyContentDto$outboundSchema,
+  ])
+);
 
 export function replyToJSON(reply: Reply): string {
   return JSON.stringify(Reply$outboundSchema.parse(reply));
@@ -208,21 +211,23 @@ export const Signals$outboundSchema: z.ZodType<
   Signals$Outbound,
   z.ZodTypeDef,
   Signals
-> = z.union([
-  HumanSignalDto$outboundSchema,
-  MetadataSetSignalDto$outboundSchema,
-  MetadataDeleteSignalDto$outboundSchema,
-  MetadataClearSignalDto$outboundSchema,
-  TriggerSignalDto$outboundSchema,
-]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.union([
+    HumanSignalDto$outboundSchema,
+    MetadataSetSignalDto$outboundSchema,
+    MetadataDeleteSignalDto$outboundSchema,
+    MetadataClearSignalDto$outboundSchema,
+    TriggerSignalDto$outboundSchema,
+  ])
+);
 
 export function signalsToJSON(signals: Signals): string {
   return JSON.stringify(Signals$outboundSchema.parse(signals));
 }
 
 /** @internal */
-export const Typing1$outboundSchema: z.ZodNativeEnum<typeof Typing1> = z
-  .nativeEnum(Typing1);
+export const Typing1$outboundSchema: z.ZodNativeEnum<typeof Typing1> =
+  /* @__PURE__ */ lazySchema$(() => z.nativeEnum(Typing1));
 
 /** @internal */
 export type Typing$Outbound = string | TypingStatusDto$Outbound;
@@ -232,7 +237,9 @@ export const Typing$outboundSchema: z.ZodType<
   Typing$Outbound,
   z.ZodTypeDef,
   Typing
-> = z.union([Typing1$outboundSchema, TypingStatusDto$outboundSchema]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.union([Typing1$outboundSchema, TypingStatusDto$outboundSchema])
+);
 
 export function typingToJSON(typing: Typing): string {
   return JSON.stringify(Typing$outboundSchema.parse(typing));
@@ -271,33 +278,36 @@ export const AgentReplyPayloadDto$outboundSchema: z.ZodType<
   AgentReplyPayloadDto$Outbound,
   z.ZodTypeDef,
   AgentReplyPayloadDto
-> = z.object({
-  conversationId: z.string(),
-  integrationIdentifier: z.string(),
-  reply: z.union([
-    MarkdownReplyContentDto$outboundSchema,
-    CardReplyContentDto$outboundSchema,
-    ToolApprovalCardReplyContentDto$outboundSchema,
-  ]).optional(),
-  toolApprovalRequest: ToolApprovalRequestPayloadDto$outboundSchema.optional(),
-  edit: EditPayloadDto$outboundSchema.optional(),
-  resolve: ResolveDto$outboundSchema.optional(),
-  signals: z.array(
-    z.union([
-      HumanSignalDto$outboundSchema,
-      MetadataSetSignalDto$outboundSchema,
-      MetadataDeleteSignalDto$outboundSchema,
-      MetadataClearSignalDto$outboundSchema,
-      TriggerSignalDto$outboundSchema,
-    ]),
-  ).optional(),
-  toolResults: z.array(ToolResultDto$outboundSchema).optional(),
-  addReactions: z.array(AddReactionPayloadDto$outboundSchema).optional(),
-  deleteMessages: z.array(DeleteMessagePayloadDto$outboundSchema).optional(),
-  typing: z.union([Typing1$outboundSchema, TypingStatusDto$outboundSchema])
-    .optional(),
-  error: z.boolean().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    conversationId: z.string(),
+    integrationIdentifier: z.string(),
+    reply: z.union([
+      MarkdownReplyContentDto$outboundSchema,
+      CardReplyContentDto$outboundSchema,
+      ToolApprovalCardReplyContentDto$outboundSchema,
+    ]).optional(),
+    toolApprovalRequest: ToolApprovalRequestPayloadDto$outboundSchema
+      .optional(),
+    edit: EditPayloadDto$outboundSchema.optional(),
+    resolve: ResolveDto$outboundSchema.optional(),
+    signals: z.array(
+      z.union([
+        HumanSignalDto$outboundSchema,
+        MetadataSetSignalDto$outboundSchema,
+        MetadataDeleteSignalDto$outboundSchema,
+        MetadataClearSignalDto$outboundSchema,
+        TriggerSignalDto$outboundSchema,
+      ]),
+    ).optional(),
+    toolResults: z.array(ToolResultDto$outboundSchema).optional(),
+    addReactions: z.array(AddReactionPayloadDto$outboundSchema).optional(),
+    deleteMessages: z.array(DeleteMessagePayloadDto$outboundSchema).optional(),
+    typing: z.union([Typing1$outboundSchema, TypingStatusDto$outboundSchema])
+      .optional(),
+    error: z.boolean().optional(),
+  })
+);
 
 export function agentReplyPayloadDtoToJSON(
   agentReplyPayloadDto: AgentReplyPayloadDto,

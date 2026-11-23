@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -81,22 +81,24 @@ export const ChannelEndpointsControllerCreateChannelEndpointRequestBody$outbound
     ChannelEndpointsControllerCreateChannelEndpointRequestBody$Outbound,
     z.ZodTypeDef,
     ChannelEndpointsControllerCreateChannelEndpointRequestBody
-  > = z.union([
-    components.CreateSlackChannelEndpointDto$outboundSchema,
-    components.CreateSlackUserEndpointDto$outboundSchema,
-    components.CreateWebhookEndpointDto$outboundSchema,
-    components.CreatePhoneEndpointDto$outboundSchema,
-    components.CreateMsTeamsChannelEndpointDto$outboundSchema,
-    components.CreateMsTeamsUserEndpointDto$outboundSchema,
-    components.CreateTelegramChatEndpointDto$outboundSchema,
-    components.CreateWebexRoomEndpointDto$outboundSchema,
-    components.CreateWebexPersonEndpointDto$outboundSchema,
-    components.CreateLineUserEndpointDto$outboundSchema,
-    components.CreatePagerDutyServiceEndpointDto$outboundSchema,
-    components.CreateOpsgenieIntegrationEndpointDto$outboundSchema,
-    components.CreateGrafanaOnCallIntegrationEndpointDto$outboundSchema,
-    components.CreateToolWebhookEndpointDto$outboundSchema,
-  ]);
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.union([
+      components.CreateSlackChannelEndpointDto$outboundSchema,
+      components.CreateSlackUserEndpointDto$outboundSchema,
+      components.CreateWebhookEndpointDto$outboundSchema,
+      components.CreatePhoneEndpointDto$outboundSchema,
+      components.CreateMsTeamsChannelEndpointDto$outboundSchema,
+      components.CreateMsTeamsUserEndpointDto$outboundSchema,
+      components.CreateTelegramChatEndpointDto$outboundSchema,
+      components.CreateWebexRoomEndpointDto$outboundSchema,
+      components.CreateWebexPersonEndpointDto$outboundSchema,
+      components.CreateLineUserEndpointDto$outboundSchema,
+      components.CreatePagerDutyServiceEndpointDto$outboundSchema,
+      components.CreateOpsgenieIntegrationEndpointDto$outboundSchema,
+      components.CreateGrafanaOnCallIntegrationEndpointDto$outboundSchema,
+      components.CreateToolWebhookEndpointDto$outboundSchema,
+    ])
+  );
 
 export function channelEndpointsControllerCreateChannelEndpointRequestBodyToJSON(
   channelEndpointsControllerCreateChannelEndpointRequestBody:
@@ -134,30 +136,32 @@ export const ChannelEndpointsControllerCreateChannelEndpointRequest$outboundSche
     ChannelEndpointsControllerCreateChannelEndpointRequest$Outbound,
     z.ZodTypeDef,
     ChannelEndpointsControllerCreateChannelEndpointRequest
-  > = z.object({
-    idempotencyKey: z.string().optional(),
-    requestBody: z.union([
-      components.CreateSlackChannelEndpointDto$outboundSchema,
-      components.CreateSlackUserEndpointDto$outboundSchema,
-      components.CreateWebhookEndpointDto$outboundSchema,
-      components.CreatePhoneEndpointDto$outboundSchema,
-      components.CreateMsTeamsChannelEndpointDto$outboundSchema,
-      components.CreateMsTeamsUserEndpointDto$outboundSchema,
-      components.CreateTelegramChatEndpointDto$outboundSchema,
-      components.CreateWebexRoomEndpointDto$outboundSchema,
-      components.CreateWebexPersonEndpointDto$outboundSchema,
-      components.CreateLineUserEndpointDto$outboundSchema,
-      components.CreatePagerDutyServiceEndpointDto$outboundSchema,
-      components.CreateOpsgenieIntegrationEndpointDto$outboundSchema,
-      components.CreateGrafanaOnCallIntegrationEndpointDto$outboundSchema,
-      components.CreateToolWebhookEndpointDto$outboundSchema,
-    ]),
-  }).transform((v) => {
-    return remap$(v, {
-      idempotencyKey: "idempotency-key",
-      requestBody: "RequestBody",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      idempotencyKey: z.string().optional(),
+      requestBody: z.union([
+        components.CreateSlackChannelEndpointDto$outboundSchema,
+        components.CreateSlackUserEndpointDto$outboundSchema,
+        components.CreateWebhookEndpointDto$outboundSchema,
+        components.CreatePhoneEndpointDto$outboundSchema,
+        components.CreateMsTeamsChannelEndpointDto$outboundSchema,
+        components.CreateMsTeamsUserEndpointDto$outboundSchema,
+        components.CreateTelegramChatEndpointDto$outboundSchema,
+        components.CreateWebexRoomEndpointDto$outboundSchema,
+        components.CreateWebexPersonEndpointDto$outboundSchema,
+        components.CreateLineUserEndpointDto$outboundSchema,
+        components.CreatePagerDutyServiceEndpointDto$outboundSchema,
+        components.CreateOpsgenieIntegrationEndpointDto$outboundSchema,
+        components.CreateGrafanaOnCallIntegrationEndpointDto$outboundSchema,
+        components.CreateToolWebhookEndpointDto$outboundSchema,
+      ]),
+    }).transform((v) => {
+      return remap$(v, {
+        idempotencyKey: "idempotency-key",
+        requestBody: "RequestBody",
+      });
+    })
+  );
 
 export function channelEndpointsControllerCreateChannelEndpointRequestToJSON(
   channelEndpointsControllerCreateChannelEndpointRequest:
@@ -176,15 +180,17 @@ export const ChannelEndpointsControllerCreateChannelEndpointResponse$inboundSche
     ChannelEndpointsControllerCreateChannelEndpointResponse,
     z.ZodTypeDef,
     unknown
-  > = z.object({
-    Headers: z.record(z.array(z.string())).default({}),
-    Result: components.GetChannelEndpointResponseDto$inboundSchema,
-  }).transform((v) => {
-    return remap$(v, {
-      "Headers": "headers",
-      "Result": "result",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      Headers: z.record(z.array(z.string())).default({}),
+      Result: components.GetChannelEndpointResponseDto$inboundSchema,
+    }).transform((v) => {
+      return remap$(v, {
+        "Headers": "headers",
+        "Result": "result",
+      });
+    })
+  );
 
 export function channelEndpointsControllerCreateChannelEndpointResponseFromJSON(
   jsonString: string,

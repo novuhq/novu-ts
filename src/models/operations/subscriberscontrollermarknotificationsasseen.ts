@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -40,18 +40,20 @@ export const SubscribersControllerMarkNotificationsAsSeenRequest$outboundSchema:
     SubscribersControllerMarkNotificationsAsSeenRequest$Outbound,
     z.ZodTypeDef,
     SubscribersControllerMarkNotificationsAsSeenRequest
-  > = z.object({
-    subscriberId: z.string(),
-    idempotencyKey: z.string().optional(),
-    markSubscriberNotificationsAsSeenDto:
-      components.MarkSubscriberNotificationsAsSeenDto$outboundSchema,
-  }).transform((v) => {
-    return remap$(v, {
-      idempotencyKey: "idempotency-key",
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      subscriberId: z.string(),
+      idempotencyKey: z.string().optional(),
       markSubscriberNotificationsAsSeenDto:
-        "MarkSubscriberNotificationsAsSeenDto",
-    });
-  });
+        components.MarkSubscriberNotificationsAsSeenDto$outboundSchema,
+    }).transform((v) => {
+      return remap$(v, {
+        idempotencyKey: "idempotency-key",
+        markSubscriberNotificationsAsSeenDto:
+          "MarkSubscriberNotificationsAsSeenDto",
+      });
+    })
+  );
 
 export function subscribersControllerMarkNotificationsAsSeenRequestToJSON(
   subscribersControllerMarkNotificationsAsSeenRequest:
@@ -70,13 +72,15 @@ export const SubscribersControllerMarkNotificationsAsSeenResponse$inboundSchema:
     SubscribersControllerMarkNotificationsAsSeenResponse,
     z.ZodTypeDef,
     unknown
-  > = z.object({
-    Headers: z.record(z.array(z.string())).default({}),
-  }).transform((v) => {
-    return remap$(v, {
-      "Headers": "headers",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      Headers: z.record(z.array(z.string())).default({}),
+    }).transform((v) => {
+      return remap$(v, {
+        "Headers": "headers",
+      });
+    })
+  );
 
 export function subscribersControllerMarkNotificationsAsSeenResponseFromJSON(
   jsonString: string,

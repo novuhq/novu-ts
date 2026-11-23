@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 
 export const MetadataClearSignalDtoType = {
@@ -27,12 +28,14 @@ export type MetadataClearSignalDto = {
 /** @internal */
 export const MetadataClearSignalDtoType$outboundSchema: z.ZodNativeEnum<
   typeof MetadataClearSignalDtoType
-> = z.nativeEnum(MetadataClearSignalDtoType);
+> = /* @__PURE__ */ lazySchema$(() => z.nativeEnum(MetadataClearSignalDtoType));
 
 /** @internal */
 export const MetadataClearSignalDtoAction$outboundSchema: z.ZodNativeEnum<
   typeof MetadataClearSignalDtoAction
-> = z.nativeEnum(MetadataClearSignalDtoAction);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.nativeEnum(MetadataClearSignalDtoAction)
+);
 
 /** @internal */
 export type MetadataClearSignalDto$Outbound = {
@@ -45,10 +48,12 @@ export const MetadataClearSignalDto$outboundSchema: z.ZodType<
   MetadataClearSignalDto$Outbound,
   z.ZodTypeDef,
   MetadataClearSignalDto
-> = z.object({
-  type: MetadataClearSignalDtoType$outboundSchema,
-  action: MetadataClearSignalDtoAction$outboundSchema,
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    type: MetadataClearSignalDtoType$outboundSchema,
+    action: MetadataClearSignalDtoAction$outboundSchema,
+  })
+);
 
 export function metadataClearSignalDtoToJSON(
   metadataClearSignalDto: MetadataClearSignalDto,

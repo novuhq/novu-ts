@@ -3,20 +3,21 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
- * Controls whether the agent accepts inbound messages from senders not yet linked to a subscriber, across all channels. "open" on managed agents auto-creates a lightweight subscriber so the agent can reply; on custom-code / self-hosted agents, the turn is forwarded to the bridge with a null subscriber. "restricted" rejects unknown senders with a managed denial reply (any runtime). Optional on update (partial PATCH). Persisted agents always have a value — managed create defaults to "open"; self-hosted create defaults to "restricted".
+ * Controls whether the agent accepts inbound messages from senders not yet linked to a subscriber, across all channels. "open" on managed agents auto-creates a lightweight subscriber so the agent can reply; on custom-code / self-hosted agents, the turn is forwarded to the bridge with a null subscriber. "restricted" rejects unknown senders with a managed denial reply (any runtime). "rule" requires a known subscriber and accessRule must evaluate truthy for every message, edit, delete, click and reaction; unknown senders, an invalid rule and an evaluation error are refused; a missing field evaluates as JSON Logic says. Optional on update (partial PATCH). Persisted agents always have a value — managed create defaults to "open"; self-hosted create defaults to "restricted".
  */
 export const SubscriberAccess = {
   Open: "open",
   Restricted: "restricted",
+  Rule: "rule",
 } as const;
 /**
- * Controls whether the agent accepts inbound messages from senders not yet linked to a subscriber, across all channels. "open" on managed agents auto-creates a lightweight subscriber so the agent can reply; on custom-code / self-hosted agents, the turn is forwarded to the bridge with a null subscriber. "restricted" rejects unknown senders with a managed denial reply (any runtime). Optional on update (partial PATCH). Persisted agents always have a value — managed create defaults to "open"; self-hosted create defaults to "restricted".
+ * Controls whether the agent accepts inbound messages from senders not yet linked to a subscriber, across all channels. "open" on managed agents auto-creates a lightweight subscriber so the agent can reply; on custom-code / self-hosted agents, the turn is forwarded to the bridge with a null subscriber. "restricted" rejects unknown senders with a managed denial reply (any runtime). "rule" requires a known subscriber and accessRule must evaluate truthy for every message, edit, delete, click and reaction; unknown senders, an invalid rule and an evaluation error are refused; a missing field evaluates as JSON Logic says. Optional on update (partial PATCH). Persisted agents always have a value — managed create defaults to "open"; self-hosted create defaults to "restricted".
  */
 export type SubscriberAccess = ClosedEnum<typeof SubscriberAccess>;
 
@@ -43,9 +44,13 @@ export type AgentBehaviorDto = {
    */
   reactionOnResolved?: string | null | undefined;
   /**
-   * Controls whether the agent accepts inbound messages from senders not yet linked to a subscriber, across all channels. "open" on managed agents auto-creates a lightweight subscriber so the agent can reply; on custom-code / self-hosted agents, the turn is forwarded to the bridge with a null subscriber. "restricted" rejects unknown senders with a managed denial reply (any runtime). Optional on update (partial PATCH). Persisted agents always have a value — managed create defaults to "open"; self-hosted create defaults to "restricted".
+   * Controls whether the agent accepts inbound messages from senders not yet linked to a subscriber, across all channels. "open" on managed agents auto-creates a lightweight subscriber so the agent can reply; on custom-code / self-hosted agents, the turn is forwarded to the bridge with a null subscriber. "restricted" rejects unknown senders with a managed denial reply (any runtime). "rule" requires a known subscriber and accessRule must evaluate truthy for every message, edit, delete, click and reaction; unknown senders, an invalid rule and an evaluation error are refused; a missing field evaluates as JSON Logic says. Optional on update (partial PATCH). Persisted agents always have a value — managed create defaults to "open"; self-hosted create defaults to "restricted".
    */
   subscriberAccess?: SubscriberAccess | undefined;
+  /**
+   * JSON Logic rule evaluated over subscriber.* and context.* when subscriberAccess is "rule". Present only when subscriberAccess is "rule". A missing field evaluates as JSON Logic says, so `null` is less than any positive number. "==" and "!=" compare strictly, without type coercion. At most 16 KB, with objects and arrays nested at most 32 levels deep.
+   */
+  accessRule?: { [k: string]: any } | undefined;
   /**
    * How the agent replies in shared rooms. "mention_only" requires an @mention in every shared room. "auto_reply" replies to unmentioned follow-ups in a nested Slack or Teams thread after the agent has joined. "smart" behaves like auto_reply while one person is talking to the agent in a thread, then requires an @mention there once someone else or another agent joins, or the incumbent @mentions another teammate. Create persists "smart". An omitted field on existing agents still means "auto_reply". DMs always reply without a mention. Optional on update (partial PATCH).
    */
@@ -55,15 +60,15 @@ export type AgentBehaviorDto = {
 /** @internal */
 export const SubscriberAccess$inboundSchema: z.ZodNativeEnum<
   typeof SubscriberAccess
-> = z.nativeEnum(SubscriberAccess);
+> = /* @__PURE__ */ lazySchema$(() => z.nativeEnum(SubscriberAccess));
 /** @internal */
 export const SubscriberAccess$outboundSchema: z.ZodNativeEnum<
   typeof SubscriberAccess
 > = SubscriberAccess$inboundSchema;
 
 /** @internal */
-export const ReplyPolicy$inboundSchema: z.ZodNativeEnum<typeof ReplyPolicy> = z
-  .nativeEnum(ReplyPolicy);
+export const ReplyPolicy$inboundSchema: z.ZodNativeEnum<typeof ReplyPolicy> =
+  /* @__PURE__ */ lazySchema$(() => z.nativeEnum(ReplyPolicy));
 /** @internal */
 export const ReplyPolicy$outboundSchema: z.ZodNativeEnum<typeof ReplyPolicy> =
   ReplyPolicy$inboundSchema;
@@ -73,17 +78,21 @@ export const AgentBehaviorDto$inboundSchema: z.ZodType<
   AgentBehaviorDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  acknowledgeOnReceived: z.boolean().default(true),
-  reactionOnResolved: z.nullable(z.string().default("check")),
-  subscriberAccess: SubscriberAccess$inboundSchema.optional(),
-  replyPolicy: ReplyPolicy$inboundSchema.default("auto_reply"),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    acknowledgeOnReceived: z.boolean().default(true),
+    reactionOnResolved: z.nullable(z.string().default("check")),
+    subscriberAccess: SubscriberAccess$inboundSchema.optional(),
+    accessRule: z.record(z.any()).optional(),
+    replyPolicy: ReplyPolicy$inboundSchema.default("auto_reply"),
+  })
+);
 /** @internal */
 export type AgentBehaviorDto$Outbound = {
   acknowledgeOnReceived: boolean;
   reactionOnResolved: string | null;
   subscriberAccess?: string | undefined;
+  accessRule?: { [k: string]: any } | undefined;
   replyPolicy: string;
 };
 
@@ -92,12 +101,15 @@ export const AgentBehaviorDto$outboundSchema: z.ZodType<
   AgentBehaviorDto$Outbound,
   z.ZodTypeDef,
   AgentBehaviorDto
-> = z.object({
-  acknowledgeOnReceived: z.boolean().default(true),
-  reactionOnResolved: z.nullable(z.string().default("check")),
-  subscriberAccess: SubscriberAccess$outboundSchema.optional(),
-  replyPolicy: ReplyPolicy$outboundSchema.default("auto_reply"),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    acknowledgeOnReceived: z.boolean().default(true),
+    reactionOnResolved: z.nullable(z.string().default("check")),
+    subscriberAccess: SubscriberAccess$outboundSchema.optional(),
+    accessRule: z.record(z.any()).optional(),
+    replyPolicy: ReplyPolicy$outboundSchema.default("auto_reply"),
+  })
+);
 
 export function agentBehaviorDtoToJSON(
   agentBehaviorDto: AgentBehaviorDto,

@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -41,32 +41,34 @@ export type DomainResponseDto = {
 /** @internal */
 export const DomainResponseDtoStatus$inboundSchema: z.ZodNativeEnum<
   typeof DomainResponseDtoStatus
-> = z.nativeEnum(DomainResponseDtoStatus);
+> = /* @__PURE__ */ lazySchema$(() => z.nativeEnum(DomainResponseDtoStatus));
 
 /** @internal */
 export const DomainResponseDto$inboundSchema: z.ZodType<
   DomainResponseDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  _id: z.string(),
-  name: z.string(),
-  status: DomainResponseDtoStatus$inboundSchema,
-  mxRecordConfigured: z.boolean(),
-  dnsProvider: z.string().optional(),
-  _environmentId: z.string(),
-  _organizationId: z.string(),
-  createdAt: z.string(),
-  updatedAt: z.string(),
-  expectedDnsRecords: z.array(ExpectedDnsRecordDto$inboundSchema).optional(),
-  data: z.record(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_id": "id",
-    "_environmentId": "environmentId",
-    "_organizationId": "organizationId",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    _id: z.string(),
+    name: z.string(),
+    status: DomainResponseDtoStatus$inboundSchema,
+    mxRecordConfigured: z.boolean(),
+    dnsProvider: z.string().optional(),
+    _environmentId: z.string(),
+    _organizationId: z.string(),
+    createdAt: z.string(),
+    updatedAt: z.string(),
+    expectedDnsRecords: z.array(ExpectedDnsRecordDto$inboundSchema).optional(),
+    data: z.record(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_id": "id",
+      "_environmentId": "environmentId",
+      "_organizationId": "organizationId",
+    });
+  })
+);
 
 export function domainResponseDtoFromJSON(
   jsonString: string,

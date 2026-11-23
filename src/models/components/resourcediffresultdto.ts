@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -153,17 +153,19 @@ export const ResourceDiffResultDtoSourceResourceUpdatedBy$inboundSchema:
     ResourceDiffResultDtoSourceResourceUpdatedBy,
     z.ZodTypeDef,
     unknown
-  > = z.object({
-    _id: z.string(),
-    firstName: z.string(),
-    lastName: z.nullable(z.string()).optional(),
-    externalId: z.string().optional(),
-    email: z.nullable(z.string()).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "_id": "id",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      _id: z.string(),
+      firstName: z.string(),
+      lastName: z.nullable(z.string()).optional(),
+      externalId: z.string().optional(),
+      email: z.nullable(z.string()).optional(),
+    }).transform((v) => {
+      return remap$(v, {
+        "_id": "id",
+      });
+    })
+  );
 
 export function resourceDiffResultDtoSourceResourceUpdatedByFromJSON(
   jsonString: string,
@@ -186,16 +188,18 @@ export const SourceResource$inboundSchema: z.ZodType<
   SourceResource,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: z.nullable(z.string()).optional(),
-  name: z.nullable(z.string()).optional(),
-  updatedBy: z.nullable(
-    z.lazy(() => ResourceDiffResultDtoSourceResourceUpdatedBy$inboundSchema),
-  ).optional(),
-  updatedAt: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.nullable(z.string()).optional(),
+    name: z.nullable(z.string()).optional(),
+    updatedBy: z.nullable(
+      z.lazy(() => ResourceDiffResultDtoSourceResourceUpdatedBy$inboundSchema),
+    ).optional(),
+    updatedAt: z.nullable(
+      z.string().datetime({ offset: true }).transform(v => new Date(v)),
+    ).optional(),
+  })
+);
 
 export function sourceResourceFromJSON(
   jsonString: string,
@@ -212,17 +216,19 @@ export const ResourceDiffResultDtoUpdatedBy$inboundSchema: z.ZodType<
   ResourceDiffResultDtoUpdatedBy,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  _id: z.string(),
-  firstName: z.string(),
-  lastName: z.nullable(z.string()).optional(),
-  externalId: z.string().optional(),
-  email: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_id": "id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    _id: z.string(),
+    firstName: z.string(),
+    lastName: z.nullable(z.string()).optional(),
+    externalId: z.string().optional(),
+    email: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_id": "id",
+    });
+  })
+);
 
 export function resourceDiffResultDtoUpdatedByFromJSON(
   jsonString: string,
@@ -239,16 +245,18 @@ export const TargetResource$inboundSchema: z.ZodType<
   TargetResource,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: z.nullable(z.string()).optional(),
-  name: z.nullable(z.string()).optional(),
-  updatedBy: z.nullable(
-    z.lazy(() => ResourceDiffResultDtoUpdatedBy$inboundSchema),
-  ).optional(),
-  updatedAt: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.nullable(z.string()).optional(),
+    name: z.nullable(z.string()).optional(),
+    updatedBy: z.nullable(
+      z.lazy(() => ResourceDiffResultDtoUpdatedBy$inboundSchema),
+    ).optional(),
+    updatedAt: z.nullable(
+      z.string().datetime({ offset: true }).transform(v => new Date(v)),
+    ).optional(),
+  })
+);
 
 export function targetResourceFromJSON(
   jsonString: string,
@@ -265,16 +273,18 @@ export const ResourceDiffResultDto$inboundSchema: z.ZodType<
   ResourceDiffResultDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  resourceType: ResourceTypeEnum$inboundSchema,
-  sourceResource: z.nullable(z.lazy(() => SourceResource$inboundSchema))
-    .optional(),
-  targetResource: z.nullable(z.lazy(() => TargetResource$inboundSchema))
-    .optional(),
-  changes: z.array(ResourceDiffDto$inboundSchema),
-  summary: DiffSummaryDto$inboundSchema,
-  dependencies: z.array(ResourceDependencyDto$inboundSchema).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    resourceType: ResourceTypeEnum$inboundSchema,
+    sourceResource: z.nullable(z.lazy(() => SourceResource$inboundSchema))
+      .optional(),
+    targetResource: z.nullable(z.lazy(() => TargetResource$inboundSchema))
+      .optional(),
+    changes: z.array(ResourceDiffDto$inboundSchema),
+    summary: DiffSummaryDto$inboundSchema,
+    dependencies: z.array(ResourceDependencyDto$inboundSchema).optional(),
+  })
+);
 
 export function resourceDiffResultDtoFromJSON(
   jsonString: string,

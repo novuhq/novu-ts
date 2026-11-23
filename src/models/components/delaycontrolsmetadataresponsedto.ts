@@ -5,6 +5,7 @@
 import * as z from "zod/v3";
 import {
   collectExtraKeys as collectExtraKeys$,
+  lazySchema as lazySchema$,
   safeParse,
 } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
@@ -88,31 +89,37 @@ export type DelayControlsMetadataResponseDto = {
 
 /** @internal */
 export const DelayControlsMetadataResponseDtoType$inboundSchema:
-  z.ZodNativeEnum<typeof DelayControlsMetadataResponseDtoType> = z.nativeEnum(
-    DelayControlsMetadataResponseDtoType,
-  );
+  z.ZodNativeEnum<typeof DelayControlsMetadataResponseDtoType> =
+    /* @__PURE__ */ lazySchema$(() =>
+      z.nativeEnum(DelayControlsMetadataResponseDtoType)
+    );
 
 /** @internal */
 export const DelayControlsMetadataResponseDtoUnit$inboundSchema:
-  z.ZodNativeEnum<typeof DelayControlsMetadataResponseDtoUnit> = z.nativeEnum(
-    DelayControlsMetadataResponseDtoUnit,
-  );
+  z.ZodNativeEnum<typeof DelayControlsMetadataResponseDtoUnit> =
+    /* @__PURE__ */ lazySchema$(() =>
+      z.nativeEnum(DelayControlsMetadataResponseDtoUnit)
+    );
 
 /** @internal */
 export const DelayControlsMetadataResponseDtoValues$inboundSchema: z.ZodType<
   DelayControlsMetadataResponseDtoValues,
   z.ZodTypeDef,
   unknown
-> = collectExtraKeys$(
-  z.object({
-    skip: z.record(z.any()).optional(),
-    type: DelayControlsMetadataResponseDtoType$inboundSchema.default("regular"),
-    amount: z.number().optional(),
-    unit: DelayControlsMetadataResponseDtoUnit$inboundSchema.optional(),
-    cron: z.string().optional(),
-  }).catchall(z.any()),
-  "additionalProperties",
-  true,
+> = /* @__PURE__ */ lazySchema$(() =>
+  collectExtraKeys$(
+    z.object({
+      skip: z.record(z.any()).optional(),
+      type: DelayControlsMetadataResponseDtoType$inboundSchema.default(
+        "regular",
+      ),
+      amount: z.number().optional(),
+      unit: DelayControlsMetadataResponseDtoUnit$inboundSchema.optional(),
+      cron: z.string().optional(),
+    }).catchall(z.any()),
+    "additionalProperties",
+    true,
+  )
 );
 
 export function delayControlsMetadataResponseDtoValuesFromJSON(
@@ -131,12 +138,14 @@ export const DelayControlsMetadataResponseDto$inboundSchema: z.ZodType<
   DelayControlsMetadataResponseDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  dataSchema: z.record(z.any()).optional(),
-  uiSchema: UiSchema$inboundSchema.optional(),
-  values: z.lazy(() => DelayControlsMetadataResponseDtoValues$inboundSchema)
-    .optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    dataSchema: z.record(z.any()).optional(),
+    uiSchema: UiSchema$inboundSchema.optional(),
+    values: z.lazy(() => DelayControlsMetadataResponseDtoValues$inboundSchema)
+      .optional(),
+  })
+);
 
 export function delayControlsMetadataResponseDtoFromJSON(
   jsonString: string,

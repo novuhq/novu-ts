@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
@@ -73,7 +73,7 @@ export type ContextsControllerListContextsResponse = {
 /** @internal */
 export const OrderDirection$outboundSchema: z.ZodNativeEnum<
   typeof OrderDirection
-> = z.nativeEnum(OrderDirection);
+> = /* @__PURE__ */ lazySchema$(() => z.nativeEnum(OrderDirection));
 
 /** @internal */
 export type ContextsControllerListContextsRequest$Outbound = {
@@ -94,22 +94,24 @@ export const ContextsControllerListContextsRequest$outboundSchema: z.ZodType<
   ContextsControllerListContextsRequest$Outbound,
   z.ZodTypeDef,
   ContextsControllerListContextsRequest
-> = z.object({
-  after: z.string().optional(),
-  before: z.string().optional(),
-  limit: z.number().optional(),
-  orderDirection: OrderDirection$outboundSchema.optional(),
-  orderBy: z.string().optional(),
-  includeCursor: z.boolean().optional(),
-  type: z.string().optional(),
-  id: z.string().optional(),
-  search: z.string().optional(),
-  idempotencyKey: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    idempotencyKey: "idempotency-key",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    after: z.string().optional(),
+    before: z.string().optional(),
+    limit: z.number().optional(),
+    orderDirection: OrderDirection$outboundSchema.optional(),
+    orderBy: z.string().optional(),
+    includeCursor: z.boolean().optional(),
+    type: z.string().optional(),
+    id: z.string().optional(),
+    search: z.string().optional(),
+    idempotencyKey: z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      idempotencyKey: "idempotency-key",
+    });
+  })
+);
 
 export function contextsControllerListContextsRequestToJSON(
   contextsControllerListContextsRequest: ContextsControllerListContextsRequest,
@@ -126,15 +128,17 @@ export const ContextsControllerListContextsResponse$inboundSchema: z.ZodType<
   ContextsControllerListContextsResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  Headers: z.record(z.array(z.string())).default({}),
-  Result: components.ListContextsResponseDto$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "Headers": "headers",
-    "Result": "result",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    Headers: z.record(z.array(z.string())).default({}),
+    Result: components.ListContextsResponseDto$inboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      "Headers": "headers",
+      "Result": "result",
+    });
+  })
+);
 
 export function contextsControllerListContextsResponseFromJSON(
   jsonString: string,

@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 
 /**
@@ -20,4 +21,4 @@ export type PreferenceLevelEnum = ClosedEnum<typeof PreferenceLevelEnum>;
 /** @internal */
 export const PreferenceLevelEnum$inboundSchema: z.ZodNativeEnum<
   typeof PreferenceLevelEnum
-> = z.nativeEnum(PreferenceLevelEnum);
+> = /* @__PURE__ */ lazySchema$(() => z.nativeEnum(PreferenceLevelEnum));

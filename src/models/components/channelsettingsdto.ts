@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -43,16 +43,18 @@ export const ChannelSettingsDto$inboundSchema: z.ZodType<
   ChannelSettingsDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  providerId: ChatOrPushProviderEnum$inboundSchema,
-  integrationIdentifier: z.string().optional(),
-  credentials: ChannelCredentials$inboundSchema,
-  _integrationId: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    "_integrationId": "integrationId",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    providerId: ChatOrPushProviderEnum$inboundSchema,
+    integrationIdentifier: z.string().optional(),
+    credentials: ChannelCredentials$inboundSchema,
+    _integrationId: z.string(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_integrationId": "integrationId",
+    });
+  })
+);
 /** @internal */
 export type ChannelSettingsDto$Outbound = {
   providerId: string;
@@ -66,16 +68,18 @@ export const ChannelSettingsDto$outboundSchema: z.ZodType<
   ChannelSettingsDto$Outbound,
   z.ZodTypeDef,
   ChannelSettingsDto
-> = z.object({
-  providerId: ChatOrPushProviderEnum$outboundSchema,
-  integrationIdentifier: z.string().optional(),
-  credentials: ChannelCredentials$outboundSchema,
-  integrationId: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    integrationId: "_integrationId",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    providerId: ChatOrPushProviderEnum$outboundSchema,
+    integrationIdentifier: z.string().optional(),
+    credentials: ChannelCredentials$outboundSchema,
+    integrationId: z.string(),
+  }).transform((v) => {
+    return remap$(v, {
+      integrationId: "_integrationId",
+    });
+  })
+);
 
 export function channelSettingsDtoToJSON(
   channelSettingsDto: ChannelSettingsDto,

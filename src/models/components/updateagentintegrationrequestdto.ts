@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type UpdateAgentIntegrationRequestDto = {
   /**
@@ -21,9 +22,11 @@ export const UpdateAgentIntegrationRequestDto$outboundSchema: z.ZodType<
   UpdateAgentIntegrationRequestDto$Outbound,
   z.ZodTypeDef,
   UpdateAgentIntegrationRequestDto
-> = z.object({
-  integrationIdentifier: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    integrationIdentifier: z.string(),
+  })
+);
 
 export function updateAgentIntegrationRequestDtoToJSON(
   updateAgentIntegrationRequestDto: UpdateAgentIntegrationRequestDto,

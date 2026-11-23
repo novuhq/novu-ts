@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -49,17 +49,19 @@ export const SubscribersV1ControllerGetUnseenCountRequest$outboundSchema:
     SubscribersV1ControllerGetUnseenCountRequest$Outbound,
     z.ZodTypeDef,
     SubscribersV1ControllerGetUnseenCountRequest
-  > = z.object({
-    subscriberId: z.string(),
-    feedId: z.array(z.string()).optional(),
-    seen: z.boolean().default(false),
-    limit: z.number().default(100),
-    idempotencyKey: z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      idempotencyKey: "idempotency-key",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      subscriberId: z.string(),
+      feedId: z.array(z.string()).optional(),
+      seen: z.boolean().default(false),
+      limit: z.number().default(100),
+      idempotencyKey: z.string().optional(),
+    }).transform((v) => {
+      return remap$(v, {
+        idempotencyKey: "idempotency-key",
+      });
+    })
+  );
 
 export function subscribersV1ControllerGetUnseenCountRequestToJSON(
   subscribersV1ControllerGetUnseenCountRequest:
@@ -78,15 +80,17 @@ export const SubscribersV1ControllerGetUnseenCountResponse$inboundSchema:
     SubscribersV1ControllerGetUnseenCountResponse,
     z.ZodTypeDef,
     unknown
-  > = z.object({
-    Headers: z.record(z.array(z.string())).default({}),
-    Result: components.UnseenCountResponse$inboundSchema,
-  }).transform((v) => {
-    return remap$(v, {
-      "Headers": "headers",
-      "Result": "result",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      Headers: z.record(z.array(z.string())).default({}),
+      Result: components.UnseenCountResponse$inboundSchema,
+    }).transform((v) => {
+      return remap$(v, {
+        "Headers": "headers",
+        "Result": "result",
+      });
+    })
+  );
 
 export function subscribersV1ControllerGetUnseenCountResponseFromJSON(
   jsonString: string,

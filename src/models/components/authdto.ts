@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -16,12 +16,14 @@ export type AuthDto = {
 
 /** @internal */
 export const AuthDto$inboundSchema: z.ZodType<AuthDto, z.ZodTypeDef, unknown> =
-  z.object({
-    accessToken: z.string(),
-    refreshToken: z.string().optional(),
-    expiresAt: z.string().optional(),
-    refreshTokenExpiresAt: z.string().optional(),
-  });
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      accessToken: z.string(),
+      refreshToken: z.string().optional(),
+      expiresAt: z.string().optional(),
+      refreshTokenExpiresAt: z.string().optional(),
+    })
+  );
 /** @internal */
 export type AuthDto$Outbound = {
   accessToken: string;
@@ -35,12 +37,14 @@ export const AuthDto$outboundSchema: z.ZodType<
   AuthDto$Outbound,
   z.ZodTypeDef,
   AuthDto
-> = z.object({
-  accessToken: z.string(),
-  refreshToken: z.string().optional(),
-  expiresAt: z.string().optional(),
-  refreshTokenExpiresAt: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    accessToken: z.string(),
+    refreshToken: z.string().optional(),
+    expiresAt: z.string().optional(),
+    refreshTokenExpiresAt: z.string().optional(),
+  })
+);
 
 export function authDtoToJSON(authDto: AuthDto): string {
   return JSON.stringify(AuthDto$outboundSchema.parse(authDto));

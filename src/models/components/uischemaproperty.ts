@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -50,7 +50,9 @@ export const Placeholder5$inboundSchema: z.ZodType<
   Placeholder5,
   z.ZodTypeDef,
   unknown
-> = z.union([z.string(), z.number(), z.boolean(), z.record(z.any())]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.union([z.string(), z.number(), z.boolean(), z.record(z.any())])
+);
 
 export function placeholder5FromJSON(
   jsonString: string,
@@ -67,13 +69,15 @@ export const Placeholder$inboundSchema: z.ZodType<
   Placeholder,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  z.string(),
-  z.number(),
-  z.boolean(),
-  z.record(z.any()),
-  z.array(z.union([z.string(), z.number(), z.boolean(), z.record(z.any())])),
-]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.union([
+    z.string(),
+    z.number(),
+    z.boolean(),
+    z.record(z.any()),
+    z.array(z.union([z.string(), z.number(), z.boolean(), z.record(z.any())])),
+  ])
+);
 
 export function placeholderFromJSON(
   jsonString: string,
@@ -90,21 +94,24 @@ export const UiSchemaProperty$inboundSchema: z.ZodType<
   UiSchemaProperty,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  placeholder: z.nullable(
-    z.union([
-      z.string(),
-      z.number(),
-      z.boolean(),
-      z.record(z.any()),
-      z.array(
-        z.union([z.string(), z.number(), z.boolean(), z.record(z.any())]),
-      ),
-    ]),
-  ).optional(),
-  component: UiComponentEnum$inboundSchema,
-  properties: z.record(z.lazy(() => UiSchemaProperty$inboundSchema)).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    placeholder: z.nullable(
+      z.union([
+        z.string(),
+        z.number(),
+        z.boolean(),
+        z.record(z.any()),
+        z.array(
+          z.union([z.string(), z.number(), z.boolean(), z.record(z.any())]),
+        ),
+      ]),
+    ).optional(),
+    component: UiComponentEnum$inboundSchema,
+    properties: z.record(z.lazy(() => UiSchemaProperty$inboundSchema))
+      .optional(),
+  })
+);
 
 export function uiSchemaPropertyFromJSON(
   jsonString: string,

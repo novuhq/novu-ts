@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import {
   AgentSkillInputDto,
@@ -39,8 +40,8 @@ export type ManagedRuntimeDto = {
 };
 
 /** @internal */
-export const ProviderId$outboundSchema: z.ZodNativeEnum<typeof ProviderId> = z
-  .nativeEnum(ProviderId);
+export const ProviderId$outboundSchema: z.ZodNativeEnum<typeof ProviderId> =
+  /* @__PURE__ */ lazySchema$(() => z.nativeEnum(ProviderId));
 
 /** @internal */
 export type ManagedRuntimeDto$Outbound = {
@@ -60,17 +61,19 @@ export const ManagedRuntimeDto$outboundSchema: z.ZodType<
   ManagedRuntimeDto$Outbound,
   z.ZodTypeDef,
   ManagedRuntimeDto
-> = z.object({
-  providerId: ProviderId$outboundSchema,
-  integrationId: z.string(),
-  externalAgentId: z.string().optional(),
-  externalEnvironmentId: z.string().optional(),
-  model: z.string().optional(),
-  systemPrompt: z.string().optional(),
-  tools: z.array(z.string()).optional(),
-  mcpServers: z.array(z.string()).optional(),
-  skills: z.array(AgentSkillInputDto$outboundSchema).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    providerId: ProviderId$outboundSchema,
+    integrationId: z.string(),
+    externalAgentId: z.string().optional(),
+    externalEnvironmentId: z.string().optional(),
+    model: z.string().optional(),
+    systemPrompt: z.string().optional(),
+    tools: z.array(z.string()).optional(),
+    mcpServers: z.array(z.string()).optional(),
+    skills: z.array(AgentSkillInputDto$outboundSchema).optional(),
+  })
+);
 
 export function managedRuntimeDtoToJSON(
   managedRuntimeDto: ManagedRuntimeDto,

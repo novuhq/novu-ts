@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   DigestControlDto,
   DigestControlDto$Outbound,
@@ -50,7 +51,9 @@ export const DigestStepUpsertDtoControlValues$outboundSchema: z.ZodType<
   DigestStepUpsertDtoControlValues$Outbound,
   z.ZodTypeDef,
   DigestStepUpsertDtoControlValues
-> = z.union([DigestControlDto$outboundSchema, z.record(z.any())]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.union([DigestControlDto$outboundSchema, z.record(z.any())])
+);
 
 export function digestStepUpsertDtoControlValuesToJSON(
   digestStepUpsertDtoControlValues: DigestStepUpsertDtoControlValues,
@@ -76,18 +79,20 @@ export const DigestStepUpsertDto$outboundSchema: z.ZodType<
   DigestStepUpsertDto$Outbound,
   z.ZodTypeDef,
   DigestStepUpsertDto
-> = z.object({
-  id: z.string().optional(),
-  stepId: z.string().optional(),
-  name: z.string(),
-  type: z.literal("digest"),
-  controlValues: z.union([DigestControlDto$outboundSchema, z.record(z.any())])
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    id: "_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string().optional(),
+    stepId: z.string().optional(),
+    name: z.string(),
+    type: z.literal("digest"),
+    controlValues: z.union([DigestControlDto$outboundSchema, z.record(z.any())])
+      .optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      id: "_id",
+    });
+  })
+);
 
 export function digestStepUpsertDtoToJSON(
   digestStepUpsertDto: DigestStepUpsertDto,

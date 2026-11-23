@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -23,10 +23,12 @@ export const GrafanaOnCallIntegrationEndpointDto$inboundSchema: z.ZodType<
   GrafanaOnCallIntegrationEndpointDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  url: z.string(),
-  authToken: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    url: z.string(),
+    authToken: z.string().optional(),
+  })
+);
 /** @internal */
 export type GrafanaOnCallIntegrationEndpointDto$Outbound = {
   url: string;
@@ -38,10 +40,12 @@ export const GrafanaOnCallIntegrationEndpointDto$outboundSchema: z.ZodType<
   GrafanaOnCallIntegrationEndpointDto$Outbound,
   z.ZodTypeDef,
   GrafanaOnCallIntegrationEndpointDto
-> = z.object({
-  url: z.string(),
-  authToken: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    url: z.string(),
+    authToken: z.string().optional(),
+  })
+);
 
 export function grafanaOnCallIntegrationEndpointDtoToJSON(
   grafanaOnCallIntegrationEndpointDto: GrafanaOnCallIntegrationEndpointDto,

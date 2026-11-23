@@ -6,6 +6,7 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import {
   collectExtraKeys as collectExtraKeys$,
+  lazySchema as lazySchema$,
   safeParse,
 } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -136,20 +137,22 @@ export const InAppStepResponseDtoControlValues$inboundSchema: z.ZodType<
   InAppStepResponseDtoControlValues,
   z.ZodTypeDef,
   unknown
-> = collectExtraKeys$(
-  z.object({
-    skip: z.record(z.any()).optional(),
-    body: z.string().optional(),
-    subject: z.string().optional(),
-    avatar: z.string().optional(),
-    primaryAction: ActionDto$inboundSchema.optional(),
-    secondaryAction: ActionDto$inboundSchema.optional(),
-    redirect: RedirectDto$inboundSchema.optional(),
-    disableOutputSanitization: z.boolean().default(false),
-    data: z.record(z.any()).optional(),
-  }).catchall(z.any()),
-  "additionalProperties",
-  true,
+> = /* @__PURE__ */ lazySchema$(() =>
+  collectExtraKeys$(
+    z.object({
+      skip: z.record(z.any()).optional(),
+      body: z.string().optional(),
+      subject: z.string().optional(),
+      avatar: z.string().optional(),
+      primaryAction: ActionDto$inboundSchema.optional(),
+      secondaryAction: ActionDto$inboundSchema.optional(),
+      redirect: RedirectDto$inboundSchema.optional(),
+      disableOutputSanitization: z.boolean().default(false),
+      data: z.record(z.any()).optional(),
+    }).catchall(z.any()),
+    "additionalProperties",
+    true,
+  )
 );
 
 export function inAppStepResponseDtoControlValuesFromJSON(
@@ -167,29 +170,31 @@ export const InAppStepResponseDto$inboundSchema: z.ZodType<
   InAppStepResponseDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  controls: InAppControlsMetadataResponseDto$inboundSchema,
-  controlValues: z.lazy(() => InAppStepResponseDtoControlValues$inboundSchema)
-    .optional(),
-  providerOverrides: z.nullable(z.record(z.record(z.any()))).optional(),
-  integrationOverrides: z.nullable(z.record(z.record(z.record(z.any()))))
-    .optional(),
-  variables: z.record(z.any()),
-  stepId: z.string(),
-  _id: z.string(),
-  name: z.string(),
-  slug: z.string(),
-  type: z.literal("in_app"),
-  origin: ResourceOriginEnum$inboundSchema,
-  workflowId: z.string(),
-  workflowDatabaseId: z.string(),
-  issues: StepIssuesDto$inboundSchema.optional(),
-  stepResolverHash: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_id": "id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    controls: InAppControlsMetadataResponseDto$inboundSchema,
+    controlValues: z.lazy(() => InAppStepResponseDtoControlValues$inboundSchema)
+      .optional(),
+    providerOverrides: z.nullable(z.record(z.record(z.any()))).optional(),
+    integrationOverrides: z.nullable(z.record(z.record(z.record(z.any()))))
+      .optional(),
+    variables: z.record(z.any()),
+    stepId: z.string(),
+    _id: z.string(),
+    name: z.string(),
+    slug: z.string(),
+    type: z.literal("in_app"),
+    origin: ResourceOriginEnum$inboundSchema,
+    workflowId: z.string(),
+    workflowDatabaseId: z.string(),
+    issues: StepIssuesDto$inboundSchema.optional(),
+    stepResolverHash: z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_id": "id",
+    });
+  })
+);
 
 export function inAppStepResponseDtoFromJSON(
   jsonString: string,

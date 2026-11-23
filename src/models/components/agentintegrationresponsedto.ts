@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -47,7 +47,7 @@ export const ConnectedAt$inboundSchema: z.ZodType<
   ConnectedAt,
   z.ZodTypeDef,
   unknown
-> = z.object({});
+> = /* @__PURE__ */ lazySchema$(() => z.object({}));
 
 export function connectedAtFromJSON(
   jsonString: string,
@@ -64,25 +64,27 @@ export const AgentIntegrationResponseDto$inboundSchema: z.ZodType<
   AgentIntegrationResponseDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  _id: z.string(),
-  _agentId: z.string(),
-  integration: AgentIntegrationResponseIntegrationDto$inboundSchema,
-  _environmentId: z.string(),
-  _organizationId: z.string(),
-  connectedAt: z.nullable(z.lazy(() => ConnectedAt$inboundSchema)).optional(),
-  createdAt: z.string(),
-  updatedAt: z.string(),
-  exceedsPlanLimit: z.boolean().optional(),
-  hasChannelEndpoints: z.boolean().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_id": "id",
-    "_agentId": "agentId",
-    "_environmentId": "environmentId",
-    "_organizationId": "organizationId",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    _id: z.string(),
+    _agentId: z.string(),
+    integration: AgentIntegrationResponseIntegrationDto$inboundSchema,
+    _environmentId: z.string(),
+    _organizationId: z.string(),
+    connectedAt: z.nullable(z.lazy(() => ConnectedAt$inboundSchema)).optional(),
+    createdAt: z.string(),
+    updatedAt: z.string(),
+    exceedsPlanLimit: z.boolean().optional(),
+    hasChannelEndpoints: z.boolean().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_id": "id",
+      "_agentId": "agentId",
+      "_environmentId": "environmentId",
+      "_organizationId": "organizationId",
+    });
+  })
+);
 
 export function agentIntegrationResponseDtoFromJSON(
   jsonString: string,

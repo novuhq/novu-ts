@@ -5,6 +5,7 @@
 import * as z from "zod/v3";
 import {
   collectExtraKeys as collectExtraKeys$,
+  lazySchema as lazySchema$,
   safeParse,
 } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
@@ -62,23 +63,27 @@ export type ChatControlsMetadataResponseDto = {
 
 /** @internal */
 export const ChatControlsMetadataResponseDtoEditorType$inboundSchema:
-  z.ZodNativeEnum<typeof ChatControlsMetadataResponseDtoEditorType> = z
-    .nativeEnum(ChatControlsMetadataResponseDtoEditorType);
+  z.ZodNativeEnum<typeof ChatControlsMetadataResponseDtoEditorType> =
+    /* @__PURE__ */ lazySchema$(() =>
+      z.nativeEnum(ChatControlsMetadataResponseDtoEditorType)
+    );
 
 /** @internal */
 export const ChatControlsMetadataResponseDtoValues$inboundSchema: z.ZodType<
   ChatControlsMetadataResponseDtoValues,
   z.ZodTypeDef,
   unknown
-> = collectExtraKeys$(
-  z.object({
-    skip: z.record(z.any()).optional(),
-    body: z.string().optional(),
-    editorType: ChatControlsMetadataResponseDtoEditorType$inboundSchema
-      .optional(),
-  }).catchall(z.any()),
-  "additionalProperties",
-  true,
+> = /* @__PURE__ */ lazySchema$(() =>
+  collectExtraKeys$(
+    z.object({
+      skip: z.record(z.any()).optional(),
+      body: z.string().optional(),
+      editorType: ChatControlsMetadataResponseDtoEditorType$inboundSchema
+        .optional(),
+    }).catchall(z.any()),
+    "additionalProperties",
+    true,
+  )
 );
 
 export function chatControlsMetadataResponseDtoValuesFromJSON(
@@ -97,12 +102,14 @@ export const ChatControlsMetadataResponseDto$inboundSchema: z.ZodType<
   ChatControlsMetadataResponseDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  dataSchema: z.record(z.any()).optional(),
-  uiSchema: UiSchema$inboundSchema.optional(),
-  values: z.lazy(() => ChatControlsMetadataResponseDtoValues$inboundSchema)
-    .optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    dataSchema: z.record(z.any()).optional(),
+    uiSchema: UiSchema$inboundSchema.optional(),
+    values: z.lazy(() => ChatControlsMetadataResponseDtoValues$inboundSchema)
+      .optional(),
+  })
+);
 
 export function chatControlsMetadataResponseDtoFromJSON(
   jsonString: string,

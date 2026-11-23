@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type CreateEnvironmentRequestDto = {
   /**
@@ -31,11 +32,13 @@ export const CreateEnvironmentRequestDto$outboundSchema: z.ZodType<
   CreateEnvironmentRequestDto$Outbound,
   z.ZodTypeDef,
   CreateEnvironmentRequestDto
-> = z.object({
-  name: z.string(),
-  parentId: z.string().optional(),
-  color: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    name: z.string(),
+    parentId: z.string().optional(),
+    color: z.string(),
+  })
+);
 
 export function createEnvironmentRequestDtoToJSON(
   createEnvironmentRequestDto: CreateEnvironmentRequestDto,

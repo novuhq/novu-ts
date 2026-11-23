@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -44,21 +44,23 @@ export const AgentIntegrationResponseIntegrationDto$inboundSchema: z.ZodType<
   AgentIntegrationResponseIntegrationDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  _id: z.string(),
-  identifier: z.string(),
-  name: z.string(),
-  providerId: z.string(),
-  channel: ChannelTypeEnum$inboundSchema.optional(),
-  active: z.boolean(),
-  sharedInboundAddress: z.string().optional(),
-  defaultSenderName: z.string().optional(),
-  sharedInboxDisabled: z.boolean().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_id": "id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    _id: z.string(),
+    identifier: z.string(),
+    name: z.string(),
+    providerId: z.string(),
+    channel: ChannelTypeEnum$inboundSchema.optional(),
+    active: z.boolean(),
+    sharedInboundAddress: z.string().optional(),
+    defaultSenderName: z.string().optional(),
+    sharedInboxDisabled: z.boolean().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_id": "id",
+    });
+  })
+);
 
 export function agentIntegrationResponseIntegrationDtoFromJSON(
   jsonString: string,

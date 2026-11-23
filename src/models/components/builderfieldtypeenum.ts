@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 
 export const BuilderFieldTypeEnum = {
@@ -20,7 +21,7 @@ export type BuilderFieldTypeEnum = ClosedEnum<typeof BuilderFieldTypeEnum>;
 /** @internal */
 export const BuilderFieldTypeEnum$inboundSchema: z.ZodNativeEnum<
   typeof BuilderFieldTypeEnum
-> = z.nativeEnum(BuilderFieldTypeEnum);
+> = /* @__PURE__ */ lazySchema$(() => z.nativeEnum(BuilderFieldTypeEnum));
 /** @internal */
 export const BuilderFieldTypeEnum$outboundSchema: z.ZodNativeEnum<
   typeof BuilderFieldTypeEnum

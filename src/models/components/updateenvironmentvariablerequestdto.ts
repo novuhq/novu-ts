@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import {
   EnvironmentVariableValueDto,
@@ -38,8 +39,10 @@ export type UpdateEnvironmentVariableRequestDto = {
 
 /** @internal */
 export const UpdateEnvironmentVariableRequestDtoType$outboundSchema:
-  z.ZodNativeEnum<typeof UpdateEnvironmentVariableRequestDtoType> = z
-    .nativeEnum(UpdateEnvironmentVariableRequestDtoType);
+  z.ZodNativeEnum<typeof UpdateEnvironmentVariableRequestDtoType> =
+    /* @__PURE__ */ lazySchema$(() =>
+      z.nativeEnum(UpdateEnvironmentVariableRequestDtoType)
+    );
 
 /** @internal */
 export type UpdateEnvironmentVariableRequestDto$Outbound = {
@@ -54,12 +57,14 @@ export const UpdateEnvironmentVariableRequestDto$outboundSchema: z.ZodType<
   UpdateEnvironmentVariableRequestDto$Outbound,
   z.ZodTypeDef,
   UpdateEnvironmentVariableRequestDto
-> = z.object({
-  key: z.string().optional(),
-  type: UpdateEnvironmentVariableRequestDtoType$outboundSchema.optional(),
-  isSecret: z.boolean().optional(),
-  values: z.array(EnvironmentVariableValueDto$outboundSchema).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    key: z.string().optional(),
+    type: UpdateEnvironmentVariableRequestDtoType$outboundSchema.optional(),
+    isSecret: z.boolean().optional(),
+    values: z.array(EnvironmentVariableValueDto$outboundSchema).optional(),
+  })
+);
 
 export function updateEnvironmentVariableRequestDtoToJSON(
   updateEnvironmentVariableRequestDto: UpdateEnvironmentVariableRequestDto,

@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import {
   ManagedRuntimeDto,
@@ -32,8 +33,8 @@ export type CreateAgentRequestDto = {
 };
 
 /** @internal */
-export const Runtime$outboundSchema: z.ZodNativeEnum<typeof Runtime> = z
-  .nativeEnum(Runtime);
+export const Runtime$outboundSchema: z.ZodNativeEnum<typeof Runtime> =
+  /* @__PURE__ */ lazySchema$(() => z.nativeEnum(Runtime));
 
 /** @internal */
 export type CreateAgentRequestDto$Outbound = {
@@ -50,14 +51,16 @@ export const CreateAgentRequestDto$outboundSchema: z.ZodType<
   CreateAgentRequestDto$Outbound,
   z.ZodTypeDef,
   CreateAgentRequestDto
-> = z.object({
-  name: z.string(),
-  identifier: z.string(),
-  description: z.string().optional(),
-  active: z.boolean().default(true),
-  runtime: Runtime$outboundSchema.optional(),
-  managedRuntime: ManagedRuntimeDto$outboundSchema.optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    name: z.string(),
+    identifier: z.string(),
+    description: z.string().optional(),
+    active: z.boolean().default(true),
+    runtime: Runtime$outboundSchema.optional(),
+    managedRuntime: ManagedRuntimeDto$outboundSchema.optional(),
+  })
+);
 
 export function createAgentRequestDtoToJSON(
   createAgentRequestDto: CreateAgentRequestDto,

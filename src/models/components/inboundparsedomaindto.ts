@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type InBoundParseDomainDto = {
   inboundParseDomain?: string | undefined;
@@ -18,9 +19,11 @@ export const InBoundParseDomainDto$outboundSchema: z.ZodType<
   InBoundParseDomainDto$Outbound,
   z.ZodTypeDef,
   InBoundParseDomainDto
-> = z.object({
-  inboundParseDomain: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    inboundParseDomain: z.string().optional(),
+  })
+);
 
 export function inBoundParseDomainDtoToJSON(
   inBoundParseDomainDto: InBoundParseDomainDto,

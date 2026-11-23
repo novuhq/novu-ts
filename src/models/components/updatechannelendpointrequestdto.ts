@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   PhoneEndpointDto,
   PhoneEndpointDto$Outbound,
@@ -80,15 +81,17 @@ export const UpdateChannelEndpointRequestDtoEndpoint$outboundSchema: z.ZodType<
   UpdateChannelEndpointRequestDtoEndpoint$Outbound,
   z.ZodTypeDef,
   UpdateChannelEndpointRequestDtoEndpoint
-> = z.union([
-  SlackChannelEndpointDto$outboundSchema,
-  SlackUserEndpointDto$outboundSchema,
-  WebhookEndpointDto$outboundSchema,
-  PhoneEndpointDto$outboundSchema,
-  WebexRoomEndpointDto$outboundSchema,
-  ToolWebhookEndpointDto$outboundSchema,
-  WebexPersonEndpointDto$outboundSchema,
-]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.union([
+    SlackChannelEndpointDto$outboundSchema,
+    SlackUserEndpointDto$outboundSchema,
+    WebhookEndpointDto$outboundSchema,
+    PhoneEndpointDto$outboundSchema,
+    WebexRoomEndpointDto$outboundSchema,
+    ToolWebhookEndpointDto$outboundSchema,
+    WebexPersonEndpointDto$outboundSchema,
+  ])
+);
 
 export function updateChannelEndpointRequestDtoEndpointToJSON(
   updateChannelEndpointRequestDtoEndpoint:
@@ -118,17 +121,19 @@ export const UpdateChannelEndpointRequestDto$outboundSchema: z.ZodType<
   UpdateChannelEndpointRequestDto$Outbound,
   z.ZodTypeDef,
   UpdateChannelEndpointRequestDto
-> = z.object({
-  endpoint: z.union([
-    SlackChannelEndpointDto$outboundSchema,
-    SlackUserEndpointDto$outboundSchema,
-    WebhookEndpointDto$outboundSchema,
-    PhoneEndpointDto$outboundSchema,
-    WebexRoomEndpointDto$outboundSchema,
-    ToolWebhookEndpointDto$outboundSchema,
-    WebexPersonEndpointDto$outboundSchema,
-  ]),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    endpoint: z.union([
+      SlackChannelEndpointDto$outboundSchema,
+      SlackUserEndpointDto$outboundSchema,
+      WebhookEndpointDto$outboundSchema,
+      PhoneEndpointDto$outboundSchema,
+      WebexRoomEndpointDto$outboundSchema,
+      ToolWebhookEndpointDto$outboundSchema,
+      WebexPersonEndpointDto$outboundSchema,
+    ]),
+  })
+);
 
 export function updateChannelEndpointRequestDtoToJSON(
   updateChannelEndpointRequestDto: UpdateChannelEndpointRequestDto,

@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -36,17 +36,19 @@ export const IntegrationsControllerUpdateIntegrationByIdRequest$outboundSchema:
     IntegrationsControllerUpdateIntegrationByIdRequest$Outbound,
     z.ZodTypeDef,
     IntegrationsControllerUpdateIntegrationByIdRequest
-  > = z.object({
-    integrationId: z.string(),
-    idempotencyKey: z.string().optional(),
-    updateIntegrationRequestDto:
-      components.UpdateIntegrationRequestDto$outboundSchema,
-  }).transform((v) => {
-    return remap$(v, {
-      idempotencyKey: "idempotency-key",
-      updateIntegrationRequestDto: "UpdateIntegrationRequestDto",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      integrationId: z.string(),
+      idempotencyKey: z.string().optional(),
+      updateIntegrationRequestDto:
+        components.UpdateIntegrationRequestDto$outboundSchema,
+    }).transform((v) => {
+      return remap$(v, {
+        idempotencyKey: "idempotency-key",
+        updateIntegrationRequestDto: "UpdateIntegrationRequestDto",
+      });
+    })
+  );
 
 export function integrationsControllerUpdateIntegrationByIdRequestToJSON(
   integrationsControllerUpdateIntegrationByIdRequest:
@@ -65,15 +67,17 @@ export const IntegrationsControllerUpdateIntegrationByIdResponse$inboundSchema:
     IntegrationsControllerUpdateIntegrationByIdResponse,
     z.ZodTypeDef,
     unknown
-  > = z.object({
-    Headers: z.record(z.array(z.string())).default({}),
-    Result: components.IntegrationResponseDto$inboundSchema,
-  }).transform((v) => {
-    return remap$(v, {
-      "Headers": "headers",
-      "Result": "result",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      Headers: z.record(z.array(z.string())).default({}),
+      Result: components.IntegrationResponseDto$inboundSchema,
+    }).transform((v) => {
+      return remap$(v, {
+        "Headers": "headers",
+        "Result": "result",
+      });
+    })
+  );
 
 export function integrationsControllerUpdateIntegrationByIdResponseFromJSON(
   jsonString: string,

@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -42,17 +42,20 @@ export const SubscribersControllerBulkUpdateSubscriberPreferencesRequest$outboun
     SubscribersControllerBulkUpdateSubscriberPreferencesRequest$Outbound,
     z.ZodTypeDef,
     SubscribersControllerBulkUpdateSubscriberPreferencesRequest
-  > = z.object({
-    subscriberId: z.string(),
-    idempotencyKey: z.string().optional(),
-    bulkUpdateSubscriberPreferencesDto:
-      components.BulkUpdateSubscriberPreferencesDto$outboundSchema,
-  }).transform((v) => {
-    return remap$(v, {
-      idempotencyKey: "idempotency-key",
-      bulkUpdateSubscriberPreferencesDto: "BulkUpdateSubscriberPreferencesDto",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      subscriberId: z.string(),
+      idempotencyKey: z.string().optional(),
+      bulkUpdateSubscriberPreferencesDto:
+        components.BulkUpdateSubscriberPreferencesDto$outboundSchema,
+    }).transform((v) => {
+      return remap$(v, {
+        idempotencyKey: "idempotency-key",
+        bulkUpdateSubscriberPreferencesDto:
+          "BulkUpdateSubscriberPreferencesDto",
+      });
+    })
+  );
 
 export function subscribersControllerBulkUpdateSubscriberPreferencesRequestToJSON(
   subscribersControllerBulkUpdateSubscriberPreferencesRequest:
@@ -70,15 +73,17 @@ export const SubscribersControllerBulkUpdateSubscriberPreferencesResponse$inboun
     SubscribersControllerBulkUpdateSubscriberPreferencesResponse,
     z.ZodTypeDef,
     unknown
-  > = z.object({
-    Headers: z.record(z.array(z.string())).default({}),
-    Result: z.array(components.GetPreferencesResponseDto$inboundSchema),
-  }).transform((v) => {
-    return remap$(v, {
-      "Headers": "headers",
-      "Result": "result",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      Headers: z.record(z.array(z.string())).default({}),
+      Result: z.array(components.GetPreferencesResponseDto$inboundSchema),
+    }).transform((v) => {
+      return remap$(v, {
+        "Headers": "headers",
+        "Result": "result",
+      });
+    })
+  );
 
 export function subscribersControllerBulkUpdateSubscriberPreferencesResponseFromJSON(
   jsonString: string,

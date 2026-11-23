@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   WebhookEndpointDto,
   WebhookEndpointDto$Outbound,
@@ -69,10 +70,12 @@ export const CreateWebhookEndpointDtoContext2$outboundSchema: z.ZodType<
   CreateWebhookEndpointDtoContext2$Outbound,
   z.ZodTypeDef,
   CreateWebhookEndpointDtoContext2
-> = z.object({
-  id: z.string(),
-  data: z.record(z.any()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    data: z.record(z.any()).optional(),
+  })
+);
 
 export function createWebhookEndpointDtoContext2ToJSON(
   createWebhookEndpointDtoContext2: CreateWebhookEndpointDtoContext2,
@@ -94,10 +97,12 @@ export const CreateWebhookEndpointDtoContext$outboundSchema: z.ZodType<
   CreateWebhookEndpointDtoContext$Outbound,
   z.ZodTypeDef,
   CreateWebhookEndpointDtoContext
-> = z.union([
-  z.lazy(() => CreateWebhookEndpointDtoContext2$outboundSchema),
-  z.string(),
-]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.union([
+    z.lazy(() => CreateWebhookEndpointDtoContext2$outboundSchema),
+    z.string(),
+  ])
+);
 
 export function createWebhookEndpointDtoContextToJSON(
   createWebhookEndpointDtoContext: CreateWebhookEndpointDtoContext,
@@ -128,21 +133,21 @@ export const CreateWebhookEndpointDto$outboundSchema: z.ZodType<
   CreateWebhookEndpointDto$Outbound,
   z.ZodTypeDef,
   CreateWebhookEndpointDto
-> = z.object({
-  identifier: z.string().optional(),
-  subscriberId: z.string(),
-  createSubscriberIfMissing: z.boolean().default(false),
-  context: z.record(
-    z.union([
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    identifier: z.string().optional(),
+    subscriberId: z.string(),
+    createSubscriberIfMissing: z.boolean().default(false),
+    context: z.record(z.union([
       z.lazy(() => CreateWebhookEndpointDtoContext2$outboundSchema),
       z.string(),
-    ]),
-  ).optional(),
-  integrationIdentifier: z.string(),
-  connectionIdentifier: z.string().optional(),
-  type: z.literal("webhook"),
-  endpoint: WebhookEndpointDto$outboundSchema,
-});
+    ])).optional(),
+    integrationIdentifier: z.string(),
+    connectionIdentifier: z.string().optional(),
+    type: z.literal("webhook"),
+    endpoint: WebhookEndpointDto$outboundSchema,
+  })
+);
 
 export function createWebhookEndpointDtoToJSON(
   createWebhookEndpointDto: CreateWebhookEndpointDto,

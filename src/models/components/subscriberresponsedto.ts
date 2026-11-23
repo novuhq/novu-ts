@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -102,35 +102,37 @@ export const SubscriberResponseDto$inboundSchema: z.ZodType<
   SubscriberResponseDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  _id: z.string().optional(),
-  firstName: z.nullable(z.string()).optional(),
-  lastName: z.nullable(z.string()).optional(),
-  email: z.nullable(z.string()).optional(),
-  phone: z.nullable(z.string()).optional(),
-  avatar: z.nullable(z.string()).optional(),
-  locale: z.nullable(z.string()).optional(),
-  channels: z.array(ChannelSettingsDto$inboundSchema).optional(),
-  topics: z.array(z.string()).optional(),
-  isOnline: z.nullable(z.boolean()).optional(),
-  lastOnlineAt: z.nullable(z.string()).optional(),
-  __v: z.number().optional(),
-  data: z.nullable(z.record(z.any())).optional(),
-  timezone: z.nullable(z.string()).optional(),
-  subscriberId: z.string(),
-  _organizationId: z.string(),
-  _environmentId: z.string(),
-  deleted: z.boolean(),
-  createdAt: z.string(),
-  updatedAt: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    "_id": "id",
-    "__v": "v",
-    "_organizationId": "organizationId",
-    "_environmentId": "environmentId",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    _id: z.string().optional(),
+    firstName: z.nullable(z.string()).optional(),
+    lastName: z.nullable(z.string()).optional(),
+    email: z.nullable(z.string()).optional(),
+    phone: z.nullable(z.string()).optional(),
+    avatar: z.nullable(z.string()).optional(),
+    locale: z.nullable(z.string()).optional(),
+    channels: z.array(ChannelSettingsDto$inboundSchema).optional(),
+    topics: z.array(z.string()).optional(),
+    isOnline: z.nullable(z.boolean()).optional(),
+    lastOnlineAt: z.nullable(z.string()).optional(),
+    __v: z.number().optional(),
+    data: z.nullable(z.record(z.any())).optional(),
+    timezone: z.nullable(z.string()).optional(),
+    subscriberId: z.string(),
+    _organizationId: z.string(),
+    _environmentId: z.string(),
+    deleted: z.boolean(),
+    createdAt: z.string(),
+    updatedAt: z.string(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_id": "id",
+      "__v": "v",
+      "_organizationId": "organizationId",
+      "_environmentId": "environmentId",
+    });
+  })
+);
 
 export function subscriberResponseDtoFromJSON(
   jsonString: string,

@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type StepsOverrides = {
   /**
@@ -26,10 +27,12 @@ export const StepsOverrides$outboundSchema: z.ZodType<
   StepsOverrides$Outbound,
   z.ZodTypeDef,
   StepsOverrides
-> = z.object({
-  providers: z.record(z.record(z.any())).optional(),
-  layoutId: z.nullable(z.string()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    providers: z.record(z.record(z.any())).optional(),
+    layoutId: z.nullable(z.string()).optional(),
+  })
+);
 
 export function stepsOverridesToJSON(stepsOverrides: StepsOverrides): string {
   return JSON.stringify(StepsOverrides$outboundSchema.parse(stepsOverrides));

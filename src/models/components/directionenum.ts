@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 
 export const DirectionEnum = {
@@ -14,4 +15,4 @@ export type DirectionEnum = ClosedEnum<typeof DirectionEnum>;
 /** @internal */
 export const DirectionEnum$outboundSchema: z.ZodNativeEnum<
   typeof DirectionEnum
-> = z.nativeEnum(DirectionEnum);
+> = /* @__PURE__ */ lazySchema$(() => z.nativeEnum(DirectionEnum));

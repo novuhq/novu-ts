@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -47,17 +47,19 @@ export const ManagedRuntimeResponseDto$inboundSchema: z.ZodType<
   ManagedRuntimeResponseDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  providerId: z.string(),
-  integrationId: z.string(),
-  externalAgentId: z.string(),
-  externalEnvironmentId: z.string().optional(),
-  externalWorkspaceId: z.string().optional(),
-  consoleUrl: z.string().optional(),
-  tools: z.array(AgentToolDto$inboundSchema).optional(),
-  mcpServers: z.array(AgentMcpServerDto$inboundSchema).optional(),
-  systemPrompt: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    providerId: z.string(),
+    integrationId: z.string(),
+    externalAgentId: z.string(),
+    externalEnvironmentId: z.string().optional(),
+    externalWorkspaceId: z.string().optional(),
+    consoleUrl: z.string().optional(),
+    tools: z.array(AgentToolDto$inboundSchema).optional(),
+    mcpServers: z.array(AgentMcpServerDto$inboundSchema).optional(),
+    systemPrompt: z.string().optional(),
+  })
+);
 
 export function managedRuntimeResponseDtoFromJSON(
   jsonString: string,

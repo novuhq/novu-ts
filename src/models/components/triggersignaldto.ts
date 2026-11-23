@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 
 export const TriggerSignalDtoType = {
@@ -43,14 +44,14 @@ export type TriggerSignalDto = {
 /** @internal */
 export const TriggerSignalDtoType$outboundSchema: z.ZodNativeEnum<
   typeof TriggerSignalDtoType
-> = z.nativeEnum(TriggerSignalDtoType);
+> = /* @__PURE__ */ lazySchema$(() => z.nativeEnum(TriggerSignalDtoType));
 
 /** @internal */
 export type To3$Outbound = string | { [k: string]: any };
 
 /** @internal */
-export const To3$outboundSchema: z.ZodType<To3$Outbound, z.ZodTypeDef, To3> = z
-  .union([z.string(), z.record(z.any())]);
+export const To3$outboundSchema: z.ZodType<To3$Outbound, z.ZodTypeDef, To3> =
+  /* @__PURE__ */ lazySchema$(() => z.union([z.string(), z.record(z.any())]));
 
 export function to3ToJSON(to3: To3): string {
   return JSON.stringify(To3$outboundSchema.parse(to3));
@@ -67,11 +68,13 @@ export const TriggerSignalDtoTo$outboundSchema: z.ZodType<
   TriggerSignalDtoTo$Outbound,
   z.ZodTypeDef,
   TriggerSignalDtoTo
-> = z.union([
-  z.string(),
-  z.record(z.any()),
-  z.array(z.union([z.string(), z.record(z.any())])),
-]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.union([
+    z.string(),
+    z.record(z.any()),
+    z.array(z.union([z.string(), z.record(z.any())])),
+  ])
+);
 
 export function triggerSignalDtoToToJSON(
   triggerSignalDtoTo: TriggerSignalDtoTo,
@@ -98,16 +101,18 @@ export const TriggerSignalDto$outboundSchema: z.ZodType<
   TriggerSignalDto$Outbound,
   z.ZodTypeDef,
   TriggerSignalDto
-> = z.object({
-  type: TriggerSignalDtoType$outboundSchema,
-  workflowId: z.string(),
-  to: z.union([
-    z.string(),
-    z.record(z.any()),
-    z.array(z.union([z.string(), z.record(z.any())])),
-  ]).optional(),
-  payload: z.record(z.any()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    type: TriggerSignalDtoType$outboundSchema,
+    workflowId: z.string(),
+    to: z.union([
+      z.string(),
+      z.record(z.any()),
+      z.array(z.union([z.string(), z.record(z.any())])),
+    ]).optional(),
+    payload: z.record(z.any()).optional(),
+  })
+);
 
 export function triggerSignalDtoToJSON(
   triggerSignalDto: TriggerSignalDto,

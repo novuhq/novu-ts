@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -32,8 +32,8 @@ export type GetSubscriberNotificationsResponseDto = {
 };
 
 /** @internal */
-export const Filter$inboundSchema: z.ZodType<Filter, z.ZodTypeDef, unknown> = z
-  .object({});
+export const Filter$inboundSchema: z.ZodType<Filter, z.ZodTypeDef, unknown> =
+  /* @__PURE__ */ lazySchema$(() => z.object({}));
 
 export function filterFromJSON(
   jsonString: string,
@@ -50,11 +50,13 @@ export const GetSubscriberNotificationsResponseDto$inboundSchema: z.ZodType<
   GetSubscriberNotificationsResponseDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  data: z.array(InboxNotificationDto$inboundSchema),
-  hasMore: z.boolean(),
-  filter: z.lazy(() => Filter$inboundSchema),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    data: z.array(InboxNotificationDto$inboundSchema),
+    hasMore: z.boolean(),
+    filter: z.lazy(() => Filter$inboundSchema),
+  })
+);
 
 export function getSubscriberNotificationsResponseDtoFromJSON(
   jsonString: string,

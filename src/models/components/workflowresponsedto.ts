@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -263,9 +263,11 @@ export const WorkflowResponseDtoProviders$inboundSchema: z.ZodType<
   WorkflowResponseDtoProviders,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  replyTo: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    replyTo: z.string().optional(),
+  })
+);
 
 export function workflowResponseDtoProvidersFromJSON(
   jsonString: string,
@@ -282,11 +284,14 @@ export const WorkflowResponseDtoAgent$inboundSchema: z.ZodType<
   WorkflowResponseDtoAgent,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  identifier: z.string(),
-  providers: z.record(z.lazy(() => WorkflowResponseDtoProviders$inboundSchema))
-    .optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    identifier: z.string(),
+    providers: z.record(
+      z.lazy(() => WorkflowResponseDtoProviders$inboundSchema),
+    ).optional(),
+  })
+);
 
 export function workflowResponseDtoAgentFromJSON(
   jsonString: string,
@@ -303,16 +308,18 @@ export const WorkflowResponseDtoUpdatedBy$inboundSchema: z.ZodType<
   WorkflowResponseDtoUpdatedBy,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  _id: z.string(),
-  firstName: z.nullable(z.string()).optional(),
-  lastName: z.nullable(z.string()).optional(),
-  externalId: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_id": "id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    _id: z.string(),
+    firstName: z.nullable(z.string()).optional(),
+    lastName: z.nullable(z.string()).optional(),
+    externalId: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_id": "id",
+    });
+  })
+);
 
 export function workflowResponseDtoUpdatedByFromJSON(
   jsonString: string,
@@ -329,16 +336,18 @@ export const LastPublishedBy$inboundSchema: z.ZodType<
   LastPublishedBy,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  _id: z.string(),
-  firstName: z.nullable(z.string()).optional(),
-  lastName: z.nullable(z.string()).optional(),
-  externalId: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_id": "id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    _id: z.string(),
+    firstName: z.nullable(z.string()).optional(),
+    lastName: z.nullable(z.string()).optional(),
+    externalId: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_id": "id",
+    });
+  })
+);
 
 export function lastPublishedByFromJSON(
   jsonString: string,
@@ -355,19 +364,21 @@ export const WorkflowResponseDtoSteps$inboundSchema: z.ZodType<
   WorkflowResponseDtoSteps,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  InAppStepResponseDto$inboundSchema,
-  EmailStepResponseDto$inboundSchema,
-  SmsStepResponseDto$inboundSchema,
-  PushStepResponseDto$inboundSchema,
-  ChatStepResponseDto$inboundSchema,
-  DelayStepResponseDto$inboundSchema,
-  DigestStepResponseDto$inboundSchema,
-  CustomStepResponseDto$inboundSchema,
-  ThrottleStepResponseDto$inboundSchema,
-  HttpRequestStepResponseDto$inboundSchema,
-  ToolStepResponseDto$inboundSchema,
-]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.union([
+    InAppStepResponseDto$inboundSchema,
+    EmailStepResponseDto$inboundSchema,
+    SmsStepResponseDto$inboundSchema,
+    PushStepResponseDto$inboundSchema,
+    ChatStepResponseDto$inboundSchema,
+    DelayStepResponseDto$inboundSchema,
+    DigestStepResponseDto$inboundSchema,
+    CustomStepResponseDto$inboundSchema,
+    ThrottleStepResponseDto$inboundSchema,
+    HttpRequestStepResponseDto$inboundSchema,
+    ToolStepResponseDto$inboundSchema,
+  ])
+);
 
 export function workflowResponseDtoStepsFromJSON(
   jsonString: string,
@@ -384,54 +395,56 @@ export const WorkflowResponseDto$inboundSchema: z.ZodType<
   WorkflowResponseDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  name: z.string(),
-  description: z.string().optional(),
-  tags: z.array(z.string()).optional(),
-  active: z.boolean().default(false),
-  validatePayload: z.boolean().optional(),
-  payloadSchema: z.nullable(z.record(z.any())).optional(),
-  isTranslationEnabled: z.boolean().default(false),
-  agent: z.nullable(z.lazy(() => WorkflowResponseDtoAgent$inboundSchema))
-    .optional(),
-  _id: z.string(),
-  workflowId: z.string(),
-  slug: z.string(),
-  updatedAt: z.string(),
-  createdAt: z.string(),
-  updatedBy: z.nullable(
-    z.lazy(() => WorkflowResponseDtoUpdatedBy$inboundSchema),
-  ).optional(),
-  lastPublishedAt: z.nullable(z.string()).optional(),
-  lastPublishedBy: z.nullable(z.lazy(() => LastPublishedBy$inboundSchema))
-    .optional(),
-  steps: z.array(
-    z.union([
-      InAppStepResponseDto$inboundSchema,
-      EmailStepResponseDto$inboundSchema,
-      SmsStepResponseDto$inboundSchema,
-      PushStepResponseDto$inboundSchema,
-      ChatStepResponseDto$inboundSchema,
-      DelayStepResponseDto$inboundSchema,
-      DigestStepResponseDto$inboundSchema,
-      CustomStepResponseDto$inboundSchema,
-      ThrottleStepResponseDto$inboundSchema,
-      HttpRequestStepResponseDto$inboundSchema,
-      ToolStepResponseDto$inboundSchema,
-    ]),
-  ),
-  origin: ResourceOriginEnum$inboundSchema,
-  preferences: WorkflowPreferencesResponseDto$inboundSchema,
-  status: WorkflowStatusEnum$inboundSchema,
-  issues: z.record(z.array(RuntimeIssueDto$inboundSchema)).optional(),
-  lastTriggeredAt: z.nullable(z.string()).optional(),
-  payloadExample: z.nullable(z.record(z.any())).optional(),
-  severity: SeverityLevelEnum$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "_id": "id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    name: z.string(),
+    description: z.string().optional(),
+    tags: z.array(z.string()).optional(),
+    active: z.boolean().default(false),
+    validatePayload: z.boolean().optional(),
+    payloadSchema: z.nullable(z.record(z.any())).optional(),
+    isTranslationEnabled: z.boolean().default(false),
+    agent: z.nullable(z.lazy(() => WorkflowResponseDtoAgent$inboundSchema))
+      .optional(),
+    _id: z.string(),
+    workflowId: z.string(),
+    slug: z.string(),
+    updatedAt: z.string(),
+    createdAt: z.string(),
+    updatedBy: z.nullable(
+      z.lazy(() => WorkflowResponseDtoUpdatedBy$inboundSchema),
+    ).optional(),
+    lastPublishedAt: z.nullable(z.string()).optional(),
+    lastPublishedBy: z.nullable(z.lazy(() => LastPublishedBy$inboundSchema))
+      .optional(),
+    steps: z.array(
+      z.union([
+        InAppStepResponseDto$inboundSchema,
+        EmailStepResponseDto$inboundSchema,
+        SmsStepResponseDto$inboundSchema,
+        PushStepResponseDto$inboundSchema,
+        ChatStepResponseDto$inboundSchema,
+        DelayStepResponseDto$inboundSchema,
+        DigestStepResponseDto$inboundSchema,
+        CustomStepResponseDto$inboundSchema,
+        ThrottleStepResponseDto$inboundSchema,
+        HttpRequestStepResponseDto$inboundSchema,
+        ToolStepResponseDto$inboundSchema,
+      ]),
+    ),
+    origin: ResourceOriginEnum$inboundSchema,
+    preferences: WorkflowPreferencesResponseDto$inboundSchema,
+    status: WorkflowStatusEnum$inboundSchema,
+    issues: z.record(z.array(RuntimeIssueDto$inboundSchema)).optional(),
+    lastTriggeredAt: z.nullable(z.string()).optional(),
+    payloadExample: z.nullable(z.record(z.any())).optional(),
+    severity: SeverityLevelEnum$inboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      "_id": "id",
+    });
+  })
+);
 
 export function workflowResponseDtoFromJSON(
   jsonString: string,

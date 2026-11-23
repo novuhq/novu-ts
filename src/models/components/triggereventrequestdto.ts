@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   EmailChannelOverrides,
   EmailChannelOverrides$Outbound,
@@ -207,9 +208,11 @@ export const Channels$outboundSchema: z.ZodType<
   Channels$Outbound,
   z.ZodTypeDef,
   Channels
-> = z.object({
-  email: EmailChannelOverrides$outboundSchema.optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    email: EmailChannelOverrides$outboundSchema.optional(),
+  })
+);
 
 export function channelsToJSON(channels: Channels): string {
   return JSON.stringify(Channels$outboundSchema.parse(channels));
@@ -233,17 +236,19 @@ export const Overrides$outboundSchema: z.ZodType<
   Overrides$Outbound,
   z.ZodTypeDef,
   Overrides
-> = z.object({
-  steps: z.record(StepsOverrides$outboundSchema).optional(),
-  channels: z.lazy(() => Channels$outboundSchema).optional(),
-  providers: z.record(z.record(z.any())).optional(),
-  email: z.record(z.any()).optional(),
-  push: z.record(z.any()).optional(),
-  sms: z.record(z.any()).optional(),
-  chat: z.record(z.any()).optional(),
-  layoutIdentifier: z.string().optional(),
-  severity: SeverityLevelEnum$outboundSchema.optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    steps: z.record(StepsOverrides$outboundSchema).optional(),
+    channels: z.lazy(() => Channels$outboundSchema).optional(),
+    providers: z.record(z.record(z.any())).optional(),
+    email: z.record(z.any()).optional(),
+    push: z.record(z.any()).optional(),
+    sms: z.record(z.any()).optional(),
+    chat: z.record(z.any()).optional(),
+    layoutIdentifier: z.string().optional(),
+    severity: SeverityLevelEnum$outboundSchema.optional(),
+  })
+);
 
 export function overridesToJSON(overrides: Overrides): string {
   return JSON.stringify(Overrides$outboundSchema.parse(overrides));
@@ -256,12 +261,14 @@ export type To1$Outbound =
   | string;
 
 /** @internal */
-export const To1$outboundSchema: z.ZodType<To1$Outbound, z.ZodTypeDef, To1> = z
-  .union([
-    TopicPayloadDto$outboundSchema,
-    SubscriberPayloadDto$outboundSchema,
-    z.string(),
-  ]);
+export const To1$outboundSchema: z.ZodType<To1$Outbound, z.ZodTypeDef, To1> =
+  /* @__PURE__ */ lazySchema$(() =>
+    z.union([
+      TopicPayloadDto$outboundSchema,
+      SubscriberPayloadDto$outboundSchema,
+      z.string(),
+    ])
+  );
 
 export function to1ToJSON(to1: To1): string {
   return JSON.stringify(To1$outboundSchema.parse(to1));
@@ -279,18 +286,20 @@ export const TriggerEventRequestDtoTo$outboundSchema: z.ZodType<
   TriggerEventRequestDtoTo$Outbound,
   z.ZodTypeDef,
   TriggerEventRequestDtoTo
-> = z.union([
-  TopicPayloadDto$outboundSchema,
-  SubscriberPayloadDto$outboundSchema,
-  z.array(
-    z.union([
-      TopicPayloadDto$outboundSchema,
-      SubscriberPayloadDto$outboundSchema,
-      z.string(),
-    ]),
-  ),
-  z.string(),
-]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.union([
+    TopicPayloadDto$outboundSchema,
+    SubscriberPayloadDto$outboundSchema,
+    z.array(
+      z.union([
+        TopicPayloadDto$outboundSchema,
+        SubscriberPayloadDto$outboundSchema,
+        z.string(),
+      ]),
+    ),
+    z.string(),
+  ])
+);
 
 export function triggerEventRequestDtoToToJSON(
   triggerEventRequestDtoTo: TriggerEventRequestDtoTo,
@@ -308,7 +317,9 @@ export const Actor$outboundSchema: z.ZodType<
   Actor$Outbound,
   z.ZodTypeDef,
   Actor
-> = z.union([SubscriberPayloadDto$outboundSchema, z.string()]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.union([SubscriberPayloadDto$outboundSchema, z.string()])
+);
 
 export function actorToJSON(actor: Actor): string {
   return JSON.stringify(Actor$outboundSchema.parse(actor));
@@ -322,7 +333,9 @@ export const Tenant$outboundSchema: z.ZodType<
   Tenant$Outbound,
   z.ZodTypeDef,
   Tenant
-> = z.union([z.string(), TenantPayloadDto$outboundSchema]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.union([z.string(), TenantPayloadDto$outboundSchema])
+);
 
 export function tenantToJSON(tenant: Tenant): string {
   return JSON.stringify(Tenant$outboundSchema.parse(tenant));
@@ -339,10 +352,12 @@ export const TriggerEventRequestDtoContext2$outboundSchema: z.ZodType<
   TriggerEventRequestDtoContext2$Outbound,
   z.ZodTypeDef,
   TriggerEventRequestDtoContext2
-> = z.object({
-  id: z.string(),
-  data: z.record(z.any()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    data: z.record(z.any()).optional(),
+  })
+);
 
 export function triggerEventRequestDtoContext2ToJSON(
   triggerEventRequestDtoContext2: TriggerEventRequestDtoContext2,
@@ -364,10 +379,12 @@ export const TriggerEventRequestDtoContext$outboundSchema: z.ZodType<
   TriggerEventRequestDtoContext$Outbound,
   z.ZodTypeDef,
   TriggerEventRequestDtoContext
-> = z.union([
-  z.lazy(() => TriggerEventRequestDtoContext2$outboundSchema),
-  z.string(),
-]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.union([
+    z.lazy(() => TriggerEventRequestDtoContext2$outboundSchema),
+    z.string(),
+  ])
+);
 
 export function triggerEventRequestDtoContextToJSON(
   triggerEventRequestDtoContext: TriggerEventRequestDtoContext,
@@ -404,38 +421,41 @@ export const TriggerEventRequestDto$outboundSchema: z.ZodType<
   TriggerEventRequestDto$Outbound,
   z.ZodTypeDef,
   TriggerEventRequestDto
-> = z.object({
-  workflowId: z.string(),
-  payload: z.record(z.any()).optional(),
-  bridgeUrl: z.string().optional(),
-  overrides: z.lazy(() => Overrides$outboundSchema).optional(),
-  agentId: z.nullable(z.string()).optional(),
-  to: z.union([
-    TopicPayloadDto$outboundSchema,
-    SubscriberPayloadDto$outboundSchema,
-    z.array(
-      z.union([
-        TopicPayloadDto$outboundSchema,
-        SubscriberPayloadDto$outboundSchema,
-        z.string(),
-      ]),
-    ),
-    z.string(),
-  ]),
-  transactionId: z.string().optional(),
-  actor: z.union([SubscriberPayloadDto$outboundSchema, z.string()]).optional(),
-  tenant: z.union([z.string(), TenantPayloadDto$outboundSchema]).optional(),
-  context: z.record(
-    z.union([
-      z.lazy(() => TriggerEventRequestDtoContext2$outboundSchema),
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    workflowId: z.string(),
+    payload: z.record(z.any()).optional(),
+    bridgeUrl: z.string().optional(),
+    overrides: z.lazy(() => Overrides$outboundSchema).optional(),
+    agentId: z.nullable(z.string()).optional(),
+    to: z.union([
+      TopicPayloadDto$outboundSchema,
+      SubscriberPayloadDto$outboundSchema,
+      z.array(
+        z.union([
+          TopicPayloadDto$outboundSchema,
+          SubscriberPayloadDto$outboundSchema,
+          z.string(),
+        ]),
+      ),
       z.string(),
     ]),
-  ).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    workflowId: "name",
-  });
-});
+    transactionId: z.string().optional(),
+    actor: z.union([SubscriberPayloadDto$outboundSchema, z.string()])
+      .optional(),
+    tenant: z.union([z.string(), TenantPayloadDto$outboundSchema]).optional(),
+    context: z.record(
+      z.union([
+        z.lazy(() => TriggerEventRequestDtoContext2$outboundSchema),
+        z.string(),
+      ]),
+    ).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      workflowId: "name",
+    });
+  })
+);
 
 export function triggerEventRequestDtoToJSON(
   triggerEventRequestDto: TriggerEventRequestDto,

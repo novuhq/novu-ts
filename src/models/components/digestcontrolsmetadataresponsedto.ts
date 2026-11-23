@@ -5,6 +5,7 @@
 import * as z from "zod/v3";
 import {
   collectExtraKeys as collectExtraKeys$,
+  lazySchema as lazySchema$,
   safeParse,
 } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
@@ -100,33 +101,37 @@ export type DigestControlsMetadataResponseDto = {
 
 /** @internal */
 export const DigestControlsMetadataResponseDtoType$inboundSchema:
-  z.ZodNativeEnum<typeof DigestControlsMetadataResponseDtoType> = z.nativeEnum(
-    DigestControlsMetadataResponseDtoType,
-  );
+  z.ZodNativeEnum<typeof DigestControlsMetadataResponseDtoType> =
+    /* @__PURE__ */ lazySchema$(() =>
+      z.nativeEnum(DigestControlsMetadataResponseDtoType)
+    );
 
 /** @internal */
 export const DigestControlsMetadataResponseDtoUnit$inboundSchema:
-  z.ZodNativeEnum<typeof DigestControlsMetadataResponseDtoUnit> = z.nativeEnum(
-    DigestControlsMetadataResponseDtoUnit,
-  );
+  z.ZodNativeEnum<typeof DigestControlsMetadataResponseDtoUnit> =
+    /* @__PURE__ */ lazySchema$(() =>
+      z.nativeEnum(DigestControlsMetadataResponseDtoUnit)
+    );
 
 /** @internal */
 export const DigestControlsMetadataResponseDtoValues$inboundSchema: z.ZodType<
   DigestControlsMetadataResponseDtoValues,
   z.ZodTypeDef,
   unknown
-> = collectExtraKeys$(
-  z.object({
-    skip: z.record(z.any()).optional(),
-    type: DigestControlsMetadataResponseDtoType$inboundSchema.optional(),
-    amount: z.number().optional(),
-    unit: DigestControlsMetadataResponseDtoUnit$inboundSchema.optional(),
-    lookBackWindow: LookBackWindowDto$inboundSchema.optional(),
-    cron: z.string().optional(),
-    digestKey: z.string().optional(),
-  }).catchall(z.any()),
-  "additionalProperties",
-  true,
+> = /* @__PURE__ */ lazySchema$(() =>
+  collectExtraKeys$(
+    z.object({
+      skip: z.record(z.any()).optional(),
+      type: DigestControlsMetadataResponseDtoType$inboundSchema.optional(),
+      amount: z.number().optional(),
+      unit: DigestControlsMetadataResponseDtoUnit$inboundSchema.optional(),
+      lookBackWindow: LookBackWindowDto$inboundSchema.optional(),
+      cron: z.string().optional(),
+      digestKey: z.string().optional(),
+    }).catchall(z.any()),
+    "additionalProperties",
+    true,
+  )
 );
 
 export function digestControlsMetadataResponseDtoValuesFromJSON(
@@ -150,12 +155,14 @@ export const DigestControlsMetadataResponseDto$inboundSchema: z.ZodType<
   DigestControlsMetadataResponseDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  dataSchema: z.record(z.any()).optional(),
-  uiSchema: UiSchema$inboundSchema.optional(),
-  values: z.lazy(() => DigestControlsMetadataResponseDtoValues$inboundSchema)
-    .optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    dataSchema: z.record(z.any()).optional(),
+    uiSchema: UiSchema$inboundSchema.optional(),
+    values: z.lazy(() => DigestControlsMetadataResponseDtoValues$inboundSchema)
+      .optional(),
+  })
+);
 
 export function digestControlsMetadataResponseDtoFromJSON(
   jsonString: string,

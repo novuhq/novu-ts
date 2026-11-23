@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   ToolControlDto,
   ToolControlDto$Outbound,
@@ -61,7 +62,9 @@ export const ToolStepUpsertDtoControlValues$outboundSchema: z.ZodType<
   ToolStepUpsertDtoControlValues$Outbound,
   z.ZodTypeDef,
   ToolStepUpsertDtoControlValues
-> = z.union([ToolControlDto$outboundSchema, z.record(z.any())]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.union([ToolControlDto$outboundSchema, z.record(z.any())])
+);
 
 export function toolStepUpsertDtoControlValuesToJSON(
   toolStepUpsertDtoControlValues: ToolStepUpsertDtoControlValues,
@@ -92,21 +95,23 @@ export const ToolStepUpsertDto$outboundSchema: z.ZodType<
   ToolStepUpsertDto$Outbound,
   z.ZodTypeDef,
   ToolStepUpsertDto
-> = z.object({
-  id: z.string().optional(),
-  stepId: z.string().optional(),
-  name: z.string(),
-  type: z.literal("tool"),
-  controlValues: z.union([ToolControlDto$outboundSchema, z.record(z.any())])
-    .optional(),
-  providerOverrides: z.nullable(z.record(z.record(z.any()))).optional(),
-  integrationOverrides: z.nullable(z.record(z.record(z.record(z.any()))))
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    id: "_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string().optional(),
+    stepId: z.string().optional(),
+    name: z.string(),
+    type: z.literal("tool"),
+    controlValues: z.union([ToolControlDto$outboundSchema, z.record(z.any())])
+      .optional(),
+    providerOverrides: z.nullable(z.record(z.record(z.any()))).optional(),
+    integrationOverrides: z.nullable(z.record(z.record(z.record(z.any()))))
+      .optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      id: "_id",
+    });
+  })
+);
 
 export function toolStepUpsertDtoToJSON(
   toolStepUpsertDto: ToolStepUpsertDto,

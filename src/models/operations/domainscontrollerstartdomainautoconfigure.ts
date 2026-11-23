@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -37,17 +37,19 @@ export const DomainsControllerStartDomainAutoConfigureRequest$outboundSchema:
     DomainsControllerStartDomainAutoConfigureRequest$Outbound,
     z.ZodTypeDef,
     DomainsControllerStartDomainAutoConfigureRequest
-  > = z.object({
-    domain: z.string(),
-    idempotencyKey: z.string().optional(),
-    createDomainConnectApplyUrlDto:
-      components.CreateDomainConnectApplyUrlDto$outboundSchema,
-  }).transform((v) => {
-    return remap$(v, {
-      idempotencyKey: "idempotency-key",
-      createDomainConnectApplyUrlDto: "CreateDomainConnectApplyUrlDto",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      domain: z.string(),
+      idempotencyKey: z.string().optional(),
+      createDomainConnectApplyUrlDto:
+        components.CreateDomainConnectApplyUrlDto$outboundSchema,
+    }).transform((v) => {
+      return remap$(v, {
+        idempotencyKey: "idempotency-key",
+        createDomainConnectApplyUrlDto: "CreateDomainConnectApplyUrlDto",
+      });
+    })
+  );
 
 export function domainsControllerStartDomainAutoConfigureRequestToJSON(
   domainsControllerStartDomainAutoConfigureRequest:
@@ -66,15 +68,17 @@ export const DomainsControllerStartDomainAutoConfigureResponse$inboundSchema:
     DomainsControllerStartDomainAutoConfigureResponse,
     z.ZodTypeDef,
     unknown
-  > = z.object({
-    Headers: z.record(z.array(z.string())).default({}),
-    Result: components.DomainConnectApplyUrlResponseDto$inboundSchema,
-  }).transform((v) => {
-    return remap$(v, {
-      "Headers": "headers",
-      "Result": "result",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      Headers: z.record(z.array(z.string())).default({}),
+      Result: components.DomainConnectApplyUrlResponseDto$inboundSchema,
+    }).transform((v) => {
+      return remap$(v, {
+        "Headers": "headers",
+        "Result": "result",
+      });
+    })
+  );
 
 export function domainsControllerStartDomainAutoConfigureResponseFromJSON(
   jsonString: string,

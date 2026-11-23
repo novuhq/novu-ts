@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type WorkflowPreferenceRequestDto = {
   /**
@@ -31,11 +32,13 @@ export const WorkflowPreferenceRequestDto$outboundSchema: z.ZodType<
   WorkflowPreferenceRequestDto$Outbound,
   z.ZodTypeDef,
   WorkflowPreferenceRequestDto
-> = z.object({
-  enabled: z.boolean().optional(),
-  condition: z.record(z.any()).optional(),
-  workflowId: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    enabled: z.boolean().optional(),
+    condition: z.record(z.any()).optional(),
+    workflowId: z.string(),
+  })
+);
 
 export function workflowPreferenceRequestDtoToJSON(
   workflowPreferenceRequestDto: WorkflowPreferenceRequestDto,

@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   ThrottleControlDto,
   ThrottleControlDto$Outbound,
@@ -50,7 +51,9 @@ export const ThrottleStepUpsertDtoControlValues$outboundSchema: z.ZodType<
   ThrottleStepUpsertDtoControlValues$Outbound,
   z.ZodTypeDef,
   ThrottleStepUpsertDtoControlValues
-> = z.union([ThrottleControlDto$outboundSchema, z.record(z.any())]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.union([ThrottleControlDto$outboundSchema, z.record(z.any())])
+);
 
 export function throttleStepUpsertDtoControlValuesToJSON(
   throttleStepUpsertDtoControlValues: ThrottleStepUpsertDtoControlValues,
@@ -79,18 +82,22 @@ export const ThrottleStepUpsertDto$outboundSchema: z.ZodType<
   ThrottleStepUpsertDto$Outbound,
   z.ZodTypeDef,
   ThrottleStepUpsertDto
-> = z.object({
-  id: z.string().optional(),
-  stepId: z.string().optional(),
-  name: z.string(),
-  type: z.literal("throttle"),
-  controlValues: z.union([ThrottleControlDto$outboundSchema, z.record(z.any())])
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    id: "_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string().optional(),
+    stepId: z.string().optional(),
+    name: z.string(),
+    type: z.literal("throttle"),
+    controlValues: z.union([
+      ThrottleControlDto$outboundSchema,
+      z.record(z.any()),
+    ]).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      id: "_id",
+    });
+  })
+);
 
 export function throttleStepUpsertDtoToJSON(
   throttleStepUpsertDto: ThrottleStepUpsertDto,

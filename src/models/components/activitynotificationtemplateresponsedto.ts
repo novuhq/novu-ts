@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -40,16 +40,18 @@ export const ActivityNotificationTemplateResponseDto$inboundSchema: z.ZodType<
   ActivityNotificationTemplateResponseDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  _id: z.string().optional(),
-  name: z.string(),
-  origin: ResourceOriginEnum$inboundSchema.optional(),
-  triggers: z.array(NotificationTriggerDto$inboundSchema),
-}).transform((v) => {
-  return remap$(v, {
-    "_id": "id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    _id: z.string().optional(),
+    name: z.string(),
+    origin: ResourceOriginEnum$inboundSchema.optional(),
+    triggers: z.array(NotificationTriggerDto$inboundSchema),
+  }).transform((v) => {
+    return remap$(v, {
+      "_id": "id",
+    });
+  })
+);
 
 export function activityNotificationTemplateResponseDtoFromJSON(
   jsonString: string,

@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -28,14 +28,16 @@ export const AgentIntegrationSummaryDto$inboundSchema: z.ZodType<
   AgentIntegrationSummaryDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  integrationId: z.string(),
-  providerId: z.string(),
-  name: z.string(),
-  identifier: z.string(),
-  channel: ChannelTypeEnum$inboundSchema.optional(),
-  active: z.boolean(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    integrationId: z.string(),
+    providerId: z.string(),
+    name: z.string(),
+    identifier: z.string(),
+    channel: ChannelTypeEnum$inboundSchema.optional(),
+    active: z.boolean(),
+  })
+);
 
 export function agentIntegrationSummaryDtoFromJSON(
   jsonString: string,

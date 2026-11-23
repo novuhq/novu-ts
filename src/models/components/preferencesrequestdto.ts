@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   ChannelPreferenceDto,
   ChannelPreferenceDto$Outbound,
@@ -73,7 +74,7 @@ export const UserAll$outboundSchema: z.ZodType<
   UserAll$Outbound,
   z.ZodTypeDef,
   UserAll
-> = WorkflowPreferenceDto$outboundSchema;
+> = /* @__PURE__ */ lazySchema$(() => WorkflowPreferenceDto$outboundSchema);
 
 export function userAllToJSON(userAll: UserAll): string {
   return JSON.stringify(UserAll$outboundSchema.parse(userAll));
@@ -90,10 +91,12 @@ export const UserWorkflowPreferencesDto$outboundSchema: z.ZodType<
   UserWorkflowPreferencesDto$Outbound,
   z.ZodTypeDef,
   UserWorkflowPreferencesDto
-> = z.object({
-  all: WorkflowPreferenceDto$outboundSchema,
-  channels: z.record(ChannelPreferenceDto$outboundSchema),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    all: WorkflowPreferenceDto$outboundSchema,
+    channels: z.record(ChannelPreferenceDto$outboundSchema),
+  })
+);
 
 export function userWorkflowPreferencesDtoToJSON(
   userWorkflowPreferencesDto: UserWorkflowPreferencesDto,
@@ -108,7 +111,9 @@ export type User$Outbound = UserWorkflowPreferencesDto$Outbound;
 
 /** @internal */
 export const User$outboundSchema: z.ZodType<User$Outbound, z.ZodTypeDef, User> =
-  z.lazy(() => UserWorkflowPreferencesDto$outboundSchema);
+  /* @__PURE__ */ lazySchema$(() =>
+    z.lazy(() => UserWorkflowPreferencesDto$outboundSchema)
+  );
 
 export function userToJSON(user: User): string {
   return JSON.stringify(User$outboundSchema.parse(user));
@@ -122,7 +127,7 @@ export const PreferencesRequestDtoAll$outboundSchema: z.ZodType<
   PreferencesRequestDtoAll$Outbound,
   z.ZodTypeDef,
   PreferencesRequestDtoAll
-> = WorkflowPreferenceDto$outboundSchema;
+> = /* @__PURE__ */ lazySchema$(() => WorkflowPreferenceDto$outboundSchema);
 
 export function preferencesRequestDtoAllToJSON(
   preferencesRequestDtoAll: PreferencesRequestDtoAll,
@@ -143,10 +148,12 @@ export const PreferencesRequestDtoWorkflow$outboundSchema: z.ZodType<
   PreferencesRequestDtoWorkflow$Outbound,
   z.ZodTypeDef,
   PreferencesRequestDtoWorkflow
-> = z.object({
-  all: WorkflowPreferenceDto$outboundSchema,
-  channels: z.record(ChannelPreferenceDto$outboundSchema),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    all: WorkflowPreferenceDto$outboundSchema,
+    channels: z.record(ChannelPreferenceDto$outboundSchema),
+  })
+);
 
 export function preferencesRequestDtoWorkflowToJSON(
   preferencesRequestDtoWorkflow: PreferencesRequestDtoWorkflow,
@@ -169,13 +176,15 @@ export const PreferencesRequestDto$outboundSchema: z.ZodType<
   PreferencesRequestDto$Outbound,
   z.ZodTypeDef,
   PreferencesRequestDto
-> = z.object({
-  user: z.nullable(z.lazy(() => UserWorkflowPreferencesDto$outboundSchema))
-    .optional(),
-  workflow: z.nullable(
-    z.lazy(() => PreferencesRequestDtoWorkflow$outboundSchema),
-  ).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    user: z.nullable(z.lazy(() => UserWorkflowPreferencesDto$outboundSchema))
+      .optional(),
+    workflow: z.nullable(
+      z.lazy(() => PreferencesRequestDtoWorkflow$outboundSchema),
+    ).optional(),
+  })
+);
 
 export function preferencesRequestDtoToJSON(
   preferencesRequestDto: PreferencesRequestDto,

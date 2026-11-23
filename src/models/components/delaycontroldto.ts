@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 
 /**
@@ -57,14 +58,12 @@ export type DelayControlDto = {
 };
 
 /** @internal */
-export const Type$outboundSchema: z.ZodNativeEnum<typeof Type> = z.nativeEnum(
-  Type,
-);
+export const Type$outboundSchema: z.ZodNativeEnum<typeof Type> =
+  /* @__PURE__ */ lazySchema$(() => z.nativeEnum(Type));
 
 /** @internal */
-export const Unit$outboundSchema: z.ZodNativeEnum<typeof Unit> = z.nativeEnum(
-  Unit,
-);
+export const Unit$outboundSchema: z.ZodNativeEnum<typeof Unit> =
+  /* @__PURE__ */ lazySchema$(() => z.nativeEnum(Unit));
 
 /** @internal */
 export type DelayControlDto$Outbound = {
@@ -80,13 +79,15 @@ export const DelayControlDto$outboundSchema: z.ZodType<
   DelayControlDto$Outbound,
   z.ZodTypeDef,
   DelayControlDto
-> = z.object({
-  skip: z.record(z.any()).optional(),
-  type: Type$outboundSchema.default("regular"),
-  amount: z.number().optional(),
-  unit: Unit$outboundSchema.optional(),
-  cron: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    skip: z.record(z.any()).optional(),
+    type: Type$outboundSchema.default("regular"),
+    amount: z.number().optional(),
+    unit: Unit$outboundSchema.optional(),
+    cron: z.string().optional(),
+  })
+);
 
 export function delayControlDtoToJSON(
   delayControlDto: DelayControlDto,

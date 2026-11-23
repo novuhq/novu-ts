@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type AddReactionPayloadDto = {
   /**
@@ -26,10 +27,12 @@ export const AddReactionPayloadDto$outboundSchema: z.ZodType<
   AddReactionPayloadDto$Outbound,
   z.ZodTypeDef,
   AddReactionPayloadDto
-> = z.object({
-  messageId: z.string(),
-  emojiName: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    messageId: z.string(),
+    emojiName: z.string(),
+  })
+);
 
 export function addReactionPayloadDtoToJSON(
   addReactionPayloadDto: AddReactionPayloadDto,

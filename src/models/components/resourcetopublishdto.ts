@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   ResourceTypeEnum,
   ResourceTypeEnum$outboundSchema,
@@ -30,10 +31,12 @@ export const ResourceToPublishDto$outboundSchema: z.ZodType<
   ResourceToPublishDto$Outbound,
   z.ZodTypeDef,
   ResourceToPublishDto
-> = z.object({
-  resourceType: ResourceTypeEnum$outboundSchema,
-  resourceId: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    resourceType: ResourceTypeEnum$outboundSchema,
+    resourceId: z.string(),
+  })
+);
 
 export function resourceToPublishDtoToJSON(
   resourceToPublishDto: ResourceToPublishDto,

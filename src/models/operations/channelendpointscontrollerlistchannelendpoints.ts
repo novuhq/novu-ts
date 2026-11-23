@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
@@ -108,14 +108,16 @@ export type ChannelEndpointsControllerListChannelEndpointsResponse = {
 export const ChannelEndpointsControllerListChannelEndpointsQueryParamOrderDirection$outboundSchema:
   z.ZodNativeEnum<
     typeof ChannelEndpointsControllerListChannelEndpointsQueryParamOrderDirection
-  > = z.nativeEnum(
-    ChannelEndpointsControllerListChannelEndpointsQueryParamOrderDirection,
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.nativeEnum(
+      ChannelEndpointsControllerListChannelEndpointsQueryParamOrderDirection,
+    )
   );
 
 /** @internal */
 export const QueryParamChannel$outboundSchema: z.ZodNativeEnum<
   typeof QueryParamChannel
-> = z.nativeEnum(QueryParamChannel);
+> = /* @__PURE__ */ lazySchema$(() => z.nativeEnum(QueryParamChannel));
 
 /** @internal */
 export type ChannelEndpointsControllerListChannelEndpointsRequest$Outbound = {
@@ -140,27 +142,29 @@ export const ChannelEndpointsControllerListChannelEndpointsRequest$outboundSchem
     ChannelEndpointsControllerListChannelEndpointsRequest$Outbound,
     z.ZodTypeDef,
     ChannelEndpointsControllerListChannelEndpointsRequest
-  > = z.object({
-    after: z.string().optional(),
-    before: z.string().optional(),
-    limit: z.number().optional(),
-    orderDirection:
-      ChannelEndpointsControllerListChannelEndpointsQueryParamOrderDirection$outboundSchema
-        .optional(),
-    orderBy: z.string().optional(),
-    includeCursor: z.boolean().optional(),
-    subscriberId: z.string().optional(),
-    contextKeys: z.array(z.string()).optional(),
-    channel: QueryParamChannel$outboundSchema.optional(),
-    providerId: components.ProvidersIdEnum$outboundSchema.optional(),
-    integrationIdentifier: z.string().optional(),
-    connectionIdentifier: z.string().optional(),
-    idempotencyKey: z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      idempotencyKey: "idempotency-key",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      after: z.string().optional(),
+      before: z.string().optional(),
+      limit: z.number().optional(),
+      orderDirection:
+        ChannelEndpointsControllerListChannelEndpointsQueryParamOrderDirection$outboundSchema
+          .optional(),
+      orderBy: z.string().optional(),
+      includeCursor: z.boolean().optional(),
+      subscriberId: z.string().optional(),
+      contextKeys: z.array(z.string()).optional(),
+      channel: QueryParamChannel$outboundSchema.optional(),
+      providerId: components.ProvidersIdEnum$outboundSchema.optional(),
+      integrationIdentifier: z.string().optional(),
+      connectionIdentifier: z.string().optional(),
+      idempotencyKey: z.string().optional(),
+    }).transform((v) => {
+      return remap$(v, {
+        idempotencyKey: "idempotency-key",
+      });
+    })
+  );
 
 export function channelEndpointsControllerListChannelEndpointsRequestToJSON(
   channelEndpointsControllerListChannelEndpointsRequest:
@@ -179,15 +183,17 @@ export const ChannelEndpointsControllerListChannelEndpointsResponse$inboundSchem
     ChannelEndpointsControllerListChannelEndpointsResponse,
     z.ZodTypeDef,
     unknown
-  > = z.object({
-    Headers: z.record(z.array(z.string())).default({}),
-    Result: components.ListChannelEndpointsResponseDto$inboundSchema,
-  }).transform((v) => {
-    return remap$(v, {
-      "Headers": "headers",
-      "Result": "result",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      Headers: z.record(z.array(z.string())).default({}),
+      Result: components.ListChannelEndpointsResponseDto$inboundSchema,
+    }).transform((v) => {
+      return remap$(v, {
+        "Headers": "headers",
+        "Result": "result",
+      });
+    })
+  );
 
 export function channelEndpointsControllerListChannelEndpointsResponseFromJSON(
   jsonString: string,

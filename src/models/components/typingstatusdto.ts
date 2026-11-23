@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type TypingStatusDto = {
   /**
@@ -21,9 +22,11 @@ export const TypingStatusDto$outboundSchema: z.ZodType<
   TypingStatusDto$Outbound,
   z.ZodTypeDef,
   TypingStatusDto
-> = z.object({
-  status: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    status: z.string().optional(),
+  })
+);
 
 export function typingStatusDtoToJSON(
   typingStatusDto: TypingStatusDto,

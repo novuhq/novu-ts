@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { ActionDto, ActionDto$inboundSchema } from "./actiondto.js";
@@ -45,15 +45,17 @@ export const InAppRenderOutput$inboundSchema: z.ZodType<
   InAppRenderOutput,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  subject: z.string().optional(),
-  body: z.string(),
-  avatar: z.string().optional(),
-  primaryAction: ActionDto$inboundSchema.optional(),
-  secondaryAction: ActionDto$inboundSchema.optional(),
-  data: z.record(z.any()).optional(),
-  redirect: RedirectDto$inboundSchema.optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    subject: z.string().optional(),
+    body: z.string(),
+    avatar: z.string().optional(),
+    primaryAction: ActionDto$inboundSchema.optional(),
+    secondaryAction: ActionDto$inboundSchema.optional(),
+    data: z.record(z.any()).optional(),
+    redirect: RedirectDto$inboundSchema.optional(),
+  })
+);
 
 export function inAppRenderOutputFromJSON(
   jsonString: string,

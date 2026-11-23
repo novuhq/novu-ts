@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type DeleteMessagePayloadDto = {
   /**
@@ -21,9 +22,11 @@ export const DeleteMessagePayloadDto$outboundSchema: z.ZodType<
   DeleteMessagePayloadDto$Outbound,
   z.ZodTypeDef,
   DeleteMessagePayloadDto
-> = z.object({
-  messageId: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    messageId: z.string(),
+  })
+);
 
 export function deleteMessagePayloadDtoToJSON(
   deleteMessagePayloadDto: DeleteMessagePayloadDto,

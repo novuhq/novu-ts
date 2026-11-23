@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -35,16 +35,18 @@ export const LayoutsControllerDuplicateRequest$outboundSchema: z.ZodType<
   LayoutsControllerDuplicateRequest$Outbound,
   z.ZodTypeDef,
   LayoutsControllerDuplicateRequest
-> = z.object({
-  layoutId: z.string(),
-  idempotencyKey: z.string().optional(),
-  duplicateLayoutDto: components.DuplicateLayoutDto$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    idempotencyKey: "idempotency-key",
-    duplicateLayoutDto: "DuplicateLayoutDto",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    layoutId: z.string(),
+    idempotencyKey: z.string().optional(),
+    duplicateLayoutDto: components.DuplicateLayoutDto$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      idempotencyKey: "idempotency-key",
+      duplicateLayoutDto: "DuplicateLayoutDto",
+    });
+  })
+);
 
 export function layoutsControllerDuplicateRequestToJSON(
   layoutsControllerDuplicateRequest: LayoutsControllerDuplicateRequest,
@@ -61,15 +63,17 @@ export const LayoutsControllerDuplicateResponse$inboundSchema: z.ZodType<
   LayoutsControllerDuplicateResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  Headers: z.record(z.array(z.string())).default({}),
-  Result: components.LayoutResponseDto$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "Headers": "headers",
-    "Result": "result",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    Headers: z.record(z.array(z.string())).default({}),
+    Result: components.LayoutResponseDto$inboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      "Headers": "headers",
+      "Result": "result",
+    });
+  })
+);
 
 export function layoutsControllerDuplicateResponseFromJSON(
   jsonString: string,

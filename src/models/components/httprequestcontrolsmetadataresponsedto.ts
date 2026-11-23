@@ -5,6 +5,7 @@
 import * as z from "zod/v3";
 import {
   collectExtraKeys as collectExtraKeys$,
+  lazySchema as lazySchema$,
   safeParse,
 } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -79,7 +80,9 @@ export type HttpRequestControlsMetadataResponseDto = {
 /** @internal */
 export const HttpRequestControlsMetadataResponseDtoBody$inboundSchema:
   z.ZodType<HttpRequestControlsMetadataResponseDtoBody, z.ZodTypeDef, unknown> =
-    z.union([z.string(), z.array(HttpRequestKeyValuePairDto$inboundSchema)]);
+    /* @__PURE__ */ lazySchema$(() =>
+      z.union([z.string(), z.array(HttpRequestKeyValuePairDto$inboundSchema)])
+    );
 
 export function httpRequestControlsMetadataResponseDtoBodyFromJSON(
   jsonString: string,
@@ -103,21 +106,23 @@ export const HttpRequestControlsMetadataResponseDtoValues$inboundSchema:
     HttpRequestControlsMetadataResponseDtoValues,
     z.ZodTypeDef,
     unknown
-  > = collectExtraKeys$(
-    z.object({
-      method: HttpMethodEnum$inboundSchema,
-      url: z.string(),
-      headers: z.array(HttpRequestKeyValuePairDto$inboundSchema).optional(),
-      body: z.union([
-        z.string(),
-        z.array(HttpRequestKeyValuePairDto$inboundSchema),
-      ]).optional(),
-      responseBodySchema: z.record(z.any()).optional(),
-      enforceSchemaValidation: z.boolean().optional(),
-      continueOnFailure: z.boolean().optional(),
-    }).catchall(z.any()),
-    "additionalProperties",
-    true,
+  > = /* @__PURE__ */ lazySchema$(() =>
+    collectExtraKeys$(
+      z.object({
+        method: HttpMethodEnum$inboundSchema,
+        url: z.string(),
+        headers: z.array(HttpRequestKeyValuePairDto$inboundSchema).optional(),
+        body: z.union([
+          z.string(),
+          z.array(HttpRequestKeyValuePairDto$inboundSchema),
+        ]).optional(),
+        responseBodySchema: z.record(z.any()).optional(),
+        enforceSchemaValidation: z.boolean().optional(),
+        continueOnFailure: z.boolean().optional(),
+      }).catchall(z.any()),
+      "additionalProperties",
+      true,
+    )
   );
 
 export function httpRequestControlsMetadataResponseDtoValuesFromJSON(
@@ -141,13 +146,15 @@ export const HttpRequestControlsMetadataResponseDto$inboundSchema: z.ZodType<
   HttpRequestControlsMetadataResponseDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  dataSchema: z.record(z.any()).optional(),
-  uiSchema: UiSchema$inboundSchema.optional(),
-  values: z.lazy(() =>
-    HttpRequestControlsMetadataResponseDtoValues$inboundSchema
-  ).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    dataSchema: z.record(z.any()).optional(),
+    uiSchema: UiSchema$inboundSchema.optional(),
+    values: z.lazy(() =>
+      HttpRequestControlsMetadataResponseDtoValues$inboundSchema
+    ).optional(),
+  })
+);
 
 export function httpRequestControlsMetadataResponseDtoFromJSON(
   jsonString: string,

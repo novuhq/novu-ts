@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 
 export const HumanSignalDtoType = {
@@ -64,12 +65,11 @@ export type HumanSignalDto = {
 /** @internal */
 export const HumanSignalDtoType$outboundSchema: z.ZodNativeEnum<
   typeof HumanSignalDtoType
-> = z.nativeEnum(HumanSignalDtoType);
+> = /* @__PURE__ */ lazySchema$(() => z.nativeEnum(HumanSignalDtoType));
 
 /** @internal */
-export const Kind$outboundSchema: z.ZodNativeEnum<typeof Kind> = z.nativeEnum(
-  Kind,
-);
+export const Kind$outboundSchema: z.ZodNativeEnum<typeof Kind> =
+  /* @__PURE__ */ lazySchema$(() => z.nativeEnum(Kind));
 
 /** @internal */
 export type HumanSignalDtoTo$Outbound = string | Array<string>;
@@ -79,7 +79,9 @@ export const HumanSignalDtoTo$outboundSchema: z.ZodType<
   HumanSignalDtoTo$Outbound,
   z.ZodTypeDef,
   HumanSignalDtoTo
-> = z.union([z.string(), z.array(z.string())]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.union([z.string(), z.array(z.string())])
+);
 
 export function humanSignalDtoToToJSON(
   humanSignalDtoTo: HumanSignalDtoTo,
@@ -106,16 +108,18 @@ export const HumanSignalDto$outboundSchema: z.ZodType<
   HumanSignalDto$Outbound,
   z.ZodTypeDef,
   HumanSignalDto
-> = z.object({
-  type: HumanSignalDtoType$outboundSchema,
-  kind: Kind$outboundSchema,
-  card: z.any().optional(),
-  requestId: z.string(),
-  actionIdentifier: z.string().optional(),
-  from: z.string().optional(),
-  ttlSeconds: z.number().optional(),
-  to: z.union([z.string(), z.array(z.string())]).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    type: HumanSignalDtoType$outboundSchema,
+    kind: Kind$outboundSchema,
+    card: z.any().optional(),
+    requestId: z.string(),
+    actionIdentifier: z.string().optional(),
+    from: z.string().optional(),
+    ttlSeconds: z.number().optional(),
+    to: z.union([z.string(), z.array(z.string())]).optional(),
+  })
+);
 
 export function humanSignalDtoToJSON(humanSignalDto: HumanSignalDto): string {
   return JSON.stringify(HumanSignalDto$outboundSchema.parse(humanSignalDto));

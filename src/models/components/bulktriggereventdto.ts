@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   TriggerEventRequestDto,
   TriggerEventRequestDto$Outbound,
@@ -23,9 +24,11 @@ export const BulkTriggerEventDto$outboundSchema: z.ZodType<
   BulkTriggerEventDto$Outbound,
   z.ZodTypeDef,
   BulkTriggerEventDto
-> = z.object({
-  events: z.array(TriggerEventRequestDto$outboundSchema),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    events: z.array(TriggerEventRequestDto$outboundSchema),
+  })
+);
 
 export function bulkTriggerEventDtoToJSON(
   bulkTriggerEventDto: BulkTriggerEventDto,

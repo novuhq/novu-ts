@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -56,11 +56,13 @@ export type TriggerEventResponseDto = {
 /** @internal */
 export const TriggerEventResponseDtoStatus$inboundSchema: z.ZodNativeEnum<
   typeof TriggerEventResponseDtoStatus
-> = z.nativeEnum(TriggerEventResponseDtoStatus);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.nativeEnum(TriggerEventResponseDtoStatus)
+);
 
 /** @internal */
 export const JobData$inboundSchema: z.ZodType<JobData, z.ZodTypeDef, unknown> =
-  z.object({});
+  /* @__PURE__ */ lazySchema$(() => z.object({}));
 
 export function jobDataFromJSON(
   jsonString: string,
@@ -77,14 +79,16 @@ export const TriggerEventResponseDto$inboundSchema: z.ZodType<
   TriggerEventResponseDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  acknowledged: z.boolean(),
-  status: TriggerEventResponseDtoStatus$inboundSchema,
-  error: z.array(z.string()).optional(),
-  transactionId: z.string().optional(),
-  activityFeedLink: z.string().optional(),
-  jobData: z.lazy(() => JobData$inboundSchema).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    acknowledged: z.boolean(),
+    status: TriggerEventResponseDtoStatus$inboundSchema,
+    error: z.array(z.string()).optional(),
+    transactionId: z.string().optional(),
+    activityFeedLink: z.string().optional(),
+    jobData: z.lazy(() => JobData$inboundSchema).optional(),
+  })
+);
 
 export function triggerEventResponseDtoFromJSON(
   jsonString: string,

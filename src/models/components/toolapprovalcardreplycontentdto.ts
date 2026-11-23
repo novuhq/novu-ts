@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   FileRefDto,
   FileRefDto$Outbound,
@@ -28,10 +29,12 @@ export const ToolApprovalCardReplyContentDto$outboundSchema: z.ZodType<
   ToolApprovalCardReplyContentDto$Outbound,
   z.ZodTypeDef,
   ToolApprovalCardReplyContentDto
-> = z.object({
-  toolApprovalCard: z.record(z.any()),
-  files: z.array(FileRefDto$outboundSchema).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    toolApprovalCard: z.record(z.any()),
+    files: z.array(FileRefDto$outboundSchema).optional(),
+  })
+);
 
 export function toolApprovalCardReplyContentDtoToJSON(
   toolApprovalCardReplyContentDto: ToolApprovalCardReplyContentDto,
