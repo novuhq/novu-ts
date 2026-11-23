@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   SlackChannelEndpointDto,
   SlackChannelEndpointDto$Outbound,
@@ -69,10 +70,12 @@ export const CreateSlackChannelEndpointDtoContext2$outboundSchema: z.ZodType<
   CreateSlackChannelEndpointDtoContext2$Outbound,
   z.ZodTypeDef,
   CreateSlackChannelEndpointDtoContext2
-> = z.object({
-  id: z.string(),
-  data: z.record(z.any()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    data: z.record(z.any()).optional(),
+  })
+);
 
 export function createSlackChannelEndpointDtoContext2ToJSON(
   createSlackChannelEndpointDtoContext2: CreateSlackChannelEndpointDtoContext2,
@@ -94,10 +97,12 @@ export const CreateSlackChannelEndpointDtoContext$outboundSchema: z.ZodType<
   CreateSlackChannelEndpointDtoContext$Outbound,
   z.ZodTypeDef,
   CreateSlackChannelEndpointDtoContext
-> = z.union([
-  z.lazy(() => CreateSlackChannelEndpointDtoContext2$outboundSchema),
-  z.string(),
-]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.union([
+    z.lazy(() => CreateSlackChannelEndpointDtoContext2$outboundSchema),
+    z.string(),
+  ])
+);
 
 export function createSlackChannelEndpointDtoContextToJSON(
   createSlackChannelEndpointDtoContext: CreateSlackChannelEndpointDtoContext,
@@ -128,21 +133,21 @@ export const CreateSlackChannelEndpointDto$outboundSchema: z.ZodType<
   CreateSlackChannelEndpointDto$Outbound,
   z.ZodTypeDef,
   CreateSlackChannelEndpointDto
-> = z.object({
-  identifier: z.string().optional(),
-  subscriberId: z.string(),
-  createSubscriberIfMissing: z.boolean().default(false),
-  context: z.record(
-    z.union([
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    identifier: z.string().optional(),
+    subscriberId: z.string(),
+    createSubscriberIfMissing: z.boolean().default(false),
+    context: z.record(z.union([
       z.lazy(() => CreateSlackChannelEndpointDtoContext2$outboundSchema),
       z.string(),
-    ]),
-  ).optional(),
-  integrationIdentifier: z.string(),
-  connectionIdentifier: z.string().optional(),
-  type: z.literal("slack_channel"),
-  endpoint: SlackChannelEndpointDto$outboundSchema,
-});
+    ])).optional(),
+    integrationIdentifier: z.string(),
+    connectionIdentifier: z.string().optional(),
+    type: z.literal("slack_channel"),
+    endpoint: SlackChannelEndpointDto$outboundSchema,
+  })
+);
 
 export function createSlackChannelEndpointDtoToJSON(
   createSlackChannelEndpointDto: CreateSlackChannelEndpointDto,

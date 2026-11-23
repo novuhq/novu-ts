@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { StepIssuesDto, StepIssuesDto$inboundSchema } from "./stepissuesdto.js";
@@ -28,11 +28,13 @@ export const StepListResponseDto$inboundSchema: z.ZodType<
   StepListResponseDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  slug: z.string(),
-  type: z.string(),
-  issues: StepIssuesDto$inboundSchema.optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    slug: z.string(),
+    type: z.string(),
+    issues: StepIssuesDto$inboundSchema.optional(),
+  })
+);
 
 export function stepListResponseDtoFromJSON(
   jsonString: string,

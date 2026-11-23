@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import {
   EmailFromControlDto,
@@ -70,7 +71,7 @@ export type EmailControlDto = {
 /** @internal */
 export const EmailControlDtoEditorType$outboundSchema: z.ZodNativeEnum<
   typeof EmailControlDtoEditorType
-> = z.nativeEnum(EmailControlDtoEditorType);
+> = /* @__PURE__ */ lazySchema$(() => z.nativeEnum(EmailControlDtoEditorType));
 
 /** @internal */
 export type EmailControlDto$Outbound = {
@@ -91,18 +92,20 @@ export const EmailControlDto$outboundSchema: z.ZodType<
   EmailControlDto$Outbound,
   z.ZodTypeDef,
   EmailControlDto
-> = z.object({
-  skip: z.record(z.any()).optional(),
-  subject: z.string(),
-  body: z.string().default(""),
-  editorType: EmailControlDtoEditorType$outboundSchema.default("block"),
-  disableOutputSanitization: z.boolean().default(false),
-  layoutId: z.nullable(z.string()).optional(),
-  from: EmailFromControlDto$outboundSchema.optional(),
-  useProviderDefaults: z.boolean().optional(),
-  replyTo: z.string().optional(),
-  preheader: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    skip: z.record(z.any()).optional(),
+    subject: z.string(),
+    body: z.string().default(""),
+    editorType: EmailControlDtoEditorType$outboundSchema.default("block"),
+    disableOutputSanitization: z.boolean().default(false),
+    layoutId: z.nullable(z.string()).optional(),
+    from: EmailFromControlDto$outboundSchema.optional(),
+    useProviderDefaults: z.boolean().optional(),
+    replyTo: z.string().optional(),
+    preheader: z.string().optional(),
+  })
+);
 
 export function emailControlDtoToJSON(
   emailControlDto: EmailControlDto,

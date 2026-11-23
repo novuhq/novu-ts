@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -55,7 +55,7 @@ export const WorkflowIntegrationStatus$inboundSchema: z.ZodType<
   WorkflowIntegrationStatus,
   z.ZodTypeDef,
   unknown
-> = z.object({});
+> = /* @__PURE__ */ lazySchema$(() => z.object({}));
 
 export function workflowIntegrationStatusFromJSON(
   jsonString: string,
@@ -72,40 +72,42 @@ export const WorkflowResponse$inboundSchema: z.ZodType<
   WorkflowResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  _id: z.string().optional(),
-  name: z.string(),
-  description: z.string(),
-  active: z.boolean(),
-  draft: z.boolean(),
-  preferenceSettings: SubscriberPreferenceChannels$inboundSchema,
-  critical: z.boolean(),
-  tags: z.array(z.string()),
-  steps: z.array(NotificationStepDto$inboundSchema),
-  _organizationId: z.string(),
-  _creatorId: z.string(),
-  _environmentId: z.string(),
-  triggers: z.array(NotificationTrigger$inboundSchema),
-  _notificationGroupId: z.string(),
-  _parentId: z.string().optional(),
-  deleted: z.boolean(),
-  deletedAt: z.string(),
-  deletedBy: z.string(),
-  notificationGroup: NotificationGroup$inboundSchema.optional(),
-  data: z.record(z.any()).optional(),
-  workflowIntegrationStatus: z.lazy(() =>
-    WorkflowIntegrationStatus$inboundSchema
-  ).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_id": "id",
-    "_organizationId": "organizationId",
-    "_creatorId": "creatorId",
-    "_environmentId": "environmentId",
-    "_notificationGroupId": "notificationGroupId",
-    "_parentId": "parentId",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    _id: z.string().optional(),
+    name: z.string(),
+    description: z.string(),
+    active: z.boolean(),
+    draft: z.boolean(),
+    preferenceSettings: SubscriberPreferenceChannels$inboundSchema,
+    critical: z.boolean(),
+    tags: z.array(z.string()),
+    steps: z.array(NotificationStepDto$inboundSchema),
+    _organizationId: z.string(),
+    _creatorId: z.string(),
+    _environmentId: z.string(),
+    triggers: z.array(NotificationTrigger$inboundSchema),
+    _notificationGroupId: z.string(),
+    _parentId: z.string().optional(),
+    deleted: z.boolean(),
+    deletedAt: z.string(),
+    deletedBy: z.string(),
+    notificationGroup: NotificationGroup$inboundSchema.optional(),
+    data: z.record(z.any()).optional(),
+    workflowIntegrationStatus: z.lazy(() =>
+      WorkflowIntegrationStatus$inboundSchema
+    ).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_id": "id",
+      "_organizationId": "organizationId",
+      "_creatorId": "creatorId",
+      "_environmentId": "environmentId",
+      "_notificationGroupId": "notificationGroupId",
+      "_parentId": "parentId",
+    });
+  })
+);
 
 export function workflowResponseFromJSON(
   jsonString: string,

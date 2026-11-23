@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -38,16 +38,18 @@ export const WorkflowControllerUpdateRequest$outboundSchema: z.ZodType<
   WorkflowControllerUpdateRequest$Outbound,
   z.ZodTypeDef,
   WorkflowControllerUpdateRequest
-> = z.object({
-  workflowId: z.string(),
-  idempotencyKey: z.string().optional(),
-  updateWorkflowDto: components.UpdateWorkflowDto$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    idempotencyKey: "idempotency-key",
-    updateWorkflowDto: "UpdateWorkflowDto",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    workflowId: z.string(),
+    idempotencyKey: z.string().optional(),
+    updateWorkflowDto: components.UpdateWorkflowDto$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      idempotencyKey: "idempotency-key",
+      updateWorkflowDto: "UpdateWorkflowDto",
+    });
+  })
+);
 
 export function workflowControllerUpdateRequestToJSON(
   workflowControllerUpdateRequest: WorkflowControllerUpdateRequest,
@@ -64,15 +66,17 @@ export const WorkflowControllerUpdateResponse$inboundSchema: z.ZodType<
   WorkflowControllerUpdateResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  Headers: z.record(z.array(z.string())).default({}),
-  Result: components.WorkflowResponseDto$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "Headers": "headers",
-    "Result": "result",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    Headers: z.record(z.array(z.string())).default({}),
+    Result: components.WorkflowResponseDto$inboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      "Headers": "headers",
+      "Result": "result",
+    });
+  })
+);
 
 export function workflowControllerUpdateResponseFromJSON(
   jsonString: string,

@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   CustomControlDto,
   CustomControlDto$Outbound,
@@ -50,7 +51,9 @@ export const CustomStepUpsertDtoControlValues$outboundSchema: z.ZodType<
   CustomStepUpsertDtoControlValues$Outbound,
   z.ZodTypeDef,
   CustomStepUpsertDtoControlValues
-> = z.union([CustomControlDto$outboundSchema, z.record(z.any())]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.union([CustomControlDto$outboundSchema, z.record(z.any())])
+);
 
 export function customStepUpsertDtoControlValuesToJSON(
   customStepUpsertDtoControlValues: CustomStepUpsertDtoControlValues,
@@ -76,18 +79,20 @@ export const CustomStepUpsertDto$outboundSchema: z.ZodType<
   CustomStepUpsertDto$Outbound,
   z.ZodTypeDef,
   CustomStepUpsertDto
-> = z.object({
-  id: z.string().optional(),
-  stepId: z.string().optional(),
-  name: z.string(),
-  type: z.literal("custom"),
-  controlValues: z.union([CustomControlDto$outboundSchema, z.record(z.any())])
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    id: "_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string().optional(),
+    stepId: z.string().optional(),
+    name: z.string(),
+    type: z.literal("custom"),
+    controlValues: z.union([CustomControlDto$outboundSchema, z.record(z.any())])
+      .optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      id: "_id",
+    });
+  })
+);
 
 export function customStepUpsertDtoToJSON(
   customStepUpsertDto: CustomStepUpsertDto,

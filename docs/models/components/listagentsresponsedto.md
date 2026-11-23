@@ -11,7 +11,19 @@ let value: ListAgentsResponseDto = {
       id: "<id>",
       name: "<value>",
       identifier: "<value>",
-      behavior: {},
+      behavior: {
+        accessRule: {
+          "in": [
+            {
+              "var": "context.tenant.data.plan",
+            },
+            [
+              "pro",
+              "enterprise",
+            ],
+          ],
+        },
+      },
       active: false,
       environmentId: "<id>",
       organizationId: "<id>",

@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   PreviewPayloadDto,
   PreviewPayloadDto$Outbound,
@@ -31,10 +32,12 @@ export const GeneratePreviewRequestDto$outboundSchema: z.ZodType<
   GeneratePreviewRequestDto$Outbound,
   z.ZodTypeDef,
   GeneratePreviewRequestDto
-> = z.object({
-  controlValues: z.record(z.any()).optional(),
-  previewPayload: PreviewPayloadDto$outboundSchema.optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    controlValues: z.record(z.any()).optional(),
+    previewPayload: PreviewPayloadDto$outboundSchema.optional(),
+  })
+);
 
 export function generatePreviewRequestDtoToJSON(
   generatePreviewRequestDto: GeneratePreviewRequestDto,

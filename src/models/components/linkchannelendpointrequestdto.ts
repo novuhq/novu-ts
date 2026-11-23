@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 /**
  * Rich context object with id and optional data
@@ -48,10 +49,12 @@ export const LinkChannelEndpointRequestDtoContext2$outboundSchema: z.ZodType<
   LinkChannelEndpointRequestDtoContext2$Outbound,
   z.ZodTypeDef,
   LinkChannelEndpointRequestDtoContext2
-> = z.object({
-  id: z.string(),
-  data: z.record(z.any()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    data: z.record(z.any()).optional(),
+  })
+);
 
 export function linkChannelEndpointRequestDtoContext2ToJSON(
   linkChannelEndpointRequestDtoContext2: LinkChannelEndpointRequestDtoContext2,
@@ -73,10 +76,12 @@ export const LinkChannelEndpointRequestDtoContext$outboundSchema: z.ZodType<
   LinkChannelEndpointRequestDtoContext$Outbound,
   z.ZodTypeDef,
   LinkChannelEndpointRequestDtoContext
-> = z.union([
-  z.lazy(() => LinkChannelEndpointRequestDtoContext2$outboundSchema),
-  z.string(),
-]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.union([
+    z.lazy(() => LinkChannelEndpointRequestDtoContext2$outboundSchema),
+    z.string(),
+  ])
+);
 
 export function linkChannelEndpointRequestDtoContextToJSON(
   linkChannelEndpointRequestDtoContext: LinkChannelEndpointRequestDtoContext,
@@ -103,17 +108,17 @@ export const LinkChannelEndpointRequestDto$outboundSchema: z.ZodType<
   LinkChannelEndpointRequestDto$Outbound,
   z.ZodTypeDef,
   LinkChannelEndpointRequestDto
-> = z.object({
-  integrationIdentifier: z.string(),
-  subscriberId: z.string(),
-  context: z.record(
-    z.union([
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    integrationIdentifier: z.string(),
+    subscriberId: z.string(),
+    context: z.record(z.union([
       z.lazy(() => LinkChannelEndpointRequestDtoContext2$outboundSchema),
       z.string(),
-    ]),
-  ).optional(),
-  contextHash: z.string().optional(),
-});
+    ])).optional(),
+    contextHash: z.string().optional(),
+  })
+);
 
 export function linkChannelEndpointRequestDtoToJSON(
   linkChannelEndpointRequestDto: LinkChannelEndpointRequestDto,

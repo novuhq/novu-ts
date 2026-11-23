@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -21,10 +21,12 @@ export type GetSubscriberNotificationsCountResponseDto = {
 /** @internal */
 export const GetSubscriberNotificationsCountResponseDto$inboundSchema:
   z.ZodType<GetSubscriberNotificationsCountResponseDto, z.ZodTypeDef, unknown> =
-    z.object({
-      count: z.number(),
-      filter: z.record(z.any()),
-    });
+    /* @__PURE__ */ lazySchema$(() =>
+      z.object({
+        count: z.number(),
+        filter: z.record(z.any()),
+      })
+    );
 
 export function getSubscriberNotificationsCountResponseDtoFromJSON(
   jsonString: string,

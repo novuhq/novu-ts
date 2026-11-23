@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   AgentBehaviorDto,
   AgentBehaviorDto$Outbound,
@@ -44,15 +45,17 @@ export const UpdateAgentRequestDto$outboundSchema: z.ZodType<
   UpdateAgentRequestDto$Outbound,
   z.ZodTypeDef,
   UpdateAgentRequestDto
-> = z.object({
-  name: z.string().optional(),
-  description: z.string().optional(),
-  active: z.boolean().optional(),
-  behavior: AgentBehaviorDto$outboundSchema.optional(),
-  bridgeUrl: z.string().optional(),
-  devBridgeUrl: z.string().optional(),
-  devBridgeActive: z.boolean().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    name: z.string().optional(),
+    description: z.string().optional(),
+    active: z.boolean().optional(),
+    behavior: AgentBehaviorDto$outboundSchema.optional(),
+    bridgeUrl: z.string().optional(),
+    devBridgeUrl: z.string().optional(),
+    devBridgeActive: z.boolean().optional(),
+  })
+);
 
 export function updateAgentRequestDtoToJSON(
   updateAgentRequestDto: UpdateAgentRequestDto,

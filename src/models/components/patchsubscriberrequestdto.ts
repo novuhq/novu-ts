@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type PatchSubscriberRequestDto = {
   /**
@@ -56,16 +57,18 @@ export const PatchSubscriberRequestDto$outboundSchema: z.ZodType<
   PatchSubscriberRequestDto$Outbound,
   z.ZodTypeDef,
   PatchSubscriberRequestDto
-> = z.object({
-  firstName: z.nullable(z.string()).optional(),
-  lastName: z.nullable(z.string()).optional(),
-  email: z.nullable(z.string()).optional(),
-  phone: z.nullable(z.string()).optional(),
-  avatar: z.nullable(z.string()).optional(),
-  locale: z.nullable(z.string()).optional(),
-  timezone: z.nullable(z.string()).optional(),
-  data: z.nullable(z.record(z.any())).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    firstName: z.nullable(z.string()).optional(),
+    lastName: z.nullable(z.string()).optional(),
+    email: z.nullable(z.string()).optional(),
+    phone: z.nullable(z.string()).optional(),
+    avatar: z.nullable(z.string()).optional(),
+    locale: z.nullable(z.string()).optional(),
+    timezone: z.nullable(z.string()).optional(),
+    data: z.nullable(z.record(z.any())).optional(),
+  })
+);
 
 export function patchSubscriberRequestDtoToJSON(
   patchSubscriberRequestDto: PatchSubscriberRequestDto,

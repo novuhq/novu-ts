@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type UpdateDomainDto = {
   /**
@@ -21,9 +22,11 @@ export const UpdateDomainDto$outboundSchema: z.ZodType<
   UpdateDomainDto$Outbound,
   z.ZodTypeDef,
   UpdateDomainDto
-> = z.object({
-  data: z.record(z.string()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    data: z.record(z.string()).optional(),
+  })
+);
 
 export function updateDomainDtoToJSON(
   updateDomainDto: UpdateDomainDto,

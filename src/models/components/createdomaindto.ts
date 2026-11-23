@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type CreateDomainDto = {
   /**
@@ -26,10 +27,12 @@ export const CreateDomainDto$outboundSchema: z.ZodType<
   CreateDomainDto$Outbound,
   z.ZodTypeDef,
   CreateDomainDto
-> = z.object({
-  name: z.string(),
-  data: z.record(z.string()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    name: z.string(),
+    data: z.record(z.string()).optional(),
+  })
+);
 
 export function createDomainDtoToJSON(
   createDomainDto: CreateDomainDto,

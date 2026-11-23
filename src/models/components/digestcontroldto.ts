@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import {
   LookBackWindowDto,
@@ -72,12 +73,12 @@ export type DigestControlDto = {
 /** @internal */
 export const DigestControlDtoType$outboundSchema: z.ZodNativeEnum<
   typeof DigestControlDtoType
-> = z.nativeEnum(DigestControlDtoType);
+> = /* @__PURE__ */ lazySchema$(() => z.nativeEnum(DigestControlDtoType));
 
 /** @internal */
 export const DigestControlDtoUnit$outboundSchema: z.ZodNativeEnum<
   typeof DigestControlDtoUnit
-> = z.nativeEnum(DigestControlDtoUnit);
+> = /* @__PURE__ */ lazySchema$(() => z.nativeEnum(DigestControlDtoUnit));
 
 /** @internal */
 export type DigestControlDto$Outbound = {
@@ -95,15 +96,17 @@ export const DigestControlDto$outboundSchema: z.ZodType<
   DigestControlDto$Outbound,
   z.ZodTypeDef,
   DigestControlDto
-> = z.object({
-  skip: z.record(z.any()).optional(),
-  type: DigestControlDtoType$outboundSchema.optional(),
-  amount: z.number().optional(),
-  unit: DigestControlDtoUnit$outboundSchema.optional(),
-  lookBackWindow: LookBackWindowDto$outboundSchema.optional(),
-  cron: z.string().optional(),
-  digestKey: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    skip: z.record(z.any()).optional(),
+    type: DigestControlDtoType$outboundSchema.optional(),
+    amount: z.number().optional(),
+    unit: DigestControlDtoUnit$outboundSchema.optional(),
+    lookBackWindow: LookBackWindowDto$outboundSchema.optional(),
+    cron: z.string().optional(),
+    digestKey: z.string().optional(),
+  })
+);
 
 export function digestControlDtoToJSON(
   digestControlDto: DigestControlDto,

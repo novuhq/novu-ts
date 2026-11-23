@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type SmsControlDto = {
   /**
@@ -26,10 +27,12 @@ export const SmsControlDto$outboundSchema: z.ZodType<
   SmsControlDto$Outbound,
   z.ZodTypeDef,
   SmsControlDto
-> = z.object({
-  skip: z.record(z.any()).optional(),
-  body: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    skip: z.record(z.any()).optional(),
+    body: z.string().optional(),
+  })
+);
 
 export function smsControlDtoToJSON(smsControlDto: SmsControlDto): string {
   return JSON.stringify(SmsControlDto$outboundSchema.parse(smsControlDto));

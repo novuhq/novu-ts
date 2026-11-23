@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -102,16 +102,18 @@ export const UpdatedBy$inboundSchema: z.ZodType<
   UpdatedBy,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  _id: z.string(),
-  firstName: z.nullable(z.string()).optional(),
-  lastName: z.nullable(z.string()).optional(),
-  externalId: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_id": "id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    _id: z.string(),
+    firstName: z.nullable(z.string()).optional(),
+    lastName: z.nullable(z.string()).optional(),
+    externalId: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_id": "id",
+    });
+  })
+);
 
 export function updatedByFromJSON(
   jsonString: string,
@@ -128,25 +130,27 @@ export const LayoutResponseDto$inboundSchema: z.ZodType<
   LayoutResponseDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  _id: z.string(),
-  layoutId: z.string(),
-  slug: z.string(),
-  name: z.string(),
-  isDefault: z.boolean(),
-  isTranslationEnabled: z.boolean(),
-  updatedAt: z.string(),
-  updatedBy: z.nullable(z.lazy(() => UpdatedBy$inboundSchema)).optional(),
-  createdAt: z.string(),
-  origin: ResourceOriginEnum$inboundSchema,
-  type: ResourceTypeEnum$inboundSchema,
-  variables: z.nullable(z.record(z.any())).optional(),
-  controls: LayoutControlsDto$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "_id": "id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    _id: z.string(),
+    layoutId: z.string(),
+    slug: z.string(),
+    name: z.string(),
+    isDefault: z.boolean(),
+    isTranslationEnabled: z.boolean(),
+    updatedAt: z.string(),
+    updatedBy: z.nullable(z.lazy(() => UpdatedBy$inboundSchema)).optional(),
+    createdAt: z.string(),
+    origin: ResourceOriginEnum$inboundSchema,
+    type: ResourceTypeEnum$inboundSchema,
+    variables: z.nullable(z.record(z.any())).optional(),
+    controls: LayoutControlsDto$inboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      "_id": "id",
+    });
+  })
+);
 
 export function layoutResponseDtoFromJSON(
   jsonString: string,

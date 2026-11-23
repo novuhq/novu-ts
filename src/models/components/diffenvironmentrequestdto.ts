@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type DiffEnvironmentRequestDto = {
   /**
@@ -21,9 +22,11 @@ export const DiffEnvironmentRequestDto$outboundSchema: z.ZodType<
   DiffEnvironmentRequestDto$Outbound,
   z.ZodTypeDef,
   DiffEnvironmentRequestDto
-> = z.object({
-  sourceEnvironmentId: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    sourceEnvironmentId: z.string().optional(),
+  })
+);
 
 export function diffEnvironmentRequestDtoToJSON(
   diffEnvironmentRequestDto: DiffEnvironmentRequestDto,

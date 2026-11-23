@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
@@ -53,7 +53,7 @@ export type SubscribersControllerRevertNotificationActionResponse = {
 /** @internal */
 export const PathParamActionType$outboundSchema: z.ZodNativeEnum<
   typeof PathParamActionType
-> = z.nativeEnum(PathParamActionType);
+> = /* @__PURE__ */ lazySchema$(() => z.nativeEnum(PathParamActionType));
 
 /** @internal */
 export type SubscribersControllerRevertNotificationActionRequest$Outbound = {
@@ -70,17 +70,19 @@ export const SubscribersControllerRevertNotificationActionRequest$outboundSchema
     SubscribersControllerRevertNotificationActionRequest$Outbound,
     z.ZodTypeDef,
     SubscribersControllerRevertNotificationActionRequest
-  > = z.object({
-    subscriberId: z.string(),
-    notificationId: z.string(),
-    actionType: PathParamActionType$outboundSchema,
-    contextKeys: z.array(z.string()).optional(),
-    idempotencyKey: z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      idempotencyKey: "idempotency-key",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      subscriberId: z.string(),
+      notificationId: z.string(),
+      actionType: PathParamActionType$outboundSchema,
+      contextKeys: z.array(z.string()).optional(),
+      idempotencyKey: z.string().optional(),
+    }).transform((v) => {
+      return remap$(v, {
+        idempotencyKey: "idempotency-key",
+      });
+    })
+  );
 
 export function subscribersControllerRevertNotificationActionRequestToJSON(
   subscribersControllerRevertNotificationActionRequest:
@@ -99,15 +101,17 @@ export const SubscribersControllerRevertNotificationActionResponse$inboundSchema
     SubscribersControllerRevertNotificationActionResponse,
     z.ZodTypeDef,
     unknown
-  > = z.object({
-    Headers: z.record(z.array(z.string())).default({}),
-    Result: components.InboxNotificationDto$inboundSchema,
-  }).transform((v) => {
-    return remap$(v, {
-      "Headers": "headers",
-      "Result": "result",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      Headers: z.record(z.array(z.string())).default({}),
+      Result: components.InboxNotificationDto$inboundSchema,
+    }).transform((v) => {
+      return remap$(v, {
+        "Headers": "headers",
+        "Result": "result",
+      });
+    })
+  );
 
 export function subscribersControllerRevertNotificationActionResponseFromJSON(
   jsonString: string,

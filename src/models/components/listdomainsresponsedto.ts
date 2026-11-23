@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -39,13 +39,15 @@ export const ListDomainsResponseDto$inboundSchema: z.ZodType<
   ListDomainsResponseDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  data: z.array(DomainResponseDto$inboundSchema),
-  next: z.nullable(z.string()),
-  previous: z.nullable(z.string()),
-  totalCount: z.number(),
-  totalCountCapped: z.boolean(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    data: z.array(DomainResponseDto$inboundSchema),
+    next: z.nullable(z.string()),
+    previous: z.nullable(z.string()),
+    totalCount: z.number(),
+    totalCountCapped: z.boolean(),
+  })
+);
 
 export function listDomainsResponseDtoFromJSON(
   jsonString: string,

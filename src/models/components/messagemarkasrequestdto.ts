@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 
 export type MessageId = string | Array<string>;
@@ -30,7 +31,9 @@ export const MessageId$outboundSchema: z.ZodType<
   MessageId$Outbound,
   z.ZodTypeDef,
   MessageId
-> = z.union([z.string(), z.array(z.string())]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.union([z.string(), z.array(z.string())])
+);
 
 export function messageIdToJSON(messageId: MessageId): string {
   return JSON.stringify(MessageId$outboundSchema.parse(messageId));
@@ -39,7 +42,9 @@ export function messageIdToJSON(messageId: MessageId): string {
 /** @internal */
 export const MessageMarkAsRequestDtoMarkAs$outboundSchema: z.ZodNativeEnum<
   typeof MessageMarkAsRequestDtoMarkAs
-> = z.nativeEnum(MessageMarkAsRequestDtoMarkAs);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.nativeEnum(MessageMarkAsRequestDtoMarkAs)
+);
 
 /** @internal */
 export type MessageMarkAsRequestDto$Outbound = {
@@ -52,10 +57,12 @@ export const MessageMarkAsRequestDto$outboundSchema: z.ZodType<
   MessageMarkAsRequestDto$Outbound,
   z.ZodTypeDef,
   MessageMarkAsRequestDto
-> = z.object({
-  messageId: z.union([z.string(), z.array(z.string())]),
-  markAs: MessageMarkAsRequestDtoMarkAs$outboundSchema,
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    messageId: z.union([z.string(), z.array(z.string())]),
+    markAs: MessageMarkAsRequestDtoMarkAs$outboundSchema,
+  })
+);
 
 export function messageMarkAsRequestDtoToJSON(
   messageMarkAsRequestDto: MessageMarkAsRequestDto,

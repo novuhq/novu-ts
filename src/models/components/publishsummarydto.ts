@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -31,12 +31,14 @@ export const PublishSummaryDto$inboundSchema: z.ZodType<
   PublishSummaryDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  resources: z.number(),
-  successful: z.number(),
-  failed: z.number(),
-  skipped: z.number(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    resources: z.number(),
+    successful: z.number(),
+    failed: z.number(),
+    skipped: z.number(),
+  })
+);
 
 export function publishSummaryDtoFromJSON(
   jsonString: string,

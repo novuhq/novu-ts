@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type FileRefDto = {
   /**
@@ -36,12 +37,14 @@ export const FileRefDto$outboundSchema: z.ZodType<
   FileRefDto$Outbound,
   z.ZodTypeDef,
   FileRefDto
-> = z.object({
-  filename: z.string(),
-  mimeType: z.string().optional(),
-  data: z.string().optional(),
-  url: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    filename: z.string(),
+    mimeType: z.string().optional(),
+    data: z.string().optional(),
+    url: z.string().optional(),
+  })
+);
 
 export function fileRefDtoToJSON(fileRefDto: FileRefDto): string {
   return JSON.stringify(FileRefDto$outboundSchema.parse(fileRefDto));

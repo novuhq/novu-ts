@@ -5,6 +5,7 @@
 import * as z from "zod/v3";
 import {
   collectExtraKeys as collectExtraKeys$,
+  lazySchema as lazySchema$,
   safeParse,
 } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
@@ -93,33 +94,39 @@ export type ThrottleControlsMetadataResponseDto = {
 
 /** @internal */
 export const ThrottleControlsMetadataResponseDtoType$inboundSchema:
-  z.ZodNativeEnum<typeof ThrottleControlsMetadataResponseDtoType> = z
-    .nativeEnum(ThrottleControlsMetadataResponseDtoType);
+  z.ZodNativeEnum<typeof ThrottleControlsMetadataResponseDtoType> =
+    /* @__PURE__ */ lazySchema$(() =>
+      z.nativeEnum(ThrottleControlsMetadataResponseDtoType)
+    );
 
 /** @internal */
 export const ThrottleControlsMetadataResponseDtoUnit$inboundSchema:
-  z.ZodNativeEnum<typeof ThrottleControlsMetadataResponseDtoUnit> = z
-    .nativeEnum(ThrottleControlsMetadataResponseDtoUnit);
+  z.ZodNativeEnum<typeof ThrottleControlsMetadataResponseDtoUnit> =
+    /* @__PURE__ */ lazySchema$(() =>
+      z.nativeEnum(ThrottleControlsMetadataResponseDtoUnit)
+    );
 
 /** @internal */
 export const ThrottleControlsMetadataResponseDtoValues$inboundSchema: z.ZodType<
   ThrottleControlsMetadataResponseDtoValues,
   z.ZodTypeDef,
   unknown
-> = collectExtraKeys$(
-  z.object({
-    skip: z.record(z.any()).optional(),
-    type: ThrottleControlsMetadataResponseDtoType$inboundSchema.default(
-      "fixed",
-    ),
-    amount: z.number().optional(),
-    unit: ThrottleControlsMetadataResponseDtoUnit$inboundSchema.optional(),
-    dynamicKey: z.string().optional(),
-    threshold: z.number().default(1),
-    throttleKey: z.string().optional(),
-  }).catchall(z.any()),
-  "additionalProperties",
-  true,
+> = /* @__PURE__ */ lazySchema$(() =>
+  collectExtraKeys$(
+    z.object({
+      skip: z.record(z.any()).optional(),
+      type: ThrottleControlsMetadataResponseDtoType$inboundSchema.default(
+        "fixed",
+      ),
+      amount: z.number().optional(),
+      unit: ThrottleControlsMetadataResponseDtoUnit$inboundSchema.optional(),
+      dynamicKey: z.string().optional(),
+      threshold: z.number().default(1),
+      throttleKey: z.string().optional(),
+    }).catchall(z.any()),
+    "additionalProperties",
+    true,
+  )
 );
 
 export function throttleControlsMetadataResponseDtoValuesFromJSON(
@@ -143,12 +150,15 @@ export const ThrottleControlsMetadataResponseDto$inboundSchema: z.ZodType<
   ThrottleControlsMetadataResponseDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  dataSchema: z.record(z.any()).optional(),
-  uiSchema: UiSchema$inboundSchema.optional(),
-  values: z.lazy(() => ThrottleControlsMetadataResponseDtoValues$inboundSchema)
-    .optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    dataSchema: z.record(z.any()).optional(),
+    uiSchema: UiSchema$inboundSchema.optional(),
+    values: z.lazy(() =>
+      ThrottleControlsMetadataResponseDtoValues$inboundSchema
+    ).optional(),
+  })
+);
 
 export function throttleControlsMetadataResponseDtoFromJSON(
   jsonString: string,

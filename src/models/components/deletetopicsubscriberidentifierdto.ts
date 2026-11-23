@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type DeleteTopicSubscriberIdentifierDto = {
   /**
@@ -26,10 +27,12 @@ export const DeleteTopicSubscriberIdentifierDto$outboundSchema: z.ZodType<
   DeleteTopicSubscriberIdentifierDto$Outbound,
   z.ZodTypeDef,
   DeleteTopicSubscriberIdentifierDto
-> = z.object({
-  identifier: z.string().optional(),
-  subscriberId: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    identifier: z.string().optional(),
+    subscriberId: z.string().optional(),
+  })
+);
 
 export function deleteTopicSubscriberIdentifierDtoToJSON(
   deleteTopicSubscriberIdentifierDto: DeleteTopicSubscriberIdentifierDto,

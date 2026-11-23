@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -31,14 +31,16 @@ export const WorkflowControllerRemoveWorkflowRequest$outboundSchema: z.ZodType<
   WorkflowControllerRemoveWorkflowRequest$Outbound,
   z.ZodTypeDef,
   WorkflowControllerRemoveWorkflowRequest
-> = z.object({
-  workflowId: z.string(),
-  idempotencyKey: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    idempotencyKey: "idempotency-key",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    workflowId: z.string(),
+    idempotencyKey: z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      idempotencyKey: "idempotency-key",
+    });
+  })
+);
 
 export function workflowControllerRemoveWorkflowRequestToJSON(
   workflowControllerRemoveWorkflowRequest:
@@ -56,13 +58,15 @@ export const WorkflowControllerRemoveWorkflowResponse$inboundSchema: z.ZodType<
   WorkflowControllerRemoveWorkflowResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  Headers: z.record(z.array(z.string())).default({}),
-}).transform((v) => {
-  return remap$(v, {
-    "Headers": "headers",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    Headers: z.record(z.array(z.string())).default({}),
+  }).transform((v) => {
+    return remap$(v, {
+      "Headers": "headers",
+    });
+  })
+);
 
 export function workflowControllerRemoveWorkflowResponseFromJSON(
   jsonString: string,

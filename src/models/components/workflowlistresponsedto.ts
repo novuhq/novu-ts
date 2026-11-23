@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -136,16 +136,18 @@ export const WorkflowListResponseDtoUpdatedBy$inboundSchema: z.ZodType<
   WorkflowListResponseDtoUpdatedBy,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  _id: z.string(),
-  firstName: z.nullable(z.string()).optional(),
-  lastName: z.nullable(z.string()).optional(),
-  externalId: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_id": "id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    _id: z.string(),
+    firstName: z.nullable(z.string()).optional(),
+    lastName: z.nullable(z.string()).optional(),
+    externalId: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_id": "id",
+    });
+  })
+);
 
 export function workflowListResponseDtoUpdatedByFromJSON(
   jsonString: string,
@@ -162,16 +164,18 @@ export const WorkflowListResponseDtoLastPublishedBy$inboundSchema: z.ZodType<
   WorkflowListResponseDtoLastPublishedBy,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  _id: z.string(),
-  firstName: z.nullable(z.string()).optional(),
-  lastName: z.nullable(z.string()).optional(),
-  externalId: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_id": "id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    _id: z.string(),
+    firstName: z.nullable(z.string()).optional(),
+    lastName: z.nullable(z.string()).optional(),
+    externalId: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_id": "id",
+    });
+  })
+);
 
 export function workflowListResponseDtoLastPublishedByFromJSON(
   jsonString: string,
@@ -189,32 +193,34 @@ export const WorkflowListResponseDto$inboundSchema: z.ZodType<
   WorkflowListResponseDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  name: z.string(),
-  tags: z.array(z.string()).optional(),
-  updatedAt: z.string(),
-  createdAt: z.string(),
-  updatedBy: z.nullable(
-    z.lazy(() => WorkflowListResponseDtoUpdatedBy$inboundSchema),
-  ).optional(),
-  lastPublishedAt: z.nullable(z.string()).optional(),
-  lastPublishedBy: z.nullable(
-    z.lazy(() => WorkflowListResponseDtoLastPublishedBy$inboundSchema),
-  ).optional(),
-  _id: z.string(),
-  workflowId: z.string(),
-  slug: z.string(),
-  status: WorkflowStatusEnum$inboundSchema,
-  origin: ResourceOriginEnum$inboundSchema,
-  lastTriggeredAt: z.nullable(z.string()).optional(),
-  stepTypeOverviews: z.array(z.string()),
-  isTranslationEnabled: z.boolean().optional(),
-  steps: z.array(StepListResponseDto$inboundSchema),
-}).transform((v) => {
-  return remap$(v, {
-    "_id": "id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    name: z.string(),
+    tags: z.array(z.string()).optional(),
+    updatedAt: z.string(),
+    createdAt: z.string(),
+    updatedBy: z.nullable(
+      z.lazy(() => WorkflowListResponseDtoUpdatedBy$inboundSchema),
+    ).optional(),
+    lastPublishedAt: z.nullable(z.string()).optional(),
+    lastPublishedBy: z.nullable(
+      z.lazy(() => WorkflowListResponseDtoLastPublishedBy$inboundSchema),
+    ).optional(),
+    _id: z.string(),
+    workflowId: z.string(),
+    slug: z.string(),
+    status: WorkflowStatusEnum$inboundSchema,
+    origin: ResourceOriginEnum$inboundSchema,
+    lastTriggeredAt: z.nullable(z.string()).optional(),
+    stepTypeOverviews: z.array(z.string()),
+    isTranslationEnabled: z.boolean().optional(),
+    steps: z.array(StepListResponseDto$inboundSchema),
+  }).transform((v) => {
+    return remap$(v, {
+      "_id": "id",
+    });
+  })
+);
 
 export function workflowListResponseDtoFromJSON(
   jsonString: string,

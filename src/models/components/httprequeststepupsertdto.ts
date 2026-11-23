@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   HttpRequestControlDto,
   HttpRequestControlDto$Outbound,
@@ -50,7 +51,9 @@ export const HttpRequestStepUpsertDtoControlValues$outboundSchema: z.ZodType<
   HttpRequestStepUpsertDtoControlValues$Outbound,
   z.ZodTypeDef,
   HttpRequestStepUpsertDtoControlValues
-> = z.union([HttpRequestControlDto$outboundSchema, z.record(z.any())]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.union([HttpRequestControlDto$outboundSchema, z.record(z.any())])
+);
 
 export function httpRequestStepUpsertDtoControlValuesToJSON(
   httpRequestStepUpsertDtoControlValues: HttpRequestStepUpsertDtoControlValues,
@@ -79,20 +82,22 @@ export const HttpRequestStepUpsertDto$outboundSchema: z.ZodType<
   HttpRequestStepUpsertDto$Outbound,
   z.ZodTypeDef,
   HttpRequestStepUpsertDto
-> = z.object({
-  id: z.string().optional(),
-  stepId: z.string().optional(),
-  name: z.string(),
-  type: z.literal("http_request"),
-  controlValues: z.union([
-    HttpRequestControlDto$outboundSchema,
-    z.record(z.any()),
-  ]).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    id: "_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string().optional(),
+    stepId: z.string().optional(),
+    name: z.string(),
+    type: z.literal("http_request"),
+    controlValues: z.union([
+      HttpRequestControlDto$outboundSchema,
+      z.record(z.any()),
+    ]).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      id: "_id",
+    });
+  })
+);
 
 export function httpRequestStepUpsertDtoToJSON(
   httpRequestStepUpsertDto: HttpRequestStepUpsertDto,

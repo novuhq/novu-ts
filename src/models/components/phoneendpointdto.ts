@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -19,9 +19,11 @@ export const PhoneEndpointDto$inboundSchema: z.ZodType<
   PhoneEndpointDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  phoneNumber: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    phoneNumber: z.string(),
+  })
+);
 /** @internal */
 export type PhoneEndpointDto$Outbound = {
   phoneNumber: string;
@@ -32,9 +34,11 @@ export const PhoneEndpointDto$outboundSchema: z.ZodType<
   PhoneEndpointDto$Outbound,
   z.ZodTypeDef,
   PhoneEndpointDto
-> = z.object({
-  phoneNumber: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    phoneNumber: z.string(),
+  })
+);
 
 export function phoneEndpointDtoToJSON(
   phoneEndpointDto: PhoneEndpointDto,

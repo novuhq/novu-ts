@@ -5,6 +5,7 @@
 import * as z from "zod/v3";
 import {
   collectExtraKeys as collectExtraKeys$,
+  lazySchema as lazySchema$,
   safeParse,
 } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -73,20 +74,22 @@ export type InAppControlsMetadataResponseDto = {
 
 /** @internal */
 export const Values$inboundSchema: z.ZodType<Values, z.ZodTypeDef, unknown> =
-  collectExtraKeys$(
-    z.object({
-      skip: z.record(z.any()).optional(),
-      body: z.string().optional(),
-      subject: z.string().optional(),
-      avatar: z.string().optional(),
-      primaryAction: ActionDto$inboundSchema.optional(),
-      secondaryAction: ActionDto$inboundSchema.optional(),
-      redirect: RedirectDto$inboundSchema.optional(),
-      disableOutputSanitization: z.boolean().default(false),
-      data: z.record(z.any()).optional(),
-    }).catchall(z.any()),
-    "additionalProperties",
-    true,
+  /* @__PURE__ */ lazySchema$(() =>
+    collectExtraKeys$(
+      z.object({
+        skip: z.record(z.any()).optional(),
+        body: z.string().optional(),
+        subject: z.string().optional(),
+        avatar: z.string().optional(),
+        primaryAction: ActionDto$inboundSchema.optional(),
+        secondaryAction: ActionDto$inboundSchema.optional(),
+        redirect: RedirectDto$inboundSchema.optional(),
+        disableOutputSanitization: z.boolean().default(false),
+        data: z.record(z.any()).optional(),
+      }).catchall(z.any()),
+      "additionalProperties",
+      true,
+    )
   );
 
 export function valuesFromJSON(
@@ -104,11 +107,13 @@ export const InAppControlsMetadataResponseDto$inboundSchema: z.ZodType<
   InAppControlsMetadataResponseDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  dataSchema: z.record(z.any()).optional(),
-  uiSchema: UiSchema$inboundSchema.optional(),
-  values: z.lazy(() => Values$inboundSchema).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    dataSchema: z.record(z.any()).optional(),
+    uiSchema: UiSchema$inboundSchema.optional(),
+    values: z.lazy(() => Values$inboundSchema).optional(),
+  })
+);
 
 export function inAppControlsMetadataResponseDtoFromJSON(
   jsonString: string,

@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -201,16 +201,19 @@ export type GeneratePreviewResponseDto = {
 
 /** @internal */
 export const GeneratePreviewResponseDtoResult10Type$inboundSchema:
-  z.ZodNativeEnum<typeof GeneratePreviewResponseDtoResult10Type> = z.nativeEnum(
-    GeneratePreviewResponseDtoResult10Type,
-  );
+  z.ZodNativeEnum<typeof GeneratePreviewResponseDtoResult10Type> =
+    /* @__PURE__ */ lazySchema$(() =>
+      z.nativeEnum(GeneratePreviewResponseDtoResult10Type)
+    );
 
 /** @internal */
-export const Ten$inboundSchema: z.ZodType<Ten, z.ZodTypeDef, unknown> = z
-  .object({
-    type: GeneratePreviewResponseDtoResult10Type$inboundSchema.optional(),
-    preview: DigestRegularOutput$inboundSchema.optional(),
-  });
+export const Ten$inboundSchema: z.ZodType<Ten, z.ZodTypeDef, unknown> =
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      type: GeneratePreviewResponseDtoResult10Type$inboundSchema.optional(),
+      preview: DigestRegularOutput$inboundSchema.optional(),
+    })
+  );
 
 export function tenFromJSON(
   jsonString: string,
@@ -224,16 +227,19 @@ export function tenFromJSON(
 
 /** @internal */
 export const GeneratePreviewResponseDtoResult9Type$inboundSchema:
-  z.ZodNativeEnum<typeof GeneratePreviewResponseDtoResult9Type> = z.nativeEnum(
-    GeneratePreviewResponseDtoResult9Type,
-  );
+  z.ZodNativeEnum<typeof GeneratePreviewResponseDtoResult9Type> =
+    /* @__PURE__ */ lazySchema$(() =>
+      z.nativeEnum(GeneratePreviewResponseDtoResult9Type)
+    );
 
 /** @internal */
-export const Nine$inboundSchema: z.ZodType<Nine, z.ZodTypeDef, unknown> = z
-  .object({
-    type: GeneratePreviewResponseDtoResult9Type$inboundSchema.optional(),
-    preview: DigestRegularOutput$inboundSchema.optional(),
-  });
+export const Nine$inboundSchema: z.ZodType<Nine, z.ZodTypeDef, unknown> =
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      type: GeneratePreviewResponseDtoResult9Type$inboundSchema.optional(),
+      preview: DigestRegularOutput$inboundSchema.optional(),
+    })
+  );
 
 export function nineFromJSON(
   jsonString: string,
@@ -247,17 +253,20 @@ export function nineFromJSON(
 
 /** @internal */
 export const GeneratePreviewResponseDtoResult8Type$inboundSchema:
-  z.ZodNativeEnum<typeof GeneratePreviewResponseDtoResult8Type> = z.nativeEnum(
-    GeneratePreviewResponseDtoResult8Type,
-  );
+  z.ZodNativeEnum<typeof GeneratePreviewResponseDtoResult8Type> =
+    /* @__PURE__ */ lazySchema$(() =>
+      z.nativeEnum(GeneratePreviewResponseDtoResult8Type)
+    );
 
 /** @internal */
-export const Eight$inboundSchema: z.ZodType<Eight, z.ZodTypeDef, unknown> = z
-  .object({
-    type: GeneratePreviewResponseDtoResult8Type$inboundSchema.optional(),
-    preview: z.record(z.any()).optional(),
-    error: PreviewErrorDto$inboundSchema.optional(),
-  });
+export const Eight$inboundSchema: z.ZodType<Eight, z.ZodTypeDef, unknown> =
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      type: GeneratePreviewResponseDtoResult8Type$inboundSchema.optional(),
+      preview: z.record(z.any()).optional(),
+      error: PreviewErrorDto$inboundSchema.optional(),
+    })
+  );
 
 export function eightFromJSON(
   jsonString: string,
@@ -271,17 +280,20 @@ export function eightFromJSON(
 
 /** @internal */
 export const GeneratePreviewResponseDtoResult7Type$inboundSchema:
-  z.ZodNativeEnum<typeof GeneratePreviewResponseDtoResult7Type> = z.nativeEnum(
-    GeneratePreviewResponseDtoResult7Type,
-  );
+  z.ZodNativeEnum<typeof GeneratePreviewResponseDtoResult7Type> =
+    /* @__PURE__ */ lazySchema$(() =>
+      z.nativeEnum(GeneratePreviewResponseDtoResult7Type)
+    );
 
 /** @internal */
-export const Seven$inboundSchema: z.ZodType<Seven, z.ZodTypeDef, unknown> = z
-  .object({
-    type: GeneratePreviewResponseDtoResult7Type$inboundSchema.optional(),
-    preview: ChatRenderOutput$inboundSchema.optional(),
-    error: PreviewErrorDto$inboundSchema.optional(),
-  });
+export const Seven$inboundSchema: z.ZodType<Seven, z.ZodTypeDef, unknown> =
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      type: GeneratePreviewResponseDtoResult7Type$inboundSchema.optional(),
+      preview: ChatRenderOutput$inboundSchema.optional(),
+      error: PreviewErrorDto$inboundSchema.optional(),
+    })
+  );
 
 export function sevenFromJSON(
   jsonString: string,
@@ -295,17 +307,20 @@ export function sevenFromJSON(
 
 /** @internal */
 export const GeneratePreviewResponseDtoResult6Type$inboundSchema:
-  z.ZodNativeEnum<typeof GeneratePreviewResponseDtoResult6Type> = z.nativeEnum(
-    GeneratePreviewResponseDtoResult6Type,
-  );
+  z.ZodNativeEnum<typeof GeneratePreviewResponseDtoResult6Type> =
+    /* @__PURE__ */ lazySchema$(() =>
+      z.nativeEnum(GeneratePreviewResponseDtoResult6Type)
+    );
 
 /** @internal */
-export const Six$inboundSchema: z.ZodType<Six, z.ZodTypeDef, unknown> = z
-  .object({
-    type: GeneratePreviewResponseDtoResult6Type$inboundSchema.optional(),
-    preview: PushRenderOutput$inboundSchema.optional(),
-    error: PreviewErrorDto$inboundSchema.optional(),
-  });
+export const Six$inboundSchema: z.ZodType<Six, z.ZodTypeDef, unknown> =
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      type: GeneratePreviewResponseDtoResult6Type$inboundSchema.optional(),
+      preview: PushRenderOutput$inboundSchema.optional(),
+      error: PreviewErrorDto$inboundSchema.optional(),
+    })
+  );
 
 export function sixFromJSON(
   jsonString: string,
@@ -319,17 +334,20 @@ export function sixFromJSON(
 
 /** @internal */
 export const GeneratePreviewResponseDtoResult5Type$inboundSchema:
-  z.ZodNativeEnum<typeof GeneratePreviewResponseDtoResult5Type> = z.nativeEnum(
-    GeneratePreviewResponseDtoResult5Type,
-  );
+  z.ZodNativeEnum<typeof GeneratePreviewResponseDtoResult5Type> =
+    /* @__PURE__ */ lazySchema$(() =>
+      z.nativeEnum(GeneratePreviewResponseDtoResult5Type)
+    );
 
 /** @internal */
 export const Result5$inboundSchema: z.ZodType<Result5, z.ZodTypeDef, unknown> =
-  z.object({
-    type: GeneratePreviewResponseDtoResult5Type$inboundSchema.optional(),
-    preview: SmsRenderOutput$inboundSchema.optional(),
-    error: PreviewErrorDto$inboundSchema.optional(),
-  });
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      type: GeneratePreviewResponseDtoResult5Type$inboundSchema.optional(),
+      preview: SmsRenderOutput$inboundSchema.optional(),
+      error: PreviewErrorDto$inboundSchema.optional(),
+    })
+  );
 
 export function result5FromJSON(
   jsonString: string,
@@ -343,17 +361,20 @@ export function result5FromJSON(
 
 /** @internal */
 export const GeneratePreviewResponseDtoResult4Type$inboundSchema:
-  z.ZodNativeEnum<typeof GeneratePreviewResponseDtoResult4Type> = z.nativeEnum(
-    GeneratePreviewResponseDtoResult4Type,
-  );
+  z.ZodNativeEnum<typeof GeneratePreviewResponseDtoResult4Type> =
+    /* @__PURE__ */ lazySchema$(() =>
+      z.nativeEnum(GeneratePreviewResponseDtoResult4Type)
+    );
 
 /** @internal */
 export const Result4$inboundSchema: z.ZodType<Result4, z.ZodTypeDef, unknown> =
-  z.object({
-    type: GeneratePreviewResponseDtoResult4Type$inboundSchema.optional(),
-    preview: InAppRenderOutput$inboundSchema.optional(),
-    error: PreviewErrorDto$inboundSchema.optional(),
-  });
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      type: GeneratePreviewResponseDtoResult4Type$inboundSchema.optional(),
+      preview: InAppRenderOutput$inboundSchema.optional(),
+      error: PreviewErrorDto$inboundSchema.optional(),
+    })
+  );
 
 export function result4FromJSON(
   jsonString: string,
@@ -367,17 +388,20 @@ export function result4FromJSON(
 
 /** @internal */
 export const GeneratePreviewResponseDtoResult3Type$inboundSchema:
-  z.ZodNativeEnum<typeof GeneratePreviewResponseDtoResult3Type> = z.nativeEnum(
-    GeneratePreviewResponseDtoResult3Type,
-  );
+  z.ZodNativeEnum<typeof GeneratePreviewResponseDtoResult3Type> =
+    /* @__PURE__ */ lazySchema$(() =>
+      z.nativeEnum(GeneratePreviewResponseDtoResult3Type)
+    );
 
 /** @internal */
-export const Three$inboundSchema: z.ZodType<Three, z.ZodTypeDef, unknown> = z
-  .object({
-    type: GeneratePreviewResponseDtoResult3Type$inboundSchema.optional(),
-    preview: EmailRenderOutput$inboundSchema.optional(),
-    error: PreviewErrorDto$inboundSchema.optional(),
-  });
+export const Three$inboundSchema: z.ZodType<Three, z.ZodTypeDef, unknown> =
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      type: GeneratePreviewResponseDtoResult3Type$inboundSchema.optional(),
+      preview: EmailRenderOutput$inboundSchema.optional(),
+      error: PreviewErrorDto$inboundSchema.optional(),
+    })
+  );
 
 export function threeFromJSON(
   jsonString: string,
@@ -391,17 +415,20 @@ export function threeFromJSON(
 
 /** @internal */
 export const GeneratePreviewResponseDtoResultType$inboundSchema:
-  z.ZodNativeEnum<typeof GeneratePreviewResponseDtoResultType> = z.nativeEnum(
-    GeneratePreviewResponseDtoResultType,
-  );
+  z.ZodNativeEnum<typeof GeneratePreviewResponseDtoResultType> =
+    /* @__PURE__ */ lazySchema$(() =>
+      z.nativeEnum(GeneratePreviewResponseDtoResultType)
+    );
 
 /** @internal */
 export const Result2$inboundSchema: z.ZodType<Result2, z.ZodTypeDef, unknown> =
-  z.object({
-    type: GeneratePreviewResponseDtoResultType$inboundSchema.optional(),
-    preview: EmailRenderOutput$inboundSchema.optional(),
-    error: PreviewErrorDto$inboundSchema.optional(),
-  });
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      type: GeneratePreviewResponseDtoResultType$inboundSchema.optional(),
+      preview: EmailRenderOutput$inboundSchema.optional(),
+      error: PreviewErrorDto$inboundSchema.optional(),
+    })
+  );
 
 export function result2FromJSON(
   jsonString: string,
@@ -418,18 +445,20 @@ export const GeneratePreviewResponseDtoResult$inboundSchema: z.ZodType<
   GeneratePreviewResponseDtoResult,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  z.record(z.any()),
-  z.lazy(() => Result2$inboundSchema),
-  z.lazy(() => Three$inboundSchema),
-  z.lazy(() => Result4$inboundSchema),
-  z.lazy(() => Result5$inboundSchema),
-  z.lazy(() => Six$inboundSchema),
-  z.lazy(() => Seven$inboundSchema),
-  z.lazy(() => Eight$inboundSchema),
-  z.lazy(() => Nine$inboundSchema),
-  z.lazy(() => Ten$inboundSchema),
-]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.union([
+    z.record(z.any()),
+    z.lazy(() => Result2$inboundSchema),
+    z.lazy(() => Three$inboundSchema),
+    z.lazy(() => Result4$inboundSchema),
+    z.lazy(() => Result5$inboundSchema),
+    z.lazy(() => Six$inboundSchema),
+    z.lazy(() => Seven$inboundSchema),
+    z.lazy(() => Eight$inboundSchema),
+    z.lazy(() => Nine$inboundSchema),
+    z.lazy(() => Ten$inboundSchema),
+  ])
+);
 
 export function generatePreviewResponseDtoResultFromJSON(
   jsonString: string,
@@ -446,23 +475,25 @@ export const GeneratePreviewResponseDto$inboundSchema: z.ZodType<
   GeneratePreviewResponseDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  previewPayloadExample: PreviewPayloadDto$inboundSchema,
-  schema: z.nullable(z.record(z.any())).optional(),
-  novuSignature: z.string().optional(),
-  result: z.union([
-    z.record(z.any()),
-    z.lazy(() => Result2$inboundSchema),
-    z.lazy(() => Three$inboundSchema),
-    z.lazy(() => Result4$inboundSchema),
-    z.lazy(() => Result5$inboundSchema),
-    z.lazy(() => Six$inboundSchema),
-    z.lazy(() => Seven$inboundSchema),
-    z.lazy(() => Eight$inboundSchema),
-    z.lazy(() => Nine$inboundSchema),
-    z.lazy(() => Ten$inboundSchema),
-  ]),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    previewPayloadExample: PreviewPayloadDto$inboundSchema,
+    schema: z.nullable(z.record(z.any())).optional(),
+    novuSignature: z.string().optional(),
+    result: z.union([
+      z.record(z.any()),
+      z.lazy(() => Result2$inboundSchema),
+      z.lazy(() => Three$inboundSchema),
+      z.lazy(() => Result4$inboundSchema),
+      z.lazy(() => Result5$inboundSchema),
+      z.lazy(() => Six$inboundSchema),
+      z.lazy(() => Seven$inboundSchema),
+      z.lazy(() => Eight$inboundSchema),
+      z.lazy(() => Nine$inboundSchema),
+      z.lazy(() => Ten$inboundSchema),
+    ]),
+  })
+);
 
 export function generatePreviewResponseDtoFromJSON(
   jsonString: string,

@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -27,10 +27,12 @@ export const ListLayoutResponseDto$inboundSchema: z.ZodType<
   ListLayoutResponseDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  layouts: z.array(LayoutResponseDto$inboundSchema),
-  totalCount: z.number(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    layouts: z.array(LayoutResponseDto$inboundSchema),
+    totalCount: z.number(),
+  })
+);
 
 export function listLayoutResponseDtoFromJSON(
   jsonString: string,

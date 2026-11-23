@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -33,14 +33,16 @@ export const DomainsControllerVerifyDomainRequest$outboundSchema: z.ZodType<
   DomainsControllerVerifyDomainRequest$Outbound,
   z.ZodTypeDef,
   DomainsControllerVerifyDomainRequest
-> = z.object({
-  domain: z.string(),
-  idempotencyKey: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    idempotencyKey: "idempotency-key",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    domain: z.string(),
+    idempotencyKey: z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      idempotencyKey: "idempotency-key",
+    });
+  })
+);
 
 export function domainsControllerVerifyDomainRequestToJSON(
   domainsControllerVerifyDomainRequest: DomainsControllerVerifyDomainRequest,
@@ -57,15 +59,17 @@ export const DomainsControllerVerifyDomainResponse$inboundSchema: z.ZodType<
   DomainsControllerVerifyDomainResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  Headers: z.record(z.array(z.string())).default({}),
-  Result: components.DomainResponseDto$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "Headers": "headers",
-    "Result": "result",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    Headers: z.record(z.array(z.string())).default({}),
+    Result: components.DomainResponseDto$inboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      "Headers": "headers",
+      "Result": "result",
+    });
+  })
+);
 
 export function domainsControllerVerifyDomainResponseFromJSON(
   jsonString: string,

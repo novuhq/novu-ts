@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 
 /**
@@ -33,7 +34,9 @@ export type MarkMessageActionAsSeenDto = {
 /** @internal */
 export const MarkMessageActionAsSeenDtoStatus$outboundSchema: z.ZodNativeEnum<
   typeof MarkMessageActionAsSeenDtoStatus
-> = z.nativeEnum(MarkMessageActionAsSeenDtoStatus);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.nativeEnum(MarkMessageActionAsSeenDtoStatus)
+);
 
 /** @internal */
 export type MarkMessageActionAsSeenDto$Outbound = {
@@ -46,10 +49,12 @@ export const MarkMessageActionAsSeenDto$outboundSchema: z.ZodType<
   MarkMessageActionAsSeenDto$Outbound,
   z.ZodTypeDef,
   MarkMessageActionAsSeenDto
-> = z.object({
-  status: MarkMessageActionAsSeenDtoStatus$outboundSchema,
-  payload: z.record(z.any()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    status: MarkMessageActionAsSeenDtoStatus$outboundSchema,
+    payload: z.record(z.any()).optional(),
+  })
+);
 
 export function markMessageActionAsSeenDtoToJSON(
   markMessageActionAsSeenDto: MarkMessageActionAsSeenDto,

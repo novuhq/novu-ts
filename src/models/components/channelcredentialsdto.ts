@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type ChannelCredentialsDto = {
   /**
@@ -26,10 +27,12 @@ export const ChannelCredentialsDto$outboundSchema: z.ZodType<
   ChannelCredentialsDto$Outbound,
   z.ZodTypeDef,
   ChannelCredentialsDto
-> = z.object({
-  webhookUrl: z.string().optional(),
-  deviceTokens: z.array(z.string()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    webhookUrl: z.string().optional(),
+    deviceTokens: z.array(z.string()).optional(),
+  })
+);
 
 export function channelCredentialsDtoToJSON(
   channelCredentialsDto: ChannelCredentialsDto,

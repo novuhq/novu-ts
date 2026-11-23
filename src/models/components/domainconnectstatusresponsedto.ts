@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -33,22 +33,24 @@ export type DomainConnectStatusResponseDto = {
 };
 
 /** @internal */
-export const ReasonCode$inboundSchema: z.ZodNativeEnum<typeof ReasonCode> = z
-  .nativeEnum(ReasonCode);
+export const ReasonCode$inboundSchema: z.ZodNativeEnum<typeof ReasonCode> =
+  /* @__PURE__ */ lazySchema$(() => z.nativeEnum(ReasonCode));
 
 /** @internal */
 export const DomainConnectStatusResponseDto$inboundSchema: z.ZodType<
   DomainConnectStatusResponseDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  available: z.boolean(),
-  providerName: z.string().optional(),
-  providerId: z.string().optional(),
-  reason: z.string().optional(),
-  reasonCode: ReasonCode$inboundSchema.optional(),
-  manualRecords: z.array(ExpectedDnsRecordDto$inboundSchema),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    available: z.boolean(),
+    providerName: z.string().optional(),
+    providerId: z.string().optional(),
+    reason: z.string().optional(),
+    reasonCode: ReasonCode$inboundSchema.optional(),
+    manualRecords: z.array(ExpectedDnsRecordDto$inboundSchema),
+  })
+);
 
 export function domainConnectStatusResponseDtoFromJSON(
   jsonString: string,

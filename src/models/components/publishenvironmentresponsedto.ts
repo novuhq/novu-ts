@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -28,10 +28,12 @@ export const PublishEnvironmentResponseDto$inboundSchema: z.ZodType<
   PublishEnvironmentResponseDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  results: z.array(SyncResultDto$inboundSchema),
-  summary: PublishSummaryDto$inboundSchema,
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    results: z.array(SyncResultDto$inboundSchema),
+    summary: PublishSummaryDto$inboundSchema,
+  })
+);
 
 export function publishEnvironmentResponseDtoFromJSON(
   jsonString: string,

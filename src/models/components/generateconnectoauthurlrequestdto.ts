@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 
 /**
@@ -80,10 +81,12 @@ export const GenerateConnectOauthUrlRequestDtoContext2$outboundSchema:
     GenerateConnectOauthUrlRequestDtoContext2$Outbound,
     z.ZodTypeDef,
     GenerateConnectOauthUrlRequestDtoContext2
-  > = z.object({
-    id: z.string(),
-    data: z.record(z.any()).optional(),
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      id: z.string(),
+      data: z.record(z.any()).optional(),
+    })
+  );
 
 export function generateConnectOauthUrlRequestDtoContext2ToJSON(
   generateConnectOauthUrlRequestDtoContext2:
@@ -106,10 +109,12 @@ export const GenerateConnectOauthUrlRequestDtoContext$outboundSchema: z.ZodType<
   GenerateConnectOauthUrlRequestDtoContext$Outbound,
   z.ZodTypeDef,
   GenerateConnectOauthUrlRequestDtoContext
-> = z.union([
-  z.lazy(() => GenerateConnectOauthUrlRequestDtoContext2$outboundSchema),
-  z.string(),
-]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.union([
+    z.lazy(() => GenerateConnectOauthUrlRequestDtoContext2$outboundSchema),
+    z.string(),
+  ])
+);
 
 export function generateConnectOauthUrlRequestDtoContextToJSON(
   generateConnectOauthUrlRequestDtoContext:
@@ -124,8 +129,10 @@ export function generateConnectOauthUrlRequestDtoContextToJSON(
 
 /** @internal */
 export const GenerateConnectOauthUrlRequestDtoConnectionMode$outboundSchema:
-  z.ZodNativeEnum<typeof GenerateConnectOauthUrlRequestDtoConnectionMode> = z
-    .nativeEnum(GenerateConnectOauthUrlRequestDtoConnectionMode);
+  z.ZodNativeEnum<typeof GenerateConnectOauthUrlRequestDtoConnectionMode> =
+    /* @__PURE__ */ lazySchema$(() =>
+      z.nativeEnum(GenerateConnectOauthUrlRequestDtoConnectionMode)
+    );
 
 /** @internal */
 export type GenerateConnectOauthUrlRequestDto$Outbound = {
@@ -146,22 +153,22 @@ export const GenerateConnectOauthUrlRequestDto$outboundSchema: z.ZodType<
   GenerateConnectOauthUrlRequestDto$Outbound,
   z.ZodTypeDef,
   GenerateConnectOauthUrlRequestDto
-> = z.object({
-  subscriberId: z.string().optional(),
-  integrationIdentifier: z.string(),
-  connectionIdentifier: z.string().optional(),
-  context: z.record(
-    z.union([
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    subscriberId: z.string().optional(),
+    integrationIdentifier: z.string(),
+    connectionIdentifier: z.string().optional(),
+    context: z.record(z.union([
       z.lazy(() => GenerateConnectOauthUrlRequestDtoContext2$outboundSchema),
       z.string(),
-    ]),
-  ).optional(),
-  contextHash: z.string().optional(),
-  scope: z.array(z.string()).optional(),
-  connectionMode: GenerateConnectOauthUrlRequestDtoConnectionMode$outboundSchema
-    .optional(),
-  autoLinkUser: z.boolean().optional(),
-});
+    ])).optional(),
+    contextHash: z.string().optional(),
+    scope: z.array(z.string()).optional(),
+    connectionMode:
+      GenerateConnectOauthUrlRequestDtoConnectionMode$outboundSchema.optional(),
+    autoLinkUser: z.boolean().optional(),
+  })
+);
 
 export function generateConnectOauthUrlRequestDtoToJSON(
   generateConnectOauthUrlRequestDto: GenerateConnectOauthUrlRequestDto,

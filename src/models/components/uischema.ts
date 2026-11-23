@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -31,10 +31,12 @@ export const UiSchema$inboundSchema: z.ZodType<
   UiSchema,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  group: UiSchemaGroupEnum$inboundSchema.optional(),
-  properties: z.record(UiSchemaProperty$inboundSchema).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    group: UiSchemaGroupEnum$inboundSchema.optional(),
+    properties: z.record(UiSchemaProperty$inboundSchema).optional(),
+  })
+);
 
 export function uiSchemaFromJSON(
   jsonString: string,

@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type GroupPreferenceFilterDetailsDto = {
   /**
@@ -26,10 +27,12 @@ export const GroupPreferenceFilterDetailsDto$outboundSchema: z.ZodType<
   GroupPreferenceFilterDetailsDto$Outbound,
   z.ZodTypeDef,
   GroupPreferenceFilterDetailsDto
-> = z.object({
-  workflowIds: z.array(z.string()).optional(),
-  tags: z.array(z.string()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    workflowIds: z.array(z.string()).optional(),
+    tags: z.array(z.string()).optional(),
+  })
+);
 
 export function groupPreferenceFilterDetailsDtoToJSON(
   groupPreferenceFilterDetailsDto: GroupPreferenceFilterDetailsDto,

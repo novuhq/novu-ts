@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -39,25 +39,27 @@ export type DigestTimedMetadata = {
 /** @internal */
 export const DigestTimedMetadataUnit$inboundSchema: z.ZodNativeEnum<
   typeof DigestTimedMetadataUnit
-> = z.nativeEnum(DigestTimedMetadataUnit);
+> = /* @__PURE__ */ lazySchema$(() => z.nativeEnum(DigestTimedMetadataUnit));
 
 /** @internal */
 export const DigestTimedMetadataType$inboundSchema: z.ZodNativeEnum<
   typeof DigestTimedMetadataType
-> = z.nativeEnum(DigestTimedMetadataType);
+> = /* @__PURE__ */ lazySchema$(() => z.nativeEnum(DigestTimedMetadataType));
 
 /** @internal */
 export const DigestTimedMetadata$inboundSchema: z.ZodType<
   DigestTimedMetadata,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  amount: z.number().optional(),
-  unit: DigestTimedMetadataUnit$inboundSchema.optional(),
-  digestKey: z.string().optional(),
-  type: DigestTimedMetadataType$inboundSchema,
-  timed: TimedConfig$inboundSchema.optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    amount: z.number().optional(),
+    unit: DigestTimedMetadataUnit$inboundSchema.optional(),
+    digestKey: z.string().optional(),
+    type: DigestTimedMetadataType$inboundSchema,
+    timed: TimedConfig$inboundSchema.optional(),
+  })
+);
 
 export function digestTimedMetadataFromJSON(
   jsonString: string,

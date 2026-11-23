@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type CustomControlDto = {
   /**
@@ -21,9 +22,11 @@ export const CustomControlDto$outboundSchema: z.ZodType<
   CustomControlDto$Outbound,
   z.ZodTypeDef,
   CustomControlDto
-> = z.object({
-  custom: z.record(z.any()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    custom: z.record(z.any()).optional(),
+  })
+);
 
 export function customControlDtoToJSON(
   customControlDto: CustomControlDto,

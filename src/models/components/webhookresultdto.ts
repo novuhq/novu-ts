@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { EventBody, EventBody$inboundSchema } from "./eventbody.js";
@@ -24,10 +24,12 @@ export const WebhookResultDto$inboundSchema: z.ZodType<
   WebhookResultDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: z.string(),
-  event: EventBody$inboundSchema,
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    event: EventBody$inboundSchema,
+  })
+);
 
 export function webhookResultDtoFromJSON(
   jsonString: string,

@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -38,16 +38,18 @@ export const LayoutsControllerUpdateRequest$outboundSchema: z.ZodType<
   LayoutsControllerUpdateRequest$Outbound,
   z.ZodTypeDef,
   LayoutsControllerUpdateRequest
-> = z.object({
-  layoutId: z.string(),
-  idempotencyKey: z.string().optional(),
-  updateLayoutDto: components.UpdateLayoutDto$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    idempotencyKey: "idempotency-key",
-    updateLayoutDto: "UpdateLayoutDto",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    layoutId: z.string(),
+    idempotencyKey: z.string().optional(),
+    updateLayoutDto: components.UpdateLayoutDto$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      idempotencyKey: "idempotency-key",
+      updateLayoutDto: "UpdateLayoutDto",
+    });
+  })
+);
 
 export function layoutsControllerUpdateRequestToJSON(
   layoutsControllerUpdateRequest: LayoutsControllerUpdateRequest,
@@ -64,15 +66,17 @@ export const LayoutsControllerUpdateResponse$inboundSchema: z.ZodType<
   LayoutsControllerUpdateResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  Headers: z.record(z.array(z.string())).default({}),
-  Result: components.LayoutResponseDto$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "Headers": "headers",
-    "Result": "result",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    Headers: z.record(z.array(z.string())).default({}),
+    Result: components.LayoutResponseDto$inboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      "Headers": "headers",
+      "Result": "result",
+    });
+  })
+);
 
 export function layoutsControllerUpdateResponseFromJSON(
   jsonString: string,

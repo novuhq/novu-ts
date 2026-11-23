@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { NovuError } from "./novuerror.js";
 import { SDKValidationError } from "./sdkvalidationerror.js";
@@ -102,8 +102,10 @@ export class ErrorDto extends NovuError {
 }
 
 /** @internal */
-export const Five$inboundSchema: z.ZodType<Five, z.ZodTypeDef, unknown> = z
-  .union([z.string(), z.number(), z.boolean(), z.record(z.any())]);
+export const Five$inboundSchema: z.ZodType<Five, z.ZodTypeDef, unknown> =
+  /* @__PURE__ */ lazySchema$(() =>
+    z.union([z.string(), z.number(), z.boolean(), z.record(z.any())])
+  );
 
 export function fiveFromJSON(
   jsonString: string,
@@ -116,8 +118,8 @@ export function fiveFromJSON(
 }
 
 /** @internal */
-export const Four$inboundSchema: z.ZodType<Four, z.ZodTypeDef, unknown> = z
-  .object({});
+export const Four$inboundSchema: z.ZodType<Four, z.ZodTypeDef, unknown> =
+  /* @__PURE__ */ lazySchema$(() => z.object({}));
 
 export function fourFromJSON(
   jsonString: string,
@@ -131,17 +133,19 @@ export function fourFromJSON(
 
 /** @internal */
 export const Message$inboundSchema: z.ZodType<Message, z.ZodTypeDef, unknown> =
-  z.union([
-    z.string(),
-    z.number(),
-    z.boolean(),
-    z.lazy(() => Four$inboundSchema),
-    z.array(
-      z.nullable(
-        z.union([z.string(), z.number(), z.boolean(), z.record(z.any())]),
+  /* @__PURE__ */ lazySchema$(() =>
+    z.union([
+      z.string(),
+      z.number(),
+      z.boolean(),
+      z.lazy(() => Four$inboundSchema),
+      z.array(
+        z.nullable(
+          z.union([z.string(), z.number(), z.boolean(), z.record(z.any())]),
+        ),
       ),
-    ),
-  ]);
+    ])
+  );
 
 export function messageFromJSON(
   jsonString: string,
@@ -158,33 +162,35 @@ export const ErrorDto$inboundSchema: z.ZodType<
   ErrorDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  statusCode: z.number(),
-  timestamp: z.string(),
-  path: z.string(),
-  message: z.nullable(
-    z.union([
-      z.string(),
-      z.number(),
-      z.boolean(),
-      z.lazy(() => Four$inboundSchema),
-      z.array(
-        z.nullable(
-          z.union([z.string(), z.number(), z.boolean(), z.record(z.any())]),
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    statusCode: z.number(),
+    timestamp: z.string(),
+    path: z.string(),
+    message: z.nullable(
+      z.union([
+        z.string(),
+        z.number(),
+        z.boolean(),
+        z.lazy(() => Four$inboundSchema),
+        z.array(
+          z.nullable(
+            z.union([z.string(), z.number(), z.boolean(), z.record(z.any())]),
+          ),
         ),
-      ),
-    ]),
-  ).optional(),
-  ctx: z.record(z.any()).optional(),
-  errorId: z.string().optional(),
-  request$: z.instanceof(Request),
-  response$: z.instanceof(Response),
-  body$: z.string(),
-})
-  .transform((v) => {
-    return new ErrorDto(v, {
-      request: v.request$,
-      response: v.response$,
-      body: v.body$,
-    });
-  });
+      ]),
+    ).optional(),
+    ctx: z.record(z.any()).optional(),
+    errorId: z.string().optional(),
+    request$: z.instanceof(Request),
+    response$: z.instanceof(Response),
+    body$: z.string(),
+  })
+    .transform((v) => {
+      return new ErrorDto(v, {
+        request: v.request$,
+        response: v.response$,
+        body: v.body$,
+      });
+    })
+);

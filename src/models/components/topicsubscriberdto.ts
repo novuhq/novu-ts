@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -40,21 +40,23 @@ export const TopicSubscriberDto$inboundSchema: z.ZodType<
   TopicSubscriberDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  _organizationId: z.string(),
-  _environmentId: z.string(),
-  _subscriberId: z.string(),
-  _topicId: z.string(),
-  topicKey: z.string(),
-  externalSubscriberId: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    "_organizationId": "organizationId",
-    "_environmentId": "environmentId",
-    "_subscriberId": "subscriberId",
-    "_topicId": "topicId",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    _organizationId: z.string(),
+    _environmentId: z.string(),
+    _subscriberId: z.string(),
+    _topicId: z.string(),
+    topicKey: z.string(),
+    externalSubscriberId: z.string(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_organizationId": "organizationId",
+      "_environmentId": "environmentId",
+      "_subscriberId": "subscriberId",
+      "_topicId": "topicId",
+    });
+  })
+);
 
 export function topicSubscriberDtoFromJSON(
   jsonString: string,

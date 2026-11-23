@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type ToolControlDto = {
   /**
@@ -26,10 +27,12 @@ export const ToolControlDto$outboundSchema: z.ZodType<
   ToolControlDto$Outbound,
   z.ZodTypeDef,
   ToolControlDto
-> = z.object({
-  skip: z.record(z.any()).optional(),
-  body: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    skip: z.record(z.any()).optional(),
+    body: z.string().optional(),
+  })
+);
 
 export function toolControlDtoToJSON(toolControlDto: ToolControlDto): string {
   return JSON.stringify(ToolControlDto$outboundSchema.parse(toolControlDto));

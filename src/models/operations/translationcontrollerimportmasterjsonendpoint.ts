@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as components from "../components/index.js";
 
 export type TranslationControllerImportMasterJsonEndpointRequest = {
@@ -26,16 +27,18 @@ export const TranslationControllerImportMasterJsonEndpointRequest$outboundSchema
     TranslationControllerImportMasterJsonEndpointRequest$Outbound,
     z.ZodTypeDef,
     TranslationControllerImportMasterJsonEndpointRequest
-  > = z.object({
-    idempotencyKey: z.string().optional(),
-    importMasterJsonRequestDto:
-      components.ImportMasterJsonRequestDto$outboundSchema,
-  }).transform((v) => {
-    return remap$(v, {
-      idempotencyKey: "idempotency-key",
-      importMasterJsonRequestDto: "ImportMasterJsonRequestDto",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      idempotencyKey: z.string().optional(),
+      importMasterJsonRequestDto:
+        components.ImportMasterJsonRequestDto$outboundSchema,
+    }).transform((v) => {
+      return remap$(v, {
+        idempotencyKey: "idempotency-key",
+        importMasterJsonRequestDto: "ImportMasterJsonRequestDto",
+      });
+    })
+  );
 
 export function translationControllerImportMasterJsonEndpointRequestToJSON(
   translationControllerImportMasterJsonEndpointRequest:

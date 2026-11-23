@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   TelegramChatEndpointDto,
   TelegramChatEndpointDto$Outbound,
@@ -69,10 +70,12 @@ export const CreateTelegramChatEndpointDtoContext2$outboundSchema: z.ZodType<
   CreateTelegramChatEndpointDtoContext2$Outbound,
   z.ZodTypeDef,
   CreateTelegramChatEndpointDtoContext2
-> = z.object({
-  id: z.string(),
-  data: z.record(z.any()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    data: z.record(z.any()).optional(),
+  })
+);
 
 export function createTelegramChatEndpointDtoContext2ToJSON(
   createTelegramChatEndpointDtoContext2: CreateTelegramChatEndpointDtoContext2,
@@ -94,10 +97,12 @@ export const CreateTelegramChatEndpointDtoContext$outboundSchema: z.ZodType<
   CreateTelegramChatEndpointDtoContext$Outbound,
   z.ZodTypeDef,
   CreateTelegramChatEndpointDtoContext
-> = z.union([
-  z.lazy(() => CreateTelegramChatEndpointDtoContext2$outboundSchema),
-  z.string(),
-]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.union([
+    z.lazy(() => CreateTelegramChatEndpointDtoContext2$outboundSchema),
+    z.string(),
+  ])
+);
 
 export function createTelegramChatEndpointDtoContextToJSON(
   createTelegramChatEndpointDtoContext: CreateTelegramChatEndpointDtoContext,
@@ -128,21 +133,21 @@ export const CreateTelegramChatEndpointDto$outboundSchema: z.ZodType<
   CreateTelegramChatEndpointDto$Outbound,
   z.ZodTypeDef,
   CreateTelegramChatEndpointDto
-> = z.object({
-  identifier: z.string().optional(),
-  subscriberId: z.string(),
-  createSubscriberIfMissing: z.boolean().default(false),
-  context: z.record(
-    z.union([
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    identifier: z.string().optional(),
+    subscriberId: z.string(),
+    createSubscriberIfMissing: z.boolean().default(false),
+    context: z.record(z.union([
       z.lazy(() => CreateTelegramChatEndpointDtoContext2$outboundSchema),
       z.string(),
-    ]),
-  ).optional(),
-  integrationIdentifier: z.string(),
-  connectionIdentifier: z.string().optional(),
-  type: z.literal("telegram_chat"),
-  endpoint: TelegramChatEndpointDto$outboundSchema,
-});
+    ])).optional(),
+    integrationIdentifier: z.string(),
+    connectionIdentifier: z.string().optional(),
+    type: z.literal("telegram_chat"),
+    endpoint: TelegramChatEndpointDto$outboundSchema,
+  })
+);
 
 export function createTelegramChatEndpointDtoToJSON(
   createTelegramChatEndpointDto: CreateTelegramChatEndpointDto,

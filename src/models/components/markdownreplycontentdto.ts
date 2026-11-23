@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   FileRefDto,
   FileRefDto$Outbound,
@@ -31,10 +32,12 @@ export const MarkdownReplyContentDto$outboundSchema: z.ZodType<
   MarkdownReplyContentDto$Outbound,
   z.ZodTypeDef,
   MarkdownReplyContentDto
-> = z.object({
-  markdown: z.string(),
-  files: z.array(FileRefDto$outboundSchema).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    markdown: z.string(),
+    files: z.array(FileRefDto$outboundSchema).optional(),
+  })
+);
 
 export function markdownReplyContentDtoToJSON(
   markdownReplyContentDto: MarkdownReplyContentDto,

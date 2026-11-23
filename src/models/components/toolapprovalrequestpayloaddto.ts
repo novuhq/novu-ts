@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 /**
  * Novu subscriberId(s) allowed to settle this tool gate when HITL is enabled.
@@ -56,8 +57,8 @@ export type ToolApprovalRequestPayloadDto = {
 export type To$Outbound = {};
 
 /** @internal */
-export const To$outboundSchema: z.ZodType<To$Outbound, z.ZodTypeDef, To> = z
-  .object({});
+export const To$outboundSchema: z.ZodType<To$Outbound, z.ZodTypeDef, To> =
+  /* @__PURE__ */ lazySchema$(() => z.object({}));
 
 export function toToJSON(to: To): string {
   return JSON.stringify(To$outboundSchema.parse(to));
@@ -82,18 +83,20 @@ export const ToolApprovalRequestPayloadDto$outboundSchema: z.ZodType<
   ToolApprovalRequestPayloadDto$Outbound,
   z.ZodTypeDef,
   ToolApprovalRequestPayloadDto
-> = z.object({
-  approvalId: z.string(),
-  toolCallId: z.string(),
-  name: z.string(),
-  input: z.record(z.any()).optional(),
-  approveActionId: z.string().optional(),
-  denyActionId: z.string().optional(),
-  mcpServerName: z.string().optional(),
-  to: z.lazy(() => To$outboundSchema).optional(),
-  from: z.string().optional(),
-  ttlSeconds: z.number().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    approvalId: z.string(),
+    toolCallId: z.string(),
+    name: z.string(),
+    input: z.record(z.any()).optional(),
+    approveActionId: z.string().optional(),
+    denyActionId: z.string().optional(),
+    mcpServerName: z.string().optional(),
+    to: z.lazy(() => To$outboundSchema).optional(),
+    from: z.string().optional(),
+    ttlSeconds: z.number().optional(),
+  })
+);
 
 export function toolApprovalRequestPayloadDtoToJSON(
   toolApprovalRequestPayloadDto: ToolApprovalRequestPayloadDto,

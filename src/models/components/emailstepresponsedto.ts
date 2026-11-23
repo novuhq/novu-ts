@@ -6,6 +6,7 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import {
   collectExtraKeys as collectExtraKeys$,
+  lazySchema as lazySchema$,
   safeParse,
 } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
@@ -155,28 +156,32 @@ export type EmailStepResponseDto = {
 /** @internal */
 export const EmailStepResponseDtoEditorType$inboundSchema: z.ZodNativeEnum<
   typeof EmailStepResponseDtoEditorType
-> = z.nativeEnum(EmailStepResponseDtoEditorType);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.nativeEnum(EmailStepResponseDtoEditorType)
+);
 
 /** @internal */
 export const EmailStepResponseDtoControlValues$inboundSchema: z.ZodType<
   EmailStepResponseDtoControlValues,
   z.ZodTypeDef,
   unknown
-> = collectExtraKeys$(
-  z.object({
-    skip: z.record(z.any()).optional(),
-    subject: z.string(),
-    body: z.string().default(""),
-    editorType: EmailStepResponseDtoEditorType$inboundSchema.default("block"),
-    disableOutputSanitization: z.boolean().default(false),
-    layoutId: z.nullable(z.string()).optional(),
-    from: EmailFromControlDto$inboundSchema.optional(),
-    useProviderDefaults: z.boolean().optional(),
-    replyTo: z.string().optional(),
-    preheader: z.string().optional(),
-  }).catchall(z.any()),
-  "additionalProperties",
-  true,
+> = /* @__PURE__ */ lazySchema$(() =>
+  collectExtraKeys$(
+    z.object({
+      skip: z.record(z.any()).optional(),
+      subject: z.string(),
+      body: z.string().default(""),
+      editorType: EmailStepResponseDtoEditorType$inboundSchema.default("block"),
+      disableOutputSanitization: z.boolean().default(false),
+      layoutId: z.nullable(z.string()).optional(),
+      from: EmailFromControlDto$inboundSchema.optional(),
+      useProviderDefaults: z.boolean().optional(),
+      replyTo: z.string().optional(),
+      preheader: z.string().optional(),
+    }).catchall(z.any()),
+    "additionalProperties",
+    true,
+  )
 );
 
 export function emailStepResponseDtoControlValuesFromJSON(
@@ -194,29 +199,31 @@ export const EmailStepResponseDto$inboundSchema: z.ZodType<
   EmailStepResponseDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  controls: EmailControlsMetadataResponseDto$inboundSchema,
-  controlValues: z.lazy(() => EmailStepResponseDtoControlValues$inboundSchema)
-    .optional(),
-  providerOverrides: z.nullable(z.record(z.record(z.any()))).optional(),
-  integrationOverrides: z.nullable(z.record(z.record(z.record(z.any()))))
-    .optional(),
-  variables: z.record(z.any()),
-  stepId: z.string(),
-  _id: z.string(),
-  name: z.string(),
-  slug: z.string(),
-  type: z.literal("email"),
-  origin: ResourceOriginEnum$inboundSchema,
-  workflowId: z.string(),
-  workflowDatabaseId: z.string(),
-  issues: StepIssuesDto$inboundSchema.optional(),
-  stepResolverHash: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_id": "id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    controls: EmailControlsMetadataResponseDto$inboundSchema,
+    controlValues: z.lazy(() => EmailStepResponseDtoControlValues$inboundSchema)
+      .optional(),
+    providerOverrides: z.nullable(z.record(z.record(z.any()))).optional(),
+    integrationOverrides: z.nullable(z.record(z.record(z.record(z.any()))))
+      .optional(),
+    variables: z.record(z.any()),
+    stepId: z.string(),
+    _id: z.string(),
+    name: z.string(),
+    slug: z.string(),
+    type: z.literal("email"),
+    origin: ResourceOriginEnum$inboundSchema,
+    workflowId: z.string(),
+    workflowDatabaseId: z.string(),
+    issues: StepIssuesDto$inboundSchema.optional(),
+    stepResolverHash: z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_id": "id",
+    });
+  })
+);
 
 export function emailStepResponseDtoFromJSON(
   jsonString: string,

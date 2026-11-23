@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 
 /**
@@ -28,4 +29,4 @@ export type OrdinalValueEnum = ClosedEnum<typeof OrdinalValueEnum>;
 /** @internal */
 export const OrdinalValueEnum$inboundSchema: z.ZodNativeEnum<
   typeof OrdinalValueEnum
-> = z.nativeEnum(OrdinalValueEnum);
+> = /* @__PURE__ */ lazySchema$(() => z.nativeEnum(OrdinalValueEnum));

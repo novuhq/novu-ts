@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -24,11 +24,13 @@ export type MetaDto = {
 
 /** @internal */
 export const MetaDto$inboundSchema: z.ZodType<MetaDto, z.ZodTypeDef, unknown> =
-  z.object({
-    totalCount: z.number(),
-    successful: z.number(),
-    failed: z.number(),
-  });
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      totalCount: z.number(),
+      successful: z.number(),
+      failed: z.number(),
+    })
+  );
 
 export function metaDtoFromJSON(
   jsonString: string,

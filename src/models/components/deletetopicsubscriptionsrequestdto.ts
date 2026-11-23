@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   DeleteTopicSubscriberIdentifierDto,
   DeleteTopicSubscriberIdentifierDto$Outbound,
@@ -39,7 +40,9 @@ export const DeleteTopicSubscriptionsRequestDtoSubscriptions$outboundSchema:
     DeleteTopicSubscriptionsRequestDtoSubscriptions$Outbound,
     z.ZodTypeDef,
     DeleteTopicSubscriptionsRequestDtoSubscriptions
-  > = z.union([z.string(), DeleteTopicSubscriberIdentifierDto$outboundSchema]);
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.union([z.string(), DeleteTopicSubscriberIdentifierDto$outboundSchema])
+  );
 
 export function deleteTopicSubscriptionsRequestDtoSubscriptionsToJSON(
   deleteTopicSubscriptionsRequestDtoSubscriptions:
@@ -65,12 +68,14 @@ export const DeleteTopicSubscriptionsRequestDto$outboundSchema: z.ZodType<
   DeleteTopicSubscriptionsRequestDto$Outbound,
   z.ZodTypeDef,
   DeleteTopicSubscriptionsRequestDto
-> = z.object({
-  subscriberIds: z.array(z.string()).optional(),
-  subscriptions: z.array(
-    z.union([z.string(), DeleteTopicSubscriberIdentifierDto$outboundSchema]),
-  ).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    subscriberIds: z.array(z.string()).optional(),
+    subscriptions: z.array(
+      z.union([z.string(), DeleteTopicSubscriberIdentifierDto$outboundSchema]),
+    ).optional(),
+  })
+);
 
 export function deleteTopicSubscriptionsRequestDtoToJSON(
   deleteTopicSubscriptionsRequestDto: DeleteTopicSubscriptionsRequestDto,

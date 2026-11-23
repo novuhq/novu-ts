@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type CreateSubscriberRequestDto = {
   /**
@@ -61,17 +62,19 @@ export const CreateSubscriberRequestDto$outboundSchema: z.ZodType<
   CreateSubscriberRequestDto$Outbound,
   z.ZodTypeDef,
   CreateSubscriberRequestDto
-> = z.object({
-  firstName: z.nullable(z.string()).optional(),
-  lastName: z.nullable(z.string()).optional(),
-  email: z.nullable(z.string()).optional(),
-  phone: z.nullable(z.string()).optional(),
-  avatar: z.nullable(z.string()).optional(),
-  locale: z.nullable(z.string()).optional(),
-  timezone: z.nullable(z.string()).optional(),
-  data: z.nullable(z.record(z.any())).optional(),
-  subscriberId: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    firstName: z.nullable(z.string()).optional(),
+    lastName: z.nullable(z.string()).optional(),
+    email: z.nullable(z.string()).optional(),
+    phone: z.nullable(z.string()).optional(),
+    avatar: z.nullable(z.string()).optional(),
+    locale: z.nullable(z.string()).optional(),
+    timezone: z.nullable(z.string()).optional(),
+    data: z.nullable(z.record(z.any())).optional(),
+    subscriberId: z.string(),
+  })
+);
 
 export function createSubscriberRequestDtoToJSON(
   createSubscriberRequestDto: CreateSubscriberRequestDto,

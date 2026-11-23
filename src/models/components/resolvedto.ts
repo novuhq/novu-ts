@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type ResolveDto = {
   /**
@@ -21,9 +22,11 @@ export const ResolveDto$outboundSchema: z.ZodType<
   ResolveDto$Outbound,
   z.ZodTypeDef,
   ResolveDto
-> = z.object({
-  summary: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    summary: z.string().optional(),
+  })
+);
 
 export function resolveDtoToJSON(resolveDto: ResolveDto): string {
   return JSON.stringify(ResolveDto$outboundSchema.parse(resolveDto));

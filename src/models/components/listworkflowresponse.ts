@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -27,10 +27,12 @@ export const ListWorkflowResponse$inboundSchema: z.ZodType<
   ListWorkflowResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  workflows: z.array(WorkflowListResponseDto$inboundSchema),
-  totalCount: z.number(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    workflows: z.array(WorkflowListResponseDto$inboundSchema),
+    totalCount: z.number(),
+  })
+);
 
 export function listWorkflowResponseFromJSON(
   jsonString: string,

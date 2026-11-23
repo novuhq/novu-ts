@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -18,11 +18,13 @@ export const WorkspaceDto$inboundSchema: z.ZodType<
   WorkspaceDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: z.string(),
-  name: z.string().optional(),
-  botUserId: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    name: z.string().optional(),
+    botUserId: z.string().optional(),
+  })
+);
 /** @internal */
 export type WorkspaceDto$Outbound = {
   id: string;
@@ -35,11 +37,13 @@ export const WorkspaceDto$outboundSchema: z.ZodType<
   WorkspaceDto$Outbound,
   z.ZodTypeDef,
   WorkspaceDto
-> = z.object({
-  id: z.string(),
-  name: z.string().optional(),
-  botUserId: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    name: z.string().optional(),
+    botUserId: z.string().optional(),
+  })
+);
 
 export function workspaceDtoToJSON(workspaceDto: WorkspaceDto): string {
   return JSON.stringify(WorkspaceDto$outboundSchema.parse(workspaceDto));

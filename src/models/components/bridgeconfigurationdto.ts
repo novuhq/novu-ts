@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type BridgeConfigurationDto = {
   url?: string | undefined;
@@ -18,9 +19,11 @@ export const BridgeConfigurationDto$outboundSchema: z.ZodType<
   BridgeConfigurationDto$Outbound,
   z.ZodTypeDef,
   BridgeConfigurationDto
-> = z.object({
-  url: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    url: z.string().optional(),
+  })
+);
 
 export function bridgeConfigurationDtoToJSON(
   bridgeConfigurationDto: BridgeConfigurationDto,

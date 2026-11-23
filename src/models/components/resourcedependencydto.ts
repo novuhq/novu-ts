@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -43,13 +43,15 @@ export const ResourceDependencyDto$inboundSchema: z.ZodType<
   ResourceDependencyDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  resourceType: ResourceTypeEnum$inboundSchema,
-  resourceId: z.string(),
-  resourceName: z.string(),
-  isBlocking: z.boolean(),
-  reason: DependencyReasonEnum$inboundSchema,
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    resourceType: ResourceTypeEnum$inboundSchema,
+    resourceId: z.string(),
+    resourceName: z.string(),
+    isBlocking: z.boolean(),
+    reason: DependencyReasonEnum$inboundSchema,
+  })
+);
 
 export function resourceDependencyDtoFromJSON(
   jsonString: string,

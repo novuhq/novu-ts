@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type SnoozeSubscriberNotificationDto = {
   /**
@@ -21,9 +22,11 @@ export const SnoozeSubscriberNotificationDto$outboundSchema: z.ZodType<
   SnoozeSubscriberNotificationDto$Outbound,
   z.ZodTypeDef,
   SnoozeSubscriberNotificationDto
-> = z.object({
-  snoozeUntil: z.date().transform(v => v.toISOString()),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    snoozeUntil: z.date().transform(v => v.toISOString()),
+  })
+);
 
 export function snoozeSubscriberNotificationDtoToJSON(
   snoozeSubscriberNotificationDto: SnoozeSubscriberNotificationDto,

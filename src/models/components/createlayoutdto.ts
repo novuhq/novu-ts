@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   LayoutCreationSourceEnum,
   LayoutCreationSourceEnum$outboundSchema,
@@ -41,16 +42,18 @@ export const CreateLayoutDto$outboundSchema: z.ZodType<
   CreateLayoutDto$Outbound,
   z.ZodTypeDef,
   CreateLayoutDto
-> = z.object({
-  layoutId: z.string(),
-  name: z.string(),
-  isTranslationEnabled: z.boolean().default(false),
-  source: LayoutCreationSourceEnum$outboundSchema.default("dashboard"),
-}).transform((v) => {
-  return remap$(v, {
-    source: "__source",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    layoutId: z.string(),
+    name: z.string(),
+    isTranslationEnabled: z.boolean().default(false),
+    source: LayoutCreationSourceEnum$outboundSchema.default("dashboard"),
+  }).transform((v) => {
+    return remap$(v, {
+      source: "__source",
+    });
+  })
+);
 
 export function createLayoutDtoToJSON(
   createLayoutDto: CreateLayoutDto,

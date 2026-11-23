@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type PatchWorkflowDto = {
   /**
@@ -51,15 +52,17 @@ export const PatchWorkflowDto$outboundSchema: z.ZodType<
   PatchWorkflowDto$Outbound,
   z.ZodTypeDef,
   PatchWorkflowDto
-> = z.object({
-  active: z.boolean().optional(),
-  name: z.string().optional(),
-  description: z.string().optional(),
-  tags: z.array(z.string()).optional(),
-  payloadSchema: z.nullable(z.record(z.any())).optional(),
-  validatePayload: z.boolean().optional(),
-  isTranslationEnabled: z.boolean().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    active: z.boolean().optional(),
+    name: z.string().optional(),
+    description: z.string().optional(),
+    tags: z.array(z.string()).optional(),
+    payloadSchema: z.nullable(z.record(z.any())).optional(),
+    validatePayload: z.boolean().optional(),
+    isTranslationEnabled: z.boolean().optional(),
+  })
+);
 
 export function patchWorkflowDtoToJSON(
   patchWorkflowDto: PatchWorkflowDto,

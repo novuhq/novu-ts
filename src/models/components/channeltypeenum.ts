@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 
 export const ChannelTypeEnum = {
@@ -18,7 +19,7 @@ export type ChannelTypeEnum = ClosedEnum<typeof ChannelTypeEnum>;
 /** @internal */
 export const ChannelTypeEnum$inboundSchema: z.ZodNativeEnum<
   typeof ChannelTypeEnum
-> = z.nativeEnum(ChannelTypeEnum);
+> = /* @__PURE__ */ lazySchema$(() => z.nativeEnum(ChannelTypeEnum));
 /** @internal */
 export const ChannelTypeEnum$outboundSchema: z.ZodNativeEnum<
   typeof ChannelTypeEnum

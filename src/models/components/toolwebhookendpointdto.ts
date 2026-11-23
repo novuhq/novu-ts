@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -37,8 +37,8 @@ export type ToolWebhookEndpointDto = {
 };
 
 /** @internal */
-export const Method$inboundSchema: z.ZodNativeEnum<typeof Method> = z
-  .nativeEnum(Method);
+export const Method$inboundSchema: z.ZodNativeEnum<typeof Method> =
+  /* @__PURE__ */ lazySchema$(() => z.nativeEnum(Method));
 /** @internal */
 export const Method$outboundSchema: z.ZodNativeEnum<typeof Method> =
   Method$inboundSchema;
@@ -48,11 +48,13 @@ export const ToolWebhookEndpointDto$inboundSchema: z.ZodType<
   ToolWebhookEndpointDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  url: z.string(),
-  headers: z.record(z.string()).optional(),
-  method: Method$inboundSchema.optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    url: z.string(),
+    headers: z.record(z.string()).optional(),
+    method: Method$inboundSchema.optional(),
+  })
+);
 /** @internal */
 export type ToolWebhookEndpointDto$Outbound = {
   url: string;
@@ -65,11 +67,13 @@ export const ToolWebhookEndpointDto$outboundSchema: z.ZodType<
   ToolWebhookEndpointDto$Outbound,
   z.ZodTypeDef,
   ToolWebhookEndpointDto
-> = z.object({
-  url: z.string(),
-  headers: z.record(z.string()).optional(),
-  method: Method$outboundSchema.optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    url: z.string(),
+    headers: z.record(z.string()).optional(),
+    method: Method$outboundSchema.optional(),
+  })
+);
 
 export function toolWebhookEndpointDtoToJSON(
   toolWebhookEndpointDto: ToolWebhookEndpointDto,

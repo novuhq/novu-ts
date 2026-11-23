@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -68,23 +68,27 @@ export type DigestTimedConfigDto = {
 /** @internal */
 export const DigestTimedConfigDtoWeekDays$inboundSchema: z.ZodNativeEnum<
   typeof DigestTimedConfigDtoWeekDays
-> = z.nativeEnum(DigestTimedConfigDtoWeekDays);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.nativeEnum(DigestTimedConfigDtoWeekDays)
+);
 
 /** @internal */
 export const DigestTimedConfigDto$inboundSchema: z.ZodType<
   DigestTimedConfigDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  atTime: z.string().optional(),
-  weekDays: z.array(DigestTimedConfigDtoWeekDays$inboundSchema).optional(),
-  monthDays: z.array(z.number()).optional(),
-  ordinal: OrdinalEnum$inboundSchema.optional(),
-  ordinalValue: OrdinalValueEnum$inboundSchema.optional(),
-  monthlyType: MonthlyTypeEnum$inboundSchema.optional(),
-  cronExpression: z.string().optional(),
-  untilDate: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    atTime: z.string().optional(),
+    weekDays: z.array(DigestTimedConfigDtoWeekDays$inboundSchema).optional(),
+    monthDays: z.array(z.number()).optional(),
+    ordinal: OrdinalEnum$inboundSchema.optional(),
+    ordinalValue: OrdinalValueEnum$inboundSchema.optional(),
+    monthlyType: MonthlyTypeEnum$inboundSchema.optional(),
+    cronExpression: z.string().optional(),
+    untilDate: z.string().optional(),
+  })
+);
 
 export function digestTimedConfigDtoFromJSON(
   jsonString: string,

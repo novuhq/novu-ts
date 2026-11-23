@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -35,16 +35,18 @@ export const IntegrationsControllerLinkChannelEndpointRequest$outboundSchema:
     IntegrationsControllerLinkChannelEndpointRequest$Outbound,
     z.ZodTypeDef,
     IntegrationsControllerLinkChannelEndpointRequest
-  > = z.object({
-    idempotencyKey: z.string().optional(),
-    linkChannelEndpointRequestDto:
-      components.LinkChannelEndpointRequestDto$outboundSchema,
-  }).transform((v) => {
-    return remap$(v, {
-      idempotencyKey: "idempotency-key",
-      linkChannelEndpointRequestDto: "LinkChannelEndpointRequestDto",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      idempotencyKey: z.string().optional(),
+      linkChannelEndpointRequestDto:
+        components.LinkChannelEndpointRequestDto$outboundSchema,
+    }).transform((v) => {
+      return remap$(v, {
+        idempotencyKey: "idempotency-key",
+        linkChannelEndpointRequestDto: "LinkChannelEndpointRequestDto",
+      });
+    })
+  );
 
 export function integrationsControllerLinkChannelEndpointRequestToJSON(
   integrationsControllerLinkChannelEndpointRequest:
@@ -63,15 +65,17 @@ export const IntegrationsControllerLinkChannelEndpointResponse$inboundSchema:
     IntegrationsControllerLinkChannelEndpointResponse,
     z.ZodTypeDef,
     unknown
-  > = z.object({
-    Headers: z.record(z.array(z.string())).default({}),
-    Result: components.LinkChannelEndpointResponseDto$inboundSchema,
-  }).transform((v) => {
-    return remap$(v, {
-      "Headers": "headers",
-      "Result": "result",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      Headers: z.record(z.array(z.string())).default({}),
+      Result: components.LinkChannelEndpointResponseDto$inboundSchema,
+    }).transform((v) => {
+      return remap$(v, {
+        "Headers": "headers",
+        "Result": "result",
+      });
+    })
+  );
 
 export function integrationsControllerLinkChannelEndpointResponseFromJSON(
   jsonString: string,

@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type DuplicateLayoutDto = {
   /**
@@ -31,11 +32,13 @@ export const DuplicateLayoutDto$outboundSchema: z.ZodType<
   DuplicateLayoutDto$Outbound,
   z.ZodTypeDef,
   DuplicateLayoutDto
-> = z.object({
-  name: z.string(),
-  layoutId: z.string().optional(),
-  isTranslationEnabled: z.boolean().default(false),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    name: z.string(),
+    layoutId: z.string().optional(),
+    isTranslationEnabled: z.boolean().default(false),
+  })
+);
 
 export function duplicateLayoutDtoToJSON(
   duplicateLayoutDto: DuplicateLayoutDto,

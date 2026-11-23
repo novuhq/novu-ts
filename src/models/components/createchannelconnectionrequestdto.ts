@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import {
   AuthDto,
@@ -78,10 +79,12 @@ export const CreateChannelConnectionRequestDtoContext2$outboundSchema:
     CreateChannelConnectionRequestDtoContext2$Outbound,
     z.ZodTypeDef,
     CreateChannelConnectionRequestDtoContext2
-  > = z.object({
-    id: z.string(),
-    data: z.record(z.any()).optional(),
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      id: z.string(),
+      data: z.record(z.any()).optional(),
+    })
+  );
 
 export function createChannelConnectionRequestDtoContext2ToJSON(
   createChannelConnectionRequestDtoContext2:
@@ -104,10 +107,12 @@ export const CreateChannelConnectionRequestDtoContext$outboundSchema: z.ZodType<
   CreateChannelConnectionRequestDtoContext$Outbound,
   z.ZodTypeDef,
   CreateChannelConnectionRequestDtoContext
-> = z.union([
-  z.lazy(() => CreateChannelConnectionRequestDtoContext2$outboundSchema),
-  z.string(),
-]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.union([
+    z.lazy(() => CreateChannelConnectionRequestDtoContext2$outboundSchema),
+    z.string(),
+  ])
+);
 
 export function createChannelConnectionRequestDtoContextToJSON(
   createChannelConnectionRequestDtoContext:
@@ -123,7 +128,7 @@ export function createChannelConnectionRequestDtoContextToJSON(
 /** @internal */
 export const ConnectionMode$outboundSchema: z.ZodNativeEnum<
   typeof ConnectionMode
-> = z.nativeEnum(ConnectionMode);
+> = /* @__PURE__ */ lazySchema$(() => z.nativeEnum(ConnectionMode));
 
 /** @internal */
 export type CreateChannelConnectionRequestDto$Outbound = {
@@ -143,20 +148,20 @@ export const CreateChannelConnectionRequestDto$outboundSchema: z.ZodType<
   CreateChannelConnectionRequestDto$Outbound,
   z.ZodTypeDef,
   CreateChannelConnectionRequestDto
-> = z.object({
-  identifier: z.string().optional(),
-  subscriberId: z.string().optional(),
-  context: z.record(
-    z.union([
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    identifier: z.string().optional(),
+    subscriberId: z.string().optional(),
+    context: z.record(z.union([
       z.lazy(() => CreateChannelConnectionRequestDtoContext2$outboundSchema),
       z.string(),
-    ]),
-  ).optional(),
-  connectionMode: ConnectionMode$outboundSchema.optional(),
-  integrationIdentifier: z.string(),
-  workspace: WorkspaceDto$outboundSchema,
-  auth: AuthDto$outboundSchema,
-});
+    ])).optional(),
+    connectionMode: ConnectionMode$outboundSchema.optional(),
+    integrationIdentifier: z.string(),
+    workspace: WorkspaceDto$outboundSchema,
+    auth: AuthDto$outboundSchema,
+  })
+);
 
 export function createChannelConnectionRequestDtoToJSON(
   createChannelConnectionRequestDto: CreateChannelConnectionRequestDto,

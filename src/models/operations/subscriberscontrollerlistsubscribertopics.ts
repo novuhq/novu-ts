@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
@@ -80,8 +80,10 @@ export type SubscribersControllerListSubscriberTopicsResponse = {
 export const SubscribersControllerListSubscriberTopicsQueryParamOrderDirection$outboundSchema:
   z.ZodNativeEnum<
     typeof SubscribersControllerListSubscriberTopicsQueryParamOrderDirection
-  > = z.nativeEnum(
-    SubscribersControllerListSubscriberTopicsQueryParamOrderDirection,
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.nativeEnum(
+      SubscribersControllerListSubscriberTopicsQueryParamOrderDirection,
+    )
   );
 
 /** @internal */
@@ -104,24 +106,26 @@ export const SubscribersControllerListSubscriberTopicsRequest$outboundSchema:
     SubscribersControllerListSubscriberTopicsRequest$Outbound,
     z.ZodTypeDef,
     SubscribersControllerListSubscriberTopicsRequest
-  > = z.object({
-    subscriberId: z.string(),
-    after: z.string().optional(),
-    before: z.string().optional(),
-    limit: z.number().optional(),
-    orderDirection:
-      SubscribersControllerListSubscriberTopicsQueryParamOrderDirection$outboundSchema
-        .optional(),
-    orderBy: z.string().optional(),
-    includeCursor: z.boolean().optional(),
-    key: z.string().optional(),
-    contextKeys: z.array(z.string()).optional(),
-    idempotencyKey: z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      idempotencyKey: "idempotency-key",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      subscriberId: z.string(),
+      after: z.string().optional(),
+      before: z.string().optional(),
+      limit: z.number().optional(),
+      orderDirection:
+        SubscribersControllerListSubscriberTopicsQueryParamOrderDirection$outboundSchema
+          .optional(),
+      orderBy: z.string().optional(),
+      includeCursor: z.boolean().optional(),
+      key: z.string().optional(),
+      contextKeys: z.array(z.string()).optional(),
+      idempotencyKey: z.string().optional(),
+    }).transform((v) => {
+      return remap$(v, {
+        idempotencyKey: "idempotency-key",
+      });
+    })
+  );
 
 export function subscribersControllerListSubscriberTopicsRequestToJSON(
   subscribersControllerListSubscriberTopicsRequest:
@@ -140,15 +144,17 @@ export const SubscribersControllerListSubscriberTopicsResponse$inboundSchema:
     SubscribersControllerListSubscriberTopicsResponse,
     z.ZodTypeDef,
     unknown
-  > = z.object({
-    Headers: z.record(z.array(z.string())).default({}),
-    Result: components.ListTopicSubscriptionsResponseDto$inboundSchema,
-  }).transform((v) => {
-    return remap$(v, {
-      "Headers": "headers",
-      "Result": "result",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      Headers: z.record(z.array(z.string())).default({}),
+      Result: components.ListTopicSubscriptionsResponseDto$inboundSchema,
+    }).transform((v) => {
+      return remap$(v, {
+        "Headers": "headers",
+        "Result": "result",
+      });
+    })
+  );
 
 export function subscribersControllerListSubscriberTopicsResponseFromJSON(
   jsonString: string,

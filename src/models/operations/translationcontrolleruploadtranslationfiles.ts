@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 
 /**
@@ -48,7 +49,7 @@ export type TranslationControllerUploadTranslationFilesRequest = {
 
 /** @internal */
 export const ResourceType$outboundSchema: z.ZodNativeEnum<typeof ResourceType> =
-  z.nativeEnum(ResourceType);
+  /* @__PURE__ */ lazySchema$(() => z.nativeEnum(ResourceType));
 
 /** @internal */
 export type Files$Outbound = {
@@ -61,15 +62,17 @@ export const Files$outboundSchema: z.ZodType<
   Files$Outbound,
   z.ZodTypeDef,
   Files
-> = z.object({
-  fileName: z.string(),
-  content: z.union([
-    z.instanceof(ReadableStream<Uint8Array>),
-    z.instanceof(Blob),
-    z.instanceof(ArrayBuffer),
-    z.instanceof(Uint8Array),
-  ]),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    fileName: z.string(),
+    content: z.union([
+      z.instanceof(ReadableStream<Uint8Array>),
+      z.instanceof(Blob),
+      z.instanceof(ArrayBuffer),
+      z.instanceof(Uint8Array),
+    ]),
+  })
+);
 
 export function filesToJSON(files: Files): string {
   return JSON.stringify(Files$outboundSchema.parse(files));
@@ -88,11 +91,13 @@ export const TranslationControllerUploadTranslationFilesRequestBody$outboundSche
     TranslationControllerUploadTranslationFilesRequestBody$Outbound,
     z.ZodTypeDef,
     TranslationControllerUploadTranslationFilesRequestBody
-  > = z.object({
-    resourceId: z.string(),
-    resourceType: ResourceType$outboundSchema,
-    files: z.array(z.lazy(() => Files$outboundSchema)),
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      resourceId: z.string(),
+      resourceType: ResourceType$outboundSchema,
+      files: z.array(z.lazy(() => Files$outboundSchema)),
+    })
+  );
 
 export function translationControllerUploadTranslationFilesRequestBodyToJSON(
   translationControllerUploadTranslationFilesRequestBody:
@@ -117,17 +122,19 @@ export const TranslationControllerUploadTranslationFilesRequest$outboundSchema:
     TranslationControllerUploadTranslationFilesRequest$Outbound,
     z.ZodTypeDef,
     TranslationControllerUploadTranslationFilesRequest
-  > = z.object({
-    idempotencyKey: z.string().optional(),
-    requestBody: z.lazy(() =>
-      TranslationControllerUploadTranslationFilesRequestBody$outboundSchema
-    ),
-  }).transform((v) => {
-    return remap$(v, {
-      idempotencyKey: "idempotency-key",
-      requestBody: "RequestBody",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      idempotencyKey: z.string().optional(),
+      requestBody: z.lazy(() =>
+        TranslationControllerUploadTranslationFilesRequestBody$outboundSchema
+      ),
+    }).transform((v) => {
+      return remap$(v, {
+        idempotencyKey: "idempotency-key",
+        requestBody: "RequestBody",
+      });
+    })
+  );
 
 export function translationControllerUploadTranslationFilesRequestToJSON(
   translationControllerUploadTranslationFilesRequest:

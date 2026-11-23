@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   WebexPersonEndpointDto,
   WebexPersonEndpointDto$Outbound,
@@ -69,10 +70,12 @@ export const CreateWebexPersonEndpointDtoContext2$outboundSchema: z.ZodType<
   CreateWebexPersonEndpointDtoContext2$Outbound,
   z.ZodTypeDef,
   CreateWebexPersonEndpointDtoContext2
-> = z.object({
-  id: z.string(),
-  data: z.record(z.any()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    data: z.record(z.any()).optional(),
+  })
+);
 
 export function createWebexPersonEndpointDtoContext2ToJSON(
   createWebexPersonEndpointDtoContext2: CreateWebexPersonEndpointDtoContext2,
@@ -94,10 +97,12 @@ export const CreateWebexPersonEndpointDtoContext$outboundSchema: z.ZodType<
   CreateWebexPersonEndpointDtoContext$Outbound,
   z.ZodTypeDef,
   CreateWebexPersonEndpointDtoContext
-> = z.union([
-  z.lazy(() => CreateWebexPersonEndpointDtoContext2$outboundSchema),
-  z.string(),
-]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.union([
+    z.lazy(() => CreateWebexPersonEndpointDtoContext2$outboundSchema),
+    z.string(),
+  ])
+);
 
 export function createWebexPersonEndpointDtoContextToJSON(
   createWebexPersonEndpointDtoContext: CreateWebexPersonEndpointDtoContext,
@@ -128,21 +133,21 @@ export const CreateWebexPersonEndpointDto$outboundSchema: z.ZodType<
   CreateWebexPersonEndpointDto$Outbound,
   z.ZodTypeDef,
   CreateWebexPersonEndpointDto
-> = z.object({
-  identifier: z.string().optional(),
-  subscriberId: z.string(),
-  createSubscriberIfMissing: z.boolean().default(false),
-  context: z.record(
-    z.union([
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    identifier: z.string().optional(),
+    subscriberId: z.string(),
+    createSubscriberIfMissing: z.boolean().default(false),
+    context: z.record(z.union([
       z.lazy(() => CreateWebexPersonEndpointDtoContext2$outboundSchema),
       z.string(),
-    ]),
-  ).optional(),
-  integrationIdentifier: z.string(),
-  connectionIdentifier: z.string().optional(),
-  type: z.literal("webex_person"),
-  endpoint: WebexPersonEndpointDto$outboundSchema,
-});
+    ])).optional(),
+    integrationIdentifier: z.string(),
+    connectionIdentifier: z.string().optional(),
+    type: z.literal("webex_person"),
+    endpoint: WebexPersonEndpointDto$outboundSchema,
+  })
+);
 
 export function createWebexPersonEndpointDtoToJSON(
   createWebexPersonEndpointDto: CreateWebexPersonEndpointDto,

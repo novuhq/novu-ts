@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -35,17 +35,19 @@ export const AgentsControllerCreateAgentRequest$outboundSchema: z.ZodType<
   AgentsControllerCreateAgentRequest$Outbound,
   z.ZodTypeDef,
   AgentsControllerCreateAgentRequest
-> = z.object({
-  novuAnalyticsSource: z.string(),
-  idempotencyKey: z.string().optional(),
-  createAgentRequestDto: components.CreateAgentRequestDto$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    novuAnalyticsSource: "Novu-Analytics-Source",
-    idempotencyKey: "idempotency-key",
-    createAgentRequestDto: "CreateAgentRequestDto",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    novuAnalyticsSource: z.string(),
+    idempotencyKey: z.string().optional(),
+    createAgentRequestDto: components.CreateAgentRequestDto$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      novuAnalyticsSource: "Novu-Analytics-Source",
+      idempotencyKey: "idempotency-key",
+      createAgentRequestDto: "CreateAgentRequestDto",
+    });
+  })
+);
 
 export function agentsControllerCreateAgentRequestToJSON(
   agentsControllerCreateAgentRequest: AgentsControllerCreateAgentRequest,
@@ -62,15 +64,17 @@ export const AgentsControllerCreateAgentResponse$inboundSchema: z.ZodType<
   AgentsControllerCreateAgentResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  Headers: z.record(z.array(z.string())).default({}),
-  Result: components.AgentResponseDto$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "Headers": "headers",
-    "Result": "result",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    Headers: z.record(z.array(z.string())).default({}),
+    Result: components.AgentResponseDto$inboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      "Headers": "headers",
+      "Result": "result",
+    });
+  })
+);
 
 export function agentsControllerCreateAgentResponseFromJSON(
   jsonString: string,

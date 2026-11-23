@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   AuthDto,
   AuthDto$Outbound,
@@ -30,10 +31,12 @@ export const UpdateChannelConnectionRequestDto$outboundSchema: z.ZodType<
   UpdateChannelConnectionRequestDto$Outbound,
   z.ZodTypeDef,
   UpdateChannelConnectionRequestDto
-> = z.object({
-  workspace: WorkspaceDto$outboundSchema,
-  auth: AuthDto$outboundSchema,
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    workspace: WorkspaceDto$outboundSchema,
+    auth: AuthDto$outboundSchema,
+  })
+);
 
 export function updateChannelConnectionRequestDtoToJSON(
   updateChannelConnectionRequestDto: UpdateChannelConnectionRequestDto,

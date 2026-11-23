@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 
 export const DomainRouteDtoType = {
@@ -30,7 +31,7 @@ export type DomainRouteDto = {
 /** @internal */
 export const DomainRouteDtoType$outboundSchema: z.ZodNativeEnum<
   typeof DomainRouteDtoType
-> = z.nativeEnum(DomainRouteDtoType);
+> = /* @__PURE__ */ lazySchema$(() => z.nativeEnum(DomainRouteDtoType));
 
 /** @internal */
 export type DomainRouteDto$Outbound = {
@@ -45,12 +46,14 @@ export const DomainRouteDto$outboundSchema: z.ZodType<
   DomainRouteDto$Outbound,
   z.ZodTypeDef,
   DomainRouteDto
-> = z.object({
-  address: z.string(),
-  agentId: z.string().optional(),
-  type: DomainRouteDtoType$outboundSchema,
-  data: z.record(z.string()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    address: z.string(),
+    agentId: z.string().optional(),
+    type: DomainRouteDtoType$outboundSchema,
+    data: z.record(z.string()).optional(),
+  })
+);
 
 export function domainRouteDtoToJSON(domainRouteDto: DomainRouteDto): string {
   return JSON.stringify(DomainRouteDto$outboundSchema.parse(domainRouteDto));

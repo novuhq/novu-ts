@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -126,43 +126,47 @@ export type IntegrationResponseDto = {
 /** @internal */
 export const IntegrationResponseDtoChannel$inboundSchema: z.ZodNativeEnum<
   typeof IntegrationResponseDtoChannel
-> = z.nativeEnum(IntegrationResponseDtoChannel);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.nativeEnum(IntegrationResponseDtoChannel)
+);
 
 /** @internal */
 export const IntegrationResponseDtoKind$inboundSchema: z.ZodNativeEnum<
   typeof IntegrationResponseDtoKind
-> = z.nativeEnum(IntegrationResponseDtoKind);
+> = /* @__PURE__ */ lazySchema$(() => z.nativeEnum(IntegrationResponseDtoKind));
 
 /** @internal */
 export const IntegrationResponseDto$inboundSchema: z.ZodType<
   IntegrationResponseDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  _id: z.string().optional(),
-  _environmentId: z.string(),
-  _organizationId: z.string(),
-  name: z.string(),
-  identifier: z.string(),
-  providerId: z.string(),
-  channel: IntegrationResponseDtoChannel$inboundSchema.optional(),
-  kind: IntegrationResponseDtoKind$inboundSchema.optional(),
-  credentials: CredentialsDto$inboundSchema.optional(),
-  configurations: ConfigurationsDto$inboundSchema.optional(),
-  active: z.boolean(),
-  deleted: z.boolean(),
-  deletedAt: z.string().optional(),
-  deletedBy: z.string().optional(),
-  primary: z.boolean(),
-  conditions: z.array(StepFilterDto$inboundSchema).optional(),
-  rules: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_id": "id",
-    "_environmentId": "environmentId",
-    "_organizationId": "organizationId",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    _id: z.string().optional(),
+    _environmentId: z.string(),
+    _organizationId: z.string(),
+    name: z.string(),
+    identifier: z.string(),
+    providerId: z.string(),
+    channel: IntegrationResponseDtoChannel$inboundSchema.optional(),
+    kind: IntegrationResponseDtoKind$inboundSchema.optional(),
+    credentials: CredentialsDto$inboundSchema.optional(),
+    configurations: ConfigurationsDto$inboundSchema.optional(),
+    active: z.boolean(),
+    deleted: z.boolean(),
+    deletedAt: z.string().optional(),
+    deletedBy: z.string().optional(),
+    primary: z.boolean(),
+    conditions: z.array(StepFilterDto$inboundSchema).optional(),
+    rules: z.nullable(z.record(z.any())).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_id": "id",
+      "_environmentId": "environmentId",
+      "_organizationId": "organizationId",
+    });
+  })
+);
 
 export function integrationResponseDtoFromJSON(
   jsonString: string,

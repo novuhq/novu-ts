@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -36,25 +36,28 @@ export type DomainDiagnosticCheckDto = {
 };
 
 /** @internal */
-export const Code$inboundSchema: z.ZodNativeEnum<typeof Code> = z.nativeEnum(
-  Code,
-);
+export const Code$inboundSchema: z.ZodNativeEnum<typeof Code> =
+  /* @__PURE__ */ lazySchema$(() => z.nativeEnum(Code));
 
 /** @internal */
 export const DomainDiagnosticCheckDtoStatus$inboundSchema: z.ZodNativeEnum<
   typeof DomainDiagnosticCheckDtoStatus
-> = z.nativeEnum(DomainDiagnosticCheckDtoStatus);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.nativeEnum(DomainDiagnosticCheckDtoStatus)
+);
 
 /** @internal */
 export const DomainDiagnosticCheckDto$inboundSchema: z.ZodType<
   DomainDiagnosticCheckDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  code: Code$inboundSchema,
-  status: DomainDiagnosticCheckDtoStatus$inboundSchema,
-  latencyMs: z.number(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    code: Code$inboundSchema,
+    status: DomainDiagnosticCheckDtoStatus$inboundSchema,
+    latencyMs: z.number(),
+  })
+);
 
 export function domainDiagnosticCheckDtoFromJSON(
   jsonString: string,

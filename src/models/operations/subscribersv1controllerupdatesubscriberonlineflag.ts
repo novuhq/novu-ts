@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -39,18 +39,20 @@ export const SubscribersV1ControllerUpdateSubscriberOnlineFlagRequest$outboundSc
     SubscribersV1ControllerUpdateSubscriberOnlineFlagRequest$Outbound,
     z.ZodTypeDef,
     SubscribersV1ControllerUpdateSubscriberOnlineFlagRequest
-  > = z.object({
-    subscriberId: z.string(),
-    idempotencyKey: z.string().optional(),
-    updateSubscriberOnlineFlagRequestDto:
-      components.UpdateSubscriberOnlineFlagRequestDto$outboundSchema,
-  }).transform((v) => {
-    return remap$(v, {
-      idempotencyKey: "idempotency-key",
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      subscriberId: z.string(),
+      idempotencyKey: z.string().optional(),
       updateSubscriberOnlineFlagRequestDto:
-        "UpdateSubscriberOnlineFlagRequestDto",
-    });
-  });
+        components.UpdateSubscriberOnlineFlagRequestDto$outboundSchema,
+    }).transform((v) => {
+      return remap$(v, {
+        idempotencyKey: "idempotency-key",
+        updateSubscriberOnlineFlagRequestDto:
+          "UpdateSubscriberOnlineFlagRequestDto",
+      });
+    })
+  );
 
 export function subscribersV1ControllerUpdateSubscriberOnlineFlagRequestToJSON(
   subscribersV1ControllerUpdateSubscriberOnlineFlagRequest:
@@ -68,15 +70,17 @@ export const SubscribersV1ControllerUpdateSubscriberOnlineFlagResponse$inboundSc
     SubscribersV1ControllerUpdateSubscriberOnlineFlagResponse,
     z.ZodTypeDef,
     unknown
-  > = z.object({
-    Headers: z.record(z.array(z.string())).default({}),
-    Result: components.SubscriberResponseDto$inboundSchema,
-  }).transform((v) => {
-    return remap$(v, {
-      "Headers": "headers",
-      "Result": "result",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      Headers: z.record(z.array(z.string())).default({}),
+      Result: components.SubscriberResponseDto$inboundSchema,
+    }).transform((v) => {
+      return remap$(v, {
+        "Headers": "headers",
+        "Result": "result",
+      });
+    })
+  );
 
 export function subscribersV1ControllerUpdateSubscriberOnlineFlagResponseFromJSON(
   jsonString: string,

@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -56,22 +56,26 @@ export type TranslationGroupDto = {
 /** @internal */
 export const TranslationGroupDtoResourceType$inboundSchema: z.ZodNativeEnum<
   typeof TranslationGroupDtoResourceType
-> = z.nativeEnum(TranslationGroupDtoResourceType);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.nativeEnum(TranslationGroupDtoResourceType)
+);
 
 /** @internal */
 export const TranslationGroupDto$inboundSchema: z.ZodType<
   TranslationGroupDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  resourceId: z.string(),
-  resourceType: TranslationGroupDtoResourceType$inboundSchema,
-  resourceName: z.string(),
-  locales: z.array(z.string()),
-  outdatedLocales: z.array(z.string()).optional(),
-  createdAt: z.string(),
-  updatedAt: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    resourceId: z.string(),
+    resourceType: TranslationGroupDtoResourceType$inboundSchema,
+    resourceName: z.string(),
+    locales: z.array(z.string()),
+    outdatedLocales: z.array(z.string()).optional(),
+    createdAt: z.string(),
+    updatedAt: z.string(),
+  })
+);
 
 export function translationGroupDtoFromJSON(
   jsonString: string,

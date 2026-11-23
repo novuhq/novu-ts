@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   EmailChannelOverrides,
   EmailChannelOverrides$Outbound,
@@ -177,9 +178,11 @@ export const TriggerEventToAllRequestDtoChannels$outboundSchema: z.ZodType<
   TriggerEventToAllRequestDtoChannels$Outbound,
   z.ZodTypeDef,
   TriggerEventToAllRequestDtoChannels
-> = z.object({
-  email: EmailChannelOverrides$outboundSchema.optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    email: EmailChannelOverrides$outboundSchema.optional(),
+  })
+);
 
 export function triggerEventToAllRequestDtoChannelsToJSON(
   triggerEventToAllRequestDtoChannels: TriggerEventToAllRequestDtoChannels,
@@ -210,26 +213,28 @@ export const TriggerEventToAllRequestDtoOverrides$outboundSchema: z.ZodType<
   TriggerEventToAllRequestDtoOverrides$Outbound,
   z.ZodTypeDef,
   TriggerEventToAllRequestDtoOverrides
-> = z.object({
-  steps: z.record(StepsOverrides$outboundSchema).optional(),
-  channels: z.lazy(() => TriggerEventToAllRequestDtoChannels$outboundSchema)
-    .optional(),
-  providers: z.record(z.record(z.any())).optional(),
-  email: z.record(z.any()).optional(),
-  push: z.record(z.any()).optional(),
-  sms: z.record(z.any()).optional(),
-  chat: z.record(z.any()).optional(),
-  layoutIdentifier: z.string().optional(),
-  severity: SeverityLevelEnum$outboundSchema.optional(),
-  additionalProperties: z.record(z.record(z.any())).optional(),
-}).transform((v) => {
-  return {
-    ...v.additionalProperties,
-    ...remap$(v, {
-      additionalProperties: null,
-    }),
-  };
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    steps: z.record(StepsOverrides$outboundSchema).optional(),
+    channels: z.lazy(() => TriggerEventToAllRequestDtoChannels$outboundSchema)
+      .optional(),
+    providers: z.record(z.record(z.any())).optional(),
+    email: z.record(z.any()).optional(),
+    push: z.record(z.any()).optional(),
+    sms: z.record(z.any()).optional(),
+    chat: z.record(z.any()).optional(),
+    layoutIdentifier: z.string().optional(),
+    severity: SeverityLevelEnum$outboundSchema.optional(),
+    additionalProperties: z.record(z.record(z.any())).optional(),
+  }).transform((v) => {
+    return {
+      ...v.additionalProperties,
+      ...remap$(v, {
+        additionalProperties: null,
+      }),
+    };
+  })
+);
 
 export function triggerEventToAllRequestDtoOverridesToJSON(
   triggerEventToAllRequestDtoOverrides: TriggerEventToAllRequestDtoOverrides,
@@ -251,7 +256,9 @@ export const TriggerEventToAllRequestDtoActor$outboundSchema: z.ZodType<
   TriggerEventToAllRequestDtoActor$Outbound,
   z.ZodTypeDef,
   TriggerEventToAllRequestDtoActor
-> = z.union([SubscriberPayloadDto$outboundSchema, z.string()]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.union([SubscriberPayloadDto$outboundSchema, z.string()])
+);
 
 export function triggerEventToAllRequestDtoActorToJSON(
   triggerEventToAllRequestDtoActor: TriggerEventToAllRequestDtoActor,
@@ -273,7 +280,9 @@ export const TriggerEventToAllRequestDtoTenant$outboundSchema: z.ZodType<
   TriggerEventToAllRequestDtoTenant$Outbound,
   z.ZodTypeDef,
   TriggerEventToAllRequestDtoTenant
-> = z.union([z.string(), TenantPayloadDto$outboundSchema]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.union([z.string(), TenantPayloadDto$outboundSchema])
+);
 
 export function triggerEventToAllRequestDtoTenantToJSON(
   triggerEventToAllRequestDtoTenant: TriggerEventToAllRequestDtoTenant,
@@ -296,10 +305,12 @@ export const TriggerEventToAllRequestDtoContext2$outboundSchema: z.ZodType<
   TriggerEventToAllRequestDtoContext2$Outbound,
   z.ZodTypeDef,
   TriggerEventToAllRequestDtoContext2
-> = z.object({
-  id: z.string(),
-  data: z.record(z.any()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    data: z.record(z.any()).optional(),
+  })
+);
 
 export function triggerEventToAllRequestDtoContext2ToJSON(
   triggerEventToAllRequestDtoContext2: TriggerEventToAllRequestDtoContext2,
@@ -321,10 +332,12 @@ export const TriggerEventToAllRequestDtoContext$outboundSchema: z.ZodType<
   TriggerEventToAllRequestDtoContext$Outbound,
   z.ZodTypeDef,
   TriggerEventToAllRequestDtoContext
-> = z.union([
-  z.lazy(() => TriggerEventToAllRequestDtoContext2$outboundSchema),
-  z.string(),
-]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.union([
+    z.lazy(() => TriggerEventToAllRequestDtoContext2$outboundSchema),
+    z.string(),
+  ])
+);
 
 export function triggerEventToAllRequestDtoContextToJSON(
   triggerEventToAllRequestDtoContext: TriggerEventToAllRequestDtoContext,
@@ -355,22 +368,25 @@ export const TriggerEventToAllRequestDto$outboundSchema: z.ZodType<
   TriggerEventToAllRequestDto$Outbound,
   z.ZodTypeDef,
   TriggerEventToAllRequestDto
-> = z.object({
-  name: z.string(),
-  payload: z.record(z.any()),
-  overrides: z.lazy(() => TriggerEventToAllRequestDtoOverrides$outboundSchema)
-    .optional(),
-  agentId: z.nullable(z.string()).optional(),
-  transactionId: z.string().optional(),
-  actor: z.union([SubscriberPayloadDto$outboundSchema, z.string()]).optional(),
-  tenant: z.union([z.string(), TenantPayloadDto$outboundSchema]).optional(),
-  context: z.record(
-    z.union([
-      z.lazy(() => TriggerEventToAllRequestDtoContext2$outboundSchema),
-      z.string(),
-    ]),
-  ).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    name: z.string(),
+    payload: z.record(z.any()),
+    overrides: z.lazy(() => TriggerEventToAllRequestDtoOverrides$outboundSchema)
+      .optional(),
+    agentId: z.nullable(z.string()).optional(),
+    transactionId: z.string().optional(),
+    actor: z.union([SubscriberPayloadDto$outboundSchema, z.string()])
+      .optional(),
+    tenant: z.union([z.string(), TenantPayloadDto$outboundSchema]).optional(),
+    context: z.record(
+      z.union([
+        z.lazy(() => TriggerEventToAllRequestDtoContext2$outboundSchema),
+        z.string(),
+      ]),
+    ).optional(),
+  })
+);
 
 export function triggerEventToAllRequestDtoToJSON(
   triggerEventToAllRequestDto: TriggerEventToAllRequestDto,

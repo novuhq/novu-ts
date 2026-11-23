@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -52,32 +52,34 @@ export type DigestRegularMetadata = {
 /** @internal */
 export const DigestRegularMetadataUnit$inboundSchema: z.ZodNativeEnum<
   typeof DigestRegularMetadataUnit
-> = z.nativeEnum(DigestRegularMetadataUnit);
+> = /* @__PURE__ */ lazySchema$(() => z.nativeEnum(DigestRegularMetadataUnit));
 
 /** @internal */
 export const DigestRegularMetadataType$inboundSchema: z.ZodNativeEnum<
   typeof DigestRegularMetadataType
-> = z.nativeEnum(DigestRegularMetadataType);
+> = /* @__PURE__ */ lazySchema$(() => z.nativeEnum(DigestRegularMetadataType));
 
 /** @internal */
-export const BackoffUnit$inboundSchema: z.ZodNativeEnum<typeof BackoffUnit> = z
-  .nativeEnum(BackoffUnit);
+export const BackoffUnit$inboundSchema: z.ZodNativeEnum<typeof BackoffUnit> =
+  /* @__PURE__ */ lazySchema$(() => z.nativeEnum(BackoffUnit));
 
 /** @internal */
 export const DigestRegularMetadata$inboundSchema: z.ZodType<
   DigestRegularMetadata,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  amount: z.number().optional(),
-  unit: DigestRegularMetadataUnit$inboundSchema.optional(),
-  digestKey: z.string().optional(),
-  type: DigestRegularMetadataType$inboundSchema,
-  backoff: z.boolean().optional(),
-  backoffAmount: z.number().optional(),
-  backoffUnit: BackoffUnit$inboundSchema.optional(),
-  updateMode: z.boolean().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    amount: z.number().optional(),
+    unit: DigestRegularMetadataUnit$inboundSchema.optional(),
+    digestKey: z.string().optional(),
+    type: DigestRegularMetadataType$inboundSchema,
+    backoff: z.boolean().optional(),
+    backoffAmount: z.number().optional(),
+    backoffUnit: BackoffUnit$inboundSchema.optional(),
+    updateMode: z.boolean().optional(),
+  })
+);
 
 export function digestRegularMetadataFromJSON(
   jsonString: string,

@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -66,20 +66,22 @@ export const WorkflowControllerSearchWorkflowsRequest$outboundSchema: z.ZodType<
   WorkflowControllerSearchWorkflowsRequest$Outbound,
   z.ZodTypeDef,
   WorkflowControllerSearchWorkflowsRequest
-> = z.object({
-  limit: z.number().optional(),
-  offset: z.number().optional(),
-  orderDirection: components.DirectionEnum$outboundSchema.optional(),
-  orderBy: components.WorkflowResponseDtoSortField$outboundSchema.optional(),
-  query: z.string().optional(),
-  tags: z.array(z.string()).optional(),
-  status: z.array(components.WorkflowStatusEnum$outboundSchema).optional(),
-  idempotencyKey: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    idempotencyKey: "idempotency-key",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    limit: z.number().optional(),
+    offset: z.number().optional(),
+    orderDirection: components.DirectionEnum$outboundSchema.optional(),
+    orderBy: components.WorkflowResponseDtoSortField$outboundSchema.optional(),
+    query: z.string().optional(),
+    tags: z.array(z.string()).optional(),
+    status: z.array(components.WorkflowStatusEnum$outboundSchema).optional(),
+    idempotencyKey: z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      idempotencyKey: "idempotency-key",
+    });
+  })
+);
 
 export function workflowControllerSearchWorkflowsRequestToJSON(
   workflowControllerSearchWorkflowsRequest:
@@ -97,15 +99,17 @@ export const WorkflowControllerSearchWorkflowsResponse$inboundSchema: z.ZodType<
   WorkflowControllerSearchWorkflowsResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  Headers: z.record(z.array(z.string())).default({}),
-  Result: components.ListWorkflowResponse$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "Headers": "headers",
-    "Result": "result",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    Headers: z.record(z.array(z.string())).default({}),
+    Result: components.ListWorkflowResponse$inboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      "Headers": "headers",
+      "Result": "result",
+    });
+  })
+);
 
 export function workflowControllerSearchWorkflowsResponseFromJSON(
   jsonString: string,

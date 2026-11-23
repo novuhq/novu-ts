@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -25,9 +25,11 @@ export const LayoutPreviewPayloadDto$inboundSchema: z.ZodType<
   LayoutPreviewPayloadDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  subscriber: SubscriberResponseDtoOptional$inboundSchema.optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    subscriber: SubscriberResponseDtoOptional$inboundSchema.optional(),
+  })
+);
 /** @internal */
 export type LayoutPreviewPayloadDto$Outbound = {
   subscriber?: SubscriberResponseDtoOptional$Outbound | undefined;
@@ -38,9 +40,11 @@ export const LayoutPreviewPayloadDto$outboundSchema: z.ZodType<
   LayoutPreviewPayloadDto$Outbound,
   z.ZodTypeDef,
   LayoutPreviewPayloadDto
-> = z.object({
-  subscriber: SubscriberResponseDtoOptional$outboundSchema.optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    subscriber: SubscriberResponseDtoOptional$outboundSchema.optional(),
+  })
+);
 
 export function layoutPreviewPayloadDtoToJSON(
   layoutPreviewPayloadDto: LayoutPreviewPayloadDto,

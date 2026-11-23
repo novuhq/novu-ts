@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -43,17 +43,19 @@ export const ContextsControllerUpdateContextRequest$outboundSchema: z.ZodType<
   ContextsControllerUpdateContextRequest$Outbound,
   z.ZodTypeDef,
   ContextsControllerUpdateContextRequest
-> = z.object({
-  id: z.string(),
-  type: z.string(),
-  idempotencyKey: z.string().optional(),
-  updateContextRequestDto: components.UpdateContextRequestDto$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    idempotencyKey: "idempotency-key",
-    updateContextRequestDto: "UpdateContextRequestDto",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    type: z.string(),
+    idempotencyKey: z.string().optional(),
+    updateContextRequestDto: components.UpdateContextRequestDto$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      idempotencyKey: "idempotency-key",
+      updateContextRequestDto: "UpdateContextRequestDto",
+    });
+  })
+);
 
 export function contextsControllerUpdateContextRequestToJSON(
   contextsControllerUpdateContextRequest:
@@ -71,15 +73,17 @@ export const ContextsControllerUpdateContextResponse$inboundSchema: z.ZodType<
   ContextsControllerUpdateContextResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  Headers: z.record(z.array(z.string())).default({}),
-  Result: components.GetContextResponseDto$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "Headers": "headers",
-    "Result": "result",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    Headers: z.record(z.array(z.string())).default({}),
+    Result: components.GetContextResponseDto$inboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      "Headers": "headers",
+      "Result": "result",
+    });
+  })
+);
 
 export function contextsControllerUpdateContextResponseFromJSON(
   jsonString: string,

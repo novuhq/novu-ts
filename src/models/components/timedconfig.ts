@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -59,34 +59,36 @@ export type TimedConfig = {
 };
 
 /** @internal */
-export const WeekDays$inboundSchema: z.ZodNativeEnum<typeof WeekDays> = z
-  .nativeEnum(WeekDays);
+export const WeekDays$inboundSchema: z.ZodNativeEnum<typeof WeekDays> =
+  /* @__PURE__ */ lazySchema$(() => z.nativeEnum(WeekDays));
 
 /** @internal */
-export const Ordinal$inboundSchema: z.ZodNativeEnum<typeof Ordinal> = z
-  .nativeEnum(Ordinal);
+export const Ordinal$inboundSchema: z.ZodNativeEnum<typeof Ordinal> =
+  /* @__PURE__ */ lazySchema$(() => z.nativeEnum(Ordinal));
 
 /** @internal */
 export const OrdinalValue$inboundSchema: z.ZodNativeEnum<typeof OrdinalValue> =
-  z.nativeEnum(OrdinalValue);
+  /* @__PURE__ */ lazySchema$(() => z.nativeEnum(OrdinalValue));
 
 /** @internal */
-export const MonthlyType$inboundSchema: z.ZodNativeEnum<typeof MonthlyType> = z
-  .nativeEnum(MonthlyType);
+export const MonthlyType$inboundSchema: z.ZodNativeEnum<typeof MonthlyType> =
+  /* @__PURE__ */ lazySchema$(() => z.nativeEnum(MonthlyType));
 
 /** @internal */
 export const TimedConfig$inboundSchema: z.ZodType<
   TimedConfig,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  atTime: z.string().optional(),
-  weekDays: z.array(WeekDays$inboundSchema).optional(),
-  monthDays: z.array(z.string()).optional(),
-  ordinal: Ordinal$inboundSchema.optional(),
-  ordinalValue: OrdinalValue$inboundSchema.optional(),
-  monthlyType: MonthlyType$inboundSchema.optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    atTime: z.string().optional(),
+    weekDays: z.array(WeekDays$inboundSchema).optional(),
+    monthDays: z.array(z.string()).optional(),
+    ordinal: Ordinal$inboundSchema.optional(),
+    ordinalValue: OrdinalValue$inboundSchema.optional(),
+    monthlyType: MonthlyType$inboundSchema.optional(),
+  })
+);
 
 export function timedConfigFromJSON(
   jsonString: string,

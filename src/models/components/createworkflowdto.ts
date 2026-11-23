@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   ChatStepUpsertDto,
   ChatStepUpsertDto$Outbound,
@@ -181,9 +182,11 @@ export const Providers$outboundSchema: z.ZodType<
   Providers$Outbound,
   z.ZodTypeDef,
   Providers
-> = z.object({
-  replyTo: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    replyTo: z.string().optional(),
+  })
+);
 
 export function providersToJSON(providers: Providers): string {
   return JSON.stringify(Providers$outboundSchema.parse(providers));
@@ -200,10 +203,12 @@ export const Agent$outboundSchema: z.ZodType<
   Agent$Outbound,
   z.ZodTypeDef,
   Agent
-> = z.object({
-  identifier: z.string(),
-  providers: z.record(z.lazy(() => Providers$outboundSchema)).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    identifier: z.string(),
+    providers: z.record(z.lazy(() => Providers$outboundSchema)).optional(),
+  })
+);
 
 export function agentToJSON(agent: Agent): string {
   return JSON.stringify(Agent$outboundSchema.parse(agent));
@@ -228,19 +233,21 @@ export const Steps$outboundSchema: z.ZodType<
   Steps$Outbound,
   z.ZodTypeDef,
   Steps
-> = z.union([
-  InAppStepUpsertDto$outboundSchema,
-  EmailStepUpsertDto$outboundSchema,
-  SmsStepUpsertDto$outboundSchema,
-  PushStepUpsertDto$outboundSchema,
-  ChatStepUpsertDto$outboundSchema,
-  DelayStepUpsertDto$outboundSchema,
-  DigestStepUpsertDto$outboundSchema,
-  ThrottleStepUpsertDto$outboundSchema,
-  ToolStepUpsertDto$outboundSchema,
-  CustomStepUpsertDto$outboundSchema,
-  HttpRequestStepUpsertDto$outboundSchema,
-]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.union([
+    InAppStepUpsertDto$outboundSchema,
+    EmailStepUpsertDto$outboundSchema,
+    SmsStepUpsertDto$outboundSchema,
+    PushStepUpsertDto$outboundSchema,
+    ChatStepUpsertDto$outboundSchema,
+    DelayStepUpsertDto$outboundSchema,
+    DigestStepUpsertDto$outboundSchema,
+    ThrottleStepUpsertDto$outboundSchema,
+    ToolStepUpsertDto$outboundSchema,
+    CustomStepUpsertDto$outboundSchema,
+    HttpRequestStepUpsertDto$outboundSchema,
+  ])
+);
 
 export function stepsToJSON(steps: Steps): string {
   return JSON.stringify(Steps$outboundSchema.parse(steps));
@@ -280,39 +287,41 @@ export const CreateWorkflowDto$outboundSchema: z.ZodType<
   CreateWorkflowDto$Outbound,
   z.ZodTypeDef,
   CreateWorkflowDto
-> = z.object({
-  name: z.string(),
-  description: z.string().optional(),
-  tags: z.array(z.string()).optional(),
-  active: z.boolean().default(false),
-  validatePayload: z.boolean().optional(),
-  payloadSchema: z.nullable(z.record(z.any())).optional(),
-  isTranslationEnabled: z.boolean().default(false),
-  agent: z.nullable(z.lazy(() => Agent$outboundSchema)).optional(),
-  workflowId: z.string(),
-  steps: z.array(
-    z.union([
-      InAppStepUpsertDto$outboundSchema,
-      EmailStepUpsertDto$outboundSchema,
-      SmsStepUpsertDto$outboundSchema,
-      PushStepUpsertDto$outboundSchema,
-      ChatStepUpsertDto$outboundSchema,
-      DelayStepUpsertDto$outboundSchema,
-      DigestStepUpsertDto$outboundSchema,
-      ThrottleStepUpsertDto$outboundSchema,
-      ToolStepUpsertDto$outboundSchema,
-      CustomStepUpsertDto$outboundSchema,
-      HttpRequestStepUpsertDto$outboundSchema,
-    ]),
-  ),
-  source: WorkflowCreationSourceEnum$outboundSchema.default("editor"),
-  preferences: PreferencesRequestDto$outboundSchema.optional(),
-  severity: SeverityLevelEnum$outboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    source: "__source",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    name: z.string(),
+    description: z.string().optional(),
+    tags: z.array(z.string()).optional(),
+    active: z.boolean().default(false),
+    validatePayload: z.boolean().optional(),
+    payloadSchema: z.nullable(z.record(z.any())).optional(),
+    isTranslationEnabled: z.boolean().default(false),
+    agent: z.nullable(z.lazy(() => Agent$outboundSchema)).optional(),
+    workflowId: z.string(),
+    steps: z.array(
+      z.union([
+        InAppStepUpsertDto$outboundSchema,
+        EmailStepUpsertDto$outboundSchema,
+        SmsStepUpsertDto$outboundSchema,
+        PushStepUpsertDto$outboundSchema,
+        ChatStepUpsertDto$outboundSchema,
+        DelayStepUpsertDto$outboundSchema,
+        DigestStepUpsertDto$outboundSchema,
+        ThrottleStepUpsertDto$outboundSchema,
+        ToolStepUpsertDto$outboundSchema,
+        CustomStepUpsertDto$outboundSchema,
+        HttpRequestStepUpsertDto$outboundSchema,
+      ]),
+    ),
+    source: WorkflowCreationSourceEnum$outboundSchema.default("editor"),
+    preferences: PreferencesRequestDto$outboundSchema.optional(),
+    severity: SeverityLevelEnum$outboundSchema.optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      source: "__source",
+    });
+  })
+);
 
 export function createWorkflowDtoToJSON(
   createWorkflowDto: CreateWorkflowDto,

@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
@@ -72,8 +72,10 @@ export type TopicsControllerListTopicsResponse = {
 
 /** @internal */
 export const TopicsControllerListTopicsQueryParamOrderDirection$outboundSchema:
-  z.ZodNativeEnum<typeof TopicsControllerListTopicsQueryParamOrderDirection> = z
-    .nativeEnum(TopicsControllerListTopicsQueryParamOrderDirection);
+  z.ZodNativeEnum<typeof TopicsControllerListTopicsQueryParamOrderDirection> =
+    /* @__PURE__ */ lazySchema$(() =>
+      z.nativeEnum(TopicsControllerListTopicsQueryParamOrderDirection)
+    );
 
 /** @internal */
 export type TopicsControllerListTopicsRequest$Outbound = {
@@ -93,23 +95,25 @@ export const TopicsControllerListTopicsRequest$outboundSchema: z.ZodType<
   TopicsControllerListTopicsRequest$Outbound,
   z.ZodTypeDef,
   TopicsControllerListTopicsRequest
-> = z.object({
-  after: z.string().optional(),
-  before: z.string().optional(),
-  limit: z.number().optional(),
-  orderDirection:
-    TopicsControllerListTopicsQueryParamOrderDirection$outboundSchema
-      .optional(),
-  orderBy: z.string().optional(),
-  includeCursor: z.boolean().optional(),
-  key: z.string().optional(),
-  name: z.string().optional(),
-  idempotencyKey: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    idempotencyKey: "idempotency-key",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    after: z.string().optional(),
+    before: z.string().optional(),
+    limit: z.number().optional(),
+    orderDirection:
+      TopicsControllerListTopicsQueryParamOrderDirection$outboundSchema
+        .optional(),
+    orderBy: z.string().optional(),
+    includeCursor: z.boolean().optional(),
+    key: z.string().optional(),
+    name: z.string().optional(),
+    idempotencyKey: z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      idempotencyKey: "idempotency-key",
+    });
+  })
+);
 
 export function topicsControllerListTopicsRequestToJSON(
   topicsControllerListTopicsRequest: TopicsControllerListTopicsRequest,
@@ -126,15 +130,17 @@ export const TopicsControllerListTopicsResponse$inboundSchema: z.ZodType<
   TopicsControllerListTopicsResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  Headers: z.record(z.array(z.string())).default({}),
-  Result: components.ListTopicsResponseDto$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "Headers": "headers",
-    "Result": "result",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    Headers: z.record(z.array(z.string())).default({}),
+    Result: components.ListTopicsResponseDto$inboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      "Headers": "headers",
+      "Result": "result",
+    });
+  })
+);
 
 export function topicsControllerListTopicsResponseFromJSON(
   jsonString: string,

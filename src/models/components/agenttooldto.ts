@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -24,19 +24,21 @@ export type AgentToolDto = {
 /** @internal */
 export const AgentToolDtoType$inboundSchema: z.ZodNativeEnum<
   typeof AgentToolDtoType
-> = z.nativeEnum(AgentToolDtoType);
+> = /* @__PURE__ */ lazySchema$(() => z.nativeEnum(AgentToolDtoType));
 
 /** @internal */
 export const AgentToolDto$inboundSchema: z.ZodType<
   AgentToolDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  externalId: z.string(),
-  name: z.string(),
-  type: AgentToolDtoType$inboundSchema,
-  description: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    externalId: z.string(),
+    name: z.string(),
+    type: AgentToolDtoType$inboundSchema,
+    description: z.string().optional(),
+  })
+);
 
 export function agentToolDtoFromJSON(
   jsonString: string,

@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -38,17 +38,19 @@ export const DomainsControllerUpdateDomainRouteRequest$outboundSchema:
     DomainsControllerUpdateDomainRouteRequest$Outbound,
     z.ZodTypeDef,
     DomainsControllerUpdateDomainRouteRequest
-  > = z.object({
-    domain: z.string(),
-    address: z.string(),
-    idempotencyKey: z.string().optional(),
-    updateDomainRouteDto: components.UpdateDomainRouteDto$outboundSchema,
-  }).transform((v) => {
-    return remap$(v, {
-      idempotencyKey: "idempotency-key",
-      updateDomainRouteDto: "UpdateDomainRouteDto",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      domain: z.string(),
+      address: z.string(),
+      idempotencyKey: z.string().optional(),
+      updateDomainRouteDto: components.UpdateDomainRouteDto$outboundSchema,
+    }).transform((v) => {
+      return remap$(v, {
+        idempotencyKey: "idempotency-key",
+        updateDomainRouteDto: "UpdateDomainRouteDto",
+      });
+    })
+  );
 
 export function domainsControllerUpdateDomainRouteRequestToJSON(
   domainsControllerUpdateDomainRouteRequest:
@@ -64,15 +66,17 @@ export function domainsControllerUpdateDomainRouteRequestToJSON(
 /** @internal */
 export const DomainsControllerUpdateDomainRouteResponse$inboundSchema:
   z.ZodType<DomainsControllerUpdateDomainRouteResponse, z.ZodTypeDef, unknown> =
-    z.object({
-      Headers: z.record(z.array(z.string())).default({}),
-      Result: components.DomainRouteResponseDto$inboundSchema,
-    }).transform((v) => {
-      return remap$(v, {
-        "Headers": "headers",
-        "Result": "result",
-      });
-    });
+    /* @__PURE__ */ lazySchema$(() =>
+      z.object({
+        Headers: z.record(z.array(z.string())).default({}),
+        Result: components.DomainRouteResponseDto$inboundSchema,
+      }).transform((v) => {
+        return remap$(v, {
+          "Headers": "headers",
+          "Result": "result",
+        });
+      })
+    );
 
 export function domainsControllerUpdateDomainRouteResponseFromJSON(
   jsonString: string,

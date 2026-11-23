@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import { NovuError } from "./novuerror.js";
 
 export type TopicResponseDtoData = {
@@ -82,25 +83,27 @@ export const TopicResponseDto$inboundSchema: z.ZodType<
   TopicResponseDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  _id: z.string(),
-  key: z.string(),
-  name: z.string().optional(),
-  data: z.record(z.any()).optional(),
-  createdAt: z.string().optional(),
-  updatedAt: z.string().optional(),
-  request$: z.instanceof(Request),
-  response$: z.instanceof(Response),
-  body$: z.string(),
-})
-  .transform((v) => {
-    const remapped = remap$(v, {
-      "_id": "id",
-    });
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    _id: z.string(),
+    key: z.string(),
+    name: z.string().optional(),
+    data: z.record(z.any()).optional(),
+    createdAt: z.string().optional(),
+    updatedAt: z.string().optional(),
+    request$: z.instanceof(Request),
+    response$: z.instanceof(Response),
+    body$: z.string(),
+  })
+    .transform((v) => {
+      const remapped = remap$(v, {
+        "_id": "id",
+      });
 
-    return new TopicResponseDto(remapped, {
-      request: v.request$,
-      response: v.response$,
-      body: v.body$,
-    });
-  });
+      return new TopicResponseDto(remapped, {
+        request: v.request$,
+        response: v.response$,
+        body: v.body$,
+      });
+    })
+);

@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -33,12 +33,14 @@ export const DiagnoseDomainResponseDto$inboundSchema: z.ZodType<
   DiagnoseDomainResponseDto,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  ok: z.boolean(),
-  runAt: z.string(),
-  checks: z.array(DomainDiagnosticCheckDto$inboundSchema),
-  issues: z.array(DomainDiagnosticIssueDto$inboundSchema),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    ok: z.boolean(),
+    runAt: z.string(),
+    checks: z.array(DomainDiagnosticCheckDto$inboundSchema),
+    issues: z.array(DomainDiagnosticIssueDto$inboundSchema),
+  })
+);
 
 export function diagnoseDomainResponseDtoFromJSON(
   jsonString: string,

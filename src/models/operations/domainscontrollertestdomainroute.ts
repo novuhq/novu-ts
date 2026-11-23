@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -37,17 +37,19 @@ export const DomainsControllerTestDomainRouteRequest$outboundSchema: z.ZodType<
   DomainsControllerTestDomainRouteRequest$Outbound,
   z.ZodTypeDef,
   DomainsControllerTestDomainRouteRequest
-> = z.object({
-  domain: z.string(),
-  address: z.string(),
-  idempotencyKey: z.string().optional(),
-  testDomainRouteDto: components.TestDomainRouteDto$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    idempotencyKey: "idempotency-key",
-    testDomainRouteDto: "TestDomainRouteDto",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    domain: z.string(),
+    address: z.string(),
+    idempotencyKey: z.string().optional(),
+    testDomainRouteDto: components.TestDomainRouteDto$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      idempotencyKey: "idempotency-key",
+      testDomainRouteDto: "TestDomainRouteDto",
+    });
+  })
+);
 
 export function domainsControllerTestDomainRouteRequestToJSON(
   domainsControllerTestDomainRouteRequest:
@@ -65,15 +67,17 @@ export const DomainsControllerTestDomainRouteResponse$inboundSchema: z.ZodType<
   DomainsControllerTestDomainRouteResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  Headers: z.record(z.array(z.string())).default({}),
-  Result: components.TestDomainRouteResponseDto$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "Headers": "headers",
-    "Result": "result",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    Headers: z.record(z.array(z.string())).default({}),
+    Result: components.TestDomainRouteResponseDto$inboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      "Headers": "headers",
+      "Result": "result",
+    });
+  })
+);
 
 export function domainsControllerTestDomainRouteResponseFromJSON(
   jsonString: string,
