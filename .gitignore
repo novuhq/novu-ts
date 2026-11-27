@@ -13,6 +13,7 @@
 /react-query
 /__tests__
 /funcs
+/helpers
 /core.*
 /esm
 /dist
