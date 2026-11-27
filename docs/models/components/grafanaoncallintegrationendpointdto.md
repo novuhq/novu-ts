@@ -1,0 +1,20 @@
+# GrafanaOnCallIntegrationEndpointDto
+
+## Example Usage
+
+```typescript
+import { GrafanaOnCallIntegrationEndpointDto } from "@novu/api/models/components";
+
+let value: GrafanaOnCallIntegrationEndpointDto = {
+  url:
+    "https://acme.grafana.net/integrations/v1/formatted_webhook/m12xmIjOcgwH74UF8CN4dk0Dh/",
+  authToken: "glsa_abc123...",
+};
+```
+
+## Fields
+
+| Field                                                                                                                                                                                  | Type                                                                                                                                                                                   | Required                                                                                                                                                                               | Description                                                                                                                                                                            | Example                                                                                                                                                                                |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `url`                                                                                                                                                                                  | *string*                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                     | Grafana IRM/OnCall incoming-webhook (Formatted Webhook) integration URL. The routing secret is embedded in the URL path. Encrypted at rest on the channel endpoint (`endpoint` field). | https://acme.grafana.net/integrations/v1/formatted_webhook/m12xmIjOcgwH74UF8CN4dk0Dh/                                                                                                  |
+| `authToken`                                                                                                                                                                            | *string*                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                     | Optional Grafana service account bearer token, required when the integration enforces authenticated ingestion. Encrypted at rest on the channel endpoint (`endpoint` field).           | glsa_abc123...                                                                                                                                                                         |

@@ -1,0 +1,15 @@
+# ChannelTypeEnum
+
+## Example Usage
+
+```typescript
+import { ChannelTypeEnum } from "@novu/api/models/components";
+
+let value: ChannelTypeEnum = "tool";
+```
+
+## Values
+
+```typescript
+"in_app" | "email" | "sms" | "chat" | "push" | "tool"
+```

@@ -1,0 +1,23 @@
+# CreatePagerDutyServiceEndpointDtoContext
+
+
+## Supported Types
+
+### `string`
+
+```typescript
+const value: string = "org-acme";
+```
+
+### `components.CreatePagerDutyServiceEndpointDtoContext2`
+
+```typescript
+const value: components.CreatePagerDutyServiceEndpointDtoContext2 = {
+  id: "org-acme",
+  data: {
+    "name": "Acme Corp",
+    "region": "us-east-1",
+  },
+};
+```
+

@@ -1,0 +1,23 @@
+# FileRefDto
+
+## Example Usage
+
+```typescript
+import { FileRefDto } from "@novu/api/models/components";
+
+let value: FileRefDto = {
+  filename: "report.pdf",
+  mimeType: "application/pdf",
+  data: "JVBERi0xLjQK...",
+  url: "https://example.com/files/report.pdf",
+};
+```
+
+## Fields
+
+| Field                                                                                                                                       | Type                                                                                                                                        | Required                                                                                                                                    | Description                                                                                                                                 | Example                                                                                                                                     |
+| ------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| `filename`                                                                                                                                  | *string*                                                                                                                                    | :heavy_check_mark:                                                                                                                          | Filename shown to the end user, including extension.                                                                                        | report.pdf                                                                                                                                  |
+| `mimeType`                                                                                                                                  | *string*                                                                                                                                    | :heavy_minus_sign:                                                                                                                          | IANA MIME type of the file.                                                                                                                 | application/pdf                                                                                                                             |
+| `data`                                                                                                                                      | *string*                                                                                                                                    | :heavy_minus_sign:                                                                                                                          | Base64-encoded inline file bytes. Mutually exclusive with `url`. Decoded size must be ≤ 5 MB. Prefer `url` for larger files.                | JVBERi0xLjQK...                                                                                                                             |
+| `url`                                                                                                                                       | *string*                                                                                                                                    | :heavy_minus_sign:                                                                                                                          | Publicly accessible HTTP(S) URL. Mutually exclusive with `data`. Server-side limits: 25 MB per file, 15 files per message, 50 MB aggregate. | https://example.com/files/report.pdf                                                                                                        |

@@ -1,0 +1,17 @@
+# UiSchemaGroupEnum
+
+Group of the UI Schema
+
+## Example Usage
+
+```typescript
+import { UiSchemaGroupEnum } from "@novu/api/models/components";
+
+let value: UiSchemaGroupEnum = "LAYOUT";
+```
+
+## Values
+
+```typescript
+"IN_APP" | "EMAIL" | "DIGEST" | "DELAY" | "THROTTLE" | "SMS" | "CHAT" | "PUSH" | "TOOL" | "SKIP" | "LAYOUT" | "HTTP_REQUEST"
+```

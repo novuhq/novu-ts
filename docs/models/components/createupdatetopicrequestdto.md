@@ -1,0 +1,24 @@
+# CreateUpdateTopicRequestDto
+
+## Example Usage
+
+```typescript
+import { CreateUpdateTopicRequestDto } from "@novu/api/models/components";
+
+let value: CreateUpdateTopicRequestDto = {
+  key: "task:12345",
+  name: "Task Title",
+  data: {
+    "category": "product",
+    "priority": 1,
+  },
+};
+```
+
+## Fields
+
+| Field                                                                                                                                                                              | Type                                                                                                                                                                               | Required                                                                                                                                                                           | Description                                                                                                                                                                        | Example                                                                                                                                                                            |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `key`                                                                                                                                                                              | *string*                                                                                                                                                                           | :heavy_check_mark:                                                                                                                                                                 | The unique key identifier for the topic. The key must contain only alphanumeric characters (a-z, A-Z, 0-9), hyphens (-), underscores (_), colons (:), or be a valid email address. | task:12345                                                                                                                                                                         |
+| `name`                                                                                                                                                                             | *string*                                                                                                                                                                           | :heavy_minus_sign:                                                                                                                                                                 | The display name for the topic                                                                                                                                                     | Task Title                                                                                                                                                                         |
+| `data`                                                                                                                                                                             | Record<string, *any*>                                                                                                                                                              | :heavy_minus_sign:                                                                                                                                                                 | Additional custom data associated with the topic. Flat key-value pairs of scalars (string, number, boolean, string[]). Maximum size: 64KB.                                         | {<br/>"category": "product",<br/>"priority": 1<br/>}                                                                                                                               |

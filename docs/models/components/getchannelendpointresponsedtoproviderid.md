@@ -1,0 +1,17 @@
+# GetChannelEndpointResponseDtoProviderId
+
+The provider identifier (e.g., sendgrid, twilio, slack, etc.).
+
+## Example Usage
+
+```typescript
+import { GetChannelEndpointResponseDtoProviderId } from "@novu/api/models/components";
+
+let value: GetChannelEndpointResponseDtoProviderId = "slack";
+```
+
+## Values
+
+```typescript
+"anypost" | "emailjs" | "mailgun" | "mailjet" | "mandrill" | "nodemailer" | "postmark" | "sendgrid" | "sendinblue" | "ses" | "netcore" | "infobip-email" | "resend" | "plunk" | "mailersend" | "mailtrap" | "clickatell" | "outlook365" | "novu-email" | "sparkpost" | "email-webhook" | "braze" | "novu-email-agent" | "agent-email-inbox" | "nexmo" | "plivo" | "sms77" | "sms-central" | "sns" | "telnyx" | "twilio" | "gupshup" | "firetext" | "infobip-sms" | "burst-sms" | "bulk-sms" | "isend-sms" | "forty-six-elks" | "kannel" | "maqsam" | "termii" | "africas-talking" | "novu-sms" | "sendchamp" | "generic-sms" | "clicksend" | "bandwidth" | "messagebird" | "simpletexting" | "azure-sms" | "ring-central" | "brevo-sms" | "eazy-sms" | "mobishastra" | "afro-message" | "unifonic" | "smsmode" | "imedia" | "sinch" | "isendpro-sms" | "cm-telecom" | "ruach-sms" | "fcm" | "apns" | "expo" | "one-signal" | "pushpad" | "push-webhook" | "pusher-beams" | "appio" | "novu" | "slack" | "discord" | "google-chat" | "msteams" | "webex-messaging" | "mattermost" | "ryver" | "zulip" | "grafana-on-call" | "getstream" | "rocket-chat" | "whatsapp-business" | "line" | "chat-webhook" | "novu-slack" | "telegram" | "sendblue" | "photon-imessage" | "novu-web-chat" | "anthropic" | "novu-anthropic" | "anthropic-aws" | "pagerduty" | "opsgenie" | "grafana" | "tool-webhook"
+```
