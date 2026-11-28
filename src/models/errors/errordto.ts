@@ -187,10 +187,12 @@ export const ErrorDto$inboundSchema: z.ZodType<
     body$: z.string(),
   })
     .transform((v) => {
-      return new ErrorDto(v, {
-        request: v.request$,
-        response: v.response$,
-        body: v.body$,
+      const { request$, response$, body$, ...data } = v;
+
+      return new ErrorDto(data, {
+        request: request$,
+        response: response$,
+        body: body$,
       });
     })
 );

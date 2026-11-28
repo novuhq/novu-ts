@@ -319,6 +319,16 @@ run();
 
 * [track](docs/sdks/activity/README.md#track) - Track provider activity and engagement events
 
+#### [Activity.Requests](docs/sdks/requests/README.md)
+
+* [list](docs/sdks/requests/README.md#list) - List activity requests
+* [retrieve](docs/sdks/requests/README.md#retrieve) - Retrieve activity request
+
+#### [Activity.WorkflowRuns](docs/sdks/workflowruns/README.md)
+
+* [list](docs/sdks/workflowruns/README.md#list) - List workflow runs
+* [retrieve](docs/sdks/workflowruns/README.md#retrieve) - Retrieve workflow run
+
 ### [Agents](docs/sdks/agents/README.md)
 
 * [create](docs/sdks/agents/README.md#create) - Create an agent
@@ -572,7 +582,11 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 <summary>Available standalone functions</summary>
 
+- [`activityRequestsList`](docs/sdks/requests/README.md#list) - List activity requests
+- [`activityRequestsRetrieve`](docs/sdks/requests/README.md#retrieve) - Retrieve activity request
 - [`activityTrack`](docs/sdks/activity/README.md#track) - Track provider activity and engagement events
+- [`activityWorkflowRunsList`](docs/sdks/workflowruns/README.md#list) - List workflow runs
+- [`activityWorkflowRunsRetrieve`](docs/sdks/workflowruns/README.md#retrieve) - Retrieve workflow run
 - [`agentsCreate`](docs/sdks/agents/README.md#create) - Create an agent
 - [`agentsDelete`](docs/sdks/agents/README.md#delete) - Delete an agent
 - [`agentsIntegrationsCreate`](docs/sdks/novuintegrations/README.md#create) - Create an agent integration
@@ -813,9 +827,9 @@ run();
 
 
 **Inherit from [`NovuError`](./src/models/errors/novuerror.ts)**:
-* [`PayloadValidationExceptionDto`](./src/models/errors/payloadvalidationexceptiondto.ts): Status code `400`. Applicable to 3 of 150 methods.*
-* [`SubscriberResponseDto`](./src/models/errors/subscriberresponsedto.ts): Created. Status code `409`. Applicable to 1 of 150 methods.*
-* [`TopicResponseDto`](./src/models/errors/topicresponsedto.ts): OK. Status code `409`. Applicable to 1 of 150 methods.*
+* [`PayloadValidationExceptionDto`](./src/models/errors/payloadvalidationexceptiondto.ts): Status code `400`. Applicable to 3 of 154 methods.*
+* [`SubscriberResponseDto`](./src/models/errors/subscriberresponsedto.ts): Created. Status code `409`. Applicable to 1 of 154 methods.*
+* [`TopicResponseDto`](./src/models/errors/topicresponsedto.ts): OK. Status code `409`. Applicable to 1 of 154 methods.*
 * [`ResponseValidationError`](./src/models/errors/responsevalidationerror.ts): Type mismatch between the data returned from the server and the structure expected by the SDK. See `error.rawValue` for the raw value and `error.pretty()` for a nicely formatted multi-line string.
 
 </details>

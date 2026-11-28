@@ -8,7 +8,7 @@ import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
-export const WeekDays = {
+export const TimedConfigWeekDays = {
   Monday: "monday",
   Tuesday: "tuesday",
   Wednesday: "wednesday",
@@ -17,7 +17,7 @@ export const WeekDays = {
   Saturday: "saturday",
   Sunday: "sunday",
 } as const;
-export type WeekDays = ClosedEnum<typeof WeekDays>;
+export type TimedConfigWeekDays = ClosedEnum<typeof TimedConfigWeekDays>;
 
 export const Ordinal = {
   One: "1",
@@ -51,7 +51,7 @@ export type MonthlyType = ClosedEnum<typeof MonthlyType>;
 
 export type TimedConfig = {
   atTime?: string | undefined;
-  weekDays?: Array<WeekDays> | undefined;
+  weekDays?: Array<TimedConfigWeekDays> | undefined;
   monthDays?: Array<string> | undefined;
   ordinal?: Ordinal | undefined;
   ordinalValue?: OrdinalValue | undefined;
@@ -59,8 +59,9 @@ export type TimedConfig = {
 };
 
 /** @internal */
-export const WeekDays$inboundSchema: z.ZodNativeEnum<typeof WeekDays> =
-  /* @__PURE__ */ lazySchema$(() => z.nativeEnum(WeekDays));
+export const TimedConfigWeekDays$inboundSchema: z.ZodNativeEnum<
+  typeof TimedConfigWeekDays
+> = /* @__PURE__ */ lazySchema$(() => z.nativeEnum(TimedConfigWeekDays));
 
 /** @internal */
 export const Ordinal$inboundSchema: z.ZodNativeEnum<typeof Ordinal> =
@@ -82,7 +83,7 @@ export const TimedConfig$inboundSchema: z.ZodType<
 > = /* @__PURE__ */ lazySchema$(() =>
   z.object({
     atTime: z.string().optional(),
-    weekDays: z.array(WeekDays$inboundSchema).optional(),
+    weekDays: z.array(TimedConfigWeekDays$inboundSchema).optional(),
     monthDays: z.array(z.string()).optional(),
     ordinal: Ordinal$inboundSchema.optional(),
     ordinalValue: OrdinalValue$inboundSchema.optional(),

@@ -2,7 +2,7 @@
 
 {
   "name": "@novu/api",
-  "version": "3.21.0",
+  "version": "3.22.0",
   "exports": {
     ".": "./src/index.ts",
     "./node": "./src/node.ts",

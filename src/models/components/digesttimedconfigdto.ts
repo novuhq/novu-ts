@@ -17,7 +17,7 @@ import {
   OrdinalValueEnum$inboundSchema,
 } from "./ordinalvalueenum.js";
 
-export const DigestTimedConfigDtoWeekDays = {
+export const WeekDays = {
   Monday: "monday",
   Tuesday: "tuesday",
   Wednesday: "wednesday",
@@ -26,9 +26,7 @@ export const DigestTimedConfigDtoWeekDays = {
   Saturday: "saturday",
   Sunday: "sunday",
 } as const;
-export type DigestTimedConfigDtoWeekDays = ClosedEnum<
-  typeof DigestTimedConfigDtoWeekDays
->;
+export type WeekDays = ClosedEnum<typeof WeekDays>;
 
 export type DigestTimedConfigDto = {
   /**
@@ -38,7 +36,7 @@ export type DigestTimedConfigDto = {
   /**
    * Days of the week for the digest
    */
-  weekDays?: Array<DigestTimedConfigDtoWeekDays> | undefined;
+  weekDays?: Array<WeekDays> | undefined;
   /**
    * Specific days of the month for the digest
    */
@@ -66,11 +64,8 @@ export type DigestTimedConfigDto = {
 };
 
 /** @internal */
-export const DigestTimedConfigDtoWeekDays$inboundSchema: z.ZodNativeEnum<
-  typeof DigestTimedConfigDtoWeekDays
-> = /* @__PURE__ */ lazySchema$(() =>
-  z.nativeEnum(DigestTimedConfigDtoWeekDays)
-);
+export const WeekDays$inboundSchema: z.ZodNativeEnum<typeof WeekDays> =
+  /* @__PURE__ */ lazySchema$(() => z.nativeEnum(WeekDays));
 
 /** @internal */
 export const DigestTimedConfigDto$inboundSchema: z.ZodType<
@@ -80,7 +75,7 @@ export const DigestTimedConfigDto$inboundSchema: z.ZodType<
 > = /* @__PURE__ */ lazySchema$(() =>
   z.object({
     atTime: z.string().optional(),
-    weekDays: z.array(DigestTimedConfigDtoWeekDays$inboundSchema).optional(),
+    weekDays: z.array(WeekDays$inboundSchema).optional(),
     monthDays: z.array(z.number()).optional(),
     ordinal: OrdinalEnum$inboundSchema.optional(),
     ordinalValue: OrdinalValueEnum$inboundSchema.optional(),

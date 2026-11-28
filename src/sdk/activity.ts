@@ -7,8 +7,20 @@ import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as components from "../models/components/index.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
+import { Requests } from "./requests.js";
+import { WorkflowRuns } from "./workflowruns.js";
 
 export class Activity extends ClientSDK {
+  private _requests?: Requests;
+  get requests(): Requests {
+    return (this._requests ??= new Requests(this._options));
+  }
+
+  private _workflowRuns?: WorkflowRuns;
+  get workflowRuns(): WorkflowRuns {
+    return (this._workflowRuns ??= new WorkflowRuns(this._options));
+  }
+
   /**
    * Track provider activity and engagement events
    *

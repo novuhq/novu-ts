@@ -25,6 +25,10 @@ export type AutoConfigureIntegrationResponseDto = {
    * The updated configurations after auto-configuration
    */
   integration?: Integration | undefined;
+  /**
+   * The URL the provider sends delivery events to. Set it in the provider yourself when auto-configuration fails.
+   */
+  webhookUrl?: string | undefined;
 };
 
 /** @internal */
@@ -54,6 +58,7 @@ export const AutoConfigureIntegrationResponseDto$inboundSchema: z.ZodType<
     success: z.boolean(),
     message: z.string().optional(),
     integration: z.lazy(() => Integration$inboundSchema).optional(),
+    webhookUrl: z.string().optional(),
   })
 );
 

@@ -20,6 +20,7 @@ let value: IntegrationsControllerGetChatOAuthUrlRequest = {
       "groups:read",
       "users:read",
       "users:read.email",
+      "files:write",
       "incoming-webhook",
     ],
     userScope: [

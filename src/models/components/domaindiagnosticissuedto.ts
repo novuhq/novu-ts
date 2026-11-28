@@ -19,15 +19,17 @@ export type DomainDiagnosticIssueDtoCode = ClosedEnum<
   typeof DomainDiagnosticIssueDtoCode
 >;
 
-export const Severity = {
+export const DomainDiagnosticIssueDtoSeverity = {
   Warn: "warn",
   Error: "error",
 } as const;
-export type Severity = ClosedEnum<typeof Severity>;
+export type DomainDiagnosticIssueDtoSeverity = ClosedEnum<
+  typeof DomainDiagnosticIssueDtoSeverity
+>;
 
 export type DomainDiagnosticIssueDto = {
   code: DomainDiagnosticIssueDtoCode;
-  severity: Severity;
+  severity: DomainDiagnosticIssueDtoSeverity;
   message: string;
   /**
    * Plain-language remediation guidance
@@ -43,8 +45,11 @@ export const DomainDiagnosticIssueDtoCode$inboundSchema: z.ZodNativeEnum<
 );
 
 /** @internal */
-export const Severity$inboundSchema: z.ZodNativeEnum<typeof Severity> =
-  /* @__PURE__ */ lazySchema$(() => z.nativeEnum(Severity));
+export const DomainDiagnosticIssueDtoSeverity$inboundSchema: z.ZodNativeEnum<
+  typeof DomainDiagnosticIssueDtoSeverity
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.nativeEnum(DomainDiagnosticIssueDtoSeverity)
+);
 
 /** @internal */
 export const DomainDiagnosticIssueDto$inboundSchema: z.ZodType<
@@ -54,7 +59,7 @@ export const DomainDiagnosticIssueDto$inboundSchema: z.ZodType<
 > = /* @__PURE__ */ lazySchema$(() =>
   z.object({
     code: DomainDiagnosticIssueDtoCode$inboundSchema,
-    severity: Severity$inboundSchema,
+    severity: DomainDiagnosticIssueDtoSeverity$inboundSchema,
     message: z.string(),
     fix: z.string(),
   })
