@@ -1,15 +1,17 @@
 # Severity
 
+Severity
+
 ## Example Usage
 
 ```typescript
 import { Severity } from "@novu/api/models/components";
 
-let value: Severity = "error";
+let value: Severity = "none";
 ```
 
 ## Values
 
 ```typescript
-"warn" | "error"
+"high" | "medium" | "low" | "none"
 ```

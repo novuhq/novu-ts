@@ -7,6 +7,8 @@ import * as components from "../models/components/index.js";
 import * as operations from "../models/operations/index.js";
 import { APIPromise } from "../types/async.js";
 import { unwrapAsync } from "../types/fp.js";
+import { Requests } from "./requests.lazy.js";
+import { WorkflowRuns } from "./workflowruns.lazy.js";
 
 let activityTrack$module:
   | Promise<typeof import("../funcs/activityTrack.js")>
@@ -27,6 +29,16 @@ const activityTrack =
     )) as typeof import("../funcs/activityTrack.js").activityTrack;
 
 export class Activity extends ClientSDK {
+  private _requests?: Requests;
+  get requests(): Requests {
+    return (this._requests ??= new Requests(this._options));
+  }
+
+  private _workflowRuns?: WorkflowRuns;
+  get workflowRuns(): WorkflowRuns {
+    return (this._workflowRuns ??= new WorkflowRuns(this._options));
+  }
+
   /**
    * Track provider activity and engagement events
    *
